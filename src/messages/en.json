@@ -68,5 +68,664 @@
     "getMobileApp": "Get the Mobile App",
     "googlePlayAlt": "Get it on Google Play",
     "appStoreAlt": "Download on the App Store"
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Empowering Agriculture from Soil to Sale on {appName}",
+      "subtitle": "A unified platform connecting every stakeholder in the agricultural value chain for a more transparent, efficient, and sustainable future.",
+      "getStartedButton": "Get Started Free",
+      "learnMoreButton": "Learn More"
+    },
+    "features": {
+      "title": "Core Features of DamDoh",
+      "subtitle": "Everything you need to grow, connect, and trade, all in one place.",
+      "networking": {
+        "title": "Smart Networking",
+        "description": "AI-powered connection suggestions to link you with the right partners, from suppliers to international buyers."
+      },
+      "marketplace": {
+        "title": "Direct Marketplace",
+        "description": "Buy and sell products and services directly, increasing transparency and profitability for all stakeholders."
+      },
+      "forums": {
+        "title": "Thematic Forums",
+        "description": "Share knowledge, discuss challenges, and collaborate on solutions in dedicated topic-specific forums."
+      },
+      "talent": {
+        "title": "Talent Exchange",
+        "description": "Offer or find specialized agricultural services, from custom harvesting to drone surveying."
+      }
+    },
+    "forWho": {
+      "badge": "For Everyone in Agriculture",
+      "title": "A Platform for the Entire Value Chain",
+      "description": "DamDoh is uniquely designed to serve the entire agricultural ecosystem, creating a single point of truth and opportunity for all.",
+      "farmers": {
+        "title": "Farmers",
+        "description": "Access better markets, find quality inputs, and get expert advice to increase yield and profitability."
+      },
+      "buyers": {
+        "title": "Buyers & Processors",
+        "description": "Source high-quality, traceable produce directly from growers and cooperatives, ensuring supply chain reliability."
+      },
+      "experts": {
+        "title": "Experts & Service Providers",
+        "description": "Offer your specialized skills and services to a vast agricultural audience seeking your expertise."
+      },
+      "imageAlt": "A diverse group of agricultural stakeholders collaborating"
+    },
+    "cta": {
+      "title": "Join the Agricultural Revolution",
+      "subtitle": "Sign up today and become part of a growing global network dedicated to transforming the future of food.",
+      "button": "Create Your Free Account"
+    }
+  },
+  "Auth": {
+    "signInWelcome": "Welcome back to {appName}",
+    "signUpWelcome": "Join the DamDoh Agricultural Network",
+    "forgotPasswordResetPrompt": "Reset your password for {appName}",
+    "resetPasswordPrompt": "Create a new password for {appName}",
+    "signInTitle": "Sign In to Your Account",
+    "signInDescription": "Enter your credentials to access your dashboard.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "forgotPasswordLink": "Forgot password?",
+    "signingInButton": "Signing In...",
+    "signInButton": "Sign In",
+    "noAccountPrompt": "Don't have an account?",
+    "signUpLink": "Sign up",
+    "recoverWithUniversalIdPrompt": "Or recover access with your Universal ID",
+    "signUpTitle": "Create a New Account",
+    "signUpDescription": "Tell us a bit about yourself to get started.",
+    "nameLabel": "Your Name or Business Name",
+    "namePlaceholder": "e.g., Jane Doe or Green Valley Farms",
+    "roleLabel": "Your Primary Role",
+    "rolePlaceholder": "Select your role in the supply chain...",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Creating Account...",
+    "signUpButton": "Create Account",
+    "alreadyHaveAccountPrompt": "Already have an account?",
+    "forgotPasswordTitle": "Forgot Password?",
+    "forgotPasswordDescription": "No problem. Enter your email address below and we'll send you a link to reset it.",
+    "sendResetLinkButton": "Send Reset Link",
+    "sendingEmailButton": "Sending Email...",
+    "rememberPasswordPrompt": "Remember your password?",
+    "resetPasswordTitle": "Reset Your Password",
+    "resetPasswordDescription": "Enter and confirm your new password below.",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "Enter a strong new password",
+    "resetPasswordButton": "Reset Password",
+    "resettingPasswordButton": "Resetting...",
+    "recoverPage": {
+      "title": "Recover Your Account",
+      "description": "Use your network to regain access.",
+      "howItWorksTitle": "How It Works",
+      "step1": "Enter your phone number to start a recovery session.",
+      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
+      "step3": "Once your friend scans the code to confirm your identity, you'll regain access.",
+      "startButton": "Start Account Recovery",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted DamDoh connection scan this QR code using the 'Help a Friend Recover' feature in their app.",
+      "scanNote": "This code is temporary and expires in 10 minutes.",
+      "startOverButton": "Start Over"
+    }
+  },
+  "StartPost": {
+    "placeholder": "Start a post, ask a question, or share an update...",
+    "photoVideo": "Photo/Video",
+    "agriEvent": "Agri-Event",
+    "createPoll": "Create Poll"
+  },
+  "CreatePostModal": {
+    "title": "Create a post",
+    "description": "Share your thoughts with the community.",
+    "yourName": "Your Name",
+    "shareUpdate": "Share an update",
+    "placeholder": "What's on your mind?",
+    "selectedFile": "Selected file:",
+    "pollOptionsLabel": "Poll Options",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Add Option",
+    "pollNote": "Create a poll with up to {maxOptions} options.",
+    "postButton": "Post",
+    "pollOptionsError": "A poll must have at least two options filled out.",
+    "emptyPostError": "Your post cannot be empty. Please add some text, an image, or a poll.",
+    "addMediaButton": "Add Media",
+    "createEventButton": "Create Event",
+    "shareDocumentButton": "Share Document",
+    "createPollButton": "Create Poll"
+  },
+  "FeedItemCard": {
+    "likes": "{count, plural, =0 {Likes} =1 {Like} other {Likes}}",
+    "comments": "{count, plural, =0 {Comments} =1 {Comment} other {Comments}}",
+    "like": "Like",
+    "comment": "Comment",
+    "repost": "Repost",
+    "editPost": "Edit Post",
+    "deletePost": "Delete Post",
+    "signInToLikeToast": "You must be signed in to like a post.",
+    "loadCommentsErrorToast": "Could not load comments.",
+    "noComments": "Be the first to comment.",
+    "loadingComments": "Loading comments...",
+    "loadMoreComments": "Load more comments",
+    "writeCommentPlaceholder": "Write a comment...",
+    "postButton": "Post",
+    "repostPlaceholderToast": "Repost feature coming soon!",
+    "signInToVoteToast": "You must be signed in to vote.",
+    "voteSuccessToast": "Your vote has been counted!",
+    "voteErrorToast": "Failed to record your vote.",
+    "votes": "{count, plural, =0 {votes} =1 {vote} other {votes}}"
+  },
+  "Marketplace": {
+    "title": "Marketplace",
+    "description": "Discover, buy, and sell agricultural products and services.",
+    "createShopButton": "Create Shopfront",
+    "myOrdersButton": "My Orders",
+    "createListingButton": "Create Listing",
+    "pinButton": "Pin as Homepage",
+    "unpinButton": "Unpin Homepage",
+    "pinning": {
+      "pinnedTitle": "Marketplace Pinned",
+      "pinnedDescription": "The Marketplace is now your default homepage.",
+      "unpinnedTitle": "Marketplace Unpinned",
+      "unpinnedDescription": "Your homepage has been reset to the default."
+    },
+    "searchPlaceholder": "Search products & services...",
+    "locationPlaceholder": "Filter by location...",
+    "typePlaceholder": "Filter by type...",
+    "recommendedForYou": "Recommended For You",
+    "discoverMore": "Discover More",
+    "noItemsFound": {
+      "title": "No Items Found",
+      "hint": "Try adjusting your search filters or check back later."
+    },
+    "errors": {
+      "search": {
+        "title": "Search Failed",
+        "description": "Could not retrieve marketplace items at this time."
+      },
+      "aiRecommendations": {
+        "title": "No recommendations found right now."
+      }
+    },
+    "categories": {
+      "allCategories": "All Categories",
+      "viewAllItems": "View All Items",
+      "viewAllCategory": "All {categoryName}"
+    },
+    "itemView": {
+      "backLink": "Back to Marketplace",
+      "traceabilityButton": "View Traceability Report",
+      "aboutSeller": "About the Seller",
+      "viewShopfront": "View Shopfront",
+      "editListing": "Edit Listing",
+      "manageService": "Manage Service",
+      "contactSeller": "Contact Seller",
+      "contactForService": "Contact for Service",
+      "buyNowButton": "Buy Now",
+      "viewDetails": "View Details",
+      "viewServiceButton": "View Service",
+      "notFound": {
+        "description": "The listing you are looking for could not be found."
+      },
+      "errors": {
+        "loadItem": {
+          "description": "There was an error loading this item."
+        },
+        "unexpected": "An unexpected error occurred."
+      },
+      "skillsLabel": "Skills Required",
+      "experienceLabel": "Experience Level",
+      "compensationLabel": "Compensation",
+      "contactForRates": "Contact for rates",
+      "coupon": {
+        "label": "Have a coupon code?",
+        "placeholder": "Enter code",
+        "applyButton": "Apply",
+        "successTitle": "Coupon Applied!",
+        "successDescription": "Your {type} discount of {discount} has been applied.",
+        "failTitle": "Invalid Coupon",
+        "failDescription": "The coupon code is not valid for this seller or has expired.",
+        "appliedText": "Applied coupon: {code}"
+      },
+      "booking": {
+        "perNight": "night",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "addDate": "Add date",
+        "guests": "Guests",
+        "notCharged": "You won't be charged yet",
+        "nights": "nights",
+        "serviceFee": "Service fee",
+        "total": "Total",
+        "reserveButton": "Reserve",
+        "reservingButton": "Reserving...",
+        "authTitle": "Sign In to Book",
+        "authDescription": "You must be logged in to book this service.",
+        "failTitle": "Booking Failed",
+        "dateError": "Please select a check-in and check-out date.",
+        "successTitle": "Booking Confirmed!",
+        "successDescription": "Your booking has been confirmed. You'll receive details shortly.",
+        "bookedTitle": "You're Booked!",
+        "bookedDescription": "Show this QR code at check-in.",
+        "ticketButton": "View Check-in Ticket",
+        "modalTitle": "Your Check-in Ticket",
+        "modalDescription": "Present this QR code for your booking of {itemName}.",
+        "modalScan": "Scan this code at the venue for easy check-in."
+      },
+      "order": {
+        "title": "Place an order for {itemName}",
+        "description": "Confirm the quantity and add any notes for the seller.",
+        "quantityLabel": "Quantity",
+        "notesLabel": "Notes for the seller (optional)",
+        "notesPlaceholder": "E.g., specific delivery instructions",
+        "cancelButton": "Cancel",
+        "confirmButton": "Confirm Order",
+        "placingButton": "Placing Order...",
+        "authTitle": "Sign In to Order",
+        "authDescription": "You must be logged in to place an order.",
+        "quantityErrorTitle": "Invalid Quantity",
+        "quantityErrorDescription": "Please enter a quantity greater than zero.",
+        "successTitle": "Order Placed!",
+        "successDescription": "Your order has been sent to the seller.",
+        "failTitle": "Order Failed",
+        "failDescription": "There was an error placing your order. Please try again."
+      }
+    },
+    "createListing": {
+      "backLink": "Back to Marketplace",
+      "title": "Create New Marketplace Listing",
+      "description": "Fill out the details below to list your product or service.",
+      "form": {
+        "nameLabel": "Listing Title",
+        "namePlaceholder": "e.g., Organic Hass Avocados, Tractor Repair Service",
+        "typeLabel": "Listing Type",
+        "typePlaceholder": "Select a listing type",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Describe your product or service in detail...",
+        "locationLabel": "Location",
+        "locationPlaceholder": "e.g., Nakuru, Kenya",
+        "relatedVtiLabel": "Related Traceability ID (Optional)",
+        "relatedVtiPlaceholder": "Enter VTI if applicable",
+        "relatedVtiDescription": "Link this listing to a specific harvest batch for full transparency.",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "Select a category",
+        "priceLabel": "Price",
+        "pricePlaceholder": "e.g., 25.50",
+        "unitLabel": "per",
+        "unitPlaceholder": "e.g., kg, ton, hour",
+        "compensationLabel": "Compensation / Rates",
+        "compensationPlaceholder": "e.g., $50/hour, Project-based",
+        "experienceLabel": "Experience Level",
+        "experiencePlaceholder": "e.g., Intermediate, Expert (10+ years)",
+        "skillsLabel": "Skills Required (for services)",
+        "skillsPlaceholder": "e.g., Crop Dusting, Soil Analysis, Organic Certification",
+        "skillsDescription": "Separate skills with a comma.",
+        "imageUrlLabel": "Image URL",
+        "sustainableLabel": "Sustainably Produced",
+        "sustainableDescription": "Check this if your product or service follows recognized sustainable practices.",
+        "submitButton": "Create Listing",
+        "submittingButton": "Creating..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Suggest Price with AI",
+        "generatingButton": "Suggesting...",
+        "suggestionLabel": "AI Suggestion:",
+        "usePriceButton": "Use Price"
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Missing Information",
+            "description": "Please fill in the Title and Description before suggesting a price."
+          },
+          "failed": {
+            "title": "AI Suggestion Failed",
+            "description": "Could not get a price suggestion at this time."
+          }
+        },
+        "authentication": {
+          "title": "Not Authenticated",
+          "description": "You must be logged in to create a listing."
+        },
+        "creation": {
+          "title": "Creation Failed",
+          "description": "An unexpected error occurred while creating the listing."
+        }
+      },
+      "success": {
+        "title": "Listing Created!",
+        "description": "Your item is now live on the marketplace."
+      }
+    },
+    "myOrders": {
+        "backLink": "Back to Marketplace",
+        "title": "My Incoming Orders",
+        "description": "Manage orders placed by buyers for your listings.",
+        "noOrders": "You have no incoming orders at this time.",
+        "auth": {
+            "title": "Please Sign In",
+            "description": "You need to be logged in to view your orders.",
+            "button": "Sign In"
+        },
+        "toast": {
+            "errorTitle": "Error",
+            "fetchError": "Could not load your orders.",
+            "successTitle": "Status Updated",
+            "updateSuccess": "Order status successfully updated to {status}.",
+            "failTitle": "Update Failed"
+        },
+        "table": {
+            "date": "Date",
+            "buyer": "Buyer",
+            "product": "Product",
+            "total": "Total",
+            "status": "Status",
+            "actions": "Actions"
+        },
+        "status": {
+            "new": "New",
+            "confirmed": "Confirmed",
+            "shipped": "Shipped",
+            "completed": "Completed",
+            "cancelled": "Cancelled"
+        },
+        "actions": {
+            "confirm": "Confirm Order",
+            "ship": "Mark as Shipped",
+            "complete": "Complete Order",
+            "cancel": "Cancel Order"
+        }
+    },
+    "promotions": {
+        "title": "My Promotions & Coupons",
+        "description": "Create and manage coupon codes to boost sales for your products.",
+        "backToDashboard": "Back to Dashboard",
+        "create": {
+            "title": "Create New Coupon",
+            "form": {
+                "code": "Coupon Code",
+                "codePlaceholder": "e.g., HARVEST20",
+                "usageLimit": "Usage Limit (optional)",
+                "usageLimitPlaceholder": "e.g., 100",
+                "discountType": "Discount Type",
+                "discountTypePlaceholder": "Select type",
+                "percentage": "Percentage",
+                "fixed": "Fixed Amount",
+                "discountValue": "Discount Value",
+                "expiryDate": "Expiry Date (optional)",
+                "pickDate": "Pick a date",
+                "submitButton": "Create Coupon"
+            },
+            "toast": {
+                "successTitle": "Coupon Created",
+                "successDescription": "Your coupon {code} is now active.",
+                "failTitle": "Creation Failed"
+            }
+        },
+        "list": {
+            "title": "Your Active Coupons",
+            "description": "Share these codes with potential buyers.",
+            "noCoupons": "You haven't created any coupons yet.",
+            "expires": "Expires",
+            "usage": "Usage",
+            "share": "Share",
+            "toastTitle": "Link Copied!",
+            "toastDescription": "A shareable link for coupon {link} has been copied to your clipboard.",
+            "shareModal": {
+                "title": "Share Coupon",
+                "description": "Copy this link and share it with your customers.",
+                "copy": "Copy",
+                "close": "Close"
+            }
+        },
+        "toast": {
+            "error": "Error",
+            "fetchError": "Could not load your coupons."
+        }
+    },
+    "createShop": {
+        "title": "Create Your Digital Shopfront",
+        "description": "Establish your brand on DamDoh with a dedicated shop page to showcase all your listings.",
+        "backLink": "Back to Marketplace",
+        "form": {
+            "nameLabel": "Shop/Business Name",
+            "namePlaceholder": "e.g., Green Valley Organics",
+            "typeLabel": "Business Type",
+            "typePlaceholder": "Select your primary role",
+            "descriptionLabel": "Shop Description",
+            "descriptionPlaceholder": "Tell customers about your business, your mission, and what you offer.",
+            "submitButton": "Create Shopfront",
+            "submittingButton": "Creating..."
+        },
+        "toast": {
+            "successTitle": "Shopfront Created!",
+            "successDescription": "Your shop '{shopName}' is now live.",
+            "failTitle": "Creation Failed",
+            "failDescription": "There was an error creating your shop."
+        },
+        "authErrorTitle": "Authentication Error",
+        "authErrorDescription": "You must be logged in to create a shop."
+    },
+    "shopView": {
+        "backLink": "Back to Marketplace",
+        "ownedBy": "Owned by",
+        "loadingOwner": "Loading owner...",
+        "editShopButton": "Edit Shop",
+        "contactButton": "Contact Seller",
+        "listingsTitle": "Listings from {shopName}",
+        "noListings": "This shop has no active listings yet.",
+        "errors": {
+            "notFound": "Shop Not Found",
+            "loadError": "Could not load shop data."
+        }
+    },
+    "manageService": {
+        "title": "Manage Service",
+        "backLink": "Back to Service",
+        "loading": "Loading...",
+        "tabs": {
+            "checkin": "Check-in",
+            "bookings": "Bookings",
+            "staff": "Staff"
+        },
+        "bookingsTab": {
+            "title": "Guest Bookings",
+            "description": "View and manage all bookings for this service.",
+            "downloadCsv": "Download CSV",
+            "error": "Failed to load bookings.",
+            "noBookings": "There are no bookings for this service yet.",
+            "toast": {
+                "noBookings": "No bookings to export."
+            },
+            "table": {
+                "guest": "Guest",
+                "bookedOn": "Booked On",
+                "status": "Status",
+                "checkedInAt": "Checked-in At"
+            },
+            "status": {
+                "booked": "Booked",
+                "checkedIn": "Checked In"
+            }
+        }
+    }
+  },
+  "Forums": {
+    "title": "Community Forums",
+    "description": "Connect, share knowledge, and collaborate with stakeholders from across the agricultural supply chain.",
+    "createTopic": "Create New Topic",
+    "topic": {
+      "backLink": "Back to All Forums",
+      "buttons": {
+        "createPost": "Create Post",
+        "loadMore": "Load More Posts",
+        "loadingMore": "Loading..."
+      },
+      "postMeta": "{author} • {date}",
+      "noPosts": {
+        "title": "No Posts Yet",
+        "description": "Be the first to start a conversation in this topic.",
+        "button": "Start a Discussion"
+      },
+      "notFound": {
+        "title": "Topic Not Found",
+        "description": "The discussion topic you're looking for doesn't exist or may have been moved.",
+        "backButton": "Return to Forums"
+      },
+      "errors": {
+        "loadTopic": {
+          "title": "Load Error",
+          "description": "Could not load the details for this topic."
+        },
+        "loadPosts": {
+          "title": "Load Error",
+          "description": "Could not load posts for this topic."
+        }
+      }
+    },
+    "create": {
+      "backLink": "Back to Forums",
+      "title": "Start a New Discussion Topic",
+      "description": "Create a new topic to gather insights and collaborate with the community.",
+      "form": {
+        "nameLabel": "Topic Name",
+        "namePlaceholder": "e.g., Sustainable Coffee Production",
+        "descriptionLabel": "Topic Description",
+        "descriptionPlaceholder": "What is this topic about? A brief description helps others understand its purpose.",
+        "submitButton": "Create Topic",
+        "submittingButton": "Creating..."
+      },
+      "errors": {
+        "auth": {
+          "title": "Authentication Required",
+          "description": "You must be signed in to create a new topic."
+        },
+        "incomplete": {
+          "title": "Incomplete Information",
+          "description": "Please provide both a name and a description for your new topic."
+        },
+        "general": {
+          "title": "Creation Failed",
+          "description": "An unexpected error occurred while creating the topic."
+        }
+      },
+      "success": {
+        "title": "Topic Created!",
+        "description": "Your new discussion topic is now live."
+      }
+    },
+    "createPost": {
+      "backLink": "Back to Topic",
+      "aiHelper": {
+        "title": "Need help starting?",
+        "description": "Use our AI Assistant to draft your post. Just provide a prompt below.",
+        "promptLabel": "Your idea or question",
+        "promptPlaceholder": "e.g., 'Ask about the best organic pesticides for coffee leaf rust'",
+        "generateButton": "Generate Draft",
+        "generatingButton": "Generating..."
+      },
+      "title": "Create a New Post",
+      "description": "Share your thoughts, ask a question, or start a discussion.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "Enter a clear and concise title",
+        "contentLabel": "Your Content",
+        "contentPlaceholder": "Write your post here...",
+        "submitButton": "Publish Post",
+        "submittingButton": "Publishing..."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Prompt Required",
+          "description": "Please enter an idea or question for the AI to generate a draft."
+        },
+        "aiDraft": {
+          "title": "AI Draft Failed",
+          "description": "There was an error generating the draft. Please try again or write the post manually."
+        },
+        "incomplete": {
+          "title": "Incomplete Post",
+          "description": "Please provide both a title and content for your post."
+        },
+        "general": {
+          "title": "Post Creation Failed",
+          "description": "An unexpected error occurred. Please try again."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "Draft Generated!",
+          "description": "The AI has generated a draft below. Feel free to edit it before publishing."
+        },
+        "title": "Post Published!",
+        "description": "Your post is now live in the topic."
+      }
+    },
+    "postView": {
+      "backLink": "Back to {topicName}",
+      "repliesTitle": "{count, plural, =0 {No Replies} =1 {1 Reply} other {{count} Replies}}",
+      "noReplies": "No replies yet. Be the first to respond!",
+      "buttons": {
+        "loadMore": "Load More Replies",
+        "loadingMore": "Loading..."
+      },
+      "reply": {
+        "title": "Your Reply",
+        "placeholder": "Write your reply here...",
+        "submitButton": "Post Reply",
+        "submittingButton": "Posting...",
+        "success": "Your reply has been posted!"
+      },
+      "notFound": {
+        "title": "Post Not Found",
+        "description": "The post you are looking for does not exist or has been moved.",
+        "backButton": "Back to Forum"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error",
+          "description": "Could not load the post details."
+        },
+        "loadReplies": {
+          "title": "Error",
+          "description": "Could not load replies for this post."
+        },
+        "submitReply": {
+          "title": "Reply Failed",
+          "description": "Could not submit your reply. Please try again."
+        },
+        "emptyReply": "Your reply cannot be empty."
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "Forums Pinned",
+      "pinnedDescription": "The Forums page is now your default homepage.",
+      "unpinnedTitle": "Forums Unpinned",
+      "unpinnedDescription": "Your homepage has been reset to the default."
+    },
+    "buttons": {
+      "createTopic": "Create Topic",
+      "loadMore": "Load More",
+      "loadingMore": "Loading...",
+      "joinDiscussion": "Join Discussion"
+    },
+    "lastActivity": "Last activity {time}",
+    "notFound": {
+      "title": "No Matching Topics Found",
+      "tryDifferentSearch": "Try a different search term.",
+      "beTheFirst": "Be the first to create one!",
+      "button": "Create Topic"
+    },
+    "errors": {
+      "loadTitle": "Load Error",
+      "loadDescription": "There was an error fetching the forum topics."
+    },
+    "searchPlaceholder": "Search topics...",
+    "postMeta": "By {author} • {date}"
   }
 }
+
+    

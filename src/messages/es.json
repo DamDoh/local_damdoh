@@ -68,5 +68,664 @@
     "getMobileApp": "Obtén la App Móvil",
     "googlePlayAlt": "Obtenlo en Google Play",
     "appStoreAlt": "Descárgalo en la App Store"
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Potenciando la Agricultura del Suelo a la Venta en {appName}",
+      "subtitle": "Una plataforma unificada que conecta a todos los actores de la cadena de valor agrícola para un futuro más transparente, eficiente y sostenible.",
+      "getStartedButton": "Comenzar Gratis",
+      "learnMoreButton": "Más Información"
+    },
+    "features": {
+      "title": "Funcionalidades Clave de DamDoh",
+      "subtitle": "Todo lo que necesitas para crecer, conectar y comerciar, todo en un solo lugar.",
+      "networking": {
+        "title": "Redes Inteligentes",
+        "description": "Sugerencias de conexión impulsadas por IA para vincularte con los socios adecuados, desde proveedores hasta compradores internacionales."
+      },
+      "marketplace": {
+        "title": "Mercado Directo",
+        "description": "Compra y vende productos y servicios directamente, aumentando la transparencia y la rentabilidad para todos los actores."
+      },
+      "forums": {
+        "title": "Foros Temáticos",
+        "description": "Comparte conocimientos, discute desafíos y colabora en soluciones en foros dedicados a temas específicos."
+      },
+      "talent": {
+        "title": "Bolsa de Talentos",
+        "description": "Ofrece o encuentra servicios agrícolas especializados, desde la cosecha a medida hasta la topografía con drones."
+      }
+    },
+    "forWho": {
+      "badge": "Para Todos en la Agricultura",
+      "title": "Una Plataforma para Toda la Cadena de Valor",
+      "description": "DamDoh está diseñado de manera única para servir a todo el ecosistema agrícola, creando un único punto de verdad y oportunidad para todos.",
+      "farmers": {
+        "title": "Agricultores",
+        "description": "Accede a mejores mercados, encuentra insumos de calidad y obtén asesoramiento de expertos para aumentar el rendimiento y la rentabilidad."
+      },
+      "buyers": {
+        "title": "Compradores y Procesadores",
+        "description": "Obtén productos de alta calidad y trazables directamente de los productores y cooperativas, garantizando la fiabilidad de la cadena de suministro."
+      },
+      "experts": {
+        "title": "Expertos y Proveedores de Servicios",
+        "description": "Ofrece tus habilidades y servicios especializados a una amplia audiencia agrícola que busca tu experiencia."
+      },
+      "imageAlt": "Un grupo diverso de actores agrícolas colaborando"
+    },
+    "cta": {
+      "title": "Únete a la Revolución Agrícola",
+      "subtitle": "Regístrate hoy y forma parte de una red global en crecimiento dedicada a transformar el futuro de la alimentación.",
+      "button": "Crea Tu Cuenta Gratis"
+    }
+  },
+  "Auth": {
+    "signInWelcome": "Bienvenido de nuevo a {appName}",
+    "signUpWelcome": "Únete a la Red Agrícola de DamDoh",
+    "forgotPasswordResetPrompt": "Restablece tu contraseña para {appName}",
+    "resetPasswordPrompt": "Crea una nueva contraseña para {appName}",
+    "signInTitle": "Inicia Sesión en Tu Cuenta",
+    "signInDescription": "Ingresa tus credenciales para acceder a tu panel.",
+    "emailLabel": "Correo Electrónico",
+    "emailPlaceholder": "tu@ejemplo.com",
+    "passwordLabel": "Contraseña",
+    "forgotPasswordLink": "¿Olvidaste tu contraseña?",
+    "signingInButton": "Iniciando sesión...",
+    "signInButton": "Iniciar Sesión",
+    "noAccountPrompt": "¿No tienes una cuenta?",
+    "signUpLink": "Regístrate",
+    "recoverWithUniversalIdPrompt": "O recupera el acceso con tu ID Universal",
+    "signUpTitle": "Crear una Cuenta Nueva",
+    "signUpDescription": "Cuéntanos un poco sobre ti para comenzar.",
+    "nameLabel": "Tu Nombre o Nombre de la Empresa",
+    "namePlaceholder": "Ej: Juana Pérez o Finca Valle Verde",
+    "roleLabel": "Tu Rol Principal",
+    "rolePlaceholder": "Selecciona tu rol en la cadena de suministro...",
+    "confirmPasswordLabel": "Confirmar Contraseña",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Creando cuenta...",
+    "signUpButton": "Crear Cuenta",
+    "alreadyHaveAccountPrompt": "¿Ya tienes una cuenta?",
+    "forgotPasswordTitle": "¿Olvidaste tu Contraseña?",
+    "forgotPasswordDescription": "No hay problema. Ingresa tu correo electrónico a continuación y te enviaremos un enlace para restablecerla.",
+    "sendResetLinkButton": "Enviar Enlace de Restablecimiento",
+    "sendingEmailButton": "Enviando correo...",
+    "rememberPasswordPrompt": "¿Recordaste tu contraseña?",
+    "resetPasswordTitle": "Restablecer tu Contraseña",
+    "resetPasswordDescription": "Ingresa y confirma tu nueva contraseña a continuación.",
+    "newPasswordLabel": "Nueva Contraseña",
+    "newPasswordPlaceholder": "Ingresa una nueva contraseña segura",
+    "resetPasswordButton": "Restablecer Contraseña",
+    "resettingPasswordButton": "Restableciendo...",
+    "recoverPage": {
+      "title": "Recupera tu Cuenta",
+      "description": "Usa tu red para recuperar el acceso.",
+      "howItWorksTitle": "Cómo Funciona",
+      "step1": "Ingresa tu número de teléfono para iniciar una sesión de recuperación.",
+      "step2": "Muestra el código QR temporal a un amigo de confianza en DamDoh.",
+      "step3": "Una vez que tu amigo escanee el código para confirmar tu identidad, recuperarás el acceso.",
+      "startButton": "Iniciar Recuperación de Cuenta",
+      "scanTitle": "Pide a un Amigo que Escanee",
+      "scanDescription": "Haz que una conexión de confianza de DamDoh escanee este código QR usando la función 'Ayudar a un Amigo a Recuperar' en su aplicación.",
+      "scanNote": "Este código es temporal y expira en 10 minutos.",
+      "startOverButton": "Empezar de Nuevo"
+    }
+  },
+  "StartPost": {
+    "placeholder": "Inicia una publicación, haz una pregunta o comparte una actualización...",
+    "photoVideo": "Foto/Video",
+    "agriEvent": "Evento Agri",
+    "createPoll": "Crear Encuesta"
+  },
+  "CreatePostModal": {
+    "title": "Crear una publicación",
+    "description": "Comparte tus pensamientos con la comunidad.",
+    "yourName": "Tu Nombre",
+    "shareUpdate": "Compartir una actualización",
+    "placeholder": "¿En qué estás pensando?",
+    "selectedFile": "Archivo seleccionado:",
+    "pollOptionsLabel": "Opciones de la encuesta",
+    "pollOptionPlaceholder": "Opción {index}",
+    "addOptionButton": "Añadir opción",
+    "pollNote": "Crea una encuesta con hasta {maxOptions} opciones.",
+    "postButton": "Publicar",
+    "pollOptionsError": "Una encuesta debe tener al menos dos opciones completas.",
+    "emptyPostError": "Tu publicación no puede estar vacía. Por favor, añade algo de texto, una imagen o una encuesta.",
+    "addMediaButton": "Añadir multimedia",
+    "createEventButton": "Crear Evento",
+    "shareDocumentButton": "Compartir Documento",
+    "createPollButton": "Crear Encuesta"
+  },
+  "FeedItemCard": {
+    "likes": "{count, plural, =0 {Me gusta} =1 {Me gusta} other {Me gusta}}",
+    "comments": "{count, plural, =0 {Comentarios} =1 {Comentario} other {Comentarios}}",
+    "like": "Me gusta",
+    "comment": "Comentar",
+    "repost": "Republicar",
+    "editPost": "Editar publicación",
+    "deletePost": "Eliminar publicación",
+    "signInToLikeToast": "Debes iniciar sesión para dar me gusta a una publicación.",
+    "loadCommentsErrorToast": "No se pudieron cargar los comentarios.",
+    "noComments": "Sé el primero en comentar.",
+    "loadingComments": "Cargando comentarios...",
+    "loadMoreComments": "Cargar más comentarios",
+    "writeCommentPlaceholder": "Escribe un comentario...",
+    "postButton": "Publicar",
+    "repostPlaceholderToast": "La función de republicar estará disponible pronto.",
+    "signInToVoteToast": "Debes iniciar sesión para votar.",
+    "voteSuccessToast": "¡Tu voto ha sido contado!",
+    "voteErrorToast": "No se pudo registrar tu voto.",
+    "votes": "{count, plural, =0 {votos} =1 {voto} other {votos}}"
+  },
+  "Forums": {
+    "title": "Foros Comunitarios",
+    "description": "Conéctate, comparte conocimientos y colabora con actores de toda la cadena de suministro agrícola.",
+    "createTopic": "Crear Nuevo Tema",
+    "topic": {
+      "backLink": "Volver a Todos los Foros",
+      "buttons": {
+        "createPost": "Crear Publicación",
+        "loadMore": "Cargar Más Publicaciones",
+        "loadingMore": "Cargando..."
+      },
+      "postMeta": "Por {author} • {date}",
+      "noPosts": {
+        "title": "Aún no hay publicaciones",
+        "description": "Sé el primero en iniciar una conversación en este tema.",
+        "button": "Iniciar una Discusión"
+      },
+      "notFound": {
+        "title": "Tema no Encontrado",
+        "description": "El tema de discusión que buscas no existe o puede haber sido movido.",
+        "backButton": "Volver a los Foros"
+      },
+      "errors": {
+        "loadTopic": {
+          "title": "Error de Carga",
+          "description": "No se pudieron cargar los detalles de este tema."
+        },
+        "loadPosts": {
+          "title": "Error de Carga",
+          "description": "No se pudieron cargar las publicaciones de este tema."
+        }
+      }
+    },
+    "create": {
+      "backLink": "Volver a los Foros",
+      "title": "Iniciar un Nuevo Tema de Discusión",
+      "description": "Crea un nuevo tema para recopilar ideas y colaborar con la comunidad.",
+      "form": {
+        "nameLabel": "Nombre del Tema",
+        "namePlaceholder": "Ej: Producción Sostenible de Café",
+        "descriptionLabel": "Descripción del Tema",
+        "descriptionPlaceholder": "¿De qué trata este tema? Una breve descripción ayuda a otros a entender su propósito.",
+        "submitButton": "Crear Tema",
+        "submittingButton": "Creando..."
+      },
+      "errors": {
+        "auth": {
+          "title": "Autenticación Requerida",
+          "description": "Debes iniciar sesión para crear un nuevo tema."
+        },
+        "incomplete": {
+          "title": "Información Incompleta",
+          "description": "Por favor, proporciona un nombre y una descripción para tu nuevo tema."
+        },
+        "general": {
+          "title": "Creación Fallida",
+          "description": "Ocurrió un error inesperado al crear el tema."
+        }
+      },
+      "success": {
+        "title": "¡Tema Creado!",
+        "description": "Tu nuevo tema de discusión ya está activo."
+      }
+    },
+    "createPost": {
+      "backLink": "Volver al Tema",
+      "aiHelper": {
+        "title": "¿Necesitas ayuda para empezar?",
+        "description": "Usa nuestro Asistente de IA para redactar tu publicación. Solo proporciona una idea a continuación.",
+        "promptLabel": "Tu idea o pregunta",
+        "promptPlaceholder": "Ej: 'Preguntar sobre los mejores pesticidas orgánicos para la roya del café'",
+        "generateButton": "Generar Borrador",
+        "generatingButton": "Generando..."
+      },
+      "title": "Crear una Nueva Publicación",
+      "description": "Comparte tus pensamientos, haz una pregunta o inicia una discusión.",
+      "form": {
+        "titleLabel": "Título de la Publicación",
+        "titlePlaceholder": "Ingresa un título claro y conciso",
+        "contentLabel": "Tu Contenido",
+        "contentPlaceholder": "Escribe tu publicación aquí...",
+        "submitButton": "Publicar",
+        "submittingButton": "Publicando..."
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Se Requiere una Idea",
+          "description": "Por favor, ingresa una idea o pregunta para que la IA genere un borrador."
+        },
+        "aiDraft": {
+          "title": "Fallo el Borrador de IA",
+          "description": "Hubo un error al generar el borrador. Por favor, inténtalo de nuevo o escribe la publicación manualmente."
+        },
+        "incomplete": {
+          "title": "Publicación Incompleta",
+          "description": "Por favor, proporciona un título y contenido para tu publicación."
+        },
+        "general": {
+          "title": "Fallo al Crear la Publicación",
+          "description": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
+        }
+      },
+      "success": {
+        "aiDraft": {
+          "title": "¡Borrador Generado!",
+          "description": "La IA ha generado un borrador a continuación. Siéntete libre de editarlo antes de publicar."
+        },
+        "title": "¡Publicación Realizada!",
+        "description": "Tu publicación ya está activa en el tema."
+      }
+    },
+    "postView": {
+      "backLink": "Volver a {topicName}",
+      "repliesTitle": "{count, plural, =0 {Sin Respuestas} =1 {1 Respuesta} other {{count} Respuestas}}",
+      "noReplies": "Aún no hay respuestas. ¡Sé el primero en responder!",
+      "buttons": {
+        "loadMore": "Cargar Más Respuestas",
+        "loadingMore": "Cargando..."
+      },
+      "reply": {
+        "title": "Tu Respuesta",
+        "placeholder": "Escribe tu respuesta aquí...",
+        "submitButton": "Publicar Respuesta",
+        "submittingButton": "Publicando...",
+        "success": "¡Tu respuesta ha sido publicada!"
+      },
+      "notFound": {
+        "title": "Publicación no Encontrada",
+        "description": "La publicación que buscas no existe o ha sido movida.",
+        "backButton": "Volver al Foro"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error",
+          "description": "No se pudieron cargar los detalles de la publicación."
+        },
+        "loadReplies": {
+          "title": "Error",
+          "description": "No se pudieron cargar las respuestas de esta publicación."
+        },
+        "submitReply": {
+          "title": "Fallo al Responder",
+          "description": "No se pudo enviar tu respuesta. Por favor, inténtalo de nuevo."
+        },
+        "emptyReply": "Tu respuesta no puede estar vacía."
+      }
+    },
+    "pinning": {
+      "pinnedTitle": "Foros Anclados",
+      "pinnedDescription": "La página de Foros es ahora tu página de inicio predeterminada.",
+      "unpinnedTitle": "Foros Desanclados",
+      "unpinnedDescription": "Tu página de inicio ha sido restablecida al valor predeterminado."
+    },
+    "buttons": {
+      "createTopic": "Crear Tema",
+      "loadMore": "Cargar Más",
+      "loadingMore": "Cargando...",
+      "joinDiscussion": "Unirse a la Discusión"
+    },
+    "lastActivity": "Última actividad hace {time}",
+    "notFound": {
+      "title": "No se encontraron temas coincidentes",
+      "tryDifferentSearch": "Intenta con otro término de búsqueda.",
+      "beTheFirst": "¡Sé el primero en crear uno!",
+      "button": "Crear Tema"
+    },
+    "errors": {
+      "loadTitle": "Error de Carga",
+      "loadDescription": "Hubo un error al obtener los temas del foro."
+    },
+    "searchPlaceholder": "Buscar temas...",
+    "postMeta": "Por {author} • {date}"
+  },
+  "Marketplace": {
+    "title": "Mercado",
+    "description": "Descubre, compra y vende productos y servicios agrícolas.",
+    "createShopButton": "Crear Tienda",
+    "myOrdersButton": "Mis Pedidos",
+    "createListingButton": "Crear Anuncio",
+    "pinButton": "Anclar como Inicio",
+    "unpinButton": "Desanclar del Inicio",
+    "pinning": {
+      "pinnedTitle": "Mercado Anclado",
+      "pinnedDescription": "El Mercado es ahora tu página de inicio predeterminada.",
+      "unpinnedTitle": "Mercado Desanclado",
+      "unpinnedDescription": "Tu página de inicio ha sido restablecida al valor predeterminado."
+    },
+    "searchPlaceholder": "Buscar productos y servicios...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "typePlaceholder": "Filtrar por tipo...",
+    "recommendedForYou": "Recomendado para Ti",
+    "discoverMore": "Descubre Más",
+    "noItemsFound": {
+      "title": "No se encontraron artículos",
+      "hint": "Intenta ajustar tus filtros de búsqueda o vuelve más tarde."
+    },
+    "errors": {
+      "search": {
+        "title": "Búsqueda Fallida",
+        "description": "No se pudieron recuperar los artículos del mercado en este momento."
+      },
+      "aiRecommendations": {
+        "title": "No se encontraron recomendaciones en este momento."
+      }
+    },
+    "categories": {
+      "allCategories": "Todas las Categorías",
+      "viewAllItems": "Ver Todos los Artículos",
+      "viewAllCategory": "Todo en {categoryName}"
+    },
+    "itemView": {
+      "backLink": "Volver al Mercado",
+      "traceabilityButton": "Ver Informe de Trazabilidad",
+      "aboutSeller": "Sobre el Vendedor",
+      "viewShopfront": "Ver Tienda",
+      "editListing": "Editar Anuncio",
+      "manageService": "Gestionar Servicio",
+      "contactSeller": "Contactar al Vendedor",
+      "contactForService": "Contactar por Servicio",
+      "buyNowButton": "Comprar Ahora",
+      "viewDetails": "Ver Detalles",
+      "viewServiceButton": "Ver Servicio",
+      "notFound": {
+        "description": "El anuncio que buscas no se pudo encontrar."
+      },
+      "errors": {
+        "loadItem": {
+          "description": "Hubo un error al cargar este artículo."
+        },
+        "unexpected": "Ocurrió un error inesperado."
+      },
+      "skillsLabel": "Habilidades Requeridas",
+      "experienceLabel": "Nivel de Experiencia",
+      "compensationLabel": "Compensación",
+      "contactForRates": "Contactar para tarifas",
+      "coupon": {
+        "label": "¿Tienes un código de cupón?",
+        "placeholder": "Ingresa el código",
+        "applyButton": "Aplicar",
+        "successTitle": "¡Cupón Aplicado!",
+        "successDescription": "Se ha aplicado tu descuento de {discount} de tipo {type}.",
+        "failTitle": "Cupón Inválido",
+        "failDescription": "El código de cupón no es válido para este vendedor o ha expirado.",
+        "appliedText": "Cupón aplicado: {code}"
+      },
+      "booking": {
+        "perNight": "noche",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "addDate": "Añadir fecha",
+        "guests": "Huéspedes",
+        "notCharged": "Aún no se te cobrará",
+        "nights": "noches",
+        "serviceFee": "Tarifa de servicio",
+        "total": "Total",
+        "reserveButton": "Reservar",
+        "reservingButton": "Reservando...",
+        "authTitle": "Inicia Sesión para Reservar",
+        "authDescription": "Debes iniciar sesión para reservar este servicio.",
+        "failTitle": "Reserva Fallida",
+        "dateError": "Por favor, selecciona una fecha de entrada y salida.",
+        "successTitle": "¡Reserva Confirmada!",
+        "successDescription": "Tu reserva ha sido confirmada. Recibirás los detalles en breve.",
+        "bookedTitle": "¡Estás Reservado!",
+        "bookedDescription": "Muestra este código QR en el check-in.",
+        "ticketButton": "Ver Ticket de Check-in",
+        "modalTitle": "Tu Ticket de Check-in",
+        "modalDescription": "Presenta este código QR para tu reserva de {itemName}.",
+        "modalScan": "Escanea este código en el lugar para un check-in fácil."
+      },
+      "order": {
+        "title": "Hacer un pedido de {itemName}",
+        "description": "Confirma la cantidad y añade cualquier nota para el vendedor.",
+        "quantityLabel": "Cantidad",
+        "notesLabel": "Notas para el vendedor (opcional)",
+        "notesPlaceholder": "Ej: instrucciones de entrega específicas",
+        "cancelButton": "Cancelar",
+        "confirmButton": "Confirmar Pedido",
+        "placingButton": "Realizando pedido...",
+        "authTitle": "Inicia Sesión para Pedir",
+        "authDescription": "Debes iniciar sesión para hacer un pedido.",
+        "quantityErrorTitle": "Cantidad Inválida",
+        "quantityErrorDescription": "Por favor, introduce una cantidad mayor que cero.",
+        "successTitle": "¡Pedido Realizado!",
+        "successDescription": "Tu pedido ha sido enviado al vendedor.",
+        "failTitle": "Pedido Fallido",
+        "failDescription": "Hubo un error al realizar tu pedido. Por favor, inténtalo de nuevo."
+      }
+    },
+    "createListing": {
+      "backLink": "Volver al Mercado",
+      "title": "Crear Nuevo Anuncio en el Mercado",
+      "description": "Completa los detalles a continuación para anunciar tu producto o servicio.",
+      "form": {
+        "nameLabel": "Título del Anuncio",
+        "namePlaceholder": "Ej: Aguacates Hass Orgánicos, Servicio de Reparación de Tractores",
+        "typeLabel": "Tipo de Anuncio",
+        "typePlaceholder": "Selecciona un tipo de anuncio",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Describe tu producto o servicio en detalle...",
+        "locationLabel": "Ubicación",
+        "locationPlaceholder": "Ej: Nakuru, Kenia",
+        "relatedVtiLabel": "ID de Trazabilidad Relacionado (Opcional)",
+        "relatedVtiPlaceholder": "Ingresa VTI si aplica",
+        "relatedVtiDescription": "Vincula este anuncio a un lote de cosecha específico para total transparencia.",
+        "categoryLabel": "Categoría",
+        "categoryPlaceholder": "Selecciona una categoría",
+        "priceLabel": "Precio",
+        "pricePlaceholder": "Ej: 25.50",
+        "unitLabel": "por",
+        "unitPlaceholder": "Ej: kg, tonelada, hora",
+        "compensationLabel": "Compensación / Tarifas",
+        "compensationPlaceholder": "Ej: $50/hora, Por proyecto",
+        "experienceLabel": "Nivel de Experiencia",
+        "experiencePlaceholder": "Ej: Intermedio, Experto (10+ años)",
+        "skillsLabel": "Habilidades Requeridas (para servicios)",
+        "skillsPlaceholder": "Ej: Fumigación de Cultivos, Análisis de Suelo, Certificación Orgánica",
+        "skillsDescription": "Separa las habilidades con una coma.",
+        "imageUrlLabel": "URL de la Imagen",
+        "sustainableLabel": "Producido de Forma Sostenible",
+        "sustainableDescription": "Marca esto si tu producto o servicio sigue prácticas sostenibles reconocidas.",
+        "submitButton": "Crear Anuncio",
+        "submittingButton": "Creando..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Sugerir Precio con IA",
+        "generatingButton": "Sugiriendo...",
+        "suggestionLabel": "Sugerencia de IA:",
+        "usePriceButton": "Usar Precio"
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Información Faltante",
+            "description": "Por favor, completa el Título y la Descripción antes de sugerir un precio."
+          },
+          "failed": {
+            "title": "Sugerencia de IA Fallida",
+            "description": "No se pudo obtener una sugerencia de precio en este momento."
+          }
+        },
+        "authentication": {
+          "title": "No Autenticado",
+          "description": "Debes iniciar sesión para crear un anuncio."
+        },
+        "creation": {
+          "title": "Creación Fallida",
+          "description": "Ocurrió un error inesperado al crear el anuncio."
+        }
+      },
+      "success": {
+        "title": "¡Anuncio Creado!",
+        "description": "Tu artículo ya está disponible en el mercado."
+      }
+    },
+    "myOrders": {
+      "backLink": "Volver al Mercado",
+      "title": "Mis Pedidos Entrantes",
+      "description": "Gestiona los pedidos realizados por los compradores para tus anuncios.",
+      "noOrders": "No tienes pedidos entrantes en este momento.",
+      "auth": {
+        "title": "Por favor, Inicia Sesión",
+        "description": "Necesitas iniciar sesión para ver tus pedidos.",
+        "button": "Iniciar Sesión"
+      },
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "No se pudieron cargar tus pedidos.",
+        "successTitle": "Estado Actualizado",
+        "updateSuccess": "El estado del pedido se actualizó correctamente a {status}.",
+        "failTitle": "Actualización Fallida"
+      },
+      "table": {
+        "date": "Fecha",
+        "buyer": "Comprador",
+        "product": "Producto",
+        "total": "Total",
+        "status": "Estado",
+        "actions": "Acciones"
+      },
+      "status": {
+        "new": "Nuevo",
+        "confirmed": "Confirmado",
+        "shipped": "Enviado",
+        "completed": "Completado",
+        "cancelled": "Cancelado"
+      },
+      "actions": {
+        "confirm": "Confirmar Pedido",
+        "ship": "Marcar como Enviado",
+        "complete": "Completar Pedido",
+        "cancel": "Cancelar Pedido"
+      }
+    },
+    "promotions": {
+      "title": "Mis Promociones y Cupones",
+      "description": "Crea y gestiona códigos de cupón para impulsar las ventas de tus productos.",
+      "backToDashboard": "Volver al Panel",
+      "create": {
+        "title": "Crear Nuevo Cupón",
+        "form": {
+          "code": "Código de Cupón",
+          "codePlaceholder": "Ej: COSECHA20",
+          "usageLimit": "Límite de Uso (opcional)",
+          "usageLimitPlaceholder": "Ej: 100",
+          "discountType": "Tipo de Descuento",
+          "discountTypePlaceholder": "Seleccionar tipo",
+          "percentage": "Porcentaje",
+          "fixed": "Cantidad Fija",
+          "discountValue": "Valor del Descuento",
+          "expiryDate": "Fecha de Vencimiento (opcional)",
+          "pickDate": "Seleccionar una fecha",
+          "submitButton": "Crear Cupón"
+        },
+        "toast": {
+          "successTitle": "¡Cupón Creado!",
+          "successDescription": "Tu cupón {code} ya está activo.",
+          "failTitle": "Creación Fallida"
+        }
+      },
+      "list": {
+        "title": "Tus Cupones Activos",
+        "description": "Comparte estos códigos con compradores potenciales.",
+        "noCoupons": "Aún no has creado ningún cupón.",
+        "expires": "Vence",
+        "usage": "Uso",
+        "share": "Compartir",
+        "toastTitle": "¡Enlace Copiado!",
+        "toastDescription": "Se ha copiado a tu portapapeles un enlace para compartir el cupón {link}.",
+        "shareModal": {
+          "title": "Compartir Cupón",
+          "description": "Copia este enlace y compártelo con tus clientes.",
+          "copy": "Copiar",
+          "close": "Cerrar"
+        }
+      },
+      "toast": {
+        "error": "Error",
+        "fetchError": "No se pudieron cargar tus cupones."
+      }
+    },
+    "createShop": {
+      "title": "Crea tu Escaparate Digital",
+      "description": "Establece tu marca en DamDoh con una página de tienda dedicada para mostrar todos tus anuncios.",
+      "backLink": "Volver al Mercado",
+      "form": {
+        "nameLabel": "Nombre de la Tienda/Negocio",
+        "namePlaceholder": "Ej: Orgánicos del Valle Verde",
+        "typeLabel": "Tipo de Negocio",
+        "typePlaceholder": "Selecciona tu rol principal",
+        "descriptionLabel": "Descripción de la Tienda",
+        "descriptionPlaceholder": "Habla a los clientes sobre tu negocio, tu misión y lo que ofreces.",
+        "submitButton": "Crear Tienda",
+        "submittingButton": "Creando..."
+      },
+      "toast": {
+        "successTitle": "¡Tienda Creada!",
+        "successDescription": "Tu tienda '{shopName}' ya está activa.",
+        "failTitle": "Creación Fallida",
+        "failDescription": "Hubo un error al crear tu tienda."
+      },
+      "authErrorTitle": "Error de Autenticación",
+      "authErrorDescription": "Debes iniciar sesión para crear una tienda."
+    },
+    "shopView": {
+      "backLink": "Volver al Mercado",
+      "ownedBy": "Propiedad de",
+      "loadingOwner": "Cargando propietario...",
+      "editShopButton": "Editar Tienda",
+      "contactButton": "Contactar al Vendedor",
+      "listingsTitle": "Anuncios de {shopName}",
+      "noListings": "Esta tienda aún no tiene anuncios activos.",
+      "errors": {
+        "notFound": "Tienda no Encontrada",
+        "loadError": "No se pudieron cargar los datos de la tienda."
+      }
+    },
+    "manageService": {
+      "title": "Gestionar Servicio",
+      "backLink": "Volver al Servicio",
+      "loading": "Cargando...",
+      "tabs": {
+        "checkin": "Check-in",
+        "bookings": "Reservas",
+        "staff": "Personal"
+      },
+      "bookingsTab": {
+        "title": "Reservas de Huéspedes",
+        "description": "Ver y gestionar todas las reservas para este servicio.",
+        "downloadCsv": "Descargar CSV",
+        "error": "No se pudieron cargar las reservas.",
+        "noBookings": "Todavía no hay reservas para este servicio.",
+        "toast": {
+          "noBookings": "No hay reservas para exportar."
+        },
+        "table": {
+          "guest": "Huésped",
+          "bookedOn": "Reservado el",
+          "status": "Estado",
+          "checkedInAt": "Check-in el"
+        },
+        "status": {
+          "booked": "Reservado",
+          "checkedIn": "Check-in Realizado"
+        }
+      }
+    }
   }
 }
+
+    
