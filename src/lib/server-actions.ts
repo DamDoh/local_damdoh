@@ -7,8 +7,8 @@ import {
   performSearch as performSearch_internal,
 } from './db-utils';
 import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";
-import { suggestCropRotation, type CropRotationInput, type CropRotationOutput } from "@/ai/flows/crop-rotation-suggester";
-import type { UserProfile, SmartSearchInterpretation } from '@/lib/types';
+import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
+import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRotationOutput } from '@/lib/types';
 
 
 /**
@@ -71,5 +71,3 @@ export async function suggestCropRotationAction(input: CropRotationInput): Promi
         return { suggestions: [] };
     }
 }
-
-    

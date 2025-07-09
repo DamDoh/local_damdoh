@@ -1,3 +1,4 @@
+
 import { z } from "zod";
 
 // =================================================================
@@ -160,3 +161,21 @@ export const MarketplaceRecommendationOutputSchema = z.object({
   recommendations: z.array(RecommendedItemSchema).describe("A list of suggested marketplace items (products or services) with accompanying reasons."),
 });
 export type MarketplaceRecommendation = any;
+
+// Crop Rotation Suggester Schemas
+export const CropRotationInputSchema = z.object({
+  cropHistory: z.array(z.string()).describe('An array of crop names that have been previously planted in the field, in chronological order.'),
+  location: z.string().describe('The geographical location of the farm (e.g., "Rift Valley, Kenya").'),
+  soilType: z.string().optional().describe('The type of soil in the field (e.g., "Clay", "Sandy Loam").'),
+});
+export type CropRotationInput = z.infer<typeof CropRotationInputSchema>;
+
+const CropSuggestionSchema = z.object({
+  cropName: z.string().describe('The name of the suggested crop to plant next.'),
+  benefits: z.string().describe('A brief explanation of the primary benefits of planting this crop (e.g., "Fixes nitrogen, improves soil structure", "Breaks pest cycles for cereals").'),
+  notes: z.string().optional().describe('Any additional notes or considerations for planting this crop, such as timing or specific variety recommendations.'),
+});
+export const CropRotationOutputSchema = z.object({
+  suggestions: z.array(CropSuggestionSchema).describe('A list of 2-4 recommended crops for the next planting season, along with their benefits.'),
+});
+export type CropRotationOutput = z.infer<typeof CropRotationOutputSchema>;
