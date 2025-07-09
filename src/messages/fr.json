@@ -303,7 +303,7 @@
     },
     "noOpenings": {
       "title": "Aucun poste à pourvoir pour le moment",
-      "content1": "Nous sommes toujours à la recherche de personnes talentueuses et passionnées par notre mission. Si vous pensez que vous seriez un bon ajout à notre équipe, veuillez nous envoyer votre CV et votre lettre de motivation à {emailLink}.",
+      "content1": "Nous sommes toujours à la recherche de personnes talentueuses et passionnées par notre mission. Si vous pensez que vous seriez un bon ajout à notre team, veuillez nous envoyer votre CV et votre lettre de motivation à {emailLink}.",
       "emailLinkText": "careers@damdoh.org"
     },
     "applyNowButton": "Postuler maintenant"
@@ -511,7 +511,7 @@
         "typeLabel": "Type d'annonce",
         "typePlaceholder": "Sélectionnez un type d'annonce",
         "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Décrivez votre produit ou service en détail...",
+        "descriptionPlaceholder": "Décrivez votre produit ou votre service en détail...",
         "locationLabel": "Lieu",
         "locationPlaceholder": "Ex: Nakuru, Kenya",
         "relatedVtiLabel": "ID de traçabilité associé (Optionnel)",
@@ -1138,7 +1138,7 @@
     "knfInputsPage": {
       "backLink": "Retour au Hub de la Ferme",
       "title": "Assistant d'intrants KNF",
-      "description": "Créez, suivez et gérez vos intrants d'agriculture naturelle coréenne.",
+      "description": "Créez, suivez et gérez vos intrants d'agriculture naturelle coréenne fabriqués par vos soins.",
       "guidesTitle": "Guides KNF",
       "ingredients": "Ingrédients",
       "steps": "Étapes",
@@ -1732,7 +1732,7 @@
   "ResearcherDashboard": {
     "title": "Tableau de bord du chercheur",
     "datasetsTitle": "Ensembles de données disponibles",
-    "datasetsDescription": "Ensembles de données anonymisées disponibles à des fins de recherche.",
+    "datasetsDescription": "Anonymisierte Datensätze, die für Forschungszwecke verfügbar sind.",
     "table": {
       "name": "Nom",
       "dataType": "Type de données",
@@ -1844,5 +1844,31 @@
     "error": "Impossible d'obtenir des suggestions pour le moment. Veuillez réessayer.",
     "noSuggestions": "L'IA n'a pas pu générer de suggestions spécifiques basées sur l'historique fourni.",
     "regenerateButton": "Régénérer les suggestions"
+  },
+  "networkPage": {
+    "title": "Réseau",
+    "description": "Découvrez et connectez-vous avec les parties prenantes à travers la chaîne d'approvisionnement agricole.",
+    "myNetworkButton": "Mon réseau",
+    "agentToolsButton": "Outils d'agent",
+    "aiSuggestionsTitle": "Suggestions IA",
+    "aiSuggestionsDescription": "Connectez-vous avec des personnes que vous connaissez peut-être en fonction de votre profil et de votre activité.",
+    "toast": {
+      "errorTitle": "Erreur",
+      "loadError": "Impossible de charger les données du réseau.",
+      "connectError": "Impossible d'envoyer la demande de connexion."
+    },
+    "following": "Abonné",
+    "follow": "Suivre",
+    "connect": "Connecter",
+    "profile": "Profil",
+    "noSuggestions": "Aucune nouvelle suggestion pour le moment. Revenez plus tard !",
+    "browseAllTitle": "Parcourir toutes les parties prenantes",
+    "browseAllDescription": "Trouvez et connectez-vous avec de nouveaux partenaires dans la chaîne d'approvisionnement.",
+    "searchPlaceholder": "Rechercher par nom ou résumé...",
+    "locationPlaceholder": "Rechercher par lieu...",
+    "rolePlaceholder": "Filtrer par rôle",
+    "allRoles": "Tous les rôles",
+    "noStakeholdersFound": "Aucune partie prenante trouvée",
+    "noStakeholdersHint": "Essayez d'ajuster vos filtres de recherche."
   }
 }

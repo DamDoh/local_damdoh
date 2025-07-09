@@ -1138,7 +1138,7 @@
     "knfInputsPage": {
       "backLink": "Back to Farm Hub",
       "title": "KNF Input Assistant",
-      "description": "Create, track, and manage your Korean Natural Farming inputs.",
+      "description": "Create, track, and manage your farmer-made Korean Natural Farming inputs.",
       "guidesTitle": "KNF Guides",
       "ingredients": "Ingredients",
       "steps": "Steps",
@@ -1844,5 +1844,31 @@
     "error": "Could not get suggestions at this time. Please try again.",
     "noSuggestions": "AI could not generate specific suggestions based on the provided history.",
     "regenerateButton": "Regenerate Suggestions"
+  },
+  "networkPage": {
+    "title": "Network",
+    "description": "Discover and connect with stakeholders across the agricultural supply chain.",
+    "myNetworkButton": "My Network",
+    "agentToolsButton": "Agent Tools",
+    "aiSuggestionsTitle": "AI Suggestions",
+    "aiSuggestionsDescription": "Connect with people you may know based on your profile and activity.",
+    "toast": {
+      "errorTitle": "Error",
+      "loadError": "Could not load network data.",
+      "connectError": "Could not send connection request."
+    },
+    "following": "Following",
+    "follow": "Follow",
+    "connect": "Connect",
+    "profile": "Profile",
+    "noSuggestions": "No new suggestions right now. Check back later!",
+    "browseAllTitle": "Browse All Stakeholders",
+    "browseAllDescription": "Find and connect with new partners in the supply chain.",
+    "searchPlaceholder": "Search by name or summary...",
+    "locationPlaceholder": "Search by location...",
+    "rolePlaceholder": "Filter by role",
+    "allRoles": "All Roles",
+    "noStakeholdersFound": "No Stakeholders Found",
+    "noStakeholdersHint": "Try adjusting your search filters."
   }
 }

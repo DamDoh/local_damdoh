@@ -1138,7 +1138,7 @@
     "knfInputsPage": {
       "backLink": "Volver al Centro de Fincas",
       "title": "Asistente de Insumos KNF",
-      "description": "Crea, rastrea y gestiona tus insumos de Agricultura Natural Coreana.",
+      "description": "Crea, rastrea y gestiona tus insumos de Agricultura Natural Coreana hechos por ti mismo.",
       "guidesTitle": "Guías de KNF",
       "ingredients": "Ingredientes",
       "steps": "Pasos",
@@ -1637,7 +1637,7 @@
     "incomingJobsTitle": "Trabajos Entrantes",
     "from": "Desde",
     "acceptJobButton": "Aceptar Trabajo",
-    "noIncomingJobs": "No hay nuevos trabajos disponibles."
+    "noIncomingJobs": "No hay trabajos nuevos disponibles."
   },
   "OperationsDashboard": {
     "title": "Panel de Operaciones de la Plataforma",
@@ -1844,5 +1844,31 @@
     "error": "No se pudieron obtener sugerencias en este momento. Por favor, inténtalo de nuevo.",
     "noSuggestions": "La IA no pudo generar sugerencias específicas basadas en el historial proporcionado.",
     "regenerateButton": "Regenerar Sugerencias"
+  },
+  "networkPage": {
+    "title": "Red",
+    "description": "Descubra y conéctese con las partes interesadas en toda la cadena de suministro agrícola.",
+    "myNetworkButton": "Mi red",
+    "agentToolsButton": "Herramientas de agente",
+    "aiSuggestionsTitle": "Sugerencias de IA",
+    "aiSuggestionsDescription": "Conéctese con personas que quizás conozca según su perfil y actividad.",
+    "toast": {
+      "errorTitle": "Error",
+      "loadError": "No se pudieron cargar los datos de la red.",
+      "connectError": "No se pudo enviar la solicitud de conexión."
+    },
+    "following": "Siguiendo",
+    "follow": "Seguir",
+    "connect": "Conectar",
+    "profile": "Perfil",
+    "noSuggestions": "No hay nuevas sugerencias en este momento. ¡Vuelva más tarde!",
+    "browseAllTitle": "Explorar todas las partes interesadas",
+    "browseAllDescription": "Busque y conéctese con nuevos socios en la cadena de suministro.",
+    "searchPlaceholder": "Buscar por nombre o resumen...",
+    "locationPlaceholder": "Buscar por ubicación...",
+    "rolePlaceholder": "Filtrar por rol",
+    "allRoles": "Todos los roles",
+    "noStakeholdersFound": "No se encontraron partes interesadas",
+    "noStakeholdersHint": "Intente ajustar sus filtros de búsqueda."
   }
 }

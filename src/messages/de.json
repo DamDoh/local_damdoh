@@ -1104,10 +1104,41 @@
             "fail": "Protokollierung fehlgeschlagen"
         }
     },
+    "logHarvest": {
+      "backLink": "Zurück zur Farm",
+      "title": "Ernte von {cropType} protokollieren",
+      "description": "Protokollieren Sie Ihre Ernte, um eine neue rückverfolgbare Charge zu erstellen.",
+      "harvestDateLabel": "Erntedatum",
+      "yieldLabel": "Gesamtertrag (in kg)",
+      "yieldPlaceholder": "z.B. 1500",
+      "qualityLabel": "Qualitätsgrad",
+      "qualityPlaceholder": "z.B. Grad A, Exportqualität",
+      "notesLabel": "Erntenotizen (Optional)",
+      "notesPlaceholder": "Besondere Details zu dieser Ernte...",
+      "saveButton": "Ernte protokollieren & Charge erstellen",
+      "savingButton": "Wird gespeichert...",
+      "offlineToast": {
+          "title": "Aktion offline in Warteschlange gestellt",
+          "description": "Ihre Ernte wird protokolliert und eine VTI wird erstellt, sobald Sie wieder online sind."
+      },
+      "success": {
+          "title": "Ernte protokolliert!",
+          "description": "Die Ernte für {cropType} wurde erfolgreich protokolliert. Eine neue rückverfolgbare Charge mit ID '{vtiId}' wurde erstellt.",
+          "successCardTitle": "Ernte protokolliert!",
+          "successCardDescription": "Eine neue rückverfolgbare Charge für {cropType} wurde mit ID erstellt: {vtiId}",
+          "viewReportButton": "Rückverfolgungsbericht ansehen",
+          "sellButton": "Auf dem Marktplatz verkaufen",
+          "logAnotherButton": "Weitere Ernte protokollieren",
+          "backToFarmButton": "Zurück zur Farm"
+      },
+      "fail": {
+          "title": "Protokollierung fehlgeschlagen"
+      }
+    },
     "knfInputsPage": {
       "backLink": "Zurück zum Farm Hub",
       "title": "KNF-Input-Assistent",
-      "description": "Erstellen, verfolgen und verwalten Sie Ihre koreanischen Natural Farming Inputs.",
+      "description": "Erstellen, verfolgen und verwalten Sie Ihre von Landwirten hergestellten koreanischen Natural Farming Inputs.",
       "guidesTitle": "KNF-Anleitungen",
       "ingredients": "Zutaten",
       "steps": "Schritte",
@@ -1596,17 +1627,17 @@
   },
   "LogisticsDashboard": {
     "title": "Logistik-Dashboard",
-    "performanceTitle": "Leistung",
-    "onTimeDelivery": "Pünktlichkeitsrate",
-    "viewReportButton": "Vollständigen Bericht ansehen",
-    "activeShipmentsTitle": "Aktive Sendungen",
-    "to": "Nach",
-    "trackButton": "Verfolgen",
-    "noActiveShipments": "Keine aktiven Sendungen.",
-    "incomingJobsTitle": "Eingehende Aufträge",
-    "from": "Von",
-    "acceptJobButton": "Auftrag annehmen",
-    "noIncomingJobs": "Keine neuen Aufträge verfügbar."
+    "performanceTitle": "Rendimiento",
+    "onTimeDelivery": "tasa de entrega a tiempo",
+    "viewReportButton": "Ver Informe Completo",
+    "activeShipmentsTitle": "Envíos Activos",
+    "to": "A",
+    "trackButton": "Rastrear",
+    "noActiveShipments": "No hay envíos activos.",
+    "incomingJobsTitle": "Trabajos Entrantes",
+    "from": "Desde",
+    "acceptJobButton": "Aceptar Trabajo",
+    "noIncomingJobs": "No hay trabajos nuevos disponibles."
   },
   "OperationsDashboard": {
     "title": "Plattform-Betriebs-Dashboard",
@@ -1813,5 +1844,31 @@
     "error": "Vorschläge konnten derzeit nicht abgerufen werden. Bitte versuchen Sie es erneut.",
     "noSuggestions": "KI konnte keine spezifischen Vorschläge basierend auf dem bereitgestellten Verlauf generieren.",
     "regenerateButton": "Vorschläge neu generieren"
+  },
+  "networkPage": {
+    "title": "Netzwerk",
+    "description": "Entdecken und verbinden Sie sich mit Interessenvertretern in der gesamten landwirtschaftlichen Lieferkette.",
+    "myNetworkButton": "Mein Netzwerk",
+    "agentToolsButton": "Agentenwerkzeuge",
+    "aiSuggestionsTitle": "KI-Vorschläge",
+    "aiSuggestionsDescription": "Verbinden Sie sich mit Personen, die Sie möglicherweise kennen, basierend auf Ihrem Profil und Ihrer Aktivität.",
+    "toast": {
+      "errorTitle": "Fehler",
+      "loadError": "Netzwerkdaten konnten nicht geladen werden.",
+      "connectError": "Verbindungsanfrage konnte nicht gesendet werden."
+    },
+    "following": "Folge ich",
+    "follow": "Folgen",
+    "connect": "Verbinden",
+    "profile": "Profil",
+    "noSuggestions": "Derzeit keine neuen Vorschläge. Schauen Sie später wieder vorbei!",
+    "browseAllTitle": "Alle Interessenvertreter durchsuchen",
+    "browseAllDescription": "Finden und verbinden Sie sich mit neuen Partnern in der Lieferkette.",
+    "searchPlaceholder": "Nach Name oder Zusammenfassung suchen...",
+    "locationPlaceholder": "Nach Standort suchen...",
+    "rolePlaceholder": "Nach Rolle filtern",
+    "allRoles": "Alle Rollen",
+    "noStakeholdersFound": "Keine Interessenvertreter gefunden",
+    "noStakeholdersHint": "Versuchen Sie, Ihre Suchfilter anzupassen."
   }
 }

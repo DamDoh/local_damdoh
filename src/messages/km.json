@@ -1010,7 +1010,7 @@
             "ដើរលើផ្លូវអចិន្ត្រៃយ៍ដើម្បីជៀសវាងការបង្រួមដីដាំដុះរបស់អ្នក។"
           ],
           "whyItWorks": [
-            "ការពារការហូរច្រោះដីដោយខ្យល់និងទឹក។",
+            "ការពារការហូរច្រោះដីដោយខ្យល់และទឹក។",
             "ការពារសត្វមានជីវិតក្នុងដីและបណ្តាញផ្សិត។",
             "បង្កើនការជ្រាបចូលและការរក្សាទុកទឹកយ៉ាងខ្លាំង។",
             "ลดต้นทุนแรงงานและเชื้อเพลิงที่เกี่ยวข้องกับการไถพรวน"
@@ -1732,7 +1732,7 @@
   "ResearcherDashboard": {
     "title": "แผงควบคุมนักวิจัย",
     "datasetsTitle": "ชุดข้อมูลที่มีอยู่",
-    "datasetsDescription": "ชุดข้อมูลที่ไม่ระบุชื่อสำหรับวัตถุประสงค์ในการวิจัย",
+    "datasetsDescription": "Anonymisierte Datensätze, die für Forschungszwecke verfügbar sind.",
     "table": {
       "name": "ឈ្មោះ",
       "dataType": "ប្រភេទข้อมูล",
@@ -1744,22 +1744,22 @@
       "status": "สถานะ"
     },
     "requestAccessButton": "ขอเข้าถึง",
-    "noDatasets": "ไม่มีชุดข้อมูลให้บริการในขณะนี้",
-    "projectsTitle": "โครงการที่กำลังดำเนินอยู่",
-    "projectsDescription": "โครงการวิจัยที่ใช้งานอยู่ของคุณบนแพลตฟอร์ม",
-    "viewProjectButton": "ดูโครงการ",
-    "noProjects": "คุณไม่ได้มีส่วนร่วมในโครงการที่กำลังดำเนินอยู่",
-    "contributionsTitle": "ការចូលរួមในศูนย์ความรู้",
-    "contributionsDescription": "บทความและเอกสารวิจัยที่คุณส่ง",
+    "noDatasets": "Actualmente no hay conjuntos de datos disponibles.",
+    "projectsTitle": "Proyectos en Curso",
+    "projectsDescription": "Sus proyectos de investigación activos en la plataforma.",
+    "viewProjectButton": "Ver Proyecto",
+    "noProjects": "No está involucrado en ningún proyecto en curso.",
+    "contributionsTitle": "Contribuciones al Centro de Conocimiento",
+    "contributionsDescription": "Sus artículos y trabajos de investigación enviados.",
     "viewButton": "មើល",
-    "noContributions": "คุณยังไม่ได้ส่งผลงานใดๆ",
+    "noContributions": "Aún no ha enviado ninguna contribución.",
     "chart": {
       "count": "จำนวน",
       "published": "បានផ្សព្វផ្សាយ",
       "pending": "រង់ចាំการตรวจสอบ",
       "draft": "ร่าง"
     },
-    "noData": "ไม่มีข้อมูลแดชบอร์ด"
+    "noData": "No hay datos de panel disponibles."
   },
   "WasteManagementDashboard": {
     "title": "แผงควบคุมการจัดการของเสีย",
@@ -1844,5 +1844,31 @@
     "error": "ไม่สามารถรับคำแนะนำได้ในขณะนี้ โปรดลองอีกครั้ง",
     "noSuggestions": "AI ไม่สามารถสร้างคำแนะนำเฉพาะตามประวัติที่ให้ไว้ได้",
     "regenerateButton": "สร้างคำแนะนำใหม่"
+  },
+  "networkPage": {
+    "title": "បណ្តាញ",
+    "description": "ค้นพบและเชื่อมต่อกับผู้มีส่วนได้ส่วนเสียทั่วทั้งห่วงโซ่อุปทานทางการเกษตร",
+    "myNetworkButton": "បណ្តាញរបស់ខ្ញុំ",
+    "agentToolsButton": "เครื่องมือตัวแทน",
+    "aiSuggestionsTitle": "คำแนะนำ AI",
+    "aiSuggestionsDescription": "เชื่อมต่อกับคนที่คุณอาจรู้จักโดยพิจารณาจากโปรไฟล์และกิจกรรมของคุณ",
+    "toast": {
+      "errorTitle": "ข้อผิดพลาด",
+      "loadError": "ไม่สามารถโหลดข้อมูลเครือข่ายได้",
+      "connectError": "ไม่สามารถส่งคำขอเชื่อมต่อได้"
+    },
+    "following": "កំពុងតាមដាន",
+    "follow": "តាមដាន",
+    "connect": "เชื่อมต่อ",
+    "profile": "ប្រវត្តិរូប",
+    "noSuggestions": "ไม่มีคำแนะนำใหม่ในขณะนี้ ลองกลับมาใหม่ภายหลัง!",
+    "browseAllTitle": "เรียกดูผู้มีส่วนได้ส่วนเสียทั้งหมด",
+    "browseAllDescription": "ค้นหาและเชื่อมต่อกับพันธมิตรใหม่ในห่วงโซ่อุปทาน",
+    "searchPlaceholder": "ស្វែងរកតាមชื่อหรือสรุป...",
+    "locationPlaceholder": "ស្វែងរកតាមទីតាំង...",
+    "rolePlaceholder": "กรองตามบทบาท",
+    "allRoles": "គ្រប់តួនាទីទាំងអស់",
+    "noStakeholdersFound": "រកមិនឃើញผู้มีส่วนได้ส่วนเสีย",
+    "noStakeholdersHint": "ลองปรับตัวกรองการค้นหาของคุณ"
   }
 }
