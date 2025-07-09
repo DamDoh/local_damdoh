@@ -1669,9 +1669,9 @@
       "qualityLabel": "Anfänglicher Qualitätsgrad",
       "notSpecified": "Nicht angegeben",
       "journeyTitle": "Reise des Produkts",
-      "journeyDescription": "Verfolgen Sie die vollständige Reise dieser Charge vom Bauernhof.",
+      "journeyDescription": "Folgen Sie der vollständigen Reise dieser Charge vom Bauernhof.",
       "noEventsFound": "Für diese Charge wurden noch keine Ereignisse erfasst.",
-      "noEventDetails": "Für dieses Ereignis wurden keine zusätzlichen Details angegeben.",
+      "noEventDetails": "Keine zusätzlichen Details angegeben.",
       "geoLocationLabel": "Geolokalisierung",
       "sustainablyGrownTitle": "Nachhaltig angebaut",
       "sustainablyGrownDescription": "Dieses Produkt wurde mit nachhaltigen und biologisch verträglichen Betriebsmitteln angebaut, die auf der DamDoh-Plattform protokolliert wurden.",
@@ -1679,6 +1679,356 @@
       "details": "Details",
       "aiDiagnosis": "KI-gestützte Diagnose"
     }
+  },
+  "InsurancePage": {
+    "title": "Versicherungs-Hub",
+    "description": "Schützen Sie Ihre Farm und Ihr Unternehmen mit maßgeschneiderten landwirtschaftlichen Versicherungsprodukten vor unvorhergesehenen Risiken.",
+    "perTerm": "pro Laufzeit",
+    "viewDetailsButton": "Details anzeigen",
+    "noProducts": "Zurzeit sind keine Versicherungsprodukte verfügbar.",
+    "toast": {
+      "errorTitle": "Fehler beim Laden der Produkte"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "Zurück zum Versicherungs-Hub",
+    "notFound": "Versicherungsprodukt nicht gefunden.",
+    "coverageTitle": "Deckungsdetails",
+    "premiumTitle": "Prämie",
+    "perTerm": "pro Laufzeit",
+    "providerTitle": "Angeboten von",
+    "applyButton": "Für diese Police bewerben",
+    "toast": {
+      "errorTitle": "Fehler"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "Zurück zu den Versicherungsprodukten",
+    "title": "Versicherung beantragen",
+    "description": "Beantragen Sie die Police '{productName}', indem Sie Ihre Farm auswählen.",
+    "form": {
+      "farmLabel": "Zu versichernde Farm",
+      "farmPlaceholder": "Wählen Sie Ihre Farm",
+      "noFarms": "Bitte fügen Sie zuerst eine Farm hinzu",
+      "coverageValueLabel": "Zu versichernder Wert (USD)",
+      "coverageValuePlaceholder": "z.B. 10000",
+      "coverageValueDescription": "Der Gesamtwert, den Sie versichern möchten.",
+      "submitButton": "Antrag einreichen"
+    },
+    "success": {
+      "title": "Antrag eingereicht",
+      "description": "Ihr Versicherungsantrag wurde zur Überprüfung gesendet.",
+      "backToDashboardButton": "Zurück zum Dashboard",
+      "applyForAnotherButton": "Weiteren Antrag stellen"
+    },
+    "toast": {
+      "error": "Fehler",
+      "notAuthenticated": "Sie müssen angemeldet sein, um einen Antrag zu stellen.",
+      "successTitle": "Antrag gesendet!",
+      "successDescription": "Ihr Versicherungsantrag wird nun geprüft."
+    }
+  },
+  "InsuranceProductsPage": {
+    "title": "Versicherungsprodukte verwalten",
+    "description": "Erstellen und verwalten Sie die Versicherungsprodukte, die Sie auf der Plattform anbieten.",
+    "createButton": "Neues Produkt erstellen",
+    "noProducts": "Sie haben noch keine Versicherungsprodukte erstellt.",
+    "table": {
+      "productName": "Produktname",
+      "type": "Typ",
+      "status": "Status",
+      "premium": "Prämie"
+    },
+    "toast": {
+      "errorTitle": "Fehler"
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "Zurück zu den Produkten",
+    "title": "Neues Versicherungsprodukt erstellen",
+    "description": "Definieren Sie ein neues Versicherungsprodukt, das Landwirten und Agrarunternehmen angeboten werden soll.",
+    "form": {
+      "nameLabel": "Produktname",
+      "namePlaceholder": "z.B. Mehrgefahren-Ernteversicherung",
+      "typeLabel": "Produkttyp",
+      "typePlaceholder": "Wählen Sie einen Typ",
+      "crop": "Ernte",
+      "livestock": "Vieh",
+      "asset": "Vermögenswert",
+      "weather": "Wetter (Parametrisch)",
+      "descriptionLabel": "Kurzbeschreibung",
+      "descriptionPlaceholder": "Ein kurzer Überblick über das Produkt.",
+      "coverageLabel": "Deckungsdetails",
+      "coveragePlaceholder": "Beschreiben Sie detailliert, was diese Police abdeckt...",
+      "premiumLabel": "Prämie",
+      "premiumPlaceholder": "z.B. 250.00",
+      "currencyLabel": "Währung",
+      "submitButton": "Produkt erstellen"
+    },
+    "toast": {
+      "notAuthenticated": "Sie müssen als Versicherungsanbieter angemeldet sein.",
+      "errorTitle": "Erstellung fehlgeschlagen",
+      "successTitle": "Produkt erstellt",
+      "successDescription": "Das Produkt '{name}' ist jetzt auf der Plattform verfügbar."
+    }
+  },
+  "FiProductsPage": {
+    "backLink": "Zurück zum Dashboard",
+    "title": "Finanzprodukte",
+    "description": "Verwalten Sie die Kredit- und Zuschussprodukte, die Sie der Community anbieten.",
+    "createButton": "Neues Produkt erstellen",
+    "noProducts": "Sie haben noch keine Finanzprodukte erstellt.",
+    "table": {
+      "productName": "Produktname",
+      "type": "Typ",
+      "status": "Status",
+      "interestRate": "Zinssatz",
+      "maxAmount": "Max. Betrag"
+    },
+    "toast": {
+      "errorTitle": "Fehler"
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "Zurück zu den Produkten",
+    "title": "Neues Finanzprodukt erstellen",
+    "description": "Definieren Sie ein neues Kredit- oder Zuschussprodukt, das auf der Plattform aufgeführt werden soll.",
+    "form": {
+      "nameLabel": "Produktname",
+      "namePlaceholder": "z.B. Saatgutdarlehen für Kleinbauern",
+      "typeLabel": "Produkttyp",
+      "loan": "Darlehen",
+      "grant": "Zuschuss",
+      "descriptionLabel": "Beschreibung",
+      "descriptionPlaceholder": "Beschreiben Sie das Produkt, seinen Zweck und die Förderkriterien.",
+      "interestRateLabel": "Zinssatz (%)",
+      "interestRatePlaceholder": "z.B. 12.5",
+      "maxAmountLabel": "Maximaler Betrag (USD)",
+      "maxAmountPlaceholder": "z.B. 5000",
+      "targetRolesLabel": "Zielgruppe",
+      "targetRolesDescription": "Wählen Sie die Stakeholder-Rollen aus, für die dieses Produkt verfügbar ist.",
+      "submitButton": "Produkt erstellen"
+    },
+    "toast": {
+      "notAuthenticated": "Sie müssen als Finanzinstitut angemeldet sein.",
+      "errorTitle": "Erstellung fehlgeschlagen",
+      "successTitle": "Produkt erstellt",
+      "successDescription": "Das Produkt '{name}' ist jetzt verfügbar."
+    }
+  },
+  "FiApplicationListPage": {
+    "backLink": "Zurück zum Dashboard",
+    "title": "Finanzanträge",
+    "description": "Überprüfen und verwalten Sie eingehende Kredit- und Zuschussanträge von Benutzern.",
+    "tabs": {
+      "all": "Alle",
+      "pending": "Ausstehend",
+      "approved": "Genehmigt",
+      "rejected": "Abgelehnt"
+    },
+    "table": {
+      "applicant": "Antragsteller",
+      "type": "Typ",
+      "amount": "Betrag",
+      "date": "Datum",
+      "status": "Status",
+      "action": "Aktion"
+    },
+    "noApplications": "In dieser Kategorie gibt es keine Anträge.",
+    "reviewButton": "Überprüfen"
+  },
+  "FiApplicationPage": {
+    "backLink": "Zurück zu allen Anträgen",
+    "title": "Antragsdetails",
+    "applicationTitle": "Antrag",
+    "submittedOn": "Eingereicht am",
+    "amountRequested": "Beantragter Betrag",
+    "purpose": "Zweck der Mittel",
+    "approveButton": "Genehmigen",
+    "rejectButton": "Ablehnen",
+    "requestInfoButton": "Weitere Informationen anfordern",
+    "applicantDetails": "Antragstellerdetails",
+    "viewProfileButton": "Vollständiges Profil anzeigen",
+    "profileNotFound": "Antragstellerprofil nicht gefunden.",
+    "riskAssessment": "KI-Risikobewertung",
+    "creditScore": "Kredit-Score",
+    "notFound": "Antrag nicht gefunden.",
+    "toast": {
+      "errorTitle": "Fehler",
+      "updateSuccessTitle": "Status aktualisiert",
+      "updateSuccessDescription": "Der Antragsstatus wurde auf {status} gesetzt.",
+      "updateFailTitle": "Update fehlgeschlagen"
+    }
+  },
+  "pinboardPage": {
+    "title": "Pinwand",
+    "description": "Ihr persönlicher Bereich zum Speichern und Organisieren von Elementen von der gesamten Plattform.",
+    "comingSoonTitle": "Bald verfügbar!",
+    "comingSoonDescription": "Die Pinwand ermöglicht es Ihnen, Marktplatzeinträge, Forenbeiträge, Profile und mehr zu speichern, um später einfach darauf zugreifen zu können.",
+    "stayTuned": "Bleiben Sie dran für Updates."
+  },
+  "walletPage": {
+    "title": "Meine Brieftasche",
+    "description": "Verwalten Sie Ihr Guthaben, sehen Sie den Transaktionsverlauf ein und handhaben Sie Auszahlungen.",
+    "underDevelopmentTitle": "Wallet-Funktion in Entwicklung",
+    "underDevelopmentDescription": "Wir arbeiten intensiv daran, Ihnen ein sicheres und nahtloses Finanzerlebnis direkt in DamDoh zu bieten. Die kommende Brieftasche wird Ihnen ermöglichen:",
+    "feature1": "Guthaben sicher zu halten",
+    "feature2": "Zahlungen auf der Plattform zu tätigen und zu empfangen",
+    "feature3": "Nahtlos auf Finanzdienstleistungen zuzugreifen",
+    "feature4": "Auszahlungen auf Ihr Bank- oder Mobile-Money-Konto zu verwalten",
+    "stayTuned": "Bleiben Sie dran für diese aufregende Funktion!"
+  },
+  "sustainabilityPage": {
+    "title": "Nachhaltigkeits-Dashboard",
+    "description": "Verfolgen und verbessern Sie die Umweltauswirkungen Ihrer landwirtschaftlichen Praktiken.",
+    "carbonFootprint": "CO2-Fußabdruck",
+    "waterEfficiency": "Wassereffizienz",
+    "biodiversityScore": "Biodiversitäts-Score",
+    "practicesTitle": "Protokoll nachhaltiger Praktiken",
+    "certificationsTitle": "Aktive Zertifizierungen",
+    "metricCard": {
+      "trendText": "zum Vormonat"
+    },
+    "practicesTable": {
+      "practice": "Praxis",
+      "lastLogged": "Zuletzt protokolliert"
+    },
+    "certificationsTable": {
+      "certification": "Zertifizierung",
+      "status": "Status",
+      "expiry": "Läuft ab"
+    },
+    "auth": {
+      "title": "Bitte anmelden",
+      "description": "Sie müssen angemeldet sein, um Ihr Nachhaltigkeits-Dashboard anzuzeigen.",
+      "button": "Anmelden"
+    },
+    "noData": {
+      "title": "Daten nicht verfügbar",
+      "description": "Ihre Nachhaltigkeitsdaten konnten derzeit nicht geladen werden."
+    }
+  },
+  "industryNewsPage": {
+    "title": "Branchennachrichten & Berichte",
+    "description": "Bleiben Sie informiert über die neuesten Trends, Forschungsergebnisse und politischen Aktualisierungen in der Landwirtschaft.",
+    "searchPlaceholder": "Artikel und Berichte suchen...",
+    "categoryPlaceholder": "Nach Kategorie filtern...",
+    "allCategories": "Alle Kategorien",
+    "readButton": "Artikel lesen",
+    "sourceLabel": "Quelle",
+    "publishedLabel": "Veröffentlicht",
+    "categoryLabel": "Kategorie",
+    "news1": {
+      "title": "Weltweite Getreidepreise steigen aufgrund von Unterbrechungen der Lieferkette",
+      "excerpt": "Ein neuer Bericht von AgriMarket Insights zeigt einen Anstieg der weltweiten Weizenpreise um 15 % im letzten Quartal, angetrieben durch logistische Engpässe und regionale Klimaereignisse. Analysten prognostizieren anhaltende Volatilität."
+    },
+    "news2": {
+      "title": "EU führt strengere Vorschriften für nachhaltige Verpackungen ein",
+      "excerpt": "Ab diesem Monat müssen alle in die Europäische Union importierten landwirtschaftlichen Erzeugnisse neue Standards für Recyclingfähigkeit und reduzierten Kunststoff erfüllen. Exporteure werden dringend gebeten, ihre Verpackungslösungen zu überprüfen, um die Konformität zu gewährleisten."
+    },
+    "news3": {
+      "title": "Studie zeigt, dass Direktsaat die Kohlenstoffbindung im Boden um bis zu 25 % erhöht",
+      "excerpt": "Eine zehnjährige Studie, veröffentlicht in 'Sustainable Farming Today', bestätigt, dass Direktsaat- und Zwischenfruchtanbaupraktiken die organische Bodensubstanz und die Kohlenstoffbindung erheblich verbessern und einen gangbaren Weg für eine klimafreundliche Landwirtschaft bieten."
+    },
+    "noNews": {
+      "title": "Keine Nachrichtenartikel gefunden",
+      "description": "Derzeit sind keine Nachrichtenartikel verfügbar. Bitte schauen Sie später wieder vorbei für die neuesten Updates."
+    }
+  },
+  "admin": {
+    "layout": {
+      "title": "Admin-Panel",
+      "description": "Dieser Bereich ist nur für autorisierte Administratoren.",
+      "contentManagement": "Inhalt",
+      "reports": "Berichte"
+    },
+    "dashboard": {
+      "title": "Admin-Dashboard",
+      "description": "Willkommen im Administrationspanel von DamDoh.",
+      "content": "Von hier aus können Sie verschiedene Aspekte der Plattform verwalten, wie z.B. den Inhalt des Wissens-Hubs.",
+      "contentManagementButton": "Inhalt verwalten"
+    },
+    "contentManagement": {
+      "allArticles": {
+        "title": "Inhaltsverwaltung",
+        "description": "Verwalten Sie alle Wissensartikel, Blogbeiträge und Nachrichten.",
+        "refreshButton": "Aktualisieren"
+      },
+      "table": {
+        "title": "Titel",
+        "category": "Kategorie",
+        "status": "Status",
+        "created": "Erstellt",
+        "actions": "Aktionen",
+        "noArticles": "Es wurden noch keine Artikel erstellt."
+      },
+      "createArticle": {
+        "title": "Neuen Inhalt erstellen",
+        "description": "Fügen Sie einen neuen Artikel zum Wissens-Hub oder Blog hinzu.",
+        "englishContent": "Englischer Inhalt",
+        "titleEnLabel": "Titel (Englisch)",
+        "excerptEnLabel": "Auszug (Englisch)",
+        "contentEnLabel": "Inhalt (Markdown, Englisch)",
+        "khmerContent": "Khmer-Inhalt",
+        "titleKmLabel": "Titel (Khmer)",
+        "excerptKmLabel": "Auszug (Khmer)",
+        "contentKmLabel": "Inhalt (Markdown, Khmer)",
+        "metadataTitle": "Metadaten",
+        "categoryLabel": "Kategorie",
+        "categoryPlaceholder": "z.B. Blog, Branchennachrichten, KNF-Anleitung",
+        "authorLabel": "Autor",
+        "authorPlaceholder": "z.B. DamDoh Team",
+        "statusLabel": "Status",
+        "tagsLabel": "Tags (durch Komma getrennt)",
+        "imageUrlLabel": "Bild-URL",
+        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
+        "aiHintLabel": "KI-Bild-Hinweis",
+        "aiHintPlaceholder": "z.B. Kaffeebohnen, Bauernporträt",
+        "publishingButton": "Wird veröffentlicht...",
+        "publishButton": "Artikel veröffentlichen"
+      },
+      "toast": {
+        "loadErrorTitle": "Fehler",
+        "loadErrorDescription": "Inhalt konnte nicht geladen werden.",
+        "createSuccessTitle": "Artikel erstellt",
+        "createSuccessDescription": "Der neue Artikel wurde veröffentlicht.",
+        "createErrorTitle": "Erstellung fehlgeschlagen"
+      }
+    },
+    "reports": {
+      "generate": {
+        "title": "Regulierungsbericht erstellen",
+        "description": "Erstellen Sie On-Demand-Berichte für Compliance- und Prüfungszwecke.",
+        "reportTypeLabel": "Berichtstyp",
+        "reportTypeVti": "VTI-Ereignisübersicht",
+        "targetUserLabel": "Zielbenutzer",
+        "userSearchPlaceholder": "Nach Name oder E-Mail suchen...",
+        "dateRangeLabel": "Datumsbereich",
+        "datePlaceholder": "Datumsbereich auswählen",
+        "submitButton": "Bericht erstellen"
+      },
+      "list": {
+        "title": "Erstellte Berichte",
+        "description": "Anzeigen und Herunterladen von zuvor erstellten Berichten.",
+        "table": {
+          "reportType": "Berichtstyp",
+          "generatedFor": "Erstellt für",
+          "date": "Datum",
+          "status": "Status",
+          "actions": "Aktionen"
+        },
+        "viewButton": "Anzeigen",
+        "noReports": "Es wurden noch keine Berichte erstellt."
+      },
+      "toast": {
+        "loadErrorTitle": "Fehler",
+        "formIncompleteTitle": "Unvollständiges Formular",
+        "formIncompleteDescription": "Bitte wählen Sie einen Berichtstyp, einen Zielbenutzer und einen Datumsbereich aus.",
+        "generateSuccessTitle": "Bericht wird erstellt",
+        "generateSuccessDescription": "Der Bericht wird erstellt und erscheint in Kürze in der Liste unten.",
+        "generateErrorTitle": "Erstellung fehlgeschlagen"
+      }
+    }
   }
 }
-    
+

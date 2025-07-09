@@ -35,12 +35,12 @@
         "description": "ចូលទៅកាន់ទីផ្សារល្អប្រសើរ ស្វែងរកធាតុចូលដែលមានគុណភាព និងទទួលបានការណែនាំពីអ្នកជំនាញដើម្បីបង្កើនទិន្នផលและប្រាក់ចំណេញ។"
       },
       "buyers": {
-        "title": "អ្នកទិញនិងអ្នកកែច្នៃ",
-        "description": "ស្វែងរកផលិតផលដែលមានគុណភាពខ្ពស់ និងអាចតាមដានបានដោយផ្ទាល់ពីអ្នកដាំនិងសហគមន៍កសិកម្ម ធានានូវភាពជឿជាក់នៃខ្សែសង្វាក់ផ្គត់ផ្គង់។"
+        "title": "អ្នកទិញและអ្នកកែច្នៃ",
+        "description": "ស្វែងរកផលិតផលដែលមានគុណភាពខ្ពស់ และអាចតាមដានបានដោយផ្ទាល់ពីអ្នកដាំនិងសហគមន៍កសិកម្ម ធានានូវភាពជឿជាក់នៃខ្សែសង្វាក់ផ្គត់ផ្គង់។"
       },
       "experts": {
         "title": "អ្នកជំនាញនិងអ្នកផ្តល់សេវា",
-        "description": "ផ្តល់ជំនាញ និងសេវាកម្មពិសេសរបស់អ្នកទៅកាន់ទស្សនិកជនកសិកម្មដ៏ធំទូលាយដែលកំពុងស្វែងរកជំនាញរបស់អ្នក។"
+        "description": "ផ្តល់ជំនាញ และសេវាកម្មពិសេសរបស់អ្នកទៅកាន់ទស្សនិកជនកសិកម្មដ៏ធំទូលាយដែលកំពុងស្វែងរកជំនាញរបស់អ្នក។"
       },
       "imageAlt": "ក្រុមចម្រុះនៃតួអង្គកសិកម្មកំពុងសហការគ្នា"
     },
@@ -141,11 +141,11 @@
     "following": "កំពុងតាមដាន",
     "follow": "តាមដាន",
     "promotionsTitle": "ការផ្សព្វផ្សាយ",
-    "promotionsDescription": "មើលការផ្តល់ជូនពិសេស និងកិច្ចព្រមព្រៀងពីដៃគូក្នុងប្រព័ន្ធអេកូឡូស៊ី។",
+    "promotionsDescription": "មើលការផ្តល់ជូនពិសេស และកិច្ចព្រមព្រៀងពីដៃគូក្នុងប្រព័ន្ធអេកូឡូស៊ី។",
     "managePromotionsButton": "គ្រប់គ្រងការផ្សព្វផ្សាយ",
     "ad": "ពាណិជ្ជកម្ម",
     "adTitle": "ដោះសោការយល់ដឹងទីផ្សារ",
-    "adDescription": "ទទួលបានទិន្នន័យ និងការវិភាគតាមពេលវេលាជាក់ស្តែងជាមួយដាំដុះប្រូ។",
+    "adDescription": "ទទួលបានទិន្នន័យ และការវិភាគតាមពេលវេលាជាក់ស្តែងជាមួយដាំដុះប្រូ។",
     "adButton": "ស្វែងយល់បន្ថែម"
   },
   "LanguageSwitcher": {
@@ -180,14 +180,14 @@
     "vision": {
       "title": "ចក្ខុវិស័យរបស់យើង",
       "p1": "យើងមានចក្ខុវិស័យលើពិភពលោកមួយដែលគ្រប់តួអង្គកសិកម្ម ចាប់ពីកសិករតូចបំផុតរហូតដល់អ្នកលក់រាយធំបំផុត ត្រូវបានពង្រឹងដោយទិន្នន័យ ការតភ្ជាប់ និងឧបករណ៍ដែលពួកគេត្រូវការដើម្បីរីកចម្រើន។",
-      "p2": "ដាំដុះត្រូវបានបង្កើតឡើងដោយផ្អែកលើជំនឿថាបច្ចេកវិទ្យាអាចជួយបង្រួមគម្លាត ពង្រឹងទំនុកចិត្ត និងបង្កើតប្រព័ន្ធស្បៀងអាហារសកលមួយដែលកាន់តែមានសមធម៌និងនិរន្តរភាព។",
+      "p2": "ដាំដុះត្រូវបានបង្កើតឡើងដោយផ្អែកលើជំនឿថាបច្ចេកវិទ្យាអាចជួយបង្រួមគម្លាត ពង្រឹងទំនុកចិត្ត และបង្កើតប្រព័ន្ធស្បៀងអាហារសកលមួយដែលកាន់តែមានសមធម៌និងនិរន្តរភាព។",
       "foundersTitle": "ស្ថាបនិក"
     },
     "challenge": {
       "title": "បញ្ហាប្រឈមដែលយើងដោះស្រាយ",
       "description": "ខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្មមានភាពបែកខ្ញែក គ្មានប្រសិទ្ធភាព និងជារឿយៗខ្វះតម្លាភាពដែលចាំបាច់សម្រាប់ការរីកចម្រើនប្រកបដោយនិរន្តរភាព។ បញ្ហាប្រឈមសំខាន់ៗរួមមាន៖",
       "list": {
-        "knowledge": "ចំណេះដឹងដែលបែកខ្ញែក និងកង្វះការចូលទៅកាន់ការអនុវត្តល្អបំផុត។",
+        "knowledge": "ចំណេះដឹងដែលបែកខ្ញែក และកង្វះការចូលទៅកាន់ការអនុវត្តល្អបំផុត។",
         "market": "ការចូលទៅកាន់ទីផ្សារមានកម្រិតសម្រាប់កសិករខ្នាតតូច។",
         "quality": "ការត្រួតពិនិត្យគុណភាពមិនទៀងទាត់ និងការខ្វះទិន្នន័យផលិតផលដែលអាចផ្ទៀងផ្ទាត់បាន។",
         "logistics": "ការដឹកជញ្ជូនគ្មានប្រសិទ្ធភាពដែលនាំឱ្យមានការខាតបង់ក្រោយការប្រមូលផល។",
@@ -200,9 +200,9 @@
       "title": "ដំណោះស្រាយរបស់ដាំដុះ",
       "description": "យើងកំពុងកសាង 'កម្មវិធីទំនើប' មួយដែលគ្រប់ជ្រុងជ្រោយដែលធ្វើឌីជីថលនូបនីយកម្មและភ្ជាប់ប្រព័ន្ធអេកូឡូស៊ីកសិកម្មទាំងមូលតាមរយៈសសរស្តម្ភសំខាន់ៗជាច្រើន៖",
       "list": {
-        "education": "ការអប់រំនិងការចែករំលែកចំណេះដឹង",
+        "education": "ការអប់រំและការចែករំលែកចំណេះដឹង",
         "ai": "ជំនួយនិងការយល់ដឹងដោយបញ្ញាសិប្បនិម្មិត",
-        "logistics": "ការដឹកជញ្ជូននិងការតាមដានរួមបញ្ចូលគ្នា"
+        "logistics": "ការដឹកជញ្ជូនและការតាមដានរួមបញ្ចូលគ្នា"
       }
     },
     "beyondTechnology": {
@@ -229,7 +229,7 @@
     "commitment": {
       "title": "ការប្តេជ្ញាចិត្តរបស់យើងចំពោះអនាគត",
       "p1": "យើងប្តេជ្ញាប្រើប្រាស់បច្ចេកវិទ្យាដើម្បីអ្វីដែលល្អ បង្កើតវេទិកាមួយដែលមិនត្រឹមតែមានផលចំណេញប៉ុណ្ណោះទេ ប៉ុន្តែថែមទាំងបង្កើតភពផែនដីរបស់យើងឡើងវិញและផ្តល់អំណាចដល់ប្រជាជនរបស់ខ្លួន។",
-      "p2": "រាល់ការតភ្ជាប់ដែលបានធ្វើ រាល់ចំណេះដឹងដែលបានចែករំលែក និងរាល់ប្រតិបត្តិការដែលបានសម្រួលនៅលើដាំដុះ គឺជាជំហានមួយឆ្ពោះទៅរកអនាគតអាហារដែលមានភាពធន់និងសមធម៌ជាងមុន។",
+      "p2": "រាល់ការតភ្ជាប់ដែលបានធ្វើ រាល់ចំណេះដឹងដែលបានចែករំលែក และរាល់ប្រតិបត្តិការដែលបានសម្រួលនៅលើដាំដុះ គឺជាជំហានមួយឆ្ពោះទៅរកអនាគតអាហារដែលមានភាពធន់និងសមធម៌ជាងមុន។",
       "p3": "ចូលរួមជាមួយយើងក្នុងការធ្វើដំណើរនេះ។",
       "button": "ក្លាយជាសមាជិក"
     }
@@ -274,8 +274,8 @@
       "title": "ហេតុអ្វីធ្វើការជាមួយយើង?",
       "intro": "នៅដាំដុះ យើងគឺជាក្រុមអ្នកច្នៃប្រឌិត អ្នកបច្ចេកទេស និងអ្នកជំនាញកសិកម្មដែលខិតខំបង្កើតឥទ្ធិពលសកលដែលអាចមើលឃើញ។ យើងផ្តល់ជូន៖",
       "point1": "បរិយាកាសការងារដែលជំរុញដោយបេសកកម្មและមានភាពស្វាហាប់។",
-      "point2": "ឱកាសសម្រាប់ការរីកចម្រើននិងការរៀនសូត្រវិជ្ជាជីវៈ។",
-      "point3": "វប្បធម៌នៃកិច្ចសហប្រតិបត្តិការនិងតម្លាភាព។",
+      "point2": "ឱកាសសម្រាប់ការរីកចម្រើនและការរៀនសូត្រវិជ្ជាជីវៈ។",
+      "point3": "វប្បធម៌នៃកិច្ចសហប្រតិបត្តិការและតម្លាភាព។",
       "point4": "ឱកាសក្នុងការធ្វើការជាមួយបច្ចេកវិទ្យាទំនើបដូចជា AI และ blockchain។",
       "point5": "ការប្តេជ្ញាចិត្តចំពោះនិរន្តរភាពและឥទ្ធិពលសង្គម។"
     },
@@ -285,32 +285,32 @@
         "title": "វិស្វករ Full-Stack ជាន់ខ្ពស់ (Next.js, Firebase)",
         "location": "ពីចម្ងាយ",
         "type": "ពេញ​មោ៉​ង",
-        "description": "เรากำลังมองหาวิศวกร full-stack ที่มีประสบการณ์เพื่อเป็นผู้นำในการพัฒนาคุณสมบัติหลักของแพลตฟอร์มของเรา"
+        "description": "យើងកំពុងស្វែងរកវិស្វករ full-stack ដែលមានបទពិសោធន៍ដើម្បីដឹកនាំការអភិវឌ្ឍលក្ខណៈពិសេសស្នូលនៃវេទិការបស់យើង។"
       },
       "job2": {
-        "title": "ผู้เชี่ยวชาญด้านเนื้อหาทางการเกษตร",
+        "title": "អ្នកឯកទេសមាតិកាក្សេត្រសាស្ត្រ",
         "location": "ណៃរ៉ូប៊ី, កេនយ៉ា",
         "type": "កិច្ចសន្យា",
-        "description": "ช่วยเราสร้างฐานความรู้ที่ครอบคลุมที่สุดในโลกสำหรับแนวทางปฏิบัติทางการเกษตรที่ยั่งยืน"
+        "description": "ជួយយើងបង្កើតមូលដ្ឋានចំណេះដឹងដ៏ទូលំទូលាយបំផុតរបស់ពិភពលោកសម្រាប់ការអនុវត្តកសិកម្មប្រកបដោយនិរន្តរភាព។"
       },
       "job3": {
-        "title": "นักออกแบบ UX/UI",
+        "title": "អ្នករចនា UX/UI",
         "location": "ពីចម្ងាយ",
         "type": "ពេញ​មោ៉​ង",
-        "description": "ออกแบบประสบการณ์ผู้ใช้ที่ใช้งานง่ายและเข้าถึงได้สำหรับฐานผู้ใช้ที่หลากหลายและทั่วโลก"
+        "description": "រចនាបទពិសោធន៍អ្នកប្រើប្រាស់ที่ใช้งานง่ายและเข้าถึงได้สำหรับฐานผู้ใช้ที่หลากหลายและทั่วโลก។"
       }
     },
     "noOpenings": {
       "title": "បច្ចុប្បន្នមិនមានការងារទំនេរទេ",
-      "content1": "យើងតែងតែស្វែងរកបុគ្គលដែលមានទេពកោសល្យและ شغف بภารกิจของเรา។ ប្រសិនបើអ្នកគិតថាអ្នកស័ក្តិសមនឹងក្រុមរបស់យើង សូមផ្ញើប្រវត្តិរូបសង្ខេបនិងលិខិតអមរបស់អ្នកមកកាន់ {emailLink}។",
+      "content1": "យើងតែងតែស្វែងរកបុគ្គលដែលមានទេពកោសល្យและ شغف بภารกิจของเรา។ ប្រសិនបើអ្នកគិតថាអ្នកស័ក្តិសមនឹងក្រុមរបស់យើង សូមផ្ញើប្រវត្តិរូបសង្ខេបและលិខិតអមរបស់អ្នកមកកាន់ {emailLink}។",
       "emailLinkText": "careers@damdoh.org"
     },
     "applyNowButton": "ដាក់ពាក្យឥឡូវនេះ"
   },
   "communityGuidelines": {
     "title": "គោលការណ៍ណែនាំសហគមន៍",
-    "subtitle": "ការលើកកម្ពស់បរិយាកាសវិជ្ជាជីវៈ គួរឱ្យទុកចិត្ត และសហការ។",
-    "intro": "សូមស្វាគមន៍មកកាន់សហគមន៍ដាំដុះ! ដើម្បីធានាថាវេទិការបស់យើងនៅតែជាកន្លែងផលិតភាពและសុវត្ថិภาพសម្រាប់គ្រប់តួអង្គកសិកម្ម យើងសូមឱ្យអ្នកគោរពតាមគោលការណ៍ណែនាំខាងក្រោម៖",
+    "subtitle": "การส่งเสริมสภาพแวดล้อมที่เป็นมืออาชีพ น่าเชื่อถือ และทำงานร่วมกัน",
+    "intro": "សូមស្វាគមន៍មកកាន់សហគមន៍ដាំដុះ! ដើម្បីធានាថាវេទិការបស់យើងនៅតែជាកន្លែងផលិតភាពនិងសុវត្ថិភាពសម្រាប់គ្រប់តួអង្គកសិកម្ម យើងសូមឱ្យអ្នកគោរពតាមគោលការណ៍ណែនាំខាងក្រោម៖",
     "respectful": {
       "title": "គោរពនិងមានវិជ្ជាជីវៈ",
       "description": "ចូលរួមក្នុងការពិភាក្សាប្រកបដោយសុជីវធម៌และស្ថាបនា។ ការខ្វែងគំនិតគ្នាជារឿងធម្មតា ប៉ុន្តែការវាយប្រហារផ្ទាល់ខ្លួន ការបៀតបៀន และការនិយាយស្អប់ខ្ពើមគឺមិនអាចទទួលយកបានទេ។"
@@ -745,7 +745,7 @@
         "button": "មើលមគ្គុទ្ទេសក៍ FGW"
       },
       "financials": {
-        "title": "ហិរញ្ញវត្ថុនិងការវិភាគ",
+        "title": "ហិរញ្ញវត្ថុและការវិភាគ",
         "description": "តាមដានចំណូល ចំណាយ และទទួលបានការយល់ដឹងអំពីប្រាក់ចំណេញ។",
         "button": "មើលហិរញ្ញវត្ថុ"
       },
@@ -1674,11 +1674,361 @@
       "noEventDetails": "មិនមានព័ត៌មានលម្អិតបន្ថែមត្រូវបានផ្តល់សម្រាប់ព្រឹត្តិការណ៍នេះទេ។",
       "geoLocationLabel": "ទីតាំងភូមិសាស្ត្រ",
       "sustainablyGrownTitle": "ដាំដុះដោយនិរន្តរភាព",
-      "sustainablyGrownDescription": "ផលិតផលនេះត្រូវបានដាំដុះដោយប្រើធាតុចូលប្រកបដោយនិរន្តរភាពនិងមិត្តភាពសរីរាង្គដែលបានកត់ត្រានៅលើវេទិកាដាំដុះ។",
+      "sustainablyGrownDescription": "ផលិតផលនេះត្រូវបានដាំដុះដោយប្រើធាតុចូលប្រកបដោយនិរន្តរភាពและមិត្តភាពសរីរាង្គដែលបានកត់ត្រានៅលើវេទិកាដាំដុះ។",
       "observationType": "ប្រភេទនៃការសង្កេត",
       "details": "ព័ត៌មានលម្អិត",
       "aiDiagnosis": "ការវិនិច្ឆ័យដោយបញ្ញាសិប្បនិម្មិត"
     }
+  },
+  "InsurancePage": {
+    "title": "មជ្ឈមណ្ឌលធានារ៉ាប់រង",
+    "description": "ការពារកសិដ្ឋានและអាជីវកម្មរបស់អ្នកจากความเสี่ยงที่ไม่คาดคิดด้วยผลิตภัณฑ์ประกันภัยการเกษตรที่ปรับให้เหมาะสม",
+    "perTerm": "ต่อภาค",
+    "viewDetailsButton": "មើលรายละเอียด",
+    "noProducts": "ไม่มีผลิตภัณฑ์ประกันภัยให้บริการในขณะนี้",
+    "toast": {
+      "errorTitle": "ข้อผิดพลาดในการโหลดผลิตภัณฑ์"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "ត្រឡប់ទៅមជ្ឈមណ្ឌលធានារ៉ាប់រង",
+    "notFound": "រកមិនឃើញផលិតផលประกันภัย",
+    "coverageTitle": "รายละเอียดความคุ้มครอง",
+    "premiumTitle": "เบี้ยประกัน",
+    "perTerm": "ต่อภาค",
+    "providerTitle": "ให้บริการโดย",
+    "applyButton": "สมัครกรมธรรม์นี้",
+    "toast": {
+      "errorTitle": "ข้อผิดพลาด"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "ត្រឡប់ទៅផលិតផលประกันภัย",
+    "title": "สมัครประกันภัย",
+    "description": "สมัครกรมธรรม์ '{productName}' โดยเลือกฟาร์มของคุณ",
+    "form": {
+      "farmLabel": "ฟาร์มที่จะประกัน",
+      "farmPlaceholder": "เลือกฟาร์มของคุณ",
+      "noFarms": "โปรดเพิ่มฟาร์มก่อน",
+      "coverageValueLabel": "มูลค่าที่จะประกัน (USD)",
+      "coverageValuePlaceholder": "ឧ: 10000",
+      "coverageValueDescription": "มูลค่ารวมที่คุณต้องการประกัน",
+      "submitButton": "ส่งใบสมัคร"
+    },
+    "success": {
+      "title": "ส่งใบสมัครแล้ว",
+      "description": "ใบสมัครประกันภัยของคุณถูกส่งเพื่อตรวจสอบแล้ว",
+      "backToDashboardButton": "ត្រឡប់ទៅផ្ទាំងគ្រប់គ្រង",
+      "applyForAnotherButton": "สมัครอีกครั้ง"
+    },
+    "toast": {
+      "error": "ข้อผิดพลาด",
+      "notAuthenticated": "คุณต้องลงชื่อเข้าใช้เพื่อสมัคร",
+      "successTitle": "ส่งใบสมัครแล้ว!",
+      "successDescription": "ใบสมัครประกันภัยของคุณอยู่ระหว่างการตรวจสอบ"
+    }
+  },
+  "InsuranceProductsPage": {
+    "title": "จัดการผลิตภัณฑ์ประกันภัย",
+    "description": "สร้างและจัดการผลิตภัณฑ์ประกันภัยที่คุณนำเสนอบนแพลตฟอร์ม",
+    "createButton": "បង្កើតផលិតផលថ្មី",
+    "noProducts": "คุณยังไม่ได้สร้างผลิตภัณฑ์ประกันภัยใดๆ",
+    "table": {
+      "productName": "ឈ្មោះផលិតផល",
+      "type": "ប្រភេទ",
+      "status": "สถานะ",
+      "premium": "เบี้ยประกัน"
+    },
+    "toast": {
+      "errorTitle": "ข้อผิดพลาด"
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "ត្រឡប់ទៅផលិតផល",
+    "title": "สร้างผลิตภัณฑ์ประกันภัยใหม่",
+    "description": "กำหนดผลิตภัณฑ์ประกันภัยใหม่เพื่อเสนอให้กับเกษตรกรและธุรกิจการเกษตร",
+    "form": {
+      "nameLabel": "ឈ្មោះផលិតផល",
+      "namePlaceholder": "ឧ: ประกันภัยพืชผลหลายความเสี่ยง",
+      "typeLabel": "ប្រភេទផលិតផល",
+      "typePlaceholder": "เลือกประเภท",
+      "crop": "ដំណាំ",
+      "livestock": "ปศุสัตว์",
+      "asset": "สินทรัพย์",
+      "weather": "สภาพอากาศ (พาราเมตริก)",
+      "descriptionLabel": "คำอธิบายสั้นๆ",
+      "descriptionPlaceholder": "ภาพรวมของผลิตภัณฑ์",
+      "coverageLabel": "รายละเอียดความคุ้มครอง",
+      "coveragePlaceholder": "อธิบายรายละเอียดว่ากรมธรรม์นี้ครอบคลุมอะไรบ้าง...",
+      "premiumLabel": "เบี้ยประกัน",
+      "premiumPlaceholder": "ឧ: 250.00",
+      "currencyLabel": "สกุลเงิน",
+      "submitButton": "បង្កើតផលិតផល"
+    },
+    "toast": {
+      "notAuthenticated": "คุณต้องลงชื่อเข้าใช้ในฐานะผู้ให้บริการประกันภัย",
+      "errorTitle": "การสร้างล้มเหลว",
+      "successTitle": "สร้างผลิตภัณฑ์แล้ว",
+      "successDescription": "ผลิตภัณฑ์ '{name}' พร้อมใช้งานบนแพลตฟอร์มแล้ว"
+    }
+  },
+  "FiProductsPage": {
+    "backLink": "ត្រឡប់ទៅផ្ទាំងគ្រប់គ្រង",
+    "title": "ផលិតផលทางการเงิน",
+    "description": "จัดการผลิตภัณฑ์สินเชื่อและเงินช่วยเหลือที่คุณนำเสนอต่อชุมชน",
+    "createButton": "បង្កើតផលិតផលថ្មី",
+    "noProducts": "คุณยังไม่ได้สร้างผลิตภัณฑ์ทางการเงินใดๆ",
+    "table": {
+      "productName": "ឈ្មោះផលិតផល",
+      "type": "ប្រភេទ",
+      "status": "สถานะ",
+      "interestRate": "อัตราดอกเบี้ย",
+      "maxAmount": "จำนวนเงินสูงสุด"
+    },
+    "toast": {
+      "errorTitle": "ข้อผิดพลาด"
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "ត្រឡប់ទៅផលិតផល",
+    "title": "สร้างผลิตภัณฑ์ทางการเงินใหม่",
+    "description": "กำหนดผลิตภัณฑ์สินเชื่อหรือเงินช่วยเหลือใหม่ที่จะลงรายการบนแพลตฟอร์ม",
+    "form": {
+      "nameLabel": "ឈ្មោះផលិតផល",
+      "namePlaceholder": "ឧ: สินเชื่อเมล็ดพันธุ์สำหรับเกษตรกรรายย่อย",
+      "typeLabel": "ប្រភេទផលិតផល",
+      "loan": "สินเชื่อ",
+      "grant": "เงินช่วยเหลือ",
+      "descriptionLabel": "ការពិពណ៌នា",
+      "descriptionPlaceholder": "อธิบายผลิตภัณฑ์ วัตถุประสงค์ และเกณฑ์คุณสมบัติ",
+      "interestRateLabel": "อัตราดอกเบี้ย (%)",
+      "interestRatePlaceholder": "ឧ: 12.5",
+      "maxAmountLabel": "จำนวนเงินสูงสุด (USD)",
+      "maxAmountPlaceholder": "ឧ: 5000",
+      "targetRolesLabel": "กลุ่มเป้าหมาย",
+      "targetRolesDescription": "เลือกบทบาทของผู้มีส่วนได้ส่วนเสียที่ผลิตภัณฑ์นี้มีให้",
+      "submitButton": "បង្កើតផលិតផល"
+    },
+    "toast": {
+      "notAuthenticated": "คุณต้องลงชื่อเข้าใช้ในฐานะสถาบันการเงิน",
+      "errorTitle": "การสร้างล้มเหลว",
+      "successTitle": "สร้างผลิตภัณฑ์แล้ว",
+      "successDescription": "ผลิตภัณฑ์ '{name}' พร้อมใช้งานแล้ว"
+    }
+  },
+  "FiApplicationListPage": {
+    "backLink": "ត្រឡប់ទៅផ្ទាំងគ្រប់គ្រង",
+    "title": "ใบสมัครทางการเงิน",
+    "description": "ตรวจสอบและจัดการใบสมัครสินเชื่อและเงินช่วยเหลือที่เข้ามาจากผู้ใช้",
+    "tabs": {
+      "all": "ทั้งหมด",
+      "pending": "รอดำเนินการ",
+      "approved": "อนุมัติแล้ว",
+      "rejected": "ถูกปฏิเสธ"
+    },
+    "table": {
+      "applicant": "ผู้สมัคร",
+      "type": "ប្រភេទ",
+      "amount": "จำนวนเงิน",
+      "date": "កាលបរិច្ឆេទ",
+      "status": "สถานะ",
+      "action": "การดำเนินการ"
+    },
+    "noApplications": "ไม่มีใบสมัครในหมวดหมู่นี้",
+    "reviewButton": "ตรวจสอบ"
+  },
+  "FiApplicationPage": {
+    "backLink": "ត្រឡប់ទៅใบสมัครทั้งหมด",
+    "title": "รายละเอียดใบสมัคร",
+    "applicationTitle": "ใบสมัคร",
+    "submittedOn": "ส่งเมื่อ",
+    "amountRequested": "จำนวนเงินที่ขอ",
+    "purpose": "วัตถุประสงค์ของเงินทุน",
+    "approveButton": "อนุมัติ",
+    "rejectButton": "ปฏิเสธ",
+    "requestInfoButton": "ขอข้อมูลเพิ่มเติม",
+    "applicantDetails": "รายละเอียดผู้สมัคร",
+    "viewProfileButton": "ดูโปรไฟล์เต็ม",
+    "profileNotFound": "រកមិនឃើញโปรไฟล์ผู้สมัคร",
+    "riskAssessment": "การประเมินความเสี่ยงโดย AI",
+    "creditScore": "คะแนนเครดิต",
+    "notFound": "រកមិនឃើញใบสมัคร",
+    "toast": {
+      "errorTitle": "ข้อผิดพลาด",
+      "updateSuccessTitle": "อัปเดตสถานะแล้ว",
+      "updateSuccessDescription": "สถานะใบสมัครถูกตั้งค่าเป็น {status}",
+      "updateFailTitle": "การอัปเดตล้มเหลว"
+    }
+  },
+  "pinboardPage": {
+    "title": "Pinboard",
+    "description": "Your personal space to save and organize items from across the platform.",
+    "comingSoonTitle": "Coming Soon!",
+    "comingSoonDescription": "The Pinboard will allow you to save marketplace listings, forum posts, profiles, and more for easy access later.",
+    "stayTuned": "Stay tuned for updates."
+  },
+  "walletPage": {
+    "title": "My Wallet",
+    "description": "Manage your funds, view transaction history, and handle payouts.",
+    "underDevelopmentTitle": "Wallet Feature Under Development",
+    "underDevelopmentDescription": "We are working hard to bring you a secure and seamless financial experience directly within DamDoh. The upcoming Wallet will enable you to:",
+    "feature1": "Securely hold balances",
+    "feature2": "Make and receive payments on the platform",
+    "feature3": "Access financial services seamlessly",
+    "feature4": "Manage payouts to your bank or mobile money account",
+    "stayTuned": "Stay tuned for this exciting feature!"
+  },
+  "sustainabilityPage": {
+    "title": "Sustainability Dashboard",
+    "description": "Track and improve the environmental impact of your agricultural practices.",
+    "carbonFootprint": "Carbon Footprint",
+    "waterEfficiency": "Water Efficiency",
+    "biodiversityScore": "Biodiversity Score",
+    "practicesTitle": "Sustainable Practices Log",
+    "certificationsTitle": "Active Certifications",
+    "metricCard": {
+      "trendText": "from last month"
+    },
+    "practicesTable": {
+      "practice": "Practice",
+      "lastLogged": "Last Logged"
+    },
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Status",
+      "expiry": "Expires"
+    },
+    "auth": {
+      "title": "Please Sign In",
+      "description": "You need to be logged in to view your sustainability dashboard.",
+      "button": "Sign In"
+    },
+    "noData": {
+      "title": "Data Not Available",
+      "description": "We could not load your sustainability data at this time."
+    }
+  },
+  "industryNewsPage": {
+    "title": "Industry News & Reports",
+    "description": "Stay informed with the latest trends, research, and policy updates in agriculture.",
+    "searchPlaceholder": "Search articles and reports...",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Categories",
+    "readButton": "Read Article",
+    "sourceLabel": "Source",
+    "publishedLabel": "Published",
+    "categoryLabel": "Category",
+    "news1": {
+      "title": "Global Grain Prices Surge Amidst Supply Chain Disruptions",
+      "excerpt": "A new report from AgriMarket Insights indicates a 15% increase in global wheat prices over the last quarter, driven by logistical bottlenecks and regional climate events. Analysts predict continued volatility."
+    },
+    "news2": {
+      "title": "EU Implements Stricter Sustainable Packaging Regulations",
+      "excerpt": "As of this month, all agricultural produce imported into the European Union must meet new recyclability and reduced-plastic standards. Exporters are urged to review their packaging solutions to ensure compliance."
+    },
+    "news3": {
+      "title": "Study Shows No-Till Farming Increases Soil Carbon Sequestration by up to 25%",
+      "excerpt": "A decade-long study published in 'Sustainable Farming Today' confirms that no-till and cover cropping practices significantly enhance soil organic matter and carbon capture, offering a viable path for climate-smart agriculture."
+    },
+    "noNews": {
+      "title": "No News Articles Found",
+      "description": "There are no news articles available at the moment. Please check back later for the latest updates."
+    }
+  },
+  "admin": {
+    "layout": {
+      "title": "Admin Panel",
+      "description": "This area is for authorized administrators only.",
+      "contentManagement": "Content",
+      "reports": "Reports"
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "description": "Welcome to the DamDoh administration panel.",
+      "content": "From here you can manage various aspects of the platform, such as the Knowledge Hub content.",
+      "contentManagementButton": "Manage Content"
+    },
+    "contentManagement": {
+      "allArticles": {
+        "title": "Content Management",
+        "description": "Manage all knowledge articles, blog posts, and news items.",
+        "refreshButton": "Refresh"
+      },
+      "table": {
+        "title": "Title",
+        "category": "Category",
+        "status": "Status",
+        "created": "Created",
+        "actions": "Actions",
+        "noArticles": "No articles have been created yet."
+      },
+      "createArticle": {
+        "title": "Create New Content",
+        "description": "Add a new article to the Knowledge Hub or Blog.",
+        "englishContent": "English Content",
+        "titleEnLabel": "Title (English)",
+        "excerptEnLabel": "Excerpt (English)",
+        "contentEnLabel": "Content (Markdown, English)",
+        "khmerContent": "Khmer Content",
+        "titleKmLabel": "Title (Khmer)",
+        "excerptKmLabel": "Excerpt (Khmer)",
+        "contentKmLabel": "Content (Markdown, Khmer)",
+        "metadataTitle": "Metadata",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "e.g., Blog, Industry News, KNF Guide",
+        "authorLabel": "Author",
+        "authorPlaceholder": "e.g., DamDoh Team",
+        "statusLabel": "Status",
+        "tagsLabel": "Tags (comma-separated)",
+        "imageUrlLabel": "Image URL",
+        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
+        "aiHintLabel": "AI Image Hint",
+        "aiHintPlaceholder": "e.g., coffee beans, farmer portrait",
+        "publishingButton": "Publishing...",
+        "publishButton": "Publish Article"
+      },
+      "toast": {
+        "loadErrorTitle": "Error",
+        "loadErrorDescription": "Could not load content.",
+        "createSuccessTitle": "Article Created",
+        "createSuccessDescription": "The new article has been published.",
+        "createErrorTitle": "Creation Failed"
+      }
+    },
+    "reports": {
+      "generate": {
+        "title": "Generate Regulatory Report",
+        "description": "Create on-demand reports for compliance and auditing purposes.",
+        "reportTypeLabel": "Report Type",
+        "reportTypeVti": "VTI Events Summary",
+        "targetUserLabel": "Target User",
+        "userSearchPlaceholder": "Search by name or email...",
+        "dateRangeLabel": "Date Range",
+        "datePlaceholder": "Select date range",
+        "submitButton": "Generate Report"
+      },
+      "list": {
+        "title": "Generated Reports",
+        "description": "View and download previously generated reports.",
+        "table": {
+          "reportType": "Report Type",
+          "generatedFor": "Generated For",
+          "date": "Date",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "viewButton": "View",
+        "noReports": "No reports have been generated yet."
+      },
+      "toast": {
+        "loadErrorTitle": "Error",
+        "formIncompleteTitle": "Incomplete Form",
+        "formIncompleteDescription": "Please select a report type, a target user, and a date range.",
+        "generateSuccessTitle": "Report Generating",
+        "generateSuccessDescription": "The report is being created and will appear in the list below shortly.",
+        "generateErrorTitle": "Generation Failed"
+      }
+    }
   }
 }
-    
+

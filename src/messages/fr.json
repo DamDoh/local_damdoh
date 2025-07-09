@@ -1679,6 +1679,356 @@
       "details": "Détails",
       "aiDiagnosis": "Diagnostic par IA"
     }
+  },
+  "InsurancePage": {
+    "title": "Centre d'Assurance",
+    "description": "Protégez votre ferme et votre entreprise contre les risques imprévus avec des produits d'assurance agricole sur mesure.",
+    "perTerm": "par terme",
+    "viewDetailsButton": "Voir les Détails",
+    "noProducts": "Aucun produit d'assurance n'est disponible pour le moment.",
+    "toast": {
+      "errorTitle": "Erreur de Chargement des Produits"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "Retour au Centre d'Assurance",
+    "notFound": "Produit d'assurance non trouvé.",
+    "coverageTitle": "Détails de la Couverture",
+    "premiumTitle": "Prime",
+    "perTerm": "par terme",
+    "providerTitle": "Fourni Par",
+    "applyButton": "Souscrire à cette Police",
+    "toast": {
+      "errorTitle": "Erreur"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "Retour aux Produits d'Assurance",
+    "title": "Souscrire une Assurance",
+    "description": "Souscrivez à la police '{productName}' en sélectionnant votre ferme.",
+    "form": {
+      "farmLabel": "Ferme à Assurer",
+      "farmPlaceholder": "Sélectionnez votre ferme",
+      "noFarms": "Veuillez d'abord ajouter une ferme",
+      "coverageValueLabel": "Valeur à Assurer (USD)",
+      "coverageValuePlaceholder": "ex. 10000",
+      "coverageValueDescription": "La valeur totale que vous souhaitez assurer.",
+      "submitButton": "Soumettre la Demande"
+    },
+    "success": {
+      "title": "Demande Soumise",
+      "description": "Votre demande d'assurance a été envoyée pour examen.",
+      "backToDashboardButton": "Retour au Tableau de Bord",
+      "applyForAnotherButton": "Faire une Autre Demande"
+    },
+    "toast": {
+      "error": "Erreur",
+      "notAuthenticated": "Vous devez être connecté pour souscrire.",
+      "successTitle": "Demande Envoyée !",
+      "successDescription": "Votre demande d'assurance est maintenant en cours d'examen."
+    }
+  },
+  "InsuranceProductsPage": {
+    "title": "Gérer les Produits d'Assurance",
+    "description": "Créez et gérez les produits d'assurance que vous proposez sur la plateforme.",
+    "createButton": "Créer un Nouveau Produit",
+    "noProducts": "Vous n'avez encore créé aucun produit d'assurance.",
+    "table": {
+      "productName": "Nom du Produit",
+      "type": "Type",
+      "status": "Statut",
+      "premium": "Prime"
+    },
+    "toast": {
+      "errorTitle": "Erreur"
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "Retour aux Produits",
+    "title": "Créer un Nouveau Produit d'Assurance",
+    "description": "Définissez un nouveau produit d'assurance à proposer aux agriculteurs et aux entreprises agricoles.",
+    "form": {
+      "nameLabel": "Nom du Produit",
+      "namePlaceholder": "ex. Assurance Récolte Multirisque",
+      "typeLabel": "Type de Produit",
+      "typePlaceholder": "Sélectionnez un type",
+      "crop": "Récolte",
+      "livestock": "Bétail",
+      "asset": "Actif",
+      "weather": "Météo (Paramétrique)",
+      "descriptionLabel": "Brève Description",
+      "descriptionPlaceholder": "Un aperçu du produit.",
+      "coverageLabel": "Détails de la Couverture",
+      "coveragePlaceholder": "Décrivez en détail ce que cette police couvre...",
+      "premiumLabel": "Prime",
+      "premiumPlaceholder": "ex. 250.00",
+      "currencyLabel": "Devise",
+      "submitButton": "Créer le Produit"
+    },
+    "toast": {
+      "notAuthenticated": "Vous devez être connecté en tant que Fournisseur d'Assurance.",
+      "errorTitle": "Création Échouée",
+      "successTitle": "Produit Créé",
+      "successDescription": "Le produit '{name}' est maintenant disponible sur la plateforme."
+    }
+  },
+  "FiProductsPage": {
+    "backLink": "Retour au Tableau de Bord",
+    "title": "Produits Financiers",
+    "description": "Gérez les produits de prêt et de subvention que vous offrez à la communauté.",
+    "createButton": "Créer un Nouveau Produit",
+    "noProducts": "Vous n'avez encore créé aucun produit financier.",
+    "table": {
+      "productName": "Nom du Produit",
+      "type": "Type",
+      "status": "Statut",
+      "interestRate": "Taux d'Intérêt",
+      "maxAmount": "Montant Max"
+    },
+    "toast": {
+      "errorTitle": "Erreur"
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "Retour aux Produits",
+    "title": "Créer un Nouveau Produit Financier",
+    "description": "Définissez un nouveau produit de prêt ou de subvention à lister sur la plateforme.",
+    "form": {
+      "nameLabel": "Nom du Produit",
+      "namePlaceholder": "ex. Prêt de Semences pour Petits Producteurs",
+      "typeLabel": "Type de Produit",
+      "loan": "Prêt",
+      "grant": "Subvention",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Décrivez le produit, son objectif et les critères d'éligibilité.",
+      "interestRateLabel": "Taux d'Intérêt (%)",
+      "interestRatePlaceholder": "ex. 12.5",
+      "maxAmountLabel": "Montant Maximum (USD)",
+      "maxAmountPlaceholder": "ex. 5000",
+      "targetRolesLabel": "Public Cible",
+      "targetRolesDescription": "Sélectionnez les rôles des acteurs pour lesquels ce produit est disponible.",
+      "submitButton": "Créer le Produit"
+    },
+    "toast": {
+      "notAuthenticated": "Vous devez être connecté en tant qu'Institution Financière.",
+      "errorTitle": "Création Échouée",
+      "successTitle": "Produit Créé",
+      "successDescription": "Le produit '{name}' est maintenant disponible."
+    }
+  },
+  "FiApplicationListPage": {
+    "backLink": "Retour au Tableau de Bord",
+    "title": "Demandes Financières",
+    "description": "Examinez et gérez les demandes de prêt et de subvention entrantes des utilisateurs.",
+    "tabs": {
+      "all": "Toutes",
+      "pending": "En attente",
+      "approved": "Approuvées",
+      "rejected": "Rejetées"
+    },
+    "table": {
+      "applicant": "Demandeur",
+      "type": "Type",
+      "amount": "Montant",
+      "date": "Date",
+      "status": "Statut",
+      "action": "Action"
+    },
+    "noApplications": "Il n'y a aucune demande dans cette catégorie.",
+    "reviewButton": "Examiner"
+  },
+  "FiApplicationPage": {
+    "backLink": "Retour à Toutes les Demandes",
+    "title": "Détails de la Demande",
+    "applicationTitle": "Demande",
+    "submittedOn": "Soumise le",
+    "amountRequested": "Montant Demandé",
+    "purpose": "Objet des Fonds",
+    "approveButton": "Approuver",
+    "rejectButton": "Rejeter",
+    "requestInfoButton": "Demander Plus d'Infos",
+    "applicantDetails": "Détails du Demandeur",
+    "viewProfileButton": "Voir le Profil Complet",
+    "profileNotFound": "Profil du demandeur non trouvé.",
+    "riskAssessment": "Évaluation des Risques par IA",
+    "creditScore": "Score de Crédit",
+    "notFound": "Demande non trouvée.",
+    "toast": {
+      "errorTitle": "Erreur",
+      "updateSuccessTitle": "Statut Mis à Jour",
+      "updateSuccessDescription": "Le statut de la demande a été défini sur {status}.",
+      "updateFailTitle": "Mise à Jour Échouée"
+    }
+  },
+  "pinboardPage": {
+    "title": "Tableau d'affichage",
+    "description": "Votre espace personnel pour enregistrer et organiser des éléments de toute la plateforme.",
+    "comingSoonTitle": "Bientôt disponible !",
+    "comingSoonDescription": "Le tableau d'affichage vous permettra d'enregistrer des annonces du marché, des publications de forum, des profils, et plus encore pour un accès facile ultérieurement.",
+    "stayTuned": "Restez à l'écoute pour les mises à jour."
+  },
+  "walletPage": {
+    "title": "Mon Portefeuille",
+    "description": "Gérez vos fonds, consultez l'historique des transactions et gérez les paiements.",
+    "underDevelopmentTitle": "Fonctionnalité de Portefeuille en Développement",
+    "underDevelopmentDescription": "Nous travaillons d'arrache-pied pour vous offrir une expérience financière sécurisée et transparente directement au sein de DamDoh. Le futur portefeuille vous permettra de :",
+    "feature1": "Conserver des soldes en toute sécurité",
+    "feature2": "Effectuer et recevoir des paiements sur la plateforme",
+    "feature3": "Accéder aux services financiers de manière transparente",
+    "feature4": "Gérer les paiements vers votre banque ou votre compte d'argent mobile",
+    "stayTuned": "Restez à l'écoute pour cette fonctionnalité excitante !"
+  },
+  "sustainabilityPage": {
+    "title": "Tableau de Bord de la Durabilité",
+    "description": "Suivez et améliorez l'impact environnemental de vos pratiques agricoles.",
+    "carbonFootprint": "Empreinte Carbone",
+    "waterEfficiency": "Efficacité de l'Eau",
+    "biodiversityScore": "Score de Biodiversité",
+    "practicesTitle": "Journal des Pratiques Durables",
+    "certificationsTitle": "Certifications Actives",
+    "metricCard": {
+      "trendText": "depuis le mois dernier"
+    },
+    "practicesTable": {
+      "practice": "Pratique",
+      "lastLogged": "Dernier Enregistrement"
+    },
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Statut",
+      "expiry": "Expire"
+    },
+    "auth": {
+      "title": "Veuillez vous Connecter",
+      "description": "Vous devez être connecté pour voir votre tableau de bord de durabilité.",
+      "button": "Se Connecter"
+    },
+    "noData": {
+      "title": "Données non Disponibles",
+      "description": "Nous n'avons pas pu charger vos données de durabilité pour le moment."
+    }
+  },
+  "industryNewsPage": {
+    "title": "Actualités et Rapports de l'Industrie",
+    "description": "Restez informé des dernières tendances, recherches et mises à jour politiques dans le domaine de l'agriculture.",
+    "searchPlaceholder": "Rechercher des articles et des rapports...",
+    "categoryPlaceholder": "Filtrer par catégorie...",
+    "allCategories": "Toutes les Catégories",
+    "readButton": "Lire l'Article",
+    "sourceLabel": "Source",
+    "publishedLabel": "Publié",
+    "categoryLabel": "Catégorie",
+    "news1": {
+      "title": "Les Prix Mondiaux des Céréales Grimpent en Raison des Perturbations de la Chaîne d'Approvisionnement",
+      "excerpt": "Un nouveau rapport d'AgriMarket Insights indique une augmentation de 15% des prix mondiaux du blé au cours du dernier trimestre, en raison de goulots d'étranglement logistiques et d'événements climatiques régionaux. Les analystes prévoient une volatilité continue."
+    },
+    "news2": {
+      "title": "L'UE Met en Œuvre des Réglementations plus Strictes sur les Emballages Durables",
+      "excerpt": "À partir de ce mois-ci, tous les produits agricoles importés dans l'Union Européenne doivent respecter de nouvelles normes de recyclabilité et de réduction du plastique. Les exportateurs sont invités à revoir leurs solutions d'emballage pour garantir la conformité."
+    },
+    "news3": {
+      "title": "Une Étude Montre que l'Agriculture sans Labour Augmente la Séquestration du Carbone dans le Sol jusqu'à 25%",
+      "excerpt": "Une étude de dix ans publiée dans 'Sustainable Farming Today' confirme que les pratiques d'agriculture sans labour et de cultures de couverture améliorent considérablement la matière organique du sol et la capture du carbone, offrant une voie viable pour une agriculture intelligente face au climat."
+    },
+    "noNews": {
+      "title": "Aucun Article d'Actualité Trouvé",
+      "description": "Il n'y a pas d'articles d'actualité disponibles pour le moment. Veuillez revenir plus tard pour les dernières mises à jour."
+    }
+  },
+  "admin": {
+    "layout": {
+      "title": "Panneau d'Administration",
+      "description": "Cette zone est réservée aux administrateurs autorisés.",
+      "contentManagement": "Contenu",
+      "reports": "Rapports"
+    },
+    "dashboard": {
+      "title": "Tableau de Bord d'Administration",
+      "description": "Bienvenue dans le panneau d'administration de DamDoh.",
+      "content": "D'ici, vous pouvez gérer divers aspects de la plateforme, comme le contenu du Centre de Connaissances.",
+      "contentManagementButton": "Gérer le Contenu"
+    },
+    "contentManagement": {
+      "allArticles": {
+        "title": "Gestion de Contenu",
+        "description": "Gérez tous les articles de connaissance, billets de blog et actualités.",
+        "refreshButton": "Actualiser"
+      },
+      "table": {
+        "title": "Titre",
+        "category": "Catégorie",
+        "status": "Statut",
+        "created": "Créé",
+        "actions": "Actions",
+        "noArticles": "Aucun article n'a encore été créé."
+      },
+      "createArticle": {
+        "title": "Créer un Nouveau Contenu",
+        "description": "Ajoutez un nouvel article au Centre de Connaissances ou au Blog.",
+        "englishContent": "Contenu en Anglais",
+        "titleEnLabel": "Titre (Anglais)",
+        "excerptEnLabel": "Extrait (Anglais)",
+        "contentEnLabel": "Contenu (Markdown, Anglais)",
+        "khmerContent": "Contenu en Khmer",
+        "titleKmLabel": "Titre (Khmer)",
+        "excerptKmLabel": "Extrait (Khmer)",
+        "contentKmLabel": "Contenu (Markdown, Khmer)",
+        "metadataTitle": "Métadonnées",
+        "categoryLabel": "Catégorie",
+        "categoryPlaceholder": "ex. Blog, Actualités, Guide KNF",
+        "authorLabel": "Auteur",
+        "authorPlaceholder": "ex. Équipe DamDoh",
+        "statusLabel": "Statut",
+        "tagsLabel": "Tags (séparés par des virgules)",
+        "imageUrlLabel": "URL de l'Image",
+        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
+        "aiHintLabel": "Indice d'Image pour IA",
+        "aiHintPlaceholder": "ex. grains de café, portrait d'agriculteur",
+        "publishingButton": "Publication...",
+        "publishButton": "Publier l'Article"
+      },
+      "toast": {
+        "loadErrorTitle": "Erreur",
+        "loadErrorDescription": "Impossible de charger le contenu.",
+        "createSuccessTitle": "Article Créé",
+        "createSuccessDescription": "Le nouvel article a été publié.",
+        "createErrorTitle": "Création Échouée"
+      }
+    },
+    "reports": {
+      "generate": {
+        "title": "Générer un Rapport Réglementaire",
+        "description": "Créez des rapports à la demande à des fins de conformité et d'audit.",
+        "reportTypeLabel": "Type de Rapport",
+        "reportTypeVti": "Résumé des Événements VTI",
+        "targetUserLabel": "Utilisateur Cible",
+        "userSearchPlaceholder": "Rechercher par nom ou e-mail...",
+        "dateRangeLabel": "Plage de Dates",
+        "datePlaceholder": "Sélectionner une plage de dates",
+        "submitButton": "Générer le Rapport"
+      },
+      "list": {
+        "title": "Rapports Générés",
+        "description": "Affichez et téléchargez les rapports générés précédemment.",
+        "table": {
+          "reportType": "Type de Rapport",
+          "generatedFor": "Généré pour",
+          "date": "Date",
+          "status": "Statut",
+          "actions": "Actions"
+        },
+        "viewButton": "Afficher",
+        "noReports": "Aucun rapport n'a encore été généré."
+      },
+      "toast": {
+        "loadErrorTitle": "Erreur",
+        "formIncompleteTitle": "Formulaire Incomplet",
+        "formIncompleteDescription": "Veuillez sélectionner un type de rapport, un utilisateur cible et une plage de dates.",
+        "generateSuccessTitle": "Génération du Rapport",
+        "generateSuccessDescription": "Le rapport est en cours de création et apparaîtra bientôt dans la liste ci-dessous.",
+        "generateErrorTitle": "Génération Échouée"
+      }
+    }
   }
 }
-    
+

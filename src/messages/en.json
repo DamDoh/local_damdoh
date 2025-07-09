@@ -1679,6 +1679,356 @@
       "details": "Details",
       "aiDiagnosis": "AI-Powered Diagnosis"
     }
+  },
+  "InsurancePage": {
+    "title": "Insurance Hub",
+    "description": "Protect your farm and business from unforeseen risks with tailored agricultural insurance products.",
+    "perTerm": "per term",
+    "viewDetailsButton": "View Details",
+    "noProducts": "There are no insurance products available at this time.",
+    "toast": {
+      "errorTitle": "Error Loading Products"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "Back to Insurance Hub",
+    "notFound": "Insurance product not found.",
+    "coverageTitle": "Coverage Details",
+    "premiumTitle": "Premium",
+    "perTerm": "per term",
+    "providerTitle": "Provided By",
+    "applyButton": "Apply for this Policy",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "Back to Insurance Products",
+    "title": "Apply for Insurance",
+    "description": "Apply for the '{productName}' policy by selecting your farm.",
+    "form": {
+      "farmLabel": "Farm to Insure",
+      "farmPlaceholder": "Select your farm",
+      "noFarms": "Please add a farm first",
+      "coverageValueLabel": "Value to Insure (USD)",
+      "coverageValuePlaceholder": "e.g., 10000",
+      "coverageValueDescription": "The total value you wish to insure.",
+      "submitButton": "Submit Application"
+    },
+    "success": {
+      "title": "Application Submitted",
+      "description": "Your insurance application has been sent for review.",
+      "backToDashboardButton": "Back to Dashboard",
+      "applyForAnotherButton": "Apply for Another"
+    },
+    "toast": {
+      "error": "Error",
+      "notAuthenticated": "You must be signed in to apply.",
+      "successTitle": "Application Sent!",
+      "successDescription": "Your insurance application is now under review."
+    }
+  },
+  "InsuranceProductsPage": {
+    "title": "Manage Insurance Products",
+    "description": "Create and manage the insurance products you offer on the platform.",
+    "createButton": "Create New Product",
+    "noProducts": "You have not created any insurance products yet.",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "premium": "Premium"
+    },
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "Back to Products",
+    "title": "Create New Insurance Product",
+    "description": "Define a new insurance product to offer to farmers and agribusinesses.",
+    "form": {
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Multi-Peril Crop Insurance",
+      "typeLabel": "Product Type",
+      "typePlaceholder": "Select a type",
+      "crop": "Crop",
+      "livestock": "Livestock",
+      "asset": "Asset",
+      "weather": "Weather (Parametric)",
+      "descriptionLabel": "Short Description",
+      "descriptionPlaceholder": "A brief overview of the product.",
+      "coverageLabel": "Coverage Details",
+      "coveragePlaceholder": "Describe what this policy covers in detail...",
+      "premiumLabel": "Premium",
+      "premiumPlaceholder": "e.g., 250.00",
+      "currencyLabel": "Currency",
+      "submitButton": "Create Product"
+    },
+    "toast": {
+      "notAuthenticated": "You must be signed in as an Insurance Provider.",
+      "errorTitle": "Creation Failed",
+      "successTitle": "Product Created",
+      "successDescription": "The product '{name}' is now available on the platform."
+    }
+  },
+  "FiProductsPage": {
+    "backLink": "Back to Dashboard",
+    "title": "Financial Products",
+    "description": "Manage the loan and grant products you offer to the community.",
+    "createButton": "Create New Product",
+    "noProducts": "You have not created any financial products yet.",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "interestRate": "Interest Rate",
+      "maxAmount": "Max Amount"
+    },
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "Back to Products",
+    "title": "Create New Financial Product",
+    "description": "Define a new loan or grant product to be listed on the platform.",
+    "form": {
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Smallholder Seed Loan",
+      "typeLabel": "Product Type",
+      "loan": "Loan",
+      "grant": "Grant",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Describe the product, its purpose, and eligibility criteria.",
+      "interestRateLabel": "Interest Rate (%)",
+      "interestRatePlaceholder": "e.g., 12.5",
+      "maxAmountLabel": "Max Amount (USD)",
+      "maxAmountPlaceholder": "e.g., 5000",
+      "targetRolesLabel": "Target Audience",
+      "targetRolesDescription": "Select the stakeholder roles this product is available for.",
+      "submitButton": "Create Product"
+    },
+    "toast": {
+      "notAuthenticated": "You must be signed in as a Financial Institution.",
+      "errorTitle": "Creation Failed",
+      "successTitle": "Product Created",
+      "successDescription": "The product '{name}' is now available."
+    }
+  },
+  "FiApplicationListPage": {
+    "backLink": "Back to Dashboard",
+    "title": "Financial Applications",
+    "description": "Review and manage incoming loan and grant applications from users.",
+    "tabs": {
+      "all": "All",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "table": {
+      "applicant": "Applicant",
+      "type": "Type",
+      "amount": "Amount",
+      "date": "Date",
+      "status": "Status",
+      "action": "Action"
+    },
+    "noApplications": "There are no applications in this category.",
+    "reviewButton": "Review"
+  },
+  "FiApplicationPage": {
+    "backLink": "Back to All Applications",
+    "title": "Application Details",
+    "applicationTitle": "Application",
+    "submittedOn": "Submitted on",
+    "amountRequested": "Amount Requested",
+    "purpose": "Purpose of Funds",
+    "approveButton": "Approve",
+    "rejectButton": "Reject",
+    "requestInfoButton": "Request More Info",
+    "applicantDetails": "Applicant Details",
+    "viewProfileButton": "View Full Profile",
+    "profileNotFound": "Applicant profile not found.",
+    "riskAssessment": "AI Risk Assessment",
+    "creditScore": "Credit Score",
+    "notFound": "Application not found.",
+    "toast": {
+      "errorTitle": "Error",
+      "updateSuccessTitle": "Status Updated",
+      "updateSuccessDescription": "Application status has been set to {status}.",
+      "updateFailTitle": "Update Failed"
+    }
+  },
+  "pinboardPage": {
+    "title": "Pinboard",
+    "description": "Your personal space to save and organize items from across the platform.",
+    "comingSoonTitle": "Coming Soon!",
+    "comingSoonDescription": "The Pinboard will allow you to save marketplace listings, forum posts, profiles, and more for easy access later.",
+    "stayTuned": "Stay tuned for updates."
+  },
+  "walletPage": {
+    "title": "My Wallet",
+    "description": "Manage your funds, view transaction history, and handle payouts.",
+    "underDevelopmentTitle": "Wallet Feature Under Development",
+    "underDevelopmentDescription": "We are working hard to bring you a secure and seamless financial experience directly within DamDoh. The upcoming Wallet will enable you to:",
+    "feature1": "Securely hold balances",
+    "feature2": "Make and receive payments on the platform",
+    "feature3": "Access financial services seamlessly",
+    "feature4": "Manage payouts to your bank or mobile money account",
+    "stayTuned": "Stay tuned for this exciting feature!"
+  },
+  "sustainabilityPage": {
+    "title": "Sustainability Dashboard",
+    "description": "Track and improve the environmental impact of your agricultural practices.",
+    "carbonFootprint": "Carbon Footprint",
+    "waterEfficiency": "Water Efficiency",
+    "biodiversityScore": "Biodiversity Score",
+    "practicesTitle": "Sustainable Practices Log",
+    "certificationsTitle": "Active Certifications",
+    "metricCard": {
+      "trendText": "from last month"
+    },
+    "practicesTable": {
+      "practice": "Practice",
+      "lastLogged": "Last Logged"
+    },
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Status",
+      "expiry": "Expires"
+    },
+    "auth": {
+      "title": "Please Sign In",
+      "description": "You need to be logged in to view your sustainability dashboard.",
+      "button": "Sign In"
+    },
+    "noData": {
+      "title": "Data Not Available",
+      "description": "We could not load your sustainability data at this time."
+    }
+  },
+  "industryNewsPage": {
+    "title": "Industry News & Reports",
+    "description": "Stay informed with the latest trends, research, and policy updates in agriculture.",
+    "searchPlaceholder": "Search articles and reports...",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Categories",
+    "readButton": "Read Article",
+    "sourceLabel": "Source",
+    "publishedLabel": "Published",
+    "categoryLabel": "Category",
+    "news1": {
+      "title": "Global Grain Prices Surge Amidst Supply Chain Disruptions",
+      "excerpt": "A new report from AgriMarket Insights indicates a 15% increase in global wheat prices over the last quarter, driven by logistical bottlenecks and regional climate events. Analysts predict continued volatility."
+    },
+    "news2": {
+      "title": "EU Implements Stricter Sustainable Packaging Regulations",
+      "excerpt": "As of this month, all agricultural produce imported into the European Union must meet new recyclability and reduced-plastic standards. Exporters are urged to review their packaging solutions to ensure compliance."
+    },
+    "news3": {
+      "title": "Study Shows No-Till Farming Increases Soil Carbon Sequestration by up to 25%",
+      "excerpt": "A decade-long study published in 'Sustainable Farming Today' confirms that no-till and cover cropping practices significantly enhance soil organic matter and carbon capture, offering a viable path for climate-smart agriculture."
+    },
+    "noNews": {
+      "title": "No News Articles Found",
+      "description": "There are no news articles available at the moment. Please check back later for the latest updates."
+    }
+  },
+  "admin": {
+    "layout": {
+      "title": "Admin Panel",
+      "description": "This area is for authorized administrators only.",
+      "contentManagement": "Content",
+      "reports": "Reports"
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "description": "Welcome to the DamDoh administration panel.",
+      "content": "From here you can manage various aspects of the platform, such as the Knowledge Hub content.",
+      "contentManagementButton": "Manage Content"
+    },
+    "contentManagement": {
+      "allArticles": {
+        "title": "Content Management",
+        "description": "Manage all knowledge articles, blog posts, and news items.",
+        "refreshButton": "Refresh"
+      },
+      "table": {
+        "title": "Title",
+        "category": "Category",
+        "status": "Status",
+        "created": "Created",
+        "actions": "Actions",
+        "noArticles": "No articles have been created yet."
+      },
+      "createArticle": {
+        "title": "Create New Content",
+        "description": "Add a new article to the Knowledge Hub or Blog.",
+        "englishContent": "English Content",
+        "titleEnLabel": "Title (English)",
+        "excerptEnLabel": "Excerpt (English)",
+        "contentEnLabel": "Content (Markdown, English)",
+        "khmerContent": "Khmer Content",
+        "titleKmLabel": "Title (Khmer)",
+        "excerptKmLabel": "Excerpt (Khmer)",
+        "contentKmLabel": "Content (Markdown, Khmer)",
+        "metadataTitle": "Metadata",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "e.g., Blog, Industry News, KNF Guide",
+        "authorLabel": "Author",
+        "authorPlaceholder": "e.g., DamDoh Team",
+        "statusLabel": "Status",
+        "tagsLabel": "Tags (comma-separated)",
+        "imageUrlLabel": "Image URL",
+        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
+        "aiHintLabel": "AI Image Hint",
+        "aiHintPlaceholder": "e.g., coffee beans, farmer portrait",
+        "publishingButton": "Publishing...",
+        "publishButton": "Publish Article"
+      },
+      "toast": {
+        "loadErrorTitle": "Error",
+        "loadErrorDescription": "Could not load content.",
+        "createSuccessTitle": "Article Created",
+        "createSuccessDescription": "The new article has been published.",
+        "createErrorTitle": "Creation Failed"
+      }
+    },
+    "reports": {
+      "generate": {
+        "title": "Generate Regulatory Report",
+        "description": "Create on-demand reports for compliance and auditing purposes.",
+        "reportTypeLabel": "Report Type",
+        "reportTypeVti": "VTI Events Summary",
+        "targetUserLabel": "Target User",
+        "userSearchPlaceholder": "Search by name or email...",
+        "dateRangeLabel": "Date Range",
+        "datePlaceholder": "Select date range",
+        "submitButton": "Generate Report"
+      },
+      "list": {
+        "title": "Generated Reports",
+        "description": "View and download previously generated reports.",
+        "table": {
+          "reportType": "Report Type",
+          "generatedFor": "Generated For",
+          "date": "Date",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "viewButton": "View",
+        "noReports": "No reports have been generated yet."
+      },
+      "toast": {
+        "loadErrorTitle": "Error",
+        "formIncompleteTitle": "Incomplete Form",
+        "formIncompleteDescription": "Please select a report type, target user, and date range.",
+        "generateSuccessTitle": "Report Generating",
+        "generateSuccessDescription": "The report is being created and will appear in the list below shortly.",
+        "generateErrorTitle": "Generation Failed"
+      }
+    }
   }
 }
-    
+
