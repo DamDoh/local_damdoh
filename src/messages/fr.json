@@ -1555,6 +1555,15 @@
         "positive": "La limite d'utilisation doit être un nombre positif."
       }
     }
+  },
+  "CropRotationSuggester": {
+    "title": "Suggerimenti di rotazione colturale AI",
+    "description": "Ottieni raccomandazioni basate sull'IA per la tua prossima coltura per migliorare la salute del suolo e interrompere i cicli dei parassiti.",
+    "buttonText": "Ottieni suggerimenti di rotazione",
+    "loadingText": "Analisi della cronologia del campo in corso...",
+    "error": "Impossibile ottenere suggerimenti in questo momento. Per favore riprova.",
+    "noSuggestions": "L'IA non è riuscita a generare suggerimenti specifici basati sulla cronologia fornita.",
+    "regenerateButton": "Rigenera suggerimenti"
   }
 }
 

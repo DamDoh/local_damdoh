@@ -1555,6 +1555,15 @@
         "positive": "Nutzungslimit muss eine positive Zahl sein."
       }
     }
+  },
+  "CropRotationSuggester": {
+    "title": "KI-Fruchtfolgen-Vorschlag",
+    "description": "Erhalten Sie KI-gestützte Empfehlungen für Ihre nächste Kultur, um die Bodengesundheit zu verbessern und Schädlingszyklen zu durchbrechen.",
+    "buttonText": "Fruchtfolge-Vorschläge erhalten",
+    "loadingText": "Feldverlauf wird analysiert...",
+    "error": "Vorschläge konnten derzeit nicht abgerufen werden. Bitte versuchen Sie es erneut.",
+    "noSuggestions": "KI konnte keine spezifischen Vorschläge basierend auf dem bereitgestellten Verlauf generieren.",
+    "regenerateButton": "Vorschläge neu generieren"
   }
 }
 

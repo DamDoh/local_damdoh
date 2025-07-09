@@ -1303,7 +1303,7 @@
     "lastVisit": "Last visit",
     "issues": "Issues",
     "viewFarmerButton": "View",
-    "noFarmersAssigned": "No farmers have been assigned to you yet."
+    "noFarmersAssigned": "No farmers assigned to your portfolio."
   },
   "InputSupplierDashboard": {
     "title": "Input Supplier Dashboard",
@@ -1555,6 +1555,15 @@
         "positive": "Usage limit must be a positive number."
       }
     }
+  },
+  "CropRotationSuggester": {
+    "title": "AI Crop Rotation Suggester",
+    "description": "Get AI-powered recommendations for your next crop to improve soil health and break pest cycles.",
+    "buttonText": "Get Rotation Suggestions",
+    "loadingText": "Analyzing field history...",
+    "error": "Could not get suggestions at this time. Please try again.",
+    "noSuggestions": "AI could not generate specific suggestions based on the provided history.",
+    "regenerateButton": "Regenerate Suggestions"
   }
 }
 

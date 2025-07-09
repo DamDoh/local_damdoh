@@ -1555,6 +1555,15 @@
         "positive": "El límite de uso debe ser un número positivo."
       }
     }
+  },
+  "CropRotationSuggester": {
+    "title": "Sugeridor de Rotación de Cultivos IA",
+    "description": "Obtén recomendaciones impulsadas por IA para tu próximo cultivo para mejorar la salud del suelo y romper los ciclos de plagas.",
+    "buttonText": "Obtener Sugerencias de Rotación",
+    "loadingText": "Analizando historial de campo...",
+    "error": "No se pudieron obtener sugerencias en este momento. Por favor, inténtalo de nuevo.",
+    "noSuggestions": "La IA no pudo generar sugerencias específicas basadas en el historial proporcionado.",
+    "regenerateButton": "Regenerar Sugerencias"
   }
 }
 

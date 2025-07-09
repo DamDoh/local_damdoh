@@ -7,6 +7,7 @@ import {
   performSearch as performSearch_internal,
 } from './db-utils';
 import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";
+import { suggestCropRotation, type CropRotationInput, type CropRotationOutput } from "@/ai/flows/crop-rotation-suggester";
 import type { UserProfile, SmartSearchInterpretation } from '@/lib/types';
 
 
@@ -56,3 +57,19 @@ export async function getMarketplaceRecommendationsAction(userId: string, count:
         return [];
     }
 }
+
+/**
+ * Server Action to get AI-powered crop rotation suggestions.
+ * @param input The crop history and location details.
+ * @returns A promise that resolves to the crop rotation suggestions.
+ */
+export async function suggestCropRotationAction(input: CropRotationInput): Promise<CropRotationOutput> {
+    try {
+        return await suggestCropRotation(input);
+    } catch (error) {
+        console.error("[Server Action] suggestCropRotationAction failed:", error);
+        return { suggestions: [] };
+    }
+}
+
+    

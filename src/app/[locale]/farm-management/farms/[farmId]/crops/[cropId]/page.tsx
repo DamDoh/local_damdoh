@@ -17,6 +17,7 @@ import { useToast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import type { FarmingAssistantOutput } from '@/ai/flows/farming-assistant-flow';
+import { CropRotationSuggester } from '@/components/farm-management/CropRotationSuggester';
 
 interface CropDetails {
     id: string;
@@ -25,6 +26,11 @@ interface CropDetails {
     harvestDate?: string;
     currentStage?: string;
     notes?: string;
+    farmId: string; // Add farmId
+}
+
+interface FarmDetails {
+    location?: string;
 }
 
 interface TraceabilityEvent {
@@ -94,31 +100,47 @@ export default function CropDetailPage() {
   const { toast } = useToast();
 
   const [crop, setCrop] = useState<CropDetails | null>(null);
+  const [farm, setFarm] = useState<FarmDetails | null>(null);
   const [events, setEvents] = useState<TraceabilityEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const functions = getFunctions(firebaseApp);
   const getTraceabilityEventsCallable = useMemo(() => httpsCallable(functions, 'getTraceabilityEventsByFarmField'), [functions]);
 
-  const fetchCropDetails = useCallback(async () => {
-    if (!cropId) return;
+  const fetchCropAndFarmDetails = useCallback(async () => {
+    if (!cropId || !farmId) return;
     const db = getFirestore(firebaseApp);
-    const cropRef = doc(db, 'crops', cropId);
-    const docSnap = await getDoc(cropRef);
-    if(docSnap.exists()){
-      const data = docSnap.data();
-      setCrop({ 
-          id: docSnap.id, 
-          cropType: data.cropType,
-          plantingDate: data.plantingDate.toDate().toISOString(),
-          harvestDate: data.harvestDate?.toDate().toISOString(),
-          currentStage: data.currentStage,
-          notes: data.notes
-      });
-    } else {
-      toast({ variant: 'destructive', title: t('toast.notFound') });
+    
+    try {
+        const cropRef = doc(db, 'crops', cropId);
+        const farmRef = doc(db, 'farms', farmId);
+        
+        const [cropSnap, farmSnap] = await Promise.all([getDoc(cropRef), getDoc(farmRef)]);
+
+        if(cropSnap.exists()){
+            const data = cropSnap.data();
+            setCrop({ 
+                id: cropSnap.id, 
+                cropType: data.cropType,
+                plantingDate: data.plantingDate.toDate().toISOString(),
+                harvestDate: data.harvestDate?.toDate().toISOString(),
+                currentStage: data.currentStage,
+                notes: data.notes,
+                farmId: data.farmId
+            });
+        } else {
+            toast({ variant: 'destructive', title: t('toast.notFound') });
+        }
+        
+        if (farmSnap.exists()) {
+            setFarm({ location: farmSnap.data().location });
+        }
+
+    } catch (error) {
+        console.error("Error fetching crop/farm details:", error);
+        toast({ variant: 'destructive', title: t('toast.loadError') });
     }
-  }, [cropId, toast, t]);
+  }, [cropId, farmId, toast, t]);
 
   const fetchTraceabilityEvents = useCallback(async () => {
     try {
@@ -132,8 +154,8 @@ export default function CropDetailPage() {
 
   useEffect(() => {
     setIsLoading(true);
-    Promise.all([fetchCropDetails(), fetchTraceabilityEvents()]).finally(() => setIsLoading(false));
-  }, [fetchCropDetails, fetchTraceabilityEvents]);
+    Promise.all([fetchCropAndFarmDetails(), fetchTraceabilityEvents()]).finally(() => setIsLoading(false));
+  }, [fetchCropAndFarmDetails, fetchTraceabilityEvents]);
 
   if (isLoading) {
     return <div>{t('loading')}</div>;
@@ -142,6 +164,11 @@ export default function CropDetailPage() {
   if (!crop) {
     return <div>{t('notFound')}</div>;
   }
+  
+  const cropHistoryForAI = events.map(e => e.payload?.cropType || e.payload?.inputId).filter(Boolean);
+  if (cropHistoryForAI.length === 0) {
+      cropHistoryForAI.push(crop.cropType);
+  }
 
   return (
     <div className="container mx-auto p-4 md:p-8">
@@ -149,74 +176,87 @@ export default function CropDetailPage() {
         <ArrowLeft className="mr-1 h-4 w-4"/> {t('backLink')}
       </Link>
 
-      <Card>
-        <CardHeader>
-            <div className="flex justify-between items-start">
-                 <div>
-                    <CardTitle className="text-2xl">{crop.cropType}</CardTitle>
-                    <CardDescription>{t('plantedOn', { date: format(new Date(crop.plantingDate), 'PPP') })}</CardDescription>
-                </div>
-                 <div className="flex gap-2">
-                     <Button asChild variant="secondary" size="sm">
-                       <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/edit`}>
-                        <Edit className="mr-2 h-4 w-4"/>{t('editButton')}
-                      </Link>
-                    </Button>
-                 </div>
-            </div>
-        </CardHeader>
-        <CardContent>
-            <div className="mb-6 bg-muted/50 p-4 rounded-lg border">
-                <h3 className="text-lg font-semibold mb-4">{t('quickActionsTitle')}</h3>
-                 <div className="flex flex-wrap gap-2">
-                    <Button asChild variant="outline" size="sm">
-                        <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/log-input-application`}>
-                        <Droplets className="mr-2 h-4 w-4"/>{t('logInputButton')}
-                        </Link>
-                    </Button>
-                    <Button asChild variant="outline" size="sm">
-                        <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/log-observation`}>
-                        <NotebookPen className="mr-2 h-4 w-4"/>{t('logObservationButton')}
-                        </Link>
-                    </Button>
-                     <Button asChild variant="default" size="sm">
-                        <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/log-harvest?cropType=${encodeURIComponent(crop.cropType)}`}>
-                            <Weight className="mr-2 h-4 w-4" />{t('logHarvestButton')}
-                        </Link>
-                    </Button>
-                </div>
-            </div>
-
-            <h3 className="text-lg font-semibold mb-4">{t('journeyTitle')}</h3>
-            <div className="relative pl-6">
-                <div className="absolute left-8 top-0 h-full w-0.5 bg-border -z-10"></div>
-                {events.length > 0 ? (
-                    events.map((event, index) => (
-                        <div key={event.id} className="relative flex items-start gap-4 pb-8">
-                             <div className="absolute left-0 top-0 h-full flex flex-col items-center">
-                                <span className="bg-background p-1.5 rounded-full border-2 border-primary flex items-center justify-center text-primary z-10">
-                                    {getEventIcon(event.eventType)}
-                                </span>
-                            </div>
-                            <div className="pl-14 w-full">
-                                <Card className="shadow-sm">
-                                    <CardHeader className="p-3">
-                                        <CardTitle className="text-base">{event.eventType.replace(/_/g, ' ')}</CardTitle>
-                                        <CardDescription className="text-xs">{format(new Date(event.timestamp), 'PPpp')}</CardDescription>
-                                    </CardHeader>
-                                    <CardContent className="p-3 pt-0">
-                                        <EventPayload payload={event.payload} t={t}/>
-                                    </CardContent>
-                                </Card>
-                            </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        <div className="lg:col-span-2 space-y-6">
+            <Card>
+                <CardHeader>
+                    <div className="flex justify-between items-start">
+                         <div>
+                            <CardTitle className="text-2xl">{crop.cropType}</CardTitle>
+                            <CardDescription>{t('plantedOn', { date: format(new Date(crop.plantingDate), 'PPP') })}</CardDescription>
                         </div>
-                    ))
-                ) : (
-                    <p className="text-sm text-muted-foreground">{t('noActivities')}</p>
-                )}
-            </div>
-        </CardContent>
-      </Card>
+                         <div className="flex gap-2">
+                             <Button asChild variant="secondary" size="sm">
+                               <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/edit`}>
+                                <Edit className="mr-2 h-4 w-4"/>{t('editButton')}
+                              </Link>
+                            </Button>
+                         </div>
+                    </div>
+                </CardHeader>
+                <CardContent>
+                    <div className="mb-6 bg-muted/50 p-4 rounded-lg border">
+                        <h3 className="text-lg font-semibold mb-4">{t('quickActionsTitle')}</h3>
+                         <div className="flex flex-wrap gap-2">
+                            <Button asChild variant="outline" size="sm">
+                                <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/log-input-application`}>
+                                <Droplets className="mr-2 h-4 w-4"/>{t('logInputButton')}
+                                </Link>
+                            </Button>
+                            <Button asChild variant="outline" size="sm">
+                                <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/log-observation`}>
+                                <NotebookPen className="mr-2 h-4 w-4"/>{t('logObservationButton')}
+                                </Link>
+                            </Button>
+                             <Button asChild variant="default" size="sm">
+                                <Link href={`/farm-management/farms/${farmId}/crops/${cropId}/log-harvest?cropType=${encodeURIComponent(crop.cropType)}`}>
+                                    <Weight className="mr-2 h-4 w-4" />{t('logHarvestButton')}
+                                </Link>
+                            </Button>
+                        </div>
+                    </div>
+
+                    <h3 className="text-lg font-semibold mb-4">{t('journeyTitle')}</h3>
+                    <div className="relative pl-6">
+                        <div className="absolute left-8 top-0 h-full w-0.5 bg-border -z-10"></div>
+                        {events.length > 0 ? (
+                            events.map((event, index) => (
+                                <div key={event.id} className="relative flex items-start gap-4 pb-8">
+                                     <div className="absolute left-0 top-0 h-full flex flex-col items-center">
+                                        <span className="bg-background p-1.5 rounded-full border-2 border-primary flex items-center justify-center text-primary z-10">
+                                            {getEventIcon(event.eventType)}
+                                        </span>
+                                    </div>
+                                    <div className="pl-14 w-full">
+                                        <Card className="shadow-sm">
+                                            <CardHeader className="p-3">
+                                                <CardTitle className="text-base">{event.eventType.replace(/_/g, ' ')}</CardTitle>
+                                                <CardDescription className="text-xs">{format(new Date(event.timestamp), 'PPpp')}</CardDescription>
+                                            </CardHeader>
+                                            <CardContent className="p-3 pt-0">
+                                                <EventPayload payload={event.payload} t={t}/>
+                                            </CardContent>
+                                        </Card>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="text-sm text-muted-foreground">{t('noActivities')}</p>
+                        )}
+                    </div>
+                </CardContent>
+            </Card>
+        </div>
+        <div className="lg:col-span-1 space-y-6 lg:sticky lg:top-24">
+            <CropRotationSuggester 
+                cropHistory={cropHistoryForAI}
+                location={farm?.location || 'Unknown'}
+            />
+        </div>
+      </div>
     </div>
   );
 }
+
+
+    
