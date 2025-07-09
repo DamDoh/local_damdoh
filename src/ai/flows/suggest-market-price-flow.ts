@@ -46,7 +46,7 @@ const prompt = ai.definePrompt({
   `,
 });
 
-export const suggestMarketPrice = ai.defineFlow(
+const suggestMarketPriceFlow = ai.defineFlow(
   {
     name: 'suggestMarketPriceFlow',
     inputSchema: SuggestMarketPriceInputSchema,
@@ -63,3 +63,8 @@ export const suggestMarketPrice = ai.defineFlow(
     return { price: output.price };
   }
 );
+
+
+export async function suggestMarketPrice(input: SuggestMarketPriceInput): Promise<SuggestMarketPriceOutput> {
+  return suggestMarketPriceFlow(input);
+}
