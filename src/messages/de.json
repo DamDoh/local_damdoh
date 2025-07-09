@@ -151,5 +151,316 @@
   },
   "LanguageSwitcher": {
     "toggle": "Sprache ändern"
+  },
+  "AppFooter": {
+    "tagline": "Die globale Plattform für die landwirtschaftliche Lieferkette.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Über uns",
+    "contactLabel": "Kontakt",
+    "careersLabel": "Karriere",
+    "blogLabel": "Blog & Neuigkeiten",
+    "resourcesTitle": "Ressourcen",
+    "helpCenterLabel": "Hilfezentrum",
+    "communityGuidelinesLabel": "Community-Richtlinien",
+    "industryNewsLabel": "Branchennachrichten",
+    "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
+    "legalTitle": "Rechtliches",
+    "privacyPolicyLabel": "Datenschutzrichtlinie",
+    "termsOfServiceLabel": "Nutzungsbedingungen",
+    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
+    "getMobileApp": "Holen Sie sich die mobile App",
+    "googlePlayAlt": "Bei Google Play holen",
+    "appStoreAlt": "Im App Store laden"
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Über DamDoh",
+      "subtitle": "Verbindung der globalen landwirtschaftlichen Lieferkette, ein Akteur nach dem anderen."
+    },
+    "vision": {
+      "title": "Unsere Vision",
+      "p1": "Wir stellen uns eine Welt vor, in der jeder landwirtschaftliche Akteur, vom kleinsten Landwirt bis zum größten Einzelhändler, mit den Daten, Verbindungen und Werkzeugen ausgestattet ist, die er zum Gedeihen braucht.",
+      "p2": "DamDoh wurde auf der Überzeugung gegründet, dass Technologie Lücken schließen, Vertrauen fördern und ein gerechteres und nachhaltigeres globales Lebensmittelsystem schaffen kann.",
+      "foundersTitle": "Gründer"
+    },
+    "challenge": {
+      "title": "Die Herausforderung, die wir angehen",
+      "description": "Die landwirtschaftliche Lieferkette ist zersplittert, ineffizient und es fehlt oft an der Transparenz, die für nachhaltiges Wachstum notwendig ist. Zu den wichtigsten Herausforderungen gehören:",
+      "list": {
+        "knowledge": "Zersplittertes Wissen und mangelnder Zugang zu bewährten Praktiken.",
+        "market": "Begrenzter Marktzugang für Kleinbauern.",
+        "quality": "Inkonsistente Qualitätskontrolle und mangelnde überprüfbare Produktdaten.",
+        "logistics": "Ineffiziente Logistik, die zu Nachernteverlusten führt.",
+        "financial": "Schwierigkeiten beim Zugang zu Finanzierungen und Versicherungen für Kleinproduzenten.",
+        "climate": "Zunehmender Druck durch den Klimawandel auf traditionelle Anbaumethoden.",
+        "informal": "Informelle, auf Beziehungen basierende Systeme, die Neueinsteiger ausschließen können."
+      }
+    },
+    "solution": {
+      "title": "Die DamDoh-Lösung",
+      "description": "Wir bauen eine umfassende 'Super-App', die das gesamte landwirtschaftliche Ökosystem digitalisiert und verbindet, und zwar über mehrere Säulen:",
+      "list": {
+        "education": "Bildung und Wissensaustausch",
+        "ai": "KI-gestützte Unterstützung und Einblicke",
+        "logistics": "Integrierte Logistik und Nachverfolgung"
+      }
+    },
+    "beyondTechnology": {
+      "title": "Über die Technologie hinaus: Es geht um Menschen",
+      "list": {
+        "p2p": {
+          "title": "Mensch zu Mensch",
+          "content": "Landwirte mit anderen Landwirten verbinden, um Wissen zu teilen und eine Gemeinschaft aufzubauen."
+        },
+        "p2b": {
+          "title": "Mensch zu Unternehmen",
+          "content": "Förderung direkter, vertrauenswürdiger Beziehungen zwischen Produzenten und Käufern."
+        },
+        "p2e": {
+          "title": "Mensch zum Ökosystem",
+          "content": "Individuen Zugang zum gesamten Ökosystem von Dienstleistungen geben – Finanzen, Logistik, Versicherungen und mehr."
+        },
+        "p2w": {
+          "title": "Mensch zur Welt",
+          "content": "Globale Märkte und Möglichkeiten für die entlegensten Produzenten durch digitalen Zugang und Rückverfolgbarkeit eröffnen."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Unser Engagement für die Zukunft",
+      "p1": "Wir verpflichten uns, Technologie zum Guten einzusetzen und eine Plattform zu schaffen, die nicht nur profitabel ist, sondern auch unseren Planeten regeneriert und die Menschen stärkt.",
+      "p2": "Jede hergestellte Verbindung, jedes geteilte Wissen und jede erleichterte Transaktion auf DamDoh ist ein Schritt in Richtung einer widerstandsfähigeren und gerechteren Zukunft der Ernährung.",
+      "p3": "Begleiten Sie uns auf dieser Reise.",
+      "button": "Werden Sie Mitglied"
+    }
+  },
+  "contactPage": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Wir sind hier, um zu helfen. Kontaktieren Sie uns über einen der folgenden Kanäle.",
+    "emailUs": {
+      "title": "Schreiben Sie uns eine E-Mail",
+      "general": "Allgemeine Anfragen",
+      "support": "Unterstützung",
+      "partnerships": "Partnerschaften"
+    },
+    "callUs": {
+      "title": "Rufen Sie uns an",
+      "hours": "Montag - Freitag, 9:00 - 17:00 Uhr (EAT)",
+      "phone": "+254 20 123 4567"
+    },
+    "ourOffice": {
+      "title": "Unser Büro",
+      "org": "DamDoh Stiftung",
+      "address": "123 Agri-Tech Ave, Nairobi, Kenia"
+    },
+    "sendMessage": {
+      "title": "Senden Sie uns eine Nachricht",
+      "nameLabel": "Ihr Name",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Ihre E-Mail",
+      "emailPlaceholder": "jane.doe@example.com",
+      "subjectLabel": "Betreff",
+      "subjectPlaceholder": "z.B. Anfrage zu Partnerschaften",
+      "messageLabel": "Ihre Nachricht",
+      "messagePlaceholder": "Geben Sie hier Ihre Nachricht ein...",
+      "buttonText": "Nachricht senden",
+      "note": "Wir bemühen uns, innerhalb von 24 Geschäftsstunden zu antworten."
+    }
+  },
+  "careers": {
+    "title": "Karriere bei DamDoh",
+    "subtitle": "Begleiten Sie uns bei unserer Mission, die landwirtschaftliche Lieferkette zu revolutionieren.",
+    "whyWorkWithUs": {
+      "title": "Warum bei uns arbeiten?",
+      "intro": "Bei DamDoh sind wir ein Team von Innovatoren, Technologen und Landwirtschaftsexperten, die sich dafür einsetzen, eine greifbare globale Wirkung zu erzielen. Wir bieten:",
+      "point1": "Ein missionsgetriebenes und dynamisches Arbeitsumfeld.",
+      "point2": "Möglichkeiten für berufliches Wachstum und Lernen.",
+      "point3": "Eine Kultur der Zusammenarbeit und Transparenz.",
+      "point4": "Die Chance, mit Spitzentechnologien wie KI und Blockchain zu arbeiten.",
+      "point5": "Ein Engagement für Nachhaltigkeit und soziale Wirkung."
+    },
+    "currentOpenings": {
+      "title": "Aktuelle Stellenangebote",
+      "job1": {
+        "title": "Senior Full-Stack-Ingenieur (Next.js, Firebase)",
+        "location": "Fernarbeit",
+        "type": "Vollzeit",
+        "description": "Wir suchen einen erfahrenen Full-Stack-Ingenieur, der die Entwicklung der Kernfunktionen unserer Plattform leitet."
+      },
+      "job2": {
+        "title": "Spezialist für agronomische Inhalte",
+        "location": "Nairobi, Kenia",
+        "type": "Vertrag",
+        "description": "Helfen Sie uns, die weltweit umfassendste Wissensdatenbank für nachhaltige landwirtschaftliche Praktiken aufzubauen."
+      },
+      "job3": {
+        "title": "UX/UI-Designer",
+        "location": "Fernarbeit",
+        "type": "Vollzeit",
+        "description": "Entwerfen Sie intuitive und zugängliche Benutzererfahrungen für eine vielfältige und globale Benutzerbasis."
+      }
+    },
+    "noOpenings": {
+      "title": "Derzeit keine offenen Stellen",
+      "content1": "Wir sind immer auf der Suche nach talentierten Persönlichkeiten, die sich für unsere Mission begeistern. Wenn Sie glauben, dass Sie gut in unser Team passen würden, senden Sie uns bitte Ihren Lebenslauf und Ihr Anschreiben an {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Jetzt bewerben"
+  },
+  "communityGuidelines": {
+    "title": "Community-Richtlinien",
+    "subtitle": "Förderung eines professionellen, vertrauenswürdigen und kooperativen Umfelds.",
+    "intro": "Willkommen in der DamDoh-Community! Um sicherzustellen, dass unsere Plattform ein produktiver und sicherer Ort für alle landwirtschaftlichen Akteure bleibt, bitten wir Sie, die folgenden Richtlinien zu befolgen:",
+    "respectful": {
+      "title": "Seien Sie respektvoll und professionell",
+      "description": "Führen Sie höfliche und konstruktive Gespräche. Meinungsverschiedenheiten sind normal, aber persönliche Angriffe, Belästigungen und Hassreden sind nicht akzeptabel."
+    },
+    "authentic": {
+      "title": "Seien Sie authentisch und ehrlich",
+      "description": "Stellen Sie sich und Ihr Unternehmen korrekt dar. Geben Sie sich nicht als jemand anderes aus und machen Sie keine falschen Angaben zu Ihren Produkten, Dienstleistungen oder Zertifizierungen."
+    },
+    "relevant": {
+      "title": "Bleiben Sie relevant",
+      "description": "Tragen Sie zu Diskussionen und Angeboten auf eine Weise bei, die für die landwirtschaftliche Lieferkette relevant ist. Spam, Betrug und irrelevante Werbeinhalte werden entfernt."
+    },
+    "fairTrade": {
+      "title": "Halten Sie Ihre Verpflichtungen ein",
+      "description": "Wenn Sie auf der Plattform eine Vereinbarung oder einen Vertrag abschließen, halten Sie sich daran. Der Aufbau von Vertrauen ist für den Erfolg unserer Gemeinschaft unerlässlich."
+    },
+    "sustainable": {
+      "title": "Fördern Sie Nachhaltigkeit",
+      "description": "Obwohl dies keine strikte Anforderung für alle Mitglieder ist, ermutigen wir zum Austausch von Wissen und Praktiken, die ökologische, wirtschaftliche und soziale Nachhaltigkeit fördern."
+    },
+    "reporting": {
+      "title": "Verstöße melden",
+      "content": "Wenn Sie Inhalte oder Verhaltensweisen sehen, die gegen diese Richtlinien verstoßen, melden Sie diese bitte unserem Team unter {emailLink}. Wir werden alle Meldungen überprüfen und entsprechende Maßnahmen ergreifen.",
+      "emailLinkText": "support@damdoh.org"
+    },
+    "conclusion": "Durch die Nutzung von DamDoh erklären Sie sich mit diesen Richtlinien einverstanden. Wir behalten uns das Recht vor, Inhalte zu entfernen und Konten zu sperren, die gegen diese Grundsätze verstoßen. Vielen Dank, dass Sie uns helfen, eine großartige Gemeinschaft aufzubauen!"
+  },
+  "helpCenterPage": {
+    "title": "Hilfezentrum",
+    "subtitle": "Ihr Leitfaden, um das Beste aus der DamDoh-Plattform herauszuholen.",
+    "howCanWeHelp": "Wie können wir Ihnen helfen?",
+    "searchPlaceholder": "Suchen Sie nach Themen, Funktionen oder Fragen...",
+    "browseTopics": "Hilfethemen durchsuchen",
+    "gettingStarted": {
+      "title": "Erste Schritte",
+      "description": "Erfahren Sie, wie Sie Ihr Profil einrichten und mit dem Vernetzen beginnen.",
+      "placeholder": "Inhalte für 'Erste Schritte' werden in Kürze verfügbar sein."
+    },
+    "marketplaceGuide": {
+      "title": "Marktplatz-Leitfaden",
+      "description": "Tipps zum Erstellen effektiver Angebote und zum Finden dessen, was Sie brauchen.",
+      "placeholder": "Inhalte für 'Marktplatz-Leitfaden' werden in Kürze verfügbar sein."
+    },
+    "accountManagement": {
+      "title": "Kontoverwaltung",
+      "description": "Verwalten Sie Ihre Einstellungen, Datenschutz und Benachrichtigungen.",
+      "placeholder": "Inhalte für 'Kontoverwaltung' werden in Kürze verfügbar sein."
+    },
+    "troubleshooting": {
+      "title": "Fehlerbehebung",
+      "description": "Finden Sie Lösungen für häufige Probleme und technische Schwierigkeiten.",
+      "placeholder": "Inhalte für 'Fehlerbehebung' werden in Kürze verfügbar sein."
+    },
+    "stillNeedHelp": {
+      "title": "Benötigen Sie immer noch Hilfe?",
+      "description": "Unser Support-Team steht Ihnen bei allen Fragen zur Verfügung.",
+      "button": "Support kontaktieren"
+    }
+  },
+  "privacyPolicy": {
+    "title": "Datenschutzrichtlinie",
+    "lastUpdated": "Zuletzt aktualisiert: 29. Oktober 2023",
+    "introduction": "Diese Datenschutzerklärung für DamDoh beschreibt, wie und warum wir Ihre Informationen sammeln, speichern, verwenden und/oder weitergeben ('verarbeiten'), wenn Sie unsere Dienste ('Dienste') nutzen, z.B. wenn Sie unsere Website oder mobile Anwendung besuchen.",
+    "whatInfoWeCollect": {
+      "heading": "1. WELCHE INFORMATIONEN SAMMELN WIR?",
+      "content": "Wir sammeln personenbezogene Daten, die Sie uns freiwillig zur Verfügung stellen, wenn Sie sich bei den Diensten registrieren, Interesse am Erhalt von Informationen über uns oder unsere Produkte und Dienste bekunden, an Aktivitäten in den Diensten teilnehmen oder uns anderweitig kontaktieren."
+    },
+    "howWeUseInfo": {
+      "heading": "2. WIE VERARBEITEN WIR IHRE INFORMATIONEN?",
+      "content": "Wir verarbeiten Ihre Informationen für Zwecke, die auf legitimen Geschäftsinteressen, der Erfüllung unseres Vertrags mit Ihnen, der Einhaltung unserer gesetzlichen Verpflichtungen und/oder Ihrer Zustimmung beruhen. Dazu gehören die Erleichterung der Kontoerstellung, die Ermöglichung der Kommunikation zwischen Benutzern und die Bereitstellung unserer Kerndienste."
+    },
+    "willInfoBeShared": {
+      "heading": "3. WERDEN IHRE INFORMATIONEN MIT JEMANDEM GETEILT?",
+      "content": "Wir teilen Informationen nur mit Ihrer Zustimmung, um Gesetze einzuhalten, Ihnen Dienste bereitzustellen, Ihre Rechte zu schützen oder Geschäftsverpflichtungen zu erfüllen. Zum Beispiel teilen wir Ihre öffentlichen Profilinformationen mit anderen Benutzern, um Verbindungen zu erleichtern."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. VERWENDEN WIR COOKIES UND ANDERE TRACKING-TECHNOLOGIEN?",
+      "content": "Wir können Cookies und ähnliche Tracking-Technologien (wie Web-Beacons und Pixel) verwenden, um auf Informationen zuzugreifen oder diese zu speichern. Spezifische Informationen darüber, wie wir solche Technologien verwenden und wie Sie bestimmte Cookies ablehnen können, finden Sie in unserer Cookie-Erklärung."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. WIE LANGE BEWAHREN WIR IHRE INFORMATIONEN AUF?",
+      "content": "Wir bewahren Ihre Informationen so lange auf, wie es zur Erfüllung der in dieser Datenschutzerklärung beschriebenen Zwecke erforderlich ist, es sei denn, eine längere Aufbewahrungsfrist ist gesetzlich vorgeschrieben. Wenn wir keine andauernde legitime geschäftliche Notwendigkeit haben, Ihre personenbezogenen Daten zu verarbeiten, werden wir diese entweder löschen oder anonymisieren."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. WIE SCHÜTZEN WIR IHRE INFORMATIONEN?",
+      "content": "Wir haben angemessene technische und organisatorische Sicherheitsmaßnahmen implementiert, die darauf ausgelegt sind, die Sicherheit aller von uns verarbeiteten personenbezogenen Daten zu schützen. Trotz unserer Sicherheitsvorkehrungen und Bemühungen kann jedoch keine elektronische Übertragung über das Internet zu 100% sicher garantiert werden."
+    },
+    "minors": {
+      "heading": "7. SAMMELN WIR INFORMATIONEN VON MINDERJÄHRIGEN?",
+      "content": "Wir fordern wissentlich keine Daten von Kindern unter 18 Jahren an oder vermarkten an diese. Durch die Nutzung der Dienste versichern Sie, dass Sie mindestens 18 Jahre alt sind oder dass Sie der Elternteil oder Vormund eines solchen Minderjährigen sind und der Nutzung der Dienste durch den Minderjährigen zustimmen."
+    },
+    "privacyRights": {
+      "heading": "8. WAS SIND IHRE DATENSCHUTZRECHTE?",
+      "content": "In einigen Regionen haben Sie bestimmte Rechte gemäß den geltenden Datenschutzgesetzen. Dazu können das Recht gehören, (i) Zugang zu Ihren personenbezogenen Daten zu beantragen und eine Kopie davon zu erhalten, (ii) eine Berichtigung oder Löschung zu beantragen, (iii) die Verarbeitung Ihrer personenbezogenen Daten einzuschränken und (iv) gegebenenfalls das Recht auf Datenübertragbarkeit."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. KONTROLLEN FÜR DO-NOT-TRACK-FUNKTIONEN",
+      "content": "Die meisten Webbrowser und einige mobile Betriebssysteme und mobile Anwendungen enthalten eine Do-Not-Track ('DNT')-Funktion oder -Einstellung, die Sie aktivieren können, um Ihre Datenschutzpräferenz zu signalisieren, dass Daten über Ihre Online-Browsing-Aktivitäten nicht überwacht und gesammelt werden sollen. Zum jetzigen Zeitpunkt ist noch kein einheitlicher Technologiestandard für die Erkennung und Implementierung von DNT-Signalen fertiggestellt. Daher reagieren wir derzeit nicht auf DNT-Browsersignale."
+    },
+    "updatesToNotice": {
+      "heading": "10. AKTUALISIEREN WIR DIESE ERKLÄRUNG?",
+      "content": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Die aktualisierte Version wird durch ein aktualisiertes 'Überarbeitet'-Datum gekennzeichnet und die aktualisierte Version tritt in Kraft, sobald sie zugänglich ist. Wir empfehlen Ihnen, diese Datenschutzerklärung regelmäßig zu überprüfen, um darüber informiert zu sein, wie wir Ihre Informationen schützen."
+    }
+  },
+  "termsOfService": {
+    "title": "Nutzungsbedingungen",
+    "lastUpdated": "Zuletzt aktualisiert: 29. Oktober 2023",
+    "introduction": "Diese Nutzungsbedingungen stellen eine rechtlich bindende Vereinbarung dar, die zwischen Ihnen und DamDoh bezüglich Ihres Zugangs zu und Ihrer Nutzung der DamDoh-Website sowie jeder anderen Medienform, Medienkanal, mobilen Website oder mobilen Anwendung, die damit zusammenhängt, verlinkt ist oder anderweitig damit verbunden ist, getroffen wird.",
+    "agreementToTerms": {
+      "heading": "1. ZUSTIMMUNG ZU DEN BEDINGUNGEN",
+      "content": "Durch die Nutzung der Plattform erklären Sie sich mit diesen Nutzungsbedingungen einverstanden. Wenn Sie nicht zustimmen, dürfen Sie die Plattform nicht nutzen. Wir behalten uns das Recht vor, diese Bedingungen jederzeit zu ändern."
+    },
+    "intellectualProperty": {
+      "heading": "2. GEISTIGES EIGENTUM",
+      "content": "Sofern nicht anders angegeben, ist die Plattform unser Eigentum und alle Quellcodes, Datenbanken, Funktionalitäten, Software, Website-Designs, Audio, Video, Texte, Fotos und Grafiken auf der Website (zusammen der 'Inhalt') und die darin enthaltenen Marken, Dienstleistungsmarken und Logos sind unser Eigentum oder werden von uns kontrolliert oder sind an uns lizenziert."
+    },
+    "userRepresentations": {
+      "heading": "3. ZUSICHERUNGEN DES BENUTZERS",
+      "content": "Durch die Nutzung der Website versichern und garantieren Sie, dass: (1) alle von Ihnen übermittelten Registrierungsinformationen wahr, genau, aktuell und vollständig sind; (2) Sie die Richtigkeit dieser Informationen aufrechterhalten und diese Registrierungsinformationen bei Bedarf umgehend aktualisieren; (3) Sie geschäftsfähig sind und sich damit einverstanden erklären, diese Nutzungsbedingungen einzuhalten; (4) Sie die Website nicht für illegale oder unbefugte Zwecke nutzen werden; und (5) Ihre Nutzung der Website keine geltenden Gesetze oder Vorschriften verletzt."
+    },
+    "prohibitedActivities": {
+      "heading": "4. VERBOTENE AKTIVITÄTEN",
+      "content": "Sie dürfen die Website nicht für andere Zwecke als die, für die wir die Website zur Verfügung stellen, aufrufen oder nutzen. Verbotene Aktivitäten umfassen, sind aber nicht beschränkt auf: systematisches Abrufen von Daten, Betrug oder Irreführung von uns oder anderen Benutzern, Versuch, sich als ein anderer Benutzer auszugeben, Belästigung oder Bedrohung unserer Mitarbeiter oder anderer Benutzer und das Hochladen oder Übertragen von Viren oder anderem bösartigen Code."
+    },
+    "platformManagement": {
+      "heading": "5. PLATTFORMVERWALTUNG",
+      "content": "Wir behalten uns das Recht vor, sind aber nicht verpflichtet: (1) die Website auf Verstöße gegen diese Nutzungsbedingungen zu überwachen; (2) geeignete rechtliche Schritte gegen jeden einzuleiten, der nach unserem alleinigen Ermessen gegen das Gesetz oder diese Nutzungsbedingungen verstößt; (3) nach unserem alleinigen Ermessen und ohne Einschränkung den Zugang zu verweigern, einzuschränken, die Verfügbarkeit einzuschränken oder Ihre Beiträge oder einen Teil davon zu deaktivieren."
+    },
+    "termAndTermination": {
+      "heading": "6. LAUFZEIT UND KÜNDIGUNG",
+      "content": "Diese Nutzungsbedingungen bleiben in vollem Umfang in Kraft, solange Sie die Website nutzen. OHNE EINSCHRÄNKUNG EINER ANDEREN BESTIMMUNG DIESER NUTZUNGSBEDINGUNGEN BEHALTEN WIR UNS DAS RECHT VOR, NACH UNSEREM ALLEINIGEN ERMESSEN UND OHNE VORANKÜNDIGUNG ODER HAFTUNG DEN ZUGANG ZU UND DIE NUTZUNG DER WEBSITE (EINSCHLIESSLICH DES BLOCKIERENS BESTIMMTER IP-ADRESSEN) FÜR JEDE PERSON AUS JEDEM GRUND ODER OHNE GRUND ZU VERWEIGERN."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. ÄNDERUNGEN UND UNTERBRECHUNGEN",
+      "content": "Wir behalten uns das Recht vor, den Inhalt der Website jederzeit oder aus beliebigem Grund nach unserem alleinigen Ermessen ohne Vorankündigung zu ändern, zu modifizieren oder zu entfernen. Wir behalten uns auch das Recht vor, die Website ganz oder teilweise jederzeit ohne Vorankündigung zu ändern oder einzustellen. Wir haften Ihnen oder Dritten gegenüber nicht für Änderungen, Preisänderungen, Aussetzungen oder die Einstellung der Website."
+    },
+    "governingLaw": {
+      "heading": "8. GELTENDES RECHT",
+      "content": "Diese Nutzungsbedingungen und Ihre Nutzung der Website unterliegen den Gesetzen der Gerichtsbarkeit, in der DamDoh registriert ist, und werden in Übereinstimmung mit diesen ausgelegt, ohne Rücksicht auf Kollisionsnormen."
+    },
+    "disputeResolution": {
+      "heading": "9. STREITBEILEGUNG",
+      "content": "Jede rechtliche Klage jeglicher Art, die von Ihnen oder uns erhoben wird, muss in den Staats- und Bundesgerichten am Sitz von DamDoh eingeleitet oder verfolgt werden, und die Parteien stimmen hiermit der persönlichen Zuständigkeit in diesen Gerichten zu und verzichten auf alle Einreden des Fehlens der persönlichen Zuständigkeit und des forum non conveniens."
+    },
+    "contactUs": {
+      "heading": "10. KONTAKTIEREN SIE UNS",
+      "content": "Um eine Beschwerde bezüglich der Website zu klären oder um weitere Informationen zur Nutzung der Website zu erhalten, kontaktieren Sie uns bitte."
+    },
+    "conclusion": "Um Beschwerden zu klären oder weitere Informationen zu erhalten, {contactLink}."
   }
 }
+
