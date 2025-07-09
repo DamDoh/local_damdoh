@@ -891,6 +891,419 @@
         "loadError": "Could not load shop details."
       },
       "title": "Shopfront"
+    },
+    "promotions": {
+      "backToDashboard": "Back to Dashboard",
+      "title": "Coupons & Promotions",
+      "description": "Create and manage promotional coupons for your marketplace listings.",
+      "create": {
+        "title": "Create New Coupon",
+        "description": "Offer discounts to attract more buyers.",
+        "form": {
+          "code": "Coupon Code",
+          "codePlaceholder": "e.g., HARVEST20",
+          "usageLimit": "Usage Limit",
+          "usageLimitPlaceholder": "e.g., 100",
+          "discountType": "Discount Type",
+          "discountTypePlaceholder": "Select type",
+          "percentage": "Percentage",
+          "fixed": "Fixed Amount",
+          "discountValue": "Discount Value",
+          "expiryDate": "Expiry Date",
+          "pickDate": "Pick a date",
+          "submitButton": "Create Coupon"
+        },
+        "toast": {
+          "successTitle": "Coupon Created!",
+          "successDescription": "Coupon '{code}' is now active.",
+          "failTitle": "Creation Failed"
+        }
+      },
+      "list": {
+        "title": "Your Active Coupons",
+        "description": "View and share your existing coupons.",
+        "expires": "Expires",
+        "usage": "Usage",
+        "share": "Share",
+        "toastTitle": "Link Copied!",
+        "toastDescription": "Shareable link for coupon {link} copied to clipboard.",
+        "noCoupons": "You haven't created any coupons yet.",
+        "shareModal": {
+          "title": "Share Coupon",
+          "description": "Share this link with your customers to give them a direct discount.",
+          "copy": "Copy",
+          "close": "Close"
+        }
+      },
+      "toast": {
+        "error": "Error",
+        "errorCoupons": {
+          "title": "Error Fetching Coupons",
+          "description": "Could not load your existing coupons."
+        }
+      }
+    },
+    "manageService": {
+      "title": "Manage Service",
+      "backLink": "Back to Service",
+      "tabs": {
+        "checkin": "Check-in",
+        "bookings": "Bookings",
+        "staff": "Staff"
+      },
+      "bookingsTab": {
+        "title": "Bookings",
+        "description": "View all bookings for this service.",
+        "downloadCsv": "Download CSV",
+        "noBookings": "There are no bookings for this service yet.",
+        "error": "Failed to fetch bookings.",
+        "toast": {
+          "noBookings": "No booking data to download."
+        },
+        "table": {
+          "guest": "Guest",
+          "bookedOn": "Booked On",
+          "status": "Status",
+          "checkedInAt": "Checked-in At"
+        },
+        "status": {
+          "booked": "Booked",
+          "checkedIn": "Checked-in"
+        }
+      }
+    }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm Management Hub",
+      "description": "Your central place to track, manage, and optimize all your farm activities.",
+      "myFarms": {
+        "title": "My Farms & Crops",
+        "description": "Manage your farm profiles, add new crop batches, and track their progress.",
+        "button": "Manage Farms"
+      },
+      "knf": {
+        "title": "KNF Inputs Assistant",
+        "description": "Create and manage your own Fermented Plant Juice (FPJ), Fish Amino Acid (FAA), and other Korean Natural Farming inputs.",
+        "button": "Manage KNF Inputs"
+      },
+      "fgw": {
+        "title": "Farming God's Way Guide",
+        "description": "Learn the core principles of Farming God's Way (FGW), including no-till farming and God's Blanket.",
+        "button": "View FGW Guide"
+      },
+      "labor": {
+        "title": "Labor Management",
+        "description": "Track work hours, payments, and manage profiles for your farm workers.",
+        "button": "Manage Labor"
+      },
+      "financials": {
+        "title": "Money Matters",
+        "description": "Manage income, expenses, and apply for financing opportunities tailored for your agricultural business.",
+        "button": "Manage Financials"
+      },
+      "assetManagement": {
+        "title": "Inventory & Asset Management",
+        "description": "Keep track of tools, machinery, and other farm assets.",
+        "button": "Manage Assets"
+      },
+      "seedStarting": {
+        "title": "Seed Starting Guide",
+        "description": "Learn the best practices for starting healthy seedlings from seed.",
+        "button": "View Seed Guide"
+      },
+      "familyFarm": {
+        "title": "Integrated Family Farm Model",
+        "description": "Explore a proven model for a diversified and sustainable small-scale family farm.",
+        "button": "Explore Farm Model"
+      }
+    },
+    "knfInputsPage": {
+      "backLink": "Back to Farm Management Hub",
+      "title": "Korean Natural Farming (KNF) Input Assistant",
+      "description": "Track and manage your homemade KNF inputs from fermentation to application.",
+      "guidesTitle": "How-To Guides",
+      "ingredients": "Ingredients",
+      "steps": "Steps",
+      "usage": "Usage",
+      "fermentingBatchesTitle": "Active / Fermenting Batches",
+      "noFermentingBatches": "No batches are currently fermenting.",
+      "readyBatchesTitle": "Ready Batches",
+      "noReadyBatches": "No batches are ready for use.",
+      "startNewBatch": "Start New Batch",
+      "createNewBatchTitle": "Create New KNF Batch",
+      "started": "Started",
+      "nextStepOn": "Next step on",
+      "readySince": "Ready since",
+      "markReady": "Mark as Ready",
+      "logUsage": "Log Usage",
+      "archive": "Archive",
+      "cancel": "Cancel",
+      "form": {
+        "typeLabel": "Type of Input",
+        "typePlaceholder": "Select a KNF Input Type",
+        "ingredientsLabel": "Main Ingredients (comma-separated)",
+        "startDateLabel": "Start Date",
+        "startButton": "Start Batch",
+        "startingButton": "Starting..."
+      },
+      "knfOptions": [
+        { "value": "fpj", "label": "Fermented Plant Juice (FPJ)", "placeholder": "e.g. Sweet potato tips, brown sugar" },
+        { "value": "faa", "label": "Fish Amino Acid (FAA)", "placeholder": "e.g. Fish scraps, brown sugar" },
+        { "value": "wca", "label": "Water-Soluble Calcium (WCA)", "placeholder": "e.g. Eggshells, brown rice vinegar" },
+        { "value": "imo", "label": "Indigenous Microorganisms (IMO)", "placeholder": "e.g. Cooked rice, wooden box" },
+        { "value": "lab", "label": "Lactic Acid Bacteria (LAB)", "placeholder": "e.g. Rice wash water, milk" }
+      ],
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Fermented Plant Juice (FPJ)",
+          "description": "FPJ is rich in growth hormones and microorganisms which encourage growth of leaves and stems.",
+          "ingredients": ["Fast-growing plants (e.g., sweet potato shoots)", "Brown sugar"],
+          "steps": ["Mix plant material and sugar in equal parts by weight.", "Pack into a container and cover with a breathable cloth.", "Ferment for 7-10 days in a cool, dark place."],
+          "usage": "Dilute 1:500 with water. Use as a foliar spray."
+        },
+        {
+          "id": "faa",
+          "name": "Fish Amino Acid (FAA)",
+          "description": "FAA provides abundant amino acids and nitrogen to boost growth and enhance flavor.",
+          "ingredients": ["Fish scraps (heads, bones)", "Brown sugar"],
+          "steps": ["Mix fish scraps and sugar in equal parts by weight.", "Seal in a jar and ferment for 2-6 months."],
+          "usage": "Dilute 1:1000 with water. Use for soil application."
+        }
+      ],
+      "toasts": {
+        "loadErrorTitle": "Error",
+        "loadErrorDescription": "Could not load KNF batches.",
+        "validationError": "Please select a type, enter ingredients, and a start date.",
+        "batchStartedTitle": "Batch Started!",
+        "batchStartedDescription": "Your new KNF batch is now being tracked.",
+        "batchStartFailed": "Batch Creation Failed",
+        "unexpectedError": "An unexpected error occurred.",
+        "batchUpdatedTitle": "Status Updated",
+        "batchUpdatedDescription": "Batch status updated to {status}.",
+        "updateFailed": "Update Failed",
+        "couldNotUpdate": "Could not update batch status."
+      }
+    },
+    "fgwGuidePage": {
+      "backLink": "Back to Farm Management Hub",
+      "title": "Farming God's Way (FGW) Guide",
+      "description": "An overview of the core principles and practices of FGW.",
+      "intro": "Farming God's Way is a brilliant agricultural solution that marries God's technology with His ways. It focuses on restoring land and lives through faithful stewardship.",
+      "howToTitle": "How to Implement",
+      "whyItWorksTitle": "Why it Works",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "No Tillage",
+          "icon": "Shield",
+          "summary": "Leaving the soil undisturbed to preserve its natural structure, soil life, and fertility.",
+          "howTo": ["Dig planting holes instead of ploughing the entire field.", "Maintain permanent planting stations for future seasons."],
+          "whyItWorks": ["Prevents soil erosion.", "Protects beneficial microorganisms.", "Improves water infiltration and retention."],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field being managed using no-till farming methods.",
+          "dataAiHint": "no till farming"
+        },
+        {
+          "id": "gods-blanket",
+          "title": "God's Blanket (Mulching)",
+          "icon": "Leaf",
+          "summary": "Keeping the soil covered with a thick layer of organic matter at all times.",
+          "howTo": ["Apply a thick layer (at least 10cm) of dry organic material like grass, straw, or leaves.", "Spread the mulch between the planting stations.", "Top up the mulch throughout the season as it decomposes."],
+          "whyItWorks": ["Suppresses weeds.", "Conserves soil moisture.", "Regulates soil temperature.", "Adds nutrients to the soil as it breaks down."],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field covered thickly with straw mulch.",
+          "dataAiHint": "mulching straw"
+        },
+        {
+          "id": "high-standards",
+          "title": "High Standards",
+          "icon": "CheckCircle",
+          "summary": "Executing every task with excellence, on time, and with zero waste.",
+          "howTo": ["Plant on time at the start of the rains.", "Maintain accurate spacing between plants.", "Weed early and consistently."],
+          "whyItWorks": ["Maximizes yield potential.", "Reduces competition for nutrients.", "Demonstrates faithful stewardship of resources."],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Perfectly aligned rows of young maize plants.",
+          "dataAiHint": "precision agriculture"
+        },
+        {
+          "id": "on-time",
+          "title": "On Time",
+          "icon": "Droplets",
+          "summary": "Performing all farming operations at the optimal time to harness natural cycles.",
+          "howTo": ["Prepare the land before the first rains.", "Plant immediately after the first sufficient rains.", "Harvest when the crop is fully mature to minimize losses."],
+          "whyItWorks": ["Utilizes the full length of the growing season.", "Avoids pests and diseases that occur in later stages.", "Ensures the highest quality and market value."],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A farmer planting at the first sign of rain.",
+          "dataAiHint": "planting rain"
+        }
+      ]
+    },
+    "seedStartingPage": {
+      "backLink": "Back to Farm Management Hub",
+      "title": "Comprehensive Seed Starting Guide",
+      "description": "Maximize your germination rate and grow strong, healthy seedlings.",
+      "intro": "Starting seeds indoors gives you a head start on the growing season, protects young plants from harsh conditions and pests, and gives you full control over your plants' early growth stage.",
+      "sections": [
+        {
+          "id": "why-start-indoors",
+          "title": "Why Start Seeds Indoors?",
+          "icon": "Lightbulb",
+          "intro": "Starting seeds indoors rather than direct sowing outside provides several key advantages:",
+          "points": [
+            { "term": "Extended Season", "def": "Start growing weeks or months earlier before the weather outside permits." },
+            { "term": "Protection", "def": "Shield delicate seedlings from heavy rain, wind, frost, and pests." },
+            { "term": "Better Germination", "def": "Control temperature, light, and moisture to maximize germination rates." },
+            { "term": "Cost Savings", "def": "Growing your own from seed is often cheaper than buying nursery starts." }
+          ]
+        },
+        {
+          "id": "what-you-need",
+          "title": "What You'll Need",
+          "icon": "Package",
+          "intro": "Gathering the right materials is key to success. Here's a basic checklist:",
+          "points": [
+            { "term": "Containers", "def": "Seed trays, peat pots, or recycled containers like yogurt cups with drainage holes." },
+            { "term": "Seed Starting Mix", "def": "A lightweight, sterile mix designed for seed starting. Garden soil is too heavy and can carry diseases." },
+            { "term": "Seeds", "def": "Choose high-quality seeds from a reputable supplier." },
+            { "term": "Light", "def": "A sunny, south-facing window, or ideally, grow lights to prevent seedlings from becoming 'leggy'." },
+            { "term": "Heat", "def": "Some seeds germinate better with supplemental heat from a heat mat." }
+          ]
+        },
+        {
+          "id": "planting-process",
+          "title": "The Planting Process: Step-by-Step",
+          "icon": "Grid",
+          "intro": "Follow these steps for a successful sowing:",
+          "steps": [
+            "Moisten your seed starting mix before filling your containers. It should be damp, not soggy.",
+            "Fill your containers with the moist mix, tamping it down lightly.",
+            "Plant your seeds to the depth recommended on the seed packet. A good rule of thumb is to plant them about twice as deep as they are wide.",
+            "Cover the seeds lightly with soil and gently press down to ensure good seed-to-soil contact.",
+            "Gently mist the surface with water and cover the containers with a clear plastic dome or plastic wrap to retain humidity.",
+            "Place the containers in a warm location. Light is not necessary until after germination."
+          ]
+        },
+        {
+          "id": "caring-for-seedlings",
+          "title": "Caring For Your Seedlings",
+          "icon": "Sun",
+          "intro": "Once your seeds have sprouted, they need care to grow into strong plants.",
+          "points": [
+            { "term": "Light", "def": "As soon as the first leaves appear, remove the cover and provide plenty of light—at least 12-16 hours a day with grow lights placed just a few inches above the plants." },
+            { "term": "Water", "def": "Keep the soil evenly moist but not waterlogged. Water from the bottom by placing the containers in a tray of water." },
+            { "term": "Air Circulation", "def": "A gentle fan can help strengthen stems and prevent fungal diseases." },
+            { "term": "Fertilizing", "def": "Start fertilizing with a half-strength, diluted liquid fertilizer once the first set of true leaves appears." }
+          ]
+        },
+        {
+          "id": "hardening-off",
+          "title": "Hardening Off",
+          "icon": "CheckCircle",
+          "intro": "This is the crucial process of acclimating your indoor-grown seedlings to outdoor conditions.",
+          "steps": [
+            "About 7-10 days before you plan to plant, place your seedlings outdoors in a protected spot for an hour, then bring them back in.",
+            "Gradually increase the amount of time they spend outside each day, slowly exposing them to more direct sunlight and wind.",
+            "Reduce watering slightly to help toughen up the plants for the less-controlled environment.",
+            "After a week or more, your plants will be ready to be transplanted into their final spot in the garden or field."
+          ]
+        },
+        {
+          "id": "common-problems",
+          "title": "Common Problems & Solutions",
+          "icon": "AlertTriangle",
+          "intro": "Watch out for these common seed-starting issues:",
+          "points": [
+            { "term": "Leggy Seedlings", "def": "This is caused by insufficient light. Move your light source closer to the seedlings." },
+            { "term": "Damping Off", "def": "A fungal disease where stems rot at the soil line. Avoid overwatering, ensure good air circulation, and use sterile soil." },
+            { "term": "Mold on Soil Surface", "def": "Usually harmless, but a sign of overwatering or poor air circulation. Cut back on watering and increase airflow." }
+          ]
+        }
+      ]
+    },
+    "familyFarmPage": {
+      "backLink": "Back to Farm Management Hub",
+      "title": "200sqm Integrated Family Farm Model",
+      "description": "A diversified, sustainable, and highly productive model for family food security and income.",
+      "intro": "This model demonstrates how a small plot of just 200 square meters (10m x 20m) can be efficiently managed to feed a family and generate a small income through the intelligent integration of different components. It is based on principles of permaculture and closed-loop systems.",
+      "diagramCaption": "Diagram of the 200sqm Integrated Family Farm Model.",
+      "detailsTitle": "Key Components",
+      "principlesTitle": "Principles in Action",
+      "zones": [
+        {
+          "id": "overall-layout",
+          "title": "Overall Layout & Design",
+          "icon": "LayoutGrid",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "An aerial view of a small, diversified farm.",
+          "dataAiHint": "small farm layout",
+          "description": [
+            "The 200m² plot is strategically divided to maximize resource use. The core idea is that the 'waste' from one component becomes the 'input' for another, minimizing external inputs and maximizing sustainability.",
+            "Water is captured and reused, nutrients are recycled, and each component supports the others, creating a resilient mini-ecosystem."
+          ],
+          "details": [
+            { "title": "Water Management", "content": ["Rainwater harvesting from the house roof into a tank.", "Greywater filtering system for irrigation.", "Strategic placement of the pond for irrigation and humidity control."] },
+            { "title": "Space Management", "content": ["Vertical growing (trellises) to maximize space.", "Intercropping and companion planting.", "Intensive planting methods in raised beds."] }
+          ]
+        },
+        {
+          "id": "vegetable-beds",
+          "title": "Vegetable Beds (80m²)",
+          "icon": "Sprout",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Lush raised beds full of various vegetables.",
+          "dataAiHint": "vegetable raised bed",
+          "description": [
+            "This is the primary food production area. Raised beds are used to improve soil quality, drainage, and ease of access. Crop rotation is practiced to maintain soil health and break pest cycles.",
+            "A mix of staples, leafy greens, root crops, and fruiting vegetables are grown to ensure a continuous harvest and a diverse diet."
+          ],
+          "details": [
+            { "title": "Crop Rotation", "content": ["Bed 1: Leafy greens (spinach, lettuce).", "Bed 2: Fruiting veg (tomatoes, peppers).", "Bed 3: Root veg (carrots, beets).", "Bed 4: Legumes (beans, peas) for nitrogen fixation."] },
+            { "title": "Composting", "content": ["A simple 3-bin compost system processes kitchen and garden waste, providing nutrient-rich fertilizer for the beds."] }
+          ]
+        },
+        {
+          "id": "chicken-coop",
+          "title": "Mobile Chicken Coop (5m²)",
+          "icon": "Bird",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A small mobile chicken coop being moved on a field.",
+          "dataAiHint": "chicken tractor coop",
+          "description": [
+            "A small 'chicken tractor' houses 3-5 chickens. The coop is regularly moved over harvested vegetable beds.",
+            "The chickens provide eggs for protein and a small income. Their manure directly fertilizes the soil, while their scratching helps with pest control and preparing the beds for the next planting."
+          ],
+          "details": [
+            { "title": "Feed", "content": ["Supplemented with kitchen scraps, insects, and weeds from the garden, reducing feed costs."] },
+            { "title": "Benefits", "content": ["Daily eggs.", "Natural pest control.", "Soil aeration and fertilization."] }
+          ]
+        },
+        {
+          "id": "fish-pond",
+          "title": "Fish Pond (15m²)",
+          "icon": "Fish",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A small backyard pond with fish and aquatic plants.",
+          "dataAiHint": "aquaponics fish pond",
+          "description": [
+            "A small, lined pond that houses Tilapia or another hardy fish species. This is an excellent source of animal protein.",
+            "The nutrient-rich water from the pond is used to fertilize the vegetable beds (aquaponics principle), and aquatic plants like water hyacinth can filter the water and serve as feed for the chickens."
+          ],
+          "details": [
+            { "title": "Integration", "content": ["Periodic water removal for fertigation.", "Aquatic plants as supplemental feed.", "Fish waste as fertilizer."] },
+            { "title": "Benefits", "content": ["Protein source.", "Water cycling.", "Nutrient recycling."] }
+          ]
+        }
+      ],
+      "conclusion": {
+        "title": "Why This Model Works",
+        "content": [
+          "This integrated model is more than just a collection of parts; it is a holistic system.",
+          "It reduces reliance on external inputs, increases resilience to climate and market shocks, improves family nutrition, and creates the potential for a stable, diversified income from a very small parcel of land.",
+          "It is a blueprint for small-scale, sustainable, and productive agriculture."
+        ]
+      }
     }
   }
 }

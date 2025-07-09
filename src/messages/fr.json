@@ -370,436 +370,428 @@
       "button": "Contacter le support"
     }
   },
-  "Forums": {
-    "title": "Forums de la Communauté",
-    "description": "Connectez-vous, partagez vos connaissances et collaborez avec des acteurs de toute la chaîne d'approvisionnement agricole.",
-    "createTopic": "Créer un Nouveau Sujet",
-    "topic": {
-      "backLink": "Retour à Tous les Forums",
-      "buttons": {
-        "createPost": "Créer une Publication",
-        "loadMore": "Charger Plus de Publications",
-        "loadingMore": "Chargement..."
-      },
-      "postMeta": "Par {author} • {date}",
-      "noPosts": {
-        "title": "Aucune Publication pour le Moment",
-        "description": "Soyez le premier à lancer une conversation sur ce sujet.",
-        "button": "Démarrer une Discussion"
-      },
-      "notFound": {
-        "title": "Sujet non Trouvé",
-        "description": "Le sujet de discussion que vous recherchez n'existe pas ou a peut-être été déplacé.",
-        "backButton": "Retour aux Forums"
-      },
-      "errors": {
-        "loadTopic": {
-          "title": "Erreur de Chargement",
-          "description": "Impossible de charger les détails de ce sujet."
-        },
-        "loadPosts": {
-          "title": "Erreur de Chargement",
-          "description": "Impossible de charger les publications de ce sujet."
-        }
-      }
+  "privacyPolicy": {
+    "title": "Politique de confidentialité",
+    "lastUpdated": "Dernière mise à jour : 29 octobre 2023",
+    "introduction": "Cet avis de confidentialité pour DamDoh décrit comment et pourquoi nous pouvons collecter, stocker, utiliser et/ou partager ('traiter') vos informations lorsque vous utilisez nos services ('Services'), par exemple lorsque vous visitez notre site Web ou notre application mobile.",
+    "whatInfoWeCollect": {
+      "heading": "1. Quelles informations collectons-nous ?",
+      "content": "Nous collectons les informations personnelles que vous nous fournissez volontairement lorsque vous vous inscrivez aux Services, exprimez un intérêt à obtenir des informations sur nous ou nos produits et Services, lorsque vous participez à des activités sur les Services, ou autrement lorsque vous nous contactez."
     },
-    "create": {
-      "backLink": "Retour aux Forums",
-      "title": "Démarrer un Nouveau Sujet de Discussion",
-      "description": "Créez un nouveau sujet pour recueillir des idées et collaborer avec la communauté.",
-      "form": {
-        "nameLabel": "Nom du Sujet",
-        "namePlaceholder": "Ex: Production Durable de Café",
-        "descriptionLabel": "Description du Sujet",
-        "descriptionPlaceholder": "De quoi traite ce sujet ? Une brève description aide les autres à comprendre son but.",
-        "submitButton": "Créer le Sujet",
-        "submittingButton": "Création en cours..."
-      },
-      "errors": {
-        "auth": {
-          "title": "Authentification Requise",
-          "description": "Vous devez être connecté pour créer un nouveau sujet."
-        },
-        "incomplete": {
-          "title": "Informations Incomplètes",
-          "description": "Veuillez fournir un nom et une description pour votre nouveau sujet."
-        },
-        "general": {
-          "title": "Échec de la Création",
-          "description": "Une erreur inattendue s'est produite lors de la création du sujet."
-        }
-      },
-      "success": {
-        "title": "Sujet Créé !",
-        "description": "Votre nouveau sujet de discussion est maintenant en ligne."
-      }
+    "howWeUseInfo": {
+      "heading": "2. Comment utilisons-nous vos informations ?",
+      "content": "Nous traitons vos informations à des fins basées sur des intérêts commerciaux légitimes, l'exécution de notre contrat avec vous, le respect de nos obligations légales et/ou votre consentement. Cela inclut la facilitation de la création de compte, l'activation des communications d'utilisateur à utilisateur et la fourniture de nos services principaux."
     },
-    "createPost": {
-      "backLink": "Retour au Sujet",
-      "aiHelper": {
-        "title": "Besoin d'aide pour commencer ?",
-        "description": "Utilisez notre Assistant IA pour rédiger votre publication. Fournissez simplement une idée ci-dessous.",
-        "promptLabel": "Votre idée ou question",
-        "promptPlaceholder": "Ex: 'Demander quels sont les meilleurs pesticides bio contre la rouille du caféier'",
-        "generateButton": "Générer une Ébauche",
-        "generatingButton": "Génération en cours..."
-      },
-      "title": "Créer une Nouvelle Publication",
-      "description": "Partagez vos pensées, posez une question ou lancez une discussion.",
-      "form": {
-        "titleLabel": "Titre de la Publication",
-        "titlePlaceholder": "Entrez un titre clair et concis",
-        "contentLabel": "Votre Contenu",
-        "contentPlaceholder": "Écrivez votre publication ici...",
-        "submitButton": "Publier",
-        "submittingButton": "Publication en cours..."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "Idée Requise",
-          "description": "Veuillez entrer une idée ou une question pour que l'IA génère une ébauche."
-        },
-        "aiDraft": {
-          "title": "Échec de l'Ébauche IA",
-          "description": "Une erreur s'est produite lors de la génération de l'ébauche. Veuillez réessayer ou rédiger la publication manuellement."
-        },
-        "incomplete": {
-          "title": "Publication Incomplète",
-          "description": "Veuillez fournir un titre et un contenu pour votre publication."
-        },
-        "general": {
-          "title": "Échec de la Création de la Publication",
-          "description": "Une erreur inattendue s'est produite. Veuillez réessayer."
-        }
-      },
-      "success": {
-        "aiDraft": {
-          "title": "Ébauche Générée !",
-          "description": "L'IA a généré une ébauche ci-dessous. N'hésitez pas à la modifier avant de la publier."
-        },
-        "title": "Publication Publiée !",
-        "description": "Votre publication est maintenant en ligne dans le sujet."
-      }
+    "willInfoBeShared": {
+      "heading": "3. Vos informations seront-elles partagées avec quelqu'un ?",
+      "content": "Nous ne partageons les informations qu'avec votre consentement, pour nous conformer aux lois, pour vous fournir des services, pour protéger vos droits ou pour remplir des obligations commerciales. Par exemple, nous partageons les informations de votre profil public avec d'autres utilisateurs pour faciliter les connexions."
     },
-    "postView": {
-      "backLink": "Retour à {topicName}",
-      "repliesTitle": "{count, plural, =0 {Aucune Réponse} =1 {1 Réponse} other {{count} Réponses}}",
-      "noReplies": "Aucune réponse pour le moment. Soyez le premier à répondre !",
-      "buttons": {
-        "loadMore": "Charger Plus de Réponses",
-        "loadingMore": "Chargement..."
-      },
-      "reply": {
-        "title": "Votre Réponse",
-        "placeholder": "Écrivez votre réponse ici...",
-        "submitButton": "Publier la Réponse",
-        "submittingButton": "Publication en cours...",
-        "success": "Votre réponse a été publiée !"
-      },
-      "notFound": {
-        "title": "Publication non Trouvée",
-        "description": "La publication que vous recherchez n'existe pas ou a été déplacée.",
-        "backButton": "Retour au Forum"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Erreur",
-          "description": "Impossible de charger les détails de la publication."
-        },
-        "loadReplies": {
-          "title": "Erreur",
-          "description": "Impossible de charger les réponses de cette publication."
-        },
-        "submitReply": {
-          "title": "Échec de la Réponse",
-          "description": "Impossible d'envoyer votre réponse. Veuillez réessayer."
-        },
-        "emptyReply": "Votre réponse ne peut pas être vide."
-      }
+    "cookiesAndTracking": {
+      "heading": "4. Utilisons-nous des cookies et d'autres technologies de suivi ?",
+      "content": "Nous pouvons utiliser des cookies et des technologies de suivi similaires (comme les balises Web et les pixels) pour accéder ou stocker des informations. Des informations spécifiques sur la manière dont nous utilisons ces technologies et sur la manière dont vous pouvez refuser certains cookies sont exposées dans notre Avis sur les cookies."
     },
-    "pinning": {
-      "pinnedTitle": "Forums Épinglés",
-      "pinnedDescription": "La page des Forums est maintenant votre page d'accueil par défaut.",
-      "unpinnedTitle": "Forums Désépinglés",
-      "unpinnedDescription": "Votre page d'accueil a été réinitialisée par défaut."
+    "howLongWeKeepInfo": {
+      "heading": "5. Combien de temps conservons-nous vos informations ?",
+      "content": "Nous conservons vos informations aussi longtemps que nécessaire pour atteindre les objectifs décrits dans cet avis de confidentialité, sauf si la loi l'exige autrement. Lorsque nous n'avons plus de besoin commercial légitime de traiter vos informations personnelles, nous les supprimerons ou les anonymiserons."
     },
-    "buttons": {
-      "createTopic": "Créer un Sujet",
-      "loadMore": "Charger Plus",
-      "loadingMore": "Chargement...",
-      "joinDiscussion": "Rejoindre la Discussion"
+    "howWeKeepInfoSafe": {
+      "heading": "6. Comment protégeons-nous vos informations ?",
+      "content": "Nous avons mis en œuvre des mesures de sécurité techniques et organisationnelles appropriées conçues pour protéger la sécurité de toutes les informations personnelles que nous traitons. Cependant, malgré nos mesures de protection et nos efforts, aucune transmission électronique sur Internet ne peut être garantie à 100 %."
     },
-    "lastActivity": "Dernière activité il y a {time}",
-    "notFound": {
-      "title": "Aucun Sujet Correspondant Trouvé",
-      "tryDifferentSearch": "Essayez un autre terme de recherche.",
-      "beTheFirst": "Soyez le premier à en créer un !",
-      "button": "Créer un Sujet"
+    "minors": {
+      "heading": "7. Collectons-nous des informations auprès de mineurs ?",
+      "content": "Nous ne sollicitons pas sciemment de données auprès des enfants de moins de 18 ans et ne leur faisons pas de marketing. En utilisant les Services, vous déclarez que vous avez au moins 18 ans ou que vous êtes le parent ou le tuteur d'un tel mineur et que vous consentez à l'utilisation des Services par ce mineur à charge."
     },
-    "errors": {
-      "loadTitle": "Erreur de Chargement",
-      "loadDescription": "Une erreur s'est produite lors de la récupération des sujets du forum."
+    "privacyRights": {
+      "heading": "8. Quels sont vos droits en matière de confidentialité ?",
+      "content": "Dans certaines régions, vous disposez de certains droits en vertu des lois applicables sur la protection des données. Celles-ci peuvent inclure le droit (i) de demander l'accès et d'obtenir une copie de vos informations personnelles, (ii) de demander la rectification ou l'effacement ; (iii) de restreindre le traitement de vos informations personnelles ; et (iv) le cas échéant, à la portabilité des données."
     },
-    "searchPlaceholder": "Rechercher des sujets...",
-    "postMeta": "Par {author} • {date}"
+    "controlsForDoNotTrack": {
+      "heading": "9. Contrôles pour les fonctionnalités Do-Not-Track",
+      "content": "La plupart des navigateurs Web et certains systèmes d'exploitation et applications mobiles incluent une fonction ou un paramètre Do-Not-Track ('DNT') que vous pouvez activer pour signaler votre préférence en matière de confidentialité de ne pas faire surveiller et collecter les données sur vos activités de navigation en ligne. À ce stade, aucune norme technologique uniforme pour la reconnaissance et la mise en œuvre des signaux DNT n'a été finalisée. En tant que tel, nous ne répondons actuellement pas aux signaux DNT du navigateur."
+    },
+    "updatesToNotice": {
+      "heading": "10. Faisons-nous des mises à jour de cet avis ?",
+      "content": "Nous pouvons mettre à jour cet avis de confidentialité de temps à autre. La version mise à jour sera indiquée par une date de 'Révisé' mise à jour et la version mise à jour sera effective dès qu'elle sera accessible. Nous vous encourageons à consulter fréquemment cet avis de confidentialité pour être informé de la manière dont nous protégeons vos informations."
+    }
   },
-  "Marketplace": {
-    "title": "Marché",
-    "description": "Découvrez, achetez et vendez des produits et services agricoles.",
-    "createShopButton": "Créer une Boutique",
-    "myOrdersButton": "Mes Commandes",
-    "createListingButton": "Créer une Annonce",
-    "pinButton": "Épingler comme Accueil",
-    "unpinButton": "Désépingler de l'Accueil",
-    "searchPlaceholder": "Rechercher produits & services...",
-    "locationPlaceholder": "Filtrer par lieu...",
-    "typePlaceholder": "Filtrer par type...",
-    "recommendedForYou": "Recommandé pour Vous",
-    "discoverMore": "Découvrir Plus",
-    "viewDetails": "Voir les Détails",
-    "viewServiceButton": "Voir le Service",
-    "pinning": {
-      "pinnedTitle": "Marché Épinglé",
-      "pinnedDescription": "Le Marché est maintenant votre page d'accueil par défaut.",
-      "unpinnedTitle": "Marché Désépinglé",
-      "unpinnedDescription": "Votre page d'accueil a été réinitialisée par défaut."
+  "termsOfService": {
+    "title": "Conditions d'utilisation",
+    "lastUpdated": "Dernière mise à jour : 29 octobre 2023",
+    "introduction": "Ces conditions d'utilisation constituent un accord juridiquement contraignant entre vous et DamDoh, concernant votre accès et votre utilisation du site Web de DamDoh ainsi que de toute autre forme de média, canal médiatique, site Web mobile ou application mobile connexe, lié ou autrement connecté à celui-ci.",
+    "agreementToTerms": {
+      "heading": "1. Acceptation des conditions",
+      "content": "En utilisant la plateforme, vous acceptez d'être lié par ces conditions d'utilisation. Si vous n'êtes pas d'accord, vous ne pouvez pas utiliser la plateforme. Nous nous réservons le droit d'apporter des modifications à ces conditions à tout moment."
     },
-    "noItemsFound": {
-      "title": "Aucun Article Trouvé",
-      "hint": "Essayez d'ajuster vos filtres de recherche ou revenez plus tard."
+    "intellectualProperty": {
+      "heading": "2. Droits de propriété intellectuelle",
+      "content": "Sauf indication contraire, la plateforme est notre propriété exclusive et tout le code source, les bases de données, les fonctionnalités, les logiciels, les conceptions de sites Web, l'audio, la vidéo, le texte, les photographies et les graphiques sur le Site (collectivement, le 'Contenu') et les marques de commerce, les marques de service et les logos qu'ils contiennent sont notre propriété ou sous notre contrôle ou nous sont concédés sous licence."
     },
-    "errors": {
-      "search": {
-        "title": "Recherche Échouée",
-        "description": "Impossible de récupérer les articles du marché pour le moment."
+    "userRepresentations": {
+      "heading": "3. Déclarations de l'utilisateur",
+      "content": "En utilisant le Site, vous déclarez et garantissez que : (1) toutes les informations d'inscription que vous soumettez seront vraies, exactes, actuelles et complètes ; (2) vous maintiendrez l'exactitude de ces informations et mettrez à jour rapidement ces informations d'inscription si nécessaire ; (3) vous avez la capacité juridique et vous acceptez de vous conformer à ces Conditions d'utilisation ; (4) vous n'utiliserez pas le Site à des fins illégales ou non autorisées ; et (5) votre utilisation du Site ne violera aucune loi ou réglementation applicable."
+    },
+    "prohibitedActivities": {
+      "heading": "4. Activités interdites",
+      "content": "Vous ne pouvez pas accéder ou utiliser le Site à d'autres fins que celles pour lesquelles nous le mettons à votre disposition. Les activités interdites incluent, sans s'y limiter : la récupération systématique de données, la tromperie ou la fraude envers nous ou d'autres utilisateurs, la tentative d'usurper l'identité d'un autre utilisateur, le harcèlement ou la menace de nos employés ou d'autres utilisateurs, et le téléchargement ou la transmission de virus ou de tout autre type de code malveillant."
+    },
+    "platformManagement": {
+      "heading": "5. Gestion de la plateforme",
+      "content": "Nous nous réservons le droit, mais non l'obligation, de : (1) surveiller le Site pour détecter les violations de ces Conditions d'utilisation ; (2) prendre les mesures légales appropriées contre toute personne qui, à notre seule discrétion, enfreint la loi ou ces Conditions d'utilisation ; (3) à notre seule discrétion et sans limitation, refuser, restreindre l'accès, limiter la disponibilité ou désactiver l'une de vos Contributions ou une partie de celles-ci."
+    },
+    "termAndTermination": {
+      "heading": "6. Durée et résiliation",
+      "content": "Ces Conditions d'utilisation resteront en vigueur pendant que vous utilisez le Site. SANS LIMITER AUCUNE AUTRE DISPOSITION DE CES CONDITIONS D'UTILISATION, NOUS NOUS RÉSERVONS LE DROIT, À NOTRE SEULE DISCRÉTION ET SANS PRÉAVIS NI RESPONSABILITÉ, DE REFUSER L'ACCÈS ET L'UTILISATION DU SITE (Y COMPRIS LE BLOCAGE DE CERTAINES ADRESSES IP), À TOUTE PERSONNE POUR QUELQUE RAISON QUE CE SOIT OU SANS RAISON."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. Modifications et interruptions",
+      "content": "Nous nous réservons le droit de changer, de modifier ou de supprimer le contenu du Site à tout moment ou pour quelque raison que ce soit, à notre seule discrétion et sans préavis. Nous nous réservons également le droit de modifier ou d'interrompre tout ou partie du Site sans préavis à tout moment. Nous ne serons pas responsables envers vous ou un tiers pour toute modification, changement de prix, suspension ou interruption du Site."
+    },
+    "governingLaw": {
+      "heading": "8. Droit applicable",
+      "content": "Ces Conditions d'utilisation et votre utilisation du Site sont régies et interprétées conformément aux lois de la juridiction dans laquelle DamDoh est enregistrée, sans égard à ses principes de conflit de lois."
+    },
+    "disputeResolution": {
+      "heading": "9. Résolution des litiges",
+      "content": "Toute action en justice de quelque nature que ce soit intentée par vous ou par nous sera engagée ou poursuivie devant les tribunaux d'État et fédéraux situés dans notre juridiction enregistrée, et les parties consentent par la présente et renoncent à toutes les défenses de défaut de compétence personnelle et de forum non conveniens en ce qui concerne le lieu et la compétence de ces tribunaux."
+    },
+    "contactUs": {
+      "heading": "10. Nous contacter",
+      "content": "Afin de résoudre une plainte concernant le Site ou de recevoir de plus amples informations sur l'utilisation du Site, veuillez nous contacter."
+    },
+    "conclusion": "Pour résoudre une plainte ou obtenir plus d'informations, veuillez {contactLink}."
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Hub de Gestion Agricole",
+      "description": "Votre lieu central pour suivre, gérer et optimiser toutes vos activités agricoles.",
+      "myFarms": {
+        "title": "Mes Fermes & Cultures",
+        "description": "Gérez les profils de vos fermes, ajoutez de nouveaux lots de cultures et suivez leur progression.",
+        "button": "Gérer les Fermes"
       },
-      "aiRecommendations": {
-        "title": "Aucune recommandation trouvée pour le moment."
+      "knf": {
+        "title": "Assistant Intrants KNF",
+        "description": "Créez et gérez vos propres Jus de Plantes Fermentées (FPJ), Acide Aminé de Poisson (FAA) et autres intrants de l'Agriculture Naturelle Coréenne.",
+        "button": "Gérer les Intrants KNF"
+      },
+      "fgw": {
+        "title": "Guide Farming God's Way",
+        "description": "Apprenez les principes fondamentaux de Farming God's Way (FGW), y compris le non-labour et la Couverture de Dieu.",
+        "button": "Voir le Guide FGW"
+      },
+      "labor": {
+        "title": "Gestion de la Main-d'œuvre",
+        "description": "Suivez les heures de travail, les paiements et gérez les profils de vos ouvriers agricoles.",
+        "button": "Gérer la Main-d'œuvre"
+      },
+      "financials": {
+        "title": "Questions d'Argent",
+        "description": "Gérez les revenus, les dépenses et postulez à des opportunités de financement adaptées à votre entreprise agricole.",
+        "button": "Gérer les Finances"
+      },
+      "assetManagement": {
+        "title": "Gestion des stocks et des actifs",
+        "description": "Gardez une trace des outils, des machines et autres actifs agricoles.",
+        "button": "Gérer les Actifs"
+      },
+      "seedStarting": {
+        "title": "Guide de Démarrage des Semis",
+        "description": "Apprenez les meilleures pratiques pour démarrer des semis sains à partir de graines.",
+        "button": "Voir le Guide des Semis"
+      },
+      "familyFarm": {
+        "title": "Modèle de Ferme Familiale Intégrée",
+        "description": "Explorez un modèle éprouvé pour une ferme familiale diversifiée et durable à petite échelle.",
+        "button": "Explorer le Modèle de Ferme"
       }
     },
-    "categories": {
-      "allCategories": "Toutes les Catégories",
-      "viewAllItems": "Voir Tous les Articles",
-      "viewAllCategory": "Tout en {categoryName}"
-    },
-    "createListing": {
-      "backLink": "Retour au Marché",
-      "title": "Créer une Nouvelle Annonce sur le Marché",
-      "description": "Remplissez les détails ci-dessous pour lister votre produit ou service.",
+    "knfInputsPage": {
+      "backLink": "Retour au Hub de Gestion Agricole",
+      "title": "Assistant d'Intrants de l'Agriculture Naturelle Coréenne (KNF)",
+      "description": "Suivez et gérez vos intrants KNF faits maison, de la fermentation à l'application.",
+      "guidesTitle": "Guides Pratiques",
+      "ingredients": "Ingrédients",
+      "steps": "Étapes",
+      "usage": "Utilisation",
+      "fermentingBatchesTitle": "Lots Actifs / en Fermentation",
+      "noFermentingBatches": "Aucun lot n'est actuellement en fermentation.",
+      "readyBatchesTitle": "Lots Prêts",
+      "noReadyBatches": "Aucun lot n'est prêt à être utilisé.",
+      "startNewBatch": "Démarrer un Nouveau Lot",
+      "createNewBatchTitle": "Créer un Nouveau Lot KNF",
+      "started": "Démarré",
+      "nextStepOn": "Prochaine étape le",
+      "readySince": "Prêt depuis le",
+      "markReady": "Marquer comme Prêt",
+      "logUsage": "Enregistrer l'Utilisation",
+      "archive": "Archiver",
+      "cancel": "Annuler",
       "form": {
-        "nameLabel": "Titre de l'Annonce",
-        "namePlaceholder": "Ex: Avocats Hass Bio, Service de Réparation de Tracteur",
-        "typeLabel": "Type d'Annonce",
-        "typePlaceholder": "Sélectionnez un type d'annonce",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Décrivez votre produit ou service en détail...",
-        "locationLabel": "Lieu",
-        "locationPlaceholder": "Ex: Nakuru, Kenya",
-        "relatedVtiLabel": "ID de Traçabilité Associé (Optionnel)",
-        "relatedVtiPlaceholder": "Entrez le VTI si applicable",
-        "relatedVtiDescription": "Liez cette annonce à un lot de récolte spécifique pour une transparence totale.",
-        "categoryLabel": "Catégorie",
-        "categoryPlaceholder": "Sélectionnez une catégorie",
-        "priceLabel": "Prix",
-        "pricePlaceholder": "Ex: 25.50",
-        "unitLabel": "par",
-        "unitPlaceholder": "Ex: kg, tonne, heure",
-        "compensationLabel": "Rémunération / Tarifs",
-        "compensationPlaceholder": "Ex: 50 $/heure, Basé sur le projet",
-        "experienceLabel": "Niveau d'Expérience",
-        "experiencePlaceholder": "Ex: Intermédiaire, Expert (10+ ans)",
-        "skillsLabel": "Compétences Requises (pour les services)",
-        "skillsPlaceholder": "Ex: Pulvérisation des Cultures, Analyse de Sol, Certification Bio",
-        "skillsDescription": "Séparez les compétences par une virgule.",
-        "imageUrlLabel": "URL de l'Image",
-        "sustainableLabel": "Produit de Manière Durable",
-        "sustainableDescription": "Cochez ceci si votre produit ou service suit des pratiques durables reconnues.",
-        "submitButton": "Créer l'Annonce",
-        "submittingButton": "Création en cours..."
+        "typeLabel": "Type d'Intrant",
+        "typePlaceholder": "Sélectionnez un type d'intrant KNF",
+        "ingredientsLabel": "Ingrédients Principaux (séparés par des virgules)",
+        "startDateLabel": "Date de Début",
+        "startButton": "Démarrer le Lot",
+        "startingButton": "Démarrage..."
       },
-      "aiPriceSuggestion": {
-        "button": "Suggérer un Prix avec l'IA",
-        "generatingButton": "Suggestion en cours...",
-        "suggestionLabel": "Suggestion IA :",
-        "usePriceButton": "Utiliser ce Prix"
-      },
-      "errors": {
-        "priceSuggestion": {
-          "missingInfo": {
-            "title": "Informations Manquantes",
-            "description": "Veuillez remplir le Titre et la Description avant de suggérer un prix."
-          },
-          "failed": {
-            "title": "Échec de la Suggestion IA",
-            "description": "Impossible d'obtenir une suggestion de prix pour le moment."
-          }
+      "knfOptions": [
+        { "value": "fpj", "label": "Jus de Plantes Fermentées (FPJ)", "placeholder": "Ex: Pousses de patate douce, sucre roux" },
+        { "value": "faa", "label": "Acide Aminé de Poisson (FAA)", "placeholder": "Ex: Restes de poisson, sucre roux" },
+        { "value": "wca", "label": "Calcium Soluble dans l'Eau (WCA)", "placeholder": "Ex: Coquilles d'œufs, vinaigre de riz brun" },
+        { "value": "imo", "label": "Microorganismes Indigènes (IMO)", "placeholder": "Ex: Riz cuit, boîte en bois" },
+        { "value": "lab", "label": "Bactéries Lactiques (LAB)", "placeholder": "Ex: Eau de rinçage du riz, lait" }
+      ],
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Jus de Plantes Fermentées (FPJ)",
+          "description": "Le FPJ est riche en hormones de croissance et en micro-organismes qui encouragent la croissance des feuilles et des tiges.",
+          "ingredients": ["Plantes à croissance rapide (ex. pousses de patate douce)", "Sucre roux"],
+          "steps": ["Mélanger le matériel végétal et le sucre à parts égales en poids.", "Tasser dans un récipient et couvrir d'un tissu respirant.", "Laisser fermenter pendant 7-10 jours dans un endroit frais et sombre."],
+          "usage": "Diluer 1:500 avec de l'eau. Utiliser en pulvérisation foliaire."
         },
-        "authentication": {
-          "title": "Non Authentifié",
-          "description": "Vous devez être connecté pour créer une annonce."
-        },
-        "creation": {
-          "title": "Échec de la Création",
-          "description": "Une erreur inattendue s'est produite lors de la création de l'annonce."
+        {
+          "id": "faa",
+          "name": "Acide Aminé de Poisson (FAA)",
+          "description": "Le FAA fournit une abondance d'acides aminés et d'azote pour stimuler la croissance et améliorer la saveur.",
+          "ingredients": ["Restes de poisson (têtes, arêtes)", "Sucre roux"],
+          "steps": ["Mélanger les restes de poisson et le sucre à parts égales en poids.", "Sceller dans un bocal et laisser fermenter pendant 2-6 mois."],
+          "usage": "Diluer 1:1000 avec de l'eau. Utiliser pour une application au sol."
         }
-      },
-      "success": {
-        "title": "Annonce Créée !",
-        "description": "Votre article est maintenant en ligne sur le marché."
+      ],
+      "toasts": {
+        "loadErrorTitle": "Erreur",
+        "loadErrorDescription": "Impossible de charger les lots KNF.",
+        "validationError": "Veuillez sélectionner un type, entrer les ingrédients et une date de début.",
+        "batchStartedTitle": "Lot Démarré !",
+        "batchStartedDescription": "Votre nouveau lot KNF est maintenant suivi.",
+        "batchStartFailed": "Échec de la Création du Lot",
+        "unexpectedError": "Une erreur inattendue est survenue.",
+        "batchUpdatedTitle": "Statut Mis à Jour",
+        "batchUpdatedDescription": "Statut du lot mis à jour à {status}.",
+        "updateFailed": "Échec de la Mise à Jour",
+        "couldNotUpdate": "Impossible de mettre à jour le statut du lot."
       }
     },
-    "itemView": {
-      "backLink": "Retour au Marché",
-      "notFound": {
-        "description": "Article non trouvé."
-      },
-      "errors": {
-        "loadItem": {
-          "description": "Impossible de charger l'article."
+    "fgwGuidePage": {
+      "backLink": "Retour au Hub de Gestion Agricole",
+      "title": "Guide de Farming God's Way (FGW)",
+      "description": "Un aperçu des principes et pratiques fondamentaux de FGW.",
+      "intro": "Farming God's Way est une solution agricole brillante qui allie la technologie de Dieu à Ses voies. Elle se concentre sur la restauration des terres et des vies par une intendance fidèle.",
+      "howToTitle": "Comment Mettre en Œuvre",
+      "whyItWorksTitle": "Pourquoi ça Marche",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "Non-Labour",
+          "icon": "Shield",
+          "summary": "Laisser le sol intact pour préserver sa structure naturelle, la vie du sol et sa fertilité.",
+          "howTo": ["Creuser des trous de plantation au lieu de labourer tout le champ.", "Maintenir des stations de plantation permanentes pour les saisons futures."],
+          "whyItWorks": ["Prévient l'érosion du sol.", "Protège les micro-organismes bénéfiques.", "Améliore l'infiltration et la rétention de l'eau."],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un champ géré avec des méthodes de non-labour.",
+          "dataAiHint": "no till farming"
         },
-        "unexpected": "Une erreur inattendue est survenue."
-      },
-      "coupon": {
-        "successTitle": "Coupon Appliqué !",
-        "successDescription": "Vous avez reçu une réduction de {type} !",
-        "failTitle": "Coupon Invalide",
-        "failDescription": "Le code de coupon que vous avez entré est invalide ou a expiré.",
-        "label": "Code de Coupon",
-        "placeholder": "Entrer le coupon",
-        "applyButton": "Appliquer",
-        "appliedText": "Coupon '{code}' appliqué."
-      },
-      "booking": {
-        "authTitle": "Connexion requise",
-        "authDescription": "Vous devez être connecté pour réserver un service.",
-        "failTitle": "Échec de la réservation",
-        "dateError": "Veuillez sélectionner une date de début et de fin pour votre réservation.",
-        "successTitle": "Réservation réussie !",
-        "successDescription": "Votre réservation a été confirmée. Vous recevrez plus de détails par e-mail.",
-        "bookedTitle": "Vous avez réservé cette expérience !",
-        "bookedDescription": "Montrez votre billet à l'arrivée.",
-        "ticketButton": "Voir le billet",
-        "modalTitle": "Votre Billet",
-        "modalDescription": "Présentez ce code QR lors de l'enregistrement pour {itemName}.",
-        "modalScan": "Scannez ce code lors de l'enregistrement.",
-        "perNight": "par nuit",
-        "checkIn": "Arrivée",
-        "checkOut": "Départ",
-        "addDate": "Ajouter une date",
-        "guests": "Invités",
-        "reserveButton": "Réserver",
-        "reservingButton": "Réservation...",
-        "notCharged": "Vous ne serez pas encore débité",
-        "nights": "{count, plural, =1 {nuit} other {nuits}}",
-        "serviceFee": "Frais de service",
-        "total": "Total"
-      },
-      "order": {
-        "authTitle": "Connexion requise",
-        "authDescription": "Vous devez être connecté pour passer une commande.",
-        "quantityErrorTitle": "Quantité invalide",
-        "quantityErrorDescription": "Veuillez entrer une quantité supérieure à zéro.",
-        "successTitle": "Commande passée !",
-        "successDescription": "Votre commande a été envoyée avec succès au vendeur.",
-        "failTitle": "Échec de la commande",
-        "failDescription": "Impossible de passer votre commande. Veuillez réessayer.",
-        "title": "Passer commande pour {itemName}",
-        "description": "Confirmez la quantité et ajoutez des notes pour le vendeur si nécessaire.",
-        "quantityLabel": "Quantité",
-        "notesLabel": "Notes pour le vendeur (facultatif)",
-        "notesPlaceholder": "Ex : instructions de livraison, demandes spéciales...",
-        "cancelButton": "Annuler",
-        "confirmButton": "Confirmer la commande",
-        "placingButton": "Passage de la commande..."
-      },
-      "skillsLabel": "Compétences requises",
-      "experienceLabel": "Niveau d'expérience",
-      "compensationLabel": "Rémunération",
-      "contactForRates": "Contacter pour les tarifs",
-      "aboutSeller": "À propos du vendeur",
-      "viewShopfront": "Voir la boutique",
-      "editListing": "Modifier l'annonce",
-      "manageService": "Gérer le service",
-      "buyNowButton": "Acheter maintenant",
-      "contactForService": "Contacter pour le service",
-      "contactSeller": "Contacter le vendeur",
-      "traceabilityButton": "Voir le rapport de traçabilité"
+        {
+          "id": "gods-blanket",
+          "title": "La Couverture de Dieu (Paillage)",
+          "icon": "Leaf",
+          "summary": "Garder le sol couvert d'une épaisse couche de matière organique en tout temps.",
+          "howTo": ["Appliquer une épaisse couche (au moins 10 cm) de matière organique sèche comme de l'herbe, de la paille ou des feuilles.", "Étaler le paillis entre les stations de plantation.", "Rajouter du paillis tout au long de la saison au fur et à mesure de sa décomposition."],
+          "whyItWorks": ["Supprime les mauvaises herbes.", "Conserve l'humidité du sol.", "Régule la température du sol.", "Ajoute des nutriments au sol en se décomposant."],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un champ recouvert d'une épaisse couche de paillis de paille.",
+          "dataAiHint": "mulching straw"
+        },
+        {
+          "id": "high-standards",
+          "title": "Normes Élevées",
+          "icon": "CheckCircle",
+          "summary": "Exécuter chaque tâche avec excellence, à temps et sans gaspillage.",
+          "howTo": ["Planter à temps au début des pluies.", "Maintenir un espacement précis entre les plantes.", "Désherber tôt et de manière cohérente."],
+          "whyItWorks": ["Maximise le potentiel de rendement.", "Réduit la concurrence pour les nutriments.", "Démontre une intendance fidèle des ressources."],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Des rangées parfaitement alignées de jeunes plants de maïs.",
+          "dataAiHint": "precision agriculture"
+        },
+        {
+          "id": "on-time",
+          "title": "À Temps",
+          "icon": "Droplets",
+          "summary": "Effectuer toutes les opérations agricoles au moment optimal pour exploiter les cycles naturels.",
+          "howTo": ["Préparer la terre avant les premières pluies.", "Planter immédiatement après les premières pluies suffisantes.", "Récolter lorsque la culture est complètement mûre pour minimiser les pertes."],
+          "whyItWorks": ["Utilise toute la durée de la saison de croissance.", "Évite les ravageurs et les maladies qui surviennent à des stades ultérieurs.", "Assure la meilleure qualité et la plus grande valeur marchande."],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un agriculteur plantant au premier signe de pluie.",
+          "dataAiHint": "planting rain"
+        }
+      ]
     },
-    "myOrders": {
-      "title": "Mes Commandes",
-      "description": "Voir et gérer les commandes que vous avez reçues des acheteurs.",
-      "backLink": "Retour au Marché",
-      "noOrders": "Vous n'avez encore reçu aucune commande.",
-      "auth": {
-        "title": "Veuillez vous connecter",
-        "description": "Vous devez être connecté pour voir vos commandes.",
-        "button": "Se connecter"
-      },
-      "toast": {
-        "errorTitle": "Erreur",
-        "fetchError": "Impossible de récupérer vos commandes. Veuillez réessayer.",
-        "successTitle": "Succès",
-        "updateSuccess": "Statut de la commande mis à jour à {status}.",
-        "failTitle": "Échec de la mise à jour"
-      },
-      "table": {
-        "date": "Date",
-        "buyer": "Acheteur",
-        "product": "Produit",
-        "total": "Total",
-        "status": "Statut",
-        "actions": "Actions"
-      },
-      "actions": {
-        "confirm": "Confirmer la commande",
-        "ship": "Marquer comme expédiée",
-        "complete": "Terminer la commande",
-        "cancel": "Annuler la commande"
-      },
-      "status": {
-        "new": "Nouveau",
-        "confirmed": "Confirmé",
-        "shipped": "Expédié",
-        "completed": "Terminé",
-        "cancelled": "Annulé"
+    "seedStartingPage": {
+      "backLink": "Retour au Hub de Gestion Agricole",
+      "title": "Guide Complet du Démarrage des Semis",
+      "description": "Maximisez votre taux de germination et cultivez des plants forts et sains.",
+      "intro": "Démarrer les semis à l'intérieur vous donne une longueur d'avance sur la saison de croissance, protège les jeunes plants des conditions difficiles et des parasites, et vous donne un contrôle total sur la phase de croissance précoce de vos plantes.",
+      "sections": [
+        {
+          "id": "why-start-indoors",
+          "title": "Pourquoi Démarrer les Semis à l'Intérieur ?",
+          "icon": "Lightbulb",
+          "intro": "Démarrer les semis à l'intérieur plutôt que de semer directement à l'extérieur offre plusieurs avantages clés :",
+          "points": [
+            { "term": "Saison Prolongée", "def": "Commencez à cultiver des semaines ou des mois plus tôt, avant que le temps extérieur ne le permette." },
+            { "term": "Protection", "def": "Protégez les semis délicats des fortes pluies, du vent, du gel et des parasites." },
+            { "term": "Meilleure Germination", "def": "Contrôlez la température, la lumière et l'humidité pour maximiser les taux de germination." },
+            { "term": "Économies", "def": "Cultiver ses propres plants à partir de graines est souvent moins cher que d'acheter des plants de pépinière." }
+          ]
+        },
+        {
+          "id": "what-you-need",
+          "title": "Ce dont Vous Aurez Besoin",
+          "icon": "Package",
+          "intro": "Rassembler le bon matériel est la clé du succès. Voici une liste de contrôle de base :",
+          "points": [
+            { "term": "Contenants", "def": "Bacs à semis, pots de tourbe, ou contenants recyclés comme des pots de yaourt avec des trous de drainage." },
+            { "term": "Terreau pour Semis", "def": "Un mélange léger et stérile conçu pour le démarrage des semis. La terre de jardin est trop lourde et peut contenir des maladies." },
+            { "term": "Graines", "def": "Choisissez des graines de haute qualité d'un fournisseur réputé." },
+            { "term": "Lumière", "def": "Une fenêtre ensoleillée orientée au sud, ou idéalement, des lampes de culture pour éviter que les semis ne deviennent 'étiolés'." },
+            { "term": "Chaleur", "def": "Certaines graines germent mieux avec une chaleur supplémentaire provenant d'un tapis chauffant." }
+          ]
+        },
+        {
+          "id": "planting-process",
+          "title": "Le Processus de Plantation : Étape par Étape",
+          "icon": "Grid",
+          "intro": "Suivez ces étapes pour un semis réussi :",
+          "steps": [
+            "Humidifiez votre terreau pour semis avant de remplir vos contenants. Il doit être humide, pas détrempé.",
+            "Remplissez vos contenants avec le mélange humide, en le tassant légèrement.",
+            "Plantez vos graines à la profondeur recommandée sur le sachet de graines. Une bonne règle générale est de les planter à environ deux fois leur largeur de profondeur.",
+            "Couvrez légèrement les graines de terre et pressez doucement pour assurer un bon contact entre la graine et le sol.",
+            "Vaporisez doucement la surface avec de l'eau et couvrez les contenants avec un dôme en plastique transparent ou un film plastique pour retenir l'humidité.",
+            "Placez les contenants dans un endroit chaud. La lumière n'est pas nécessaire avant la germination."
+          ]
+        },
+        {
+          "id": "caring-for-seedlings",
+          "title": "Prendre Soin de vos Semis",
+          "icon": "Sun",
+          "intro": "Une fois que vos graines ont germé, elles ont besoin de soins pour devenir des plantes fortes.",
+          "points": [
+            { "term": "Lumière", "def": "Dès que les premières feuilles apparaissent, retirez le couvercle et fournissez beaucoup de lumière - au moins 12 à 16 heures par jour avec des lampes de culture placées à seulement quelques centimètres au-dessus des plantes." },
+            { "term": "Arrosage", "def": "Gardez le sol uniformément humide mais pas détrempé. Arrosez par le bas en plaçant les contenants dans un plateau d'eau." },
+            { "term": "Circulation de l'Air", "def": "Un ventilateur doux peut aider à renforcer les tiges et à prévenir les maladies fongiques." },
+            { "term": "Fertilisation", "def": "Commencez à fertiliser avec un engrais liquide dilué à demi-force une fois que la première série de vraies feuilles apparaît." }
+          ]
+        },
+        {
+          "id": "hardening-off",
+          "title": "Acclimatation",
+          "icon": "CheckCircle",
+          "intro": "C'est le processus crucial d'acclimater vos semis cultivés à l'intérieur aux conditions extérieures.",
+          "steps": [
+            "Environ 7 à 10 jours avant de prévoir de planter, placez vos semis à l'extérieur dans un endroit protégé pendant une heure, puis rentrez-les.",
+            "Augmentez progressivement le temps qu'ils passent à l'extérieur chaque jour, en les exposant lentement à plus de soleil direct et de vent.",
+            "Réduisez légèrement l'arrosage pour aider à endurcir les plantes pour l'environnement moins contrôlé.",
+            "Après une semaine ou plus, vos plantes seront prêtes à être transplantées à leur emplacement final dans le jardin ou le champ."
+          ]
+        },
+        {
+          "id": "common-problems",
+          "title": "Problèmes Courants et Solutions",
+          "icon": "AlertTriangle",
+          "intro": "Soyez attentif à ces problèmes courants de démarrage de semis :",
+          "points": [
+            { "term": "Semis Étiolés", "def": "Ceci est causé par une lumière insuffisante. Rapprochez votre source de lumière des semis." },
+            { "term": "Fonte des semis", "def": "Une maladie fongique où les tiges pourrissent au niveau du sol. Évitez l'arrosage excessif, assurez une bonne circulation de l'air et utilisez de la terre stérile." },
+            { "term": "Moisissure sur la Surface du Sol", "def": "Généralement inoffensif, mais c'est un signe d'arrosage excessif ou de mauvaise circulation de l'air. Réduisez l'arrosage et augmentez le flux d'air." }
+          ]
+        }
+      ]
+    },
+    "familyFarmPage": {
+      "backLink": "Retour au Hub de Gestion Agricole",
+      "title": "Modèle de Ferme Familiale Intégrée de 200m²",
+      "description": "Un modèle diversifié, durable et hautement productif pour la sécurité alimentaire et les revenus familiaux.",
+      "intro": "Ce modèle démontre comment une petite parcelle de seulement 200 mètres carrés (10m x 20m) peut être gérée efficacement pour nourrir une famille et générer un petit revenu grâce à l'intégration intelligente de différents composants. Il est basé sur les principes de la permaculture et des systèmes en boucle fermée.",
+      "diagramCaption": "Diagramme du Modèle de Ferme Familiale Intégrée de 200m².",
+      "detailsTitle": "Composants Clés",
+      "principlesTitle": "Principes en Action",
+      "zones": [
+        {
+          "id": "overall-layout",
+          "title": "Disposition et Conception Générales",
+          "icon": "LayoutGrid",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Une vue aérienne d'une petite ferme diversifiée.",
+          "dataAiHint": "small farm layout",
+          "description": [
+            "La parcelle de 200m² est divisée stratégiquement pour maximiser l'utilisation des ressources. L'idée principale est que le 'déchet' d'un composant devient l' 'intrant' d'un autre, minimisant les intrants externes et maximisant la durabilité.",
+            "L'eau est captée et réutilisée, les nutriments sont recyclés, et chaque composant soutient les autres, créant un mini-écosystème résilient."
+          ],
+          "details": [
+            { "title": "Gestion de l'Eau", "content": ["Récupération de l'eau de pluie du toit de la maison dans un réservoir.", "Système de filtration des eaux grises pour l'irrigation.", "Placement stratégique de l'étang pour l'irrigation et le contrôle de l'humidité."] },
+            { "title": "Gestion de l'Espace", "content": ["Culture verticale (treillis) pour maximiser l'espace.", "Culture intercalaire et compagnonnage des plantes.", "Méthodes de plantation intensive en plates-bandes surélevées."] }
+          ]
+        },
+        {
+          "id": "vegetable-beds",
+          "title": "Plates-bandes de Légumes (80m²)",
+          "icon": "Sprout",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Des plates-bandes surélevées luxuriantes remplies de divers légumes.",
+          "dataAiHint": "vegetable raised bed",
+          "description": [
+            "C'est la principale zone de production alimentaire. Les plates-bandes surélevées sont utilisées pour améliorer la qualité du sol, le drainage et la facilité d'accès. La rotation des cultures est pratiquée pour maintenir la santé du sol et briser les cycles des ravageurs.",
+            "Un mélange de produits de base, de légumes-feuilles, de légumes-racines et de légumes-fruits est cultivé pour assurer une récolte continue et une alimentation diversifiée."
+          ],
+          "details": [
+            { "title": "Rotation des Cultures", "content": ["Plate-bande 1 : Légumes-feuilles (épinards, laitue).", "Plate-bande 2 : Légumes-fruits (tomates, poivrons).", "Plate-bande 3 : Légumes-racines (carottes, betteraves).", "Plate-bande 4 : Légumineuses (haricots, pois) pour la fixation de l'azote."] },
+            { "title": "Compostage", "content": ["Un simple bac à compost à 3 compartiments traite les déchets de cuisine et de jardin, fournissant un engrais riche en nutriments pour les plates-bandes."] }
+          ]
+        },
+        {
+          "id": "chicken-coop",
+          "title": "Poulailler Mobile (5m²)",
+          "icon": "Bird",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un petit poulailler mobile déplacé sur un champ.",
+          "dataAiHint": "chicken tractor coop",
+          "description": [
+            "Un petit 'tracteur à poules' abrite 3 à 5 poules. Le poulailler est régulièrement déplacé sur les plates-bandes de légumes récoltées.",
+            "Les poules fournissent des œufs pour les protéines et un petit revenu. Leur fumier fertilise directement le sol, tandis que leur grattage aide à la lutte contre les ravageurs et à la préparation des plates-bandes pour la prochaine plantation."
+          ],
+          "details": [
+            { "title": "Alimentation", "content": ["Complétée avec des restes de cuisine, des insectes et des mauvaises herbes du jardin, réduisant les coûts d'alimentation."] },
+            { "title": "Avantages", "content": ["Œufs quotidiens.", "Lutte naturelle contre les ravageurs.", "Aération et fertilisation du sol."] }
+          ]
+        },
+        {
+          "id": "fish-pond",
+          "title": "Étang à Poissons (15m²)",
+          "icon": "Fish",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Un petit étang de jardin avec des poissons et des plantes aquatiques.",
+          "dataAiHint": "aquaponics fish pond",
+          "description": [
+            "Un petit étang doublé qui abrite des Tilapias ou une autre espèce de poisson rustique. C'est une excellente source de protéines animales.",
+            "L'eau riche en nutriments de l'étang est utilisée pour fertiliser les plates-bandes de légumes (principe de l'aquaponie), et les plantes aquatiques comme la jacinthe d'eau peuvent filtrer l'eau et servir de nourriture aux poules."
+          ],
+          "details": [
+            { "title": "Intégration", "content": ["Prélèvement périodique d'eau pour la fertirrigation.", "Plantes aquatiques comme aliment complémentaire.", "Déchets de poisson comme engrais."] },
+            { "title": "Avantages", "content": ["Source de protéines.", "Cycle de l'eau.", "Recyclage des nutriments."] }
+          ]
+        }
+      ],
+      "conclusion": {
+        "title": "Pourquoi ce Modèle Fonctionne",
+        "content": [
+          "Ce modèle intégré est plus qu'une simple collection de parties ; c'est un système holistique.",
+          "Il réduit la dépendance aux intrants externes, augmente la résilience aux chocs climatiques et de marché, améliore la nutrition familiale et crée le potentiel d'un revenu stable et diversifié à partir d'une très petite parcelle de terre.",
+          "C'est un plan directeur pour une agriculture à petite échelle, durable et productive."
+        ]
       }
-    },
-    "createShop": {
-      "backLink": "Retour au Marché",
-      "title": "Créer une Boutique Numérique",
-      "description": "Établissez votre présence sur le marché de DamDoh en créant une boutique. Ce sera votre page dédiée pour présenter tous vos produits et services.",
-      "authErrorTitle": "Non Authentifié",
-      "authErrorDescription": "Vous devez être connecté pour créer une boutique.",
-      "toast": {
-        "successTitle": "Boutique Créée !",
-        "successDescription": "Votre boutique '{shopName}' est maintenant en ligne et prête pour les annonces.",
-        "failTitle": "Création Échouée",
-        "failDescription": "Une erreur inattendue est survenue. Veuillez réessayer."
-      },
-      "form": {
-        "nameLabel": "Nom de la Boutique",
-        "namePlaceholder": "Ex: Bio de la Vallée Verte, Agri-Logistique Pro",
-        "typeLabel": "Type d'Entreprise / Rôle Principal",
-        "typePlaceholder": "Sélectionnez l'option qui décrit le mieux votre entreprise",
-        "descriptionLabel": "Description de la Boutique",
-        "descriptionPlaceholder": "Décrivez brièvement votre boutique, ce que vous proposez et votre mission.",
-        "submitButton": "Créer la Boutique",
-        "submittingButton": "Création en cours..."
-      }
-    },
-    "shopView": {
-      "backLink": "Retour au Marché",
-      "ownedBy": "Propriétaire",
-      "loadingOwner": "Chargement du propriétaire...",
-      "editShopButton": "Modifier la Boutique",
-      "contactButton": "Contacter le Propriétaire",
-      "listingsTitle": "Annonces de {shopName}",
-      "noListings": "Cette boutique n'a pas encore d'annonces publiques.",
-      "errors": {
-        "notFound": "Boutique non trouvée",
-        "loadError": "Impossible de charger les détails de la boutique."
-      },
-      "title": "Boutique"
     }
   }
 }
