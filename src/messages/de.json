@@ -81,15 +81,15 @@
     "forgotPasswordDescription": "Kein Problem. Geben Sie unten Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen.",
     "sendResetLinkButton": "Link zum Zurücksetzen senden",
     "sendingEmailButton": "E-Mail wird gesendet...",
-    "rememberPasswordPrompt": "Erinnern Sie sich an Ihr Passwort?",
+    "rememberPasswordPrompt": "Passwort wieder eingefallen?",
     "resetPasswordTitle": "Passwort zurücksetzen",
-    "resetPasswordDescription": "Geben Sie unten Ihr neues Passwort ein und bestätigen Sie es.",
+    "resetPasswordDescription": "Geben Sie Ihr neues Passwort ein und bestätigen Sie es.",
     "newPasswordLabel": "Neues Passwort",
     "newPasswordPlaceholder": "Geben Sie ein starkes neues Passwort ein",
     "resetPasswordButton": "Passwort zurücksetzen",
     "resettingPasswordButton": "Wird zurückgesetzt...",
     "recoverPage": {
-      "title": "Ihr Konto wiederherstellen",
+      "title": "Konto wiederherstellen",
       "description": "Nutzen Sie Ihr Netzwerk, um wieder Zugriff zu erhalten.",
       "howItWorksTitle": "So funktioniert's",
       "step1": "Geben Sie Ihre Telefonnummer ein, um eine Wiederherstellungssitzung zu starten.",
@@ -97,7 +97,7 @@
       "step3": "Sobald Ihr Freund den Code zur Bestätigung Ihrer Identität scannt, erhalten Sie wieder Zugriff.",
       "startButton": "Kontowiederherstellung starten",
       "scanTitle": "Bitten Sie einen Freund zu scannen",
-      "scanDescription": "Lassen Sie einen vertrauenswürdigen DamDoh-Kontakt diesen QR-Code mit der Funktion 'Einem Freund bei der Wiederherstellung helfen' in seiner App scannen.",
+      "scanDescription": "Lassen Sie eine vertrauenswürdige DamDoh-Verbindung diesen QR-Code mit der Funktion 'Einem Freund bei der Wiederherstellung helfen' in ihrer App scannen.",
       "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
       "startOverButton": "Neu starten"
     }
@@ -105,21 +105,21 @@
   "AppHeader": {
     "home": "Startseite",
     "network": "Netzwerk",
-    "farmMgmt": "Farm-Verw.",
+    "farmMgmt": "Farm-Mgmt",
     "marketplace": "Marktplatz",
     "talentExchange": "Talente",
-    "traceability": "Rückverfolgb.",
+    "traceability": "Rückverfolgbarkeit",
     "forums": "Foren",
     "sustainability": "Nachhaltigkeit",
-    "notifications": "Benachrichtig.",
+    "notifications": "Benachrichtigungen",
     "messages": "Nachrichten",
     "wallet": "Wallet",
-    "searchPlaceholder": "Personen, Produkte, Dienste suchen...",
+    "searchPlaceholder": "Suche Personen, Produkte, Dienstleistungen...",
     "signIn": "Anmelden",
     "signUp": "Registrieren",
     "myProfile": "Mein Profil",
     "settings": "Einstellungen",
-    "helpCenter": "Hilfezentrum",
+    "helpCenter": "Hilfe-Center",
     "logOut": "Abmelden",
     "switchToLightAria": "Zum hellen Modus wechseln",
     "switchToDarkAria": "Zum dunklen Modus wechseln"
@@ -134,10 +134,10 @@
   "DashboardRightSidebar": {
     "networkTitle": "Zu Ihrem Feed hinzufügen",
     "refreshSuggestions": "Vorschläge aktualisieren",
-    "infoTooltip": "Vorschläge basieren auf den Interessen und Bedürfnissen Ihres Profils.",
+    "infoTooltip": "Vorschläge basieren auf Ihren Profilinteressen und Bedürfnissen.",
     "signInPrompt": "Melden Sie sich an, um personalisierte Vorschläge zu erhalten.",
     "loadError": "Vorschläge konnten nicht geladen werden.",
-    "noSuggestions": "Zurzeit keine neuen Vorschläge. Schauen Sie später wieder vorbei!",
+    "noSuggestions": "Momentan keine neuen Vorschläge. Schauen Sie später wieder vorbei!",
     "following": "Folge ich",
     "follow": "Folgen",
     "promotionsTitle": "Aktionen",
@@ -157,9 +157,9 @@
     "aboutLabel": "Über uns",
     "contactLabel": "Kontakt",
     "careersLabel": "Karriere",
-    "blogLabel": "Blog & Neuigkeiten",
+    "blogLabel": "Blog & Nachrichten",
     "resourcesTitle": "Ressourcen",
-    "helpCenterLabel": "Hilfezentrum",
+    "helpCenterLabel": "Hilfe-Center",
     "communityGuidelinesLabel": "Community-Richtlinien",
     "industryNewsLabel": "Branchennachrichten",
     "eventsLabel": "Veranstaltungen",
@@ -170,87 +170,87 @@
     "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
     "getMobileApp": "Holen Sie sich die mobile App",
     "googlePlayAlt": "Bei Google Play holen",
-    "appStoreAlt": "Im App Store laden"
+    "appStoreAlt": "Im App Store herunterladen"
   },
   "aboutPage": {
     "hero": {
       "title": "Über DamDoh",
-      "subtitle": "Verbindung der globalen landwirtschaftlichen Lieferkette, ein Akteur nach dem anderen."
+      "subtitle": "Verbindung der globalen landwirtschaftlichen Lieferkette, ein Stakeholder nach dem anderen."
     },
     "vision": {
       "title": "Unsere Vision",
-      "p1": "Wir stellen uns eine Welt vor, in der jeder landwirtschaftliche Akteur, vom kleinsten Landwirt bis zum größten Einzelhändler, mit den Daten, Verbindungen und Werkzeugen ausgestattet ist, die er zum Gedeihen braucht.",
-      "p2": "DamDoh wurde auf der Überzeugung gegründet, dass Technologie Lücken schließen, Vertrauen fördern und ein gerechteres und nachhaltigeres globales Lebensmittelsystem schaffen kann.",
+      "p1": "Wir stellen uns eine Welt vor, in der jeder landwirtschaftliche Akteur, vom kleinsten Bauern bis zum größten Einzelhändler, mit den Daten, Verbindungen und Werkzeugen ausgestattet ist, die er zum Gedeihen braucht.",
+      "p2": "DamDoh wurde auf dem Glauben gegründet, dass Technologie Lücken schließen, Vertrauen fördern und ein gerechteres und nachhaltigeres globales Lebensmittelsystem schaffen kann.",
       "foundersTitle": "Gründer"
     },
     "challenge": {
-      "title": "Die Herausforderung, die wir angehen",
-      "description": "Die landwirtschaftliche Lieferkette ist zersplittert, ineffizient und es fehlt oft an der Transparenz, die für nachhaltiges Wachstum notwendig ist. Zu den wichtigsten Herausforderungen gehören:",
+      "title": "Die Herausforderung, die wir lösen",
+      "description": "Die landwirtschaftliche Lieferkette ist fragmentiert, ineffizient und es fehlt ihr oft an der für ein nachhaltiges Wachstum erforderlichen Transparenz. Zu den wichtigsten Herausforderungen gehören:",
       "list": {
-        "knowledge": "Zersplittertes Wissen und mangelnder Zugang zu bewährten Praktiken.",
+        "knowledge": "Isoliertes Wissen und mangelnder Zugang zu bewährten Verfahren.",
         "market": "Begrenzter Marktzugang für Kleinbauern.",
-        "quality": "Inkonsistente Qualitätskontrolle und mangelnde überprüfbare Produktdaten.",
+        "quality": "Inkonsistente Qualitätskontrolle und ein Mangel an überprüfbaren Produktdaten.",
         "logistics": "Ineffiziente Logistik, die zu Nachernteverlusten führt.",
-        "financial": "Schwierigkeiten beim Zugang zu Finanzierungen und Versicherungen für Kleinproduzenten.",
+        "financial": "Schwierigkeiten beim Zugang zu Finanzmitteln und Versicherungen für Kleinproduzenten.",
         "climate": "Zunehmender Druck durch den Klimawandel auf traditionelle Anbaumethoden.",
-        "informal": "Informelle, auf Beziehungen basierende Systeme, die Neueinsteiger ausschließen können."
+        "informal": "Informelle, auf Beziehungen basierende Systeme, die neue Marktteilnehmer ausschließen können."
       }
     },
     "solution": {
       "title": "Die DamDoh-Lösung",
-      "description": "Wir bauen eine umfassende 'Super-App', die das gesamte landwirtschaftliche Ökosystem digitalisiert und verbindet, und zwar über mehrere Säulen:",
+      "description": "Wir bauen eine umfassende 'Super-App', die das gesamte landwirtschaftliche Ökosystem durch mehrere Kernsäulen digitalisiert und verbindet:",
       "list": {
         "education": "Bildung und Wissensaustausch",
         "ai": "KI-gestützte Unterstützung und Einblicke",
-        "logistics": "Integrierte Logistik und Nachverfolgung"
+        "logistics": "Integrierte Logistik und Rückverfolgbarkeit"
       }
     },
     "beyondTechnology": {
       "title": "Über die Technologie hinaus: Es geht um Menschen",
       "list": {
         "p2p": {
-          "title": "Mensch zu Mensch",
-          "content": "Landwirte mit anderen Landwirten verbinden, um Wissen zu teilen und eine Gemeinschaft aufzubauen."
+          "title": "Mensch-zu-Mensch",
+          "content": "Landwirte mit anderen Landwirten verbinden, um Wissen auszutauschen und eine Gemeinschaft aufzubauen."
         },
         "p2b": {
-          "title": "Mensch zu Unternehmen",
-          "content": "Förderung direkter, vertrauenswürdiger Beziehungen zwischen Produzenten und Käufern."
+          "title": "Mensch-zu-Unternehmen",
+          "content": "Förderung direkter, vertrauensvoller Beziehungen zwischen Produzenten und Käufern."
         },
         "p2e": {
-          "title": "Mensch zum Ökosystem",
-          "content": "Individuen Zugang zum gesamten Ökosystem von Dienstleistungen geben – Finanzen, Logistik, Versicherungen und mehr."
+          "title": "Mensch-zu-Ökosystem",
+          "content": "Einzelpersonen Zugang zum gesamten Ökosystem von Dienstleistungen verschaffen – Finanzen, Logistik, Versicherungen und mehr."
         },
         "p2w": {
-          "title": "Mensch zur Welt",
-          "content": "Globale Märkte und Möglichkeiten für die entlegensten Produzenten durch digitalen Zugang und Rückverfolgbarkeit eröffnen."
+          "title": "Mensch-zu-Welt",
+          "content": "Globale Märkte und Chancen für die entlegensten Produzenten durch digitalen Zugang und Rückverfolgbarkeit erschließen."
         }
       }
     },
     "commitment": {
       "title": "Unser Engagement für die Zukunft",
-      "p1": "Wir verpflichten uns, Technologie zum Guten einzusetzen und eine Plattform zu schaffen, die nicht nur profitabel ist, sondern auch unseren Planeten regeneriert und die Menschen stärkt.",
-      "p2": "Jede hergestellte Verbindung, jedes geteilte Wissen und jede erleichterte Transaktion auf DamDoh ist ein Schritt in Richtung einer widerstandsfähigeren und gerechteren Zukunft der Ernährung.",
+      "p1": "Wir verpflichten uns, Technologie für das Gute einzusetzen und eine Plattform zu schaffen, die nicht nur profitabel ist, sondern auch unseren Planeten regeneriert und seine Menschen stärkt.",
+      "p2": "Jede Verbindung, jedes geteilte Wissen und jede auf DamDoh ermöglichte Transaktion ist ein Schritt in Richtung einer widerstandsfähigeren und gerechteren Zukunft der Ernährung.",
       "p3": "Begleiten Sie uns auf dieser Reise.",
-      "button": "Werden Sie Mitglied"
+      "button": "Mitglied werden"
     }
   },
   "contactPage": {
     "title": "Kontaktieren Sie uns",
-    "subtitle": "Wir sind hier, um zu helfen. Kontaktieren Sie uns über einen der folgenden Kanäle.",
+    "subtitle": "Wir sind hier, um zu helfen. Erreichen Sie uns über einen der untenstehenden Kanäle.",
     "emailUs": {
-      "title": "Schreiben Sie uns eine E-Mail",
+      "title": "Senden Sie uns eine E-Mail",
       "general": "Allgemeine Anfragen",
-      "support": "Unterstützung",
+      "support": "Support",
       "partnerships": "Partnerschaften"
     },
     "callUs": {
       "title": "Rufen Sie uns an",
-      "hours": "Montag - Freitag, 9:00 - 17:00 Uhr (EAT)",
+      "hours": "Montag - Freitag, 9 - 17 Uhr (EAT)",
       "phone": "+254 20 123 4567"
     },
     "ourOffice": {
       "title": "Unser Büro",
-      "org": "DamDoh Stiftung",
+      "org": "Die DamDoh-Stiftung",
       "address": "123 Agri-Tech Ave, Nairobi, Kenia"
     },
     "sendMessage": {
@@ -260,30 +260,30 @@
       "emailLabel": "Ihre E-Mail",
       "emailPlaceholder": "jane.doe@example.com",
       "subjectLabel": "Betreff",
-      "subjectPlaceholder": "z.B. Anfrage zu Partnerschaften",
+      "subjectPlaceholder": "z.B. Anfrage zu Partnerschaft",
       "messageLabel": "Ihre Nachricht",
-      "messagePlaceholder": "Geben Sie hier Ihre Nachricht ein...",
+      "messagePlaceholder": "Geben Sie Ihre Nachricht hier ein...",
       "buttonText": "Nachricht senden",
       "note": "Wir bemühen uns, innerhalb von 24 Geschäftsstunden zu antworten."
     }
   },
   "careers": {
     "title": "Karriere bei DamDoh",
-    "subtitle": "Begleiten Sie uns bei unserer Mission, die landwirtschaftliche Lieferkette zu revolutionieren.",
+    "subtitle": "Schließen Sie sich unserer Mission an, die landwirtschaftliche Lieferkette zu revolutionieren.",
     "whyWorkWithUs": {
       "title": "Warum bei uns arbeiten?",
-      "intro": "Bei DamDoh sind wir ein Team von Innovatoren, Technologen und Landwirtschaftsexperten, die sich dafür einsetzen, eine greifbare globale Wirkung zu erzielen. Wir bieten:",
-      "point1": "Ein missionsgetriebenes und dynamisches Arbeitsumfeld.",
+      "intro": "Bei DamDoh sind wir ein Team von Innovatoren, Technologen und Landwirtschaftsexperten, die sich dafür einsetzen, einen greifbaren globalen Einfluss zu erzielen. Wir bieten:",
+      "point1": "Ein missionsorientiertes und dynamisches Arbeitsumfeld.",
       "point2": "Möglichkeiten für berufliches Wachstum und Lernen.",
       "point3": "Eine Kultur der Zusammenarbeit und Transparenz.",
       "point4": "Die Chance, mit Spitzentechnologien wie KI und Blockchain zu arbeiten.",
-      "point5": "Ein Engagement für Nachhaltigkeit und soziale Wirkung."
+      "point5": "Ein Bekenntnis zu Nachhaltigkeit und sozialem Engagement."
     },
     "currentOpenings": {
       "title": "Aktuelle Stellenangebote",
       "job1": {
         "title": "Senior Full-Stack-Ingenieur (Next.js, Firebase)",
-        "location": "Fernarbeit",
+        "location": "Remote",
         "type": "Vollzeit",
         "description": "Wir suchen einen erfahrenen Full-Stack-Ingenieur, der die Entwicklung der Kernfunktionen unserer Plattform leitet."
       },
@@ -295,52 +295,52 @@
       },
       "job3": {
         "title": "UX/UI-Designer",
-        "location": "Fernarbeit",
+        "location": "Remote",
         "type": "Vollzeit",
-        "description": "Entwerfen Sie intuitive und zugängliche Benutzererfahrungen für eine vielfältige und globale Benutzerbasis."
+        "description": "Gestalten Sie intuitive und zugängliche Benutzererlebnisse für eine vielfältige und globale Benutzerbasis."
       }
     },
     "noOpenings": {
       "title": "Derzeit keine offenen Stellen",
-      "content1": "Wir sind immer auf der Suche nach talentierten Persönlichkeiten, die sich für unsere Mission begeistern. Wenn Sie glauben, dass Sie gut in unser Team passen würden, senden Sie uns bitte Ihren Lebenslauf und Ihr Anschreiben an {emailLink}.",
+      "content1": "Wir sind immer auf der Suche nach talentierten Personen, die sich für unsere Mission begeistern. Wenn Sie glauben, dass Sie gut in unser Team passen würden, senden Sie uns bitte Ihren Lebenslauf und Ihr Anschreiben an {emailLink}.",
       "emailLinkText": "careers@damdoh.org"
     },
     "applyNowButton": "Jetzt bewerben"
   },
   "communityGuidelines": {
     "title": "Community-Richtlinien",
-    "subtitle": "Förderung eines professionellen, vertrauenswürdigen und kooperativen Umfelds.",
+    "subtitle": "Förderung einer professionellen, vertrauenswürdigen und kooperativen Umgebung.",
     "intro": "Willkommen in der DamDoh-Community! Um sicherzustellen, dass unsere Plattform ein produktiver und sicherer Ort für alle landwirtschaftlichen Akteure bleibt, bitten wir Sie, die folgenden Richtlinien zu befolgen:",
     "respectful": {
       "title": "Seien Sie respektvoll und professionell",
-      "description": "Führen Sie höfliche und konstruktive Gespräche. Meinungsverschiedenheiten sind normal, aber persönliche Angriffe, Belästigungen und Hassreden sind nicht akzeptabel."
+      "description": "Beteiligen Sie sich an höflichen und konstruktiven Diskussionen. Meinungsverschiedenheiten sind normal, aber persönliche Angriffe, Belästigung und Hassreden sind nicht akzeptabel."
     },
     "authentic": {
       "title": "Seien Sie authentisch und ehrlich",
-      "description": "Stellen Sie sich und Ihr Unternehmen korrekt dar. Geben Sie sich nicht als jemand anderes aus und machen Sie keine falschen Angaben zu Ihren Produkten, Dienstleistungen oder Zertifizierungen."
+      "description": "Stellen Sie sich und Ihr Unternehmen korrekt dar. Geben Sie sich nicht als andere aus und machen Sie keine falschen Angaben zu Ihren Produkten, Dienstleistungen oder Zertifizierungen."
     },
     "relevant": {
       "title": "Bleiben Sie relevant",
-      "description": "Tragen Sie zu Diskussionen und Angeboten auf eine Weise bei, die für die landwirtschaftliche Lieferkette relevant ist. Spam, Betrug und irrelevante Werbeinhalte werden entfernt."
+      "description": "Tragen Sie zu Diskussionen und Einträgen auf eine Weise bei, die für die landwirtschaftliche Lieferkette relevant ist. Spam, Betrug und irrelevante Werbeinhalte werden entfernt."
     },
     "fairTrade": {
       "title": "Halten Sie Ihre Verpflichtungen ein",
-      "description": "Wenn Sie auf der Plattform eine Vereinbarung oder einen Vertrag abschließen, halten Sie sich daran. Der Aufbau von Vertrauen ist für den Erfolg unserer Gemeinschaft unerlässlich."
+      "description": "Wenn Sie auf der Plattform eine Vereinbarung oder einen Handel abschließen, halten Sie sich daran. Der Aufbau von Vertrauen ist für den Erfolg unserer Gemeinschaft unerlässlich."
     },
     "sustainable": {
       "title": "Fördern Sie Nachhaltigkeit",
-      "description": "Obwohl dies keine strikte Anforderung für alle Mitglieder ist, ermutigen wir zum Austausch von Wissen und Praktiken, die ökologische, wirtschaftliche und soziale Nachhaltigkeit fördern."
+      "description": "Obwohl dies keine strikte Anforderung für alle Mitglieder ist, ermutigen wir den Austausch von Wissen und Praktiken, die ökologische, wirtschaftliche und soziale Nachhaltigkeit fördern."
     },
     "reporting": {
       "title": "Verstöße melden",
-      "content": "Wenn Sie Inhalte oder Verhaltensweisen sehen, die gegen diese Richtlinien verstoßen, melden Sie diese bitte unserem Team unter {emailLink}. Wir werden alle Meldungen überprüfen und entsprechende Maßnahmen ergreifen.",
+      "content": "Wenn Sie Inhalte oder Verhaltensweisen sehen, die gegen diese Richtlinien verstoßen, melden Sie dies bitte unserem Team unter {emailLink}. Wir werden alle Meldungen prüfen und geeignete Maßnahmen ergreifen.",
       "emailLinkText": "support@damdoh.org"
     },
-    "conclusion": "Durch die Nutzung von DamDoh erklären Sie sich mit diesen Richtlinien einverstanden. Wir behalten uns das Recht vor, Inhalte zu entfernen und Konten zu sperren, die gegen diese Grundsätze verstoßen. Vielen Dank, dass Sie uns helfen, eine großartige Gemeinschaft aufzubauen!"
+    "conclusion": "Durch die Nutzung von DamDoh stimmen Sie diesen Richtlinien zu. Wir behalten uns das Recht vor, Inhalte zu entfernen und Konten zu sperren, die gegen diese Grundsätze verstoßen. Vielen Dank, dass Sie uns helfen, eine großartige Community aufzubauen!"
   },
   "helpCenterPage": {
-    "title": "Hilfezentrum",
-    "subtitle": "Ihr Leitfaden, um das Beste aus der DamDoh-Plattform herauszuholen.",
+    "title": "Hilfe-Center",
+    "subtitle": "Ihre Anleitung, um das Beste aus der DamDoh-Plattform herauszuholen.",
     "howCanWeHelp": "Wie können wir Ihnen helfen?",
     "searchPlaceholder": "Suchen Sie nach Themen, Funktionen oder Fragen...",
     "browseTopics": "Hilfethemen durchsuchen",
@@ -350,13 +350,13 @@
       "placeholder": "Inhalte für 'Erste Schritte' werden in Kürze verfügbar sein."
     },
     "marketplaceGuide": {
-      "title": "Marktplatz-Leitfaden",
-      "description": "Tipps zum Erstellen effektiver Angebote und zum Finden dessen, was Sie brauchen.",
-      "placeholder": "Inhalte für 'Marktplatz-Leitfaden' werden in Kürze verfügbar sein."
+      "title": "Marktplatz-Anleitung",
+      "description": "Tipps zum Erstellen effektiver Einträge und zum Finden dessen, was Sie brauchen.",
+      "placeholder": "Inhalte für 'Marktplatz-Anleitung' werden in Kürze verfügbar sein."
     },
     "accountManagement": {
       "title": "Kontoverwaltung",
-      "description": "Verwalten Sie Ihre Einstellungen, Datenschutz und Benachrichtigungen.",
+      "description": "Verwalten Sie Ihre Einstellungen, den Datenschutz und Benachrichtigungen.",
       "placeholder": "Inhalte für 'Kontoverwaltung' werden in Kürze verfügbar sein."
     },
     "troubleshooting": {
@@ -365,174 +365,174 @@
       "placeholder": "Inhalte für 'Fehlerbehebung' werden in Kürze verfügbar sein."
     },
     "stillNeedHelp": {
-      "title": "Benötigen Sie immer noch Hilfe?",
-      "description": "Unser Support-Team steht Ihnen bei allen Fragen zur Verfügung.",
+      "title": "Brauchen Sie noch Hilfe?",
+      "description": "Unser Support-Team ist bereit, Ihnen bei allen Fragen zu helfen, die Sie haben.",
       "button": "Support kontaktieren"
     }
   },
   "privacyPolicy": {
     "title": "Datenschutzrichtlinie",
     "lastUpdated": "Zuletzt aktualisiert: 29. Oktober 2023",
-    "introduction": "Diese Datenschutzerklärung für DamDoh beschreibt, wie und warum wir Ihre Informationen sammeln, speichern, verwenden und/oder weitergeben ('verarbeiten'), wenn Sie unsere Dienste ('Dienste') nutzen, z.B. wenn Sie unsere Website oder mobile Anwendung besuchen.",
+    "introduction": "Diese Datenschutzerklärung für DamDoh beschreibt, wie und warum wir Ihre Informationen sammeln, speichern, verwenden und/oder weitergeben ('verarbeiten'), wenn Sie unsere Dienste ('Dienste') nutzen, z. B. wenn Sie unsere Website oder mobile Anwendung besuchen.",
     "whatInfoWeCollect": {
       "heading": "1. WELCHE INFORMATIONEN SAMMELN WIR?",
-      "content": "Wir sammeln personenbezogene Daten, die Sie uns freiwillig zur Verfügung stellen, wenn Sie sich bei den Diensten registrieren, Interesse am Erhalt von Informationen über uns oder unsere Produkte und Dienste bekunden, an Aktivitäten in den Diensten teilnehmen oder uns anderweitig kontaktieren."
+      "content": "Wir sammeln personenbezogene Daten, die Sie uns freiwillig zur Verfügung stellen, wenn Sie sich bei den Diensten registrieren, Interesse an Informationen über uns oder unsere Produkte und Dienste bekunden, an Aktivitäten auf den Diensten teilnehmen oder uns anderweitig kontaktieren."
     },
     "howWeUseInfo": {
       "heading": "2. WIE VERARBEITEN WIR IHRE INFORMATIONEN?",
-      "content": "Wir verarbeiten Ihre Informationen für Zwecke, die auf legitimen Geschäftsinteressen, der Erfüllung unseres Vertrags mit Ihnen, der Einhaltung unserer gesetzlichen Verpflichtungen und/oder Ihrer Zustimmung beruhen. Dazu gehören die Erleichterung der Kontoerstellung, die Ermöglichung der Kommunikation zwischen Benutzern und die Bereitstellung unserer Kerndienste."
+      "content": "Wir verarbeiten Ihre Informationen zu Zwecken, die auf legitimen Geschäftsinteressen, der Erfüllung unseres Vertrags mit Ihnen, der Einhaltung unserer gesetzlichen Verpflichtungen und/oder Ihrer Zustimmung beruhen. Dies umfasst die Erleichterung der Kontoerstellung, die Ermöglichung der Kommunikation zwischen Benutzern und die Bereitstellung unserer Kerndienste."
     },
     "willInfoBeShared": {
-      "heading": "3. WERDEN IHRE INFORMATIONEN MIT JEMANDEM GETEILT?",
-      "content": "Wir teilen Informationen nur mit Ihrer Zustimmung, um Gesetze einzuhalten, Ihnen Dienste bereitzustellen, Ihre Rechte zu schützen oder Geschäftsverpflichtungen zu erfüllen. Zum Beispiel teilen wir Ihre öffentlichen Profilinformationen mit anderen Benutzern, um Verbindungen zu erleichtern."
+      "heading": "3. WERDEN IHRE INFORMATIONEN AN DRITTE WEITERGEGEBEN?",
+      "content": "Wir geben Informationen nur mit Ihrer Zustimmung weiter, um Gesetze einzuhalten, Ihnen Dienste bereitzustellen, Ihre Rechte zu schützen oder geschäftliche Verpflichtungen zu erfüllen. Beispielsweise teilen wir Ihre öffentlichen Profilinformationen mit anderen Benutzern, um Verbindungen zu erleichtern."
     },
     "cookiesAndTracking": {
       "heading": "4. VERWENDEN WIR COOKIES UND ANDERE TRACKING-TECHNOLOGIEN?",
-      "content": "Wir können Cookies und ähnliche Tracking-Technologien (wie Web-Beacons und Pixel) verwenden, um auf Informationen zuzugreifen oder diese zu speichern. Spezifische Informationen darüber, wie wir solche Technologien verwenden und wie Sie bestimmte Cookies ablehnen können, finden Sie in unserer Cookie-Erklärung."
+      "content": "Wir können Cookies und ähnliche Tracking-Technologien (wie Web-Beacons und Pixel) verwenden, um auf Informationen zuzugreifen oder diese zu speichern. Spezifische Informationen darüber, wie wir solche Technologien verwenden und wie Sie bestimmte Cookies ablehnen können, finden Sie in unserer Cookie-Richtlinie."
     },
     "howLongWeKeepInfo": {
       "heading": "5. WIE LANGE BEWAHREN WIR IHRE INFORMATIONEN AUF?",
-      "content": "Wir bewahren Ihre Informationen so lange auf, wie es zur Erfüllung der in dieser Datenschutzerklärung beschriebenen Zwecke erforderlich ist, es sei denn, eine längere Aufbewahrungsfrist ist gesetzlich vorgeschrieben. Wenn wir keine andauernde legitime geschäftliche Notwendigkeit haben, Ihre personenbezogenen Daten zu verarbeiten, werden wir diese entweder löschen oder anonymisieren."
+      "content": "Wir bewahren Ihre Informationen so lange auf, wie es zur Erfüllung der in dieser Datenschutzerklärung beschriebenen Zwecke erforderlich ist, es sei denn, eine längere Aufbewahrungsfrist ist gesetzlich vorgeschrieben. Wenn wir keinen fortlaufenden legitimen Geschäftszweck mehr für die Verarbeitung Ihrer personenbezogenen Daten haben, werden wir diese entweder löschen oder anonymisieren."
     },
     "howWeKeepInfoSafe": {
       "heading": "6. WIE SCHÜTZEN WIR IHRE INFORMATIONEN?",
-      "content": "Wir haben angemessene technische und organisatorische Sicherheitsmaßnahmen implementiert, die darauf ausgelegt sind, die Sicherheit aller von uns verarbeiteten personenbezogenen Daten zu schützen. Trotz unserer Sicherheitsvorkehrungen und Bemühungen kann jedoch keine elektronische Übertragung über das Internet zu 100% sicher garantiert werden."
+      "content": "Wir haben angemessene technische und organisatorische Sicherheitsmaßnahmen implementiert, um die Sicherheit aller von uns verarbeiteten personenbezogenen Daten zu schützen. Trotz unserer Schutzmaßnahmen und Bemühungen kann jedoch keine elektronische Übertragung über das Internet als 100% sicher garantiert werden."
     },
     "minors": {
       "heading": "7. SAMMELN WIR INFORMATIONEN VON MINDERJÄHRIGEN?",
-      "content": "Wir fordern wissentlich keine Daten von Kindern unter 18 Jahren an oder vermarkten an diese. Durch die Nutzung der Dienste versichern Sie, dass Sie mindestens 18 Jahre alt sind oder dass Sie der Elternteil oder Vormund eines solchen Minderjährigen sind und der Nutzung der Dienste durch den Minderjährigen zustimmen."
+      "content": "Wir fordern wissentlich keine Daten von Kindern unter 18 Jahren an und vermarkten auch nicht an diese. Durch die Nutzung der Dienste versichern Sie, dass Sie mindestens 18 Jahre alt sind oder dass Sie der Elternteil oder Erziehungsberechtigte eines solchen Minderjährigen sind und der Nutzung der Dienste durch diesen minderjährigen Abhängigen zustimmen."
     },
     "privacyRights": {
       "heading": "8. WAS SIND IHRE DATENSCHUTZRECHTE?",
-      "content": "In einigen Regionen haben Sie bestimmte Rechte gemäß den geltenden Datenschutzgesetzen. Dazu können das Recht gehören, (i) Zugang zu Ihren personenbezogenen Daten zu beantragen und eine Kopie davon zu erhalten, (ii) eine Berichtigung oder Löschung zu beantragen, (iii) die Verarbeitung Ihrer personenbezogenen Daten einzuschränken und (iv) gegebenenfalls das Recht auf Datenübertragbarkeit."
+      "content": "In einigen Regionen haben Sie bestimmte Rechte gemäß den geltenden Datenschutzgesetzen. Dazu können das Recht gehören, (i) Zugang zu Ihren personenbezogenen Daten zu beantragen und eine Kopie davon zu erhalten, (ii) die Berichtigung oder Löschung zu verlangen, (iii) die Verarbeitung Ihrer personenbezogenen Daten einzuschränken und (iv) gegebenenfalls das Recht auf Datenübertragbarkeit."
     },
     "controlsForDoNotTrack": {
-      "heading": "9. KONTROLLEN FÜR DO-NOT-TRACK-FUNKTIONEN",
-      "content": "Die meisten Webbrowser und einige mobile Betriebssysteme und mobile Anwendungen enthalten eine Do-Not-Track ('DNT')-Funktion oder -Einstellung, die Sie aktivieren können, um Ihre Datenschutzpräferenz zu signalisieren, dass Daten über Ihre Online-Browsing-Aktivitäten nicht überwacht und gesammelt werden sollen. Zum jetzigen Zeitpunkt ist noch kein einheitlicher Technologiestandard für die Erkennung und Implementierung von DNT-Signalen fertiggestellt. Daher reagieren wir derzeit nicht auf DNT-Browsersignale."
+      "heading": "9. STEUERELEMENTE FÜR DO-NOT-TRACK-FUNKTIONEN",
+      "content": "Die meisten Webbrowser und einige mobile Betriebssysteme und mobile Anwendungen enthalten eine Do-Not-Track ('DNT')-Funktion oder -Einstellung, die Sie aktivieren können, um Ihre Datenschutzpräferenz zu signalisieren, dass Daten über Ihre Online-Browseraktivitäten nicht überwacht und gesammelt werden sollen. Zum jetzigen Zeitpunkt wurde noch kein einheitlicher Technologiestandard zur Erkennung und Implementierung von DNT-Signalen festgelegt. Daher reagieren wir derzeit nicht auf DNT-Browsersignale."
     },
     "updatesToNotice": {
-      "heading": "10. AKTUALISIEREN WIR DIESE ERKLÄRUNG?",
-      "content": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Die aktualisierte Version wird durch ein aktualisiertes 'Überarbeitet'-Datum gekennzeichnet und die aktualisierte Version tritt in Kraft, sobald sie zugänglich ist. Wir empfehlen Ihnen, diese Datenschutzerklärung regelmäßig zu überprüfen, um darüber informiert zu sein, wie wir Ihre Informationen schützen."
+      "heading": "10. AKTUALISIEREN WIR DIESE HINWEISE?",
+      "content": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Die aktualisierte Version wird durch ein aktualisiertes 'Überarbeitet'-Datum gekennzeichnet und die aktualisierte Version wird wirksam, sobald sie zugänglich ist. Wir empfehlen Ihnen, diese Datenschutzerklärung regelmäßig zu überprüfen, um darüber informiert zu sein, wie wir Ihre Informationen schützen."
     }
   },
   "termsOfService": {
     "title": "Nutzungsbedingungen",
     "lastUpdated": "Zuletzt aktualisiert: 29. Oktober 2023",
-    "introduction": "Diese Nutzungsbedingungen stellen eine rechtlich bindende Vereinbarung dar, die zwischen Ihnen und DamDoh bezüglich Ihres Zugangs zu und Ihrer Nutzung der DamDoh-Website sowie jeder anderen Medienform, Medienkanal, mobilen Website oder mobilen Anwendung, die damit zusammenhängt, verlinkt ist oder anderweitig damit verbunden ist, getroffen wird.",
+    "introduction": "Diese Nutzungsbedingungen stellen eine rechtsverbindliche Vereinbarung zwischen Ihnen und DamDoh bezüglich Ihres Zugriffs auf und Ihrer Nutzung der DamDoh-Website sowie aller anderen Medienformen, Medienkanäle, mobilen Websites oder mobilen Anwendungen dar, die damit zusammenhängen, verlinkt oder anderweitig verbunden sind.",
     "agreementToTerms": {
       "heading": "1. ZUSTIMMUNG ZU DEN BEDINGUNGEN",
       "content": "Durch die Nutzung der Plattform erklären Sie sich mit diesen Nutzungsbedingungen einverstanden. Wenn Sie nicht zustimmen, dürfen Sie die Plattform nicht nutzen. Wir behalten uns das Recht vor, diese Bedingungen jederzeit zu ändern."
     },
     "intellectualProperty": {
-      "heading": "2. GEISTIGES EIGENTUM",
-      "content": "Sofern nicht anders angegeben, ist die Plattform unser Eigentum und alle Quellcodes, Datenbanken, Funktionalitäten, Software, Website-Designs, Audio, Video, Texte, Fotos und Grafiken auf der Website (zusammen der 'Inhalt') und die darin enthaltenen Marken, Dienstleistungsmarken und Logos sind unser Eigentum oder werden von uns kontrolliert oder sind an uns lizenziert."
+      "heading": "2. RECHTE AN GEISTIGEM EIGENTUM",
+      "content": "Sofern nicht anders angegeben, ist die Plattform unser Eigentum und alle Quellcodes, Datenbanken, Funktionalitäten, Software, Website-Designs, Audio, Video, Texte, Fotos und Grafiken auf der Website (zusammenfassend als 'Inhalt' bezeichnet) sowie die darin enthaltenen Marken, Dienstleistungsmarken und Logos sind unser Eigentum oder werden von uns kontrolliert oder an uns lizenziert."
     },
     "userRepresentations": {
-      "heading": "3. ZUSICHERUNGEN DES BENUTZERS",
-      "content": "Durch die Nutzung der Website versichern und garantieren Sie, dass: (1) alle von Ihnen übermittelten Registrierungsinformationen wahr, genau, aktuell und vollständig sind; (2) Sie die Richtigkeit dieser Informationen aufrechterhalten und diese Registrierungsinformationen bei Bedarf umgehend aktualisieren; (3) Sie geschäftsfähig sind und sich damit einverstanden erklären, diese Nutzungsbedingungen einzuhalten; (4) Sie die Website nicht für illegale oder unbefugte Zwecke nutzen werden; und (5) Ihre Nutzung der Website keine geltenden Gesetze oder Vorschriften verletzt."
+      "heading": "3. ZUSICHERUNGEN DES NUTZERS",
+      "content": "Durch die Nutzung der Website versichern und garantieren Sie, dass: (1) alle von Ihnen übermittelten Registrierungsinformationen wahr, genau, aktuell und vollständig sind; (2) Sie die Richtigkeit dieser Informationen aufrechterhalten und diese Registrierungsinformationen bei Bedarf umgehend aktualisieren werden; (3) Sie geschäftsfähig sind und sich mit diesen Nutzungsbedingungen einverstanden erklären; (4) Sie die Website nicht für illegale oder nicht autorisierte Zwecke nutzen werden; und (5) Ihre Nutzung der Website keine geltenden Gesetze oder Vorschriften verletzt."
     },
     "prohibitedActivities": {
       "heading": "4. VERBOTENE AKTIVITÄTEN",
-      "content": "Sie dürfen die Website nicht für andere Zwecke als die, für die wir die Website zur Verfügung stellen, aufrufen oder nutzen. Verbotene Aktivitäten umfassen, sind aber nicht beschränkt auf: systematisches Abrufen von Daten, Betrug oder Irreführung von uns oder anderen Benutzern, Versuch, sich als ein anderer Benutzer auszugeben, Belästigung oder Bedrohung unserer Mitarbeiter oder anderer Benutzer und das Hochladen oder Übertragen von Viren oder anderem bösartigen Code."
+      "content": "Sie dürfen die Website nicht für andere Zwecke als die, für die wir die Website zur Verfügung stellen, aufrufen oder nutzen. Verbotene Aktivitäten umfassen unter anderem: systematisches Abrufen von Daten, Täuschen oder Betrügen von uns oder anderen Nutzern, der Versuch, sich als ein anderer Nutzer auszugeben, das Belästigen oder Bedrohen unserer Mitarbeiter oder anderer Nutzer und das Hochladen oder Übertragen von Viren oder anderem bösartigen Code."
     },
     "platformManagement": {
-      "heading": "5. PLATTFORMVERWALTUNG",
-      "content": "Wir behalten uns das Recht vor, sind aber nicht verpflichtet: (1) die Website auf Verstöße gegen diese Nutzungsbedingungen zu überwachen; (2) geeignete rechtliche Schritte gegen jeden einzuleiten, der nach unserem alleinigen Ermessen gegen das Gesetz oder diese Nutzungsbedingungen verstößt; (3) nach unserem alleinigen Ermessen und ohne Einschränkung den Zugang zu verweigern, einzuschränken, die Verfügbarkeit einzuschränken oder Ihre Beiträge oder einen Teil davon zu deaktivieren."
+      "heading": "5. PLATTFORM-MANAGEMENT",
+      "content": "Wir behalten uns das Recht, aber nicht die Verpflichtung vor, (1) die Website auf Verstöße gegen diese Nutzungsbedingungen zu überwachen; (2) geeignete rechtliche Schritte gegen jeden einzuleiten, der nach unserem alleinigen Ermessen gegen das Gesetz oder diese Nutzungsbedingungen verstößt; (3) nach unserem alleinigen Ermessen und ohne Einschränkung den Zugang zu verweigern, einzuschränken, die Verfügbarkeit zu begrenzen oder Ihre Beiträge oder einen Teil davon zu deaktivieren."
     },
     "termAndTermination": {
       "heading": "6. LAUFZEIT UND KÜNDIGUNG",
-      "content": "Diese Nutzungsbedingungen bleiben in vollem Umfang in Kraft, solange Sie die Website nutzen. OHNE EINSCHRÄNKUNG EINER ANDEREN BESTIMMUNG DIESER NUTZUNGSBEDINGUNGEN BEHALTEN WIR UNS DAS RECHT VOR, NACH UNSEREM ALLEINIGEN ERMESSEN UND OHNE VORANKÜNDIGUNG ODER HAFTUNG DEN ZUGANG ZU UND DIE NUTZUNG DER WEBSITE (EINSCHLIESSLICH DES BLOCKIERENS BESTIMMTER IP-ADRESSEN) FÜR JEDE PERSON AUS JEDEM GRUND ODER OHNE GRUND ZU VERWEIGERN."
+      "content": "Diese Nutzungsbedingungen bleiben in vollem Umfang in Kraft und wirksam, solange Sie die Website nutzen. OHNE EINSCHRÄNKUNG ANDERER BESTIMMUNGEN DIESER NUTZUNGSBEDINGUNGEN BEHALTEN WIR UNS DAS RECHT VOR, NACH UNSEREM ALLEINIGEN ERMESSEN UND OHNE ANKÜNDIGUNG ODER HAFTUNG DEN ZUGANG ZUR UND DIE NUTZUNG DER WEBSITE (EINSCHLIESSLICH DES BLOCKIERENS BESTIMMTER IP-ADRESSEN) FÜR JEDE PERSON AUS IRGENDEINEM GRUND ODER OHNE GRUND ZU VERWEIGERN."
     },
     "modificationsAndInterruptions": {
       "heading": "7. ÄNDERUNGEN UND UNTERBRECHUNGEN",
-      "content": "Wir behalten uns das Recht vor, den Inhalt der Website jederzeit oder aus beliebigem Grund nach unserem alleinigen Ermessen ohne Vorankündigung zu ändern, zu modifizieren oder zu entfernen. Wir behalten uns auch das Recht vor, die Website ganz oder teilweise jederzeit ohne Vorankündigung zu ändern oder einzustellen. Wir haften Ihnen oder Dritten gegenüber nicht für Änderungen, Preisänderungen, Aussetzungen oder die Einstellung der Website."
+      "content": "Wir behalten uns das Recht vor, den Inhalt der Website jederzeit oder aus irgendeinem Grund nach unserem alleinigen Ermessen ohne Vorankündigung zu ändern, zu modifizieren oder zu entfernen. Wir behalten uns auch das Recht vor, die gesamte oder einen Teil der Website jederzeit ohne Vorankündigung zu ändern oder einzustellen. Wir haften weder Ihnen noch Dritten gegenüber für Änderungen, Preisänderungen, Aussetzungen oder die Einstellung der Website."
     },
     "governingLaw": {
       "heading": "8. GELTENDES RECHT",
-      "content": "Diese Nutzungsbedingungen und Ihre Nutzung der Website unterliegen den Gesetzen der Gerichtsbarkeit, in der DamDoh registriert ist, und werden in Übereinstimmung mit diesen ausgelegt, ohne Rücksicht auf Kollisionsnormen."
+      "content": "Diese Nutzungsbedingungen und Ihre Nutzung der Website unterliegen den Gesetzen der Gerichtsbarkeit, in der DamDoh registriert ist, und werden in Übereinstimmung mit diesen ausgelegt, ohne Rücksicht auf die Grundsätze des Kollisionsrechts."
     },
     "disputeResolution": {
       "heading": "9. STREITBEILEGUNG",
-      "content": "Jede rechtliche Klage jeglicher Art, die von Ihnen oder uns erhoben wird, muss in den Staats- und Bundesgerichten am Sitz von DamDoh eingeleitet oder verfolgt werden, und die Parteien stimmen hiermit der persönlichen Zuständigkeit in diesen Gerichten zu und verzichten auf alle Einreden des Fehlens der persönlichen Zuständigkeit und des forum non conveniens."
+      "content": "Jegliche rechtliche Schritte jeglicher Art, die von Ihnen oder uns eingeleitet werden, müssen bei den staatlichen und bundesstaatlichen Gerichten in der Gerichtsbarkeit unserer Registrierung eingeleitet oder verfolgt werden, und die Parteien stimmen hiermit der Zuständigkeit und dem Gerichtsstand in solchen Gerichten zu und verzichten auf alle Einreden des Mangels an persönlicher Zuständigkeit und des Forum non conveniens."
     },
     "contactUs": {
       "heading": "10. KONTAKTIEREN SIE UNS",
-      "content": "Um eine Beschwerde bezüglich der Website zu klären oder um weitere Informationen zur Nutzung der Website zu erhalten, kontaktieren Sie uns bitte."
+      "content": "Um eine Beschwerde bezüglich der Website zu klären oder weitere Informationen zur Nutzung der Website zu erhalten, kontaktieren Sie uns bitte."
     },
-    "conclusion": "Um Beschwerden zu klären oder weitere Informationen zu erhalten, bitte {contactLink}."
+    "conclusion": "Um eine Beschwerde zu klären oder weitere Informationen zu erhalten, {contactLink}."
   },
   "Marketplace": {
     "title": "Marktplatz",
-    "description": "Durchsuchen, kaufen und verkaufen Sie Produkte und Dienstleistungen in der gesamten Agrarlieferkette.",
-    "createShopButton": "Shopfront erstellen",
+    "description": "Durchsuchen, kaufen und verkaufen Sie Produkte und Dienstleistungen entlang der landwirtschaftlichen Lieferkette.",
+    "createShopButton": "Ladenfront erstellen",
     "myOrdersButton": "Meine Bestellungen",
-    "createListingButton": "Angebot erstellen",
-    "pinButton": "Als Startseite anheften",
-    "unpinButton": "Startseiten-Pin entfernen",
+    "createListingButton": "Eintrag erstellen",
+    "pinButton": "Als Startseite pinnen",
+    "unpinButton": "Pin von Startseite entfernen",
     "searchPlaceholder": "Produkte & Dienstleistungen suchen...",
-    "locationPlaceholder": "Nach Ort filtern...",
+    "locationPlaceholder": "Nach Standort filtern...",
     "typePlaceholder": "Nach Typ filtern...",
     "recommendedForYou": "Für Sie empfohlen",
     "discoverMore": "Mehr entdecken",
-    "viewDetails": "Details anzeigen",
+    "viewDetails": "Details ansehen",
     "viewServiceButton": "Dienstleistung ansehen",
     "pinning": {
-      "pinnedTitle": "Marktplatz angeheftet",
+      "pinnedTitle": "Marktplatz angepinnt",
       "pinnedDescription": "Der Marktplatz ist jetzt Ihre Standard-Startseite.",
       "unpinnedTitle": "Marktplatz-Pin entfernt",
-      "unpinnedDescription": "Ihre Startseite wurde auf die Standardeinstellung zurückgesetzt."
+      "unpinnedDescription": "Ihre Startseite wurde auf den Standard zurückgesetzt."
     },
     "noItemsFound": {
       "title": "Keine Artikel gefunden",
-      "hint": "Versuchen Sie, Ihre Suchfilter anzupassen, oder schauen Sie später noch einmal vorbei."
+      "hint": "Versuchen Sie, Ihre Suchfilter anzupassen oder schauen Sie später wieder vorbei."
     },
     "errors": {
       "search": {
         "title": "Suche fehlgeschlagen",
-        "description": "Marktplatzangebote konnten derzeit nicht abgerufen werden."
+        "description": "Marktplatzeinträge konnten derzeit nicht abgerufen werden."
       },
       "aiRecommendations": {
-        "title": "Derzeit keine Empfehlungen verfügbar"
+        "title": "Derzeit keine Empfehlungen verfügbar."
       }
     },
     "categories": {
       "allCategories": "Alle Kategorien",
-      "viewAllItems": "Alle Artikel anzeigen",
-      "viewAllCategory": "Alle in {categoryName}"
+      "viewAllItems": "Alle Artikel ansehen",
+      "viewAllCategory": "Alles in {categoryName}"
     },
     "createListing": {
       "backLink": "Zurück zum Marktplatz",
-      "title": "Neues Marktplatzangebot erstellen",
-      "description": "Füllen Sie die untenstehenden Details aus, um Ihr Produkt oder Ihre Dienstleistung anzubieten.",
+      "title": "Einen neuen Marktplatzeintrag erstellen",
+      "description": "Füllen Sie die Details unten aus, um Ihr Produkt oder Ihre Dienstleistung aufzulisten.",
       "form": {
-        "nameLabel": "Titel des Angebots",
-        "namePlaceholder": "z.B. Bio-Hass-Avocados, Traktorreparaturservice",
-        "typeLabel": "Art des Angebots",
-        "typePlaceholder": "Wählen Sie eine Angebotsart",
+        "nameLabel": "Titel des Eintrags",
+        "namePlaceholder": "z.B. Bio-Hass-Avocados, Traktor-Reparaturservice",
+        "typeLabel": "Art des Eintrags",
+        "typePlaceholder": "Wählen Sie eine Art des Eintrags",
         "descriptionLabel": "Beschreibung",
-        "descriptionPlaceholder": "Beschreiben Sie Ihr Produkt oder Ihre Dienstleistung detailliert...",
+        "descriptionPlaceholder": "Beschreiben Sie Ihr Produkt oder Ihre Dienstleistung im Detail...",
         "locationLabel": "Standort",
         "locationPlaceholder": "z.B. Nakuru, Kenia",
-        "relatedVtiLabel": "Zugehörige Rückverfolgbarkeits-ID (Optional)",
-        "relatedVtiPlaceholder": "VTI eingeben, falls zutreffend",
-        "relatedVtiDescription": "Verknüpfen Sie dieses Angebot mit einer bestimmten Erntecharge für volle Transparenz.",
+        "relatedVtiLabel": "Zugehörige Rückverfolgungs-ID (Optional)",
+        "relatedVtiPlaceholder": "Geben Sie die VTI ein, falls zutreffend",
+        "relatedVtiDescription": "Verknüpfen Sie diesen Eintrag mit einer bestimmten Erntepartie für vollständige Transparenz.",
         "categoryLabel": "Kategorie",
         "categoryPlaceholder": "Wählen Sie eine Kategorie",
         "priceLabel": "Preis",
         "pricePlaceholder": "z.B. 25.50",
         "unitLabel": "pro",
         "unitPlaceholder": "z.B. kg, Tonne, Stunde",
-        "compensationLabel": "Vergütung / Preis",
-        "compensationPlaceholder": "z.B. 50 $/Std., Projektbasiert",
+        "compensationLabel": "Vergütung / Satz",
+        "compensationPlaceholder": "z.B. 50 $/Stunde, Projektbasiert",
         "experienceLabel": "Erfahrungsniveau",
-        "experiencePlaceholder": "z.B. Mittelstufe, Experte (10+ Jahre)",
-        "skillsLabel": "Benötigte Fähigkeiten (für Dienstleistungen)",
+        "experiencePlaceholder": "z.B. Mittel, Experte (10+ Jahre)",
+        "skillsLabel": "Erforderliche Fähigkeiten (für Dienstleistungen)",
         "skillsPlaceholder": "z.B. Schädlingsbekämpfung, Bodenanalyse, Bio-Zertifizierung",
-        "skillsDescription": "Fähigkeiten durch Kommas trennen.",
+        "skillsDescription": "Trennen Sie Fähigkeiten durch ein Komma.",
         "imageUrlLabel": "Bild-URL",
         "sustainableLabel": "Nachhaltig produziert",
-        "sustainableDescription": "Aktivieren Sie diese Option, wenn Ihr Produkt oder Ihre Dienstleistung anerkannten Nachhaltigkeitspraktiken entspricht.",
-        "submitButton": "Angebot erstellen",
+        "sustainableDescription": "Aktivieren Sie dieses Kontrollkästchen, wenn Ihr Produkt oder Ihre Dienstleistung anerkannten nachhaltigen Praktiken folgt.",
+        "submitButton": "Eintrag erstellen",
         "submittingButton": "Wird erstellt..."
       },
       "aiPriceSuggestion": {
@@ -545,41 +545,41 @@
         "priceSuggestion": {
           "missingInfo": {
             "title": "Fehlende Informationen",
-            "description": "Bitte geben Sie einen Namen und eine Beschreibung ein, bevor Sie einen Preis vorschlagen."
+            "description": "Bitte füllen Sie den Namen und die Beschreibung aus, bevor Sie einen Preis vorschlagen."
           },
           "failed": {
             "title": "KI-Vorschlag fehlgeschlagen",
-            "description": "Derzeit konnte kein Preisvorschlag abgerufen werden."
+            "description": "Ein Preisvorschlag konnte derzeit nicht abgerufen werden."
           }
         },
         "authentication": {
           "title": "Nicht authentifiziert",
-          "description": "Sie müssen angemeldet sein, um ein Angebot zu erstellen."
+          "description": "Sie müssen angemeldet sein, um einen Eintrag zu erstellen."
         },
         "creation": {
           "title": "Erstellung fehlgeschlagen",
-          "description": "Beim Erstellen des Angebots ist ein unerwarteter Fehler aufgetreten."
+          "description": "Beim Erstellen des Eintrags ist ein unerwarteter Fehler aufgetreten."
         }
       },
       "success": {
-        "title": "Angebot erstellt!",
-        "description": "Ihr Angebot ist jetzt auf dem Marktplatz sichtbar."
+        "title": "Eintrag erstellt!",
+        "description": "Ihr Eintrag ist jetzt auf dem Marktplatz live."
       }
     },
     "itemView": {
       "backLink": "Zurück zum Marktplatz",
       "notFound": {
-        "description": "Angebot nicht gefunden."
+        "description": "Eintrag nicht gefunden."
       },
       "errors": {
         "loadItem": {
-          "description": "Angebot konnte nicht geladen werden."
+          "description": "Artikel konnte nicht geladen werden."
         },
         "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
       },
       "coupon": {
         "successTitle": "Gutschein angewendet!",
-        "successDescription": "Sie haben einen {type} Rabatt erhalten!",
+        "successDescription": "Sie haben einen {type}-Rabatt erhalten!",
         "failTitle": "Ungültiger Gutschein",
         "failDescription": "Der von Ihnen eingegebene Gutscheincode ist ungültig oder abgelaufen.",
         "label": "Gutscheincode",
@@ -589,13 +589,13 @@
       },
       "booking": {
         "authTitle": "Anmeldung erforderlich",
-        "authDescription": "Sie müssen angemeldet sein, um einen Service zu buchen.",
+        "authDescription": "Sie müssen angemeldet sein, um eine Dienstleistung zu buchen.",
         "failTitle": "Buchung fehlgeschlagen",
         "dateError": "Bitte wählen Sie ein Start- und Enddatum für Ihre Buchung.",
         "successTitle": "Buchung erfolgreich!",
         "successDescription": "Ihre Buchung wurde bestätigt. Sie erhalten weitere Details per E-Mail.",
         "bookedTitle": "Sie haben dieses Erlebnis gebucht!",
-        "bookedDescription": "Zeigen Sie Ihr Ticket bei der Ankunft.",
+        "bookedDescription": "Zeigen Sie Ihr Ticket bei der Ankunft vor.",
         "ticketButton": "Ticket ansehen",
         "modalTitle": "Ihr Ticket",
         "modalDescription": "Zeigen Sie diesen QR-Code beim Check-in für {itemName}",
@@ -607,7 +607,7 @@
         "guests": "Gäste",
         "reserveButton": "Reservieren",
         "reservingButton": "Wird reserviert...",
-        "notCharged": "Sie werden noch nicht belastet",
+        "notCharged": "Ihnen wird noch nichts berechnet",
         "nights": "{count, plural, =1 {Nacht} other {Nächte}}",
         "serviceFee": "Servicegebühr",
         "total": "Gesamt"
@@ -621,32 +621,32 @@
         "successDescription": "Ihre Bestellung wurde erfolgreich an den Verkäufer gesendet.",
         "failTitle": "Bestellung fehlgeschlagen",
         "failDescription": "Ihre Bestellung konnte nicht aufgegeben werden. Bitte versuchen Sie es erneut.",
-        "title": "{itemName} bestellen",
-        "description": "Bestätigen Sie die Menge und fügen Sie bei Bedarf eine Notiz für den Verkäufer hinzu.",
+        "title": "Bestellen Sie {itemName}",
+        "description": "Bestätigen Sie die Menge und fügen Sie bei Bedarf Notizen für den Verkäufer hinzu.",
         "quantityLabel": "Menge",
-        "notesLabel": "Notizen für den Verkäufer (optional)",
-        "notesPlaceholder": "z.B. Lieferanweisungen, spezielle Wünsche...",
+        "notesLabel": "Notizen für den Verkäufer (Optional)",
+        "notesPlaceholder": "z.B. Lieferanweisungen, Sonderwünsche...",
         "cancelButton": "Abbrechen",
         "confirmButton": "Bestellung bestätigen",
-        "placingButton": "Wird bestellt..."
+        "placingButton": "Bestellung wird aufgegeben..."
       },
-      "skillsLabel": "Benötigte Fähigkeiten",
+      "skillsLabel": "Erforderliche Fähigkeiten",
       "experienceLabel": "Erfahrungsniveau",
       "compensationLabel": "Vergütung",
-      "contactForRates": "Für Preise kontaktieren",
+      "contactForRates": "Kontakt für Preise",
       "aboutSeller": "Über den Verkäufer",
-      "viewShopfront": "Shopfront ansehen",
-      "editListing": "Angebot bearbeiten",
+      "viewShopfront": "Ladenfront ansehen",
+      "editListing": "Eintrag bearbeiten",
       "manageService": "Dienstleistung verwalten",
       "buyNowButton": "Jetzt kaufen",
-      "contactForService": "Für Service kontaktieren",
+      "contactForService": "Kontakt für Dienstleistung",
       "contactSeller": "Verkäufer kontaktieren",
-      "traceabilityButton": "Rückverfolgungsbericht anzeigen"
+      "traceabilityButton": "Rückverfolgungsbericht ansehen"
     },
     "myOrders": {
       "backLink": "Zurück zum Marktplatz",
       "title": "Meine Bestellungen",
-      "description": "Verwalten Sie Ihre eingehenden Bestellungen.",
+      "description": "Verwalten Sie Ihre eingehenden Verkaufsaufträge.",
       "table": {
         "date": "Datum",
         "buyer": "Käufer",
@@ -664,7 +664,7 @@
       "status": {
         "new": "Neu",
         "confirmed": "Bestätigt",
-        "shipped": "Versandt",
+        "shipped": "Versendet",
         "completed": "Abgeschlossen",
         "cancelled": "Storniert"
       },
@@ -674,7 +674,7 @@
         "fetchError": "Ihre Bestellungen konnten nicht abgerufen werden.",
         "successTitle": "Bestellung aktualisiert",
         "updateSuccess": "Der Bestellstatus wurde erfolgreich auf '{status}' aktualisiert.",
-        "failTitle": "Aktualisierung fehlgeschlagen"
+        "failTitle": "Update fehlgeschlagen"
       },
       "auth": {
         "title": "Bitte anmelden",
@@ -684,48 +684,48 @@
     },
     "createShop": {
       "backLink": "Zurück zum Marktplatz",
-      "title": "Digitale Shopfront erstellen",
-      "description": "Richten Sie Ihren persönlichen Marktplatz ein, um Ihre Produkte oder Dienstleistungen zu präsentieren.",
+      "title": "Digitale Ladenfront erstellen",
+      "description": "Richten Sie Ihren personalisierten Marktplatz ein, um Ihre Produkte oder Dienstleistungen zu präsentieren.",
       "form": {
-        "nameLabel": "Name des Shops",
-        "namePlaceholder": "z.B. Green Valley Bio-Produkte",
+        "nameLabel": "Name des Ladens",
+        "namePlaceholder": "z.B. Green Valley Organics",
         "typeLabel": "Geschäftstyp",
         "typePlaceholder": "Wählen Sie Ihren primären Stakeholder-Typ",
-        "descriptionLabel": "Shop-Beschreibung",
-        "descriptionPlaceholder": "Beschreiben Sie kurz Ihren Shop und was Sie anbieten...",
-        "submitButton": "Shop erstellen",
+        "descriptionLabel": "Beschreibung des Ladens",
+        "descriptionPlaceholder": "Beschreiben Sie kurz Ihren Laden und was Sie anbieten...",
+        "submitButton": "Laden erstellen",
         "submittingButton": "Wird erstellt..."
       },
       "authErrorTitle": "Nicht authentifiziert",
-      "authErrorDescription": "Sie müssen angemeldet sein, um einen Shop zu erstellen.",
+      "authErrorDescription": "Sie müssen angemeldet sein, um einen Laden zu erstellen.",
       "toast": {
-        "successTitle": "Shop erstellt!",
-        "successDescription": "Ihr Shop '{shopName}' ist jetzt live.",
+        "successTitle": "Laden erstellt!",
+        "successDescription": "Ihr Laden '{shopName}' ist jetzt live.",
         "failTitle": "Erstellung fehlgeschlagen",
-        "failDescription": "Ihr Shop konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
+        "failDescription": "Ihr Laden konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
       }
     },
     "shopView": {
       "backLink": "Zurück zum Marktplatz",
-      "ownedBy": "Inhaber:",
-      "loadingOwner": "Wird geladen...",
+      "ownedBy": "Im Besitz von",
+      "loadingOwner": "Lade Besitzer...",
       "contactButton": "Kontakt",
-      "editShopButton": "Shop bearbeiten",
-      "listingsTitle": "Angebote von {shopName}",
-      "noListings": "Dieser Shop hat derzeit keine aktiven Angebote.",
+      "editShopButton": "Laden bearbeiten",
+      "listingsTitle": "Einträge von {shopName}",
+      "noListings": "Dieser Laden hat derzeit keine aktiven Einträge.",
       "errors": {
-        "notFound": "Shop nicht gefunden",
-        "loadError": "Shop-Daten konnten nicht geladen werden.",
+        "notFound": "Laden nicht gefunden",
+        "loadError": "Ladendaten konnten nicht geladen werden.",
         "title": "Fehler"
       }
     }
   },
   "farmManagement": {
     "hub": {
-      "title": "Farm-Management-Hub",
-      "description": "Ihr zentraler Ort für die Verfolgung und Optimierung all Ihrer landwirtschaftlichen Aktivitäten, von der Aussaat bis zur Ernte.",
+      "title": "Farm Management Hub",
+      "description": "Ihr zentraler Ort, um alle Ihre landwirtschaftlichen Aktivitäten zu verfolgen und zu optimieren, vom Samen bis zur Ernte.",
       "myFarms": {
-        "title": "Meine Farmen & Ernten",
+        "title": "Meine Farmen & Kulturen",
         "description": "Verwalten Sie Ihre Farmen, Felder und verfolgen Sie einzelne Erntezyklen.",
         "button": "Farmen verwalten"
       },
@@ -736,33 +736,33 @@
       },
       "knf": {
         "title": "KNF-Input-Assistent",
-        "description": "Verfolgen Sie Ihre selbstgemachten koreanischen Naturlandwirtschaft-Inputs.",
+        "description": "Verfolgen Sie Ihre von Landwirten hergestellten koreanischen Natural Farming Inputs.",
         "button": "Inputs verwalten"
       },
       "fgw": {
-        "title": "Farming God's Way Leitfaden",
+        "title": "Farming God's Way Anleitung",
         "description": "Lernen Sie die Prinzipien und Praktiken von FGW für eine nachhaltige Landwirtschaft ohne Bodenbearbeitung.",
-        "button": "FGW-Leitfaden anzeigen"
+        "button": "FGW-Anleitung ansehen"
       },
       "financials": {
         "title": "Finanzen & Analytik",
         "description": "Verfolgen Sie Einnahmen, Ausgaben und erhalten Sie Einblicke in die Rentabilität.",
-        "button": "Finanzen anzeigen"
+        "button": "Finanzen ansehen"
       },
       "seedStarting": {
-        "title": "Leitfaden zur Aussaat",
-        "description": "Lernen Sie die besten Praktiken für die Anzucht von Setzlingen für eine erfolgreiche Saison.",
-        "button": "Aussaat-Leitfaden anzeigen"
+        "title": "Anleitung zum Aussäen",
+        "description": "Lernen Sie die besten Praktiken für das Aussäen für eine erfolgreiche Saison.",
+        "button": "Anleitung ansehen"
       },
       "familyFarm": {
         "title": "Integriertes Familienfarm-Modell",
-        "description": "Entdecken Sie ein nachhaltiges Modell für eine kleine Familienfarm von 200 m².",
-        "button": "Modell anzeigen"
+        "description": "Entdecken Sie ein nachhaltiges 200m²-Modell für einen kleinen Familienbetrieb.",
+        "button": "Modell ansehen"
       },
       "assetManagement": {
-        "title": "Anlagenmanagement",
-        "description": "Verfolgen Sie Ihre Maschinen, Werkzeuge und andere landwirtschaftliche Anlagen.",
-        "button": "Anlagen verwalten"
+        "title": "Vermögensverwaltung",
+        "description": "Behalten Sie den Überblick über Ihre Maschinen, Werkzeuge und andere landwirtschaftliche Vermögenswerte.",
+        "button": "Vermögen verwalten"
       }
     },
     "myFarms": {
@@ -770,7 +770,7 @@
       "title": "Meine Farmen",
       "addNewFarmButton": "Neue Farm hinzufügen",
       "size": "Größe",
-      "viewFarmButton": "Farm anzeigen",
+      "viewFarmButton": "Farm ansehen",
       "noFarmsTitle": "Keine Farmen gefunden",
       "noFarmsDescription": "Sie haben noch keine Farmen erstellt.",
       "auth": {
@@ -784,15 +784,15 @@
       }
     },
     "createFarm": {
-      "backToFarms": "Zurück zu meinen Farmen",
+      "backToFarms": "Zurück zu Meine Farmen",
       "title": "Neue Farm erstellen",
-      "description": "Fügen Sie eine neue Farm zu Ihrem Profil hinzu, um mit der Verfolgung Ihrer Aktivitäten zu beginnen.",
+      "description": "Fügen Sie eine neue Farm zu Ihrem Profil hinzu, um Ihre Aktivitäten zu verfolgen.",
       "form": {
-        "farmNameLabel": "Name der Farm",
+        "farmNameLabel": "Farmname",
         "farmNamePlaceholder": "z.B. Green Valley Organics",
         "locationLabel": "Standort",
         "locationPlaceholder": "z.B. Rift Valley, Kenia",
-        "locationDescription": "Geben Sie eine Stadt, eine Region oder eine allgemeine Gegend an.",
+        "locationDescription": "Geben Sie eine Stadt, Region oder ein allgemeines Gebiet an.",
         "sizeLabel": "Größe",
         "sizePlaceholder": "z.B. 5 Hektar, 12 Acres",
         "sizeDescription": "Geben Sie die Gesamtgröße Ihrer Farm an.",
@@ -808,7 +808,7 @@
         "descriptionLabel": "Beschreibung (Optional)",
         "descriptionPlaceholder": "Eine kurze Beschreibung Ihrer Farm...",
         "irrigationLabel": "Bewässerungsmethoden (Optional)",
-        "irrigationPlaceholder": "z.B. Tropfbewässerung, Grabenbewässerung",
+        "irrigationPlaceholder": "z.B. Tropfbewässerung, Furchenbewässerung",
         "irrigationDescription": "Beschreiben Sie die wichtigsten Bewässerungssysteme, die Sie verwenden.",
         "submitButton": "Farm speichern"
       },
@@ -823,67 +823,67 @@
     "editFarm": {
       "backToFarm": "Zurück zur Farm",
       "title": "Farm bearbeiten",
-      "description": "Aktualisieren Sie die Details Ihrer Farm.",
+      "description": "Aktualisieren Sie die Details für Ihre Farm.",
       "form": {
         "submitButton": "Änderungen speichern"
       },
       "toast": {
         "notFoundTitle": "Farm nicht gefunden",
-        "loadError": "Die Farmdetails konnten nicht zum Bearbeiten geladen werden.",
+        "loadError": "Farmdetails konnten zum Bearbeiten nicht geladen werden.",
         "loadFail": "Laden fehlgeschlagen: {message}",
         "error": "Fehler",
         "successTitle": "Farm aktualisiert!",
         "successDescription": "Ihre Farm '{farmName}' wurde erfolgreich aktualisiert.",
-        "errorTitle": "Aktualisierung fehlgeschlagen"
+        "errorTitle": "Update fehlgeschlagen"
       }
     },
     "farmDetail": {
-      "backToFarms": "Zurück zu meinen Farmen",
+      "backToFarms": "Zurück zu Meine Farmen",
       "registeredOn": "Registriert am {date}",
       "editFarmButton": "Farm bearbeiten",
       "crops": {
-        "title": "Ernten & Vieh",
-        "description": "Verwalten Sie alle aktiven Ernten oder Viehpartien auf dieser Farm.",
-        "addNewButton": "Neue Ernte hinzufügen",
+        "title": "Kulturen & Vieh",
+        "description": "Verwalten Sie alle aktiven Kulturen oder Viehbestände auf dieser Farm.",
+        "addNewButton": "Neue Kultur hinzufügen",
         "plantedLabel": "Gepflanzt",
-        "stageLabel": "Phase",
-        "viewJourneyButton": "Verlauf anzeigen",
-        "noCrops": "Für diese Farm wurden noch keine Ernten protokolliert.",
-        "addFirstButton": "Erste Ernte hinzufügen"
+        "stageLabel": "Stadium",
+        "viewJourneyButton": "Reise ansehen",
+        "noCrops": "Für diese Farm wurden noch keine Kulturen erfasst.",
+        "addFirstButton": "Fügen Sie Ihre erste Kultur hinzu"
       },
       "insights": {
         "title": "Rentabilitätseinblicke",
-        "description": "KI-generierte Erkenntnisse zur Verbesserung Ihrer Abläufe.",
-        "noInsights": "Nicht genügend Daten, um Erkenntnisse zu generieren. Protokollieren Sie mehr Aktivitäten!"
+        "description": "KI-generierte Einblicke zur Verbesserung Ihrer Betriebsabläufe.",
+        "noInsights": "Nicht genügend Daten, um Einblicke zu generieren. Erfassen Sie mehr Aktivitäten!"
       },
       "notFound": {
         "title": "Farm nicht gefunden",
-        "description": "Die Farm, die Sie suchen, konnte nicht gefunden werden.",
-        "backButton": "Zurück zu meinen Farmen"
+        "description": "Die von Ihnen gesuchte Farm konnte nicht gefunden werden.",
+        "backButton": "Zurück zu Meine Farmen"
       },
       "toast": {
         "notFoundTitle": "Farm nicht gefunden.",
         "loadErrorTitle": "Ladefehler",
-        "insightsErrorTitle": "Erkenntnisse konnten nicht geladen werden."
+        "insightsErrorTitle": "Einblicke konnten nicht geladen werden."
       },
       "loading": "Lade Farmdetails..."
     },
     "createCrop": {
       "backLink": "Zurück zur Farm",
-      "title": "Neue Ernte hinzufügen",
-      "description": "Protokollieren Sie eine neue Ernte oder Viehpartie, um mit der Verfolgung ihrer Reise zu beginnen.",
-      "cropTypeLabel": "Ernte-/Viehart",
-      "cropTypePlaceholder": "z.B. Mais, Kenia Top Bar Bienenstöcke, Broilerhühner",
+      "title": "Neue Kultur hinzufügen",
+      "description": "Erfassen Sie eine neue Kultur oder einen neuen Viehbestand, um ihre Reise zu verfolgen.",
+      "cropTypeLabel": "Kultur-/Viehart",
+      "cropTypePlaceholder": "z.B. Mais, Kenia-Top-Bar-Bienenstöcke, Masthähnchen",
       "cropTypeDescription": "Geben Sie an, was Sie anbauen oder züchten.",
       "plantingDateLabel": "Pflanz-/Startdatum",
-      "datePlaceholder": "Wählen Sie ein Datum",
-      "harvestDateLabel": "Voraussichtliches Erntedatum",
+      "datePlaceholder": "Datum auswählen",
+      "harvestDateLabel": "Geschätztes Erntedatum",
       "yieldLabel": "Erwarteter Ertrag (Optional)",
       "yieldPlaceholder": "z.B. 5 Tonnen/Hektar, 5000 Eier/Monat",
-      "stageLabel": "Aktuelle Phase",
-      "stagePlaceholder": "Wählen Sie eine Phase",
+      "stageLabel": "Aktuelles Stadium",
+      "stagePlaceholder": "Wählen Sie ein Stadium",
       "stages": {
-        "Planting": "Pflanzung/Ansiedlung",
+        "Planting": "Pflanzung/Platzierung",
         "Vegetative": "Vegetatives Wachstum",
         "Flowering": "Blüte/Paarung",
         "Fruiting": "Fruchtbildung/Wachstum",
@@ -891,64 +891,64 @@
         "Post-Harvest": "Nachernte"
       },
       "notesLabel": "Notizen (Optional)",
-      "notesPlaceholder": "Zusätzliche Details zu dieser Ernte...",
-      "saveButton": "Ernte speichern",
+      "notesPlaceholder": "Zusätzliche Details zu dieser Kultur...",
+      "saveButton": "Kultur speichern",
       "savingButton": "Wird gespeichert...",
       "toast": {
         "authErrorTitle": "Nicht authentifiziert",
-        "authErrorDescription": "Sie müssen angemeldet sein, um eine Ernte zu erstellen.",
-        "successTitle": "Ernte erstellt!",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Kultur zu erstellen.",
+        "successTitle": "Kultur erstellt!",
         "successDescription": "{cropType} wurde erfolgreich hinzugefügt.",
         "failTitle": "Erstellung fehlgeschlagen",
-        "failDescription": "Ihre Ernte konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
+        "failDescription": "Ihre Kultur konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
       }
     },
     "editCrop": {
-      "backLink": "Zurück zur Ernte",
-      "title": "Erntedetails bearbeiten",
-      "description": "Aktualisieren Sie die Informationen für diese Ernte oder Viehpartie.",
+      "backLink": "Zurück zur Kultur",
+      "title": "Kulturdetails bearbeiten",
+      "description": "Aktualisieren Sie die Informationen für diese Kultur oder diesen Viehbestand.",
       "saveButton": "Änderungen speichern",
       "savingButton": "Wird gespeichert...",
       "toast": {
-        "notFound": "Ernte nicht gefunden",
-        "loadError": "Die Erntedetails konnten nicht zum Bearbeiten geladen werden.",
+        "notFound": "Kultur nicht gefunden",
+        "loadError": "Kulturdetails konnten zum Bearbeiten nicht geladen werden.",
         "loadFail": "Laden fehlgeschlagen: {message}",
         "error": "Fehler",
-        "success": "Ernte aktualisiert!",
+        "success": "Kultur aktualisiert!",
         "description": "Die Details für {cropType} wurden erfolgreich aktualisiert.",
-        "fail": "Aktualisierung fehlgeschlagen"
+        "fail": "Update fehlgeschlagen"
       }
     },
     "cropDetailPage": {
-      "loading": "Lade Erntedetails...",
-      "notFound": "Ernte nicht gefunden.",
+      "loading": "Lade Kulturdetails...",
+      "notFound": "Kultur nicht gefunden.",
       "backLink": "Zurück zur Farm",
       "plantedOn": "Gepflanzt am {date}",
       "editButton": "Bearbeiten",
       "quickActionsTitle": "Schnellaktionen",
       "logInputButton": "Input anwenden",
-      "logObservationButton": "Beobachtung protokollieren",
-      "logHarvestButton": "Ernte protokollieren",
-      "journeyTitle": "Reise dieser Ernte",
-      "noActivities": "Für diese Ernte wurden noch keine Aktivitäten protokolliert.",
+      "logObservationButton": "Beobachtung erfassen",
+      "logHarvestButton": "Ernte erfassen",
+      "journeyTitle": "Die Reise dieser Kultur",
+      "noActivities": "Für diese Kultur wurden noch keine Aktivitäten erfasst.",
       "eventPayload": {
-        "noDetails": "Keine zusätzlichen Details.",
+        "noDetails": "Keine zusätzlichen Details angegeben.",
         "observationType": "Beobachtungstyp",
         "details": "Details",
         "aiDiagnosis": "KI-Diagnose"
       },
       "toast": {
-        "notFound": "Ernte nicht gefunden.",
-        "loadError": "Ernteereignisse konnten nicht geladen werden."
+        "notFound": "Kultur nicht gefunden.",
+        "loadError": "Kulturereignisse konnten nicht geladen werden."
       }
     },
     "logInput": {
       "backLink": "Zurück zur Farm",
-      "title": "Input-Anwendung protokollieren",
-      "description": "Zeichnen Sie die Anwendung von Düngemitteln, Pestiziden oder anderen Inputs auf.",
+      "title": "Input-Anwendung erfassen",
+      "description": "Erfassen Sie die Anwendung von Düngemitteln, Pestiziden oder anderen Inputs.",
       "useKNFLabel": "Selbstgemachten KNF-Input verwenden",
       "useKNFPlaceholder": "Wählen Sie eine fertige Charge",
-      "manualInputLabel": "Input-Name/Typ",
+      "manualInputLabel": "Input-Name/-Typ",
       "manualInputPlaceholder": "z.B. DAP-Dünger, Neemöl",
       "dateLabel": "Anwendungsdatum",
       "quantityLabel": "Menge",
@@ -956,21 +956,21 @@
       "unitLabel": "Einheit",
       "unitPlaceholder": "z.B. kg, L, Säcke",
       "methodLabel": "Anwendungsmethode (Optional)",
-      "methodPlaceholder": "z.B. Blattspray, Bodenapplikation",
-      "saveButton": "Protokoll speichern",
+      "methodPlaceholder": "z.B. Blattspritzung, Bodendüngung",
+      "saveButton": "Eintrag speichern",
       "savingButton": "Wird gespeichert...",
       "toast": {
         "authErrorTitle": "Nicht authentifiziert",
-        "authErrorDescription": "Sie müssen angemeldet sein, um Inputs zu protokollieren.",
-        "success": "Input-Anwendung protokolliert!",
+        "authErrorDescription": "Sie müssen angemeldet sein, um Inputs zu erfassen.",
+        "success": "Input-Anwendung erfasst!",
         "description": "Ihre Input-Anwendung wurde erfolgreich aufgezeichnet.",
-        "fail": "Protokollierung fehlgeschlagen"
+        "fail": "Erfassung fehlgeschlagen"
       }
     },
     "logHarvest": {
       "backLink": "Zurück zur Farm",
-      "title": "Ernte für {cropType} protokollieren",
-      "description": "Zeichnen Sie die Details Ihrer Ernte auf, um eine neue rückverfolgbare Charge zu erstellen.",
+      "title": "Ernte für {cropType} erfassen",
+      "description": "Erfassen Sie die Details Ihrer Ernte, um eine neue rückverfolgbare Charge zu erstellen.",
       "harvestDateLabel": "Erntedatum",
       "yieldLabel": "Ertrag (kg)",
       "yieldPlaceholder": "z.B. 1200",
@@ -978,37 +978,37 @@
       "qualityPlaceholder": "z.B. Grad A, Exportqualität",
       "notesLabel": "Notizen (Optional)",
       "notesPlaceholder": "Zusätzliche Details zur Ernte...",
-      "saveButton": "Ernte protokollieren & VTI erstellen",
+      "saveButton": "Ernte erfassen & VTI erstellen",
       "savingButton": "Wird gespeichert...",
       "success": {
-        "title": "Ernte erfolgreich protokolliert!",
+        "title": "Ernte erfolgreich erfasst!",
         "description": "Eine neue rückverfolgbare Charge (VTI: {vtiId}) wurde für Ihre {cropType}-Ernte erstellt.",
-        "successCardTitle": "Ernte protokolliert & VTI erstellt!",
-        "successCardDescription": "Sie haben erfolgreich die Ernte von {cropType} protokolliert. Eine neue rückverfolgbare Charge mit der ID {vtiId} wurde erstellt. Was möchten Sie als Nächstes tun?",
-        "viewReportButton": "Rückverfolgungsbericht anzeigen",
+        "successCardTitle": "Ernte erfasst & VTI erstellt!",
+        "successCardDescription": "Sie haben die Ernte von {cropType} erfolgreich erfasst. Eine neue rückverfolgbare Charge mit der ID {vtiId} wurde erstellt. Was möchten Sie als Nächstes tun?",
+        "viewReportButton": "Rückverfolgungsbericht ansehen",
         "sellButton": "Diese Charge auf dem Marktplatz verkaufen",
-        "logAnotherButton": "Weitere Ernte protokollieren",
-        "backToFarmButton": "Zurück zur Farm-Übersicht"
+        "logAnotherButton": "Weitere Ernte erfassen",
+        "backToFarmButton": "Zurück zur Farmübersicht"
       },
       "fail": {
-        "title": "Ernteprotokollierung fehlgeschlagen"
+        "title": "Ernteerfassung fehlgeschlagen"
       },
       "offlineToast": {
         "title": "Offline-Modus: Aktion in Warteschlange",
-        "description": "Ihre Ernteprotokollierung wurde gespeichert und wird synchronisiert, wenn Sie wieder online sind."
+        "description": "Ihre Ernteerfassung wurde gespeichert und wird synchronisiert, wenn Sie wieder online sind."
       }
     },
     "logObservation": {
       "backLink": "Zurück zur Farm",
-      "title": "Beobachtung protokollieren",
+      "title": "Beobachtung erfassen",
       "description": "Notieren Sie wichtige Beobachtungen wie Schädlingsbefall, Krankheitsausbrüche oder Wetterereignisse.",
       "typeLabel": "Beobachtungstyp",
       "typePlaceholder": "Wählen Sie einen Typ",
       "types": {
-        "scouting": "Schädlings-/Krankheitssuche",
+        "scouting": "Schädlings-/Krankheits-Scouting",
         "weather": "Wetterereignis",
         "soil": "Bodenzustand",
-        "growth": "Wachstumsphase",
+        "growth": "Wachstumsstadium",
         "other": "Andere"
       },
       "dateLabel": "Beobachtungsdatum",
@@ -1020,19 +1020,19 @@
       "processingButton": "Wird verarbeitet...",
       "toast": {
         "authErrorTitle": "Nicht authentifiziert",
-        "authErrorDescription": "Sie müssen angemeldet sein, um Beobachtungen zu protokollieren.",
+        "authErrorDescription": "Sie müssen angemeldet sein, um Beobachtungen zu erfassen.",
         "aiAnalyzing": "Analysiere Bild...",
         "aiDescription": "Unsere KI untersucht Ihr Foto auf mögliche Probleme.",
         "aiComplete": "Analyse abgeschlossen!",
-        "aiCompleteDescription": "Die KI-Erkenntnisse werden mit Ihrer Beobachtung gespeichert.",
+        "aiCompleteDescription": "KI-Einblicke werden mit Ihrer Beobachtung gespeichert.",
         "aiFailTitle": "KI-Analyse fehlgeschlagen",
         "aiFailDescription": "Wir konnten Ihr Bild nicht analysieren, aber Ihre Beobachtung wird trotzdem gespeichert.",
         "uploading": "Lade Bild hoch...",
         "uploadingDescription": "Bitte warten Sie, während wir Ihr Bild speichern.",
         "uploadComplete": "Upload abgeschlossen!",
-        "success": "Beobachtung protokolliert!",
+        "success": "Beobachtung erfasst!",
         "successDescription": "Ihre Beobachtung wurde erfolgreich gespeichert.",
-        "fail": "Protokollierung fehlgeschlagen"
+        "fail": "Erfassung fehlgeschlagen"
       }
     },
     "knfInputsPage": {
@@ -1052,7 +1052,7 @@
       "readySince": "Fertig seit",
       "logUsage": "Verwendung protokollieren",
       "archive": "Archivieren",
-      "noReadyBatches": "Sie haben keine fertigen Chargen.",
+      "noReadyBatches": "Sie haben keine fertigen Chargen zur Verwendung.",
       "startNewBatch": "Neue Charge starten",
       "createNewBatchTitle": "Neue KNF-Charge erstellen",
       "form": {
@@ -1074,7 +1074,7 @@
         "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten.",
         "batchUpdatedTitle": "Status aktualisiert!",
         "batchUpdatedDescription": "Der Chargenstatus wurde auf '{status}' aktualisiert.",
-        "updateFailed": "Aktualisierung fehlgeschlagen",
+        "updateFailed": "Update fehlgeschlagen",
         "couldNotUpdate": "Der Chargenstatus konnte nicht aktualisiert werden."
       },
       "knfOptions": [
@@ -1085,84 +1085,84 @@
         { "value": "lab", "label": "Milchsäurebakterien (LAB)", "placeholder": "z.B. Reiswaschwasser" }
       ],
       "recipeData": [
-        { "id": "knf_fpj", "name": "Fermentierter Pflanzensaft (FPJ)", "description": "Ein Extrakt aus Pflanzensäften und Chlorophyll, reich an Enzymen, zur Förderung des Pflanzenwachstums.", "ingredients": ["1kg schnell wachsende Pflanzenteile", "1kg brauner Zucker"], "steps": ["Pflanzenteile vor Sonnenaufgang sammeln.", "Pflanzenteile grob hacken.", "Mit Zucker mischen.", "In einen Behälter packen und mit einem atmungsaktiven Tuch abdecken.", "Ca. 7 Tage gären lassen."], "usage": "1:500 bis 1:1000 mit Wasser verdünnen." },
-        { "id": "knf_faa", "name": "Fisch-Aminosäure (FAA)", "description": "Ein starker Dünger aus Fischabfällen, reich an Stickstoff und Aminosäuren.", "ingredients": ["1kg Fischreste", "1kg brauner Zucker"], "steps": ["Fischteile zerkleinern.", "Mit Zucker schichten.", "Mit einem atmungsaktiven Tuch abdecken.", "Mindestens 3-6 Monate gären lassen."], "usage": "1:1000 mit Wasser verdünnen, hauptsächlich als Bodendünger." }
+        { "id": "knf_fpj", "name": "Fermentierter Pflanzensaft (FPJ)", "description": "Ein Extrakt aus Pflanzensäften und Chlorophyll, reich an Enzymen, zur Förderung des Pflanzenwachstums.", "ingredients": ["1kg schnell wachsende Pflanzenteile", "1kg brauner Zucker"], "steps": ["Pflanzenmaterial vor Sonnenaufgang sammeln.", "Pflanzenmaterial grob hacken.", "Mit Zucker mischen.", "In einen Behälter füllen und mit einem atmungsaktiven Tuch abdecken.", "Etwa 7 Tage fermentieren lassen."], "usage": "1:500 bis 1:1000 mit Wasser verdünnen." },
+        { "id": "knf_faa", "name": "Fisch-Aminosäure (FAA)", "description": "Ein starker Dünger aus Fischabfällen, reich an Stickstoff und Aminosäuren.", "ingredients": ["1kg Fischreste", "1kg brauner Zucker"], "steps": ["Fischteile hacken.", "Mit Zucker schichten.", "Mit einem atmungsaktiven Tuch abdecken.", "Mindestens 3-6 Monate fermentieren lassen."], "usage": "1:1000 mit Wasser verdünnen, hauptsächlich als Bodendüngung." }
       ]
     },
     "fgwGuidePage": {
       "backLink": "Zurück zum Hub",
-      "title": "Farming God's Way (FGW) Leitfaden",
-      "description": "Die Prinzipien und Praktiken einer revolutionären Methode für eine nachhaltige Landwirtschaft ohne Bodenbearbeitung.",
-      "intro": "Farming God's Way ist eine Ressource zur Wiederherstellung von verarmten Böden und zur Ausstattung der Armen, um sich selbst und viele andere zu versorgen. Es geht um die treue Verwaltung des Landes und das Verständnis von Gottes Wegen. Die Kernprinzipien sind einfach, aber tiefgreifend:",
+      "title": "Farming God's Way (FGW) Anleitung",
+      "description": "Die Prinzipien und Praktiken einer revolutionären, nachhaltigen Landwirtschaftsmethode ohne Bodenbearbeitung.",
+      "intro": "Farming God's Way ist eine Ressource, um die Armen zu befähigen, sich selbst und vielen anderen zu helfen, das Land wiederherzustellen und für die Bedürfnisse der Armen zu sorgen. Es geht um treue Haushalterschaft und das Verständnis von Gottes Wegen. Die Kernprinzipien sind einfach, aber tiefgreifend:",
       "howToTitle": "Wie man es umsetzt",
       "whyItWorksTitle": "Warum es funktioniert",
       "principles": [
-        { "id": "no-tillage", "title": "Keine Bodenbearbeitung", "icon": "Shield", "summary": "Pflügen ist schädlich für die Bodenstruktur und das Bodenleben. FGW vermeidet jegliches Pflügen und fördert so einen gesunden, widerstandsfähigen Boden.", "howTo": ["Pflügen oder Umgraben des Bodens vollständig einstellen.", "Nutzen Sie permanente Pflanzstationen für Ihre Kulturen."], "whyItWorks": ["Schützt die natürliche Bodenstruktur und die Poren.", "Verhindert die Erosion von wertvollem Oberboden.", "Fördert ein gesundes Ökosystem von Mikroorganismen."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Ein Feld ohne Pflugspuren", "dataAiHint": "no-till farming" },
-        { "id": "mulching", "title": "Gottes Decke (Mulchen)", "icon": "Leaf", "summary": "Der Boden wurde nie dazu geschaffen, nackt zu sein. Eine dicke Mulchschicht schützt den Boden, hält Feuchtigkeit und liefert Nährstoffe.", "howTo": ["Tragen Sie eine dicke Schicht organisches Material (mind. 10 cm) auf die gesamte Bodenoberfläche auf.", "Pflanzen Sie direkt durch den Mulch hindurch.", "Fügen Sie kontinuierlich neuen Mulch hinzu, während der alte zersetzt wird."], "whyItWorks": ["Reduziert die Wasserverdunstung erheblich.", "Unterdrückt Unkrautwachstum.", "Nährt das Bodenleben, während er sich zersetzt."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Ein Feld, das mit einer dicken Schicht Strohmulch bedeckt ist", "dataAiHint": "mulch field" },
-        { "id": "high-standards", "title": "Hohe Standards", "icon": "CheckCircle", "summary": "FGW betont die Bedeutung von Exzellenz in allen Aspekten der Landwirtschaft - vom Timing bis zur Ausführung - als Akt der Anbetung.", "howTo": ["Führen Sie alle Aufgaben pünktlich und nach bestem Wissen und Gewissen aus.", "Achten Sie auf Details, von der Pflanztiefe bis zum Abstand.", "Halten Sie die Farm ordentlich und gut organisiert."], "whyItWorks": ["Maximiert das Ertragspotenzial der Kulturen.", "Minimiert Verluste durch Schädlinge und Krankheiten.", "Spiegelt die Exzellenz des Schöpfers wider."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Ordentlich angelegte Pflanzreihen", "dataAiHint": "organized farm rows" }
+        { "id": "no-tillage", "title": "Keine Bodenbearbeitung", "icon": "Shield", "summary": "Pflügen ist schädlich für die Bodenstruktur und das Bodenleben. FGW vermeidet das Pflügen vollständig und fördert einen gesunden, widerstandsfähigen Boden.", "howTo": ["Stoppen Sie jegliches Pflügen oder Wenden des Bodens.", "Nutzen Sie permanente Pflanzstationen für Ihre Kulturen."], "whyItWorks": ["Schützt die natürliche Bodenstruktur und die Poren.", "Verhindert die Erosion des wertvollen Oberbodens.", "Fördert ein gesundes Ökosystem von Mikroorganismen."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Ein Feld ohne Pflugspuren", "dataAiHint": "no-till farming" },
+        { "id": "mulching", "title": "Gottes Decke (Mulchen)", "icon": "Leaf", "summary": "Der Boden wurde nie dazu geschaffen, nackt zu sein. Eine dicke Mulchdecke schützt den Boden, hält die Feuchtigkeit und liefert Nährstoffe.", "howTo": ["Bringen Sie eine dicke Schicht organisches Material (mindestens 10 cm) auf der gesamten Bodenoberfläche auf.", "Pflanzen Sie direkt durch den Mulch.", "Fügen Sie kontinuierlich neuen Mulch hinzu, während der alte verrottet."], "whyItWorks": ["Reduziert die Wasserverdunstung erheblich.", "Unterdrückt das Wachstum von Unkraut.", "Nährt das Bodenleben, während es sich zersetzt."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Ein Feld, das mit einer dicken Schicht Strohmulch bedeckt ist", "dataAiHint": "mulch field" },
+        { "id": "high-standards", "title": "Hohe Standards", "icon": "CheckCircle", "summary": "FGW betont die Bedeutung von Exzellenz in allen Aspekten der Landwirtschaft – vom Timing bis zur Ausführung – als einen Akt der Anbetung.", "howTo": ["Führen Sie alle Aufgaben pünktlich und nach bestem Wissen und Gewissen aus.", "Achten Sie auf Details, von der Pflanztiefe bis zum Abstand.", "Halten Sie die Farm sauber und gut organisiert."], "whyItWorks": ["Maximiert das Ertragspotenzial der Kulturen.", "Minimiert Verluste durch Schädlinge und Krankheiten.", "Spiegelt die Exzellenz des Schöpfers wider."], "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Ordentlich angeordnete Pflanzreihen", "dataAiHint": "organized farm rows" }
       ]
     },
     "seedStartingPage": {
       "backLink": "Zurück zum Hub",
-      "title": "Leitfaden zur Anzucht von Setzlingen",
-      "description": "Lernen Sie, wie Sie Ihren Kulturen den besten Start ins Leben geben, indem Sie Samen drinnen oder in einem kontrollierten Bereich anziehen.",
-      "intro": "Die Anzucht von Samen im Haus ist eine hervorragende Möglichkeit, die Vegetationsperiode zu verlängern, Setzlinge vor rauen Bedingungen zu schützen und die Keimraten zu verbessern. Dieser Leitfaden behandelt die Grundlagen, um erfolgreich zu sein.",
+      "title": "Anleitung zum Aussäen von Samen",
+      "description": "Lernen Sie, wie Sie Ihren Kulturen den bestmöglichen Start ins Leben geben, indem Sie Samen drinnen oder in einem kontrollierten Bereich aussäen.",
+      "intro": "Das Aussäen von Samen im Haus ist eine hervorragende Möglichkeit, Ihre Vegetationsperiode zu verlängern, Setzlinge vor rauen Bedingungen zu schützen und die Keimraten zu verbessern. Diese Anleitung behandelt die Grundlagen für den Erfolg.",
       "sections": [
-        { "id": "why-start-indoors", "title": "Warum drinnen anziehen?", "icon": "Lightbulb", "intro": "Die Anzucht von Setzlingen drinnen hat mehrere entscheidende Vorteile:", "points": [{ "term": "Vorsprung", "def": "Beginnen Sie früher mit dem Anbau, besonders in Klimazonen mit kurzen Vegetationsperioden." }, { "term": "Schutz", "def": "Schützen Sie zarte Setzlinge vor Schädlingen, Krankheiten und extremem Wetter." }, { "term": "Kontrolle", "def": "Verwalten Sie Wasser, Licht und Temperatur für optimale Keimung." }, { "term": "Wirtschaftlichkeit", "def": "Die Anzucht aus Samen ist oft kostengünstiger als der Kauf von Jungpflanzen." }] },
-        { "id": "containers-media", "title": "Behälter & Anzuchterde", "icon": "Package", "intro": "Die Wahl des richtigen Behälters und der richtigen Erde ist entscheidend.", "points": [{ "term": "Behälter", "def": "Verwenden Sie Saatschalen, Torftöpfe, Erdballen oder sogar recycelte Behälter wie Eierkartons. Sorgen Sie für eine gute Drainage." }, { "term": "Anzuchterde", "def": "Verwenden Sie eine sterile, feine Samenanzuchterde. Vermeiden Sie schwere Gartenerde, da diese verdichten und Krankheiten beherbergen kann." }, { "term": "Sterilisation", "def": "Wenn Sie Behälter wiederverwenden, sterilisieren Sie diese mit einer Bleichlösung (1 Teil Bleichmittel auf 9 Teile Wasser), um Krankheiten vorzubeugen." }] },
-        { "id": "planting-seeds", "title": "Samen pflanzen", "icon": "Grid", "intro": "Jeder Samen hat spezifische Bedürfnisse, aber hier sind einige allgemeine Richtlinien:", "steps": ["Befeuchten Sie Ihre Anzuchterde, bevor Sie sie in die Behälter füllen. Sie sollte feucht sein, aber nicht durchnässt.", "Füllen Sie die Behälter und drücken Sie die Erde leicht an.", "Pflanzen Sie Samen in der auf der Samenpackung empfohlenen Tiefe. Eine gute Faustregel ist, sie etwa doppelt so tief wie ihre Größe zu pflanzen.", "Säen Sie 2-3 Samen pro Zelle oder Topf, um die Keimung sicherzustellen. Sie können die schwächeren Setzlinge später ausdünnen.", "Bedecken Sie die Samen leicht mit Erde und drücken Sie sie sanft an, um einen guten Kontakt zwischen Samen und Erde zu gewährleisten.", "Beschriften Sie Ihre Behälter deutlich mit der Pflanzenart und dem Pflanzdatum!"] },
-        { "id": "watering-light-temp", "title": "Wasser, Licht & Temperatur", "icon": "Sun", "intro": "Nach dem Pflanzen ist die richtige Umgebung der Schlüssel zum Erfolg.", "points": [{ "term": "Wasser", "def": "Halten Sie die Erde gleichmäßig feucht, aber nicht nass. Gießen Sie am besten von unten oder verwenden Sie eine feine Sprühflasche, um die Samen nicht zu verdrängen. Decken Sie die Schalen mit einer durchsichtigen Kuppel oder Plastikfolie ab, um die Feuchtigkeit zu halten, bis die Samen keimen." }, { "term": "Licht", "def": "Die meisten Samen benötigen kein Licht zum Keimen, aber sobald sie sprießen, benötigen sie viel Licht. Ein sonniges, nach Süden ausgerichtetes Fenster kann ausreichen, aber Wachstumslampen (14-16 Stunden pro Tag) verhindern, dass die Setzlinge lang und schwach werden ('vergeilen')." }, { "term": "Temperatur", "def": "Die meisten Samen keimen am besten bei warmen Temperaturen (ca. 21-24°C oder 70-75°F). Eine Heizmatte unter den Saatschalen kann die Keimung erheblich beschleunigen." }] },
-        { "id": "hardening-off", "title": "Abhärten", "icon": "Leaf", "intro": "Bevor Sie Ihre Setzlinge nach draußen verpflanzen, müssen Sie sie allmählich an die Außenbedingungen gewöhnen.", "steps": ["Beginnen Sie etwa 7-10 Tage vor dem geplanten Auspflanztermin.", "Stellen Sie Ihre Setzlinge für eine Stunde an einem geschützten Ort im Freien auf (vermeiden Sie direkte Sonne und starken Wind).", "Erhöhen Sie die Zeit, die sie draußen verbringen, jeden Tag um 1-2 Stunden.", "Setzen Sie sie allmählich mehr direkter Sonne und Wind aus.", "Reduzieren Sie die Bewässerung leicht, um sie auf die Bedingungen im Garten vorzubereiten."] },
-        { "id": "transplanting", "title": "Verpflanzen", "icon": "CheckCircle", "intro": "Der letzte Schritt ist das Verpflanzen Ihrer starken Setzlinge in den Garten.", "steps": ["Wählen Sie einen bewölkten Tag oder den späten Nachmittag, um den Transplantationsschock zu minimieren.", "Gießen Sie Ihre Setzlinge und das Gartenbeet einige Stunden vor dem Verpflanzen gründlich.", "Lockern Sie die Erde um den Setzling herum vorsichtig und versuchen Sie, den Wurzelballen so intakt wie möglich zu halten.", "Pflanzen Sie sie in der gleichen Tiefe, in der sie im Behälter gewachsen sind.", "Drücken Sie die Erde um den Setzling herum fest an und gießen Sie gründlich, um Lufteinschlüsse zu beseitigen."] }
+        { "id": "why-start-indoors", "title": "Warum drinnen anfangen?", "icon": "Lightbulb", "intro": "Das Starten von Setzlingen im Haus hat mehrere wichtige Vorteile:", "points": [{ "term": "Vorsprung", "def": "Beginnen Sie früher mit dem Anbau, insbesondere in Klimazonen mit kurzen Vegetationsperioden." }, { "term": "Schutz", "def": "Schützen Sie zarte Setzlinge vor Schädlingen, Krankheiten und extremem Wetter." }, { "term": "Kontrolle", "def": "Verwalten Sie Wasser, Licht und Temperatur für eine optimale Keimung." }, { "term": "Wirtschaftlichkeit", "def": "Der Anbau aus Samen ist oft kostengünstiger als der Kauf von Jungpflanzen." }] },
+        { "id": "containers-media", "title": "Behälter & Medien", "icon": "Package", "intro": "Die Wahl des richtigen Behälters und Bodens ist entscheidend.", "points": [{ "term": "Behälter", "def": "Verwenden Sie Saatschalen, Torftöpfe, Erdblöcke oder sogar recycelte Behälter wie Eierkartons. Sorgen Sie für eine gute Drainage." }, { "term": "Medien", "def": "Verwenden Sie eine sterile, feinkörnige Aussaaterde. Vermeiden Sie schwere Gartenerde, die sich verdichten und Krankheiten beherbergen kann." }, { "term": "Sterilisation", "def": "Wenn Sie Behälter wiederverwenden, sterilisieren Sie sie mit einer Bleichlösung (1 Teil Bleichmittel auf 9 Teile Wasser), um Krankheiten vorzubeugen." }] },
+        { "id": "planting-seeds", "title": "Samen pflanzen", "icon": "Grid", "intro": "Jeder Samen hat spezifische Bedürfnisse, aber hier sind einige allgemeine Richtlinien:", "steps": ["Befeuchten Sie Ihre Aussaaterde, bevor Sie die Behälter füllen. Sie sollte feucht sein, nicht nass.", "Füllen Sie die Behälter und drücken Sie die Erde leicht an.", "Pflanzen Sie die Samen in der auf der Samenpackung empfohlenen Tiefe. Eine gute Faustregel ist, sie etwa doppelt so tief wie ihre Größe zu pflanzen.", "Säen Sie 2-3 Samen pro Zelle oder Topf, um die Keimung zu gewährleisten. Sie können die schwächeren Setzlinge später ausdünnen.", "Bedecken Sie die Samen leicht mit Erde und drücken Sie sie sanft an, um einen guten Kontakt zwischen Samen und Erde zu gewährleisten.", "Beschriften Sie Ihre Behälter deutlich mit der Pflanzensorte und dem Pflanzdatum!"] },
+        { "id": "watering-light-temp", "title": "Wasser, Licht & Temperatur", "icon": "Sun", "intro": "Nach dem Pflanzen ist die richtige Umgebung der Schlüssel zum Erfolg.", "points": [{ "term": "Wasser", "def": "Halten Sie die Erde konstant feucht, aber nicht nass. Am besten von unten gießen oder einen feinen Sprühnebel verwenden, um die Samen nicht zu verdrängen. Decken Sie die Schalen mit einer durchsichtigen Kuppel oder Plastikfolie ab, um die Feuchtigkeit bis zum Keimen der Samen zu erhalten." }, { "term": "Licht", "def": "Die meisten Samen benötigen kein Licht zum Keimen, aber sobald sie sprießen, brauchen sie viel davon. Ein sonniges, nach Süden ausgerichtetes Fenster kann ausreichen, aber Wachstumslampen (14-16 Stunden am Tag) verhindern, dass die Setzlinge hoch und schwach werden ('Geilwuchs')." }, { "term": "Temperatur", "def": "Die meisten Samen keimen am besten bei warmen Temperaturen (ca. 21-24 °C). Eine Heizmatte unter den Saatschalen kann die Keimung erheblich beschleunigen." }] },
+        { "id": "hardening-off", "title": "Abhärten", "icon": "Leaf", "intro": "Bevor Sie Ihre Setzlinge ins Freie bringen können, müssen Sie sie schrittweise an die Außenbedingungen gewöhnen.", "steps": ["Beginnen Sie etwa 7-10 Tage bevor Sie pflanzen möchten.", "Stellen Sie Ihre Setzlinge für eine Stunde an einen geschützten Ort im Freien (außerhalb direkter Sonne und starkem Wind).", "Erhöhen Sie die Zeit, die sie draußen verbringen, täglich um 1-2 Stunden.", "Setzen Sie sie allmählich mehr direkter Sonne und Wind aus.", "Reduzieren Sie die Bewässerung leicht, um sie auf die Gartenbedingungen vorzubereiten."] },
+        { "id": "transplanting", "title": "Umpflanzen", "icon": "CheckCircle", "intro": "Der letzte Schritt besteht darin, Ihre starken Setzlinge in den Garten zu bringen.", "steps": ["Wählen Sie einen bewölkten Tag oder den späten Nachmittag, um den Umpflanzschock zu minimieren.", "Wässern Sie Ihre Setzlinge und das Gartenbeet einige Stunden vor dem Umpflanzen gründlich.", "Lockern Sie die Erde um den Setzling vorsichtig und versuchen Sie, den Wurzelballen so intakt wie möglich zu halten.", "Pflanzen Sie sie in der gleichen Tiefe, in der sie im Behälter gewachsen sind.", "Drücken Sie die Erde um den Setzling fest und gießen Sie gut, um Lufteinschlüsse zu beseitigen."] }
       ]
     },
     "familyFarmPage": {
       "backLink": "Zurück zum Hub",
-      "title": "Integriertes Familienfarm-Modell (200 m²)",
-      "description": "Ein nachhaltiges, geschlossenes Kreislaufsystem für Ernährungssicherheit und Einkommen auf kleinem Raum.",
-      "intro": "Dieses Modell zeigt, wie eine kleine Fläche von nur 200 Quadratmetern (10m x 20m) durch die Integration verschiedener Komponenten, die sich gegenseitig unterstützen, in eine produktive und widerstandsfähige Familienfarm umgewandelt werden kann. Das Ziel ist es, Abfall zu minimieren, die Ressourcennutzung zu maximieren und eine vielfältige Palette von Produkten für den Eigenverbrauch und den Verkauf auf dem Markt bereitzustellen.",
-      "diagramCaption": "Visuelle Darstellung des integrierten 200m² Familienfarm-Modells.",
+      "title": "Integriertes Familienfarm-Modell (200m²)",
+      "description": "Ein nachhaltiges, geschlossenes Kreislaufsystem für Ernährungssicherheit und Einkommen auf einem kleinen Grundstück.",
+      "intro": "Dieses Modell zeigt, wie ein kleines 200 Quadratmeter großes Grundstück (10m x 20m) in eine produktive und widerstandsfähige Familienfarm umgewandelt werden kann, indem verschiedene Komponenten integriert werden, die sich gegenseitig unterstützen. Ziel ist es, Abfall zu minimieren, die Ressourcennutzung zu maximieren und eine vielfältige Produktpalette für den Eigenverbrauch und den Verkauf auf dem Markt bereitzustellen.",
+      "diagramCaption": "Visuelle Darstellung des integrierten Familienfarm-Modells von 200m².",
       "detailsTitle": "Schlüsselkomponenten & Erträge",
-      "principlesTitle": "Grundprinzipien in Aktion",
+      "principlesTitle": "Leitprinzipien in Aktion",
       "zones": [
-        { "id": "overall-layout", "title": "Gesamtlayout & Design", "icon": "LayoutGrid", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Gesamtlayout einer kleinen Farm", "dataAiHint": "small farm layout", "description": ["Der Hof ist so konzipiert, dass er ein geschlossenes Kreislaufsystem darstellt. Abfälle aus einer Komponente werden zu wertvollen Inputs für eine andere, wodurch externe Kosten reduziert und die Nachhaltigkeit erhöht wird."], "details": [{ "title": "Flächenzuweisung", "content": ["Ca. 60% für den Gemüseanbau, 20% für die Tierhaltung, 10% für die Aquakultur und 10% für Wege und Kompostierung."] }, { "title": "Wasserfluss", "content": ["Das Wasser aus dem Fischteich wird zur Bewässerung der Gärten verwendet und liefert nährstoffreiches Wasser."] }] },
-        { "id": "vegetable-garden", "title": "Gemüsegarten (ca. 120 m²)", "icon": "Sprout", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Üppiger Gemüsegarten", "dataAiHint": "vegetable garden", "description": ["Das Herzstück der Farm, das eine kontinuierliche Versorgung mit einer Vielzahl von nahrhaftem Gemüse für die Ernährung der Familie und den Verkauf auf dem Markt bietet."], "details": [{ "title": "Anbaumethoden", "content": ["Hochbeete, intensive Bepflanzung und Mischkultur zur Maximierung des Platzes und zur Reduzierung von Schädlingen."] }, { "title": "Ertrag", "content": ["Ganzjährige Produktion von Blattgemüse, Fruchtgemüse und Wurzelgemüse."] }] },
-        { "id": "fish-pond", "title": "Fischteich (ca. 20 m²)", "icon": "Fish", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Kleiner Fischteich", "dataAiHint": "fish pond aquaculture", "description": ["Eine wertvolle Quelle für Protein und Einkommen. Der Teich ist in die Bewässerung des Gartens integriert."], "details": [{ "title": "Arten", "content": ["Tilapia oder Wels sind aufgrund ihrer Widerstandsfähigkeit und schnellen Wachstumsraten eine gute Wahl."] }, { "title": "Synergie", "content": ["Wasser aus dem Teich, das reich an Fischexkrementen ist, wird als natürlicher Dünger für die Gemüsegärten verwendet."] }] },
-        { "id": "poultry-unit", "title": "Geflügelstall (ca. 20 m²)", "icon": "Bird", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Hühner in einem Auslauf", "dataAiHint": "free range chickens", "description": ["Liefert Eier und Fleisch für die Familie und den Markt. Ihr Mist ist ein wichtiger Bestandteil des Komposthaufens."], "details": [{ "title": "Wohnung", "content": ["Ein kleiner Stall mit sicherem Auslaufbereich, der es den Hühnern ermöglicht, nach Futter zu suchen und zur Schädlingsbekämpfung beizutragen."] }, { "title": "Futterergänzung", "content": ["Gartenabfälle und Insekten können das gekaufte Futter ergänzen und die Kosten senken."] }] },
-        { "id": "compost-system", "title": "Kompostierungssystem (ca. 20 m²)", "icon": "Recycle", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Komposthaufen", "dataAiHint": "compost pile", "description": ["Der Recycling-Motor des Hofes. Verwandelt Küchenabfälle, Gartenabfälle und Tiermist in nährstoffreichen Kompost und reduziert so den Bedarf an chemischen Düngemitteln."], "subSections": [{ "title": "Diversifizierung", "content": ["Durch die Kombination verschiedener Pflanzenarten, Tiere und Fische wird das Risiko eines Totalausfalls verringert."] }, { "title": "Nährstoffkreislauf", "content": ["Tiermist und Pflanzenabfälle werden kompostiert, um den Boden zu düngen. Teichwasser bewässert und düngt die Pflanzen."] }, { "title": "Wassereffizienz", "content": ["Der Teich dient als Wasserreservoir, und die Wiederverwendung von nährstoffreichem Wasser reduziert den Gesamtverbrauch."] }] }
+        { "id": "overall-layout", "title": "Gesamtlayout & Design", "icon": "LayoutGrid", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Gesamtlayout einer kleinen Farm", "dataAiHint": "small farm layout", "description": ["Die Farm ist als geschlossenes Kreislaufsystem konzipiert. Abfälle aus einer Komponente werden zu einem wertvollen Input für eine andere, was externe Kosten reduziert und die Nachhaltigkeit erhöht."], "details": [{ "title": "Flächenzuweisung", "content": ["Ca. 60% für Gemüsegärten, 20% für Vieh, 10% für Aquakultur und 10% für Wege und Kompostierung."] }, { "title": "Wasserfluss", "content": ["Wasser aus dem Fischteich wird zur Bewässerung der Gärten verwendet und liefert nährstoffreiches Wasser."] }] },
+        { "id": "vegetable-garden", "title": "Gemüsegarten (ca. 120m²)", "icon": "Sprout", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Üppiger Gemüsegarten", "dataAiHint": "vegetable garden", "description": ["Das Herz der Farm, das eine kontinuierliche Versorgung mit vielfältigem und nahrhaftem Gemüse für die Familienernährung und den Verkauf auf dem Markt bietet."], "details": [{ "title": "Anbaumethoden", "content": ["Hochbeete, intensive Bepflanzung und Mischkultur werden verwendet, um den Platz zu maximieren und Schädlinge zu reduzieren."] }, { "title": "Ertrag", "content": ["Ganzjährige Produktion von Blattgemüse, Fruchtgemüse und Wurzelgemüse."] }] },
+        { "id": "fish-pond", "title": "Fischteich (ca. 20m²)", "icon": "Fish", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Kleiner Fischteich", "dataAiHint": "fish pond aquaculture", "description": ["Eine wertvolle Protein- und Einkommensquelle. Der Teich ist in das Bewässerungssystem des Gartens integriert."], "details": [{ "title": "Arten", "content": ["Tilapia oder Wels sind aufgrund ihrer Widerstandsfähigkeit und ihres schnellen Wachstums eine gute Wahl."] }, { "title": "Synergie", "content": ["Wasser aus dem Teich, reich an Fischausscheidungen, wird als natürlicher Dünger für die Gemüsegärten verwendet."] }] },
+        { "id": "poultry-unit", "title": "Geflügeleinheit (ca. 20m²)", "icon": "Bird", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Hühner im Auslauf", "dataAiHint": "free range chickens", "description": ["Liefert Eier und Fleisch für die Familie und den Markt. Ihr Mist ist ein wichtiger Bestandteil des Komposthaufens."], "details": [{ "title": "Unterbringung", "content": ["Ein kleiner Stall mit einem sicheren Auslaufbereich, der es den Hühnern ermöglicht, zu scharren und zur Schädlingsbekämpfung beizutragen."] }, { "title": "Futterergänzung", "content": ["Gartenabfälle und Insekten können kommerzielles Futter ergänzen und so die Kosten senken."] }] },
+        { "id": "compost-system", "title": "Kompostiersystem (ca. 20m²)", "icon": "Recycle", "imageSrc": "https://placehold.co/600x400.png", "imageAlt": "Komposthaufen", "dataAiHint": "compost pile", "description": ["Der Recyclingmotor der Farm. Verwandelt Küchenabfälle, Gartenabfälle und Tiermist in nährstoffreichen Kompost und reduziert so den Bedarf an chemischen Düngemitteln."], "subSections": [{ "title": "Diversifizierung", "content": ["Die Kombination verschiedener Arten von Kulturen, Tieren und Fischen verringert das Risiko eines Totalausfalls."] }, { "title": "Nährstoffkreislauf", "content": ["Tiermist und Pflanzenabfälle werden kompostiert, um den Boden zu düngen. Teichwasser bewässert und düngt die Pflanzen."] }, { "title": "Wassereffizienz", "content": ["Der Teich dient als Wasserreservoir, und die Wiederverwendung von nährstoffreichem Wasser reduziert den Gesamtverbrauch."] }] }
       ]
     },
     "laborPage": {
       "backLink": "Zurück zum Hub",
       "title": "Arbeitsmanagement",
       "description": "Verfolgen Sie die Stunden, Zahlungen und Aufgaben Ihres Teams.",
-      "addWorker": "Arbeiter hinzufügen",
-      "workerName": "Name des Arbeiters",
-      "saveWorker": "Arbeiter speichern",
-      "hoursLogged": "Geleistete Stunden",
+      "addWorker": "Mitarbeiter hinzufügen",
+      "workerName": "Name des Mitarbeiters",
+      "saveWorker": "Mitarbeiter speichern",
+      "hoursLogged": "Erfasste Stunden",
       "totalPaid": "Insgesamt bezahlt",
-      "logHours": "Stunden protokollieren",
-      "logPayment": "Zahlung protokollieren",
-      "viewDetails": "Details anzeigen",
-      "logHoursFor": "Stunden protokollieren für",
-      "hoursWorked": "Geleistete Stunden",
+      "logHours": "Stunden erfassen",
+      "logPayment": "Zahlung erfassen",
+      "viewDetails": "Details ansehen",
+      "logHoursFor": "Stunden erfassen für",
+      "hoursWorked": "Gearbeitete Stunden",
       "date": "Datum",
-      "pickDate": "Wählen Sie ein Datum",
+      "pickDate": "Datum auswählen",
       "taskDescription": "Aufgabenbeschreibung (Optional)",
-      "logPaymentFor": "Zahlung protokollieren für",
+      "logPaymentFor": "Zahlung erfassen für",
       "amountPaid": "Bezahlter Betrag",
-      "noWorkers": "Sie haben noch keine Arbeiter hinzugefügt.",
+      "noWorkers": "Sie haben noch keine Mitarbeiter hinzugefügt.",
       "toast": {
         "errorTitle": "Fehler",
-        "fetchWorkersError": "Ihre Arbeiter konnten nicht abgerufen werden.",
-        "nameRequired": "Name des Arbeiters ist erforderlich.",
-        "workerAdded": "Arbeiter erfolgreich hinzugefügt!",
-        "hoursLogged": "Stunden erfolgreich protokolliert!",
-        "paymentLoggedTitle": "Zahlung protokolliert!",
+        "fetchWorkersError": "Ihre Mitarbeiter konnten nicht abgerufen werden.",
+        "nameRequired": "Der Name des Mitarbeiters ist erforderlich.",
+        "workerAdded": "Mitarbeiter erfolgreich hinzugefügt!",
+        "hoursLogged": "Stunden erfolgreich erfasst!",
+        "paymentLoggedTitle": "Zahlung erfasst!",
         "paymentLoggedDescription": "Die Zahlung wurde erfasst und eine entsprechende Ausgabe in Ihren Finanzen erstellt."
       },
       "workerDetailPage": {
-        "backLink": "Zurück zum Arbeitermanagement",
+        "backLink": "Zurück zum Arbeitsmanagement",
         "workLogsTitle": "Arbeitsprotokolle",
         "paymentHistoryTitle": "Zahlungshistorie",
         "table": {
@@ -1171,11 +1171,11 @@
           "task": "Aufgabe",
           "amount": "Betrag"
         },
-        "noWorkLogs": "Für diesen Arbeiter wurden noch keine Stunden protokolliert.",
-        "noPayments": "Für diesen Arbeiter wurden noch keine Zahlungen protokolliert.",
-        "notFoundTitle": "Arbeiter nicht gefunden",
-        "notFoundDescription": "Das Profil des Arbeiters, den Sie suchen, konnte nicht gefunden werden.",
-        "goBackButton": "Zurück zur Arbeiterliste",
+        "noWorkLogs": "Für diesen Mitarbeiter wurden keine Stunden erfasst.",
+        "noPayments": "Für diesen Mitarbeiter wurden keine Zahlungen erfasst.",
+        "notFoundTitle": "Mitarbeiter nicht gefunden",
+        "notFoundDescription": "Das Profil des gesuchten Mitarbeiters konnte nicht gefunden werden.",
+        "goBackButton": "Zurück zur Mitarbeiterliste",
         "toasts": {
           "errorTitle": "Fehler"
         }
@@ -1183,7 +1183,7 @@
     },
     "financials": {
       "title": "Finanz-Hub",
-      "description": "Überwachen Sie die finanzielle Gesundheit Ihrer Farm und entdecken Sie Finanzierungsmöglichkeiten.",
+      "description": "Überwachen Sie die finanzielle Gesundheit Ihrer Farm und erkunden Sie Finanzierungsmöglichkeiten.",
       "newTransactionButton": "Neue Transaktion",
       "applyForFundingButton": "Finanzierung beantragen",
       "totalIncome": "Gesamteinnahmen",
@@ -1196,16 +1196,16 @@
         "category": "Kategorie",
         "amount": "Betrag"
       },
-      "noTransactions": "Noch keine Transaktionen protokolliert.",
+      "noTransactions": "Noch keine Transaktionen erfasst.",
       "signInPrompt": {
         "title": "Bitte anmelden",
         "description": "Sie müssen angemeldet sein, um Ihre Finanzdaten anzuzeigen.",
         "button": "Anmelden"
       },
       "log": {
-        "backLink": "Zurück zu den Finanzen",
-        "title": "Finanztransaktion protokollieren",
-        "description": "Fügen Sie eine neue Einnahme oder Ausgabe zu Ihren Aufzeichnungen hinzu.",
+        "backLink": "Zurück zu Finanzen",
+        "title": "Finanztransaktion erfassen",
+        "description": "Fügen Sie eine neue Einnahme oder Ausgabe zu Ihren Unterlagen hinzu.",
         "typeLabel": "Transaktionstyp",
         "typePlaceholder": "Typ auswählen",
         "types": {
@@ -1227,18 +1227,18 @@
           "authErrorTitle": "Nicht authentifiziert",
           "authErrorDescription": "Sie müssen angemeldet sein.",
           "success": "Gespeichert!",
-          "description": "Ihre Transaktion wurde erfolgreich protokolliert.",
+          "description": "Ihre Transaktion wurde erfolgreich erfasst.",
           "fail": "Speichern fehlgeschlagen"
         }
       },
       "apply": {
-        "backLink": "Zurück zu den Finanzen",
+        "backLink": "Zurück zu Finanzen",
         "title": "Finanzierung beantragen",
-        "description": "Beantragen Sie Kredite oder Zuschüsse von teilnehmenden Finanzinstituten.",
+        "description": "Reichen Sie einen Antrag auf Kredite oder Zuschüsse bei teilnehmenden Finanzinstituten ein.",
         "form": {
           "institutionLabel": "Finanzinstitut",
-          "institutionPlaceholder": "Wählen Sie eine Institution",
-          "noInstitutions": "Keine Institutionen verfügbar",
+          "institutionPlaceholder": "Wählen Sie ein Institut",
+          "noInstitutions": "Keine Institute verfügbar",
           "typeLabel": "Antragstyp",
           "loan": "Kredit",
           "grant": "Zuschuss",
@@ -1246,7 +1246,7 @@
           "currencyLabel": "Währung",
           "purposeLabel": "Zweck des Antrags",
           "purposePlaceholder": "Beschreiben Sie detailliert, wie die Mittel verwendet werden...",
-          "purposeDescription": "Eine klare Beschreibung erhöht Ihre Chancen auf Genehmigung.",
+          "purposeDescription": "Eine klare Beschreibung erhöht Ihre Genehmigungschancen.",
           "submitButton": "Antrag einreichen"
         },
         "toast": {
@@ -1254,28 +1254,28 @@
           "fetchFiError": "Finanzinstitute konnten nicht abgerufen werden.",
           "notAuthenticatedError": "Sie müssen angemeldet sein, um einen Antrag zu stellen.",
           "successTitle": "Antrag gesendet!",
-          "successDescription": "Ihr Antrag wurde erfolgreich zur Prüfung eingereicht."
+          "successDescription": "Ihr Antrag wurde zur Überprüfung eingereicht."
         }
       }
     }
   },
   "networkPage": {
     "title": "Entdecken Sie Ihr Netzwerk",
-    "description": "Finden Sie die richtigen Partner, um Ihr Agrargeschäft auszubauen und zusammenzuarbeiten.",
+    "description": "Finden Sie die richtigen Partner, um Ihr landwirtschaftliches Geschäft auszubauen und zusammenzuarbeiten.",
     "myNetworkButton": "Mein Netzwerk",
-    "agentToolsButton": "Agentenwerkzeuge",
+    "agentToolsButton": "Agenten-Tools",
     "aiSuggestionsTitle": "KI-Vorschläge für Sie",
-    "aiSuggestionsDescription": "Basierend auf Ihrem Profil könnten diese Verbindungen für Sie von Nutzen sein.",
-    "noSuggestions": "Keine neuen Vorschläge im Moment.",
+    "aiSuggestionsDescription": "Basierend auf Ihrem Profil könnten diese Verbindungen für Sie von Vorteil sein.",
+    "noSuggestions": "Momentan keine neuen Vorschläge.",
     "connect": "Verbinden",
     "profile": "Profil",
-    "browseAllTitle": "Alle Stakeholder durchsuchen",
+    "browseAllTitle": "Alle Akteure durchsuchen",
     "searchPlaceholder": "Nach Name oder Zusammenfassung suchen...",
-    "locationPlaceholder": "Nach Ort filtern...",
+    "locationPlaceholder": "Nach Standort filtern...",
     "rolePlaceholder": "Rolle filtern",
     "allRoles": "Alle Rollen",
     "noStakeholdersFound": "Keine Profile gefunden",
-    "noStakeholdersHint": "Versuchen Sie, Ihre Suchfilter zu ändern, oder schauen Sie später noch einmal vorbei.",
+    "noStakeholdersHint": "Versuchen Sie, Ihre Suchfilter zu ändern oder schauen Sie später wieder vorbei.",
     "toast": {
       "errorTitle": "Fehler",
       "loadError": "Netzwerkdaten konnten nicht geladen werden."
@@ -1284,36 +1284,36 @@
   "myNetworkPage": {
     "backLink": "Zurück zum Netzwerk-Explorer",
     "myConnectionsTab": "Meine Verbindungen ({count})",
-    "pendingRequestsTab": "Anstehende Anfragen",
+    "pendingRequestsTab": "Ausstehende Anfragen",
     "connectionsTitle": "Ihre Verbindungen",
-    "connectionsDescription": "Personen und Organisationen in Ihrem professionellen Netzwerk.",
+    "connectionsDescription": "Personen und Organisationen in Ihrem beruflichen Netzwerk.",
     "noConnections": "Sie haben noch keine Verbindungen hergestellt.",
     "requestsTitle": "Verbindungsanfragen",
-    "requestsDescription": "Akzeptieren oder ablehnen Sie Anfragen, um Ihr Netzwerk zu erweitern.",
-    "sentTimeAgo": "Gesendet {timeAgo}",
-    "noRequests": "Sie haben keine anstehenden Verbindungsanfragen."
+    "requestsDescription": "Akzeptieren oder lehnen Sie Anfragen ab, um Ihr Netzwerk zu erweitern.",
+    "sentTimeAgo": "Gesendet vor {timeAgo}",
+    "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen."
   },
   "agentToolsPage": {
     "backLink": "Zurück zum Netzwerk-Explorer",
-    "title": "Agentenwerkzeuge",
+    "title": "Agenten-Tools",
     "description": "Suchen Sie Benutzer nach Telefonnummer für Support und Verifizierung.",
-    "findUserLabel": "Benutzer nach Telefonnummer finden",
-    "findButton": "Finden",
+    "findUserLabel": "Benutzer nach Telefonnummer suchen",
+    "findButton": "Suchen",
     "resultsTitle": "Suchergebnisse",
     "resultsPlaceholder": "Benutzerdetails werden hier angezeigt.",
     "phoneRequiredError": "Bitte geben Sie eine gültige Telefonnummer ein.",
     "accessDeniedTitle": "Zugriff verweigert",
-    "accessDeniedDescription": "Nur autorisiertes Personal kann auf diese Werkzeuge zugreifen."
+    "accessDeniedDescription": "Nur autorisiertes Personal kann auf diese Tools zugreifen."
   },
   "Forums": {
     "title": "Community-Foren",
     "description": "Vernetzen Sie sich, teilen Sie Wissen und arbeiten Sie mit Akteuren aus der gesamten landwirtschaftlichen Lieferkette zusammen.",
     "createTopic": "Neues Thema erstellen",
     "pinning": {
-      "pinnedTitle": "Foren angeheftet",
-      "pinnedDescription": "Die Foren sind jetzt Ihre Standard-Startseite.",
+      "pinnedTitle": "Foren angepinnt",
+      "pinnedDescription": "Die Forenseite ist jetzt Ihre Standard-Startseite.",
       "unpinnedTitle": "Foren-Pin entfernt",
-      "unpinnedDescription": "Ihre Startseite wurde auf die Standardeinstellung zurückgesetzt."
+      "unpinnedDescription": "Ihre Startseite wurde auf den Standard zurückgesetzt."
     },
     "buttons": {
       "createTopic": "Thema erstellen",
@@ -1330,19 +1330,19 @@
     },
     "errors": {
       "loadTitle": "Ladefehler",
-      "loadDescription": "Beim Abrufen der Forumsthemen ist ein Fehler aufgetreten."
+      "loadDescription": "Beim Abrufen der Forumthemen ist ein Fehler aufgetreten."
     },
-    "searchPlaceholder": "Themen durchsuchen...",
+    "searchPlaceholder": "Themen suchen...",
     "postMeta": "Von {author} • {date}",
     "create": {
       "backLink": "Zurück zu den Foren",
       "title": "Ein neues Diskussionsthema starten",
-      "description": "Erstellen Sie ein neues Thema, um Erkenntnisse zu sammeln und mit der Community zusammenzuarbeiten.",
+      "description": "Erstellen Sie ein neues Thema, um Einblicke zu sammeln und mit der Community zusammenzuarbeiten.",
       "form": {
         "nameLabel": "Themenname",
-        "namePlaceholder": "z.B. Nachhaltige Kaffeeproduktion",
+        "namePlaceholder": "z.B. Nachhaltiger Kaffeeanbau",
         "descriptionLabel": "Themenbeschreibung",
-        "descriptionPlaceholder": "Worum geht es in diesem Thema? Eine kurze Beschreibung hilft anderen, den Zweck des Themas zu verstehen.",
+        "descriptionPlaceholder": "Worum geht es in diesem Thema? Eine kurze Beschreibung hilft anderen, den Zweck zu verstehen.",
         "submitButton": "Thema erstellen",
         "submittingButton": "Wird erstellt..."
       },
@@ -1352,7 +1352,7 @@
           "description": "Sie müssen angemeldet sein, um ein neues Thema zu erstellen."
         },
         "incomplete": {
-          "title": "Informationen unvollständig",
+          "title": "Unvollständige Informationen",
           "description": "Bitte geben Sie sowohl einen Namen als auch eine Beschreibung für Ihr neues Thema an."
         },
         "general": {
@@ -1375,7 +1375,7 @@
       "postMeta": "Von {author} • {date}",
       "noPosts": {
         "title": "Noch keine Beiträge",
-        "description": "Seien Sie der Erste, der eine Diskussion in diesem Thema beginnt.",
+        "description": "Seien Sie der Erste, der eine Diskussion in diesem Thema startet.",
         "button": "Diskussion starten"
       },
       "notFound": {
@@ -1398,13 +1398,13 @@
       "backLink": "Zurück zum Thema",
       "aiHelper": {
         "title": "Brauchen Sie Hilfe beim Start?",
-        "description": "Nutzen Sie unseren KI-Assistenten, um Ihren Beitrag zu entwerfen. Geben Sie einfach unten einen Anreiz an.",
+        "description": "Verwenden Sie unseren KI-Assistenten, um Ihren Beitrag zu entwerfen. Geben Sie einfach unten eine Aufforderung ein.",
         "promptLabel": "Ihre Idee oder Frage",
-        "promptPlaceholder": "z.B. 'Fragen Sie nach den besten organischen Pestiziden gegen Kaffeerost'",
+        "promptPlaceholder": "z.B. 'Fragen Sie nach den besten organischen Pestiziden gegen Kaffeeblattrost'",
         "generateButton": "Entwurf generieren",
         "generatingButton": "Wird generiert..."
       },
-      "title": "Neuen Beitrag erstellen",
+      "title": "Einen neuen Beitrag erstellen",
       "description": "Teilen Sie Ihre Gedanken, stellen Sie eine Frage oder starten Sie eine Diskussion.",
       "form": {
         "titleLabel": "Titel des Beitrags",
@@ -1416,26 +1416,26 @@
       },
       "errors": {
         "aiPromptMissing": {
-          "title": "Anreiz erforderlich",
-          "description": "Bitte geben Sie eine Idee oder Frage ein, damit die KI einen Entwurf erstellen kann."
+          "title": "Aufforderung erforderlich",
+          "description": "Bitte geben Sie eine Idee oder Frage ein, damit die KI einen Entwurf generieren kann."
         },
         "aiDraft": {
           "title": "KI-Entwurf fehlgeschlagen",
-          "description": "Beim Erstellen des Entwurfs ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder schreiben Sie den Beitrag manuell."
+          "description": "Beim Generieren des Entwurfs ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder schreiben Sie den Beitrag manuell."
         },
         "incomplete": {
-          "title": "Beitrag unvollständig",
-          "description": "Bitte geben Sie sowohl einen Titel als auch Inhalt für Ihren Beitrag an."
+          "title": "Unvollständiger Beitrag",
+          "description": "Bitte geben Sie sowohl einen Titel als auch einen Inhalt für Ihren Beitrag an."
         },
         "general": {
-          "title": "Beitragserstellung fehlgeschlagen",
+          "title": "Erstellung des Beitrags fehlgeschlagen",
           "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
         }
       },
       "success": {
         "aiDraft": {
           "title": "Entwurf erstellt!",
-          "description": "Die KI hat unten einen Entwurf erstellt. Sie können ihn vor der Veröffentlichung bearbeiten."
+          "description": "Die KI hat unten einen Entwurf generiert. Fühlen Sie sich frei, ihn vor der Veröffentlichung zu bearbeiten."
         },
         "title": "Beitrag veröffentlicht!",
         "description": "Ihr Beitrag ist jetzt im Thema live."
@@ -1477,5 +1477,140 @@
         "emptyReply": "Ihre Antwort darf nicht leer sein."
       }
     }
+  },
+  "GroupsPage": {
+    "title": "Community-Gruppen",
+    "description": "Finden und treten Sie Gruppen bei, die auf Ihren Interessen, Ihrem Standort oder Ihrer Expertise basieren.",
+    "createGroupButton": "Neue Gruppe erstellen",
+    "searchPlaceholder": "Gruppen suchen...",
+    "notFound": "Keine Gruppen gefunden.",
+    "detail": {
+      "backLink": "Zurück zu allen Gruppen",
+      "discussionsTitle": "Diskussionen",
+      "startDiscussionButton": "Diskussion starten",
+      "by": "von {author}",
+      "noDiscussions": "Noch keine Diskussionen gestartet.",
+      "beTheFirst": "Seien Sie der Erste, der eine Diskussion startet!",
+      "actionsTitle": "Gruppenaktionen",
+      "leaveButton": "Gruppe verlassen",
+      "leavingButton": "Wird verlassen...",
+      "joinButton": "Gruppe beitreten",
+      "requestJoinButton": "Beitrittsanfrage senden",
+      "joiningButton": "Wird beigetreten...",
+      "loginToJoinButton": "Zum Beitreten anmelden",
+      "membersTitle": "{memberCount} Mitglieder",
+      "notFound": {
+        "title": "Gruppe nicht gefunden",
+        "description": "Die gesuchte Gruppe existiert nicht.",
+        "backButton": "Zurück zu den Gruppen"
+      },
+      "toast": {
+        "loadError": {
+          "title": "Fehler",
+          "description": "Gruppendaten konnten nicht geladen werden."
+        },
+        "loginToJoin": "Bitte melden Sie sich an, um dieser Gruppe beizutreten.",
+        "joinSuccess": "Sie sind der Gruppe erfolgreich beigetreten!",
+        "joinError": "Beitritt zur Gruppe fehlgeschlagen.",
+        "leaveSuccess": "Sie haben die Gruppe verlassen.",
+        "leaveError": "Verlassen der Gruppe fehlgeschlagen."
+      }
+    },
+    "create": {
+      "backLink": "Zurück zu den Gruppen",
+      "title": "Eine neue Gruppe erstellen",
+      "description": "Starten Sie eine neue Community um ein gemeinsames Interesse oder Projekt.",
+      "form": {
+        "nameLabel": "Gruppenname",
+        "namePlaceholder": "z.B. Bio-Kaffeebauern aus Kenia",
+        "descriptionLabel": "Gruppenbeschreibung",
+        "descriptionPlaceholder": "Worum geht es in dieser Gruppe?",
+        "publicLabel": "Öffentliche Gruppe (jeder kann beitreten)",
+        "submitButton": "Gruppe erstellen",
+        "submittingButton": "Wird erstellt..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentifizierung erforderlich",
+          "description": "Sie müssen angemeldet sein, um eine Gruppe zu erstellen."
+        },
+        "incomplete": {
+          "title": "Unvollständige Informationen",
+          "description": "Bitte geben Sie einen Namen und eine Beschreibung für Ihre Gruppe an."
+        },
+        "error": {
+          "title": "Erstellung fehlgeschlagen",
+          "description": "Die Gruppe konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
+        },
+        "success": {
+          "title": "Gruppe erstellt!",
+          "description": "Ihre neue Gruppe ist jetzt live."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Zurück zur Gruppe",
+      "title": "Einen neuen Beitrag starten",
+      "description": "Teilen Sie ein Update oder stellen Sie eine Frage innerhalb der Gruppe.",
+      "form": {
+        "titleLabel": "Titel des Beitrags",
+        "titlePlaceholder": "Geben Sie einen klaren und prägnanten Titel ein",
+        "contentLabel": "Ihr Inhalt",
+        "contentPlaceholder": "Schreiben Sie Ihren Beitrag hier...",
+        "submitButton": "Beitrag veröffentlichen",
+        "submittingButton": "Wird veröffentlicht..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentifizierung erforderlich",
+          "description": "Sie müssen Mitglied sein, um in dieser Gruppe zu posten."
+        },
+        "incomplete": {
+          "title": "Unvollständiger Beitrag",
+          "description": "Bitte geben Sie einen Titel und Inhalt für Ihren Beitrag an."
+        },
+        "error": {
+          "title": "Beitrag fehlgeschlagen",
+          "description": "Ihr Beitrag konnte nicht veröffentlicht werden. Bitte versuchen Sie es erneut."
+        },
+        "success": {
+          "title": "Beitrag veröffentlicht!",
+          "description": "Ihr Beitrag ist jetzt in der Gruppe live."
+        }
+      }
+    },
+    "postDetail": {
+      "backLink": "Zurück zu {groupName}",
+      "repliesTitle": "{count, plural, =0 {Keine Antworten} =1 {1 Antwort} other {{count} Antworten}}",
+      "noReplies": "Noch keine Antworten. Seien Sie der Erste, der antwortet!",
+      "loadMoreButton": "Weitere Antworten laden",
+      "loadingMoreButton": "Wird geladen...",
+      "yourReplyTitle": "Ihre Antwort",
+      "replyPlaceholder": "Schreiben Sie Ihre Antwort hier...",
+      "replySubmitButton": "Antwort posten",
+      "replySubmittingButton": "Wird gepostet...",
+      "notFound": {
+        "title": "Beitrag nicht gefunden",
+        "description": "Der gesuchte Beitrag existiert nicht.",
+        "backButton": "Zurück zur Gruppe"
+      },
+      "toast": {
+        "loadPostError": {
+          "title": "Fehler",
+          "description": "Beitragsdetails konnten nicht geladen werden."
+        },
+        "loadRepliesError": {
+          "title": "Fehler",
+          "description": "Antworten konnten nicht geladen werden."
+        },
+        "emptyReply": "Ihre Antwort darf nicht leer sein.",
+        "submitError": {
+          "title": "Antwort fehlgeschlagen",
+          "description": "Ihre Antwort konnte nicht gepostet werden."
+        },
+        "replySuccess": "Antwort gepostet!"
+      }
+    }
   }
 }
+    

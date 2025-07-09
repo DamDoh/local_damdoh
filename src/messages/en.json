@@ -1321,7 +1321,7 @@
       "loadingMore": "Loading...",
       "joinDiscussion": "Join Discussion"
     },
-    "lastActivity": "Last activity {time}",
+    "lastActivity": "Last activity {time} ago",
     "notFound": {
       "title": "No Matching Topics Found",
       "tryDifferentSearch": "Try a different search term",
@@ -1477,5 +1477,140 @@
         "emptyReply": "Your reply cannot be empty."
       }
     }
+  },
+  "GroupsPage": {
+    "title": "Community Groups",
+    "description": "Find and join groups based on your interests, location, or expertise.",
+    "createGroupButton": "Create New Group",
+    "searchPlaceholder": "Search for groups...",
+    "notFound": "No groups found.",
+    "detail": {
+      "backLink": "Back to All Groups",
+      "discussionsTitle": "Discussions",
+      "startDiscussionButton": "Start a Discussion",
+      "by": "by {author}",
+      "noDiscussions": "No discussions started yet.",
+      "beTheFirst": "Be the first one to start a discussion!",
+      "actionsTitle": "Group Actions",
+      "leaveButton": "Leave Group",
+      "leavingButton": "Leaving...",
+      "joinButton": "Join Group",
+      "requestJoinButton": "Request to Join",
+      "joiningButton": "Joining...",
+      "loginToJoinButton": "Login to Join",
+      "membersTitle": "{memberCount} Members",
+      "notFound": {
+        "title": "Group Not Found",
+        "description": "The group you are looking for does not exist.",
+        "backButton": "Back to Groups"
+      },
+      "toast": {
+        "loadError": {
+          "title": "Error",
+          "description": "Could not load group data."
+        },
+        "loginToJoin": "Please log in to join this group.",
+        "joinSuccess": "You have successfully joined the group!",
+        "joinError": "Failed to join the group.",
+        "leaveSuccess": "You have left the group.",
+        "leaveError": "Failed to leave the group."
+      }
+    },
+    "create": {
+      "backLink": "Back to Groups",
+      "title": "Create a New Group",
+      "description": "Start a new community around a shared interest or project.",
+      "form": {
+        "nameLabel": "Group Name",
+        "namePlaceholder": "e.g., Organic Coffee Growers of Kenya",
+        "descriptionLabel": "Group Description",
+        "descriptionPlaceholder": "What is the purpose of this group?",
+        "publicLabel": "Public Group (anyone can join)",
+        "submitButton": "Create Group",
+        "submittingButton": "Creating..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentication Required",
+          "description": "You must be logged in to create a group."
+        },
+        "incomplete": {
+          "title": "Incomplete Information",
+          "description": "Please provide a name and description for your group."
+        },
+        "error": {
+          "title": "Creation Failed",
+          "description": "Could not create the group. Please try again."
+        },
+        "success": {
+          "title": "Group Created!",
+          "description": "Your new group is now live."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Back to Group",
+      "title": "Start a New Post",
+      "description": "Share an update or ask a question within the group.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "Enter a clear and concise title",
+        "contentLabel": "Your Content",
+        "contentPlaceholder": "Write your post here...",
+        "submitButton": "Publish Post",
+        "submittingButton": "Publishing..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentication Required",
+          "description": "You must be a member to post in this group."
+        },
+        "incomplete": {
+          "title": "Incomplete Post",
+          "description": "Please provide a title and content for your post."
+        },
+        "error": {
+          "title": "Post Failed",
+          "description": "Could not publish your post. Please try again."
+        },
+        "success": {
+          "title": "Post Published!",
+          "description": "Your post is now live in the group."
+        }
+      }
+    },
+    "postDetail": {
+      "backLink": "Back to {groupName}",
+      "repliesTitle": "{count, plural, =0 {No Replies} =1 {1 Reply} other {{count} Replies}}",
+      "noReplies": "No replies yet. Be the first to respond!",
+      "loadMoreButton": "Load More Replies",
+      "loadingMoreButton": "Loading...",
+      "yourReplyTitle": "Your Reply",
+      "replyPlaceholder": "Write your reply here...",
+      "replySubmitButton": "Post Reply",
+      "replySubmittingButton": "Posting...",
+      "notFound": {
+        "title": "Post Not Found",
+        "description": "The post you are looking for does not exist.",
+        "backButton": "Back to Group"
+      },
+      "toast": {
+        "loadPostError": {
+          "title": "Error",
+          "description": "Could not load post details."
+        },
+        "loadRepliesError": {
+          "title": "Error",
+          "description": "Could not load replies."
+        },
+        "emptyReply": "Your reply cannot be empty.",
+        "submitError": {
+          "title": "Reply Failed",
+          "description": "Could not post your reply."
+        },
+        "replySuccess": "Reply posted!"
+      }
+    }
   }
 }
+    

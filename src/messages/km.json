@@ -1038,7 +1038,7 @@
     "knfInputsPage": {
       "backLink": "ត្រឡប់ទៅ Hub",
       "title": "ជំនួយការធាតុចូល KNF",
-      "description": "តាមដាននិងគ្រប់គ្រងធាតុចូលកសិកម្មធម្មជាតិកូរ៉េ (KNF) ដែលផលិតដោយកសិករ។",
+      "description": "តាមដានและจัดการปัจจัยการผลิต Korean Natural Farming (KNF) ที่คุณทำเอง",
       "guidesTitle": "មគ្គុទ្ទេសក៍และสูตรอาหาร",
       "ingredients": "គ្រឿងផ្សំ",
       "steps": "ขั้นตอน",
@@ -1309,62 +1309,6 @@
     "title": "វេទិកាសហគមន៍",
     "description": "ភ្ជាប់ទំនាក់ទំនង ចែករំលែកចំណេះដឹង និងសហការជាមួយភាគីពាក់ព័ន្ធពីទូទាំងខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្ម។",
     "createTopic": "បង្កើតប្រធានបទថ្មី",
-    "pinning": {
-      "pinnedTitle": "វេទិកាបានខ្ទាស់ទុក",
-      "pinnedDescription": "ទំព័រវេទិកាឥឡូវនេះជាទំព័រដើមរបស់អ្នក។",
-      "unpinnedTitle": "បានដកការខ្ទាស់វេទិកា",
-      "unpinnedDescription": "ទំព័រដើមរបស់អ្នកត្រូវបានកំណត់ឡើងវិញទៅលំនាំដើម។"
-    },
-    "buttons": {
-      "createTopic": "បង្កើតប្រធានបទ",
-      "loadMore": "ផ្ទុកបន្ថែម",
-      "loadingMore": "កំពុងផ្ទុក...",
-      "joinDiscussion": "ចូលរួមការពិភាក្សា"
-    },
-    "lastActivity": "សកម្មភាពចុងក្រោយ {time} មុន",
-    "notFound": {
-      "title": "រកមិនឃើញប្រធានបទដែលត្រូវគ្នា",
-      "tryDifferentSearch": "សាកល្បងពាក្យស្វែងរកផ្សេង",
-      "beTheFirst": "ក្លាយជាអ្នកបង្កើតដំបូង!",
-      "button": "បង្កើតប្រធានបទ"
-    },
-    "errors": {
-      "loadTitle": "កំហុសក្នុងការផ្ទុក",
-      "loadDescription": "មានបញ្ហាក្នុងការទាញយកប្រធានបទវេទិកា។"
-    },
-    "searchPlaceholder": "ស្វែងរកប្រធានបទ...",
-    "postMeta": "ដោយ {author} • {date}",
-    "create": {
-      "backLink": "ត្រឡប់ទៅវេទិកា",
-      "title": "ចាប់ផ្តើមប្រធានបទពិភាក្សាថ្មី",
-      "description": "បង្កើតប្រធានបទថ្មីដើម្បីប្រមូលការយល់ដឹង និងសហការជាមួយសហគមន៍។",
-      "form": {
-        "nameLabel": "ឈ្មោះប្រធានបទ",
-        "namePlaceholder": "ឧ: ការផលិតកាហ្វេប្រកបដោយនិរន្តរភាព",
-        "descriptionLabel": "ការពិពណ៌នាប្រធានបទ",
-        "descriptionPlaceholder": "តើប្រធានបទនេះនិយាយអំពីអ្វី? ការពិពណ៌នាខ្លីជួយអ្នកដទៃឱ្យយល់ពីគោលបំណងរបស់វា។",
-        "submitButton": "បង្កើតប្រធានបទ",
-        "submittingButton": "កំពុងបង្កើត..."
-      },
-      "errors": {
-        "auth": {
-          "title": "ត្រូវការការផ្ទៀងផ្ទាត់",
-          "description": "អ្នកត្រូវតែចូលគណនីដើម្បីបង្កើតប្រធានបទថ្មី។"
-        },
-        "incomplete": {
-          "title": "ព័ត៌មានមិនពេញលេញ",
-          "description": "សូមផ្តល់ទាំងឈ្មោះនិងការពិពណ៌នាសម្រាប់ប្រធានបទថ្មីរបស់អ្នក។"
-        },
-        "general": {
-          "title": "ការបង្កើតបានបរាជ័យ",
-          "description": "មានបញ្ហាដែលមិនបានរំពឹងទុកកើតឡើងនៅពេលបង្កើតប្រធានបទ។"
-        }
-      },
-      "success": {
-        "title": "ប្រធានបទបានបង្កើត!",
-        "description": "ប្រធានបទពិភាក្សាថ្មីរបស់អ្នកបានផ្សាយផ្ទាល់ហើយ។"
-      }
-    },
     "topic": {
       "backLink": "ត្រឡប់ទៅគ្រប់វេទិកាទាំងអស់",
       "buttons": {
@@ -1392,6 +1336,37 @@
           "title": "ข้อผิดพลาดในการโหลด",
           "description": "ไม่สามารถโหลดโพสต์สำหรับหัวข้อนี้ได้"
         }
+      }
+    },
+    "create": {
+      "backLink": "ត្រឡប់ទៅវេទិកា",
+      "title": "ចាប់ផ្តើមប្រធានបទពិភាក្សាថ្មី",
+      "description": "បង្កើតប្រធានបទថ្មីដើម្បីรวบรวมข้อมูลเชิงลึกและทำงานร่วมกับชุมชน",
+      "form": {
+        "nameLabel": "ឈ្មោះប្រធានបទ",
+        "namePlaceholder": "ឧ: ការផលិតកាហ្វេប្រកបដោយនិរន្តរភាព",
+        "descriptionLabel": "คำอธิบายหัวข้อ",
+        "descriptionPlaceholder": "หัวข้อนี้เกี่ยวกับอะไร? คำอธิบายสั้นๆ ช่วยให้ผู้อื่นเข้าใจวัตถุประสงค์ของหัวข้อ",
+        "submitButton": "បង្កើតប្រធានបទ",
+        "submittingButton": "កំពុងបង្កើត..."
+      },
+      "errors": {
+        "auth": {
+          "title": "ต้องการการรับรองความถูกต้อง",
+          "description": "คุณต้องลงชื่อเข้าใช้เพื่อสร้างหัวข้อใหม่"
+        },
+        "incomplete": {
+          "title": "ข้อมูลไม่ครบถ้วน",
+          "description": "โปรดระบุทั้งชื่อและคำอธิบายสำหรับหัวข้อใหม่ของคุณ"
+        },
+        "general": {
+          "title": "การสร้างล้มเหลว",
+          "description": "เกิดข้อผิดพลาดที่ไม่คาดคิดขณะสร้างหัวข้อ"
+        }
+      },
+      "success": {
+        "title": "สร้างหัวข้อแล้ว!",
+        "description": "หัวข้อสนทนาใหม่ของคุณพร้อมใช้งานแล้ว"
       }
     },
     "createPost": {
@@ -1476,6 +1451,167 @@
         },
         "emptyReply": "ការឆ្លើយតបរបស់អ្នកមិនអាចว่างเปล่าได้"
       }
+    },
+    "pinning": {
+      "pinnedTitle": "វេទិកาที่ปักหมุด",
+      "pinnedDescription": "หน้าฟอรัมเป็นหน้าแรกเริ่มต้นของคุณแล้ว",
+      "unpinnedTitle": "เลิกปักหมุดฟอรัม",
+      "unpinnedDescription": "หน้าแรกของคุณถูกรีเซ็ตเป็นค่าเริ่มต้นแล้ว"
+    },
+    "buttons": {
+      "createTopic": "បង្កើតប្រធានបទ",
+      "loadMore": "ផ្ទុកបន្ថែម",
+      "loadingMore": "កំពុងផ្ទុក...",
+      "joinDiscussion": "เข้าร่วมการสนทนา"
+    },
+    "lastActivity": "กิจกรรมล่าสุดเมื่อ {time} ที่แล้ว",
+    "notFound": {
+      "title": "រកមិនឃើញប្រធានបទที่ตรงกัน",
+      "tryDifferentSearch": "ลองใช้คำค้นหาอื่น",
+      "beTheFirst": "จงเป็นคนแรกที่สร้าง!",
+      "button": "បង្កើតប្រធានបទ"
+    },
+    "errors": {
+      "loadTitle": "ข้อผิดพลาดในการโหลด",
+      "loadDescription": "เกิดข้อผิดพลาดขณะดึงข้อมูลหัวข้อฟอรัม"
+    },
+    "searchPlaceholder": "ស្វែងរកប្រធានបទ...",
+    "postMeta": "ដោយ {author} • {date}"
+  },
+  "GroupsPage": {
+    "title": "Community Groups",
+    "description": "Find and join groups based on your interests, location, or expertise.",
+    "createGroupButton": "Create New Group",
+    "searchPlaceholder": "Search for groups...",
+    "notFound": "No groups found.",
+    "detail": {
+      "backLink": "Back to All Groups",
+      "discussionsTitle": "Discussions",
+      "startDiscussionButton": "Start a Discussion",
+      "by": "by {author}",
+      "noDiscussions": "No discussions started yet.",
+      "beTheFirst": "Be the first one to start a discussion!",
+      "actionsTitle": "Group Actions",
+      "leaveButton": "Leave Group",
+      "leavingButton": "Leaving...",
+      "joinButton": "Join Group",
+      "requestJoinButton": "Request to Join",
+      "joiningButton": "Joining...",
+      "loginToJoinButton": "Login to Join",
+      "membersTitle": "{memberCount} Members",
+      "notFound": {
+        "title": "Group Not Found",
+        "description": "The group you are looking for does not exist.",
+        "backButton": "Back to Groups"
+      },
+      "toast": {
+        "loadError": {
+          "title": "Error",
+          "description": "Could not load group data."
+        },
+        "loginToJoin": "Please log in to join this group.",
+        "joinSuccess": "You have successfully joined the group!",
+        "joinError": "Failed to join the group.",
+        "leaveSuccess": "You have left the group.",
+        "leaveError": "Failed to leave the group."
+      }
+    },
+    "create": {
+      "backLink": "Back to Groups",
+      "title": "Create a New Group",
+      "description": "Start a new community around a shared interest or project.",
+      "form": {
+        "nameLabel": "Group Name",
+        "namePlaceholder": "e.g., Organic Coffee Growers of Kenya",
+        "descriptionLabel": "Group Description",
+        "descriptionPlaceholder": "What is the purpose of this group?",
+        "publicLabel": "Public Group (anyone can join)",
+        "submitButton": "Create Group",
+        "submittingButton": "Creating..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentication Required",
+          "description": "You must be logged in to create a group."
+        },
+        "incomplete": {
+          "title": "Incomplete Information",
+          "description": "Please provide a name and description for your group."
+        },
+        "error": {
+          "title": "Creation Failed",
+          "description": "Could not create the group. Please try again."
+        },
+        "success": {
+          "title": "Group Created!",
+          "description": "Your new group is now live."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Back to Group",
+      "title": "Start a New Post",
+      "description": "Share an update or ask a question within the group.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "Enter a clear and concise title",
+        "contentLabel": "Your Content",
+        "contentPlaceholder": "Write your post here...",
+        "submitButton": "Publish Post",
+        "submittingButton": "Publishing..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentication Required",
+          "description": "You must be a member to post in this group."
+        },
+        "incomplete": {
+          "title": "Incomplete Post",
+          "description": "Please provide a title and content for your post."
+        },
+        "error": {
+          "title": "Post Failed",
+          "description": "Could not publish your post. Please try again."
+        },
+        "success": {
+          "title": "Post Published!",
+          "description": "Your post is now live in the group."
+        }
+      }
+    },
+    "postDetail": {
+      "backLink": "Back to {groupName}",
+      "repliesTitle": "{count, plural, =0 {No Replies} =1 {1 Reply} other {{count} Replies}}",
+      "noReplies": "No replies yet. Be the first to respond!",
+      "loadMoreButton": "Load More Replies",
+      "loadingMoreButton": "Loading...",
+      "yourReplyTitle": "Your Reply",
+      "replyPlaceholder": "Write your reply here...",
+      "replySubmitButton": "Post Reply",
+      "replySubmittingButton": "Posting...",
+      "notFound": {
+        "title": "Post Not Found",
+        "description": "The post you are looking for does not exist.",
+        "backButton": "Back to Group"
+      },
+      "toast": {
+        "loadPostError": {
+          "title": "Error",
+          "description": "Could not load post details."
+        },
+        "loadRepliesError": {
+          "title": "Error",
+          "description": "Could not load replies."
+        },
+        "emptyReply": "Your reply cannot be empty.",
+        "submitError": {
+          "title": "Reply Failed",
+          "description": "Could not post your reply."
+        },
+        "replySuccess": "Reply posted!"
+      }
     }
   }
 }
+
+    

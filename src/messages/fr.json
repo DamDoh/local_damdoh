@@ -459,7 +459,7 @@
       "heading": "10. NOUS CONTACTER",
       "content": "Pour résoudre une plainte concernant le Site ou pour recevoir de plus amples informations sur l'utilisation du Site, veuillez nous contacter."
     },
-    "conclusion": "Pour résoudre des plaintes ou obtenir de plus amples informations, veuillez {contactLink}."
+    "conclusion": "Pour résoudre une plainte ou recevoir de plus amples informations, veuillez {contactLink}."
   },
   "Marketplace": {
     "title": "Marché",
@@ -1477,5 +1477,140 @@
         "emptyReply": "Votre réponse ne peut pas être vide."
       }
     }
+  },
+  "GroupsPage": {
+    "title": "Groupes Communautaires",
+    "description": "Trouvez et rejoignez des groupes en fonction de vos intérêts, de votre lieu ou de votre expertise.",
+    "createGroupButton": "Créer un Nouveau Groupe",
+    "searchPlaceholder": "Rechercher des groupes...",
+    "notFound": "Aucun groupe trouvé.",
+    "detail": {
+      "backLink": "Retour à Tous les Groupes",
+      "discussionsTitle": "Discussions",
+      "startDiscussionButton": "Démarrer une Discussion",
+      "by": "par {author}",
+      "noDiscussions": "Aucune discussion n'a encore été lancée.",
+      "beTheFirst": "Soyez le premier à lancer une discussion !",
+      "actionsTitle": "Actions du Groupe",
+      "leaveButton": "Quitter le Groupe",
+      "leavingButton": "Départ...",
+      "joinButton": "Rejoindre le Groupe",
+      "requestJoinButton": "Demander à Rejoindre",
+      "joiningButton": "Adhésion...",
+      "loginToJoinButton": "Connectez-vous pour Rejoindre",
+      "membersTitle": "{memberCount} Membres",
+      "notFound": {
+        "title": "Groupe non trouvé",
+        "description": "Le groupe que vous recherchez n'existe pas.",
+        "backButton": "Retour aux Groupes"
+      },
+      "toast": {
+        "loadError": {
+          "title": "Erreur",
+          "description": "Impossible de charger les données du groupe."
+        },
+        "loginToJoin": "Veuillez vous connecter pour rejoindre ce groupe.",
+        "joinSuccess": "Vous avez rejoint le groupe avec succès !",
+        "joinError": "Échec de l'adhésion au groupe.",
+        "leaveSuccess": "Vous avez quitté le groupe.",
+        "leaveError": "Échec du départ du groupe."
+      }
+    },
+    "create": {
+      "backLink": "Retour aux Groupes",
+      "title": "Créer un Nouveau Groupe",
+      "description": "Créez une nouvelle communauté autour d'un intérêt ou d'un projet commun.",
+      "form": {
+        "nameLabel": "Nom du Groupe",
+        "namePlaceholder": "Ex: Cultivateurs de Café Bio du Kenya",
+        "descriptionLabel": "Description du Groupe",
+        "descriptionPlaceholder": "Quel est le but de ce groupe ?",
+        "publicLabel": "Groupe Public (tout le monde peut rejoindre)",
+        "submitButton": "Créer le Groupe",
+        "submittingButton": "Création en cours..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentification Requise",
+          "description": "Vous devez être connecté pour créer un groupe."
+        },
+        "incomplete": {
+          "title": "Informations Incomplètes",
+          "description": "Veuillez fournir un nom et une description pour votre groupe."
+        },
+        "error": {
+          "title": "Création Échouée",
+          "description": "Impossible de créer le groupe. Veuillez réessayer."
+        },
+        "success": {
+          "title": "Groupe Créé !",
+          "description": "Votre nouveau groupe est maintenant en ligne."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Retour au Groupe",
+      "title": "Démarrer une Nouvelle Publication",
+      "description": "Partagez une mise à jour ou posez une question au sein du groupe.",
+      "form": {
+        "titleLabel": "Titre de la Publication",
+        "titlePlaceholder": "Entrez un titre clair et concis",
+        "contentLabel": "Votre Contenu",
+        "contentPlaceholder": "Écrivez votre publication ici...",
+        "submitButton": "Publier",
+        "submittingButton": "Publication en cours..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentification Requise",
+          "description": "Vous devez être membre pour publier dans ce groupe."
+        },
+        "incomplete": {
+          "title": "Publication Incomplète",
+          "description": "Veuillez fournir un titre et un contenu pour votre publication."
+        },
+        "error": {
+          "title": "Publication Échouée",
+          "description": "Impossible de publier votre message. Veuillez réessayer."
+        },
+        "success": {
+          "title": "Publication Publiée !",
+          "description": "Votre publication est maintenant visible dans le groupe."
+        }
+      }
+    },
+    "postDetail": {
+      "backLink": "Retour à {groupName}",
+      "repliesTitle": "{count, plural, =0 {Aucune Réponse} =1 {1 Réponse} other {{count} Réponses}}",
+      "noReplies": "Aucune réponse pour le moment. Soyez le premier à répondre !",
+      "loadMoreButton": "Charger plus de réponses",
+      "loadingMoreButton": "Chargement...",
+      "yourReplyTitle": "Votre Réponse",
+      "replyPlaceholder": "Écrivez votre réponse ici...",
+      "replySubmitButton": "Publier la Réponse",
+      "replySubmittingButton": "Publication...",
+      "notFound": {
+        "title": "Publication non trouvée",
+        "description": "La publication que vous recherchez n'existe pas.",
+        "backButton": "Retour au Groupe"
+      },
+      "toast": {
+        "loadPostError": {
+          "title": "Erreur",
+          "description": "Impossible de charger les détails de la publication."
+        },
+        "loadRepliesError": {
+          "title": "Erreur",
+          "description": "Impossible de charger les réponses."
+        },
+        "emptyReply": "Votre réponse ne peut pas être vide.",
+        "submitError": {
+          "title": "Échec de la Réponse",
+          "description": "Impossible de publier votre réponse."
+        },
+        "replySuccess": "Réponse publiée !"
+      }
+    }
   }
 }
+    
