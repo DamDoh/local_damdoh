@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -461,518 +462,6 @@
     },
     "conclusion": "Para resolver una queja u obtener más información, {contactLink}."
   },
-  "Forums": {
-    "title": "Foros Comunitarios",
-    "description": "Conéctate, comparte conocimientos y colabora con actores de toda la cadena de suministro agrícola.",
-    "createTopic": "Crear Nuevo Tema",
-    "topic": {
-      "backLink": "Volver a Todos los Foros",
-      "buttons": {
-        "createPost": "Crear Publicación",
-        "loadMore": "Cargar Más Publicaciones",
-        "loadingMore": "Cargando..."
-      },
-      "postMeta": "Por {author} • {date}",
-      "noPosts": {
-        "title": "Aún no hay publicaciones",
-        "description": "Sé el primero en iniciar una conversación en este tema.",
-        "button": "Iniciar una Discusión"
-      },
-      "notFound": {
-        "title": "Tema no Encontrado",
-        "description": "El tema de discusión que buscas no existe o puede haber sido movido.",
-        "backButton": "Volver a los Foros"
-      },
-      "errors": {
-        "loadTopic": {
-          "title": "Error de Carga",
-          "description": "No se pudieron cargar los detalles de este tema."
-        },
-        "loadPosts": {
-          "title": "Error de Carga",
-          "description": "No se pudieron cargar las publicaciones de este tema."
-        }
-      }
-    },
-    "create": {
-      "backLink": "Volver a los Foros",
-      "title": "Iniciar un Nuevo Tema de Discusión",
-      "description": "Crea un nuevo tema para recopilar ideas y colaborar con la comunidad.",
-      "form": {
-        "nameLabel": "Nombre del Tema",
-        "namePlaceholder": "Ej: Producción Sostenible de Café",
-        "descriptionLabel": "Descripción del Tema",
-        "descriptionPlaceholder": "¿De qué trata este tema? Una breve descripción ayuda a otros a entender su propósito.",
-        "submitButton": "Crear Tema",
-        "submittingButton": "Creando..."
-      },
-      "errors": {
-        "auth": {
-          "title": "Autenticación Requerida",
-          "description": "Debes iniciar sesión para crear un nuevo tema."
-        },
-        "incomplete": {
-          "title": "Información Incompleta",
-          "description": "Por favor, proporciona un nombre y una descripción para tu nuevo tema."
-        },
-        "general": {
-          "title": "Creación Fallida",
-          "description": "Ocurrió un error inesperado al crear el tema."
-        }
-      },
-      "success": {
-        "title": "¡Tema Creado!",
-        "description": "Tu nuevo tema de discusión ya está activo."
-      }
-    },
-    "createPost": {
-      "backLink": "Volver al Tema",
-      "aiHelper": {
-        "title": "¿Necesitas ayuda para empezar?",
-        "description": "Usa nuestro Asistente de IA para redactar tu publicación. Solo proporciona una indicación a continuación.",
-        "promptLabel": "Tu idea o pregunta",
-        "promptPlaceholder": "Ej: 'Preguntar sobre los mejores pesticidas orgánicos para la roya del café'",
-        "generateButton": "Generar Borrador",
-        "generatingButton": "Generando..."
-      },
-      "title": "Crear una Nueva Publicación",
-      "description": "Comparte tus pensamientos, haz una pregunta o inicia una discusión.",
-      "form": {
-        "titleLabel": "Título de la Publicación",
-        "titlePlaceholder": "Introduce un título claro y conciso",
-        "contentLabel": "Tu Contenido",
-        "contentPlaceholder": "Escribe tu publicación aquí...",
-        "submitButton": "Publicar",
-        "submittingButton": "Publicando..."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "Indicación Requerida",
-          "description": "Por favor, introduce una idea o pregunta para que la IA genere un borrador."
-        },
-        "aiDraft": {
-          "title": "Fallo en el Borrador de IA",
-          "description": "Hubo un error al generar el borrador. Por favor, inténtalo de nuevo o escribe la publicación manualmente."
-        },
-        "incomplete": {
-          "title": "Publicación Incompleta",
-          "description": "Por favor, proporciona un título y contenido para tu publicación."
-        },
-        "general": {
-          "title": "Creación de Publicación Fallida",
-          "description": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
-        }
-      },
-      "success": {
-        "aiDraft": {
-          "title": "¡Borrador Generado!",
-          "description": "La IA ha generado un borrador a continuación. Siéntete libre de editarlo antes de publicar."
-        },
-        "title": "¡Publicación Realizada!",
-        "description": "Tu publicación ya está activa en el tema."
-      }
-    },
-    "postView": {
-      "backLink": "Volver a {topicName}",
-      "repliesTitle": "{count, plural, =0 {Sin Respuestas} =1 {1 Respuesta} other {{count} Respuestas}}",
-      "noReplies": "Aún no hay respuestas. ¡Sé el primero en responder!",
-      "buttons": {
-        "loadMore": "Cargar Más Respuestas",
-        "loadingMore": "Cargando..."
-      },
-      "reply": {
-        "title": "Tu Respuesta",
-        "placeholder": "Escribe tu respuesta aquí...",
-        "submitButton": "Publicar Respuesta",
-        "submittingButton": "Publicando...",
-        "success": "¡Tu respuesta ha sido publicada!"
-      },
-      "notFound": {
-        "title": "Publicación no Encontrada",
-        "description": "La publicación que buscas no existe o ha sido movida.",
-        "backButton": "Volver al Foro"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Error",
-          "description": "No se pudieron cargar los detalles de la publicación."
-        },
-        "loadReplies": {
-          "title": "Error",
-          "description": "No se pudieron cargar las respuestas para esta publicación."
-        },
-        "submitReply": {
-          "title": "Fallo al Responder",
-          "description": "No se pudo enviar tu respuesta. Por favor, inténtalo de nuevo."
-        },
-        "emptyReply": "Tu respuesta no puede estar vacía."
-      }
-    },
-    "pinning": {
-      "pinnedTitle": "Foros Anclados",
-      "pinnedDescription": "La página de Foros es ahora tu página de inicio predeterminada.",
-      "unpinnedTitle": "Foros Desanclados",
-      "unpinnedDescription": "Tu página de inicio ha sido restablecida a la predeterminada."
-    },
-    "buttons": {
-      "createTopic": "Crear Tema",
-      "loadMore": "Cargar Más",
-      "loadingMore": "Cargando...",
-      "joinDiscussion": "Unirse a la Discusión"
-    },
-    "lastActivity": "Última actividad hace {time}",
-    "notFound": {
-      "title": "No se Encontraron Temas Coincidentes",
-      "tryDifferentSearch": "Intenta con otro término de búsqueda.",
-      "beTheFirst": "¡Sé el primero en crear uno!",
-      "button": "Crear Tema"
-    },
-    "errors": {
-      "loadTitle": "Error de Carga",
-      "loadDescription": "Hubo un error al obtener los temas del foro."
-    },
-    "searchPlaceholder": "Buscar temas...",
-    "postMeta": "Por {author} • {date}"
-  },
-  "Marketplace": {
-    "title": "Mercado",
-    "description": "Descubre, compra y vende productos y servicios agrícolas.",
-    "createShopButton": "Crear Tienda",
-    "myOrdersButton": "Mis Pedidos",
-    "createListingButton": "Crear Anuncio",
-    "pinButton": "Anclar como Inicio",
-    "unpinButton": "Desanclar Inicio",
-    "searchPlaceholder": "Buscar productos y servicios...",
-    "locationPlaceholder": "Filtrar por ubicación...",
-    "typePlaceholder": "Filtrar por tipo...",
-    "recommendedForYou": "Recomendado para Ti",
-    "discoverMore": "Descubre Más",
-    "viewDetails": "Ver Detalles",
-    "viewServiceButton": "Ver Servicio",
-    "pinning": {
-      "pinnedTitle": "Mercado Anclado",
-      "pinnedDescription": "El Mercado es ahora tu página de inicio predeterminada.",
-      "unpinnedTitle": "Mercado Desanclado",
-      "unpinnedDescription": "Tu página de inicio ha sido restablecida a la predeterminada."
-    },
-    "noItemsFound": {
-      "title": "No se Encontraron Artículos",
-      "hint": "Intenta ajustar tus filtros de búsqueda o vuelve a revisar más tarde."
-    },
-    "errors": {
-      "search": {
-        "title": "Búsqueda Fallida",
-        "description": "No se pudieron recuperar los artículos del mercado en este momento."
-      },
-      "aiRecommendations": {
-        "title": "No se encontraron recomendaciones en este momento."
-      }
-    },
-    "categories": {
-      "allCategories": "Todas las Categorías",
-      "viewAllItems": "Ver Todos los Artículos",
-      "viewAllCategory": "Todo en {categoryName}"
-    },
-    "createListing": {
-      "backLink": "Volver al Mercado",
-      "title": "Crear Nuevo Anuncio en el Mercado",
-      "description": "Completa los detalles a continuación para anunciar tu producto o servicio.",
-      "form": {
-        "nameLabel": "Título del Anuncio",
-        "namePlaceholder": "Ej: Aguacates Hass Orgánicos, Servicio de Reparación de Tractores",
-        "typeLabel": "Tipo de Anuncio",
-        "typePlaceholder": "Selecciona un tipo de anuncio",
-        "descriptionLabel": "Descripción",
-        "descriptionPlaceholder": "Describe tu producto o servicio en detalle...",
-        "locationLabel": "Ubicación",
-        "locationPlaceholder": "Ej: Nakuru, Kenia",
-        "relatedVtiLabel": "ID de Trazabilidad Relacionado (Opcional)",
-        "relatedVtiPlaceholder": "Ingresa VTI si aplica",
-        "relatedVtiDescription": "Vincula este anuncio a un lote de cosecha específico para una total transparencia.",
-        "categoryLabel": "Categoría",
-        "categoryPlaceholder": "Selecciona una categoría",
-        "priceLabel": "Precio",
-        "pricePlaceholder": "Ej: 25.50",
-        "unitLabel": "por",
-        "unitPlaceholder": "Ej: kg, tonelada, hora",
-        "compensationLabel": "Compensación / Tarifas",
-        "compensationPlaceholder": "Ej: $50/hora, Basado en proyecto",
-        "experienceLabel": "Nivel de Experiencia",
-        "experiencePlaceholder": "Ej: Intermedio, Experto (10+ años)",
-        "skillsLabel": "Habilidades Requeridas (para servicios)",
-        "skillsPlaceholder": "Ej: Fumigación, Análisis de Suelo, Certificación Orgánica",
-        "skillsDescription": "Separa las habilidades con una coma.",
-        "imageUrlLabel": "URL de la Imagen",
-        "sustainableLabel": "Producido Sosteniblemente",
-        "sustainableDescription": "Marca esto si tu producto o servicio sigue prácticas sostenibles reconocidas.",
-        "submitButton": "Crear Anuncio",
-        "submittingButton": "Creando..."
-      },
-      "aiPriceSuggestion": {
-        "button": "Sugerir Precio con IA",
-        "generatingButton": "Sugiriendo...",
-        "suggestionLabel": "Sugerencia de IA:",
-        "usePriceButton": "Usar Precio"
-      },
-      "errors": {
-        "priceSuggestion": {
-          "missingInfo": {
-            "title": "Información Faltante",
-            "description": "Por favor, completa el Título y la Descripción antes de sugerir un precio."
-          },
-          "failed": {
-            "title": "Sugerencia de IA Fallida",
-            "description": "No se pudo obtener una sugerencia de precio en este momento."
-          }
-        },
-        "authentication": {
-          "title": "No Autenticado",
-          "description": "Debes iniciar sesión para crear un anuncio."
-        },
-        "creation": {
-          "title": "Creación Fallida",
-          "description": "Ocurrió un error inesperado al crear el anuncio."
-        }
-      },
-      "success": {
-        "title": "¡Anuncio Creado!",
-        "description": "Tu artículo ya está disponible en el mercado."
-      }
-    },
-    "itemView": {
-      "backLink": "Volver al Mercado",
-      "notFound": {
-        "description": "Artículo no encontrado."
-      },
-      "errors": {
-        "loadItem": {
-          "description": "No se pudo cargar el artículo."
-        },
-        "unexpected": "Ocurrió un error inesperado."
-      },
-      "coupon": {
-        "successTitle": "¡Cupón Aplicado!",
-        "successDescription": "¡Has recibido un descuento de {type}!",
-        "failTitle": "Cupón Inválido",
-        "failDescription": "El código de cupón que ingresaste es inválido o ha expirado.",
-        "label": "Código de Cupón",
-        "placeholder": "Ingresar cupón",
-        "applyButton": "Aplicar",
-        "appliedText": "Cupón '{code}' aplicado."
-      },
-      "booking": {
-        "authTitle": "Se Requiere Iniciar Sesión",
-        "authDescription": "Debes iniciar sesión para reservar un servicio.",
-        "failTitle": "Reserva Fallida",
-        "dateError": "Por favor, selecciona una fecha de inicio y fin para tu reserva.",
-        "successTitle": "¡Reserva Exitosa!",
-        "successDescription": "Tu reserva ha sido confirmada. Recibirás más detalles por correo electrónico.",
-        "bookedTitle": "¡Has reservado esta experiencia!",
-        "bookedDescription": "Muestra tu boleto al llegar.",
-        "ticketButton": "Ver Boleto",
-        "modalTitle": "Tu Boleto",
-        "modalDescription": "Presenta este código QR en el check-in para {itemName}.",
-        "modalScan": "Escanea este código en el check-in.",
-        "perNight": "por noche",
-        "checkIn": "Check-in",
-        "checkOut": "Check-out",
-        "addDate": "Añadir fecha",
-        "guests": "Huéspedes",
-        "reserveButton": "Reservar",
-        "reservingButton": "Reservando...",
-        "notCharged": "Aún no se te cobrará",
-        "nights": "{count, plural, =1 {noche} other {noches}}",
-        "serviceFee": "Tarifa de servicio",
-        "total": "Total"
-      },
-      "order": {
-        "authTitle": "Se Requiere Iniciar Sesión",
-        "authDescription": "Debes iniciar sesión para realizar un pedido.",
-        "quantityErrorTitle": "Cantidad Inválida",
-        "quantityErrorDescription": "Por favor, introduce una cantidad mayor que cero.",
-        "successTitle": "¡Pedido Realizado!",
-        "successDescription": "Tu pedido ha sido enviado exitosamente al vendedor.",
-        "failTitle": "Pedido Fallido",
-        "failDescription": "No se pudo realizar tu pedido. Por favor, inténtalo de nuevo.",
-        "title": "Realizar Pedido de {itemName}",
-        "description": "Confirma la cantidad y añade notas para el vendedor si es necesario.",
-        "quantityLabel": "Cantidad",
-        "notesLabel": "Notas para el Vendedor (Opcional)",
-        "notesPlaceholder": "Ej: instrucciones de entrega, solicitudes especiales...",
-        "cancelButton": "Cancelar",
-        "confirmButton": "Confirmar Pedido",
-        "placingButton": "Realizando Pedido..."
-      },
-      "skillsLabel": "Habilidades Requeridas",
-      "experienceLabel": "Nivel de Experiencia",
-      "compensationLabel": "Compensación",
-      "contactForRates": "Contactar para tarifas",
-      "aboutSeller": "Sobre el Vendedor",
-      "viewShopfront": "Ver Tienda",
-      "editListing": "Editar Anuncio",
-      "manageService": "Gestionar Servicio",
-      "buyNowButton": "Comprar Ahora",
-      "contactForService": "Contactar por Servicio",
-      "contactSeller": "Contactar al Vendedor",
-      "traceabilityButton": "Ver Informe de Trazabilidad"
-    },
-    "myOrders": {
-      "title": "Mis Pedidos",
-      "description": "Ver y gestionar los pedidos que has recibido de los compradores.",
-      "backLink": "Volver al Mercado",
-      "noOrders": "Aún no has recibido ningún pedido.",
-      "auth": {
-        "title": "Por Favor, Inicia Sesión",
-        "description": "Necesitas iniciar sesión para ver tus pedidos.",
-        "button": "Iniciar Sesión"
-      },
-      "toast": {
-        "errorTitle": "Error",
-        "fetchError": "No se pudieron obtener tus pedidos. Por favor, inténtalo de nuevo.",
-        "successTitle": "Éxito",
-        "updateSuccess": "Estado del pedido actualizado a {status}.",
-        "failTitle": "Actualización Fallida"
-      },
-      "table": {
-        "date": "Fecha",
-        "buyer": "Comprador",
-        "product": "Producto",
-        "total": "Total",
-        "status": "Estado",
-        "actions": "Acciones"
-      },
-      "actions": {
-        "confirm": "Confirmar Pedido",
-        "ship": "Marcar como Enviado",
-        "complete": "Completar Pedido",
-        "cancel": "Cancelar Pedido"
-      },
-      "status": {
-        "new": "Nuevo",
-        "confirmed": "Confirmado",
-        "shipped": "Enviado",
-        "completed": "Completado",
-        "cancelled": "Cancelado"
-      }
-    },
-    "createShop": {
-      "backLink": "Volver al Mercado",
-      "title": "Crear una Tienda Digital",
-      "description": "Establece tu presencia en el mercado de DamDoh creando una tienda. Esta será tu página dedicada para mostrar todos tus productos y servicios.",
-      "authErrorTitle": "No Autenticado",
-      "authErrorDescription": "Debes iniciar sesión para crear una tienda.",
-      "toast": {
-        "successTitle": "¡Tienda Creada!",
-        "successDescription": "Tu tienda '{shopName}' ya está activa y lista para recibir anuncios.",
-        "failTitle": "Creación Fallida",
-        "failDescription": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo."
-      },
-      "form": {
-        "nameLabel": "Nombre de la Tienda",
-        "namePlaceholder": "Ej: Orgánicos del Valle Verde, Agri-Logistics Pro",
-        "typeLabel": "Tipo de Negocio / Rol Principal",
-        "typePlaceholder": "Selecciona la opción que mejor describa tu negocio",
-        "descriptionLabel": "Descripción de la Tienda",
-        "descriptionPlaceholder": "Describe brevemente tu tienda, lo que ofreces y tu misión.",
-        "submitButton": "Crear Tienda",
-        "submittingButton": "Creando..."
-      }
-    },
-    "shopView": {
-      "backLink": "Volver al Mercado",
-      "ownedBy": "Propiedad de",
-      "loadingOwner": "Cargando propietario...",
-      "editShopButton": "Editar Tienda",
-      "contactButton": "Contactar al Propietario",
-      "listingsTitle": "Anuncios de {shopName}",
-      "noListings": "Esta tienda aún no tiene anuncios públicos.",
-      "errors": {
-        "notFound": "Tienda no Encontrada",
-        "loadError": "No se pudieron cargar los detalles de la tienda."
-      },
-      "title": "Tienda"
-    },
-    "promotions": {
-      "backToDashboard": "Volver al Panel",
-      "title": "Cupones y Promociones",
-      "description": "Crea y gestiona cupones promocionales para tus anuncios en el mercado.",
-      "create": {
-        "title": "Crear Nuevo Cupón",
-        "description": "Ofrece descuentos para atraer a más compradores.",
-        "form": {
-          "code": "Código de Cupón",
-          "codePlaceholder": "Ej: COSECHA20",
-          "usageLimit": "Límite de Uso",
-          "usageLimitPlaceholder": "Ej: 100",
-          "discountType": "Tipo de Descuento",
-          "discountTypePlaceholder": "Selecciona un tipo",
-          "percentage": "Porcentaje",
-          "fixed": "Cantidad Fija",
-          "discountValue": "Valor del Descuento",
-          "expiryDate": "Fecha de Vencimiento",
-          "pickDate": "Elige una fecha",
-          "submitButton": "Crear Cupón"
-        },
-        "toast": {
-          "successTitle": "¡Cupón Creado!",
-          "successDescription": "El cupón '{code}' ya está activo.",
-          "failTitle": "Creación Fallida"
-        }
-      },
-      "list": {
-        "title": "Tus Cupones Activos",
-        "description": "Ve y comparte tus cupones existentes.",
-        "expires": "Vence",
-        "usage": "Uso",
-        "share": "Compartir",
-        "toastTitle": "¡Enlace Copiado!",
-        "toastDescription": "Enlace para compartir del cupón {link} copiado al portapapeles.",
-        "noCoupons": "Aún no has creado ningún cupón.",
-        "shareModal": {
-          "title": "Compartir Cupón",
-          "description": "Comparte este enlace con tus clientes para darles un descuento directo.",
-          "copy": "Copiar",
-          "close": "Cerrar"
-        }
-      },
-      "toast": {
-        "error": "Error",
-        "errorCoupons": {
-          "title": "Error al Obtener Cupones",
-          "description": "No se pudieron cargar tus cupones existentes."
-        }
-      }
-    },
-    "manageService": {
-      "title": "Gestionar Servicio",
-      "backLink": "Volver al Servicio",
-      "tabs": {
-        "checkin": "Check-in",
-        "bookings": "Reservas",
-        "staff": "Personal"
-      },
-      "bookingsTab": {
-        "title": "Reservas",
-        "description": "Ver todas las reservas para este servicio.",
-        "downloadCsv": "Descargar CSV",
-        "noBookings": "Todavía no hay reservas para este servicio.",
-        "error": "No se pudieron obtener las reservas.",
-        "toast": {
-          "noBookings": "No hay datos de reserva para descargar."
-        },
-        "table": {
-          "guest": "Huésped",
-          "bookedOn": "Reservado el",
-          "status": "Estado",
-          "checkedInAt": "Check-in el"
-        },
-        "status": {
-          "booked": "Reservado",
-          "checkedIn": "Check-in realizado"
-        }
-      }
-    }
-  },
   "farmManagement": {
     "hub": {
       "title": "Centro de Gestión de Fincas",
@@ -1034,7 +523,7 @@
       "createNewBatchTitle": "Crear Nuevo Lote de KNF",
       "started": "Iniciado",
       "nextStepOn": "Próximo paso el",
-      "readySince": "Listo desde",
+      "readySince": "Listo desde el",
       "markReady": "Marcar como Listo",
       "logUsage": "Registrar Uso",
       "archive": "Archivar",
@@ -1477,7 +966,100 @@
         "description": "Los detalles de {cropType} han sido guardados.",
         "fail": "Actualización Fallida"
       }
+    },
+    "logHarvest": {
+      "backLink": "Volver al Cultivo",
+      "title": "Registrar Cosecha para {cropType}",
+      "description": "Registre el rendimiento y la calidad de este lote de cosecha. Esto creará una nueva Identificación de Trazabilidad Verificable (VTI).",
+      "harvestDateLabel": "Fecha de Cosecha",
+      "yieldLabel": "Rendimiento Total (en kg)",
+      "yieldPlaceholder": "Ej: 5000",
+      "qualityLabel": "Grado de Calidad (Opcional)",
+      "qualityPlaceholder": "Ej: Grado A, Calidad de Exportación",
+      "notesLabel": "Notas de Cosecha (Opcional)",
+      "notesPlaceholder": "Ej: Cosechado del campo norte. Buen tiempo.",
+      "saveButton": "Registrar Cosecha y Crear VTI",
+      "savingButton": "Registrando...",
+      "offlineToast": {
+        "title": "Sin Conexión: Acción en Cola",
+        "description": "Su registro de cosecha ha sido guardado y será procesado cuando vuelva a estar en línea."
+      },
+      "success": {
+        "title": "¡Cosecha Registrada con Éxito!",
+        "description": "Se ha creado una nueva VTI ({vtiId}) para su lote de {cropType}.",
+        "successCardTitle": "¡Cosecha Registrada!",
+        "successCardDescription": "Se ha creado una nueva Identificación de Trazabilidad Verificable para este lote de {cropType}. Ahora puede usar esta ID para seguir su viaje o publicarlo en el mercado.",
+        "viewReportButton": "Ver Informe de Trazabilidad",
+        "sellButton": "Vender este Lote en el Mercado",
+        "logAnotherButton": "Registrar Otra Cosecha",
+        "backToFarmButton": "Volver a la Finca"
+      },
+      "fail": {
+        "title": "Fallo al Registrar la Cosecha"
+      }
+    },
+    "logInput": {
+      "backLink": "Volver a la Finca",
+      "title": "Registrar Aplicación de Insumo",
+      "description": "Registre la aplicación de fertilizantes, pesticidas u otros insumos en este cultivo.",
+      "useKNFLabel": "Usar Lote KNF",
+      "useKNFPlaceholder": "Seleccione un lote KNF listo...",
+      "manualInputLabel": "O Ingrese el Nombre del Insumo Manualmente",
+      "manualInputPlaceholder": "Ej: NPK 10-10-10, Aceite de Neem",
+      "dateLabel": "Fecha de Aplicación",
+      "quantityLabel": "Cantidad",
+      "quantityPlaceholder": "Ej: 50",
+      "unitLabel": "Unidad",
+      "unitPlaceholder": "Ej: kg, L, sacos",
+      "methodLabel": "Método de Aplicación (Opcional)",
+      "methodPlaceholder": "Ej: Aspersión foliar, Riego al suelo",
+      "saveButton": "Guardar Registro de Insumo",
+      "savingButton": "Guardando...",
+      "toast": {
+        "authErrorTitle": "Error de Autenticación",
+        "authErrorDescription": "Debe iniciar sesión para registrar un insumo.",
+        "success": "Insumo Registrado",
+        "description": "La aplicación del insumo ha sido registrada exitosamente.",
+        "fail": "Registro Fallido"
+      }
+    },
+    "logObservation": {
+      "backLink": "Volver a la Finca",
+      "title": "Registrar Nueva Observación",
+      "description": "Registre una observación sobre su cultivo, como la etapa de crecimiento, avistamiento de plagas o salud general.",
+      "typeLabel": "Tipo de Observación",
+      "typePlaceholder": "Seleccione el tipo de observación",
+      "types": {
+        "growth_stage": "Actualización de Etapa de Crecimiento",
+        "pest_disease": "Avistamiento de Plagas o Enfermedades",
+        "soil_condition": "Condición del Suelo",
+        "water_management": "Estado del Agua / Riego",
+        "weather_effect": "Efecto del Clima",
+        "general_health": "Nota de Salud General"
+      },
+      "dateLabel": "Fecha de Observación",
+      "detailsLabel": "Detalles",
+      "detailsPlaceholder": "Describa su observación...",
+      "uploadLabel": "Subir Imagen (Opcional)",
+      "uploadDescription": "Suba una imagen para obtener un análisis de IA para problemas de plagas/enfermedades.",
+      "saveButton": "Guardar Observación",
+      "processingButton": "Guardando y Analizando...",
+      "toast": {
+        "authErrorTitle": "Error de Autenticación",
+        "authErrorDescription": "Debe iniciar sesión para registrar una observación.",
+        "aiAnalyzing": "La IA está analizando su imagen...",
+        "aiDescription": "Esto puede tardar un momento. Los resultados se guardarán con su observación.",
+        "aiComplete": "¡Análisis de IA Completo!",
+        "aiCompleteDescription": "El análisis de la IA ha sido añadido a su registro de observación.",
+        "aiFailTitle": "Análisis de IA Fallido",
+        "aiFailDescription": "No pudimos analizar la imagen, pero su observación fue guardada.",
+        "uploading": "Subiendo imagen...",
+        "uploadingDescription": "Por favor espere mientras se sube su imagen.",
+        "uploadComplete": "¡Subida Completa!",
+        "success": "Observación Registrada",
+        "successDescription": "Su observación ha sido registrada exitosamente.",
+        "fail": "Registro Fallido"
+      }
     }
   }
 }
-

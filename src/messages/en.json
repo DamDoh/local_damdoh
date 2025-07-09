@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -461,518 +462,6 @@
     },
     "conclusion": "To resolve a complaint or get more information, please {contactLink}."
   },
-  "Forums": {
-    "title": "Community Forums",
-    "description": "Connect, share knowledge, and collaborate with stakeholders from across the agricultural supply chain.",
-    "createTopic": "Create New Topic",
-    "topic": {
-      "backLink": "Back to All Forums",
-      "buttons": {
-        "createPost": "Create Post",
-        "loadMore": "Load More Posts",
-        "loadingMore": "Loading..."
-      },
-      "postMeta": "By {author} • {date}",
-      "noPosts": {
-        "title": "No Posts Yet",
-        "description": "Be the first to start a conversation in this topic.",
-        "button": "Start a Discussion"
-      },
-      "notFound": {
-        "title": "Topic Not Found",
-        "description": "The discussion topic you're looking for doesn't exist or may have been moved.",
-        "backButton": "Return to Forums"
-      },
-      "errors": {
-        "loadTopic": {
-          "title": "Load Error",
-          "description": "Could not load the details for this topic."
-        },
-        "loadPosts": {
-          "title": "Load Error",
-          "description": "Could not load posts for this topic."
-        }
-      }
-    },
-    "create": {
-      "backLink": "Back to Forums",
-      "title": "Start a New Discussion Topic",
-      "description": "Create a new topic to gather insights and collaborate with the community.",
-      "form": {
-        "nameLabel": "Topic Name",
-        "namePlaceholder": "e.g., Sustainable Coffee Production",
-        "descriptionLabel": "Topic Description",
-        "descriptionPlaceholder": "What is this topic about? A brief description helps others understand its purpose.",
-        "submitButton": "Create Topic",
-        "submittingButton": "Creating..."
-      },
-      "errors": {
-        "auth": {
-          "title": "Authentication Required",
-          "description": "You must be signed in to create a new topic."
-        },
-        "incomplete": {
-          "title": "Incomplete Information",
-          "description": "Please provide both a name and a description for your new topic."
-        },
-        "general": {
-          "title": "Creation Failed",
-          "description": "An unexpected error occurred while creating the topic."
-        }
-      },
-      "success": {
-        "title": "Topic Created!",
-        "description": "Your new discussion topic is now live."
-      }
-    },
-    "createPost": {
-      "backLink": "Back to Topic",
-      "aiHelper": {
-        "title": "Need help starting?",
-        "description": "Use our AI Assistant to draft your post. Just provide a prompt below.",
-        "promptLabel": "Your idea or question",
-        "promptPlaceholder": "e.g., 'Ask about the best organic pesticides for coffee leaf rust'",
-        "generateButton": "Generate Draft",
-        "generatingButton": "Generating..."
-      },
-      "title": "Create a New Post",
-      "description": "Share your thoughts, ask a question, or start a discussion.",
-      "form": {
-        "titleLabel": "Post Title",
-        "titlePlaceholder": "Enter a clear and concise title",
-        "contentLabel": "Your Content",
-        "contentPlaceholder": "Write your post here...",
-        "submitButton": "Publish Post",
-        "submittingButton": "Publishing..."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "Prompt Required",
-          "description": "Please enter an idea or question for the AI to generate a draft."
-        },
-        "aiDraft": {
-          "title": "AI Draft Failed",
-          "description": "There was an error generating the draft. Please try again or write the post manually."
-        },
-        "incomplete": {
-          "title": "Incomplete Post",
-          "description": "Please provide both a title and content for your post."
-        },
-        "general": {
-          "title": "Post Creation Failed",
-          "description": "An unexpected error occurred. Please try again."
-        }
-      },
-      "success": {
-        "aiDraft": {
-          "title": "Draft Generated!",
-          "description": "The AI has generated a draft below. Feel free to edit it before publishing."
-        },
-        "title": "Post Published!",
-        "description": "Your post is now live in the topic."
-      }
-    },
-    "postView": {
-      "backLink": "Back to {topicName}",
-      "repliesTitle": "{count, plural, =0 {No Replies} =1 {1 Reply} other {{count} Replies}}",
-      "noReplies": "No replies yet. Be the first to respond!",
-      "buttons": {
-        "loadMore": "Load More Replies",
-        "loadingMore": "Loading..."
-      },
-      "reply": {
-        "title": "Your Reply",
-        "placeholder": "Write your reply here...",
-        "submitButton": "Post Reply",
-        "submittingButton": "Posting...",
-        "success": "Your reply has been posted!"
-      },
-      "notFound": {
-        "title": "Post Not Found",
-        "description": "The post you are looking for does not exist or has been moved.",
-        "backButton": "Back to Forum"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Error",
-          "description": "Could not load the post details."
-        },
-        "loadReplies": {
-          "title": "Error",
-          "description": "Could not load replies for this post."
-        },
-        "submitReply": {
-          "title": "Reply Failed",
-          "description": "Could not submit your reply. Please try again."
-        },
-        "emptyReply": "Your reply cannot be empty."
-      }
-    },
-    "pinning": {
-      "pinnedTitle": "Forums Pinned",
-      "pinnedDescription": "The Forums page is now your default homepage.",
-      "unpinnedTitle": "Forums Unpinned",
-      "unpinnedDescription": "Your homepage has been reset to the default."
-    },
-    "buttons": {
-      "createTopic": "Create Topic",
-      "loadMore": "Load More",
-      "loadingMore": "Loading...",
-      "joinDiscussion": "Join Discussion"
-    },
-    "lastActivity": "Last activity {time}",
-    "notFound": {
-      "title": "No Matching Topics Found",
-      "tryDifferentSearch": "Try a different search term.",
-      "beTheFirst": "Be the first to create one!",
-      "button": "Create Topic"
-    },
-    "errors": {
-      "loadTitle": "Load Error",
-      "loadDescription": "There was an error fetching the forum topics."
-    },
-    "searchPlaceholder": "Search topics...",
-    "postMeta": "By {author} • {date}"
-  },
-  "Marketplace": {
-    "title": "Marketplace",
-    "description": "Discover, buy, and sell agricultural products and services.",
-    "createShopButton": "Create Shopfront",
-    "myOrdersButton": "My Orders",
-    "createListingButton": "Create Listing",
-    "pinButton": "Pin as Homepage",
-    "unpinButton": "Unpin Homepage",
-    "searchPlaceholder": "Search products & services...",
-    "locationPlaceholder": "Filter by location...",
-    "typePlaceholder": "Filter by type...",
-    "recommendedForYou": "Recommended For You",
-    "discoverMore": "Discover More",
-    "viewDetails": "View Details",
-    "viewServiceButton": "View Service",
-    "pinning": {
-      "pinnedTitle": "Marketplace Pinned",
-      "pinnedDescription": "The Marketplace is now your default homepage.",
-      "unpinnedTitle": "Marketplace Unpinned",
-      "unpinnedDescription": "Your homepage has been reset to the default."
-    },
-    "noItemsFound": {
-      "title": "No Items Found",
-      "hint": "Try adjusting your search filters or check back later."
-    },
-    "errors": {
-      "search": {
-        "title": "Search Failed",
-        "description": "Could not retrieve marketplace items at this time."
-      },
-      "aiRecommendations": {
-        "title": "No recommendations found right now."
-      }
-    },
-    "categories": {
-      "allCategories": "All Categories",
-      "viewAllItems": "View All Items",
-      "viewAllCategory": "All in {categoryName}"
-    },
-    "createListing": {
-      "backLink": "Back to Marketplace",
-      "title": "Create New Marketplace Listing",
-      "description": "Fill out the details below to list your product or service.",
-      "form": {
-        "nameLabel": "Listing Title",
-        "namePlaceholder": "e.g., Organic Hass Avocados, Tractor Repair Service",
-        "typeLabel": "Listing Type",
-        "typePlaceholder": "Select a listing type",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Describe your product or service in detail...",
-        "locationLabel": "Location",
-        "locationPlaceholder": "e.g., Nakuru, Kenya",
-        "relatedVtiLabel": "Related Traceability ID (Optional)",
-        "relatedVtiPlaceholder": "Enter VTI if applicable",
-        "relatedVtiDescription": "Link this listing to a specific harvest batch for full transparency.",
-        "categoryLabel": "Category",
-        "categoryPlaceholder": "Select a category",
-        "priceLabel": "Price",
-        "pricePlaceholder": "e.g., 25.50",
-        "unitLabel": "per",
-        "unitPlaceholder": "e.g., kg, ton, hour",
-        "compensationLabel": "Compensation / Rates",
-        "compensationPlaceholder": "e.g., $50/hr, Project-based",
-        "experienceLabel": "Experience Level",
-        "experiencePlaceholder": "e.g., Intermediate, Expert (10+ years)",
-        "skillsLabel": "Skills Required (for services)",
-        "skillsPlaceholder": "e.g., Crop Dusting, Soil Analysis, Organic Certification",
-        "skillsDescription": "Separate skills with a comma.",
-        "imageUrlLabel": "Image URL",
-        "sustainableLabel": "Sustainably Produced",
-        "sustainableDescription": "Check this if your product or service follows recognized sustainable practices.",
-        "submitButton": "Create Listing",
-        "submittingButton": "Creating..."
-      },
-      "aiPriceSuggestion": {
-        "button": "Suggest Price with AI",
-        "generatingButton": "Suggesting...",
-        "suggestionLabel": "AI Suggestion:",
-        "usePriceButton": "Use Price"
-      },
-      "errors": {
-        "priceSuggestion": {
-          "missingInfo": {
-            "title": "Missing Information",
-            "description": "Please fill in the Title and Description before suggesting a price."
-          },
-          "failed": {
-            "title": "AI Suggestion Failed",
-            "description": "Could not get a price suggestion at this time."
-          }
-        },
-        "authentication": {
-          "title": "Not Authenticated",
-          "description": "You must be logged in to create a listing."
-        },
-        "creation": {
-          "title": "Creation Failed",
-          "description": "An unexpected error occurred while creating the listing."
-        }
-      },
-      "success": {
-        "title": "Listing Created!",
-        "description": "Your item is now live on the marketplace."
-      }
-    },
-    "itemView": {
-      "backLink": "Back to Marketplace",
-      "notFound": {
-        "description": "Item not found."
-      },
-      "errors": {
-        "loadItem": {
-          "description": "Could not load the item."
-        },
-        "unexpected": "An unexpected error occurred."
-      },
-      "coupon": {
-        "successTitle": "Coupon Applied!",
-        "successDescription": "You've received a {type} discount!",
-        "failTitle": "Invalid Coupon",
-        "failDescription": "The coupon code you entered is invalid or has expired.",
-        "label": "Coupon Code",
-        "placeholder": "Enter coupon",
-        "applyButton": "Apply",
-        "appliedText": "Coupon '{code}' applied."
-      },
-      "booking": {
-        "authTitle": "Sign In Required",
-        "authDescription": "You must be signed in to book a service.",
-        "failTitle": "Booking Failed",
-        "dateError": "Please select a start and end date for your booking.",
-        "successTitle": "Booking Successful!",
-        "successDescription": "Your booking has been confirmed. You will receive further details via email.",
-        "bookedTitle": "You've booked this experience!",
-        "bookedDescription": "Show your ticket upon arrival.",
-        "ticketButton": "View Ticket",
-        "modalTitle": "Your Ticket",
-        "modalDescription": "Present this QR code at check-in for {itemName}.",
-        "modalScan": "Scan this code on check-in.",
-        "perNight": "per night",
-        "checkIn": "Check-in",
-        "checkOut": "Check-out",
-        "addDate": "Add date",
-        "guests": "Guests",
-        "reserveButton": "Reserve",
-        "reservingButton": "Reserving...",
-        "notCharged": "You won't be charged yet",
-        "nights": "{count, plural, =1 {night} other {nights}}",
-        "serviceFee": "Service fee",
-        "total": "Total"
-      },
-      "order": {
-        "authTitle": "Sign In Required",
-        "authDescription": "You must be signed in to place an order.",
-        "quantityErrorTitle": "Invalid Quantity",
-        "quantityErrorDescription": "Please enter a quantity greater than zero.",
-        "successTitle": "Order Placed!",
-        "successDescription": "Your order has been successfully sent to the seller.",
-        "failTitle": "Order Failed",
-        "failDescription": "Could not place your order. Please try again.",
-        "title": "Place Order for {itemName}",
-        "description": "Confirm the quantity and add any notes for the seller if needed.",
-        "quantityLabel": "Quantity",
-        "notesLabel": "Notes for Seller (Optional)",
-        "notesPlaceholder": "e.g., delivery instructions, special requests...",
-        "cancelButton": "Cancel",
-        "confirmButton": "Confirm Order",
-        "placingButton": "Placing Order..."
-      },
-      "skillsLabel": "Skills Required",
-      "experienceLabel": "Experience Level",
-      "compensationLabel": "Compensation",
-      "contactForRates": "Contact for rates",
-      "aboutSeller": "About the Seller",
-      "viewShopfront": "View Shopfront",
-      "editListing": "Edit Listing",
-      "manageService": "Manage Service",
-      "buyNowButton": "Buy Now",
-      "contactForService": "Contact for Service",
-      "contactSeller": "Contact Seller",
-      "traceabilityButton": "View Traceability Report"
-    },
-    "myOrders": {
-      "title": "My Orders",
-      "description": "View and manage the orders you have received from buyers.",
-      "backLink": "Back to Marketplace",
-      "noOrders": "You have not received any orders yet.",
-      "auth": {
-        "title": "Please Sign In",
-        "description": "You need to be logged in to view your orders.",
-        "button": "Sign In"
-      },
-      "toast": {
-        "errorTitle": "Error",
-        "fetchError": "Could not fetch your orders. Please try again.",
-        "successTitle": "Success",
-        "updateSuccess": "Order status updated to {status}.",
-        "failTitle": "Update Failed"
-      },
-      "table": {
-        "date": "Date",
-        "buyer": "Buyer",
-        "product": "Product",
-        "total": "Total",
-        "status": "Status",
-        "actions": "Actions"
-      },
-      "actions": {
-        "confirm": "Confirm Order",
-        "ship": "Mark as Shipped",
-        "complete": "Complete Order",
-        "cancel": "Cancel Order"
-      },
-      "status": {
-        "new": "New",
-        "confirmed": "Confirmed",
-        "shipped": "Shipped",
-        "completed": "Completed",
-        "cancelled": "Cancelled"
-      }
-    },
-    "createShop": {
-      "backLink": "Back to Marketplace",
-      "title": "Create a Digital Shopfront",
-      "description": "Establish your presence on the DamDoh marketplace by creating a shop. This will be your dedicated page to showcase all your products and services.",
-      "authErrorTitle": "Not Authenticated",
-      "authErrorDescription": "You must be signed in to create a shop.",
-      "toast": {
-        "successTitle": "Shop Created!",
-        "successDescription": "Your shop '{shopName}' is now live and ready for listings.",
-        "failTitle": "Creation Failed",
-        "failDescription": "An unexpected error occurred. Please try again."
-      },
-      "form": {
-        "nameLabel": "Shop Name",
-        "namePlaceholder": "e.g., Green Valley Organics, Agri-Logistics Pro",
-        "typeLabel": "Business Type / Primary Role",
-        "typePlaceholder": "Select the option that best describes your business",
-        "descriptionLabel": "Shop Description",
-        "descriptionPlaceholder": "Briefly describe your shop, what you offer, and your mission.",
-        "submitButton": "Create Shop",
-        "submittingButton": "Creating..."
-      }
-    },
-    "shopView": {
-      "backLink": "Back to Marketplace",
-      "ownedBy": "Owned by",
-      "loadingOwner": "Loading owner...",
-      "editShopButton": "Edit Shop",
-      "contactButton": "Contact Owner",
-      "listingsTitle": "Listings from {shopName}",
-      "noListings": "This shop has no public listings yet.",
-      "errors": {
-        "notFound": "Shop Not Found",
-        "loadError": "Could not load shop details."
-      },
-      "title": "Shopfront"
-    },
-    "promotions": {
-      "backToDashboard": "Back to Dashboard",
-      "title": "Coupons & Promotions",
-      "description": "Create and manage promotional coupons for your marketplace listings.",
-      "create": {
-        "title": "Create New Coupon",
-        "description": "Offer discounts to attract more buyers.",
-        "form": {
-          "code": "Coupon Code",
-          "codePlaceholder": "e.g., HARVEST20",
-          "usageLimit": "Usage Limit",
-          "usageLimitPlaceholder": "e.g., 100",
-          "discountType": "Discount Type",
-          "discountTypePlaceholder": "Select type",
-          "percentage": "Percentage",
-          "fixed": "Fixed Amount",
-          "discountValue": "Discount Value",
-          "expiryDate": "Expiry Date",
-          "pickDate": "Pick a date",
-          "submitButton": "Create Coupon"
-        },
-        "toast": {
-          "successTitle": "Coupon Created!",
-          "successDescription": "Coupon '{code}' is now active.",
-          "failTitle": "Creation Failed"
-        }
-      },
-      "list": {
-        "title": "Your Active Coupons",
-        "description": "View and share your existing coupons.",
-        "expires": "Expires",
-        "usage": "Usage",
-        "share": "Share",
-        "toastTitle": "Link Copied!",
-        "toastDescription": "Shareable link for coupon {link} copied to clipboard.",
-        "noCoupons": "You haven't created any coupons yet.",
-        "shareModal": {
-          "title": "Share Coupon",
-          "description": "Share this link with your customers to give them a direct discount.",
-          "copy": "Copy",
-          "close": "Close"
-        }
-      },
-      "toast": {
-        "error": "Error",
-        "errorCoupons": {
-          "title": "Error Fetching Coupons",
-          "description": "Could not load your existing coupons."
-        }
-      }
-    },
-    "manageService": {
-      "title": "Manage Service",
-      "backLink": "Back to Service",
-      "tabs": {
-        "checkin": "Check-in",
-        "bookings": "Bookings",
-        "staff": "Staff"
-      },
-      "bookingsTab": {
-        "title": "Bookings",
-        "description": "View all bookings for this service.",
-        "downloadCsv": "Download CSV",
-        "noBookings": "There are no bookings for this service yet.",
-        "error": "Failed to fetch bookings.",
-        "toast": {
-          "noBookings": "No booking data to download."
-        },
-        "table": {
-          "guest": "Guest",
-          "bookedOn": "Booked On",
-          "status": "Status",
-          "checkedInAt": "Checked-in At"
-        },
-        "status": {
-          "booked": "Booked",
-          "checkedIn": "Checked-in"
-        }
-      }
-    }
-  },
   "farmManagement": {
     "hub": {
       "title": "Farm Management Hub",
@@ -1400,9 +889,9 @@
         "notFoundTitle": "Not Found",
         "loadError": "Could not load farm data.",
         "loadFail": "Failed to fetch farm data: {message}",
-        "successTitle": "Farm Updated",
-        "successDescription": "{farmName} has been successfully updated.",
-        "errorTitle": "Update Failed"
+        "success": "Farm Updated",
+        "description": "{farmName} has been successfully updated.",
+        "fail": "Update Failed"
       }
     },
     "createCrop": {
@@ -1477,7 +966,100 @@
         "description": "{cropType} details have been saved.",
         "fail": "Update Failed"
       }
+    },
+    "logHarvest": {
+      "backLink": "Back to Crop",
+      "title": "Log Harvest for {cropType}",
+      "description": "Record the yield and quality of this harvest batch. This will create a new Verifiable Traceability ID (VTI).",
+      "harvestDateLabel": "Harvest Date",
+      "yieldLabel": "Total Yield (in kg)",
+      "yieldPlaceholder": "e.g., 5000",
+      "qualityLabel": "Quality Grade (Optional)",
+      "qualityPlaceholder": "e.g., Grade A, Export Quality",
+      "notesLabel": "Harvest Notes (Optional)",
+      "notesPlaceholder": "e.g., Harvested from the north field. Weather was good.",
+      "saveButton": "Log Harvest & Create VTI",
+      "savingButton": "Logging...",
+      "offlineToast": {
+        "title": "Offline: Action Queued",
+        "description": "Your harvest log has been saved and will be processed when you are back online."
+      },
+      "success": {
+        "title": "Harvest Logged Successfully!",
+        "description": "A new VTI ({vtiId}) has been created for your {cropType} batch.",
+        "successCardTitle": "Harvest Logged!",
+        "successCardDescription": "A new Verifiable Traceability ID has been created for this {cropType} batch. You can now use this ID to track its journey or list it on the marketplace.",
+        "viewReportButton": "View Traceability Report",
+        "sellButton": "Sell this Batch on Marketplace",
+        "logAnotherButton": "Log Another Harvest",
+        "backToFarmButton": "Back to Farm"
+      },
+      "fail": {
+        "title": "Harvest Logging Failed"
+      }
+    },
+    "logInput": {
+      "backLink": "Back to Farm",
+      "title": "Log Input Application",
+      "description": "Record the application of fertilizer, pesticides, or other inputs on this crop.",
+      "useKNFLabel": "Use KNF Batch",
+      "useKNFPlaceholder": "Select a ready KNF batch...",
+      "manualInputLabel": "Or Enter Input Name Manually",
+      "manualInputPlaceholder": "e.g., NPK 10-10-10, Neem Oil",
+      "dateLabel": "Application Date",
+      "quantityLabel": "Quantity",
+      "quantityPlaceholder": "e.g., 50",
+      "unitLabel": "Unit",
+      "unitPlaceholder": "e.g., kg, L, bags",
+      "methodLabel": "Application Method (Optional)",
+      "methodPlaceholder": "e.g., Foliar spray, Soil drench",
+      "saveButton": "Save Input Log",
+      "savingButton": "Saving...",
+      "toast": {
+        "authErrorTitle": "Authentication Error",
+        "authErrorDescription": "You must be logged in to log an input.",
+        "success": "Input Logged",
+        "description": "The input application has been successfully recorded.",
+        "fail": "Logging Failed"
+      }
+    },
+    "logObservation": {
+      "backLink": "Back to Farm",
+      "title": "Log New Observation",
+      "description": "Record an observation about your crop, like growth stage, pest sighting, or general health.",
+      "typeLabel": "Observation Type",
+      "typePlaceholder": "Select observation type",
+      "types": {
+        "growth_stage": "Growth Stage Update",
+        "pest_disease": "Pest or Disease Sighting",
+        "soil_condition": "Soil Condition",
+        "water_management": "Water / Irrigation Status",
+        "weather_effect": "Weather Effect",
+        "general_health": "General Health Note"
+      },
+      "dateLabel": "Observation Date",
+      "detailsLabel": "Details",
+      "detailsPlaceholder": "Describe your observation...",
+      "uploadLabel": "Upload Image (Optional)",
+      "uploadDescription": "Upload an image to get an AI analysis for pest/disease issues.",
+      "saveButton": "Save Observation",
+      "processingButton": "Saving & Analyzing...",
+      "toast": {
+        "authErrorTitle": "Authentication Error",
+        "authErrorDescription": "You must be logged in to log an observation.",
+        "aiAnalyzing": "AI is analyzing your image...",
+        "aiDescription": "This might take a moment. Results will be saved with your observation.",
+        "aiComplete": "AI Analysis Complete!",
+        "aiCompleteDescription": "AI's analysis has been added to your observation log.",
+        "aiFailTitle": "AI Analysis Failed",
+        "aiFailDescription": "We could not analyze the image, but your observation was saved.",
+        "uploading": "Uploading image...",
+        "uploadingDescription": "Please wait while your image is uploaded.",
+        "uploadComplete": "Upload Complete!",
+        "success": "Observation Logged",
+        "successDescription": "Your observation has been successfully recorded.",
+        "fail": "Logging Failed"
+      }
     }
   }
 }
-

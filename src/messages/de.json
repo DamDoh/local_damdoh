@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -460,518 +461,6 @@
       "content": "Um eine Beschwerde bezüglich der Website zu klären oder um weitere Informationen zur Nutzung der Website zu erhalten, kontaktieren Sie uns bitte."
     },
     "conclusion": "Um eine Beschwerde zu klären oder weitere Informationen zu erhalten, {contactLink}."
-  },
-  "Forums": {
-    "title": "Community-Foren",
-    "description": "Vernetzen Sie sich, teilen Sie Wissen und arbeiten Sie mit Akteuren aus der gesamten landwirtschaftlichen Lieferkette zusammen.",
-    "createTopic": "Neues Thema erstellen",
-    "topic": {
-      "backLink": "Zurück zu allen Foren",
-      "buttons": {
-        "createPost": "Beitrag erstellen",
-        "loadMore": "Weitere Beiträge laden",
-        "loadingMore": "Wird geladen..."
-      },
-      "postMeta": "Von {author} • {date}",
-      "noPosts": {
-        "title": "Noch keine Beiträge",
-        "description": "Seien Sie der Erste, der eine Konversation in diesem Thema startet.",
-        "button": "Diskussion starten"
-      },
-      "notFound": {
-        "title": "Thema nicht gefunden",
-        "description": "Das gesuchte Diskussionsthema existiert nicht oder wurde möglicherweise verschoben.",
-        "backButton": "Zurück zu den Foren"
-      },
-      "errors": {
-        "loadTopic": {
-          "title": "Ladefehler",
-          "description": "Die Details für dieses Thema konnten nicht geladen werden."
-        },
-        "loadPosts": {
-          "title": "Ladefehler",
-          "description": "Die Beiträge für dieses Thema konnten nicht geladen werden."
-        }
-      }
-    },
-    "create": {
-      "backLink": "Zurück zu den Foren",
-      "title": "Neues Diskussionsthema starten",
-      "description": "Erstellen Sie ein neues Thema, um Einblicke zu sammeln und mit der Community zusammenzuarbeiten.",
-      "form": {
-        "nameLabel": "Themenname",
-        "namePlaceholder": "z.B. Nachhaltige Kaffeeproduktion",
-        "descriptionLabel": "Themenbeschreibung",
-        "descriptionPlaceholder": "Worum geht es in diesem Thema? Eine kurze Beschreibung hilft anderen, den Zweck zu verstehen.",
-        "submitButton": "Thema erstellen",
-        "submittingButton": "Wird erstellt..."
-      },
-      "errors": {
-        "auth": {
-          "title": "Authentifizierung erforderlich",
-          "description": "Sie müssen angemeldet sein, um ein neues Thema zu erstellen."
-        },
-        "incomplete": {
-          "title": "Unvollständige Informationen",
-          "description": "Bitte geben Sie sowohl einen Namen als auch eine Beschreibung für Ihr neues Thema an."
-        },
-        "general": {
-          "title": "Erstellung fehlgeschlagen",
-          "description": "Beim Erstellen des Themas ist ein unerwarteter Fehler aufgetreten."
-        }
-      },
-      "success": {
-        "title": "Thema erstellt!",
-        "description": "Ihr neues Diskussionsthema ist jetzt live."
-      }
-    },
-    "createPost": {
-      "backLink": "Zurück zum Thema",
-      "aiHelper": {
-        "title": "Benötigen Sie Hilfe beim Start?",
-        "description": "Nutzen Sie unseren KI-Assistenten, um Ihren Beitrag zu entwerfen. Geben Sie einfach eine Aufforderung unten ein.",
-        "promptLabel": "Ihre Idee oder Frage",
-        "promptPlaceholder": "z.B. 'Fragen Sie nach den besten organischen Pestiziden gegen Kaffeeblattrost'",
-        "generateButton": "Entwurf generieren",
-        "generatingButton": "Wird generiert..."
-      },
-      "title": "Neuen Beitrag erstellen",
-      "description": "Teilen Sie Ihre Gedanken, stellen Sie eine Frage oder starten Sie eine Diskussion.",
-      "form": {
-        "titleLabel": "Beitragstitel",
-        "titlePlaceholder": "Geben Sie einen klaren und prägnanten Titel ein",
-        "contentLabel": "Ihr Inhalt",
-        "contentPlaceholder": "Schreiben Sie Ihren Beitrag hier...",
-        "submitButton": "Beitrag veröffentlichen",
-        "submittingButton": "Wird veröffentlicht..."
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "Aufforderung erforderlich",
-          "description": "Bitte geben Sie eine Idee oder Frage ein, damit die KI einen Entwurf erstellen kann."
-        },
-        "aiDraft": {
-          "title": "KI-Entwurf fehlgeschlagen",
-          "description": "Beim Erstellen des Entwurfs ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder schreiben Sie den Beitrag manuell."
-        },
-        "incomplete": {
-          "title": "Unvollständiger Beitrag",
-          "description": "Bitte geben Sie sowohl einen Titel als auch Inhalt für Ihren Beitrag an."
-        },
-        "general": {
-          "title": "Beitragserstellung fehlgeschlagen",
-          "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
-        }
-      },
-      "success": {
-        "aiDraft": {
-          "title": "Entwurf generiert!",
-          "description": "Die KI hat unten einen Entwurf erstellt. Fühlen Sie sich frei, ihn vor der Veröffentlichung zu bearbeiten."
-        },
-        "title": "Beitrag veröffentlicht!",
-        "description": "Ihr Beitrag ist jetzt im Thema live."
-      }
-    },
-    "postView": {
-      "backLink": "Zurück zu {topicName}",
-      "repliesTitle": "{count, plural, =0 {Keine Antworten} =1 {1 Antwort} other {{count} Antworten}}",
-      "noReplies": "Noch keine Antworten. Seien Sie der Erste, der antwortet!",
-      "buttons": {
-        "loadMore": "Weitere Antworten laden",
-        "loadingMore": "Wird geladen..."
-      },
-      "reply": {
-        "title": "Ihre Antwort",
-        "placeholder": "Schreiben Sie Ihre Antwort hier...",
-        "submitButton": "Antwort posten",
-        "submittingButton": "Wird gepostet...",
-        "success": "Ihre Antwort wurde gepostet!"
-      },
-      "notFound": {
-        "title": "Beitrag nicht gefunden",
-        "description": "Der gesuchte Beitrag existiert nicht oder wurde verschoben.",
-        "backButton": "Zurück zum Forum"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Fehler",
-          "description": "Die Beitragsdetails konnten nicht geladen werden."
-        },
-        "loadReplies": {
-          "title": "Fehler",
-          "description": "Die Antworten für diesen Beitrag konnten nicht geladen werden."
-        },
-        "submitReply": {
-          "title": "Antwort fehlgeschlagen",
-          "description": "Ihre Antwort konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
-        },
-        "emptyReply": "Ihre Antwort darf nicht leer sein."
-      }
-    },
-    "pinning": {
-      "pinnedTitle": "Foren angeheftet",
-      "pinnedDescription": "Die Foren-Seite ist jetzt Ihre Standard-Startseite.",
-      "unpinnedTitle": "Foren losgelöst",
-      "unpinnedDescription": "Ihre Startseite wurde auf die Standardeinstellung zurückgesetzt."
-    },
-    "buttons": {
-      "createTopic": "Thema erstellen",
-      "loadMore": "Mehr laden",
-      "loadingMore": "Wird geladen...",
-      "joinDiscussion": "Diskussion beitreten"
-    },
-    "lastActivity": "Letzte Aktivität vor {time}",
-    "notFound": {
-      "title": "Keine passenden Themen gefunden",
-      "tryDifferentSearch": "Versuchen Sie einen anderen Suchbegriff.",
-      "beTheFirst": "Seien Sie der Erste, der eines erstellt!",
-      "button": "Thema erstellen"
-    },
-    "errors": {
-      "loadTitle": "Ladefehler",
-      "loadDescription": "Beim Abrufen der Forumthemen ist ein Fehler aufgetreten."
-    },
-    "searchPlaceholder": "Themen suchen...",
-    "postMeta": "Von {author} • {date}"
-  },
-  "Marketplace": {
-    "title": "Marktplatz",
-    "description": "Entdecken, kaufen und verkaufen Sie landwirtschaftliche Produkte und Dienstleistungen.",
-    "createShopButton": "Ladenfront erstellen",
-    "myOrdersButton": "Meine Bestellungen",
-    "createListingButton": "Angebot erstellen",
-    "pinButton": "Als Startseite anheften",
-    "unpinButton": "Anheftung aufheben",
-    "searchPlaceholder": "Produkte & Dienstleistungen suchen...",
-    "locationPlaceholder": "Nach Standort filtern...",
-    "typePlaceholder": "Nach Typ filtern...",
-    "recommendedForYou": "Empfohlen für Sie",
-    "discoverMore": "Mehr entdecken",
-    "viewDetails": "Details anzeigen",
-    "viewServiceButton": "Dienstleistung ansehen",
-    "pinning": {
-      "pinnedTitle": "Marktplatz angeheftet",
-      "pinnedDescription": "Der Marktplatz ist jetzt Ihre Standard-Startseite.",
-      "unpinnedTitle": "Anheftung des Marktplatzes aufgehoben",
-      "unpinnedDescription": "Ihre Startseite wurde auf die Standardeinstellung zurückgesetzt."
-    },
-    "noItemsFound": {
-      "title": "Keine Artikel gefunden",
-      "hint": "Versuchen Sie, Ihre Suchfilter anzupassen oder schauen Sie später wieder vorbei."
-    },
-    "errors": {
-      "search": {
-        "title": "Suche fehlgeschlagen",
-        "description": "Marktplatzartikel konnten zu diesem Zeitpunkt nicht abgerufen werden."
-      },
-      "aiRecommendations": {
-        "title": "Momentan keine Empfehlungen gefunden."
-      }
-    },
-    "categories": {
-      "allCategories": "Alle Kategorien",
-      "viewAllItems": "Alle Artikel anzeigen",
-      "viewAllCategory": "Alle in {categoryName}"
-    },
-    "createListing": {
-      "backLink": "Zurück zum Marktplatz",
-      "title": "Neues Marktplatzangebot erstellen",
-      "description": "Füllen Sie die folgenden Details aus, um Ihr Produkt oder Ihre Dienstleistung anzubieten.",
-      "form": {
-        "nameLabel": "Angebotstitel",
-        "namePlaceholder": "z.B. Bio-Hass-Avocados, Traktorreparaturservice",
-        "typeLabel": "Angebotstyp",
-        "typePlaceholder": "Wählen Sie einen Angebotstyp",
-        "descriptionLabel": "Beschreibung",
-        "descriptionPlaceholder": "Beschreiben Sie Ihr Produkt oder Ihre Dienstleistung im Detail...",
-        "locationLabel": "Standort",
-        "locationPlaceholder": "z.B. Nakuru, Kenia",
-        "relatedVtiLabel": "Zugehörige Rückverfolgungs-ID (optional)",
-        "relatedVtiPlaceholder": "Geben Sie VTI ein, falls zutreffend",
-        "relatedVtiDescription": "Verknüpfen Sie dieses Angebot mit einer bestimmten Erntecharge für volle Transparenz.",
-        "categoryLabel": "Kategorie",
-        "categoryPlaceholder": "Wählen Sie eine Kategorie",
-        "priceLabel": "Preis",
-        "pricePlaceholder": "z.B. 25.50",
-        "unitLabel": "pro",
-        "unitPlaceholder": "z.B. kg, Tonne, Stunde",
-        "compensationLabel": "Vergütung / Tarife",
-        "compensationPlaceholder": "z.B. $50/Stunde, projektbasiert",
-        "experienceLabel": "Erfahrungslevel",
-        "experiencePlaceholder": "z.B. Mittel, Experte (10+ Jahre)",
-        "skillsLabel": "Benötigte Fähigkeiten (für Dienstleistungen)",
-        "skillsPlaceholder": "z.B. Pflanzenschutz, Bodenanalyse, Bio-Zertifizierung",
-        "skillsDescription": "Trennen Sie Fähigkeiten durch ein Komma.",
-        "imageUrlLabel": "Bild-URL",
-        "sustainableLabel": "Nachhaltig produziert",
-        "sustainableDescription": "Aktivieren Sie dies, wenn Ihr Produkt oder Ihre Dienstleistung anerkannten nachhaltigen Praktiken folgt.",
-        "submitButton": "Angebot erstellen",
-        "submittingButton": "Wird erstellt..."
-      },
-      "aiPriceSuggestion": {
-        "button": "Preis mit KI vorschlagen",
-        "generatingButton": "Wird vorgeschlagen...",
-        "suggestionLabel": "KI-Vorschlag:",
-        "usePriceButton": "Preis verwenden"
-      },
-      "errors": {
-        "priceSuggestion": {
-          "missingInfo": {
-            "title": "Fehlende Informationen",
-            "description": "Bitte füllen Sie Titel und Beschreibung aus, bevor Sie einen Preis vorschlagen."
-          },
-          "failed": {
-            "title": "KI-Vorschlag fehlgeschlagen",
-            "description": "Ein Preisvorschlag konnte zu diesem Zeitpunkt nicht abgerufen werden."
-          }
-        },
-        "authentication": {
-          "title": "Nicht authentifiziert",
-          "description": "Sie müssen angemeldet sein, um ein Angebot zu erstellen."
-        },
-        "creation": {
-          "title": "Erstellung fehlgeschlagen",
-          "description": "Beim Erstellen des Angebots ist ein unerwarteter Fehler aufgetreten."
-        }
-      },
-      "success": {
-        "title": "Angebot erstellt!",
-        "description": "Ihr Artikel ist jetzt auf dem Marktplatz live."
-      }
-    },
-    "itemView": {
-      "backLink": "Zurück zum Marktplatz",
-      "notFound": {
-        "description": "Artikel nicht gefunden."
-      },
-      "errors": {
-        "loadItem": {
-          "description": "Der Artikel konnte nicht geladen werden."
-        },
-        "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
-      },
-      "coupon": {
-        "successTitle": "Gutschein angewendet!",
-        "successDescription": "Sie haben einen {type} Rabatt erhalten!",
-        "failTitle": "Ungültiger Gutschein",
-        "failDescription": "Der eingegebene Gutscheincode ist ungültig oder abgelaufen.",
-        "label": "Gutscheincode",
-        "placeholder": "Gutschein eingeben",
-        "applyButton": "Anwenden",
-        "appliedText": "Gutschein '{code}' angewendet."
-      },
-      "booking": {
-        "authTitle": "Anmeldung erforderlich",
-        "authDescription": "Sie müssen angemeldet sein, um eine Dienstleistung zu buchen.",
-        "failTitle": "Buchung fehlgeschlagen",
-        "dateError": "Bitte wählen Sie ein Start- und Enddatum für Ihre Buchung.",
-        "successTitle": "Buchung erfolgreich!",
-        "successDescription": "Ihre Buchung wurde bestätigt. Sie erhalten weitere Details per E-Mail.",
-        "bookedTitle": "Sie haben dieses Erlebnis gebucht!",
-        "bookedDescription": "Zeigen Sie Ihr Ticket bei der Ankunft vor.",
-        "ticketButton": "Ticket ansehen",
-        "modalTitle": "Ihr Ticket",
-        "modalDescription": "Präsentieren Sie diesen QR-Code beim Check-in für {itemName}.",
-        "modalScan": "Scannen Sie diesen Code beim Check-in.",
-        "perNight": "pro Nacht",
-        "checkIn": "Check-in",
-        "checkOut": "Check-out",
-        "addDate": "Datum hinzufügen",
-        "guests": "Gäste",
-        "reserveButton": "Reservieren",
-        "reservingButton": "Wird reserviert...",
-        "notCharged": "Sie werden noch nicht belastet",
-        "nights": "{count, plural, =1 {Nacht} other {Nächte}}",
-        "serviceFee": "Servicegebühr",
-        "total": "Gesamt"
-      },
-      "order": {
-        "authTitle": "Anmeldung erforderlich",
-        "authDescription": "Sie müssen angemeldet sein, um eine Bestellung aufzugeben.",
-        "quantityErrorTitle": "Ungültige Menge",
-        "quantityErrorDescription": "Bitte geben Sie eine Menge größer als Null ein.",
-        "successTitle": "Bestellung aufgegeben!",
-        "successDescription": "Ihre Bestellung wurde erfolgreich an den Verkäufer gesendet.",
-        "failTitle": "Bestellung fehlgeschlagen",
-        "failDescription": "Ihre Bestellung konnte nicht aufgegeben werden. Bitte versuchen Sie es erneut.",
-        "title": "Bestellung für {itemName} aufgeben",
-        "description": "Bestätigen Sie die Menge und fügen Sie bei Bedarf Notizen für den Verkäufer hinzu.",
-        "quantityLabel": "Menge",
-        "notesLabel": "Notizen für den Verkäufer (optional)",
-        "notesPlaceholder": "z.B. Lieferanweisungen, Sonderwünsche...",
-        "cancelButton": "Abbrechen",
-        "confirmButton": "Bestellung bestätigen",
-        "placingButton": "Wird bestellt..."
-      },
-      "skillsLabel": "Benötigte Fähigkeiten",
-      "experienceLabel": "Erfahrungslevel",
-      "compensationLabel": "Vergütung",
-      "contactForRates": "Kontakt für Tarife",
-      "aboutSeller": "Über den Verkäufer",
-      "viewShopfront": "Ladenfront ansehen",
-      "editListing": "Angebot bearbeiten",
-      "manageService": "Dienstleistung verwalten",
-      "buyNowButton": "Jetzt kaufen",
-      "contactForService": "Kontakt für Dienstleistung",
-      "contactSeller": "Verkäufer kontaktieren",
-      "traceabilityButton": "Rückverfolgungsbericht anzeigen"
-    },
-    "myOrders": {
-      "title": "Meine Bestellungen",
-      "description": "Sehen und verwalten Sie die Bestellungen, die Sie von Käufern erhalten haben.",
-      "backLink": "Zurück zum Marktplatz",
-      "noOrders": "Sie haben noch keine Bestellungen erhalten.",
-      "auth": {
-        "title": "Bitte anmelden",
-        "description": "Sie müssen angemeldet sein, um Ihre Bestellungen anzuzeigen.",
-        "button": "Anmelden"
-      },
-      "toast": {
-        "errorTitle": "Fehler",
-        "fetchError": "Ihre Bestellungen konnten nicht abgerufen werden. Bitte versuchen Sie es erneut.",
-        "successTitle": "Erfolg",
-        "updateSuccess": "Bestellstatus auf {status} aktualisiert.",
-        "failTitle": "Aktualisierung fehlgeschlagen"
-      },
-      "table": {
-        "date": "Datum",
-        "buyer": "Käufer",
-        "product": "Produkt",
-        "total": "Gesamt",
-        "status": "Status",
-        "actions": "Aktionen"
-      },
-      "actions": {
-        "confirm": "Bestellung bestätigen",
-        "ship": "Als versendet markieren",
-        "complete": "Bestellung abschließen",
-        "cancel": "Bestellung stornieren"
-      },
-      "status": {
-        "new": "Neu",
-        "confirmed": "Bestätigt",
-        "shipped": "Versendet",
-        "completed": "Abgeschlossen",
-        "cancelled": "Storniert"
-      }
-    },
-    "createShop": {
-      "backLink": "Zurück zum Marktplatz",
-      "title": "Eine digitale Ladenfront erstellen",
-      "description": "Etablieren Sie Ihre Präsenz auf dem DamDoh-Marktplatz, indem Sie einen Laden erstellen. Dies wird Ihre dedizierte Seite sein, auf der Sie alle Ihre Produkte und Dienstleistungen präsentieren können.",
-      "authErrorTitle": "Nicht authentifiziert",
-      "authErrorDescription": "Sie müssen angemeldet sein, um einen Laden zu erstellen.",
-      "toast": {
-        "successTitle": "Laden erstellt!",
-        "successDescription": "Ihr Laden '{shopName}' ist jetzt live und bereit für Angebote.",
-        "failTitle": "Erstellung fehlgeschlagen",
-        "failDescription": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
-      },
-      "form": {
-        "nameLabel": "Ladenname",
-        "namePlaceholder": "z.B. Green Valley Organics, Agri-Logistics Pro",
-        "typeLabel": "Geschäftstyp / Hauptrolle",
-        "typePlaceholder": "Wählen Sie die Option, die Ihr Unternehmen am besten beschreibt",
-        "descriptionLabel": "Ladenbeschreibung",
-        "descriptionPlaceholder": "Beschreiben Sie kurz Ihren Laden, was Sie anbieten und Ihre Mission.",
-        "submitButton": "Laden erstellen",
-        "submittingButton": "Wird erstellt..."
-      }
-    },
-    "shopView": {
-      "backLink": "Zurück zum Marktplatz",
-      "ownedBy": "Im Besitz von",
-      "loadingOwner": "Wird geladen...",
-      "editShopButton": "Laden bearbeiten",
-      "contactButton": "Besitzer kontaktieren",
-      "listingsTitle": "Angebote von {shopName}",
-      "noListings": "Dieser Laden hat noch keine öffentlichen Angebote.",
-      "errors": {
-        "notFound": "Laden nicht gefunden",
-        "loadError": "Ladendetails konnten nicht geladen werden."
-      },
-      "title": "Ladenfront"
-    },
-    "promotions": {
-      "backToDashboard": "Zurück zum Dashboard",
-      "title": "Gutscheine & Aktionen",
-      "description": "Erstellen und verwalten Sie Werbegutscheine für Ihre Marktplatzangebote.",
-      "create": {
-        "title": "Neuen Gutschein erstellen",
-        "description": "Bieten Sie Rabatte an, um mehr Käufer anzuziehen.",
-        "form": {
-          "code": "Gutscheincode",
-          "codePlaceholder": "z.B. ERNTE20",
-          "usageLimit": "Nutzungslimit",
-          "usageLimitPlaceholder": "z.B. 100",
-          "discountType": "Rabattart",
-          "discountTypePlaceholder": "Typ auswählen",
-          "percentage": "Prozentsatz",
-          "fixed": "Fester Betrag",
-          "discountValue": "Rabattwert",
-          "expiryDate": "Ablaufdatum",
-          "pickDate": "Datum auswählen",
-          "submitButton": "Gutschein erstellen"
-        },
-        "toast": {
-          "successTitle": "Gutschein erstellt!",
-          "successDescription": "Gutschein '{code}' ist jetzt aktiv.",
-          "failTitle": "Erstellung fehlgeschlagen"
-        }
-      },
-      "list": {
-        "title": "Ihre aktiven Gutscheine",
-        "description": "Sehen und teilen Sie Ihre vorhandenen Gutscheine.",
-        "expires": "Läuft ab",
-        "usage": "Nutzung",
-        "share": "Teilen",
-        "toastTitle": "Link kopiert!",
-        "toastDescription": "Teilbarer Link für Gutschein {link} in die Zwischenablage kopiert.",
-        "noCoupons": "Sie haben noch keine Gutscheine erstellt.",
-        "shareModal": {
-          "title": "Gutschein teilen",
-          "description": "Teilen Sie diesen Link mit Ihren Kunden, um ihnen einen direkten Rabatt zu gewähren.",
-          "copy": "Kopieren",
-          "close": "Schließen"
-        }
-      },
-      "toast": {
-        "error": "Fehler",
-        "errorCoupons": {
-          "title": "Fehler beim Abrufen der Gutscheine",
-          "description": "Ihre vorhandenen Gutscheine konnten nicht geladen werden."
-        }
-      }
-    },
-    "manageService": {
-      "title": "Dienstleistung verwalten",
-      "backLink": "Zurück zur Dienstleistung",
-      "tabs": {
-        "checkin": "Check-in",
-        "bookings": "Buchungen",
-        "staff": "Personal"
-      },
-      "bookingsTab": {
-        "title": "Buchungen",
-        "description": "Alle Buchungen für diese Dienstleistung anzeigen.",
-        "downloadCsv": "CSV herunterladen",
-        "noBookings": "Es gibt noch keine Buchungen für diese Dienstleistung.",
-        "error": "Buchungen konnten nicht abgerufen werden.",
-        "toast": {
-          "noBookings": "Keine Buchungsdaten zum Herunterladen."
-        },
-        "table": {
-          "guest": "Gast",
-          "bookedOn": "Gebucht am",
-          "status": "Status",
-          "checkedInAt": "Eingecheckt am"
-        },
-        "status": {
-          "booked": "Gebucht",
-          "checkedIn": "Eingecheckt"
-        }
-      }
-    }
   },
   "farmManagement": {
     "hub": {
@@ -1477,7 +966,100 @@
         "description": "{cropType}-Details wurden gespeichert.",
         "fail": "Aktualisierung fehlgeschlagen"
       }
+    },
+    "logHarvest": {
+      "backLink": "Zurück zur Kultur",
+      "title": "Ernte für {cropType} protokollieren",
+      "description": "Erfassen Sie den Ertrag und die Qualität dieser Erntecharge. Dies wird eine neue Verifiable Traceability ID (VTI) erstellen.",
+      "harvestDateLabel": "Erntedatum",
+      "yieldLabel": "Gesamtertrag (in kg)",
+      "yieldPlaceholder": "z.B. 5000",
+      "qualityLabel": "Qualitätsstufe (optional)",
+      "qualityPlaceholder": "z.B. Klasse A, Exportqualität",
+      "notesLabel": "Erntenotizen (optional)",
+      "notesPlaceholder": "z.B. Geerntet vom Nordfeld. Wetter gut.",
+      "saveButton": "Ernte protokollieren & VTI erstellen",
+      "savingButton": "Wird protokolliert...",
+      "offlineToast": {
+        "title": "Offline: Aktion in Warteschlange",
+        "description": "Ihr Ernteprotokoll wurde gespeichert und wird verarbeitet, wenn Sie wieder online sind."
+      },
+      "success": {
+        "title": "Ernte erfolgreich protokolliert!",
+        "description": "Ein neues VTI ({vtiId}) wurde für Ihre {cropType}-Charge erstellt.",
+        "successCardTitle": "Ernte protokolliert!",
+        "successCardDescription": "Eine neue Verifiable Traceability ID wurde für diese {cropType}-Charge erstellt. Sie können diese ID jetzt verwenden, um ihre Reise zu verfolgen oder sie auf dem Marktplatz anzubieten.",
+        "viewReportButton": "Rückverfolgungsbericht anzeigen",
+        "sellButton": "Diese Charge auf dem Marktplatz verkaufen",
+        "logAnotherButton": "Eine weitere Ernte protokollieren",
+        "backToFarmButton": "Zurück zur Farm"
+      },
+      "fail": {
+        "title": "Protokollierung der Ernte fehlgeschlagen"
+      }
+    },
+    "logInput": {
+      "backLink": "Zurück zur Farm",
+      "title": "Eingabeanwendung protokollieren",
+      "description": "Erfassen Sie die Anwendung von Düngemitteln, Pestiziden oder anderen Eingaben auf diesen Anbau.",
+      "useKNFLabel": "KNF-Charge verwenden",
+      "useKNFPlaceholder": "Wählen Sie eine fertige KNF-Charge...",
+      "manualInputLabel": "Oder geben Sie den Eingabenamen manuell ein",
+      "manualInputPlaceholder": "z.B. NPK 10-10-10, Neemöl",
+      "dateLabel": "Anwendungsdatum",
+      "quantityLabel": "Menge",
+      "quantityPlaceholder": "z.B. 50",
+      "unitLabel": "Einheit",
+      "unitPlaceholder": "z.B. kg, L, Säcke",
+      "methodLabel": "Anwendungsmethode (optional)",
+      "methodPlaceholder": "z.B. Blattsprühung, Bodendurchtränkung",
+      "saveButton": "Eingabeprotokoll speichern",
+      "savingButton": "Wird gespeichert...",
+      "toast": {
+        "authErrorTitle": "Authentifizierungsfehler",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Eingabe zu protokollieren.",
+        "success": "Eingabe protokolliert",
+        "description": "Die Eingabeanwendung wurde erfolgreich protokolliert.",
+        "fail": "Protokollierung fehlgeschlagen"
+      }
+    },
+    "logObservation": {
+      "backLink": "Zurück zur Farm",
+      "title": "Neue Beobachtung protokollieren",
+      "description": "Erfassen Sie eine Beobachtung über Ihre Kultur, wie z.B. Wachstumsstadium, Schädlingsbefall oder allgemeiner Gesundheitszustand.",
+      "typeLabel": "Beobachtungstyp",
+      "typePlaceholder": "Wählen Sie einen Beobachtungstyp",
+      "types": {
+        "growth_stage": "Aktualisierung des Wachstumsstadiums",
+        "pest_disease": "Sichtung von Schädlingen oder Krankheiten",
+        "soil_condition": "Bodenzustand",
+        "water_management": "Wasser-/Bewässerungsstatus",
+        "weather_effect": "Wettereffekt",
+        "general_health": "Allgemeine Gesundheitsnotiz"
+      },
+      "dateLabel": "Beobachtungsdatum",
+      "detailsLabel": "Details",
+      "detailsPlaceholder": "Beschreiben Sie Ihre Beobachtung...",
+      "uploadLabel": "Bild hochladen (optional)",
+      "uploadDescription": "Laden Sie ein Bild hoch, um eine KI-Analyse für Schädlings-/Krankheitsprobleme zu erhalten.",
+      "saveButton": "Beobachtung speichern",
+      "processingButton": "Speichern & Analysieren...",
+      "toast": {
+        "authErrorTitle": "Authentifizierungsfehler",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Beobachtung zu protokollieren.",
+        "aiAnalyzing": "KI analysiert Ihr Bild...",
+        "aiDescription": "Dies kann einen Moment dauern. Die Ergebnisse werden mit Ihrer Beobachtung gespeichert.",
+        "aiComplete": "KI-Analyse abgeschlossen!",
+        "aiCompleteDescription": "Die Analyse der KI wurde zu Ihrem Beobachtungsprotokoll hinzugefügt.",
+        "aiFailTitle": "KI-Analyse fehlgeschlagen",
+        "aiFailDescription": "Wir konnten das Bild nicht analysieren, aber Ihre Beobachtung wurde gespeichert.",
+        "uploading": "Bild wird hochgeladen...",
+        "uploadingDescription": "Bitte warten Sie, während Ihr Bild hochgeladen wird.",
+        "uploadComplete": "Upload abgeschlossen!",
+        "success": "Beobachtung protokolliert",
+        "successDescription": "Ihre Beobachtung wurde erfolgreich protokolliert.",
+        "fail": "Protokollierung fehlgeschlagen"
+      }
     }
   }
 }
-
