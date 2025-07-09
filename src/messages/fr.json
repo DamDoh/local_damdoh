@@ -1104,6 +1104,37 @@
             "fail": "Échec de l'enregistrement"
         }
     },
+    "logHarvest": {
+      "backLink": "Retour à la Ferme",
+      "title": "Enregistrer la récolte de {cropType}",
+      "description": "Enregistrez votre récolte pour créer un nouveau lot traçable.",
+      "harvestDateLabel": "Date de récolte",
+      "yieldLabel": "Rendement total (en kg)",
+      "yieldPlaceholder": "Ex: 1500",
+      "qualityLabel": "Grade de qualité",
+      "qualityPlaceholder": "Ex: Grade A, Qualité exportation",
+      "notesLabel": "Notes de récolte (Optionnel)",
+      "notesPlaceholder": "Tout détail spécifique sur cette récolte...",
+      "saveButton": "Enregistrer la récolte et créer un lot",
+      "savingButton": "Enregistrement...",
+      "offlineToast": {
+          "title": "Action mise en file d'attente hors ligne",
+          "description": "Votre récolte sera enregistrée et un VTI sera créé une fois que vous serez de nouveau en ligne."
+      },
+      "success": {
+          "title": "Récolte enregistrée !",
+          "description": "La récolte de {cropType} a été enregistrée avec succès. Un nouveau lot traçable avec l'ID '{vtiId}' a été créé.",
+          "successCardTitle": "Récolte enregistrée !",
+          "successCardDescription": "Un nouveau lot traçable pour {cropType} a été créé avec l'ID : {vtiId}",
+          "viewReportButton": "Voir le rapport de traçabilité",
+          "sellButton": "Vendre sur le marché",
+          "logAnotherButton": "Enregistrer une autre récolte",
+          "backToFarmButton": "Retour à la ferme"
+      },
+      "fail": {
+          "title": "L'enregistrement a échoué"
+      }
+    },
     "knfInputsPage": {
       "backLink": "Retour au Hub de la Ferme",
       "title": "Assistant d'intrants KNF",

@@ -298,7 +298,7 @@
         "title": "អ្នករចនា UX/UI",
         "location": "ពីចម្ងាយ",
         "type": "ពេញ​មោ៉​ង",
-        "description": "រចនាបទពិសោធន៍អ្នកប្រើប្រាស់ដែលងាយស្រួលและអាចចូលប្រើបានសម្រាប់មូលដ្ឋានអ្នកប្រើប្រាស់ចម្រុះនិងសកល។"
+        "description": "រចនាបទពិសោធន៍អ្នកប្រើប្រាស់ដែលងាយស្រួលและអាចចូលប្រើបានសម្រាប់មូលដ្ឋានអ្នកប្រើប្រាស់ចម្រុះและសកល។"
       }
     },
     "noOpenings": {
@@ -1103,6 +1103,125 @@
             "successDescription": "บันทึกการสังเกตของคุณเรียบร้อยแล้ว",
             "fail": "การบันทึกล้มเหลว"
         }
+    },
+    "logHarvest": {
+      "backLink": "ត្រឡប់ទៅកសិដ្ឋាន",
+      "title": "บันทึกการเก็บเกี่ยวสำหรับ {cropType}",
+      "description": "บันทึกการเก็บเกี่ยวของคุณเพื่อสร้างชุดที่ตรวจสอบย้อนกลับได้ใหม่",
+      "harvestDateLabel": "កាលបរិច្ឆេទเก็บเกี่ยว",
+      "yieldLabel": "ผลผลิตรวม (กก.)",
+      "yieldPlaceholder": "ឧ: 1500",
+      "qualityLabel": "เกรดคุณภาพ",
+      "qualityPlaceholder": "ឧ: เกรด A, คุณภาพส่งออก",
+      "notesLabel": "บันทึกการเก็บเกี่ยว (ไม่บังคับ)",
+      "notesPlaceholder": "รายละเอียดเฉพาะเกี่ยวกับการเก็บเกี่ยวนี้...",
+      "saveButton": "บันทึกการเก็บเกี่ยวและสร้างชุด",
+      "savingButton": "កំពុងบันทึก...",
+      "offlineToast": {
+          "title": "เพิ่มการดำเนินการในคิวออฟไลน์แล้ว",
+          "description": "การเก็บเกี่ยวของคุณจะถูกบันทึกและสร้าง VTI เมื่อคุณกลับมาออนไลน์"
+      },
+      "success": {
+          "title": "บันทึกการเก็บเกี่ยวแล้ว!",
+          "description": "บันทึกการเก็บเกี่ยวสำหรับ {cropType} เรียบร้อยแล้ว สร้างชุดที่ตรวจสอบย้อนกลับได้ใหม่ด้วย ID '{vtiId}'",
+          "successCardTitle": "บันทึกการเก็บเกี่ยวแล้ว!",
+          "successCardDescription": "สร้างชุดที่ตรวจสอบย้อนกลับได้ใหม่สำหรับ {cropType} ด้วย ID: {vtiId}",
+          "viewReportButton": "ดูรายงานการตรวจสอบย้อนกลับ",
+          "sellButton": "ขายในตลาด",
+          "logAnotherButton": "บันทึกการเก็บเกี่ยวอื่น",
+          "backToFarmButton": "กลับไปที่ฟาร์ม"
+      },
+      "fail": {
+          "title": "การบันทึกล้มเหลว"
+      }
+    },
+    "knfInputsPage": {
+      "backLink": "ត្រឡប់ទៅមជ្ឈមណ្ឌលកសិដ្ឋាន",
+      "title": "ជំនួយការធាតុចូល KNF",
+      "description": "បង្កើត តាមដាន และจัดการปัจจัยการผลิตเกษตรธรรมชาติเกาหลีของคุณ",
+      "guidesTitle": "មគ្គុទ្ទេសក៍ KNF",
+      "ingredients": "គ្រឿងផ្សំ",
+      "steps": "ขั้นตอน",
+      "usage": "ការប្រើប្រាស់",
+      "fermentingBatchesTitle": "ชุดที่กำลังหมัก",
+      "started": "បានចាប់ផ្តើម",
+      "nextStepOn": "ជំហានបន្ទាប់នៅ",
+      "markReady": "ทำเครื่องหมายว่าพร้อม",
+      "noFermentingBatches": "ไม่มีชุดที่กำลังหมัก",
+      "readyBatchesTitle": "ชุดที่พร้อมแล้ว",
+      "readySince": "พร้อมตั้งแต่",
+      "logUsage": "บันทึกการใช้งาน",
+      "archive": "เก็บถาวร",
+      "noReadyBatches": "ไม่มีชุดที่พร้อมใช้งาน",
+      "startNewBatch": "ចាប់ផ្តើមชุดใหม่",
+      "createNewBatchTitle": "បង្កើតชุด KNF ថ្មី",
+      "cancel": "ยกเลิก",
+      "quantity": "ปริมาณ",
+      "quantityPlaceholder": "ឧ: 5 หรือ 20",
+      "unit": "หน่วย",
+      "unitPlaceholder": "ឧ: ลิตร, กก.",
+      "sellSurplus": "ขายส่วนเกิน",
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Jus de plantes fermentées (FPJ)",
+          "description": "Un extrait fermenté de la sève et de la chlorophylle d'une plante. Riche en enzymes et en micro-organismes, c'est un puissant stimulateur de croissance pour les plantes.",
+          "ingredients": [
+            "1kg de parties de plantes à croissance rapide (par exemple, pointes de patates douces, pousses de bambou)",
+            "1kg de sucre brun (ou de mélasse)"
+          ],
+          "yield": "environ 0,8 L",
+          "steps": [
+            "Collecter les matières végétales avant le lever du soleil lorsqu'elles sont les plus puissantes. Ne pas laver.",
+            "Hacher grossièrement les matières végétales.",
+            "Ajouter un poids égal de sucre brun et bien mélanger.",
+            "Tasser fermement dans un pot en argile ou un bocal en verre, en remplissant jusqu'à environ 2/3 de sa capacité.",
+            "Couvrir avec un tissu respirant et conserver dans un endroit frais et sombre.",
+            "Laisser fermenter pendant environ 7 jours."
+          ],
+          "usage": "Taux de dilution : 1:500 à 1:1000 avec de l'eau. Appliqué en pulvérisation foliaire ou en arrosage du sol."
+        },
+        {
+          "id": "faa",
+          "name": "Acide aminé de poisson (FAA)",
+          "description": "Un engrais liquide puissant fabriqué à partir de déchets de poisson, riche en azote et en acides aminés. Excellent pour stimuler la croissance des plantes, en particulier pendant la phase végétative.",
+          "ingredients": [
+            "1kg de déchets de poisson (têtes, arêtes, entrailles)",
+            "1kg de sucre brun (ou de mélasse)"
+          ],
+          "yield": "environ 1,5 L",
+          "steps": [
+            "Hacher les parties de poisson en petits morceaux.",
+            "Dans un récipient, superposer les parties de poisson et le sucre brun, en commençant et en terminant par du sucre.",
+            "Remplir le récipient jusqu'à environ 2/3 de sa capacité et couvrir avec un tissu respirant.",
+            "Conserver dans un endroit frais et sombre et laisser fermenter pendant au moins 3 à 6 mois."
+          ],
+          "usage": "Taux de dilution : 1:1000 avec de l'eau. Principalement utilisé comme arrosage du sol."
+        }
+      ],
+      "form": {
+        "typeLabel": "ប្រភេទปัจจัยการผลิต",
+        "typePlaceholder": "ជ្រើសរើសปัจจัยการผลิต KNF",
+        "ingredientsLabel": "គ្រឿងផ្សំที่ใช้",
+        "quantityLabel": "បរិមាណที่ផលិត",
+        "unitLabel": "หน่วย",
+        "startDateLabel": "កាលបរិច្ឆេទเริ่มต้น",
+        "startButton": "ចាប់ផ្តើមชุด",
+        "startingButton": "កំពុងចាប់ផ្តើម..."
+      },
+      "toasts": {
+        "loadErrorTitle": "ข้อผิดพลาด",
+        "loadErrorDescription": "ไม่สามารถดึงข้อมูลชุด KNF ของคุณได้",
+        "validationError": "โปรดกรอกข้อมูลทั้งหมดเพื่อเริ่มชุด",
+        "batchStartedTitle": "ចាប់ផ្តើមชุดแล้ว!",
+        "batchStartedDescription": "ชุด KNF ใหม่ของคุณกำลังหมัก",
+        "batchStartFailed": "การเริ่มชุดล้มเหลว",
+        "unexpectedError": "เกิดข้อผิดพลาดที่ไม่คาดคิด",
+        "batchUpdatedTitle": "อัปเดตสถานะแล้ว",
+        "batchUpdatedDescription": "อัปเดตสถานะชุดเป็น {status} เรียบร้อยแล้ว",
+        "updateFailed": "การอัปเดตล้มเหลว",
+        "couldNotUpdate": "ไม่สามารถอัปเดตสถานะชุดได้"
+      }
     }
   },
   "OfflineIndicator": {
@@ -1298,7 +1417,7 @@
     "chart": {
       "count": "จำนวน",
       "published": "បានផ្សព្វផ្សាយ",
-      "pending": "រង់ចាំការตรวจสอบ",
+      "pending": "រង់ចាំการตรวจสอบ",
       "draft": "ร่าง"
     }
   },

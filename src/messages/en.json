@@ -1104,6 +1104,37 @@
             "fail": "Logging Failed"
         }
     },
+    "logHarvest": {
+      "backLink": "Back to Farm",
+      "title": "Log Harvest for {cropType}",
+      "description": "Record your harvest to create a new traceable batch.",
+      "harvestDateLabel": "Harvest Date",
+      "yieldLabel": "Total Yield (in kg)",
+      "yieldPlaceholder": "e.g., 1500",
+      "qualityLabel": "Quality Grade",
+      "qualityPlaceholder": "e.g., Grade A, Export Quality",
+      "notesLabel": "Harvest Notes (Optional)",
+      "notesPlaceholder": "Any specific details about this harvest...",
+      "saveButton": "Log Harvest & Create Batch",
+      "savingButton": "Saving...",
+      "offlineToast": {
+          "title": "Action Queued Offline",
+          "description": "Your harvest will be logged and a VTI created once you're back online."
+      },
+      "success": {
+          "title": "Harvest Logged!",
+          "description": "Successfully logged the harvest for {cropType}. A new Traceable Batch with ID '{vtiId}' has been created.",
+          "successCardTitle": "Harvest Recorded!",
+          "successCardDescription": "A new traceable batch for {cropType} has been created with ID: {vtiId}",
+          "viewReportButton": "View Traceability Report",
+          "sellButton": "Sell on Marketplace",
+          "logAnotherButton": "Log Another Harvest",
+          "backToFarmButton": "Back to Farm"
+      },
+      "fail": {
+          "title": "Logging Failed"
+      }
+    },
     "knfInputsPage": {
       "backLink": "Back to Farm Hub",
       "title": "KNF Input Assistant",
@@ -1139,6 +1170,7 @@
             "1kg fast-growing plant parts (e.g., sweet potato tips, bamboo shoots)",
             "1kg brown sugar (or molasses)"
           ],
+          "yield": "approx 0.8L",
           "steps": [
             "Collect plant materials before sunrise when they are most potent. Do not wash.",
             "Roughly chop the plant materials.",
@@ -1157,7 +1189,7 @@
             "1kg fish scraps (heads, bones, guts)",
             "1kg brown sugar (or molasses)"
           ],
-
+          "yield": "approx 1.5L",
           "steps": [
             "Chop the fish parts into small pieces.",
             "In a container, layer the fish parts and brown sugar, starting and ending with sugar.",
@@ -1409,7 +1441,7 @@
       "dueDate": "Due Date",
       "action": "Action"
     },
-    "reviewAuditButton": "Review",
+    "reviewAuditButton": "Review Audit",
     "noPendingAudits": "No pending audits at this time.",
     "entitiesTitle": "Certified Entities Status",
     "entitiesDescription": "Overview of your certified entities.",

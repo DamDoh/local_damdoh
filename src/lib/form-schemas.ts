@@ -124,6 +124,14 @@ export const createObservationSchema = z.object({
 });
 export type CreateObservationValues = z.infer<typeof createObservationSchema>;
 
+export const createHarvestSchema = z.object({
+    harvestDate: z.date({ required_error: "A harvest date is required."}),
+    yield_kg: z.coerce.number().positive("Yield must be a positive number."),
+    quality_grade: z.string().min(1, "Quality grade is required.").max(50),
+    notes: z.string().max(1000).optional(),
+});
+export type CreateHarvestValues = z.infer<typeof createHarvestSchema>;
+
 
 export const editProfileSchema = z.object({
   displayName: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),
@@ -256,12 +264,3 @@ export const createInsuranceApplicationSchema = z.object({
     coverageValue: z.coerce.number().positive("Coverage value must be a positive number."),
 });
 export type CreateInsuranceApplicationValues = z.infer<typeof createInsuranceApplicationSchema>;
-
-
-export const createHarvestSchema = z.object({
-    harvestDate: z.date({ required_error: "A harvest date is required."}),
-    yield_kg: z.coerce.number().positive("Yield must be a positive number."),
-    quality_grade: z.string().min(1, "Quality grade is required.").max(50),
-    notes: z.string().max(1000).optional(),
-});
-export type CreateHarvestValues = z.infer<typeof createHarvestSchema>;

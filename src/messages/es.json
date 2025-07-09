@@ -1104,6 +1104,37 @@
             "fail": "Registro Fallido"
         }
     },
+    "logHarvest": {
+      "backLink": "Volver a la Finca",
+      "title": "Registrar Cosecha de {cropType}",
+      "description": "Registra tu cosecha para crear un nuevo lote trazable.",
+      "harvestDateLabel": "Fecha de Cosecha",
+      "yieldLabel": "Rendimiento Total (en kg)",
+      "yieldPlaceholder": "Ej: 1500",
+      "qualityLabel": "Grado de Calidad",
+      "qualityPlaceholder": "Ej: Grado A, Calidad de Exportación",
+      "notesLabel": "Notas de Cosecha (Opcional)",
+      "notesPlaceholder": "Cualquier detalle específico sobre esta cosecha...",
+      "saveButton": "Registrar Cosecha y Crear Lote",
+      "savingButton": "Guardando...",
+      "offlineToast": {
+          "title": "Acción en Cola sin Conexión",
+          "description": "Tu cosecha será registrada y se creará un VTI una vez que vuelvas a estar en línea."
+      },
+      "success": {
+          "title": "¡Cosecha Registrada!",
+          "description": "Se ha registrado exitosamente la cosecha de {cropType}. Se ha creado un nuevo Lote Trazable con ID '{vtiId}'.",
+          "successCardTitle": "¡Cosecha Registrada!",
+          "successCardDescription": "Se ha creado un nuevo lote trazable para {cropType} con ID: {vtiId}",
+          "viewReportButton": "Ver Informe de Trazabilidad",
+          "sellButton": "Vender en el Mercado",
+          "logAnotherButton": "Registrar Otra Cosecha",
+          "backToFarmButton": "Volver a la Finca"
+      },
+      "fail": {
+          "title": "Registro Fallido"
+      }
+    },
     "knfInputsPage": {
       "backLink": "Volver al Centro de Fincas",
       "title": "Asistente de Insumos KNF",
@@ -1118,7 +1149,7 @@
       "markReady": "Marcar como Listo",
       "noFermentingBatches": "No hay lotes en fermentación actualmente.",
       "readyBatchesTitle": "Lotes Listos",
-      "readySince": "Listo desde",
+      "readySince": "Listo desde el",
       "logUsage": "Registrar Uso",
       "archive": "Archivar",
       "noReadyBatches": "No hay lotes listos para usar.",
