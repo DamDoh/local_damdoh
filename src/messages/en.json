@@ -40,21 +40,6 @@
     "pollOptionsError": "A poll must have at least 2 non-empty options.",
     "emptyPostError": "Your post cannot be empty."
   },
-  "Auth": {
-    "recoverPage": {
-      "title": "Account Recovery",
-      "description": "Regain access to your account with the help of a trusted friend.",
-      "howItWorksTitle": "How Social Recovery Works",
-      "step1": "Enter your phone number to start a recovery session.",
-      "step2": "Show the generated QR code to a trusted friend who also uses DamDoh.",
-      "step3": "Your friend scans the code with their app to confirm your identity.",
-      "startButton": "Start Recovery",
-      "scanTitle": "Ask a Friend to Scan",
-      "scanDescription": "Have a trusted connection in your DamDoh network scan this QR code to verify your identity.",
-      "scanNote": "This code is temporary and will expire in 10 minutes.",
-      "startOverButton": "Start Over"
-    }
-  },
   "admin": {
     "layout": {
       "title": "Admin Panel",
@@ -332,6 +317,88 @@
       "p3": "Let's grow together.",
       "button": "Create Your Profile"
     }
+  },
+  "Auth": {
+    "signUpWelcome": "Join the {appName} agricultural network",
+    "signUpTitle": "Create an Account",
+    "signUpDescription": "Enter your details to get started.",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Jane Doe",
+    "roleLabel": "Your Primary Role",
+    "rolePlaceholder": "Select your role...",
+    "emailLabel": "Email",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Creating Account...",
+    "signUpButton": "Sign Up",
+    "alreadyHaveAccountPrompt": "Already have an account?",
+    "signInLink": "Sign In",
+    "signInWelcome": "Welcome back to {appName}",
+    "signInTitle": "Sign In",
+    "signInDescription": "Enter your credentials to access your account.",
+    "forgotPasswordLink": "Forgot password?",
+    "signingInButton": "Signing In...",
+    "signInButton": "Sign In",
+    "noAccountPrompt": "Don't have an account?",
+    "recoverWithUniversalIdPrompt": "Recover account with Universal ID",
+    "forgotPasswordResetPrompt": "Reset your {appName} password",
+    "forgotPasswordTitle": "Forgot Password",
+    "forgotPasswordDescription": "No worries, we'll send you reset instructions.",
+    "sendResetLinkButton": "Send Reset Link",
+    "sendingEmailButton": "Sending...",
+    "rememberPasswordPrompt": "Remember your password?",
+    "error": "Error",
+    "forgotPassword": {
+      "emailSentTitle": "Check your email",
+      "emailSentDescription": "A password reset link has been sent to {email}.",
+      "emailSentDescriptionIfAccountExists": "If an account with {email} exists, a password reset link has been sent.",
+      "successTitle": "Email Sent!",
+      "successDescription": "Please check your inbox (and spam folder) for the password reset link.",
+      "errors": {
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidEmail": "The email address is not valid.",
+        "tooManyRequests": "Too many requests. Please try again later.",
+        "default": "Failed to send reset email"
+      }
+    },
+    "resetPasswordPrompt": "Set a new password for your {appName} account",
+    "resetPasswordTitle": "Reset Your Password",
+    "resetPasswordDescription": "Enter a new secure password for your account.",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "••••••••",
+    "resettingPasswordButton": "Resetting...",
+    "resetPasswordButton": "Reset Password",
+    "resetPassword": {
+      "successTitle": "Password Reset Successfully!",
+      "successDescription": "You can now sign in with your new password.",
+      "successRedirect": "You will be redirected to the sign-in page shortly.",
+      "errors": {
+        "missingCode": "Invalid password reset link. Please request a new one.",
+        "missingCodeTitle": "Invalid Link",
+        "missingCodeDescription": "The password reset link is missing or invalid. Please return to the 'Forgot Password' page to request a new one.",
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidOrExpiredCode": "The password reset link is invalid or has expired. Please request a new one.",
+        "userDisabled": "This user account has been disabled.",
+        "userNotFound": "No user found corresponding to this reset link.",
+        "weakPassword": "The new password is not strong enough.",
+        "default": "Failed to reset password"
+      }
+    },
+    "recoverPage": {
+      "title": "Account Recovery",
+      "description": "Regain access to your account with the help of a trusted friend.",
+      "howItWorksTitle": "How Social Recovery Works",
+      "step1": "Enter your phone number to start a recovery session.",
+      "step2": "Show the generated QR code to a trusted friend who also uses DamDoh.",
+      "step3": "Your friend scans the code with their app to confirm your identity.",
+      "startButton": "Start Recovery",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted connection in your DamDoh network scan this QR code to verify your identity.",
+      "scanNote": "This code is temporary and will expire in 10 minutes.",
+      "startOverButton": "Start Over"
+    }
   }
 }
-

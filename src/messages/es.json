@@ -40,21 +40,6 @@
     "pollOptionsError": "Una encuesta debe tener al menos 2 opciones no vacías.",
     "emptyPostError": "Tu publicación no puede estar vacía."
   },
-  "Auth": {
-    "recoverPage": {
-      "title": "Recuperación de Cuenta",
-      "description": "Recupera el acceso a tu cuenta con la ayuda de un amigo de confianza.",
-      "howItWorksTitle": "Cómo funciona la recuperación social",
-      "step1": "Introduce tu número de teléfono para iniciar una sesión de recuperación.",
-      "step2": "Muestra el código QR generado a un amigo de confianza que también use DamDoh.",
-      "step3": "Tu amigo escanea el código con su aplicación para confirmar tu identidad.",
-      "startButton": "Iniciar Recuperación",
-      "scanTitle": "Pide a un Amigo que Escanee",
-      "scanDescription": "Pide a una conexión de confianza en tu red de DamDoh que escanee este código QR para verificar tu identidad.",
-      "scanNote": "Este código es temporal y expirará en 10 minutos.",
-      "startOverButton": "Empezar de Nuevo"
-    }
-  },
   "admin": {
     "layout": {
       "title": "Panel de Administración",
@@ -332,6 +317,88 @@
       "p3": "Crezcamos juntos.",
       "button": "Crea tu Perfil"
     }
+  },
+  "Auth": {
+    "signUpWelcome": "Únase a la red agrícola de {appName}",
+    "signUpTitle": "Crear una cuenta",
+    "signUpDescription": "Ingrese sus datos para comenzar.",
+    "nameLabel": "Nombre completo",
+    "namePlaceholder": "María García",
+    "roleLabel": "Su rol principal",
+    "rolePlaceholder": "Seleccione su rol...",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "nombre@ejemplo.com",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "••••••••",
+    "confirmPasswordLabel": "Confirmar contraseña",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Creando cuenta...",
+    "signUpButton": "Registrarse",
+    "alreadyHaveAccountPrompt": "¿Ya tiene una cuenta?",
+    "signInLink": "Iniciar sesión",
+    "signInWelcome": "Bienvenido de nuevo a {appName}",
+    "signInTitle": "Iniciar sesión",
+    "signInDescription": "Ingrese sus credenciales para acceder a su cuenta.",
+    "forgotPasswordLink": "¿Olvidó su contraseña?",
+    "signingInButton": "Iniciando sesión...",
+    "signInButton": "Iniciar sesión",
+    "noAccountPrompt": "¿No tiene una cuenta?",
+    "recoverWithUniversalIdPrompt": "Recuperar cuenta con ID Universal",
+    "forgotPasswordResetPrompt": "Restablezca su contraseña de {appName}",
+    "forgotPasswordTitle": "Contraseña olvidada",
+    "forgotPasswordDescription": "No se preocupe, le enviaremos instrucciones para restablecerla.",
+    "sendResetLinkButton": "Enviar enlace de restablecimiento",
+    "sendingEmailButton": "Enviando...",
+    "rememberPasswordPrompt": "¿Recordó su contraseña?",
+    "error": "Error",
+    "forgotPassword": {
+      "emailSentTitle": "Revise su correo electrónico",
+      "emailSentDescription": "Se ha enviado un enlace para restablecer la contraseña a {email}.",
+      "emailSentDescriptionIfAccountExists": "Si existe una cuenta con {email}, se ha enviado un enlace para restablecer la contraseña.",
+      "successTitle": "¡Correo electrónico enviado!",
+      "successDescription": "Por favor, revise su bandeja de entrada (y la carpeta de spam) para encontrar el enlace de restablecimiento de contraseña.",
+      "errors": {
+        "unexpected": "Se produjo un error inesperado. Por favor, inténtelo de nuevo.",
+        "invalidEmail": "La dirección de correo electrónico no es válida.",
+        "tooManyRequests": "Demasiadas solicitudes. Por favor, inténtelo de nuevo más tarde.",
+        "default": "No se pudo enviar el correo electrónico de restablecimiento"
+      }
+    },
+    "resetPasswordPrompt": "Establezca una nueva contraseña para su cuenta de {appName}",
+    "resetPasswordTitle": "Restablecer su contraseña",
+    "resetPasswordDescription": "Ingrese una nueva contraseña segura para su cuenta.",
+    "newPasswordLabel": "Nueva contraseña",
+    "newPasswordPlaceholder": "••••••••",
+    "resettingPasswordButton": "Restableciendo...",
+    "resetPasswordButton": "Restablecer contraseña",
+    "resetPassword": {
+      "successTitle": "¡Contraseña restablecida con éxito!",
+      "successDescription": "Ahora puede iniciar sesión con su nueva contraseña.",
+      "successRedirect": "Será redirigido a la página de inicio de sesión en breve.",
+      "errors": {
+        "missingCode": "Enlace de restablecimiento de contraseña no válido. Por favor, solicite uno nuevo.",
+        "missingCodeTitle": "Enlace no válido",
+        "missingCodeDescription": "El enlace para restablecer la contraseña falta o no es válido. Por favor, vuelva a la página 'Olvidé mi contraseña' para solicitar uno nuevo.",
+        "unexpected": "Se produjo un error inesperado. Por favor, inténtelo de nuevo.",
+        "invalidOrExpiredCode": "El enlace para restablecer la contraseña no es válido o ha expirado. Por favor, solicite uno nuevo.",
+        "userDisabled": "Esta cuenta de usuario ha sido deshabilitada.",
+        "userNotFound": "No se encontró ningún usuario correspondiente a este enlace de restablecimiento.",
+        "weakPassword": "La nueva contraseña no es lo suficientemente segura.",
+        "default": "No se pudo restablecer la contraseña"
+      }
+    },
+    "recoverPage": {
+      "title": "Recuperación de Cuenta",
+      "description": "Recupera el acceso a tu cuenta con la ayuda de un amigo de confianza.",
+      "howItWorksTitle": "Cómo funciona la recuperación social",
+      "step1": "Introduce tu número de teléfono para iniciar una sesión de recuperación.",
+      "step2": "Muestra el código QR generado a un amigo de confianza que también use DamDoh.",
+      "step3": "Tu amigo escanea el código con su aplicación para confirmar tu identidad.",
+      "startButton": "Iniciar Recuperación",
+      "scanTitle": "Pide a un Amigo que Escanee",
+      "scanDescription": "Pide a una conexión de confianza en tu red de DamDoh que escanee este código QR para verificar tu identidad.",
+      "scanNote": "Este código es temporal y expirará en 10 minutos.",
+      "startOverButton": "Empezar de Nuevo"
+    }
   }
 }
-

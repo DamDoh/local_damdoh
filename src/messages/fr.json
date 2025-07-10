@@ -40,21 +40,6 @@
     "pollOptionsError": "Un sondage doit avoir au moins 2 options non vides.",
     "emptyPostError": "Votre publication ne peut pas être vide."
   },
-  "Auth": {
-    "recoverPage": {
-      "title": "Récupération de Compte",
-      "description": "Récupérez l'accès à votre compte avec l'aide d'un ami de confiance.",
-      "howItWorksTitle": "Comment fonctionne la récupération sociale",
-      "step1": "Entrez votre numéro de téléphone pour démarrer une session de récupération.",
-      "step2": "Montrez le code QR généré à un ami de confiance qui utilise également DamDoh.",
-      "step3": "Votre ami scanne le code avec son application pour confirmer votre identité.",
-      "startButton": "Démarrer la Récupération",
-      "scanTitle": "Demandez à un Ami de Scanner",
-      "scanDescription": "Demandez à une connexion de confiance de votre réseau DamDoh de scanner ce code QR pour vérifier votre identité.",
-      "scanNote": "Ce code est temporaire et expirera dans 10 minutes.",
-      "startOverButton": "Recommencer"
-    }
-  },
   "admin": {
     "layout": {
       "title": "Panneau d'Administration",
@@ -332,6 +317,88 @@
       "p3": "Grandissons ensemble.",
       "button": "Créez votre Profil"
     }
+  },
+  "Auth": {
+    "signUpWelcome": "Rejoignez le réseau agricole {appName}",
+    "signUpTitle": "Créer un compte",
+    "signUpDescription": "Entrez vos informations pour commencer.",
+    "nameLabel": "Nom complet",
+    "namePlaceholder": "Marie Dupont",
+    "roleLabel": "Votre rôle principal",
+    "rolePlaceholder": "Sélectionnez votre rôle...",
+    "emailLabel": "Email",
+    "emailPlaceholder": "nom@exemple.com",
+    "passwordLabel": "Mot de passe",
+    "passwordPlaceholder": "••••••••",
+    "confirmPasswordLabel": "Confirmer le mot de passe",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Création du compte...",
+    "signUpButton": "S'inscrire",
+    "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
+    "signInLink": "Se connecter",
+    "signInWelcome": "Bienvenue à nouveau sur {appName}",
+    "signInTitle": "Se connecter",
+    "signInDescription": "Entrez vos identifiants pour accéder à votre compte.",
+    "forgotPasswordLink": "Mot de passe oublié ?",
+    "signingInButton": "Connexion...",
+    "signInButton": "Se connecter",
+    "noAccountPrompt": "Vous n'avez pas de compte ?",
+    "recoverWithUniversalIdPrompt": "Récupérer le compte avec l'ID Universel",
+    "forgotPasswordResetPrompt": "Réinitialisez votre mot de passe {appName}",
+    "forgotPasswordTitle": "Mot de passe oublié",
+    "forgotPasswordDescription": "Pas de soucis, nous vous enverrons des instructions de réinitialisation.",
+    "sendResetLinkButton": "Envoyer le lien de réinitialisation",
+    "sendingEmailButton": "Envoi en cours...",
+    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
+    "error": "Erreur",
+    "forgotPassword": {
+      "emailSentTitle": "Vérifiez vos emails",
+      "emailSentDescription": "Un lien de réinitialisation de mot de passe a été envoyé à {email}.",
+      "emailSentDescriptionIfAccountExists": "Si un compte avec {email} existe, un lien de réinitialisation de mot de passe a été envoyé.",
+      "successTitle": "Email envoyé !",
+      "successDescription": "Veuillez vérifier votre boîte de réception (et votre dossier spam) pour le lien de réinitialisation du mot de passe.",
+      "errors": {
+        "unexpected": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+        "invalidEmail": "L'adresse e-mail n'est pas valide.",
+        "tooManyRequests": "Trop de demandes. Veuillez réessayer plus tard.",
+        "default": "Échec de l'envoi de l'e-mail de réinitialisation"
+      }
+    },
+    "resetPasswordPrompt": "Définissez un nouveau mot de passe pour votre compte {appName}",
+    "resetPasswordTitle": "Réinitialiser votre mot de passe",
+    "resetPasswordDescription": "Entrez un nouveau mot de passe sécurisé pour votre compte.",
+    "newPasswordLabel": "Nouveau mot de passe",
+    "newPasswordPlaceholder": "••••••••",
+    "resettingPasswordButton": "Réinitialisation...",
+    "resetPasswordButton": "Réinitialiser le mot de passe",
+    "resetPassword": {
+      "successTitle": "Mot de passe réinitialisé avec succès !",
+      "successDescription": "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
+      "successRedirect": "Vous allez être redirigé vers la page de connexion.",
+      "errors": {
+        "missingCode": "Lien de réinitialisation de mot de passe invalide. Veuillez en demander un nouveau.",
+        "missingCodeTitle": "Lien invalide",
+        "missingCodeDescription": "Le lien de réinitialisation du mot de passe est manquant ou invalide. Veuillez retourner à la page 'Mot de passe oublié' pour en demander un nouveau.",
+        "unexpected": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+        "invalidOrExpiredCode": "Le lien de réinitialisation du mot de passe est invalide ou a expiré. Veuillez en demander un nouveau.",
+        "userDisabled": "Ce compte utilisateur a été désactivé.",
+        "userNotFound": "Aucun utilisateur trouvé correspondant à ce lien de réinitialisation.",
+        "weakPassword": "Le nouveau mot de passe n'est pas assez fort.",
+        "default": "Échec de la réinitialisation du mot de passe"
+      }
+    },
+    "recoverPage": {
+      "title": "Récupération de Compte",
+      "description": "Récupérez l'accès à votre compte avec l'aide d'un ami de confiance.",
+      "howItWorksTitle": "Comment fonctionne la récupération sociale",
+      "step1": "Entrez votre numéro de téléphone pour démarrer une session de récupération.",
+      "step2": "Montrez le code QR généré à un ami de confiance qui utilise également DamDoh.",
+      "step3": "Votre ami scanne le code avec son application pour confirmer votre identité.",
+      "startButton": "Démarrer la Récupération",
+      "scanTitle": "Demandez à un Ami de Scanner",
+      "scanDescription": "Demandez à une connexion de confiance de votre réseau DamDoh de scanner ce code QR pour vérifier votre identité.",
+      "scanNote": "Ce code est temporaire et expirera dans 10 minutes.",
+      "startOverButton": "Recommencer"
+    }
   }
 }
-
