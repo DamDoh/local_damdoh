@@ -90,6 +90,19 @@
     "newPasswordPlaceholder": "Enter a strong new password",
     "resetPasswordButton": "Reset Password",
     "resettingPasswordButton": "Resetting...",
+    "recoverPage": {
+      "title": "Recover Your Account",
+      "description": "Use your network to regain access.",
+      "howItWorksTitle": "How it Works",
+      "step1": "Enter your phone number to start a recovery session.",
+      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
+      "step3": "Once your friend scans the code to verify your identity, you'll regain access.",
+      "startButton": "Start Account Recovery",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
+      "scanNote": "This code is temporary and expires in 10 minutes.",
+      "startOverButton": "Start Over"
+    },
     "forgotPassword": {
       "emailSentTitle": "Check Your Email",
       "emailSentDescription": "A password reset link has been sent to {email}.",
@@ -118,19 +131,6 @@
         "weakPassword": "The new password is not strong enough.",
         "default": "Failed to reset password"
       }
-    },
-    "recoverPage": {
-      "title": "Recover Your Account",
-      "description": "Use your network to regain access.",
-      "howItWorksTitle": "How it Works",
-      "step1": "Enter your phone number to start a recovery session.",
-      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
-      "step3": "Once your friend scans the code to verify your identity, you'll regain access.",
-      "startButton": "Start Account Recovery",
-      "scanTitle": "Ask a Friend to Scan",
-      "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
-      "scanNote": "This code is temporary and expires in 10 minutes.",
-      "startOverButton": "Start Over"
     }
   },
   "AppHeader": {
@@ -149,6 +149,7 @@
     "signIn": "Sign In",
     "signUp": "Sign Up",
     "myProfile": "My Profile",
+    "myOrders": "My Orders",
     "settings": "Settings",
     "helpCenter": "Help Center",
     "logOut": "Log Out",
@@ -888,9 +889,9 @@
       "title": "My Farms",
       "addNewFarmButton": "Add New Farm",
       "size": "Size",
-      "viewFarmButton": "Manage Farm",
+      "viewFarmButton": "View Farm Dashboard",
       "noFarmsTitle": "You haven't added any farms yet.",
-      "noFarmsDescription": "Get started by adding your first farm profile to track crops and activities.",
+      "noFarmsDescription": "Get started by creating your first farm profile to track crops and activities.",
       "auth": {
         "title": "Please Sign In",
         "description": "You must be signed in to view your farms.",
@@ -939,51 +940,35 @@
         "errorDescription": "Could not create the farm. Please try again."
       }
     },
-    "editFarm": {
-      "backToFarm": "Back to My Farms",
-      "title": "Edit Farm",
-      "description": "Update your farm's details.",
-      "form": {
-        "submitButton": "Save Changes"
-      },
-      "toast": {
-        "notFoundTitle": "Not Found",
-        "loadError": "Could not load the farm you wish to edit.",
-        "loadFail": "Could not load farm data: {message}",
-        "successTitle": "Farm Updated!",
-        "successDescription": "'{farmName}' was updated successfully.",
-        "errorTitle": "Update Failed"
-      }
-    },
     "farmDetail": {
-      "backToFarms": "Back to My Farms",
-      "registeredOn": "Registered on {date}",
-      "editFarmButton": "Edit Farm",
-      "crops": {
-        "title": "Crops",
-        "description": "Manage all active crops on this farm.",
-        "addNewButton": "Add New Crop",
-        "plantedLabel": "Planted",
-        "stageLabel": "Stage",
-        "viewJourneyButton": "View Journey",
-        "noCrops": "No crops have been added to this farm yet.",
-        "addFirstButton": "Add Your First Crop"
-      },
-      "insights": {
-        "title": "Profitability Insights",
-        "description": "AI-driven analysis of your farm's activities.",
-        "noInsights": "Not enough activity to generate insights. Start logging activities!"
-      },
-      "toast": {
-        "notFoundTitle": "Farm not found",
-        "loadErrorTitle": "Loading Error",
-        "insightsErrorTitle": "Insights Error"
-      },
-      "notFound": {
-        "title": "Farm Not Found",
-        "description": "The farm you are looking for does not exist, or you do not have permission to view it.",
-        "backButton": "Back to My Farms"
-      }
+        "backToFarms": "Back to My Farms",
+        "registeredOn": "Registered on {date}",
+        "editFarmButton": "Edit Farm",
+        "crops": {
+            "title": "Crops",
+            "description": "Manage all active crops on this farm.",
+            "addNewButton": "Add New Crop",
+            "plantedLabel": "Planted",
+            "stageLabel": "Stage",
+            "viewJourneyButton": "View Journey",
+            "noCrops": "No crops have been added to this farm yet.",
+            "addFirstButton": "Add Your First Crop"
+        },
+        "insights": {
+            "title": "Profitability Insights",
+            "description": "AI-driven analysis of your farm's activities.",
+            "noInsights": "Not enough data to generate insights. Start logging activities!"
+        },
+        "toast": {
+            "notFoundTitle": "Farm Not Found",
+            "loadErrorTitle": "Loading Error",
+            "insightsErrorTitle": "Insights Error"
+        },
+        "notFound": {
+            "title": "Farm Not Found",
+            "description": "The farm you are looking for does not exist, or you do not have permission to view it.",
+            "backButton": "Back to My Farms"
+        }
     },
     "createCrop": {
       "backLink": "Back to Farm Detail",
@@ -1516,8 +1501,8 @@
     },
     "contributions": {
       "statusTitle": "Contribution Status",
-      "title": "Your Knowledge Hub Contributions",
-      "noData": "No contribution data.",
+      "title": "Your Contributions to the Knowledge Hub",
+      "noData": "No contribution data available.",
       "noContributions": "You have not made any contributions yet."
     },
     "noData": "No dashboard data available.",
@@ -1526,15 +1511,15 @@
     "chart": {
       "count": "Count",
       "published": "Published",
-      "pending": "Pending",
+      "pending": "Pending Review",
       "draft": "Draft"
     }
   },
   "BuyerDashboard": {
     "title": "Buyer Dashboard",
-    "riskTitle": "Supply Chain Risk",
+    "riskTitle": "Supply Chain Risks",
     "diversifySourcing": "Diversify Sourcing",
-    "priceTitle": "Market Price Intelligence",
+    "priceTitle": "Market Price Insights",
     "secureContracts": "Secure Forward Contracts",
     "sourcingTitle": "Sourcing Recommendations",
     "reliabilityScore": "Reliability Score",
@@ -1543,7 +1528,7 @@
   "CertificationBodyDashboard": {
     "title": "Certification Body Dashboard",
     "auditsTitle": "Pending Audits",
-    "auditsDescription": "Upcoming audits requiring attention.",
+    "auditsDescription": "Upcoming audits that require your attention.",
     "table": {
       "farmName": "Farm Name",
       "standard": "Standard",
@@ -1552,14 +1537,14 @@
     },
     "reviewAuditButton": "Review Audit",
     "noPendingAudits": "No pending audits at this time.",
-    "entitiesTitle": "Certified Entity Status",
-    "entitiesDescription": "Overview of your certified entities.",
-    "noCertifiedEntities": "No certified entity data.",
+    "entitiesTitle": "Status of Certified Entities",
+    "entitiesDescription": "An overview of your certified entities.",
+    "noCertifiedEntities": "No data for certified entities.",
     "monitoringTitle": "Standards Monitoring",
-    "monitoringDescription": "Adherence rate across key standards.",
+    "monitoringDescription": "Compliance rates for key standards.",
     "alerts": "Alerts",
     "viewDetailsButton": "View Details",
-    "noMonitoringData": "No standards monitoring data."
+    "noMonitoringData": "No monitoring data available."
   },
   "CooperativeDashboard": {
     "title": "Cooperative Dashboard",
@@ -1569,8 +1554,8 @@
     "landAreaDescription": "Hectares under cultivation.",
     "pendingApplicationsTitle": "Pending Applications",
     "pendingApplicationsDescription": "New farmers awaiting approval.",
-    "produceTitle": "Aggregated Produce Available",
-    "produceDescription": "A consolidated view of your members' ready-for-sale produce.",
+    "produceTitle": "Available Aggregated Produce",
+    "produceDescription": "A combined view of your members' ready-for-sale produce.",
     "table": {
       "product": "Product",
       "quantity": "Quantity (Tons)",
@@ -1583,15 +1568,15 @@
     "aggregateButton": "Aggregate New Produce"
   },
   "CrowdfunderDashboard": {
-    "title": "Crowdfunder Investor Dashboard",
+    "title": "Crowdfunder Dashboard",
     "totalInvested": "Total Invested",
     "numberOfInvestments": "Number of Investments",
     "estimatedReturns": "Estimated Returns",
-    "opportunitiesTitle": "Suggested Opportunities",
+    "opportunitiesTitle": "Recommended Opportunities",
     "viewButton": "View",
     "raisedOf": "raised of",
     "goal": "goal",
-    "noOpportunities": "No new investment opportunities matching your profile.",
+    "noOpportunities": "No new investment opportunities match your profile.",
     "transactionsTitle": "Recent Transactions",
     "table": {
       "project": "Project",
@@ -1606,13 +1591,13 @@
     "title": "Energy Provider Dashboard",
     "leadsTitle": "Project Leads",
     "leadsCount": "{count, plural, =0 {leads} =1 {1 lead} other {{count} leads}}",
-    "newLeadsDescription": "New leads requiring attention",
+    "newLeadsDescription": "new leads require attention.",
     "projectsTitle": "Active Projects",
     "activeProjectsCount": "{count, plural, =0 {projects} =1 {1 project} other {{count} projects}}",
-    "projectsCompleted": "Projects completed",
-    "impactTitle": "Total Impact",
-    "impactDescription": "Total estimated impact of your projects",
-    "carbonReduction": "tCO2e/year reduced from {count} installations",
+    "projectsCompleted": "projects completed.",
+    "impactTitle": "Cumulative Impact",
+    "impactDescription": "The total estimated impact of your projects.",
+    "carbonReduction": "tCO2e/year reduced from {count} installations.",
     "accessDocsButton": "Access API Docs",
     "proposeIntegrationButton": "Propose New Integration",
     "leadsTableTitle": "Project Pipeline",
@@ -1659,13 +1644,13 @@
   "FiDashboard": {
     "title": "Financial Institution Dashboard",
     "pendingApplicationsTitle": "Pending Applications",
-    "pendingApplicationsDescription": "Applications requiring your review",
+    "pendingApplicationsDescription": "applications require your review.",
     "manageApplicationsButton": "Manage Applications",
     "portfolioAtRiskTitle": "Portfolio at Risk",
-    "portfolioAtRiskDescription": "{count} loans with high-risk alerts",
+    "portfolioAtRiskDescription": "{count} loans with high-risk alerts.",
     "reviewRiskButton": "Review Risk",
     "manageProductsTitle": "Financial Products",
-    "manageProductsDescription": "Active loan and grant products",
+    "manageProductsDescription": "Active loan and grant products.",
     "manageProductsButton": "Manage Products",
     "table": {
       "applicant": "Applicant",
@@ -1676,18 +1661,18 @@
     },
     "reviewButton": "Review",
     "noApplications": "No pending applications to review.",
-    "viewAllButton": "View all applications"
+    "viewAllButton": "View All Applications"
   },
   "FieldAgentDashboard": {
     "title": "Field Agent Dashboard",
     "portfolioHealthTitle": "Portfolio Health",
     "activeAlerts": "Active Alerts",
     "pendingReportsTitle": "Pending Reports",
-    "reportsToFile": "Reports to File",
+    "reportsToFile": "reports to file.",
     "dataVerificationTitle": "Data Verification",
-    "tasksPending": "Tasks Pending",
+    "tasksPending": "tasks pending.",
     "assignedFarmersTitle": "Assigned Farmers",
-    "farmersInPortfolio": "Farmers in Portfolio",
+    "farmersInPortfolio": "farmers in portfolio.",
     "portfolioTitle": "Farmer Portfolio",
     "lastVisit": "Last Visit",
     "issues": "Issues",
@@ -1697,7 +1682,7 @@
   "InputSupplierDashboard": {
     "title": "Input Supplier Dashboard",
     "ordersTitle": "Active Orders",
-    "totalValue": "Total Value",
+    "totalValue": "total value",
     "manageOrdersButton": "Manage Orders",
     "forecastTitle": "Demand Forecast",
     "in": "in",
@@ -1723,44 +1708,55 @@
     "reviewClaimButton": "Review Claim",
     "noPendingClaims": "No pending claims at this time.",
     "riskAlertsTitle": "Risk Assessment Alerts",
-    "riskAlertsDescription": "Active alerts for high-risk policies based on real-world data.",
-    "alert": "Alert",
-    "severity": "Severity",
+    "riskAlertsDescription": "Proactive alerts for high-risk policies based on real-time data.",
+      "alert": "Alert",
+      "severity": "Severity",
     "investigateButton": "Investigate",
     "noRiskAlerts": "No high-risk alerts at this time.",
     "activePoliciesTitle": "Active Policies Overview",
-    "activePoliciesDescription": "A summary of your active insurance policies.",
+    "activePoliciesDescription": "An overview of your active insurance policies.",
     "coverage": "Coverage",
     "expires": "Expires",
-    "noActivePolicies": "No active policies found.",
-    "manageProductsTitle": "Manage Products",
-    "manageProductsDescription": "Create and manage your insurance product offerings.",
-    "manageProductsButton": "Manage Products"
+    "noActivePolicies": "No active policies found."
+  },
+  "LogisticsDashboard": {
+    "title": "Logistics Dashboard",
+    "performanceTitle": "Performance",
+    "onTimeDelivery": "On-time delivery rate",
+    "viewReportButton": "View Full Report",
+    "activeShipmentsTitle": "Active Shipments",
+    "to": "to",
+    "trackButton": "Track",
+    "noActiveShipments": "No active shipments.",
+    "incomingJobsTitle": "Incoming Jobs",
+    "from": "from",
+    "acceptJobButton": "Accept Job",
+    "noIncomingJobs": "No new jobs."
   },
   "OperationsDashboard": {
     "title": "Platform Operations Dashboard",
-    "vtiRateTitle": "VTI Generation Rate",
+    "vtiRateTitle": "VTI Creation Rate",
     "pipelineStatusTitle": "Data Pipeline Status",
     "lastCheck": "Last checked",
     "flaggedEventsTitle": "Flagged Traceability Events",
     "viewVtiButton": "View VTI",
-    "noFlaggedEvents": "No events flagged for review."
+    "noFlaggedEvents": "No flagged events to review."
   },
   "PackagingSupplierDashboard": {
     "title": "Packaging Supplier Dashboard",
     "ordersTitle": "Incoming Orders",
     "table": {
-      "customer": "Customer",
-      "product": "Product",
-      "quantity": "Quantity",
-      "status": "Status",
-      "action": "Action"
+        "customer": "Customer",
+        "product": "Product",
+        "quantity": "Quantity",
+        "status": "Status",
+        "action": "Action"
     },
     "viewOrderButton": "View Order",
     "noOrders": "No new orders.",
     "inventoryTitle": "Inventory Status",
-    "inStock": "In Stock",
-    "reorderLevel": "Reorder Level",
+    "inStock": "in stock",
+    "reorderLevel": "reorder level",
     "lowStock": "Low Stock",
     "noInventory": "No inventory data.",
     "listProductButton": "List New Product"
@@ -1768,69 +1764,69 @@
   "ProcessingUnitDashboard": {
     "title": "Processing Unit Dashboard",
     "yieldTitle": "Yield Optimization",
-    "potential": "Potential",
+    "potential": "potential",
     "wasteTitle": "Waste Reduction",
     "rawMaterialTitle": "Raw Material Inventory",
     "table": {
-      "product": "Product",
-      "quality": "Quality",
-      "quantity": "Quantity (Tons)",
-      "supplier": "Supplier",
-      "deliveryDate": "Delivery Date",
-      "status": "Status",
-      "action": "Action"
+        "product": "Product",
+        "quality": "Quality",
+        "quantity": "Quantity (Tons)",
+        "supplier": "Supplier",
+        "deliveryDate": "Delivery Date",
+        "status": "Status",
+        "action": "Action"
     },
     "noInventoryData": "No raw material inventory data.",
     "packagingOrdersTitle": "Packaging Orders",
     "noPackagingOrders": "No active packaging orders.",
     "viewButton": "View",
     "packagingInventoryTitle": "Packaging Inventory",
-    "inStock": "In Stock",
-    "reorderLevel": "Reorder Level",
+    "inStock": "in stock",
+    "reorderLevel": "reorder level",
     "noPackagingData": "No packaging inventory data.",
     "sourcePackagingButton": "Source Packaging"
   },
   "QaDashboard": {
     "title": "Quality Assurance Dashboard",
     "inspectionsTitle": "Pending Inspections",
-    "inspectionsDescription": "Batches awaiting quality inspection and approval.",
+    "inspectionsDescription": "Batches awaiting quality inspection and verification.",
     "table": {
-      "batchId": "Batch ID",
-      "product": "Product",
-      "seller": "Seller",
-      "dueDate": "Due Date",
-      "action": "Action",
-      "result": "Result",
-      "reason": "Reason",
-      "inspectedAt": "Inspected At"
+        "batchId": "Batch ID",
+        "product": "Product",
+        "seller": "Seller",
+        "dueDate": "Due Date",
+        "action": "Action",
+        "result": "Result",
+        "reason": "Reason",
+        "inspectedAt": "Inspected At"
     },
     "performInspectionButton": "Perform Inspection",
     "noPendingInspections": "No pending inspections at this time.",
     "resultsTitle": "Recent Quality Issues",
-    "resultsDescription": "Latest flagged quality issues that may require action.",
-    "noRecentIssues": "No recent quality issues recorded.",
+    "resultsDescription": "The latest flagged quality issues that may require action.",
+    "noRecentIssues": "No recent quality issues logged.",
     "metricsTitle": "Quality Metrics",
-    "metricsDescription": "Platform-wide quality performance.",
-    "passRate": "Pass Rate",
-    "averageScore": "Average Score",
-    "noMetrics": "Quality metrics not yet available."
+    "metricsDescription": "Overall quality performance across the platform.",
+    "passRate": "Pass rate",
+    "averageScore": "Average score",
+    "noMetrics": "No quality metrics available yet."
   },
   "RegulatorDashboard": {
     "title": "Regulator Dashboard",
     "pendingCertificationsTitle": "Pending Certifications",
-    "reviewsOutstanding": "reviews outstanding",
+    "reviewsOutstanding": "reviews outstanding.",
     "reviewAllButton": "Review All",
     "riskAlertsTitle": "Compliance Risk Alerts",
     "investigateButton": "Investigate",
     "noComplianceAlerts": "No active compliance alerts.",
     "anomaliesTitle": "Supply Chain Anomalies",
     "trackVtiButton": "Track VTI",
-    "noAnomalies": "No supply chain anomalies have been detected."
+    "noAnomalies": "No supply chain anomalies detected."
   },
   "ResearcherDashboard": {
     "title": "Researcher Dashboard",
     "datasetsTitle": "Available Datasets",
-    "datasetsDescription": "Anonymized datasets are available for research purposes.",
+    "datasetsDescription": "Anonymized datasets available for research purposes.",
     "table": {
       "name": "Name",
       "dataType": "Data Type",
@@ -1854,7 +1850,7 @@
     "chart": {
       "count": "Count",
       "published": "Published",
-      "pending": "Pending",
+      "pending": "Pending Review",
       "draft": "Draft"
     },
     "noData": "No dashboard data available."
@@ -1862,7 +1858,7 @@
   "WasteManagementDashboard": {
     "title": "Waste Management Dashboard",
     "wasteStreamsTitle": "Incoming Waste Streams",
-    "from": "From",
+    "from": "from",
     "acceptButton": "Accept",
     "noWasteStreams": "No new incoming waste streams.",
     "compostBatchesTitle": "Compost Batches",
@@ -1870,8 +1866,8 @@
     "estReady": "Est. Ready",
     "noCompostBatches": "No active compost batches.",
     "inventoryTitle": "Finished Product Inventory",
-    "inStock": "In Stock",
-    "noFinishedProducts": "No finished products in inventory.",
+    "inStock": "in stock",
+    "noFinishedProducts": "No finished products in stock.",
     "sellButton": "Sell on Marketplace"
   },
   "FeedItemCard": {
@@ -1879,7 +1875,7 @@
     "repostPlaceholderToast": "Repost feature coming soon!",
     "signInToVoteToast": "You must be signed in to vote.",
     "voteSuccessToast": "Your vote has been counted!",
-    "voteErrorToast": "Could not save your vote.",
+    "voteErrorToast": "Could not save vote.",
     "editPost": "Edit Post",
     "deletePost": "Delete Post",
     "like": "Like",
@@ -1887,7 +1883,7 @@
     "repost": "Repost",
     "likes": "{count, plural, =0 {likes} =1 {like} other {{count} likes}}",
     "comments": "{count, plural, =0 {comments} =1 {comment} other {{count} comments}}",
-    "loadCommentsErrorToast": "Failed to load comments",
+    "loadCommentsErrorToast": "Could not load comments.",
     "noComments": "Be the first to comment!",
     "loadingComments": "Loading comments...",
     "loadMoreComments": "Load more comments",
@@ -1896,20 +1892,20 @@
     "votes": "{count, plural, =0 {votes} =1 {vote} other {{count} votes}}"
   },
   "CreatePostModal": {
-    "title": "Create a New Post",
+    "title": "Create a new post",
     "description": "Share an update, ask a question, or start a conversation with the community.",
     "yourName": "Your Name",
     "shareUpdate": "Share an update",
-    "placeholder": "What are you thinking about?",
+    "placeholder": "What's on your mind?",
     "selectedFile": "Selected file:",
     "pollOptionsLabel": "Poll Options",
     "pollOptionPlaceholder": "Option {index}",
-    "addOptionButton": "Add option",
-    "pollNote": "Maximum of {maxOptions} options allowed.",
+    "addOptionButton": "Add Option",
+    "pollNote": "A maximum of {maxOptions} options are allowed.",
     "photoVideo": "Photo/Video",
     "agriEvent": "Agri-Event",
     "shareDocumentButton": "Share Document",
-    "createPollButton": "Create a poll",
+    "createPollButton": "Create Poll",
     "postButton": "Post",
     "pollOptionsError": "A poll must have at least 2 non-empty options.",
     "emptyPostError": "Your post cannot be empty."
@@ -1918,7 +1914,7 @@
     "createMarketplaceCoupon": {
       "code": {
         "min": "Code must be at least 4 characters.",
-        "max": "Code cannot exceed 20 characters.",
+        "max": "Code must be no more than 20 characters.",
         "regex": "Code must be alphanumeric."
       },
       "discountType": {
@@ -1936,12 +1932,38 @@
   },
   "CropRotationSuggester": {
     "title": "AI Crop Rotation Suggester",
-    "description": "Get AI-driven recommendations for your next crop to improve soil health and break pest cycles.",
-    "buttonText": "Get Rotation Suggestions",
+    "description": "Get AI-powered suggestions for your next crop to improve soil health and break pest cycles.",
+    "buttonText": "Get Rotation Suggestion",
     "loadingText": "Analyzing field history...",
-    "error": "Could not get suggestions at this time, please try again.",
-    "noSuggestions": "AI could not generate specific recommendations based on the history provided.",
-    "regenerateButton": "Regenerate Suggestions"
+    "error": "Could not get a suggestion at this time. Please try again.",
+    "noSuggestions": "The AI could not generate a specific suggestion based on the history provided.",
+    "regenerateButton": "Regenerate Suggestion"
+  },
+  "networkPage": {
+    "title": "Network",
+    "description": "Discover and connect with stakeholders across the agricultural supply chain.",
+    "myNetworkButton": "My Network",
+    "agentToolsButton": "Agent Tools",
+    "aiSuggestionsTitle": "AI Suggestions",
+    "aiSuggestionsDescription": "Connect with people you may know based on your profile and activity.",
+    "toast": {
+      "errorTitle": "Error",
+      "loadError": "Could not load network data.",
+      "connectError": "Could not send connection request."
+    },
+    "following": "Following",
+    "follow": "Follow",
+    "connect": "Connect",
+    "profile": "Profile",
+    "noSuggestions": "No new suggestions right now. Check back later!",
+    "browseAllTitle": "Browse All Stakeholders",
+    "browseAllDescription": "Find and connect with new partners in the supply chain.",
+    "searchPlaceholder": "Search by name or summary...",
+    "locationPlaceholder": "Search by location...",
+    "rolePlaceholder": "Filter by role",
+    "allRoles": "All Roles",
+    "noStakeholdersFound": "No stakeholders found.",
+    "noStakeholdersHint": "Try adjusting your search filters."
   },
   "myNetworkPage": {
     "backLink": "Back to Network",
@@ -1977,183 +1999,7 @@
     "resultsTitle": "Search Results",
     "resultsPlaceholder": "User details will appear here after a successful search."
   },
-  "networkPage": {
-    "title": "Network",
-    "description": "Discover and connect with farmers, buyers, service providers, and experts across the agricultural value chain.",
-    "myNetworkButton": "My Network",
-    "agentToolsButton": "Agent Tools",
-    "aiSuggestionsTitle": "AI-Powered Suggestions",
-    "aiSuggestionsDescription": "Connect with people you may know, based on your profile and activity.",
-    "toast": {
-      "errorTitle": "Error",
-      "loadError": "Could not load network data.",
-      "connectError": "Could not send connection request."
-    },
-    "following": "Following",
-    "follow": "Follow",
-    "connect": "Connect",
-    "profile": "Profile",
-    "noSuggestions": "No suggestions available right now. Complete your profile for better recommendations.",
-    "browseAllTitle": "Browse all Stakeholders",
-    "browseAllDescription": "Find and connect with new partners in the supply chain.",
-    "searchPlaceholder": "Search by name or summary...",
-    "locationPlaceholder": "Filter by location...",
-    "rolePlaceholder": "Filter by role",
-    "allRoles": "All Roles",
-    "noStakeholdersFound": "No stakeholders found.",
-    "noStakeholdersHint": "Try adjusting your search filters."
-  },
-  "farmManagement": {
-    "logHarvest": {
-      "backLink": "Back to Farm Detail",
-      "title": "Log Harvest for {cropType}",
-      "description": "Record your harvest to create a new traceable batch.",
-      "harvestDateLabel": "Harvest Date",
-      "yieldLabel": "Total Yield (kg)",
-      "yieldPlaceholder": "e.g., 1500",
-      "qualityLabel": "Quality Grade",
-      "qualityPlaceholder": "e.g., Grade A, Export Quality",
-      "notesLabel": "Harvest Notes (Optional)",
-      "notesPlaceholder": "Specific details about this harvest...",
-      "saveButton": "Log Harvest & Create Batch",
-      "savingButton": "Saving...",
-      "offlineToast": {
-          "title": "Action added to offline queue.",
-          "description": "Your harvest will be logged and a VTI created when you're back online."
-      },
-      "success": {
-          "title": "Harvest Logged!",
-          "description": "The harvest for {cropType} has been successfully logged. A new traceable batch has been created with ID '{vtiId}'.",
-          "successCardTitle": "Harvest Logged!",
-          "successCardDescription": "A new traceable batch has been created for {cropType} with ID: {vtiId}",
-          "viewReportButton": "View Traceability Report",
-          "sellButton": "Sell on Marketplace",
-          "logAnotherButton": "Log Another Harvest",
-          "backToFarmButton": "Back to Farm"
-      },
-      "fail": {
-          "title": "Logging Failed"
-      }
-    },
-    "knfInputsPage": {
-      "backLink": "Back to Farm Hub",
-      "title": "KNF Inputs Assistant",
-      "description": "Create, track, and manage your Korean Natural Farming inputs.",
-      "guidesTitle": "KNF Guides",
-      "ingredients": "Ingredients",
-      "steps": "Steps",
-      "usage": "Usage",
-      "fermentingBatchesTitle": "Fermenting Batches",
-      "started": "Started",
-      "nextStepOn": "Next Step On",
-      "markReady": "Mark as Ready",
-      "noFermentingBatches": "No fermenting batches.",
-      "readyBatchesTitle": "Ready Batches",
-      "readySince": "Ready since",
-      "logUsage": "Log Usage",
-      "archive": "Archive",
-      "noReadyBatches": "No ready batches available.",
-      "startNewBatch": "Start a New Batch",
-      "createNewBatchTitle": "Create a New KNF Batch",
-      "cancel": "Cancel",
-      "quantity": "Quantity",
-      "quantityPlaceholder": "e.g., 5 or 20",
-      "unit": "Unit",
-      "unitPlaceholder": "e.g., Liters, kg",
-      "sellSurplus": "Sell Surplus",
-      "recipeData": [
-        {
-          "id": "fpj",
-          "name": "Fermented Plant Juice (FPJ)",
-          "description": "A fermented extract of a plant's sap and chlorophyll. Rich in enzymes and microorganisms, it's a potent growth enhancer for plants.",
-          "ingredients": [
-            "1kg of fast-growing plant parts (e.g., sweet potato tips, bamboo shoots)",
-            "1kg of brown sugar (or molasses)"
-          ],
-          "yield": "approx. 0.8 L",
-          "steps": [
-            "Collect plant material before sunrise when it is most potent. Do not wash.",
-            "Roughly chop the plant material.",
-            "Add an equal weight of brown sugar and mix well.",
-            "Pack tightly into a clay pot or glass jar, filling to about 2/3 capacity.",
-            "Cover with a breathable cloth and store in a cool, dark place.",
-            "Allow to ferment for about 7 days."
-          ],
-          "usage": "Dilution rate: 1:500 to 1:1000 with water. Applied as a foliar spray or soil drench."
-        },
-        {
-          "id": "faa",
-          "name": "Fish Amino Acid (FAA)",
-          "description": "A potent liquid fertilizer made from fish waste, rich in nitrogen and amino acids. Excellent for boosting plant growth, especially during the vegetative stage.",
-          "ingredients": [
-            "1kg of fish waste (heads, bones, entrails)",
-            "1kg of brown sugar (or molasses)"
-          ],
-          "yield": "approx. 1.5 L",
-          "steps": [
-            "Chop the fish parts into small pieces.",
-            "In a container, layer the fish parts and brown sugar, starting and ending with sugar.",
-            "Fill the container to about 2/3 capacity and cover with a breathable cloth.",
-            "Store in a cool, dark place and allow to ferment for at least 3-6 months."
-          ],
-          "usage": "Dilution rate: 1:1000 with water. Primarily used as a soil drench."
-        }
-      ],
-      "form": {
-        "typeLabel": "Input Type",
-        "typePlaceholder": "Select a KNF input",
-        "ingredientsLabel": "Ingredients Used",
-        "quantityLabel": "Quantity Produced",
-        "unitLabel": "Unit",
-        "startDateLabel": "Start Date",
-        "startButton": "Start Batch",
-        "startingButton": "Starting..."
-      },
-      "toasts": {
-        "loadErrorTitle": "Error",
-        "loadErrorDescription": "Could not fetch your KNF batches.",
-        "validationError": "Please fill out all fields to start a batch.",
-        "batchStartedTitle": "Batch Started!",
-        "batchStartedDescription": "Your new KNF batch is now fermenting.",
-        "batchStartFailed": "Batch start failed.",
-        "unexpectedError": "An unexpected error occurred.",
-        "batchUpdatedTitle": "Status Updated",
-        "batchUpdatedDescription": "Batch status successfully updated to {status}.",
-        "updateFailed": "Update failed.",
-        "couldNotUpdate": "Could not update the batch status."
-      }
-    },
-    "editCrop": {
-      "backLink": "Back to Crop Detail",
-      "title": "Edit Crop",
-      "description": "Update the details for your crop.",
-      "savingButton": "Saving...",
-      "saveButton": "Save Changes",
-      "toast": {
-        "notFound": "Crop not found.",
-        "loadError": "Could not load crop data to edit.",
-        "error": "Error",
-        "loadFail": "Could not load crop data: {message}",
-        "success": "Crop Updated!",
-        "description": "{cropType} was updated successfully.",
-        "fail": "Update failed."
-      }
-    },
-    "editFarm": {
-      "backToFarm": "Back to Farm Detail",
-      "title": "Edit Farm",
-      "description": "Update the details of your farm.",
-      "form": {
-        "submitButton": "Save Changes"
-      },
-      "toast": {
-        "notFoundTitle": "Not Found",
-        "loadError": "Could not load the farm you wish to edit.",
-        "loadFail": "Could not load farm data: {message}",
-        "successTitle": "Farm Updated!",
-        "successDescription": "'{farmName}' was updated successfully.",
-        "errorTitle": "Update Failed"
-      }
-    }
+  "common": {
+    "error": "Error"
   }
 }
