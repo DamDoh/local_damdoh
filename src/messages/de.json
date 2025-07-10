@@ -269,5 +269,69 @@
       "noResults": "Keine Ergebnisse für Ihre Anfrage gefunden.",
       "tryAgain": "Versuchen Sie einen anderen Suchbegriff oder verwenden Sie allgemeinere Schlüsselwörter."
     }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Verbindungen pflegen, Wohlstand ernten",
+      "subtitle": "Wir haben es uns zur Aufgabe gemacht, die globale landwirtschaftliche Lieferkette zu digitalisieren und zu verbinden, um jeden Beteiligten vom Boden bis zum Regal zu stärken."
+    },
+    "vision": {
+      "title": "Unsere Vision für eine vernetzte Zukunft",
+      "p1": "DamDoh entstand aus einer einfachen, aber kraftvollen Idee: dass Technologie die Lücken in der Agrarwelt schließen kann. Wir stellen uns eine Welt vor, in der Kleinbauern direkten Zugang zu globalen Märkten haben, in der Käufer Produkte mit nachweisbarem Vertrauen beziehen können und in der Wissen frei fließt, um ein nachhaltigeres und gerechteres Lebensmittelsystem zu schaffen.",
+      "p2": "Wir sind mehr als nur eine Plattform; wir sind eine Gemeinschaft, die sich der Lösung realer Herausforderungen mit innovativen, benutzerzentrierten Lösungen widmet.",
+      "foundersTitle": "Von den Gründern"
+    },
+    "challenge": {
+      "title": "Die fragmentierte Landschaft der Landwirtschaft",
+      "description": "Die landwirtschaftliche Lieferkette ist komplex und oft unzusammenhängend, was zahlreiche Herausforderungen für alle Beteiligten mit sich bringt.",
+      "list": {
+        "knowledge": "Informationslücken: Landwirte haben keinen Zugang zu modernen Techniken und Echtzeit-Marktdaten.",
+        "market": "Marktzugang: Kleinbauern haben Schwierigkeiten, sich mit größeren, profitableren Märkten zu verbinden.",
+        "quality": "Qualität & Vertrauen: Käufer sind unsicher über Produktqualität, Herkunft und Anbaumethoden.",
+        "logistics": "Ineffiziente Logistik: Schlechte Koordination führt zu hohen Kosten und erheblichen Nachernteverlusten.",
+        "financial": "Finanzielle Ausgrenzung: Mangel an formellen Aufzeichnungen verhindert den Zugang zu Krediten und Versicherungen.",
+        "climate": "Klimawandel: Zunehmende Unvorhersehbarkeit erfordert widerstandsfähigere Anbausysteme.",
+        "informal": "Informelle Wirtschaft: Ein Mangel an digitalen Aufzeichnungen behindert Wachstum und Formalisierung."
+      }
+    },
+    "solution": {
+      "title": "Die DamDoh-Lösung: Ein integriertes Ökosystem",
+      "description": "Wir begegnen diesen Herausforderungen, indem wir eine einzige, einheitliche Plattform mit Werkzeugen für alle bereitstellen.",
+      "list": {
+        "education": "KI-gestützte Bildung",
+        "ai": "Intelligentes Networking & KI",
+        "logistics": "Integrierte Logistik",
+        "financial": "Finanzdienstleistungen"
+      }
+    },
+    "beyondTechnology": {
+      "title": "Mehr als nur Technologie",
+      "list": {
+        "p2p": {
+          "title": "Peer-to-Peer",
+          "content": "Landwirte vernetzen sich mit anderen Landwirten, um Wissen auszutauschen und Genossenschaften zu gründen."
+        },
+        "p2b": {
+          "title": "Erzeuger-zu-Unternehmen",
+          "content": "Direkte Verbindungen zwischen Landwirten und Käufern, Verarbeitern und Exporteuren, wodurch unnötige Zwischenhändler wegfallen."
+        },
+        "p2e": {
+          "title": "Erzeuger-zu-Experte",
+          "content": "Zugang zu Agronomen, Finanzberatern und Logistikdienstleistern zur Verbesserung des Betriebs."
+        },
+        "p2w": {
+          "title": "Erzeuger-zu-Welt",
+          "content": "Ermöglicht Kleinbauern die Teilnahme am globalen Markt mit Vertrauen und Transparenz."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Treten Sie unserem wachsenden Ökosystem bei",
+      "p1": "Unser Engagement gilt den Menschen, die die Welt ernähren. Wir glauben, dass wir durch die Bereitstellung der notwendigen digitalen Werkzeuge einen widerstandsfähigeren, profitableren und nachhaltigeren Agrarsektor für kommende Generationen fördern können.",
+      "p2": "Egal, ob Sie ein Samenkorn pflanzen, in großen Mengen einkaufen oder eine Farm finanzieren, Sie haben einen Platz in der DamDoh-Gemeinschaft.",
+      "p3": "Lassen Sie uns zusammen wachsen.",
+      "button": "Erstellen Sie Ihr Profil"
+    }
   }
 }
+

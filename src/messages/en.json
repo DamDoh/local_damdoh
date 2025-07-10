@@ -269,5 +269,69 @@
       "noResults": "No results found for your query.",
       "tryAgain": "Try a different search term or use broader keywords."
     }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Cultivating Connections, Harvesting Prosperity",
+      "subtitle": "We are on a mission to digitize and connect the global agricultural supply chain, empowering every stakeholder from the soil to the shelf."
+    },
+    "vision": {
+      "title": "Our Vision for a Connected Future",
+      "p1": "DamDoh was born from a simple yet powerful idea: that technology can bridge the gaps in the agricultural world. We envision a world where smallholder farmers have direct access to global markets, where buyers can source produce with verifiable trust, and where knowledge flows freely to create a more sustainable and equitable food system.",
+      "p2": "We are more than just a platform; we are a community dedicated to solving real-world challenges with innovative, user-centric solutions.",
+      "foundersTitle": "From the Founders"
+    },
+    "challenge": {
+      "title": "The Fragmented Landscape of Agriculture",
+      "description": "The agricultural supply chain is complex and often disconnected, presenting numerous challenges for everyone involved.",
+      "list": {
+        "knowledge": "Information Gaps: Farmers lack access to modern techniques and real-time market data.",
+        "market": "Market Access: Smallholders struggle to connect with larger, more profitable markets.",
+        "quality": "Quality & Trust: Buyers face uncertainty about produce quality, origin, and farming practices.",
+        "logistics": "Inefficient Logistics: Poor coordination leads to high costs and significant post-harvest losses.",
+        "financial": "Financial Exclusion: Lack of formal records prevents access to credit and insurance.",
+        "climate": "Climate Change: Increasing unpredictability requires more resilient farming systems.",
+        "informal": "Informal Economy: A lack of digital records hinders growth and formalization."
+      }
+    },
+    "solution": {
+      "title": "The DamDoh Solution: An Integrated Ecosystem",
+      "description": "We tackle these challenges by providing a single, unified platform with tools for everyone.",
+      "list": {
+        "education": "AI-Powered Education",
+        "ai": "Smart Networking & AI",
+        "logistics": "Integrated Logistics",
+        "financial": "Financial Services"
+      }
+    },
+    "beyondTechnology": {
+      "title": "More Than Just Technology",
+      "list": {
+        "p2p": {
+          "title": "Peer-to-Peer",
+          "content": "Farmers connecting with other farmers to share knowledge and form cooperatives."
+        },
+        "p2b": {
+          "title": "Producer-to-Business",
+          "content": "Direct links between farmers and buyers, processors, and exporters, cutting out unnecessary middlemen."
+        },
+        "p2e": {
+          "title": "Producer-to-Expert",
+          "content": "Access to agronomists, financial advisors, and logistics providers to improve operations."
+        },
+        "p2w": {
+          "title": "Producer-to-World",
+          "content": "Enabling smallholder farmers to participate in the global marketplace with trust and transparency."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Join Our Growing Ecosystem",
+      "p1": "Our commitment is to the people who feed the world. By providing the digital tools they need, we believe we can foster a more resilient, profitable, and sustainable agricultural sector for generations to come.",
+      "p2": "Whether you're planting a seed, buying in bulk, or financing a farm, you have a place in the DamDoh community.",
+      "p3": "Let's grow together.",
+      "button": "Create Your Profile"
+    }
   }
 }
+

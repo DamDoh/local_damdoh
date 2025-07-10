@@ -269,5 +269,69 @@
       "noResults": "Aucun résultat trouvé pour votre requête.",
       "tryAgain": "Essayez un autre terme de recherche ou utilisez des mots-clés plus larges."
     }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Cultiver les Liens, Récolter la Prospérité",
+      "subtitle": "Notre mission est de numériser et de connecter la chaîne d'approvisionnement agricole mondiale, en autonomisant chaque partie prenante, du sol à l'étagère."
+    },
+    "vision": {
+      "title": "Notre Vision pour un Avenir Connecté",
+      "p1": "DamDoh est né d'une idée simple mais puissante : la technologie peut combler les lacunes du monde agricole. Nous envisageons un monde où les petits exploitants ont un accès direct aux marchés mondiaux, où les acheteurs peuvent s'approvisionner en produits avec une confiance vérifiable, et où la connaissance circule librement pour créer un système alimentaire plus durable et équitable.",
+      "p2": "Nous sommes plus qu'une simple plateforme ; nous sommes une communauté dédiée à la résolution de défis du monde réel avec des solutions innovantes et centrées sur l'utilisateur.",
+      "foundersTitle": "Des Fondateurs"
+    },
+    "challenge": {
+      "title": "Le Paysage Fragmenté de l'Agriculture",
+      "description": "La chaîne d'approvisionnement agricole est complexe et souvent déconnectée, présentant de nombreux défis pour tous les acteurs impliqués.",
+      "list": {
+        "knowledge": "Manque d'information : Les agriculteurs n'ont pas accès aux techniques modernes et aux données de marché en temps réel.",
+        "market": "Accès au marché : Les petits exploitants ont du mal à se connecter à des marchés plus grands et plus rentables.",
+        "quality": "Qualité et confiance : Les acheteurs sont confrontés à l'incertitude quant à la qualité, l'origine et les pratiques agricoles des produits.",
+        "logistics": "Logistique inefficace : Une mauvaise coordination entraîne des coûts élevés et des pertes post-récolte importantes.",
+        "financial": "Exclusion financière : Le manque de dossiers formels empêche l'accès au crédit et à l'assurance.",
+        "climate": "Changement climatique : L'imprévisibilité croissante nécessite des systèmes agricoles plus résilients.",
+        "informal": "Économie informelle : L'absence d'enregistrements numériques entrave la croissance et la formalisation."
+      }
+    },
+    "solution": {
+      "title": "La Solution DamDoh : Un Écosystème Intégré",
+      "description": "Nous relevons ces défis en fournissant une plateforme unique et unifiée avec des outils pour tous.",
+      "list": {
+        "education": "Éducation assistée par l'IA",
+        "ai": "Réseautage intelligent et IA",
+        "logistics": "Logistique Intégrée",
+        "financial": "Services Financiers"
+      }
+    },
+    "beyondTechnology": {
+      "title": "Plus que de la Simple Technologie",
+      "list": {
+        "p2p": {
+          "title": "Pair-à-pair",
+          "content": "Les agriculteurs se connectent avec d'autres agriculteurs pour partager des connaissances et former des coopératives."
+        },
+        "p2b": {
+          "title": "Producteur-à-Entreprise",
+          "content": "Liens directs entre agriculteurs et acheteurs, transformateurs et exportateurs, éliminant les intermédiaires inutiles."
+        },
+        "p2e": {
+          "title": "Producteur-à-Expert",
+          "content": "Accès à des agronomes, des conseillers financiers et des prestataires logistiques pour améliorer les opérations."
+        },
+        "p2w": {
+          "title": "Producteur-vers-le-Monde",
+          "content": "Permettre aux petits exploitants de participer au marché mondial avec confiance et transparence."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Rejoignez notre Écosystème en Pleine Croissance",
+      "p1": "Notre engagement va aux personnes qui nourrissent le monde. En fournissant les outils numériques dont ils ont besoin, nous croyons que nous pouvons favoriser un secteur agricole plus résilient, rentable et durable pour les générations à venir.",
+      "p2": "Que vous plantiez une graine, achetiez en gros ou financiez une ferme, vous avez votre place dans la communauté DamDoh.",
+      "p3": "Grandissons ensemble.",
+      "button": "Créez votre Profil"
+    }
   }
 }
+
