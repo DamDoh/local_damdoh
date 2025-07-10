@@ -6,13 +6,16 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, ArrowRight, Info, TrendingUp, MoreHorizontal, RefreshCw, AlertTriangle, Ticket } from "lucide-react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { suggestConnections, type SuggestedConnectionsInput, type SuggestedConnectionsOutput } from "@/ai/flows/suggested-connections";
+import { httpsCallable } from "firebase/functions";
+import { functions } from "@/lib/firebase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/lib/auth-utils";
 import type { StakeholderRole } from "@/lib/constants";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { useTranslations } from "next-intl";
+import { useToast } from "@/hooks/use-toast";
 
 
 interface AISuggestion {
@@ -26,6 +29,7 @@ interface AISuggestion {
 
 export function DashboardRightSidebar() {
   const t = useTranslations('DashboardRightSidebar');
+  const { toast } = useToast();
   const [followedSuggestions, setFollowedSuggestions] = useState<Set<string>>(new Set());
   const [aiSuggestions, setAiSuggestions] = useState<AISuggestion[]>([]);
   const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(true);
@@ -33,6 +37,9 @@ export function DashboardRightSidebar() {
   
   const { user, loading: authLoading } = useAuth();
   const { profile, loading: profileLoading } = useUserProfile();
+
+  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'sendConnectionRequest'), []);
+  const suggestConnectionsCallable = useMemo(() => httpsCallable(functions, 'suggestConnections'), []);
 
   const fetchSuggestions = useCallback(async () => {
     if (!profile) return; // Wait until the user profile is loaded
@@ -66,7 +73,7 @@ export function DashboardRightSidebar() {
     } finally {
       setIsLoadingSuggestions(false);
     }
-  }, [profile, t]);
+  }, [profile, t, suggestConnectionsCallable]);
 
   useEffect(() => {
     // Only fetch suggestions if we are not loading profile and user exists
@@ -80,13 +87,23 @@ export function DashboardRightSidebar() {
   }, [authLoading, user, profileLoading, profile, fetchSuggestions]);
 
 
-  const handleFollow = (suggestionId: string) => {
-    setFollowedSuggestions(prev => {
-      const newSet = new Set(prev);
-      newSet.add(suggestionId);
-      return newSet;
-    });
-    console.log(`Followed suggestion: ${suggestionId}`);
+  const handleFollow = async (suggestionId: string) => {
+    if (!user) {
+        toast({ title: "Please sign in to connect.", variant: "destructive" });
+        return;
+    }
+    setFollowedSuggestions(prev => new Set(prev).add(suggestionId));
+    try {
+        await sendConnectionRequestCallable({ recipientId: suggestionId });
+        toast({ title: "Connection Request Sent!", description: "Your request has been sent to the user."});
+    } catch (error: any) {
+        toast({ title: "Could Not Send Request", description: error.message, variant: "destructive" });
+        setFollowedSuggestions(prev => {
+            const newSet = new Set(prev);
+            newSet.delete(suggestionId);
+            return newSet;
+        });
+    }
   };
 
   const renderSuggestions = () => {
