@@ -343,5 +343,145 @@
     "findButton": "Suchen",
     "resultsTitle": "Suchergebnisse",
     "resultsPlaceholder": "Benutzerdetails werden hier nach einer erfolgreichen Suche angezeigt."
+  },
+  "Marketplace": {
+    "title": "Marktplatz",
+    "description": "Entdecken, kaufen und verkaufen Sie landwirtschaftliche Produkte und Dienstleistungen.",
+    "createShopButton": "Shop erstellen",
+    "myOrdersButton": "Meine Bestellungen",
+    "createListingButton": "Angebot erstellen",
+    "pinButton": "Als Startseite festlegen",
+    "unpinButton": "Von Startseite lösen",
+    "searchPlaceholder": "Produkte & Dienstleistungen suchen...",
+    "locationPlaceholder": "Nach Ort filtern...",
+    "typePlaceholder": "Nach Typ filtern...",
+    "recommendedForYou": "Für Sie empfohlen",
+    "discoverMore": "Mehr entdecken",
+    "viewDetails": "Details ansehen",
+    "viewServiceButton": "Dienstleistung ansehen"
+  },
+  "talentExchangePage": {
+    "title": "Talentbörse",
+    "description": "Finden oder bieten Sie spezialisierte landwirtschaftliche Dienstleistungen an, von Agrarberatung bis hin zum Maschinenbetrieb.",
+    "listServiceButton": "Dienstleistung anbieten",
+    "searchPlaceholder": "Nach Dienstleistung oder Fähigkeit suchen...",
+    "locationPlaceholder": "Nach Ort filtern...",
+    "categoryPlaceholder": "Nach Kategorie filtern...",
+    "allCategories": "Alle Kategorien",
+    "noResultsTitle": "Keine Dienstleistungen gefunden",
+    "noResultsDescription": "Versuchen Sie, Ihre Suche anzupassen. Es gibt derzeit keine Angebote, die Ihren Kriterien entsprechen.",
+    "toast": {
+      "error": {
+        "title": "Fehler",
+        "description": "Dienstleistungen konnten nicht geladen werden."
+      }
+    }
+  },
+  "traceabilityPage": {
+    "title": "Rückverfolgbarkeits-Hub",
+    "description": "Verfolgen Sie die Reise Ihrer Produkte vom Bauernhof bis zum Verbraucher. Geben Sie eine Chargen-ID ein, um zu beginnen.",
+    "inputPlaceholder": "Geben Sie die Rückverfolgbarkeits-ID ein...",
+    "trackButton": "Verfolgen",
+    "vtiDescription": "Die ID ist eine eindeutige Kennung für eine bestimmte Charge eines Produkts.",
+    "recentTitle": "Kürzlich verfolgte Chargen",
+    "recentDescription": "Sehen Sie sich die neuesten Produkte mit vollständiger Rückverfolgbarkeit auf der Plattform an.",
+    "noRecentBatches": "Derzeit sind keine öffentlich rückverfolgbaren Chargen verfügbar.",
+    "producerLabel": "Produzent",
+    "harvestDateLabel": "Erntedatum",
+    "viewReportButton": "Bericht anzeigen",
+    "detailPage": {
+      "backLink": "Zurück zum Hub",
+      "invalidIdError": "Ungültige Chargen-ID bereitgestellt.",
+      "loadError": "Fehler beim Laden der Rückverfolgbarkeitsdaten.",
+      "notFoundTitle": "Charge nicht gefunden",
+      "notFoundDescription": "Es wurde keine Charge mit dieser ID gefunden oder sie ist nicht öffentlich sichtbar.",
+      "traceableProduct": "Rückverfolgbares Produkt",
+      "batchIdLabel": "Chargen-ID",
+      "producerLabel": "Produzent",
+      "sustainablyGrownTitle": "Nachhaltig angebaut",
+      "sustainablyGrownDescription": "Die für diesen Batch protokollierten Aktivitäten entsprechen den nachhaltigen Praktiken.",
+      "harvestDateLabel": "Erntedatum",
+      "yieldLabel": "Ertrag",
+      "qualityLabel": "Qualität",
+      "notSpecified": "Nicht angegeben",
+      "journeyTitle": "Die Reise des Produkts",
+      "journeyDescription": "Eine chronologische Aufzeichnung aller Ereignisse für diesen Batch.",
+      "noEventDetails": "Keine zusätzlichen Details für dieses Ereignis.",
+      "observationType": "Beobachtungstyp",
+      "details": "Details",
+      "aiDiagnosis": "KI-Diagnose",
+      "geoLocationLabel": "Standort",
+      "noEventsFound": "Für diesen Batch wurden keine Ereignisse protokolliert."
+    }
+  },
+  "Forums": {
+    "title": "Foren",
+    "description": "Nehmen Sie an Diskussionen teil, stellen Sie Fragen und teilen Sie Ihr Fachwissen mit der DamDoh-Community.",
+    "buttons": {
+      "createTopic": "Neues Thema erstellen",
+      "loadMore": "Mehr laden"
+    },
+    "searchPlaceholder": "Foren durchsuchen...",
+    "pinning": {
+      "pinnedTitle": "Foren angeheftet",
+      "pinnedDescription": "Die Foren sind jetzt Ihre Standard-Homepage.",
+      "unpinnedTitle": "Foren gelöst",
+      "unpinnedDescription": "Ihre Homepage wurde auf die Standardeinstellung zurückgesetzt."
+    },
+    "lastActivity": "Letzte Aktivität vor {time}",
+    "noForums": "Keine Foren gefunden.",
+    "errors": {
+      "loadTitle": "Fehler",
+      "loadDescription": "Foren konnten nicht geladen werden."
+    },
+    "topic": {
+      "backLink": "Zurück zu allen Foren",
+      "buttons": {
+        "createPost": "Beitrag erstellen",
+        "loadingMore": "Wird geladen..."
+      },
+      "postMeta": "Von {author} am {date}",
+      "noPosts": {
+        "title": "Noch keine Beiträge",
+        "description": "Seien Sie der Erste, der eine Diskussion in diesem Thema beginnt.",
+        "button": "Ihren ersten Beitrag erstellen"
+      },
+      "notFound": {
+        "title": "Thema nicht gefunden",
+        "description": "Das gesuchte Forumsthema existiert nicht.",
+        "backButton": "Zurück zu allen Foren"
+      }
+    }
+  },
+  "sustainabilityPage": {
+    "title": "Nachhaltigkeits-Dashboard",
+    "description": "Verfolgen und visualisieren Sie die Umweltauswirkungen Ihrer landwirtschaftlichen Praktiken.",
+    "carbonFootprint": "CO2-Fußabdruck",
+    "waterEfficiency": "Wassereffizienz",
+    "biodiversityScore": "Biodiversitäts-Score",
+    "metricCard": {
+      "trendText": "im Vergleich zum letzten Monat"
+    },
+    "practicesTitle": "Protokollierte nachhaltige Praktiken",
+    "practicesTable": {
+      "practice": "Praxis",
+      "lastLogged": "Zuletzt protokolliert"
+    },
+    "certificationsTitle": "Ihre Zertifizierungen",
+    "certificationsTable": {
+      "certification": "Zertifizierung",
+      "status": "Status",
+      "expiry": "Ablaufdatum"
+    },
+    "auth": {
+      "title": "Bitte einloggen",
+      "description": "Sie müssen eingeloggt sein, um Ihr Nachhaltigkeits-Dashboard anzuzeigen.",
+      "button": "Einloggen"
+    },
+    "noData": {
+      "title": "Keine Daten verfügbar",
+      "description": "Beginnen Sie mit der Protokollierung von Farmaktivitäten, um Ihre Nachhaltigkeitsmetriken zu sehen."
+    }
   }
 }
+

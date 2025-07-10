@@ -153,81 +153,81 @@
     "appStoreAlt": "Télécharger dans l'App Store"
   },
   "searchPage": {
-    "title": "Búsqueda Universal",
-    "description": "Encuentra cualquier cosa en la plataforma DamDoh, desde productos y servicios hasta personas y discusiones.",
-    "placeholder": "Busca café orgánico, reparación de tractores o un usuario...",
-    "searchButton": "Buscar",
-    "popularSearches": "Búsquedas Populares",
-    "popularSearch1": "Fertilizante Orgánico",
-    "popularSearch2": "Logística en Kenia",
-    "popularSearch3": "Compradores de café Europa",
-    "popularSearch4": "Mano de obra agrícola",
-    "popularSearch5": "Tractor en alquiler",
+    "title": "Recherche Universelle",
+    "description": "Trouvez n'importe quoi sur la plateforme DamDoh, des produits et services aux personnes et discussions.",
+    "placeholder": "Recherchez du café bio, une réparation de tracteur ou un utilisateur...",
+    "searchButton": "Rechercher",
+    "popularSearches": "Recherches Populaires",
+    "popularSearch1": "Engrais Organique",
+    "popularSearch2": "Logistique au Kenya",
+    "popularSearch3": "Acheteurs de café Europe",
+    "popularSearch4": "Main d'œuvre agricole",
+    "popularSearch5": "Location de tracteur",
     "modal": {
-      "title": "Búsqueda Universal",
-      "placeholder": "Estoy buscando...",
-      "searchButton": "Buscar",
-      "searchError": "Búsqueda Fallida",
-      "searchErrorDescription": "Se produjo un error inesperado durante la búsqueda. Por favor, inténtelo de nuevo.",
-      "invalidCodeError": "Esto no parece ser un código QR válido de DamDoh.",
-      "scanFailed": "Escaneo Fallido",
-      "scanError": "Error de Escaneo",
-      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtelo de nuevo.",
-      "interpretationTitle": "Interpretación de IA",
-      "interpretationNotesDefault": "Mostrando resultados generales.",
-      "filtersTitle": "Filtros Aplicados",
+      "title": "Recherche Universelle",
+      "placeholder": "Je recherche...",
+      "searchButton": "Rechercher",
+      "searchError": "Échec de la recherche",
+      "searchErrorDescription": "Une erreur inattendue est survenue lors de la recherche. Veuillez réessayer.",
+      "invalidCodeError": "Cela ne semble pas être un code QR DamDoh valide.",
+      "scanFailed": "Échec du scan",
+      "scanError": "Erreur de scan",
+      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
+      "interpretationTitle": "Interprétation par l'IA",
+      "interpretationNotesDefault": "Affichage des résultats généraux.",
+      "filtersTitle": "Filtres Appliqués",
       "results": {
-        "users": "Perfiles",
-        "marketplaceItems": "Mercado",
-        "forums": "Foros",
-        "vti_registry": "Informe de Trazabilidad",
-        "knowledge_articles": "Centro de Conocimiento",
-        "agri_events": "Eventos Agrícolas"
+        "users": "Profils",
+        "marketplaceItems": "Marché",
+        "forums": "Forums",
+        "vti_registry": "Rapport de Traçabilité",
+        "knowledge_articles": "Centre de Connaissances",
+        "agri_events": "Événements Agricoles"
       },
-      "noResults": "No se encontraron resultados para su consulta.",
-      "tryAgain": "Intente con un término de búsqueda diferente o use palabras clave más amplias."
+      "noResults": "Aucun résultat trouvé pour votre recherche.",
+      "tryAgain": "Essayez un autre terme de recherche ou utilisez des mots-clés plus généraux."
     }
   },
   "aboutPage": {
     "hero": {
-      "title": "Cultiver des liens, récolter la prospérité",
-      "subtitle": "Nous avons pour mission de numériser et de connecter la chaîne d'approvisionnement agricole mondiale, en autonomisant chaque acteur du sol à l'étalage."
+      "title": "Cultiver les liens, récolter la prospérité",
+      "subtitle": "Nous avons pour mission de numériser et de connecter la chaîne d'approvisionnement agricole mondiale, en donnant les moyens à chaque acteur, de la terre à l'étalage."
     },
     "vision": {
-      "title": "Notre vision pour un avenir connecté",
-      "p1": "DamDoh est né d'une idée simple mais puissante : la technologie peut combler les lacunes dans le monde de l'agriculture. Nous imaginons un monde où les petits agriculteurs ont un accès direct aux marchés mondiaux, où les acheteurs peuvent s'approvisionner en produits d'une confiance prouvée, et où le savoir circule librement pour créer un système alimentaire plus durable et équitable.",
-      "p2": "Nous sommes plus qu'une simple plateforme ; nous sommes une communauté dédiée à la résolution de défis du monde réel avec des solutions innovantes et centrées sur l'utilisateur.",
+      "title": "Notre vision d'un avenir connecté",
+      "p1": "DamDoh est né d'une idée simple mais puissante : la technologie peut combler les lacunes dans le monde agricole. Nous imaginons un monde où les petits agriculteurs ont un accès direct aux marchés mondiaux, où les acheteurs peuvent s'approvisionner en produits en toute confiance, et où les connaissances circulent librement pour créer un système alimentaire plus durable et plus équitable.",
+      "p2": "Nous sommes plus qu'une simple plateforme ; nous sommes une communauté dédiée à la résolution de problèmes réels avec des solutions innovantes et centrées sur l'utilisateur.",
       "foundersTitle": "Des fondateurs"
     },
     "challenge": {
       "title": "Le paysage fragmenté de l'agriculture",
-      "description": "La chaîne d'approvisionnement agricole est un réseau complexe de systèmes déconnectés, créant des inefficacités systémiques qui ont un impact sur tout le monde, du producteur au consommateur.",
+      "description": "La chaîne d'approvisionnement agricole est un réseau complexe de systèmes déconnectés, créant des inefficacités systémiques qui affectent tout le monde, du producteur au consommateur.",
       "list": {
         "marketAccess": "Accès limité au marché",
         "inefficiency": "Inefficacité de la chaîne d'approvisionnement",
         "financialExclusion": "Exclusion financière",
-        "informationGaps": "Manques d'informations critiques",
+        "informationGaps": "Lacunes d'informations critiques",
         "qualityTrust": "Déficits de qualité et de confiance",
         "climatePressure": "Pression climatique intense",
         "foodLoss": "Pertes post-récolte élevées",
-        "dataFragmentation": "Fragmentation des données et manque de normes"
+        "dataFragmentation": "Fragmentation des données et absence de normes"
       },
       "details": [
         "Les petits agriculteurs sont souvent déconnectés des marchés nationaux et internationaux plus vastes et plus rentables.",
-        "Une logistique désarticulée, de l'agrégation à la livraison du dernier kilomètre, entraîne des coûts élevés et des retards importants.",
-        "Le manque de dossiers financiers formalisés empêche des millions d'agriculteurs d'accéder au crédit, aux prêts et à l'assurance.",
-        "Les agriculteurs manquent souvent d'accès aux données de marché en temps opportun, à l'agronomie avancée et aux meilleures pratiques durables.",
-        "Les acheteurs ne peuvent pas facilement vérifier l'origine, la qualité ou les pratiques durables des produits qu'ils achètent.",
-        "Des conditions météorologiques de plus en plus imprévisibles exigent des systèmes agricoles plus résilients et adaptables.",
-        "Des infrastructures de stockage et de transport inadéquates entraînent la détérioration d'une partie importante des produits avant qu'ils n'atteignent le consommateur.",
-        "Les informations sont piégées dans des silos (journaux papier, applications différentes, etc.), ce qui rend impossible d'obtenir une vue d'ensemble complète de la chaîne d'approvisionnement."
+        "Une logistique décousue, de la collecte au dernier kilomètre, entraîne des coûts élevés et des retards importants.",
+        "L'absence de dossiers financiers formalisés empêche des millions d'agriculteurs d'accéder au crédit, aux prêts et à l'assurance.",
+        "Les agriculteurs manquent souvent d'accès à des données de marché actualisées, à une agronomie avancée et à des meilleures pratiques durables.",
+        "Les acheteurs ne peuvent pas vérifier facilement l'origine, la qualité ou les pratiques durables des produits qu'ils achètent.",
+        "Des conditions météorologiques de plus en plus imprévisibles nécessitent des systèmes agricoles plus résilients et adaptables.",
+        "Des infrastructures de stockage et de transport inadéquates entraînent la détérioration d'une part importante des récoltes avant qu'elles n'atteignent le consommateur.",
+        "Les informations sont piégées dans des silos (journaux papier, applications diverses, etc.), ce qui rend impossible d'obtenir une vue d'ensemble complète de la chaîne d'approvisionnement."
       ]
     },
     "solution": {
-      "title": "La Solution DamDoh : Un écosystème intégré",
-      "description": "Nous relevons ces défis en fournissant une plateforme unique et unifiée avec des outils pour tous.",
+      "title": "La solution DamDoh : un écosystème intégré",
+      "description": "Nous répondons à ces défis en fournissant une plateforme unique et unifiée avec des outils pour tous.",
       "list": {
-        "education": "Éducation assistée par IA",
+        "education": "Éducation assistée par l'IA",
         "ai": "Réseautage intelligent et IA",
         "marketplace": "Marché et commerce électronique",
         "logistics": "Logistique intégrée",
@@ -239,7 +239,7 @@
       "list": {
         "p2p": {
           "title": "Pair à pair",
-          "content": "Connecter les agriculteurs à d'autres agriculteurs pour partager leurs connaissances et former des coopératives."
+          "content": "Connecter les agriculteurs à d'autres agriculteurs pour partager leurs connaissances et créer des coopératives."
         },
         "p2b": {
           "title": "Producteur à entreprise",
@@ -263,26 +263,89 @@
       "button": "Créez votre profil"
     }
   },
-  "blogPage": {
-    "title": "Blog & Articles DamDoh",
-    "description": "Perspectives, récits et savoirs à la pointe de la révolution agricole.",
-    "readMore": "Lire la suite",
-    "meta": "Par {author} le {date}",
-    "error": {
-      "title": "Erreur",
-      "description": "Impossible de charger les articles du blog. Veuillez réessayer plus tard."
+  "Auth": {
+    "signUpWelcome": "Rejoignez le réseau agricole {appName}",
+    "signUpTitle": "Créer un compte",
+    "signUpDescription": "Saisissez vos informations pour commencer.",
+    "nameLabel": "Nom complet",
+    "namePlaceholder": "Marie Dubois",
+    "roleLabel": "Votre rôle principal",
+    "rolePlaceholder": "Sélectionnez votre rôle...",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "nom@example.com",
+    "passwordLabel": "Mot de passe",
+    "passwordPlaceholder": "••••••••",
+    "confirmPasswordLabel": "Confirmer le mot de passe",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Création du compte...",
+    "signUpButton": "S'inscrire",
+    "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
+    "signInLink": "Se connecter",
+    "signUpLink": "S'inscrire",
+    "signInWelcome": "Bienvenue à nouveau sur {appName}",
+    "signInTitle": "Se connecter",
+    "signInDescription": "Saisissez vos identifiants pour accéder à votre compte.",
+    "forgotPasswordLink": "Mot de passe oublié ?",
+    "signingInButton": "Connexion en cours...",
+    "signInButton": "Se connecter",
+    "noAccountPrompt": "Vous n'avez pas de compte ?",
+    "recoverWithUniversalIdPrompt": "Récupérer le compte avec l'ID universel",
+    "forgotPasswordResetPrompt": "Réinitialisez votre mot de passe pour {appName}",
+    "forgotPasswordTitle": "Mot de passe oublié",
+    "forgotPasswordDescription": "Pas de problème, nous vous enverrons des instructions pour le réinitialiser.",
+    "sendResetLinkButton": "Envoyer le lien de réinitialisation",
+    "sendingEmailButton": "Envoi en cours...",
+    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
+    "error": "Erreur",
+    "forgotPassword": {
+      "emailSentTitle": "Vérifiez votre e-mail",
+      "emailSentDescription": "Un lien de réinitialisation de mot de passe a été envoyé à {email}.",
+      "emailSentDescriptionIfAccountExists": "Si un compte existe avec {email}, un lien de réinitialisation de mot de passe a été envoyé.",
+      "successTitle": "E-mail envoyé !",
+      "successDescription": "Veuillez vérifier votre boîte de réception (et votre dossier spam) pour le lien de réinitialisation de mot de passe.",
+      "errors": {
+        "unexpected": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+        "invalidEmail": "L'adresse e-mail n'est pas valide.",
+        "tooManyRequests": "Trop de demandes. Veuillez réessayer plus tard.",
+        "default": "Échec de l'envoi de l'e-mail de réinitialisation"
+      }
     },
-    "noPosts": {
-      "title": "Aucun article pour le moment",
-      "description": "Notre blog ne fait que commencer. Revenez bientôt pour découvrir les perspectives et les récits de la communauté DamDoh."
+    "resetPasswordPrompt": "Définissez un nouveau mot de passe pour votre compte {appName}",
+    "resetPasswordTitle": "Réinitialiser votre mot de passe",
+    "resetPasswordDescription": "Saisissez un nouveau mot de passe sécurisé pour votre compte.",
+    "newPasswordLabel": "Nouveau mot de passe",
+    "newPasswordPlaceholder": "••••••••",
+    "resettingPasswordButton": "Réinitialisation...",
+    "resetPasswordButton": "Réinitialiser le mot de passe",
+    "resetPassword": {
+      "successTitle": "Mot de passe réinitialisé avec succès !",
+      "successDescription": "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
+      "successRedirect": "Vous allez être redirigé vers la page de connexion sous peu.",
+      "errors": {
+        "missingCode": "Lien de réinitialisation de mot de passe non valide. Veuillez en demander un nouveau.",
+        "missingCodeTitle": "Lien non valide",
+        "missingCodeDescription": "Le lien de réinitialisation du mot de passe est manquant ou non valide. Veuillez retourner à la page 'Mot de passe oublié' pour en demander un nouveau.",
+        "unexpected": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+        "invalidOrExpiredCode": "Le lien de réinitialisation du mot de passe n'est pas valide ou a expiré. Veuillez en demander un nouveau.",
+        "userDisabled": "Ce compte utilisateur a été désactivé.",
+        "userNotFound": "Aucun utilisateur trouvé correspondant à ce lien de réinitialisation.",
+        "weakPassword": "Le nouveau mot de passe n'est pas assez sécurisé.",
+        "default": "Échec de la réinitialisation du mot de passe"
+      }
     },
-    "backLink": "Retour au Blog",
-    "notFound": {
-      "title": "Article non trouvé",
-      "description": "L'article que vous recherchez n'existe pas ou a peut-être été déplacé.",
-      "backButton": "Retour au Blog"
-    },
-    "originalContentTitle": "Contenu Original ({lang})"
+    "recoverPage": {
+      "title": "Récupération de Compte",
+      "description": "Récupérez l'accès à votre compte avec l'aide d'un ami de confiance.",
+      "howItWorksTitle": "Comment fonctionne la récupération sociale",
+      "step1": "Saisissez votre numéro de téléphone pour démarrer une session de récupération.",
+      "step2": "Montrez le code QR généré à un ami de confiance qui utilise également DamDoh.",
+      "step3": "Votre ami scanne le code avec son application pour confirmer votre identité.",
+      "startButton": "Démarrer la Récupération",
+      "scanTitle": "Demandez à un Ami de Scanner",
+      "scanDescription": "Demandez à une connexion de confiance sur votre réseau DamDoh de scanner ce code QR pour vérifier votre identité.",
+      "scanNote": "Ce code est temporaire et expirera dans 10 minutes.",
+      "startOverButton": "Recommencer"
+    }
   },
   "networkPage": {
     "title": "Réseau des Acteurs",
@@ -343,5 +406,145 @@
     "findButton": "Trouver",
     "resultsTitle": "Résultats de la recherche",
     "resultsPlaceholder": "Les détails de l'utilisateur apparaîtront ici après une recherche réussie."
+  },
+  "Marketplace": {
+    "title": "Marché",
+    "description": "Découvrez, achetez et vendez des produits et services agricoles.",
+    "createShopButton": "Créer une boutique",
+    "myOrdersButton": "Mes commandes",
+    "createListingButton": "Créer une annonce",
+    "pinButton": "Épingler comme page d'accueil",
+    "unpinButton": "Désépingler de la page d'accueil",
+    "searchPlaceholder": "Rechercher des produits et services...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "typePlaceholder": "Filtrer par type...",
+    "recommendedForYou": "Recommandé pour vous",
+    "discoverMore": "Découvrir plus",
+    "viewDetails": "Voir les détails",
+    "viewServiceButton": "Voir le service"
+  },
+  "talentExchangePage": {
+    "title": "Bourse de Talents",
+    "description": "Trouvez ou offrez des services agricoles spécialisés, de la consultation agronomique à l'exploitation de machines.",
+    "listServiceButton": "Proposer un service",
+    "searchPlaceholder": "Rechercher par service ou compétence...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "categoryPlaceholder": "Filtrer par catégorie...",
+    "allCategories": "Toutes les catégories",
+    "noResultsTitle": "Aucun service trouvé",
+    "noResultsDescription": "Essayez d'ajuster votre recherche. Il n'y a actuellement aucune offre correspondant à vos critères.",
+    "toast": {
+      "error": {
+        "title": "Erreur",
+        "description": "Impossible de charger les services."
+      }
+    }
+  },
+  "traceabilityPage": {
+    "title": "Centre de Traçabilité",
+    "description": "Suivez le parcours de vos produits de la ferme à la table. Entrez un ID de lot pour commencer.",
+    "inputPlaceholder": "Entrez l'ID de traçabilité...",
+    "trackButton": "Suivre",
+    "vtiDescription": "L'ID est un identifiant unique pour un lot de produit spécifique.",
+    "recentTitle": "Lots Récemment Traçables",
+    "recentDescription": "Découvrez les derniers produits avec une traçabilité complète sur la plateforme.",
+    "noRecentBatches": "Aucun lot publiquement traçable disponible pour le moment.",
+    "producerLabel": "Producteur",
+    "harvestDateLabel": "Date de récolte",
+    "viewReportButton": "Voir le rapport",
+    "detailPage": {
+      "backLink": "Retour au Centre de Traçabilité",
+      "invalidIdError": "ID de lot fourni invalide.",
+      "loadError": "Erreur lors du chargement des données de traçabilité.",
+      "notFoundTitle": "Lot Non Trouvé",
+      "notFoundDescription": "Aucun lot avec cet ID n'a été trouvé ou il n'est pas visible publiquement.",
+      "traceableProduct": "Produit Traçable",
+      "batchIdLabel": "ID du Lot",
+      "producerLabel": "Producteur",
+      "sustainablyGrownTitle": "Cultivé de Manière Durable",
+      "sustainablyGrownDescription": "Les activités enregistrées pour ce lot correspondent aux pratiques durables.",
+      "harvestDateLabel": "Date de Récolte",
+      "yieldLabel": "Rendement",
+      "qualityLabel": "Qualité",
+      "notSpecified": "Non spécifié",
+      "journeyTitle": "Le Parcours du Produit",
+      "journeyDescription": "Un enregistrement chronologique de tous les événements pour ce lot.",
+      "noEventDetails": "Aucun détail supplémentaire pour cet événement.",
+      "observationType": "Type d'Observation",
+      "details": "Détails",
+      "aiDiagnosis": "Diagnostic IA",
+      "geoLocationLabel": "Lieu",
+      "noEventsFound": "Aucun événement n'a été enregistré pour ce lot."
+    }
+  },
+  "Forums": {
+    "title": "Forums",
+    "description": "Participez à des discussions, posez des questions et partagez votre expertise avec la communauté DamDoh.",
+    "buttons": {
+      "createTopic": "Créer un Nouveau Sujet",
+      "loadMore": "Charger Plus"
+    },
+    "searchPlaceholder": "Rechercher dans les forums...",
+    "pinning": {
+      "pinnedTitle": "Forums Épinglés",
+      "pinnedDescription": "Les forums sont maintenant votre page d'accueil par défaut.",
+      "unpinnedTitle": "Forums Désépinglés",
+      "unpinnedDescription": "Votre page d'accueil a été réinitialisée par défaut."
+    },
+    "lastActivity": "Dernière activité il y a {time}",
+    "noForums": "Aucun forum trouvé.",
+    "errors": {
+      "loadTitle": "Erreur",
+      "loadDescription": "Impossible de charger les forums."
+    },
+    "topic": {
+      "backLink": "Retour à tous les forums",
+      "buttons": {
+        "createPost": "Créer une Publication",
+        "loadingMore": "Chargement..."
+      },
+      "postMeta": "Par {author} le {date}",
+      "noPosts": {
+        "title": "Aucune publication pour le moment",
+        "description": "Soyez le premier à lancer une discussion sur ce sujet.",
+        "button": "Créez votre première publication"
+      },
+      "notFound": {
+        "title": "Sujet non trouvé",
+        "description": "Le sujet du forum que vous recherchez n'existe pas.",
+        "backButton": "Retour à tous les forums"
+      }
+    }
+  },
+  "sustainabilityPage": {
+    "title": "Tableau de Bord de la Durabilité",
+    "description": "Suivez et visualisez l'impact environnemental de vos pratiques agricoles.",
+    "carbonFootprint": "Empreinte Carbone",
+    "waterEfficiency": "Efficacité de l'Eau",
+    "biodiversityScore": "Score de Biodiversité",
+    "metricCard": {
+      "trendText": "par rapport au mois dernier"
+    },
+    "practicesTitle": "Pratiques Durables Enregistrées",
+    "practicesTable": {
+      "practice": "Pratique",
+      "lastLogged": "Dernier Enregistrement"
+    },
+    "certificationsTitle": "Vos Certifications",
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Statut",
+      "expiry": "Expiration"
+    },
+    "auth": {
+      "title": "Veuillez vous connecter",
+      "description": "Vous devez être connecté pour voir votre tableau de bord de la durabilité.",
+      "button": "Se Connecter"
+    },
+    "noData": {
+      "title": "Aucune donnée disponible",
+      "description": "Commencez à enregistrer des activités agricoles pour voir vos métriques de durabilité."
+    }
   }
 }
+
