@@ -2,6 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { randomBytes } from 'crypto';
+import type { ApiKey } from "./types";
 
 const db = admin.firestore();
 
@@ -37,8 +38,6 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
         description,
         environment,
         status: 'Active',
-        // For security, only store a prefix of the key, not the whole thing.
-        // The full key is only ever shown to the user once upon creation.
         keyPrefix: apiKey.substring(0, 12), 
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
@@ -46,14 +45,14 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
     return { 
         success: true, 
         message: 'API Key generated successfully. Please copy it now, you will not be able to see it again.',
-        key: apiKey, // Return the full key to the user this one time.
+        key: apiKey,
         id: keyRef.id,
         description,
         environment,
         status: 'Active',
         keyPrefix: apiKey.substring(0, 12),
         createdAt: new Date().toISOString(),
-    };
+    } as ApiKey & { success: boolean, message: string };
 });
 
 export const getApiKeys = functions.https.onCall(async (data, context) => {
@@ -70,9 +69,9 @@ export const getApiKeys = functions.https.onCall(async (data, context) => {
             description: keyData.description,
             environment: keyData.environment,
             status: keyData.status,
-            keyPrefix: keyData.keyPrefix, // Show only the prefix
-            createdAt: keyData.createdAt.toDate().toISOString(),
-            key: `${keyData.keyPrefix}...` // Placeholder for display
+            keyPrefix: keyData.keyPrefix, 
+            createdAt: (keyData.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+            key: `${keyData.keyPrefix}...` 
         }
     });
 
