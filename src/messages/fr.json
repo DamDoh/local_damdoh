@@ -40,7 +40,7 @@
     "pollOptionsError": "Un sondage doit avoir au moins 2 options non vides.",
     "emptyPostError": "Votre publication ne peut pas être vide."
   },
-   "Auth": {
+  "Auth": {
     "recoverPage": {
       "title": "Récupération de Compte",
       "description": "Récupérez l'accès à votre compte avec l'aide d'un ami de confiance.",
