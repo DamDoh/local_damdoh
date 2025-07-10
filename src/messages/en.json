@@ -90,11 +90,32 @@
       "toast": {
         "loadErrorTitle": "Error Loading Reports",
         "formIncompleteTitle": "Incomplete Form",
-        "formIncompleteDescription": "Please select a report type, target user, and date range.",
+        "formIncompleteDescription": "Please select a report type, a target user, and a date range.",
         "generateSuccessTitle": "Report Generation Started",
         "generateSuccessDescription": "The report is being generated and will appear in the list below shortly.",
         "generateErrorTitle": "Report Generation Failed"
       }
     }
+  },
+   "AppFooter": {
+    "tagline": "Connecting the agricultural value chain for a sustainable future.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "About Us",
+    "contactLabel": "Contact",
+    "careersLabel": "Careers",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Resources",
+    "helpCenterLabel": "Help Center",
+    "communityGuidelinesLabel": "Community Guidelines",
+    "industryNewsLabel": "Industry News",
+    "eventsLabel": "Events",
+    "talentExchangeLabel": "Talent Exchange",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Privacy Policy",
+    "termsOfServiceLabel": "Terms of Service",
+    "copyright": "© {year} {appName}. All Rights Reserved.",
+    "getMobileApp": "Get the Mobile App",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store"
   }
 }

@@ -96,5 +96,26 @@
         "generateErrorTitle": "ការបង្កើតរបាយការណ៍បានបរាជ័យ"
       }
     }
+  },
+  "AppFooter": {
+    "tagline": "ការតភ្ជាប់ខ្សែសង្វាក់តម្លៃកសិកម្មសម្រាប់អនាគតប្រកបដោយនិរន្តរភាព។",
+    "damdohTitle": "ដាំដុះ",
+    "aboutLabel": "អំពីយើង",
+    "contactLabel": "ទំនាក់ទំនង",
+    "careersLabel": "អាជីព",
+    "blogLabel": "ប្លុក",
+    "resourcesTitle": "ធនធាន",
+    "helpCenterLabel": "មជ្ឈមណ្ឌលជំនួយ",
+    "communityGuidelinesLabel": "គោលការណ៍ណែនាំសហគមន៍",
+    "industryNewsLabel": "ព័ត៌មានឧស្សាហកម្ម",
+    "eventsLabel": "ព្រឹត្តិការណ៍",
+    "talentExchangeLabel": "ការផ្លាស់ប្តូរទេពកោសល្យ",
+    "legalTitle": "ផ្នែកច្បាប់",
+    "privacyPolicyLabel": "គោលការណ៍​ភាព​ឯកជន",
+    "termsOfServiceLabel": "លក្ខខណ្ឌ​នៃ​សេវាកម្ម",
+    "copyright": "© {year} {appName}. រក្សា​រ​សិទ្ធ​គ្រប់យ៉ាង។",
+    "getMobileApp": "ទទួលបានកម្មវិធីទូរស័ព្ទ",
+    "googlePlayAlt": "ទទួលវានៅលើ Google Play",
+    "appStoreAlt": "ទាញយកនៅលើ App Store"
   }
 }
