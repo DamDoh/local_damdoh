@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -688,6 +689,8 @@ export interface PostReply {
         name: string;
         avatarUrl?: string;
     };
+    userAvatar?: string;
+    userName: string;
 }
 
 export interface PollOption {
