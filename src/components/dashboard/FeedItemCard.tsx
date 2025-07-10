@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
@@ -71,7 +70,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   const { profile: currentUserProfile } = useUserProfile();
   
   useEffect(() => {
-    // Reset state when the item prop changes
+    // Reset state when the item prop changes to prevent visual bugs
     setIsLiked(false); 
     setShowCommentInput(false);
     setCommentText("");

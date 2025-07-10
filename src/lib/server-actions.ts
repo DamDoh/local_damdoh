@@ -4,13 +4,13 @@
 import {
   getProfileByIdFromDB as getProfileByIdFromDB_internal,
   getAllProfilesFromDB as getAllProfilesFromDB_internal,
-  performSearch as performSearch_internal,
-  getFinancialInstitutions as getFinancialInstitutions_internal
 } from './db-utils';
+
 import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";
 import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
 import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRotationOutput } from '@/lib/types';
-
+import { functions } from './firebase/client';
+import { httpsCallable } from 'firebase/functions';
 
 /**
  * Server Action to fetch a single user profile by ID.
@@ -33,12 +33,21 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
 
 /**
  * Server Action to perform a search based on an AI-interpreted query.
- * It wraps the internal database utility function.
+ * This function is now designed to be called from the client using `httpsCallable`.
+ * The actual server-side logic is in `firebase/functions/src/search.ts`.
  * @param interpretation The structured search query.
  * @returns A promise that resolves to an array of search results.
  */
 export async function performSearch(interpretation: Partial<SmartSearchInterpretation>): Promise<any[]> {
-  return performSearch_internal(interpretation);
+  try {
+    const performSearchCallable = httpsCallable(functions, 'performSearch');
+    const result = await performSearchCallable(interpretation);
+    return (result.data as any)?.results || [];
+  } catch (error) {
+    console.error("Error calling performSearch function from server action:", error);
+    // Depending on desired client-side behavior, you might re-throw or return an empty array.
+    throw error;
+  }
 }
 
 
@@ -79,5 +88,12 @@ export async function suggestCropRotationAction(input: CropRotationInput): Promi
  * @returns A promise that resolves to an array of UserProfile objects.
  */
 export async function getFinancialInstitutions(): Promise<UserProfile[]> {
-  return getFinancialInstitutions_internal();
+  try {
+    const getFiCallable = httpsCallable(functions, 'getFinancialInstitutions');
+    const result = await getFiCallable();
+    return (result.data as any) || [];
+  } catch (error) {
+    console.error("Error calling getFinancialInstitutions from server action:", error);
+    throw error;
+  }
 }

@@ -1,5 +1,4 @@
 
-
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
@@ -600,18 +599,20 @@ export const getRecentVtiBatches = functions.https.onCall(async (data, context) 
         
         const batches = await Promise.all(vtiSnapshot.docs.map(async (doc) => {
             const vtiData = doc.data();
+            let producerName = 'Unknown';
+            let harvestDate = (vtiData.creationTime as admin.firestore.Timestamp)?.toDate?.().toISOString() || null;
+            
+            if (harvestDate === null) return null; // Skip if creationTime is invalid
+
             const harvestEventSnapshot = await db.collection('traceability_events')
                 .where('vtiId', '==', vtiData.vtiId)
                 .where('eventType', '==', 'HARVESTED')
                 .limit(1)
                 .get();
 
-            let producerName = 'Unknown';
-            let harvestDate = vtiData.creationTime.toDate().toISOString();
-
             if (!harvestEventSnapshot.empty) {
                 const harvestEvent = harvestEventSnapshot.docs[0].data();
-                harvestDate = harvestEvent.timestamp.toDate().toISOString();
+                harvestDate = (harvestEvent.timestamp as admin.firestore.Timestamp)?.toDate?.().toISOString() || harvestDate;
                 if (harvestEvent.actorRef) {
                     try {
                         const userDoc = await db.collection('users').doc(harvestEvent.actorRef).get();
@@ -633,7 +634,7 @@ export const getRecentVtiBatches = functions.https.onCall(async (data, context) 
             };
         }));
         
-        return { batches };
+        return { batches: batches.filter(Boolean) }; // Filter out nulls
     } catch (error) {
         console.error("Error fetching recent VTI batches:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch recent batches.");

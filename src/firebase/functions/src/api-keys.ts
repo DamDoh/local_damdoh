@@ -29,7 +29,8 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Invalid environment specified.');
     }
 
-    const apiKey = `${environment.toLowerCase().substring(0,4)}_${randomBytes(24).toString('hex')}`;
+    const keyPrefix = `sk_${environment.substring(0,4).toLowerCase()}`;
+    const apiKey = `${keyPrefix}_${randomBytes(24).toString('hex')}`;
     const keyRef = db.collection('users').doc(innovatorId).collection('api_keys').doc();
 
     await keyRef.set({
@@ -38,7 +39,7 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
         status: 'Active',
         // For security, only store a prefix of the key, not the whole thing.
         // The full key is only ever shown to the user once upon creation.
-        keyPrefix: apiKey.substring(0, 8), 
+        keyPrefix: apiKey.substring(0, 12), 
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
@@ -47,6 +48,11 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
         message: 'API Key generated successfully. Please copy it now, you will not be able to see it again.',
         key: apiKey, // Return the full key to the user this one time.
         id: keyRef.id,
+        description,
+        environment,
+        status: 'Active',
+        keyPrefix: apiKey.substring(0, 12),
+        createdAt: new Date().toISOString(),
     };
 });
 
@@ -58,14 +64,15 @@ export const getApiKeys = functions.https.onCall(async (data, context) => {
         .get();
 
     const keys = keysSnapshot.docs.map(doc => {
-        const data = doc.data();
+        const keyData = doc.data();
         return {
             id: doc.id,
-            description: data.description,
-            environment: data.environment,
-            status: data.status,
-            keyPrefix: data.keyPrefix, // Show only the prefix
-            createdAt: data.createdAt.toDate().toISOString(),
+            description: keyData.description,
+            environment: keyData.environment,
+            status: keyData.status,
+            keyPrefix: keyData.keyPrefix, // Show only the prefix
+            createdAt: keyData.createdAt.toDate().toISOString(),
+            key: `${keyData.keyPrefix}...` // Placeholder for display
         }
     });
 
