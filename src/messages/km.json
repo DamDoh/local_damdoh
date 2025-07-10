@@ -140,5 +140,12 @@
     "logOut": "ចាកចេញ",
     "switchToLightAria": "ប្តូរទៅជារបៀបស្រាល",
     "switchToDarkAria": "ប្តូរទៅជារបៀបងងឹត"
+  },
+  "MobileBottomNav": {
+    "home": "ទំព័រដើម",
+    "market": "ទីផ្សារ",
+    "search": "ស្វែងរក",
+    "forums": "វេទិកា",
+    "profile": "ប្រវត្តិរូប"
   }
 }

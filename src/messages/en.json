@@ -140,5 +140,12 @@
     "logOut": "Log Out",
     "switchToLightAria": "Switch to light mode",
     "switchToDarkAria": "Switch to dark mode"
+  },
+  "MobileBottomNav": {
+    "home": "Home",
+    "market": "Market",
+    "search": "Search",
+    "forums": "Forums",
+    "profile": "Profile"
   }
 }

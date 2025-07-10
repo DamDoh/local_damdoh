@@ -140,5 +140,12 @@
     "logOut": "Cerrar Sesión",
     "switchToLightAria": "Cambiar a modo claro",
     "switchToDarkAria": "Cambiar a modo oscuro"
+  },
+  "MobileBottomNav": {
+    "home": "Inicio",
+    "market": "Mercado",
+    "search": "Buscar",
+    "forums": "Foros",
+    "profile": "Perfil"
   }
 }

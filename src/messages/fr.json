@@ -140,5 +140,12 @@
     "logOut": "Se Déconnecter",
     "switchToLightAria": "Passer en mode clair",
     "switchToDarkAria": "Passer en mode sombre"
+  },
+  "MobileBottomNav": {
+    "home": "Accueil",
+    "market": "Marché",
+    "search": "Recherche",
+    "forums": "Forums",
+    "profile": "Profil"
   }
 }

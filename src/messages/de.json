@@ -140,5 +140,12 @@
     "logOut": "Abmelden",
     "switchToLightAria": "Zum hellen Modus wechseln",
     "switchToDarkAria": "Zum dunklen Modus wechseln"
+  },
+  "MobileBottomNav": {
+    "home": "Start",
+    "market": "Markt",
+    "search": "Suche",
+    "forums": "Foren",
+    "profile": "Profil"
   }
 }
