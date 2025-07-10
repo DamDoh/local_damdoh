@@ -858,4 +858,8 @@ export interface InsuranceProduct {
     premium: number;
     currency: string;
     status: 'Active' | 'Inactive';
+    provider?: {
+        displayName: string;
+        avatarUrl?: string;
+    }
 }

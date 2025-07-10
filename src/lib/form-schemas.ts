@@ -259,3 +259,10 @@ export const createInsuranceProductSchema = z.object({
   currency: z.string().length(3, "Currency must be a 3-letter code.").default("USD"),
 });
 export type CreateInsuranceProductValues = z.infer<typeof createInsuranceProductSchema>;
+
+export const createInsuranceApplicationSchema = z.object({
+  productId: z.string({ required_error: "A product must be selected."}),
+  farmId: z.string({ required_error: "A farm must be selected to be insured."}),
+  coverageValue: z.coerce.number().positive("Coverage value must be a positive number."),
+});
+export type CreateInsuranceApplicationValues = z.infer<typeof createInsuranceApplicationSchema>;

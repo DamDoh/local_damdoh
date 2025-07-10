@@ -99,7 +99,7 @@ export const createInsuranceProduct = functions.https.onCall(async (data, contex
         type,
         description,
         coverageDetails,
-        premium,
+        premium: Number(premium),
         currency,
         status: 'Active',
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
@@ -129,6 +129,84 @@ export const getInsuranceProducts = functions.https.onCall(async (data, context)
     
     return { products };
 });
+
+export const getAvailableInsuranceProducts = functions.https.onCall(async (data, context) => {
+    const productsSnapshot = await db.collection("insurance_products")
+        .where("status", "==", "Active")
+        .orderBy("createdAt", "desc")
+        .get();
+        
+    const products = productsSnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+            id: doc.id,
+            ...data,
+            createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+        }
+    });
+
+    return { products };
+});
+
+export const getInsuranceProductDetails = functions.https.onCall(async (data, context) => {
+    const { productId } = data;
+    if (!productId) {
+        throw new functions.https.HttpsError("invalid-argument", "Product ID is required.");
+    }
+
+    const productDoc = await db.collection("insurance_products").doc(productId).get();
+    if (!productDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Insurance product not found.");
+    }
+    
+    const productData = productDoc.data()!;
+    let provider = null;
+
+    if (productData.providerId) {
+        const providerDoc = await db.collection("users").doc(productData.providerId).get();
+        if (providerDoc.exists) {
+            const providerData = providerDoc.data()!;
+            provider = {
+                displayName: providerData.displayName,
+                avatarUrl: providerData.avatarUrl
+            };
+        }
+    }
+
+    const serializedProductData = {
+        ...productData,
+        id: productDoc.id,
+        createdAt: (productData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+        updatedAt: (productData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+        provider: provider,
+    };
+
+    return { product: serializedProductData };
+});
+
+export const submitInsuranceApplication = functions.https.onCall(async (data, context) => {
+    const applicantId = checkAuth(context);
+    const { productId, farmId, coverageValue } = data;
+
+    if (!productId || !farmId || !coverageValue) {
+        throw new functions.https.HttpsError("invalid-argument", "Product, farm, and coverage value are required.");
+    }
+
+    const appRef = db.collection("insurance_applications").doc();
+    await appRef.set({
+        applicantId,
+        productId,
+        farmId,
+        coverageValue: Number(coverageValue),
+        status: "Submitted",
+        submittedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    
+    // In a real app, this would trigger a notification to the Insurance Provider
+    return { success: true, applicationId: appRef.id };
+});
+
 
 export const assessRiskForPolicy = functions.firestore
   .document("insurance_policies/{policyId}")
