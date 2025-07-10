@@ -291,5 +291,39 @@
       "noResults": "No results found for your query.",
       "tryAgain": "Try another search term or use broader keywords."
     }
+  },
+  "ProcessingUnitDashboard": {
+    "title": "Processing Unit Dashboard",
+    "yieldTitle": "Yield Optimization",
+    "potential": "Potential",
+    "wasteTitle": "Waste Reduction",
+    "packagingInventoryTitle": "Packaging Inventory",
+    "inStock": "In Stock",
+    "reorderLevel": "Reorder Level",
+    "noPackagingData": "No packaging inventory data.",
+    "sourcePackagingButton": "Source Packaging Materials",
+    "rawMaterialTitle": "Raw Material Inventory",
+    "table": {
+        "product": "Product",
+        "quality": "Quality",
+        "quantity": "Quantity (Tons)",
+        "supplier": "Supplier",
+        "deliveryDate": "Delivery Date",
+        "status": "Status",
+        "action": "Action"
+    },
+    "noInventoryData": "No raw material inventory data.",
+    "packagingOrdersTitle": "Packaging Orders",
+    "viewButton": "View",
+    "noPackagingOrders": "No active packaging orders."
+  },
+  "WarehouseDashboard": {
+      "title": "Warehouse Dashboard",
+      "utilizationTitle": "Storage Utilization",
+      "inventoryTitle": "Inventory Levels",
+      "itemsNeedingAttention": "items needing attention",
+      "alertsTitle": "Predictive Alerts",
+      "noAlerts": "No active alerts.",
+      "investigateButton": "Investigate"
   }
 }
