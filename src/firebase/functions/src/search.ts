@@ -4,6 +4,13 @@ import * as admin from "firebase-admin";
 
 const db = admin.firestore();
 
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+  }
+  return context.auth.uid;
+};
+
 /**
  * A generic Firestore trigger that listens to writes on specified collections
  * and creates/updates a corresponding document in a dedicated 'search_index' collection.
@@ -100,6 +107,7 @@ export const onSourceDocumentWriteIndex = functions.firestore
  * @return {Promise<{results: any[]}>} A promise that resolves with search results.
  */
 export const performSearch = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
     const { mainKeywords, identifiedLocation, suggestedFilters, minPrice, maxPrice, perUnit, limit = 50 } = data;
     
     if (!Array.isArray(mainKeywords)) {
