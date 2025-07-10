@@ -266,3 +266,5 @@ export const createInsuranceApplicationSchema = z.object({
   coverageValue: z.coerce.number().positive("Coverage value must be a positive number."),
 });
 export type CreateInsuranceApplicationValues = z.infer<typeof createInsuranceApplicationSchema>;
+
+    
