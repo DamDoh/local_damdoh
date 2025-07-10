@@ -555,7 +555,7 @@
         "unitLabel": "per",
         "unitPlaceholder": "e.g., kg, Ton, Hour",
         "compensationLabel": "Compensation / Rate",
-        "compensationPlaceholder": "e.g., $50/hr, Per Project",
+        "compensationPlaceholder": "e.g., $50/hour, Per Project",
         "experienceLabel": "Experience Level",
         "experiencePlaceholder": "e.g., Intermediate, Expert (10+ years)",
         "skillsLabel": "Skills Required (for services)",
@@ -1843,7 +1843,7 @@
     "projectsDescription": "Your active research projects on the platform.",
     "viewProjectButton": "View Project",
     "noProjects": "You are not involved in any ongoing projects.",
-    "contributionsTitle": "Knowledge Hub Contributions",
+    "contributionsTitle": "Contributions to Knowledge Hub",
     "contributionsDescription": "Your submitted articles and research papers.",
     "viewButton": "View",
     "noContributions": "You have not submitted any contributions yet.",
@@ -1964,42 +1964,5 @@
     "allRoles": "All Roles",
     "noStakeholdersFound": "No stakeholders found.",
     "noStakeholdersHint": "Try adjusting your search filters."
-  },
-  "myNetworkPage": {
-    "backLink": "Back to Network",
-    "myConnectionsTab": "My Connections ({count})",
-    "pendingRequestsTab": "Pending Requests",
-    "connectionsTitle": "My Connections",
-    "connectionsDescription": "These are your approved connections on the platform. You can now message them directly.",
-    "noConnections": "You haven't made any connections yet. Start exploring the network!",
-    "requestsTitle": "Connection Requests",
-    "requestsDescription": "Review and respond to pending connection requests.",
-    "noRequests": "You have no pending connection requests.",
-    "sentTimeAgo": "Sent {timeAgo}",
-    "toast": {
-      "error": "Error",
-      "loadError": "Could not load your network data.",
-      "respondError": "Could not respond to request.",
-      "removeError": "Could not remove connection.",
-      "success": "Success",
-      "requestAccepted": "Request accepted.",
-      "requestDeclined": "Request declined.",
-      "connectionRemoved": "Connection removed."
-    }
-  },
-  "agentToolsPage": {
-    "backLink": "Back to Network",
-    "accessDeniedTitle": "Access Denied",
-    "accessDeniedDescription": "You do not have the required permissions to access these tools.",
-    "title": "Field Agent Tools",
-    "description": "Tools for authorized agents to assist and manage users in the field.",
-    "findUserLabel": "Find User by Phone Number",
-    "phoneRequiredError": "Phone number is required.",
-    "findButton": "Find",
-    "resultsTitle": "Search Results",
-    "resultsPlaceholder": "User details will appear here after a successful search."
-  },
-  "common": {
-    "error": "Error"
   }
 }
