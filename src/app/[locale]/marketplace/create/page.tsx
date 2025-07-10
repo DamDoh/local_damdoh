@@ -42,7 +42,7 @@ export default function CreateListingPage() {
       resolver: zodResolver(createMarketplaceItemSchema),
       defaultValues: {
         name: "",
-        listingType: undefined,
+        listingType: searchParams.get('listingType') === 'Service' ? 'Service' : undefined,
         description: "",
         price: undefined,
         perUnit: "",

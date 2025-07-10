@@ -14,7 +14,7 @@ import Link from "next/link";
 import type { MarketplaceItem } from "@/lib/types";
 import { ItemCard } from "@/components/marketplace/ItemCard";
 import { useToast } from "@/hooks/use-toast";
-import { AGRICULTURAL_CATEGORIES } from "@/lib/category-data";
+import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
 import { performSearch } from "@/lib/server-actions";
 
 function TalentPageSkeleton() {
@@ -53,7 +53,7 @@ export default function TalentExchangePage() {
     const [isLoading, setIsLoading] = useState(true);
     const { toast } = useToast();
 
-    const serviceCategories = useMemo(() => AGRICULTURAL_CATEGORIES.filter(cat => cat.parent === 'services'), []);
+    const serviceCategories: CategoryNode[] = useMemo(() => AGRICULTURAL_CATEGORIES.filter(cat => cat.parent === 'services'), []);
 
     const fetchServices = useCallback(async () => {
       setIsLoading(true);
@@ -81,7 +81,7 @@ export default function TalentExchangePage() {
             experienceLevel: res.experienceLevel,
             skillsRequired: res.skillsRequired,
             category: res.tags?.find((tag: string) => serviceCategories.some(sc => sc.id === tag)) || '',
-            sellerId: 'unknown', // This field is not in the search index, so we default it
+            sellerId: 'unknown', 
             createdAt: (res.createdAt as any)?.toDate ? (res.createdAt as any).toDate().toISOString() : new Date().toISOString(),
             updatedAt: (res.updatedAt as any)?.toDate ? (res.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
         }));
@@ -102,10 +102,6 @@ export default function TalentExchangePage() {
     useEffect(() => {
         fetchServices();
     }, [fetchServices]);
-
-    if (isLoading) {
-        return <TalentPageSkeleton />;
-    }
 
     return (
         <div className="space-y-6">
@@ -160,7 +156,9 @@ export default function TalentExchangePage() {
                         </Select>
                     </div>
 
-                    {items.length > 0 ? (
+                    {isLoading ? (
+                        <TalentPageSkeleton />
+                    ) : items.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                             {items.map(item => <ItemCard key={item.id} item={item} />)}
                         </div>
@@ -176,3 +174,4 @@ export default function TalentExchangePage() {
         </div>
     );
 }
+
