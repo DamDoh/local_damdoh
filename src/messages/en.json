@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -172,5 +173,1019 @@
     "getMobileApp": "Get the Mobile App",
     "googlePlayAlt": "Get it on Google Play",
     "appStoreAlt": "Download on the App Store"
+  },
+  "termsOfService": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: October 29, 2023",
+    "introduction": "These Terms of Use constitute a legally binding agreement made between you and DamDoh, concerning your access to and use of the DamDoh website as well as any other media form, media channel, mobile website, or mobile application related, linked, or otherwise connected thereto.",
+    "agreementToTerms": {
+      "heading": "1. AGREEMENT TO TERMS",
+      "content": "By using the platform, you agree to be bound by these Terms of Use. If you do not agree, you are not permitted to use the platform. We reserve the right to make changes to these Terms at any time."
+    },
+    "intellectualProperty": {
+      "heading": "2. INTELLECTUAL PROPERTY RIGHTS",
+      "content": "Unless otherwise indicated, the Platform is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the 'Content') and the trademarks, service marks, and logos contained therein are owned or controlled by us or licensed to us."
+    },
+    "userRepresentations": {
+      "heading": "3. USER REPRESENTATIONS",
+      "content": "By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Use; (4) you will not use the Site for any illegal or unauthorized purpose; and (5) your use of the Site will not violate any applicable law or regulation."
+    },
+    "prohibitedActivities": {
+      "heading": "4. PROHIBITED ACTIVITIES",
+      "content": "You may not access or use the Site for any purpose other than that for which we make the Site available. Prohibited activities include, but are not limited to: systematic retrieval of data, tricking or defrauding us or other users, attempting to impersonate another user, harassing or threatening our employees or other users, and uploading or transmitting viruses or other types of malicious code."
+    },
+    "platformManagement": {
+      "heading": "5. PLATFORM MANAGEMENT",
+      "content": "We reserve the right, but not the obligation, to: (1) monitor the Site for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable any of your Contributions or any portion thereof."
+    },
+    "termAndTermination": {
+      "heading": "6. TERM AND TERMINATION",
+      "content": "These Terms of Use shall remain in full force and effect while you use the Site. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS OF USE, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SITE (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. MODIFICATIONS AND INTERRUPTIONS",
+      "content": "We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Site without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Site."
+    },
+    "governingLaw": {
+      "heading": "8. GOVERNING LAW",
+      "content": "These Terms of Use and your use of the Site are governed by and construed in accordance with the laws of the jurisdiction where DamDoh is registered, without regard to its conflict of law principles."
+    },
+    "disputeResolution": {
+      "heading": "9. DISPUTE RESOLUTION",
+      "content": "Any legal action of whatever nature brought by either you or us shall be commenced or prosecuted in the state and federal courts located in the jurisdiction where we are registered, and the parties hereby consent to, and waive all defenses of lack of personal jurisdiction and forum non conveniens with respect to venue and jurisdiction in such courts."
+    },
+    "contactUs": {
+      "heading": "10. CONTACT US",
+      "content": "To resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us."
+    },
+    "conclusion": "To resolve a complaint or receive further information, please {contactLink}."
+  },
+  "Marketplace": {
+    "title": "Marketplace",
+    "description": "Discover, buy, and sell agricultural products and services.",
+    "createShopButton": "Create Shop",
+    "myOrdersButton": "My Orders",
+    "createListingButton": "Create Listing",
+    "pinButton": "Pin as Homepage",
+    "unpinButton": "Unpin Homepage",
+    "searchPlaceholder": "Search products & services...",
+    "locationPlaceholder": "Filter by location...",
+    "typePlaceholder": "Filter by type...",
+    "recommendedForYou": "Recommended For You",
+    "discoverMore": "Discover More",
+    "viewDetails": "View Details",
+    "viewServiceButton": "View Service",
+    "pinning": {
+      "pinnedTitle": "Marketplace Pinned",
+      "pinnedDescription": "The marketplace is now your default homepage.",
+      "unpinnedTitle": "Marketplace Unpinned",
+      "unpinnedDescription": "Your homepage has been reset to the default."
+    },
+    "noItemsFound": {
+      "title": "No Items Found",
+      "hint": "Try adjusting your search filters or check back later."
+    },
+    "errors": {
+      "search": {
+        "title": "Search Failed",
+        "description": "Could not retrieve marketplace listings at this time."
+      },
+      "aiRecommendations": {
+        "title": "Could not find recommendations at this time."
+      }
+    },
+    "categories": {
+      "allCategories": "All Categories",
+      "viewAllItems": "View All Items",
+      "viewAllCategory": "All in {categoryName}"
+    },
+    "createListing": {
+      "backLink": "Back to Marketplace",
+      "title": "Create a New Marketplace Listing",
+      "description": "Fill in the details below to list your product or service.",
+      "form": {
+        "nameLabel": "Listing Title",
+        "namePlaceholder": "e.g., Organic Hass Avocados, Tractor Repair Service",
+        "typeLabel": "Listing Type",
+        "typePlaceholder": "Select a listing type",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Describe your product or service in detail...",
+        "locationLabel": "Location",
+        "locationPlaceholder": "e.g., Nakuru, Kenya",
+        "relatedVtiLabel": "Related Traceability ID (Optional)",
+        "relatedVtiPlaceholder": "Enter VTI if available",
+        "relatedVtiDescription": "Link this item to a specific harvest batch for full transparency.",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "Select a category",
+        "priceLabel": "Price",
+        "pricePlaceholder": "e.g., 25.50",
+        "unitLabel": "per",
+        "unitPlaceholder": "e.g., kg, Ton, Hour",
+        "compensationLabel": "Compensation / Rate",
+        "compensationPlaceholder": "e.g., $50/hr, Per Project",
+        "experienceLabel": "Experience Level",
+        "experiencePlaceholder": "e.g., Intermediate, Expert (10+ years)",
+        "skillsLabel": "Skills Required (for services)",
+        "skillsPlaceholder": "e.g., Crop Spraying, Soil Analysis, Organic Certification",
+        "skillsDescription": "Separate skills with a comma.",
+        "imageUrlLabel": "Image URL",
+        "sustainableLabel": "Sustainably Produced",
+        "sustainableDescription": "Check this box if your product or service follows recognized sustainable practices.",
+        "submitButton": "Create Listing",
+        "submittingButton": "Creating..."
+      },
+      "aiPriceSuggestion": {
+        "button": "Suggest Price with AI",
+        "generatingButton": "Suggesting...",
+        "suggestionLabel": "AI Suggestion:",
+        "usePriceButton": "Use this price"
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Incomplete Information",
+            "description": "Please fill out the name and description before suggesting a price."
+          },
+          "failed": {
+            "title": "AI Suggestion Failed",
+            "description": "Could not get a price suggestion at this time."
+          }
+        },
+        "authentication": {
+          "title": "Not Authenticated",
+          "description": "You must be signed in to create a listing."
+        },
+        "creation": {
+          "title": "Creation Failed",
+          "description": "An unexpected error occurred while creating the listing."
+        }
+      },
+      "success": {
+        "title": "Listing Created!",
+        "description": "Your listing is now live on the marketplace."
+      }
+    },
+    "itemView": {
+      "backLink": "Back to Marketplace",
+      "notFound": {
+        "description": "Item not found."
+      },
+      "errors": {
+        "loadItem": {
+          "description": "Could not load item."
+        },
+        "unexpected": "An unexpected error occurred."
+      },
+      "coupon": {
+        "successTitle": "Coupon Applied!",
+        "successDescription": "You've received a {type} discount!",
+        "failTitle": "Invalid Coupon",
+        "failDescription": "The coupon code you entered is invalid or has expired.",
+        "label": "Coupon Code",
+        "placeholder": "Enter coupon",
+        "applyButton": "Apply",
+        "appliedText": "Coupon '{code}' applied."
+      },
+      "booking": {
+        "authTitle": "Sign In Required",
+        "authDescription": "You must be signed in to book a service.",
+        "failTitle": "Booking Failed",
+        "dateError": "Please select both a start and end date for your booking.",
+        "successTitle": "Booking Successful!",
+        "successDescription": "Your booking is confirmed. You will receive more details via email.",
+        "bookedTitle": "You've already booked this experience!",
+        "bookedDescription": "Show your ticket upon arrival.",
+        "ticketButton": "View Ticket",
+        "modalTitle": "Your Ticket",
+        "modalDescription": "Show this QR code at check-in for {itemName}.",
+        "modalScan": "Scan this code at check-in.",
+        "perNight": "per night",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "addDate": "Add dates",
+        "guests": "Guests",
+        "reserveButton": "Reserve",
+        "reservingButton": "Reserving...",
+        "notCharged": "You won't be charged yet.",
+        "nights": "{count, plural, =1 {night} other {nights}}",
+        "serviceFee": "Service fee",
+        "total": "Total"
+      },
+      "order": {
+        "authTitle": "Sign In Required",
+        "authDescription": "You must be signed in to place an order.",
+        "quantityErrorTitle": "Invalid Quantity",
+        "quantityErrorDescription": "Please enter a quantity greater than zero.",
+        "successTitle": "Order Placed!",
+        "successDescription": "Your order has been successfully sent to the seller.",
+        "failTitle": "Order Failed",
+        "failDescription": "Could not place your order. Please try again.",
+        "title": "Order {itemName}",
+        "description": "Confirm the quantity and add a note for the seller if needed.",
+        "quantityLabel": "Quantity",
+        "notesLabel": "Note for seller (optional)",
+        "notesPlaceholder": "e.g., delivery instructions, special requests...",
+        "cancelButton": "Cancel",
+        "confirmButton": "Confirm Order",
+        "placingButton": "Placing order..."
+      },
+      "skillsLabel": "Skills Required",
+      "experienceLabel": "Experience Level",
+      "compensationLabel": "Compensation",
+      "contactForRates": "Contact for rates",
+      "aboutSeller": "About the Seller",
+      "viewShopfront": "View Shopfront",
+      "editListing": "Edit Listing",
+      "manageService": "Manage Service",
+      "buyNowButton": "Buy Now",
+      "contactForService": "Contact for Service",
+      "contactSeller": "Contact Seller",
+      "traceabilityButton": "View Traceability Report"
+    },
+    "myOrders": {
+      "backLink": "Back to Marketplace",
+      "title": "My Orders",
+      "description": "Manage your incoming sales orders.",
+      "table": {
+        "date": "Date",
+        "buyer": "Buyer",
+        "product": "Product",
+        "total": "Total",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "confirm": "Confirm",
+        "ship": "Ship",
+        "complete": "Complete",
+        "cancel": "Cancel"
+      },
+      "status": {
+        "new": "New",
+        "confirmed": "Confirmed",
+        "shipped": "Shipped",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "noOrders": "You haven't received any orders yet.",
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "Could not fetch your orders.",
+        "successTitle": "Order Updated",
+        "updateSuccess": "Order status successfully updated to '{status}'.",
+        "failTitle": "Update Failed"
+      },
+      "auth": {
+        "title": "Please Sign In",
+        "description": "You must be signed in to view your orders.",
+        "button": "Sign In"
+      }
+    },
+    "createShop": {
+      "backLink": "Back to Marketplace",
+      "title": "Create a Digital Shopfront",
+      "description": "Set up your personal marketplace to showcase your products or services.",
+      "form": {
+        "nameLabel": "Shop Name",
+        "namePlaceholder": "e.g., Green Valley Organics",
+        "typeLabel": "Business Type",
+        "typePlaceholder": "Select your primary stakeholder type",
+        "descriptionLabel": "Shop Description",
+        "descriptionPlaceholder": "Briefly describe your shop and what you offer...",
+        "submitButton": "Create Shop",
+        "submittingButton": "Creating..."
+      },
+      "authErrorTitle": "Not Authenticated",
+      "authErrorDescription": "You must be signed in to create a shop.",
+      "toast": {
+        "successTitle": "Shop Created!",
+        "successDescription": "Your shop '{shopName}' is now ready.",
+        "failTitle": "Creation Failed",
+        "failDescription": "Could not create your shop. Please try again."
+      }
+    },
+    "shopView": {
+      "backLink": "Back to Marketplace",
+      "ownedBy": "Owned by",
+      "loadingOwner": "Loading owner...",
+      "contactButton": "Contact",
+      "editShopButton": "Edit Shop",
+      "listingsTitle": "Listings from {shopName}",
+      "noListings": "This shop does not have any active listings right now.",
+      "errors": {
+        "notFound": "Shop not found.",
+        "loadError": "Could not load shop data.",
+        "title": "Error"
+      }
+    },
+    "promotions": {
+        "title": "My Promotions",
+        "description": "Create and manage coupon codes to attract more buyers.",
+        "backToDashboard": "Back to Dashboard",
+        "signInPrompt": "Please sign in to manage your promotions.",
+        "create": {
+            "title": "Create New Coupon",
+            "description": "Set the details for your new promotional coupon.",
+            "form": {
+                "code": "Coupon Code",
+                "codePlaceholder": "e.g., SALE20",
+                "usageLimit": "Usage Limit",
+                "usageLimitPlaceholder": "e.g., 100",
+                "discountType": "Discount Type",
+                "discountTypePlaceholder": "Select a type",
+                "percentage": "Percentage",
+                "fixed": "Fixed Amount",
+                "discountValue": "Discount Value",
+                "expiryDate": "Expiration Date (optional)",
+                "pickDate": "Pick a date",
+                "submitButton": "Create Coupon"
+            },
+            "toast": {
+                "successTitle": "Coupon Created",
+                "successDescription": "The coupon '{code}' is now active.",
+                "failTitle": "Creation Failed"
+            }
+        },
+        "list": {
+            "title": "Existing Coupons",
+            "description": "View and manage your active promotional codes.",
+            "usage": "Usage",
+            "expires": "Expires",
+            "never": "Never",
+            "share": "Share",
+            "noCoupons": "You have not created any coupons yet.",
+            "toastTitle": "Link Copied!",
+            "toastDescription": "The shareable link for coupon '{link}' has been copied.",
+            "shareModal": {
+                "title": "Share Coupon Code",
+                "description": "Share this link with customers to automatically apply the coupon.",
+                "link": "Link",
+                "copy": "Copy",
+                "close": "Close"
+            }
+        },
+        "toast": {
+            "error": "Error",
+            "fetchError": "Could not fetch your coupons.",
+            "createSuccess": "Successfully created coupon '{code}'",
+            "createFail": "Could not create coupon",
+            "createError": "An unexpected error occurred",
+            "linkCopied": "Link Copied!",
+            "shareDescription": "Shareable link for coupon '{code}' copied."
+        }
+    }
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm Management Hub",
+      "description": "Your central dashboard for all on-farm activities, from managing plots and crops to tracking inputs and labor.",
+      "myFarms": {
+        "title": "My Farms & Crops",
+        "description": "Define your farm plots, log crops, track planting cycles, and manage harvest data.",
+        "button": "Manage Farms"
+      },
+      "labor": {
+        "title": "Labor Management",
+        "description": "Keep track of your farm workers, log their hours, and record payments all in one place.",
+        "button": "Manage Labor"
+      },
+      "knf": {
+        "title": "KNF Inputs Assistant",
+        "description": "Create and manage your farmer-made Korean Natural Farming inputs like FPJ, FAA, and more.",
+        "button": "Manage Inputs"
+      },
+      "fgw": {
+        "title": "Farming God's Way",
+        "description": "Learn and apply the core principles of FGW for sustainable, high-yield results.",
+        "button": "View FGW Guide"
+      },
+      "financials": {
+        "title": "Finances",
+        "description": "Track your farm's income and expenses, analyze profitability, and apply for funding.",
+        "button": "View Finances"
+      },
+      "seedStarting": {
+        "title": "Seed Starting Guide",
+        "description": "Learn best practices for starting seeds indoors to get a head start on the season.",
+        "button": "View Guide"
+      },
+      "familyFarm": {
+        "title": "200sqm Family Farm",
+        "description": "Explore a model for a self-sufficient, integrated family farm on just 200 square meters.",
+        "button": "Explore Model"
+      },
+      "assetManagement": {
+        "title": "Asset Management",
+        "description": "Log and track your farm machinery, tools, and other valuable assets. (Coming soon)",
+        "button": "Manage Assets"
+      }
+    },
+    "myFarms": {
+      "backToDashboard": "Back to Farm Management Hub",
+      "title": "My Farms",
+      "addNewFarmButton": "Add New Farm",
+      "size": "Size",
+      "viewFarmButton": "Manage Farm",
+      "noFarmsTitle": "No Farms Yet",
+      "noFarmsDescription": "Get started by adding your first farm profile.",
+      "auth": {
+        "title": "Please Sign In",
+        "description": "You need to be logged in to view your farms.",
+        "button": "Sign In"
+      },
+      "toast": {
+        "errorTitle": "Error fetching farms"
+      }
+    },
+    "createFarm": {
+      "backToFarms": "Back to My Farms",
+      "title": "Register a New Farm",
+      "description": "Provide the details for a new farm you own or manage.",
+      "form": {
+        "farmNameLabel": "Farm Name",
+        "farmNamePlaceholder": "e.g., Green Valley Organics",
+        "locationLabel": "Location",
+        "locationPlaceholder": "e.g., Nakuru, Kenya",
+        "locationDescription": "Provide the city, region, or general area.",
+        "sizeLabel": "Farm Size",
+        "sizePlaceholder": "e.g., 5 Hectares",
+        "sizeDescription": "Include the unit (e.g., acres, hectares).",
+        "typeLabel": "Farm Type",
+        "typePlaceholder": "Select a type",
+        "types": {
+          "crop": "Crop Production",
+          "livestock": "Livestock Rearing",
+          "mixed": "Mixed (Crops & Livestock)",
+          "aquaculture": "Aquaculture (Fish Farming)",
+          "other": "Other"
+        },
+        "descriptionLabel": "Description (optional)",
+        "descriptionPlaceholder": "A brief description of your farm, its main activities, or mission.",
+        "irrigationLabel": "Irrigation Methods (optional)",
+        "irrigationPlaceholder": "e.g., Drip irrigation, rain-fed",
+        "irrigationDescription": "List the primary irrigation methods used.",
+        "submitButton": "Save Farm"
+      },
+      "toast": {
+        "authErrorTitle": "Authentication Error",
+        "authErrorDescription": "You must be logged in to create a farm.",
+        "successTitle": "Farm Created!",
+        "successDescription": "{farmName} has been successfully added to your profile.",
+        "errorTitle": "Creation Failed"
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Back to My Farms",
+      "title": "Edit Farm Details",
+      "description": "Update the information for your farm.",
+      "form": {
+        "submitButton": "Save Changes"
+      },
+      "toast": {
+        "notFoundTitle": "Farm Not Found",
+        "loadError": "The farm you are trying to edit could not be found.",
+        "error": "Error",
+        "loadFail": "Failed to load farm data: {message}",
+        "successTitle": "Farm Updated",
+        "successDescription": "{farmName} was successfully updated.",
+        "failTitle": "Update Failed"
+      }
+    },
+    "farmDetail": {
+      "backToFarms": "Back to My Farms",
+      "registeredOn": "Registered on {date}",
+      "editFarmButton": "Edit Farm",
+      "crops": {
+        "title": "Crops & Batches",
+        "description": "Manage all active and past crops on this farm.",
+        "addNewButton": "Add New Crop",
+        "plantedLabel": "Planted",
+        "stageLabel": "Stage",
+        "viewJourneyButton": "View Journey",
+        "noCrops": "No crops have been registered for this farm yet.",
+        "addFirstButton": "Register Your First Crop"
+      },
+      "insights": {
+        "title": "Profitability Insights",
+        "description": "AI-powered analysis of your farm activities.",
+        "noInsights": "Not enough activity to generate insights. Start logging harvests and inputs!"
+      },
+      "toast": {
+        "notFoundTitle": "Farm not found",
+        "loadErrorTitle": "Could not load farm data",
+        "insightsErrorTitle": "Could not load insights"
+      },
+      "notFound": {
+        "title": "Farm Not Found",
+        "description": "We couldn't find the farm you were looking for.",
+        "backButton": "Back to My Farms"
+      },
+      "loading": "Loading farm details..."
+    },
+    "createCrop": {
+      "backLink": "Back to Farm Details",
+      "title": "Register a New Crop",
+      "description": "Log a new crop or batch being planted on this farm.",
+      "cropTypeLabel": "Crop / Batch Name",
+      "cropTypePlaceholder": "e.g., Roma Tomatoes, Hass Avocados",
+      "cropTypeDescription": "Be as specific as possible.",
+      "plantingDateLabel": "Planting Date",
+      "datePlaceholder": "Pick a date",
+      "harvestDateLabel": "Expected Harvest Date (Optional)",
+      "yieldLabel": "Expected Yield (Optional)",
+      "yieldPlaceholder": "e.g., 5 Tons, 2000 kg",
+      "stageLabel": "Current Stage (Optional)",
+      "stagePlaceholder": "Select a stage",
+      "stages": {
+        "Planting": "Planting",
+        "Vegetative": "Vegetative",
+        "Flowering": "Flowering",
+        "Fruiting": "Fruiting",
+        "Harvesting": "Harvesting",
+        "Post-Harvest": "Post-Harvest"
+      },
+      "notesLabel": "Notes (Optional)",
+      "notesPlaceholder": "Add any extra notes about this batch, like seed variety or field location.",
+      "saveButton": "Save Crop",
+      "savingButton": "Saving...",
+      "toast": {
+        "authErrorTitle": "Authentication Error",
+        "authErrorDescription": "You must be signed in to add a crop.",
+        "successTitle": "Crop Registered",
+        "successDescription": "{cropType} has been successfully registered.",
+        "failTitle": "Failed to Register Crop",
+        "failDescription": "An unexpected error occurred. Please try again."
+      }
+    },
+    "editCrop": {
+      "backLink": "Back to Crop Details",
+      "title": "Edit Crop Details",
+      "description": "Update the information for this crop or batch.",
+      "saveButton": "Save Changes",
+      "savingButton": "Saving...",
+      "toast": {
+        "notFound": "Crop Not Found",
+        "loadError": "The crop you are trying to edit could not be found.",
+        "error": "Error",
+        "loadFail": "Failed to load crop data: {message}",
+        "success": "Crop Updated",
+        "description": "{cropType} was successfully updated.",
+        "fail": "Update Failed"
+      }
+    },
+    "cropDetailPage": {
+      "backLink": "Back to Farm Details",
+      "plantedOn": "Planted on {date}",
+      "editButton": "Edit Crop",
+      "quickActionsTitle": "Quick Actions",
+      "logInputButton": "Log Input",
+      "logObservationButton": "Log Observation",
+      "logHarvestButton": "Log Harvest",
+      "journeyTitle": "Crop Journey",
+      "noActivities": "No activities have been logged for this crop yet.",
+      "loading": "Loading crop details...",
+      "notFound": "Crop not found.",
+      "toast": {
+        "notFound": "Crop not found",
+        "loadError": "Could not load crop data. Please try again."
+      },
+      "eventPayload": {
+        "noDetails": "No additional details provided.",
+        "observationType": "Observation Type",
+        "details": "Details",
+        "aiDiagnosis": "AI Diagnosis"
+      }
+    },
+    "logHarvest": {
+      "backLink": "Back to Farm Details",
+      "title": "Log Harvest for {cropType}",
+      "description": "Record the details of your harvest. This will create a new traceable batch (VTI) on the DamDoh platform.",
+      "harvestDateLabel": "Harvest Date",
+      "yieldLabel": "Total Yield (in kg)",
+      "yieldPlaceholder": "e.g., 1500",
+      "qualityLabel": "Quality Grade",
+      "qualityPlaceholder": "e.g., Grade A, Export Quality",
+      "notesLabel": "Harvest Notes (optional)",
+      "notesPlaceholder": "Add any notes about this harvest, such as weather conditions or specific techniques used.",
+      "saveButton": "Log Harvest & Create VTI",
+      "savingButton": "Saving...",
+      "offlineToast": {
+        "title": "Offline Mode: Harvest Queued",
+        "description": "Your harvest log has been saved and will be synced to create a VTI when you're back online."
+      },
+      "success": {
+        "title": "Harvest Logged & VTI Created!",
+        "description": "Your harvest for {cropType} has been recorded. Your new VTI is {vtiId}.",
+        "successCardTitle": "Harvest Logged!",
+        "successCardDescription": "A new traceable batch has been created for your harvest of {cropType}. You can now view the traceability report or create a marketplace listing.",
+        "viewReportButton": "View Traceability Report",
+        "sellButton": "Sell this Batch",
+        "logAnotherButton": "Log Another Harvest",
+        "backToFarmButton": "Back to Farm Overview"
+      },
+      "fail": {
+        "title": "Failed to Log Harvest"
+      }
+    },
+    "logInput": {
+      "backLink": "Back to Farm Details",
+      "title": "Log Input Application",
+      "description": "Record the application of fertilizers, pesticides, KNF inputs, or other substances to your crop.",
+      "useKNFLabel": "Use a Ready KNF Batch",
+      "useKNFPlaceholder": "Select from your ready KNF inputs...",
+      "manualInputLabel": "Or Enter Input Name Manually",
+      "manualInputPlaceholder": "e.g., DAP Fertilizer, Neem Oil",
+      "dateLabel": "Application Date",
+      "quantityLabel": "Quantity",
+      "quantityPlaceholder": "e.g., 50",
+      "unitLabel": "Unit",
+      "unitPlaceholder": "e.g., kg, Liters, ml",
+      "methodLabel": "Application Method (optional)",
+      "methodPlaceholder": "e.g., Foliar Spray, Soil Drench",
+      "saveButton": "Save Application Log",
+      "savingButton": "Saving...",
+      "toast": {
+        "authErrorTitle": "Authentication Error",
+        "authErrorDescription": "You must be signed in to log an input.",
+        "success": "Input Logged",
+        "description": "The input application has been added to your crop's journey.",
+        "fail": "Failed to Log Input"
+      }
+    },
+    "logObservation": {
+      "backLink": "Back to Farm Details",
+      "title": "Log Observation",
+      "description": "Record a general observation, a soil test result, or note a potential pest or disease issue. Upload a photo for AI-powered diagnosis.",
+      "typeLabel": "Observation Type",
+      "typePlaceholder": "Select an observation type...",
+      "types": {
+        "general_note": "General Note",
+        "pest_sighting": "Pest Sighting",
+        "disease_symptoms": "Disease Symptoms",
+        "soil_test_result": "Soil Test Result",
+        "weather_event": "Weather Event"
+      },
+      "dateLabel": "Observation Date",
+      "detailsLabel": "Details",
+      "detailsPlaceholder": "Describe your observation in detail. If you see a pest or disease, describe its appearance, location on the plant, and the extent of the problem.",
+      "uploadLabel": "Upload Photo (Optional)",
+      "uploadDescription": "Upload a clear photo of the issue for AI diagnosis and advice.",
+      "saveButton": "Save Observation",
+      "processingButton": "Saving & Analyzing...",
+      "toast": {
+        "authErrorTitle": "Authentication Error",
+        "authErrorDescription": "You must be signed in to log an observation.",
+        "aiAnalyzing": "Analyzing Image...",
+        "aiDescription": "Our AI is examining your photo. This may take a moment.",
+        "aiComplete": "AI Analysis Complete!",
+        "aiCompleteDescription": "The AI's diagnosis will be saved with your observation.",
+        "aiFailTitle": "AI Analysis Failed",
+        "aiFailDescription": "Could not analyze image, but your observation will still be saved.",
+        "uploading": "Uploading Image...",
+        "uploadingDescription": "Your photo is being securely uploaded.",
+        "uploadComplete": "Upload Complete!",
+        "success": "Observation Logged",
+        "successDescription": "Your observation has been added to the crop journey.",
+        "fail": "Failed to Log Observation"
+      }
+    },
+    "knfInputsPage": {
+      "backLink": "Back to Farm Hub",
+      "title": "KNF Inputs Assistant",
+      "description": "Manage your farmer-made Korean Natural Farming inputs. Track fermentation times and get reminders for next steps.",
+      "guidesTitle": "Quick Guides & Recipes",
+      "ingredients": "Ingredients",
+      "steps": "Steps",
+      "usage": "Usage",
+      "fermentingBatchesTitle": "Currently Fermenting",
+      "started": "Started",
+      "nextStepOn": "Next step on",
+      "markReady": "Mark as Ready",
+      "noFermentingBatches": "No batches are currently fermenting.",
+      "readyBatchesTitle": "Ready for Use",
+      "readySince": "Ready since",
+      "logUsage": "Log Usage",
+      "archive": "Archive",
+      "noReadyBatches": "You have no inputs ready for use.",
+      "startNewBatch": "Start a New Batch",
+      "createNewBatchTitle": "Create New KNF Batch",
+      "cancel": "Cancel",
+      "form": {
+        "typeLabel": "Input Type",
+        "typePlaceholder": "Select a KNF input",
+        "ingredientsLabel": "Main Ingredients Used",
+        "startDateLabel": "Start Date",
+        "startButton": "Start Batch",
+        "startingButton": "Starting...",
+        "quantityLabel": "Quantity Produced",
+        "quantityPlaceholder": "e.g. 5 or 20",
+        "unitLabel": "Unit",
+        "unitPlaceholder": "e.g. Liters, Gallons, kg"
+      },
+      "knfOptions": [
+        { "value": "fpj", "label": "Fermented Plant Juice (FPJ)", "placeholder": "e.g., Sweet potato tips, bamboo shoots" },
+        { "value": "faa", "label": "Fish Amino Acid (FAA)", "placeholder": "e.g., Fish scraps, heads, bones" },
+        { "value": "wca", "label": "Water Soluble Calcium (WCA)", "placeholder": "e.g., Eggshells" },
+        { "value": "imo", "label": "Indigenous Microorganisms (IMO)", "placeholder": "e.g., Cooked rice, local forest soil" },
+        { "value": "lab", "label": "Lactic Acid Bacteria (LAB)", "placeholder": "e.g., Rice wash water, milk" }
+      ],
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Fermented Plant Juice (FPJ)",
+          "description": "A potent growth enhancer made from the fermented sap of fast-growing plants.",
+          "ingredients": ["1kg fast-growing plant parts (e.g. sweet potato tips, bamboo shoots)", "1kg brown sugar"],
+          "steps": ["Collect plants before sunrise. Do not wash.", "Roughly chop plants.", "Mix with equal weight of brown sugar.", "Pack tightly into a breathable container, 2/3 full.", "Cover with cloth, store in cool, dark place for ~7 days."],
+          "usage": "Dilution rate: 1:500 to 1:1000 with water for foliar spray or soil drench."
+        },
+        {
+          "id": "faa",
+          "name": "Fish Amino Acid (FAA)",
+          "description": "A nitrogen-rich fertilizer from fermented fish parts, great for vegetative growth.",
+          "ingredients": ["1kg fish scraps (heads, bones, entrails)", "1kg brown sugar"],
+          "steps": ["Chop fish parts.", "Layer fish and brown sugar in a container (2/3 full).", "Cover and ferment for 3-6 months in a cool, dark place."],
+          "usage": "Dilution rate: 1:1000 with water, primarily for soil drenching."
+        },
+        {
+          "id": "wca",
+          "name": "Water Soluble Calcium (WCA)",
+          "description": "Provides essential calcium for fruiting and flowering stages.",
+          "ingredients": ["Roasted eggshells", "Brown rice vinegar"],
+          "steps": ["Roast eggshells until lightly browned, then grind to a powder.", "Add eggshell powder to a jar.", "Pour vinegar over powder (10 parts vinegar to 1 part shell by volume).", "Bubbles will form. It's ready when bubbling stops (~7-10 days)."],
+          "usage": "Dilution rate: 1:1000 with water. Use as a foliar spray during flowering/fruiting."
+        }
+      ],
+      "toasts": {
+        "loadErrorTitle": "Error Loading Batches",
+        "loadErrorDescription": "Could not retrieve your KNF batches.",
+        "validationError": "Please select an input type, and fill out the ingredients and start date.",
+        "batchStartedTitle": "Batch Started!",
+        "batchStartedDescription": "Your new KNF batch is now fermenting.",
+        "batchStartFailed": "Batch Start Failed",
+        "unexpectedError": "An unexpected error occurred.",
+        "batchUpdatedTitle": "Batch Updated",
+        "batchUpdatedDescription": "Batch status has been set to {status}.",
+        "updateFailed": "Update Failed",
+        "couldNotUpdate": "Could not update the batch status."
+      }
+    }
+  },
+  "AgriEvents": {
+    "page": {
+      "title": "Agri Events",
+      "description": "Discover workshops, conferences, and webinars in the agricultural sector.",
+      "createNewEvent": "Create New Event",
+      "pinAsHomepage": "Pin as Homepage",
+      "unpinHomepage": "Unpin Homepage",
+      "searchEvents": "Search events...",
+      "searchPlaceholder": "Search by title, location, or keyword...",
+      "filterPlaceholder": "Filter by event type",
+      "errorLoadingEvents": "Error Loading Events",
+      "couldNotFetchEvents": "Could not retrieve the event list. Please try again later.",
+      "noEventsFound": "No Events Found",
+      "noEventsHint": "Try adjusting your search filters, or be the first to {link}.",
+      "organizedBy": "By {organizer}",
+      "viewDetails": "View Details",
+      "toast": {
+        "pinned": {
+          "title": "Homepage Pinned",
+          "description": "The Agri Events page is now your default homepage."
+        },
+        "unpinned": {
+          "title": "Homepage Unpinned",
+          "description": "Your homepage has been reset to the default dashboard."
+        }
+      }
+    },
+    "create": {
+      "backButton": "Back to Events",
+      "formTitle": "Create a New Agri-Event",
+      "formDescription": "Fill out the details below to list a new event on the platform.",
+      "authErrorTitle": "Not Authenticated",
+      "authErrorDescription": "You must be signed in to create an event.",
+      "uploadingTitle": "Uploading Image...",
+      "uploadingDescription": "Please wait while your event banner is being uploaded.",
+      "uploadCompleteTitle": "Upload Complete!",
+      "successTitle": "Event Created!",
+      "successDescription": "Your event '{title}' has been successfully published.",
+      "failTitle": "Creation Failed",
+      "failDescription": "An unexpected error occurred while creating your event.",
+      "successCardTitle": "Event '{title}' Published!",
+      "successCardDescription": "Your event is now live and visible to the DamDoh community. You can now manage attendees, add staff, and create promotional coupons.",
+      "manageButton": "Manage Event",
+      "shareButton": "Share Event Link",
+      "linkCopiedTitle": "Link Copied!",
+      "linkCopiedDescription": "The event link has been copied to your clipboard.",
+      "createAnotherButton": "Create Another Event",
+      "viewAllButton": "View All Events",
+      "submittingButton": "Submitting...",
+      "submitButton": "Create Event",
+      "form": {
+        "titleLabel": "Event Title",
+        "titlePlaceholder": "e.g., Annual Sustainable Agriculture Conference",
+        "descriptionLabel": "Event Description",
+        "descriptionPlaceholder": "Describe your event in detail: what it's about, who should attend, key speakers, etc.",
+        "dateLabel": "Event Date",
+        "datePlaceholder": "Pick a date",
+        "timeLabel": "Event Time (optional)",
+        "timePlaceholder": "e.g., 14:30",
+        "timeDescription": "Use 24-hour format (HH:MM).",
+        "locationLabel": "Location",
+        "locationPlaceholder": "e.g., Online, or Nairobi, Kenya",
+        "locationDescription": "For physical events, be specific. For online events, just type 'Online'.",
+        "typeLabel": "Event Type",
+        "typePlaceholder": "Select an event type",
+        "organizerLabel": "Organizer Name (optional)",
+        "organizerPlaceholder": "e.g., Agri-Innovation Global",
+        "websiteLabel": "External Website Link (optional)",
+        "enableRegLabel": "Enable DamDoh Registration",
+        "enableRegDescription": "Allow users to register and pay (if applicable) directly on the platform.",
+        "attendeeLimitLabel": "Attendee Limit (optional)",
+        "attendeeLimitDescription": "Leave blank for unlimited attendees.",
+        "priceLabel": "Price (per ticket)",
+        "priceDescription": "Leave blank or 0 for a free event.",
+        "currencyLabel": "Currency",
+        "currencyDescription": "e.g., USD, KES",
+        "imageUrlLabel": "Event Banner Image URL (optional)",
+        "imageUrlDescription": "Link to an external image (e.g. from your website).",
+        "imageUploadLabel": "Or Upload an Image",
+        "imageUploadDescription": "Upload a banner image directly. This will override the URL above."
+      }
+    },
+    "detail": {
+      "backLink": "Back to Events",
+      "organizedBy": "Organized by {organizer}",
+      "attendees": "{count} / {limit} attendees",
+      "unlimited": "Unlimited",
+      "buttons": {
+        "manage": "Manage",
+        "share": "Share",
+        "close": "Close",
+        "registering": "Registering...",
+        "registerAndPay": "Register & Pay {price} {currency}",
+        "registerFree": "Register for Free",
+        "full": "Event is Full",
+        "visitWebsite": "Visit Event Website",
+        "viewTicket": "View Your Ticket"
+      },
+      "errors": {
+        "loadTitle": "Error",
+        "loadDescription": "Could not load event details.",
+        "signInTitle": "Please Sign In",
+        "signInDescription": "You must be signed in to register for events.",
+        "unexpected": "An unexpected error occurred."
+      },
+      "registration": {
+        "successTitle": "Registration Confirmed!",
+        "successDescription": "You are now registered for the event.",
+        "discountApplied": "A discount of {amount} {currency} has been applied.",
+        "finalPrice": "Your final price is {price} {currency}.",
+        "failTitle": "Registration Failed"
+      },
+      "coupon": {
+        "label": "Coupon Code (optional)",
+        "placeholder": "Enter code here",
+        "note": "If you have a coupon code, enter it here to apply a discount.",
+        "toastTitle": "Coupon Detected!",
+        "toastDescription": "The coupon '{couponCode}' from the URL has been applied."
+      },
+      "share": {
+        "title": "Share this Event",
+        "description": "Copy the link below to share this event with your network.",
+        "link": "Link",
+        "copy": "Copy"
+      },
+      "ticket": {
+        "title": "Your Event Ticket",
+        "for": "For: {eventTitle}",
+        "scan": "Present this QR code at the event for check-in."
+      },
+      "notFound": {
+        "title": "Event Not Found",
+        "description": "The event you are looking for does not exist or may have been removed.",
+        "backButton": "Back to All Events"
+      }
+    },
+    "manage": {
+      "title": "Manage Event",
+      "backLink": "Back to Event Page",
+      "tabs": {
+        "checkin": "Check-in",
+        "staff": "Staff",
+        "dashboard": "Dashboard",
+        "attendees": "Attendees",
+        "promotions": "Promotions"
+      },
+      "toast": {
+        "errorCoupons": {
+          "title": "Error",
+          "description": "Could not load event coupons."
+        }
+      },
+      "promotions": {
+        "create": {
+          "title": "Create a New Coupon",
+          "description": "Offer discounts to encourage registration for your event.",
+          "toast": {
+            "successTitle": "Coupon Created",
+            "successDescription": "The coupon '{code}' is now active.",
+            "failTitle": "Creation Failed"
+          },
+          "form": {
+            "code": "Coupon Code",
+            "codePlaceholder": "e.g., EARLYBIRD10",
+            "usageLimit": "Usage Limit",
+            "usageLimitPlaceholder": "e.g., 100",
+            "discountType": "Discount Type",
+            "discountTypePlaceholder": "Select a type",
+            "percentage": "Percentage",
+            "fixed": "Fixed Amount",
+            "discountValue": "Discount Value",
+            "expiryDate": "Expiration Date (optional)",
+            "pickDate": "Pick a date",
+            "submitButton": "Create Coupon"
+          }
+        },
+        "list": {
+          "title": "Existing Coupons",
+          "description": "View and share your active promotional coupons.",
+          "toastTitle": "Link Copied!",
+          "toastDescription": "The shareable link for coupon '{link}' has been copied.",
+          "expires": "Expires",
+          "never": "Never",
+          "usage": "Usage",
+          "share": "Share",
+          "noCoupons": "You have not created any coupons for this event yet.",
+          "shareModal": {
+            "title": "Share Coupon",
+            "description": "Share this link to give users a direct way to register with this coupon applied.",
+            "copy": "Copy",
+            "close": "Close"
+          }
+        }
+      },
+      "checkin": {
+        "title": "Attendee Check-in",
+        "description": "Use the QR code scanner to check in registered attendees at your event.",
+        "scanButton": "Scan Attendee QR Code",
+        "verifying": "Verifying ticket...",
+        "success": "Check-in Successful",
+        "errorTitle": "Check-in Error",
+        "error": {
+          "invalidCode": "This is not a valid DamDoh check-in code.",
+          "wrongEvent": "This ticket is for a different event.",
+          "noUserId": "Could not find a user ID on this ticket.",
+          "unknown": "An unknown error occurred.",
+          "failUnknown": "Check-in failed for an unknown reason."
+        },
+        "toast": {
+          "success": { "title": "Check-in Successful" },
+          "fail": { "title": "Check-in Failed" },
+          "scanFail": {
+            "title": "Scan Failed",
+            "description": "Could not read the QR code. Please try again."
+          }
+        }
+      },
+      "staff": {
+        "title": "Staff Management",
+        "description": "Add or remove users who can help manage your event, such as checking in attendees.",
+        "addTitle": "Add Staff Member",
+        "searchPlaceholder": "Search users by name or email...",
+        "addButton": "Add",
+        "removeButton": "Remove",
+        "currentTitle": "Current Staff",
+        "noStaff": "No staff members have been added yet.",
+        "toast": {
+          "error": "Error",
+          "fetchStaffError": "Could not load staff members.",
+          "searchLengthError": "Search query must be at least 3 characters.",
+          "searchFailed": "User search failed.",
+          "success": "Success",
+          "addSuccess": "{name} has been added as staff.",
+          "addFailed": "Failed to add staff member.",
+          "removeSuccess": "{name} has been removed from staff.",
+          "removeFailed": "Failed to remove staff member."
+        }
+      },
+      "attendees": {
+        "title": "Attendees",
+        "description": "View a list of all users registered for your event.",
+        "downloadCsv": "Download CSV",
+        "nameHeader": "Name",
+        "emailHeader": "Email",
+        "registeredOnHeader": "Registered On",
+        "statusHeader": "Status",
+        "statusCheckedIn": "Checked-in",
+        "statusRegistered": "Registered",
+        "noAttendees": "No one has registered for your event yet.",
+        "error": "Could not load attendees.",
+        "toast": {
+          "noAttendees": "No attendees to download."
+        }
+      }
+    }
   }
 }
+
+    
