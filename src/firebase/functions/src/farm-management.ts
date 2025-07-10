@@ -556,7 +556,7 @@ export const createKnfBatch = functions.https.onCall(async (data, context) => {
   if (!type || !typeName || !ingredients || !startDate || !quantityProduced || !unit) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "Type, typeName, ingredients, startDate, quantity and unit are required.",
+      "Type, typeName, ingredients, startDate, quantity, and unit are required.",
     );
   }
 

@@ -47,6 +47,9 @@ export default function KNFInputAssistantPage() {
   const [selectedInput, setSelectedInput] = useState<KnfInputType | ''>('');
   const [ingredients, setIngredients] = useState('');
   const [startDate, setStartDate] = useState<Date | undefined>(new Date());
+  const [quantity, setQuantity] = useState<number | string>('');
+  const [unit, setUnit] = useState<string>('');
+
 
   const knfOptions: { value: KnfInputType; label: string; placeholder: string }[] = t.tm('knfOptions');
   const knfRecipeData: any[] = t.tm('recipeData');
@@ -79,7 +82,7 @@ export default function KNFInputAssistantPage() {
   }, [user]);
 
   const handleStartBatch = async () => {
-    if (!selectedInput || !ingredients || !startDate) {
+    if (!selectedInput || !ingredients || !startDate || !quantity || !unit) {
         toast({ title: t('toasts.validationError'), variant: "destructive" });
         return;
     }
@@ -94,6 +97,8 @@ export default function KNFInputAssistantPage() {
             typeName: selectedOption.label,
             ingredients,
             startDate: startDate.toISOString(),
+            quantityProduced: Number(quantity),
+            unit,
         });
 
         toast({ title: t('toasts.batchStartedTitle'), description: t('toasts.batchStartedDescription') });
@@ -102,6 +107,8 @@ export default function KNFInputAssistantPage() {
         setSelectedInput('');
         setIngredients('');
         setStartDate(new Date());
+        setQuantity('');
+        setUnit('');
         await fetchBatches();
     } catch (error) {
         console.error("Error creating KNF batch:", error);
@@ -206,7 +213,7 @@ export default function KNFInputAssistantPage() {
                     readyBatches.map(batch => (
                         <Card key={batch.id} className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
                             <CardHeader className="pb-3 pt-4"><CardTitle className="text-md flex justify-between items-center"><span>{batch.typeName}</span><Badge variant="default" className="bg-green-600 hover:bg-green-700">{batch.status}</Badge></CardTitle><CardDescription className="text-xs">{t('readySince')}: {format(new Date(batch.nextStepDate), 'PPP')}</CardDescription></CardHeader>
-                            <CardContent className="text-sm"><p><strong className="font-medium">{t('ingredients')}:</strong> {batch.ingredients}</p></CardContent>
+                            <CardContent className="text-sm"><p><strong className="font-medium">{t('ingredients')}:</strong> {batch.ingredients}</p><p><strong className="font-medium">{t('quantity')}:</strong> {batch.quantityProduced} {batch.unit}</p></CardContent>
                             <CardFooter className="justify-end gap-2"><Button variant="secondary" size="sm" disabled={updatingBatchId === batch.id} onClick={() => toast({ title: "Coming Soon!", description: "The ability to log usage against a crop is coming next."})}><Package className="h-4 w-4 mr-2"/>{t('logUsage')}</Button><Button variant="outline" size="sm" onClick={() => handleUpdateStatus(batch.id, 'Archived')} disabled={updatingBatchId === batch.id}>{updatingBatchId === batch.id && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}<Archive className="h-4 w-4 mr-2"/>{t('archive')}</Button></CardFooter>
                         </Card>
                     ))
@@ -227,6 +234,10 @@ export default function KNFInputAssistantPage() {
                         {selectedInput && (
                              <>
                                 <div className="space-y-2"><Label htmlFor="ingredients">{t('form.ingredientsLabel')}</Label><Input id="ingredients" value={ingredients} onChange={(e) => setIngredients(e.target.value)} placeholder={knfOptions.find(o => o.value === selectedInput)?.placeholder} /></div>
+                                <div className="grid grid-cols-2 gap-4">
+                                     <div className="space-y-2"><Label htmlFor="quantity">{t('form.quantityLabel')}</Label><Input id="quantity" type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder={t('form.quantityPlaceholder')} /></div>
+                                     <div className="space-y-2"><Label htmlFor="unit">{t('form.unitLabel')}</Label><Input id="unit" value={unit} onChange={(e) => setUnit(e.target.value)} placeholder={t('form.unitPlaceholder')} /></div>
+                                </div>
                                 <div className="space-y-2"><Label htmlFor="start-date">{t('form.startDateLabel')}</Label><Input id="start-date" type="date" value={startDate ? format(startDate, 'yyyy-MM-dd') : ''} onChange={(e) => setStartDate(e.target.valueAsDate || undefined)}/></div>
                                 <div className="flex gap-2 pt-2"><Button onClick={handleStartBatch} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}{isSubmitting ? t('form.startingButton') : t('form.startButton')}</Button><Button variant="outline" onClick={() => setShowCreateForm(false)} disabled={isSubmitting}>{t('cancel')}</Button></div>
                              </>
