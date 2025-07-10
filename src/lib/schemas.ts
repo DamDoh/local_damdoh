@@ -51,7 +51,7 @@ export const MarketplaceItemSchema = z.object({
   isSustainable: z.boolean().optional(),
   sellerVerification: z.string().optional(),
   certifications: z.array(z.string()).optional(),
-  relatedTraceabilityId: z.string().optional(),
+  relatedTraceabilityId: z.string().optional().nullable(),
   createdAt: z.any(), // Firestore Timestamp
   updatedAt: z.any(), // Firestore Timestamp
   // Service-specific fields

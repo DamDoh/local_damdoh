@@ -1,5 +1,4 @@
 
-
 import { z } from "zod";
 import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from "@/lib/constants";
 
@@ -27,7 +26,7 @@ export const createMarketplaceItemSchema = z.object({
   description: z.string().min(10, "Description must be at least 10 characters long.").max(2000, "Description cannot exceed 2000 characters."),
   price: z.coerce.number({ invalid_type_error: "Price must be a number." }).min(0, "Price cannot be negative.").optional(),
   currency: z.string().length(3, "Currency must be a 3-letter code.").default("USD").transform(value => value.toUpperCase()),
-  perUnit: z.string().max(30, "Unit description (e.g., /kg, /ton, /hour) is too long.").optional(),
+  perUnit: z.string().max(30, "Unit description (e.g., /kg, /ton, /hour) is too long.").optional().or(z.literal('')),
   category: z.enum(UNIFIED_MARKETPLACE_CATEGORY_IDS, {
     errorMap: () => ({ message: "Please select a valid category." }),
   }),
@@ -37,14 +36,14 @@ export const createMarketplaceItemSchema = z.object({
   imageFile: imageFileSchema,
   dataAiHint: z.string().optional(),
   contactInfo: z.string().min(5, "Contact information must be at least 5 characters long.").max(200, "Contact information cannot exceed 200 characters.").optional(),
-  skillsRequired: z.string().max(250, "Skills list is too long (max 250 chars).").optional().describe("For services: Enter skills, comma-separated"),
-  compensation: z.string().max(100, "Compensation details are too long (max 100 chars).").optional().describe("For services: e.g., $50/hr, Project-based"),
+  skillsRequired: z.string().max(250, "Skills list is too long (max 250 chars).").optional(),
+  compensation: z.string().max(100, "Compensation details are too long (max 100 chars).").optional(),
    // Fields from extended schema, made optional for the form
   brand: z.string().max(50, "Brand name is too long.").optional(),
   condition: z.enum(['New', 'Used', 'Refurbished']).optional(),
   availabilityStatus: z.enum(['Available', 'Booking Required', 'Limited Availability']).optional(),
   certifications: z.string().max(500, "Certifications list is too long.").optional(),
-  relatedTraceabilityId: z.string().max(100, "Traceability ID is too long.").optional(),
+  relatedTraceabilityId: z.string().max(100, "Traceability ID is too long.").optional().nullable(),
   experienceLevel: z.string().optional(),
 });
 
@@ -231,3 +230,31 @@ export const getCreateMarketplaceCouponSchema = (t: (key: string) => string) => 
 });
 
 export type CreateMarketplaceCouponValues = z.infer<ReturnType<typeof getCreateMarketplaceCouponSchema>>;
+
+
+export const createInsuranceProductSchema = z.object({
+  name: z.string().min(5, "Product name must be at least 5 characters.").max(100),
+  type: z.enum(['Crop', 'Livestock', 'Asset', 'Weather'], { required_error: "Please select a product type." }),
+  description: z.string().min(20, "Please provide a detailed description.").max(1000),
+  coverageDetails: z.string().min(20, "Please provide coverage details.").max(2000),
+  premium: z.coerce.number().positive("Premium must be a positive number."),
+  currency: z.string().length(3, "Currency must be a 3-letter code.").default("USD"),
+});
+export type CreateInsuranceProductValues = z.infer<typeof createInsuranceProductSchema>;
+
+export const createInsuranceApplicationSchema = z.object({
+  productId: z.string(),
+  farmId: z.string({ required_error: "Please select the farm to insure." }),
+  coverageValue: z.coerce.number().positive("Coverage value must be a positive number."),
+});
+export type CreateInsuranceApplicationValues = z.infer<typeof createInsuranceApplicationSchema>;
+
+
+export const financialApplicationSchema = z.object({
+  fiId: z.string({ required_error: "Please select a financial institution." }),
+  type: z.enum(['Loan', 'Grant']),
+  amount: z.coerce.number().positive("Amount must be a positive number."),
+  currency: z.string().min(3).max(3),
+  purpose: z.string().min(20, "Purpose must be at least 20 characters.").max(2000),
+});
+export type FinancialApplicationValues = z.infer<typeof financialApplicationSchema>;
