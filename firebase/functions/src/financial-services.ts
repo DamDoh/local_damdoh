@@ -783,12 +783,12 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
     if (appData.applicantId) {
         const profileDoc = await db.collection('users').doc(appData.applicantId).get();
         if (profileDoc.exists) {
-            const data = profileDoc.data()!;
+            const profileData = profileDoc.data()!;
             applicantProfile = {
                 id: profileDoc.id,
-                ...data,
-                createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
-                updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+                ...profileData,
+                createdAt: (profileData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+                updatedAt: (profileData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
             };
         }
     }
@@ -904,3 +904,40 @@ export const getFinancialProducts = functions.https.onCall(async (data, context)
     return { products };
 });
     
+
+export const getFinancialInstitutions = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
+    const fiSnapshot = await db.collection("users").where("primaryRole", "==", "Financial Institution (Micro-finance/Loans)").get();
+    
+    const fis = fiSnapshot.docs.map(doc => ({
+        id: doc.id,
+        displayName: doc.data().displayName,
+    }));
+
+    return fis;
+});
+
+export const getFiApplications = functions.https.onCall(async (data, context) => {
+    const fiId = await checkFiAuth(context);
+    const { status } = data; // e.g., "Pending", "Approved", "All"
+
+    let query: admin.firestore.Query = db.collection("financial_applications").where("fiId", "==", fiId);
+
+    if (status && status !== 'All') {
+        query = query.where("status", "==", status);
+    }
+
+    query = query.orderBy("submittedAt", "desc");
+
+    const snapshot = await query.get();
+    
+    const applications = snapshot.docs.map(doc => {
+        const appData = doc.data();
+        return {
+            ...appData,
+            id: doc.id,
+            submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+        }
+    });
+
+    return { applications };

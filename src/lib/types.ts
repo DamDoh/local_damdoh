@@ -647,8 +647,6 @@ export type KnfBatch = {
     nextStepDate: any; // Firestore Timestamp
     status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
     nextStep: string;
-    quantityProduced: number;
-    unit: string;
     createdAt?: any;
 }
 
@@ -825,3 +823,35 @@ export type ServiceItem = MarketplaceItem & {
 // AI Related Types
 export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
 export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;
+
+export interface ApiKey {
+    id: string;
+    key: string;
+    description: string;
+    status: 'Active' | 'Revoked';
+    environment: 'Sandbox' | 'Production';
+    createdAt: string; // ISO String
+}
+
+export interface FinancialProduct {
+    id: string;
+    fiId: string;
+    name: string;
+    type: 'Loan' | 'Grant';
+    description: string;
+    interestRate?: number | null;
+    maxAmount?: number | null;
+    targetRoles: string[];
+    status: 'Active' | 'Inactive';
+}
+
+export interface InsuranceProduct {
+    id: string;
+    providerId: string;
+    name: string;
+    type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
+    description: string;
+    coverageDetails: string;
+    premium: number;
+    currency: string;
+    provider?: {

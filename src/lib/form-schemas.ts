@@ -1,4 +1,3 @@
-
 import { z } from "zod";
 import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from "@/lib/constants";
 
@@ -44,6 +43,7 @@ export const createMarketplaceItemSchema = z.object({
   certifications: z.string().max(500, "Certifications list is too long.").optional(),
   relatedTraceabilityId: z.string().max(100, "Traceability ID is too long.").optional(),
   experienceLevel: z.string().optional(),
+  dataAiHint: z.string().optional(),
 });
 
 export type CreateMarketplaceItemValues = z.infer<typeof createMarketplaceItemSchema>;
@@ -72,6 +72,7 @@ export const createAgriEventSchema = z.object({
   websiteLink: z.string().url({ message: "Please enter a valid URL for the event website." }).optional().or(z.literal('')),
   imageUrl: z.string().url({ message: "Please enter a valid URL for the event image." }).optional().or(z.literal('')),
   imageFile: imageFileSchema,
+  dataAiHint: z.string().optional(),
   registrationEnabled: z.boolean().default(false).optional(),
   attendeeLimit: z.coerce.number().int().positive("Must be a positive number.").optional(),
   price: z.coerce.number().min(0, "Price cannot be negative.").optional(),

@@ -1908,5 +1908,301 @@
     "allRoles": "All Roles",
     "noStakeholdersFound": "No Stakeholders Found",
     "noStakeholdersHint": "Try adjusting your search filters."
+  },
+  "myNetworkPage": {
+    "backLink": "Back to Network",
+    "myConnectionsTab": "My Connections ({count})",
+    "pendingRequestsTab": "Pending Requests",
+    "connectionsTitle": "My Connections",
+    "connectionsDescription": "Your established network on the platform.",
+    "noConnections": "You haven't made any connections yet. Start by exploring the network!",
+    "requestsTitle": "Pending Connection Requests",
+    "requestsDescription": "Respond to people who want to connect with you.",
+    "sentTimeAgo": "sent {timeAgo}",
+    "noRequests": "You have no pending connection requests."
+  },
+  "agentToolsPage": {
+    "backLink": "Back to Network",
+    "title": "Field Agent Tools",
+    "description": "Securely look up user information for verification and support.",
+    "findUserLabel": "Find User by Phone Number",
+    "phoneRequiredError": "Phone number is required for lookup.",
+    "findButton": "Find",
+    "resultsTitle": "Lookup Result",
+    "resultsPlaceholder": "Enter a phone number to look up a user.",
+    "accessDeniedTitle": "Access Denied",
+    "accessDeniedDescription": "You do not have the required permissions to access this page."
+  },
+  "pinboardPage": {
+    "title": "Pinboard",
+    "description": "Your personal space to save interesting items from across DamDoh.",
+    "comingSoonTitle": "Coming Soon!",
+    "comingSoonDescription": "The Pinboard will allow you to save profiles, marketplace items, and forum posts for easy access later. It's your personal collection of important finds on the platform.",
+    "stayTuned": "Stay tuned for this exciting feature!"
+  },
+  "walletPage": {
+    "title": "DamDoh Wallet",
+    "description": "Securely manage your funds and transactions on the platform.",
+    "underDevelopmentTitle": "Wallet Feature Under Development",
+    "underDevelopmentDescription": "We are building a robust and secure digital wallet to facilitate seamless transactions within the DamDoh ecosystem. This feature will enable you to:",
+    "feature1": "Send and receive payments instantly.",
+    "feature2": "Manage funds from marketplace sales.",
+    "feature3": "Pay for services and products securely.",
+    "feature4": "Integrate with mobile money for easy top-ups and withdrawals.",
+    "stayTuned": "Stay tuned for updates!"
+  },
+  "sustainabilityPage": {
+    "title": "Sustainability Dashboard",
+    "description": "Track and improve the environmental impact of your agricultural practices.",
+    "carbonFootprint": "Carbon Footprint",
+    "waterEfficiency": "Water Efficiency",
+    "biodiversityScore": "Biodiversity Score",
+    "metricCard": {
+      "trendText": "from last month"
+    },
+    "practicesTitle": "Logged Sustainable Practices",
+    "certificationsTitle": "Active Certifications",
+    "practicesTable": {
+      "practice": "Practice",
+      "lastLogged": "Last Logged"
+    },
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Status",
+      "expiry": "Expiry Date"
+    },
+    "auth": {
+      "title": "Please Sign In",
+      "description": "You need to be logged in to view your sustainability dashboard.",
+      "button": "Sign In"
+    },
+    "noData": {
+      "title": "No Data Available",
+      "description": "Start logging farm activities and data to see your sustainability metrics."
+    }
+  },
+  "talentExchangePage": {
+    "title": "Talent Exchange",
+    "description": "Find specialized agricultural skills or offer your expertise.",
+    "listServiceButton": "List a Service",
+    "searchPlaceholder": "Search for services, skills...",
+    "locationPlaceholder": "Filter by location...",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Categories",
+    "noResultsTitle": "No Services Found",
+    "noResultsDescription": "Try adjusting your search filters or be the first to list a service in this category.",
+    "toast": {
+      "error": {
+        "title": "Error",
+        "description": "Could not fetch services at this time."
+      }
+    }
+  },
+  "FiApplicationPage": {
+    "backLink": "Back to Applications",
+    "title": "Application Details",
+    "submittedOn": "Submitted on",
+    "amountRequested": "Amount Requested",
+    "purpose": "Purpose of Funding",
+    "approveButton": "Approve",
+    "rejectButton": "Reject",
+    "requestInfoButton": "Request More Info",
+    "applicantDetails": "Applicant Details",
+    "viewProfileButton": "View Full Profile",
+    "profileNotFound": "Applicant profile could not be loaded.",
+    "riskAssessment": "AI Risk Assessment",
+    "creditScore": "Credit Score",
+    "notFound": "Application not found.",
+    "toast": {
+      "errorTitle": "Error",
+      "updateSuccessTitle": "Status Updated",
+      "updateSuccessDescription": "Application status updated to {status}.",
+      "updateFailTitle": "Update Failed"
+    }
+  },
+  "FiApplicationListPage": {
+    "backLink": "Back to Dashboard",
+    "title": "Financial Applications",
+    "description": "Review and manage incoming loan and grant applications.",
+    "tabs": {
+      "all": "All",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "table": {
+      "applicant": "Applicant",
+      "type": "Type",
+      "amount": "Amount",
+      "date": "Date",
+      "status": "Status",
+      "action": "Action"
+    },
+    "reviewButton": "Review",
+    "noApplications": "No applications found in this category."
+  },
+  "FiProductCreatePage": {
+    "backLink": "Back to Products",
+    "title": "Create New Financial Product",
+    "description": "Define a new loan or grant product to offer on the platform.",
+    "form": {
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Smallholder Season Starter Loan",
+      "typeLabel": "Product Type",
+      "loan": "Loan",
+      "grant": "Grant",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Describe the product, its purpose, and eligibility criteria.",
+      "interestRateLabel": "Interest Rate (%)",
+      "interestRatePlaceholder": "e.g., 12.5",
+      "maxAmountLabel": "Max Amount (USD)",
+      "maxAmountPlaceholder": "e.g., 10000",
+      "targetRolesLabel": "Target Audience",
+      "targetRolesDescription": "Select the stakeholder roles this product is available to.",
+      "submitButton": "Create Product"
+    },
+    "toast": {
+      "notAuthenticated": "You must be logged in as a Financial Institution to create products.",
+      "successTitle": "Product Created!",
+      "successDescription": "'{name}' is now available on the platform.",
+      "errorTitle": "Creation Failed"
+    }
+  },
+  "FiProductsPage": {
+    "backLink": "Back to Dashboard",
+    "title": "Manage Financial Products",
+    "description": "View and manage your current loan and grant offerings.",
+    "createButton": "Create New Product",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "interestRate": "Interest Rate",
+      "maxAmount": "Max Amount"
+    },
+    "noProducts": "You have not created any financial products yet.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsurancePage": {
+    "title": "Agricultural Insurance",
+    "description": "Protect your farm and assets against unforeseen risks.",
+    "perTerm": "per term",
+    "viewDetailsButton": "View Details & Apply",
+    "noProducts": "No insurance products available at this time.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "Back to Insurance Hub",
+    "notFound": "Insurance product not found.",
+    "coverageTitle": "Coverage Details",
+    "premiumTitle": "Premium",
+    "perTerm": "per term",
+    "providerTitle": "Provided By",
+    "applyButton": "Apply Now",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "Back to Product",
+    "title": "Apply for Insurance",
+    "description": "Apply for '{productName}' by selecting your farm and desired coverage.",
+    "form": {
+      "farmLabel": "Farm to Insure",
+      "farmPlaceholder": "Select one of your farms",
+      "noFarms": "No farms found. Please create a farm first.",
+      "coverageValueLabel": "Coverage Value (USD)",
+      "coverageValuePlaceholder": "e.g., 5000",
+      "coverageValueDescription": "The total value you wish to insure.",
+      "submitButton": "Submit Application"
+    },
+    "success": {
+      "title": "Application Submitted!",
+      "description": "Your insurance application has been received and is now under review.",
+      "backToDashboardButton": "Back to Dashboard",
+      "applyForAnotherButton": "Apply for Another Policy"
+    },
+    "toast": {
+      "error": "Error",
+      "notAuthenticated": "You must be logged in to apply for insurance.",
+      "fetchError": "Could not load required data.",
+      "successTitle": "Application Submitted",
+      "successDescription": "Your application is under review."
+    }
+  },
+  "InsuranceProductsPage": {
+    "backLink": "Back to Dashboard",
+    "title": "Manage Insurance Products",
+    "description": "View and manage your current insurance product offerings.",
+    "createButton": "Create New Product",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "premium": "Premium"
+    },
+    "noProducts": "You have not created any insurance products yet.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "Back to Products",
+    "title": "Create New Insurance Product",
+    "description": "Define a new insurance product to offer on the platform.",
+    "form": {
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Drought Protection Crop Insurance",
+      "typeLabel": "Product Type",
+      "typePlaceholder": "Select a product type",
+      "crop": "Crop Insurance",
+      "livestock": "Livestock Insurance",
+      "asset": "Asset Insurance",
+      "weather": "Weather Index Insurance",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Describe the product, its purpose, and eligibility criteria.",
+      "coverageLabel": "Coverage Details",
+      "coveragePlaceholder": "Detail what this policy covers...",
+      "premiumLabel": "Premium ($)",
+      "premiumPlaceholder": "e.g., 150.00",
+      "currencyLabel": "Currency",
+      "submitButton": "Create Product"
+    },
+    "toast": {
+      "notAuthenticated": "You must be logged in as an Insurance Provider to create products.",
+      "successTitle": "Product Created!",
+      "successDescription": "'{name}' is now available on the platform.",
+      "errorTitle": "Creation Failed"
+    }
   }
 }
+
+```
+- src/middleware.ts:
+```ts
+import createMiddleware from 'next-intl/middleware';
+import { locales } from './i18n-config';
+
+const defaultLocale = 'en';
+ 
+export default createMiddleware({
+  // A list of all locales that are supported
+  locales: locales,
+ 
+  // Used when no locale matches
+  defaultLocale: defaultLocale,
+  localePrefix: 'as-needed' 
+});
+ 
+export const config = {
+  // Match all pathnames except for
+  // - … if they start with `/api`, `/_next` or `/_vercel`
+  // - … the ones containing a dot (e.g. `favicon.ico`)
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
+};
+
+```
