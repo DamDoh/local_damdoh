@@ -560,7 +560,278 @@
       "buttonText": "Enviar Mensaje",
       "note": "Nos esforzamos por responder a todas las consultas en 24 horas."
     }
+  },
+   "privacyPolicy": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización: 26 de octubre de 2023",
+    "introduction": "Este aviso de privacidad para DamDoh describe cómo y por qué podemos recopilar, almacenar, usar y/o compartir ('procesar') su información cuando utiliza nuestros servicios ('Servicios'), como cuando visita nuestro sitio web en http://damdoh.org, o cualquier sitio web nuestro que enlace a este aviso de privacidad; se relaciona con nosotros de otras maneras relacionadas, incluidas ventas, marketing o eventos.",
+    "whatInfoWeCollect": {
+      "heading": "1. ¿QUÉ INFORMACIÓN RECOPILAMOS?",
+      "content": "Recopilamos información personal que usted nos proporciona voluntariamente cuando se registra en los Servicios, expresa interés en obtener información sobre nosotros o nuestros productos y Servicios, cuando participa en actividades en los Servicios o de otra manera cuando se pone en contacto con nosotros."
+    },
+    "howWeUseInfo": {
+      "heading": "2. ¿CÓMO PROCESAMOS SU INFORMACIÓN?",
+      "content": "Procesamos su información para proporcionar, mejorar y administrar nuestros Servicios, comunicarnos con usted, para la seguridad y prevención de fraudes, y para cumplir con la ley. También podemos procesar su información para otros fines con su consentimiento."
+    },
+    "willInfoBeShared": {
+      "heading": "3. ¿CUÁNDO Y CON QUIÉN COMPARTIMOS SU INFORMACIÓN PERSONAL?",
+      "content": "Podemos compartir información en situaciones específicas y con terceros específicos. Su información puede ser compartida con nuestros socios comerciales, afiliados y proveedores de servicios para facilitar nuestros Servicios."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. ¿UTILIZAMOS COOKIES Y OTRAS TECNOLOGÍAS DE SEGUIMIENTO?",
+      "content": "Podemos utilizar cookies y tecnologías de seguimiento similares (como balizas web y píxeles) para acceder o almacenar información."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. ¿CUÁNTO TIEMPO CONSERVAMOS SU INFORMACIÓN?",
+      "content": "Conservamos su información durante el tiempo que sea necesario para cumplir con los fines descritos en este aviso de privacidad, a menos que la ley exija lo contrario."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. ¿CÓMO MANTENEMOS SEGURA SU INFORMACIÓN?",
+      "content": "Hemos implementado medidas de seguridad técnicas y organizativas apropiadas y razonables diseñadas para proteger la seguridad de cualquier información personal que procesamos."
+    },
+    "minors": {
+      "heading": "7. ¿RECOPILAMOS INFORMACIÓN DE MENORES?",
+      "content": "No recopilamos datos de niños menores de 18 años ni les comercializamos nuestros servicios a sabiendas."
+    },
+    "privacyRights": {
+      "heading": "8. ¿CUÁLES SON SUS DERECHOS DE PRIVACIDAD?",
+      "content": "Puede revisar, cambiar o cancelar su cuenta en cualquier momento. Dependiendo de su ubicación, puede tener ciertos derechos con respecto a su información personal según las leyes de protección de datos aplicables."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. CONTROLES PARA LAS FUNCIONES DE NO SEGUIMIENTO (DO-NOT-TRACK)",
+      "content": "La mayoría de los navegadores web y algunos sistemas operativos y aplicaciones móviles incluyen una función o configuración de No Rastrear ('DNT') que puede activar para señalar su preferencia de privacidad de no tener datos sobre sus actividades de navegación en línea monitoreados y recopilados. Actualmente no respondemos a las señales de navegador DNT ni a ningún otro mecanismo que comunique automáticamente su elección de no ser rastreado en línea."
+    },
+    "updatesToNotice": {
+      "heading": "10. ¿REALIZAMOS ACTUALIZACIONES A ESTE AVISO?",
+      "content": "Sí, actualizaremos este aviso según sea necesario para cumplir con las leyes pertinentes."
+    },
+    "contactUs": {
+      "heading": "11. ¿CÓMO PUEDE CONTACTARNOS SOBRE ESTE AVISO?",
+      "content": "Si tiene preguntas o comentarios sobre este aviso, puede contactarnos por correo postal en: DamDoh, 123 Agri-Tech Avenue, Nairobi, Kenia."
+    },
+    "conclusion": "Puede hacerlo a través de nuestra página de {contactLink}."
+  },
+  "termsOfService": {
+    "title": "Términos de Servicio",
+    "lastUpdated": "Última actualización: 26 de octubre de 2023",
+    "introduction": "Bienvenido a DamDoh. Estos Términos de Servicio ('Términos') rigen su uso del sitio web y los servicios de DamDoh ('Servicios'), proporcionados por DamDoh Inc. Al utilizar nuestros Servicios, usted acepta estos Términos. Por favor, léalos detenidamente.",
+    "agreementToTerms": {
+      "heading": "1. Aceptación de los Términos",
+      "content": "Al utilizar nuestros Servicios, usted acepta estar sujeto a estos Términos. Si no está de acuerdo con estos Términos, no utilice los Servicios."
+    },
+    "intellectualProperty": {
+      "heading": "2. Derechos de Propiedad Intelectual",
+      "content": "Los Servicios y su contenido original, características y funcionalidad son y seguirán siendo propiedad exclusiva de DamDoh y sus licenciantes. Nuestras marcas comerciales y nuestra imagen comercial no pueden ser utilizadas en conexión con ningún producto o servicio sin el consentimiento previo por escrito de DamDoh."
+    },
+    "userRepresentations": {
+      "heading": "3. Declaraciones del Usuario",
+      "content": "Al utilizar los Servicios, usted declara y garantiza que: (1) toda la información de registro que envíe será verdadera, precisa, actual y completa; (2) mantendrá la exactitud de dicha información y actualizará puntualmente dicha información de registro según sea necesario; (3) tiene la capacidad legal y se compromete a cumplir con estos Términos de Uso; (4) no es menor de edad en la jurisdicción en la que reside; (5) no accederá al Sitio a través de medios automatizados o no humanos, ya sea a través de un bot, script o de otra manera; (6) no utilizará el Sitio para ningún propósito ilegal o no autorizado; y (7) su uso del Sitio no violará ninguna ley o regulación aplicable."
+    },
+    "prohibitedActivities": {
+      "heading": "4. Actividades Prohibidas",
+      "content": "No puede acceder ni utilizar el Sitio para ningún otro propósito que no sea el para el que ponemos el Sitio a su disposición. El Sitio no puede ser utilizado en conexión con ninguna empresa comercial, excepto aquellas que estén específicamente respaldadas o aprobadas por nosotros."
+    },
+    "platformManagement": {
+      "heading": "5. Gestión de la Plataforma",
+      "content": "Nos reservamos el derecho, pero no la obligación, de: (1) monitorear el Sitio en busca de violaciones de estos Términos de Uso; (2) tomar las acciones legales apropiadas contra cualquiera que, a nuestra entera discreción, viole la ley o estos Términos de Uso; (3) a nuestra entera discreción y sin limitación, rechazar, restringir el acceso, limitar la disponibilidad o deshabilitar cualquiera de sus Contribuciones o cualquier parte de ellas."
+    },
+    "termAndTermination": {
+      "heading": "6. Plazo y Terminación",
+      "content": "Estos Términos de Uso permanecerán en pleno vigor y efecto mientras usted utilice el Sitio. SIN LIMITAR NINGUNA OTRA DISPOSICIÓN DE ESTOS TÉRMINOS DE USO, NOS RESERVAMOS EL DERECHO DE, A NUESTRA ENTERA DISCRECIÓN Y SIN PREVIO AVISO NI RESPONSABILIDAD, NEGAR EL ACCESO Y USO DEL SITIO (INCLUYENDO EL BLOQUEO DE CIERTAS DIRECCIONES IP), A CUALQUIER PERSONA POR CUALQUIER MOTIVO O SIN MOTIVO ALGUNO."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. Modificaciones e Interrupciones",
+      "content": "Nos reservamos el derecho de cambiar, modificar o eliminar el contenido del Sitio en cualquier momento o por cualquier motivo a nuestra entera discreción y sin previo aviso. También nos reservamos el derecho de modificar o descontinuar todo o parte del Sitio sin previo aviso en cualquier momento. No seremos responsables ante usted ni ante ningún tercero por ninguna modificación, cambio de precio, suspensión o interrupción del Sitio."
+    },
+    "governingLaw": {
+      "heading": "8. Ley Aplicable",
+      "content": "Estos Términos de Uso y su uso del Sitio se rigen e interpretan de acuerdo con las leyes del país donde DamDoh está establecido, sin tener en cuenta sus principios de conflicto de leyes."
+    },
+    "disputeResolution": {
+      "heading": "9. Resolución de Disputas",
+      "content": "Cualquier acción legal de cualquier naturaleza iniciada por usted o por nosotros se iniciará o procesará en los tribunales estatales y federales ubicados en nuestra jurisdicción, y las partes por la presente consienten y renuncian a todas las defensas de falta de jurisdicción personal y de foro no conveniente con respecto a la competencia y jurisdicción en dichos tribunales estatales y federales."
+    },
+    "contactUs": {
+      "heading": "10. Contáctenos",
+      "content": "Para resolver una queja sobre el Sitio o para recibir más información sobre el uso del Sitio, por favor contáctenos."
+    },
+    "conclusion": "Puede hacerlo a través de nuestra página de {contactLink}."
+  },
+  "careers": {
+    "title": "Carreras en DamDoh",
+    "subtitle": "Únase a nosotros en nuestra misión de revolucionar la cadena de suministro agrícola.",
+    "whyWorkWithUs": {
+        "title": "¿Por qué trabajar con nosotros?",
+        "intro": "En DamDoh, somos un equipo apasionado y diverso de innovadores, expertos agrícolas y tecnólogos dedicados a tener un impacto tangible. Creemos en:",
+        "point1": "Trabajo con significado: Sus contribuciones empoderarán directamente a los agricultores y crearán un sistema alimentario más sostenible.",
+        "point2": "Innovación: Abordamos desafíos complejos con tecnología de vanguardia y pensamiento creativo.",
+        "point3": "Crecimiento: Invertimos en nuestra gente, ofreciendo oportunidades de desarrollo profesional y aprendizaje.",
+        "point4": "Colaboración: Fomentamos un entorno de apoyo y colaboración donde se escucha cada voz.",
+        "point5": "Impacto global: Sea parte de una solución que aborda la seguridad alimentaria mundial y el desarrollo económico."
+    },
+    "currentOpenings": {
+        "title": "Ofertas de Empleo Actuales"
+    },
+    "noOpenings": {
+        "title": "No hay Puestos Vacantes por el Momento",
+        "content1": "Siempre estamos en busca de talentos apasionados. Si cree en nuestra misión y piensa que puede contribuir, no dude en enviar su currículum y una carta de presentación a {emailLink}.",
+        "emailLinkText": "careers@damdoh.org"
+    },
+    "openings": {
+      "job1": {
+        "title": "Ingeniero Backend Senior (Node.js, Firestore)",
+        "location": "Nairobi, Kenia / Remoto",
+        "type": "Tiempo completo",
+        "description": "Diseñe y construya microservicios escalables, gestione nuestra arquitectura de base de datos y garantice la fiabilidad de las funcionalidades principales de nuestra plataforma."
+      },
+      "job2": {
+        "title": "Agrónomo Principal y Gerente de Operaciones de Campo",
+        "location": "Valle del Rift, Kenia",
+        "type": "Tiempo completo",
+        "description": "Dirija nuestro equipo de agentes de campo, brinde asesoramiento agronómico experto y garantice la integridad de los datos de nuestra red de granjas asociadas."
+      },
+      "job3": {
+        "title": "Gerente de Producto, Servicios Financieros",
+        "location": "Remoto",
+        "type": "Tiempo completo",
+        "description": "Impulse la estrategia y el desarrollo de nuestros productos financieros, incluyendo la calificación crediticia, los préstamos y las integraciones de seguros para pequeños agricultores."
+      }
+    },
+    "applyNowButton": "Postular ahora"
+  },
+  "communityGuidelines": {
+    "title": "Normas de la Comunidad",
+    "subtitle": "Fomentando un entorno profesional, respetuoso y de confianza para todos.",
+    "intro": "¡Bienvenido a la comunidad de DamDoh! Nuestra misión es conectar el mundo agrícola de una manera positiva y productiva. Para asegurar que todos tengan una gran experiencia, le pedimos que siga estas pautas:",
+    "respectful": {
+      "title": "Sea Respetuoso y Profesional",
+      "description": "Trate a todos los miembros con cortesía. No toleramos el acoso, el discurso de odio o los ataques personales. Participe en discusiones constructivas, incluso cuando no esté de acuerdo."
+    },
+    "authentic": {
+      "title": "Sea Auténtico y Honesto",
+      "description": "Represéntese a sí mismo y a su negocio con veracidad. No se haga pasar por otros ni proporcione información engañosa sobre sus productos, servicios o credenciales."
+    },
+    "relevant": {
+      "title": "Manténgalo Relevante",
+      "description": "Contribuya a las discusiones con ideas relevantes. Evite el spam, la autopromoción excesiva y el contenido fuera de tema en foros profesionales y listados de mercado."
+    },
+    "fairTrade": {
+      "title": "Honre sus Compromisos",
+      "description": "Realice transacciones comerciales con integridad. Cumpla con sus pedidos, pague a tiempo y comuníquese claramente para construir relaciones duraderas y de confianza."
+    },
+    "sustainable": {
+      "title": "Promueva Prácticas Sostenibles",
+      "description": "Fomentamos el intercambio de conocimientos y prácticas que apoyan la sostenibilidad ambiental, económica y social en la agricultura."
+    },
+    "reporting": {
+      "title": "Reportar Violaciones",
+      "content": "Si ve contenido o comportamiento que viola estas pautas, por favor repórtelo a nuestro equipo. Puede enviar los detalles a {emailLink}.",
+      "emailLinkText": "support@damdoh.org"
+    },
+    "conclusion": "Al usar DamDoh, usted acepta estas pautas. Nos reservamos el derecho de eliminar contenido y tomar medidas en las cuentas que violen estos principios. ¡Gracias por ayudarnos a construir una comunidad positiva!"
+  },
+  "pinboardPage": {
+    "title": "Mi Tablero",
+    "description": "Su espacio personal para guardar y organizar elementos importantes de toda la plataforma DamDoh.",
+    "comingSoonTitle": "¡La función de Tablero llegará pronto!",
+    "comingSoonDescription": "Imagínese poder anclar listados de mercado interesantes, publicaciones de foro perspicaces, contactos valiosos y artículos útiles, todo en un solo lugar. ¡Eso es lo que hará el Tablero!",
+    "stayTuned": "Manténgase atento a las actualizaciones."
+  },
+  "helpCenterPage": {
+    "title": "Centro de Ayuda",
+    "subtitle": "Encuentre respuestas a sus preguntas y aprenda a sacar el máximo provecho de DamDoh.",
+    "howCanWeHelp": "¿Cómo podemos ayudarle?",
+    "searchPlaceholder": "Busque temas, funciones o preguntas...",
+    "browseTopics": "O navegue por tema",
+    "gettingStarted": {
+      "title": "Primeros Pasos",
+      "description": "Configuración de su perfil, comprensión de su panel de control.",
+      "placeholder": "La información sobre los Primeros Pasos estará disponible aquí pronto."
+    },
+    "marketplaceGuide": {
+      "title": "Guía del Mercado",
+      "description": "Cómo crear listados, gestionar pedidos y comerciar de forma segura.",
+      "placeholder": "Una guía del Mercado estará disponible aquí pronto."
+    },
+    "accountManagement": {
+      "title": "Gestión de la Cuenta",
+      "description": "Actualización de su contraseña, gestión de notificaciones y privacidad.",
+      "placeholder": "La información sobre la Gestión de la Cuenta estará disponible aquí pronto."
+    },
+    "troubleshooting": {
+      "title": "Solución de Problemas",
+      "description": "Problemas comunes y cómo resolverlos.",
+      "placeholder": "La información sobre Solución de Problemas estará disponible aquí pronto."
+    },
+    "stillNeedHelp": {
+      "title": "¿Aún necesita ayuda?",
+      "description": "Nuestro equipo de soporte está listo para ayudarle.",
+      "button": "Contactar con Soporte"
+    }
+  },
+  "industryNewsPage": {
+    "title": "Noticias y Perspectivas del Sector",
+    "description": "Manténgase informado con las últimas tendencias, investigaciones y cambios de política que afectan a la cadena de suministro agrícola mundial.",
+    "searchPlaceholder": "Buscar noticias e informes...",
+    "categoryPlaceholder": "Filtrar por categoría...",
+    "allCategories": "Todas las Categorías",
+    "sourceLabel": "Fuente",
+    "publishedLabel": "Publicado",
+    "categoryLabel": "Categoría",
+    "readButton": "Leer la Historia Completa",
+    "noNews": {
+      "title": "No hay Noticias Disponibles",
+      "description": "Vuelva más tarde para obtener las últimas actualizaciones e informes del sector."
+    },
+    "news1": {
+      "title": "Los Precios Mundiales del Café Aumentan en Medio de Preocupaciones Climáticas en Regiones Clave de Cultivo",
+      "excerpt": "Los futuros del café Arábica han alcanzado un máximo de 18 meses, ya que las sequías en Brasil y las heladas inesperadas en Vietnam amenazan el suministro mundial."
+    },
+    "news2": {
+      "title": "La UE Implementa Nuevas Regulaciones de Empaque 'De la Granja a la Mesa'",
+      "excerpt": "Nuevas regulaciones efectivas este trimestre exigen que todos los productos frescos importados a la Unión Europea utilicen empaques hechos con al menos un 30% de materiales reciclados."
+    },
+    "news3": {
+      "title": "Estudio Muestra que las Prácticas de Agricultura Regenerativa Pueden Secuestrar hasta 2 Toneladas de Carbono por Hectárea Anualmente",
+      "excerpt": "Un estudio de una década publicado en 'Nature Sustainability' proporciona evidencia convincente de que la siembra directa y los cultivos de cobertura mejoran significativamente los niveles de carbono en el suelo."
+    }
+  },
+  "myNetworkPage": {
+    "backLink": "Volver a la Red",
+    "myConnectionsTab": "Mis Conexiones ({count})",
+    "pendingRequestsTab": "Solicitudes Pendientes",
+    "connectionsTitle": "Mis Conexiones",
+    "connectionsDescription": "Estas son sus conexiones aprobadas en la plataforma. Ahora puede enviarles mensajes directamente.",
+    "noConnections": "Todavía no ha hecho ninguna conexión. ¡Empiece a explorar la red!",
+    "requestsTitle": "Solicitudes de Conexión",
+    "requestsDescription": "Revise y responda a las solicitudes de conexión pendientes.",
+    "noRequests": "No tiene solicitudes de conexión pendientes.",
+    "sentTimeAgo": "Enviado hace {timeAgo}",
+    "toast": {
+      "error": "Error",
+      "loadError": "No se pudieron cargar los datos de la red.",
+      "respondError": "No se pudo responder a la solicitud.",
+      "removeError": "No se pudo eliminar la conexión.",
+      "success": "Éxito",
+      "requestAccepted": "Solicitud aceptada.",
+      "requestDeclined": "Solicitud rechazada.",
+      "connectionRemoved": "Conexión eliminada."
+    }
+  },
+  "agentToolsPage": {
+    "backLink": "Volver a la Red",
+    "accessDeniedTitle": "Acceso Denegado",
+    "accessDeniedDescription": "No tiene los permisos necesarios para acceder a estas herramientas.",
+    "title": "Herramientas de Agente de Campo",
+    "description": "Herramientas para agentes autorizados para ayudar y gestionar a los usuarios en el campo.",
+    "findUserLabel": "Buscar Usuario por Número de Teléfono",
+    "phoneRequiredError": "Se requiere un número de teléfono.",
+    "findButton": "Buscar",
+    "resultsTitle": "Resultados de la Búsqueda",
+    "resultsPlaceholder": "Los detalles del usuario aparecerán aquí después de una búsqueda exitosa."
+  },
+  "common": {
+    "error": "Error"
   }
 }
 
-    

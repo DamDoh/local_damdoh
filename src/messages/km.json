@@ -77,27 +77,27 @@
         "formIncompleteTitle": "ทម្រង់មិនពេញលេญ",
         "formIncompleteDescription": "សូមជ្រើសរើសប្រភេទរបាយการณ์ អ្នកប្រើប្រាស់គោលដៅ និងចន្លោះកาลបរិច្ឆេទ។",
         "generateSuccessTitle": "ការสร้างរបាយการណ៍បានจับផ្តើម",
-        "generateSuccessDescription": "របាយការណ៍កំពុងត្រូវបានสร้าง ហើយនឹងបង្ហាញក្នុងบัญชีខាងក្រោមក្នុងពេលឆាប់ៗนี้។",
+        "generateSuccessDescription": "របាយការណ៍កំពុងត្រូវបានสร้าง ហើយនឹងបង្ហាញក្នុងบัญชีខាងក្រោមក្នុងពេលឆាប់ៗនេះ។",
         "generateErrorTitle": "การสร้างរបាយการณ์បានបរาជ័យ"
       }
     }
   },
   "AppFooter": {
-    "tagline": "การตอ่กน่ខាยច ា้រត มูลคา ่កສិกรมส์ าหร ั่ป อនាคตประเกอบด ว ้รនត ีสภา พีอ ฟอมา ่ต ก",
+    "tagline": "ការតอ่กน่ខាยច ា้រត มูลคา ่กສិกรมส์ าหร ั่ป อនាคตประเกอบด ว ้รនត ีสภา พีอ ฟอมา ่ต ก",
     "damdohTitle": "ដាំดอห์ន",
-    "aboutLabel": "อภิเษកเา",
+    "aboutLabel": "อภิเษกเา",
     "contactLabel": "ตดิ ตอ",
     "careersLabel": "อาชีพ",
     "blogLabel": "บล็อ ก",
     "resourcesTitle": "ธนบดด ว น",
     "helpCenterLabel": "មតชฌមณฑลจ ว น",
-    "communityGuidelinesLabel": "โกณจกรำกะห์น้ปทាห์นំ",
+    "communityGuidelinesLabel": "โกณจกรำกะห์น้ปทาห์นំ",
     "industryNewsLabel": "ព័ត៌មានอุตสาหกรรม",
     "eventsLabel": "ปวดการណ៍",
     "talentExchangeLabel": "การเ่าขกั าเ่าร นนว",
     "legalTitle": "กัร สึ่บกา ป",
     "privacyPolicyLabel": "โกਣจ รำกะห์นี่พาด าพทราดน",
-    "termsOfServiceLabel": "กัตะกัคั ะหนะกีกากียีกាห์น ีสีปาลី",
+    "termsOfServiceLabel": "กัตะกัคั ะหนะกีกากียีกាห์น ีสีปาลี",
     "copyright": "© {year} {appName}. รักษารก ิสิก ธ์คิย้าค์น ค",
     "getMobileApp": "เกีีะภากั พีีีีีะข",
     "googlePlayAlt": "เหีิะจ าช ี่ีีลี ลีบ เี้เย",
@@ -107,7 +107,7 @@
     "searchPlaceholder": "สี่วีี ะย...",
     "home": "ปี กากี ส ีะ",
     "network": "บ ัาหน",
-    "farmMgmt": "กะสรี ยียก",
+    "farmMgmt": "กะsรี ยียก",
     "marketplace": "ธี ย์กกา",
     "talentExchange": "เยีน เกีย",
     "traceability": "ตาหนกา",
@@ -192,4 +192,3 @@
   }
 }
 
-    

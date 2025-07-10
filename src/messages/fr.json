@@ -560,7 +560,278 @@
       "buttonText": "Envoyer le Message",
       "note": "Nous nous efforçons de répondre à toutes les demandes dans les 24 heures."
     }
+  },
+   "privacyPolicy": {
+    "title": "Politique de Confidentialité",
+    "lastUpdated": "Dernière mise à jour : 26 octobre 2023",
+    "introduction": "Cet avis de confidentialité pour DamDoh décrit comment et pourquoi nous pouvons collecter, stocker, utiliser et/ou partager ('traiter') vos informations lorsque vous utilisez nos services ('Services'), par exemple lorsque vous visitez notre site web à http://damdoh.org, ou tout site web de notre part qui renvoie à cet avis de confidentialité ; interagissez avec nous d'autres manières connexes, y compris les ventes, le marketing ou les événements.",
+    "whatInfoWeCollect": {
+      "heading": "1. QUELLES INFORMATIONS COLLECTONS-NOUS ?",
+      "content": "Nous collectons les informations personnelles que vous nous fournissez volontairement lorsque vous vous inscrivez aux Services, exprimez un intérêt à obtenir des informations sur nous ou nos produits et Services, lorsque vous participez à des activités sur les Services, ou autrement lorsque vous nous contactez."
+    },
+    "howWeUseInfo": {
+      "heading": "2. COMMENT TRAITONS-NOUS VOS INFORMATIONS ?",
+      "content": "Nous traitons vos informations pour fournir, améliorer et administrer nos Services, communiquer avec vous, pour la sécurité et la prévention de la fraude, et pour nous conformer à la loi. Nous pouvons également traiter vos informations à d'autres fins avec votre consentement."
+    },
+    "willInfoBeShared": {
+      "heading": "3. QUAND ET AVEC QUI PARTAGEONS-NOUS VOS INFORMATIONS PERSONNELLES ?",
+      "content": "Nous pouvons partager des informations dans des situations spécifiques et avec des tiers spécifiques. Vos informations peuvent être partagées avec nos partenaires commerciaux, nos sociétés affiliées et nos fournisseurs de services pour faciliter nos Services."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. UTILISONS-NOUS DES COOKIES ET D'AUTRES TECHNOLOGIES DE SUIVI ?",
+      "content": "Nous pouvons utiliser des cookies et des technologies de suivi similaires (comme les balises web et les pixels) pour accéder ou stocker des informations."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. COMBIEN DE TEMPS CONSERVONS-NOUS VOS INFORMATIONS ?",
+      "content": "Nous conservons vos informations aussi longtemps que nécessaire pour atteindre les objectifs décrits dans cet avis de confidentialité, sauf si la loi l'exige autrement."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. COMMENT PROTÉGEONS-NOUS VOS INFORMATIONS ?",
+      "content": "Nous avons mis en œuvre des mesures de sécurité techniques et organisationnelles appropriées et raisonnables conçues pour protéger la sécurité de toutes les informations personnelles que nous traitons."
+    },
+    "minors": {
+      "heading": "7. COLLECTONS-NOUS DES INFORMATIONS AUPRÈS DE MINEURS ?",
+      "content": "Nous ne collectons pas sciemment de données auprès d'enfants de moins de 18 ans et ne leur commercialisons pas nos services."
+    },
+    "privacyRights": {
+      "heading": "8. QUELS SONT VOS DROITS EN MATIÈRE DE CONFIDENTIALITÉ ?",
+      "content": "Vous pouvez consulter, modifier ou supprimer votre compte à tout moment. Selon votre emplacement, vous pouvez avoir certains droits concernant vos informations personnelles en vertu des lois applicables sur la protection des données."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. CONTRÔLES POUR LES FONCTIONNALITÉS DO-NOT-TRACK",
+      "content": "La plupart des navigateurs web et certains systèmes d'exploitation et applications mobiles incluent une fonctionnalité ou un paramètre Do-Not-Track ('DNT') que vous pouvez activer pour signaler votre préférence en matière de confidentialité de ne pas faire surveiller et collecter de données sur vos activités de navigation en ligne. Nous ne répondons actuellement pas aux signaux de navigateur DNT ou à tout autre mécanisme qui communique automatiquement votre choix de ne pas être suivi en ligne."
+    },
+    "updatesToNotice": {
+      "heading": "10. METTONS-NOUS À JOUR CET AVIS ?",
+      "content": "Oui, nous mettrons à jour cet avis si nécessaire pour rester en conformité avec les lois pertinentes."
+    },
+    "contactUs": {
+      "heading": "11. COMMENT POUVEZ-VOUS NOUS CONTACTER AU SUJET DE CET AVIS ?",
+      "content": "Si vous avez des questions ou des commentaires sur cet avis, vous pouvez nous contacter par courrier à : DamDoh, 123 Agri-Tech Avenue, Nairobi, Kenya."
+    },
+    "conclusion": "Vous pouvez le faire via notre page {contactLink}."
+  },
+  "termsOfService": {
+    "title": "Conditions d'Utilisation",
+    "lastUpdated": "Dernière mise à jour : 26 octobre 2023",
+    "introduction": "Bienvenue sur DamDoh. Ces Conditions d'Utilisation ('Conditions') régissent votre utilisation du site web et des services de DamDoh ('Services'), fournis par DamDoh Inc. En utilisant nos Services, vous acceptez ces Conditions. Veuillez les lire attentivement.",
+    "agreementToTerms": {
+      "heading": "1. Acceptation des Conditions",
+      "content": "En utilisant nos Services, vous acceptez d'être lié par ces Conditions. Si vous n'acceptez pas ces Conditions, n'utilisez pas les Services."
+    },
+    "intellectualProperty": {
+      "heading": "2. Droits de Propriété Intellectuelle",
+      "content": "Les Services et leur contenu original, leurs caractéristiques et leurs fonctionnalités sont et resteront la propriété exclusive de DamDoh et de ses concédants de licence. Nos marques de commerce et notre habillage commercial ne peuvent être utilisés en relation avec aucun produit ou service sans le consentement écrit préalable de DamDoh."
+    },
+    "userRepresentations": {
+      "heading": "3. Déclarations de l'Utilisateur",
+      "content": "En utilisant les Services, vous déclarez et garantissez que : (1) toutes les informations d'inscription que vous soumettez seront vraies, exactes, à jour et complètes ; (2) vous maintiendrez l'exactitude de ces informations et mettrez à jour rapidement ces informations d'inscription si nécessaire ; (3) vous avez la capacité juridique et vous vous engagez à respecter ces Conditions d'Utilisation ; (4) vous n'êtes pas mineur dans la juridiction où vous résidez ; (5) vous n'accéderez pas au Site par des moyens automatisés ou non humains, que ce soit par un bot, un script ou autrement ; (6) vous n'utiliserez pas le Site à des fins illégales ou non autorisées ; et (7) votre utilisation du Site ne violera aucune loi ou réglementation applicable."
+    },
+    "prohibitedActivities": {
+      "heading": "4. Activités Interdites",
+      "content": "Vous ne pouvez pas accéder ou utiliser le Site à d'autres fins que celles pour lesquelles nous le mettons à disposition. Le Site ne peut être utilisé en relation avec des activités commerciales, sauf celles qui sont spécifiquement approuvées par nous."
+    },
+    "platformManagement": {
+      "heading": "5. Gestion de la Plateforme",
+      "content": "Nous nous réservons le droit, mais non l'obligation, de : (1) surveiller le Site pour détecter les violations de ces Conditions d'Utilisation ; (2) prendre les mesures légales appropriées contre quiconque, à notre seule discrétion, viole la loi ou ces Conditions d'Utilisation ; (3) à notre seule discrétion et sans limitation, refuser, restreindre l'accès, limiter la disponibilité ou désactiver l'une de vos Contributions ou une partie de celles-ci."
+    },
+    "termAndTermination": {
+      "heading": "6. Durée et Résiliation",
+      "content": "Ces Conditions d'Utilisation resteront en vigueur tant que vous utiliserez le Site. SANS LIMITER AUCUNE AUTRE DISPOSITION DE CES CONDITIONS D'UTILISATION, NOUS NOUS RÉSERVONS LE DROIT, À NOTRE SEULE DISCRÉTION ET SANS PRÉAVIS NI RESPONSABILITÉ, DE REFUSER L'ACCÈS ET L'UTILISATION DU SITE (Y COMPRIS LE BLOCAGE DE CERTAINES ADRESSES IP), À TOUTE PERSONNE POUR QUELQUE RAISON QUE CE SOIT OU SANS RAISON."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. Modifications et Interruptions",
+      "content": "Nous nous réservons le droit de changer, modifier ou supprimer le contenu du Site à tout moment ou pour quelque raison que ce soit, à notre seule discrétion et sans préavis. Nous nous réservons également le droit de modifier ou d'interrompre tout ou partie du Site sans préavis à tout moment. Nous ne serons pas responsables envers vous ou un tiers pour toute modification, changement de prix, suspension ou interruption du Site."
+    },
+    "governingLaw": {
+      "heading": "8. Droit Applicable",
+      "content": "Ces Conditions d'Utilisation et votre utilisation du Site sont régies et interprétées conformément aux lois du pays où DamDoh est établi, sans égard à ses principes de conflit de lois."
+    },
+    "disputeResolution": {
+      "heading": "9. Résolution des Litiges",
+      "content": "Toute action en justice de quelque nature que ce soit, intentée par vous ou par nous, sera engagée ou poursuivie devant les tribunaux d'État et fédéraux situés dans notre juridiction, et les parties consentent par la présente, et renoncent à toutes les défenses de défaut de compétence personnelle et de forum non conveniens en ce qui concerne le lieu et la juridiction dans ces tribunaux d'État et fédéraux."
+    },
+    "contactUs": {
+      "heading": "10. Contactez-nous",
+      "content": "Afin de résoudre une plainte concernant le Site ou pour recevoir de plus amples informations sur l'utilisation du Site, veuillez nous contacter."
+    },
+    "conclusion": "Vous pouvez le faire via notre page {contactLink}."
+  },
+  "careers": {
+    "title": "Carrières chez DamDoh",
+    "subtitle": "Rejoignez-nous dans notre mission de révolutionner la chaîne d'approvisionnement agricole.",
+    "whyWorkWithUs": {
+        "title": "Pourquoi travailler avec nous ?",
+        "intro": "Chez DamDoh, nous sommes une équipe passionnée et diversifiée d'innovateurs, d'experts agricoles et de technologues dédiés à avoir un impact tangible. Nous croyons en :",
+        "point1": "Un travail qui a du sens : Vos contributions autonomiseront directement les agriculteurs et créeront un système alimentaire plus durable.",
+        "point2": "Innovation : Nous relevons des défis complexes avec une technologie de pointe et une pensée créative.",
+        "point3": "Croissance : Nous investissons dans nos employés, en offrant des opportunités de développement professionnel et d'apprentissage.",
+        "point4": "Collaboration : Nous favorisons un environnement de soutien et de collaboration où chaque voix est entendue.",
+        "point5": "Impact mondial : Faites partie d'une solution qui aborde la sécurité alimentaire mondiale et le développement économique."
+    },
+    "currentOpenings": {
+        "title": "Offres d'emploi actuelles"
+    },
+    "noOpenings": {
+        "title": "Aucun poste vacant pour le moment",
+        "content1": "Nous sommes toujours à la recherche de talents passionnés. Si vous croyez en notre mission et pensez pouvoir contribuer, n'hésitez pas à nous envoyer votre CV et une lettre de motivation à {emailLink}.",
+        "emailLinkText": "careers@damdoh.org"
+    },
+    "openings": {
+      "job1": {
+        "title": "Ingénieur Backend Senior (Node.js, Firestore)",
+        "location": "Nairobi, Kenya / Télétravail",
+        "type": "Temps plein",
+        "description": "Concevoir et construire des microservices évolutifs, gérer notre architecture de base de données et assurer la fiabilité des fonctionnalités principales de notre plateforme."
+      },
+      "job2": {
+        "title": "Agronome Principal et Responsable des Opérations de Terrain",
+        "location": "Vallée du Rift, Kenya",
+        "type": "Temps plein",
+        "description": "Dirigez notre équipe d'agents de terrain, fournissez des conseils agronomiques experts et assurez l'intégrité des données de notre réseau de fermes partenaires."
+      },
+      "job3": {
+        "title": "Chef de Produit, Services Financiers",
+        "location": "Télétravail",
+        "type": "Temps plein",
+        "description": "Pilotez la stratégie et le développement de nos produits financiers, y compris la notation de crédit, les prêts et les intégrations d'assurance pour les petits exploitants."
+      }
+    },
+    "applyNowButton": "Postuler maintenant"
+  },
+  "communityGuidelines": {
+    "title": "Règles de la Communauté",
+    "subtitle": "Favoriser un environnement professionnel, respectueux et digne de confiance pour tous.",
+    "intro": "Bienvenue dans la communauté DamDoh ! Notre mission est de connecter le monde agricole de manière positive et productive. Pour garantir à chacun une excellente expérience, nous vous demandons de suivre ces directives :",
+    "respectful": {
+      "title": "Soyez Respectueux et Professionnel",
+      "description": "Traitez tous les membres avec courtoisie. Nous ne tolérons pas le harcèlement, les discours de haine ou les attaques personnelles. Engagez-vous dans des discussions constructives, même lorsque vous n'êtes pas d'accord."
+    },
+    "authentic": {
+      "title": "Soyez Authentique et Honnête",
+      "description": "Représentez-vous et votre entreprise de manière véridique. Ne vous faites pas passer pour d'autres et ne fournissez pas d'informations trompeuses sur vos produits, services ou qualifications."
+    },
+    "relevant": {
+      "title": "Restez Pertinent",
+      "description": "Contribuez aux discussions avec des informations pertinentes. Évitez le spam, l'auto-promotion excessive et le contenu hors sujet dans les forums professionnels et les annonces du marché."
+    },
+    "fairTrade": {
+      "title": "Honorez vos Engagements",
+      "description": "Menez vos transactions commerciales avec intégrité. Honorez vos commandes, payez à temps et communiquez clairement pour bâtir des relations durables et de confiance."
+    },
+    "sustainable": {
+      "title": "Promouvez des Pratiques Durables",
+      "description": "Nous encourageons le partage de connaissances et de pratiques qui soutiennent la durabilité environnementale, économique et sociale dans l'agriculture."
+    },
+    "reporting": {
+      "title": "Signaler des Violations",
+      "content": "Si vous voyez du contenu ou un comportement qui enfreint ces directives, veuillez le signaler à notre équipe. Vous pouvez envoyer les détails à {emailLink}.",
+      "emailLinkText": "support@damdoh.org"
+    },
+    "conclusion": "En utilisant DamDoh, vous acceptez ces directives. Nous nous réservons le droit de supprimer du contenu et de prendre des mesures à l'encontre des comptes qui violent ces principes. Merci de nous aider à construire une communauté positive !"
+  },
+  "pinboardPage": {
+    "title": "Mon Tableau d'Affichage",
+    "description": "Votre espace personnel pour enregistrer et organiser les éléments importants de toute la plateforme DamDoh.",
+    "comingSoonTitle": "La fonctionnalité Tableau d'Affichage arrive bientôt !",
+    "comingSoonDescription": "Imaginez pouvoir épingler des annonces de marché intéressantes, des messages de forum pertinents, des contacts précieux et des articles utiles, le tout en un seul endroit. C'est ce que fera le Tableau d'Affichage !",
+    "stayTuned": "Restez à l'écoute pour les mises à jour."
+  },
+  "helpCenterPage": {
+    "title": "Centre d'Aide",
+    "subtitle": "Trouvez des réponses à vos questions et apprenez à tirer le meilleur parti de DamDoh.",
+    "howCanWeHelp": "Comment pouvons-nous vous aider ?",
+    "searchPlaceholder": "Rechercher des sujets, des fonctionnalités ou des questions...",
+    "browseTopics": "Ou parcourez par sujet",
+    "gettingStarted": {
+      "title": "Premiers Pas",
+      "description": "Configuration de votre profil, compréhension de votre tableau de bord.",
+      "placeholder": "Les informations sur les premiers pas seront bientôt disponibles ici."
+    },
+    "marketplaceGuide": {
+      "title": "Guide du Marché",
+      "description": "Comment créer des annonces, gérer les commandes et commercer en toute sécurité.",
+      "placeholder": "Un guide du marché sera bientôt disponible ici."
+    },
+    "accountManagement": {
+      "title": "Gestion du Compte",
+      "description": "Mise à jour de votre mot de passe, gestion des notifications et de la confidentialité.",
+      "placeholder": "Les informations sur la gestion du compte seront bientôt disponibles ici."
+    },
+    "troubleshooting": {
+      "title": "Dépannage",
+      "description": "Problèmes courants et comment les résoudre.",
+      "placeholder": "Les informations de dépannage seront bientôt disponibles ici."
+    },
+    "stillNeedHelp": {
+      "title": "Besoin d'aide supplémentaire ?",
+      "description": "Notre équipe de support est prête à vous aider.",
+      "button": "Contacter le Support"
+    }
+  },
+  "industryNewsPage": {
+    "title": "Actualités et Perspectives du Secteur",
+    "description": "Restez informé des dernières tendances, recherches et changements de politique affectant la chaîne d'approvisionnement agricole mondiale.",
+    "searchPlaceholder": "Rechercher des actualités et des rapports...",
+    "categoryPlaceholder": "Filtrer par catégorie...",
+    "allCategories": "Toutes les catégories",
+    "sourceLabel": "Source",
+    "publishedLabel": "Publié",
+    "categoryLabel": "Catégorie",
+    "readButton": "Lire l'histoire complète",
+    "noNews": {
+      "title": "Aucune Actualité Disponible",
+      "description": "Revenez plus tard pour les dernières mises à jour et rapports du secteur."
+    },
+    "news1": {
+      "title": "Les Prix Mondiaux du Café Grimpent Face aux Inquiétudes Météorologiques dans les Principales Régions de Culture",
+      "excerpt": "Les contrats à terme sur le café Arabica ont atteint un sommet de 18 mois alors que les sécheresses au Brésil et les gelées inattendues au Vietnam menacent l'offre mondiale."
+    },
+    "news2": {
+      "title": "L'UE Met en Œuvre de Nouvelles Réglementations sur les Emballages 'De la Ferme à la Fourchette'",
+      "excerpt": "De nouvelles réglementations en vigueur ce trimestre exigent que tous les produits frais importés dans l'Union européenne utilisent des emballages fabriqués avec au moins 30% de matériaux recyclés."
+    },
+    "news3": {
+      "title": "Une Étude Montre que les Pratiques d'Agriculture Régénérative Peuvent Séquestrer jusqu'à 2 Tonnes de Carbone par Hectare par An",
+      "excerpt": "Une étude de dix ans publiée dans 'Nature Sustainability' fournit des preuves convaincantes que l'agriculture sans labour et les cultures de couverture améliorent considérablement les niveaux de carbone dans le sol."
+    }
+  },
+  "myNetworkPage": {
+    "backLink": "Retour au Réseau",
+    "myConnectionsTab": "Mes Connexions ({count})",
+    "pendingRequestsTab": "Demandes en Attente",
+    "connectionsTitle": "Mes Connexions",
+    "connectionsDescription": "Ce sont vos connexions approuvées sur la plateforme. Vous pouvez maintenant leur envoyer des messages directement.",
+    "noConnections": "Vous n'avez encore établi aucune connexion. Commencez par explorer le réseau !",
+    "requestsTitle": "Demandes de Connexion",
+    "requestsDescription": "Examinez et répondez aux demandes de connexion en attente.",
+    "noRequests": "Vous n'avez aucune demande de connexion en attente.",
+    "sentTimeAgo": "Envoyé il y a {timeAgo}",
+    "toast": {
+      "error": "Erreur",
+      "loadError": "Impossible de charger les données du réseau.",
+      "respondError": "Impossible de répondre à la demande.",
+      "removeError": "Impossible de supprimer la connexion.",
+      "success": "Succès",
+      "requestAccepted": "Demande acceptée.",
+      "requestDeclined": "Demande refusée.",
+      "connectionRemoved": "Connexion supprimée."
+    }
+  },
+  "agentToolsPage": {
+    "backLink": "Retour au Réseau",
+    "accessDeniedTitle": "Accès Refusé",
+    "accessDeniedDescription": "Vous n'avez pas les autorisations requises pour accéder à ces outils.",
+    "title": "Outils d'Agent de Terrain",
+    "description": "Outils pour les agents autorisés afin d'assister et de gérer les utilisateurs sur le terrain.",
+    "findUserLabel": "Trouver un Utilisateur par Numéro de Téléphone",
+    "phoneRequiredError": "Un numéro de téléphone est requis.",
+    "findButton": "Trouver",
+    "resultsTitle": "Résultats de la Recherche",
+    "resultsPlaceholder": "Les détails de l'utilisateur apparaîtront ici après une recherche réussie."
+  },
+  "common": {
+    "error": "Erreur"
   }
 }
 
-    
