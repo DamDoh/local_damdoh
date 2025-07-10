@@ -6,10 +6,8 @@ import type {
     MarketplaceItemSchema,
     MarketplaceOrderSchema,
     ForumPostSchema,
-    AgriEventSchema,
-    MarketplaceRecommendationOutputSchema,
-    SmartSearchInterpretationSchema
-} from './schemas'; // SINGLE SOURCE OF TRUTH
+    AgriEventSchema
+} from './schemas';
 import type { LucideIcon } from 'lucide-react';
 
 
@@ -20,7 +18,6 @@ import type { LucideIcon } from 'lucide-react';
 
 export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
-// FIX: Add buyerProfile to the order type to match what the backend function provides.
 export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema> & {
     buyerProfile: { displayName: string, avatarUrl?: string }
 };
@@ -265,7 +262,6 @@ export interface FiDashboardData {
         content: string;
         actionLink: string;
     }[];
-    activeProductsCount?: number;
 }
 
 export interface FieldAgentDashboardData {
@@ -457,8 +453,7 @@ export interface AgronomistDashboardData {
     id: string;
     farmerName: string;
     issueSummary: string;
-    requestDate: string; // ISO String;
-    farmerId: string;
+    requestDate: string; // ISO String
   }[];
   knowledgeHubContributions: {
     id: string;
@@ -689,8 +684,6 @@ export interface PostReply {
         name: string;
         avatarUrl?: string;
     };
-    userAvatar?: string;
-    userName: string;
 }
 
 export interface PollOption {
@@ -752,31 +745,6 @@ export interface MobileDiscoverItem {
     dataAiHint?: string;
 }
 
-export interface ApiKey {
-  id: string;
-  key?: string; // Only available on creation
-  keyPrefix?: string; // Stored in DB
-  description: string;
-  status: 'Active' | 'Revoked';
-  environment: 'Sandbox' | 'Production';
-  createdAt: string; // ISO String
-}
-
-export interface AgriTechInnovatorDashboardData {
-  apiKeys: ApiKey[];
-  sandboxStatus: {
-    status: 'Operational' | 'Degraded' | 'Offline';
-    lastReset: string; // ISO String
-  };
-  integrationProjects: {
-    id: string;
-    title: string;
-    status: 'In Development' | 'Live' | 'Archived';
-    partner: string;
-    actionLink: string;
-  }[];
-}
-
 export interface Worker {
   id: string;
   name: string;
@@ -809,35 +777,3 @@ export type ServiceItem = MarketplaceItem & {
     compensation: string;
     experienceLevel: string;
 };
-
-// AI Related Types
-export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
-export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;
-
-export interface FinancialProduct {
-    id: string;
-    fiId: string;
-    name: string;
-    type: 'Loan' | 'Grant';
-    description: string;
-    interestRate?: number | null;
-    maxAmount?: number | null;
-    targetRoles: string[];
-    status: 'Active' | 'Inactive';
-}
-
-export interface InsuranceProduct {
-    id: string;
-    providerId: string;
-    name: string;
-    type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
-    description: string;
-    coverageDetails: string;
-    premium: number;
-    currency: string;
-    status: 'Active' | 'Inactive';
-    provider?: {
-        displayName: string;
-        avatarUrl?: string;
-    }
-}

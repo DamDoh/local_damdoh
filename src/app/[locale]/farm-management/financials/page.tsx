@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
@@ -143,7 +144,7 @@ export default function FinancialDashboardPage() {
                             <TableCell>{tx.timestamp ? new Date(tx.timestamp).toLocaleDateString() : 'N/A'}</TableCell>
                             <TableCell className="font-medium">{tx.description}</TableCell>
                             <TableCell><Badge variant="outline">{tx.category || 'Uncategorized'}</Badge></TableCell>
-                            <TableCell className={`text-right font-semibold ${tx.type === 'income' ? 'text-green-600' : 'text-red-600'}`}>
+                            <TableCell className={`text-right font-semibold ${tx.type === 'income' ? 'text-green-600' : 'text-destructive'}`}>
                                 {tx.type === 'income' ? '+' : '-'} {tx.currency} {tx.amount.toFixed(2)}
                             </TableCell>
                         </TableRow>

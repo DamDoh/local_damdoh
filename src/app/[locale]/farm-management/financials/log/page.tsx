@@ -210,3 +210,11 @@ export default function LogFinancialTransactionPage() {
                 ) : (
                     <><Save className="mr-2 h-4 w-4" /> {t('saveButton')}</>
                 )}
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

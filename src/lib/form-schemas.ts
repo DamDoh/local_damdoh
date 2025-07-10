@@ -1,4 +1,5 @@
 
+
 import { z } from "zod";
 import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from "@/lib/constants";
 
@@ -34,6 +35,7 @@ export const createMarketplaceItemSchema = z.object({
   location: z.string().min(2, "Location must be at least 2 characters long.").max(100, "Location cannot exceed 100 characters."),
   imageUrl: z.string().url({ message: "Please enter a valid URL for the image (e.g., https://placehold.co/300x200.png)." }).optional().or(z.literal('')),
   imageFile: imageFileSchema,
+  dataAiHint: z.string().optional(),
   contactInfo: z.string().min(5, "Contact information must be at least 5 characters long.").max(200, "Contact information cannot exceed 200 characters.").optional(),
   skillsRequired: z.string().max(250, "Skills list is too long (max 250 chars).").optional().describe("For services: Enter skills, comma-separated"),
   compensation: z.string().max(100, "Compensation details are too long (max 100 chars).").optional().describe("For services: e.g., $50/hr, Project-based"),
@@ -44,7 +46,6 @@ export const createMarketplaceItemSchema = z.object({
   certifications: z.string().max(500, "Certifications list is too long.").optional(),
   relatedTraceabilityId: z.string().max(100, "Traceability ID is too long.").optional(),
   experienceLevel: z.string().optional(),
-  dataAiHint: z.string().optional(),
 });
 
 export type CreateMarketplaceItemValues = z.infer<typeof createMarketplaceItemSchema>;
@@ -230,41 +231,3 @@ export const getCreateMarketplaceCouponSchema = (t: (key: string) => string) => 
 });
 
 export type CreateMarketplaceCouponValues = z.infer<ReturnType<typeof getCreateMarketplaceCouponSchema>>;
-
-export const financialApplicationSchema = z.object({
-    fiId: z.string({ required_error: "You must select a financial institution." }),
-    type: z.enum(['Loan', 'Grant'], { required_error: "Please select an application type." }),
-    amount: z.coerce.number().positive("Amount must be a positive number."),
-    currency: z.string().length(3, "Currency must be a 3-letter code.").default("USD"),
-    purpose: z.string().min(20, "Purpose must be at least 20 characters.").max(2000),
-});
-export type FinancialApplicationValues = z.infer<typeof financialApplicationSchema>;
-
-export const createFinancialProductSchema = z.object({
-  name: z.string().min(5, "Product name must be at least 5 characters.").max(100),
-  type: z.enum(['Loan', 'Grant'], { required_error: "Please select a product type."}),
-  description: z.string().min(20, "Description must be at least 20 characters.").max(1000),
-  interestRate: z.coerce.number().min(0).optional(),
-  maxAmount: z.coerce.number().positive().optional(),
-  targetRoles: z.array(z.string()).optional(),
-});
-export type CreateFinancialProductValues = z.infer<typeof createFinancialProductSchema>;
-
-export const createInsuranceProductSchema = z.object({
-  name: z.string().min(5, "Product name must be at least 5 characters.").max(100),
-  type: z.enum(['Crop', 'Livestock', 'Asset', 'Weather'], { required_error: "Please select a product type."}),
-  description: z.string().min(20, "Description must be at least 20 characters.").max(1000),
-  coverageDetails: z.string().min(20, "Coverage details must be at least 20 characters.").max(2000),
-  premium: z.coerce.number().positive("Premium must be a positive number."),
-  currency: z.string().length(3, "Currency must be a 3-letter code.").default("USD"),
-});
-export type CreateInsuranceProductValues = z.infer<typeof createInsuranceProductSchema>;
-
-export const createInsuranceApplicationSchema = z.object({
-  productId: z.string({ required_error: "A product must be selected."}),
-  farmId: z.string({ required_error: "A farm must be selected to be insured."}),
-  coverageValue: z.coerce.number().positive("Coverage value must be a positive number."),
-});
-export type CreateInsuranceApplicationValues = z.infer<typeof createInsuranceApplicationSchema>;
-
-    
