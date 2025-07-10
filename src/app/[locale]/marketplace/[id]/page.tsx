@@ -370,7 +370,7 @@ function ItemPageContent() {
                                     {numberOfNights > 0 && (
                                         <div className="text-sm space-y-1">
                                             <p className="text-center text-muted-foreground">{t('booking.notCharged')}</p>
-                                            <div className="flex justify-between"><span>${item.price?.toFixed(2)} x {numberOfNights} {t('booking.nights')}</span><span>${baseBookingPrice.toFixed(2)}</span></div>
+                                            <div className="flex justify-between"><span>${item.price?.toFixed(2)} x {numberOfNights} {t('booking.nights', { count: numberOfNights })}</span><span>${baseBookingPrice.toFixed(2)}</span></div>
                                             <div className="flex justify-between"><span>{t('booking.serviceFee')}</span><span>${serviceFee.toFixed(2)}</span></div>
                                             <Separator className="my-1"/>
                                             <div className="flex justify-between font-bold"><span>{t('booking.total')}</span><span>${totalBookingPrice.toFixed(2)}</span></div>
