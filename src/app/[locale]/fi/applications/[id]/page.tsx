@@ -48,7 +48,6 @@ export default function FinancialApplicationDetailPage() {
     const applicationId = params.id as string;
 
     const [application, setApplication] = useState<FinancialApplication | null>(null);
-    const [applicant, setApplicant] = useState<UserProfile | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isUpdating, setIsUpdating] = useState(false);
     
@@ -62,8 +61,7 @@ export default function FinancialApplicationDetailPage() {
         try {
             const result = await getApplicationDetailsCallable({ applicationId });
             const data = result.data as { application: FinancialApplication, applicant: UserProfile };
-            setApplication(data.application);
-            setApplicant(data.applicant);
+            setApplication({ ...data.application, applicant: data.applicant }); // Embed applicant profile in application object
         } catch (error: any) {
              toast({ variant: 'destructive', title: t('toast.errorTitle'), description: error.message });
              router.push('/');
@@ -157,23 +155,23 @@ export default function FinancialApplicationDetailPage() {
                             <CardTitle className="text-base flex items-center gap-2"><User className="h-4 w-4"/>{t('applicantDetails')}</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3">
-                            {applicant ? (
+                            {application.applicant ? (
                                 <>
                                     <div className="flex items-center gap-3">
                                         <Avatar className="h-10 w-10">
-                                            <AvatarImage src={applicant.avatarUrl} alt={applicant.displayName} />
-                                            <AvatarFallback>{applicant.displayName.substring(0,1)}</AvatarFallback>
+                                            <AvatarImage src={application.applicant.avatarUrl || ''} alt={application.applicant.displayName} />
+                                            <AvatarFallback>{application.applicant.displayName.substring(0,1)}</AvatarFallback>
                                         </Avatar>
                                         <div>
-                                            <p className="font-semibold">{applicant.displayName}</p>
+                                            <p className="font-semibold">{application.applicant.displayName}</p>
                                             <p className="text-xs text-muted-foreground flex items-center gap-1">
-                                                <StakeholderIcon role={applicant.primaryRole} className="h-3 w-3"/>
-                                                {applicant.primaryRole}
+                                                <StakeholderIcon role={application.applicant.primaryRole} className="h-3 w-3"/>
+                                                {application.applicant.primaryRole}
                                             </p>
                                         </div>
                                     </div>
-                                    <p className="text-sm text-muted-foreground">{applicant.location}</p>
-                                    <Button asChild size="sm" variant="secondary" className="w-full"><Link href={`/profiles/${applicant.id}`}>{t('viewProfileButton')}</Link></Button>
+                                    <p className="text-sm text-muted-foreground">{application.applicant.location}</p>
+                                    <Button asChild size="sm" variant="secondary" className="w-full"><Link href={`/profiles/${application.applicant.id}`}>{t('viewProfileButton')}</Link></Button>
                                 </>
                             ) : <p className="text-sm text-muted-foreground">{t('profileNotFound')}</p>}
                         </CardContent>

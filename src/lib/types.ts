@@ -633,64 +633,11 @@ export interface FinancialApplication {
   purpose: string;
   submittedAt: string | null;
   actionLink?: string;
-  applicantProfile?: UserProfile;
-}
-
-export interface FinancialProduct {
-  id: string;
-  fiId: string;
-  name: string;
-  type: 'Loan' | 'Grant';
-  description: string;
-  interestRate?: number;
-  maxAmount?: number;
-  targetRoles: string[];
-  status: 'Active' | 'Inactive';
-  createdAt: string;
-}
-
-export interface InsuranceProduct {
-  id: string;
-  providerId: string;
-  name: string;
-  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
-  description: string;
-  coverageDetails: string;
-  premium: number;
-  currency: string;
-  status: 'Active' | 'Inactive';
-  createdAt: string;
-  provider?: {
-    id: string;
-    displayName: string;
-    avatarUrl?: string;
-  }
-}
-
-export interface InsuranceApplication {
-    id: string;
-    applicantId: string;
-    providerId: string;
-    productId: string;
-    farmId: string;
-    coverageValue: number;
-    status: 'Submitted' | 'Under Review' | 'Approved' | 'Rejected';
-    submittedAt: string;
+  applicant?: UserProfile;
 }
 
 
-export interface ApiKey {
-    id: string;
-    userId: string;
-    key: string;
-    description: string;
-    environment: 'Sandbox' | 'Production';
-    status: 'Active' | 'Revoked';
-    createdAt: string; // ISO string
-}
-
-
-export interface KnfBatch {
+export type KnfBatch = {
     id: string;
     userId: string;
     type: string; // 'fpj', 'faa', etc.

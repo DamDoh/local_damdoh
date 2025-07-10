@@ -809,12 +809,12 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
     if (appData.applicantId) {
         const profileDoc = await db.collection('users').doc(appData.applicantId).get();
         if (profileDoc.exists) {
-            const data = profileDoc.data()!;
+            const profileData = profileDoc.data()!;
             applicantProfile = {
                 id: profileDoc.id,
-                ...data,
-                createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
-                updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+                ...profileData,
+                createdAt: (profileData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+                updatedAt: (profileData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
             };
         }
     }
