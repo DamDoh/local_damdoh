@@ -45,7 +45,7 @@ export function HeaderThemeToggle() {
     // This ensures the server and initial client render are very basic.
     return (
       <div key="placeholder" className="flex gap-1" aria-hidden="true" style={{height: '36px'}}> {/* h-9 equivalent */}
-        <div className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 px-4 py-2 opacity-50">
+        <div className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 w-9 p-0 opacity-50">
           <Sun className="h-5 w-5" />
         </div>
       </div>
