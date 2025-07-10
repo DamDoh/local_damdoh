@@ -97,7 +97,7 @@
       }
     }
   },
-   "AppFooter": {
+  "AppFooter": {
     "tagline": "Die landwirtschaftliche Wertschöpfungskette für eine nachhaltige Zukunft verbinden.",
     "damdohTitle": "DamDoh",
     "aboutLabel": "Über uns",
@@ -136,7 +136,7 @@
     "myProfile": "Mein Profil",
     "myOrders": "Meine Bestellungen",
     "settings": "Einstellungen",
-    "helpCenter": "Hilfezentrum",
+    "helpCenter": "Hilfe",
     "logOut": "Abmelden",
     "switchToLightAria": "Zum hellen Modus wechseln",
     "switchToDarkAria": "Zum dunklen Modus wechseln"
@@ -147,5 +147,39 @@
     "search": "Suche",
     "forums": "Foren",
     "profile": "Profil"
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Synchronisiere {count} ausstehende Aktionen...",
+      "onlinePending": "{count} Aktionen ausstehend. Synchronisierung startet in Kürze.",
+      "onlineSynced": "Sie sind online und alle Daten sind synchronisiert.",
+      "offline": "Sie sind offline. {count} Aktionen in der Warteschlange."
+    },
+    "toast": {
+      "online": {
+        "title": "Sie sind wieder online!",
+        "description": "Ihre Verbindung wurde wiederhergestellt."
+      },
+      "offline": {
+        "title": "Sie sind derzeit offline",
+        "description": "Daten werden lokal gespeichert und synchronisiert, wenn Sie wieder verbunden sind."
+      },
+      "syncing": {
+        "title": "Daten werden synchronisiert",
+        "description": "Lade {count} Offline-Aktionen auf den Server hoch."
+      },
+      "synced": {
+        "title": "Synchronisierung abgeschlossen",
+        "description": "Ihre Offline-Daten wurden erfolgreich gespeichert."
+      },
+      "syncFailed": {
+        "title": "Synchronisierung fehlgeschlagen",
+        "description": "Offline-Daten konnten nicht synchronisiert werden. Werde es später erneut versuchen."
+      },
+      "queued": {
+        "title": "Aktion in Warteschlange",
+        "description": "Diese Aktion wird ausgeführt, wenn Sie wieder online sind."
+      }
+    }
   }
 }

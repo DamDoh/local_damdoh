@@ -97,7 +97,7 @@
       }
     }
   },
-   "AppFooter": {
+  "AppFooter": {
     "tagline": "Connecter la chaîne de valeur agricole pour un avenir durable.",
     "damdohTitle": "DamDoh",
     "aboutLabel": "À propos de nous",
@@ -147,5 +147,39 @@
     "search": "Recherche",
     "forums": "Forums",
     "profile": "Profil"
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Synchronisation de {count} actions en attente...",
+      "onlinePending": "{count} actions en attente. La synchronisation va bientôt commencer.",
+      "onlineSynced": "Vous êtes en ligne et toutes les données sont synchronisées.",
+      "offline": "Vous êtes hors ligne. {count} actions en file d'attente."
+    },
+    "toast": {
+      "online": {
+        "title": "Vous êtes de retour en ligne !",
+        "description": "Votre connexion a été rétablie."
+      },
+      "offline": {
+        "title": "Vous êtes actuellement hors ligne",
+        "description": "Les données seront enregistrées localement et synchronisées lors de votre reconnexion."
+      },
+      "syncing": {
+        "title": "Synchronisation des Données",
+        "description": "Téléchargement de {count} actions hors ligne sur le serveur."
+      },
+      "synced": {
+        "title": "Synchronisation Terminée",
+        "description": "Vos données hors ligne ont été enregistrées avec succès."
+      },
+      "syncFailed": {
+        "title": "Échec de la Synchronisation",
+        "description": "Impossible de synchroniser les données hors ligne. Une nouvelle tentative aura lieu plus tard."
+      },
+      "queued": {
+        "title": "Action Mise en File d'Attente",
+        "description": "Cette action sera effectuée lorsque vous serez de nouveau en ligne."
+      }
+    }
   }
 }

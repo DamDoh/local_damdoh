@@ -97,7 +97,7 @@
       }
     }
   },
-   "AppFooter": {
+  "AppFooter": {
     "tagline": "Conectando la cadena de valor agrícola para un futuro sostenible.",
     "damdohTitle": "DamDoh",
     "aboutLabel": "Sobre nosotros",
@@ -147,5 +147,39 @@
     "search": "Buscar",
     "forums": "Foros",
     "profile": "Perfil"
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Sincronizando {count} acciones pendientes...",
+      "onlinePending": "{count} acciones pendientes. La sincronización comenzará pronto.",
+      "onlineSynced": "Estás en línea y todos los datos están sincronizados.",
+      "offline": "Estás desconectado. {count} acciones en cola."
+    },
+    "toast": {
+      "online": {
+        "title": "¡Estás de vuelta en línea!",
+        "description": "Tu conexión ha sido restaurada."
+      },
+      "offline": {
+        "title": "Actualmente estás desconectado",
+        "description": "Los datos se guardarán localmente y se sincronizarán cuando te vuelvas a conectar."
+      },
+      "syncing": {
+        "title": "Sincronizando Datos",
+        "description": "Subiendo {count} acciones sin conexión al servidor."
+      },
+      "synced": {
+        "title": "Sincronización Completa",
+        "description": "Tus datos sin conexión se han guardado correctamente."
+      },
+      "syncFailed": {
+        "title": "Sincronización Fallida",
+        "description": "No se pudieron sincronizar los datos sin conexión. Se intentará de nuevo más tarde."
+      },
+      "queued": {
+        "title": "Acción en Cola",
+        "description": "Esta acción se completará cuando vuelvas a estar en línea."
+      }
+    }
   }
 }
