@@ -67,7 +67,7 @@
     "home": "Home",
     "market": "Market",
     "search": "Search",
-    "forums": "Forums",
+    "messages": "Messages",
     "profile": "Profile"
   },
   "OfflineIndicator": {
@@ -277,6 +277,19 @@
       "p3": "Let's grow together.",
       "button": "Create Your Profile"
     }
+  },
+  "MobileHomepage": {
+    "welcome": {
+      "morning": "Good Morning, {name}",
+      "afternoon": "Good Afternoon, {name}",
+      "evening": "Good Evening, {name}"
+    },
+    "discoverTitle": "Discover",
+    "seeAllButton": "See All",
+    "communityFeedTitle": "Community Feed",
+    "communityFeedDescription": "Catch up on the latest posts, discussions, and news from the community.",
+    "goToFeedButton": "Go to Feed",
+    "noRecommendations": "No recommendations available right now."
   },
   "contactPage": {
     "title": "Contact Us",
@@ -645,5 +658,3 @@
     }
   }
 }
-
-      

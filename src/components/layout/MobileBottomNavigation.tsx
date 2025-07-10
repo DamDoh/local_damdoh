@@ -21,7 +21,7 @@ export function MobileBottomNavigation() {
     { href: "/", label: t('home'), icon: Home },
     { href: "/marketplace", label: t('market'), icon: ShoppingCart },
     { href: "/search", label: t('search'), icon: Search },
-    { href: "/forums", label: t('forums'), icon: MessageSquare },
+    { href: "/messages", label: t('messages'), icon: MessageSquare },
     { href: "/profiles/me", label: t('profile'), icon: User },
   ];
 

@@ -4,17 +4,43 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-import { mobileHomeCategories, mobileDiscoverItems } from '@/lib/dummy-data';
+import { mobileHomeCategories } from '@/lib/dummy-data';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import { useUserProfile } from "@/hooks/useUserProfile"; // Assuming this hook provides user profile data including displayName
+import { ArrowRight, Loader2 } from "lucide-react";
+import { useUserProfile } from "@/hooks/useUserProfile";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslations } from 'next-intl';
+import { useEffect, useState } from "react";
+import { useAuth } from "@/lib/auth-utils";
+import { getMarketplaceRecommendationsAction } from "@/lib/server-actions";
+import { MarketplaceItem } from "@/lib/types";
+
+interface RecommendedItem {
+  item: MarketplaceItem;
+  reason: string;
+}
 
 export function MobileHomepage() {
   const { profile, loading } = useUserProfile();
   const t = useTranslations('MobileHomepage');
+  const { user } = useAuth();
+  const [recommendations, setRecommendations] = useState<RecommendedItem[]>([]);
+  const [isLoadingRecs, setIsLoadingRecs] = useState(true);
+
+  useEffect(() => {
+    if (user?.uid) {
+      setIsLoadingRecs(true);
+      getMarketplaceRecommendationsAction(user.uid, 6)
+        .then(data => {
+          setRecommendations(data || []);
+        })
+        .catch(console.error)
+        .finally(() => setIsLoadingRecs(false));
+    } else {
+        setIsLoadingRecs(false);
+    }
+  }, [user]);
 
   const welcomeMessage = () => {
     const hours = new Date().getHours();
@@ -24,7 +50,7 @@ export function MobileHomepage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pb-20">
       {/* Welcome Header */}
       <div className="px-4">
         {loading ? (
@@ -61,17 +87,33 @@ export function MobileHomepage() {
         </div>
         <ScrollArea>
             <div className="flex space-x-4 pb-4">
-            {mobileDiscoverItems.map((item) => (
+            {isLoadingRecs ? (
+                Array.from({length: 4}).map((_, i) => (
+                    <Card key={i} className="w-40 shrink-0 overflow-hidden">
+                        <Skeleton className="h-24 w-full"/>
+                        <CardContent className="p-2 space-y-1">
+                            <Skeleton className="h-4 w-full"/>
+                            <Skeleton className="h-3 w-1/2"/>
+                        </CardContent>
+                    </Card>
+                ))
+            ) : recommendations.length > 0 ? (
+                recommendations.map(({ item }) => (
                 <Card key={item.id} className="w-40 shrink-0 overflow-hidden">
-                    <div className="relative h-24">
-                        <Image src={item.imageUrl} alt={item.title} fill style={{objectFit: 'cover'}} data-ai-hint={item.dataAiHint} />
-                    </div>
-                    <CardContent className="p-2">
-                        <p className="text-xs font-semibold line-clamp-2">{item.title}</p>
-                        <p className="text-xs text-primary">{item.type}</p>
-                    </CardContent>
+                    <Link href={`/marketplace/${item.id}`} className="block">
+                        <div className="relative h-24">
+                            <Image src={item.imageUrl || 'https://placehold.co/200x250.png'} alt={item.name} fill style={{objectFit: 'cover'}} data-ai-hint={item.dataAiHint || "marketplace item"} />
+                        </div>
+                        <CardContent className="p-2">
+                            <p className="text-xs font-semibold line-clamp-2">{item.name}</p>
+                            <p className="text-xs text-primary">{item.category}</p>
+                        </CardContent>
+                    </Link>
                 </Card>
-            ))}
+            ))
+            ) : (
+                <p className="text-sm text-muted-foreground pl-2">{t('noRecommendations')}</p>
+            )}
             </div>
             <ScrollBar orientation="horizontal" />
         </ScrollArea>
@@ -85,7 +127,7 @@ export function MobileHomepage() {
                     {t('communityFeedDescription')}
                 </CardDescription>
                 <Button asChild className="mt-2">
-                    <Link href="/#feed">{t('goToFeedButton')}</Link>
+                    <Link href="/">{t('goToFeedButton')}</Link>
                 </Button>
             </Card>
        </div>
