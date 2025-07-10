@@ -115,7 +115,14 @@ function MainContent() {
       setIsLoadingFeed(true);
       const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
       unsubscribeFeed = onSnapshot(q, (snapshot) => {
-          const posts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as FeedItem));
+          const posts = snapshot.docs.map(doc => {
+            const data = doc.data();
+            return {
+                id: doc.id,
+                ...data,
+                timestamp: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
+            } as FeedItem
+          });
           setFeedItems(posts);
           setIsLoadingFeed(false);
       }, (error) => {
