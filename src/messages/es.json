@@ -502,7 +502,7 @@
     "createListingButton": "Crear Anuncio",
     "pinButton": "Fijar como Inicio",
     "unpinButton": "Desfijar Inicio",
-    "searchPlaceholder": "Buscar productos y servicios...",
+    "searchPlaceholder": "Buscar productos & servicios...",
     "locationPlaceholder": "Filtrar por ubicación...",
     "typePlaceholder": "Filtrar por tipo...",
     "recommendedForYou": "Recomendado para Ti",
@@ -784,7 +784,7 @@
         "title": "Cupones Existentes",
         "description": "Visualiza y gestiona tus códigos promocionales activos.",
         "usage": "Uso",
-        "expires": "Expira",
+        "expires": "Expira el",
         "never": "Nunca",
         "share": "Compartir",
         "noCoupons": "Aún no has creado ningún cupón.",
@@ -806,6 +806,37 @@
         "createError": "Ocurrió un error inesperado.",
         "linkCopied": "¡Enlace copiado!",
         "shareDescription": "Se ha copiado el enlace para compartir del cupón '{code}'."
+      }
+    },
+    "manageService": {
+      "title": "Gestionar Servicio",
+      "backLink": "Volver a la Lista de Servicios",
+      "loading": "Cargando...",
+      "tabs": {
+        "checkin": "Check-in",
+        "bookings": "Reservas",
+        "staff": "Personal"
+      },
+      "bookingsTab": {
+        "title": "Reservas de Huéspedes",
+        "description": "Ver todas las reservas para este servicio.",
+        "downloadCsv": "Descargar CSV",
+        "table": {
+          "guest": "Huésped",
+          "bookedOn": "Reservado el",
+          "status": "Estado",
+          "checkedInAt": "Registrado el"
+        },
+        "status": {
+          "booked": "Reservado",
+          "checkedIn": "Registrado"
+        },
+        "noBookings": "No se han realizado reservas para este servicio todavía.",
+        "fetchError": "No se pudieron cargar las reservas.",
+        "error": "Error",
+        "toast": {
+          "noBookings": "No hay reservas para exportar."
+        }
       }
     }
   },
@@ -1349,7 +1380,7 @@
       "key": "Clave / Descripción",
       "status": "Estado",
       "environment": "Entorno",
-      "created": "Creado",
+      "created": "Creado el",
       "actions": "Acciones"
     },
     "noApiKeys": "Aún no has generado ninguna clave de API.",
@@ -1909,49 +1940,21 @@
     "noStakeholdersFound": "No se encontraron partes interesadas",
     "noStakeholdersHint": "Intente ajustar sus filtros de búsqueda."
   },
-  "InsuranceProductsPage": {
-    "backLink": "Volver al Panel",
-    "title": "Gestionar Productos de Seguro",
-    "description": "Vea y gestione sus ofertas de productos de seguros actuales.",
-    "createButton": "Crear Nuevo Producto",
-    "table": {
-        "productName": "Nombre del Producto",
-        "type": "Tipo",
-        "status": "Estado",
-        "premium": "Prima"
-    },
-    "noProducts": "Aún no ha creado ningún producto de seguro.",
+  "talentExchangePage": {
+    "title": "Bolsa de Talentos",
+    "description": "Encuentra servicios agrícolas especializados o publica tu experiencia.",
+    "listServiceButton": "Publicar tu Servicio",
+    "searchPlaceholder": "Buscar servicios o habilidades...",
+    "locationPlaceholder": "Filtrar por ubicación...",
+    "categoryPlaceholder": "Filtrar por categoría...",
+    "allCategories": "Todas las Categorías",
+    "noResultsTitle": "No se encontraron Servicios",
+    "noResultsDescription": "¡Intenta ajustar tus filtros de búsqueda o sé el primero en publicar un servicio en esta categoría!",
     "toast": {
-        "errorTitle": "Error"
-    }
-  },
-  "InsuranceProductCreatePage": {
-      "backLink": "Volver a Productos",
-      "title": "Crear Nuevo Producto de Seguro",
-      "description": "Defina un nuevo producto de seguro para ofrecer en la plataforma.",
-      "form": {
-          "nameLabel": "Nombre del Producto",
-          "namePlaceholder": "Ej: Seguro de Cosecha de Maíz",
-          "typeLabel": "Tipo de Producto",
-          "typePlaceholder": "Seleccione un tipo de producto",
-          "crop": "Cosecha",
-          "livestock": "Ganado",
-          "asset": "Activo",
-          "weather": "Climático",
-          "descriptionLabel": "Descripción",
-          "descriptionPlaceholder": "Describa el producto, su propósito y criterios de elegibilidad.",
-          "coverageLabel": "Detalles de la Cobertura",
-          "coveragePlaceholder": "Describa qué cubre esta póliza...",
-          "premiumLabel": "Prima (USD)",
-          "premiumPlaceholder": "Ej: 150.00",
-          "currencyLabel": "Moneda",
-          "submitButton": "Crear Producto"
-      },
-      "toast": {
-          "notAuthenticated": "Debe iniciar sesión como Proveedor de Seguros para crear productos.",
-          "successTitle": "¡Producto Creado!",
-          "successDescription": "'{name}' ya está disponible en la plataforma.",
-          "errorTitle": "Creación Fallida"
+      "error": {
+        "title": "Error",
+        "description": "No se pudieron cargar los servicios. Por favor, inténtalo de nuevo más tarde."
       }
+    }
   }
 }

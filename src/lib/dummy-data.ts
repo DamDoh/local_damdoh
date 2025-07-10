@@ -356,7 +356,7 @@ export const dummyProfileDetailsPageData: { profile: UserProfile, activity: any[
 export const mobileHomeCategories: MobileHomeCategory[] = [
   { id: 'cat1', name: 'Produce Market', icon: Apple, href: '/marketplace?category=fresh-produce-fruits', dataAiHint: "fresh vegetables" },
   { id: 'cat2', name: 'Farm Inputs', icon: ShoppingBag, href: '/marketplace?category=seeds-seedlings', dataAiHint: "seeds fertilizer" },
-  { id: 'cat3', name: 'Agri-Services', icon: Briefcase, href: '/marketplace?listingType=Service&category=agronomy-consultancy', dataAiHint: "farm service" },
+  { id: 'cat3', name: 'Talent Exchange', icon: Briefcase, href: '/talent-exchange', dataAiHint: "farm service" },
   { id: 'cat4', name: 'Machinery', icon: Tractor, href: '/marketplace?category=heavy-machinery-sale', dataAiHint: "farm tractor" },
   { id: 'cat5', name: 'Logistics', icon: Truck, href: '/marketplace?category=logistics-transport', dataAiHint: "supply chain" },
   { id: 'cat6', name: 'Knowledge Hub', icon: BookOpen, href: '/forums', dataAiHint: "learning resources" },

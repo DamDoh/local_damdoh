@@ -807,6 +807,37 @@
         "linkCopied": "Link kopiert!",
         "shareDescription": "Der Freigabelink für den Gutschein '{code}' wurde kopiert."
       }
+    },
+    "manageService": {
+      "title": "Dienstleistung verwalten",
+      "backLink": "Zurück zur Dienstleistungsliste",
+      "loading": "Wird geladen...",
+      "tabs": {
+        "checkin": "Check-in",
+        "bookings": "Buchungen",
+        "staff": "Personal"
+      },
+      "bookingsTab": {
+        "title": "Gästebuchungen",
+        "description": "Alle Buchungen für diese Dienstleistung anzeigen.",
+        "downloadCsv": "CSV herunterladen",
+        "table": {
+          "guest": "Gast",
+          "bookedOn": "Gebucht am",
+          "status": "Status",
+          "checkedInAt": "Eingecheckt am"
+        },
+        "status": {
+          "booked": "Gebucht",
+          "checkedIn": "Eingecheckt"
+        },
+        "noBookings": "Für diese Dienstleistung wurden noch keine Buchungen vorgenommen.",
+        "fetchError": "Buchungen konnten nicht geladen werden.",
+        "error": "Fehler",
+        "toast": {
+          "noBookings": "Keine Buchungen zum Exportieren."
+        }
+      }
     }
   },
   "farmManagement": {
@@ -1064,34 +1095,8 @@
           ],
           "whyItWorks": [
             "Verhindert das Wachstum von Unkraut.",
-            "Spart eine enorme Menge an Bodenfeuchtigkeit und reduziert den Wasserbedarf.",
-            "Füttert das Bodenleben, während es sich zersetzt, und schafft so reichen Mutterboden.",
-            "Schützt den Boden vor der direkten Hitze der Sonne."
-          ],
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "Ein mit einer dicken Mulchschicht bedecktes Feld",
-          "dataAiHint": "mulch farming"
-        },
-        {
-          "id": "high-standards",
-          "title": "Hohe Standards",
-          "icon": "CheckCircle",
-          "summary": "Tun Sie alles pünktlich, auf hohem Niveau, ohne Verschwendung und mit Freude.",
-          "howTo": [
-            "Bereiten Sie Ihr Land rechtzeitig vor den ersten Regenfällen vor.",
-            "Pflanzen Sie zur optimalen Zeit für Ihre Region und Kultur.",
-            "Befolgen Sie präzise Maße für Pflanztiefe und -abstand.",
-            "Verwalten Sie Ihre Ressourcen (Samen, Betriebsmittel, Zeit) weise, um Verschwendung zu vermeiden."
-          ],
-          "whyItWorks": [
-            "Maximiert das genetische Potenzial des Samens.",
-            "Stellt sicher, dass die Ernte den vollen Nutzen der frühen Regenfälle erhält.",
-            "Führt zu höheren Erträgen und größerer Rentabilität.",
-            "Bringt Gott durch exzellente Arbeit Ehre."
-          ],
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "Ein Bauer, der sorgfältig Samen in ein gut vorbereitetes Feld pflanzt",
-          "dataAiHint": "planting seeds precisely"
+            "Saves a tremendous amount of soil moisture, reducing water needs."
+          ]
         }
       ]
     },
@@ -1224,7 +1229,7 @@
           "yield": "ca. 1.5 L",
           "steps": [
             "Fischteile in kleine Stücke schneiden.",
-            "In einem Behälter Fischteile und braunen Zucker schichten, beginnend und endend mit Zucker.",
+            "In einem Behälter Fischteile und braunen Zucker schichten, beginnend und endend mit einer Schicht aus Zucker.",
             "Behälter zu ca. 2/3 füllen und mit einem atmungsaktiven Tuch abdecken.",
             "An einem kühlen, dunklen Ort lagern und mindestens 3-6 Monate fermentieren lassen."
           ],
@@ -1934,7 +1939,22 @@
     "allRoles": "Alle Rollen",
     "noStakeholdersFound": "Keine Interessenvertreter gefunden",
     "noStakeholdersHint": "Versuchen Sie, Ihre Suchfilter anzupassen."
+  },
+  "talentExchangePage": {
+    "title": "Talentbörse",
+    "description": "Finden Sie spezialisierte landwirtschaftliche Dienstleistungen oder listen Sie Ihre Expertise auf.",
+    "listServiceButton": "Ihren Service listen",
+    "searchPlaceholder": "Nach Dienstleistungen oder Fähigkeiten suchen...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "categoryPlaceholder": "Nach Kategorie filtern...",
+    "allCategories": "Alle Kategorien",
+    "noResultsTitle": "Keine Dienstleistungen gefunden",
+    "noResultsDescription": "Versuchen Sie, Ihre Suchfilter anzupassen oder seien Sie der Erste, der eine Dienstleistung in dieser Kategorie auflistet!",
+    "toast": {
+      "error": {
+        "title": "Fehler",
+        "description": "Dienstleistungen konnten nicht geladen werden. Bitte versuchen Sie es später erneut."
+      }
+    }
   }
 }
-
-    

@@ -807,6 +807,37 @@
         "linkCopied": "Lien copié !",
         "shareDescription": "Le lien de partage pour le coupon '{code}' a été copié."
       }
+    },
+    "manageService": {
+      "title": "Gérer le service",
+      "backLink": "Retour à la liste des services",
+      "loading": "Chargement...",
+      "tabs": {
+        "checkin": "Enregistrement",
+        "bookings": "Réservations",
+        "staff": "Personnel"
+      },
+      "bookingsTab": {
+        "title": "Réservations des clients",
+        "description": "Afficher toutes les réservations pour ce service.",
+        "downloadCsv": "Télécharger le CSV",
+        "table": {
+          "guest": "Client",
+          "bookedOn": "Réservé le",
+          "status": "Statut",
+          "checkedInAt": "Enregistré le"
+        },
+        "status": {
+          "booked": "Réservé",
+          "checkedIn": "Enregistré"
+        },
+        "noBookings": "Aucune réservation n'a été effectuée pour ce service.",
+        "fetchError": "Impossible de charger les réservations.",
+        "error": "Erreur",
+        "toast": {
+          "noBookings": "Aucune réservation à exporter."
+        }
+      }
     }
   },
   "farmManagement": {
@@ -1934,7 +1965,22 @@
     "allRoles": "Tous les rôles",
     "noStakeholdersFound": "Aucune partie prenante trouvée",
     "noStakeholdersHint": "Essayez d'ajuster vos filtres de recherche."
+  },
+  "talentExchangePage": {
+    "title": "Bourse de talents",
+    "description": "Trouvez des services agricoles spécialisés ou proposez votre expertise.",
+    "listServiceButton": "Proposer votre service",
+    "searchPlaceholder": "Rechercher des services ou des compétences...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "categoryPlaceholder": "Filtrer par catégorie...",
+    "allCategories": "Toutes les catégories",
+    "noResultsTitle": "Aucun service trouvé",
+    "noResultsDescription": "Essayez d'ajuster vos filtres de recherche ou soyez le premier à proposer un service dans cette catégorie !",
+    "toast": {
+      "error": {
+        "title": "Erreur",
+        "description": "Impossible de charger les services. Veuillez réessayer plus tard."
+      }
+    }
   }
 }
-
-    

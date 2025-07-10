@@ -807,6 +807,37 @@
         "linkCopied": "Link Copied!",
         "shareDescription": "The share link for coupon '{code}' has been copied."
       }
+    },
+    "manageService": {
+      "title": "Manage Service",
+      "backLink": "Back to Service Listing",
+      "loading": "Loading...",
+      "tabs": {
+        "checkin": "Check-in",
+        "bookings": "Bookings",
+        "staff": "Staff"
+      },
+      "bookingsTab": {
+        "title": "Guest Bookings",
+        "description": "View all bookings for this service.",
+        "downloadCsv": "Download CSV",
+        "table": {
+          "guest": "Guest",
+          "bookedOn": "Booked On",
+          "status": "Status",
+          "checkedInAt": "Checked-in At"
+        },
+        "status": {
+          "booked": "Booked",
+          "checkedIn": "Checked-in"
+        },
+        "noBookings": "No bookings have been made for this service yet.",
+        "fetchError": "Could not load bookings.",
+        "error": "Error",
+        "toast": {
+          "noBookings": "No bookings to export."
+        }
+      }
     }
   },
   "farmManagement": {
@@ -1388,7 +1419,7 @@
     "bookingsTitle": "Upcoming Bookings",
     "bookingsDescription": "Your next guests and experiences.",
     "experiencesTitle": "Your Listed Experiences",
-    "experiencesDescription": "Manage your agri-tourism offerings.",
+    "experiencesDescription": "Manage your agro-tourism offerings.",
     "reviewsTitle": "Guest Reviews",
     "reviewsDescription": "Latest feedback from your visitors.",
     "table": {
@@ -1972,6 +2003,23 @@
     "noProducts": "You have not created any insurance products yet.",
     "toast": {
       "errorTitle": "Error"
+    }
+  },
+  "talentExchangePage": {
+    "title": "Talent Exchange",
+    "description": "Find specialized agricultural services or list your expertise.",
+    "listServiceButton": "List Your Service",
+    "searchPlaceholder": "Search for services or skills...",
+    "locationPlaceholder": "Filter by location...",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Categories",
+    "noResultsTitle": "No Services Found",
+    "noResultsDescription": "Try adjusting your search filters or be the first to list a service in this category!",
+    "toast": {
+      "error": {
+        "title": "Error",
+        "description": "Could not load services. Please try again later."
+      }
     }
   }
 }
