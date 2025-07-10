@@ -485,7 +485,7 @@
       }
     },
     "editFarm": {
-      "backToFarm": "Retour à la Ferme",
+      "backToFarm": "Retour à Mes Fermes",
       "title": "Modifier les Détails de la Ferme",
       "description": "Mettez à jour les informations de votre ferme.",
       "form": {
@@ -608,7 +608,7 @@
     },
     "logHarvest": {
       "backLink": "Retour aux Détails de la Ferme",
-      "title": "Enregistrer la Récolte pour {cropType}",
+      "title": "Enregistrer la Récolte de {cropType}",
       "description": "Enregistrez les détails de votre récolte. Cela créera un nouveau lot traçable (VTI) sur la plateforme DamDoh.",
       "harvestDateLabel": "Date de Récolte",
       "yieldLabel": "Rendement Total (en kg)",
@@ -651,7 +651,7 @@
       "unitLabel": "Unité",
       "unitPlaceholder": "ex: kg, litres, ml",
       "methodLabel": "Méthode d'Application (Facultatif)",
-      "methodPlaceholder": "ex: Pulvérisation foliaire, Arrosage au sol",
+      "methodPlaceholder": "ex: Pulvérisation Foliaire, Arrosage au Sol",
       "saveButton": "Enregistrer le Journal d'Application",
       "savingButton": "Enregistrement...",
       "toast": {
@@ -665,7 +665,7 @@
     "logObservation": {
       "backLink": "Retour aux Détails de la Ferme",
       "title": "Enregistrer une Observation",
-      "description": "Enregistrez une observation générale, un résultat de test de sol, ou notez un problème potentiel de ravageur ou de maladie. Téléchargez une photo pour un diagnostic assisté par IA.",
+      "description": "Enregistrez une observation générale, le résultat d'un test de sol, ou notez un problème potentiel de ravageur ou de maladie. Téléchargez une photo pour un diagnostic assisté par IA.",
       "typeLabel": "Type d'Observation",
       "typePlaceholder": "Sélectionnez un type d'observation...",
       "types": {
@@ -779,7 +779,262 @@
         "couldNotUpdate": "Impossible de mettre à jour le statut du lot."
       }
     }
+  },
+  "AgriEvents": {
+    "page": {
+      "title": "Événements Agricoles",
+      "description": "Découvrez des ateliers, des conférences et des webinaires dans le secteur agricole.",
+      "createNewEvent": "Créer un Nouvel Événement",
+      "pinAsHomepage": "Épingler comme Page d'Accueil",
+      "unpinHomepage": "Désépingler de la Page d'Accueil",
+      "searchEvents": "Rechercher des événements...",
+      "searchPlaceholder": "Rechercher par titre, lieu ou mot-clé...",
+      "filterPlaceholder": "Filtrer par type d'événement",
+      "errorLoadingEvents": "Erreur de Chargement des Événements",
+      "couldNotFetchEvents": "Impossible de récupérer la liste des événements. Veuillez réessayer plus tard.",
+      "noEventsFound": "Aucun Événement Trouvé",
+      "noEventsHint": "Essayez d'ajuster vos filtres de recherche, ou soyez le premier à {link}.",
+      "organizedBy": "Par {organizer}",
+      "viewDetails": "Voir les Détails",
+      "toast": {
+        "pinned": {
+          "title": "Page d'Accueil Épinglée",
+          "description": "La page Événements Agricoles est maintenant votre page d'accueil par défaut."
+        },
+        "unpinned": {
+          "title": "Page d'Accueil Désépinglée",
+          "description": "Votre page d'accueil a été réinitialisée au tableau de bord par défaut."
+        }
+      }
+    },
+    "create": {
+      "backButton": "Retour aux Événements",
+      "formTitle": "Créer un Nouvel Événement Agricole",
+      "formDescription": "Remplissez les détails ci-dessous pour lister un nouvel événement sur la plateforme.",
+      "authErrorTitle": "Non Authentifié",
+      "authErrorDescription": "Vous devez être connecté pour créer un événement.",
+      "uploadingTitle": "Téléchargement de l'Image...",
+      "uploadingDescription": "Veuillez patienter pendant le téléchargement de votre bannière d'événement.",
+      "uploadCompleteTitle": "Téléchargement Terminé !",
+      "successTitle": "Événement Créé !",
+      "successDescription": "Votre événement '{title}' a été publié avec succès.",
+      "failTitle": "Création Échouée",
+      "failDescription": "Une erreur inattendue s'est produite lors de la création de votre événement.",
+      "successCardTitle": "Événement '{title}' Publié !",
+      "successCardDescription": "Votre événement est maintenant en direct et visible par la communauté DamDoh. Vous pouvez maintenant gérer les participants, ajouter du personnel et créer des coupons promotionnels.",
+      "manageButton": "Gérer l'Événement",
+      "shareButton": "Partager le Lien de l'Événement",
+      "linkCopiedTitle": "Lien Copié !",
+      "linkCopiedDescription": "Le lien de l'événement a été copié dans votre presse-papiers.",
+      "createAnotherButton": "Créer un Autre Événement",
+      "viewAllButton": "Voir Tous les Événements",
+      "submittingButton": "Soumission en cours...",
+      "submitButton": "Créer l'Événement",
+      "form": {
+        "titleLabel": "Titre de l'Événement",
+        "titlePlaceholder": "ex: Conférence Annuelle sur l'Agriculture Durable",
+        "descriptionLabel": "Description de l'Événement",
+        "descriptionPlaceholder": "Décrivez votre événement en détail : de quoi il s'agit, qui devrait y assister, les intervenants clés, etc.",
+        "dateLabel": "Date de l'Événement",
+        "datePlaceholder": "Choisissez une date",
+        "timeLabel": "Heure de l'Événement (Facultatif)",
+        "timePlaceholder": "ex: 14:30",
+        "timeDescription": "Utilisez le format 24 heures (HH:MM).",
+        "locationLabel": "Lieu",
+        "locationPlaceholder": "ex: En ligne, ou Nairobi, Kenya",
+        "locationDescription": "Pour les événements physiques, soyez précis. Pour les événements en ligne, tapez simplement 'En ligne'.",
+        "typeLabel": "Type d'Événement",
+        "typePlaceholder": "Sélectionnez un type d'événement",
+        "organizerLabel": "Nom de l'Organisateur (Facultatif)",
+        "organizerPlaceholder": "ex: Agri-Innovation Global",
+        "websiteLabel": "Lien vers un Site Web Externe (Facultatif)",
+        "enableRegLabel": "Activer l'Inscription DamDoh",
+        "enableRegDescription": "Permettre aux utilisateurs de s'inscrire et de payer (le cas échéant) directement sur la plateforme.",
+        "attendeeLimitLabel": "Limite de Participants (Facultatif)",
+        "attendeeLimitDescription": "Laissez vide pour un nombre illimité de participants.",
+        "priceLabel": "Prix (par billet)",
+        "priceDescription": "Laissez vide ou 0 pour un événement gratuit.",
+        "currencyLabel": "Devise",
+        "currencyDescription": "ex: USD, KES",
+        "imageUrlLabel": "URL de l'Image de la Bannière (Facultatif)",
+        "imageUrlDescription": "Lien vers une image externe (ex: depuis votre site web).",
+        "imageUploadLabel": "Ou Télécharger une Image",
+        "imageUploadDescription": "Téléchargez une image de bannière directement. Cela remplacera l'URL ci-dessus."
+      }
+    },
+    "detail": {
+      "backLink": "Retour aux Événements",
+      "organizedBy": "Organisé par {organizer}",
+      "attendees": "{count} / {limit} participants",
+      "unlimited": "Illimité",
+      "buttons": {
+        "manage": "Gérer",
+        "share": "Partager",
+        "close": "Fermer",
+        "registering": "Inscription...",
+        "registerAndPay": "S'inscrire et Payer {price} {currency}",
+        "registerFree": "S'inscrire Gratuitement",
+        "full": "Événement Complet",
+        "visitWebsite": "Visiter le Site de l'Événement",
+        "viewTicket": "Voir Votre Billet"
+      },
+      "errors": {
+        "loadTitle": "Erreur",
+        "loadDescription": "Impossible de charger les détails de l'événement.",
+        "signInTitle": "Veuillez vous Connecter",
+        "signInDescription": "Vous devez être connecté pour vous inscrire aux événements.",
+        "unexpected": "Une erreur inattendue s'est produite."
+      },
+      "registration": {
+        "successTitle": "Inscription Confirmée !",
+        "successDescription": "Vous êtes maintenant inscrit à l'événement.",
+        "discountApplied": "Une réduction de {amount} {currency} a été appliquée.",
+        "finalPrice": "Votre prix final est de {price} {currency}.",
+        "failTitle": "Échec de l'Inscription"
+      },
+      "coupon": {
+        "label": "Code Promo (Facultatif)",
+        "placeholder": "Entrez le code ici",
+        "note": "Si vous avez un code promo, entrez-le ici pour appliquer une réduction.",
+        "toastTitle": "Coupon Détecté !",
+        "toastDescription": "Le coupon '{couponCode}' de l'URL a été appliqué."
+      },
+      "share": {
+        "title": "Partager cet Événement",
+        "description": "Copiez le lien ci-dessous pour partager cet événement avec votre réseau.",
+        "link": "Lien",
+        "copy": "Copier"
+      },
+      "ticket": {
+        "title": "Votre Billet d'Événement",
+        "for": "Pour : {eventTitle}",
+        "scan": "Présentez ce code QR à l'événement pour l'enregistrement."
+      },
+      "notFound": {
+        "title": "Événement Introuvable",
+        "description": "L'événement que vous recherchez n'existe pas ou a peut-être été supprimé.",
+        "backButton": "Retour à Tous les Événements"
+      }
+    },
+    "manage": {
+      "title": "Gérer l'Événement",
+      "backLink": "Retour à la Page de l'Événement",
+      "tabs": {
+        "checkin": "Check-in",
+        "staff": "Personnel",
+        "dashboard": "Tableau de Bord",
+        "attendees": "Participants",
+        "promotions": "Promotions"
+      },
+      "toast": {
+        "errorCoupons": {
+          "title": "Erreur",
+          "description": "Impossible de charger les coupons de l'événement."
+        }
+      },
+      "promotions": {
+        "create": {
+          "title": "Créer un Nouveau Coupon",
+          "description": "Offrez des réductions pour encourager les inscriptions à votre événement.",
+          "toast": {
+            "successTitle": "Coupon Créé",
+            "successDescription": "Le coupon '{code}' est maintenant actif.",
+            "failTitle": "Échec de la Création"
+          },
+          "form": {
+            "code": "Code Promo",
+            "codePlaceholder": "ex: EARLYBIRD10",
+            "usageLimit": "Limite d'Utilisation",
+            "usageLimitPlaceholder": "ex: 100",
+            "discountType": "Type de Réduction",
+            "discountTypePlaceholder": "Sélectionnez un type",
+            "percentage": "Pourcentage",
+            "fixed": "Montant Fixe",
+            "discountValue": "Valeur de la Réduction",
+            "expiryDate": "Date d'Expiration (Facultatif)",
+            "pickDate": "Choisissez une date",
+            "submitButton": "Créer le Coupon"
+          }
+        },
+        "list": {
+          "title": "Coupons Existants",
+          "description": "Affichez et partagez vos coupons promotionnels actifs.",
+          "toastTitle": "Lien Copié !",
+          "toastDescription": "Le lien partageable pour le coupon '{link}' a été copié.",
+          "expires": "Expire le",
+          "never": "Jamais",
+          "usage": "Utilisation",
+          "share": "Partager",
+          "noCoupons": "Vous n'avez encore créé aucun coupon pour cet événement.",
+          "shareModal": {
+            "title": "Partager le Coupon",
+            "description": "Partagez ce lien pour donner aux utilisateurs un moyen direct de s'inscrire avec ce coupon appliqué.",
+            "copy": "Copier",
+            "close": "Fermer"
+          }
+        }
+      },
+      "checkin": {
+        "title": "Enregistrement des Participants",
+        "description": "Utilisez le scanner de code QR pour enregistrer les participants inscrits à votre événement.",
+        "scanButton": "Scanner le Code QR du Participant",
+        "verifying": "Vérification du billet...",
+        "success": "Enregistrement Réussi",
+        "errorTitle": "Erreur d'Enregistrement",
+        "error": {
+          "invalidCode": "Ce n'est pas un code d'enregistrement DamDoh valide.",
+          "wrongEvent": "Ce billet est pour un autre événement.",
+          "noUserId": "Impossible de trouver un ID utilisateur sur ce billet.",
+          "unknown": "Une erreur inconnue s'est produite.",
+          "failUnknown": "L'enregistrement a échoué pour une raison inconnue."
+        },
+        "toast": {
+          "success": { "title": "Enregistrement Réussi" },
+          "fail": { "title": "Échec de l'Enregistrement" },
+          "scanFail": {
+            "title": "Échec du Scan",
+            "description": "Impossible de lire le code QR. Veuillez réessayer."
+          }
+        }
+      },
+      "staff": {
+        "title": "Gestion du Personnel",
+        "description": "Ajoutez ou supprimez des utilisateurs qui peuvent aider à gérer votre événement, comme l'enregistrement des participants.",
+        "addTitle": "Ajouter un Membre du Personnel",
+        "searchPlaceholder": "Rechercher des utilisateurs par nom ou email...",
+        "addButton": "Ajouter",
+        "removeButton": "Supprimer",
+        "currentTitle": "Personnel Actuel",
+        "noStaff": "Aucun membre du personnel n'a encore été ajouté.",
+        "toast": {
+          "error": "Erreur",
+          "fetchStaffError": "Impossible de charger les membres du personnel.",
+          "searchLengthError": "La recherche doit comporter au moins 3 caractères.",
+          "searchFailed": "La recherche d'utilisateurs a échoué.",
+          "success": "Succès",
+          "addSuccess": "{name} a été ajouté au personnel.",
+          "addFailed": "Échec de l'ajout du membre du personnel.",
+          "removeSuccess": "{name} a été retiré du personnel.",
+          "removeFailed": "Échec de la suppression du membre du personnel."
+        }
+      },
+      "attendees": {
+        "title": "Participants",
+        "description": "Consultez la liste de tous les utilisateurs inscrits à votre événement.",
+        "downloadCsv": "Télécharger CSV",
+        "nameHeader": "Nom",
+        "emailHeader": "Email",
+        "registeredOnHeader": "Inscrit le",
+        "statusHeader": "Statut",
+        "statusCheckedIn": "Enregistré",
+        "statusRegistered": "Inscrit",
+        "noAttendees": "Personne ne s'est encore inscrit à votre événement.",
+        "error": "Impossible de charger les participants.",
+        "toast": {
+          "noAttendees": "Aucun participant à télécharger."
+        }
+      }
+    }
   }
 }
 
-    

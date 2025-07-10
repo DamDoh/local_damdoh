@@ -140,7 +140,7 @@
     "appStoreAlt": "ดาวน์โหลดบน App Store"
   },
   "searchPage": {
-    "title": "ការค้นហាសាកល",
+    "title": "ការค้นหាសាកល",
     "description": "ค้นหาทุกอย่างบนแพลตฟอร์ม DamDoh ตั้งแต่ผลิตภัณฑ์และบริการไปจนถึงผู้คนและการสนทนา",
     "placeholder": "ค้นหากาแฟออร์แกนิก ซ่อมรถแทรกเตอร์ หรือผู้ใช้...",
     "searchButton": "ค้นหา",
@@ -151,7 +151,7 @@
     "popularSearch4": "แรงงานในฟาร์ม",
     "popularSearch5": "รถแทรกเตอร์ให้เช่า",
     "modal": {
-      "title": "ការค้นហាសាកល",
+      "title": "ការค้นหាសាកល",
       "placeholder": "ฉันกำลังมองหา...",
       "searchButton": "ค้นหา",
       "searchError": "การค้นหาล้มเหลว",
@@ -167,7 +167,9 @@
         "users": "โปรไฟล์",
         "marketplaceItems": "ตลาด",
         "forums": "ฟอรัม",
-        "vti_registry": "รายงานการตรวจสอบย้อนกลับ"
+        "vti_registry": "รายงานการตรวจสอบย้อนกลับ",
+        "knowledge_articles": "ศูนย์ความรู้",
+        "agri_events": "กิจกรรมเกษตร"
       },
       "noResults": "ไม่พบผลลัพธ์สำหรับคำค้นหาของคุณ",
       "tryAgain": "ลองใช้คำค้นหาอื่นหรือใช้คำหลักที่กว้างขึ้น"
@@ -551,29 +553,29 @@
     },
     "platformManagement": {
       "heading": "5. การจัดการแพลตฟอร์ม",
-      "content": "Wir behalten uns das Recht vor, sind aber nicht verpflichtet, (1) die Website auf Verstöße gegen diese Nutzungsbedingungen zu überwachen; (2) geeignete rechtliche Schritte gegen jeden einzuleiten, der nach unserem alleinigen Ermessen gegen das Gesetz oder diese Nutzungsbedingungen verstößt; (3) nach unserem alleinigen Ermessen und ohne Einschränkung den Zugang zu, die Verfügbarkeit von oder die Deaktivierung von Beiträgen oder Teilen davon zu verweigern, einzuschränken oder zu deaktivieren."
+      "content": "เราขอสงวนสิทธิ์ แต่ไม่มีภาระผูกพันที่จะ: (1) ตรวจสอบไซต์เพื่อหาการละเมิดข้อกำหนดการใช้งานเหล่านี้ (2) ดำเนินการทางกฎหมายที่เหมาะสมกับผู้ใดก็ตามที่ละเมิดกฎหมายหรือข้อกำหนดการใช้งานเหล่านี้ตามดุลยพินิจของเราแต่เพียงผู้เดียว (3) ตามดุลยพินิจของเราแต่เพียงผู้เดียวและไม่มีข้อจำกัด ปฏิเสธ จำกัดการเข้าถึง จำกัดความพร้อมใช้งาน หรือปิดใช้งานการมีส่วนร่วมของคุณหรือส่วนใดส่วนหนึ่ง"
     },
     "termAndTermination": {
-      "heading": "6. Laufzeit und Kündigung",
-      "content": "Diese Nutzungsbedingungen bleiben in vollem Umfang in Kraft, solange Sie die Website nutzen. OHNE EINSCHRÄNKUNG EINER ANDEREN BESTIMMUNG DIESER NUTZUNGSBEDINGUNGEN BEHALTEN WIR UNS DAS RECHT VOR, NACH UNSEREM ALLEINIGEN ERMESSEN UND OHNE ANKÜNDIGUNG ODER HAFTUNG DEN ZUGANG ZU UND DIE NUTZUNG DER WEBSITE (EINSCHLIESSLICH DER BLOCKIERUNG BESTIMMTER IP-ADRESSEN) FÜR JEDE PERSON AUS JEDEM GRUND ODER OHNE GRUND ZU VERWEIGERN."
+      "heading": "6. ระยะเวลาและการยกเลิก",
+      "content": "ข้อกำหนดการใช้งานเหล่านี้จะยังคงมีผลบังคับใช้อย่างสมบูรณ์ในขณะที่คุณใช้ไซต์ โดยไม่จำกัดข้อกำหนดอื่นใดของข้อกำหนดการใช้งานเหล่านี้ เราขอสงวนสิทธิ์ในการปฏิเสธการเข้าถึงและการใช้ไซต์ (รวมถึงการบล็อกที่อยู่ IP บางรายการ) แก่บุคคลใด ๆ ด้วยเหตุผลใด ๆ หรือไม่มีเหตุผลใด ๆ ตามดุลยพินิจของเราแต่เพียงผู้เดียวและไม่มีการแจ้งให้ทราบล่วงหน้าหรือความรับผิด"
     },
     "modificationsAndInterruptions": {
-      "heading": "7. Änderungen und Unterbrechungen",
-      "content": "Wir behalten uns das Recht vor, den Inhalt der Website jederzeit oder aus beliebigem Grund nach unserem alleinigen Ermessen und ohne Vorankündigung zu ändern, zu modifizieren oder zu entfernen. Wir behalten uns auch das Recht vor, die gesamte Website oder einen Teil davon jederzeit ohne Vorankündigung zu ändern oder einzustellen. Wir haften Ihnen oder Dritten gegenüber nicht für Änderungen, Preisänderungen, Aussetzungen oder die Einstellung der Website."
+      "heading": "7. การแก้ไขและการหยุดชะงัก",
+      "content": "เราขอสงวนสิทธิ์ในการเปลี่ยนแปลง แก้ไข หรือลบเนื้อหาของไซต์ได้ตลอดเวลาหรือด้วยเหตุผลใด ๆ ตามดุลยพินิจของเราแต่เพียงผู้เดียวโดยไม่ต้องแจ้งให้ทราบล่วงหน้า เราขอสงวนสิทธิ์ในการแก้ไขหรือยกเลิกไซต์ทั้งหมดหรือบางส่วนได้ตลอดเวลาโดยไม่ต้องแจ้งให้ทราบล่วงหน้า เราจะไม่รับผิดต่อคุณหรือบุคคลที่สามใด ๆ สำหรับการแก้ไข การเปลี่ยนแปลงราคา การระงับ หรือการยกเลิกไซต์"
     },
     "governingLaw": {
-      "heading": "8. Geltendes Recht",
-      "content": "Diese Nutzungsbedingungen und Ihre Nutzung der Website unterliegen den Gesetzen des Landes, in dem DamDoh seinen Sitz hat, und werden in Übereinstimmung mit diesen ausgelegt, ohne Rücksicht auf dessen Kollisionsnormen."
+      "heading": "8. กฎหมายที่ใช้บังคับ",
+      "content": "ข้อกำหนดการใช้งานเหล่านี้และการใช้งานไซต์ของคุณอยู่ภายใต้และตีความตามกฎหมายของประเทศที่ DamDoh ก่อตั้งขึ้น โดยไม่คำนึงถึงหลักการขัดกันของกฎหมาย"
     },
     "disputeResolution": {
-      "heading": "9. Streitbeilegung",
-      "content": "Jede rechtliche Klage jeglicher Art, die von Ihnen oder uns eingeleitet wird, muss bei den staatlichen und bundesstaatlichen Gerichten in unserer Gerichtsbarkeit eingeleitet oder verfolgt werden, und die Parteien stimmen hiermit der Zuständigkeit dieser Gerichte zu und verzichten auf alle Einreden des Fehlens der persönlichen Zuständigkeit und des Forum non conveniens in Bezug auf den Gerichtsstand und die Zuständigkeit in diesen staatlichen und bundesstaatlichen Gerichten."
+      "heading": "9. การระงับข้อพิพาท",
+      "content": "การดำเนินการทางกฎหมายใด ๆ ที่คุณหรือเราเป็นผู้ยื่นฟ้องจะต้องเริ่มต้นหรือดำเนินคดีในศาลของรัฐและรัฐบาลกลางที่ตั้งอยู่ในเขตอำนาจศาลของเรา และคู่สัญญาตกลงและสละสิทธิ์การป้องกันทั้งหมดเกี่ยวกับการขาดเขตอำนาจศาลส่วนบุคคลและฟอรัมที่ไม่สะดวกเกี่ยวกับสถานที่และเขตอำนาจศาลในศาลของรัฐและรัฐบาลกลางดังกล่าว"
     },
     "contactUs": {
-      "heading": "10. Kontaktieren Sie uns",
-      "content": "Um eine Beschwerde bezüglich der Website zu klären oder weitere Informationen zur Nutzung der Website zu erhalten, kontaktieren Sie uns bitte."
+      "heading": "10. ติดต่อเรา",
+      "content": "หากต้องการแก้ไขข้อร้องเรียนเกี่ยวกับไซต์หรือรับข้อมูลเพิ่มเติมเกี่ยวกับการใช้ไซต์ โปรดติดต่อเรา"
     },
-    "conclusion": "Sie können dies über unsere {contactLink} Seite tun."
+    "conclusion": "คุณสามารถทำได้ผ่านหน้า {contactLink} ของเรา"
   },
   "careers": {
     "title": "Karriere bei DamDoh",
@@ -850,7 +852,262 @@
         "errorTitle": "Erstellung fehlgeschlagen"
       }
     }
+  },
+  "AgriEvents": {
+    "page": {
+      "title": "Agrarveranstaltungen",
+      "description": "Entdecken Sie Workshops, Konferenzen und Webinare im Agrarsektor.",
+      "createNewEvent": "Neue Veranstaltung erstellen",
+      "pinAsHomepage": "Als Startseite festlegen",
+      "unpinHomepage": "Startseite entfernen",
+      "searchEvents": "Veranstaltungen suchen...",
+      "searchPlaceholder": "Suche nach Titel, Ort oder Schlüsselwort...",
+      "filterPlaceholder": "Nach Veranstaltungstyp filtern",
+      "errorLoadingEvents": "Fehler beim Laden der Veranstaltungen",
+      "couldNotFetchEvents": "Die Veranstaltungsliste konnte nicht abgerufen werden. Bitte versuchen Sie es später erneut.",
+      "noEventsFound": "Keine Veranstaltungen gefunden",
+      "noEventsHint": "Versuchen Sie, Ihre Suchfilter anzupassen, oder seien Sie der Erste, der {link}.",
+      "organizedBy": "Von {organizer}",
+      "viewDetails": "Details anzeigen",
+      "toast": {
+        "pinned": {
+          "title": "Startseite festgelegt",
+          "description": "Die Seite Agri-Veranstaltungen ist jetzt Ihre Standard-Startseite."
+        },
+        "unpinned": {
+          "title": "Startseite entfernt",
+          "description": "Ihre Startseite wurde auf das Standard-Dashboard zurückgesetzt."
+        }
+      }
+    },
+    "create": {
+      "backButton": "Zurück zu den Veranstaltungen",
+      "formTitle": "Neue Agri-Veranstaltung erstellen",
+      "formDescription": "Füllen Sie die folgenden Details aus, um eine neue Veranstaltung auf der Plattform zu listen.",
+      "authErrorTitle": "Nicht authentifiziert",
+      "authErrorDescription": "Sie müssen angemeldet sein, um eine Veranstaltung zu erstellen.",
+      "uploadingTitle": "Bild wird hochgeladen...",
+      "uploadingDescription": "Bitte warten Sie, während Ihr Veranstaltungsbanner hochgeladen wird.",
+      "uploadCompleteTitle": "Upload abgeschlossen!",
+      "successTitle": "Veranstaltung erstellt!",
+      "successDescription": "Ihre Veranstaltung '{title}' wurde erfolgreich veröffentlicht.",
+      "failTitle": "Erstellung fehlgeschlagen",
+      "failDescription": "Beim Erstellen Ihrer Veranstaltung ist ein unerwarteter Fehler aufgetreten.",
+      "successCardTitle": "Veranstaltung '{title}' veröffentlicht!",
+      "successCardDescription": "Ihre Veranstaltung ist jetzt live und für die DamDoh-Community sichtbar. Sie können nun Teilnehmer verwalten, Personal hinzufügen und Werbegutscheine erstellen.",
+      "manageButton": "Veranstaltung verwalten",
+      "shareButton": "Veranstaltungslink teilen",
+      "linkCopiedTitle": "Link kopiert!",
+      "linkCopiedDescription": "Der Veranstaltungslink wurde in Ihre Zwischenablage kopiert.",
+      "createAnotherButton": "Weitere Veranstaltung erstellen",
+      "viewAllButton": "Alle Veranstaltungen anzeigen",
+      "submittingButton": "Wird eingereicht...",
+      "submitButton": "Veranstaltung erstellen",
+      "form": {
+        "titleLabel": "Veranstaltungstitel",
+        "titlePlaceholder": "z.B. Jährliche Konferenz für nachhaltige Landwirtschaft",
+        "descriptionLabel": "Veranstaltungsbeschreibung",
+        "descriptionPlaceholder": "Beschreiben Sie Ihre Veranstaltung im Detail: worum es geht, wer teilnehmen sollte, Hauptredner usw.",
+        "dateLabel": "Veranstaltungsdatum",
+        "datePlaceholder": "Datum auswählen",
+        "timeLabel": "Veranstaltungszeit (optional)",
+        "timePlaceholder": "z.B. 14:30",
+        "timeDescription": "Verwenden Sie das 24-Stunden-Format (HH:MM).",
+        "locationLabel": "Ort",
+        "locationPlaceholder": "z.B. Online, oder Nairobi, Kenia",
+        "locationDescription": "Seien Sie bei physischen Veranstaltungen spezifisch. Geben Sie für Online-Veranstaltungen einfach 'Online' ein.",
+        "typeLabel": "Veranstaltungstyp",
+        "typePlaceholder": "Wählen Sie einen Veranstaltungstyp",
+        "organizerLabel": "Name des Organisators (optional)",
+        "organizerPlaceholder": "z.B. Agri-Innovation Global",
+        "websiteLabel": "Externer Website-Link (optional)",
+        "enableRegLabel": "DamDoh-Registrierung aktivieren",
+        "enableRegDescription": "Ermöglichen Sie Benutzern die Registrierung und Zahlung (falls zutreffend) direkt auf der Plattform.",
+        "attendeeLimitLabel": "Teilnehmerlimit (optional)",
+        "attendeeLimitDescription": "Leer lassen für unbegrenzte Teilnehmer.",
+        "priceLabel": "Preis (pro Ticket)",
+        "priceDescription": "Leer lassen oder 0 für eine kostenlose Veranstaltung.",
+        "currencyLabel": "Währung",
+        "currencyDescription": "z.B. USD, KES",
+        "imageUrlLabel": "URL des Veranstaltungsbanners (optional)",
+        "imageUrlDescription": "Link zu einem externen Bild (z. B. von Ihrer Website).",
+        "imageUploadLabel": "Oder laden Sie ein Bild hoch",
+        "imageUploadDescription": "Laden Sie ein Bannerbild direkt hoch. Dies überschreibt die obige URL."
+      }
+    },
+    "detail": {
+      "backLink": "Zurück zu den Veranstaltungen",
+      "organizedBy": "Organisiert von {organizer}",
+      "attendees": "{count} / {limit} Teilnehmer",
+      "unlimited": "Unbegrenzt",
+      "buttons": {
+        "manage": "Verwalten",
+        "share": "Teilen",
+        "close": "Schließen",
+        "registering": "Registrierung läuft...",
+        "registerAndPay": "Registrieren & {price} {currency} bezahlen",
+        "registerFree": "Kostenlos registrieren",
+        "full": "Veranstaltung ist ausgebucht",
+        "visitWebsite": "Veranstaltungswebsite besuchen",
+        "viewTicket": "Ihr Ticket anzeigen"
+      },
+      "errors": {
+        "loadTitle": "Fehler",
+        "loadDescription": "Veranstaltungsdetails konnten nicht geladen werden.",
+        "signInTitle": "Bitte anmelden",
+        "signInDescription": "Sie müssen angemeldet sein, um sich für Veranstaltungen zu registrieren.",
+        "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
+      },
+      "registration": {
+        "successTitle": "Registrierung bestätigt!",
+        "successDescription": "Sie sind jetzt für die Veranstaltung registriert.",
+        "discountApplied": "Ein Rabatt von {amount} {currency} wurde angewendet.",
+        "finalPrice": "Ihr Endpreis beträgt {price} {currency}.",
+        "failTitle": "Registrierung fehlgeschlagen"
+      },
+      "coupon": {
+        "label": "Gutscheincode (optional)",
+        "placeholder": "Code hier eingeben",
+        "note": "Wenn Sie einen Gutscheincode haben, geben Sie ihn hier ein, um einen Rabatt zu erhalten.",
+        "toastTitle": "Gutschein erkannt!",
+        "toastDescription": "Der Gutschein '{couponCode}' aus der URL wurde angewendet."
+      },
+      "share": {
+        "title": "Diese Veranstaltung teilen",
+        "description": "Kopieren Sie den Link unten, um diese Veranstaltung mit Ihrem Netzwerk zu teilen.",
+        "link": "Link",
+        "copy": "Kopieren"
+      },
+      "ticket": {
+        "title": "Ihr Veranstaltungsticket",
+        "for": "Für: {eventTitle}",
+        "scan": "Zeigen Sie diesen QR-Code bei der Veranstaltung zum Check-in vor."
+      },
+      "notFound": {
+        "title": "Veranstaltung nicht gefunden",
+        "description": "Die gesuchte Veranstaltung existiert nicht oder wurde möglicherweise entfernt.",
+        "backButton": "Zurück zu allen Veranstaltungen"
+      }
+    },
+    "manage": {
+      "title": "Veranstaltung verwalten",
+      "backLink": "Zurück zur Veranstaltungsseite",
+      "tabs": {
+        "checkin": "Check-in",
+        "staff": "Personal",
+        "dashboard": "Dashboard",
+        "attendees": "Teilnehmer",
+        "promotions": "Aktionen"
+      },
+      "toast": {
+        "errorCoupons": {
+          "title": "Fehler",
+          "description": "Veranstaltungsgutscheine konnten nicht geladen werden."
+        }
+      },
+      "promotions": {
+        "create": {
+          "title": "Neuen Gutschein erstellen",
+          "description": "Bieten Sie Rabatte an, um die Registrierung für Ihre Veranstaltung zu fördern.",
+          "toast": {
+            "successTitle": "Gutschein erstellt",
+            "successDescription": "Der Gutschein '{code}' ist jetzt aktiv.",
+            "failTitle": "Erstellung fehlgeschlagen"
+          },
+          "form": {
+            "code": "Gutscheincode",
+            "codePlaceholder": "z.B. EARLYBIRD10",
+            "usageLimit": "Nutzungslimit",
+            "usageLimitPlaceholder": "z.B. 100",
+            "discountType": "Rabatttyp",
+            "discountTypePlaceholder": "Wählen Sie einen Typ",
+            "percentage": "Prozentual",
+            "fixed": "Fester Betrag",
+            "discountValue": "Rabattwert",
+            "expiryDate": "Ablaufdatum (optional)",
+            "pickDate": "Datum auswählen",
+            "submitButton": "Gutschein erstellen"
+          }
+        },
+        "list": {
+          "title": "Bestehende Gutscheine",
+          "description": "Sehen und teilen Sie Ihre aktiven Werbegutscheine.",
+          "toastTitle": "Link kopiert!",
+          "toastDescription": "Der teilbare Link für den Gutschein '{link}' wurde kopiert.",
+          "expires": "Läuft ab",
+          "never": "Nie",
+          "usage": "Nutzung",
+          "share": "Teilen",
+          "noCoupons": "Sie haben noch keine Gutscheine für diese Veranstaltung erstellt.",
+          "shareModal": {
+            "title": "Gutschein teilen",
+            "description": "Teilen Sie diesen Link, um Benutzern eine direkte Möglichkeit zur Registrierung mit diesem Gutschein zu geben.",
+            "copy": "Kopieren",
+            "close": "Schließen"
+          }
+        }
+      },
+      "checkin": {
+        "title": "Teilnehmer-Check-in",
+        "description": "Verwenden Sie den QR-Code-Scanner, um registrierte Teilnehmer bei Ihrer Veranstaltung einzuchecken.",
+        "scanButton": "Teilnehmer-QR-Code scannen",
+        "verifying": "Ticket wird überprüft...",
+        "success": "Check-in erfolgreich",
+        "errorTitle": "Check-in-Fehler",
+        "error": {
+          "invalidCode": "Dies ist kein gültiger DamDoh-Check-in-Code.",
+          "wrongEvent": "Dieses Ticket ist für eine andere Veranstaltung.",
+          "noUserId": "Auf diesem Ticket konnte keine Benutzer-ID gefunden werden.",
+          "unknown": "Ein unbekannter Fehler ist aufgetreten.",
+          "failUnknown": "Check-in aus unbekanntem Grund fehlgeschlagen."
+        },
+        "toast": {
+          "success": { "title": "Check-in erfolgreich" },
+          "fail": { "title": "Check-in fehlgeschlagen" },
+          "scanFail": {
+            "title": "Scan fehlgeschlagen",
+            "description": "QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut."
+          }
+        }
+      },
+      "staff": {
+        "title": "Personalverwaltung",
+        "description": "Fügen Sie Benutzer hinzu oder entfernen Sie sie, die bei der Verwaltung Ihrer Veranstaltung helfen können, z. B. beim Einchecken von Teilnehmern.",
+        "addTitle": "Personalmitglied hinzufügen",
+        "searchPlaceholder": "Benutzer nach Name oder E-Mail suchen...",
+        "addButton": "Hinzufügen",
+        "removeButton": "Entfernen",
+        "currentTitle": "Aktuelles Personal",
+        "noStaff": "Es wurden noch keine Personalmitglieder hinzugefügt.",
+        "toast": {
+          "error": "Fehler",
+          "fetchStaffError": "Personalmitglieder konnten nicht geladen werden.",
+          "searchLengthError": "Die Suchanfrage muss mindestens 3 Zeichen lang sein.",
+          "searchFailed": "Benutzersuche fehlgeschlagen.",
+          "success": "Erfolg",
+          "addSuccess": "{name} wurde als Personal hinzugefügt.",
+          "addFailed": "Personalmitglied konnte nicht hinzugefügt werden.",
+          "removeSuccess": "{name} wurde aus dem Personal entfernt.",
+          "removeFailed": "Personalmitglied konnte nicht entfernt werden."
+        }
+      },
+      "attendees": {
+        "title": "Teilnehmer",
+        "description": "Sehen Sie sich eine Liste aller Benutzer an, die sich für Ihre Veranstaltung registriert haben.",
+        "downloadCsv": "CSV herunterladen",
+        "nameHeader": "Name",
+        "emailHeader": "E-Mail",
+        "registeredOnHeader": "Registriert am",
+        "statusHeader": "Status",
+        "statusCheckedIn": "Eingecheckt",
+        "statusRegistered": "Registriert",
+        "noAttendees": "Noch niemand hat sich für Ihre Veranstaltung registriert.",
+        "error": "Teilnehmer konnten nicht geladen werden.",
+        "toast": {
+          "noAttendees": "Keine Teilnehmer zum Herunterladen."
+        }
+      }
+    }
   }
 }
 
-    

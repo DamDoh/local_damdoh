@@ -483,413 +483,558 @@
         "successDescription": "{farmName} se ha añadido correctamente a su perfil.",
         "errorTitle": "Creación Fallida"
       }
-    }
-  },
-  "contactPage": {
-    "title": "Contáctenos",
-    "subtitle": "¡Nos encantaría saber de usted! Si tiene alguna pregunta, comentario o está interesado en una asociación, aquí le indicamos cómo ponerse en contacto con nuestro equipo.",
-    "emailUs": {
-      "title": "Envíenos un Correo Electrónico",
-      "general": "Consultas Generales",
-      "support": "Soporte Técnico",
-      "partnerships": "Asociaciones"
     },
-    "callUs": {
-      "title": "Llámenos",
-      "hours": "Lunes a Viernes, 9:00 - 17:00 (EAT)",
-      "phone": "+254 20 1234567"
-    },
-    "ourOffice": {
-      "title": "Nuestra Oficina",
-      "org": "DamDoh Holdings Inc.",
-      "address": "123 Agri-Tech Avenue, Nairobi, Kenia"
-    },
-    "sendMessage": {
-      "title": "Envíanos un Mensaje",
-      "nameLabel": "Su Nombre",
-      "namePlaceholder": "María García",
-      "emailLabel": "Su Correo Electrónico",
-      "emailPlaceholder": "maria.garcia@ejemplo.com",
-      "subjectLabel": "Asunto",
-      "subjectPlaceholder": "Asunto de su mensaje",
-      "messageLabel": "Su Mensaje",
-      "messagePlaceholder": "Escriba su mensaje aquí...",
-      "buttonText": "Enviar Mensaje",
-      "note": "Nos esforzamos por responder a todas las consultas en 24 horas."
-    }
-  },
-   "privacyPolicy": {
-    "title": "Política de Privacidad",
-    "lastUpdated": "Última actualización: 26 de octubre de 2023",
-    "introduction": "Este aviso de privacidad para DamDoh describe cómo y por qué podemos recopilar, almacenar, usar y/o compartir ('procesar') su información cuando utiliza nuestros servicios ('Servicios'), como cuando visita nuestro sitio web en http://damdoh.org, o cualquier sitio web nuestro que enlace a este aviso de privacidad; se relaciona con nosotros de otras maneras relacionadas, incluidas ventas, marketing o eventos.",
-    "whatInfoWeCollect": {
-      "heading": "1. ¿QUÉ INFORMACIÓN RECOPILAMOS?",
-      "content": "Recopilamos información personal que usted nos proporciona voluntariamente cuando se registra en los Servicios, expresa interés en obtener información sobre nosotros o nuestros productos y Servicios, cuando participa en actividades en los Servicios o de otra manera cuando se pone en contacto con nosotros."
-    },
-    "howWeUseInfo": {
-      "heading": "2. ¿CÓMO PROCESAMOS SU INFORMACIÓN?",
-      "content": "Procesamos su información para proporcionar, mejorar y administrar nuestros Servicios, comunicarnos con usted, para la seguridad y prevención de fraudes, y para cumplir con la ley. También podemos procesar su información para otros fines con su consentimiento."
-    },
-    "willInfoBeShared": {
-      "heading": "3. ¿CUÁNDO Y CON QUIÉN COMPARTIMOS SU INFORMACIÓN PERSONAL?",
-      "content": "Podemos compartir información en situaciones específicas y con terceros específicos. Su información puede ser compartida con nuestros socios comerciales, afiliados y proveedores de servicios para facilitar nuestros Servicios."
-    },
-    "cookiesAndTracking": {
-      "heading": "4. ¿UTILIZAMOS COOKIES Y OTRAS TECNOLOGÍAS DE SEGUIMIENTO?",
-      "content": "Podemos utilizar cookies y tecnologías de seguimiento similares (como balizas web y píxeles) para acceder o almacenar información."
-    },
-    "howLongWeKeepInfo": {
-      "heading": "5. ¿CUÁNTO TIEMPO CONSERVAMOS SU INFORMACIÓN?",
-      "content": "Conservamos su información durante el tiempo que sea necesario para cumplir con los fines descritos en este aviso de privacidad, a menos que la ley exija lo contrario."
-    },
-    "howWeKeepInfoSafe": {
-      "heading": "6. ¿CÓMO MANTENEMOS SEGURA SU INFORMACIÓN?",
-      "content": "Hemos implementado medidas de seguridad técnicas y organizativas apropiadas y razonables diseñadas para proteger la seguridad de cualquier información personal que procesamos."
-    },
-    "minors": {
-      "heading": "7. ¿RECOPILAMOS INFORMACIÓN DE MENORES?",
-      "content": "No recopilamos datos de niños menores de 18 años ni les comercializamos nuestros servicios a sabiendas."
-    },
-    "privacyRights": {
-      "heading": "8. ¿CUÁLES SON SUS DERECHOS DE PRIVACIDAD?",
-      "content": "Puede revisar, cambiar o cancelar su cuenta en cualquier momento. Dependiendo de su ubicación, puede tener ciertos derechos con respecto a su información personal según las leyes de protección de datos aplicables."
-    },
-    "controlsForDoNotTrack": {
-      "heading": "9. CONTROLES PARA LAS FUNCIONES DE NO SEGUIMIENTO (DO-NOT-TRACK)",
-      "content": "La mayoría de los navegadores web y algunos sistemas operativos y aplicaciones móviles incluyen una función o configuración de No Rastrear ('DNT') que puede activar para señalar su preferencia de privacidad de no tener datos sobre sus actividades de navegación en línea monitoreados y recopilados. Actualmente no respondemos a las señales de navegador DNT ni a ningún otro mecanismo que comunique automáticamente su elección de no ser rastreado en línea."
-    },
-    "updatesToNotice": {
-      "heading": "10. ¿REALIZAMOS ACTUALIZACIONES A ESTE AVISO?",
-      "content": "Sí, actualizaremos este aviso según sea necesario para cumplir con las leyes pertinentes."
-    },
-    "contactUs": {
-      "heading": "11. ¿CÓMO PUEDE CONTACTARNOS SOBRE ESTE AVISO?",
-      "content": "Si tiene preguntas o comentarios sobre este aviso, puede contactarnos por correo postal en: DamDoh, 123 Agri-Tech Avenue, Nairobi, Kenia."
-    },
-    "conclusion": "Puede hacerlo a través de nuestra página de {contactLink}."
-  },
-  "termsOfService": {
-    "title": "Términos de Servicio",
-    "lastUpdated": "Última actualización: 26 de octubre de 2023",
-    "introduction": "Bienvenido a DamDoh. Estos Términos de Servicio ('Términos') rigen su uso del sitio web y los servicios de DamDoh ('Servicios'), proporcionados por DamDoh Inc. Al utilizar nuestros Servicios, usted acepta estos Términos. Por favor, léalos detenidamente.",
-    "agreementToTerms": {
-      "heading": "1. Aceptación de los Términos",
-      "content": "Al utilizar nuestros Servicios, usted acepta estar sujeto a estos Términos. Si no está de acuerdo con estos Términos, no utilice los Servicios."
-    },
-    "intellectualProperty": {
-      "heading": "2. Derechos de Propiedad Intelectual",
-      "content": "Los Servicios y su contenido original, características y funcionalidad son y seguirán siendo propiedad exclusiva de DamDoh y sus licenciantes. Nuestras marcas comerciales y nuestra imagen comercial no pueden ser utilizadas en conexión con ningún producto o servicio sin el consentimiento previo por escrito de DamDoh."
-    },
-    "userRepresentations": {
-      "heading": "3. Declaraciones del Usuario",
-      "content": "Al utilizar los Servicios, usted declara y garantiza que: (1) toda la información de registro que envíe será verdadera, precisa, actual y completa; (2) mantendrá la exactitud de dicha información y actualizará puntualmente dicha información de registro según sea necesario; (3) tiene la capacidad legal y se compromete a cumplir con estos Términos de Uso; (4) no es menor de edad en la jurisdicción en la que reside; (5) no accederá al Sitio a través de medios automatizados o no humanos, ya sea a través de un bot, un script o de otra manera; (6) no utilizará el Sitio para ningún propósito ilegal o no autorizado; y (7) su uso del Sitio no violará ninguna ley o regulación aplicable."
-    },
-    "prohibitedActivities": {
-      "heading": "4. Actividades Prohibidas",
-      "content": "No puede acceder ni utilizar el Sitio para ningún otro propósito que no sea el para el que ponemos el Sitio a su disposición. El Sitio no puede ser utilizado en conexión con ninguna empresa comercial, excepto aquellas que estén específicamente respaldadas o aprobadas por nosotros."
-    },
-    "platformManagement": {
-      "heading": "5. Gestión de la Plataforma",
-      "content": "Nos reservamos el derecho, pero no la obligación, de: (1) monitorear el Sitio en busca de violaciones de estos Términos de Uso; (2) tomar las acciones legales apropiadas contra cualquiera que, a nuestra entera discreción, viole la ley o estos Términos de Uso; (3) a nuestra entera discreción y sin limitación, rechazar, restringir el acceso, limitar la disponibilidad o deshabilitar cualquiera de sus Contribuciones o cualquier parte de ellas."
-    },
-    "termAndTermination": {
-      "heading": "6. Plazo y Terminación",
-      "content": "Estos Términos de Uso permanecerán en pleno vigor y efecto mientras usted utilice el Sitio. SIN LIMITAR NINGUNA OTRA DISPOSICIÓN DE ESTOS TÉRMINOS DE USO, NOS RESERVAMOS EL DERECHO DE, A NUESTRA ENTERA DISCRECIÓN Y SIN PREVIO AVISO NI RESPONSABILIDAD, NEGAR EL ACCESO Y USO DEL SITIO (INCLUYENDO EL BLOQUEO DE CIERTAS DIRECCIONES IP), A CUALQUIER PERSONA POR CUALQUIER MOTIVO O SIN MOTIVO ALGUNO."
-    },
-    "modificationsAndInterruptions": {
-      "heading": "7. Modificaciones e Interrupciones",
-      "content": "Nos reservamos el derecho de cambiar, modificar o eliminar el contenido del Sitio en cualquier momento o por cualquier motivo a nuestra entera discreción y sin previo aviso. También nos reservamos el derecho de modificar o descontinuar todo o parte del Sitio sin previo aviso en cualquier momento. No seremos responsables ante usted ni ante ningún tercero por ninguna modificación, cambio de precio, suspensión o interrupción del Sitio."
-    },
-    "governingLaw": {
-      "heading": "8. Ley Aplicable",
-      "content": "Estos Términos de Uso y su uso del Sitio se rigen e interpretan de acuerdo con las leyes del país donde DamDoh está establecido, sin tener en cuenta sus principios de conflicto de leyes."
-    },
-    "disputeResolution": {
-      "heading": "9. Resolución de Disputas",
-      "content": "Cualquier acción legal de cualquier naturaleza iniciada por usted o por nosotros se iniciará o procesará en los tribunales estatales y federales ubicados en nuestra jurisdicción, y las partes por la presente consienten y renuncian a todas las defensas de falta de jurisdicción personal y de foro no conveniente con respecto a la competencia y jurisdicción en dichos tribunales estatales y federales."
-    },
-    "contactUs": {
-      "heading": "10. Contáctenos",
-      "content": "Para resolver una queja sobre el Sitio o para recibir más información sobre el uso del Sitio, por favor contáctenos."
-    },
-    "conclusion": "Puede hacerlo a través de nuestra página de {contactLink}."
-  },
-  "careers": {
-    "title": "Carreras en DamDoh",
-    "subtitle": "Únase a nosotros en nuestra misión de revolucionar la cadena de suministro agrícola.",
-    "whyWorkWithUs": {
-        "title": "¿Por qué trabajar con nosotros?",
-        "intro": "En DamDoh, somos un equipo apasionado y diverso de innovadores, expertos agrícolas y tecnólogos dedicados a tener un impacto tangible. Creemos en:",
-        "point1": "Trabajo con significado: Sus contribuciones empoderarán directamente a los agricultores y crearán un sistema alimentario más sostenible.",
-        "point2": "Innovación: Abordamos desafíos complejos con tecnología de vanguardia y pensamiento creativo.",
-        "point3": "Crecimiento: Invertimos en nuestra gente, ofreciendo oportunidades de desarrollo profesional y aprendizaje.",
-        "point4": "Colaboración: Fomentamos un entorno de apoyo y colaboración donde se escucha cada voz.",
-        "point5": "Impacto global: Sea parte de una solución que aborda la seguridad alimentaria mundial y el desarrollo económico."
-    },
-    "currentOpenings": {
-        "title": "Ofertas de Empleo Actuales"
-    },
-    "noOpenings": {
-        "title": "No hay Puestos Vacantes por el Momento",
-        "content1": "Siempre estamos en busca de talentos apasionados. Si cree en nuestra misión y piensa que puede contribuir, no dude en enviar su currículum y una carta de presentación a {emailLink}.",
-        "emailLinkText": "careers@damdoh.org"
-    },
-    "openings": {
-      "job1": {
-        "title": "Ingeniero Backend Senior (Node.js, Firestore)",
-        "location": "Nairobi, Kenia / Remoto",
-        "type": "Tiempo completo",
-        "description": "Diseñe y construya microservicios escalables, gestione nuestra arquitectura de base de datos y garantice la fiabilidad de las funcionalidades principales de nuestra plataforma."
-      },
-      "job2": {
-        "title": "Agrónomo Principal y Gerente de Operaciones de Campo",
-        "location": "Valle del Rift, Kenia",
-        "type": "Tiempo completo",
-        "description": "Dirija nuestro equipo de agentes de campo, brinde asesoramiento agronómico experto y garantice la integridad de los datos de nuestra red de granjas asociadas."
-      },
-      "job3": {
-        "title": "Gerente de Producto, Servicios Financieros",
-        "location": "Remoto",
-        "type": "Tiempo completo",
-        "description": "Impulse la estrategia y el desarrollo de nuestros productos financieros, incluyendo la calificación crediticia, los préstamos y las integraciones de seguros para pequeños agricultores."
-      }
-    },
-    "applyNowButton": "Postular ahora"
-  },
-  "communityGuidelines": {
-    "title": "Normas de la Comunidad",
-    "subtitle": "Fomentando un entorno profesional, respetuoso y de confianza para todos.",
-    "intro": "¡Bienvenido a la comunidad de DamDoh! Nuestra misión es conectar el mundo agrícola de una manera positiva y productiva. Para asegurar que todos tengan una gran experiencia, le pedimos que siga estas pautas:",
-    "respectful": {
-      "title": "Sea Respetuoso y Profesional",
-      "description": "Trate a todos los miembros con cortesía. No toleramos el acoso, el discurso de odio o los ataques personales. Participe en discusiones constructivas, incluso cuando no esté de acuerdo."
-    },
-    "authentic": {
-      "title": "Sea Auténtico y Honesto",
-      "description": "Represéntese a sí mismo y a su negocio con veracidad. No se haga pasar por otros ni proporcione información engañosa sobre sus productos, servicios o credenciales."
-    },
-    "relevant": {
-      "title": "Manténgalo Relevante",
-      "description": "Contribuya a las discusiones con ideas relevantes. Evite el spam, la autopromoción excesiva y el contenido fuera de tema en foros profesionales y listados de mercado."
-    },
-    "fairTrade": {
-      "title": "Honre sus Compromisos",
-      "description": "Realice transacciones comerciales con integridad. Cumpla con sus pedidos, pague a tiempo y comuníquese claramente para construir relaciones duraderas y de confianza."
-    },
-    "sustainable": {
-      "title": "Promueva Prácticas Sostenibles",
-      "description": "Fomentamos el intercambio de conocimientos y prácticas que apoyan la sostenibilidad ambiental, económica y social en la agricultura."
-    },
-    "reporting": {
-      "title": "Reportar Violaciones",
-      "content": "Si ve contenido o comportamiento que viola estas pautas, por favor repórtelo a nuestro equipo. Puede enviar los detalles a {emailLink}.",
-      "emailLinkText": "support@damdoh.org"
-    },
-    "conclusion": "Al usar DamDoh, usted acepta estas pautas. Nos reservamos el derecho de eliminar contenido y tomar medidas en las cuentas que violen estos principios. ¡Gracias por ayudarnos a construir una comunidad positiva!"
-  },
-  "pinboardPage": {
-    "title": "Mi Tablero",
-    "description": "Su espacio personal para guardar y organizar elementos importantes de toda la plataforma DamDoh.",
-    "comingSoonTitle": "¡La función de Tablero llegará pronto!",
-    "comingSoonDescription": "Imagínese poder anclar listados de mercado interesantes, publicaciones de foro perspicaces, contactos valiosos y artículos útiles, todo en un solo lugar. ¡Eso es lo que hará el Tablero!",
-    "stayTuned": "Manténgase atento a las actualizaciones."
-  },
-  "helpCenterPage": {
-    "title": "Centro de Ayuda",
-    "subtitle": "Encuentre respuestas a sus preguntas y aprenda a sacar el máximo provecho de DamDoh.",
-    "howCanWeHelp": "¿Cómo podemos ayudarle?",
-    "searchPlaceholder": "Busque temas, funciones o preguntas...",
-    "browseTopics": "O navegue por tema",
-    "gettingStarted": {
-      "title": "Primeros Pasos",
-      "description": "Configuración de su perfil, comprensión de su panel de control.",
-      "placeholder": "La información sobre los Primeros Pasos estará disponible aquí pronto."
-    },
-    "marketplaceGuide": {
-      "title": "Guía del Mercado",
-      "description": "Cómo crear listados, gestionar pedidos y comerciar de forma segura.",
-      "placeholder": "Una guía del Mercado estará disponible aquí pronto."
-    },
-    "accountManagement": {
-      "title": "Gestión de la Cuenta",
-      "description": "Actualización de su contraseña, gestión de notificaciones y privacidad.",
-      "placeholder": "La información sobre la Gestión de la Cuenta estará disponible aquí pronto."
-    },
-    "troubleshooting": {
-      "title": "Solución de Problemas",
-      "description": "Problemas comunes y cómo resolverlos.",
-      "placeholder": "La información sobre Solución de Problemas estará disponible aquí pronto."
-    },
-    "stillNeedHelp": {
-      "title": "¿Aún necesita ayuda?",
-      "description": "Nuestro equipo de soporte está listo para ayudarle.",
-      "button": "Contactar con Soporte"
-    }
-  },
-  "industryNewsPage": {
-    "title": "Noticias y Perspectivas del Sector",
-    "description": "Manténgase informado con las últimas tendencias, investigaciones y cambios de política que afectan a la cadena de suministro agrícola mundial.",
-    "searchPlaceholder": "Buscar noticias e informes...",
-    "categoryPlaceholder": "Filtrar por categoría...",
-    "allCategories": "Todas las Categorías",
-    "sourceLabel": "Fuente",
-    "publishedLabel": "Publicado",
-    "categoryLabel": "Categoría",
-    "readButton": "Leer la Historia Completa",
-    "noNews": {
-      "title": "No hay Noticias Disponibles",
-      "description": "Vuelva más tarde para obtener las últimas actualizaciones e informes del sector."
-    },
-    "news1": {
-      "title": "Los Precios Mundiales del Café Aumentan en Medio de Preocupaciones Climáticas en Regiones Clave de Cultivo",
-      "excerpt": "Los futuros del café Arábica han alcanzado un máximo de 18 meses, ya que las sequías en Brasil y las heladas inesperadas en Vietnam amenazan el suministro mundial."
-    },
-    "news2": {
-      "title": "La UE Implementa Nuevas Regulaciones de Empaque 'De la Granja a la Mesa'",
-      "excerpt": "Nuevas regulaciones efectivas este trimestre exigen que todos los productos frescos importados a la Unión Europea utilicen empaques hechos con al menos un 30% de materiales reciclados."
-    },
-    "news3": {
-      "title": "Estudio Muestra que las Prácticas de Agricultura Regenerativa Pueden Secuestrar hasta 2 Toneladas de Carbono por Hectárea Anualmente",
-      "excerpt": "Un estudio de una década publicado en 'Nature Sustainability' proporciona evidencia convincente de que la siembra directa y los cultivos de cobertura mejoran significativamente los niveles de carbono en el suelo."
-    }
-  },
-  "myNetworkPage": {
-    "backLink": "Volver a la Red",
-    "myConnectionsTab": "Mis Conexiones ({count})",
-    "pendingRequestsTab": "Solicitudes Pendientes",
-    "connectionsTitle": "Mis Conexiones",
-    "connectionsDescription": "Estas son sus conexiones aprobadas en la plataforma. Ahora puede enviarles mensajes directamente.",
-    "noConnections": "Todavía no ha hecho ninguna conexión. ¡Empiece a explorar la red!",
-    "requestsTitle": "Solicitudes de Conexión",
-    "requestsDescription": "Revise y responda a las solicitudes de conexión pendientes.",
-    "noRequests": "No tiene solicitudes de conexión pendientes.",
-    "sentTimeAgo": "Enviado hace {timeAgo}",
-    "toast": {
-      "error": "Error",
-      "loadError": "No se pudieron cargar los datos de la red.",
-      "respondError": "No se pudo responder a la solicitud.",
-      "removeError": "No se pudo eliminar la conexión.",
-      "success": "Éxito",
-      "requestAccepted": "Solicitud aceptada.",
-      "requestDeclined": "Solicitud rechazada.",
-      "connectionRemoved": "Conexión eliminada."
-    }
-  },
-  "agentToolsPage": {
-    "backLink": "Volver a la Red",
-    "accessDeniedTitle": "Acceso Denegado",
-    "accessDeniedDescription": "No tiene los permisos necesarios para acceder a estas herramientas.",
-    "title": "Herramientas de Agente de Campo",
-    "description": "Herramientas para agentes autorizados para ayudar y gestionar a los usuarios en el campo.",
-    "findUserLabel": "Buscar Usuario por Número de Teléfono",
-    "phoneRequiredError": "Se requiere un número de teléfono.",
-    "findButton": "Buscar",
-    "resultsTitle": "Resultados de la Búsqueda",
-    "resultsPlaceholder": "Los detalles del usuario aparecerán aquí después de una búsqueda exitosa."
-  },
-  "common": {
-    "error": "Error"
-  },
-  "farmManagement": {
-    "hub": {
-      "title": "Centro de Gestión Agrícola",
-      "description": "Su panel de control central para todas las actividades en la granja, desde la gestión de parcelas y cultivos hasta el seguimiento de insumos y mano de obra.",
-      "myFarms": {
-        "title": "Mis Granjas y Cultivos",
-        "description": "Defina sus parcelas agrícolas, registre cultivos, siga los ciclos de siembra y gestione los datos de cosecha.",
-        "button": "Gestionar Granjas"
-      },
-      "labor": {
-        "title": "Gestión de Mano de Obra",
-        "description": "Lleve un registro de sus trabajadores agrícolas, registre sus horas y anote los pagos, todo en un solo lugar.",
-        "button": "Gestionar Mano de Obra"
-      },
-      "knf": {
-        "title": "Asistente de Insumos KNF",
-        "description": "Cree y gestione sus preparados de Agricultura Natural Coreana como FPJ, FAA y más.",
-        "button": "Gestionar Insumos"
-      },
-      "fgw": {
-        "title": "Agricultura a la Manera de Dios (FGW)",
-        "description": "Aprenda y aplique los principios básicos de FGW para obtener resultados sostenibles y de alto rendimiento.",
-        "button": "Ver Guía FGW"
-      },
-      "financials": {
-        "title": "Finanzas",
-        "description": "Siga los ingresos y gastos de su granja, analice la rentabilidad y solicite financiación.",
-        "button": "Ver Finanzas"
-      },
-      "seedStarting": {
-        "title": "Guía de Germinación de Semillas",
-        "description": "Aprenda las mejores prácticas para iniciar semillas en interiores para adelantar la temporada.",
-        "button": "Ver Guía"
-      },
-      "familyFarm": {
-        "title": "Granja Familiar de 200m²",
-        "description": "Explore un modelo para una granja familiar autosostenible e integrada en solo 200 metros cuadrados.",
-        "button": "Explorar Modelo"
-      },
-      "assetManagement": {
-        "title": "Gestión de Activos",
-        "description": "Registre y siga su maquinaria agrícola, herramientas y otros activos valiosos. (Próximamente)",
-        "button": "Gestionar Activos"
-      }
-    },
-    "myFarms": {
-      "backToDashboard": "Volver al Centro de Gestión Agrícola",
-      "title": "Mis Granjas",
-      "addNewFarmButton": "Añadir Nueva Granja",
-      "size": "Tamaño",
-      "viewFarmButton": "Gestionar Granja",
-      "noFarmsTitle": "Aún no hay granjas",
-      "noFarmsDescription": "Comience añadiendo su primer perfil de granja.",
-      "auth": {
-        "title": "Por favor, inicie sesión",
-        "description": "Necesita iniciar sesión para ver sus granjas.",
-        "button": "Iniciar Sesión"
+    "editFarm": {
+      "backToFarm": "Volver a Mis Granjas",
+      "title": "Editar Detalles de la Granja",
+      "description": "Actualice la información de su granja.",
+      "form": {
+        "submitButton": "Guardar Cambios"
       },
       "toast": {
-        "errorTitle": "Error al obtener las granjas"
+        "notFoundTitle": "Granja No Encontrada",
+        "loadError": "No se pudo encontrar la granja que intenta editar.",
+        "error": "Error",
+        "loadFail": "Error al cargar los datos de la granja: {message}",
+        "successTitle": "Granja Actualizada",
+        "successDescription": "{farmName} se ha actualizado correctamente.",
+        "failTitle": "Actualización Fallida"
       }
     },
-    "createFarm": {
+    "farmDetail": {
       "backToFarms": "Volver a Mis Granjas",
-      "title": "Registrar una Nueva Granja",
-      "description": "Proporcione los detalles para una nueva granja que posee o gestiona.",
-      "form": {
-        "farmNameLabel": "Nombre de la Granja",
-        "farmNamePlaceholder": "p.ej., Green Valley Organics",
-        "locationLabel": "Ubicación",
-        "locationPlaceholder": "p.ej., Nakuru, Kenia",
-        "locationDescription": "Proporcione la ciudad, región o área general.",
-        "sizeLabel": "Tamaño de la Granja",
-        "sizePlaceholder": "p.ej., 5 Hectáreas",
-        "sizeDescription": "Incluya la unidad (p.ej., acres, hectáreas).",
-        "typeLabel": "Tipo de Granja",
-        "typePlaceholder": "Seleccione un tipo",
-        "types": {
-          "crop": "Cultivo",
-          "livestock": "Ganadería",
-          "mixed": "Mixta (Cultivos y Ganadería)",
-          "aquaculture": "Acuicultura (Piscicultura)",
-          "other": "Otro"
-        },
-        "descriptionLabel": "Descripción (opcional)",
-        "descriptionPlaceholder": "Una breve descripción de su granja, sus principales actividades o su misión.",
-        "irrigationLabel": "Métodos de Riego (opcional)",
-        "irrigationPlaceholder": "p.ej., Riego por goteo, de secano",
-        "irrigationDescription": "Enumere los principales métodos de riego utilizados.",
-        "submitButton": "Guardar Granja"
+      "registeredOn": "Registrada el {date}",
+      "editFarmButton": "Editar Detalles de la Granja",
+      "crops": {
+        "title": "Cultivos y Lotes",
+        "description": "Gestione todos los cultivos activos y pasados de esta granja.",
+        "addNewButton": "Añadir Nuevo Cultivo",
+        "plantedLabel": "Plantado",
+        "stageLabel": "Etapa",
+        "viewJourneyButton": "Ver Trayectoria",
+        "noCrops": "Aún no se han registrado cultivos para esta granja.",
+        "addFirstButton": "Registre Su Primer Cultivo"
       },
+      "insights": {
+        "title": "Análisis de Rentabilidad",
+        "description": "Análisis impulsado por IA de las actividades de su granja.",
+        "noInsights": "Registre más actividades como cosechas y aplicaciones de insumos para generar análisis."
+      },
+      "toast": {
+        "notFoundTitle": "Granja no encontrada",
+        "loadErrorTitle": "No se pudieron cargar los datos de la granja",
+        "insightsErrorTitle": "No se pudieron cargar los análisis"
+      },
+      "notFound": {
+        "title": "Granja No Encontrada",
+        "description": "No pudimos encontrar la granja que estaba buscando.",
+        "backButton": "Volver a Mis Granjas"
+      },
+      "loading": "Cargando detalles de la granja..."
+    },
+    "createCrop": {
+      "backLink": "Volver a Detalles de la Granja",
+      "title": "Registrar un Nuevo Cultivo",
+      "description": "Registre un nuevo cultivo o lote que se está plantando en esta granja.",
+      "cropTypeLabel": "Nombre del Cultivo / Lote",
+      "cropTypePlaceholder": "p.ej., Tomates Roma, Aguacates Hass",
+      "cropTypeDescription": "Sea lo más específico posible.",
+      "plantingDateLabel": "Fecha de Siembra",
+      "datePlaceholder": "Seleccione una fecha",
+      "harvestDateLabel": "Fecha de Cosecha Prevista (Opcional)",
+      "yieldLabel": "Rendimiento Previsto (Opcional)",
+      "yieldPlaceholder": "p.ej., 5 Toneladas, 2000 kg",
+      "stageLabel": "Etapa Actual (Opcional)",
+      "stagePlaceholder": "Seleccione una etapa",
+      "stages": {
+        "Planting": "Siembra",
+        "Vegetative": "Vegetativa",
+        "Flowering": "Floración",
+        "Fruiting": "Fructificación",
+        "Harvesting": "Cosecha",
+        "Post-Harvest": "Poscosecha"
+      },
+      "notesLabel": "Notas (Opcional)",
+      "notesPlaceholder": "Añada notas adicionales sobre este lote, como la variedad de semilla o la ubicación de la parcela.",
+      "saveButton": "Guardar Cultivo",
+      "savingButton": "Guardando...",
       "toast": {
         "authErrorTitle": "Error de Autenticación",
-        "authErrorDescription": "Debe iniciar sesión para crear una granja.",
-        "successTitle": "¡Granja Creada!",
-        "successDescription": "{farmName} se ha añadido correctamente a su perfil.",
-        "errorTitle": "Creación Fallida"
+        "authErrorDescription": "Debe iniciar sesión para añadir un cultivo.",
+        "successTitle": "Cultivo Registrado",
+        "successDescription": "{cropType} ha sido registrado con éxito.",
+        "failTitle": "Error al Registrar Cultivo",
+        "failDescription": "Se ha producido un error inesperado. Por favor, inténtelo de nuevo."
+      }
+    },
+    "editCrop": {
+      "backLink": "Volver a Detalles del Cultivo",
+      "title": "Editar Detalles del Cultivo",
+      "description": "Actualice la información de este cultivo o lote.",
+      "saveButton": "Guardar Cambios",
+      "savingButton": "Guardando...",
+      "toast": {
+        "notFound": "Cultivo No Encontrado",
+        "loadError": "No se pudo encontrar el cultivo que intenta editar.",
+        "error": "Error",
+        "loadFail": "Error al cargar los datos del cultivo: {message}",
+        "success": "Cultivo Actualizado",
+        "description": "{cropType} ha sido actualizado con éxito.",
+        "fail": "Actualización Fallida"
+      }
+    },
+    "cropDetailPage": {
+      "backLink": "Volver a Detalles de la Granja",
+      "plantedOn": "Plantado el {date}",
+      "editButton": "Editar Cultivo",
+      "quickActionsTitle": "Acciones Rápidas",
+      "logInputButton": "Registrar Insumo",
+      "logObservationButton": "Registrar Observación",
+      "logHarvestButton": "Registrar Cosecha",
+      "journeyTitle": "Trayectoria del Cultivo",
+      "noActivities": "Aún no se han registrado actividades para este cultivo.",
+      "loading": "Cargando detalles del cultivo...",
+      "notFound": "Cultivo no encontrado.",
+      "toast": {
+        "notFound": "Cultivo no encontrado",
+        "loadError": "No se pudieron cargar los datos del cultivo. Por favor, inténtelo de nuevo."
+      },
+      "eventPayload": {
+        "noDetails": "No se proporcionaron detalles adicionales.",
+        "observationType": "Tipo de Observación",
+        "details": "Detalles",
+        "aiDiagnosis": "Diagnóstico de IA"
+      }
+    },
+    "logHarvest": {
+      "backLink": "Volver a Detalles de la Granja",
+      "title": "Registrar Cosecha de {cropType}",
+      "description": "Registre los detalles de su cosecha. Esto creará un nuevo lote trazable (VTI) en la plataforma DamDoh.",
+      "harvestDateLabel": "Fecha de Cosecha",
+      "yieldLabel": "Rendimiento Total (en kg)",
+      "yieldPlaceholder": "p.ej., 1500",
+      "qualityLabel": "Grado de Calidad",
+      "qualityPlaceholder": "p.ej., Grado A, Calidad de Exportación",
+      "notesLabel": "Notas de la Cosecha (Opcional)",
+      "notesPlaceholder": "Añada notas sobre esta cosecha, como las condiciones climáticas o las técnicas específicas utilizadas.",
+      "saveButton": "Registrar Cosecha y Crear VTI",
+      "savingButton": "Guardando...",
+      "offlineToast": {
+        "title": "Modo sin conexión: Cosecha en cola",
+        "description": "Su registro de cosecha se ha guardado y se sincronizará para crear un VTI cuando vuelva a estar en línea."
+      },
+      "success": {
+        "title": "¡Cosecha Registrada y VTI Creado!",
+        "description": "Su cosecha de {cropType} ha sido registrada. Su nuevo VTI es {vtiId}.",
+        "successCardTitle": "¡Cosecha Registrada!",
+        "successCardDescription": "Se ha creado un nuevo lote trazable para su cosecha de {cropType}. Ahora puede ver el informe de trazabilidad o crear un anuncio en el mercado.",
+        "viewReportButton": "Ver Informe de Trazabilidad",
+        "sellButton": "Vender este Lote",
+        "logAnotherButton": "Registrar Otra Cosecha",
+        "backToFarmButton": "Volver a la Vista General de la Granja"
+      },
+      "fail": {
+        "title": "Error al Registrar la Cosecha"
+      }
+    },
+    "logInput": {
+      "backLink": "Volver a Detalles de la Granja",
+      "title": "Registrar Aplicación de Insumo",
+      "description": "Registre la aplicación de fertilizantes, pesticidas, insumos KNF u otras sustancias a su cultivo.",
+      "useKNFLabel": "Usar un Lote KNF Listo",
+      "useKNFPlaceholder": "Seleccione de sus insumos KNF listos...",
+      "manualInputLabel": "O Ingrese el Nombre del Insumo Manualmente",
+      "manualInputPlaceholder": "p.ej., Fertilizante DAP, Aceite de Neem",
+      "dateLabel": "Fecha de Aplicación",
+      "quantityLabel": "Cantidad",
+      "quantityPlaceholder": "p.ej., 50",
+      "unitLabel": "Unidad",
+      "unitPlaceholder": "p.ej., kg, litros, ml",
+      "methodLabel": "Método de Aplicación (Opcional)",
+      "methodPlaceholder": "p.ej., Pulverización Foliar, Riego al Suelo",
+      "saveButton": "Guardar Registro de Aplicación",
+      "savingButton": "Guardando...",
+      "toast": {
+        "authErrorTitle": "Error de Autenticación",
+        "authErrorDescription": "Debe iniciar sesión para registrar un insumo.",
+        "success": "Insumo Registrado",
+        "description": "La aplicación del insumo se ha añadido a la trayectoria de su cultivo.",
+        "fail": "Error al Registrar el Insumo"
+      }
+    },
+    "logObservation": {
+      "backLink": "Volver a Detalles de la Granja",
+      "title": "Registrar Observación",
+      "description": "Registre una observación general, el resultado de un análisis de suelo o anote un posible problema de plaga o enfermedad. Suba una foto para un diagnóstico asistido por IA.",
+      "typeLabel": "Tipo de Observación",
+      "typePlaceholder": "Seleccione un tipo de observación...",
+      "types": {
+        "general_note": "Nota General",
+        "pest_sighting": "Avistamiento de Plaga",
+        "disease_symptoms": "Síntomas de Enfermedad",
+        "soil_test_result": "Resultado de Análisis de Suelo",
+        "weather_event": "Evento Climático"
+      },
+      "dateLabel": "Fecha de Observación",
+      "detailsLabel": "Detalles",
+      "detailsPlaceholder": "Describa su observación en detalle. Si ve una plaga o enfermedad, describa la apariencia, la ubicación en la planta y el alcance del problema.",
+      "uploadLabel": "Subir una Foto (Opcional)",
+      "uploadDescription": "Suba una foto clara del problema para un diagnóstico y asesoramiento de la IA.",
+      "saveButton": "Guardar Observación",
+      "processingButton": "Guardando y Analizando...",
+      "toast": {
+        "authErrorTitle": "Error de Autenticación",
+        "authErrorDescription": "Debe iniciar sesión para registrar una observación.",
+        "aiAnalyzing": "Analizando Imagen...",
+        "aiDescription": "Nuestra IA está examinando su foto. Esto puede tardar un momento.",
+        "aiComplete": "¡Análisis de IA Completo!",
+        "aiCompleteDescription": "El diagnóstico de la IA se guardará con su observación.",
+        "aiFailTitle": "Análisis de IA Fallido",
+        "aiFailDescription": "No se pudo analizar la imagen, pero su observación se guardará de todos modos.",
+        "uploading": "Subiendo Imagen...",
+        "uploadingDescription": "Su foto se está subiendo de forma segura.",
+        "uploadComplete": "¡Subida Completa!",
+        "success": "Observación Registrada",
+        "successDescription": "Su observación ha sido añadida a la trayectoria del cultivo.",
+        "fail": "Error al Registrar la Observación"
+      }
+    },
+    "knfInputsPage": {
+      "backLink": "Volver al Centro de la Granja",
+      "title": "Asistente de Insumos KNF",
+      "description": "Gestione sus insumos de Agricultura Natural Coreana caseros. Siga los tiempos de fermentación y reciba recordatorios para los próximos pasos.",
+      "guidesTitle": "Guías Rápidas y Recetas",
+      "ingredients": "Ingredientes",
+      "steps": "Pasos",
+      "usage": "Uso",
+      "fermentingBatchesTitle": "Actualmente en Fermentación",
+      "started": "Iniciado",
+      "nextStepOn": "Próximo paso el",
+      "markReady": "Marcar como Listo",
+      "noFermentingBatches": "No hay lotes en fermentación actualmente.",
+      "readyBatchesTitle": "Listos para Usar",
+      "readySince": "Listo desde",
+      "logUsage": "Registrar Uso",
+      "archive": "Archivar",
+      "noReadyBatches": "No tiene insumos listos para usar.",
+      "startNewBatch": "Iniciar un Nuevo Lote",
+      "createNewBatchTitle": "Crear Nuevo Lote KNF",
+      "cancel": "Cancelar",
+      "form": {
+        "typeLabel": "Tipo de Insumo",
+        "typePlaceholder": "Seleccione un insumo KNF",
+        "ingredientsLabel": "Ingredientes Principales",
+        "startDateLabel": "Fecha de Inicio",
+        "startButton": "Iniciar Lote",
+        "startingButton": "Iniciando...",
+        "quantityLabel": "Cantidad Producida",
+        "quantityPlaceholder": "p.ej., 5",
+        "unitLabel": "Unidad",
+        "unitPlaceholder": "p.ej., Litros, Galones, kg"
+      },
+      "knfOptions": [
+        { "value": "fpj", "label": "Jugo de Plantas Fermentado (FPJ)", "placeholder": "p.ej., Puntas de batata, brotes de bambú" },
+        { "value": "faa", "label": "Aminoácido de Pescado (FAA)", "placeholder": "p.ej., Restos de pescado, cabezas, espinas" },
+        { "value": "wca", "label": "Calcio Soluble en Agua (WCA)", "placeholder": "p.ej., Cáscaras de huevo" },
+        { "value": "imo", "label": "Microorganismos Indígenas (IMO)", "placeholder": "p.ej., Arroz cocido, suelo de bosque local" },
+        { "value": "lab", "label": "Bacterias Lácticas (LAB)", "placeholder": "p.ej., Agua de lavado de arroz, leche" }
+      ],
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Jugo de Plantas Fermentado (FPJ)",
+          "description": "Un potente potenciador del crecimiento hecho de la savia fermentada de plantas de rápido crecimiento.",
+          "ingredients": ["1kg de partes de plantas de rápido crecimiento (p.ej., puntas de batata, brotes de bambú)", "1kg de azúcar moreno"],
+          "steps": ["Recoger las plantas antes del amanecer. No lavar.", "Picar las plantas groseramente.", "Mezclar con un peso igual de azúcar moreno.", "Empacar firmemente en un recipiente transpirable, llenar hasta 2/3.", "Cubrir con un paño, almacenar en un lugar fresco y oscuro durante ~7 días."],
+          "usage": "Diluir 1:500 a 1:1000 con agua para pulverización foliar o riego al suelo."
+        },
+        {
+          "id": "faa",
+          "name": "Aminoácido de Pescado (FAA)",
+          "description": "Un fertilizante rico en nitrógeno hecho de partes de pescado fermentadas, ideal para el crecimiento vegetativo.",
+          "ingredients": ["1kg de restos de pescado (cabezas, espinas, vísceras)", "1kg de azúcar moreno"],
+          "steps": ["Picar las partes del pescado.", "Poner en capas el pescado y el azúcar moreno en un recipiente (2/3 lleno).", "Cubrir y dejar fermentar durante 3-6 meses en un lugar fresco y oscuro."],
+          "usage": "Diluir 1:1000 con agua, principalmente para riego al suelo."
+        },
+        {
+          "id": "wca",
+          "name": "Calcio Soluble en Agua (WCA)",
+          "description": "Proporciona calcio esencial para las etapas de fructificación y floración.",
+          "ingredients": ["Cáscaras de huevo tostadas", "Vinagre de arroz integral"],
+          "steps": ["Tostar las cáscaras de huevo hasta que estén ligeramente doradas, luego triturarlas hasta convertirlas en polvo.", "Añadir el polvo de cáscara de huevo a un frasco.", "Verter el vinagre sobre el polvo (10 partes de vinagre por 1 parte de cáscara de huevo en volumen).", "Se formarán burbujas. Está listo cuando deja de burbujear (~7-10 días)."],
+          "usage": "Diluir 1:1000 con agua. Usar como pulverización foliar durante la floración/fructificación."
+        }
+      ],
+      "toasts": {
+        "loadErrorTitle": "Error al Cargar Lotes",
+        "loadErrorDescription": "No se pudieron recuperar sus lotes KNF.",
+        "validationError": "Por favor, seleccione un tipo de insumo, y rellene los ingredientes y la fecha de inicio.",
+        "batchStartedTitle": "¡Lote Iniciado!",
+        "batchStartedDescription": "Su nuevo lote KNF está ahora en fermentación.",
+        "batchStartFailed": "Error al Iniciar el Lote",
+        "unexpectedError": "Se ha producido un error inesperado.",
+        "batchUpdatedTitle": "Lote Actualizado",
+        "batchUpdatedDescription": "El estado del lote se ha establecido en {status}.",
+        "updateFailed": "Actualización Fallida",
+        "couldNotUpdate": "No se pudo actualizar el estado del lote."
+      }
+    }
+  },
+  "AgriEvents": {
+    "page": {
+      "title": "Eventos Agrícolas",
+      "description": "Descubra talleres, conferencias y seminarios web en el sector agrícola.",
+      "createNewEvent": "Crear Nuevo Evento",
+      "pinAsHomepage": "Fijar como Página de Inicio",
+      "unpinHomepage": "Quitar de Página de Inicio",
+      "searchEvents": "Buscar eventos...",
+      "searchPlaceholder": "Buscar por título, ubicación o palabra clave...",
+      "filterPlaceholder": "Filtrar por tipo de evento",
+      "errorLoadingEvents": "Error al Cargar Eventos",
+      "couldNotFetchEvents": "No se pudo obtener la lista de eventos. Por favor, inténtelo de nuevo más tarde.",
+      "noEventsFound": "No se Encontraron Eventos",
+      "noEventsHint": "Intente ajustar sus filtros de búsqueda, o sea el primero en {link}.",
+      "organizedBy": "Por {organizer}",
+      "viewDetails": "Ver Detalles",
+      "toast": {
+        "pinned": {
+          "title": "Página de Inicio Fijada",
+          "description": "La página de Eventos Agrícolas es ahora su página de inicio predeterminada."
+        },
+        "unpinned": {
+          "title": "Página de Inicio Desfijada",
+          "description": "Su página de inicio ha sido restablecida al panel de control predeterminado."
+        }
+      }
+    },
+    "create": {
+      "backButton": "Volver a Eventos",
+      "formTitle": "Crear un Nuevo Evento Agrícola",
+      "formDescription": "Complete los detalles a continuación para listar un nuevo evento en la plataforma.",
+      "authErrorTitle": "No Autenticado",
+      "authErrorDescription": "Debe iniciar sesión para crear un evento.",
+      "uploadingTitle": "Subiendo Imagen...",
+      "uploadingDescription": "Por favor espere mientras se sube su banner de evento.",
+      "uploadCompleteTitle": "¡Subida Completa!",
+      "successTitle": "¡Evento Creado!",
+      "successDescription": "Su evento '{title}' ha sido publicado con éxito.",
+      "failTitle": "Creación Fallida",
+      "failDescription": "Ocurrió un error inesperado al crear su evento.",
+      "successCardTitle": "¡Evento '{title}' Publicado!",
+      "successCardDescription": "Su evento está ahora en vivo y visible para la comunidad de DamDoh. Ahora puede gestionar asistentes, añadir personal y crear cupones promocionales.",
+      "manageButton": "Gestionar Evento",
+      "shareButton": "Compartir Enlace del Evento",
+      "linkCopiedTitle": "¡Enlace Copiado!",
+      "linkCopiedDescription": "El enlace del evento ha sido copiado a su portapapeles.",
+      "createAnotherButton": "Crear Otro Evento",
+      "viewAllButton": "Ver Todos los Eventos",
+      "submittingButton": "Enviando...",
+      "submitButton": "Crear Evento",
+      "form": {
+        "titleLabel": "Título del Evento",
+        "titlePlaceholder": "p.ej., Conferencia Anual de Agricultura Sostenible",
+        "descriptionLabel": "Descripción del Evento",
+        "descriptionPlaceholder": "Describa su evento en detalle: de qué se trata, quién debe asistir, ponentes principales, etc.",
+        "dateLabel": "Fecha del Evento",
+        "datePlaceholder": "Elija una fecha",
+        "timeLabel": "Hora del Evento (Opcional)",
+        "timePlaceholder": "p.ej., 14:30",
+        "timeDescription": "Use formato de 24 horas (HH:MM).",
+        "locationLabel": "Ubicación",
+        "locationPlaceholder": "p.ej., En línea, o Nairobi, Kenia",
+        "locationDescription": "Para eventos físicos, sea específico. Para eventos en línea, simplemente escriba 'En línea'.",
+        "typeLabel": "Tipo de Evento",
+        "typePlaceholder": "Seleccione un tipo de evento",
+        "organizerLabel": "Nombre del Organizador (Opcional)",
+        "organizerPlaceholder": "p.ej., Agri-Innovation Global",
+        "websiteLabel": "Enlace a Sitio Web Externo (Opcional)",
+        "enableRegLabel": "Habilitar Registro en DamDoh",
+        "enableRegDescription": "Permitir que los usuarios se registren y paguen (si corresponde) directamente en la plataforma.",
+        "attendeeLimitLabel": "Límite de Asistentes (Opcional)",
+        "attendeeLimitDescription": "Deje en blanco para asistentes ilimitados.",
+        "priceLabel": "Precio (por entrada)",
+        "priceDescription": "Deje en blanco o 0 para un evento gratuito.",
+        "currencyLabel": "Moneda",
+        "currencyDescription": "p.ej., USD, KES",
+        "imageUrlLabel": "URL de la Imagen del Banner del Evento (Opcional)",
+        "imageUrlDescription": "Enlace a una imagen externa (p.ej., de su sitio web).",
+        "imageUploadLabel": "O Subir una Imagen",
+        "imageUploadDescription": "Suba una imagen de banner directamente. Esto anulará la URL anterior."
+      }
+    },
+    "detail": {
+      "backLink": "Volver a Eventos",
+      "organizedBy": "Organizado por {organizer}",
+      "attendees": "{count} / {limit} asistentes",
+      "unlimited": "Ilimitado",
+      "buttons": {
+        "manage": "Gestionar",
+        "share": "Compartir",
+        "close": "Cerrar",
+        "registering": "Registrando...",
+        "registerAndPay": "Registrarse y Pagar {price} {currency}",
+        "registerFree": "Registrarse Gratis",
+        "full": "Evento Lleno",
+        "visitWebsite": "Visitar Sitio Web del Evento",
+        "viewTicket": "Ver su Entrada"
+      },
+      "errors": {
+        "loadTitle": "Error",
+        "loadDescription": "No se pudieron cargar los detalles del evento.",
+        "signInTitle": "Por favor, Inicie Sesión",
+        "signInDescription": "Debe iniciar sesión para registrarse en los eventos.",
+        "unexpected": "Ocurrió un error inesperado."
+      },
+      "registration": {
+        "successTitle": "¡Registro Confirmado!",
+        "successDescription": "Ahora está registrado para el evento.",
+        "discountApplied": "Se aplicó un descuento de {amount} {currency}.",
+        "finalPrice": "Su precio final es {price} {currency}.",
+        "failTitle": "Registro Fallido"
+      },
+      "coupon": {
+        "label": "Código de Cupón (Opcional)",
+        "placeholder": "Ingrese el código aquí",
+        "note": "Si tiene un código de cupón, ingréselo aquí para aplicar un descuento.",
+        "toastTitle": "¡Cupón Detectado!",
+        "toastDescription": "El cupón '{couponCode}' de la URL ha sido aplicado."
+      },
+      "share": {
+        "title": "Compartir este Evento",
+        "description": "Copie el siguiente enlace para compartir este evento con su red.",
+        "link": "Enlace",
+        "copy": "Copiar"
+      },
+      "ticket": {
+        "title": "Su Entrada para el Evento",
+        "for": "Para: {eventTitle}",
+        "scan": "Presente este código QR en el evento para el check-in."
+      },
+      "notFound": {
+        "title": "Evento No Encontrado",
+        "description": "El evento que está buscando no existe o puede haber sido eliminado.",
+        "backButton": "Volver a Todos los Eventos"
+      }
+    },
+    "manage": {
+      "title": "Gestionar Evento",
+      "backLink": "Volver a la Página del Evento",
+      "tabs": {
+        "checkin": "Check-in",
+        "staff": "Personal",
+        "dashboard": "Panel",
+        "attendees": "Asistentes",
+        "promotions": "Promociones"
+      },
+      "toast": {
+        "errorCoupons": {
+          "title": "Error",
+          "description": "No se pudieron cargar los cupones del evento."
+        }
+      },
+      "promotions": {
+        "create": {
+          "title": "Crear un Nuevo Cupón",
+          "description": "Ofrezca descuentos para impulsar las inscripciones a su evento.",
+          "toast": {
+            "successTitle": "Cupón Creado",
+            "successDescription": "El cupón '{code}' ahora está activo.",
+            "failTitle": "Creación Fallida"
+          },
+          "form": {
+            "code": "Código de Cupón",
+            "codePlaceholder": "p.ej., EARLYBIRD10",
+            "usageLimit": "Límite de Uso",
+            "usageLimitPlaceholder": "p.ej., 100",
+            "discountType": "Tipo de Descuento",
+            "discountTypePlaceholder": "Seleccione un tipo",
+            "percentage": "Porcentaje",
+            "fixed": "Monto Fijo",
+            "discountValue": "Valor del Descuento",
+            "expiryDate": "Fecha de Vencimiento (Opcional)",
+            "pickDate": "Elija una fecha",
+            "submitButton": "Crear Cupón"
+          }
+        },
+        "list": {
+          "title": "Cupones Existentes",
+          "description": "Vea y comparta sus cupones promocionales activos.",
+          "toastTitle": "¡Enlace Copiado!",
+          "toastDescription": "El enlace para compartir del cupón '{link}' ha sido copiado.",
+          "expires": "Vence",
+          "never": "Nunca",
+          "usage": "Uso",
+          "share": "Compartir",
+          "noCoupons": "Aún no ha creado ningún cupón para este evento.",
+          "shareModal": {
+            "title": "Compartir Cupón",
+            "description": "Comparta este enlace para dar a los usuarios una forma directa de registrarse con este cupón aplicado.",
+            "copy": "Copiar",
+            "close": "Cerrar"
+          }
+        }
+      },
+      "checkin": {
+        "title": "Check-in de Asistentes",
+        "description": "Use el escáner de códigos QR para hacer el check-in de los asistentes registrados en su evento.",
+        "scanButton": "Escanear Código QR del Asistente",
+        "verifying": "Verificando entrada...",
+        "success": "Check-in Exitoso",
+        "errorTitle": "Error de Check-in",
+        "error": {
+          "invalidCode": "Este no es un código de check-in de DamDoh válido.",
+          "wrongEvent": "Esta entrada es para un evento diferente.",
+          "noUserId": "No se pudo encontrar un ID de usuario en esta entrada.",
+          "unknown": "Ocurrió un error desconocido.",
+          "failUnknown": "El check-in falló por una razón desconocida."
+        },
+        "toast": {
+          "success": { "title": "Check-in Exitoso" },
+          "fail": { "title": "Check-in Fallido" },
+          "scanFail": {
+            "title": "Escaneo Fallido",
+            "description": "No se pudo leer el código QR. Por favor, inténtelo de nuevo."
+          }
+        }
+      },
+      "staff": {
+        "title": "Gestión de Personal",
+        "description": "Añada o elimine usuarios que puedan ayudar a gestionar su evento, como hacer el check-in de los asistentes.",
+        "addTitle": "Añadir Miembro del Personal",
+        "searchPlaceholder": "Buscar usuarios por nombre o email...",
+        "addButton": "Añadir",
+        "removeButton": "Eliminar",
+        "currentTitle": "Personal Actual",
+        "noStaff": "Aún no se ha añadido personal.",
+        "toast": {
+          "error": "Error",
+          "fetchStaffError": "No se pudieron cargar los miembros del personal.",
+          "searchLengthError": "La consulta de búsqueda debe tener al menos 3 caracteres.",
+          "searchFailed": "La búsqueda de usuarios falló.",
+          "success": "Éxito",
+          "addSuccess": "{name} fue añadido como personal.",
+          "addFailed": "Error al añadir miembro del personal.",
+          "removeSuccess": "{name} fue eliminado del personal.",
+          "removeFailed": "Error al eliminar miembro del personal."
+        }
+      },
+      "attendees": {
+        "title": "Asistentes",
+        "description": "Vea una lista de todos los usuarios que se han registrado para su evento.",
+        "downloadCsv": "Descargar CSV",
+        "nameHeader": "Nombre",
+        "emailHeader": "Email",
+        "registeredOnHeader": "Registrado el",
+        "statusHeader": "Estado",
+        "statusCheckedIn": "Check-in",
+        "statusRegistered": "Registrado",
+        "noAttendees": "Nadie se ha registrado para su evento todavía.",
+        "error": "No se pudieron cargar los asistentes.",
+        "toast": {
+          "noAttendees": "No hay asistentes para descargar."
+        }
       }
     }
   }
 }
 
-    
