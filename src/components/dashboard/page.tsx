@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { useEffect, useState, useMemo, Suspense } from 'react';
@@ -10,7 +8,7 @@ import type { FeedItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
 import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSidebar";
 import { StartPost } from "@/components/dashboard/StartPost";
-import { useHomepagePreference } from '@/hooks/useHomepagePreference';
+import { useHomepagePreference } from '@/hooks/useHomepageRedirect';
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from '@/lib/auth-utils';
 import { getFunctions, httpsCallable } from 'firebase/functions';
@@ -64,13 +62,13 @@ const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Farmer': FarmerDashboard,
     'Field Agent/Agronomist (DamDoh Internal)': FieldAgentDashboard,
     'Financial Institution (Micro-finance/Loans)': FiDashboard,
-    'Government Regulator/Auditor': RegulatorDashboard,
     'Input Supplier (Seed, Fertilizer, Pesticide)': InputSupplierDashboard,
     'Insurance Provider': InsuranceProviderDashboard,
     'Logistics Partner (Third-Party Transporter)': LogisticsDashboard,
     'Packaging Supplier': PackagingSupplierDashboard,
     'Processing & Packaging Unit': ProcessingUnitDashboard,
     'Quality Assurance Team (DamDoh Internal)': QaDashboard,
+    'RegulatorDashboard': RegulatorDashboard,
     'Researcher/Academic': ResearcherDashboard,
     'Storage/Warehouse Facility': WarehouseDashboard,
     'Waste Management & Compost Facility': WasteManagementDashboard,
@@ -116,7 +114,14 @@ function MainContent() {
       setIsLoadingFeed(true);
       const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
       unsubscribeFeed = onSnapshot(q, (snapshot) => {
-          const posts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as FeedItem));
+          const posts = snapshot.docs.map(doc => {
+            const data = doc.data();
+            return {
+                id: doc.id,
+                ...data,
+                timestamp: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
+            } as FeedItem
+          });
           setFeedItems(posts);
           setIsLoadingFeed(false);
       }, (error) => {

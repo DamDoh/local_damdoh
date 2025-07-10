@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -863,4 +862,3 @@ export interface AgroTourismDashboardData {
     actionLink: string;
   }[];
 }
-
