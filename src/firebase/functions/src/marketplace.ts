@@ -4,6 +4,7 @@ import * as admin from "firebase-admin";
 import type { MarketplaceCoupon, MarketplaceItem, Shop, MarketplaceOrder } from "@/lib/types"; // Import from new location
 import { _internalInitiatePayment } from "./financial-services";
 import { MarketplaceItemSchema, ShopSchema, MarketplaceOrderSchema } from "@/lib/schemas"; // Import from new location
+import { geohashForLocation } from 'geofire-common';
 
 const db = admin.firestore();
 
@@ -111,6 +112,13 @@ export const createMarketplaceListing = functions.https.onCall(
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       };
+      
+      // Handle Geohash generation for location
+      if (validatedData.location && typeof validatedData.location.lat === 'number' && typeof validatedData.location.lng === 'number') {
+        listingData.geohash = geohashForLocation([validatedData.location.lat, validatedData.location.lng]);
+      } else {
+        listingData.geohash = null;
+      }
 
       const docRef = await db.collection("marketplaceItems").add(listingData);
 

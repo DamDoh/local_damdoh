@@ -1,3 +1,4 @@
+
 {
   "ResearcherDashboard": {
     "title": "Researcher Dashboard",
@@ -77,18 +78,18 @@
   "OfflineIndicator": {
     "tooltip": {
       "syncing": "Syncing {count} pending actions...",
-      "onlinePending": "{count} pending actions. Will sync soon.",
-      "onlineSynced": "You are online and all changes are synced.",
+      "onlinePending": "{count, plural, =1 {1 pending action.} other {{count} pending actions.}} Will sync soon.",
+      "onlineSynced": "You are online. All changes are synced.",
       "offline": "You are offline. {count, plural, =0 {No pending changes.} =1 {1 change is queued.} other {{count} changes are queued.}}"
     },
     "toast": {
       "online": {
-        "title": "You are back online!",
+        "title": "You're back online!",
         "description": "Your connection has been restored."
       },
       "offline": {
-        "title": "You are offline.",
-        "description": "Your changes will be saved and synced when you reconnect."
+        "title": "You are currently offline",
+        "description": "Changes will be saved locally and synced when you reconnect."
       },
       "syncing": {
         "title": "Syncing offline changes",
@@ -100,11 +101,11 @@
       },
       "syncFailed": {
         "title": "Sync failed",
-        "description": "We could not sync your offline changes. We will try again later."
+        "description": "Could not sync offline changes. Will try again later."
       },
       "queued": {
-        "title": "Action queued",
-        "description": "This action will be performed when you are back online."
+        "title": "Action Queued",
+        "description": "This action will be performed when you're back online."
       }
     }
   },
@@ -271,5 +272,267 @@
       "noResults": "No results found for your query.",
       "tryAgain": "Try a different search term or use broader keywords."
     }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "About DamDoh",
+      "subtitle": "Connecting the global agricultural supply chain, one stakeholder at a time."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "p1": "We envision a world where every agricultural stakeholder, from the smallest farmer to the largest retailer, is empowered by the data, connections, and tools they need to thrive.",
+      "p2": "DamDoh was founded on the belief that technology can bridge gaps, build trust, and create a more equitable and sustainable global food system.",
+      "foundersTitle": "The Founders"
+    },
+    "challenge": {
+      "title": "The Challenge We're Solving",
+      "description": "The agricultural supply chain is fragmented, inefficient, and often lacks the transparency needed for sustainable growth. Key challenges include:",
+      "list": {
+        "knowledge": "Fragmented knowledge and lack of access to best practices.",
+        "market": "Limited market access for smallholder farmers.",
+        "quality": "Inconsistent quality control and a lack of verifiable product data.",
+        "logistics": "Inefficient logistics leading to high post-harvest losses.",
+        "financial": "Difficulty accessing finance and insurance for small-scale producers.",
+        "climate": "Increasing pressure from climate change on traditional farming methods.",
+        "informal": "Informal and relationship-based systems that can exclude new entrants."
+      }
+    },
+    "solution": {
+      "title": "The DamDoh Solution",
+      "description": "We are building a comprehensive 'super app' that digitizes and connects the entire agricultural ecosystem through several key pillars:",
+      "list": {
+        "education": "Education & Knowledge Sharing",
+        "ai": "AI Assistance & Insights",
+        "logistics": "Integrated Logistics & Traceability"
+      }
+    },
+    "beyondTechnology": {
+      "title": "Beyond Technology: It's About People",
+      "list": {
+        "p2p": {
+          "title": "Peer-to-Peer",
+          "content": "Connecting farmers to other farmers to share knowledge and form cooperatives."
+        },
+        "p2b": {
+          "title": "Producer-to-Business",
+          "content": "Fostering direct, trusted relationships between producers and buyers."
+        },
+        "p2e": {
+          "title": "Producer-to-Ecosystem",
+          "content": "Giving individuals access to an entire ecosystem of services—finance, logistics, insurance, and more."
+        },
+        "p2w": {
+          "title": "Producer-to-World",
+          "content": "Opening up global markets and opportunities to the most remote producers through digital access and traceability."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Our Commitment to the Future",
+      "p1": "We are committed to using technology for good, building a platform that is not only profitable but also regenerative for our planet and empowering for its people.",
+      "p2": "Every connection made, every piece of knowledge shared, and every transaction streamlined on DamDoh is a step toward a more resilient and equitable food future.",
+      "p3": "Join us on this journey.",
+      "button": "Become a Member"
+    }
+  },
+  "contactPage": {
+    "title": "Contact Us",
+    "subtitle": "We're here to help. Reach out to us through any of the channels below.",
+    "emailUs": {
+      "title": "Email Us",
+      "general": "General Inquiries",
+      "support": "Support",
+      "partnerships": "Partnerships"
+    },
+    "callUs": {
+      "title": "Call Us",
+      "hours": "Mon - Fri, 9 AM - 5 PM (EAT)",
+      "phone": "+254 20 123 4567"
+    },
+    "ourOffice": {
+      "title": "Our Office",
+      "org": "The DamDoh Foundation",
+      "address": "123 Agri-Tech Ave, Nairobi, Kenya"
+    },
+    "sendMessage": {
+      "title": "Send us a Message",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Your Email",
+      "emailPlaceholder": "jane.doe@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "e.g., Partnership Inquiry",
+      "messageLabel": "Your Message",
+      "messagePlaceholder": "Type your message here...",
+      "buttonText": "Send Message",
+      "note": "We strive to respond within 24 business hours."
+    }
+  },
+  "careers": {
+    "title": "Careers at DamDoh",
+    "subtitle": "Join our mission to revolutionize the agricultural supply chain.",
+    "whyWorkWithUs": {
+      "title": "Why Work With Us?",
+      "intro": "At DamDoh, we are a team of passionate innovators, technologists, and agricultural experts dedicated to creating tangible global impact. We offer:",
+      "point1": "A dynamic, mission-driven work environment.",
+      "point2": "Opportunities for professional growth and learning.",
+      "point3": "A culture of collaboration and transparency.",
+      "point4": "The chance to work with cutting-edge technologies like AI and blockchain.",
+      "point5": "A commitment to sustainability and social impact."
+    },
+    "currentOpenings": {
+      "title": "Current Openings",
+      "job1": {
+        "title": "Senior Full-Stack Engineer (Next.js, Firebase)",
+        "location": "Remote",
+        "type": "Full-Time",
+        "description": "We're looking for an experienced full-stack engineer to lead development on our platform's core features."
+      },
+      "job2": {
+        "title": "Agronomic Content Specialist",
+        "location": "Nairobi, Kenya",
+        "type": "Contract",
+        "description": "Help us build the world's most comprehensive knowledge base for sustainable farming practices."
+      },
+      "job3": {
+        "title": "UX/UI Designer",
+        "location": "Remote",
+        "type": "Full-Time",
+        "description": "Design intuitive and accessible user experiences for a diverse, global user base."
+      }
+    },
+    "noOpenings": {
+      "title": "No Openings Currently",
+      "content1": "We are always looking for talented individuals who are passionate about our mission. If you think you'd be a great fit for our team, please send your resume and cover letter to {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Apply Now"
+  },
+  "communityGuidelines": {
+    "title": "Community Guidelines",
+    "subtitle": "Fostering a professional, trustworthy, and collaborative environment.",
+    "intro": "Welcome to the DamDoh community! Our mission is to connect the agricultural world in a positive and productive way. To ensure everyone has a great experience, we ask that you adhere to the following guidelines:",
+    "respectful": {
+      "title": "Be Respectful and Professional",
+      "description": "Engage in civil and constructive discussions. Disagreements are normal, but personal attacks, harassment, and hate speech are unacceptable."
+    },
+    "authentic": {
+      "title": "Be Honest and Authentic",
+      "description": "Represent yourself and your business accurately. Do not impersonate others or provide false information about your products, services, or certifications."
+    },
+    "relevant": {
+      "title": "Stay on Topic",
+      "description": "Contribute to discussions and listings in a way that is relevant to the agricultural supply chain. Spam, scams, and irrelevant promotional content will be removed."
+    },
+    "fairTrade": {
+      "title": "Honor Your Commitments",
+      "description": "When you make a deal on the platform, follow through. Building trust is essential to our community's success."
+    },
+    "sustainable": {
+      "title": "Promote Sustainability",
+      "description": "While not a strict requirement for all members, we encourage the sharing of knowledge and practices that promote environmental, economic, and social sustainability."
+    },
+    "reporting": {
+      "title": "Reporting Violations",
+      "content": "If you see content or behavior that violates these guidelines, please report it to our team at {emailLink}. We will review all reports and take appropriate action.",
+      "emailLinkText": "support@damdoh.org"
+    },
+    "conclusion": "By using DamDoh, you agree to these guidelines. We reserve the right to remove content and suspend accounts that violate these principles. Thank you for helping us build a great community!"
+  },
+  "helpCenterPage": {
+    "title": "Help Center",
+    "subtitle": "Your guide to getting the most out of the DamDoh platform.",
+    "howCanWeHelp": "How can we help?",
+    "searchPlaceholder": "Search for topics, features, or questions...",
+    "browseTopics": "Browse Help Topics",
+    "gettingStarted": {
+      "title": "Getting Started",
+      "description": "Learn how to set up your profile and begin connecting.",
+      "placeholder": "Content for 'Getting Started' is coming soon."
+    },
+    "marketplaceGuide": {
+      "title": "Marketplace Guide",
+      "description": "Tips for creating effective listings and finding what you need.",
+      "placeholder": "Content for 'Marketplace Guide' is coming soon."
+    },
+    "accountManagement": {
+      "title": "Account Management",
+      "description": "Manage your settings, privacy, and notifications.",
+      "placeholder": "Content for 'Account Management' is coming soon."
+    },
+    "troubleshooting": {
+      "title": "Troubleshooting",
+      "description": "Find solutions to common problems and technical issues.",
+      "placeholder": "Content for 'Troubleshooting' is coming soon."
+    },
+    "stillNeedHelp": {
+      "title": "Still need help?",
+      "description": "Our support team is ready to assist with any questions you may have.",
+      "button": "Contact Support"
+    }
+  },
+  "industryNewsPage": {
+    "title": "Industry News & Insights",
+    "description": "Stay informed on the latest trends, research, and policy changes affecting the global agricultural supply chain.",
+    "searchPlaceholder": "Search news & reports...",
+    "categoryPlaceholder": "Filter by category",
+    "allCategories": "All Categories",
+    "sourceLabel": "Source",
+    "publishedLabel": "Published",
+    "categoryLabel": "Category",
+    "readButton": "Read Full Story",
+    "noNews": {
+      "title": "No News Yet",
+      "description": "Check back later for the latest industry updates and reports."
+    },
+    "news1": {
+      "title": "Global Coffee Prices Surge Amidst Climate Concerns in Key Growing Regions",
+      "excerpt": "Arabica coffee futures have hit an 18-month high as drought in Brazil and unexpected frosts in Vietnam threaten the global supply."
+    },
+    "news2": {
+      "title": "EU Implements New 'Farm to Fork' Packaging Regulations",
+      "excerpt": "New regulations effective this quarter require all fresh produce imported into the European Union to use packaging made from at least 30% recycled materials."
+    },
+    "news3": {
+      "title": "Study Finds Regenerative Farming Practices Can Sequester Up to 2 Tons of Carbon Per Hectare Annually",
+      "excerpt": "A decade-long study published in 'Nature Sustainability' provides compelling evidence that no-till farming and cover cropping significantly improve soil carbon levels."
+    }
+  },
+  "myNetworkPage": {
+    "backLink": "Back to Network",
+    "myConnectionsTab": "My Connections ({count})",
+    "pendingRequestsTab": "Pending Requests",
+    "connectionsTitle": "My Connections",
+    "connectionsDescription": "These are your approved connections on the platform. You can now message them directly.",
+    "noConnections": "You haven't made any connections yet. Start exploring the network!",
+    "requestsTitle": "Connection Requests",
+    "requestsDescription": "Review and respond to pending connection requests.",
+    "noRequests": "You have no pending connection requests.",
+    "sentTimeAgo": "Sent {timeAgo}",
+    "toast": {
+      "error": "Error",
+      "loadError": "Could not load network data.",
+      "respondError": "Could not respond to request.",
+      "removeError": "Could not remove connection.",
+      "success": "Success",
+      "requestAccepted": "Request accepted.",
+      "requestDeclined": "Request declined.",
+      "connectionRemoved": "Connection removed."
+    }
+  },
+  "agentToolsPage": {
+    "backLink": "Back to Network",
+    "accessDeniedTitle": "Access Denied",
+    "accessDeniedDescription": "You do not have the required permissions to access these tools.",
+    "title": "Field Agent Tools",
+    "description": "Tools for authorized agents to assist and manage users in the field.",
+    "findUserLabel": "Find User by Phone Number",
+    "phoneRequiredError": "Phone number is required.",
+    "findButton": "Find",
+    "resultsTitle": "Search Results",
+    "resultsPlaceholder": "User details will appear here after a successful search."
+  },
+  "common": {
+    "error": "Error"
   }
 }

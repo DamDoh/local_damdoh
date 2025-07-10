@@ -5,6 +5,7 @@ import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
 import { UserRole } from "./types";
+import { geohashForLocation } from 'geofire-common';
 
 const db = admin.firestore();
 
@@ -30,6 +31,8 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
             universalId: universalId,
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            location: null,
+            geohash: null,
         });
         console.log(`Successfully created Firestore profile for user ${user.uid}.`);
         return null;
@@ -119,7 +122,17 @@ export const upsertStakeholderProfile = functions.https.onCall(
       if (displayName !== undefined) updatePayload.displayName = displayName;
       if (profileSummary !== undefined) updatePayload.profileSummary = profileSummary;
       if (bio !== undefined) updatePayload.bio = bio;
-      if (location !== undefined) updatePayload.location = location;
+      
+      // Handle Geohash generation for location
+      if (location !== undefined) {
+        updatePayload.location = location;
+        if (location && typeof location.lat === 'number' && typeof location.lng === 'number') {
+            updatePayload.geohash = geohashForLocation([location.lat, location.lng]);
+        } else {
+            updatePayload.geohash = null;
+        }
+      }
+
       if (Array.isArray(areasOfInterest)) updatePayload.areasOfInterest = areasOfInterest;
       if (Array.isArray(needs)) updatePayload.needs = needs;
       if (contactInfoPhone !== undefined || contactInfoWebsite !== undefined) {
@@ -350,3 +363,65 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError('internal', 'Could not fetch engagement statistics.');
     }
 });
+
+/**
+ * Deletes a user's data from across the entire Firestore database upon their Auth deletion.
+ * This is a critical function for GDPR "Right to be Forgotten" compliance.
+ * It performs a "cascade delete" of all content created by the user.
+ * @param {functions.auth.UserRecord} user The user record of the deleted user.
+ */
+export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) => {
+    console.log(`User deletion triggered for UID: ${user.uid}. Cleaning up Firestore data.`);
+
+    const uid = user.uid;
+    const batchSize = 100;
+    const db = admin.firestore();
+
+    const collectionsToDeleteFrom = {
+        posts: 'userId',
+        marketplaceItems: 'sellerId',
+        farms: 'ownerId',
+        crops: 'ownerId',
+        knf_batches: 'userId',
+        traceability_events: 'actorRef',
+        connection_requests: ['requesterId', 'recipientId'], // Special handling for multiple fields
+    };
+
+    const promises = [];
+
+    for (const [collection, field] of Object.entries(collectionsToDeleteFrom)) {
+        if (Array.isArray(field)) {
+            // Handle collections with multiple user ID fields
+            for (const f of field) {
+                const query = db.collection(collection).where(f, '==', uid).limit(batchSize);
+                promises.push(deleteQueryBatch(query));
+            }
+        } else {
+            // Handle collections with a single user ID field
+            const query = db.collection(collection).where(field, '==', uid).limit(batchSize);
+            promises.push(deleteQueryBatch(query));
+        }
+    }
+    
+    // Also delete the main user profile document
+    promises.push(db.collection('users').doc(uid).delete());
+
+    await Promise.all(promises);
+    console.log(`Cleanup finished for user ${uid}.`);
+});
+
+async function deleteQueryBatch(query: FirebaseFirestore.Query) {
+  const snapshot = await query.get();
+
+  if (snapshot.size === 0) {
+    return 0;
+  }
+
+  const batch = query.firestore.batch();
+  snapshot.docs.forEach((doc) => {
+    batch.delete(doc.ref);
+  });
+  await batch.commit();
+
+  return snapshot.size;
+}
