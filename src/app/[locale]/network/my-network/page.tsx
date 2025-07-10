@@ -45,11 +45,11 @@ export default function MyNetworkPage() {
             setConnections((connectionsResult.data as any)?.connections || []);
         } catch (error: any) {
             console.error("Error fetching network data:", error);
-            toast({ title: "Error", description: "Could not load your network data.", variant: "destructive" });
+            toast({ title: t('toast.error'), description: t('toast.loadError'), variant: "destructive" });
         } finally {
             setIsLoading(false);
         }
-    }, [getPendingRequests, getConnections, toast]);
+    }, [getPendingRequests, getConnections, toast, t]);
 
     useEffect(() => {
         if (user) {
@@ -63,10 +63,10 @@ export default function MyNetworkPage() {
         setIsResponding(requestId);
         try {
             await respondToRequest({ requestId, response });
-            toast({ title: "Success", description: `Request has been ${response}.` });
+            toast({ title: t('toast.success'), description: response === 'accepted' ? t('toast.requestAccepted') : t('toast.requestDeclined') });
             fetchData(); // Refetch all data
         } catch (error: any) {
-            toast({ title: "Error", description: error.message, variant: "destructive" });
+            toast({ title: t('toast.error'), description: error.message || t('toast.respondError'), variant: "destructive" });
         } finally {
             setIsResponding(null);
         }
@@ -76,10 +76,10 @@ export default function MyNetworkPage() {
         setIsResponding(connectionId); // Reuse loading state
         try {
             await removeConnection({ connectionId });
-            toast({ title: "Connection Removed" });
+            toast({ title: t('toast.connectionRemoved') });
             fetchData(); // Refetch
         } catch (error: any) {
-             toast({ title: "Error", description: "Could not remove connection.", variant: "destructive" });
+             toast({ title: t('toast.error'), description: t('toast.removeError'), variant: "destructive" });
         } finally {
             setIsResponding(null);
         }
@@ -206,5 +206,3 @@ const NetworkPageSkeleton = () => (
         </Card>
     </div>
 )
-
-    

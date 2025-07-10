@@ -743,6 +743,44 @@ export interface MobileDiscoverItem {
     dataAiHint?: string;
 }
 
+export interface ApiKey {
+    id: string;
+    key: string;
+    keyPrefix: string;
+    description: string;
+    status: 'Active' | 'Revoked';
+    environment: 'Sandbox' | 'Production';
+    createdAt: string; // ISO String
+}
+
+export interface FinancialProduct {
+  id: string;
+  fiId: string;
+  name: string;
+  type: 'Loan' | 'Grant';
+  description: string;
+  interestRate?: number;
+  maxAmount?: number;
+  targetRoles: string[];
+  status: 'Active' | 'Inactive';
+}
+
+export interface InsuranceProduct {
+  id: string;
+  providerId: string;
+  name: string;
+  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
+  description: string;
+  coverageDetails: string;
+  premium: number;
+  currency: string;
+  status: 'Active' | 'Inactive';
+  provider?: { // Optional provider details for display
+    displayName: string;
+    avatarUrl?: string;
+  }
+}
+
 export interface Worker {
   id: string;
   name: string;
@@ -775,45 +813,3 @@ export type ServiceItem = MarketplaceItem & {
     compensation: string;
     experienceLevel: string;
 };
-
-// =================================================================
-// 3. API Types & AI Flow Types
-// =================================================================
-
-export type ApiKey = {
-    id: string;
-    key: string;
-    keyPrefix: string;
-    description: string;
-    status: 'Active' | 'Revoked';
-    environment: 'Sandbox' | 'Production';
-    createdAt: string; // ISO String
-};
-
-export interface FinancialProduct {
-  id: string;
-  fiId: string;
-  name: string;
-  type: 'Loan' | 'Grant';
-  description: string;
-  interestRate?: number;
-  maxAmount?: number;
-  targetRoles: string[];
-  status: 'Active' | 'Inactive';
-}
-
-export interface InsuranceProduct {
-  id: string;
-  providerId: string;
-  name: string;
-  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
-  description: string;
-  coverageDetails: string;
-  premium: number;
-  currency: string;
-  status: 'Active' | 'Inactive';
-  provider?: { // Optional provider details for display
-    displayName: string;
-    avatarUrl?: string;
-  }
-}

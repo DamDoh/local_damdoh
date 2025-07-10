@@ -215,125 +215,26 @@
       "tryAgain": "Try another search term or use more general keywords."
     }
   },
-  "traceabilityPage": {
-    "title": "Traceability Hub",
-    "description": "Track the journey of your food from farm to fork. Enter a Vibrant Traceability ID (VTI) to see the full story.",
-    "inputPlaceholder": "Enter VTI Code...",
-    "trackButton": "Track",
-    "vtiDescription": "A VTI is a unique identifier assigned to each batch of produce.",
-    "recentTitle": "Recently Added Batches",
-    "recentDescription": "Explore some of the latest publicly traceable batches on the platform.",
-    "producerLabel": "Producer",
-    "harvestDateLabel": "Harvested",
-    "viewReportButton": "View Report",
-    "noRecentBatches": "No recently added public batches were found.",
-    "detailPage": {
-        "backLink": "Back to Traceability Hub",
-        "invalidIdError": "An invalid batch ID was provided.",
-        "loadError": "Could not load traceability history.",
-        "notFoundTitle": "Batch Not Found",
-        "notFoundDescription": "The traceability ID you entered does not match any records.",
-        "traceableProduct": "Traceable Product",
-        "batchIdLabel": "Batch ID",
-        "producerLabel": "Producer",
-        "sustainablyGrownTitle": "Sustainably Grown",
-        "sustainablyGrownDescription": "This product was grown using sustainable methods with no synthetic chemical inputs logged on the platform.",
-        "harvestDateLabel": "Harvest Date",
-        "yieldLabel": "Initial Yield",
-        "qualityLabel": "Quality Grade",
-        "notSpecified": "Not Specified",
-        "journeyTitle": "Product Journey",
-        "journeyDescription": "A chronological record of events for this batch, from farm to fork.",
-        "noEventsFound": "No events have been logged for this batch yet.",
-        "geoLocationLabel": "Geo-location",
-        "noEventDetails": "No additional details were provided for this event.",
-        "observationType": "Observation Type",
-        "details": "Details",
-        "aiDiagnosis": "AI Diagnosis"
-    }
-  },
-  "common": {
-    "error": "Error"
-  },
-  "farmManagement": {
-    "laborPage": {
-      "backLink": "Back to Farm Hub",
-      "title": "Labor Management",
-      "description": "Manage your workforce, track hours, and log payments.",
-      "addWorker": "Add Worker",
-      "workerName": "Worker Name",
-      "saveWorker": "Save Worker",
-      "loading": "Loading...",
-      "noWorkers": "No workers have been added yet.",
-      "hoursLogged": "Hours Logged",
-      "totalPaid": "Total Paid",
-      "logHours": "Log Hours",
-      "logPayment": "Log Payment",
-      "viewDetails": "View Details",
-      "logHoursFor": "Log Hours for",
-      "hoursWorked": "Hours Worked",
-      "date": "Date",
-      "pickDate": "Pick a date",
-      "taskDescription": "Task Description",
-      "logPaymentFor": "Log Payment for",
-      "amountPaid": "Amount Paid",
-      "signInPrompt": {
-        "title": "Please Sign In",
-        "button": "Sign In"
-      },
-      "toast": {
-        "errorTitle": "Error",
-        "fetchWorkersError": "Failed to fetch workers.",
-        "nameRequired": "Worker name is required.",
-        "workerAdded": "Worker added successfully.",
-        "hoursLogged": "Hours logged successfully.",
-        "paymentLoggedTitle": "Payment Logged",
-        "paymentLoggedDescription": "The payment has been recorded and an expense has been added to your financials."
-      },
-      "workerDetailPage": {
-        "backLink": "Back to Labor Hub",
-        "notFoundTitle": "Worker Not Found",
-        "notFoundDescription": "The worker you are looking for does not exist.",
-        "goBackButton": "Go Back",
-        "workLogsTitle": "Work Logs",
-        "paymentHistoryTitle": "Payment History",
-        "table": {
-          "date": "Date",
-          "hours": "Hours",
-          "task": "Task",
-          "amount": "Amount"
-        },
-        "noWorkLogs": "No work hours have been logged for this worker.",
-        "noPayments": "No payments have been logged for this worker.",
-        "toasts": {
-          "errorTitle": "Error"
-        }
-      }
-    }
-  },
-  "talentExchangePage": {
-    "title": "Talent Exchange",
-    "description": "Find specialized agricultural services or offer your expertise to the community.",
-    "listServiceButton": "List a Service",
-    "searchPlaceholder": "Search for skills or services...",
-    "locationPlaceholder": "Filter by location...",
-    "categoryPlaceholder": "Filter by category...",
-    "allCategories": "All Categories",
-    "noResultsTitle": "No Services Found",
-    "noResultsDescription": "Try adjusting your search filters or check back later for new service listings.",
+  "myNetworkPage": {
+    "backLink": "Back to Network",
+    "myConnectionsTab": "My Connections ({count})",
+    "pendingRequestsTab": "Pending Requests",
+    "connectionsTitle": "My Connections",
+    "connectionsDescription": "These are your approved connections on the platform. You can now message them directly.",
+    "noConnections": "You haven't made any connections yet. Start exploring the network!",
+    "requestsTitle": "Connection Requests",
+    "requestsDescription": "Review and respond to pending connection requests.",
+    "noRequests": "You have no pending connection requests.",
+    "sentTimeAgo": "Sent {timeAgo}",
     "toast": {
-        "error": {
-            "title": "Error",
-            "description": "Could not fetch service listings. Please try again later."
-        }
+      "error": "Error",
+      "loadError": "Could not load network data.",
+      "respondError": "Could not respond to request.",
+      "removeError": "Could not remove connection.",
+      "success": "Success",
+      "requestAccepted": "Request accepted.",
+      "requestDeclined": "Request declined.",
+      "connectionRemoved": "Connection removed."
     }
-  },
-  "CropRotationSuggester": {
-    "title": "AI Crop Rotation Suggester",
-    "description": "Get AI-powered suggestions for your next crop to improve soil health and break pest cycles.",
-    "buttonText": "Get AI Suggestions",
-    "regenerateButton": "Regenerate Suggestions",
-    "error": "Could not generate suggestions at this time.",
-    "noSuggestions": "AI could not generate specific suggestions. Please try again."
   }
 }
