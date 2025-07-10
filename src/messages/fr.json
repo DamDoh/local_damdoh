@@ -181,5 +181,8 @@
         "description": "Cette action sera effectuée lorsque vous serez de nouveau en ligne."
       }
     }
+  },
+  "LanguageSwitcher": {
+    "toggle": "Changer de langue"
   }
 }

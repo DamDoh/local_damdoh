@@ -181,5 +181,8 @@
         "description": "This action will be completed when you're back online."
       }
     }
+  },
+  "LanguageSwitcher": {
+    "toggle": "Toggle language"
   }
 }

@@ -181,5 +181,8 @@
         "description": "Esta acción se completará cuando vuelvas a estar en línea."
       }
     }
+  },
+  "LanguageSwitcher": {
+    "toggle": "Cambiar idioma"
   }
 }

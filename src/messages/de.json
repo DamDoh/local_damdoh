@@ -181,5 +181,8 @@
         "description": "Diese Aktion wird ausgeführt, wenn Sie wieder online sind."
       }
     }
+  },
+  "LanguageSwitcher": {
+    "toggle": "Sprache wechseln"
   }
 }
