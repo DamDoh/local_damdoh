@@ -184,5 +184,58 @@
   },
   "LanguageSwitcher": {
     "toggle": "Cambiar idioma"
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Reimaginando la Agricultura con {appName}",
+      "subtitle": "Conectando toda la cadena de valor agrícola, desde la semilla hasta la venta, con herramientas para la trazabilidad, el comercio y la confianza.",
+      "getStartedButton": "Empezar ahora",
+      "learnMoreButton": "Aprende más"
+    },
+    "features": {
+      "title": "Una Plataforma Unificada para Todos los Actores",
+      "subtitle": "DamDoh ofrece un conjunto integrado de herramientas para empoderar a cada participante en el ecosistema agrícola.",
+      "networking": {
+        "title": "Redes Profesionales",
+        "description": "Conéctese con agricultores, compradores, proveedores y expertos para construir su red profesional."
+      },
+      "marketplace": {
+        "title": "Mercado Global",
+        "description": "Compre y venda productos, insumos y equipos con confianza y transparencia."
+      },
+      "forums": {
+        "title": "Intercambio de Conocimientos",
+        "description": "Participe en discusiones comunitarias, comparta ideas y aprenda de expertos en el campo."
+      },
+      "talent": {
+        "title": "Bolsa de Talentos",
+        "description": "Encuentre u ofrezca servicios agrícolas especializados, desde consultoría agronómica hasta operación de equipos."
+      }
+    },
+    "forWho": {
+      "badge": "Para Todos",
+      "title": "Construido para Toda la Cadena de Suministro Agrícola",
+      "description": "Ya sea que sea un pequeño agricultor, un comprador a gran escala o un experto en agronomía, DamDoh tiene herramientas para ayudarlo a tener éxito.",
+      "imageAlt": "Un collage de diversos actores agrícolas que utilizan la plataforma DamDoh.",
+      "farmers": {
+        "title": "Para Agricultores",
+        "description": "Acceda a mercados, gestione su granja y obtenga asesoramiento experto para mejorar su rendimiento e ingresos."
+      },
+      "buyers": {
+        "title": "Para Compradores y Empresas",
+        "description": "Abastézcase de productos de alta calidad y trazables directamente de los productores y optimice su cadena de suministro."
+      },
+      "experts": {
+        "title": "Para Expertos y Proveedores de Servicios",
+        "description": "Ofrezca su experiencia, encuentre clientes y contribuya a un sector agrícola más sostenible."
+      }
+    },
+    "cta": {
+      "title": "Únase a la Revolución Agrícola",
+      "subtitle": "Regístrese hoy y forme parte de una comunidad global dedicada a construir un futuro más transparente, sostenible y próspero para la agricultura.",
+      "button": "Únase a DamDoh Hoy"
+    }
   }
 }
+
+    

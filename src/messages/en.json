@@ -184,5 +184,58 @@
   },
   "LanguageSwitcher": {
     "toggle": "Toggle language"
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Reimagining Agriculture with {appName}",
+      "subtitle": "Connecting the entire agricultural value chain, from seed to sale, with tools for traceability, trade, and trust.",
+      "getStartedButton": "Get Started",
+      "learnMoreButton": "Learn More"
+    },
+    "features": {
+      "title": "A Unified Platform for All Stakeholders",
+      "subtitle": "DamDoh provides an integrated suite of tools to empower every participant in the agricultural ecosystem.",
+      "networking": {
+        "title": "Professional Networking",
+        "description": "Connect with farmers, buyers, suppliers, and experts to build your professional network."
+      },
+      "marketplace": {
+        "title": "Global Marketplace",
+        "description": "Buy and sell produce, inputs, and equipment with trust and transparency."
+      },
+      "forums": {
+        "title": "Knowledge Sharing",
+        "description": "Join community discussions, share insights, and learn from experts in the field."
+      },
+      "talent": {
+        "title": "Talent Exchange",
+        "description": "Find or offer specialized agricultural services, from agronomy to equipment operation."
+      }
+    },
+    "forWho": {
+      "badge": "For Everyone",
+      "title": "Built for the Entire Agri-Supply Chain",
+      "description": "Whether you're a smallholder farmer, a large-scale buyer, or an agronomy expert, DamDoh has tools to help you succeed.",
+      "imageAlt": "A collage of diverse agricultural stakeholders using the DamDoh platform.",
+      "farmers": {
+        "title": "For Farmers",
+        "description": "Access markets, manage your farm, and get expert advice to improve your yield and income."
+      },
+      "buyers": {
+        "title": "For Buyers & Businesses",
+        "description": "Source high-quality, traceable produce directly from producers and streamline your supply chain."
+      },
+      "experts": {
+        "title": "For Experts & Service Providers",
+        "description": "Offer your expertise, find clients, and contribute to a more sustainable agricultural sector."
+      }
+    },
+    "cta": {
+      "title": "Join the Agricultural Revolution",
+      "subtitle": "Sign up today and become part of a global community dedicated to building a more transparent, sustainable, and prosperous future for agriculture.",
+      "button": "Join DamDoh Today"
+    }
   }
 }
+
+    
