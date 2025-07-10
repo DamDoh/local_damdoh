@@ -14,10 +14,10 @@
     "noRecommendations": "Aucune recommandation pour le moment. Explorez le marché pour commencer !"
   },
   "AppHeader": {
-    "searchPlaceholder": "Rechercher personnes, produits, services...",
+    "searchPlaceholder": "Rechercher...",
     "home": "Accueil",
     "network": "Réseau",
-    "farmMgmt": "Gestion Exploitation",
+    "farmMgmt": "Gestion Ferme",
     "marketplace": "Marché",
     "talentExchange": "Talents",
     "traceability": "Traçabilité",
@@ -26,13 +26,13 @@
     "notifications": "Notifications",
     "messages": "Messages",
     "wallet": "Portefeuille",
-    "signIn": "Connexion",
-    "signUp": "Inscription",
+    "signIn": "Se Connecter",
+    "signUp": "S'inscrire",
     "myProfile": "Mon Profil",
     "myOrders": "Mes Commandes",
     "settings": "Paramètres",
-    "helpCenter": "Centre d'Aide",
-    "logOut": "Déconnexion",
+    "helpCenter": "Aide",
+    "logOut": "Se Déconnecter",
     "switchToLightAria": "Passer au thème clair",
     "switchToDarkAria": "Passer au thème sombre"
   },
@@ -45,7 +45,7 @@
   },
   "OfflineIndicator": {
     "tooltip": {
-      "syncing": "Synchronisation de {count, plural, =1 {1 action} other {{count} actions}} en attente...",
+      "syncing": "Synchronisation de {count, plural, =1 {1 action en attente} other {{count} actions en attente}}...",
       "onlinePending": "{count, plural, =1 {1 action en attente.} other {{count} actions en attente.}} Synchronisation imminente.",
       "onlineSynced": "Vous êtes en ligne. Toutes les données sont synchronisées.",
       "offline": "Vous êtes hors ligne. {count, plural, =0 {Aucun changement en attente.} =1 {1 changement en attente.} other {{count} changements en attente.}}"
@@ -116,11 +116,11 @@
         "description": "Accédez à de meilleurs marchés, trouvez des intrants de qualité et obtenez des conseils d'experts pour augmenter votre rendement et votre rentabilité."
       },
       "buyers": {
-        "title": "Acheteurs et Transformateurs",
+        "title": "Acheteurs & Transformateurs",
         "description": "Approvisionnez-vous en produits traçables de haute qualité directement auprès des producteurs et des coopératives, garantissant la fiabilité de la chaîne d'approvisionnement."
       },
       "experts": {
-        "title": "Experts et Fournisseurs de Services",
+        "title": "Experts & Fournisseurs de Services",
         "description": "Proposez vos compétences et services spécialisés à un large public agricole à la recherche de votre expertise."
       },
       "imageAlt": "Un groupe diversifié d'acteurs agricoles collaborant"
@@ -151,7 +151,26 @@
     "getMobileApp": "Obtenez l'Application Mobile",
     "googlePlayAlt": "Disponible sur Google Play",
     "appStoreAlt": "Télécharger dans l'App Store"
+  },
+  "blogPage": {
+    "title": "Blog et Articles DamDoh",
+    "description": "Perspectives, récits et savoirs à la pointe de la révolution agricole.",
+    "readMore": "Lire la suite",
+    "meta": "Par {author} le {date}",
+    "error": {
+      "title": "Erreur",
+      "description": "Impossible de charger les articles du blog. Veuillez réessayer plus tard."
+    },
+    "noPosts": {
+      "title": "Aucun article pour le moment",
+      "description": "Notre blog ne fait que commencer. Revenez bientôt pour découvrir les perspectives et les récits de la communauté DamDoh."
+    },
+    "backLink": "Retour au Blog",
+    "notFound": {
+      "title": "Article non trouvé",
+      "description": "L'article que vous recherchez n'existe pas ou a peut-être été déplacé.",
+      "backButton": "Retour au Blog"
+    },
+    "originalContentTitle": "Contenu Original ({lang})"
   }
 }
-
-    
