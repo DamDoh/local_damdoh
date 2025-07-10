@@ -242,6 +242,288 @@
       "startOverButton": "Start Over"
     }
   },
+  "AppFooter": {
+    "tagline": "The global agricultural supply chain platform.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "About",
+    "contactLabel": "Contact",
+    "careersLabel": "Careers",
+    "blogLabel": "Blog & News",
+    "resourcesTitle": "Resources",
+    "helpCenterLabel": "Help Center",
+    "communityGuidelinesLabel": "Community Guidelines",
+    "industryNewsLabel": "Industry News",
+    "eventsLabel": "Events",
+    "talentExchangeLabel": "Talent Exchange",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Privacy Policy",
+    "termsOfServiceLabel": "Terms of Service",
+    "copyright": "© {year} {appName}. All rights reserved.",
+    "getMobileApp": "Get the Mobile App",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store"
+  },
+  "searchPage": {
+    "title": "Universal Search",
+    "description": "Find anything on the DamDoh platform, from products and services to people and discussions.",
+    "placeholder": "Search for organic coffee, tractor repair, or a user...",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic Fertilizer",
+    "popularSearch2": "Logistics in Kenya",
+    "popularSearch3": "Coffee Buyers Europe",
+    "popularSearch4": "Farm Labor",
+    "popularSearch5": "Tractor for rent",
+    "modal": {
+      "title": "Universal Search",
+      "placeholder": "I'm looking for...",
+      "searchButton": "Search",
+      "searchError": "Search Failed",
+      "searchErrorDescription": "An unexpected error occurred during the search. Please try again.",
+      "invalidCodeError": "This does not appear to be a valid DamDoh QR code.",
+      "scanFailed": "Scan Failed",
+      "scanError": "Scan Error",
+      "scanErrorDescription": "Could not read the QR code. Please try again.",
+      "interpretationTitle": "AI Interpretation",
+      "interpretationNotesDefault": "Showing general results.",
+      "filtersTitle": "Applied Filters",
+      "results": {
+        "users": "Profiles",
+        "marketplaceItems": "Marketplace",
+        "forums": "Forums",
+        "vti_registry": "Traceability Report",
+        "knowledge_articles": "Knowledge Hub",
+        "agri_events": "Agri-Events"
+      },
+      "noResults": "No results found for your query.",
+      "tryAgain": "Try a different search term or use broader keywords."
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "About DamDoh",
+      "subtitle": "Connecting the global agricultural supply chain, one stakeholder at a time."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "p1": "We envision a world where every agricultural stakeholder, from the smallest farmer to the largest retailer, is empowered with the data, connections, and tools they need to thrive.",
+      "p2": "DamDoh was founded on the belief that technology can bridge gaps, build trust, and create a more equitable and sustainable global food system.",
+      "foundersTitle": "From the Founders"
+    },
+    "challenge": {
+      "title": "The Challenge We're Solving",
+      "description": "The agricultural supply chain is fragmented, inefficient, and often lacks the transparency needed for sustainable growth. Key challenges include:",
+      "list": {
+        "knowledge": "Fragmented knowledge and lack of access to best practices.",
+        "market": "Limited market access for smallholder farmers.",
+        "quality": "Inconsistent quality control and a lack of verifiable product data.",
+        "logistics": "Inefficient logistics leading to post-harvest losses.",
+        "financial": "Difficulty in accessing finance and insurance for small-scale producers.",
+        "climate": "Increasing pressure from climate change on traditional farming methods.",
+        "informal": "Informal and relationship-based systems that can exclude new entrants."
+      }
+    },
+    "solution": {
+      "title": "The DamDoh Solution",
+      "description": "We are building a comprehensive 'super app' that digitizes and connects the entire agricultural ecosystem through several key pillars:",
+      "list": {
+        "education": "Education & Knowledge Sharing",
+        "ai": "AI Assistance & Insights",
+        "logistics": "Integrated Logistics & Traceability"
+      }
+    },
+    "beyondTechnology": {
+      "title": "Beyond Technology: It's About People",
+      "list": {
+        "p2p": {
+          "title": "Peer-to-Peer",
+          "content": "Connecting farmers to other farmers to share knowledge and build community."
+        },
+        "p2b": {
+          "title": "Person-to-Business",
+          "content": "Fostering direct, trusted relationships between producers and buyers."
+        },
+        "p2e": {
+          "title": "Person-to-Ecosystem",
+          "content": "Giving individuals access to an entire ecosystem of services - finance, logistics, insurance, and more."
+        },
+        "p2w": {
+          "title": "Person-to-World",
+          "content": "Opening up global markets and opportunities for the most remote producers through digital access and traceability."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Our Commitment to the Future",
+      "p1": "We are committed to using technology for good, building a platform that is not only profitable but also regenerative for our planet and empowering for its people.",
+      "p2": "Every connection made, piece of knowledge shared, and transaction streamlined on DamDoh is a step toward a more resilient and equitable food future.",
+      "p3": "Join us on this journey.",
+      "button": "Become a Member"
+    }
+  },
+  "contactPage": {
+    "title": "Contact Us",
+    "subtitle": "We're here to help. Reach out to us through any of the channels below.",
+    "emailUs": {
+      "title": "Email Us",
+      "general": "General Inquiries",
+      "support": "Support",
+      "partnerships": "Partnerships"
+    },
+    "callUs": {
+      "title": "Call Us",
+      "hours": "Mon - Fri, 9am - 5pm (EAT)",
+      "phone": "+254 20 123 4567"
+    },
+    "ourOffice": {
+      "title": "Our Office",
+      "org": "The DamDoh Foundation",
+      "address": "123 Agri-Tech Avenue, Nairobi, Kenya"
+    },
+    "sendMessage": {
+      "title": "Send Us a Message",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Your Email",
+      "emailPlaceholder": "jane.doe@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "e.g., Partnership Inquiry",
+      "messageLabel": "Your Message",
+      "messagePlaceholder": "Type your message here...",
+      "buttonText": "Send Message",
+      "note": "We strive to respond within 24 business hours."
+    }
+  },
+  "careers": {
+    "title": "Careers at DamDoh",
+    "subtitle": "Join our mission to revolutionize the agricultural supply chain.",
+    "whyWorkWithUs": {
+      "title": "Why Work With Us?",
+      "intro": "At DamDoh, we are a team of passionate innovators, technologists, and agricultural experts dedicated to creating tangible global impact. We offer:",
+      "point1": "A dynamic, mission-driven work environment.",
+      "point2": "Opportunities for professional growth and learning.",
+      "point3": "A culture of collaboration and transparency.",
+      "point4": "The chance to work with cutting-edge technologies like AI and blockchain.",
+      "point5": "A commitment to sustainability and social impact."
+    },
+    "currentOpenings": {
+      "title": "Current Openings",
+      "job1": {
+        "title": "Senior Full-Stack Engineer (Next.js, Firebase)",
+        "location": "Remote",
+        "type": "Full-Time",
+        "description": "We are looking for an experienced full-stack engineer to lead development on core features of our platform."
+      },
+      "job2": {
+        "title": "Agronomic Content Specialist",
+        "location": "Nairobi, Kenya",
+        "type": "Contract",
+        "description": "Help us build the world's most comprehensive knowledge base for sustainable farming practices."
+      },
+      "job3": {
+        "title": "UX/UI Designer",
+        "location": "Remote",
+        "type": "Full-Time",
+        "description": "Design intuitive and accessible user experiences for a diverse, global user base."
+      }
+    },
+    "noOpenings": {
+      "title": "No Openings Currently",
+      "content1": "We are always looking for talented individuals who are passionate about our mission. If you think you'd be a great fit for our team, please send your resume and cover letter to {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Apply Now"
+  },
+  "communityGuidelines": {
+    "title": "Community Guidelines",
+    "subtitle": "Fostering a professional, trustworthy, and collaborative environment.",
+    "intro": "Welcome to the DamDoh community! Our mission is to connect the agricultural world in a positive and productive way. To ensure everyone has a great experience, we ask that you adhere to the following guidelines:",
+    "respectful": {
+      "title": "Be Respectful & Professional",
+      "description": "Engage in civil and constructive discussions. Disagreements are normal, but personal attacks, harassment, and hate speech are not acceptable."
+    },
+    "authentic": {
+      "title": "Be Honest & Authentic",
+      "description": "Represent yourself and your business accurately. Do not impersonate others or provide false information about your products, services, or certifications."
+    },
+    "relevant": {
+      "title": "Stay On-Topic",
+      "description": "Contribute to discussions and listings in a way that is relevant to the agricultural supply chain. Spam, scams, and irrelevant promotional content will be removed."
+    },
+    "fairTrade": {
+      "title": "Honor Your Commitments",
+      "description": "When you make an agreement on the platform, follow through. Building trust is essential to our community's success."
+    },
+    "sustainable": {
+      "title": "Promote Sustainability",
+      "description": "While not a strict requirement for all members, we encourage the sharing of knowledge and practices that promote environmental, economic, and social sustainability."
+    },
+    "reporting": {
+      "title": "Reporting Violations",
+      "content": "If you see content or behavior that violates these guidelines, please report it to our team at {emailLink}. We will review all reports and take appropriate action.",
+      "emailLinkText": "support@damdoh.org"
+    },
+    "conclusion": "By using DamDoh, you agree to these guidelines. We reserve the right to remove content and suspend accounts that violate these principles. Thank you for helping us build a great community!"
+  },
+  "helpCenterPage": {
+    "title": "Help Center",
+    "subtitle": "Your guide to getting the most out of the DamDoh platform.",
+    "howCanWeHelp": "How can we help you?",
+    "searchPlaceholder": "Search topics, features, or questions...",
+    "browseTopics": "Browse Help Topics",
+    "gettingStarted": {
+      "title": "Getting Started",
+      "description": "Learn how to set up your profile and start connecting.",
+      "placeholder": "Content for 'Getting Started' will be available soon."
+    },
+    "marketplaceGuide": {
+      "title": "Marketplace Guide",
+      "description": "Tips for creating effective listings and finding what you need.",
+      "placeholder": "Content for 'Marketplace Guide' will be available soon."
+    },
+    "accountManagement": {
+      "title": "Account Management",
+      "description": "Manage your settings, privacy, and notifications.",
+      "placeholder": "Content for 'Account Management' will be available soon."
+    },
+    "troubleshooting": {
+      "title": "Troubleshooting",
+      "description": "Find solutions to common issues and technical problems.",
+      "placeholder": "Content for 'Troubleshooting' will be available soon."
+    },
+    "stillNeedHelp": {
+      "title": "Still need help?",
+      "description": "Our support team is ready to assist you with any questions you may have.",
+      "button": "Contact Support"
+    }
+  },
+  "industryNewsPage": {
+    "title": "Industry News & Insights",
+    "description": "Stay informed on the latest trends, research, and policy changes affecting the global agricultural supply chain.",
+    "searchPlaceholder": "Search news & reports...",
+    "categoryPlaceholder": "Filter by category",
+    "allCategories": "All Categories",
+    "sourceLabel": "Source",
+    "publishedLabel": "Published",
+    "categoryLabel": "Category",
+    "readButton": "Read Full Story",
+    "noNews": {
+      "title": "No News Found",
+      "description": "Check back later for the latest industry updates and reports."
+    },
+    "news1": {
+      "title": "Global Coffee Prices Surge Amidst Climate Concerns in Key Growing Regions",
+      "excerpt": "Coffee arabica futures hit an 18-month high as drought in Brazil and unexpected frost in Vietnam threaten global supply."
+    },
+    "news2": {
+      "title": "EU Implements New 'Farm to Fork' Packaging Regulations",
+      "excerpt": "New regulations coming into effect this quarter will require all fresh produce imported into the European Union to use packaging made of at least 30% recycled materials."
+    },
+    "news3": {
+      "title": "Study Finds Regenerative Farming Practices Can Sequester Up to 2 Tons of Carbon Per Hectare Annually",
+      "excerpt": "A decade-long study published in 'Nature Sustainability' provides strong evidence that no-till farming and cover cropping significantly improve soil carbon levels."
+    }
+  },
   "networkPage": {
     "title": "Stakeholder Network",
     "description": "Discover and connect with farmers, buyers, service providers, and experts across the agricultural value chain.",
@@ -362,30 +644,21 @@
       }
     }
   },
-  "searchPage": {
-    "modal": {
-      "title": "Universal Search",
-      "placeholder": "I'm looking for...",
-      "searchButton": "Search",
-      "searchError": "Search Failed",
-      "searchErrorDescription": "An unexpected error occurred during the search. Please try again.",
-      "invalidCodeError": "This does not appear to be a valid DamDoh QR code.",
-      "scanFailed": "Scan Failed",
-      "scanError": "Scan Error",
-      "scanErrorDescription": "Could not read the QR code. Please try again.",
-      "interpretationTitle": "AI Interpretation",
-      "interpretationNotesDefault": "Showing general results.",
-      "filtersTitle": "Applied Filters",
-      "results": {
-        "users": "Profiles",
-        "marketplaceItems": "Marketplace",
-        "forums": "Forums",
-        "vti_registry": "Traceability Report",
-        "knowledge_articles": "Knowledge Hub",
-        "agri_events": "Agri-Events"
-      },
-      "noResults": "No results found for your query.",
-      "tryAgain": "Try a different search term or use broader keywords."
-    }
+  "messagingPage": {
+    "title": "Messages",
+    "searchPlaceholder": "Search conversations...",
+    "selectConversation": "Select a conversation to start messaging.",
+    "noConversations": "You have no active conversations.",
+    "typeMessagePlaceholder": "Type a message...",
+    "error": "Error",
+    "couldNotLoadConversations": "Could not load your conversations.",
+    "couldNotStartConversation": "Could not start a new conversation.",
+    "sendFailed": "Send Failed",
+    "couldNotSendMessage": "Could not send your message.",
+    "signInToView": "Sign in to view your messages.",
+    "signIn": "Sign In",
+    "noMessages": "Be the first to send a message!"
   }
 }
+
+    
