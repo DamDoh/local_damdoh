@@ -1,108 +1,5 @@
 
 {
-  "FeedItemCard": {
-    "signInToLikeToast": "Debes iniciar sesión para dar 'me gusta' a una publicación.",
-    "repostPlaceholderToast": "¡La función de 'repostear' estará disponible pronto!",
-    "signInToVoteToast": "Debes iniciar sesión para votar.",
-    "voteSuccessToast": "¡Tu voto ha sido contado!",
-    "voteErrorToast": "No se pudo registrar el voto",
-    "editPost": "Editar Publicación",
-    "deletePost": "Eliminar Publicación",
-    "like": "Me gusta",
-    "comment": "Comentar",
-    "repost": "Repostear",
-    "likes": "{count, plural, =0 {me gusta} =1 {me gusta} other {{count} me gusta}}",
-    "comments": "{count, plural, =0 {comentarios} =1 {comentario} other {{count} comentarios}}",
-    "loadCommentsErrorToast": "No se pudieron cargar los comentarios.",
-    "noComments": "¡Sé el primero en comentar!",
-    "loadingComments": "Cargando comentarios...",
-    "loadMoreComments": "Cargar más comentarios",
-    "writeCommentPlaceholder": "Añade un comentario...",
-    "postButton": "Publicar",
-    "votes": "{count, plural, =0 {votos} =1 {voto} other {{count} votos}}"
-  },
-  "CreatePostModal": {
-    "title": "Crear una nueva publicación",
-    "description": "Comparte una actualización, haz una pregunta o inicia una discusión con la comunidad.",
-    "yourName": "Tu Nombre",
-    "shareUpdate": "Compartir una actualización",
-    "placeholder": "¿Qué tienes en mente?",
-    "selectedFile": "Archivo seleccionado:",
-    "pollOptionsLabel": "Opciones de la Encuesta",
-    "pollOptionPlaceholder": "Opción {index}",
-    "addOptionButton": "Añadir Opción",
-    "pollNote": "Se permiten un máximo de {maxOptions} opciones.",
-    "photoVideo": "Foto/Video",
-    "agriEvent": "Evento Agrícola",
-    "shareDocumentButton": "Compartir Documento",
-    "createPollButton": "Crear una Encuesta",
-    "postButton": "Publicar",
-    "pollOptionsError": "Una encuesta debe tener al menos 2 opciones no vacías.",
-    "emptyPostError": "Tu publicación no puede estar vacía."
-  },
-  "admin": {
-    "layout": {
-      "title": "Panel de Administración",
-      "description": "Herramientas de gestión de la plataforma y moderación de contenido.",
-      "contentManagement": "Contenido",
-      "reports": "Informes"
-    },
-    "reports": {
-      "generate": {
-        "title": "Generar un Nuevo Informe",
-        "description": "Seleccione los parámetros para generar un nuevo informe de cumplimiento o actividad.",
-        "reportTypeLabel": "Tipo de Informe",
-        "reportTypeVti": "Resumen de Eventos VTI",
-        "targetUserLabel": "Usuario Objetivo",
-        "userSearchPlaceholder": "Buscar un usuario por nombre o correo electrónico...",
-        "dateRangeLabel": "Rango de Fechas",
-        "datePlaceholder": "Seleccione un rango de fechas",
-        "submitButton": "Generar Informe"
-      },
-      "list": {
-        "title": "Informes Generados Recientemente",
-        "description": "Ver y descargar informes generados anteriormente.",
-        "table": {
-          "reportType": "Tipo de Informe",
-          "generatedFor": "Generado Para",
-          "date": "Fecha",
-          "status": "Estado",
-          "actions": "Acciones",
-          "viewButton": "Ver"
-        },
-        "noReports": "Aún no se han generado informes."
-      },
-      "toast": {
-        "loadErrorTitle": "Error al Cargar los Informes",
-        "formIncompleteTitle": "Formulario Incompleto",
-        "formIncompleteDescription": "Por favor, seleccione un tipo de informe, un usuario objetivo y un rango de fechas.",
-        "generateSuccessTitle": "Generación de Informe Iniciada",
-        "generateSuccessDescription": "El informe se está generando y aparecerá en la lista a continuación en breve.",
-        "generateErrorTitle": "Falló la Generación del Informe"
-      }
-    }
-  },
-  "AppFooter": {
-    "tagline": "Conectando la cadena de valor agrícola para un futuro sostenible.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Sobre nosotros",
-    "contactLabel": "Contacto",
-    "careersLabel": "Carreras",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Recursos",
-    "helpCenterLabel": "Centro de ayuda",
-    "communityGuidelinesLabel": "Normas de la comunidad",
-    "industryNewsLabel": "Noticias del sector",
-    "eventsLabel": "Eventos",
-    "talentExchangeLabel": "Bolsa de talentos",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Política de privacidad",
-    "termsOfServiceLabel": "Términos de servicio",
-    "copyright": "© {year} {appName}. Todos los derechos reservados.",
-    "getMobileApp": "Obtén la aplicación móvil",
-    "googlePlayAlt": "Obtenlo en Google Play",
-    "appStoreAlt": "Descargar en la App Store"
-  },
   "AppHeader": {
     "searchPlaceholder": "Buscar...",
     "home": "Inicio",
@@ -221,6 +118,27 @@
       "button": "Únase a DamDoh Hoy"
     }
   },
+  "AppFooter": {
+    "tagline": "Conectando la cadena de valor agrícola para un futuro sostenible.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Sobre nosotros",
+    "contactLabel": "Contacto",
+    "careersLabel": "Carreras",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Recursos",
+    "helpCenterLabel": "Centro de ayuda",
+    "communityGuidelinesLabel": "Normas de la comunidad",
+    "industryNewsLabel": "Noticias del sector",
+    "eventsLabel": "Eventos",
+    "talentExchangeLabel": "Bolsa de talentos",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Política de privacidad",
+    "termsOfServiceLabel": "Términos de servicio",
+    "copyright": "© {year} {appName}. Todos los derechos reservados.",
+    "getMobileApp": "Obtén la aplicación móvil",
+    "googlePlayAlt": "Obtenlo en Google Play",
+    "appStoreAlt": "Descargar en la App Store"
+  },
   "searchPage": {
     "title": "Búsqueda Universal",
     "description": "Encuentra cualquier cosa en la plataforma DamDoh, desde productos y servicios hasta personas y discusiones.",
@@ -249,7 +167,9 @@
         "users": "Perfiles",
         "marketplaceItems": "Mercado",
         "forums": "Foros",
-        "vti_registry": "Informe de Trazabilidad"
+        "vti_registry": "Informe de Trazabilidad",
+        "knowledge_articles": "Centro de Conocimiento",
+        "agri_events": "Eventos Agrícolas"
       },
       "noResults": "No se encontraron resultados para su consulta.",
       "tryAgain": "Intente con un término de búsqueda diferente o use palabras clave más amplias."
@@ -427,6 +347,43 @@
       "noSuggestions": "No hay nuevas sugerencias disponibles en este momento."
     },
     "noSuggestions": "No hay sugerencias disponibles en este momento. Complete su perfil para obtener mejores recomendaciones."
+  },
+  "myNetworkPage": {
+    "backLink": "Volver a la Red",
+    "myConnectionsTab": "Mis Conexiones ({count})",
+    "pendingRequestsTab": "Solicitudes Pendientes",
+    "connectionsTitle": "Mis Conexiones",
+    "connectionsDescription": "Estas son sus conexiones aprobadas en la plataforma. Ahora puede enviarles mensajes directamente.",
+    "noConnections": "Todavía no ha hecho ninguna conexión. ¡Empiece a explorar la red!",
+    "requestsTitle": "Solicitudes de Conexión",
+    "requestsDescription": "Revise y responda a las solicitudes de conexión pendientes.",
+    "noRequests": "No tiene solicitudes de conexión pendientes.",
+    "sentTimeAgo": "Enviado hace {timeAgo}",
+    "toast": {
+      "error": "Error",
+      "loadError": "No se pudieron cargar los datos de la red.",
+      "respondError": "No se pudo responder a la solicitud.",
+      "removeError": "No se pudo eliminar la conexión.",
+      "success": "Éxito",
+      "requestAccepted": "Solicitud aceptada.",
+      "requestDeclined": "Solicitud rechazada.",
+      "connectionRemoved": "Conexión eliminada."
+    }
+  },
+  "agentToolsPage": {
+    "backLink": "Volver a la Red",
+    "accessDeniedTitle": "Acceso Denegado",
+    "accessDeniedDescription": "No tiene los permisos necesarios para acceder a estas herramientas.",
+    "title": "Herramientas de Agente de Campo",
+    "description": "Herramientas para agentes autorizados para ayudar y gestionar a los usuarios en el campo.",
+    "findUserLabel": "Buscar Usuario por Número de Teléfono",
+    "phoneRequiredError": "Se requiere un número de teléfono.",
+    "findButton": "Buscar",
+    "resultsTitle": "Resultados de la Búsqueda",
+    "resultsPlaceholder": "Los detalles del usuario aparecerán aquí después de una búsqueda exitosa."
+  },
+  "common": {
+    "error": "Error"
   },
   "farmManagement": {
     "hub": {
@@ -625,7 +582,7 @@
     },
     "userRepresentations": {
       "heading": "3. Declaraciones del Usuario",
-      "content": "Al utilizar los Servicios, usted declara y garantiza que: (1) toda la información de registro que envíe será verdadera, precisa, actual y completa; (2) mantendrá la exactitud de dicha información y actualizará puntualmente dicha información de registro según sea necesario; (3) tiene la capacidad legal y se compromete a cumplir con estos Términos de Uso; (4) no es menor de edad en la jurisdicción en la que reside; (5) no accederá al Sitio a través de medios automatizados o no humanos, ya sea a través de un bot, script o de otra manera; (6) no utilizará el Sitio para ningún propósito ilegal o no autorizado; y (7) su uso del Sitio no violará ninguna ley o regulación aplicable."
+      "content": "Al utilizar los Servicios, usted declara y garantiza que: (1) toda la información de registro que envíe será verdadera, precisa, actual y completa; (2) mantendrá la exactitud de dicha información y actualizará puntualmente dicha información de registro según sea necesario; (3) tiene la capacidad legal y se compromete a cumplir con estos Términos de Uso; (4) no es menor de edad en la jurisdicción en la que reside; (5) no accederá al Sitio a través de medios automatizados o no humanos, ya sea a través de un bot, un script o de otra manera; (6) no utilizará el Sitio para ningún propósito ilegal o no autorizado; y (7) su uso del Sitio no violará ninguna ley o regulación aplicable."
     },
     "prohibitedActivities": {
       "heading": "4. Actividades Prohibidas",
@@ -832,6 +789,107 @@
   },
   "common": {
     "error": "Error"
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Centro de Gestión Agrícola",
+      "description": "Su panel de control central para todas las actividades en la granja, desde la gestión de parcelas y cultivos hasta el seguimiento de insumos y mano de obra.",
+      "myFarms": {
+        "title": "Mis Granjas y Cultivos",
+        "description": "Defina sus parcelas agrícolas, registre cultivos, siga los ciclos de siembra y gestione los datos de cosecha.",
+        "button": "Gestionar Granjas"
+      },
+      "labor": {
+        "title": "Gestión de Mano de Obra",
+        "description": "Lleve un registro de sus trabajadores agrícolas, registre sus horas y anote los pagos, todo en un solo lugar.",
+        "button": "Gestionar Mano de Obra"
+      },
+      "knf": {
+        "title": "Asistente de Insumos KNF",
+        "description": "Cree y gestione sus preparados de Agricultura Natural Coreana como FPJ, FAA y más.",
+        "button": "Gestionar Insumos"
+      },
+      "fgw": {
+        "title": "Agricultura a la Manera de Dios (FGW)",
+        "description": "Aprenda y aplique los principios básicos de FGW para obtener resultados sostenibles y de alto rendimiento.",
+        "button": "Ver Guía FGW"
+      },
+      "financials": {
+        "title": "Finanzas",
+        "description": "Siga los ingresos y gastos de su granja, analice la rentabilidad y solicite financiación.",
+        "button": "Ver Finanzas"
+      },
+      "seedStarting": {
+        "title": "Guía de Germinación de Semillas",
+        "description": "Aprenda las mejores prácticas para iniciar semillas en interiores para adelantar la temporada.",
+        "button": "Ver Guía"
+      },
+      "familyFarm": {
+        "title": "Granja Familiar de 200m²",
+        "description": "Explore un modelo para una granja familiar autosostenible e integrada en solo 200 metros cuadrados.",
+        "button": "Explorar Modelo"
+      },
+      "assetManagement": {
+        "title": "Gestión de Activos",
+        "description": "Registre y siga su maquinaria agrícola, herramientas y otros activos valiosos. (Próximamente)",
+        "button": "Gestionar Activos"
+      }
+    },
+    "myFarms": {
+      "backToDashboard": "Volver al Centro de Gestión Agrícola",
+      "title": "Mis Granjas",
+      "addNewFarmButton": "Añadir Nueva Granja",
+      "size": "Tamaño",
+      "viewFarmButton": "Gestionar Granja",
+      "noFarmsTitle": "Aún no hay granjas",
+      "noFarmsDescription": "Comience añadiendo su primer perfil de granja.",
+      "auth": {
+        "title": "Por favor, inicie sesión",
+        "description": "Necesita iniciar sesión para ver sus granjas.",
+        "button": "Iniciar Sesión"
+      },
+      "toast": {
+        "errorTitle": "Error al obtener las granjas"
+      }
+    },
+    "createFarm": {
+      "backToFarms": "Volver a Mis Granjas",
+      "title": "Registrar una Nueva Granja",
+      "description": "Proporcione los detalles para una nueva granja que posee o gestiona.",
+      "form": {
+        "farmNameLabel": "Nombre de la Granja",
+        "farmNamePlaceholder": "p.ej., Green Valley Organics",
+        "locationLabel": "Ubicación",
+        "locationPlaceholder": "p.ej., Nakuru, Kenia",
+        "locationDescription": "Proporcione la ciudad, región o área general.",
+        "sizeLabel": "Tamaño de la Granja",
+        "sizePlaceholder": "p.ej., 5 Hectáreas",
+        "sizeDescription": "Incluya la unidad (p.ej., acres, hectáreas).",
+        "typeLabel": "Tipo de Granja",
+        "typePlaceholder": "Seleccione un tipo",
+        "types": {
+          "crop": "Cultivo",
+          "livestock": "Ganadería",
+          "mixed": "Mixta (Cultivos y Ganadería)",
+          "aquaculture": "Acuicultura (Piscicultura)",
+          "other": "Otro"
+        },
+        "descriptionLabel": "Descripción (opcional)",
+        "descriptionPlaceholder": "Una breve descripción de su granja, sus principales actividades o su misión.",
+        "irrigationLabel": "Métodos de Riego (opcional)",
+        "irrigationPlaceholder": "p.ej., Riego por goteo, de secano",
+        "irrigationDescription": "Enumere los principales métodos de riego utilizados.",
+        "submitButton": "Guardar Granja"
+      },
+      "toast": {
+        "authErrorTitle": "Error de Autenticación",
+        "authErrorDescription": "Debe iniciar sesión para crear una granja.",
+        "successTitle": "¡Granja Creada!",
+        "successDescription": "{farmName} se ha añadido correctamente a su perfil.",
+        "errorTitle": "Creación Fallida"
+      }
+    }
   }
 }
 
+    

@@ -1,108 +1,5 @@
 
 {
-  "FeedItemCard": {
-    "signInToLikeToast": "Sie müssen angemeldet sein, um einen Beitrag zu liken.",
-    "repostPlaceholderToast": "Die Repost-Funktion wird in Kürze verfügbar sein!",
-    "signInToVoteToast": "Sie müssen angemeldet sein, um abzustimmen.",
-    "voteSuccessToast": "Ihre Stimme wurde gezählt!",
-    "voteErrorToast": "Stimme konnte nicht erfasst werden",
-    "editPost": "Beitrag bearbeiten",
-    "deletePost": "Beitrag löschen",
-    "like": "Gefällt mir",
-    "comment": "Kommentieren",
-    "repost": "Erneut posten",
-    "likes": "{count, plural, =0 {Gefällt-mir-Angaben} =1 {Gefällt-mir-Angabe} other {{count} Gefällt-mir-Angaben}}",
-    "comments": "{count, plural, =0 {Kommentare} =1 {Kommentar} other {{count} Kommentare}}",
-    "loadCommentsErrorToast": "Kommentare konnten nicht geladen werden.",
-    "noComments": "Seien Sie der Erste, der kommentiert!",
-    "loadingComments": "Kommentare werden geladen...",
-    "loadMoreComments": "Weitere Kommentare laden",
-    "writeCommentPlaceholder": "Einen Kommentar hinzufügen...",
-    "postButton": "Posten",
-    "votes": "{count, plural, =0 {Stimmen} =1 {Stimme} other {{count} Stimmen}}"
-  },
-  "CreatePostModal": {
-    "title": "Neuen Beitrag erstellen",
-    "description": "Teilen Sie ein Update, stellen Sie eine Frage oder starten Sie eine Diskussion mit der Community.",
-    "yourName": "Ihr Name",
-    "shareUpdate": "Update teilen",
-    "placeholder": "Was liegt Ihnen am Herzen?",
-    "selectedFile": "Ausgewählte Datei:",
-    "pollOptionsLabel": "Umfrageoptionen",
-    "pollOptionPlaceholder": "Option {index}",
-    "addOptionButton": "Option hinzufügen",
-    "pollNote": "Max. {maxOptions} Optionen erlaubt.",
-    "photoVideo": "Foto/Video",
-    "agriEvent": "Agri-Event",
-    "shareDocumentButton": "Dokument teilen",
-    "createPollButton": "Umfrage erstellen",
-    "postButton": "Posten",
-    "pollOptionsError": "Eine Umfrage muss mindestens 2 nicht leere Optionen haben.",
-    "emptyPostError": "Ihr Beitrag darf nicht leer sein."
-  },
-  "admin": {
-    "layout": {
-      "title": "Admin-Panel",
-      "description": "Tools für die Plattformverwaltung und Inhaltsmoderation.",
-      "contentManagement": "Inhalt",
-      "reports": "Berichte"
-    },
-    "reports": {
-      "generate": {
-        "title": "Neuen Bericht erstellen",
-        "description": "Wählen Sie Parameter aus, um einen neuen Compliance- oder Aktivitätsbericht zu erstellen.",
-        "reportTypeLabel": "Berichtstyp",
-        "reportTypeVti": "VTI-Ereignisübersicht",
-        "targetUserLabel": "Zielbenutzer",
-        "userSearchPlaceholder": "Benutzer nach Name oder E-Mail suchen...",
-        "dateRangeLabel": "Datumsbereich",
-        "datePlaceholder": "Wählen Sie einen Datumsbereich",
-        "submitButton": "Bericht erstellen"
-      },
-      "list": {
-        "title": "Zuletzt erstellte Berichte",
-        "description": "Zuvor erstellte Berichte anzeigen und herunterladen.",
-        "table": {
-          "reportType": "Berichtstyp",
-          "generatedFor": "Erstellt für",
-          "date": "Datum",
-          "status": "Status",
-          "actions": "Aktionen",
-          "viewButton": "Ansehen"
-        },
-        "noReports": "Es wurden noch keine Berichte erstellt."
-      },
-      "toast": {
-        "loadErrorTitle": "Fehler beim Laden der Berichte",
-        "formIncompleteTitle": "Unvollständiges Formular",
-        "formIncompleteDescription": "Bitte wählen Sie einen Berichtstyp, einen Zielbenutzer und einen Datumsbereich aus.",
-        "generateSuccessTitle": "Berichterstellung gestartet",
-        "generateSuccessDescription": "Der Bericht wird erstellt und erscheint in Kürze in der Liste unten.",
-        "generateErrorTitle": "Berichterstellung fehlgeschlagen"
-      }
-    }
-  },
-  "AppFooter": {
-    "tagline": "Die landwirtschaftliche Wertschöpfungskette für eine nachhaltige Zukunft verbinden.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Über uns",
-    "contactLabel": "Kontakt",
-    "careersLabel": "Karriere",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Ressourcen",
-    "helpCenterLabel": "Hilfezentrum",
-    "communityGuidelinesLabel": "Community-Richtlinien",
-    "industryNewsLabel": "Branchennachrichten",
-    "eventsLabel": "Veranstaltungen",
-    "talentExchangeLabel": "Talentbörse",
-    "legalTitle": "Rechtliches",
-    "privacyPolicyLabel": "Datenschutzrichtlinie",
-    "termsOfServiceLabel": "Nutzungsbedingungen",
-    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
-    "getMobileApp": "Holen Sie sich die mobile App",
-    "googlePlayAlt": "Bei Google Play holen",
-    "appStoreAlt": "Im App Store herunterladen"
-  },
   "AppHeader": {
     "searchPlaceholder": "Suchen...",
     "home": "Startseite",
@@ -221,6 +118,27 @@
       "button": "Heute DamDoh beitreten"
     }
   },
+  "AppFooter": {
+    "tagline": "Die landwirtschaftliche Wertschöpfungskette für eine nachhaltige Zukunft verbinden.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Über uns",
+    "contactLabel": "Kontakt",
+    "careersLabel": "Karriere",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressourcen",
+    "helpCenterLabel": "Hilfezentrum",
+    "communityGuidelinesLabel": "Community-Richtlinien",
+    "industryNewsLabel": "Branchennachrichten",
+    "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
+    "legalTitle": "Rechtliches",
+    "privacyPolicyLabel": "Datenschutzrichtlinie",
+    "termsOfServiceLabel": "Nutzungsbedingungen",
+    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
+    "getMobileApp": "Holen Sie sich die mobile App",
+    "googlePlayAlt": "Bei Google Play holen",
+    "appStoreAlt": "Im App Store herunterladen"
+  },
   "searchPage": {
     "title": "Universelle Suche",
     "description": "Finden Sie alles auf der DamDoh-Plattform, von Produkten und Dienstleistungen bis hin zu Personen und Diskussionen.",
@@ -249,7 +167,9 @@
         "users": "Profile",
         "marketplaceItems": "Marktplatz",
         "forums": "Foren",
-        "vti_registry": "Rückverfolgbarkeitsbericht"
+        "vti_registry": "Rückverfolgbarkeitsbericht",
+        "knowledge_articles": "Wissenszentrum",
+        "agri_events": "Agri-Veranstaltungen"
       },
       "noResults": "Keine Ergebnisse für Ihre Anfrage gefunden.",
       "tryAgain": "Versuchen Sie einen anderen Suchbegriff oder verwenden Sie allgemeinere Schlüsselwörter."
@@ -427,6 +347,43 @@
       "noSuggestions": "Derzeit keine neuen Vorschläge verfügbar."
     },
     "noSuggestions": "Derzeit keine Vorschläge verfügbar. Vervollständigen Sie Ihr Profil für bessere Empfehlungen."
+  },
+  "myNetworkPage": {
+    "backLink": "Zurück zum Netzwerk",
+    "myConnectionsTab": "Meine Verbindungen ({count})",
+    "pendingRequestsTab": "Ausstehende Anfragen",
+    "connectionsTitle": "Meine Verbindungen",
+    "connectionsDescription": "Dies sind Ihre genehmigten Verbindungen auf der Plattform. Sie können ihnen jetzt direkt eine Nachricht senden.",
+    "noConnections": "Sie haben noch keine Verbindungen hergestellt. Beginnen Sie mit der Erkundung des Netzwerks!",
+    "requestsTitle": "Verbindungsanfragen",
+    "requestsDescription": "Überprüfen und beantworten Sie ausstehende Verbindungsanfragen.",
+    "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen.",
+    "sentTimeAgo": "Gesendet vor {timeAgo}",
+    "toast": {
+      "error": "Fehler",
+      "loadError": "Netzwerkdaten konnten nicht geladen werden.",
+      "respondError": "Anfrage konnte nicht beantwortet werden.",
+      "removeError": "Verbindung konnte nicht entfernt werden.",
+      "success": "Erfolg",
+      "requestAccepted": "Anfrage angenommen.",
+      "requestDeclined": "Anfrage abgelehnt.",
+      "connectionRemoved": "Verbindung entfernt."
+    }
+  },
+  "agentToolsPage": {
+    "backLink": "Zurück zum Netzwerk",
+    "accessDeniedTitle": "Zugriff verweigert",
+    "accessDeniedDescription": "Sie haben nicht die erforderlichen Berechtigungen, um auf diese Tools zuzugreifen.",
+    "title": "Außendienstmitarbeiter-Tools",
+    "description": "Tools für autorisierte Agenten zur Unterstützung und Verwaltung von Benutzern im Außendienst.",
+    "findUserLabel": "Benutzer nach Telefonnummer suchen",
+    "phoneRequiredError": "Telefonnummer ist erforderlich.",
+    "findButton": "Suchen",
+    "resultsTitle": "Suchergebnisse",
+    "resultsPlaceholder": "Benutzerdetails werden hier nach einer erfolgreichen Suche angezeigt."
+  },
+  "common": {
+    "error": "Fehler"
   },
   "farmManagement": {
     "hub": {
@@ -684,7 +641,6 @@
         "type": "Vollzeit",
         "description": "Entwerfen und erstellen Sie skalierbare Microservices, verwalten Sie unsere Datenbankarchitektur und gewährleisten Sie die Zuverlässigkeit der Kernfunktionen unserer Plattform."
       },
-
       "job2": {
         "title": "Leitender Agronom & Betriebsleiter Feld",
         "location": "Rift Valley, Kenia",
@@ -833,6 +789,107 @@
   },
   "common": {
     "error": "Fehler"
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm-Management-Zentrale",
+      "description": "Ihr zentrales Dashboard für alle Aktivitäten auf dem Bauernhof, von der Verwaltung von Parzellen und Kulturen bis zur Nachverfolgung von Betriebsmitteln und Arbeitskräften.",
+      "myFarms": {
+        "title": "Meine Farmen & Kulturen",
+        "description": "Definieren Sie Ihre landwirtschaftlichen Parzellen, protokollieren Sie Kulturen, verfolgen Sie Pflanzzyklen und verwalten Sie Erntedaten.",
+        "button": "Farmen verwalten"
+      },
+      "labor": {
+        "title": "Arbeitskräfteverwaltung",
+        "description": "Behalten Sie den Überblick über Ihre landwirtschaftlichen Arbeitskräfte, protokollieren Sie deren Stunden und erfassen Sie Zahlungen an einem Ort.",
+        "button": "Arbeitskräfte verwalten"
+      },
+      "knf": {
+        "title": "KNF-Betriebsmittelassistent",
+        "description": "Erstellen und verwalten Sie Ihre koreanischen Naturlandwirtschafts-Zubereitungen wie FPJ, FAA und mehr.",
+        "button": "Betriebsmittel verwalten"
+      },
+      "fgw": {
+        "title": "Farming God's Way",
+        "description": "Lernen und wenden Sie die Kernprinzipien von FGW für nachhaltige und ertragreiche Ergebnisse an.",
+        "button": "FGW-Leitfaden ansehen"
+      },
+      "financials": {
+        "title": "Finanzen",
+        "description": "Verfolgen Sie die Einnahmen und Ausgaben Ihrer Farm, analysieren Sie die Rentabilität und beantragen Sie Finanzierungen.",
+        "button": "Finanzen ansehen"
+      },
+      "seedStarting": {
+        "title": "Anleitung zur Aussaat",
+        "description": "Lernen Sie die besten Praktiken für die Aussaat in Innenräumen, um einen Vorsprung in der Saison zu bekommen.",
+        "button": "Anleitung ansehen"
+      },
+      "familyFarm": {
+        "title": "200m² Familienfarm",
+        "description": "Entdecken Sie ein Modell für eine autarke, integrierte Familienfarm auf nur 200 Quadratmetern.",
+        "button": "Modell erkunden"
+      },
+      "assetManagement": {
+        "title": "Anlagenverwaltung",
+        "description": "Protokollieren und verfolgen Sie Ihre landwirtschaftlichen Maschinen, Werkzeuge und andere wertvolle Vermögenswerte. (Kommt bald)",
+        "button": "Anlagen verwalten"
+      }
+    },
+    "myFarms": {
+      "backToDashboard": "Zurück zur Farm-Management-Zentrale",
+      "title": "Meine Farmen",
+      "addNewFarmButton": "Neue Farm hinzufügen",
+      "size": "Größe",
+      "viewFarmButton": "Farm verwalten",
+      "noFarmsTitle": "Noch keine Farmen vorhanden",
+      "noFarmsDescription": "Legen Sie los, indem Sie Ihr erstes Farmprofil hinzufügen.",
+      "auth": {
+        "title": "Bitte Anmelden",
+        "description": "Sie müssen angemeldet sein, um Ihre Farmen anzuzeigen.",
+        "button": "Anmelden"
+      },
+      "toast": {
+        "errorTitle": "Fehler beim Abrufen der Farmen"
+      }
+    },
+    "createFarm": {
+      "backToFarms": "Zurück zu Meine Farmen",
+      "title": "Eine neue Farm registrieren",
+      "description": "Geben Sie die Details für eine neue Farm an, die Sie besitzen oder verwalten.",
+      "form": {
+        "farmNameLabel": "Farmname",
+        "farmNamePlaceholder": "z.B. Green Valley Organics",
+        "locationLabel": "Standort",
+        "locationPlaceholder": "z.B. Nakuru, Kenia",
+        "locationDescription": "Geben Sie die Stadt, Region oder den allgemeinen Bereich an.",
+        "sizeLabel": "Farmgröße",
+        "sizePlaceholder": "z.B. 5 Hektar",
+        "sizeDescription": "Geben Sie die Einheit an (z.B. Acres, Hektar).",
+        "typeLabel": "Farmtyp",
+        "typePlaceholder": "Wählen Sie einen Typ",
+        "types": {
+          "crop": "Ackerbau",
+          "livestock": "Viehzucht",
+          "mixed": "Gemischt (Ackerbau & Viehzucht)",
+          "aquaculture": "Aquakultur (Fischzucht)",
+          "other": "Andere"
+        },
+        "descriptionLabel": "Beschreibung (optional)",
+        "descriptionPlaceholder": "Eine kurze Beschreibung Ihrer Farm, ihrer Hauptaktivitäten oder ihrer Mission.",
+        "irrigationLabel": "Bewässerungsmethoden (optional)",
+        "irrigationPlaceholder": "z.B. Tröpfchenbewässerung, Regenwasser",
+        "irrigationDescription": "Listen Sie die primären Bewässerungsmethoden auf.",
+        "submitButton": "Farm speichern"
+      },
+      "toast": {
+        "authErrorTitle": "Authentifizierungsfehler",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Farm zu erstellen.",
+        "successTitle": "Farm erstellt!",
+        "successDescription": "{farmName} wurde erfolgreich zu Ihrem Profil hinzugefügt.",
+        "errorTitle": "Erstellung fehlgeschlagen"
+      }
+    }
   }
 }
 
+    

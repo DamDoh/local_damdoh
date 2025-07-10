@@ -1,5 +1,87 @@
 
 {
+  "FeedItemCard": {
+    "signInToLikeToast": "You must be signed in to like a post.",
+    "repostPlaceholderToast": "Repost feature will be available soon!",
+    "signInToVoteToast": "You must be signed in to vote.",
+    "voteSuccessToast": "Your vote has been counted!",
+    "voteErrorToast": "Could not register vote",
+    "editPost": "Edit Post",
+    "deletePost": "Delete Post",
+    "like": "Like",
+    "comment": "Comment",
+    "repost": "Repost",
+    "likes": "{count, plural, =0 {likes} =1 {like} other {# likes}}",
+    "comments": "{count, plural, =0 {comments} =1 {comment} other {# comments}}",
+    "loadCommentsErrorToast": "Could not load comments.",
+    "noComments": "Be the first to comment!",
+    "loadingComments": "Loading comments...",
+    "loadMoreComments": "Load more comments",
+    "writeCommentPlaceholder": "Add a comment...",
+    "postButton": "Post",
+    "votes": "{count, plural, =0 {votes} =1 {vote} other {# votes}}"
+  },
+  "CreatePostModal": {
+    "title": "Create a New Post",
+    "description": "Share an update, ask a question, or start a discussion with the community.",
+    "yourName": "Your Name",
+    "shareUpdate": "Share an update",
+    "placeholder": "What's on your mind?",
+    "selectedFile": "Selected file:",
+    "pollOptionsLabel": "Poll Options",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Add Option",
+    "pollNote": "Maximum of {maxOptions} options allowed.",
+    "photoVideo": "Photo/Video",
+    "agriEvent": "Agri-Event",
+    "shareDocumentButton": "Share Document",
+    "createPollButton": "Create a Poll",
+    "postButton": "Post",
+    "pollOptionsError": "A poll must have at least 2 non-empty options.",
+    "emptyPostError": "Your post cannot be empty."
+  },
+  "admin": {
+    "layout": {
+      "title": "Admin Panel",
+      "description": "Platform management and content moderation tools.",
+      "contentManagement": "Content",
+      "reports": "Reports"
+    },
+    "reports": {
+      "generate": {
+        "title": "Generate a New Report",
+        "description": "Select parameters to create a new compliance or activity report.",
+        "reportTypeLabel": "Report Type",
+        "reportTypeVti": "VTI Events Summary",
+        "targetUserLabel": "Target User",
+        "userSearchPlaceholder": "Search for a user by name or email...",
+        "dateRangeLabel": "Date Range",
+        "datePlaceholder": "Pick a date range",
+        "submitButton": "Generate Report"
+      },
+      "list": {
+        "title": "Recently Generated Reports",
+        "description": "View and download previously generated reports.",
+        "table": {
+          "reportType": "Report Type",
+          "generatedFor": "Generated For",
+          "date": "Date",
+          "status": "Status",
+          "actions": "Actions",
+          "viewButton": "View"
+        },
+        "noReports": "No reports have been generated yet."
+      },
+      "toast": {
+        "loadErrorTitle": "Error Loading Reports",
+        "formIncompleteTitle": "Incomplete Form",
+        "formIncompleteDescription": "Please select a report type, target user, and date range.",
+        "generateSuccessTitle": "Report Generation Started",
+        "generateSuccessDescription": "The report is being created and will appear in the list below shortly.",
+        "generateErrorTitle": "Report Generation Failed"
+      }
+    }
+  },
   "AppFooter": {
     "tagline": "Connecting the agricultural value chain for a sustainable future.",
     "damdohTitle": "DamDoh",
@@ -382,6 +464,9 @@
     "resultsTitle": "Search Results",
     "resultsPlaceholder": "User details will appear here after a successful search."
   },
+  "common": {
+    "error": "Error"
+  },
   "farmManagement": {
     "hub": {
       "title": "Farm Management Hub",
@@ -491,7 +576,7 @@
       "toast": {
         "notFoundTitle": "Farm Not Found",
         "loadError": "The farm you are trying to edit could not be found.",
-        "errorTitle": "Error",
+        "error": "Error",
         "loadFail": "Failed to load farm data: {message}",
         "successTitle": "Farm Updated",
         "successDescription": "{farmName} has been successfully updated.",
@@ -775,6 +860,283 @@
         "updateFailed": "Update Failed",
         "couldNotUpdate": "Could not update the batch status."
       }
+    },
+    "laborPage": {
+      "title": "Labor Management",
+      "description": "Track hours, payments, and details for all your farm workers.",
+      "addWorker": "Add New Worker",
+      "workerName": "Worker Name",
+      "saveWorker": "Save Worker",
+      "noWorkers": "No workers have been added yet.",
+      "hoursLogged": "Hours Logged",
+      "totalPaid": "Total Paid",
+      "logHours": "Log Hours",
+      "logPayment": "Log Payment",
+      "viewDetails": "View Details",
+      "logHoursFor": "Log Hours for",
+      "hoursWorked": "Hours Worked",
+      "date": "Date",
+      "pickDate": "Pick a date",
+      "taskDescription": "Task Description (optional)",
+      "logPaymentFor": "Log Payment for",
+      "amountPaid": "Amount Paid",
+      "toast": {
+        "errorTitle": "Error",
+        "fetchWorkersError": "Could not load worker data.",
+        "nameRequired": "Worker name is required.",
+        "workerAdded": "Worker added successfully.",
+        "hoursLogged": "Hours logged successfully.",
+        "paymentLoggedTitle": "Payment Logged",
+        "paymentLoggedDescription": "The payment has been recorded and an expense entry was created in your financials."
+      },
+      "workerDetailPage": {
+        "backLink": "Back to Labor Management",
+        "notFoundTitle": "Worker Not Found",
+        "notFoundDescription": "The worker profile you are looking for does not exist.",
+        "goBackButton": "Go Back",
+        "workLogsTitle": "Work Logs",
+        "paymentHistoryTitle": "Payment History",
+        "noWorkLogs": "No work hours have been logged for this worker.",
+        "noPayments": "No payments have been recorded for this worker.",
+        "table": {
+          "date": "Date",
+          "hours": "Hours",
+          "task": "Task",
+          "amount": "Amount"
+        },
+        "toasts": {
+          "errorTitle": "Error"
+        }
+      }
+    },
+    "familyFarmPage": {
+      "backLink": "Back to Farm Hub",
+      "title": "The 200sqm Integrated Family Farm Model",
+      "description": "A blueprint for a self-sufficient, high-yield, small-scale farming system.",
+      "intro": "This model integrates various agricultural practices to create a closed-loop, regenerative system on just 200 square meters. It is designed to provide food security, nutritional diversity, and a potential income stream for a family, all while improving the environment.",
+      "diagramCaption": "Conceptual layout of the integrated farm model.",
+      "detailsTitle": "Key Details",
+      "principlesTitle": "Core Principles",
+      "conclusion": {
+        "title": "A Model of Resilience and Abundance",
+        "content": [
+          "This 200sqm model demonstrates that even with limited space, it is possible to create a highly productive and sustainable agricultural system.",
+          "By integrating various elements and focusing on soil health, resource recycling, and biodiversity, a family can significantly enhance their food security and economic well-being.",
+          "DamDoh is committed to sharing and supporting models like this to empower communities worldwide."
+        ]
+      },
+      "zones": [
+        {
+          "id": "overall-layout",
+          "title": "Overall Layout & Design",
+          "icon": "LayoutGrid",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "Diagram of the 200sqm farm layout",
+          "dataAiHint": "farm layout diagram",
+          "description": [
+            "The 200sqm (e.g., 10m x 20m) plot is designed for maximum efficiency and synergy between components. The layout minimizes wasted space and places related elements close to each other to reduce labor."
+          ],
+
+          "details": [
+            {
+              "title": "Zoning",
+              "content": [
+                "The farm is divided into zones: residential (Zone 0), intensive vegetable beds (Zone 1), poultry/small livestock (Zone 2), and a perimeter for fruit trees/living fences (Zone 3)."
+              ]
+            },
+            {
+              "title": "Water Management",
+              "content": [
+                "A central water collection point (rainwater harvesting tank) is crucial. Swales and contour planting can be used to manage water flow and prevent erosion."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "intensive-beds",
+          "title": "Intensive Vegetable Beds",
+          "icon": "Sprout",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "Raised vegetable beds with diverse crops",
+          "dataAiHint": "raised garden beds",
+          "description": [
+            "The core food production area. Utilizes biointensive methods like raised beds, close spacing, and succession planting to maximize yield in a small area. This area provides the family's daily vegetable needs."
+          ],
+          "details": [
+            {
+              "title": "Crop Rotation",
+              "content": [
+                "Crops are rotated between beds each season to prevent nutrient depletion and pest buildup. (e.g., Legumes -> Leafy Greens -> Root Vegetables -> Fruiting Vegetables)."
+              ]
+            },
+            {
+              "title": "Companion Planting",
+              "content": [
+                "Beneficial plants are grown together. For example, planting marigolds to deter nematodes or basil near tomatoes to improve flavor and repel pests."
+              ]
+            },
+            {
+              "title": "Vertical Gardening",
+              "content": [
+                "Trellises and vertical structures are used for climbing plants like beans, cucumbers, and passion fruit to save ground space."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "livestock",
+          "title": "Small Livestock Integration",
+          "icon": "Bird",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A small chicken coop and a fish pond",
+          "dataAiHint": "chicken coop farm",
+          "description": [
+            "A small flock of chickens (5-10) and a mini fish pond (aquaponics) are integrated. Chickens provide eggs and meat, while their manure is a key ingredient for compost. The fish provide protein, and their nutrient-rich water can be used to fertilize plants."
+          ],
+          "details": [
+            {
+              "title": "Chicken Tractor",
+              "content": [
+                "A movable coop ('chicken tractor') can be used to till and fertilize vegetable beds between plantings."
+              ]
+            },
+            {
+              "title": "Aquaponics System",
+              "content": [
+                "Water from the fish pond, rich in ammonia, is pumped to grow beds where bacteria convert it to nitrates, which fertilize the plants. The clean water is then returned to the fish."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "compost-recycling",
+          "title": "Compost & Nutrient Recycling",
+          "icon": "Recycle",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A three-bin compost system with kitchen scraps and yard waste",
+          "dataAiHint": "compost bin",
+          "description": [
+            "This is the heart of the farm's fertility. All organic 'waste'—kitchen scraps, animal manure, crop residues, and weeds—is composted. This creates a closed-loop system, eliminating the need for external chemical fertilizers and improving soil health year after year."
+          ],
+          "details": [
+            {
+              "title": "Compost System",
+              "content": [
+                "A simple three-bin system allows for continuous production: one bin for adding new material, one for active composting, and one for finished compost."
+              ]
+            },
+            {
+              "title": "Vermicomposting",
+              "content": [
+                "A worm farm (vermicompost) can be added to process kitchen scraps even faster, producing valuable worm castings and 'worm tea' fertilizer."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "fgw-principles",
+          "title": "Integration with FGW Principles",
+          "icon": "Heart",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A field covered in thick mulch, known as God's Blanket.",
+          "dataAiHint": "mulch sustainable agriculture",
+          "description": [
+            "This model heavily incorporates principles from Farming God's Way (FGW) to ensure sustainability and high yields with minimal external inputs."
+          ],
+          "subSections": [
+            {
+              "title": "No Tillage",
+              "content": [
+                "The vegetable beds are permanent and are never tilled. This protects the soil structure and the delicate web of microbial life within it."
+              ]
+            },
+            {
+              "title": "God's Blanket",
+              "content": [
+                "All soil surfaces are kept covered with a thick layer of organic mulch (e.g., straw, wood chips, leaves) at all times. This conserves moisture, suppresses weeds, and feeds the soil as it decomposes."
+              ]
+            },
+            {
+              "title": "High Standards",
+              "content": [
+                "All tasks are done with excellence and on time. This includes timely planting, consistent watering, active composting, and prompt harvesting to maximize the potential of the small plot."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "seedStartingPage": {
+      "backLink": "Back to Farm Hub",
+      "title": "The Ultimate Guide to Starting Seeds Indoors",
+      "description": "Give your crops a head start and extend your growing season by mastering the art of starting seeds indoors.",
+      "intro": "Starting seeds indoors is a rewarding process that can lead to healthier plants and earlier harvests. By controlling the initial environment, you protect your seedlings from pests, diseases, and unpredictable weather. This guide covers the essentials to get you started.",
+      "sections": [
+        {
+          "id": "why-start-indoors",
+          "title": "Why Start Seeds Indoors?",
+          "icon": "Lightbulb",
+          "intro": "Starting seeds inside offers several key advantages over direct sowing in the garden.",
+          "points": [
+            { "term": "Longer Growing Season", "def": "Start weeks or months before your last frost date, allowing crops that require a long season (like tomatoes and peppers) to mature." },
+            { "term": "Higher Germination Rates", "def": "You can control temperature, moisture, and light to create the perfect conditions for seeds to sprout." },
+            { "term": "Pest & Disease Protection", "def": "Young, vulnerable seedlings are protected from cutworms, slugs, and fungal diseases common in cool, damp spring soil." },
+            { "term": "Cost Savings", "def": "A packet of seeds is far cheaper than buying individual plant starts from a nursery." }
+          ]
+        },
+        {
+          "id": "essential-supplies",
+          "title": "Essential Supplies",
+          "icon": "Package",
+          "intro": "You don't need expensive equipment, but having the right supplies makes a huge difference.",
+          "points": [
+            { "term": "Seeds", "def": "Choose high-quality seeds appropriate for your climate and growing season." },
+            { "term": "Containers", "def": "Use seed starting trays, peat pots, soil blocks, or even recycled containers like yogurt cups (ensure they have drainage holes)." },
+            { "term": "Seed Starting Mix", "def": "Use a sterile, lightweight mix designed for starting seeds. Avoid heavy garden soil, which can harbor diseases and compact easily." },
+            { "term": "Light Source", "def": "A sunny, south-facing window can work, but a simple shop light with fluorescent or LED bulbs provides more consistent, direct light and prevents 'leggy' seedlings." },
+            { "term": "Water", "def": "A spray bottle or a gentle watering can to water seedlings without dislodging them." },
+            { "term": "Heat Mat (Optional)", "def": "Beneficial for heat-loving plants like peppers and eggplants to speed up germination." }
+          ]
+        },
+        {
+          "id": "planting-process",
+          "title": "Step-by-Step Planting Process",
+          "icon": "Grid",
+          "intro": "Follow these steps for successful seed starting:",
+          "steps": [
+            "<strong>Moisten Your Mix:</strong> Before filling your containers, put your seed starting mix in a tub and slowly add warm water until it's damp but not waterlogged, like a wrung-out sponge.",
+            "<strong>Fill Containers:</strong> Fill your containers with the moistened mix and gently tamp it down. Do not compact it tightly.",
+            "<strong>Sow Seeds:</strong> Plant seeds to the depth recommended on the seed packet. A general rule is to plant a seed twice as deep as it is wide. Place 2-3 seeds per cell or pot.",
+            "<strong>Cover & Label:</strong> Lightly cover the seeds with more mix. Label your containers clearly with the crop name and planting date.",
+            "<strong>Water Gently:</strong> Water the surface gently with your spray bottle to ensure good seed-to-soil contact.",
+            "<strong>Provide Warmth:</strong> Cover the trays with a plastic dome or plastic wrap to retain humidity. Place them in a warm spot or on a heat mat until they germinate."
+          ]
+        },
+        {
+          "id": "caring-for-seedlings",
+          "title": "Caring for Your Seedlings",
+          "icon": "Leaf",
+          "intro": "Once your seeds sprout, their needs change.",
+          "steps": [
+            "<strong>Provide Light:</strong> As soon as the first seedlings emerge, remove the plastic cover and place them under direct light. Keep lights just 2-3 inches above the tops of the plants for 14-16 hours a day.",
+            "<strong>Water Correctly:</strong> Keep the soil consistently moist but not waterlogged. It's best to water from the bottom by placing your trays in a shallow pan of water. This encourages strong root growth.",
+            "<strong>Thin Seedlings:</strong> Once the seedlings have their first set of 'true leaves' (the second set that appears), choose the strongest seedling in each cell and snip the others at the soil line with scissors. Do not pull them out, as this can disturb the roots of the remaining seedling.",
+            "<strong>Fertilize Lightly:</strong> After 3-4 weeks, you can begin feeding your seedlings with a half-strength liquid organic fertilizer, such as fish emulsion or compost tea, once a week."
+          ]
+        },
+        {
+          "id": "hardening-off",
+          "title": "Hardening Off & Transplanting",
+          "icon": "Sun",
+          "intro": "This is a critical step to acclimate your indoor-grown plants to the outdoor environment.",
+          "steps": [
+            "<strong>Start Gradually:</strong> About 7-10 days before you plan to plant them in the garden, start taking your seedlings outside. Begin with just 1-2 hours in a shady, protected spot.",
+            "<strong>Increase Exposure:</strong> Each day, gradually increase the amount of time they spend outside and slowly introduce them to more direct sunlight and wind.",
+            "<strong>Reduce Water:</strong> Slightly reduce watering during this period, but don't let them wilt completely.",
+            "<strong>Transplant:</strong> After 7-10 days of hardening off, choose an overcast day or late afternoon to transplant your seedlings into the garden. Water them in well immediately after planting."
+          ]
+        }
+      ]
     }
   }
 }

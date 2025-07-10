@@ -1,194 +1,856 @@
 
 {
-  "FeedItemCard": {
-    "signInToLikeToast": "អ្នកត្រូវតែចូលដើម្បីចូលចិត្តការបង្ហោះ",
-    "repostPlaceholderToast": "មុខងារបង្ហោះឡើងវិញនឹងមកដល់ក្នុងពេលឆាប់ៗនេះ!",
-    "signInToVoteToast": "អ្នកត្រូវតែចូលដើម្បីបោះឆ្នោត",
-    "voteSuccessToast": "បានរាប់ការបោះឆ្នោតរបស់អ្នកហើយ!",
-    "voteErrorToast": "មិនអាចរក្សាទុកការបោះឆ្នោតបានទេ",
-    "editPost": "កែសម្រួលការបង្ហោះ",
-    "deletePost": "លុបការបង្ហោះ",
-    "like": "ចូលចិត្ត",
-    "comment": "យោបល់",
-    "repost": "បង្ហោះឡើងវិញ",
-    "likes": "{count, plural, =0 {ការចូលចិត្ត} =1 {ការចូលចិត្ត} other {{count} ការចូលចិត្ត}}",
-    "comments": "{count, plural, =0 {មតិយោបល់} =1 {មតិយោបល់} other {{count} មតិយោបល់}}",
-    "loadCommentsErrorToast": "មិនអាចផ្ទុកមតិយោបល់បានទេ",
-    "noComments": "ជាមនុស្សដំបូងគេដែលបញ្ចេញមតិ!",
-    "loadingComments": "កំពុងផ្ទុកមតិយោបល់...",
-    "loadMoreComments": "ផ្ទុកមតិយោបល់បន្ថែមទៀត",
-    "writeCommentPlaceholder": "បន្ថែមមតិយោបល់...",
-    "postButton": "បង្ហោះ",
-    "votes": "{count, plural, =0 {សំឡេងឆ្នោត} =1 {សំឡេងឆ្នោត} other {{count} សំឡេងឆ្នោត}}"
-  },
-  "CreatePostModal": {
-    "title": "បង្កើតការបង្ហោះថ្មី",
-    "description": "ចែករំលែកព័ត៌មានថ្មីៗ សួរសំណួរ ឬចាប់ផ្តើមការសន្ទនាជាមួយសហគមន៍",
-    "yourName": "ឈ្មោះរបស់អ្នក",
-    "shareUpdate": "ចែករំលែកព័ត៌មានថ្មីៗ",
-    "placeholder": "តើអ្នកកំពុងគិតអ្វី?",
-    "selectedFile": "ឯកសារដែលបានជ្រើសរើស៖",
-    "pollOptionsLabel": "ជម្រើសការបោះឆ្នោត",
-    "pollOptionPlaceholder": "ជម្រើស {index}",
-    "addOptionButton": "បន្ថែមជម្រើស",
-    "pollNote": "អនុញ្ញាតឱ្យមានជម្រើសអតិបរមា {maxOptions}",
-    "photoVideo": "រូបថត/វីដេអូ",
-    "agriEvent": "ព្រឹត្តិការណ៍កសិកម្ម",
-    "shareDocumentButton": "ចែករំលែកឯកសារ",
-    "createPollButton": "បង្កើតការបោះឆ្នោត",
-    "postButton": "បង្ហោះ",
-    "pollOptionsError": "ការបោះឆ្នោតត្រូវតែមានอย่างหอចណាស់ 2 ជម្រើសដែលមិនទទេ",
-    "emptyPostError": "ការបង្ហោះរបស់អ្នកមិនត្រូវទទេទេ"
-  },
-  "admin": {
-    "layout": {
-      "title": "ផ្ទាំងគ្រប់គ្រង",
-      "description": "ឧបករណ៍គ្រប់គ្រងវេទิกា និងការសម្របសម្រួលមាតิกา។",
-      "contentManagement": "មាតิกา",
-      "reports": "របាយការណ៍"
-    },
-    "reports": {
-      "generate": {
-        "title": "បង្កើតរបាយការណ៍ថ្មី",
-        "description": "ជ្រើសរើសប៉ារ៉ាម៉ែត្រเพื่อបង្កើតរបាយការណ៍อนุโลมภาพ ឬសកម្មภาพថ្មី។",
-        "reportTypeLabel": "ប្រភេទរបាយការណ៍",
-        "reportTypeVti": "សេចក្តីសង្เขป ព្រឹត្តិការណ៍ VTI",
-        "targetUserLabel": "អ្នកប្រើប្រាស់គោលដៅ",
-        "userSearchPlaceholder": "ស្វែងរកអ្នកប្រើប្រាស់ตามឈ្មោះ หรือអ៊ីមែល...",
-        "dateRangeLabel": "ចន្លោះកាលបរិច្ឆេទ",
-        "datePlaceholder": "ជ្រើសរើសចន្លោះកាលបរិច្ឆេទ",
-        "submitButton": "បង្កើតរបាយการณ์"
-      },
-      "list": {
-        "title": "របាយการณ์ที่ได้สร้างใหม่ៗ",
-        "description": "មើល និងទាញយករបាយการณ์ที่ได้สร้างពីមុន។",
-        "table": {
-          "reportType": "ประเภทរបាយการณ์",
-          "generatedFor": "สร้างสำหรับ",
-          "date": "កាលបរិច្ឆេទ",
-          "status": "ស្ថានភាព",
-          "actions": "សកម្មភាព",
-          "viewButton": "មើល"
-        },
-        "noReports": "មិនទាន់มีរបាយการณ์ណាមួយត្រូវបានสร้างនៅឡើយទេ។"
-      },
-      "toast": {
-        "loadErrorTitle": "កំហុសក្នុងការផ្ទុករបាយการณ์",
-        "formIncompleteTitle": "ทម្រង់មិនពេញលេญ",
-        "formIncompleteDescription": "សូមជ្រើសរើសប្រភេទរបាយการณ์ អ្នកប្រើប្រាស់គោលដៅ និងចន្លោះកาลបរិច្ឆេទ។",
-        "generateSuccessTitle": "ការสร้างរបាយการណ៍បានจับផ្តើម",
-        "generateSuccessDescription": "របាយការណ៍កំពុងត្រូវបានสร้าง ហើយនឹងបង្ហាញក្នុងบัญชีខាងក្រោមក្នុងពេលឆាប់ៗនេះ។",
-        "generateErrorTitle": "การสร้างរបាយการณ์បានបរาជ័យ"
-      }
-    }
-  },
-  "AppFooter": {
-    "tagline": "ការតอ่กน่ខាยច ា้រត มูลคา ่กສិกรมส์ าหร ั่ป อនាคตประเกอบด ว ้รនត ีสภา พีอ ฟอมา ่ต ก",
-    "damdohTitle": "ដាំดอห์ន",
-    "aboutLabel": "อภิเษกเา",
-    "contactLabel": "ตดิ ตอ",
-    "careersLabel": "อาชีพ",
-    "blogLabel": "บล็อ ก",
-    "resourcesTitle": "ธนบดด ว น",
-    "helpCenterLabel": "មតชฌមณฑลจ ว น",
-    "communityGuidelinesLabel": "โกณจกรำกะห์น้ปทาห์นំ",
-    "industryNewsLabel": "ព័ត៌មានอุตสาหกรรม",
-    "eventsLabel": "ปวดการណ៍",
-    "talentExchangeLabel": "การเ่าขกั าเ่าร นนว",
-    "legalTitle": "กัร สึ่บกา ป",
-    "privacyPolicyLabel": "โกਣจ รำกะห์นี่พาด าพทราดน",
-    "termsOfServiceLabel": "กัตะกัคั ะหนะกีกากียีกាห์น ีสีปาลี",
-    "copyright": "© {year} {appName}. รักษารก ิสิก ธ์คิย้าค์น ค",
-    "getMobileApp": "เกีีะภากั พีีีีีะข",
-    "googlePlayAlt": "เหีิะจ าช ี่ีีลี ลีบ เี้เย",
-    "appStoreAlt": "ภาวหนา สาลีบ"
-  },
   "AppHeader": {
-    "searchPlaceholder": "สี่วีี ะย...",
-    "home": "ปี กากี ส ีะ",
-    "network": "บ ัาหน",
-    "farmMgmt": "กะsรี ยียก",
-    "marketplace": "ธี ย์กกา",
-    "talentExchange": "เยีน เกีย",
-    "traceability": "ตาหนกา",
-    "forums": "เวที พนุก",
-    "sustainability": "นีร นนภิพ",
-    "notifications": "การีา ตะกียีก",
-    "messages": "สี่ สี่ เกิกา ส",
-    "wallet": "ยะกากี้พี",
-    "signIn": "ปี กิกา ป",
-    "signUp": "สี่ ปา าภี",
-    "myProfile": "ประวีพ วีมีี",
-    "myOrders": "ยาการีียียก ธี มีี ส",
-    "settings": "การกา หีน",
-    "helpCenter": "ช์ ีีีีก",
-    "logOut": "จำกกากี ีป ส",
-    "switchToLightAria": "บทดวเี กี ส",
-    "switchToDarkAria": "บทดีดี ส"
+    "searchPlaceholder": "ស្វែងរក...",
+    "home": "ទំព័រដើម",
+    "network": "បណ្តាញ",
+    "farmMgmt": "កសិដ្ឋាន",
+    "marketplace": "ទីផ្សារ",
+    "talentExchange": "ទេពកោសល្យ",
+    "traceability": "ការតាមដាន",
+    "forums": "វេទិកា",
+    "sustainability": "និរន្តរភាព",
+    "notifications": "ការជូនដំណឹង",
+    "messages": "សារ",
+    "wallet": "កាបូប",
+    "signIn": "ចូល",
+    "signUp": "ចុះឈ្មោះ",
+    "myProfile": "ប្រវត្តិរូបខ្ញុំ",
+    "myOrders": "ការបញ្ជាទិញរបស់ខ្ញុំ",
+    "settings": "ការកំណត់",
+    "helpCenter": "ជំនួយ",
+    "logOut": "ចាកចេញ",
+    "switchToLightAria": "ប្តូរទៅជារបៀបភ្លឺ",
+    "switchToDarkAria": "ប្តូរទៅជារបៀបងងឹត"
   },
   "MobileBottomNav": {
-    "home": "จี กากี ส ีะ",
-    "market": "ธี ย์กกา",
-    "search": "สี่วีี ะ",
-    "forums": "เวที พนุก",
-    "profile": "ประวี พี"
+    "home": "ទំព័រដើម",
+    "market": "ទីផ្សារ",
+    "search": "ស្វែងរក",
+    "forums": "វេទិកា",
+    "profile": "ប្រវត្តិរូប"
   },
   "OfflineIndicator": {
     "tooltip": {
-      "syncing": "ก์ ีะพีวีว กัมส ลีก์ ม์ ดาก กี ส คัมส มีด...",
-      "onlinePending": "ก์ มีพีวีว การกา พีด ดา ส ลี กะมส์ มีพีท กี ส ปี์ ก",
-      "onlineSynced": "เยีย ส ลีก์ ส เยีย ีพี ดาตาตา กัมส ลี กี ส ัีท",
-      "offline": "ยี ยี ลิก์ จิตทลี รีก์ คีส า สมี"
+      "syncing": "កំពុងធ្វើសមកាលកម្ម {count} សកម្មភាពដែលមិនទាន់សម្រេច...",
+      "onlinePending": "{count} សកម្មភាពមិនទាន់សម្រេច។ ការធ្វើសមកាលកម្មនឹងចាប់ផ្តើមក្នុងពេលឆាប់ៗនេះ។",
+      "onlineSynced": "អ្នកកំពុងអនឡាញ ហើយទិន្នន័យទាំងអស់ត្រូវបានធ្វើសមកាលកម្ម។",
+      "offline": "អ្នកកំពុងនៅក្រៅបណ្តាញ។ {count} សកម្មភាពอยู่ในคิว។"
     },
     "toast": {
       "online": {
-        "title": "ยี ส ปีีสาลี ส !",
-        "description": "ยะ ลึก บ ูีย ส ทร อะ ปี"
+        "title": "អ្នកបានត្រលប់មកអនឡាញវិញហើយ!",
+        "description": "ការเชื่อมต่อរបស់អ្នកត្រូវបានស្តារឡើងវិញ។"
       },
       "offline": {
-        "title": "ปี ส ลีก์ ดีจิ ท ยา ป",
-        "description": "ดี จา ดาทร าีย ยะ ดีย คาคา พ์ลี ม์ า สิก"
+        "title": "អ្នកកំពុងនៅក្រៅបណ្តាញ",
+        "description": "ទិន្នន័យនឹងត្រូវបានរក្សាទុកក្នុងមូលដ្ឋាន ហើយធ្វើសមកាលកម្មនៅពេលអ្នកភ្ជាប់ឡើងវិញ។"
       },
       "syncing": {
-        "title": "กุมม ลีม์ ส ยา ดา ส ",
-        "description": "จัมพ์ท ลิ จิ ท ยิ ส ธา ส"
+        "title": "កំពុងធ្វើសមកាលកម្មទិន្នន័យ",
+        "description": "កំពុងอัปโหลด {count} សកម្មភាពออฟไลน์ទៅเซิร์ฟเวอร์។"
       },
       "synced": {
-        "title": "กมส์ ดีสลีนส",
-        "description": "ยี ยา ลี กิ ส ส กิา"
+        "title": "ការធ្វើសមកាលកម្មបានបញ្ចប់",
+        "description": "ទិន្នន័យออฟไลน์របស់អ្នកត្រូវបានរក្សាទុកដោយជោគជ័យ។"
       },
       "syncFailed": {
-        "title": "กียมส์ ดีย จาลี คาค",
-        "description": "ลูบีส ยา ดาทาจิก ท"
+        "title": "ការធ្វើសមកាលកម្មបានបរាជ័យ",
+        "description": "មិនអាចធ្វើសមកាលកម្មទិន្នន័យออฟไลน์បានទេ។ នឹងព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
       },
       "queued": {
-        "title": "กิา ธกากา พ์ ดียิส",
-        "description": "กา ท ลีจี บูีย กี ท คียมส์ ส จิ"
+        "title": "សកម្មភាពត្រូវបានដាក់ในคิว",
+        "description": "សកម្មភាពនេះនឹងត្រូវបានបញ្ចប់នៅពេលអ្នកกลับมาออนไลน์។"
       }
     }
   },
   "LanguageSwitcher": {
-    "toggle": "ប ្ថ"
+    "toggle": "ប្តូរភាសា"
   },
   "LandingPage": {
     "hero": {
-      "title": "ການาียี ส ",
-      "subtitle": "กิย จีย ส ซา ส พีดลี ดี ดา ส จ ส สส ยีทิ สส",
-      "getStartedButton": "กีกส์ ส ส",
-      "learnMoreButton": "สกสสส"
+      "title": "ការស្រមៃឡើងវិញអំពីកសិកម្មជាមួយ {appName}",
+      "subtitle": "ការเชื่อมต่อโซ่คุณค่าทางการเกษตรทั้งหมด ตั้งแต่เมล็ดพันธุ์จนถึงการขาย ด้วยเครื่องมือสำหรับการตรวจสอบย้อนกลับ การค้า และความไว้วางใจ។",
+      "getStartedButton": "ចាប់ផ្តើម",
+      "learnMoreButton": "เรียนรู้เพิ่มเติม"
     },
     "features": {
-      "title": "เวทีมีว พัมีดีมีม์ ทีมี",
-      "subtitle": "ดา ส นีก จ จ ส วดี ดิกิก์ ส ดีย"
+      "title": "แพลตฟอร์มที่เป็นหนึ่งเดียวสำหรับผู้มีส่วนได้ส่วนเสียทั้งหมด",
+      "subtitle": "DamDoh ให้ชุดเครื่องมือแบบบูรณาการเพื่อเสริมสร้างศักยภาพของผู้เข้าร่วมทุกคนในระบบนิเวศทางการเกษตร",
+      "networking": {
+        "title": "เครือข่ายมืออาชีพ",
+        "description": "เชื่อมต่อกับเกษตรกร ผู้ซื้อ ซัพพลายเออร์ และผู้เชี่ยวชาญเพื่อสร้างเครือข่ายมืออาชีพของคุณ"
+      },
+      "marketplace": {
+        "title": "ตลาดโลก",
+        "description": "ซื้อและขายผลิตผล วัตถุดิบ และอุปกรณ์ด้วยความไว้วางใจและความโปร่งใส"
+      },
+      "forums": {
+        "title": "การแบ่งปันความรู้",
+        "description": "เข้าร่วมการสนทนาในชุมชน แบ่งปันข้อมูลเชิงลึก และเรียนรู้จากผู้เชี่ยวชาญในสาขา"
+      },
+      "talent": {
+        "title": "การแลกเปลี่ยนความสามารถ",
+        "description": "ค้นหาหรือเสนอบริการทางการเกษตรเฉพาะทาง ตั้งแต่การให้คำปรึกษาด้านพืชไร่ไปจนถึงการใช้งานเครื่องจักร"
+      }
+    },
+    "forWho": {
+      "badge": "สำหรับทุกคน",
+      "title": "สร้างขึ้นสำหรับห่วงโซ่อุปทานทางการเกษตรทั้งหมด",
+      "description": "ไม่ว่าคุณจะเป็นเกษตรกรรายย่อย ผู้ซื้อรายใหญ่ หรือผู้เชี่ยวชาญด้านพืชไร่ DamDoh มีเครื่องมือที่จะช่วยให้คุณประสบความสำเร็จ",
+      "imageAlt": "ภาพตัดปะของผู้มีส่วนได้ส่วนเสียทางการเกษตรที่หลากหลายโดยใช้แพลตฟอร์ม DamDoh",
+      "farmers": {
+        "title": "สำหรับเกษตรกร",
+        "description": "เข้าถึงตลาด จัดการฟาร์มของคุณ และรับคำแนะนำจากผู้เชี่ยวชาญเพื่อปรับปรุงผลผลิตและรายได้ของคุณ"
+      },
+      "buyers": {
+        "title": "สำหรับผู้ซื้อและธุรกิจ",
+        "description": "จัดหาผลิตผลคุณภาพสูงและตรวจสอบย้อนกลับได้โดยตรงจากผู้ผลิตและปรับปรุงห่วงโซ่อุปทานของคุณ"
+      },
+      "experts": {
+        "title": "สำหรับผู้เชี่ยวชาญและผู้ให้บริการ",
+        "description": "เสนอความเชี่ยวชาญของคุณ ค้นหาลูกค้า และมีส่วนร่วมในภาคเกษตรกรรมที่ยั่งยืนมากขึ้น"
+      }
+    },
+    "cta": {
+      "title": "เข้าร่วมการปฏิวัติทางการเกษตร",
+      "subtitle": "ลงทะเบียนวันนี้และเป็นส่วนหนึ่งของชุมชนระดับโลกที่อุทิศตนเพื่อสร้างอนาคตที่โปร่งใส ยั่งยืน และเจริญรุ่งเรืองมากขึ้นสำหรับการเกษตร",
+      "button": "เข้าร่วม DamDoh วันนี้"
+    }
+  },
+  "AppFooter": {
+    "tagline": "ការតភ្ជាប់ខ្សែសង្វាក់តម្លៃកសិកម្មសម្រាប់อนาคตที่ยั่งยืน",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "เกี่ยวกับเรา",
+    "contactLabel": "ติดต่อ",
+    "careersLabel": "อาชีพ",
+    "blogLabel": "บล็อก",
+    "resourcesTitle": "ทรัพยากร",
+    "helpCenterLabel": "ศูนย์ช่วยเหลือ",
+    "communityGuidelinesLabel": "แนวทางปฏิบัติของชุมชน",
+    "industryNewsLabel": "ข่าวอุตสาหกรรม",
+    "eventsLabel": "กิจกรรม",
+    "talentExchangeLabel": "การแลกเปลี่ยนความสามารถ",
+    "legalTitle": "กฎหมาย",
+    "privacyPolicyLabel": "นโยบายความเป็นส่วนตัว",
+    "termsOfServiceLabel": "ข้อกำหนดในการให้บริการ",
+    "copyright": "© {year} {appName}. สงวนลิขสิทธิ์",
+    "getMobileApp": "รับแอปพลิเคชันมือถือ",
+    "googlePlayAlt": "รับบน Google Play",
+    "appStoreAlt": "ดาวน์โหลดบน App Store"
+  },
+  "searchPage": {
+    "title": "ការค้นហាសាកល",
+    "description": "ค้นหาทุกอย่างบนแพลตฟอร์ม DamDoh ตั้งแต่ผลิตภัณฑ์และบริการไปจนถึงผู้คนและการสนทนา",
+    "placeholder": "ค้นหากาแฟออร์แกนิก ซ่อมรถแทรกเตอร์ หรือผู้ใช้...",
+    "searchButton": "ค้นหา",
+    "popularSearches": "ការค้นหายอดนิยม",
+    "popularSearch1": "ปุ๋ยอินทรีย์",
+    "popularSearch2": "โลจิสติกส์ในเคนยา",
+    "popularSearch3": "ผู้ซื้อกาแฟยุโรป",
+    "popularSearch4": "แรงงานในฟาร์ม",
+    "popularSearch5": "รถแทรกเตอร์ให้เช่า",
+    "modal": {
+      "title": "ការค้นហាសាកល",
+      "placeholder": "ฉันกำลังมองหา...",
+      "searchButton": "ค้นหา",
+      "searchError": "การค้นหาล้มเหลว",
+      "searchErrorDescription": "เกิดข้อผิดพลาดที่ไม่คาดคิดระหว่างการค้นหา โปรดลองอีกครั้ง",
+      "invalidCodeError": "นี่ดูเหมือนจะไม่ใช่รหัส QR ของ DamDoh ที่ถูกต้อง",
+      "scanFailed": "การสแกนล้มเหลว",
+      "scanError": "ข้อผิดพลาดในการสแกน",
+      "scanErrorDescription": "ไม่สามารถอ่านรหัส QR ได้ โปรดลองอีกครั้ง",
+      "interpretationTitle": "การตีความของ AI",
+      "interpretationNotesDefault": "กำลังแสดงผลลัพธ์ทั่วไป",
+      "filtersTitle": "ตัวกรองที่ใช้",
+      "results": {
+        "users": "โปรไฟล์",
+        "marketplaceItems": "ตลาด",
+        "forums": "ฟอรัม",
+        "vti_registry": "รายงานการตรวจสอบย้อนกลับ"
+      },
+      "noResults": "ไม่พบผลลัพธ์สำหรับคำค้นหาของคุณ",
+      "tryAgain": "ลองใช้คำค้นหาอื่นหรือใช้คำหลักที่กว้างขึ้น"
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "ការปลูกฝังความสัมพันธ์ การเก็บเกี่ยวความเจริญรุ่งเรือง",
+      "subtitle": "เรามีภารกิจในการทำให้ห่วงโซ่อุปทานทางการเกษตรทั่วโลกเป็นดิจิทัลและเชื่อมต่อกัน ซึ่งเป็นการเสริมสร้างศักยภาพของผู้มีส่วนได้ส่วนเสียทุกคนตั้งแต่ดินจนถึงชั้นวาง"
+    },
+    "vision": {
+      "title": "วิสัยทัศน์ของเราเพื่ออนาคตที่เชื่อมต่อกัน",
+      "p1": "DamDoh เกิดจากแนวคิดที่เรียบง่ายแต่ทรงพลัง: เทคโนโลยีสามารถลดช่องว่างในโลกเกษตรกรรมได้ เราจินตนาการถึงโลกที่เกษตรกรรายย่อยสามารถเข้าถึงตลาดโลกได้โดยตรง ที่ผู้ซื้อสามารถจัดหาสินค้าด้วยความไว้วางใจที่ตรวจสอบได้ และที่ความรู้ไหลเวียนอย่างอิสระเพื่อสร้างระบบอาหารที่ยั่งยืนและเท่าเทียมกันมากขึ้น",
+      "p2": "เราเป็นมากกว่าแพลตฟอร์ม; เราเป็นชุมชนที่อุทิศตนเพื่อแก้ไขปัญหาสภาพจริงด้วยโซลูชันที่สร้างสรรค์และเน้นผู้ใช้เป็นศูนย์กลาง",
+      "foundersTitle": "จากผู้ก่อตั้ง"
+    },
+    "challenge": {
+      "title": "ภูมิทัศน์ที่กระจัดกระจายของการเกษตร",
+      "description": "ห่วงโซ่อุปทานทางการเกษตรมีความซับซ้อนและมักจะขาดการเชื่อมต่อ ซึ่งก่อให้เกิดความท้าทายมากมายสำหรับทุกคนที่เกี่ยวข้อง",
+      "list": {
+        "knowledge": "ช่องว่างทางข้อมูล: เกษตรกรขาดการเข้าถึงเทคนิคที่ทันสมัยและข้อมูลตลาดแบบเรียลไทม์",
+        "market": "การเข้าถึงตลาด: เกษตรกรรายย่อยประสบปัญหาในการเชื่อมต่อกับตลาดที่ใหญ่ขึ้นและให้ผลกำไรมากขึ้น",
+        "quality": "คุณภาพและความไว้วางใจ: ผู้ซื้อต้องเผชิญกับความไม่แน่นอนเกี่ยวกับคุณภาพของผลิตผล แหล่งกำเนิด และแนวทางการทำฟาร์ม",
+        "logistics": "โลจิสติกส์ที่ไม่มีประสิทธิภาพ: การประสานงานที่ไม่ดีนำไปสู่ต้นทุนที่สูงและการสูญเสียหลังการเก็บเกี่ยวอย่างมีนัยสำคัญ",
+        "financial": "การกีดกันทางการเงิน: การขาดบันทึกที่เป็นทางการเป็นอุปสรรคต่อการเข้าถึงสินเชื่อและการประกันภัย",
+        "climate": "การเปลี่ยนแปลงสภาพภูมิอากาศ: ความไม่แน่นอนที่เพิ่มขึ้นต้องการระบบการทำฟาร์มที่ยืดหยุ่นมากขึ้น",
+        "informal": "เศรษฐกิจนอกระบบ: การขาดบันทึกดิจิทัลเป็นอุปสรรคต่อการเติบโตและการทำให้เป็นทางการ"
+      }
+    },
+    "solution": {
+      "title": "โซลูชันของ DamDoh: ระบบนิเวศแบบบูรณาการ",
+      "description": "เราจัดการกับความท้าทายเหล่านี้โดยการจัดหาแพลตฟอร์มเดียวที่เป็นหนึ่งเดียวพร้อมเครื่องมือสำหรับทุกคน",
+      "list": {
+        "education": "การศึกษาที่ขับเคลื่อนด้วย AI",
+        "ai": "เครือข่ายอัจฉริยะและ AI",
+        "logistics": "โลจิสติกส์แบบบูรณาการ",
+        "financial": "บริการทางการเงิน"
+      }
+    },
+    "beyondTechnology": {
+      "title": "มากกว่าแค่เทคโนโลยี",
+      "list": {
+        "p2p": {
+          "title": "แบบ Peer-to-Peer",
+          "content": "เกษตรกรเชื่อมต่อกับเกษตรกรคนอื่น ๆ เพื่อแบ่งปันความรู้และจัดตั้งสหกรณ์"
+        },
+        "p2b": {
+          "title": "ผู้ผลิตสู่ธุรกิจ",
+          "content": "การเชื่อมโยงโดยตรงระหว่างเกษตรกรกับผู้ซื้อ ผู้แปรรูป และผู้ส่งออก โดยตัดพ่อค้าคนกลางที่ไม่จำเป็นออกไป"
+        },
+        "p2e": {
+          "title": "ผู้ผลิตสู่ผู้เชี่ยวชาญ",
+          "content": "การเข้าถึงนักปฐพีวิทยา ที่ปรึกษาทางการเงิน และผู้ให้บริการโลจิสติกส์เพื่อปรับปรุงการดำเนินงาน"
+        },
+        "p2w": {
+          "title": "ผู้ผลิตสู่โลก",
+          "content": "ช่วยให้เกษตรกรรายย่อยสามารถเข้าร่วมในตลาดโลกด้วยความไว้วางใจและความโปร่งใส"
+        }
+      }
+    },
+    "commitment": {
+      "title": "เข้าร่วมระบบนิเวศที่กำลังเติบโตของเรา",
+      "p1": "ความมุ่งมั่นของเราคือต่อผู้คนที่เลี้ยงโลก ด้วยการจัดหาเครื่องมือดิจิทัลที่พวกเขาต้องการ เราเชื่อว่าเราสามารถส่งเสริมภาคเกษตรกรรมที่ยืดหยุ่น ให้ผลกำไร และยั่งยืนมากขึ้นสำหรับคนรุ่นต่อไป",
+      "p2": "ไม่ว่าคุณจะปลูกเมล็ดพันธุ์ ซื้อจำนวนมาก หรือให้ทุนแก่ฟาร์ม คุณมีที่ในชุมชน DamDoh",
+      "p3": "เติบโตไปด้วยกัน",
+      "button": "สร้างโปรไฟล์ของคุณ"
+    }
+  },
+  "Auth": {
+    "signUpWelcome": "เข้าร่วมเครือข่ายเกษตรกรรม {appName}",
+    "signUpTitle": "สร้างบัญชี",
+    "signUpDescription": "ป้อนรายละเอียดของคุณเพื่อเริ่มต้น",
+    "nameLabel": "ชื่อเต็ม",
+    "namePlaceholder": "เจน โด",
+    "roleLabel": "บทบาทหลักของคุณ",
+    "rolePlaceholder": "เลือกบทบาทของคุณ...",
+    "emailLabel": "อีเมล",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "รหัสผ่าน",
+    "passwordPlaceholder": "••••••••",
+    "confirmPasswordLabel": "ยืนยันรหัสผ่าน",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "กำลังสร้างบัญชี...",
+    "signUpButton": "ลงทะเบียน",
+    "alreadyHaveAccountPrompt": "มีบัญชีอยู่แล้ว?",
+    "signInLink": "เข้าสู่ระบบ",
+    "signUpLink": "ลงทะเบียน",
+    "signInWelcome": "ยินดีต้อนรับกลับสู่ {appName}",
+    "signInTitle": "เข้าสู่ระบบ",
+    "signInDescription": "ป้อนข้อมูลประจำตัวของคุณเพื่อเข้าถึงบัญชีของคุณ",
+    "forgotPasswordLink": "ลืมรหัสผ่าน?",
+    "signingInButton": "กำลังเข้าสู่ระบบ...",
+    "signInButton": "เข้าสู่ระบบ",
+    "noAccountPrompt": "ไม่มีบัญชี?",
+    "recoverWithUniversalIdPrompt": "กู้คืนบัญชีด้วยรหัสสากล",
+    "forgotPasswordResetPrompt": "รีเซ็ตรหัสผ่าน {appName} ของคุณ",
+    "forgotPasswordTitle": "ลืมรหัสผ่าน",
+    "forgotPasswordDescription": "ไม่ต้องกังวล เราจะส่งคำแนะนำในการรีเซ็ตให้คุณ",
+    "sendResetLinkButton": "ส่งลิงก์รีเซ็ต",
+    "sendingEmailButton": "กำลังส่ง...",
+    "rememberPasswordPrompt": "จำรหัสผ่านของคุณได้แล้ว?",
+    "error": "ข้อผิดพลาด",
+    "forgotPassword": {
+      "emailSentTitle": "ตรวจสอบอีเมลของคุณ",
+      "emailSentDescription": "ลิงก์รีเซ็ตรหัสผ่านได้ถูกส่งไปยัง {email}",
+      "emailSentDescriptionIfAccountExists": "หากมีบัญชีที่ใช้ {email} อยู่ ลิงก์รีเซ็ตรหัสผ่านได้ถูกส่งไปแล้ว",
+      "successTitle": "ส่งอีเมลแล้ว!",
+      "successDescription": "โปรดตรวจสอบกล่องจดหมายของคุณ (และโฟลเดอร์สแปม) เพื่อหารหัสผ่านรีเซ็ต",
+      "errors": {
+        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
+        "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
+        "tooManyRequests": "มีการร้องขอมากเกินไป โปรดลองอีกครั้งในภายหลัง",
+        "default": "ไม่สามารถส่งอีเมลรีเซ็ตได้"
+      }
+    },
+    "resetPasswordPrompt": "ตั้งรหัสผ่านใหม่สำหรับบัญชี {appName} ของคุณ",
+    "resetPasswordTitle": "รีเซ็ตรหัสผ่านของคุณ",
+    "resetPasswordDescription": "ป้อนรหัสผ่านใหม่ที่ปลอดภัยสำหรับบัญชีของคุณ",
+    "newPasswordLabel": "รหัสผ่านใหม่",
+    "newPasswordPlaceholder": "••••••••",
+    "resettingPasswordButton": "กำลังรีเซ็ต...",
+    "resetPasswordButton": "รีเซ็ตรหัสผ่าน",
+    "resetPassword": {
+      "successTitle": "รีเซ็ตรหัสผ่านสำเร็จ!",
+      "successDescription": "ตอนนี้คุณสามารถเข้าสู่ระบบด้วยรหัสผ่านใหม่ของคุณได้แล้ว",
+      "successRedirect": "คุณจะถูกนำไปยังหน้าเข้าสู่ระบบในไม่ช้า",
+      "errors": {
+        "missingCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้อง โปรดขอลิงก์ใหม่",
+        "missingCodeTitle": "ลิงก์ไม่ถูกต้อง",
+        "missingCodeDescription": "ลิงก์รีเซ็ตรหัสผ่านหายไปหรือไม่ถูกต้อง โปรดกลับไปที่หน้า 'ลืมรหัสผ่าน' เพื่อขอลิงก์ใหม่",
+        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
+        "invalidOrExpiredCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้องหรือหมดอายุแล้ว โปรดขอลิงก์ใหม่",
+        "userDisabled": "บัญชีผู้ใช้นี้ถูกปิดใช้งาน",
+        "userNotFound": "ไม่พบผู้ใช้ที่ตรงกับลิงก์รีเซ็ตนี้",
+        "weakPassword": "รหัสผ่านใหม่ไม่รัดกุมพอ",
+        "default": "ไม่สามารถรีเซ็ตรหัสผ่านได้"
+      }
+    },
+    "recoverPage": {
+      "title": "การกู้คืนบัญชี",
+      "description": "เข้าถึงบัญชีของคุณอีกครั้งด้วยความช่วยเหลือจากเพื่อนที่เชื่อถือได้",
+      "howItWorksTitle": "การกู้คืนทางสังคมทำงานอย่างไร",
+      "step1": "ป้อนหมายเลขโทรศัพท์ของคุณเพื่อเริ่มเซสชันการกู้คืน",
+      "step2": "แสดงรหัส QR ที่สร้างขึ้นให้เพื่อนที่เชื่อถือได้ซึ่งใช้ DamDoh ด้วย",
+      "step3": "เพื่อนของคุณสแกนรหัสด้วยแอปของพวกเขาเพื่อยืนยันตัวตนของคุณ",
+      "startButton": "เริ่มการกู้คืน",
+      "scanTitle": "ขอให้เพื่อนสแกน",
+      "scanDescription": "ให้การเชื่อมต่อที่เชื่อถือได้ในเครือข่าย DamDoh ของคุณสแกนรหัส QR นี้เพื่อยืนยันตัวตนของคุณ",
+      "scanNote": "รหัสนี้เป็นรหัสชั่วคราวและจะหมดอายุใน 10 นาที",
+      "startOverButton": "เริ่มต้นใหม่"
+    }
+  },
+  "networkPage": {
+    "title": "เครือข่ายผู้มีส่วนได้ส่วนเสีย",
+    "description": "ค้นพบและเชื่อมต่อกับเกษตรกร ผู้ซื้อ ผู้ให้บริการ และผู้เชี่ยวชาญทั่วทั้งห่วงโซ่คุณค่าทางการเกษตร",
+    "myNetworkButton": "เครือข่ายของฉัน",
+    "agentToolsButton": "เครื่องมือตัวแทน",
+    "aiSuggestionsTitle": "คำแนะนำที่ขับเคลื่อนด้วย AI",
+    "aiSuggestionsDescription": "จากโปรไฟล์ของคุณ นี่คือบางคนที่คุณอาจต้องการเชื่อมต่อด้วย",
+    "browseAllTitle": "เรียกดูผู้มีส่วนได้ส่วนเสียทั้งหมด",
+    "browseAllDescription": "ใช้ตัวกรองด้านล่างเพื่อค้นหาบุคคลหรือธุรกิจที่เฉพาะเจาะจงในเครือข่าย",
+    "searchPlaceholder": "ค้นหาตามชื่อหรือคำสำคัญ...",
+    "locationPlaceholder": "กรองตามสถานที่...",
+    "rolePlaceholder": "กรองตามบทบาท...",
+    "allRoles": "ทุกบทบาท",
+    "noStakeholdersFound": "ไม่พบผู้มีส่วนได้ส่วนเสีย",
+    "noStakeholdersHint": "ลองปรับตัวกรองการค้นหาของคุณหรือกลับมาตรวจสอบอีกครั้งในภายหลัง",
+    "connect": "เชื่อมต่อ",
+    "profile": "โปรไฟล์",
+    "follow": "ติดตาม",
+    "following": "กำลังติดตาม",
+    "toast": {
+      "errorTitle": "ข้อผิดพลาด",
+      "loadError": "ไม่สามารถโหลดข้อมูลเครือข่ายได้",
+      "noSuggestions": "ไม่มีคำแนะนำใหม่ในขณะนี้"
+    },
+    "noSuggestions": "ไม่มีคำแนะนำในขณะนี้ กรอกโปรไฟล์ของคุณให้สมบูรณ์เพื่อรับคำแนะนำที่ดีขึ้น"
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "ศูนย์กลางการจัดการฟาร์ม",
+      "description": "แดชบอร์ดส่วนกลางของคุณสำหรับกิจกรรมในฟาร์มทั้งหมด ตั้งแต่การจัดการแปลงและพืชผลไปจนถึงการติดตามวัตถุดิบและแรงงาน",
+      "myFarms": {
+        "title": "ฟาร์มและพืชผลของฉัน",
+        "description": "กำหนดแปลงฟาร์มของคุณ บันทึกพืชผล ติดตามรอบการปลูก และจัดการข้อมูลการเก็บเกี่ยว",
+        "button": "จัดการฟาร์ม"
+      },
+      "labor": {
+        "title": "การจัดการแรงงาน",
+        "description": "ติดตามคนงานในฟาร์มของคุณ บันทึกชั่วโมงการทำงาน และบันทึกการชำระเงินทั้งหมดในที่เดียว",
+        "button": "จัดการแรงงาน"
+      },
+      "knf": {
+        "title": "ผู้ช่วยด้านวัตถุดิบ KNF",
+        "description": "สร้างและจัดการสูตรการทำฟาร์มแบบธรรมชาติเกาหลีของคุณ เช่น FPJ, FAA และอื่น ๆ",
+        "button": "จัดการวัตถุดิบ"
+      },
+      "fgw": {
+        "title": "การทำฟาร์มตามวิถีของพระเจ้า (FGW)",
+        "description": "เรียนรู้และนำหลักการสำคัญของ FGW ไปใช้เพื่อผลลัพธ์ที่ยั่งยืนและให้ผลผลิตสูง",
+        "button": "ดูคู่มือ FGW"
+      },
+      "financials": {
+        "title": "เรื่องเงิน ๆ ทอง ๆ",
+        "description": "ติดตามรายรับและรายจ่ายของฟาร์มของคุณ วิเคราะห์ความสามารถในการทำกำไร และสมัครขอสินเชื่อ",
+        "button": "ดูการเงิน"
+      },
+      "seedStarting": {
+        "title": "คู่มือการเพาะเมล็ด",
+        "description": "เรียนรู้แนวทางปฏิบัติที่ดีที่สุดสำหรับการเพาะเมล็ดในร่มเพื่อเริ่มต้นฤดูกาลก่อนใคร",
+        "button": "ดูคู่มือ"
+      },
+      "familyFarm": {
+        "title": "ฟาร์มครอบครัว 200 ตร.ม.",
+        "description": "สำรวจโมเดลฟาร์มครอบครัวแบบพอเพียงและผสมผสานบนพื้นที่เพียง 200 ตารางเมตร",
+        "button": "สำรวจโมเดล"
+      },
+      "assetManagement": {
+        "title": "การจัดการทรัพย์สิน",
+        "description": "บันทึกและติดตามเครื่องจักรกลการเกษตร เครื่องมือ และทรัพย์สินมีค่าอื่น ๆ ของคุณ (เร็ว ๆ นี้)",
+        "button": "จัดการทรัพย์สิน"
+      }
+    },
+    "myFarms": {
+      "backToDashboard": "กลับไปที่ศูนย์กลางการจัดการฟาร์ม",
+      "title": "ฟาร์มของฉัน",
+      "addNewFarmButton": "เพิ่มฟาร์มใหม่",
+      "size": "ขนาด",
+      "viewFarmButton": "จัดการฟาร์ม",
+      "noFarmsTitle": "ยังไม่มีฟาร์ม",
+      "noFarmsDescription": "เริ่มต้นด้วยการเพิ่มโปรไฟล์ฟาร์มแรกของคุณ",
+      "auth": {
+        "title": "กรุณาเข้าสู่ระบบ",
+        "description": "คุณต้องเข้าสู่ระบบเพื่อดูฟาร์มของคุณ",
+        "button": "เข้าสู่ระบบ"
+      },
+      "toast": {
+        "errorTitle": "ข้อผิดพลาดในการดึงข้อมูลฟาร์ม"
+      }
+    },
+    "createFarm": {
+      "backToFarms": "กลับไปที่ฟาร์มของฉัน",
+      "title": "ลงทะเบียนฟาร์มใหม่",
+      "description": "ระบุรายละเอียดสำหรับฟาร์มใหม่ที่คุณเป็นเจ้าของหรือจัดการ",
+      "form": {
+        "farmNameLabel": "ชื่อฟาร์ม",
+        "farmNamePlaceholder": "เช่น Green Valley Organics",
+        "locationLabel": "ที่ตั้ง",
+        "locationPlaceholder": "เช่น Nakuru, Kenya",
+        "locationDescription": "ระบุเมือง ภูมิภาค หรือพื้นที่ทั่วไป",
+        "sizeLabel": "ขนาดฟาร์ม",
+        "sizePlaceholder": "เช่น 5 เฮกตาร์",
+        "sizeDescription": "ระบุหน่วย (เช่น เอเคอร์, เฮกตาร์)",
+        "typeLabel": "ประเภทฟาร์ม",
+        "typePlaceholder": "เลือกประเภท",
+        "types": {
+          "crop": "การปลูกพืช",
+          "livestock": "การเลี้ยงสัตว์",
+          "mixed": "ผสม (พืชและสัตว์)",
+          "aquaculture": "การเพาะเลี้ยงสัตว์น้ำ (ฟาร์มปลา)",
+          "other": "อื่น ๆ"
+        },
+        "descriptionLabel": "คำอธิบาย (ไม่บังคับ)",
+        "descriptionPlaceholder": "คำอธิบายสั้น ๆ เกี่ยวกับฟาร์มของคุณ กิจกรรมหลัก หรือพันธกิจ",
+        "irrigationLabel": "วิธีการชลประทาน (ไม่บังคับ)",
+        "irrigationPlaceholder": "เช่น ระบบน้ำหยด, อาศัยน้ำฝน",
+        "irrigationDescription": "ระบุวิธีการชลประทานหลักที่ใช้",
+        "submitButton": "บันทึกฟาร์ม"
+      },
+      "toast": {
+        "authErrorTitle": "ข้อผิดพลาดในการยืนยันตัวตน",
+        "authErrorDescription": "คุณต้องเข้าสู่ระบบเพื่อสร้างฟาร์ม",
+        "successTitle": "สร้างฟาร์มแล้ว!",
+        "successDescription": "{farmName} ได้ถูกเพิ่มไปยังโปรไฟล์ของคุณเรียบร้อยแล้ว",
+        "errorTitle": "การสร้างล้มเหลว"
+      }
     }
   },
   "contactPage": {
-    "title": "จี า ดีส ส",
-    "subtitle": "ยี กา สน ยา สน",
+    "title": "ติดต่อเรา",
+    "subtitle": "เรายินดีรับฟังความคิดเห็นจากคุณ! ไม่ว่าคุณจะมีคำถาม ข้อเสนอแนะ หรือสนใจในความร่วมมือ นี่คือวิธีติดต่อทีมงานของเรา",
     "emailUs": {
-      "title": "การส ส ส",
-      "general": "จ ีส มี จีด"
+      "title": "ส่งอีเมลถึงเรา",
+      "general": "สอบถามข้อมูลทั่วไป",
+      "support": "การสนับสนุนทางเทคนิค",
+      "partnerships": "ความร่วมมือ"
+    },
+    "callUs": {
+      "title": "โทรหาเรา",
+      "hours": "วันจันทร์ - วันศุกร์, 9:00 - 17:00 (EAT)",
+      "phone": "+254 20 1234567"
+    },
+    "ourOffice": {
+      "title": "สำนักงานของเรา",
+      "org": "DamDoh Holdings Inc.",
+      "address": "123 Agri-Tech Avenue, Nairobi, Kenya"
+    },
+    "sendMessage": {
+      "title": "ส่งข้อความถึงเรา",
+      "nameLabel": "ชื่อของคุณ",
+      "namePlaceholder": "เจน โด",
+      "emailLabel": "อีเมลของคุณ",
+      "emailPlaceholder": "jane.doe@example.com",
+      "subjectLabel": "หัวข้อ",
+      "subjectPlaceholder": "หัวข้อของข้อความของคุณ",
+      "messageLabel": "ข้อความของคุณ",
+      "messagePlaceholder": "พิมพ์ข้อความของคุณที่นี่...",
+      "buttonText": "ส่งข้อความ",
+      "note": "เราพยายามตอบกลับทุกข้อซักถามภายใน 24 ชั่วโมง"
+    }
+  },
+   "privacyPolicy": {
+    "title": "นโยบายความเป็นส่วนตัว",
+    "lastUpdated": "อัปเดตล่าสุด: 26 ตุลาคม 2023",
+    "introduction": "ประกาศเกี่ยวกับความเป็นส่วนตัวสำหรับ DamDoh นี้ อธิบายว่าเราอาจรวบรวม จัดเก็บ ใช้ และ/หรือแบ่งปัน ('ประมวลผล') ข้อมูลของคุณอย่างไรและทำไมเมื่อคุณใช้บริการของเรา ('บริการ') เช่น เมื่อคุณเยี่ยมชมเว็บไซต์ของเราที่ http://damdoh.org หรือเว็บไซต์ใด ๆ ของเราที่เชื่อมโยงกับประกาศความเป็นส่วนตัวนี้ มีส่วนร่วมกับเราในรูปแบบอื่น ๆ ที่เกี่ยวข้อง รวมถึงการขาย การตลาด หรือกิจกรรมต่าง ๆ",
+    "whatInfoWeCollect": {
+      "heading": "1. เราเก็บข้อมูลอะไรบ้าง?",
+      "content": "เราเก็บรวบรวมข้อมูลส่วนบุคคลที่คุณให้ไว้กับเราโดยสมัครใจเมื่อคุณลงทะเบียนกับบริการ แสดงความสนใจในการรับข้อมูลเกี่ยวกับเราหรือผลิตภัณฑ์และบริการของเรา เมื่อคุณมีส่วนร่วมในกิจกรรมบนบริการ หรือเมื่อคุณติดต่อเรา"
+    },
+    "howWeUseInfo": {
+      "heading": "2. เราประมวลผลข้อมูลของคุณอย่างไร?",
+      "content": "เราประมวลผลข้อมูลของคุณเพื่อให้บริการ ปรับปรุง และบริหารจัดการบริการของเรา เพื่อสื่อสารกับคุณ เพื่อความปลอดภัยและการป้องกันการฉ้อโกง และเพื่อปฏิบัติตามกฎหมาย เราอาจประมวลผลข้อมูลของคุณเพื่อวัตถุประสงค์อื่น ๆ โดยได้รับความยินยอมจากคุณ"
+    },
+    "willInfoBeShared": {
+      "heading": "3. เราจะแบ่งปันข้อมูลส่วนบุคคลของคุณเมื่อใดและกับใคร?",
+      "content": "เราอาจแบ่งปันข้อมูลในสถานการณ์เฉพาะและกับบุคคลที่สามที่ระบุ ข้อมูลของคุณอาจถูกแบ่งปันกับพันธมิตรทางธุรกิจ บริษัทในเครือ และผู้ให้บริการเพื่ออำนวยความสะดวกในการให้บริการของเรา"
+    },
+    "cookiesAndTracking": {
+      "heading": "4. เราใช้คุกกี้และเทคโนโลยีการติดตามอื่น ๆ หรือไม่?",
+      "content": "เราอาจใช้คุกกี้และเทคโนโลยีการติดตามที่คล้ายกัน (เช่น เว็บบีคอนและพิกเซล) เพื่อเข้าถึงหรือจัดเก็บข้อมูล"
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. เราเก็บข้อมูลของคุณไว้นานแค่ไหน?",
+      "content": "เราจะเก็บข้อมูลของคุณไว้นานเท่าที่จำเป็นเพื่อบรรลุวัตถุประสงค์ที่ระบุไว้ในประกาศความเป็นส่วนตัวนี้ เว้นแต่กฎหมายจะกำหนดไว้เป็นอย่างอื่น"
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. เราจะรักษาข้อมูลของคุณให้ปลอดภัยได้อย่างไร?",
+      "content": "เราได้นำมาตรการรักษาความปลอดภัยทางเทคนิคและองค์กรที่เหมาะสมและสมเหตุสมผลมาใช้ ซึ่งออกแบบมาเพื่อปกป้องความปลอดภัยของข้อมูลส่วนบุคคลใด ๆ ที่เราประมวลผล"
+    },
+    "minors": {
+      "heading": "7. เราเก็บข้อมูลจากผู้เยาว์หรือไม่?",
+      "content": "เราไม่ได้จงใจรวบรวมข้อมูลจากหรือทำการตลาดกับเด็กอายุต่ำกว่า 18 ปี"
+    },
+    "privacyRights": {
+      "heading": "8. สิทธิ์ในความเป็นส่วนตัวของคุณคืออะไร?",
+      "content": "คุณสามารถตรวจสอบ เปลี่ยนแปลง หรือยกเลิกบัญชีของคุณได้ตลอดเวลา ขึ้นอยู่กับตำแหน่งที่ตั้งของคุณ คุณอาจมีสิทธิ์บางอย่างเกี่ยวกับข้อมูลส่วนบุคคลของคุณภายใต้กฎหมายคุ้มครองข้อมูลที่บังคับใช้"
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. การควบคุมสำหรับคุณสมบัติ DO-NOT-TRACK",
+      "content": "เว็บเบราว์เซอร์ส่วนใหญ่และระบบปฏิบัติการมือถือและแอปพลิเคชันมือถือบางตัวมีคุณสมบัติหรือการตั้งค่า Do-Not-Track ('DNT') ที่คุณสามารถเปิดใช้งานเพื่อส่งสัญญาณความต้องการความเป็นส่วนตัวของคุณที่จะไม่ให้มีการตรวจสอบและรวบรวมข้อมูลเกี่ยวกับกิจกรรมการท่องเว็บออนไลน์ของคุณ ขณะนี้เราไม่ตอบสนองต่อสัญญาณเบราว์เซอร์ DNT หรือกลไกอื่นใดที่สื่อสารทางเลือกของคุณโดยอัตโนมัติว่าจะไม่ถูกติดตามทางออนไลน์"
+    },
+    "updatesToNotice": {
+      "heading": "10. เราจะปรับปรุงประกาศนี้หรือไม่?",
+      "content": "ใช่ เราจะปรับปรุงประกาศนี้ตามความจำเป็นเพื่อให้สอดคล้องกับกฎหมายที่เกี่ยวข้อง"
+    },
+    "contactUs": {
+      "heading": "11. คุณจะติดต่อเราเกี่ยวกับประกาศนี้ได้อย่างไร?",
+      "content": "หากคุณมีคำถามหรือความคิดเห็นเกี่ยวกับประกาศนี้ คุณสามารถติดต่อเราทางไปรษณีย์ได้ที่: DamDoh, 123 Agri-Tech Avenue, Nairobi, Kenya"
+    },
+    "conclusion": "คุณสามารถทำได้ผ่านหน้า {contactLink} ของเรา"
+  },
+  "termsOfService": {
+    "title": "ข้อกำหนดในการให้บริการ",
+    "lastUpdated": "อัปเดตล่าสุด: 26 ตุลาคม 2023",
+    "introduction": "ยินดีต้อนรับสู่ DamDoh ข้อกำหนดในการให้บริการเหล่านี้ ('ข้อกำหนด') ควบคุมการใช้งานเว็บไซต์และบริการของ DamDoh ('บริการ') ซึ่งให้บริการโดย DamDoh Inc. โดยการใช้บริการของเรา คุณตกลงที่จะปฏิบัติตามข้อกำหนดเหล่านี้ โปรดอ่านอย่างละเอียด",
+    "agreementToTerms": {
+      "heading": "1. การยอมรับข้อกำหนด",
+      "content": "โดยการใช้บริการของเรา คุณตกลงที่จะผูกพันตามข้อกำหนดเหล่านี้ หากคุณไม่ยอมรับข้อกำหนดเหล่านี้ โปรดอย่าใช้บริการ"
+    },
+    "intellectualProperty": {
+      "heading": "2. สิทธิ์ในทรัพย์สินทางปัญญา",
+      "content": "บริการและเนื้อหาต้นฉบับ คุณลักษณะ และฟังก์ชันการทำงานเป็นและจะยังคงเป็นทรัพย์สินเฉพาะของ DamDoh และผู้ให้อนุญาต เครื่องหมายการค้าและรูปลักษณ์ทางการค้าของเราไม่สามารถใช้ร่วมกับผลิตภัณฑ์หรือบริการใด ๆ โดยไม่ได้รับความยินยอมเป็นลายลักษณ์อักษรล่วงหน้าจาก DamDoh"
+    },
+    "userRepresentations": {
+      "heading": "3. การรับรองของผู้ใช้",
+      "content": "โดยการใช้บริการ คุณรับรองและรับประกันว่า: (1) ข้อมูลการลงทะเบียนทั้งหมดที่คุณส่งจะเป็นความจริง ถูกต้อง เป็นปัจจุบัน และสมบูรณ์; (2) คุณจะรักษาความถูกต้องของข้อมูลดังกล่าวและปรับปรุงข้อมูลการลงทะเบียนดังกล่าวโดยทันทีตามความจำเป็น; (3) คุณมีความสามารถทางกฎหมายและคุณตกลงที่จะปฏิบัติตามข้อกำหนดการใช้งานเหล่านี้; (4) คุณไม่ใช่ผู้เยาว์ในเขตอำนาจศาลที่คุณอาศัยอยู่; (5) คุณจะไม่เข้าถึงไซต์ผ่านวิธีการอัตโนมัติหรือไม่ใช่ของมนุษย์ ไม่ว่าจะผ่านบอท สคริปต์ หรืออื่น ๆ; (6) คุณจะไม่ใช้ไซต์เพื่อวัตถุประสงค์ที่ผิดกฎหมายหรือไม่ได้รับอนุญาต; และ (7) การใช้ไซต์ของคุณจะไม่ละเมิดกฎหมายหรือข้อบังคับใด ๆ ที่บังคับใช้"
+    },
+    "prohibitedActivities": {
+      "heading": "4. กิจกรรมต้องห้าม",
+      "content": "คุณไม่สามารถเข้าถึงหรือใช้ไซต์เพื่อวัตถุประสงค์อื่นใดนอกเหนือจากที่เราจัดทำไซต์ไว้ให้ ไซต์ต้องไม่ถูกใช้ร่วมกับกิจการทางการค้าใด ๆ ยกเว้นที่ได้รับการรับรองหรืออนุมัติโดยเฉพาะจากเรา"
+    },
+    "platformManagement": {
+      "heading": "5. การจัดการแพลตฟอร์ม",
+      "content": "Wir behalten uns das Recht vor, sind aber nicht verpflichtet, (1) die Website auf Verstöße gegen diese Nutzungsbedingungen zu überwachen; (2) geeignete rechtliche Schritte gegen jeden einzuleiten, der nach unserem alleinigen Ermessen gegen das Gesetz oder diese Nutzungsbedingungen verstößt; (3) nach unserem alleinigen Ermessen und ohne Einschränkung den Zugang zu, die Verfügbarkeit von oder die Deaktivierung von Beiträgen oder Teilen davon zu verweigern, einzuschränken oder zu deaktivieren."
+    },
+    "termAndTermination": {
+      "heading": "6. Laufzeit und Kündigung",
+      "content": "Diese Nutzungsbedingungen bleiben in vollem Umfang in Kraft, solange Sie die Website nutzen. OHNE EINSCHRÄNKUNG EINER ANDEREN BESTIMMUNG DIESER NUTZUNGSBEDINGUNGEN BEHALTEN WIR UNS DAS RECHT VOR, NACH UNSEREM ALLEINIGEN ERMESSEN UND OHNE ANKÜNDIGUNG ODER HAFTUNG DEN ZUGANG ZU UND DIE NUTZUNG DER WEBSITE (EINSCHLIESSLICH DER BLOCKIERUNG BESTIMMTER IP-ADRESSEN) FÜR JEDE PERSON AUS JEDEM GRUND ODER OHNE GRUND ZU VERWEIGERN."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. Änderungen und Unterbrechungen",
+      "content": "Wir behalten uns das Recht vor, den Inhalt der Website jederzeit oder aus beliebigem Grund nach unserem alleinigen Ermessen und ohne Vorankündigung zu ändern, zu modifizieren oder zu entfernen. Wir behalten uns auch das Recht vor, die gesamte Website oder einen Teil davon jederzeit ohne Vorankündigung zu ändern oder einzustellen. Wir haften Ihnen oder Dritten gegenüber nicht für Änderungen, Preisänderungen, Aussetzungen oder die Einstellung der Website."
+    },
+    "governingLaw": {
+      "heading": "8. Geltendes Recht",
+      "content": "Diese Nutzungsbedingungen und Ihre Nutzung der Website unterliegen den Gesetzen des Landes, in dem DamDoh seinen Sitz hat, und werden in Übereinstimmung mit diesen ausgelegt, ohne Rücksicht auf dessen Kollisionsnormen."
+    },
+    "disputeResolution": {
+      "heading": "9. Streitbeilegung",
+      "content": "Jede rechtliche Klage jeglicher Art, die von Ihnen oder uns eingeleitet wird, muss bei den staatlichen und bundesstaatlichen Gerichten in unserer Gerichtsbarkeit eingeleitet oder verfolgt werden, und die Parteien stimmen hiermit der Zuständigkeit dieser Gerichte zu und verzichten auf alle Einreden des Fehlens der persönlichen Zuständigkeit und des Forum non conveniens in Bezug auf den Gerichtsstand und die Zuständigkeit in diesen staatlichen und bundesstaatlichen Gerichten."
+    },
+    "contactUs": {
+      "heading": "10. Kontaktieren Sie uns",
+      "content": "Um eine Beschwerde bezüglich der Website zu klären oder weitere Informationen zur Nutzung der Website zu erhalten, kontaktieren Sie uns bitte."
+    },
+    "conclusion": "Sie können dies über unsere {contactLink} Seite tun."
+  },
+  "careers": {
+    "title": "Karriere bei DamDoh",
+    "subtitle": "Helfen Sie uns bei unserer Mission, die landwirtschaftliche Lieferkette zu revolutionieren.",
+    "whyWorkWithUs": {
+        "title": "Warum bei uns arbeiten?",
+        "intro": "Bei DamDoh sind wir ein leidenschaftliches, vielfältiges Team von Innovatoren, Agrarexperten und Technologen, die sich dafür einsetzen, eine greifbare Wirkung zu erzielen. Wir glauben an:",
+        "point1": "Sinnvolle Arbeit: Ihre Beiträge werden die Landwirte direkt stärken und ein nachhaltigeres Lebensmittelsystem schaffen.",
+        "point2": "Innovation: Wir bewältigen komplexe Herausforderungen mit modernster Technologie und kreativem Denken.",
+        "point3": "Wachstum: Wir investieren in unsere Mitarbeiter und bieten Möglichkeiten zur beruflichen Weiterentwicklung und zum Lernen.",
+        "point4": "Zusammenarbeit: Wir fördern ein unterstützendes, kollaboratives Umfeld, in dem jede Stimme gehört wird.",
+        "point5": "Globale Wirkung: Seien Sie Teil einer Lösung, die die globale Ernährungssicherheit und wirtschaftliche Entwicklung angeht."
+    },
+    "currentOpenings": {
+        "title": "Aktuelle Stellenangebote"
+    },
+    "noOpenings": {
+        "title": "Zurzeit keine offenen Stellen",
+        "content1": "Wir sind immer auf der Suche nach leidenschaftlichen Talenten. Wenn Sie an unsere Mission glauben und denken, dass Sie einen Beitrag leisten können, senden Sie uns bitte Ihren Lebenslauf und ein Anschreiben an {emailLink}.",
+        "emailLinkText": "careers@damdoh.org"
+    },
+    "openings": {
+      "job1": {
+        "title": "Senior Backend-Ingenieur (Node.js, Firestore)",
+        "location": "Nairobi, Kenia / Remote",
+        "type": "Vollzeit",
+        "description": "Entwerfen und erstellen Sie skalierbare Microservices, verwalten Sie unsere Datenbankarchitektur und gewährleisten Sie die Zuverlässigkeit der Kernfunktionen unserer Plattform."
+      },
+      "job2": {
+        "title": "Leitender Agronom & Betriebsleiter Feld",
+        "location": "Rift Valley, Kenia",
+        "type": "Vollzeit",
+        "description": "Leiten Sie unser Team von Außendienstmitarbeitern, geben Sie fachkundige agronomische Ratschläge und gewährleisten Sie die Datenintegrität unserer Partnerfarmen."
+      },
+      "job3": {
+        "title": "Produktmanager, Finanzdienstleistungen",
+        "location": "Remote",
+        "type": "Vollzeit",
+        "description": "Treiben Sie die Strategie und Entwicklung unserer Finanzprodukte voran, einschließlich Kreditbewertung, Darlehen und Versicherungsintegrationen für Kleinbauern."
+      }
+    },
+    "applyNowButton": "Jetzt bewerben"
+  },
+  "communityGuidelines": {
+    "title": "Community-Richtlinien",
+    "subtitle": "Förderung eines professionellen, respektvollen und vertrauenswürdigen Umfelds für alle.",
+    "intro": "Willkommen in der DamDoh-Community! Unsere Mission ist es, die Agrarwelt auf positive und produktive Weise zu verbinden. Um sicherzustellen, dass jeder eine großartige Erfahrung hat, bitten wir Sie, diese Richtlinien zu befolgen:",
+    "respectful": {
+      "title": "Seien Sie respektvoll und professionell",
+      "description": "Behandeln Sie alle Mitglieder höflich. Wir tolerieren keine Belästigung, Hassrede oder persönliche Angriffe. Beteiligen Sie sich an konstruktiven Diskussionen, auch wenn Sie anderer Meinung sind."
+    },
+    "authentic": {
+      "title": "Seien Sie authentisch und ehrlich",
+      "description": "Stellen Sie sich und Ihr Unternehmen wahrheitsgemäß dar. Geben Sie sich nicht als andere aus oder machen Sie irreführende Angaben zu Ihren Produkten, Dienstleistungen oder Qualifikationen."
+    },
+    "relevant": {
+      "title": "Bleiben Sie relevant",
+      "description": "Tragen Sie mit relevanten Erkenntnissen zu Diskussionen bei. Vermeiden Sie Spam, übermäßige Eigenwerbung und themenfremde Inhalte in professionellen Foren und Marktplatzeinträgen."
+    },
+    "fairTrade": {
+      "title": "Halten Sie Ihre Zusagen ein",
+      "description": "Führen Sie Geschäftstransaktionen mit Integrität durch. Erfüllen Sie Ihre Bestellungen, zahlen Sie pünktlich und kommunizieren Sie klar, um dauerhafte, vertrauensvolle Beziehungen aufzubauen."
+    },
+    "sustainable": {
+      "title": "Fördern Sie nachhaltige Praktiken",
+      "description": "Wir ermutigen den Austausch von Wissen und Praktiken, die ökologische, wirtschaftliche und soziale Nachhaltigkeit in der Landwirtschaft unterstützen."
+    },
+    "reporting": {
+      "title": "Verstöße melden",
+      "content": "Wenn Sie Inhalte oder Verhalten sehen, das gegen diese Richtlinien verstößt, melden Sie es bitte unserem Team. Sie können Details an {emailLink} senden.",
+      "emailLinkText": "support@damdoh.org"
+    },
+    "conclusion": "Durch die Nutzung von DamDoh stimmen Sie diesen Richtlinien zu. Wir behalten uns das Recht vor, Inhalte zu entfernen und Maßnahmen gegen Konten zu ergreifen, die gegen diese Grundsätze verstoßen. Vielen Dank, dass Sie uns helfen, eine positive Community aufzubauen!"
+  },
+  "pinboardPage": {
+    "title": "Mein Pinboard",
+    "description": "Ihr persönlicher Bereich zum Speichern und Organisieren wichtiger Elemente aus der gesamten DamDoh-Plattform.",
+    "comingSoonTitle": "Pinboard-Funktion kommt bald!",
+    "comingSoonDescription": "Stellen Sie sich vor, Sie könnten interessante Marktplatzeinträge, aufschlussreiche Forumsbeiträge, wertvolle Kontakte und nützliche Artikel an einem Ort pinnen. Das wird das Pinboard tun!",
+    "stayTuned": "Bleiben Sie dran für Updates."
+  },
+  "helpCenterPage": {
+    "title": "Hilfezentrum",
+    "subtitle": "Finden Sie Antworten auf Ihre Fragen und erfahren Sie, wie Sie DamDoh optimal nutzen können.",
+    "howCanWeHelp": "Wie können wir Ihnen helfen?",
+    "searchPlaceholder": "Suchen Sie nach Themen, Funktionen oder Fragen...",
+    "browseTopics": "Oder nach Thema durchsuchen",
+    "gettingStarted": {
+      "title": "Erste Schritte",
+      "description": "Einrichten Ihres Profils, Verständnis Ihres Dashboards.",
+      "placeholder": "Informationen zu den ersten Schritten werden hier in Kürze verfügbar sein."
+    },
+    "marketplaceGuide": {
+      "title": "Marktplatz-Anleitung",
+      "description": "Wie man Einträge erstellt, Bestellungen verwaltet und sicher handelt.",
+      "placeholder": "Eine Anleitung zum Marktplatz wird hier in Kürze verfügbar sein."
+    },
+    "accountManagement": {
+      "title": "Kontoverwaltung",
+      "description": "Passwort aktualisieren, Benachrichtigungen und Datenschutz verwalten.",
+      "placeholder": "Informationen zur Kontoverwaltung werden hier in Kürze verfügbar sein."
+    },
+    "troubleshooting": {
+      "title": "Fehlerbehebung",
+      "description": "Häufige Probleme und deren Lösungen.",
+      "placeholder": "Informationen zur Fehlerbehebung werden hier in Kürze verfügbar sein."
+    },
+    "stillNeedHelp": {
+      "title": "Benötigen Sie immer noch Hilfe?",
+      "description": "Unser Support-Team ist bereit, Ihnen zu helfen.",
+      "button": "Support kontaktieren"
+    }
+  },
+  "industryNewsPage": {
+    "title": "Branchennachrichten & Einblicke",
+    "description": "Bleiben Sie informiert über die neuesten Trends, Forschungen und politischen Änderungen, die die globale landwirtschaftliche Lieferkette betreffen.",
+    "searchPlaceholder": "Nachrichten und Berichte suchen...",
+    "categoryPlaceholder": "Nach Kategorie filtern...",
+    "allCategories": "Alle Kategorien",
+    "sourceLabel": "Quelle",
+    "publishedLabel": "Veröffentlicht",
+    "categoryLabel": "Kategorie",
+    "readButton": "Vollständigen Artikel lesen",
+    "noNews": {
+      "title": "Keine Nachrichten verfügbar",
+      "description": "Schauen Sie später wieder vorbei für die neuesten Branchen-Updates und Berichte."
+    },
+    "news1": {
+      "title": "Weltweite Kaffeepreise steigen aufgrund von Wetterbedenken in wichtigen Anbauregionen",
+      "excerpt": "Die Futures für Arabica-Kaffee haben ein 18-Monats-Hoch erreicht, da Dürren in Brasilien und unerwartete Fröste in Vietnam das weltweite Angebot bedrohen."
+    },
+    "news2": {
+      "title": "EU führt neue 'Farm to Fork'-Verpackungsvorschriften ein",
+      "excerpt": "Neue Vorschriften, die in diesem Quartal in Kraft treten, schreiben vor, dass alle in die Europäische Union importierten Frischprodukte Verpackungen aus mindestens 30 % recyceltem Material verwenden müssen."
+    },
+    "news3": {
+      "title": "Studie zeigt, dass regenerative Landwirtschaftspraktiken jährlich bis zu 2 Tonnen Kohlenstoff pro Hektar binden können",
+      "excerpt": "Eine zehnjährige Studie, die in 'Nature Sustainability' veröffentlicht wurde, liefert überzeugende Beweise dafür, dass pfluglose Landwirtschaft und Zwischenfruchtanbau den Kohlenstoffgehalt im Boden erheblich verbessern."
+    }
+  },
+  "myNetworkPage": {
+    "backLink": "Zurück zum Netzwerk",
+    "myConnectionsTab": "Meine Verbindungen ({count})",
+    "pendingRequestsTab": "Ausstehende Anfragen",
+    "connectionsTitle": "Meine Verbindungen",
+    "connectionsDescription": "Dies sind Ihre genehmigten Verbindungen auf der Plattform. Sie können ihnen jetzt direkt eine Nachricht senden.",
+    "noConnections": "Sie haben noch keine Verbindungen hergestellt. Beginnen Sie mit der Erkundung des Netzwerks!",
+    "requestsTitle": "Verbindungsanfragen",
+    "requestsDescription": "Überprüfen und beantworten Sie ausstehende Verbindungsanfragen.",
+    "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen.",
+    "sentTimeAgo": "Gesendet vor {timeAgo}",
+    "toast": {
+      "error": "Fehler",
+      "loadError": "Netzwerkdaten konnten nicht geladen werden.",
+      "respondError": "Anfrage konnte nicht beantwortet werden.",
+      "removeError": "Verbindung konnte nicht entfernt werden.",
+      "success": "Erfolg",
+      "requestAccepted": "Anfrage angenommen.",
+      "requestDeclined": "Anfrage abgelehnt.",
+      "connectionRemoved": "Verbindung entfernt."
+    }
+  },
+  "agentToolsPage": {
+    "backLink": "Zurück zum Netzwerk",
+    "accessDeniedTitle": "Zugriff verweigert",
+    "accessDeniedDescription": "Sie haben nicht die erforderlichen Berechtigungen, um auf diese Tools zuzugreifen.",
+    "title": "Außendienstmitarbeiter-Tools",
+    "description": "Tools für autorisierte Agenten zur Unterstützung und Verwaltung von Benutzern im Außendienst.",
+    "findUserLabel": "Benutzer nach Telefonnummer suchen",
+    "phoneRequiredError": "Telefonnummer ist erforderlich.",
+    "findButton": "Suchen",
+    "resultsTitle": "Suchergebnisse",
+    "resultsPlaceholder": "Benutzerdetails werden hier nach einer erfolgreichen Suche angezeigt."
+  },
+  "common": {
+    "error": "Fehler"
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm-Management-Zentrale",
+      "description": "Ihr zentrales Dashboard für alle Aktivitäten auf dem Bauernhof, von der Verwaltung von Parzellen und Kulturen bis zur Nachverfolgung von Betriebsmitteln und Arbeitskräften.",
+      "myFarms": {
+        "title": "Meine Farmen & Kulturen",
+        "description": "Definieren Sie Ihre landwirtschaftlichen Parzellen, protokollieren Sie Kulturen, verfolgen Sie Pflanzzyklen und verwalten Sie Erntedaten.",
+        "button": "Farmen verwalten"
+      },
+      "labor": {
+        "title": "Arbeitskräfteverwaltung",
+        "description": "Behalten Sie den Überblick über Ihre landwirtschaftlichen Arbeitskräfte, protokollieren Sie deren Stunden und erfassen Sie Zahlungen an einem Ort.",
+        "button": "Arbeitskräfte verwalten"
+      },
+      "knf": {
+        "title": "KNF-Betriebsmittelassistent",
+        "description": "Erstellen und verwalten Sie Ihre koreanischen Naturlandwirtschafts-Zubereitungen wie FPJ, FAA und mehr.",
+        "button": "Betriebsmittel verwalten"
+      },
+      "fgw": {
+        "title": "Farming God's Way",
+        "description": "Lernen und wenden Sie die Kernprinzipien von FGW für nachhaltige und ertragreiche Ergebnisse an.",
+        "button": "FGW-Leitfaden ansehen"
+      },
+      "financials": {
+        "title": "Finanzen",
+        "description": "Verfolgen Sie die Einnahmen und Ausgaben Ihrer Farm, analysieren Sie die Rentabilität und beantragen Sie Finanzierungen.",
+        "button": "Finanzen ansehen"
+      },
+      "seedStarting": {
+        "title": "Anleitung zur Aussaat",
+        "description": "Lernen Sie die besten Praktiken für die Aussaat in Innenräumen, um einen Vorsprung in der Saison zu bekommen.",
+        "button": "Anleitung ansehen"
+      },
+      "familyFarm": {
+        "title": "200m² Familienfarm",
+        "description": "Entdecken Sie ein Modell für eine autarke, integrierte Familienfarm auf nur 200 Quadratmetern.",
+        "button": "Modell erkunden"
+      },
+      "assetManagement": {
+        "title": "Anlagenverwaltung",
+        "description": "Protokollieren und verfolgen Sie Ihre landwirtschaftlichen Maschinen, Werkzeuge und andere wertvolle Vermögenswerte. (Kommt bald)",
+        "button": "Anlagen verwalten"
+      }
+    },
+    "myFarms": {
+      "backToDashboard": "Zurück zur Farm-Management-Zentrale",
+      "title": "Meine Farmen",
+      "addNewFarmButton": "Neue Farm hinzufügen",
+      "size": "Größe",
+      "viewFarmButton": "Farm verwalten",
+      "noFarmsTitle": "Noch keine Farmen vorhanden",
+      "noFarmsDescription": "Legen Sie los, indem Sie Ihr erstes Farmprofil hinzufügen.",
+      "auth": {
+        "title": "Bitte Anmelden",
+        "description": "Sie müssen angemeldet sein, um Ihre Farmen anzuzeigen.",
+        "button": "Anmelden"
+      },
+      "toast": {
+        "errorTitle": "Fehler beim Abrufen der Farmen"
+      }
+    },
+    "createFarm": {
+      "backToFarms": "Zurück zu Meine Farmen",
+      "title": "Eine neue Farm registrieren",
+      "description": "Geben Sie die Details für eine neue Farm an, die Sie besitzen oder verwalten.",
+      "form": {
+        "farmNameLabel": "Farmname",
+        "farmNamePlaceholder": "z.B. Green Valley Organics",
+        "locationLabel": "Standort",
+        "locationPlaceholder": "z.B. Nakuru, Kenia",
+        "locationDescription": "Geben Sie die Stadt, Region oder den allgemeinen Bereich an.",
+        "sizeLabel": "Farmgröße",
+        "sizePlaceholder": "z.B. 5 Hektar",
+        "sizeDescription": "Geben Sie die Einheit an (z.B. Acres, Hektar).",
+        "typeLabel": "Farmtyp",
+        "typePlaceholder": "Wählen Sie einen Typ",
+        "types": {
+          "crop": "Ackerbau",
+          "livestock": "Viehzucht",
+          "mixed": "Gemischt (Ackerbau & Viehzucht)",
+          "aquaculture": "Aquakultur (Fischzucht)",
+          "other": "Andere"
+        },
+        "descriptionLabel": "Beschreibung (optional)",
+        "descriptionPlaceholder": "Eine kurze Beschreibung Ihrer Farm, ihrer Hauptaktivitäten oder ihrer Mission.",
+        "irrigationLabel": "Bewässerungsmethoden (optional)",
+        "irrigationPlaceholder": "z.B. Tröpfchenbewässerung, Regenwasser",
+        "irrigationDescription": "Listen Sie die primären Bewässerungsmethoden auf.",
+        "submitButton": "Farm speichern"
+      },
+      "toast": {
+        "authErrorTitle": "Authentifizierungsfehler",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Farm zu erstellen.",
+        "successTitle": "Farm erstellt!",
+        "successDescription": "{farmName} wurde erfolgreich zu Ihrem Profil hinzugefügt.",
+        "errorTitle": "Erstellung fehlgeschlagen"
+      }
     }
   }
 }
 
+    
