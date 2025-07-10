@@ -1,4 +1,3 @@
-
 {
   "FeedItemCard": {
     "signInToLikeToast": "Vous devez être connecté pour aimer une publication.",
@@ -400,5 +399,31 @@
       "scanNote": "Ce code est temporaire et expirera dans 10 minutes.",
       "startOverButton": "Recommencer"
     }
+  },
+  "networkPage": {
+    "title": "Réseau des Acteurs",
+    "description": "Découvrez et connectez-vous avec des agriculteurs, des acheteurs, des prestataires de services et des experts de toute la chaîne de valeur agricole.",
+    "myNetworkButton": "Mon Réseau",
+    "agentToolsButton": "Outils d'Agent",
+    "aiSuggestionsTitle": "Suggestions par IA",
+    "aiSuggestionsDescription": "En fonction de votre profil, voici quelques personnes avec lesquelles vous pourriez vouloir vous connecter.",
+    "browseAllTitle": "Parcourir tous les Acteurs",
+    "browseAllDescription": "Utilisez les filtres ci-dessous pour trouver des personnes ou des entreprises spécifiques dans le réseau.",
+    "searchPlaceholder": "Rechercher par nom ou mot-clé...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "rolePlaceholder": "Filtrer par rôle...",
+    "allRoles": "Tous les Rôles",
+    "noStakeholdersFound": "Aucun acteur trouvé.",
+    "noStakeholdersHint": "Essayez d'ajuster vos filtres de recherche ou revenez plus tard.",
+    "connect": "Connecter",
+    "profile": "Profil",
+    "follow": "Suivre",
+    "following": "Abonné",
+    "toast": {
+      "errorTitle": "Erreur",
+      "loadError": "Impossible de charger les données du réseau.",
+      "noSuggestions": "Aucune nouvelle suggestion disponible pour le moment."
+    },
+    "noSuggestions": "Aucune suggestion disponible pour le moment. Complétez votre profil pour de meilleures recommandations."
   }
 }

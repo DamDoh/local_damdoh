@@ -1,4 +1,3 @@
-
 {
   "FeedItemCard": {
     "signInToLikeToast": "Sie müssen angemeldet sein, um einen Beitrag zu liken.",
@@ -400,5 +399,31 @@
       "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
       "startOverButton": "Neu starten"
     }
+  },
+  "networkPage": {
+    "title": "Akteursnetzwerk",
+    "description": "Entdecken und vernetzen Sie sich mit Landwirten, Käufern, Dienstleistern und Experten entlang der landwirtschaftlichen Wertschöpfungskette.",
+    "myNetworkButton": "Mein Netzwerk",
+    "agentToolsButton": "Agentenwerkzeuge",
+    "aiSuggestionsTitle": "KI-gestützte Vorschläge",
+    "aiSuggestionsDescription": "Basierend auf Ihrem Profil finden Sie hier einige Personen, mit denen Sie sich möglicherweise vernetzen möchten.",
+    "browseAllTitle": "Alle Akteure durchsuchen",
+    "browseAllDescription": "Verwenden Sie die folgenden Filter, um bestimmte Personen oder Unternehmen im Netzwerk zu finden.",
+    "searchPlaceholder": "Nach Name oder Schlüsselwort suchen...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "rolePlaceholder": "Nach Rolle filtern...",
+    "allRoles": "Alle Rollen",
+    "noStakeholdersFound": "Keine Akteure gefunden.",
+    "noStakeholdersHint": "Versuchen Sie, Ihre Suchfilter anzupassen oder schauen Sie später wieder vorbei.",
+    "connect": "Verbinden",
+    "profile": "Profil",
+    "follow": "Folgen",
+    "following": "Gefolgt",
+    "toast": {
+      "errorTitle": "Fehler",
+      "loadError": "Netzwerkdaten konnten nicht geladen werden.",
+      "noSuggestions": "Derzeit keine neuen Vorschläge verfügbar."
+    },
+    "noSuggestions": "Derzeit keine Vorschläge verfügbar. Vervollständigen Sie Ihr Profil für bessere Empfehlungen."
   }
 }
