@@ -577,6 +577,22 @@ export interface SustainabilityDashboardData {
     certifications: { id:string; name: string; status: string; expiry: string; }[];
 }
 
+export interface InsuranceProduct {
+    id: string;
+    providerId: string;
+    name: string;
+    type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
+    description: string;
+    coverageDetails: string;
+    premium: number;
+    currency: string;
+    status: 'Active' | 'Inactive';
+    provider?: {
+        displayName: string;
+        avatarUrl?: string;
+    }
+}
+
 export interface InsuranceProviderDashboardData {
   pendingClaims: {
     id: string;
