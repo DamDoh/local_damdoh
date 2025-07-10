@@ -10,7 +10,9 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import { MarketplaceRecommendationInputSchema, MarketplaceRecommendationOutputSchema } from '@/lib/schemas'; // Import from schemas
-import { performSearch, getProfileByIdFromDB } from '@/lib/db-utils';
+import { performSearch } from '@/lib/server-actions';
+import { getProfileByIdFromDB } from '@/lib/server-actions';
+
 
 export type MarketplaceRecommendationInput = z.infer<typeof MarketplaceRecommendationInputSchema>;
 export type MarketplaceRecommendationOutput = z.infer<typeof MarketplaceRecommendationOutputSchema>;

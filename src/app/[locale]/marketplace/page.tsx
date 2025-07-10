@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { getListingTypeFilterOptions, type ListingType, UNIFIED_MARKETPLACE_CATEGORY_IDS } from "@/lib/constants";
 import { usePathname, useRouter } from "@/navigation";
 import { useSearchParams } from 'next/navigation';
-import { useHomepagePreference } from '@/hooks/useHomepagePreference';
+import { useHomepagePreference } from '@/hooks/useHomepageRedirect';
 import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";

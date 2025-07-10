@@ -117,7 +117,7 @@ export default function CreateGroupPage() {
                     <CardFooter>
                         <Button type="submit" disabled={isSubmitting}>
                             {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
-                            {isSubmitting ? t('form.submittingButton') : <><Save className="h-4 w-4 mr-2" />{t('form.submitButton')}</>}
+                            {isSubmitting ? t('form.submittingButton') : <><Save className="mr-2 h-4 w-4" />{t('form.submitButton')}</>}
                         </Button>
                     </CardFooter>
                 </Card>
