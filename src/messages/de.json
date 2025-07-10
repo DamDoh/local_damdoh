@@ -54,5 +54,47 @@
       "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
       "startOverButton": "Neu starten"
     }
+  },
+  "admin": {
+    "layout": {
+      "title": "Admin-Panel",
+      "description": "Tools für die Plattformverwaltung und Inhaltsmoderation.",
+      "contentManagement": "Inhalt",
+      "reports": "Berichte"
+    },
+    "reports": {
+      "generate": {
+        "title": "Neuen Bericht erstellen",
+        "description": "Wählen Sie Parameter aus, um einen neuen Compliance- oder Aktivitätsbericht zu erstellen.",
+        "reportTypeLabel": "Berichtstyp",
+        "reportTypeVti": "VTI-Ereignisübersicht",
+        "targetUserLabel": "Zielbenutzer",
+        "userSearchPlaceholder": "Benutzer nach Name oder E-Mail suchen...",
+        "dateRangeLabel": "Datumsbereich",
+        "datePlaceholder": "Wählen Sie einen Datumsbereich",
+        "submitButton": "Bericht erstellen"
+      },
+      "list": {
+        "title": "Zuletzt erstellte Berichte",
+        "description": "Zuvor erstellte Berichte anzeigen und herunterladen.",
+        "table": {
+          "reportType": "Berichtstyp",
+          "generatedFor": "Erstellt für",
+          "date": "Datum",
+          "status": "Status",
+          "actions": "Aktionen",
+          "viewButton": "Ansehen"
+        },
+        "noReports": "Es wurden noch keine Berichte erstellt."
+      },
+      "toast": {
+        "loadErrorTitle": "Fehler beim Laden der Berichte",
+        "formIncompleteTitle": "Unvollständiges Formular",
+        "formIncompleteDescription": "Bitte wählen Sie einen Berichtstyp, einen Zielbenutzer und einen Datumsbereich aus.",
+        "generateSuccessTitle": "Berichterstellung gestartet",
+        "generateSuccessDescription": "Der Bericht wird erstellt und erscheint in Kürze in der Liste unten.",
+        "generateErrorTitle": "Berichterstellung fehlgeschlagen"
+      }
+    }
   }
 }

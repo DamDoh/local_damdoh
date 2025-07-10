@@ -54,5 +54,47 @@
       "scanNote": "Este código es temporal y expirará en 10 minutos.",
       "startOverButton": "Empezar de Nuevo"
     }
+  },
+  "admin": {
+    "layout": {
+      "title": "Panel de Administración",
+      "description": "Herramientas de gestión de la plataforma y moderación de contenido.",
+      "contentManagement": "Contenido",
+      "reports": "Informes"
+    },
+    "reports": {
+      "generate": {
+        "title": "Generar un Nuevo Informe",
+        "description": "Seleccione los parámetros para generar un nuevo informe de cumplimiento o actividad.",
+        "reportTypeLabel": "Tipo de Informe",
+        "reportTypeVti": "Resumen de Eventos VTI",
+        "targetUserLabel": "Usuario Objetivo",
+        "userSearchPlaceholder": "Buscar un usuario por nombre o correo electrónico...",
+        "dateRangeLabel": "Rango de Fechas",
+        "datePlaceholder": "Seleccione un rango de fechas",
+        "submitButton": "Generar Informe"
+      },
+      "list": {
+        "title": "Informes Generados Recientemente",
+        "description": "Ver y descargar informes generados anteriormente.",
+        "table": {
+          "reportType": "Tipo de Informe",
+          "generatedFor": "Generado Para",
+          "date": "Fecha",
+          "status": "Estado",
+          "actions": "Acciones",
+          "viewButton": "Ver"
+        },
+        "noReports": "Aún no se han generado informes."
+      },
+      "toast": {
+        "loadErrorTitle": "Error al Cargar los Informes",
+        "formIncompleteTitle": "Formulario Incompleto",
+        "formIncompleteDescription": "Por favor, seleccione un tipo de informe, un usuario objetivo y un rango de fechas.",
+        "generateSuccessTitle": "Generación de Informe Iniciada",
+        "generateSuccessDescription": "El informe se está generando y aparecerá en la lista a continuación en breve.",
+        "generateErrorTitle": "Falló la Generación del Informe"
+      }
+    }
   }
 }

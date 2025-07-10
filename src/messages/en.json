@@ -54,5 +54,47 @@
       "scanNote": "This code is temporary and will expire in 10 minutes.",
       "startOverButton": "Start Over"
     }
+  },
+  "admin": {
+    "layout": {
+      "title": "Admin Panel",
+      "description": "Platform management and content moderation tools.",
+      "contentManagement": "Content",
+      "reports": "Reports"
+    },
+    "reports": {
+      "generate": {
+        "title": "Generate a New Report",
+        "description": "Select parameters to generate a new compliance or activity report.",
+        "reportTypeLabel": "Report Type",
+        "reportTypeVti": "VTI Events Summary",
+        "targetUserLabel": "Target User",
+        "userSearchPlaceholder": "Search for a user by name or email...",
+        "dateRangeLabel": "Date Range",
+        "datePlaceholder": "Pick a date range",
+        "submitButton": "Generate Report"
+      },
+      "list": {
+        "title": "Recently Generated Reports",
+        "description": "View and download previously generated reports.",
+        "table": {
+          "reportType": "Report Type",
+          "generatedFor": "Generated For",
+          "date": "Date",
+          "status": "Status",
+          "actions": "Actions",
+          "viewButton": "View"
+        },
+        "noReports": "No reports have been generated yet."
+      },
+      "toast": {
+        "loadErrorTitle": "Error Loading Reports",
+        "formIncompleteTitle": "Incomplete Form",
+        "formIncompleteDescription": "Please select a report type, target user, and date range.",
+        "generateSuccessTitle": "Report Generation Started",
+        "generateSuccessDescription": "The report is being generated and will appear in the list below shortly.",
+        "generateErrorTitle": "Report Generation Failed"
+      }
+    }
   }
 }

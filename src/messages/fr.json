@@ -54,5 +54,47 @@
       "scanNote": "Ce code est temporaire et expirera dans 10 minutes.",
       "startOverButton": "Recommencer"
     }
+  },
+  "admin": {
+    "layout": {
+      "title": "Panneau d'Administration",
+      "description": "Outils de gestion de la plateforme et de modération du contenu.",
+      "contentManagement": "Contenu",
+      "reports": "Rapports"
+    },
+    "reports": {
+      "generate": {
+        "title": "Générer un Nouveau Rapport",
+        "description": "Sélectionnez les paramètres pour générer un nouveau rapport de conformité ou d'activité.",
+        "reportTypeLabel": "Type de Rapport",
+        "reportTypeVti": "Résumé des Événements VTI",
+        "targetUserLabel": "Utilisateur Cible",
+        "userSearchPlaceholder": "Rechercher un utilisateur par nom ou email...",
+        "dateRangeLabel": "Plage de Dates",
+        "datePlaceholder": "Choisissez une plage de dates",
+        "submitButton": "Générer le Rapport"
+      },
+      "list": {
+        "title": "Rapports Générés Récemment",
+        "description": "Afficher et télécharger les rapports générés précédemment.",
+        "table": {
+          "reportType": "Type de Rapport",
+          "generatedFor": "Généré Pour",
+          "date": "Date",
+          "status": "Statut",
+          "actions": "Actions",
+          "viewButton": "Voir"
+        },
+        "noReports": "Aucun rapport n'a encore été généré."
+      },
+      "toast": {
+        "loadErrorTitle": "Erreur de Chargement des Rapports",
+        "formIncompleteTitle": "Formulaire Incomplet",
+        "formIncompleteDescription": "Veuillez sélectionner un type de rapport, un utilisateur cible et une plage de dates.",
+        "generateSuccessTitle": "Génération du Rapport Lancée",
+        "generateSuccessDescription": "Le rapport est en cours de génération et apparaîtra bientôt dans la liste ci-dessous.",
+        "generateErrorTitle": "Échec de la Génération du Rapport"
+      }
+    }
   }
 }
