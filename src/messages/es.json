@@ -117,5 +117,28 @@
     "getMobileApp": "Obtén la aplicación móvil",
     "googlePlayAlt": "Obtenlo en Google Play",
     "appStoreAlt": "Descargar en la App Store"
+  },
+  "AppHeader": {
+    "searchPlaceholder": "Buscar...",
+    "home": "Inicio",
+    "network": "Red",
+    "farmMgmt": "Granja",
+    "marketplace": "Mercado",
+    "talentExchange": "Talento",
+    "traceability": "Trazabilidad",
+    "forums": "Foros",
+    "sustainability": "Sostenibilidad",
+    "notifications": "Notificaciones",
+    "messages": "Mensajes",
+    "wallet": "Billetera",
+    "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "myProfile": "Mi Perfil",
+    "myOrders": "Mis Pedidos",
+    "settings": "Ajustes",
+    "helpCenter": "Ayuda",
+    "logOut": "Cerrar Sesión",
+    "switchToLightAria": "Cambiar a modo claro",
+    "switchToDarkAria": "Cambiar a modo oscuro"
   }
 }

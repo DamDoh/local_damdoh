@@ -117,5 +117,28 @@
     "getMobileApp": "ទទួលបានកម្មវិធីទូរស័ព្ទ",
     "googlePlayAlt": "ទទួលវានៅលើ Google Play",
     "appStoreAlt": "ទាញយកនៅលើ App Store"
+  },
+  "AppHeader": {
+    "searchPlaceholder": "ស្វែងរក...",
+    "home": "ទំព័រដើម",
+    "network": "បណ្តាញ",
+    "farmMgmt": "កសិដ្ឋាន",
+    "marketplace": "ទីផ្សារ",
+    "talentExchange": "ទេពកោសល្យ",
+    "traceability": "តាមដាន",
+    "forums": "វេទិកា",
+    "sustainability": "និរន្តរភាព",
+    "notifications": "ការជូនដំណឹង",
+    "messages": "សារ",
+    "wallet": "កាបូប",
+    "signIn": "ចូល",
+    "signUp": "ចុះឈ្មោះ",
+    "myProfile": "ប្រវត្តិរូបខ្ញុំ",
+    "myOrders": "ការបញ្ជាទិញរបស់ខ្ញុំ",
+    "settings": "ការកំណត់",
+    "helpCenter": "ជំនួយ",
+    "logOut": "ចាកចេញ",
+    "switchToLightAria": "ប្តូរទៅជារបៀបស្រាល",
+    "switchToDarkAria": "ប្តូរទៅជារបៀបងងឹត"
   }
 }

@@ -117,5 +117,28 @@
     "getMobileApp": "Holen Sie sich die mobile App",
     "googlePlayAlt": "Bei Google Play holen",
     "appStoreAlt": "Im App Store herunterladen"
+  },
+  "AppHeader": {
+    "searchPlaceholder": "Suchen...",
+    "home": "Startseite",
+    "network": "Netzwerk",
+    "farmMgmt": "Farm Mgmt",
+    "marketplace": "Marktplatz",
+    "talentExchange": "Talente",
+    "traceability": "Rückverfolgbarkeit",
+    "forums": "Foren",
+    "sustainability": "Nachhaltigkeit",
+    "notifications": "Benachrichtigungen",
+    "messages": "Nachrichten",
+    "wallet": "Brieftasche",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "myProfile": "Mein Profil",
+    "myOrders": "Meine Bestellungen",
+    "settings": "Einstellungen",
+    "helpCenter": "Hilfezentrum",
+    "logOut": "Abmelden",
+    "switchToLightAria": "Zum hellen Modus wechseln",
+    "switchToDarkAria": "Zum dunklen Modus wechseln"
   }
 }
