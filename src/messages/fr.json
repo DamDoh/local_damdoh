@@ -152,8 +152,119 @@
     "googlePlayAlt": "Disponible sur Google Play",
     "appStoreAlt": "Télécharger dans l'App Store"
   },
+  "searchPage": {
+    "title": "Búsqueda Universal",
+    "description": "Encuentra cualquier cosa en la plataforma DamDoh, desde productos y servicios hasta personas y discusiones.",
+    "placeholder": "Busca café orgánico, reparación de tractores o un usuario...",
+    "searchButton": "Buscar",
+    "popularSearches": "Búsquedas Populares",
+    "popularSearch1": "Fertilizante Orgánico",
+    "popularSearch2": "Logística en Kenia",
+    "popularSearch3": "Compradores de café Europa",
+    "popularSearch4": "Mano de obra agrícola",
+    "popularSearch5": "Tractor en alquiler",
+    "modal": {
+      "title": "Búsqueda Universal",
+      "placeholder": "Estoy buscando...",
+      "searchButton": "Buscar",
+      "searchError": "Búsqueda Fallida",
+      "searchErrorDescription": "Se produjo un error inesperado durante la búsqueda. Por favor, inténtelo de nuevo.",
+      "invalidCodeError": "Esto no parece ser un código QR válido de DamDoh.",
+      "scanFailed": "Escaneo Fallido",
+      "scanError": "Error de Escaneo",
+      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtelo de nuevo.",
+      "interpretationTitle": "Interpretación de IA",
+      "interpretationNotesDefault": "Mostrando resultados generales.",
+      "filtersTitle": "Filtros Aplicados",
+      "results": {
+        "users": "Perfiles",
+        "marketplaceItems": "Mercado",
+        "forums": "Foros",
+        "vti_registry": "Informe de Trazabilidad",
+        "knowledge_articles": "Centro de Conocimiento",
+        "agri_events": "Eventos Agrícolas"
+      },
+      "noResults": "No se encontraron resultados para su consulta.",
+      "tryAgain": "Intente con un término de búsqueda diferente o use palabras clave más amplias."
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Cultiver des liens, récolter la prospérité",
+      "subtitle": "Nous avons pour mission de numériser et de connecter la chaîne d'approvisionnement agricole mondiale, en autonomisant chaque acteur du sol à l'étalage."
+    },
+    "vision": {
+      "title": "Notre vision pour un avenir connecté",
+      "p1": "DamDoh est né d'une idée simple mais puissante : la technologie peut combler les lacunes dans le monde de l'agriculture. Nous imaginons un monde où les petits agriculteurs ont un accès direct aux marchés mondiaux, où les acheteurs peuvent s'approvisionner en produits d'une confiance prouvée, et où le savoir circule librement pour créer un système alimentaire plus durable et équitable.",
+      "p2": "Nous sommes plus qu'une simple plateforme ; nous sommes une communauté dédiée à la résolution de défis du monde réel avec des solutions innovantes et centrées sur l'utilisateur.",
+      "foundersTitle": "Des fondateurs"
+    },
+    "challenge": {
+      "title": "Le paysage fragmenté de l'agriculture",
+      "description": "La chaîne d'approvisionnement agricole est un réseau complexe de systèmes déconnectés, créant des inefficacités systémiques qui ont un impact sur tout le monde, du producteur au consommateur.",
+      "list": {
+        "marketAccess": "Accès limité au marché",
+        "inefficiency": "Inefficacité de la chaîne d'approvisionnement",
+        "financialExclusion": "Exclusion financière",
+        "informationGaps": "Manques d'informations critiques",
+        "qualityTrust": "Déficits de qualité et de confiance",
+        "climatePressure": "Pression climatique intense",
+        "foodLoss": "Pertes post-récolte élevées",
+        "dataFragmentation": "Fragmentation des données et manque de normes"
+      },
+      "details": [
+        "Les petits agriculteurs sont souvent déconnectés des marchés nationaux et internationaux plus vastes et plus rentables.",
+        "Une logistique désarticulée, de l'agrégation à la livraison du dernier kilomètre, entraîne des coûts élevés et des retards importants.",
+        "Le manque de dossiers financiers formalisés empêche des millions d'agriculteurs d'accéder au crédit, aux prêts et à l'assurance.",
+        "Les agriculteurs manquent souvent d'accès aux données de marché en temps opportun, à l'agronomie avancée et aux meilleures pratiques durables.",
+        "Les acheteurs ne peuvent pas facilement vérifier l'origine, la qualité ou les pratiques durables des produits qu'ils achètent.",
+        "Des conditions météorologiques de plus en plus imprévisibles exigent des systèmes agricoles plus résilients et adaptables.",
+        "Des infrastructures de stockage et de transport inadéquates entraînent la détérioration d'une partie importante des produits avant qu'ils n'atteignent le consommateur.",
+        "Les informations sont piégées dans des silos (journaux papier, applications différentes, etc.), ce qui rend impossible d'obtenir une vue d'ensemble complète de la chaîne d'approvisionnement."
+      ]
+    },
+    "solution": {
+      "title": "La Solution DamDoh : Un écosystème intégré",
+      "description": "Nous relevons ces défis en fournissant une plateforme unique et unifiée avec des outils pour tous.",
+      "list": {
+        "education": "Éducation assistée par IA",
+        "ai": "Réseautage intelligent et IA",
+        "marketplace": "Marché et commerce électronique",
+        "logistics": "Logistique intégrée",
+        "financial": "Services financiers"
+      }
+    },
+    "beyondTechnology": {
+      "title": "Au-delà de la technologie : il s'agit de personnes",
+      "list": {
+        "p2p": {
+          "title": "Pair à pair",
+          "content": "Connecter les agriculteurs à d'autres agriculteurs pour partager leurs connaissances et former des coopératives."
+        },
+        "p2b": {
+          "title": "Producteur à entreprise",
+          "content": "Favoriser des relations directes et de confiance entre les producteurs et les acheteurs, les transformateurs et les exportateurs."
+        },
+        "p2e": {
+          "title": "Producteur à écosystème",
+          "content": "Donner aux individus l'accès à tout un écosystème de services - finance, logistique, assurance, etc."
+        },
+        "p2w": {
+          "title": "Producteur au monde",
+          "content": "Permettre aux petits agriculteurs de participer au marché mondial avec confiance et transparence."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Rejoignez notre écosystème en pleine croissance",
+      "p1": "Notre engagement va aux personnes qui nourrissent le monde. Nous croyons qu'en fournissant les outils numériques dont ils ont besoin, nous pouvons favoriser un secteur agricole plus résilient, rentable et durable pour les générations à venir.",
+      "p2": "Que vous plantiez une graine, achetiez en gros ou financiez une ferme, vous avez votre place dans la communauté DamDoh.",
+      "p3": "Grandissons ensemble.",
+      "button": "Créez votre profil"
+    }
+  },
   "blogPage": {
-    "title": "Blog et Articles DamDoh",
+    "title": "Blog & Articles DamDoh",
     "description": "Perspectives, récits et savoirs à la pointe de la révolution agricole.",
     "readMore": "Lire la suite",
     "meta": "Par {author} le {date}",
@@ -172,5 +283,65 @@
       "backButton": "Retour au Blog"
     },
     "originalContentTitle": "Contenu Original ({lang})"
+  },
+  "networkPage": {
+    "title": "Réseau des Acteurs",
+    "description": "Découvrez et connectez-vous avec des agriculteurs, des acheteurs, des prestataires de services et des experts tout au long de la chaîne de valeur agricole.",
+    "myNetworkButton": "Mon Réseau",
+    "agentToolsButton": "Outils d'Agent",
+    "aiSuggestionsTitle": "Suggestions par IA",
+    "aiSuggestionsDescription": "En fonction de votre profil, voici quelques personnes avec qui vous pourriez vouloir vous connecter.",
+    "browseAllTitle": "Parcourir tous les Acteurs",
+    "browseAllDescription": "Utilisez les filtres ci-dessous pour trouver des personnes ou des entreprises spécifiques dans le réseau.",
+    "searchPlaceholder": "Rechercher par nom ou mot-clé...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "rolePlaceholder": "Filtrer par rôle...",
+    "allRoles": "Tous les Rôles",
+    "noStakeholdersFound": "Aucun acteur trouvé.",
+    "noStakeholdersHint": "Essayez d'ajuster vos filtres de recherche.",
+    "connect": "Connecter",
+    "profile": "Profil",
+    "follow": "Suivre",
+    "following": "Abonné",
+    "toast": {
+      "errorTitle": "Erreur",
+      "loadError": "Impossible de charger les données du réseau.",
+      "noSuggestions": "Aucune nouvelle suggestion n'est disponible pour le moment."
+    },
+    "noSuggestions": "Aucune suggestion disponible pour le moment. Complétez votre profil pour de meilleures recommandations."
+  },
+  "myNetworkPage": {
+    "backLink": "Retour au Réseau",
+    "myConnectionsTab": "Mes Connexions ({count})",
+    "pendingRequestsTab": "Demandes en Attente",
+    "connectionsTitle": "Mes Connexions",
+    "connectionsDescription": "Voici vos connexions approuvées sur la plateforme. Vous pouvez maintenant leur envoyer des messages directement.",
+    "noConnections": "Vous n'avez encore établi aucune connexion. Commencez à explorer le réseau !",
+    "requestsTitle": "Demandes de Connexion",
+    "requestsDescription": "Examinez et répondez aux demandes de connexion en attente.",
+    "noRequests": "Vous n'avez aucune demande de connexion en attente.",
+    "sentTimeAgo": "Envoyé il y a {timeAgo}",
+    "toast": {
+      "error": "Erreur",
+      "loadError": "Impossible de charger les données du réseau.",
+      "respondError": "Impossible de répondre à la demande.",
+      "removeError": "Impossible de supprimer la connexion.",
+      "success": "Succès",
+      "requestAccepted": "Demande acceptée.",
+      "requestDeclined": "Demande refusée.",
+      "connectionRemoved": "Connexion supprimée."
+    }
+  },
+  "agentToolsPage": {
+    "backLink": "Retour au Réseau",
+    "accessDeniedTitle": "Accès Refusé",
+    "accessDeniedDescription": "Vous ne disposez pas des autorisations requises pour accéder à ces outils.",
+    "title": "Outils de l'Agent de Terrain",
+    "description": "Outils pour les agents autorisés afin d'assister et de gérer les utilisateurs sur le terrain.",
+    "findUserLabel": "Trouver un utilisateur par numéro de téléphone",
+    "phoneRequiredError": "Un numéro de téléphone est requis.",
+    "findButton": "Trouver",
+    "resultsTitle": "Résultats de la recherche",
+    "resultsPlaceholder": "Les détails de l'utilisateur apparaîtront ici après une recherche réussie."
   }
 }

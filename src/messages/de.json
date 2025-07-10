@@ -30,7 +30,7 @@
     "signUp": "Registrieren",
     "myProfile": "Mein Profil",
     "myOrders": "Meine Bestellungen",
-    "settings": "Einstellungen",
+    "settings": "Ajustes",
     "helpCenter": "Hilfe",
     "logOut": "Abmelden",
     "switchToLightAria": "Zum hellen Modus wechseln",
@@ -152,6 +152,117 @@
     "googlePlayAlt": "Bei Google Play holen",
     "appStoreAlt": "Im App Store herunterladen"
   },
+  "searchPage": {
+    "title": "Universelle Suche",
+    "description": "Finden Sie alles auf der DamDoh-Plattform, von Produkten und Dienstleistungen bis hin zu Personen und Diskussionen.",
+    "placeholder": "Suchen Sie nach Bio-Kaffee, Traktorreparatur oder einem Benutzer...",
+    "searchButton": "Suchen",
+    "popularSearches": "Beliebte Suchen",
+    "popularSearch1": "Organischer Dünger",
+    "popularSearch2": "Logistik in Kenia",
+    "popularSearch3": "Kaffeekäufer Europa",
+    "popularSearch4": "Landwirtschaftliche Arbeitskräfte",
+    "popularSearch5": "Traktor zu vermieten",
+    "modal": {
+      "title": "Universelle Suche",
+      "placeholder": "Ich suche nach...",
+      "searchButton": "Suchen",
+      "searchError": "Suche fehlgeschlagen",
+      "searchErrorDescription": "Bei der Suche ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+      "invalidCodeError": "Dies scheint kein gültiger DamDoh-QR-Code zu sein.",
+      "scanFailed": "Scan fehlgeschlagen",
+      "scanError": "Scan-Fehler",
+      "scanErrorDescription": "Der QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
+      "interpretationTitle": "KI-Interpretation",
+      "interpretationNotesDefault": "Zeige allgemeine Ergebnisse an.",
+      "filtersTitle": "Angewandte Filter",
+      "results": {
+        "users": "Profile",
+        "marketplaceItems": "Marktplatz",
+        "forums": "Foren",
+        "vti_registry": "Rückverfolgbarkeitsbericht",
+        "knowledge_articles": "Wissenszentrum",
+        "agri_events": "Agri-Veranstaltungen"
+      },
+      "noResults": "Keine Ergebnisse für Ihre Anfrage gefunden.",
+      "tryAgain": "Versuchen Sie einen anderen Suchbegriff oder verwenden Sie allgemeinere Schlüsselwörter."
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Verbindungen pflegen, Wohlstand ernten",
+      "subtitle": "Unsere Mission ist es, die globale landwirtschaftliche Lieferkette zu digitalisieren und zu verbinden, um jeden Beteiligten vom Boden bis zum Regal zu stärken."
+    },
+    "vision": {
+      "title": "Unsere Vision für eine vernetzte Zukunft",
+      "p1": "DamDoh entstand aus einer einfachen, aber kraftvollen Idee: Technologie kann die Lücken in der Welt der Landwirtschaft schließen. Wir stellen uns eine Welt vor, in der Kleinbauern direkten Zugang zu globalen Märkten haben, Käufer Produkte mit nachweisbarem Vertrauen beziehen können und Wissen frei fließt, um ein nachhaltigeres und gerechteres Lebensmittelsystem zu schaffen.",
+      "p2": "Wir sind mehr als nur eine Plattform; wir sind eine Gemeinschaft, die sich der Lösung realer Herausforderungen mit innovativen, benutzerzentrierten Lösungen widmet.",
+      "foundersTitle": "Von den Gründern"
+    },
+    "challenge": {
+      "title": "Die fragmentierte Landschaft der Landwirtschaft",
+      "description": "Die landwirtschaftliche Lieferkette ist ein komplexes Netz unverbundener Systeme, das systemische Ineffizienzen schafft, die alle vom Erzeuger bis zum Verbraucher betreffen.",
+      "list": {
+        "marketAccess": "Eingeschränkter Marktzugang",
+        "inefficiency": "Ineffizienz der Lieferkette",
+        "financialExclusion": "Finanzielle Ausgrenzung",
+        "informationGaps": "Kritische Informationslücken",
+        "qualityTrust": "Qualitäts- und Vertrauensdefizite",
+        "climatePressure": "Intensiver Klimadruck",
+        "foodLoss": "Hohe Nachernteverluste",
+        "dataFragmentation": "Datenfragmentierung & fehlende Standards"
+      },
+      "details": [
+        "Kleinbauern sind oft von größeren, profitableren nationalen und internationalen Märkten abgeschnitten.",
+        "Eine unzusammenhängende Logistik, von der Sammlung bis zur letzten Meile, führt zu hohen Kosten und erheblichen Verzögerungen.",
+        "Das Fehlen formalisierter Finanzunterlagen hindert Millionen von Landwirten am Zugang zu Krediten, Darlehen und Versicherungen.",
+        "Landwirte haben oft keinen Zugang zu aktuellen Marktdaten, fortschrittlicher Agronomie und nachhaltigen Best Practices.",
+        "Käufer können die Herkunft, Qualität oder nachhaltige Praktiken der von ihnen bezogenen Produkte nicht einfach überprüfen.",
+        "Zunehmend unvorhersehbare Wetterbedingungen erfordern widerstandsfähigere und anpassungsfähigere landwirtschaftliche Systeme.",
+        "Unzureichende Lager- und Transportinfrastruktur führt dazu, dass ein erheblicher Teil der Ernte verdirbt, bevor sie den Verbraucher erreicht.",
+        "Informationen sind in Silos gefangen (Papierprotokolle, verschiedene Apps usw.), was es unmöglich macht, einen vollständigen Überblick über die Lieferkette zu erhalten."
+      ]
+    },
+    "solution": {
+      "title": "Die DamDoh-Lösung: Ein integriertes Ökosystem",
+      "description": "Wir begegnen diesen Herausforderungen, indem wir eine einzige, einheitliche Plattform mit Werkzeugen für alle bereitstellen.",
+      "list": {
+        "education": "KI-gestützte Bildung",
+        "ai": "Intelligentes Networking & KI",
+        "marketplace": "Marktplatz & E-Commerce",
+        "logistics": "Integrierte Logistik",
+        "financial": "Finanzdienstleistungen"
+      }
+    },
+    "beyondTechnology": {
+      "title": "Über die Technologie hinaus: Es geht um Menschen",
+      "list": {
+        "p2p": {
+          "title": "Peer-to-Peer",
+          "content": "Landwirte mit anderen Landwirten verbinden, um Wissen zu teilen und Genossenschaften zu gründen."
+        },
+        "p2b": {
+          "title": "Produzent-zu-Unternehmen",
+          "content": "Förderung direkter, vertrauensvoller Beziehungen zwischen Produzenten und Käufern, Verarbeitern und Exporteuren."
+        },
+        "p2e": {
+          "title": "Produzent-zu-Ökosystem",
+          "content": "Einzelpersonen den Zugang zu einem gesamten Ökosystem von Dienstleistungen ermöglichen - Finanzen, Logistik, Versicherungen und mehr."
+        },
+        "p2w": {
+          "title": "Produzent-zur-Welt",
+          "content": "Kleinbauern die Teilnahme am globalen Markt mit Zuversicht und Transparenz ermöglichen."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Treten Sie unserem wachsenden Ökosystem bei",
+      "p1": "Unser Engagement gilt den Menschen, die die Welt ernähren. Wir glauben, dass wir durch die Bereitstellung der benötigten digitalen Werkzeuge einen widerstandsfähigeren, profitableren und nachhaltigeren Agrarsektor für kommende Generationen fördern können.",
+      "p2": "Ob Sie ein Samenkorn pflanzen, in großen Mengen einkaufen oder eine Farm finanzieren, Sie haben einen Platz in der DamDoh-Community.",
+      "p3": "Lassen Sie uns gemeinsam wachsen.",
+      "button": "Erstellen Sie Ihr Profil"
+    }
+  },
   "blogPage": {
     "title": "DamDoh Blog & Artikel",
     "description": "Einblicke, Geschichten und Wissen an der Spitze der landwirtschaftlichen Revolution.",
@@ -172,5 +283,65 @@
       "backButton": "Zurück zum Blog"
     },
     "originalContentTitle": "Originalinhalt ({lang})"
+  },
+  "networkPage": {
+    "title": "Netzwerk der Akteure",
+    "description": "Entdecken und vernetzen Sie sich mit Landwirten, Käufern, Dienstleistern und Experten entlang der gesamten landwirtschaftlichen Wertschöpfungskette.",
+    "myNetworkButton": "Mein Netzwerk",
+    "agentToolsButton": "Agentenwerkzeuge",
+    "aiSuggestionsTitle": "KI-Vorschläge",
+    "aiSuggestionsDescription": "Basierend auf Ihrem Profil finden Sie hier einige Personen, mit denen Sie sich möglicherweise vernetzen möchten.",
+    "browseAllTitle": "Alle Akteure durchsuchen",
+    "browseAllDescription": "Verwenden Sie die folgenden Filter, um bestimmte Personen oder Unternehmen im Netzwerk zu finden.",
+    "searchPlaceholder": "Nach Name oder Schlüsselwort suchen...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "rolePlaceholder": "Nach Rolle filtern...",
+    "allRoles": "Alle Rollen",
+    "noStakeholdersFound": "Keine Akteure gefunden.",
+    "noStakeholdersHint": "Versuchen Sie, Ihre Suchfilter anzupassen.",
+    "connect": "Verbinden",
+    "profile": "Profil",
+    "follow": "Folgen",
+    "following": "Gefolgt",
+    "toast": {
+      "errorTitle": "Fehler",
+      "loadError": "Netzwerkdaten konnten nicht geladen werden.",
+      "noSuggestions": "Derzeit sind keine neuen Vorschläge verfügbar."
+    },
+    "noSuggestions": "Derzeit sind keine Vorschläge verfügbar. Vervollständigen Sie Ihr Profil für bessere Empfehlungen."
+  },
+  "myNetworkPage": {
+    "backLink": "Zurück zum Netzwerk",
+    "myConnectionsTab": "Meine Verbindungen ({count})",
+    "pendingRequestsTab": "Ausstehende Anfragen",
+    "connectionsTitle": "Meine Verbindungen",
+    "connectionsDescription": "Dies sind Ihre genehmigten Verbindungen auf der Plattform. Sie können ihnen jetzt direkt Nachrichten senden.",
+    "noConnections": "Sie haben noch keine Verbindungen hergestellt. Beginnen Sie, das Netzwerk zu erkunden!",
+    "requestsTitle": "Verbindungsanfragen",
+    "requestsDescription": "Überprüfen und beantworten Sie ausstehende Verbindungsanfragen.",
+    "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen.",
+    "sentTimeAgo": "Gesendet vor {timeAgo}",
+    "toast": {
+      "error": "Fehler",
+      "loadError": "Netzwerkdaten konnten nicht geladen werden.",
+      "respondError": "Anfrage konnte nicht beantwortet werden.",
+      "removeError": "Verbindung konnte nicht entfernt werden.",
+      "success": "Erfolg",
+      "requestAccepted": "Anfrage angenommen.",
+      "requestDeclined": "Anfrage abgelehnt.",
+      "connectionRemoved": "Verbindung entfernt."
+    }
+  },
+  "agentToolsPage": {
+    "backLink": "Zurück zum Netzwerk",
+    "accessDeniedTitle": "Zugriff verweigert",
+    "accessDeniedDescription": "Sie verfügen nicht über die erforderlichen Berechtigungen, um auf diese Werkzeuge zuzugreifen.",
+    "title": "Außendienstmitarbeiter-Werkzeuge",
+    "description": "Werkzeuge für autorisierte Agenten zur Unterstützung und Verwaltung von Benutzern im Feld.",
+    "findUserLabel": "Benutzer nach Telefonnummer suchen",
+    "phoneRequiredError": "Eine Telefonnummer ist erforderlich.",
+    "findButton": "Suchen",
+    "resultsTitle": "Suchergebnisse",
+    "resultsPlaceholder": "Benutzerdetails werden hier nach einer erfolgreichen Suche angezeigt."
   }
 }

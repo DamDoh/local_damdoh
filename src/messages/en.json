@@ -550,5 +550,65 @@
       "scanNote": "This code is temporary and will expire in 10 minutes.",
       "startOverButton": "Start Over"
     }
+  },
+  "networkPage": {
+    "title": "Stakeholder Network",
+    "description": "Discover and connect with farmers, buyers, service providers, and experts across the agricultural value chain.",
+    "myNetworkButton": "My Network",
+    "agentToolsButton": "Agent Tools",
+    "aiSuggestionsTitle": "AI Suggestions",
+    "aiSuggestionsDescription": "Based on your profile, here are some people you may want to connect with.",
+    "browseAllTitle": "Browse All Stakeholders",
+    "browseAllDescription": "Use the filters below to find specific people or businesses in the network.",
+    "searchPlaceholder": "Search by name or keyword...",
+    "locationPlaceholder": "Filter by location...",
+    "rolePlaceholder": "Filter by role...",
+    "allRoles": "All Roles",
+    "noStakeholdersFound": "No stakeholders found.",
+    "noStakeholdersHint": "Try adjusting your search filters.",
+    "connect": "Connect",
+    "profile": "Profile",
+    "follow": "Follow",
+    "following": "Following",
+    "toast": {
+      "errorTitle": "Error",
+      "loadError": "Could not load network data.",
+      "noSuggestions": "No new suggestions are available at this time."
+    },
+    "noSuggestions": "No suggestions available right now. Complete your profile for better recommendations."
+  },
+  "myNetworkPage": {
+    "backLink": "Back to Network",
+    "myConnectionsTab": "My Connections ({count})",
+    "pendingRequestsTab": "Pending Requests",
+    "connectionsTitle": "My Connections",
+    "connectionsDescription": "These are your approved connections on the platform. You can now message them directly.",
+    "noConnections": "You haven't made any connections yet. Start exploring the network!",
+    "requestsTitle": "Connection Requests",
+    "requestsDescription": "Review and respond to pending connection requests.",
+    "noRequests": "You have no pending connection requests.",
+    "sentTimeAgo": "Sent {timeAgo}",
+    "toast": {
+      "error": "Error",
+      "loadError": "Could not load network data.",
+      "respondError": "Could not respond to the request.",
+      "removeError": "Could not remove the connection.",
+      "success": "Success",
+      "requestAccepted": "Request accepted.",
+      "requestDeclined": "Request declined.",
+      "connectionRemoved": "Connection removed."
+    }
+  },
+  "agentToolsPage": {
+    "backLink": "Back to Network",
+    "accessDeniedTitle": "Access Denied",
+    "accessDeniedDescription": "You do not have the required permissions to access these tools.",
+    "title": "Field Agent Tools",
+    "description": "Tools for authorized agents to assist and manage users in the field.",
+    "findUserLabel": "Find User by Phone Number",
+    "phoneRequiredError": "A phone number is required.",
+    "findButton": "Find",
+    "resultsTitle": "Search Results",
+    "resultsPlaceholder": "User details will appear here after a successful lookup."
   }
 }
