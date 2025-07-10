@@ -640,8 +640,6 @@ export type KnfBatch = {
     type: string; // 'fpj', 'faa', etc.
     typeName: string; // "Fermented Plant Juice"
     ingredients: string;
-    quantityProduced: number;
-    unit: string;
     startDate: any; // Firestore Timestamp
     nextStepDate: any; // Firestore Timestamp
     status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';

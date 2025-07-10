@@ -490,11 +490,11 @@ export const createKnfBatch = functions.https.onCall(async (data, context) => {
     );
   }
 
-  const {type, typeName, ingredients, startDate, quantityProduced, unit} = data;
-  if (!type || !typeName || !ingredients || !startDate || quantityProduced === undefined || !unit) {
+  const {type, typeName, ingredients, startDate} = data;
+  if (!type || !typeName || !ingredients || !startDate) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "Type, typeName, ingredients, startDate, quantity, and unit are required.",
+      "Type, typeName, ingredients, and startDate are required.",
     );
   }
 
@@ -509,8 +509,6 @@ export const createKnfBatch = functions.https.onCall(async (data, context) => {
       type: type,
       typeName: typeName,
       ingredients: ingredients,
-      quantityProduced: quantityProduced,
-      unit: unit,
       startDate: admin.firestore.Timestamp.fromDate(startDateObj),
       nextStepDate: admin.firestore.Timestamp.fromDate(nextStepDate),
       status: "Fermenting",
@@ -639,3 +637,5 @@ export const updateKnfBatchStatus = functions.https.onCall(
     }
   },
 );
+
+
