@@ -1,47 +1,109 @@
-
 {
-  "FeedItemCard": {
-    "signInToLikeToast": "You must be signed in to like a post.",
-    "repostPlaceholderToast": "Repost feature will be available soon!",
-    "signInToVoteToast": "You must be signed in to vote.",
-    "voteSuccessToast": "Your vote has been counted!",
-    "voteErrorToast": "Could not register vote",
-    "editPost": "Edit Post",
-    "deletePost": "Delete Post",
-    "like": "Like",
-    "comment": "Comment",
-    "repost": "Repost",
-    "likes": "{count, plural, =0 {likes} =1 {like} other {# likes}}",
-    "comments": "{count, plural, =0 {comments} =1 {comment} other {# comments}}",
-    "loadCommentsErrorToast": "Could not load comments.",
-    "noComments": "Be the first to comment!",
-    "loadingComments": "Loading comments...",
-    "loadMoreComments": "Load more comments",
-    "writeCommentPlaceholder": "Add a comment...",
-    "postButton": "Post",
-    "votes": "{count, plural, =0 {votes} =1 {vote} other {# votes}}"
+  "LandingPage": {
+    "hero": {
+      "title": "Empowering Agriculture from Soil to Sale on {appName}",
+      "subtitle": "The single platform connecting every stakeholder in the agricultural value chain for a more transparent, efficient, and sustainable future.",
+      "getStartedButton": "Get Started for Free",
+      "learnMoreButton": "Learn More"
+    },
+    "features": {
+      "title": "DamDoh's Main Features",
+      "subtitle": "Everything you need to grow, connect, and trade, all in one place.",
+      "networking": {
+        "title": "Intelligent Networking",
+        "description": "AI-powered connection suggestions to link you with the right partners, from suppliers to international buyers."
+      },
+      "marketplace": {
+        "title": "Direct Marketplace",
+        "description": "Buy and sell products and services directly, increasing transparency and profitability for all stakeholders."
+      },
+      "forums": {
+        "title": "Topical Forums",
+        "description": "Share knowledge, discuss challenges, and collaborate on solutions in topic-specific forums."
+      },
+      "talent": {
+        "title": "Talent Exchange",
+        "description": "Offer or find specialized agricultural services, from on-demand harvesting to drone surveys."
+      }
+    },
+    "forWho": {
+      "badge": "For Everyone in Agriculture",
+      "title": "One Platform for the Entire Value Chain",
+      "description": "DamDoh is uniquely designed to serve the entire agricultural ecosystem, creating a single point of truth and opportunity for all.",
+      "farmers": {
+        "title": "Farmers",
+        "description": "Access better markets, find quality inputs, and get expert advice to increase yield and profitability."
+      },
+      "buyers": {
+        "title": "Buyers & Processors",
+        "description": "Source high-quality, traceable produce directly from growers and co-ops, ensuring supply chain reliability."
+      },
+      "experts": {
+        "title": "Experts & Service Providers",
+        "description": "Offer your specialized skills and services to a wide agricultural audience seeking your expertise."
+      },
+      "imageAlt": "A diverse group of agricultural stakeholders collaborating"
+    },
+    "cta": {
+      "title": "Join the Agricultural Revolution",
+      "subtitle": "Sign up today and become part of a growing global network dedicated to transforming the future of food.",
+      "button": "Create Your Free Account"
+    }
   },
-  "CreatePostModal": {
-    "title": "Create a New Post",
-    "description": "Share an update, ask a question, or start a discussion with the community.",
-    "yourName": "Your Name",
-    "shareUpdate": "Share an update",
-    "placeholder": "What's on your mind?",
-    "selectedFile": "Selected file:",
-    "pollOptionsLabel": "Poll Options",
-    "pollOptionPlaceholder": "Option {index}",
-    "addOptionButton": "Add Option",
-    "pollNote": "Maximum of {maxOptions} options allowed.",
-    "photoVideo": "Photo/Video",
-    "agriEvent": "Agri-Event",
-    "shareDocumentButton": "Share Document",
-    "createPollButton": "Create a Poll",
-    "postButton": "Post",
-    "pollOptionsError": "A poll must have at least 2 non-empty options.",
-    "emptyPostError": "Your post cannot be empty."
+  "Auth": {
+    "signInWelcome": "Welcome back to {appName}",
+    "signUpWelcome": "Join the DamDoh Agricultural Network",
+    "forgotPasswordResetPrompt": "Reset your password for {appName}",
+    "resetPasswordPrompt": "Create a new password for {appName}",
+    "signInTitle": "Sign in to your account",
+    "signInDescription": "Enter your credentials to access your dashboard.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "forgotPasswordLink": "Forgot password?",
+    "signingInButton": "Signing in...",
+    "signInButton": "Sign In",
+    "noAccountPrompt": "Don't have an account?",
+    "signUpLink": "Sign Up",
+    "signInLink": "Sign In",
+    "recoverWithUniversalIdPrompt": "Or recover access with your Universal ID",
+    "signUpTitle": "Create a new account",
+    "signUpDescription": "Tell us a bit about yourself to get started.",
+    "nameLabel": "Your Name or Business Name",
+    "namePlaceholder": "e.g., Chan Nary or Green Valley Farms",
+    "roleLabel": "Your Primary Role",
+    "rolePlaceholder": "Select your role in the supply chain...",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Creating account...",
+    "signUpButton": "Create Account",
+    "alreadyHaveAccountPrompt": "Already have an account?",
+    "forgotPasswordTitle": "Forgot Password?",
+    "forgotPasswordDescription": "No problem. Enter your email address below, and we'll send you a link to reset it.",
+    "sendResetLinkButton": "Send Reset Link",
+    "sendingEmailButton": "Sending email...",
+    "rememberPasswordPrompt": "Remember your password?",
+    "resetPasswordTitle": "Reset Your Password",
+    "resetPasswordDescription": "Enter and confirm your new password below.",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "Enter a strong new password",
+    "resetPasswordButton": "Reset Password",
+    "resettingPasswordButton": "Resetting...",
+    "recoverPage": {
+      "title": "Recover Your Account",
+      "description": "Use your network to regain access.",
+      "howItWorksTitle": "How it Works",
+      "step1": "Enter your phone number to start a recovery session.",
+      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
+      "step3": "Once your friend scans the code to verify your identity, you'll regain access.",
+      "startButton": "Start Account Recovery",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
+      "scanNote": "This code is temporary and expires in 10 minutes.",
+      "startOverButton": "Start Over"
+    }
   },
   "AppHeader": {
-    "searchPlaceholder": "Search...",
     "home": "Home",
     "network": "Network",
     "farmMgmt": "Farm Mgmt",
@@ -53,15 +115,15 @@
     "notifications": "Notifications",
     "messages": "Messages",
     "wallet": "Wallet",
+    "searchPlaceholder": "Search people, products, services...",
     "signIn": "Sign In",
     "signUp": "Sign Up",
     "myProfile": "My Profile",
-    "myOrders": "My Orders",
     "settings": "Settings",
     "helpCenter": "Help Center",
     "logOut": "Log Out",
-    "switchToLightAria": "Switch to light mode",
-    "switchToDarkAria": "Switch to dark mode"
+    "switchToLightAria": "Switch to light theme",
+    "switchToDarkAria": "Switch to dark theme"
   },
   "MobileBottomNav": {
     "home": "Home",
@@ -70,101 +132,33 @@
     "forums": "Forums",
     "profile": "Profile"
   },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "Syncing {count} pending actions...",
-      "onlinePending": "{count} actions pending. Sync will start soon.",
-      "onlineSynced": "You are online and all data is synced.",
-      "offline": "You are offline. {count} actions queued."
-    },
-    "toast": {
-      "online": {
-        "title": "You are back online!",
-        "description": "Your connection has been restored."
-      },
-      "offline": {
-        "title": "You are currently offline",
-        "description": "Data will be saved locally and synced when you reconnect."
-      },
-      "syncing": {
-        "title": "Syncing Data",
-        "description": "Uploading {count} offline actions to the server."
-      },
-      "synced": {
-        "title": "Sync Complete",
-        "description": "Your offline data has been successfully saved."
-      },
-      "syncFailed": {
-        "title": "Sync Failed",
-        "description": "Could not sync offline data. Will try again later."
-      },
-      "queued": {
-        "title": "Action Queued",
-        "description": "This action will be completed when you're back online."
-      }
-    }
+  "DashboardRightSidebar": {
+    "networkTitle": "Add to your feed",
+    "refreshSuggestions": "Refresh suggestions",
+    "infoTooltip": "Suggestions are based on your profile interests and needs.",
+    "signInPrompt": "Sign in for personalized recommendations.",
+    "loadError": "Could not load suggestions.",
+    "noSuggestions": "No new suggestions right now. Check back later!",
+    "following": "Following",
+    "follow": "Follow",
+    "promotionsTitle": "Promotions",
+    "promotionsDescription": "See special offers and deals from partners in the ecosystem.",
+    "managePromotionsButton": "Manage Promotions",
+    "ad": "Ad",
+    "adTitle": "Unlock Market Insights",
+    "adDescription": "Get real-time data and analytics with DamDoh Pro.",
+    "adButton": "Learn More"
   },
   "LanguageSwitcher": {
-    "toggle": "Toggle language"
-  },
-  "LandingPage": {
-    "hero": {
-      "title": "Reimagining Agriculture with {appName}",
-      "subtitle": "Connecting the entire agricultural value chain, from seed to sale, with tools for traceability, trade, and trust.",
-      "getStartedButton": "Get Started",
-      "learnMoreButton": "Learn More"
-    },
-    "features": {
-      "title": "A Unified Platform for All Stakeholders",
-      "subtitle": "DamDoh provides an integrated suite of tools to empower every participant in the agricultural ecosystem.",
-      "networking": {
-        "title": "Professional Networking",
-        "description": "Connect with farmers, buyers, suppliers, and experts to build your professional network."
-      },
-      "marketplace": {
-        "title": "Global Marketplace",
-        "description": "Buy and sell produce, inputs, and equipment with trust and transparency."
-      },
-      "forums": {
-        "title": "Knowledge Sharing",
-        "description": "Join community discussions, share insights, and learn from experts in the field."
-      },
-      "talent": {
-        "title": "Talent Exchange",
-        "description": "Find or offer specialized agricultural services, from agronomy to equipment operation."
-      }
-    },
-    "forWho": {
-      "badge": "For Everyone",
-      "title": "Built for the Entire Agri-Supply Chain",
-      "description": "Whether you're a smallholder farmer, a large-scale buyer, or an agronomy expert, DamDoh has tools to help you succeed.",
-      "imageAlt": "A collage of diverse agricultural stakeholders using the DamDoh platform.",
-      "farmers": {
-        "title": "For Farmers",
-        "description": "Access markets, manage your farm, and get expert advice to improve your yield and income."
-      },
-      "buyers": {
-        "title": "For Buyers & Businesses",
-        "description": "Source high-quality, traceable produce directly from producers and streamline your supply chain."
-      },
-      "experts": {
-        "title": "For Experts & Service Providers",
-        "description": "Offer your expertise, find clients, and contribute to a more sustainable agricultural sector."
-      }
-    },
-    "cta": {
-      "title": "Join the Agricultural Revolution",
-      "subtitle": "Sign up today and become part of a global community dedicated to building a more transparent, sustainable, and prosperous future for agriculture.",
-      "button": "Join DamDoh Today"
-    }
+    "toggle": "Change language"
   },
   "AppFooter": {
-    "tagline": "Connecting the agricultural value chain for a sustainable future.",
+    "tagline": "The global platform for the agricultural supply chain.",
     "damdohTitle": "DamDoh",
     "aboutLabel": "About Us",
     "contactLabel": "Contact",
     "careersLabel": "Careers",
-    "blogLabel": "Blog",
+    "blogLabel": "Blog & News",
     "resourcesTitle": "Resources",
     "helpCenterLabel": "Help Center",
     "communityGuidelinesLabel": "Community Guidelines",
@@ -174,1312 +168,9 @@
     "legalTitle": "Legal",
     "privacyPolicyLabel": "Privacy Policy",
     "termsOfServiceLabel": "Terms of Service",
-    "copyright": "© {year} {appName}. All Rights Reserved.",
+    "copyright": "© {year} {appName} All rights reserved.",
     "getMobileApp": "Get the Mobile App",
     "googlePlayAlt": "Get it on Google Play",
     "appStoreAlt": "Download on the App Store"
-  },
-  "searchPage": {
-    "title": "Universal Search",
-    "description": "Find anything across the DamDoh platform, from products and services to people and discussions.",
-    "placeholder": "Search for organic coffee, tractor repair, or a user...",
-    "searchButton": "Search",
-    "popularSearches": "Popular Searches",
-    "popularSearch1": "Organic Fertilizer",
-    "popularSearch2": "Logistics in Kenya",
-    "popularSearch3": "Coffee Buyers Europe",
-    "popularSearch4": "Farm Labor",
-    "popularSearch5": "Tractor for rent",
-    "modal": {
-      "title": "Universal Search",
-      "placeholder": "I'm looking for...",
-      "searchButton": "Search",
-      "searchError": "Search Failed",
-      "searchErrorDescription": "An unexpected error occurred while searching. Please try again.",
-      "invalidCodeError": "This does not appear to be a valid DamDoh QR code.",
-      "scanFailed": "Scan Failed",
-      "scanError": "Scan Error",
-      "scanErrorDescription": "Could not read the QR code. Please try again.",
-      "interpretationTitle": "AI Interpretation",
-      "interpretationNotesDefault": "Showing general results.",
-      "filtersTitle": "Filters Applied",
-      "results": {
-        "users": "Profiles",
-        "marketplaceItems": "Marketplace",
-        "forums": "Forums",
-        "vti_registry": "Traceability Report",
-        "knowledge_articles": "Knowledge Hub",
-        "agri_events": "Agri-Events"
-      },
-      "noResults": "No results found for your query.",
-      "tryAgain": "Try a different search term or use broader keywords."
-    }
-  },
-  "aboutPage": {
-    "hero": {
-      "title": "Cultivating Connections, Harvesting Prosperity",
-      "subtitle": "We are on a mission to digitize and connect the global agricultural supply chain, empowering every stakeholder from the soil to the shelf."
-    },
-    "vision": {
-      "title": "Our Vision for a Connected Future",
-      "p1": "DamDoh was born from a simple yet powerful idea: that technology can bridge the gaps in the agricultural world. We envision a world where smallholder farmers have direct access to global markets, where buyers can source produce with verifiable trust, and where knowledge flows freely to create a more sustainable and equitable food system.",
-      "p2": "We are more than just a platform; we are a community dedicated to solving real-world challenges with innovative, user-centric solutions.",
-      "foundersTitle": "From the Founders"
-    },
-    "challenge": {
-      "title": "The Fragmented Landscape of Agriculture",
-      "description": "The agricultural supply chain is complex and often disconnected, presenting numerous challenges for everyone involved.",
-      "list": {
-        "knowledge": "Information Gaps: Farmers lack access to modern techniques and real-time market data.",
-        "market": "Market Access: Smallholders struggle to connect with larger, more profitable markets.",
-        "quality": "Quality & Trust: Buyers face uncertainty about produce quality, origin, and farming practices.",
-        "logistics": "Inefficient Logistics: Poor coordination leads to high costs and significant post-harvest losses.",
-        "financial": "Financial Exclusion: Lack of formal records prevents access to credit and insurance.",
-        "climate": "Climate Change: Increasing unpredictability requires more resilient farming systems.",
-        "informal": "Informal Economy: A lack of digital records hinders growth and formalization."
-      }
-    },
-    "solution": {
-      "title": "The DamDoh Solution: An Integrated Ecosystem",
-      "description": "We tackle these challenges by providing a single, unified platform with tools for everyone.",
-      "list": {
-        "education": "AI-Powered Education",
-        "ai": "Smart Networking & AI",
-        "logistics": "Integrated Logistics",
-        "financial": "Financial Services"
-      }
-    },
-    "beyondTechnology": {
-      "title": "More Than Just Technology",
-      "list": {
-        "p2p": {
-          "title": "Peer-to-Peer",
-          "content": "Farmers connecting with other farmers to share knowledge and form cooperatives."
-        },
-        "p2b": {
-          "title": "Producer-to-Business",
-          "content": "Direct links between farmers and buyers, processors, and exporters, cutting out unnecessary middlemen."
-        },
-        "p2e": {
-          "title": "Producer-to-Expert",
-          "content": "Access to agronomists, financial advisors, and logistics providers to improve operations."
-        },
-        "p2w": {
-          "title": "Producer-to-World",
-          "content": "Enabling smallholder farmers to participate in the global marketplace with trust and transparency."
-        }
-      }
-    },
-    "commitment": {
-      "title": "Join Our Growing Ecosystem",
-      "p1": "Our commitment is to the people who feed the world. By providing the digital tools they need, we believe we can foster a more resilient, profitable, and sustainable agricultural sector for generations to come.",
-      "p2": "Whether you're planting a seed, buying in bulk, or financing a farm, you have a place in the DamDoh community.",
-      "p3": "Let's grow together.",
-      "button": "Create Your Profile"
-    }
-  },
-  "Auth": {
-    "signUpWelcome": "Join the {appName} agricultural network",
-    "signUpTitle": "Create an Account",
-    "signUpDescription": "Enter your details to get started.",
-    "nameLabel": "Full Name",
-    "namePlaceholder": "Jane Doe",
-    "roleLabel": "Your Primary Role",
-    "rolePlaceholder": "Select your role...",
-    "emailLabel": "Email",
-    "emailPlaceholder": "name@example.com",
-    "passwordLabel": "Password",
-    "passwordPlaceholder": "••••••••",
-    "confirmPasswordLabel": "Confirm Password",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Creating Account...",
-    "signUpButton": "Sign Up",
-    "alreadyHaveAccountPrompt": "Already have an account?",
-    "signInLink": "Sign In",
-    "signUpLink": "Sign Up",
-    "signInWelcome": "Welcome back to {appName}",
-    "signInTitle": "Sign In",
-    "signInDescription": "Enter your credentials to access your account.",
-    "forgotPasswordLink": "Forgot password?",
-    "signingInButton": "Signing In...",
-    "signInButton": "Sign In",
-    "noAccountPrompt": "Don't have an account?",
-    "recoverWithUniversalIdPrompt": "Recover account with Universal ID",
-    "forgotPasswordResetPrompt": "Reset your {appName} password",
-    "forgotPasswordTitle": "Forgot Password",
-    "forgotPasswordDescription": "No worries, we'll send you reset instructions.",
-    "sendResetLinkButton": "Send Reset Link",
-    "sendingEmailButton": "Sending...",
-    "rememberPasswordPrompt": "Remember your password?",
-    "error": "Error",
-    "forgotPassword": {
-      "emailSentTitle": "Check your email",
-      "emailSentDescription": "A password reset link has been sent to {email}.",
-      "emailSentDescriptionIfAccountExists": "If an account with {email} exists, a password reset link has been sent.",
-      "successTitle": "Email Sent!",
-      "successDescription": "Please check your inbox (and spam folder) for the password reset link.",
-      "errors": {
-        "unexpected": "An unexpected error occurred. Please try again.",
-        "invalidEmail": "The email address is not valid.",
-        "tooManyRequests": "Too many requests. Please try again later.",
-        "default": "Failed to send reset email"
-      }
-    },
-    "resetPasswordPrompt": "Set a new password for your {appName} account",
-    "resetPasswordTitle": "Reset Your Password",
-    "resetPasswordDescription": "Enter a new secure password for your account.",
-    "newPasswordLabel": "New Password",
-    "newPasswordPlaceholder": "••••••••",
-    "resettingPasswordButton": "Resetting...",
-    "resetPasswordButton": "Reset Password",
-    "resetPassword": {
-      "successTitle": "Password Reset Successfully!",
-      "successDescription": "You can now sign in with your new password.",
-      "successRedirect": "You will be redirected to the sign-in page shortly.",
-      "errors": {
-        "missingCode": "Invalid password reset link. Please request a new one.",
-        "missingCodeTitle": "Invalid Link",
-        "missingCodeDescription": "The password reset link is missing or invalid. Please return to the 'Forgot Password' page to request a new one.",
-        "unexpected": "An unexpected error occurred. Please try again.",
-        "invalidOrExpiredCode": "The password reset link is invalid or has expired. Please request a new one.",
-        "userDisabled": "This user account has been disabled.",
-        "userNotFound": "No user found corresponding to this reset link.",
-        "weakPassword": "The new password is not strong enough.",
-        "default": "Failed to reset password"
-      }
-    },
-    "recoverPage": {
-      "title": "Account Recovery",
-      "description": "Regain access to your account with the help of a trusted friend.",
-      "howItWorksTitle": "How Social Recovery Works",
-      "step1": "Enter your phone number to start a recovery session.",
-      "step2": "Show the generated QR code to a trusted friend who also uses DamDoh.",
-      "step3": "Your friend scans the code with their app to confirm your identity.",
-      "startButton": "Start Recovery",
-      "scanTitle": "Ask a Friend to Scan",
-      "scanDescription": "Have a trusted connection in your DamDoh network scan this QR code to verify your identity.",
-      "scanNote": "This code is temporary and will expire in 10 minutes.",
-      "startOverButton": "Start Over"
-    }
-  },
-  "networkPage": {
-    "title": "Stakeholder Network",
-    "description": "Discover and connect with farmers, buyers, service providers, and experts across the agricultural value chain.",
-    "myNetworkButton": "My Network",
-    "agentToolsButton": "Agent Tools",
-    "aiSuggestionsTitle": "AI-Powered Suggestions",
-    "aiSuggestionsDescription": "Based on your profile, here are some people you might want to connect with.",
-    "browseAllTitle": "Browse All Stakeholders",
-    "browseAllDescription": "Use the filters below to find specific people or businesses in the network.",
-    "searchPlaceholder": "Search by name or keyword...",
-    "locationPlaceholder": "Filter by location...",
-    "rolePlaceholder": "Filter by role...",
-    "allRoles": "All Roles",
-    "noStakeholdersFound": "No stakeholders found.",
-    "noStakeholdersHint": "Try adjusting your search filters or check back later.",
-    "connect": "Connect",
-    "profile": "Profile",
-    "follow": "Follow",
-    "following": "Following",
-    "toast": {
-      "errorTitle": "Error",
-      "loadError": "Could not load network data.",
-      "noSuggestions": "No new suggestions available right now."
-    },
-    "noSuggestions": "No suggestions available right now. Complete your profile for better recommendations."
-  },
-  "myNetworkPage": {
-    "backLink": "Back to Network",
-    "myConnectionsTab": "My Connections ({count})",
-    "pendingRequestsTab": "Pending Requests",
-    "connectionsTitle": "My Connections",
-    "connectionsDescription": "These are your approved connections on the platform. You can now message them directly.",
-    "noConnections": "You haven't made any connections yet. Start by exploring the network!",
-    "requestsTitle": "Connection Requests",
-    "requestsDescription": "Review and respond to pending connection requests.",
-    "noRequests": "You have no pending connection requests.",
-    "sentTimeAgo": "Sent {timeAgo}",
-    "toast": {
-      "error": "Error",
-      "loadError": "Could not load network data.",
-      "respondError": "Could not respond to request.",
-      "removeError": "Could not remove connection.",
-      "success": "Success",
-      "requestAccepted": "Request accepted.",
-      "requestDeclined": "Request declined.",
-      "connectionRemoved": "Connection removed."
-    }
-  },
-  "agentToolsPage": {
-    "backLink": "Back to Network",
-    "accessDeniedTitle": "Access Denied",
-    "accessDeniedDescription": "You do not have the required permissions to access these tools.",
-    "title": "Field Agent Tools",
-    "description": "Tools for authorized agents to assist and manage users in the field.",
-    "findUserLabel": "Find User by Phone Number",
-    "phoneRequiredError": "Phone number is required.",
-    "findButton": "Find",
-    "resultsTitle": "Search Results",
-    "resultsPlaceholder": "User details will appear here after a successful search."
-  },
-  "common": {
-    "error": "Error"
-  },
-  "farmManagement": {
-    "hub": {
-      "title": "Farm Management Hub",
-      "description": "Your central dashboard for all on-farm activities, from managing plots and crops to tracking inputs and labor.",
-      "myFarms": {
-        "title": "My Farms & Crops",
-        "description": "Define your farm plots, log crops, track planting cycles, and manage harvest data.",
-        "button": "Manage Farms"
-      },
-      "labor": {
-        "title": "Labor Management",
-        "description": "Keep track of your farm workers, log their hours, and record payments all in one place.",
-        "button": "Manage Labor"
-      },
-      "knf": {
-        "title": "KNF Inputs Assistant",
-        "description": "Create and manage your Korean Natural Farming concoctions like FPJ, FAA, and more.",
-        "button": "Manage Inputs"
-      },
-      "fgw": {
-        "title": "Farming God's Way",
-        "description": "Learn and apply the core principles of FGW for sustainable and high-yield results.",
-        "button": "View FGW Guide"
-      },
-      "financials": {
-        "title": "Money Matters",
-        "description": "Track your farm's income and expenses, analyze profitability, and apply for financing.",
-        "button": "View Financials"
-      },
-      "seedStarting": {
-        "title": "Seed Starting Guide",
-        "description": "Learn the best practices for starting seeds indoors to get a head start on the season.",
-        "button": "View Guide"
-      },
-      "familyFarm": {
-        "title": "200sqm Family Farm",
-        "description": "Explore a model for a self-sustaining, integrated family farm on just 200 square meters.",
-        "button": "Explore Model"
-      },
-      "assetManagement": {
-        "title": "Asset Management",
-        "description": "Log and track your farm machinery, tools, and other valuable assets. (Coming Soon)",
-        "button": "Manage Assets"
-      }
-    },
-    "myFarms": {
-      "backToDashboard": "Back to Farm Management Hub",
-      "title": "My Farms",
-      "addNewFarmButton": "Add New Farm",
-      "size": "Size",
-      "viewFarmButton": "Manage Farm",
-      "noFarmsTitle": "No Farms Yet",
-      "noFarmsDescription": "Get started by adding your first farm profile.",
-      "auth": {
-        "title": "Please Sign In",
-        "description": "You need to be logged in to view your farms.",
-        "button": "Sign In"
-      },
-      "toast": {
-        "errorTitle": "Error fetching farms"
-      }
-    },
-    "createFarm": {
-      "backToFarms": "Back to My Farms",
-      "title": "Register a New Farm",
-      "description": "Provide the details for a new farm you own or manage.",
-      "form": {
-        "farmNameLabel": "Farm Name",
-        "farmNamePlaceholder": "e.g., Green Valley Organics",
-        "locationLabel": "Location",
-        "locationPlaceholder": "e.g., Nakuru, Kenya",
-        "locationDescription": "Provide the city, region, or general area.",
-        "sizeLabel": "Farm Size",
-        "sizePlaceholder": "e.g., 5 Hectares",
-        "sizeDescription": "Include the unit (e.g., acres, hectares).",
-        "typeLabel": "Farm Type",
-        "typePlaceholder": "Select a type",
-        "types": {
-          "crop": "Crop Farming",
-          "livestock": "Livestock Farming",
-          "mixed": "Mixed (Crops & Livestock)",
-          "aquaculture": "Aquaculture (Fish Farming)",
-          "other": "Other"
-        },
-        "descriptionLabel": "Description (Optional)",
-        "descriptionPlaceholder": "A brief description of your farm, its main activities, or mission.",
-        "irrigationLabel": "Irrigation Methods (Optional)",
-        "irrigationPlaceholder": "e.g., Drip irrigation, Rain-fed",
-        "irrigationDescription": "List the primary irrigation methods used.",
-        "submitButton": "Save Farm"
-      },
-      "toast": {
-        "authErrorTitle": "Authentication Error",
-        "authErrorDescription": "You must be logged in to create a farm.",
-        "successTitle": "Farm Created!",
-        "successDescription": "{farmName} has been successfully added to your profile.",
-        "errorTitle": "Creation Failed"
-      }
-    }
-  },
-  "contactPage": {
-    "title": "Contact Us",
-    "subtitle": "We'd love to hear from you! Whether you have a question, feedback, or are interested in a partnership, here's how to reach our team.",
-    "emailUs": {
-      "title": "Email Us",
-      "general": "General Inquiries",
-      "support": "Technical Support",
-      "partnerships": "Partnerships"
-    },
-    "callUs": {
-      "title": "Call Us",
-      "hours": "Monday - Friday, 9am - 5pm (EAT)",
-      "phone": "+254 20 1234567"
-    },
-    "ourOffice": {
-      "title": "Our Office",
-      "org": "DamDoh Holdings Inc.",
-      "address": "123 Agri-Tech Avenue, Nairobi, Kenya"
-    },
-    "sendMessage": {
-      "title": "Send Us a Message",
-      "nameLabel": "Your Name",
-      "namePlaceholder": "Jane Doe",
-      "emailLabel": "Your Email",
-      "emailPlaceholder": "jane.doe@example.com",
-      "subjectLabel": "Subject",
-      "subjectPlaceholder": "Subject of your message",
-      "messageLabel": "Your Message",
-      "messagePlaceholder": "Type your message here...",
-      "buttonText": "Send Message",
-      "note": "We strive to respond to all inquiries within 24 hours."
-    }
-  },
-  "privacyPolicy": {
-    "title": "Privacy Policy",
-    "lastUpdated": "Last updated: October 26, 2023",
-    "introduction": "This privacy notice for DamDoh describes how and why we might collect, store, use, and/or share ('process') your information when you use our services ('Services'), such as when you visit our website at http://damdoh.org, or any website of ours that links to this privacy notice; engage with us in other related ways, including any sales, marketing, or events.",
-    "whatInfoWeCollect": {
-      "heading": "1. WHAT INFORMATION DO WE COLLECT?",
-      "content": "We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us."
-    },
-    "howWeUseInfo": {
-      "heading": "2. HOW DO WE PROCESS YOUR INFORMATION?",
-      "content": "We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent."
-    },
-    "willInfoBeShared": {
-      "heading": "3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?",
-      "content": "We may share information in specific situations and with specific third parties. Your information may be shared with our business partners, affiliates, and service providers to facilitate our Services."
-    },
-    "cookiesAndTracking": {
-      "heading": "4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?",
-      "content": "We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information."
-    },
-    "howLongWeKeepInfo": {
-      "heading": "5. HOW LONG DO WE KEEP YOUR INFORMATION?",
-      "content": "We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law."
-    },
-    "howWeKeepInfoSafe": {
-      "heading": "6. HOW DO WE KEEP YOUR INFORMATION SAFE?",
-      "content": "We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process."
-    },
-    "minors": {
-      "heading": "7. DO WE COLLECT INFORMATION FROM MINORS?",
-      "content": "We do not knowingly collect data from or market to children under 18 years of age."
-    },
-    "privacyRights": {
-      "heading": "8. WHAT ARE YOUR PRIVACY RIGHTS?",
-      "content": "You may review, change, or terminate your account at any time. Depending on your location, you may have certain rights regarding your personal information under applicable data protection laws."
-    },
-    "controlsForDoNotTrack": {
-      "heading": "9. CONTROLS FOR DO-NOT-TRACK FEATURES",
-      "content": "Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. We do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online."
-    },
-    "updatesToNotice": {
-      "heading": "10. DO WE MAKE UPDATES TO THIS NOTICE?",
-      "content": "Yes, we will update this notice as necessary to stay compliant with relevant laws."
-    },
-    "contactUs": {
-      "heading": "11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?",
-      "content": "If you have questions or comments about this notice, you may contact us by post at: DamDoh, 123 Agri-Tech Avenue, Nairobi, Kenya."
-    },
-    "conclusion": "You can do this via our {contactLink} page."
-  },
-  "termsOfService": {
-    "title": "Terms of Service",
-    "lastUpdated": "Last updated: October 26, 2023",
-    "introduction": "Welcome to DamDoh. These Terms of Service ('Terms') govern your use of the DamDoh website and services ('Services'), provided by DamDoh Inc. By using our Services, you agree to these Terms. Please read them carefully.",
-    "agreementToTerms": {
-      "heading": "1. Agreement to Terms",
-      "content": "By using our Services, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the Services."
-    },
-    "intellectualProperty": {
-      "heading": "2. Intellectual Property Rights",
-      "content": "The Services and their original content, features, and functionality are and will remain the exclusive property of DamDoh and its licensors. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of DamDoh."
-    },
-    "userRepresentations": {
-      "heading": "3. User Representations",
-      "content": "By using the Services, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Use; (4) you are not a minor in the jurisdiction in which you reside; (5) you will not access the Site through automated or non-human means, whether through a bot, script, or otherwise; (6) you will not use the Site for any illegal or unauthorized purpose; and (7) your use of the Site will not violate any applicable law or regulation."
-    },
-    "prohibitedActivities": {
-      "heading": "4. Prohibited Activities",
-      "content": "You may not access or use the Site for any purpose other than that for which we make the Site available. The Site may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us."
-    },
-    "platformManagement": {
-      "heading": "5. Platform Management",
-      "content": "We reserve the right, but not the obligation, to: (1) monitor the Site for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable any of your Contributions or any portion thereof."
-    },
-    "termAndTermination": {
-      "heading": "6. Term and Termination",
-      "content": "These Terms of Use shall remain in full force and effect while you use the Site. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS OF USE, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SITE (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON."
-    },
-    "modificationsAndInterruptions": {
-      "heading": "7. Modifications and Interruptions",
-      "content": "We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Site without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Site."
-    },
-    "governingLaw": {
-      "heading": "8. Governing Law",
-      "content": "These Terms of Use and your use of the Site are governed by and construed in accordance with the laws of the country where DamDoh is established, without regard to its conflict of law principles."
-    },
-    "disputeResolution": {
-      "heading": "9. Dispute Resolution",
-      "content": "Any legal action of whatever nature brought by either you or us shall be commenced or prosecuted in the state and federal courts located in our jurisdiction, and the parties hereby consent to, and waive all defenses of lack of personal jurisdiction and forum non conveniens with respect to venue and jurisdiction in such state and federal courts."
-    },
-    "contactUs": {
-      "heading": "10. Contact Us",
-      "content": "In order to resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us."
-    },
-    "conclusion": "You can do this via our {contactLink} page."
-  },
-  "careers": {
-    "title": "Careers at DamDoh",
-    "subtitle": "Join us on our mission to revolutionize the agricultural supply chain.",
-    "whyWorkWithUs": {
-        "title": "Why Work With Us?",
-        "intro": "At DamDoh, we are a passionate, diverse team of innovators, agricultural experts, and technologists dedicated to making a tangible impact. We believe in:",
-        "point1": "Meaningful Work: Your contributions will directly empower farmers and create a more sustainable food system.",
-        "point2": "Innovation: We tackle complex challenges with cutting-edge technology and creative thinking.",
-        "point3": "Growth: We invest in our people, offering opportunities for professional development and learning.",
-        "point4": "Collaboration: We foster a supportive, collaborative environment where every voice is heard.",
-        "point5": "Global Impact: Be part of a solution that addresses global food security and economic development."
-    },
-    "currentOpenings": {
-        "title": "Current Openings"
-    },
-    "noOpenings": {
-        "title": "No Open Positions at the Moment",
-        "content1": "We are always looking for passionate talent. If you believe in our mission and think you can contribute, please feel free to send your resume and a cover letter to {emailLink}.",
-        "emailLinkText": "careers@damdoh.org"
-    },
-    "openings": {
-      "job1": {
-        "title": "Senior Backend Engineer (Node.js, Firestore)",
-        "location": "Nairobi, Kenya / Remote",
-        "type": "Full-Time",
-        "description": "Design and build scalable microservices, manage our database architecture, and ensure the reliability of our platform's core features."
-      },
-      "job2": {
-        "title": "Lead Agronomist & Field Operations Manager",
-        "location": "Rift Valley, Kenya",
-        "type": "Full-Time",
-        "description": "Lead our team of field agents, provide expert agronomical advice, and ensure the data integrity of our partner farms."
-      },
-      "job3": {
-        "title": "Product Manager, Financial Services",
-        "location": "Remote",
-        "type": "Full-Time",
-        "description": "Drive the strategy and development of our financial products, including credit scoring, loans, and insurance integrations for smallholder farmers."
-      }
-    },
-    "applyNowButton": "Apply Now"
-  },
-  "communityGuidelines": {
-    "title": "Community Guidelines",
-    "subtitle": "Fostering a professional, respectful, and trustworthy environment for everyone.",
-    "intro": "Welcome to the DamDoh community! Our mission is to connect the agricultural world in a positive and productive way. To ensure everyone has a great experience, we ask that you follow these guidelines:",
-    "respectful": {
-      "title": "Be Respectful and Professional",
-      "description": "Treat all members with courtesy. We do not tolerate harassment, hate speech, or personal attacks. Engage in constructive discussions, even when you disagree."
-    },
-    "authentic": {
-      "title": "Be Authentic and Honest",
-      "description": "Represent yourself and your business truthfully. Do not impersonate others or provide misleading information about your products, services, or credentials."
-    },
-    "relevant": {
-      "title": "Stay On-Topic",
-      "description": "Contribute to discussions with relevant insights. Avoid spam, excessive self-promotion, and off-topic content in professional forums and marketplace listings."
-    },
-    "fairTrade": {
-      "title": "Honor Your Commitments",
-      "description": "Conduct business transactions with integrity. Fulfill your orders, pay on time, and communicate clearly to build lasting, trust-based relationships."
-    },
-    "sustainable": {
-      "title": "Promote Sustainable Practices",
-      "description": "We encourage the sharing of knowledge and practices that support environmental, economic, and social sustainability in agriculture."
-    },
-    "reporting": {
-      "title": "Report Violations",
-      "content": "If you see content or behavior that violates these guidelines, please report it to our team. You can send details to {emailLink}.",
-      "emailLinkText": "support@damdoh.org"
-    },
-    "conclusion": "By using DamDoh, you agree to these guidelines. We reserve the right to remove content and take action on accounts that violate these principles. Thank you for helping us build a positive community!"
-  },
-  "pinboardPage": {
-    "title": "My Pinboard",
-    "description": "Your personal space to save and organize important items from across the DamDoh platform.",
-    "comingSoonTitle": "Pinboard Feature Coming Soon!",
-    "comingSoonDescription": "Imagine being able to pin interesting marketplace listings, insightful forum posts, valuable contacts, and useful articles all in one place. That's what the Pinboard will do!",
-    "stayTuned": "Stay tuned for updates."
-  },
-  "helpCenterPage": {
-    "title": "Help Center",
-    "subtitle": "Find answers to your questions and learn how to get the most out of DamDoh.",
-    "howCanWeHelp": "How can we help you?",
-    "searchPlaceholder": "Search for topics, features, or questions...",
-    "browseTopics": "Or browse by topic",
-    "gettingStarted": {
-      "title": "Getting Started",
-      "description": "Setting up your profile, understanding your dashboard.",
-      "placeholder": "Information on Getting Started will be available here soon."
-    },
-    "marketplaceGuide": {
-      "title": "Marketplace Guide",
-      "description": "How to create listings, manage orders, and trade safely.",
-      "placeholder": "A guide to the Marketplace will be available here soon."
-    },
-    "accountManagement": {
-      "title": "Account Management",
-      "description": "Updating your password, managing notifications and privacy.",
-      "placeholder": "Information on Account Management will be available here soon."
-    },
-    "troubleshooting": {
-      "title": "Troubleshooting",
-      "description": "Common issues and how to resolve them.",
-      "placeholder": "Information on Troubleshooting will be available here soon."
-    },
-    "stillNeedHelp": {
-      "title": "Still Need Help?",
-      "description": "Our support team is ready to assist you.",
-      "button": "Contact Support"
-    }
-  },
-  "industryNewsPage": {
-    "title": "Industry News & Insights",
-    "description": "Stay informed with the latest trends, research, and policy changes affecting the global agricultural supply chain.",
-    "searchPlaceholder": "Search news and reports...",
-    "categoryPlaceholder": "Filter by category...",
-    "allCategories": "All Categories",
-    "sourceLabel": "Source",
-    "publishedLabel": "Published",
-    "categoryLabel": "Category",
-    "readButton": "Read Full Story",
-    "noNews": {
-      "title": "No News Available",
-      "description": "Check back later for the latest industry updates and reports."
-    },
-    "news1": {
-      "title": "Global Coffee Prices Surge Amid Weather Concerns in Key Growing Regions",
-      "excerpt": "Arabica coffee futures have hit an 18-month high as droughts in Brazil and unexpected frosts in Vietnam threaten global supply."
-    },
-    "news2": {
-      "title": "EU Implements New 'Farm to Fork' Packaging Regulations",
-      "excerpt": "New regulations effective this quarter require all fresh produce imported into the European Union to use packaging made from at least 30% recycled materials."
-    },
-    "news3": {
-      "title": "Study Shows Regenerative Agriculture Practices Can Sequester up to 2 Tons of Carbon per Hectare Annually",
-      "excerpt": "A decade-long study published in 'Nature Sustainability' provides compelling evidence that no-till farming and cover cropping significantly improve soil carbon levels."
-    }
-  },
-  "myNetworkPage": {
-    "backLink": "Back to Network",
-    "myConnectionsTab": "My Connections ({count})",
-    "pendingRequestsTab": "Pending Requests",
-    "connectionsTitle": "My Connections",
-    "connectionsDescription": "These are your approved connections on the platform. You can now message them directly.",
-    "noConnections": "You haven't made any connections yet. Start by exploring the network!",
-    "requestsTitle": "Connection Requests",
-    "requestsDescription": "Review and respond to pending connection requests.",
-    "noRequests": "You have no pending connection requests.",
-    "sentTimeAgo": "Sent {timeAgo}",
-    "toast": {
-      "error": "Error",
-      "loadError": "Could not load network data.",
-      "respondError": "Could not respond to request.",
-      "removeError": "Could not remove connection.",
-      "success": "Success",
-      "requestAccepted": "Request accepted.",
-      "requestDeclined": "Request declined.",
-      "connectionRemoved": "Connection removed."
-    }
-  },
-  "agentToolsPage": {
-    "backLink": "Back to Network",
-    "accessDeniedTitle": "Access Denied",
-    "accessDeniedDescription": "You do not have the required permissions to access these tools.",
-    "title": "Field Agent Tools",
-    "description": "Tools for authorized agents to assist and manage users in the field.",
-    "findUserLabel": "Find User by Phone Number",
-    "phoneRequiredError": "Phone number is required.",
-    "findButton": "Find",
-    "resultsTitle": "Search Results",
-    "resultsPlaceholder": "User details will appear here after a successful search."
-  },
-  "common": {
-    "error": "Error"
-  },
-  "farmManagement": {
-    "hub": {
-      "title": "Farm Management Hub",
-      "description": "Your central dashboard for all on-farm activities, from managing plots and crops to tracking inputs and labor.",
-      "myFarms": {
-        "title": "My Farms & Crops",
-        "description": "Define your farm plots, log crops, track planting cycles, and manage harvest data.",
-        "button": "Manage Farms"
-      },
-      "labor": {
-        "title": "Labor Management",
-        "description": "Keep track of your farm workers, log their hours, and record payments all in one place.",
-        "button": "Manage Labor"
-      },
-      "knf": {
-        "title": "KNF Inputs Assistant",
-        "description": "Create and manage your Korean Natural Farming concoctions like FPJ, FAA, and more.",
-        "button": "Manage Inputs"
-      },
-      "fgw": {
-        "title": "Farming God's Way",
-        "description": "Learn and apply the core principles of FGW for sustainable and high-yield results.",
-        "button": "View FGW Guide"
-      },
-      "financials": {
-        "title": "Money Matters",
-        "description": "Track your farm's income and expenses, analyze profitability, and apply for financing.",
-        "button": "View Financials"
-      },
-      "seedStarting": {
-        "title": "Seed Starting Guide",
-        "description": "Learn the best practices for starting seeds indoors to get a head start on the season.",
-        "button": "View Guide"
-      },
-      "familyFarm": {
-        "title": "200sqm Family Farm",
-        "description": "Explore a model for a self-sustaining, integrated family farm on just 200 square meters.",
-        "button": "Explore Model"
-      },
-      "assetManagement": {
-        "title": "Asset Management",
-        "description": "Log and track your farm machinery, tools, and other valuable assets. (Coming Soon)",
-        "button": "Manage Assets"
-      }
-    },
-    "myFarms": {
-      "backToDashboard": "Back to Farm Management Hub",
-      "title": "My Farms",
-      "addNewFarmButton": "Add New Farm",
-      "size": "Size",
-      "viewFarmButton": "Manage Farm",
-      "noFarmsTitle": "No Farms Yet",
-      "noFarmsDescription": "Get started by adding your first farm profile.",
-      "auth": {
-        "title": "Please Sign In",
-        "description": "You need to be logged in to view your farms.",
-        "button": "Sign In"
-      },
-      "toast": {
-        "errorTitle": "Error fetching farms"
-      }
-    },
-    "createFarm": {
-      "backToFarms": "Back to My Farms",
-      "title": "Register a New Farm",
-      "description": "Provide the details for a new farm you own or manage.",
-      "form": {
-        "farmNameLabel": "Farm Name",
-        "farmNamePlaceholder": "e.g., Green Valley Organics",
-        "locationLabel": "Location",
-        "locationPlaceholder": "e.g., Nakuru, Kenya",
-        "locationDescription": "Provide the city, region, or general area.",
-        "sizeLabel": "Farm Size",
-        "sizePlaceholder": "e.g., 5 Hectares",
-        "sizeDescription": "Include the unit (e.g., acres, hectares).",
-        "typeLabel": "Farm Type",
-        "typePlaceholder": "Select a type",
-        "types": {
-          "crop": "Crop Farming",
-          "livestock": "Livestock Farming",
-          "mixed": "Mixed (Crops & Livestock)",
-          "aquaculture": "Aquaculture (Fish Farming)",
-          "other": "Other"
-        },
-        "descriptionLabel": "Description (Optional)",
-        "descriptionPlaceholder": "A brief description of your farm, its main activities, or mission.",
-        "irrigationLabel": "Irrigation Methods (Optional)",
-        "irrigationPlaceholder": "e.g., Drip irrigation, Rain-fed",
-        "irrigationDescription": "List the primary irrigation methods used.",
-        "submitButton": "Save Farm"
-      },
-      "toast": {
-        "authErrorTitle": "Authentication Error",
-        "authErrorDescription": "You must be logged in to create a farm.",
-        "successTitle": "Farm Created!",
-        "successDescription": "{farmName} has been successfully added to your profile.",
-        "errorTitle": "Creation Failed"
-      }
-    },
-    "editFarm": {
-      "backToFarm": "Back to Farm",
-      "title": "Edit Farm Details",
-      "description": "Update the information for your farm.",
-      "form": {
-        "submitButton": "Save Changes"
-      },
-      "toast": {
-        "notFoundTitle": "Farm Not Found",
-        "loadError": "The farm you are trying to edit could not be found.",
-        "error": "Error",
-        "loadFail": "Failed to load farm data: {message}",
-        "successTitle": "Farm Updated",
-        "successDescription": "{farmName} has been successfully updated.",
-        "failTitle": "Update Failed"
-      }
-    },
-    "farmDetail": {
-      "backToFarms": "Back to My Farms",
-      "registeredOn": "Registered on {date}",
-      "editFarmButton": "Edit Farm Details",
-      "crops": {
-        "title": "Crops & Batches",
-        "description": "Manage all active and past crops on this farm.",
-        "addNewButton": "Add New Crop",
-        "plantedLabel": "Planted",
-        "stageLabel": "Stage",
-        "viewJourneyButton": "View Journey",
-        "noCrops": "No crops have been logged for this farm yet.",
-        "addFirstButton": "Log Your First Crop"
-      },
-      "insights": {
-        "title": "Profitability Insights",
-        "description": "AI-powered analysis of your farm's activities.",
-        "noInsights": "Log more activities like harvests and input applications to generate insights."
-      },
-      "toast": {
-        "notFoundTitle": "Farm not found",
-        "loadErrorTitle": "Could not load farm data",
-        "insightsErrorTitle": "Could not load insights"
-      },
-      "notFound": {
-        "title": "Farm Not Found",
-        "description": "We couldn't find the farm you were looking for.",
-        "backButton": "Go Back to My Farms"
-      },
-      "loading": "Loading farm details..."
-    },
-    "createCrop": {
-      "backLink": "Back to Farm Details",
-      "title": "Log a New Crop",
-      "description": "Record a new crop or batch being planted on this farm.",
-      "cropTypeLabel": "Crop / Batch Name",
-      "cropTypePlaceholder": "e.g., Roma Tomatoes, Hass Avocados",
-      "cropTypeDescription": "Be as specific as possible.",
-      "plantingDateLabel": "Planting Date",
-      "datePlaceholder": "Pick a date",
-      "harvestDateLabel": "Expected Harvest Date (Optional)",
-      "yieldLabel": "Expected Yield (Optional)",
-      "yieldPlaceholder": "e.g., 5 Tons, 2000 kg",
-      "stageLabel": "Current Stage (Optional)",
-      "stagePlaceholder": "Select a stage",
-      "stages": {
-        "Planting": "Planting",
-        "Vegetative": "Vegetative",
-        "Flowering": "Flowering",
-        "Fruiting": "Fruiting",
-        "Harvesting": "Harvesting",
-        "Post-Harvest": "Post-Harvest"
-      },
-      "notesLabel": "Notes (Optional)",
-      "notesPlaceholder": "Add any additional notes about this batch, such as seed variety or plot location.",
-      "saveButton": "Save Crop",
-      "savingButton": "Saving...",
-      "toast": {
-        "authErrorTitle": "Authentication Error",
-        "authErrorDescription": "You must be logged in to add a crop.",
-        "successTitle": "Crop Logged",
-        "successDescription": "{cropType} has been successfully logged.",
-        "failTitle": "Failed to Log Crop",
-        "failDescription": "An unexpected error occurred. Please try again."
-      }
-    },
-    "editCrop": {
-      "backLink": "Back to Crop Details",
-      "title": "Edit Crop Details",
-      "description": "Update the information for this crop or batch.",
-      "saveButton": "Save Changes",
-      "savingButton": "Saving...",
-      "toast": {
-        "notFound": "Crop Not Found",
-        "loadError": "The crop you are trying to edit could not be found.",
-        "error": "Error",
-        "loadFail": "Failed to load crop data: {message}",
-        "success": "Crop Updated",
-        "description": "{cropType} has been successfully updated.",
-        "fail": "Update Failed"
-      }
-    },
-    "cropDetailPage": {
-      "backLink": "Back to Farm Details",
-      "plantedOn": "Planted on {date}",
-      "editButton": "Edit Crop",
-      "quickActionsTitle": "Quick Actions",
-      "logInputButton": "Log Input",
-      "logObservationButton": "Log Observation",
-      "logHarvestButton": "Log Harvest",
-      "journeyTitle": "Crop Journey",
-      "noActivities": "No activities have been logged for this crop yet.",
-      "loading": "Loading crop details...",
-      "notFound": "Crop not found.",
-      "toast": {
-        "notFound": "Crop not found",
-        "loadError": "Could not load crop data. Please try again."
-      },
-      "eventPayload": {
-        "noDetails": "No additional details provided.",
-        "observationType": "Observation Type",
-        "details": "Details",
-        "aiDiagnosis": "AI Diagnosis"
-      }
-    },
-    "logHarvest": {
-      "backLink": "Back to Farm Details",
-      "title": "Log Harvest for {cropType}",
-      "description": "Record the details of your harvest. This will create a new traceable batch (VTI) on the DamDoh platform.",
-      "harvestDateLabel": "Harvest Date",
-      "yieldLabel": "Total Yield (in kg)",
-      "yieldPlaceholder": "e.g., 1500",
-      "qualityLabel": "Quality Grade",
-      "qualityPlaceholder": "e.g., Grade A, Export Quality",
-      "notesLabel": "Harvest Notes (Optional)",
-      "notesPlaceholder": "Add any notes about this harvest, such as weather conditions or specific techniques used.",
-      "saveButton": "Log Harvest & Create VTI",
-      "savingButton": "Saving...",
-      "offlineToast": {
-        "title": "Offline Mode: Harvest Queued",
-        "description": "Your harvest log has been saved and will be synced to create a VTI when you're back online."
-      },
-      "success": {
-        "title": "Harvest Logged & VTI Created!",
-        "description": "Your harvest for {cropType} has been recorded. Your new VTI is {vtiId}.",
-        "successCardTitle": "Harvest Recorded!",
-        "successCardDescription": "A new traceable batch has been created for your {cropType} harvest. You can now view the traceability report or create a marketplace listing.",
-        "viewReportButton": "View Traceability Report",
-        "sellButton": "Sell This Batch",
-        "logAnotherButton": "Log Another Harvest",
-        "backToFarmButton": "Back to Farm Overview"
-      },
-      "fail": {
-        "title": "Harvest Log Failed"
-      }
-    },
-    "logInput": {
-      "backLink": "Back to Farm Details",
-      "title": "Log Input Application",
-      "description": "Record the application of fertilizers, pesticides, KNF inputs, or other substances to your crop.",
-      "useKNFLabel": "Use a Ready KNF Batch",
-      "useKNFPlaceholder": "Select from your ready KNF inputs...",
-      "manualInputLabel": "Or Enter Input Name Manually",
-      "manualInputPlaceholder": "e.g., DAP Fertilizer, Neem Oil",
-      "dateLabel": "Application Date",
-      "quantityLabel": "Quantity",
-      "quantityPlaceholder": "e.g., 50",
-      "unitLabel": "Unit",
-      "unitPlaceholder": "e.g., kg, liters, ml",
-      "methodLabel": "Application Method (Optional)",
-      "methodPlaceholder": "e.g., Foliar Spray, Soil Drench",
-      "saveButton": "Save Application Log",
-      "savingButton": "Saving...",
-      "toast": {
-        "authErrorTitle": "Authentication Error",
-        "authErrorDescription": "You must be logged in to log an input.",
-        "success": "Input Logged",
-        "description": "The input application has been added to your crop's journey.",
-        "fail": "Failed to Log Input"
-      }
-    },
-    "logObservation": {
-      "backLink": "Back to Farm Details",
-      "title": "Log Observation",
-      "description": "Record a general observation, soil test result, or note a potential pest or disease issue. Upload a photo for AI-powered diagnosis.",
-      "typeLabel": "Observation Type",
-      "typePlaceholder": "Select an observation type...",
-      "types": {
-        "general_note": "General Note",
-        "pest_sighting": "Pest Sighting",
-        "disease_symptoms": "Disease Symptoms",
-        "soil_test_result": "Soil Test Result",
-        "weather_event": "Weather Event"
-      },
-      "dateLabel": "Observation Date",
-      "detailsLabel": "Details",
-      "detailsPlaceholder": "Describe your observation in detail. If you see a pest or disease, describe the appearance, location on the plant, and extent of the issue.",
-      "uploadLabel": "Upload a Photo (Optional)",
-      "uploadDescription": "Upload a clear photo of the issue for AI diagnosis and advice.",
-      "saveButton": "Save Observation",
-      "processingButton": "Saving & Analyzing...",
-      "toast": {
-        "authErrorTitle": "Authentication Error",
-        "authErrorDescription": "You must be logged in to log an observation.",
-        "aiAnalyzing": "Analyzing Image...",
-        "aiDescription": "Our AI is looking at your photo. This may take a moment.",
-        "aiComplete": "AI Analysis Complete!",
-        "aiCompleteDescription": "The AI's diagnosis will be saved with your observation.",
-        "aiFailTitle": "AI Analysis Failed",
-        "aiFailDescription": "Could not analyze the image, but your observation will still be saved.",
-        "uploading": "Uploading Image...",
-        "uploadingDescription": "Your photo is being uploaded securely.",
-        "uploadComplete": "Upload Complete!",
-        "success": "Observation Logged",
-        "successDescription": "Your observation has been added to the crop journey.",
-        "fail": "Failed to Log Observation"
-      }
-    },
-    "knfInputsPage": {
-      "backLink": "Back to Farm Hub",
-      "title": "KNF Input Assistant",
-      "description": "Manage your homemade Korean Natural Farming inputs. Track fermentation times and get reminders for next steps.",
-      "guidesTitle": "Quick Guides & Recipes",
-      "ingredients": "Ingredients",
-      "steps": "Steps",
-      "usage": "Usage",
-      "fermentingBatchesTitle": "Currently Fermenting",
-      "started": "Started",
-      "nextStepOn": "Next step on",
-      "markReady": "Mark as Ready",
-      "noFermentingBatches": "No batches are currently fermenting.",
-      "readyBatchesTitle": "Ready for Use",
-      "readySince": "Ready since",
-      "logUsage": "Log Usage",
-      "archive": "Archive",
-      "noReadyBatches": "You have no inputs ready for use.",
-      "startNewBatch": "Start a New Batch",
-      "createNewBatchTitle": "Create New KNF Batch",
-      "cancel": "Cancel",
-      "form": {
-        "typeLabel": "Input Type",
-        "typePlaceholder": "Select a KNF Input",
-        "ingredientsLabel": "Main Ingredients",
-        "startDateLabel": "Start Date",
-        "startButton": "Start Batch",
-        "startingButton": "Starting...",
-        "quantityLabel": "Quantity Produced",
-        "quantityPlaceholder": "e.g., 5",
-        "unitLabel": "Unit",
-        "unitPlaceholder": "e.g., Liters, Gallons, kg"
-      },
-      "knfOptions": [
-        { "value": "fpj", "label": "Fermented Plant Juice (FPJ)", "placeholder": "e.g., Sweet potato tips, bamboo shoots" },
-        { "value": "faa", "label": "Fish Amino Acid (FAA)", "placeholder": "e.g., Fish scraps, heads, bones" },
-        { "value": "wca", "label": "Water-Soluble Calcium (WCA)", "placeholder": "e.g., Eggshells" },
-        { "value": "imo", "label": "Indigenous Microorganisms (IMO)", "placeholder": "e.g., Cooked rice, local forest soil" },
-        { "value": "lab", "label": "Lactic Acid Bacteria (LAB)", "placeholder": "e.g., Rice wash, milk" }
-      ],
-      "recipeData": [
-        {
-          "id": "fpj",
-          "name": "Fermented Plant Juice (FPJ)",
-          "description": "A potent growth enhancer made from the fermented sap of fast-growing plants.",
-          "ingredients": ["1kg fast-growing plant parts (e.g., sweet potato tips, bamboo shoots)", "1kg brown sugar"],
-          "steps": ["Collect plants before sunrise. Do not wash.", "Roughly chop plants.", "Mix with an equal weight of brown sugar.", "Pack tightly in a breathable container, fill 2/3 full.", "Cover with cloth, store in a cool, dark place for ~7 days."],
-          "usage": "Dilute 1:500 to 1:1000 with water for foliar spray or soil drench."
-        },
-        {
-          "id": "faa",
-          "name": "Fish Amino Acid (FAA)",
-          "description": "A nitrogen-rich fertilizer made from fermented fish parts, great for vegetative growth.",
-          "ingredients": ["1kg fish scraps (heads, bones, guts)", "1kg brown sugar"],
-          "steps": ["Chop fish parts.", "Layer fish and brown sugar in a container (2/3 full).", "Cover and let ferment for 3-6 months in a cool, dark place."],
-          "usage": "Dilute 1:1000 with water, primarily for soil drenching."
-        },
-        {
-          "id": "wca",
-          "name": "Water-Soluble Calcium (WCA)",
-          "description": "Provides essential calcium for fruiting and flowering stages.",
-          "ingredients": ["Roasted eggshells", "Brown rice vinegar"],
-          "steps": ["Roast eggshells until lightly browned, then crush into a powder.", "Add eggshell powder to a jar.", "Pour vinegar over powder (10 parts vinegar to 1 part eggshell by volume).", "Bubbles will form. It's ready when bubbling stops (~7-10 days)."],
-          "usage": "Dilute 1:1000 with water. Use as a foliar spray during flowering/fruiting."
-        }
-      ],
-      "toasts": {
-        "loadErrorTitle": "Error Loading Batches",
-        "loadErrorDescription": "Could not retrieve your KNF batches.",
-        "validationError": "Please select an input type, and fill in the ingredients and start date.",
-        "batchStartedTitle": "Batch Started!",
-        "batchStartedDescription": "Your new KNF batch is now fermenting.",
-        "batchStartFailed": "Failed to Start Batch",
-        "unexpectedError": "An unexpected error occurred.",
-        "batchUpdatedTitle": "Batch Updated",
-        "batchUpdatedDescription": "The batch status has been set to {status}.",
-        "updateFailed": "Update Failed",
-        "couldNotUpdate": "Could not update the batch status."
-      }
-    }
-  },
-  "AgriEvents": {
-    "page": {
-      "title": "Agricultural Events",
-      "description": "Discover workshops, conferences, and webinars in the agricultural sector.",
-      "createNewEvent": "Create New Event",
-      "pinAsHomepage": "Pin as Homepage",
-      "unpinHomepage": "Unpin Homepage",
-      "searchEvents": "Search events...",
-      "searchPlaceholder": "Search by title, location, or keyword...",
-      "filterPlaceholder": "Filter by event type",
-      "errorLoadingEvents": "Error Loading Events",
-      "couldNotFetchEvents": "Could not fetch the list of events. Please try again later.",
-      "noEventsFound": "No Events Found",
-      "noEventsHint": "Try adjusting your search filters, or be the first to {link}.",
-      "organizedBy": "By {organizer}",
-      "viewDetails": "View Details",
-      "toast": {
-        "pinned": {
-          "title": "Homepage Pinned",
-          "description": "The Agri-Events page is now your default homepage."
-        },
-        "unpinned": {
-          "title": "Homepage Unpinned",
-          "description": "Your homepage has been reset to the default dashboard."
-        }
-      }
-    },
-    "create": {
-      "backButton": "Back to Events",
-      "formTitle": "Create a New Agri-Event",
-      "formDescription": "Fill in the details below to list a new event on the platform.",
-      "authErrorTitle": "Not Authenticated",
-      "authErrorDescription": "You must be signed in to create an event.",
-      "uploadingTitle": "Uploading Image...",
-      "uploadingDescription": "Please wait while your event banner is being uploaded.",
-      "uploadCompleteTitle": "Upload Complete!",
-      "successTitle": "Event Created!",
-      "successDescription": "Your event '{title}' has been successfully published.",
-      "failTitle": "Creation Failed",
-      "failDescription": "An unexpected error occurred while creating your event.",
-      "successCardTitle": "Event '{title}' Published!",
-      "successCardDescription": "Your event is now live and visible to the DamDoh community. You can now manage attendees, add staff, and create promotional coupons.",
-      "manageButton": "Manage Event",
-      "shareButton": "Share Event Link",
-      "linkCopiedTitle": "Link Copied!",
-      "linkCopiedDescription": "The event link has been copied to your clipboard.",
-      "createAnotherButton": "Create Another Event",
-      "viewAllButton": "View All Events",
-      "submittingButton": "Submitting...",
-      "submitButton": "Create Event",
-      "form": {
-        "titleLabel": "Event Title",
-        "titlePlaceholder": "e.g., Annual Sustainable Farming Conference",
-        "descriptionLabel": "Event Description",
-        "descriptionPlaceholder": "Describe your event in detail: what it's about, who should attend, key speakers, etc.",
-        "dateLabel": "Event Date",
-        "datePlaceholder": "Pick a date",
-        "timeLabel": "Event Time (Optional)",
-        "timePlaceholder": "e.g., 14:30",
-        "timeDescription": "Use 24-hour format (HH:MM).",
-        "locationLabel": "Location",
-        "locationPlaceholder": "e.g., Online, or Nairobi, Kenya",
-        "locationDescription": "For physical events, be specific. For online events, just type 'Online'.",
-        "typeLabel": "Event Type",
-        "typePlaceholder": "Select an event type",
-        "organizerLabel": "Organizer Name (Optional)",
-        "organizerPlaceholder": "e.g., Agri-Innovation Global",
-        "websiteLabel": "External Website Link (Optional)",
-        "enableRegLabel": "Enable DamDoh Registration",
-        "enableRegDescription": "Allow users to register and pay (if applicable) directly on the platform.",
-        "attendeeLimitLabel": "Attendee Limit (Optional)",
-        "attendeeLimitDescription": "Leave blank for unlimited attendees.",
-        "priceLabel": "Price (per ticket)",
-        "priceDescription": "Leave blank or 0 for a free event.",
-        "currencyLabel": "Currency",
-        "currencyDescription": "e.g., USD, KES",
-        "imageUrlLabel": "Event Banner Image URL (Optional)",
-        "imageUrlDescription": "Link to an external image (e.g., from your website).",
-        "imageUploadLabel": "Or Upload an Image",
-        "imageUploadDescription": "Upload a banner image directly. This will override the URL above."
-      }
-    },
-    "detail": {
-      "backLink": "Back to Events",
-      "organizedBy": "Organized by {organizer}",
-      "attendees": "{count} / {limit} attendees",
-      "unlimited": "Unlimited",
-      "buttons": {
-        "manage": "Manage",
-        "share": "Share",
-        "close": "Close",
-        "registering": "Registering...",
-        "registerAndPay": "Register & Pay {price} {currency}",
-        "registerFree": "Register for Free",
-        "full": "Event is Full",
-        "visitWebsite": "Visit Event Website",
-        "viewTicket": "View Your Ticket"
-      },
-      "errors": {
-        "loadTitle": "Error",
-        "loadDescription": "Could not load event details.",
-        "signInTitle": "Please Sign In",
-        "signInDescription": "You must be signed in to register for events.",
-        "unexpected": "An unexpected error occurred."
-      },
-      "registration": {
-        "successTitle": "Registration Confirmed!",
-        "successDescription": "You are now registered for the event.",
-        "discountApplied": "A discount of {amount} {currency} was applied.",
-        "finalPrice": "Your final price is {price} {currency}.",
-        "failTitle": "Registration Failed"
-      },
-      "coupon": {
-        "label": "Coupon Code (Optional)",
-        "placeholder": "Enter code here",
-        "note": "If you have a coupon code, enter it here to apply a discount.",
-        "toastTitle": "Coupon Detected!",
-        "toastDescription": "The coupon '{couponCode}' from the URL has been applied."
-      },
-      "share": {
-        "title": "Share this Event",
-        "description": "Copy the link below to share this event with your network.",
-        "link": "Link",
-        "copy": "Copy"
-      },
-      "ticket": {
-        "title": "Your Event Ticket",
-        "for": "For: {eventTitle}",
-        "scan": "Present this QR code at the event for check-in."
-      },
-      "notFound": {
-        "title": "Event Not Found",
-        "description": "The event you are looking for does not exist or may have been removed.",
-        "backButton": "Back to All Events"
-      }
-    },
-    "manage": {
-      "title": "Manage Event",
-      "backLink": "Back to Event Page",
-      "tabs": {
-        "checkin": "Check-in",
-        "staff": "Staff",
-        "dashboard": "Dashboard",
-        "attendees": "Attendees",
-        "promotions": "Promotions"
-      },
-      "toast": {
-        "errorCoupons": {
-          "title": "Error",
-          "description": "Could not load event coupons."
-        }
-      },
-      "promotions": {
-        "create": {
-          "title": "Create a New Coupon",
-          "description": "Offer discounts to drive registrations for your event.",
-          "toast": {
-            "successTitle": "Coupon Created",
-            "successDescription": "The coupon '{code}' is now active.",
-            "failTitle": "Creation Failed"
-          },
-          "form": {
-            "code": "Coupon Code",
-            "codePlaceholder": "e.g., EARLYBIRD10",
-            "usageLimit": "Usage Limit",
-            "usageLimitPlaceholder": "e.g., 100",
-            "discountType": "Discount Type",
-            "discountTypePlaceholder": "Select a type",
-            "percentage": "Percentage",
-            "fixed": "Fixed Amount",
-            "discountValue": "Discount Value",
-            "expiryDate": "Expiry Date (Optional)",
-            "pickDate": "Pick a date",
-            "submitButton": "Create Coupon"
-          }
-        },
-        "list": {
-          "title": "Existing Coupons",
-          "description": "View and share your active promotional coupons.",
-          "toastTitle": "Link Copied!",
-          "toastDescription": "The shareable link for coupon '{link}' has been copied.",
-          "expires": "Expires",
-          "never": "Never",
-          "usage": "Usage",
-          "share": "Share",
-          "noCoupons": "You haven't created any coupons for this event yet.",
-          "shareModal": {
-            "title": "Share Coupon",
-            "description": "Share this link to give users a direct way to register with this coupon applied.",
-            "copy": "Copy",
-            "close": "Close"
-          }
-        }
-      },
-      "checkin": {
-        "title": "Attendee Check-in",
-        "description": "Use the QR code scanner to check in registered attendees at your event.",
-        "scanButton": "Scan Attendee QR Code",
-        "verifying": "Verifying ticket...",
-        "success": "Check-in Successful",
-        "errorTitle": "Check-in Error",
-        "error": {
-          "invalidCode": "This is not a valid DamDoh check-in code.",
-          "wrongEvent": "This ticket is for a different event.",
-          "noUserId": "Could not find a user ID on this ticket.",
-          "unknown": "An unknown error occurred.",
-          "failUnknown": "Check-in failed for an unknown reason."
-        },
-        "toast": {
-          "success": { "title": "Check-in Success" },
-          "fail": { "title": "Check-in Failed" },
-          "scanFail": {
-            "title": "Scan Failed",
-            "description": "Could not read the QR code. Please try again."
-          }
-        }
-      },
-      "staff": {
-        "title": "Staff Management",
-        "description": "Add or remove users who can help manage your event, such as checking in attendees.",
-        "addTitle": "Add Staff Member",
-        "searchPlaceholder": "Search for users by name or email...",
-        "addButton": "Add",
-        "removeButton": "Remove",
-        "currentTitle": "Current Staff",
-        "noStaff": "No staff members have been added yet.",
-        "toast": {
-          "error": "Error",
-          "fetchStaffError": "Could not load staff members.",
-          "searchLengthError": "Search query must be at least 3 characters.",
-          "searchFailed": "User search failed.",
-          "success": "Success",
-          "addSuccess": "{name} was added as staff.",
-          "addFailed": "Failed to add staff member.",
-          "removeSuccess": "{name} was removed from staff.",
-          "removeFailed": "Failed to remove staff member."
-        }
-      },
-      "attendees": {
-        "title": "Attendees",
-        "description": "View a list of all users who have registered for your event.",
-        "downloadCsv": "Download CSV",
-        "nameHeader": "Name",
-        "emailHeader": "Email",
-        "registeredOnHeader": "Registered On",
-        "statusHeader": "Status",
-        "statusCheckedIn": "Checked-in",
-        "statusRegistered": "Registered",
-        "noAttendees": "No one has registered for your event yet.",
-        "error": "Could not load attendees.",
-        "toast": {
-          "noAttendees": "No attendees to download."
-        }
-      }
-    }
   }
 }
-
