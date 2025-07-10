@@ -91,6 +91,19 @@
     "newPasswordPlaceholder": "Enter a strong new password",
     "resetPasswordButton": "Reset Password",
     "resettingPasswordButton": "Resetting...",
+    "recoverPage": {
+      "title": "Recover Your Account",
+      "description": "Use your network to regain access.",
+      "howItWorksTitle": "How It Works",
+      "step1": "Enter your phone number to start a recovery session.",
+      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
+      "step3": "Once your friend scans the code to confirm your identity, you'll regain access.",
+      "startButton": "Start Account Recovery",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted DamDoh connection scan this QR code using the 'Help a Friend Recover' feature in their app.",
+      "scanNote": "This code is temporary and expires in 10 minutes.",
+      "startOverButton": "Start Over"
+    },
     "error": "Error",
     "forgotPassword": {
       "emailSentTitle": "Password Reset Email Sent",
@@ -120,19 +133,6 @@
         "missingCodeTitle": "Missing Code",
         "missingCodeDescription": "The password reset code is missing from the URL. Please use the link from your reset email."
       }
-    },
-    "recoverPage": {
-      "title": "Recover Your Account",
-      "description": "Use your network to regain access.",
-      "howItWorksTitle": "How It Works",
-      "step1": "Enter your phone number to start a recovery session.",
-      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
-      "step3": "Once your friend scans the code to confirm your identity, you'll regain access.",
-      "startButton": "Start Account Recovery",
-      "scanTitle": "Ask a Friend to Scan",
-      "scanDescription": "Have a trusted DamDoh connection scan this QR code using the 'Help a Friend Recover' feature in their app.",
-      "scanNote": "This code is temporary and expires in 10 minutes.",
-      "startOverButton": "Start Over"
     }
   },
   "AppHeader": {
@@ -753,60 +753,60 @@
       }
     },
     "promotions": {
-        "title": "My Promotions",
-        "description": "Create and manage coupon codes to attract more buyers.",
-        "backToDashboard": "Back to Dashboard",
-        "signInPrompt": "Please sign in to manage your promotions.",
-        "create": {
-            "title": "Create New Coupon",
-            "description": "Define the details for your new promotional coupon.",
-            "form": {
-                "code": "Coupon Code",
-                "codePlaceholder": "e.g., SALE20",
-                "usageLimit": "Usage Limit",
-                "usageLimitPlaceholder": "e.g., 100",
-                "discountType": "Discount Type",
-                "discountTypePlaceholder": "Select type",
-                "percentage": "Percentage",
-                "fixed": "Fixed Amount",
-                "discountValue": "Discount Value",
-                "expiryDate": "Expiry Date (Optional)",
-                "pickDate": "Pick a date",
-                "submitButton": "Create Coupon"
-            },
-            "toast": {
-                "successTitle": "Coupon Created!",
-                "successDescription": "The coupon '{code}' is now active.",
-                "failTitle": "Creation Failed"
-            }
-        },
-        "list": {
-            "title": "Existing Coupons",
-            "description": "View and manage your active promotional codes.",
-            "usage": "Usage",
-            "expires": "Expires",
-            "never": "Never",
-            "share": "Share",
-            "noCoupons": "You haven't created any coupons yet.",
-            "toastTitle": "Link Copied!",
-            "toastDescription": "A shareable link for coupon '{link}' has been copied to your clipboard.",
-            "shareModal": {
-                "title": "Share Coupon Code",
-                "description": "Share this link with your customers to apply the coupon automatically.",
-                "link": "Link",
-                "copy": "Copy",
-                "close": "Close"
-            }
+      "title": "My Promotions",
+      "description": "Create and manage coupon codes to attract more buyers.",
+      "backToDashboard": "Back to Dashboard",
+      "signInPrompt": "Please sign in to manage your promotions.",
+      "create": {
+        "title": "Create New Coupon",
+        "description": "Define the details for your new promotional coupon.",
+        "form": {
+          "code": "Coupon Code",
+          "codePlaceholder": "e.g., SALE20",
+          "usageLimit": "Usage Limit",
+          "usageLimitPlaceholder": "e.g., 100",
+          "discountType": "Discount Type",
+          "discountTypePlaceholder": "Select type",
+          "percentage": "Percentage",
+          "fixed": "Fixed Amount",
+          "discountValue": "Discount Value",
+          "expiryDate": "Expiry Date (Optional)",
+          "pickDate": "Pick a date",
+          "submitButton": "Create Coupon"
         },
         "toast": {
-            "error": "Error",
-            "fetchError": "Could not retrieve your coupons.",
-            "createSuccess": "The coupon '{code}' has been successfully created.",
-            "createFail": "Failed to create coupon",
-            "createError": "An unexpected error occurred.",
-            "linkCopied": "Link Copied!",
-            "shareDescription": "The share link for coupon '{code}' has been copied."
+          "successTitle": "Coupon Created!",
+          "successDescription": "The coupon '{code}' is now active.",
+          "failTitle": "Creation Failed"
         }
+      },
+      "list": {
+        "title": "Existing Coupons",
+        "description": "View and manage your active promotional codes.",
+        "usage": "Usage",
+        "expires": "Expires",
+        "never": "Never",
+        "share": "Share",
+        "noCoupons": "You haven't created any coupons yet.",
+        "toastTitle": "Link Copied!",
+        "toastDescription": "A shareable link for coupon '{link}' has been copied to your clipboard.",
+        "shareModal": {
+          "title": "Share Coupon Code",
+          "description": "Share this link with your customers to apply the coupon automatically.",
+          "link": "Link",
+          "copy": "Copy",
+          "close": "Close"
+        }
+      },
+      "toast": {
+        "error": "Error",
+        "fetchError": "Could not retrieve your coupons.",
+        "createSuccess": "The coupon '{code}' has been successfully created.",
+        "createFail": "Failed to create coupon",
+        "createError": "An unexpected error occurred.",
+        "linkCopied": "Link Copied!",
+        "shareDescription": "The share link for coupon '{code}' has been copied."
+      }
     }
   },
   "farmManagement": {
@@ -888,11 +888,11 @@
         "typeLabel": "Farm Type",
         "typePlaceholder": "Select a primary type",
         "types": {
-            "crop": "Crop Production",
-            "livestock": "Livestock Rearing",
-            "mixed": "Mixed (Crops & Livestock)",
-            "aquaculture": "Aquaculture",
-            "other": "Other"
+          "crop": "Crop Production",
+          "livestock": "Livestock Rearing",
+          "mixed": "Mixed (Crops & Livestock)",
+          "aquaculture": "Aquaculture",
+          "other": "Other"
         },
         "descriptionLabel": "Description (Optional)",
         "descriptionPlaceholder": "Briefly describe your farm...",
@@ -911,34 +911,34 @@
       }
     },
     "farmDetail": {
-        "backToFarms": "Back to My Farms",
-        "registeredOn": "Registered on {date}",
-        "editFarmButton": "Edit Farm",
-        "crops": {
-            "title": "Crops",
-            "description": "Manage all active crops on this farm.",
-            "addNewButton": "Add New Crop",
-            "plantedLabel": "Planted",
-            "stageLabel": "Stage",
-            "viewJourneyButton": "View Journey",
-            "noCrops": "No crops have been added to this farm yet.",
-            "addFirstButton": "Add Your First Crop"
-        },
-        "insights": {
-            "title": "Profitability Insights",
-            "description": "AI-powered analysis of your farm's activities.",
-            "noInsights": "Not enough data to generate insights yet. Start logging activities!"
-        },
-        "toast": {
-            "notFoundTitle": "Farm not found.",
-            "loadErrorTitle": "Load Error",
-            "insightsErrorTitle": "Insights Error"
-        },
-        "notFound": {
-            "title": "Farm Not Found",
-            "description": "The farm you are looking for does not exist or you do not have permission to view it.",
-            "backButton": "Go Back to My Farms"
-        }
+      "backToFarms": "Back to My Farms",
+      "registeredOn": "Registered on {date}",
+      "editFarmButton": "Edit Farm",
+      "crops": {
+        "title": "Crops",
+        "description": "Manage all active crops on this farm.",
+        "addNewButton": "Add New Crop",
+        "plantedLabel": "Planted",
+        "stageLabel": "Stage",
+        "viewJourneyButton": "View Journey",
+        "noCrops": "No crops have been added to this farm yet.",
+        "addFirstButton": "Add Your First Crop"
+      },
+      "insights": {
+        "title": "Profitability Insights",
+        "description": "AI-powered analysis of your farm's activities.",
+        "noInsights": "Not enough data to generate insights yet. Start logging activities!"
+      },
+      "toast": {
+        "notFoundTitle": "Farm not found.",
+        "loadErrorTitle": "Load Error",
+        "insightsErrorTitle": "Insights Error"
+      },
+      "notFound": {
+        "title": "Farm Not Found",
+        "description": "The farm you are looking for does not exist or you do not have permission to view it.",
+        "backButton": "Go Back to My Farms"
+      }
     },
     "createCrop": {
       "backLink": "Back to Farm Details",
@@ -1064,77 +1064,51 @@
           ],
           "whyItWorks": [
             "Prevents weeds from growing.",
-            "Saves a tremendous amount of soil moisture, reducing water needs.",
-            "Feeds soil life as it decomposes, creating rich topsoil.",
-            "Protects the soil from the direct heat of the sun."
-          ],
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "A field covered in a thick blanket of mulch",
-          "dataAiHint": "mulch farming"
-        },
-        {
-          "id": "high-standards",
-          "title": "High Standards",
-          "icon": "CheckCircle",
-          "summary": "Do everything on time, to a high standard, without wastage, and with joy.",
-          "howTo": [
-            "Prepare your land well before the first rains.",
-            "Plant at the optimal time for your region and crop.",
-            "Follow precise measurements for planting depth and spacing.",
-            "Manage your resources (seed, inputs, time) wisely to avoid waste."
-          ],
-          "whyItWorks": [
-            "Maximizes the genetic potential of the seed.",
-            "Ensures the crop gets the full benefit of the early rains.",
-            "Leads to higher yields and greater profitability.",
-            "Honors God through excellent work."
-          ],
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "A farmer carefully planting seeds in a well-prepared field",
-          "dataAiHint": "planting seeds precisely"
+            "Saves a tremendous amount of soil moisture, reducing water needs."
+          ]
         }
       ]
     },
     "logObservation": {
-        "backLink": "Back to Farm",
-        "title": "Log Observation",
-        "description": "Record observations about your crop, such as pests, diseases, growth, or weather events.",
-        "typeLabel": "Observation Type",
-        "typePlaceholder": "Select a type",
-        "types": {
-            "Pest": "Pest",
-            "Disease": "Disease",
-            "Growth": "Growth",
-            "Weather": "Weather",
-            "Soil": "Soil",
-            "Weed": "Weed",
-            "Other": "Other",
-            "FGW_Stations": "Field Prep (FGW Stations)",
-            "FGW_Mulch": "Mulch Application (God's Blanket)"
-        },
-        "dateLabel": "Observation Date",
-        "detailsLabel": "Details & Notes",
-        "detailsPlaceholder": "Describe what you observed...",
-        "uploadLabel": "Upload Photo (Optional)",
-        "uploadDescription": "A picture can help with diagnosis. The AI will analyze it if provided.",
-        "saveButton": "Save Observation",
-        "processingButton": "Processing...",
-        "toast": {
-            "authErrorTitle": "Not Authenticated",
-            "authErrorDescription": "You must be logged in to log an observation.",
-            "aiAnalyzing": "AI Analysis in Progress",
-            "aiDescription": "Your image data is being sent to the AI for diagnosis.",
-            "aiComplete": "AI Analysis Complete!",
-            "aiCompleteDescription": "The diagnosis has been included in your observation record.",
-            "aiFailTitle": "AI Analysis Failed",
-            "aiFailDescription": "We could not analyze the image. The observation will be saved without an AI diagnosis.",
-            "uploading": "Uploading image...",
-            "uploadingDescription": "Please wait a moment.",
-            "uploadComplete": "Upload Complete!",
-            "success": "Observation Logged",
-            "successDescription": "Your observation has been successfully saved.",
-            "fail": "Logging Failed"
-        }
+      "backLink": "Back to Farm",
+      "title": "Log Observation",
+      "description": "Record observations about your crop, such as pests, diseases, growth, or weather events.",
+      "typeLabel": "Observation Type",
+      "typePlaceholder": "Select a type",
+      "types": {
+        "Pest": "Pest",
+        "Disease": "Disease",
+        "Growth": "Growth",
+        "Weather": "Weather",
+        "Soil": "Soil",
+        "Weed": "Weed",
+        "Other": "Other",
+        "FGW_Stations": "Field Prep (FGW Stations)",
+        "FGW_Mulch": "Mulch Application (God's Blanket)"
+      },
+      "dateLabel": "Observation Date",
+      "detailsLabel": "Details & Notes",
+      "detailsPlaceholder": "Describe what you observed...",
+      "uploadLabel": "Upload Photo (Optional)",
+      "uploadDescription": "A picture can help with diagnosis. The AI will analyze it if provided.",
+      "saveButton": "Save Observation",
+      "processingButton": "Processing...",
+      "toast": {
+        "authErrorTitle": "Not Authenticated",
+        "authErrorDescription": "You must be logged in to log an observation.",
+        "aiAnalyzing": "AI Analysis in Progress",
+        "aiDescription": "Your image data is being sent to the AI for diagnosis.",
+        "aiComplete": "AI Analysis Complete!",
+        "aiCompleteDescription": "The diagnosis has been included in your observation record.",
+        "aiFailTitle": "AI Analysis Failed",
+        "aiFailDescription": "We could not analyze the image. The observation will be saved without an AI diagnosis.",
+        "uploading": "Uploading image...",
+        "uploadingDescription": "Please wait a moment.",
+        "uploadComplete": "Upload Complete!",
+        "success": "Observation Logged",
+        "successDescription": "Your observation has been successfully saved.",
+        "fail": "Logging Failed"
+      }
     },
     "logHarvest": {
       "backLink": "Back to Farm",
@@ -1150,21 +1124,21 @@
       "saveButton": "Log Harvest & Create Batch",
       "savingButton": "Saving...",
       "offlineToast": {
-          "title": "Action Queued Offline",
-          "description": "Your harvest will be logged and a VTI created once you're back online."
+        "title": "Action Queued Offline",
+        "description": "Your harvest will be logged and a VTI created once you're back online."
       },
       "success": {
-          "title": "Harvest Logged!",
-          "description": "Successfully logged the harvest for {cropType}. A new Traceable Batch with ID '{vtiId}' has been created.",
-          "successCardTitle": "Harvest Recorded!",
-          "successCardDescription": "A new traceable batch for {cropType} has been created with ID: {vtiId}",
-          "viewReportButton": "View Traceability Report",
-          "sellButton": "Sell on Marketplace",
-          "logAnotherButton": "Log Another Harvest",
-          "backToFarmButton": "Back to Farm"
+        "title": "Harvest Logged!",
+        "description": "Successfully logged the harvest for {cropType}. A new Traceable Batch with ID '{vtiId}' has been created.",
+        "successCardTitle": "Harvest Recorded!",
+        "successCardDescription": "A new traceable batch for {cropType} has been created with ID: {vtiId}",
+        "viewReportButton": "View Traceability Report",
+        "sellButton": "Sell on Marketplace",
+        "logAnotherButton": "Log Another Harvest",
+        "backToFarmButton": "Back to Farm"
       },
       "fail": {
-          "title": "Logging Failed"
+        "title": "Logging Failed"
       }
     },
     "knfInputsPage": {
@@ -1679,8 +1653,8 @@
     "noPendingClaims": "No pending claims at this time.",
     "riskAlertsTitle": "Risk Assessment Alerts",
     "riskAlertsDescription": "Proactive alerts for high-risk policies based on real-time data.",
-      "alert": "Alert",
-      "severity": "Severity",
+    "alert": "Alert",
+    "severity": "Severity",
     "investigateButton": "Investigate",
     "noRiskAlerts": "No high-risk alerts currently.",
     "activePoliciesTitle": "Active Policies Overview",
@@ -1716,11 +1690,11 @@
     "title": "Packaging Supplier Dashboard",
     "ordersTitle": "Incoming Orders",
     "table": {
-        "customer": "Customer",
-        "product": "Product",
-        "quantity": "Quantity",
-        "status": "Status",
-        "action": "Action"
+      "customer": "Customer",
+      "product": "Product",
+      "quantity": "Quantity",
+      "status": "Status",
+      "action": "Action"
     },
     "viewOrderButton": "View Order",
     "noOrders": "No new orders.",
@@ -1738,13 +1712,13 @@
     "wasteTitle": "Waste Reduction",
     "rawMaterialTitle": "Raw Material Inventory",
     "table": {
-        "product": "Product",
-        "quality": "Quality",
-        "quantity": "Quantity (Tons)",
-        "supplier": "Supplier",
-        "deliveryDate": "Delivery Date",
-        "status": "Status",
-        "action": "Action"
+      "product": "Product",
+      "quality": "Quality",
+      "quantity": "Quantity (Tons)",
+      "supplier": "Supplier",
+      "deliveryDate": "Delivery Date",
+      "status": "Status",
+      "action": "Action"
     },
     "noInventoryData": "No raw material inventory data.",
     "packagingOrdersTitle": "Packaging Orders",
@@ -1761,14 +1735,14 @@
     "inspectionsTitle": "Pending Inspections",
     "inspectionsDescription": "Batches awaiting quality inspection and verification.",
     "table": {
-        "batchId": "Batch ID",
-        "product": "Product",
-        "seller": "Seller",
-        "dueDate": "Due Date",
-        "action": "Action",
-        "result": "Result",
-        "reason": "Reason",
-        "inspectedAt": "Inspected At"
+      "batchId": "Batch ID",
+      "product": "Product",
+      "seller": "Seller",
+      "dueDate": "Due Date",
+      "action": "Action",
+      "result": "Result",
+      "reason": "Reason",
+      "inspectedAt": "Inspected At"
     },
     "performInspectionButton": "Inspect",
     "noPendingInspections": "No batches are currently pending inspection.",
@@ -1859,7 +1833,7 @@
     "loadMoreComments": "Load more comments",
     "writeCommentPlaceholder": "Add a comment...",
     "postButton": "Post",
-    "votes": "{count, plural, =0 {votes} =1 {vote} other {votes}}"
+    "votes": "{count, plural, =0 {votes} =1 {vote} other {{count} votes}}"
   },
   "CreatePostModal": {
     "title": "Create a new post",
@@ -1936,4 +1910,3 @@
     "noStakeholdersHint": "Try adjusting your search filters."
   }
 }
-```
