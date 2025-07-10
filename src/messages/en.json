@@ -239,6 +239,9 @@
     "resultsTitle": "Search Results",
     "resultsPlaceholder": "User details will appear here after a successful search."
   },
+  "common": {
+    "error": "Error"
+  },
   "farmManagement": {
     "laborPage": {
       "backLink": "Back to Farm Hub",
@@ -292,9 +295,6 @@
       }
     }
   },
-  "common": {
-    "error": "Error"
-  },
   "searchPage": {
     "title": "Universal Search",
     "description": "Find anything across the DamDoh platform, from products and services to people and discussions.",
@@ -329,6 +329,140 @@
       },
       "noResults": "No results found for your query.",
       "tryAgain": "Try another search term or use broader keywords."
+    }
+  },
+  "GroupsPage": {
+    "title": "Community Groups",
+    "description": "Find and join groups based on your interests, projects, or location.",
+    "createGroupButton": "Create New Group",
+    "searchPlaceholder": "Search for groups...",
+    "notFound": "No groups found. Try a different search or create one!",
+    "detail": {
+      "backLink": "Back to Groups",
+      "membersTitle": "{memberCount} Members",
+      "discussionsTitle": "Discussions",
+      "startDiscussionButton": "Start a Discussion",
+      "noDiscussions": "No discussions have been started yet.",
+      "beTheFirst": "Be the first to start a conversation!",
+      "by": "By {author}",
+      "actionsTitle": "Group Actions",
+      "joinButton": "Join Group",
+      "joiningButton": "Joining...",
+      "leaveButton": "Leave Group",
+      "leavingButton": "Leaving...",
+      "requestJoinButton": "Request to Join",
+      "loginToJoinButton": "Login to Join",
+      "notFound": {
+        "title": "Group Not Found",
+        "description": "The group you are looking for could not be found.",
+        "backButton": "Return to Groups List"
+      },
+      "toast": {
+        "loadError": {
+          "title": "Error",
+          "description": "Could not load group data."
+        },
+        "loginToJoin": "You must be logged in to join a group.",
+        "joinSuccess": "Successfully joined group!",
+        "joinError": "Failed to join group.",
+        "leaveSuccess": "You have left the group.",
+        "leaveError": "Failed to leave group."
+      }
+    },
+    "create": {
+      "backLink": "Back to Groups",
+      "title": "Create a New Group",
+      "description": "Start a new community around a shared interest, project, or location.",
+      "form": {
+        "nameLabel": "Group Name",
+        "namePlaceholder": "e.g., Organic Coffee Growers Cooperative",
+        "descriptionLabel": "Group Description",
+        "descriptionPlaceholder": "What is the purpose of this group?",
+        "publicLabel": "Make this group public",
+        "submitButton": "Create Group",
+        "submittingButton": "Creating..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Not Authenticated",
+          "description": "You must be logged in to create a group."
+        },
+        "incomplete": {
+          "title": "Incomplete Form",
+          "description": "Please provide a name and description for your group."
+        },
+        "success": {
+          "title": "Group Created!",
+          "description": "Your new group is now active."
+        },
+        "error": {
+          "title": "Creation Failed",
+          "description": "An unexpected error occurred. Please try again."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Back to Group",
+      "title": "Create a New Post",
+      "description": "Start a new discussion within the group.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "e.g., Question about pest control methods",
+        "contentLabel": "Your Message",
+        "contentPlaceholder": "Type your question or message here...",
+        "submitButton": "Post",
+        "submittingButton": "Posting..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Not Authenticated",
+          "description": "You must be logged in to post."
+        },
+        "incomplete": {
+          "title": "Incomplete Post",
+          "description": "Please provide a title and content for your post."
+        },
+        "success": {
+          "title": "Post Created!",
+          "description": "Your post has been added to the group discussion."
+        },
+        "error": {
+          "title": "Post Failed",
+          "description": "An unexpected error occurred. Please try again."
+        }
+      }
+    },
+    "postDetail": {
+      "backLink": "Back to {groupName}",
+      "repliesTitle": "{count} Replies",
+      "noReplies": "No replies yet. Be the first to respond!",
+      "loadMoreButton": "Load More Replies",
+      "loadingMoreButton": "Loading...",
+      "yourReplyTitle": "Your Reply",
+      "replyPlaceholder": "Write your reply here...",
+      "replySubmitButton": "Post Reply",
+      "replySubmittingButton": "Posting...",
+      "notFound": {
+        "title": "Post Not Found",
+        "description": "The post you are looking for could not be found.",
+        "backButton": "Return to Group"
+      },
+      "toast": {
+        "loadPostError": {
+          "title": "Error",
+          "description": "Could not load post data."
+        },
+        "loadRepliesError": {
+          "title": "Error",
+          "description": "Could not load replies."
+        },
+        "emptyReply": "Your reply cannot be empty.",
+        "replySuccess": "Reply posted!",
+        "submitError": {
+          "title": "Reply Failed",
+          "description": "Could not post your reply."
+        }
+      }
     }
   }
 }

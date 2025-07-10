@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -89,6 +90,21 @@ export interface ConnectionRequest {
     createdAt: string; // ISO string
 }
 
+export interface Notification {
+  id: string;
+  userId: string;
+  actorId: string;
+  type: 'like' | 'comment' | 'new_order' | 'new_connection_request' | 'event_reminder' | 'service_reminder' | 'profile_view';
+  title_en: string;
+  body_en: string;
+  linkedEntity: {
+    collection: string;
+    documentId: string;
+  } | null;
+  isRead: boolean;
+  createdAt: any; // Firestore Timestamp
+}
+
 
 // =================================================================
 // 2. DASHBOARD & UI-SPECIFIC TYPES
@@ -133,6 +149,8 @@ export interface FarmerDashboardData {
     typeName: string;
     status: string;
     nextStepDate: string | null;
+    quantityProduced?: number;
+    unit?: string;
   }[];
   financialSummary?: FinancialSummary;
   alerts?: FarmerDashboardAlert[];
@@ -438,6 +456,7 @@ export interface AgronomistDashboardData {
     farmerName: string;
     issueSummary: string;
     requestDate: string; // ISO String
+    farmerId: string; // Added to link to farmer's profile
   }[];
   knowledgeHubContributions: {
     id: string;
@@ -614,10 +633,11 @@ export interface FinancialApplication {
   purpose: string;
   submittedAt: string | null;
   actionLink?: string;
+  applicant?: UserProfile; // Can be added when fetching details
 }
 
 
-export type KnfBatch = {
+export interface KnfBatch {
     id: string;
     userId: string;
     type: string; // 'fpj', 'faa', etc.
@@ -628,6 +648,8 @@ export type KnfBatch = {
     status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
     nextStep: string;
     createdAt?: any;
+    quantityProduced?: number;
+    unit?: string;
 }
 
 export interface ForumPost {
@@ -758,3 +780,44 @@ export type ServiceItem = MarketplaceItem & {
     compensation: string;
     experienceLevel: string;
 };
+
+export interface ApiKey {
+  id: string;
+  key: string;
+  status: 'Active' | 'Revoked';
+  environment: 'Sandbox' | 'Production';
+  createdAt: string; // ISO String
+  description: string;
+  keyPrefix: string;
+}
+
+export interface AgriTechInnovatorDashboardData {
+  apiKeys: ApiKey[];
+  sandboxStatus: {
+    status: 'Operational' | 'Degraded' | 'Offline';
+    lastReset: string; // ISO String
+  };
+  integrationProjects: {
+    id: string;
+    title: string;
+    status: 'In Development' | 'Live' | 'Archived';
+    partner: string;
+    actionLink: string;
+  }[];
+}
+
+export interface InsuranceProduct {
+    id: string;
+    providerId: string;
+    name: string;
+    type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
+    description: string;
+    coverageDetails: string;
+    premium: number;
+    currency: string;
+    status: 'Active' | 'Inactive';
+    provider?: {
+        displayName: string;
+        avatarUrl?: string;
+    }
+}

@@ -13,9 +13,10 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth-utils";
 import { httpsCallable } from "firebase/functions";
 import { functions } from "@/lib/firebase/client";
-
+import { useTranslations } from 'next-intl';
 
 export function DashboardLeftSidebar() {
+  const t = useTranslations('DashboardLeftSidebar');
   const { toast } = useToast();
   const { profile, loading } = useUserProfile();
   const { user } = useAuth();
@@ -27,7 +28,7 @@ export function DashboardLeftSidebar() {
   useEffect(() => {
     if (user) {
         const getStatsCallable = httpsCallable(functions, 'getUserEngagementStats');
-        getStatsCallable()
+        getStatsCallable({ userId: user.uid })
             .then(result => {
                 setStats(result.data as any);
             })
@@ -90,7 +91,7 @@ export function DashboardLeftSidebar() {
           <p className="text-xs text-muted-foreground px-2">{profile?.profileSummary || 'Your Headline'}</p>
           <p className="text-xs text-muted-foreground mt-1">{profile?.location || 'Your Location'}</p>
           <Link href="/profiles/me" className="text-xs text-primary hover:underline block mt-1">
-            My DamDoh Stakeholder Profile
+            {t('viewProfileLink')}
           </Link>
         </CardContent>
         <hr className="my-2"/>
@@ -103,11 +104,11 @@ export function DashboardLeftSidebar() {
           ) : (
             <>
                 <div className="flex justify-between items-center p-1 rounded-sm">
-                    <span>Profile viewers</span>
+                    <span>{t('profileViewers')}</span>
                     <span className="text-primary font-semibold">{stats?.profileViews ?? 0}</span>
                 </div>
                 <div className="flex justify-between items-center p-1 rounded-sm">
-                    <span>Post engagements</span>
+                    <span>{t('postEngagements')}</span>
                     <span className="text-primary font-semibold">{totalEngagements}</span>
                 </div>
             </>
@@ -115,32 +116,32 @@ export function DashboardLeftSidebar() {
         </CardContent>
         <hr className="my-2"/>
         <CardContent className="text-xs">
-          <p className="text-muted-foreground">Unlock premium supply chain analytics & tools</p>
+          <p className="text-muted-foreground">{t('pro.unlock')}</p>
           <Button variant="link" className="p-0 h-auto text-xs font-semibold" onClick={handleTryProClick}>
-            <BarChart2 className="h-3 w-3 mr-1 text-accent" /> Try DamDoh Pro
+            <BarChart2 className="h-3 w-3 mr-1 text-accent" /> {t('pro.try')}
           </Button>
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader className="pb-2 pt-4">
-          <CardTitle className="text-md font-semibold">Recent</CardTitle>
+          <CardTitle className="text-md font-semibold">{t('recent.title')}</CardTitle>
         </CardHeader>
         <CardContent className="pt-0 space-y-1 text-sm">
           <Link href="/pinboard" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <Bookmark className="h-4 w-4" /> My Pin Board
+            <Bookmark className="h-4 w-4" /> {t('recent.myPinBoard')}
           </Link>
           <Link href="/groups" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <Users className="h-4 w-4" /> Community Groups
+            <Users className="h-4 w-4" /> {t('recent.communityGroups')}
           </Link>
           <Link href="/industry-news" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <Newspaper className="h-4 w-4" /> Industry News & Reports
+            <Newspaper className="h-4 w-4" /> {t('recent.industryNews')}
           </Link>
           <Link href="/agri-events" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <CalendarDays className="h-4 w-4" /> Agri-Business Events
+            <CalendarDays className="h-4 w-4" /> {t('recent.agriEvents')}
           </Link>
            <Link href="/network" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <Link2 className="h-4 w-4" /> My Supply Chain Network
+            <Link2 className="h-4 w-4" /> {t('recent.mySupplyChainNetwork')}
           </Link>
         </CardContent>
       </Card>
