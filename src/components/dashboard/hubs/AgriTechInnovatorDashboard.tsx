@@ -10,7 +10,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Brain, Key, Server, Rocket, Copy, EyeOff, Eye, PlusCircle, Trash2, Loader2 } from 'lucide-react';
-import type { ApiKey } from '@/lib/types';
+import type { ApiKey, AgriTechInnovatorDashboardData } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 import { format, formatDistanceToNow } from 'date-fns';
 import { useTranslations } from 'next-intl';
@@ -24,11 +24,22 @@ const functions = getFunctions(firebaseApp);
 const ApiKeyRow = ({ apiKey, onRevoke }: { apiKey: ApiKey, onRevoke: (keyId: string) => void }) => {
     const t = useTranslations('AgriTechDashboard');
     const [isVisible, setIsVisible] = useState(false);
+    const [isRevoking, setIsRevoking] = useState(false);
     const { toast } = useToast();
 
     const handleCopy = () => {
+        if (!apiKey.key) {
+            toast({ title: "Key Not Available", description: "The full API key is only shown once upon creation for security.", variant: "destructive" });
+            return;
+        }
         navigator.clipboard.writeText(apiKey.key);
         toast({ title: t('apiKeyCopied') });
+    };
+
+    const handleRevokeClick = () => {
+        setIsRevoking(true);
+        onRevoke(apiKey.id);
+        // The parent component will handle UI updates and toast messages.
     };
 
     return (
@@ -36,7 +47,7 @@ const ApiKeyRow = ({ apiKey, onRevoke }: { apiKey: ApiKey, onRevoke: (keyId: str
             <TableCell>
                 <p className="font-semibold">{apiKey.description}</p>
                  <p className="font-mono text-xs text-muted-foreground">
-                    {isVisible ? apiKey.key : `${apiKey.key.substring(0, 11)}...`}
+                    {isVisible && apiKey.key ? apiKey.key : `${apiKey.keyPrefix}...`}
                  </p>
             </TableCell>
             <TableCell><Badge variant={apiKey.status === 'Active' ? 'default' : 'destructive'}>{apiKey.status}</Badge></TableCell>
@@ -62,7 +73,10 @@ const ApiKeyRow = ({ apiKey, onRevoke }: { apiKey: ApiKey, onRevoke: (keyId: str
                         </DialogHeader>
                         <DialogFooter>
                             <Button variant="outline" onClick={(e) => (e.target as HTMLElement).closest('[role="dialog"]')?.click()}>{t('revokeDialog.cancel')}</Button>
-                            <Button variant="destructive" onClick={() => onRevoke(apiKey.id)}>{t('revokeDialog.confirm')}</Button>
+                            <Button variant="destructive" onClick={handleRevokeClick} disabled={isRevoking}>
+                                {isRevoking && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
+                                {t('revokeDialog.confirm')}
+                            </Button>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
@@ -84,30 +98,34 @@ export const AgriTechInnovatorDashboard = () => {
   // Form state for the new key dialog
   const [newKeyDescription, setNewKeyDescription] = useState('');
   const [newKeyEnv, setNewKeyEnv] = useState<'Sandbox' | 'Production'>('Sandbox');
+  
+  const [newlyGeneratedKey, setNewlyGeneratedKey] = useState<ApiKey | null>(null);
 
   const getApiKeysCallable = useMemo(() => httpsCallable(functions, 'getApiKeys'), []);
   const generateApiKeyCallable = useMemo(() => httpsCallable(functions, 'generateApiKey'), []);
   const revokeApiKeyCallable = useMemo(() => httpsCallable(functions, 'revokeApiKey'), []);
+  const getAgriTechInnovatorDashboardDataCallable = useMemo(() => httpsCallable(functions, 'getAgriTechInnovatorDashboardData'), []);
 
   const fetchDashboardData = useCallback(async () => {
       setIsLoading(true);
       setError(null);
       try {
-        // This is mock data for now, will be replaced by a real callable function
-        const result = await httpsCallable(functions, 'getAgriTechInnovatorDashboardData')();
-        const apiKeysResult = await getApiKeysCallable();
-
-        const data = result.data as AgriTechInnovatorDashboardData;
+        const [dashboardResult, apiKeysResult] = await Promise.all([
+          getAgriTechInnovatorDashboardDataCallable(),
+          getApiKeysCallable()
+        ]);
+        
+        const data = dashboardResult.data as AgriTechInnovatorDashboardData;
         data.apiKeys = (apiKeysResult.data as any).keys || [];
 
         setDashboardData(data);
       } catch (err: any) {
         console.error("Error fetching Agri-Tech dashboard data:", err);
-        setError("Failed to load dashboard data.");
+        setError("Failed to load dashboard data. Please try again later.");
       } finally {
         setIsLoading(false);
       }
-  }, [getApiKeysCallable]);
+  }, [getApiKeysCallable, getAgriTechInnovatorDashboardDataCallable]);
   
   useEffect(() => {
       fetchDashboardData();
@@ -120,15 +138,16 @@ export const AgriTechInnovatorDashboard = () => {
       }
       setIsSubmitting(true);
       try {
-          await generateApiKeyCallable({ description: newKeyDescription, environment: newKeyEnv });
-          toast({ title: t('toast.keyGeneratedSuccess') });
-          setIsGenerateModalOpen(false);
+          const result = await generateApiKeyCallable({ description: newKeyDescription, environment: newKeyEnv });
+          const newKeyData = result.data as ApiKey;
+          setNewlyGeneratedKey(newKeyData);
           setNewKeyDescription('');
-          fetchDashboardData(); // Refresh data
+          fetchDashboardData(); // Refresh data in background
       } catch (error: any) {
           toast({ title: t('toast.keyGeneratedError'), description: error.message, variant: 'destructive' });
       } finally {
           setIsSubmitting(false);
+          setIsGenerateModalOpen(false);
       }
   };
   
@@ -136,6 +155,8 @@ export const AgriTechInnovatorDashboard = () => {
        try {
           await revokeApiKeyCallable({ keyId });
           toast({ title: t('toast.keyRevokedSuccess') });
+          // Close any open dialogs. This is a bit of a hack, might need a better solution for complex modals.
+          document.querySelector('[role="dialog"] [aria-label="Close"]')?.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
           fetchDashboardData(); // Refresh data
       } catch (error: any) {
           toast({ title: t('toast.keyRevokedError'), description: error.message, variant: 'destructive' });
@@ -166,7 +187,7 @@ export const AgriTechInnovatorDashboard = () => {
       );
   }
 
-  const { apiKeys, sandboxStatus, integrationProjects } = dashboardData;
+  const { sandboxStatus, integrationProjects, apiKeys } = dashboardData;
 
   const getStatusColor = (status: string) => {
         switch (status) {
@@ -264,7 +285,7 @@ export const AgriTechInnovatorDashboard = () => {
                  </TableHeader>
                  <TableBody>
                    {(apiKeys || []).map((key) => (
-                      <ApiKeyRow key={key.id} apiKey={key} onRevoke={() => handleRevokeKey(key.id)} />
+                      <ApiKeyRow key={key.id} apiKey={key} onRevoke={handleRevokeKey} />
                    ))}
                  </TableBody>
                </Table>
@@ -273,8 +294,28 @@ export const AgriTechInnovatorDashboard = () => {
              )}
            </CardContent>
          </Card>
-
     </div>
+
+     <Dialog open={!!newlyGeneratedKey} onOpenChange={(open) => !open && setNewlyGeneratedKey(null)}>
+        <DialogContent>
+            <DialogHeader>
+                <DialogTitle className="text-green-600 flex items-center gap-2"><CheckCircle className="h-5 w-5"/>API Key Generated Successfully</DialogTitle>
+                <DialogDescription>Please copy your new API key now. You will not be able to see it again for security reasons.</DialogDescription>
+            </DialogHeader>
+            <div className="p-4 bg-muted rounded-md font-mono break-all text-sm relative">
+                {newlyGeneratedKey?.key}
+                <Button variant="ghost" size="icon" className="absolute top-2 right-2 h-7 w-7" onClick={() => {
+                    navigator.clipboard.writeText(newlyGeneratedKey?.key || '');
+                    toast({ title: "Copied!" });
+                }}>
+                    <Copy className="h-4 w-4" />
+                </Button>
+            </div>
+            <DialogFooter>
+                <Button onClick={() => setNewlyGeneratedKey(null)}>I have copied the key</Button>
+            </DialogFooter>
+        </DialogContent>
+    </Dialog>
     </>
   );
 };

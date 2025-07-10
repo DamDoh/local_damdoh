@@ -749,30 +749,14 @@ export interface MobileDiscoverItem {
     dataAiHint?: string;
 }
 
-export interface AgroTourismDashboardData {
-  upcomingBookings: {
-    id: string;
-    experienceTitle: string;
-    guestName: string;
-    date: string; // ISO String
-    actionLink: string;
-  }[];
-  listedExperiences: {
-    id: string;
-    title: string;
-    location: string;
-    status: 'Published' | 'Draft';
-    bookingsCount: number;
-    actionLink: string;
-  }[];
-  guestReviews: {
-    id: string;
-    guestName: string;
-    experienceTitle: string;
-    rating: number;
-    comment: string;
-    actionLink: string;
-  }[];
+export interface ApiKey {
+  id: string;
+  key?: string; // Only available on creation
+  keyPrefix?: string; // Stored in DB
+  description: string;
+  status: 'Active' | 'Revoked';
+  environment: 'Sandbox' | 'Production';
+  createdAt: string; // ISO String
 }
 
 export interface AgriTechInnovatorDashboardData {
@@ -826,15 +810,6 @@ export type ServiceItem = MarketplaceItem & {
 // AI Related Types
 export type MarketplaceRecommendation = z.infer<typeof MarketplaceRecommendationOutputSchema>;
 export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;
-
-export interface ApiKey {
-    id: string;
-    key: string;
-    description: string;
-    status: 'Active' | 'Revoked';
-    environment: 'Sandbox' | 'Production';
-    createdAt: string; // ISO String
-}
 
 export interface FinancialProduct {
     id: string;
