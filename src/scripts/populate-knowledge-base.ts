@@ -1,3 +1,4 @@
+
 // A standalone script to populate the 'knowledge_base' collection in Firestore.
 // To run this:
 // 1. Make sure your .env.local file has the correct Firebase project credentials.

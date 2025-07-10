@@ -105,7 +105,7 @@ const farmingAssistantFlow = ai.defineFlow(
     // Safely handle potential null/undefined output from the AI
     // and provide default values to ensure a valid object is always returned.
     return {
-        summary: output?.summary || "I'm sorry, I couldn't generate a response. Please try rephrasing your question.",
+        summary: output?.summary || "I'm sorry, I couldn't generate a response. Please try again.",
         detailedPoints: output?.detailedPoints ?? [],
         suggestedQueries: output?.suggestedQueries ?? [],
     };
