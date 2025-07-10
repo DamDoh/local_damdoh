@@ -336,6 +336,7 @@
     "signUpButton": "Registrarse",
     "alreadyHaveAccountPrompt": "¿Ya tiene una cuenta?",
     "signInLink": "Iniciar sesión",
+    "signUpLink": "Registrarse",
     "signInWelcome": "Bienvenido de nuevo a {appName}",
     "signInTitle": "Iniciar sesión",
     "signInDescription": "Ingrese sus credenciales para acceder a su cuenta.",
@@ -488,6 +489,45 @@
       "toast": {
         "errorTitle": "Error al obtener las granjas"
       }
+    },
+    "createFarm": {
+      "backToFarms": "Volver a Mis Granjas",
+      "title": "Registrar una Nueva Granja",
+      "description": "Proporcione los detalles para una nueva granja que posee o gestiona.",
+      "form": {
+        "farmNameLabel": "Nombre de la Granja",
+        "farmNamePlaceholder": "p.ej., Green Valley Organics",
+        "locationLabel": "Ubicación",
+        "locationPlaceholder": "p.ej., Nakuru, Kenia",
+        "locationDescription": "Proporcione la ciudad, región o área general.",
+        "sizeLabel": "Tamaño de la Granja",
+        "sizePlaceholder": "p.ej., 5 Hectáreas",
+        "sizeDescription": "Incluya la unidad (p.ej., acres, hectáreas).",
+        "typeLabel": "Tipo de Granja",
+        "typePlaceholder": "Seleccione un tipo",
+        "types": {
+          "crop": "Cultivo",
+          "livestock": "Ganadería",
+          "mixed": "Mixta (Cultivos y Ganadería)",
+          "aquaculture": "Acuicultura (Piscicultura)",
+          "other": "Otro"
+        },
+        "descriptionLabel": "Descripción (opcional)",
+        "descriptionPlaceholder": "Una breve descripción de su granja, sus principales actividades o su misión.",
+        "irrigationLabel": "Métodos de Riego (opcional)",
+        "irrigationPlaceholder": "p.ej., Riego por goteo, de secano",
+        "irrigationDescription": "Enumere los principales métodos de riego utilizados.",
+        "submitButton": "Guardar Granja"
+      },
+      "toast": {
+        "authErrorTitle": "Error de Autenticación",
+        "authErrorDescription": "Debe iniciar sesión para crear una granja.",
+        "successTitle": "¡Granja Creada!",
+        "successDescription": "{farmName} se ha añadido correctamente a su perfil.",
+        "errorTitle": "Creación Fallida"
+      }
     }
   }
 }
+
+    

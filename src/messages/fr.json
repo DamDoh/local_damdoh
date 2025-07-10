@@ -336,6 +336,7 @@
     "signUpButton": "S'inscrire",
     "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
     "signInLink": "Se connecter",
+    "signUpLink": "S'inscrire",
     "signInWelcome": "Bienvenue à nouveau sur {appName}",
     "signInTitle": "Se connecter",
     "signInDescription": "Entrez vos identifiants pour accéder à votre compte.",
@@ -488,6 +489,45 @@
       "toast": {
         "errorTitle": "Erreur lors de la récupération des fermes"
       }
+    },
+    "createFarm": {
+      "backToFarms": "Retour à Mes Fermes",
+      "title": "Enregistrer une Nouvelle Ferme",
+      "description": "Fournissez les détails pour une nouvelle ferme que vous possédez ou gérez.",
+      "form": {
+        "farmNameLabel": "Nom de la Ferme",
+        "farmNamePlaceholder": "ex: Green Valley Organics",
+        "locationLabel": "Emplacement",
+        "locationPlaceholder": "ex: Nakuru, Kenya",
+        "locationDescription": "Indiquez la ville, la région ou la zone générale.",
+        "sizeLabel": "Taille de la Ferme",
+        "sizePlaceholder": "ex: 5 Hectares",
+        "sizeDescription": "Incluez l'unité (ex: acres, hectares).",
+        "typeLabel": "Type de Ferme",
+        "typePlaceholder": "Sélectionnez un type",
+        "types": {
+          "crop": "Culture",
+          "livestock": "Élevage",
+          "mixed": "Mixte (Cultures & Élevage)",
+          "aquaculture": "Aquaculture (Pisciculture)",
+          "other": "Autre"
+        },
+        "descriptionLabel": "Description (facultatif)",
+        "descriptionPlaceholder": "Une brève description de votre ferme, de ses activités principales ou de sa mission.",
+        "irrigationLabel": "Méthodes d'Irrigation (facultatif)",
+        "irrigationPlaceholder": "ex: Irrigation au goutte-à-goutte, pluviale",
+        "irrigationDescription": "Énumérez les principales méthodes d'irrigation utilisées.",
+        "submitButton": "Enregistrer la Ferme"
+      },
+      "toast": {
+        "authErrorTitle": "Erreur d'Authentification",
+        "authErrorDescription": "Vous devez être connecté pour créer une ferme.",
+        "successTitle": "Ferme Créée !",
+        "successDescription": "{farmName} a été ajouté avec succès à votre profil.",
+        "errorTitle": "Échec de la Création"
+      }
     }
   }
 }
+
+    

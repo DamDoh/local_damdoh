@@ -336,6 +336,7 @@
     "signUpButton": "Sign Up",
     "alreadyHaveAccountPrompt": "Already have an account?",
     "signInLink": "Sign In",
+    "signUpLink": "Sign Up",
     "signInWelcome": "Welcome back to {appName}",
     "signInTitle": "Sign In",
     "signInDescription": "Enter your credentials to access your account.",
@@ -525,57 +526,8 @@
         "successDescription": "{farmName} has been successfully added to your profile.",
         "errorTitle": "Creation Failed"
       }
-    },
-    "editFarm": {
-      "backToFarm": "Back to Farm Details",
-      "title": "Edit Farm Details",
-      "description": "Update the information for your farm.",
-      "form": {
-        "submitButton": "Save Changes"
-      },
-      "toast": {
-        "notFoundTitle": "Farm Not Found",
-        "loadError": "The farm you are trying to edit could not be found.",
-        "loadFail": "Failed to load farm data: {message}",
-        "errorTitle": "Error",
-        "successTitle": "Farm Updated",
-        "successDescription": "{farmName} has been successfully updated."
-      }
-    },
-    "createCrop": {
-      "backLink": "Back to Farm Details",
-      "title": "Log a New Crop",
-      "description": "Add a new crop or planting batch to your farm records.",
-      "cropTypeLabel": "Crop Type",
-      "cropTypePlaceholder": "e.g., Maize, Tomato, Coffee",
-      "cropTypeDescription": "What kind of crop are you planting?",
-      "plantingDateLabel": "Planting Date",
-      "harvestDateLabel": "Expected Harvest Date (Optional)",
-      "datePlaceholder": "Pick a date",
-      "yieldLabel": "Expected Yield (Optional)",
-      "yieldPlaceholder": "e.g., 5 Tons/Hectare",
-      "stageLabel": "Current Stage (Optional)",
-      "stagePlaceholder": "Select a stage",
-      "stages": {
-        "Planting": "Planting",
-        "Vegetative": "Vegetative",
-        "Flowering": "Flowering",
-        "Fruiting": "Fruiting",
-        "Harvesting": "Harvesting",
-        "Post-Harvest": "Post-Harvest"
-      },
-      "notesLabel": "Notes (Optional)",
-      "notesPlaceholder": "Add any relevant notes about this batch, like seed variety or plot number.",
-      "saveButton": "Save Crop",
-      "savingButton": "Saving...",
-      "toast": {
-        "authErrorTitle": "Authentication Error",
-        "authErrorDescription": "You must be logged in to add a crop.",
-        "successTitle": "Crop Added!",
-        "successDescription": "{cropType} has been added to your farm.",
-        "failTitle": "Failed to Add Crop",
-        "failDescription": "An error occurred while saving the crop. Please try again."
-      }
     }
   }
 }
+
+    

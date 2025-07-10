@@ -336,6 +336,7 @@
     "signUpButton": "Registrieren",
     "alreadyHaveAccountPrompt": "Haben Sie bereits ein Konto?",
     "signInLink": "Anmelden",
+    "signUpLink": "Registrieren",
     "signInWelcome": "Willkommen zurück bei {appName}",
     "signInTitle": "Anmelden",
     "signInDescription": "Geben Sie Ihre Anmeldeinformationen ein, um auf Ihr Konto zuzugreifen.",
@@ -488,6 +489,45 @@
       "toast": {
         "errorTitle": "Fehler beim Abrufen der Farmen"
       }
+    },
+    "createFarm": {
+      "backToFarms": "Zurück zu Meine Farmen",
+      "title": "Eine neue Farm registrieren",
+      "description": "Geben Sie die Details für eine neue Farm an, die Sie besitzen oder verwalten.",
+      "form": {
+        "farmNameLabel": "Farmname",
+        "farmNamePlaceholder": "z.B. Green Valley Organics",
+        "locationLabel": "Standort",
+        "locationPlaceholder": "z.B. Nakuru, Kenia",
+        "locationDescription": "Geben Sie die Stadt, Region oder den allgemeinen Bereich an.",
+        "sizeLabel": "Farmgröße",
+        "sizePlaceholder": "z.B. 5 Hektar",
+        "sizeDescription": "Geben Sie die Einheit an (z.B. Acres, Hektar).",
+        "typeLabel": "Farmtyp",
+        "typePlaceholder": "Wählen Sie einen Typ",
+        "types": {
+          "crop": "Ackerbau",
+          "livestock": "Viehzucht",
+          "mixed": "Gemischt (Ackerbau & Viehzucht)",
+          "aquaculture": "Aquakultur (Fischzucht)",
+          "other": "Andere"
+        },
+        "descriptionLabel": "Beschreibung (optional)",
+        "descriptionPlaceholder": "Eine kurze Beschreibung Ihrer Farm, ihrer Hauptaktivitäten oder ihrer Mission.",
+        "irrigationLabel": "Bewässerungsmethoden (optional)",
+        "irrigationPlaceholder": "z.B. Tröpfchenbewässerung, Regenwasser",
+        "irrigationDescription": "Listen Sie die primären Bewässerungsmethoden auf.",
+        "submitButton": "Farm speichern"
+      },
+      "toast": {
+        "authErrorTitle": "Authentifizierungsfehler",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Farm zu erstellen.",
+        "successTitle": "Farm erstellt!",
+        "successDescription": "{farmName} wurde erfolgreich zu Ihrem Profil hinzugefügt.",
+        "errorTitle": "Erstellung fehlgeschlagen"
+      }
     }
   }
 }
+
+    

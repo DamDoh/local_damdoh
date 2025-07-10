@@ -336,6 +336,7 @@
     "signUpButton": "ចុះឈ្មោះ",
     "alreadyHaveAccountPrompt": "មានគណនីរួចហើយ?",
     "signInLink": "ចូល",
+    "signUpLink": "ចុះឈ្មោះ",
     "signInWelcome": "សូមស្វាគមន៍មកកាន់ {appName} វិញ",
     "signInTitle": "ចូល",
     "signInDescription": "បញ្ចូលព័ត៌មានសម្ងាត់របស់អ្នកដើម្បីចូលប្រើគណនីរបស់អ្នក។",
@@ -488,6 +489,45 @@
       "toast": {
         "errorTitle": "កំហុសក្នុងការទាញយកកសិដ្ឋាន"
       }
+    },
+    "createFarm": {
+      "backToFarms": "ត្រឡប់ទៅកសិដ្ឋានរបស់ខ្ញុំ",
+      "title": "ចុះឈ្មោះកសិដ្ឋានថ្មី",
+      "description": "ផ្តល់ព័ត៌មានលម្អិតសម្រាប់កសិដ្ឋានថ្មីដែលអ្នកជាម្ចាស់ ឬគ្រប់គ្រង។",
+      "form": {
+        "farmNameLabel": "ឈ្មោះកសិដ្ឋាន",
+        "farmNamePlaceholder": "ឧ. Green Valley Organics",
+        "locationLabel": "ទីតាំង",
+        "locationPlaceholder": "ឧ. ណាកូរូ, កេនយ៉ា",
+        "locationDescription": "ផ្តល់ទីក្រុង, តំបន់, ឬតំបន់ទូទៅ។",
+        "sizeLabel": "ទំហំកសិដ្ឋាន",
+        "sizePlaceholder": "ឧ. 5 ហិកតា",
+        "sizeDescription": "រួមបញ្ចូលឯកតា (ឧ. acres, hectares)។",
+        "typeLabel": "ប្រភេទកសិដ្ឋាន",
+        "typePlaceholder": "ជ្រើសរើសប្រភេទ",
+        "types": {
+          "crop": "កសិកម្មដាំដុះ",
+          "livestock": "ការចិញ្ចឹមសត្វ",
+          "mixed": "ចម្រុះ (ដំណាំ និងសត្វ)",
+          "aquaculture": "វារីវប្បកម្ម (ការចិញ្ចឹមត្រី)",
+          "other": "ផ្សេងៗ"
+        },
+        "descriptionLabel": "ការពិពណ៌នា (ស្រេចចិត្ត)",
+        "descriptionPlaceholder": "ការពិពណ៌នាសង្ខេបអំពីកសិដ្ឋានរបស់អ្នក, សកម្មភាពចម្បង, ឬបេសកកម្ម។",
+        "irrigationLabel": "វិធីសាស្រ្តស្រោចស្រព (ស្រេចចិត្ត)",
+        "irrigationPlaceholder": "ឧ. ការស្រោចស្រពដោយតំណក់ទឹក, អាស្រ័យលើទឹកភ្លៀង",
+        "irrigationDescription": "រាយបញ្ជីវិធីសាស្រ្តស្រោចស្រពចម្បងដែលបានប្រើ។",
+        "submitButton": "រក្សាទុកកសិដ្ឋាន"
+      },
+      "toast": {
+        "authErrorTitle": "កំហុសក្នុងការផ្ទៀងផ្ទាត់",
+        "authErrorDescription": "អ្នកត្រូវតែចូលដើម្បីបង្កើតកសិដ្ឋាន។",
+        "successTitle": "បានបង្កើតកសិដ្ឋាន!",
+        "successDescription": "{farmName} ត្រូវបានបន្ថែមទៅប្រវត្តិរូបរបស់អ្នកដោយជោគជ័យ។",
+        "errorTitle": "ការបង្កើតបានបរាជ័យ"
+      }
     }
   }
 }
+
+    
