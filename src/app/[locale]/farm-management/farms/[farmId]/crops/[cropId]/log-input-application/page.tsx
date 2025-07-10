@@ -25,9 +25,9 @@ import { useState, useMemo, useEffect } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { app as firebaseApp } from "@/lib/firebase/client";
-import type { KnfBatch } from "@/lib/types";
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
+import type { KnfBatch } from '@/lib/types';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useTranslations } from "next-intl";
 
@@ -63,6 +63,7 @@ export default function LogInputApplicationPage() {
       try {
         const result = await getUserKnfBatchesCallable();
         const allBatches = (result.data as KnfBatch[]) || [];
+        // Filter for batches that are ready to be used
         setKnfBatches(allBatches.filter(b => b.status === 'Ready'));
       } catch (error) {
         console.error("Error fetching KNF batches:", error);
@@ -92,7 +93,7 @@ export default function LogInputApplicationPage() {
         unit: data.unit,
         method: data.method,
         actorVtiId: user.uid,
-        geoLocation: null,
+        geoLocation: null, // Placeholder for future location capture
       };
 
       await handleInputApplicationEvent(payload);
@@ -144,7 +145,7 @@ export default function LogInputApplicationPage() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="flex items-center gap-2"><FlaskConical className="mr-2 h-4 w-4 text-muted-foreground" />{t('useKNFLabel')}</FormLabel>
-                        <Select onValueChange={(value) => field.onChange(value)} value={field.value}>
+                        <Select onValueChange={(value) => form.setValue('inputId', value)} value={field.value}>
                           <FormControl>
                             <SelectTrigger>
                               <SelectValue placeholder={t('useKNFPlaceholder')} />
