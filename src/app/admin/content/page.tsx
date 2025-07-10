@@ -17,7 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
 import { format } from 'date-fns';
-import { PlusCircle, Edit } from 'lucide-react';
+import { PlusCircle, Edit, RefreshCw } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 // Define the structure of an article for the frontend
@@ -118,7 +118,7 @@ export default function ContentManagementPage() {
                 <CardTitle>{t('allArticles.title')}</CardTitle>
                 <CardDescription>{t('allArticles.description')}</CardDescription>
               </div>
-              <Button size="sm" onClick={() => fetchArticles()}><PlusCircle className="mr-2 h-4 w-4" />{t('allArticles.refreshButton')}</Button>
+              <Button size="sm" onClick={() => fetchArticles()} disabled={isLoading}><RefreshCw className={`mr-2 h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />{t('allArticles.refreshButton')}</Button>
             </CardHeader>
             <CardContent>
               {isLoading ? (
@@ -147,7 +147,7 @@ export default function ContentManagementPage() {
                                 <TableCell>{format(new Date(article.createdAt), 'dd MMM yyyy')}</TableCell>
                                 <TableCell className="text-right">
                                     <Button variant="ghost" size="icon" asChild>
-                                        <Link href={`/admin/content/${article.id}/edit`}><Edit className="h-4 w-4" /></Link>
+                                        <Link href={`/blog/${article.id}`} target="_blank"><Edit className="h-4 w-4" /></Link>
                                     </Button>
                                 </TableCell>
                             </TableRow>
