@@ -1,3 +1,4 @@
+
 {
   "FeedItemCard": {
     "signInToLikeToast": "Vous devez être connecté pour aimer une publication.",
@@ -425,5 +426,53 @@
       "noSuggestions": "Aucune nouvelle suggestion disponible pour le moment."
     },
     "noSuggestions": "Aucune suggestion disponible pour le moment. Complétez votre profil pour de meilleures recommandations."
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Centre de Gestion Agricole",
+      "description": "Votre tableau de bord central pour toutes les activités à la ferme, de la gestion des parcelles et des cultures au suivi des intrants et de la main-d'œuvre.",
+      "myFarms": {
+        "title": "Mes Fermes et Cultures",
+        "description": "Définissez vos parcelles agricoles, enregistrez vos cultures, suivez les cycles de plantation et gérez les données de récolte.",
+        "button": "Gérer les Fermes"
+      },
+      "labor": {
+        "title": "Gestion de la Main-d'œuvre",
+        "description": "Suivez vos ouvriers agricoles, enregistrez leurs heures et notez les paiements, le tout en un seul endroit.",
+        "button": "Gérer la Main-d'œuvre"
+      },
+      "knf": {
+        "title": "Assistant Intrants KNF",
+        "description": "Créez et gérez vos concoctions d'Agriculture Naturelle Coréenne comme le FPJ, le FAA, et plus encore.",
+        "button": "Gérer les Intrants"
+      },
+      "fgw": {
+        "title": "Farming God's Way",
+        "description": "Apprenez et appliquez les principes fondamentaux de FGW pour des résultats durables et à haut rendement.",
+        "button": "Voir le Guide FGW"
+      },
+      "financials": {
+        "title": "Finances",
+        "description": "Suivez les revenus et les dépenses de votre ferme, analysez la rentabilité et demandez des financements.",
+        "button": "Voir les Finances"
+      },
+      "seedStarting": {
+        "title": "Guide de Démarrage des Semis",
+        "description": "Apprenez les meilleures pratiques pour démarrer les semis à l'intérieur afin de prendre de l'avance sur la saison.",
+        "button": "Voir le Guide"
+      },
+      "familyFarm": {
+        "title": "Ferme Familiale de 200m²",
+        "description": "Explorez un modèle de ferme familiale autosuffisante et intégrée sur seulement 200 mètres carrés.",
+        "button": "Explorer le Modèle"
+      },
+      "assetManagement": {
+        "title": "Gestion des Actifs",
+        "description": "Enregistrez et suivez vos machines agricoles, outils et autres actifs de valeur. (Bientôt disponible)",
+        "button": "Gérer les Actifs"
+      }
+    }
   }
 }
+
+    

@@ -1,3 +1,4 @@
+
 {
   "FeedItemCard": {
     "signInToLikeToast": "Sie müssen angemeldet sein, um einen Beitrag zu liken.",
@@ -425,5 +426,53 @@
       "noSuggestions": "Derzeit keine neuen Vorschläge verfügbar."
     },
     "noSuggestions": "Derzeit keine Vorschläge verfügbar. Vervollständigen Sie Ihr Profil für bessere Empfehlungen."
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm-Management-Zentrale",
+      "description": "Ihr zentrales Dashboard für alle Aktivitäten auf dem Bauernhof, von der Verwaltung von Parzellen und Kulturen bis zur Nachverfolgung von Betriebsmitteln und Arbeitskräften.",
+      "myFarms": {
+        "title": "Meine Farmen & Kulturen",
+        "description": "Definieren Sie Ihre landwirtschaftlichen Parzellen, protokollieren Sie Kulturen, verfolgen Sie Pflanzzyklen und verwalten Sie Erntedaten.",
+        "button": "Farmen verwalten"
+      },
+      "labor": {
+        "title": "Arbeitskräfteverwaltung",
+        "description": "Behalten Sie den Überblick über Ihre landwirtschaftlichen Arbeitskräfte, protokollieren Sie deren Stunden und erfassen Sie Zahlungen an einem Ort.",
+        "button": "Arbeitskräfte verwalten"
+      },
+      "knf": {
+        "title": "KNF-Betriebsmittelassistent",
+        "description": "Erstellen und verwalten Sie Ihre koreanischen Naturlandwirtschafts-Zubereitungen wie FPJ, FAA und mehr.",
+        "button": "Betriebsmittel verwalten"
+      },
+      "fgw": {
+        "title": "Farming God's Way",
+        "description": "Lernen und wenden Sie die Kernprinzipien von FGW für nachhaltige und ertragreiche Ergebnisse an.",
+        "button": "FGW-Leitfaden ansehen"
+      },
+      "financials": {
+        "title": "Finanzen",
+        "description": "Verfolgen Sie die Einnahmen und Ausgaben Ihrer Farm, analysieren Sie die Rentabilität und beantragen Sie Finanzierungen.",
+        "button": "Finanzen ansehen"
+      },
+      "seedStarting": {
+        "title": "Anleitung zur Aussaat",
+        "description": "Lernen Sie die besten Praktiken für die Aussaat in Innenräumen, um einen Vorsprung in der Saison zu bekommen.",
+        "button": "Anleitung ansehen"
+      },
+      "familyFarm": {
+        "title": "200m² Familienfarm",
+        "description": "Entdecken Sie ein Modell für eine autarke, integrierte Familienfarm auf nur 200 Quadratmetern.",
+        "button": "Modell erkunden"
+      },
+      "assetManagement": {
+        "title": "Anlagenverwaltung",
+        "description": "Protokollieren und verfolgen Sie Ihre landwirtschaftlichen Maschinen, Werkzeuge und andere wertvolle Vermögenswerte. (Kommt bald)",
+        "button": "Anlagen verwalten"
+      }
+    }
   }
 }
+
+    

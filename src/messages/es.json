@@ -1,3 +1,4 @@
+
 {
   "FeedItemCard": {
     "signInToLikeToast": "Debes iniciar sesión para dar 'me gusta' a una publicación.",
@@ -425,5 +426,53 @@
       "noSuggestions": "No hay nuevas sugerencias disponibles en este momento."
     },
     "noSuggestions": "No hay sugerencias disponibles en este momento. Complete su perfil para obtener mejores recomendaciones."
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Centro de Gestión Agrícola",
+      "description": "Su panel de control central para todas las actividades en la granja, desde la gestión de parcelas y cultivos hasta el seguimiento de insumos y mano de obra.",
+      "myFarms": {
+        "title": "Mis Granjas y Cultivos",
+        "description": "Defina sus parcelas agrícolas, registre cultivos, siga los ciclos de siembra y gestione los datos de cosecha.",
+        "button": "Gestionar Granjas"
+      },
+      "labor": {
+        "title": "Gestión de Mano de Obra",
+        "description": "Lleve un registro de sus trabajadores agrícolas, registre sus horas y anote los pagos, todo en un solo lugar.",
+        "button": "Gestionar Mano de Obra"
+      },
+      "knf": {
+        "title": "Asistente de Insumos KNF",
+        "description": "Cree y gestione sus preparados de Agricultura Natural Coreana como FPJ, FAA y más.",
+        "button": "Gestionar Insumos"
+      },
+      "fgw": {
+        "title": "Agricultura a la Manera de Dios (FGW)",
+        "description": "Aprenda y aplique los principios básicos de FGW para obtener resultados sostenibles y de alto rendimiento.",
+        "button": "Ver Guía FGW"
+      },
+      "financials": {
+        "title": "Finanzas",
+        "description": "Siga los ingresos y gastos de su granja, analice la rentabilidad y solicite financiación.",
+        "button": "Ver Finanzas"
+      },
+      "seedStarting": {
+        "title": "Guía de Germinación de Semillas",
+        "description": "Aprenda las mejores prácticas para iniciar semillas en interiores para adelantar la temporada.",
+        "button": "Ver Guía"
+      },
+      "familyFarm": {
+        "title": "Granja Familiar de 200m²",
+        "description": "Explore un modelo para una granja familiar autosostenible e integrada en solo 200 metros cuadrados.",
+        "button": "Explorar Modelo"
+      },
+      "assetManagement": {
+        "title": "Gestión de Activos",
+        "description": "Registre y siga su maquinaria agrícola, herramientas y otros activos valiosos. (Próximamente)",
+        "button": "Gestionar Activos"
+      }
+    }
   }
 }
+
+    

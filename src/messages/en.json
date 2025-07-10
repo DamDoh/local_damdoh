@@ -1,3 +1,4 @@
+
 {
   "FeedItemCard": {
     "signInToLikeToast": "You must be logged in to like a post.",
@@ -425,5 +426,53 @@
       "noSuggestions": "No new suggestions available right now."
     },
     "noSuggestions": "No suggestions available right now. Complete your profile for better recommendations."
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm Management Hub",
+      "description": "Your central dashboard for all on-farm activities, from managing plots and crops to tracking inputs and labor.",
+      "myFarms": {
+        "title": "My Farms & Crops",
+        "description": "Define your farm plots, log crops, track planting cycles, and manage harvest data.",
+        "button": "Manage Farms"
+      },
+      "labor": {
+        "title": "Labor Management",
+        "description": "Keep track of your farm workers, log their hours, and record payments all in one place.",
+        "button": "Manage Labor"
+      },
+      "knf": {
+        "title": "KNF Inputs Assistant",
+        "description": "Create and manage your Korean Natural Farming concoctions like FPJ, FAA, and more.",
+        "button": "Manage Inputs"
+      },
+      "fgw": {
+        "title": "Farming God's Way",
+        "description": "Learn and apply the core principles of FGW for sustainable and high-yield results.",
+        "button": "View FGW Guide"
+      },
+      "financials": {
+        "title": "Money Matters",
+        "description": "Track your farm's income and expenses, analyze profitability, and apply for financing.",
+        "button": "View Financials"
+      },
+      "seedStarting": {
+        "title": "Seed Starting Guide",
+        "description": "Learn the best practices for starting seeds indoors to get a head start on the season.",
+        "button": "View Guide"
+      },
+      "familyFarm": {
+        "title": "200sqm Family Farm",
+        "description": "Explore a model for a self-sustaining, integrated family farm on just 200 square meters.",
+        "button": "Explore Model"
+      },
+      "assetManagement": {
+        "title": "Asset Management",
+        "description": "Log and track your farm machinery, tools, and other valuable assets. (Coming Soon)",
+        "button": "Manage Assets"
+      }
+    }
   }
 }
+
+    
