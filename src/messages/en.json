@@ -179,41 +179,31 @@
     "googlePlayAlt": "Get it on Google Play",
     "appStoreAlt": "Download on the App Store"
   },
-  "searchPage": {
-    "title": "Universal Search",
-    "description": "Find anything across the entire DamDoh platform, from products and services to people and discussions.",
-    "placeholder": "Search for organic coffee, tractor repair, or a user...",
-    "searchButton": "Search",
-    "popularSearches": "Popular Searches",
-    "popularSearch1": "Organic Fertilizer",
-    "popularSearch2": "Logistics in Kenya",
-    "popularSearch3": "Coffee buyers Europe",
-    "popularSearch4": "Farm Labor",
-    "popularSearch5": "Tractor for rent",
-    "modal": {
-      "title": "Universal Search",
-      "placeholder": "I'm looking for...",
-      "searchButton": "Search",
-      "searchError": "Search Failed",
-      "searchErrorDescription": "An unexpected error occurred during the search. Please try again.",
-      "invalidCodeError": "This does not appear to be a valid DamDoh QR code.",
-      "scanFailed": "Scan Failed",
-      "scanError": "Scan Error",
-      "scanErrorDescription": "Could not read the QR code. Please try again.",
-      "interpretationTitle": "AI Interpretation",
-      "interpretationNotesDefault": "Showing general results.",
-      "filtersTitle": "Applied Filters",
-      "results": {
-        "users": "Profiles",
-        "marketplaceItems": "Marketplace",
-        "forums": "Forums",
-        "vti_registry": "Traceability Report",
-        "knowledge_articles": "Knowledge Hub",
-        "agri_events": "Agri-Events"
-      },
-      "noResults": "No results found for your query.",
-      "tryAgain": "Try another search term or use more general keywords."
-    }
+  "networkPage": {
+    "title": "Stakeholder Network",
+    "description": "Discover and connect with farmers, buyers, service providers, and experts across the agricultural value chain.",
+    "myNetworkButton": "My Network",
+    "agentToolsButton": "Agent Tools",
+    "aiSuggestionsTitle": "AI-Powered Suggestions",
+    "aiSuggestionsDescription": "Based on your profile, here are some people you might want to connect with.",
+    "browseAllTitle": "Browse All Stakeholders",
+    "browseAllDescription": "Use the filters below to find specific people or businesses in the network.",
+    "searchPlaceholder": "Search by name or keyword...",
+    "locationPlaceholder": "Filter by location...",
+    "rolePlaceholder": "Filter by role...",
+    "allRoles": "All Roles",
+    "noStakeholdersFound": "No stakeholders found.",
+    "noStakeholdersHint": "Try adjusting your search filters or check back later.",
+    "connect": "Connect",
+    "profile": "Profile",
+    "follow": "Follow",
+    "following": "Following",
+    "toast": {
+      "errorTitle": "Error",
+      "loadError": "Could not load network data.",
+      "noSuggestions": "No new suggestions available at this time."
+    },
+    "noSuggestions": "No suggestions available at this time. Complete your profile for better recommendations."
   },
   "myNetworkPage": {
     "backLink": "Back to Network",
@@ -236,5 +226,18 @@
       "requestDeclined": "Request declined.",
       "connectionRemoved": "Connection removed."
     }
+  },
+  "agentToolsPage": {
+    "backLink": "Back to Network",
+    "accessDeniedTitle": "Access Denied",
+    "accessDeniedDescription": "You do not have the required permissions to access these tools.",
+    "title": "Field Agent Tools",
+    "description": "Tools for authorized agents to assist and manage users in the field.",
+    "findUserLabel": "Find User by Phone Number",
+    "phoneRequiredError": "Phone number is required.",
+    "findButton": "Find",
+    "resultsTitle": "Search Results",
+    "resultsPlaceholder": "User details will appear here after a successful search."
   }
 }
+

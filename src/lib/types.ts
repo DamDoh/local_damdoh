@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -88,21 +87,6 @@ export interface ConnectionRequest {
         primaryRole: string;
     };
     createdAt: string; // ISO string
-}
-
-export interface Notification {
-  id: string;
-  userId: string;
-  actorId: string;
-  type: 'like' | 'comment' | 'new_order' | 'new_connection_request' | 'event_reminder' | 'service_reminder' | 'profile_view';
-  title_en: string;
-  body_en: string;
-  linkedEntity: {
-    collection: string;
-    documentId: string;
-  } | null;
-  isRead: boolean;
-  createdAt: any; // Firestore Timestamp
 }
 
 
@@ -630,7 +614,6 @@ export interface FinancialApplication {
   purpose: string;
   submittedAt: string | null;
   actionLink?: string;
-  applicant?: UserProfile;
 }
 
 
@@ -653,7 +636,7 @@ export interface ForumPost {
   content: string;
   topicId: string;
   topicName: string;
-  createdAt: string; // ISO String
+  timestamp: string; // ISO String
   author: {
     id: string;
     name: string;
@@ -741,44 +724,6 @@ export interface MobileDiscoverItem {
     type: 'Marketplace' | 'Forum' | 'Profile' | 'Service';
     link: string;
     dataAiHint?: string;
-}
-
-export interface ApiKey {
-    id: string;
-    key: string;
-    keyPrefix: string;
-    description: string;
-    status: 'Active' | 'Revoked';
-    environment: 'Sandbox' | 'Production';
-    createdAt: string; // ISO String
-}
-
-export interface FinancialProduct {
-  id: string;
-  fiId: string;
-  name: string;
-  type: 'Loan' | 'Grant';
-  description: string;
-  interestRate?: number;
-  maxAmount?: number;
-  targetRoles: string[];
-  status: 'Active' | 'Inactive';
-}
-
-export interface InsuranceProduct {
-  id: string;
-  providerId: string;
-  name: string;
-  type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
-  description: string;
-  coverageDetails: string;
-  premium: number;
-  currency: string;
-  status: 'Active' | 'Inactive';
-  provider?: { // Optional provider details for display
-    displayName: string;
-    avatarUrl?: string;
-  }
 }
 
 export interface Worker {

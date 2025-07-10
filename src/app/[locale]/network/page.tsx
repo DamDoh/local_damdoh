@@ -13,13 +13,13 @@ import { Search, UserPlus, Link as LinkIcon, UserCog, Users, Frown, Loader2, Bra
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getAllProfilesFromDB } from "@/lib/server-actions";
+import { getAllProfilesFromDB, getMarketplaceRecommendationsAction } from "@/lib/server-actions";
 import { useTranslations } from "next-intl";
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
 import { useAuth } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
-import { getFunctions, httpsCallable } from "firebase/functions";
+import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import type { SuggestedConnectionsOutput } from "@/ai/flows/suggested-connections";
 
@@ -72,29 +72,39 @@ export default function NetworkPage() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const [fetchedProfiles, suggestionsResult] = await Promise.all([
-          getAllProfilesFromDB(),
-          user ? suggestConnectionsCallable({ userId: user.uid, count: 3 }) : Promise.resolve(null)
-        ]);
-
+        const fetchedProfiles = await getAllProfilesFromDB();
         setProfiles(Array.isArray(fetchedProfiles) ? fetchedProfiles : []);
-        
-        if (suggestionsResult) {
-            const data = suggestionsResult.data as SuggestedConnectionsOutput;
-            setAiSuggestions(data.suggestions || []);
-        }
-
       } catch (error) {
-        console.error("Failed to load network data:", error);
+        console.error("Failed to load profiles:", error);
         toast({ title: t('toast.errorTitle'), description: t('toast.loadError'), variant: "destructive" });
         setProfiles([]);
-        setAiSuggestions([]);
       } finally {
         setIsLoading(false);
-        setIsLoadingSuggestions(false);
       }
     };
     fetchData();
+  }, [toast, t]);
+
+  useEffect(() => {
+    const fetchAiSuggestions = async () => {
+      if (!user) {
+        setIsLoadingSuggestions(false);
+        return;
+      };
+      setIsLoadingSuggestions(true);
+      try {
+        const result = await suggestConnectionsCallable({ userId: user.uid, count: 3 });
+        const data = result.data as SuggestedConnectionsOutput;
+        setAiSuggestions(data.suggestions || []);
+      } catch (error) {
+         console.error("Failed to fetch AI suggestions:", error);
+         toast({ title: t('toast.errorTitle'), description: t('toast.noSuggestions'), variant: "destructive" });
+         setAiSuggestions([]);
+      } finally {
+        setIsLoadingSuggestions(false);
+      }
+    };
+    fetchAiSuggestions();
   }, [user, suggestConnectionsCallable, toast, t]);
 
   const handleConnect = async (recipientId: string) => {
@@ -311,5 +321,3 @@ export default function NetworkPage() {
     </div>
   );
 }
-
-    
