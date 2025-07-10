@@ -1064,8 +1064,34 @@
           ],
           "whyItWorks": [
             "Prevents weeds from growing.",
-            "Saves a tremendous amount of soil moisture, reducing water needs."
-          ]
+            "Saves a tremendous amount of soil moisture, reducing water needs.",
+            "Feeds soil life as it decomposes, creating rich topsoil.",
+            "Protects the soil from the direct heat of the sun."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field covered in a thick blanket of mulch",
+          "dataAiHint": "mulch farming"
+        },
+        {
+          "id": "high-standards",
+          "title": "High Standards",
+          "icon": "CheckCircle",
+          "summary": "Do everything on time, to a high standard, with no wastage, and with joy.",
+          "howTo": [
+            "Prepare your land well ahead of the first rains.",
+            "Plant at the optimal time for your region and crop.",
+            "Follow precise measurements for planting depth and spacing.",
+            "Manage your resources (seed, inputs, time) wisely to avoid waste."
+          ],
+          "whyItWorks": [
+            "Maximizes the genetic potential of the seed.",
+            "Ensures the crop gets the full benefit of the early rains.",
+            "Leads to higher yields and greater profitability.",
+            "Brings honor to God through excellent work."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A farmer carefully planting seeds in a well-prepared field",
+          "dataAiHint": "planting seeds precisely"
         }
       ]
     },
@@ -2149,60 +2175,5 @@
     "toast": {
       "errorTitle": "Error"
     }
-  },
-  "InsuranceProductCreatePage": {
-    "backLink": "Back to Products",
-    "title": "Create New Insurance Product",
-    "description": "Define a new insurance product to offer on the platform.",
-    "form": {
-      "nameLabel": "Product Name",
-      "namePlaceholder": "e.g., Drought Protection Crop Insurance",
-      "typeLabel": "Product Type",
-      "typePlaceholder": "Select a product type",
-      "crop": "Crop Insurance",
-      "livestock": "Livestock Insurance",
-      "asset": "Asset Insurance",
-      "weather": "Weather Index Insurance",
-      "descriptionLabel": "Description",
-      "descriptionPlaceholder": "Describe the product, its purpose, and eligibility criteria.",
-      "coverageLabel": "Coverage Details",
-      "coveragePlaceholder": "Detail what this policy covers...",
-      "premiumLabel": "Premium ($)",
-      "premiumPlaceholder": "e.g., 150.00",
-      "currencyLabel": "Currency",
-      "submitButton": "Create Product"
-    },
-    "toast": {
-      "notAuthenticated": "You must be logged in as an Insurance Provider to create products.",
-      "successTitle": "Product Created!",
-      "successDescription": "'{name}' is now available on the platform.",
-      "errorTitle": "Creation Failed"
-    }
   }
 }
-
-```
-- src/middleware.ts:
-```ts
-import createMiddleware from 'next-intl/middleware';
-import { locales } from './i18n-config';
-
-const defaultLocale = 'en';
- 
-export default createMiddleware({
-  // A list of all locales that are supported
-  locales: locales,
- 
-  // Used when no locale matches
-  defaultLocale: defaultLocale,
-  localePrefix: 'as-needed' 
-});
- 
-export const config = {
-  // Match all pathnames except for
-  // - … if they start with `/api`, `/_next` or `/_vercel`
-  // - … the ones containing a dot (e.g. `favicon.ico`)
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
-};
-
-```
