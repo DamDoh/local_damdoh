@@ -26,7 +26,7 @@
     "description": "Teilen Sie ein Update, stellen Sie eine Frage oder starten Sie eine Diskussion mit der Community.",
     "yourName": "Ihr Name",
     "shareUpdate": "Update teilen",
-    "placeholder": "Was liegt Ihnen auf dem Herzen?",
+    "placeholder": "Was liegt Ihnen am Herzen?",
     "selectedFile": "Ausgewählte Datei:",
     "pollOptionsLabel": "Umfrageoptionen",
     "pollOptionPlaceholder": "Option {index}",
@@ -526,6 +526,39 @@
         "successDescription": "{farmName} wurde erfolgreich zu Ihrem Profil hinzugefügt.",
         "errorTitle": "Erstellung fehlgeschlagen"
       }
+    }
+  },
+  "contactPage": {
+    "title": "Kontaktieren Sie Uns",
+    "subtitle": "Wir freuen uns, von Ihnen zu hören! Egal ob Sie eine Frage haben, Feedback geben möchten oder an einer Partnerschaft interessiert sind, hier finden Sie die richtigen Ansprechpartner.",
+    "emailUs": {
+      "title": "Senden Sie uns eine E-Mail",
+      "general": "Allgemeine Anfragen",
+      "support": "Technischer Support",
+      "partnerships": "Partnerschaften"
+    },
+    "callUs": {
+      "title": "Rufen Sie uns an",
+      "hours": "Montag - Freitag, 9:00 - 17:00 Uhr (EAT)",
+      "phone": "+254 20 1234567"
+    },
+    "ourOffice": {
+      "title": "Unser Büro",
+      "org": "DamDoh Holdings Inc.",
+      "address": "123 Agri-Tech Avenue, Nairobi, Kenia"
+    },
+    "sendMessage": {
+      "title": "Senden Sie uns eine Nachricht",
+      "nameLabel": "Ihr Name",
+      "namePlaceholder": "Maria Mustermann",
+      "emailLabel": "Ihre E-Mail",
+      "emailPlaceholder": "maria.mustermann@beispiel.com",
+      "subjectLabel": "Betreff",
+      "subjectPlaceholder": "Betreff Ihrer Nachricht",
+      "messageLabel": "Ihre Nachricht",
+      "messagePlaceholder": "Geben Sie hier Ihre Nachricht ein...",
+      "buttonText": "Nachricht Senden",
+      "note": "Wir bemühen uns, alle Anfragen innerhalb von 24 Stunden zu beantworten."
     }
   }
 }

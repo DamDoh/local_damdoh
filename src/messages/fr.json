@@ -509,7 +509,7 @@
           "crop": "Culture",
           "livestock": "Élevage",
           "mixed": "Mixte (Cultures & Élevage)",
-          "aquaculture": "Aquaculture (Pisciculture)",
+          "aquaculture": "Pisciculture",
           "other": "Autre"
         },
         "descriptionLabel": "Description (facultatif)",
@@ -526,6 +526,39 @@
         "successDescription": "{farmName} a été ajouté avec succès à votre profil.",
         "errorTitle": "Échec de la Création"
       }
+    }
+  },
+  "contactPage": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous serions ravis de vous entendre ! Que vous ayez une question, des commentaires ou que vous soyez intéressé par un partenariat, voici comment joindre notre équipe.",
+    "emailUs": {
+      "title": "Envoyez-nous un Email",
+      "general": "Demandes Générales",
+      "support": "Support Technique",
+      "partnerships": "Partenariats"
+    },
+    "callUs": {
+      "title": "Appelez-nous",
+      "hours": "Lundi - Vendredi, 9h - 17h (EAT)",
+      "phone": "+254 20 1234567"
+    },
+    "ourOffice": {
+      "title": "Notre Bureau",
+      "org": "DamDoh Holdings Inc.",
+      "address": "123 Agri-Tech Avenue, Nairobi, Kenya"
+    },
+    "sendMessage": {
+      "title": "Envoyez-nous un Message",
+      "nameLabel": "Votre Nom",
+      "namePlaceholder": "Marie Dupont",
+      "emailLabel": "Votre Email",
+      "emailPlaceholder": "marie.dupont@example.com",
+      "subjectLabel": "Sujet",
+      "subjectPlaceholder": "Sujet de votre message",
+      "messageLabel": "Votre Message",
+      "messagePlaceholder": "Tapez votre message ici...",
+      "buttonText": "Envoyer le Message",
+      "note": "Nous nous efforçons de répondre à toutes les demandes dans les 24 heures."
     }
   }
 }

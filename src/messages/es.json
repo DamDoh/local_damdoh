@@ -527,6 +527,39 @@
         "errorTitle": "Creación Fallida"
       }
     }
+  },
+  "contactPage": {
+    "title": "Contáctenos",
+    "subtitle": "¡Nos encantaría saber de usted! Si tiene alguna pregunta, comentario o está interesado en una asociación, aquí le indicamos cómo ponerse en contacto con nuestro equipo.",
+    "emailUs": {
+      "title": "Envíenos un Correo Electrónico",
+      "general": "Consultas Generales",
+      "support": "Soporte Técnico",
+      "partnerships": "Asociaciones"
+    },
+    "callUs": {
+      "title": "Llámenos",
+      "hours": "Lunes a Viernes, 9:00 - 17:00 (EAT)",
+      "phone": "+254 20 1234567"
+    },
+    "ourOffice": {
+      "title": "Nuestra Oficina",
+      "org": "DamDoh Holdings Inc.",
+      "address": "123 Agri-Tech Avenue, Nairobi, Kenia"
+    },
+    "sendMessage": {
+      "title": "Envíanos un Mensaje",
+      "nameLabel": "Su Nombre",
+      "namePlaceholder": "María García",
+      "emailLabel": "Su Correo Electrónico",
+      "emailPlaceholder": "maria.garcia@ejemplo.com",
+      "subjectLabel": "Asunto",
+      "subjectPlaceholder": "Asunto de su mensaje",
+      "messageLabel": "Su Mensaje",
+      "messagePlaceholder": "Escriba su mensaje aquí...",
+      "buttonText": "Enviar Mensaje",
+      "note": "Nos esforzamos por responder a todas las consultas en 24 horas."
+    }
   }
 }
 

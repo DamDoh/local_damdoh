@@ -527,6 +527,39 @@
         "errorTitle": "Creation Failed"
       }
     }
+  },
+  "contactPage": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you! Whether you have a question, feedback, or are interested in a partnership, here's how to reach our team.",
+    "emailUs": {
+      "title": "Email Us",
+      "general": "General Inquiries",
+      "support": "Technical Support",
+      "partnerships": "Partnerships"
+    },
+    "callUs": {
+      "title": "Call Us",
+      "hours": "Monday - Friday, 9am - 5pm (EAT)",
+      "phone": "+254 20 1234567"
+    },
+    "ourOffice": {
+      "title": "Our Office",
+      "org": "DamDoh Holdings Inc.",
+      "address": "123 Agri-Tech Avenue, Nairobi, Kenya"
+    },
+    "sendMessage": {
+      "title": "Send us a Message",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Your Email",
+      "emailPlaceholder": "jane.doe@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Subject of your message",
+      "messageLabel": "Your Message",
+      "messagePlaceholder": "Type your message here...",
+      "buttonText": "Send Message",
+      "note": "We strive to respond to all inquiries within 24 hours."
+    }
   }
 }
 
