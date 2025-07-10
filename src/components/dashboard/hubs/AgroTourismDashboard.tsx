@@ -10,7 +10,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-import { MapPin, Calendar, Star, Sun } from 'lucide-react';
+import { MapPin, Calendar, Star, Sun, Settings } from 'lucide-react';
 import type { AgroTourismDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
@@ -154,7 +154,7 @@ export const AgroTourismDashboard = () => {
                        <TableCell>{experience.bookingsCount}</TableCell>
                        <TableCell>
                          <Button asChild variant="outline" size="sm">
-                           <Link href={experience.actionLink}>{t('manageButton')}</Link>
+                           <Link href={experience.actionLink}><Settings className="h-4 w-4 mr-2" />{t('manageButton')}</Link>
                          </Button>
                        </TableCell>
                      </TableRow>
