@@ -1,0 +1,227 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  
+    // =================================================================
+    // Default Deny: Secure by default. No access unless explicitly allowed.
+    // =================================================================
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // =================================================================
+    // User Profiles
+    // =================================================================
+    match /users/{userId} {
+      // Anyone can view a public profile.
+      allow get;
+      // Anyone can list users (e.g., for search). Consider limiting fields read via backend in the future.
+      allow list: if request.auth != null;
+      // Only the authenticated user can update or delete their own profile.
+      allow update, delete: if request.auth != null && request.auth.uid == userId;
+      // User creation is handled by a secure onUserCreate backend trigger.
+      allow create: if false; 
+    }
+
+    // =================================================================
+    // Farm & Labor Management (Ownership-based)
+    // =================================================================
+    match /farms/{farmId} {
+        // Only the owner can read/write their farm details.
+        allow read, write: if request.auth != null && request.auth.uid == resource.data.ownerId;
+    }
+
+    match /crops/{cropId} {
+        // Only the owner can read/write their crop details.
+        allow read, write: if request.auth != null && request.auth.uid == resource.data.ownerId;
+    }
+    
+    match /knf_batches/{batchId} {
+        // Only the owner can read/write their KNF batches.
+        allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
+    }
+    
+    match /users/{userId}/workers/{workerId} {
+        // A user can only manage their own workers.
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    match /users/{userId}/workers/{workerId}/{logCollection}/{logId} {
+        // A user can only manage logs for their own workers.
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // =================================================================
+    // Marketplace & Shops
+    // =================================================================
+    match /marketplaceItems/{itemId} {
+        // Anyone can read a marketplace listing.
+        allow get, list;
+        // Only the seller can create, update, or delete their own listing.
+        allow create, update, delete: if request.auth != null && request.auth.uid == request.resource.data.sellerId;
+    }
+    
+    match /shops/{shopId} {
+        // Anyone can view a shopfront.
+        allow get, list;
+        // Only the owner can create, update, or delete their own shop.
+        allow create, update, delete: if request.auth != null && request.auth.uid == request.resource.data.ownerId;
+    }
+
+    match /marketplace_orders/{orderId} {
+        // Only the buyer or seller can view their order.
+        allow read: if request.auth != null && (request.auth.uid == resource.data.buyerId || request.auth.uid == resource.data.sellerId);
+        // Creation and updates are handled by secure cloud functions.
+        allow write: if false;
+    }
+    
+    match /marketplace_coupons/{couponId} {
+        // Coupons are sensitive and should only be handled by backend functions.
+        allow read, write: if false;
+    }
+
+    // =================================================================
+    // Community Features (Posts, Forums, Groups)
+    // =================================================================
+    match /posts/{postId} {
+        // Anyone can read posts.
+        allow read;
+        // Only authenticated users can create posts.
+        allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+        // Only the author can update or delete their post.
+        allow update, delete: if request.auth != null && resource.data.userId == request.auth.uid;
+
+        // Likes and comments subcollections
+        match /likes/{userId} {
+            // Any authenticated user can like/unlike a post.
+            allow write: if request.auth != null && request.auth.uid == userId;
+            allow read;
+        }
+        match /comments/{commentId} {
+            // Any authenticated user can read or add comments.
+            allow read;
+            allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+        }
+        match /votes/{userId} {
+            allow write: if request.auth != null && request.auth.uid == userId;
+            allow read;
+        }
+    }
+    
+    match /forums/{topicId} {
+        // Anyone can read forum topics.
+        allow read;
+        // Writing is handled by backend functions.
+        allow write: if false;
+
+        match /posts/{postId} {
+            allow read;
+             // Allow authenticated users to create posts.
+            allow create: if request.auth != null && request.resource.data.authorRef == request.auth.uid;
+
+            match /replies/{replyId} {
+                allow read;
+                // Allow authenticated users to create replies.
+                allow create: if request.auth != null && request.resource.data.authorRef == request.auth.uid;
+            }
+        }
+    }
+
+    match /groups/{groupId} {
+        allow read;
+        // Joining, leaving, posting are handled by backend functions
+        allow write: if false;
+        
+        match /members/{memberId} {
+            allow read;
+            allow write: if false;
+        }
+        match /posts/{postId} {
+            allow read;
+            allow write: if false;
+            match /replies/{replyId} {
+                allow read;
+                allow write: if false;
+            }
+        }
+    }
+
+    // =================================================================
+    // Events & Tourism
+    // =================================================================
+     match /agri_events/{eventId} {
+        allow read; // Anyone can see event details
+        // Event creation and updates are done via a secure function.
+        allow write: if false;
+
+        match /attendees/{attendeeId} {
+            // Only the attendee or event organizer (via function) can interact with this.
+            allow read: if request.auth != null && request.auth.uid == attendeeId;
+            allow write: if false; // Registration is via function
+        }
+
+        match /coupons/{couponId} {
+             // Coupons are sensitive and should only be handled by backend functions.
+            allow read, write: if false;
+        }
+        
+        match /staff/{staffId} {
+            allow read, write: if false; // Managed by backend function
+        }
+    }
+    
+     match /marketplaceItems/{itemId}/bookings/{bookingId} {
+        // Only the booker or service provider (via function) should access.
+        allow read: if request.auth != null && request.auth.uid == bookingId;
+        allow write: if false; // Booking is via function
+    }
+
+
+    // =================================================================
+    // Network & Connections
+    // =================================================================
+    match /connection_requests/{reqId} {
+        // Only the requester or recipient can read a request.
+        // Responding is handled by a cloud function.
+        allow read: if request.auth != null && (request.auth.uid == resource.data.requesterId || request.auth.uid == resource.data.recipientId);
+        allow write: if false;
+    }
+    
+    // =================================================================
+    // Backend-Only Collections (No Client Access)
+    // =================================================================
+    match /search_index/{docId} {
+        allow read, write: if false;
+    }
+    match /offline_changes_log/{logId} {
+        allow read, write: if false;
+    }
+    match /notifications/{notifId} {
+        // Only the user the notification is for can read it.
+        allow read: if request.auth != null && request.auth.uid == resource.data.userId;
+        allow write: if false; // Creation is via backend trigger
+    }
+     match /profile_views/{viewId} {
+        allow read, write: if false;
+    }
+    match /traceability_events/{eventId} {
+        allow read; // Allow public read for transparency
+        allow write: if false; // Events logged via secure function
+    }
+     match /vti_registry/{vtiId} {
+        allow read; // Publicly readable
+        allow write: if false; // VTIs created via secure function
+    }
+     match /financial_applications/{appId} {
+        // Only the applicant or the FI (via backend) can read.
+        allow read: if request.auth != null && request.auth.uid == resource.data.applicantId;
+        allow write: if false;
+    }
+     match /financial_products/{prodId} {
+        allow read; // Anyone can read available products
+        allow write: if false;
+    }
+    
+    // Add other backend-only collections here as needed
+  }
+}
