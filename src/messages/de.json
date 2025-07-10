@@ -1273,7 +1273,7 @@
         "loadFail": "Fehler beim Laden der Kulturdaten: {message}",
         "success": "Kultur aktualisiert!",
         "description": "{cropType} wurde erfolgreich aktualisiert.",
-        "fail": "Update fehlgeschlagen"
+        "fail": "Update Fallido"
       }
     },
     "editFarm": {
@@ -1732,7 +1732,7 @@
     "inventoryTitle": "Lagerstatus",
     "inStock": "Auf Lager",
     "reorderLevel": "Nachbestellgrenze",
-    "lowStock": "Niedriger Lagerbestand",
+    "lowStock": "Low Stock",
     "noInventory": "Keine Lagerdaten.",
     "listProductButton": "Neues Produkt listen"
   },
@@ -1759,7 +1759,7 @@
     "inStock": "Auf Lager",
     "reorderLevel": "Nachbestellgrenze",
     "noPackagingData": "Keine Verpackungsinventardaten.",
-    "sourcePackagingButton": "Verpackung beschaffen"
+    "sourcePackagingButton": "Source Packaging"
   },
   "QaDashboard": {
     "title": "QS-Dashboard",
@@ -1956,5 +1956,35 @@
         "description": "Dienstleistungen konnten nicht geladen werden. Bitte versuchen Sie es später erneut."
       }
     }
+  },
+  "ProfilePage": {
+    "backToNetwork": "Zurück zum Netzwerk",
+    "notFoundTitle": "Profil nicht gefunden",
+    "notFoundDescription": "Das Profil, das Sie suchen, existiert nicht.",
+    "editProfile": "Profil bearbeiten",
+    "showUniversalIdButton": "Universal-ID anzeigen",
+    "universalIdModalTitle": "Ihre Universal-ID",
+    "universalIdModalDescription": "Andere Benutzer können diesen QR-Code scannen, um schnell Ihr öffentliches Profil anzuzeigen.",
+    "connect": "Verbinden",
+    "message": "Nachricht",
+    "summaryTitle": "Zusammenfassung",
+    "aboutTitle": "Über {displayName}",
+    "detailsTitle": "Details",
+    "contactTitle": "Kontaktinformationen",
+    "experienceTitle": "Erfahrung",
+    "emailTitle": "E-Mail",
+    "websiteTitle": "Website",
+    "interestsTitle": "Interessengebiete",
+    "needsTitle": "Sucht / Bietet",
+    "recentActivityTitle": "Kürzliche Aktivitäten",
+    "noRecentActivity": "Dieser Benutzer hat keine kürzlichen öffentlichen Aktivitäten.",
+    "tabs": {
+      "overview": "Übersicht",
+      "activity": "Aktivität"
+    },
+    "engagementStats": "Engagement-Statistiken",
+    "profileViews": "Profilansichten",
+    "postLikes": "Beitrags-Likes",
+    "postComments": "Beitragskommentare"
   }
 }

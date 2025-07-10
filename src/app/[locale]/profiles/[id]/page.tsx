@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Briefcase, MapPin, MessageSquare, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, FileText, QrCode, Activity, GitBranch, ShoppingCart, CircleDollarSign } from "lucide-react";
+import { Briefcase, MapPin, MessageSquare, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, FileText, QrCode, Activity, GitBranch, ShoppingCart, CircleDollarSign, Eye, ThumbsUp, MessagesSquare } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 import { getFunctions, httpsCallable } from "firebase/functions";
@@ -66,6 +66,12 @@ const activityIconMap: Record<string, React.ElementType> = {
     GitBranch,
 };
 
+interface EngagementStats {
+    profileViews: number;
+    postLikes: number;
+    postComments: number;
+}
+
 export default function ProfileDetailPage() {
   const t = useTranslations('ProfilePage');
   const params = useParams();
@@ -74,12 +80,14 @@ export default function ProfileDetailPage() {
   
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [activity, setActivity] = useState<any[]>([]);
+  const [stats, setStats] = useState<EngagementStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isActivityLoading, setIsActivityLoading] = useState(true);
 
   const functions = getFunctions(firebaseApp);
   const getUserActivity = useMemo(() => httpsCallable(functions, 'getUserActivity'), [functions]);
   const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'logProfileView'), [functions]);
+  const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'getUserEngagementStats'), []);
   
   useEffect(() => {
     const profileIdParam = params.id as string;
@@ -117,10 +125,16 @@ export default function ProfileDetailPage() {
               .then(result => {
                   setActivity((result.data as any).activities || []);
               })
-              .catch(err => {
-                  console.error("Failed to fetch activity:", err);
+              .catch(err => console.error("Failed to fetch activity:", err));
+              
+            // Fetch stats
+            getEngagementStatsCallable({ userId: fetchedProfile.id })
+              .then(result => {
+                  setStats(result.data as EngagementStats);
               })
+              .catch(err => console.error("Failed to fetch stats:", err))
               .finally(() => setIsActivityLoading(false));
+
           }
         })
         .catch(error => {
@@ -133,7 +147,7 @@ export default function ProfileDetailPage() {
     } else if (!authLoading) {
       setIsLoading(false);
     }
-  }, [params.id, authUser, authLoading, router, getUserActivity, logProfileViewCallable]);
+  }, [params.id, authUser, authLoading, router, getUserActivity, logProfileViewCallable, getEngagementStatsCallable]);
 
 
   if (isLoading || authLoading) {
@@ -254,6 +268,16 @@ export default function ProfileDetailPage() {
                   )}
             </div>
              <div className="space-y-6">
+                 {stats && (
+                     <Card>
+                        <CardHeader><CardTitle className="text-lg">{t('engagementStats')}</CardTitle></CardHeader>
+                        <CardContent className="space-y-3">
+                            <div className="text-sm flex items-center justify-between"><span className="flex items-center gap-2"><Eye className="h-4 w-4 text-muted-foreground"/>{t('profileViews')}</span> <strong>{stats.profileViews}</strong></div>
+                            <div className="text-sm flex items-center justify-between"><span className="flex items-center gap-2"><ThumbsUp className="h-4 w-4 text-muted-foreground"/>{t('postLikes')}</span> <strong>{stats.postLikes}</strong></div>
+                            <div className="text-sm flex items-center justify-between"><span className="flex items-center gap-2"><MessagesSquare className="h-4 w-4 text-muted-foreground"/>{t('postComments')}</span> <strong>{stats.postComments}</strong></div>
+                        </CardContent>
+                     </Card>
+                 )}
                  {profile.contactInfo && (Object.values(profile.contactInfo).some(val => val)) && (
                      <Card>
                         <CardHeader><CardTitle className="text-lg">{t('contactTitle')}</CardTitle></CardHeader>

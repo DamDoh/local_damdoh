@@ -1966,6 +1966,71 @@
     "noStakeholdersFound": "Aucune partie prenante trouvée",
     "noStakeholdersHint": "Essayez d'ajuster vos filtres de recherche."
   },
+  "InsurancePage": {
+    "title": "Agricultural Insurance",
+    "description": "Protect your farm and assets against unforeseen risks.",
+    "perTerm": "per term",
+    "viewDetailsButton": "View Details & Apply",
+    "noProducts": "No insurance products available at this time.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "Back to Insurance Hub",
+    "notFound": "Insurance product not found.",
+    "coverageTitle": "Coverage Details",
+    "premiumTitle": "Premium",
+    "perTerm": "per term",
+    "providerTitle": "Provided By",
+    "applyButton": "Apply Now",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "Back to Product",
+    "title": "Apply for Insurance",
+    "description": "Apply for '{productName}' by selecting your farm and desired coverage.",
+    "form": {
+      "farmLabel": "Farm to Insure",
+      "farmPlaceholder": "Select one of your farms",
+      "noFarms": "No farms found. Please create a farm first.",
+      "coverageValueLabel": "Coverage Value (USD)",
+      "coverageValuePlaceholder": "e.g., 5000",
+      "coverageValueDescription": "The total value you wish to insure.",
+      "submitButton": "Submit Application"
+    },
+    "success": {
+      "title": "Application Submitted!",
+      "description": "Your insurance application has been received and is now under review.",
+      "backToDashboardButton": "Back to Dashboard",
+      "applyForAnotherButton": "Apply for Another Policy"
+    },
+    "toast": {
+      "error": "Error",
+      "notAuthenticated": "You must be logged in to apply for insurance.",
+      "fetchError": "Could not load required data.",
+      "successTitle": "Application Submitted",
+      "successDescription": "Your application is under review."
+    }
+  },
+  "InsuranceProductsPage": {
+    "backLink": "Back to Dashboard",
+    "title": "Manage Insurance Products",
+    "description": "View and manage your current insurance product offerings.",
+    "createButton": "Create New Product",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "premium": "Premium"
+    },
+    "noProducts": "You have not created any insurance products yet.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
   "talentExchangePage": {
     "title": "Bourse de talents",
     "description": "Trouvez des services agricoles spécialisés ou proposez votre expertise.",
@@ -1982,5 +2047,35 @@
         "description": "Impossible de charger les services. Veuillez réessayer plus tard."
       }
     }
+  },
+  "ProfilePage": {
+    "backToNetwork": "Retour au réseau",
+    "notFoundTitle": "Profil non trouvé",
+    "notFoundDescription": "Le profil que vous recherchez n'existe pas.",
+    "editProfile": "Modifier le profil",
+    "showUniversalIdButton": "Afficher l'ID universel",
+    "universalIdModalTitle": "Votre ID universel",
+    "universalIdModalDescription": "Les autres utilisateurs peuvent scanner ce code QR pour voir rapidement votre profil public.",
+    "connect": "Connecter",
+    "message": "Message",
+    "summaryTitle": "Résumé",
+    "aboutTitle": "À propos de {displayName}",
+    "detailsTitle": "Détails",
+    "contactTitle": "Informations de contact",
+    "experienceTitle": "Expérience",
+    "emailTitle": "E-mail",
+    "websiteTitle": "Site web",
+    "interestsTitle": "Domaines d'intérêt",
+    "needsTitle": "Recherche / Offre",
+    "recentActivityTitle": "Activité récente",
+    "noRecentActivity": "Cet utilisateur n'a pas d'activité publique récente.",
+    "tabs": {
+      "overview": "Aperçu",
+      "activity": "Activité"
+    },
+    "engagementStats": "Statistiques d'engagement",
+    "profileViews": "Vues du profil",
+    "postLikes": "J'aime sur les publications",
+    "postComments": "Commentaires sur les publications"
   }
 }

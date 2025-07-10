@@ -2173,11 +2173,14 @@
     "interestsTitle": "Areas of Interest",
     "needsTitle": "Looking For / Offering",
     "recentActivityTitle": "Recent Activity",
-    "recentActivityDescription": "Latest actions and contributions on the {appName} platform.",
     "noRecentActivity": "This user has no recent public activity.",
     "tabs": {
       "overview": "Overview",
       "activity": "Activity"
-    }
+    },
+    "engagementStats": "Engagement Stats",
+    "profileViews": "Profile Views",
+    "postLikes": "Post Likes",
+    "postComments": "Post Comments"
   }
 }
