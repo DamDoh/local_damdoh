@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState, useMemo, Suspense } from 'react';
@@ -62,13 +63,13 @@ const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Farmer': FarmerDashboard,
     'Field Agent/Agronomist (DamDoh Internal)': FieldAgentDashboard,
     'Financial Institution (Micro-finance/Loans)': FiDashboard,
+    'Government Regulator/Auditor': RegulatorDashboard,
     'Input Supplier (Seed, Fertilizer, Pesticide)': InputSupplierDashboard,
     'Insurance Provider': InsuranceProviderDashboard,
     'Logistics Partner (Third-Party Transporter)': LogisticsDashboard,
     'Packaging Supplier': PackagingSupplierDashboard,
     'Processing & Packaging Unit': ProcessingUnitDashboard,
     'Quality Assurance Team (DamDoh Internal)': QaDashboard,
-    'RegulatorDashboard': RegulatorDashboard,
     'Researcher/Academic': ResearcherDashboard,
     'Storage/Warehouse Facility': WarehouseDashboard,
     'Waste Management & Compost Facility': WasteManagementDashboard,

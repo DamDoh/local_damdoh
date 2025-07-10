@@ -225,9 +225,8 @@ export const getFiDashboardData = functions.https.onCall(
   async (data, context): Promise<FiDashboardData> => {
     const fiId = checkAuth(context);
     try {
-        // Fetch real pending applications
         const applicationsSnapshot = await db.collection('financial_applications')
-            .where('fiId', '==', fiId) // Assuming applications are assigned to an FI
+            .where('fiId', '==', fiId)
             .where('status', 'in', ['Pending', 'Under Review'])
             .orderBy('submittedAt', 'desc')
             .limit(10)
@@ -251,7 +250,11 @@ export const getFiDashboardData = functions.https.onCall(
             };
         });
 
-        // Mock data for other sections
+        const productsSnapshot = await db.collection('financial_products')
+            .where('fiId', '==', fiId)
+            .where('status', '==', 'Active')
+            .get();
+
         const portfolioAtRisk = {
             count: 5,
             value: 25000,
@@ -266,6 +269,7 @@ export const getFiDashboardData = functions.https.onCall(
             pendingApplications,
             portfolioAtRisk,
             marketUpdates,
+            activeProductsCount: productsSnapshot.size,
         };
     } catch (error) {
         console.error("Error fetching Financial Institution dashboard data:", error);
@@ -811,7 +815,7 @@ export const getAgronomistDashboardData = functions.https.onCall(
             { id: 'farmer1', name: 'John Doe', farmLocation: 'Nakuru', lastConsultation: new Date(Date.now() - 86400000 * 7).toISOString(), alerts: 1 }
         ];
         const pendingConsultationRequests = [
-            { id: 'req1', farmerName: 'Jane Smith', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString() }
+            { id: 'req1', farmerName: 'Jane Smith', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString(), farmerId: 'farmerJane' }
         ];
 
         return {
@@ -1007,23 +1011,30 @@ export const getOperationsDashboardData = functions.https.onCall(
 );
 
 export const getAgriTechInnovatorDashboardData = functions.https.onCall(
-  (data, context): AgriTechInnovatorDashboardData => {
-    checkAuth(context);
-    // In a real app, this data would be pulled from a secure datastore.
-    return {
-      apiKeys: [
-        { id: 'key1', key: 'sk_test_..._xyz1', keyPrefix: 'sk_test_', status: 'Active', environment: 'Sandbox', createdAt: new Date(Date.now() - 86400000 * 30).toISOString(), description: 'Test Key' },
-        { id: 'key2', key: 'sk_prod_..._abc2', keyPrefix: 'sk_prod_', status: 'Active', environment: 'Production', createdAt: new Date(Date.now() - 86400000 * 90).toISOString(), description: 'Production Key' },
-        { id: 'key3', key: 'sk_test_..._pqr3', keyPrefix: 'sk_test_', status: 'Revoked', environment: 'Sandbox', createdAt: new Date(Date.now() - 86400000 * 120).toISOString(), description: 'Old Test Key' },
-      ],
-      sandboxStatus: {
-        status: 'Operational',
-        lastReset: new Date(Date.now() - 86400000 * 3).toISOString(),
-      },
-      integrationProjects: [
-        { id: 'proj1', title: 'Real-time Cold Chain Monitoring with CoolTech', status: 'Live', partner: 'CoolTech Solutions', actionLink: '#' },
-        { id: 'proj2', title: 'Drone-based Crop Scouting API Integration', status: 'In Development', partner: 'SkyAgroScout', actionLink: '#' },
-      ],
-    };
+  async (data, context): Promise<AgriTechInnovatorDashboardData> => {
+    const innovatorId = checkAuth(context);
+     try {
+        const keysSnapshot = await db.collection('users').doc(innovatorId).collection('api_keys').orderBy('createdAt', 'desc').get();
+        const apiKeys = keysSnapshot.docs.map(doc => {
+            const data = doc.data();
+            return {
+                id: doc.id,
+                keyPrefix: data.keyPrefix,
+                status: data.status,
+                environment: data.environment,
+                createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                description: data.description,
+            } as ApiKey;
+        });
+
+        // Mock other data for now
+        const sandboxStatus = { status: 'Operational' as const, lastReset: new Date(Date.now() - 86400000 * 3).toISOString() };
+        const integrationProjects = [ { id: 'proj1', title: 'Real-time Cold Chain Monitoring with CoolTech', status: 'Live' as const, partner: 'CoolTech Solutions', actionLink: '#' } ];
+
+        return { apiKeys, sandboxStatus, integrationProjects };
+     } catch (error) {
+         console.error("Error fetching Agri-Tech innovator dashboard data:", error);
+         throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+     }
   }
 );

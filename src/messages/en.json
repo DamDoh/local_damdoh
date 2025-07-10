@@ -1,5 +1,51 @@
 
 {
+  "AgronomistDashboard": {
+    "title": "Agronomist & Consultant Hub",
+    "stats": {
+        "assignedFarmers": "Assigned Farmers",
+        "farmersWithAlerts": "Farmers with Alerts",
+        "pendingConsultations": "Pending Consultations",
+        "knowledgeContributions": "Knowledge Contributions"
+    },
+    "consultations": {
+        "title": "Pending Consultation Requests",
+        "description": "Farmers seeking your expertise.",
+        "noRequests": "You have no pending consultation requests.",
+        "table": {
+            "farmer": "Farmer",
+            "issue": "Issue Summary",
+            "action": "Action"
+        },
+        "viewButton": "View Request"
+    },
+    "portfolio": {
+        "title": "Assigned Farmer Portfolio",
+        "description": "An overview of the farmers you manage.",
+        "noFarmers": "No farmers are currently assigned to you.",
+        "table": {
+            "farmer": "Farmer",
+            "location": "Location",
+            "alerts": "Active Alerts",
+            "action": "Action"
+        },
+        "alertsLabel": "Alerts",
+        "profileButton": "View Profile"
+    },
+    "contributions": {
+        "title": "Your Knowledge Hub Contributions",
+        "statusTitle": "Contribution Status",
+        "noContributions": "You have not contributed any articles yet.",
+        "noData": "No contribution data to display."
+    },
+    "chart": {
+        "count": "Count",
+        "published": "Published",
+        "pending": "Pending Review",
+        "draft": "Draft"
+    },
+    "noData": "No dashboard data available for agronomists."
+},
   "FeedItemCard": {
     "signInToLikeToast": "You must be signed in to like a post",
     "repostPlaceholderToast": "Repost feature coming soon!",
@@ -356,7 +402,7 @@
     "commitment": {
       "title": "Our Commitment to the Future",
       "p1": "We are committed to using technology for good, building a platform that is not only profitable but also regenerative for our planet and empowering for its people.",
-      "p2": "Every connection made, piece of knowledge shared, and transaction streamlined on DamDoh is a step toward a more resilient and equitable food future.",
+      "p2": "Every connection made, every piece of knowledge shared, and every transaction streamlined on DamDoh is a step toward a more resilient and equitable food future.",
       "p3": "Join us on this journey.",
       "button": "Become a Member"
     }
@@ -660,5 +706,3 @@
     "noMessages": "Be the first to send a message!"
   }
 }
-
-    
