@@ -645,9 +645,7 @@ export type KnfBatch = {
     status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
     nextStep: string;
     createdAt?: any;
-    quantityProduced: number;
-    unit: string;
-};
+}
 
 export interface ForumPost {
   id: string;

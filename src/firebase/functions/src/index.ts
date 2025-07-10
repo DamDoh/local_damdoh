@@ -32,4 +32,5 @@ export * from "./agri-events";
 export * from "./universal-id";
 export * from "./agro-tourism";
 export * from "./network";
+export * from "./labor";
 export * from "./ai-services";

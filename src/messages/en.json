@@ -1,5 +1,45 @@
 
 {
+  "FeedItemCard": {
+    "signInToLikeToast": "You must be signed in to like a post",
+    "repostPlaceholderToast": "Repost feature coming soon!",
+    "signInToVoteToast": "You must be signed in to vote",
+    "voteSuccessToast": "Your vote has been counted!",
+    "voteErrorToast": "Could not save your vote",
+    "editPost": "Edit Post",
+    "deletePost": "Delete Post",
+    "like": "Like",
+    "comment": "Comment",
+    "repost": "Repost",
+    "likes": "{count, plural, =0 {Likes} =1 {Like} other {{count} Likes}}",
+    "comments": "{count, plural, =0 {Comments} =1 {Comment} other {{count} Comments}}",
+    "loadCommentsErrorToast": "Could not load comments",
+    "noComments": "Be the first to comment!",
+    "loadingComments": "Loading comments...",
+    "loadMoreComments": "Load more comments",
+    "writeCommentPlaceholder": "Add a comment...",
+    "postButton": "Post",
+    "votes": "{count, plural, =0 {votes} =1 {vote} other {votes}}"
+  },
+  "CreatePostModal": {
+    "title": "Create a new post",
+    "description": "Share an update, ask a question, or start a conversation with the community",
+    "yourName": "Your Name",
+    "shareUpdate": "Share an update",
+    "placeholder": "What's on your mind?",
+    "selectedFile": "Selected file:",
+    "pollOptionsLabel": "Poll Options",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Add Option",
+    "pollNote": "Maximum of {maxOptions} options allowed.",
+    "photoVideo": "Photo/Video",
+    "agriEvent": "Agri-Event",
+    "shareDocumentButton": "Share Document",
+    "createPollButton": "Create Poll",
+    "postButton": "Post",
+    "pollOptionsError": "A poll must have at least 2 non-empty options",
+    "emptyPostError": "Your post cannot be empty"
+  },
   "AppHeader": {
     "searchPlaceholder": "Search people, products, services...",
     "home": "Home",
@@ -260,9 +300,9 @@
     "sendMessage": {
       "title": "Send us a message",
       "nameLabel": "Your Name",
-      "namePlaceholder": "Chan Nary",
+      "namePlaceholder": "Jane Doe",
       "emailLabel": "Your Email",
-      "emailPlaceholder": "chan.nary@example.com",
+      "emailPlaceholder": "jane.doe@example.com",
       "subjectLabel": "Subject",
       "subjectPlaceholder": "e.g., Partnership Inquiry",
       "messageLabel": "Your Message",
@@ -463,7 +503,7 @@
         "button": "View FGW Guide"
       },
       "financials": {
-        "title": "Financials",
+        "title": "Financials & Analytics",
         "description": "Track your farm's income and expenses, analyze profitability, and apply for financing.",
         "button": "View Financials"
       },
@@ -516,11 +556,11 @@
         "typeLabel": "Farm Type",
         "typePlaceholder": "Select a type",
         "types": {
-            "crop": "Crop Production",
-            "livestock": "Livestock",
-            "mixed": "Mixed (Crops & Livestock)",
-            "aquaculture": "Aquaculture (Fish Farming)",
-            "other": "Other"
+          "crop": "Crop Production",
+          "livestock": "Livestock",
+          "mixed": "Mixed (Crops & Livestock)",
+          "aquaculture": "Aquaculture (Fish Farming)",
+          "other": "Other"
         },
         "descriptionLabel": "Description (Optional)",
         "descriptionPlaceholder": "A brief description of your farm, its main activities, or its mission.",
@@ -858,6 +898,60 @@
         "couldNotUpdate": "Could not update the batch status."
       }
     },
+    "laborPage": {
+      "backLink": "Back to Farm Hub",
+      "title": "Labor Management",
+      "description": "Manage your workforce, track hours, and log payments.",
+      "addWorker": "Add Worker",
+      "workerName": "Worker Name",
+      "saveWorker": "Save Worker",
+      "loading": "Loading...",
+      "noWorkers": "No workers have been added yet.",
+      "hoursLogged": "Hours Logged",
+      "totalPaid": "Total Paid",
+      "logHours": "Log Hours",
+      "logPayment": "Log Payment",
+      "viewDetails": "View Details",
+      "logHoursFor": "Log Hours for",
+      "hoursWorked": "Hours Worked",
+      "date": "Date",
+      "pickDate": "Pick a date",
+      "taskDescription": "Task Description",
+      "logPaymentFor": "Log Payment for",
+      "amountPaid": "Amount Paid",
+      "signInPrompt": {
+        "title": "Please Sign In",
+        "button": "Sign In"
+      },
+      "toast": {
+        "errorTitle": "Error",
+        "fetchWorkersError": "Failed to fetch workers.",
+        "nameRequired": "Worker name is required.",
+        "workerAdded": "Worker added successfully.",
+        "hoursLogged": "Hours logged successfully.",
+        "paymentLoggedTitle": "Payment Logged",
+        "paymentLoggedDescription": "The payment has been recorded and an expense has been added to your financials."
+      },
+      "workerDetailPage": {
+        "backLink": "Back to Labor Hub",
+        "notFoundTitle": "Worker Not Found",
+        "notFoundDescription": "The worker you are looking for does not exist.",
+        "goBackButton": "Go Back",
+        "workLogsTitle": "Work Logs",
+        "paymentHistoryTitle": "Payment History",
+        "table": {
+          "date": "Date",
+          "hours": "Hours",
+          "task": "Task",
+          "amount": "Amount"
+        },
+        "noWorkLogs": "No work hours have been logged for this worker.",
+        "noPayments": "No payments have been logged for this worker.",
+        "toasts": {
+          "errorTitle": "Error"
+        }
+      }
+    },
     "financials": {
       "title": "Financials Hub",
       "description": "Keep track of your farm's financial health and performance.",
@@ -934,208 +1028,6 @@
           "successDescription": "Your application has been sent to the financial institution for review."
         }
       }
-    }
-  },
-  "Auth": {
-    "forgotPassword": {
-      "errors": {
-        "unexpected": "An unexpected error occurred. Please try again.",
-        "invalidEmail": "The email address is not valid.",
-        "tooManyRequests": "Too many requests. Please try again later.",
-        "default": "Failed to send reset email"
-      }
-    },
-    "resetPassword": {
-      "errors": {
-        "missingCode": "Invalid password reset link. Please request a new one.",
-        "missingCodeTitle": "Invalid Link",
-        "missingCodeDescription": "The password reset link is missing or invalid. Please return to the 'Forgot Password' page to request a new one.",
-        "unexpected": "An unexpected error occurred. Please try again.",
-        "invalidOrExpiredCode": "The password reset link is invalid or has expired. Please request a new one.",
-        "userDisabled": "This user account has been disabled.",
-        "userNotFound": "No user found corresponding to this reset link.",
-        "weakPassword": "The new password is not strong enough.",
-        "default": "Failed to reset password"
-      }
-    }
-  },
-  "FiApplicationPage": {
-    "backLink": "Back to Applications",
-    "title": "Application Details",
-    "applicationTitle": "Application",
-    "submittedOn": "Submitted on",
-    "amountRequested": "Amount Requested",
-    "purpose": "Purpose of Funds",
-    "approveButton": "Approve",
-    "rejectButton": "Reject",
-    "requestInfoButton": "Request More Info",
-    "applicantDetails": "Applicant Details",
-    "viewProfileButton": "View Full Profile",
-    "profileNotFound": "Applicant profile could not be found.",
-    "riskAssessment": "AI Risk Assessment",
-    "creditScore": "Credit Score",
-    "notFound": "Application not found.",
-    "toast": {
-      "errorTitle": "Error",
-      "updateSuccessTitle": "Status Updated",
-      "updateSuccessDescription": "Application status updated to {status}",
-      "updateFailTitle": "Update Failed"
-    }
-  },
-  "FiApplicationListPage": {
-    "backLink": "Back to Dashboard",
-    "title": "Financial Applications",
-    "description": "Review and manage all incoming applications for loans and grants.",
-    "tabs": {
-      "all": "All",
-      "pending": "Pending",
-      "approved": "Approved",
-      "rejected": "Rejected"
-    },
-    "table": {
-      "applicant": "Applicant",
-      "type": "Type",
-      "amount": "Amount",
-      "date": "Date",
-      "status": "Status",
-      "action": "Action"
-    },
-    "reviewButton": "Review",
-    "noApplications": "No applications found in this category."
-  },
-  "FiProductCreatePage": {
-    "backLink": "Back to Financial Products",
-    "title": "Create New Financial Product",
-    "description": "Define a new loan or grant product to offer to DamDoh users.",
-    "form": {
-      "nameLabel": "Product Name",
-      "namePlaceholder": "e.g., Smallholder Farmer Seasonal Loan",
-      "typeLabel": "Product Type",
-      "loan": "Loan",
-      "grant": "Grant",
-      "descriptionLabel": "Description",
-      "descriptionPlaceholder": "Describe the product, its purpose, and key terms.",
-      "interestRateLabel": "Interest Rate (%)",
-      "interestRatePlaceholder": "e.g., 12.5",
-      "maxAmountLabel": "Max Amount (USD)",
-      "maxAmountPlaceholder": "e.g., 10000",
-      "targetRolesLabel": "Target Stakeholders",
-      "targetRolesDescription": "Select which user roles are eligible for this product.",
-      "submitButton": "Create Product"
-    },
-    "toast": {
-      "notAuthenticated": "You must be authenticated as a Financial Institution to perform this action.",
-      "successTitle": "Product Created",
-      "successDescription": "{name} has been successfully created.",
-      "errorTitle": "Creation Failed"
-    }
-  },
-  "FiProductsPage": {
-    "backLink": "Back to Dashboard",
-    "title": "Manage Financial Products",
-    "description": "View and manage all your active financial products.",
-    "createButton": "Create New Product",
-    "table": {
-      "productName": "Product Name",
-      "type": "Type",
-      "status": "Status",
-      "interestRate": "Interest Rate",
-      "maxAmount": "Max Amount"
-    },
-    "noProducts": "You have not created any financial products yet.",
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "InsuranceApplyPage": {
-    "backLink": "Back to Insurance Hub",
-    "title": "Apply for Insurance",
-    "description": "Secure your assets by applying for the {productName}.",
-    "form": {
-      "farmLabel": "Select Farm to Insure",
-      "farmPlaceholder": "Select a farm...",
-      "noFarms": "No farms available to insure. Please create one first.",
-      "coverageValueLabel": "Coverage Value (USD)",
-      "coverageValuePlaceholder": "e.g., 10000",
-      "coverageValueDescription": "The total value you wish to insure.",
-      "submitButton": "Submit Application"
-    },
-    "success": {
-      "title": "Application Submitted!",
-      "description": "Your insurance application has been submitted and is now under review.",
-      "backToDashboardButton": "Back to Dashboard",
-      "applyForAnotherButton": "Apply for Another Policy"
-    },
-    "toast": {
-      "error": "Error",
-      "notAuthenticated": "You must be logged in to apply."
-    }
-  },
-  "InsuranceDetailPage": {
-    "backLink": "Back to Insurance Hub",
-    "notFound": "Product not found.",
-    "coverageTitle": "Coverage Details",
-    "premiumTitle": "Premium",
-    "perTerm": "per term",
-    "providerTitle": "Provided by",
-    "applyButton": "Apply for this Policy",
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "InsurancePage": {
-    "title": "Insurance Hub",
-    "description": "Browse and apply for insurance products to protect your agricultural assets.",
-    "perTerm": "per term",
-    "viewDetailsButton": "View Details & Apply",
-    "noProducts": "No insurance products are currently available.",
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "InsuranceProductCreatePage": {
-    "backLink": "Back to Manage Products",
-    "title": "Create Insurance Product",
-    "description": "Define a new insurance product to offer to the community.",
-    "form": {
-      "nameLabel": "Product Name",
-      "namePlaceholder": "e.g., Multi-Peril Crop Insurance",
-      "typeLabel": "Product Type",
-      "typePlaceholder": "Select a type",
-      "crop": "Crop",
-      "livestock": "Livestock",
-      "asset": "Asset",
-      "weather": "Weather (Parametric)",
-      "descriptionLabel": "Brief Description",
-      "descriptionPlaceholder": "A short summary of what this product covers.",
-      "coverageLabel": "Coverage Details",
-      "coveragePlaceholder": "Provide detailed information on what is covered, deductibles, and claim processes.",
-      "premiumLabel": "Premium (USD)",
-      "premiumPlaceholder": "e.g., 250",
-      "currencyLabel": "Currency",
-      "submitButton": "Create Product"
-    },
-    "toast": {
-      "notAuthenticated": "You must be an Insurance Provider to create products.",
-      "successTitle": "Product Created",
-      "successDescription": "Your insurance product '{name}' has been created.",
-      "errorTitle": "Creation Failed"
-    }
-  },
-  "InsuranceProductsPage": {
-    "backLink": "Back to My Dashboard",
-    "title": "Manage Insurance Products",
-    "description": "Create, view, and manage your insurance product offerings.",
-    "createButton": "Create New Product",
-    "table": {
-      "productName": "Product Name",
-      "type": "Type",
-      "status": "Status",
-      "premium": "Premium"
-    },
-    "noProducts": "You have not created any insurance products yet.",
-    "toast": {
-      "errorTitle": "Error"
     }
   }
 }
