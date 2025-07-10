@@ -61,6 +61,7 @@
     "emailLabel": "Correo Electrónico",
     "emailPlaceholder": "tu@ejemplo.com",
     "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "••••••••",
     "forgotPasswordLink": "¿Olvidaste tu contraseña?",
     "signingInButton": "Iniciando sesión...",
     "signInButton": "Iniciar Sesión",
@@ -102,6 +103,36 @@
       "scanDescription": "Haz que una conexión de confianza de DamDoh escanee este código QR usando la función 'Ayudar a un Amigo a Recuperar' en su aplicación.",
       "scanNote": "Este código es temporal y expira en 10 minutos.",
       "startOverButton": "Empezar de Nuevo"
+    },
+    "error": "Error",
+    "forgotPassword": {
+      "emailSentTitle": "Correo de Restablecimiento de Contraseña Enviado",
+      "emailSentDescription": "Si existe una cuenta para {email}, se ha enviado un enlace de restablecimiento de contraseña. Por favor, revisa tu bandeja de entrada (y la carpeta de spam).",
+      "emailSentDescriptionIfAccountExists": "Si existe una cuenta para {email}, se ha enviado un enlace de restablecimiento de contraseña.",
+      "successTitle": "Correo Enviado",
+      "successDescription": "Si existe una cuenta para el correo electrónico que ingresaste, se ha enviado un enlace de restablecimiento de contraseña. Por favor, revisa tu bandeja de entrada y tu carpeta de spam.",
+      "errors": {
+        "unexpected": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo.",
+        "invalidEmail": "La dirección de correo electrónico no es válida.",
+        "tooManyRequests": "Demasiadas solicitudes. Por favor, inténtalo de nuevo más tarde.",
+        "default": "Error al enviar el correo de restablecimiento"
+      }
+    },
+    "resetPassword": {
+      "successTitle": "Contraseña Restablecida Exitosamente",
+      "successDescription": "Tu contraseña ha sido restablecida. Ahora puedes iniciar sesión con tu nueva contraseña.",
+      "successRedirect": "Tu contraseña ha sido restablecida exitosamente. Redirigiendo al inicio de sesión...",
+      "errors": {
+        "missingCode": "El código de restablecimiento de contraseña falta o es inválido.",
+        "unexpected": "Ocurrió un error inesperado al restablecer tu contraseña.",
+        "invalidOrExpiredCode": "El código de restablecimiento de contraseña es inválido o ha expirado.",
+        "userDisabled": "Tu cuenta ha sido deshabilitada.",
+        "userNotFound": "No se encontró la cuenta de usuario.",
+        "weakPassword": "La contraseña es demasiado débil.",
+        "default": "Error al restablecer la contraseña",
+        "missingCodeTitle": "Código Faltante",
+        "missingCodeDescription": "Falta el código de restablecimiento de contraseña en la URL. Por favor, utiliza el enlace de tu correo de restablecimiento."
+      }
     }
   },
   "AppHeader": {
@@ -722,60 +753,60 @@
       }
     },
     "promotions": {
-        "title": "Mis Promociones",
-        "description": "Crea y gestiona códigos de cupón para atraer a más compradores.",
-        "backToDashboard": "Volver al Panel",
-        "signInPrompt": "Por favor, inicia sesión para gestionar tus promociones.",
-        "create": {
-            "title": "Crear Nuevo Cupón",
-            "description": "Define los detalles de tu nuevo cupón promocional.",
-            "form": {
-                "code": "Código de Cupón",
-                "codePlaceholder": "Ej: VENTA20",
-                "usageLimit": "Límite de Uso",
-                "usageLimitPlaceholder": "Ej: 100",
-                "discountType": "Tipo de Descuento",
-                "discountTypePlaceholder": "Selecciona un tipo",
-                "percentage": "Porcentaje",
-                "fixed": "Cantidad Fija",
-                "discountValue": "Valor del Descuento",
-                "expiryDate": "Fecha de Vencimiento (Opcional)",
-                "pickDate": "Elige una fecha",
-                "submitButton": "Crear Cupón"
-            },
-            "toast": {
-                "successTitle": "¡Cupón Creado!",
-                "successDescription": "El cupón '{code}' ya está activo.",
-                "failTitle": "Creación Fallida"
-            }
-        },
-        "list": {
-            "title": "Cupones Existentes",
-            "description": "Visualiza y gestiona tus códigos promocionales activos.",
-            "usage": "Uso",
-            "expires": "Expira",
-            "never": "Nunca",
-            "share": "Compartir",
-            "noCoupons": "Aún no has creado ningún cupón.",
-            "toastTitle": "¡Enlace Copiado!",
-            "toastDescription": "Se ha copiado al portapapeles un enlace para compartir el cupón '{link}'.",
-            "shareModal": {
-                "title": "Compartir Código de Cupón",
-                "description": "Comparte este enlace con tus clientes para aplicar el cupón automáticamente.",
-                "link": "Enlace",
-                "copy": "Copiar",
-                "close": "Cerrar"
-            }
+      "title": "Mis Promociones",
+      "description": "Crea y gestiona códigos de cupón para atraer a más compradores.",
+      "backToDashboard": "Volver al Panel",
+      "signInPrompt": "Por favor, inicia sesión para gestionar tus promociones.",
+      "create": {
+        "title": "Crear Nuevo Cupón",
+        "description": "Define los detalles de tu nuevo cupón promocional.",
+        "form": {
+          "code": "Código de Cupón",
+          "codePlaceholder": "Ej: VENTA20",
+          "usageLimit": "Límite de Uso",
+          "usageLimitPlaceholder": "Ej: 100",
+          "discountType": "Tipo de Descuento",
+          "discountTypePlaceholder": "Selecciona un tipo",
+          "percentage": "Porcentaje",
+          "fixed": "Cantidad Fija",
+          "discountValue": "Valor del Descuento",
+          "expiryDate": "Fecha de Vencimiento (Opcional)",
+          "pickDate": "Elige una fecha",
+          "submitButton": "Crear Cupón"
         },
         "toast": {
-            "error": "Error",
-            "fetchError": "No se pudieron recuperar tus cupones.",
-            "createSuccess": "El cupón '{code}' se ha creado con éxito.",
-            "createFail": "No se pudo crear el cupón",
-            "createError": "Ocurrió un error inesperado.",
-            "linkCopied": "¡Enlace copiado!",
-            "shareDescription": "Se ha copiado el enlace para compartir del cupón '{code}'."
+          "successTitle": "¡Cupón Creado!",
+          "successDescription": "El cupón '{code}' ya está activo.",
+          "failTitle": "Creación Fallida"
         }
+      },
+      "list": {
+        "title": "Cupones Existentes",
+        "description": "Visualiza y gestiona tus códigos promocionales activos.",
+        "usage": "Uso",
+        "expires": "Expira",
+        "never": "Nunca",
+        "share": "Compartir",
+        "noCoupons": "Aún no has creado ningún cupón.",
+        "toastTitle": "¡Enlace Copiado!",
+        "toastDescription": "Se ha copiado al portapapeles un enlace para compartir el cupón '{link}'.",
+        "shareModal": {
+          "title": "Compartir Código de Cupón",
+          "description": "Comparte este enlace con tus clientes para aplicar el cupón automáticamente.",
+          "link": "Enlace",
+          "copy": "Copiar",
+          "close": "Cerrar"
+        }
+      },
+      "toast": {
+        "error": "Error",
+        "fetchError": "No se pudieron recuperar tus cupones.",
+        "createSuccess": "El cupón '{code}' se ha creado con éxito.",
+        "createFail": "No se pudo crear el cupón",
+        "createError": "Ocurrió un error inesperado.",
+        "linkCopied": "¡Enlace copiado!",
+        "shareDescription": "Se ha copiado el enlace para compartir del cupón '{code}'."
+      }
     }
   },
   "farmManagement": {
@@ -857,11 +888,11 @@
         "typeLabel": "Tipo de Finca",
         "typePlaceholder": "Selecciona un tipo primario",
         "types": {
-            "crop": "Producción de Cultivos",
-            "livestock": "Cría de Ganado",
-            "mixed": "Mixta (Cultivos y Ganado)",
-            "aquaculture": "Acuicultura",
-            "other": "Otro"
+          "crop": "Producción de Cultivos",
+          "livestock": "Cría de Ganado",
+          "mixed": "Mixta (Cultivos y Ganado)",
+          "aquaculture": "Acuicultura",
+          "other": "Otro"
         },
         "descriptionLabel": "Descripción (Opcional)",
         "descriptionPlaceholder": "Describe brevemente tu finca...",
@@ -880,34 +911,34 @@
       }
     },
     "farmDetail": {
-        "backToFarms": "Volver a Mis Fincas",
-        "registeredOn": "Registrada el {date}",
-        "editFarmButton": "Editar Finca",
-        "crops": {
-            "title": "Cultivos",
-            "description": "Gestiona todos los cultivos activos en esta finca.",
-            "addNewButton": "Añadir Nuevo Cultivo",
-            "plantedLabel": "Plantado",
-            "stageLabel": "Etapa",
-            "viewJourneyButton": "Ver Trayectoria",
-            "noCrops": "Aún no se han añadido cultivos a esta finca.",
-            "addFirstButton": "Añade tu primer cultivo"
-        },
-        "insights": {
-            "title": "Análisis de Rentabilidad",
-            "description": "Análisis de las actividades de tu finca impulsado por IA.",
-            "noInsights": "No hay suficientes datos para generar análisis. ¡Empieza a registrar actividades!"
-        },
-        "toast": {
-            "notFoundTitle": "Finca no encontrada.",
-            "loadErrorTitle": "Error de Carga",
-            "insightsErrorTitle": "Error de Análisis"
-        },
-        "notFound": {
-            "title": "Finca No Encontrada",
-            "description": "La finca que buscas no existe o no tienes permiso para verla.",
-            "backButton": "Volver a Mis Fincas"
-        }
+      "backToFarms": "Volver a Mis Fincas",
+      "registeredOn": "Registrada el {date}",
+      "editFarmButton": "Editar Finca",
+      "crops": {
+        "title": "Cultivos",
+        "description": "Gestiona todos los cultivos activos en esta finca.",
+        "addNewButton": "Añadir Nuevo Cultivo",
+        "plantedLabel": "Plantado",
+        "stageLabel": "Etapa",
+        "viewJourneyButton": "Ver Trayectoria",
+        "noCrops": "Aún no se han añadido cultivos a esta finca.",
+        "addFirstButton": "Añade tu primer cultivo"
+      },
+      "insights": {
+        "title": "Análisis de Rentabilidad",
+        "description": "Análisis de las actividades de tu finca impulsado por IA.",
+        "noInsights": "No hay suficientes datos para generar análisis. ¡Empieza a registrar actividades!"
+      },
+      "toast": {
+        "notFoundTitle": "Finca no encontrada.",
+        "loadErrorTitle": "Error de Carga",
+        "insightsErrorTitle": "Error de Análisis"
+      },
+      "notFound": {
+        "title": "Finca No Encontrada",
+        "description": "La finca que buscas no existe o no tienes permiso para verla.",
+        "backButton": "Volver a Mis Fincas"
+      }
     },
     "createCrop": {
       "backLink": "Volver a Detalles de la Finca",
@@ -996,7 +1027,7 @@
       "backLink": "Volver al Centro de Fincas",
       "title": "Guía de Agricultura a la Manera de Dios",
       "description": "Una solución de agricultura sostenible sin labranza y basada en la fe para los pobres.",
-      "intro": "La Agricultura a la Manera de Dios (FGW, por sus siglas en inglés) no es solo una tecnología, sino una solución bíblica, de gestión y tecnológica bien equilibrada para las necesidades agrícolas de los pobres. Se trata de ser un mayordomo fiel de la tierra que Dios nos ha dado. A continuación se presentan los principios básicos.",
+      "intro": "La Agricultura a la Manera de Dios (FGW) no es solo una tecnología, sino una solución bíblica, de gestión y tecnológica bien equilibrada para las necesidades agrícolas de los pobres. Se trata de ser un mayordomo fiel de la tierra que Dios nos ha dado. A continuación se presentan los principios básicos.",
       "howToTitle": "Cómo Hacerlo",
       "whyItWorksTitle": "Por Qué Funciona",
       "principles": [
@@ -1065,45 +1096,45 @@
       ]
     },
     "logObservation": {
-        "backLink": "Volver a la Finca",
-        "title": "Registrar Observación",
-        "description": "Registra observaciones sobre tu cultivo, como plagas, enfermedades, crecimiento o eventos climáticos.",
-        "typeLabel": "Tipo de Observación",
-        "typePlaceholder": "Selecciona un tipo",
-        "types": {
-            "Pest": "Plaga",
-            "Disease": "Enfermedad",
-            "Growth": "Crecimiento",
-            "Weather": "Clima",
-            "Soil": "Suelo",
-            "Weed": "Maleza",
-            "Other": "Otro",
-            "FGW_Stations": "Preparación de Campo (Estaciones FGW)",
-            "FGW_Mulch": "Aplicación de Mantillo (Manta de Dios)"
-        },
-        "dateLabel": "Fecha de Observación",
-        "detailsLabel": "Detalles y Notas",
-        "detailsPlaceholder": "Describe lo que observaste...",
-        "uploadLabel": "Subir Foto (Opcional)",
-        "uploadDescription": "Una imagen puede ayudar en el diagnóstico. La IA la analizará si se proporciona.",
-        "saveButton": "Guardar Observación",
-        "processingButton": "Procesando...",
-        "toast": {
-            "authErrorTitle": "No Autenticado",
-            "authErrorDescription": "Debes iniciar sesión para registrar una observación.",
-            "aiAnalyzing": "Análisis de IA en curso",
-            "aiDescription": "Tus datos de imagen se están enviando a la IA para su diagnóstico.",
-            "aiComplete": "¡Análisis de IA Completo!",
-            "aiCompleteDescription": "El diagnóstico ha sido incluido en tu registro de observación.",
-            "aiFailTitle": "Análisis de IA Fallido",
-            "aiFailDescription": "No pudimos analizar la imagen. La observación se guardará sin diagnóstico de IA.",
-            "uploading": "Subiendo imagen...",
-            "uploadingDescription": "Por favor espera un momento.",
-            "uploadComplete": "¡Subida Completada!",
-            "success": "Observación Registrada",
-            "successDescription": "Tu observación ha sido guardada exitosamente.",
-            "fail": "Registro Fallido"
-        }
+      "backLink": "Volver a la Finca",
+      "title": "Registrar Observación",
+      "description": "Registra observaciones sobre tu cultivo, como plagas, enfermedades, crecimiento o eventos climáticos.",
+      "typeLabel": "Tipo de Observación",
+      "typePlaceholder": "Selecciona un tipo",
+      "types": {
+        "Pest": "Plaga",
+        "Disease": "Enfermedad",
+        "Growth": "Crecimiento",
+        "Weather": "Clima",
+        "Soil": "Suelo",
+        "Weed": "Maleza",
+        "Other": "Otro",
+        "FGW_Stations": "Preparación de Campo (Estaciones FGW)",
+        "FGW_Mulch": "Aplicación de Mantillo (Manta de Dios)"
+      },
+      "dateLabel": "Fecha de Observación",
+      "detailsLabel": "Detalles y Notas",
+      "detailsPlaceholder": "Describe lo que observaste...",
+      "uploadLabel": "Subir Foto (Opcional)",
+      "uploadDescription": "Una imagen puede ayudar en el diagnóstico. La IA la analizará si se proporciona.",
+      "saveButton": "Guardar Observación",
+      "processingButton": "Procesando...",
+      "toast": {
+        "authErrorTitle": "No Autenticado",
+        "authErrorDescription": "Debes iniciar sesión para registrar una observación.",
+        "aiAnalyzing": "Análisis de IA en curso",
+        "aiDescription": "Tus datos de imagen se están enviando a la IA para su diagnóstico.",
+        "aiComplete": "¡Análisis de IA Completo!",
+        "aiCompleteDescription": "El diagnóstico ha sido incluido en tu registro de observación.",
+        "aiFailTitle": "Análisis de IA Fallido",
+        "aiFailDescription": "No pudimos analizar la imagen. La observación se guardará sin diagnóstico de IA.",
+        "uploading": "Subiendo imagen...",
+        "uploadingDescription": "Por favor espera un momento.",
+        "uploadComplete": "¡Subida Completada!",
+        "success": "Observación Registrada",
+        "successDescription": "Tu observación ha sido guardada exitosamente.",
+        "fail": "Registro Fallido"
+      }
     },
     "logHarvest": {
       "backLink": "Volver a la Finca",
@@ -1119,21 +1150,21 @@
       "saveButton": "Registrar Cosecha y Crear Lote",
       "savingButton": "Guardando...",
       "offlineToast": {
-          "title": "Acción en Cola sin Conexión",
-          "description": "Tu cosecha será registrada y se creará un VTI una vez que vuelvas a estar en línea."
+        "title": "Acción en Cola sin Conexión",
+        "description": "Tu cosecha será registrada y se creará un VTI una vez que vuelvas a estar en línea."
       },
       "success": {
-          "title": "¡Cosecha Registrada!",
-          "description": "Se ha registrado exitosamente la cosecha de {cropType}. Se ha creado un nuevo Lote Trazable con ID '{vtiId}'.",
-          "successCardTitle": "¡Cosecha Registrada!",
-          "successCardDescription": "Se ha creado un nuevo lote trazable para {cropType} con ID: {vtiId}",
-          "viewReportButton": "Ver Informe de Trazabilidad",
-          "sellButton": "Vender en el Mercado",
-          "logAnotherButton": "Registrar Otra Cosecha",
-          "backToFarmButton": "Volver a la Finca"
+        "title": "¡Cosecha Registrada!",
+        "description": "Se ha registrado exitosamente la cosecha de {cropType}. Se ha creado un nuevo Lote Trazable con ID '{vtiId}'.",
+        "successCardTitle": "¡Cosecha Registrada!",
+        "successCardDescription": "Se ha creado un nuevo lote trazable para {cropType} con ID: {vtiId}",
+        "viewReportButton": "Ver Informe de Trazabilidad",
+        "sellButton": "Vender en el Mercado",
+        "logAnotherButton": "Registrar Otra Cosecha",
+        "backToFarmButton": "Volver a la Finca"
       },
       "fail": {
-          "title": "Registro Fallido"
+        "title": "Registro Fallido"
       }
     },
     "knfInputsPage": {
@@ -1648,8 +1679,8 @@
     "noPendingClaims": "No hay reclamaciones pendientes en este momento.",
     "riskAlertsTitle": "Alertas de Evaluación de Riesgos",
     "riskAlertsDescription": "Alertas proactivas para pólizas de alto riesgo basadas en datos en tiempo real.",
-      "alert": "Alerta",
-      "severity": "Gravedad",
+    "alert": "Alerta",
+    "severity": "Gravedad",
     "investigateButton": "Investigar",
     "noRiskAlerts": "Actualmente no hay alertas de alto riesgo.",
     "activePoliciesTitle": "Resumen de Pólizas Activas",
@@ -1685,11 +1716,11 @@
     "title": "Panel de Proveedor de Embalajes",
     "ordersTitle": "Pedidos Entrantes",
     "table": {
-        "customer": "Cliente",
-        "product": "Producto",
-        "quantity": "Cantidad",
-        "status": "Estado",
-        "action": "Acción"
+      "customer": "Cliente",
+      "product": "Producto",
+      "quantity": "Cantidad",
+      "status": "Estado",
+      "action": "Acción"
     },
     "viewOrderButton": "Ver Pedido",
     "noOrders": "No hay pedidos nuevos.",
@@ -1707,13 +1738,13 @@
     "wasteTitle": "Reducción de Residuos",
     "rawMaterialTitle": "Inventario de Materia Prima",
     "table": {
-        "product": "Producto",
-        "quality": "Calidad",
-        "quantity": "Cantidad (Toneladas)",
-        "supplier": "Proveedor",
-        "deliveryDate": "Fecha de Entrega",
-        "status": "Estado",
-        "action": "Acción"
+      "product": "Producto",
+      "quality": "Calidad",
+      "quantity": "Cantidad (Toneladas)",
+      "supplier": "Proveedor",
+      "deliveryDate": "Fecha de Entrega",
+      "status": "Estado",
+      "action": "Acción"
     },
     "noInventoryData": "No hay datos de inventario de materia prima.",
     "packagingOrdersTitle": "Pedidos de Embalaje",
@@ -1730,14 +1761,14 @@
     "inspectionsTitle": "Inspecciones Pendientes",
     "inspectionsDescription": "Lotes en espera de inspección y verificación de calidad.",
     "table": {
-        "batchId": "ID de Lote",
-        "product": "Producto",
-        "seller": "Vendedor",
-        "dueDate": "Fecha Límite",
-        "action": "Acción",
-        "result": "Resultado",
-        "reason": "Motivo",
-        "inspectedAt": "Inspeccionado el"
+      "batchId": "ID de Lote",
+      "product": "Producto",
+      "seller": "Vendedor",
+      "dueDate": "Fecha Límite",
+      "action": "Acción",
+      "result": "Resultado",
+      "reason": "Motivo",
+      "inspectedAt": "Inspeccionado el"
     },
     "performInspectionButton": "Inspeccionar",
     "noPendingInspections": "No hay inspecciones pendientes en este momento.",
@@ -1765,7 +1796,7 @@
   "ResearcherDashboard": {
     "title": "Panel del Investigador",
     "datasetsTitle": "Conjuntos de Datos Disponibles",
-    "datasetsDescription": "Anonymisierte Datensätze, die für Forschungszwecke verfügbar sind.",
+    "datasetsDescription": "Conjuntos de datos anonimizados disponibles para fines de investigación.",
     "table": {
       "name": "Nombre",
       "dataType": "Tipo de Datos",
@@ -1884,7 +1915,7 @@
     "myNetworkButton": "Mi red",
     "agentToolsButton": "Herramientas de agente",
     "aiSuggestionsTitle": "Sugerencias de IA",
-    "aiSuggestionsDescription": "Conéctese con personas que quizás conozca según su perfil y actividad.",
+    "aiSuggestionsDescription": "Conéctese con personas que quizás conozca según su perfil y su actividad.",
     "toast": {
       "errorTitle": "Error",
       "loadError": "No se pudieron cargar los datos de la red.",
@@ -1905,3 +1936,5 @@
     "noStakeholdersHint": "Intente ajustar sus filtros de búsqueda."
   }
 }
+
+    

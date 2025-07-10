@@ -2,8 +2,8 @@
 {
   "LandingPage": {
     "hero": {
-      "title": "Landwirtschaft stärken vom Boden bis zum Verkauf auf {appName}",
-      "subtitle": "Eine einheitliche Plattform, die jeden Akteur in der landwirtschaftlichen Wertschöpfungskette für eine transparentere, effizientere und nachhaltigere Zukunft verbindet.",
+      "title": "Stärkung der Landwirtschaft vom Boden bis zum Verkauf auf {appName}",
+      "subtitle": "Eine einheitliche Plattform, die jeden Akteur der landwirtschaftlichen Wertschöpfungskette für eine transparentere, effizientere und nachhaltigere Zukunft verbindet.",
       "getStartedButton": "Kostenlos starten",
       "learnMoreButton": "Mehr erfahren"
     },
@@ -61,6 +61,7 @@
     "emailLabel": "E-Mail",
     "emailPlaceholder": "sie@beispiel.com",
     "passwordLabel": "Passwort",
+    "passwordPlaceholder": "••••••••",
     "forgotPasswordLink": "Passwort vergessen?",
     "signingInButton": "Anmelden...",
     "signInButton": "Anmelden",
@@ -102,6 +103,36 @@
       "scanDescription": "Lassen Sie eine vertrauenswürdige DamDoh-Verbindung diesen QR-Code mit der Funktion 'Einem Freund bei der Wiederherstellung helfen' in ihrer App scannen.",
       "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
       "startOverButton": "Neu starten"
+    },
+    "error": "Fehler",
+    "forgotPassword": {
+      "emailSentTitle": "Passwort Reset E-Mail gesendet",
+      "emailSentDescription": "Falls ein Konto für {email} existiert, wurde ein Link zum Zurücksetzen des Passworts gesendet. Bitte überprüfen Sie Ihren Posteingang (und Spam-Ordner).",
+      "emailSentDescriptionIfAccountExists": "Falls ein Konto für {email} existiert, wurde ein Link zum Zurücksetzen des Passworts gesendet.",
+      "successTitle": "E-Mail gesendet",
+      "successDescription": "Falls ein Konto für die von Ihnen eingegebene E-Mail existiert, wurde ein Link zum Zurücksetzen des Passworts gesendet. Bitte überprüfen Sie Ihren Posteingang und Spam-Ordner.",
+      "errors": {
+        "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+        "invalidEmail": "Die E-Mail-Adresse ist ungültig.",
+        "tooManyRequests": "Zu viele Anfragen. Bitte versuchen Sie es später erneut.",
+        "default": "Fehler beim Senden der Reset-E-Mail"
+      }
+    },
+    "resetPassword": {
+      "successTitle": "Passwort erfolgreich zurückgesetzt",
+      "successDescription": "Ihr Passwort wurde zurückgesetzt. Sie können sich jetzt mit Ihrem neuen Passwort anmelden.",
+      "successRedirect": "Ihr Passwort wurde erfolgreich zurückgesetzt. Weiterleitung zur Anmeldung...",
+      "errors": {
+        "missingCode": "Der Code zum Zurücksetzen des Passworts fehlt oder ist ungültig.",
+        "unexpected": "Beim Zurücksetzen Ihres Passworts ist ein unerwarteter Fehler aufgetreten.",
+        "invalidOrExpiredCode": "Der Code zum Zurücksetzen des Passworts ist ungültig oder abgelaufen.",
+        "userDisabled": "Ihr Konto wurde deaktiviert.",
+        "userNotFound": "Das Benutzerkonto wurde nicht gefunden.",
+        "weakPassword": "Das Passwort ist zu schwach.",
+        "default": "Fehler beim Zurücksetzen des Passworts",
+        "missingCodeTitle": "Fehlender Code",
+        "missingCodeDescription": "Der Code zum Zurücksetzen des Passworts fehlt in der URL. Bitte verwenden Sie den Link aus Ihrer Reset-E-Mail."
+      }
     }
   },
   "AppHeader": {
@@ -517,7 +548,7 @@
         "locationPlaceholder": "z.B. Nakuru, Kenia",
         "relatedVtiLabel": "Zugehörige Rückverfolgungs-ID (Optional)",
         "relatedVtiPlaceholder": "Geben Sie die VTI ein, falls zutreffend",
-        "relatedVtiDescription": "Verknüpfen Sie diesen Eintrag mit einer bestimmten Erntepartie für vollständige Transparenz.",
+        "relatedVtiDescription": "Verknüpfen Sie diesen Eintrag mit einer bestimmten Erntecharge für vollständige Transparenz.",
         "categoryLabel": "Kategorie",
         "categoryPlaceholder": "Wählen Sie eine Kategorie",
         "priceLabel": "Preis",
@@ -722,60 +753,60 @@
       }
     },
     "promotions": {
-        "title": "Meine Werbeaktionen",
-        "description": "Erstellen und verwalten Sie Gutscheincodes, um mehr Käufer anzuziehen.",
-        "backToDashboard": "Zurück zum Dashboard",
-        "signInPrompt": "Bitte melden Sie sich an, um Ihre Werbeaktionen zu verwalten.",
-        "create": {
-            "title": "Neuen Gutschein erstellen",
-            "description": "Definieren Sie die Details für Ihren neuen Aktionsgutschein.",
-            "form": {
-                "code": "Gutscheincode",
-                "codePlaceholder": "z.B. SALE20",
-                "usageLimit": "Nutzungslimit",
-                "usageLimitPlaceholder": "z.B. 100",
-                "discountType": "Rabattart",
-                "discountTypePlaceholder": "Art auswählen",
-                "percentage": "Prozentual",
-                "fixed": "Fester Betrag",
-                "discountValue": "Rabattwert",
-                "expiryDate": "Ablaufdatum (Optional)",
-                "pickDate": "Datum auswählen",
-                "submitButton": "Gutschein erstellen"
-            },
-            "toast": {
-                "successTitle": "Gutschein erstellt!",
-                "successDescription": "Der Gutschein '{code}' ist jetzt aktiv.",
-                "failTitle": "Erstellung fehlgeschlagen"
-            }
-        },
-        "list": {
-            "title": "Bestehende Gutscheine",
-            "description": "Sehen und verwalten Sie Ihre aktiven Aktionscodes.",
-            "usage": "Nutzung",
-            "expires": "Läuft ab",
-            "never": "Niemals",
-            "share": "Teilen",
-            "noCoupons": "Sie haben noch keine Gutscheine erstellt.",
-            "toastTitle": "Link kopiert!",
-            "toastDescription": "Ein teilbarer Link für den Gutschein '{link}' wurde in Ihre Zwischenablage kopiert.",
-            "shareModal": {
-                "title": "Gutscheincode teilen",
-                "description": "Teilen Sie diesen Link mit Ihren Kunden, um den Gutschein automatisch anzuwenden.",
-                "link": "Link",
-                "copy": "Kopieren",
-                "close": "Schließen"
-            }
+      "title": "Meine Werbeaktionen",
+      "description": "Erstellen und verwalten Sie Gutscheincodes, um mehr Käufer anzuziehen.",
+      "backToDashboard": "Zurück zum Dashboard",
+      "signInPrompt": "Bitte melden Sie sich an, um Ihre Werbeaktionen zu verwalten.",
+      "create": {
+        "title": "Neuen Gutschein erstellen",
+        "description": "Definieren Sie die Details für Ihren neuen Aktionsgutschein.",
+        "form": {
+          "code": "Gutscheincode",
+          "codePlaceholder": "z.B. SALE20",
+          "usageLimit": "Nutzungslimit",
+          "usageLimitPlaceholder": "z.B. 100",
+          "discountType": "Rabattart",
+          "discountTypePlaceholder": "Art auswählen",
+          "percentage": "Prozentual",
+          "fixed": "Fester Betrag",
+          "discountValue": "Rabattwert",
+          "expiryDate": "Ablaufdatum (Optional)",
+          "pickDate": "Datum auswählen",
+          "submitButton": "Gutschein erstellen"
         },
         "toast": {
-            "error": "Fehler",
-            "fetchError": "Ihre Gutscheine konnten nicht abgerufen werden.",
-            "createSuccess": "Der Gutschein '{code}' wurde erfolgreich erstellt.",
-            "createFail": "Gutschein konnte nicht erstellt werden",
-            "createError": "Ein unerwarteter Fehler ist aufgetreten.",
-            "linkCopied": "Link kopiert!",
-            "shareDescription": "Der Freigabelink für den Gutschein '{code}' wurde kopiert."
+          "successTitle": "Gutschein erstellt!",
+          "successDescription": "Der Gutschein '{code}' ist jetzt aktiv.",
+          "failTitle": "Erstellung fehlgeschlagen"
         }
+      },
+      "list": {
+        "title": "Bestehende Gutscheine",
+        "description": "Sehen und verwalten Sie Ihre aktiven Aktionscodes.",
+        "usage": "Nutzung",
+        "expires": "Läuft ab",
+        "never": "Niemals",
+        "share": "Teilen",
+        "noCoupons": "Sie haben noch keine Gutscheine erstellt.",
+        "toastTitle": "Link kopiert!",
+        "toastDescription": "Ein teilbarer Link für den Gutschein '{link}' wurde in Ihre Zwischenablage kopiert.",
+        "shareModal": {
+          "title": "Gutscheincode teilen",
+          "description": "Teilen Sie diesen Link mit Ihren Kunden, um den Gutschein automatisch anzuwenden.",
+          "link": "Link",
+          "copy": "Kopieren",
+          "close": "Schließen"
+        }
+      },
+      "toast": {
+        "error": "Fehler",
+        "fetchError": "Ihre Gutscheine konnten nicht abgerufen werden.",
+        "createSuccess": "Der Gutschein '{code}' wurde erfolgreich erstellt.",
+        "createFail": "Gutschein konnte nicht erstellt werden",
+        "createError": "Ein unerwarteter Fehler ist aufgetreten.",
+        "linkCopied": "Link kopiert!",
+        "shareDescription": "Der Freigabelink für den Gutschein '{code}' wurde kopiert."
+      }
     }
   },
   "farmManagement": {
@@ -857,11 +888,11 @@
         "typeLabel": "Farmtyp",
         "typePlaceholder": "Wählen Sie einen primären Typ",
         "types": {
-            "crop": "Pflanzenproduktion",
-            "livestock": "Tierhaltung",
-            "mixed": "Gemischt (Pflanzen & Vieh)",
-            "aquaculture": "Aquakultur",
-            "other": "Andere"
+          "crop": "Pflanzenproduktion",
+          "livestock": "Tierhaltung",
+          "mixed": "Gemischt (Pflanzen & Vieh)",
+          "aquaculture": "Aquakultur",
+          "other": "Andere"
         },
         "descriptionLabel": "Beschreibung (Optional)",
         "descriptionPlaceholder": "Beschreiben Sie kurz Ihre Farm...",
@@ -880,34 +911,34 @@
       }
     },
     "farmDetail": {
-        "backToFarms": "Zurück zu Meine Farmen",
-        "registeredOn": "Registriert am {date}",
-        "editFarmButton": "Farm bearbeiten",
-        "crops": {
-            "title": "Kulturen",
-            "description": "Verwalten Sie alle aktiven Kulturen auf dieser Farm.",
-            "addNewButton": "Neue Kultur hinzufügen",
-            "plantedLabel": "Gepflanzt",
-            "stageLabel": "Phase",
-            "viewJourneyButton": "Reise ansehen",
-            "noCrops": "Dieser Farm wurden noch keine Kulturen hinzugefügt.",
-            "addFirstButton": "Fügen Sie Ihre erste Kultur hinzu"
-        },
-        "insights": {
-            "title": "Rentabilitätseinblicke",
-            "description": "KI-gestützte Analyse Ihrer Farmaktivitäten.",
-            "noInsights": "Nicht genügend Daten, um Einblicke zu generieren. Beginnen Sie mit der Protokollierung von Aktivitäten!"
-        },
-        "toast": {
-            "notFoundTitle": "Farm nicht gefunden.",
-            "loadErrorTitle": "Ladefehler",
-            "insightsErrorTitle": "Fehler bei den Einblicken"
-        },
-        "notFound": {
-            "title": "Farm Nicht Gefunden",
-            "description": "Die gesuchte Farm existiert nicht oder Sie haben keine Berechtigung, sie anzuzeigen.",
-            "backButton": "Zurück zu Meine Farmen"
-        }
+      "backToFarms": "Zurück zu Meine Farmen",
+      "registeredOn": "Registriert am {date}",
+      "editFarmButton": "Farm bearbeiten",
+      "crops": {
+        "title": "Kulturen",
+        "description": "Verwalten Sie alle aktiven Kulturen auf dieser Farm.",
+        "addNewButton": "Neue Kultur hinzufügen",
+        "plantedLabel": "Gepflanzt",
+        "stageLabel": "Phase",
+        "viewJourneyButton": "Reise ansehen",
+        "noCrops": "Dieser Farm wurden noch keine Kulturen hinzugefügt.",
+        "addFirstButton": "Fügen Sie Ihre erste Kultur hinzu"
+      },
+      "insights": {
+        "title": "Rentabilitätseinblicke",
+        "description": "KI-gestützte Analyse Ihrer Farmaktivitäten.",
+        "noInsights": "Nicht genügend Daten, um Einblicke zu generieren. Beginnen Sie mit der Protokollierung von Aktivitäten!"
+      },
+      "toast": {
+        "notFoundTitle": "Farm nicht gefunden.",
+        "loadErrorTitle": "Ladefehler",
+        "insightsErrorTitle": "Fehler bei den Einblicken"
+      },
+      "notFound": {
+        "title": "Farm Nicht Gefunden",
+        "description": "Die gesuchte Farm existiert nicht oder Sie haben keine Berechtigung, sie anzuzeigen.",
+        "backButton": "Zurück zu Meine Farmen"
+      }
     },
     "createCrop": {
       "backLink": "Zurück zu den Farmdetails",
@@ -1065,45 +1096,45 @@
       ]
     },
     "logObservation": {
-        "backLink": "Zurück zur Farm",
-        "title": "Beobachtung protokollieren",
-        "description": "Erfassen Sie Beobachtungen über Ihre Kultur, wie Schädlingsbefall, Krankheiten, Wachstum oder Wetterereignisse.",
-        "typeLabel": "Beobachtungsart",
-        "typePlaceholder": "Wählen Sie eine Art",
-        "types": {
-            "Pest": "Schädling",
-            "Disease": "Krankheit",
-            "Growth": "Wachstum",
-            "Weather": "Wetter",
-            "Soil": "Boden",
-            "Weed": "Unkraut",
-            "Other": "Andere",
-            "FGW_Stations": "Feldvorbereitung (FGW-Stationen)",
-            "FGW_Mulch": "Mulchanwendung (Gottes Decke)"
-        },
-        "dateLabel": "Beobachtungsdatum",
-        "detailsLabel": "Details & Notizen",
-        "detailsPlaceholder": "Beschreiben Sie, was Sie beobachtet haben...",
-        "uploadLabel": "Foto hochladen (Optional)",
-        "uploadDescription": "Ein Bild kann bei der Diagnose helfen. Die KI wird es analysieren, falls vorhanden.",
-        "saveButton": "Beobachtung speichern",
-        "processingButton": "Wird verarbeitet...",
-        "toast": {
-            "authErrorTitle": "Nicht authentifiziert",
-            "authErrorDescription": "Sie müssen angemeldet sein, um eine Beobachtung zu protokollieren.",
-            "aiAnalyzing": "KI-Analyse läuft",
-            "aiDescription": "Ihre Bilddaten werden zur Diagnose an die KI gesendet.",
-            "aiComplete": "KI-Analyse abgeschlossen!",
-            "aiCompleteDescription": "Die Diagnose wurde in Ihr Beobachtungsprotokoll aufgenommen.",
-            "aiFailTitle": "KI-Analyse fehlgeschlagen",
-            "aiFailDescription": "Wir konnten das Bild nicht analysieren. Die Beobachtung wird ohne KI-Diagnose gespeichert.",
-            "uploading": "Bild wird hochgeladen...",
-            "uploadingDescription": "Bitte warten Sie einen Moment.",
-            "uploadComplete": "Upload abgeschlossen!",
-            "success": "Beobachtung protokolliert",
-            "successDescription": "Ihre Beobachtung wurde erfolgreich gespeichert.",
-            "fail": "Protokollierung fehlgeschlagen"
-        }
+      "backLink": "Zurück zur Farm",
+      "title": "Beobachtung protokollieren",
+      "description": "Erfassen Sie Beobachtungen über Ihre Kultur, wie Schädlingsbefall, Krankheiten, Wachstum oder Wetterereignisse.",
+      "typeLabel": "Beobachtungsart",
+      "typePlaceholder": "Wählen Sie eine Art",
+      "types": {
+        "Pest": "Schädling",
+        "Disease": "Krankheit",
+        "Growth": "Wachstum",
+        "Weather": "Wetter",
+        "Soil": "Boden",
+        "Weed": "Unkraut",
+        "Other": "Andere",
+        "FGW_Stations": "Feldvorbereitung (FGW-Stationen)",
+        "FGW_Mulch": "Mulchanwendung (Gottes Decke)"
+      },
+      "dateLabel": "Beobachtungsdatum",
+      "detailsLabel": "Details & Notizen",
+      "detailsPlaceholder": "Beschreiben Sie, was Sie beobachtet haben...",
+      "uploadLabel": "Foto hochladen (Optional)",
+      "uploadDescription": "Ein Bild kann bei der Diagnose helfen. Die KI wird es analysieren, falls vorhanden.",
+      "saveButton": "Beobachtung speichern",
+      "processingButton": "Wird verarbeitet...",
+      "toast": {
+        "authErrorTitle": "Nicht authentifiziert",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Beobachtung zu protokollieren.",
+        "aiAnalyzing": "KI-Analyse läuft",
+        "aiDescription": "Ihre Bilddaten werden zur Diagnose an die KI gesendet.",
+        "aiComplete": "KI-Analyse abgeschlossen!",
+        "aiCompleteDescription": "Die Diagnose wurde in Ihr Beobachtungsprotokoll aufgenommen.",
+        "aiFailTitle": "KI-Analyse fehlgeschlagen",
+        "aiFailDescription": "Wir konnten das Bild nicht analysieren. Die Beobachtung wird ohne KI-Diagnose gespeichert.",
+        "uploading": "Bild wird hochgeladen...",
+        "uploadingDescription": "Bitte warten Sie einen Moment.",
+        "uploadComplete": "Upload abgeschlossen!",
+        "success": "Beobachtung protokolliert",
+        "successDescription": "Ihre Beobachtung wurde erfolgreich gespeichert.",
+        "fail": "Protokollierung fehlgeschlagen"
+      }
     },
     "logHarvest": {
       "backLink": "Zurück zur Farm",
@@ -1119,21 +1150,21 @@
       "saveButton": "Ernte protokollieren & Charge erstellen",
       "savingButton": "Wird gespeichert...",
       "offlineToast": {
-          "title": "Aktion offline in Warteschlange gestellt",
-          "description": "Ihre Ernte wird protokolliert und eine VTI wird erstellt, sobald Sie wieder online sind."
+        "title": "Aktion offline in Warteschlange gestellt",
+        "description": "Ihre Ernte wird protokolliert und eine VTI wird erstellt, sobald Sie wieder online sind."
       },
       "success": {
-          "title": "Ernte protokolliert!",
-          "description": "Die Ernte für {cropType} wurde erfolgreich protokolliert. Eine neue rückverfolgbare Charge mit ID '{vtiId}' wurde erstellt.",
-          "successCardTitle": "Ernte protokolliert!",
-          "successCardDescription": "Eine neue rückverfolgbare Charge für {cropType} wurde mit ID erstellt: {vtiId}",
-          "viewReportButton": "Rückverfolgungsbericht ansehen",
-          "sellButton": "Auf dem Marktplatz verkaufen",
-          "logAnotherButton": "Weitere Ernte protokollieren",
-          "backToFarmButton": "Zurück zur Farm"
+        "title": "Ernte protokolliert!",
+        "description": "Die Ernte für {cropType} wurde erfolgreich protokolliert. Eine neue rückverfolgbare Charge mit ID '{vtiId}' wurde erstellt.",
+        "successCardTitle": "Ernte protokolliert!",
+        "successCardDescription": "Eine neue rückverfolgbare Charge für {cropType} wurde mit ID erstellt: {vtiId}",
+        "viewReportButton": "Rückverfolgungsbericht ansehen",
+        "sellButton": "Auf dem Marktplatz verkaufen",
+        "logAnotherButton": "Weitere Ernte protokollieren",
+        "backToFarmButton": "Zurück zur Farm"
       },
       "fail": {
-          "title": "Protokollierung fehlgeschlagen"
+        "title": "Protokollierung fehlgeschlagen"
       }
     },
     "knfInputsPage": {
@@ -1648,8 +1679,8 @@
     "noPendingClaims": "Derzeit keine ausstehenden Schadensfälle.",
     "riskAlertsTitle": "Risikobewertungswarnungen",
     "riskAlertsDescription": "Proaktive Warnungen für Hochrisikopolicen basierend auf Echtzeitdaten.",
-      "alert": "Warnung",
-      "severity": "Schweregrad",
+    "alert": "Warnung",
+    "severity": "Schweregrad",
     "investigateButton": "Untersuchen",
     "noRiskAlerts": "Derzeit keine Hochrisikowarnungen.",
     "activePoliciesTitle": "Übersicht der aktiven Policen",
@@ -1685,11 +1716,11 @@
     "title": "Dashboard für Verpackungslieferanten",
     "ordersTitle": "Eingehende Bestellungen",
     "table": {
-        "customer": "Kunde",
-        "product": "Produkt",
-        "quantity": "Menge",
-        "status": "Status",
-        "action": "Aktion"
+      "customer": "Kunde",
+      "product": "Produkt",
+      "quantity": "Menge",
+      "status": "Status",
+      "action": "Aktion"
     },
     "viewOrderButton": "Bestellung ansehen",
     "noOrders": "Keine neuen Bestellungen.",
@@ -1707,13 +1738,13 @@
     "wasteTitle": "Abfallreduzierung",
     "rawMaterialTitle": "Rohstoffinventar",
     "table": {
-        "product": "Produkt",
-        "quality": "Qualität",
-        "quantity": "Menge (Tonnen)",
-        "supplier": "Lieferant",
-        "deliveryDate": "Lieferdatum",
-        "status": "Status",
-        "action": "Aktion"
+      "product": "Produkt",
+      "quality": "Qualität",
+      "quantity": "Menge (Tonnen)",
+      "supplier": "Lieferant",
+      "deliveryDate": "Lieferdatum",
+      "status": "Status",
+      "action": "Aktion"
     },
     "noInventoryData": "Keine Rohstoffinventardaten.",
     "packagingOrdersTitle": "Verpackungsbestellungen",
@@ -1730,14 +1761,14 @@
     "inspectionsTitle": "Ausstehende Inspektionen",
     "inspectionsDescription": "Chargen, die auf Qualitätsprüfung und Verifizierung warten.",
     "table": {
-        "batchId": "Chargen-ID",
-        "product": "Produkt",
-        "seller": "Verkäufer",
-        "dueDate": "Fälligkeitsdatum",
-        "action": "Aktion",
-        "result": "Ergebnis",
-        "reason": "Grund",
-        "inspectedAt": "Inspiziert am"
+      "batchId": "Chargen-ID",
+      "product": "Produkt",
+      "seller": "Verkäufer",
+      "dueDate": "Fälligkeitsdatum",
+      "action": "Aktion",
+      "result": "Ergebnis",
+      "reason": "Grund",
+      "inspectedAt": "Inspiziert am"
     },
     "performInspectionButton": "Inspizieren",
     "noPendingInspections": "Derzeit keine ausstehenden Inspektionen.",
@@ -1905,3 +1936,5 @@
     "noStakeholdersHint": "Versuchen Sie, Ihre Suchfilter anzupassen."
   }
 }
+
+    

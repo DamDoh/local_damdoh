@@ -61,6 +61,7 @@
     "emailLabel": "E-mail",
     "emailPlaceholder": "vous@exemple.com",
     "passwordLabel": "Mot de passe",
+    "passwordPlaceholder": "••••••••",
     "forgotPasswordLink": "Mot de passe oublié ?",
     "signingInButton": "Connexion...",
     "signInButton": "Se connecter",
@@ -102,6 +103,36 @@
       "scanDescription": "Faites scanner ce code QR par une connexion DamDoh de confiance en utilisant la fonction 'Aider un ami à récupérer' dans son application.",
       "scanNote": "Ce code est temporaire et expire dans 10 minutes.",
       "startOverButton": "Recommencer"
+    },
+    "error": "Erreur",
+    "forgotPassword": {
+      "emailSentTitle": "E-mail de réinitialisation de mot de passe envoyé",
+      "emailSentDescription": "Si un compte existe pour {email}, un lien de réinitialisation de mot de passe a été envoyé. Veuillez vérifier votre boîte de réception (et votre dossier de courrier indésirable).",
+      "emailSentDescriptionIfAccountExists": "Si un compte existe pour {email}, un lien de réinitialisation de mot de passe a été envoyé.",
+      "successTitle": "E-mail envoyé",
+      "successDescription": "Si un compte existe pour l'e-mail que vous avez entré, un lien de réinitialisation de mot de passe a été envoyé. Veuillez vérifier votre boîte de réception et votre dossier de courrier indésirable.",
+      "errors": {
+        "unexpected": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+        "invalidEmail": "L'adresse e-mail n'est pas valide.",
+        "tooManyRequests": "Trop de demandes. Veuillez réessayer plus tard.",
+        "default": "Échec de l'envoi de l'e-mail de réinitialisation"
+      }
+    },
+    "resetPassword": {
+      "successTitle": "Mot de passe réinitialisé avec succès",
+      "successDescription": "Votre mot de passe a été réinitialisé. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
+      "successRedirect": "Votre mot de passe a été réinitialisé avec succès. Redirection vers la page de connexion...",
+      "errors": {
+        "missingCode": "Le code de réinitialisation de mot de passe est manquant ou invalide.",
+        "unexpected": "Une erreur inattendue s'est produite lors de la réinitialisation de votre mot de passe.",
+        "invalidOrExpiredCode": "Le code de réinitialisation de mot de passe est invalide ou a expiré.",
+        "userDisabled": "Votre compte a été désactivé.",
+        "userNotFound": "Le compte utilisateur n'a pas été trouvé.",
+        "weakPassword": "Le mot de passe est trop faible.",
+        "default": "Échec de la réinitialisation du mot de passe",
+        "missingCodeTitle": "Code manquant",
+        "missingCodeDescription": "Le code de réinitialisation de mot de passe est manquant dans l'URL. Veuillez utiliser le lien de votre e-mail de réinitialisation."
+      }
     }
   },
   "AppHeader": {
@@ -722,60 +753,60 @@
       }
     },
     "promotions": {
-        "title": "Mes promotions",
-        "description": "Créez et gérez des codes de réduction pour attirer plus d'acheteurs.",
-        "backToDashboard": "Retour au tableau de bord",
-        "signInPrompt": "Veuillez vous connecter pour gérer vos promotions.",
-        "create": {
-            "title": "Créer un nouveau coupon",
-            "description": "Définissez les détails de votre nouveau coupon promotionnel.",
-            "form": {
-                "code": "Code du coupon",
-                "codePlaceholder": "Ex : VENTE20",
-                "usageLimit": "Limite d'utilisation",
-                "usageLimitPlaceholder": "Ex : 100",
-                "discountType": "Type de réduction",
-                "discountTypePlaceholder": "Sélectionnez un type",
-                "percentage": "Pourcentage",
-                "fixed": "Montant fixe",
-                "discountValue": "Valeur de la réduction",
-                "expiryDate": "Date d'expiration (Optionnel)",
-                "pickDate": "Choisissez une date",
-                "submitButton": "Créer le coupon"
-            },
-            "toast": {
-                "successTitle": "Coupon créé !",
-                "successDescription": "Le coupon '{code}' est maintenant actif.",
-                "failTitle": "La création a échoué"
-            }
-        },
-        "list": {
-            "title": "Coupons existants",
-            "description": "Affichez et gérez vos codes promotionnels actifs.",
-            "usage": "Utilisation",
-            "expires": "Expire le",
-            "never": "Jamais",
-            "share": "Partager",
-            "noCoupons": "Vous n'avez encore créé aucun coupon.",
-            "toastTitle": "Lien copié !",
-            "toastDescription": "Un lien partageable pour le coupon '{link}' a été copié dans votre presse-papiers.",
-            "shareModal": {
-                "title": "Partager le code du coupon",
-                "description": "Partagez ce lien avec vos clients pour appliquer le coupon automatiquement.",
-                "link": "Lien",
-                "copy": "Copier",
-                "close": "Fermer"
-            }
+      "title": "Mes promotions",
+      "description": "Créez et gérez des codes de réduction pour attirer plus d'acheteurs.",
+      "backToDashboard": "Retour au tableau de bord",
+      "signInPrompt": "Veuillez vous connecter pour gérer vos promotions.",
+      "create": {
+        "title": "Créer un nouveau coupon",
+        "description": "Définissez les détails de votre nouveau coupon promotionnel.",
+        "form": {
+          "code": "Code du coupon",
+          "codePlaceholder": "Ex : VENTE20",
+          "usageLimit": "Limite d'utilisation",
+          "usageLimitPlaceholder": "Ex : 100",
+          "discountType": "Type de réduction",
+          "discountTypePlaceholder": "Sélectionnez un type",
+          "percentage": "Pourcentage",
+          "fixed": "Montant fixe",
+          "discountValue": "Valeur de la réduction",
+          "expiryDate": "Date d'expiration (Optionnel)",
+          "pickDate": "Choisissez une date",
+          "submitButton": "Créer le coupon"
         },
         "toast": {
-            "error": "Erreur",
-            "fetchError": "Impossible de récupérer vos coupons.",
-            "createSuccess": "Le coupon '{code}' a été créé avec succès.",
-            "createFail": "Impossible de créer le coupon",
-            "createError": "Une erreur inattendue s'est produite.",
-            "linkCopied": "Lien copié !",
-            "shareDescription": "Le lien de partage pour le coupon '{code}' a été copié."
+          "successTitle": "Coupon créé !",
+          "successDescription": "Le coupon '{code}' est maintenant actif.",
+          "failTitle": "La création a échoué"
         }
+      },
+      "list": {
+        "title": "Coupons existants",
+        "description": "Affichez et gérez vos codes promotionnels actifs.",
+        "usage": "Utilisation",
+        "expires": "Expire le",
+        "never": "Jamais",
+        "share": "Partager",
+        "noCoupons": "Vous n'avez encore créé aucun coupon.",
+        "toastTitle": "Lien copié !",
+        "toastDescription": "Un lien partageable pour le coupon '{link}' a été copié dans votre presse-papiers.",
+        "shareModal": {
+          "title": "Partager le code du coupon",
+          "description": "Partagez ce lien avec vos clients pour appliquer le coupon automatiquement.",
+          "link": "Lien",
+          "copy": "Copier",
+          "close": "Fermer"
+        }
+      },
+      "toast": {
+        "error": "Erreur",
+        "fetchError": "Impossible de récupérer vos coupons.",
+        "createSuccess": "Le coupon '{code}' a été créé avec succès.",
+        "createFail": "Impossible de créer le coupon",
+        "createError": "Une erreur inattendue s'est produite.",
+        "linkCopied": "Lien copié !",
+        "shareDescription": "Le lien de partage pour le coupon '{code}' a été copié."
+      }
     }
   },
   "farmManagement": {
@@ -857,11 +888,11 @@
         "typeLabel": "Type de ferme",
         "typePlaceholder": "Sélectionnez un type principal",
         "types": {
-            "crop": "Production végétale",
-            "livestock": "Élevage",
-            "mixed": "Mixte (Cultures et Bétail)",
-            "aquaculture": "Aquaculture",
-            "other": "Autre"
+          "crop": "Production végétale",
+          "livestock": "Élevage",
+          "mixed": "Mixte (Cultures et Bétail)",
+          "aquaculture": "Aquaculture",
+          "other": "Autre"
         },
         "descriptionLabel": "Description (Optionnel)",
         "descriptionPlaceholder": "Décrivez brièvement votre ferme...",
@@ -880,34 +911,34 @@
       }
     },
     "farmDetail": {
-        "backToFarms": "Retour à Mes Fermes",
-        "registeredOn": "Enregistré le {date}",
-        "editFarmButton": "Modifier la Ferme",
-        "crops": {
-            "title": "Cultures",
-            "description": "Gérez toutes les cultures actives de cette ferme.",
-            "addNewButton": "Ajouter une nouvelle culture",
-            "plantedLabel": "Planté",
-            "stageLabel": "Stade",
-            "viewJourneyButton": "Voir le parcours",
-            "noCrops": "Aucune culture n'a encore été ajoutée à cette ferme.",
-            "addFirstButton": "Ajoutez votre première culture"
-        },
-        "insights": {
-            "title": "Aperçus de Rentabilité",
-            "description": "Analyse alimentée par l'IA de vos activités agricoles.",
-            "noInsights": "Pas assez de données pour générer des aperçus. Commencez à enregistrer des activités !"
-        },
-        "toast": {
-            "notFoundTitle": "Ferme non trouvée.",
-            "loadErrorTitle": "Erreur de chargement",
-            "insightsErrorTitle": "Erreur des aperçus"
-        },
-        "notFound": {
-            "title": "Ferme Non Trouvée",
-            "description": "La ferme que vous recherchez n'existe pas ou vous n'avez pas la permission de la voir.",
-            "backButton": "Retourner à Mes Fermes"
-        }
+      "backToFarms": "Retour à Mes Fermes",
+      "registeredOn": "Enregistré le {date}",
+      "editFarmButton": "Modifier la Ferme",
+      "crops": {
+        "title": "Cultures",
+        "description": "Gérez toutes les cultures actives de cette ferme.",
+        "addNewButton": "Ajouter une nouvelle culture",
+        "plantedLabel": "Planté",
+        "stageLabel": "Stade",
+        "viewJourneyButton": "Voir le parcours",
+        "noCrops": "Aucune culture n'a encore été ajoutée à cette ferme.",
+        "addFirstButton": "Ajoutez votre première culture"
+      },
+      "insights": {
+        "title": "Aperçus de Rentabilité",
+        "description": "Analyse alimentée par l'IA de vos activités agricoles.",
+        "noInsights": "Pas assez de données pour générer des aperçus. Commencez à enregistrer des activités !"
+      },
+      "toast": {
+        "notFoundTitle": "Ferme non trouvée.",
+        "loadErrorTitle": "Erreur de chargement",
+        "insightsErrorTitle": "Erreur des aperçus"
+      },
+      "notFound": {
+        "title": "Ferme Non Trouvée",
+        "description": "La ferme que vous recherchez n'existe pas ou vous n'avez pas la permission de la voir.",
+        "backButton": "Retourner à Mes Fermes"
+      }
     },
     "createCrop": {
       "backLink": "Retour aux détails de la ferme",
@@ -1065,45 +1096,45 @@
       ]
     },
     "logObservation": {
-        "backLink": "Retour à la Ferme",
-        "title": "Enregistrer une Observation",
-        "description": "Enregistrez des observations sur votre culture, telles que les infestations de ravageurs, les maladies, la croissance ou les événements météorologiques.",
-        "typeLabel": "Type d'Observation",
-        "typePlaceholder": "Sélectionnez un type",
-        "types": {
-            "Pest": "Ravageur",
-            "Disease": "Maladie",
-            "Growth": "Croissance",
-            "Weather": "Météo",
-            "Soil": "Sol",
-            "Weed": "Mauvaise herbe",
-            "Other": "Autre",
-            "FGW_Stations": "Préparation du Champ (Stations FGW)",
-            "FGW_Mulch": "Application de Paillis (Couverture de Dieu)"
-        },
-        "dateLabel": "Date d'Observation",
-        "detailsLabel": "Détails & Notes",
-        "detailsPlaceholder": "Décrivez ce que vous avez observé...",
-        "uploadLabel": "Télécharger une Photo (Optionnel)",
-        "uploadDescription": "Une image peut aider au diagnostic. L'IA l'analysera si elle est fournie.",
-        "saveButton": "Enregistrer l'Observation",
-        "processingButton": "Traitement en cours...",
-        "toast": {
-            "authErrorTitle": "Non authentifié",
-            "authErrorDescription": "Vous devez être connecté pour enregistrer une observation.",
-            "aiAnalyzing": "Analyse par l'IA en cours",
-            "aiDescription": "Vos données d'image sont envoyées à l'IA pour diagnostic.",
-            "aiComplete": "Analyse par l'IA terminée !",
-            "aiCompleteDescription": "Le diagnostic a été inclus dans votre journal d'observation.",
-            "aiFailTitle": "Échec de l'Analyse par l'IA",
-            "aiFailDescription": "Nous n'avons pas pu analyser l'image. L'observation sera enregistrée sans diagnostic de l'IA.",
-            "uploading": "Téléchargement de l'image...",
-            "uploadingDescription": "Veuillez patienter un instant.",
-            "uploadComplete": "Téléchargement terminé !",
-            "success": "Observation enregistrée",
-            "successDescription": "Votre observation a été enregistrée avec succès.",
-            "fail": "Échec de l'enregistrement"
-        }
+      "backLink": "Retour à la Ferme",
+      "title": "Enregistrer une Observation",
+      "description": "Enregistrez des observations sur votre culture, telles que les infestations de ravageurs, les maladies, la croissance ou les événements météorologiques.",
+      "typeLabel": "Type d'Observation",
+      "typePlaceholder": "Sélectionnez un type",
+      "types": {
+        "Pest": "Ravageur",
+        "Disease": "Maladie",
+        "Growth": "Croissance",
+        "Weather": "Météo",
+        "Soil": "Sol",
+        "Weed": "Mauvaise herbe",
+        "Other": "Autre",
+        "FGW_Stations": "Préparation du Champ (Stations FGW)",
+        "FGW_Mulch": "Application de Paillis (Couverture de Dieu)"
+      },
+      "dateLabel": "Date d'Observation",
+      "detailsLabel": "Détails & Notes",
+      "detailsPlaceholder": "Décrivez ce que vous avez observé...",
+      "uploadLabel": "Télécharger une Photo (Optionnel)",
+      "uploadDescription": "Une image peut aider au diagnostic. L'IA l'analysera si elle est fournie.",
+      "saveButton": "Enregistrer l'Observation",
+      "processingButton": "Traitement en cours...",
+      "toast": {
+        "authErrorTitle": "Non authentifié",
+        "authErrorDescription": "Vous devez être connecté pour enregistrer une observation.",
+        "aiAnalyzing": "Analyse par l'IA en cours",
+        "aiDescription": "Vos données d'image sont envoyées à l'IA pour diagnostic.",
+        "aiComplete": "Analyse par l'IA terminée !",
+        "aiCompleteDescription": "Le diagnostic a été inclus dans votre journal d'observation.",
+        "aiFailTitle": "Échec de l'Analyse par l'IA",
+        "aiFailDescription": "Nous n'avons pas pu analyser l'image. L'observation sera enregistrée sans diagnostic de l'IA.",
+        "uploading": "Téléchargement de l'image...",
+        "uploadingDescription": "Veuillez patienter un instant.",
+        "uploadComplete": "Téléchargement terminé !",
+        "success": "Observation enregistrée",
+        "successDescription": "Votre observation a été enregistrée avec succès.",
+        "fail": "Échec de l'enregistrement"
+      }
     },
     "logHarvest": {
       "backLink": "Retour à la Ferme",
@@ -1119,21 +1150,21 @@
       "saveButton": "Enregistrer la récolte et créer un lot",
       "savingButton": "Enregistrement...",
       "offlineToast": {
-          "title": "Action mise en file d'attente hors ligne",
-          "description": "Votre récolte sera enregistrée et un VTI sera créé une fois que vous serez de nouveau en ligne."
+        "title": "Action mise en file d'attente hors ligne",
+        "description": "Votre récolte sera enregistrée et un VTI sera créé une fois que vous serez de nouveau en ligne."
       },
       "success": {
-          "title": "Récolte enregistrée !",
-          "description": "La récolte de {cropType} a été enregistrée avec succès. Un nouveau lot traçable avec l'ID '{vtiId}' a été créé.",
-          "successCardTitle": "Récolte enregistrée !",
-          "successCardDescription": "Un nouveau lot traçable pour {cropType} a été créé avec l'ID : {vtiId}",
-          "viewReportButton": "Voir le rapport de traçabilité",
-          "sellButton": "Vendre sur le marché",
-          "logAnotherButton": "Enregistrer une autre récolte",
-          "backToFarmButton": "Retour à la ferme"
+        "title": "Récolte enregistrée !",
+        "description": "La récolte de {cropType} a été enregistrée avec succès. Un nouveau lot traçable avec l'ID '{vtiId}' a été créé.",
+        "successCardTitle": "Récolte enregistrée !",
+        "successCardDescription": "Un nouveau lot traçable pour {cropType} a été créé avec l'ID : {vtiId}",
+        "viewReportButton": "Voir le rapport de traçabilité",
+        "sellButton": "Vendre sur le marché",
+        "logAnotherButton": "Enregistrer une autre récolte",
+        "backToFarmButton": "Retour à la ferme"
       },
       "fail": {
-          "title": "L'enregistrement a échoué"
+        "title": "L'enregistrement a échoué"
       }
     },
     "knfInputsPage": {
@@ -1648,8 +1679,8 @@
     "noPendingClaims": "Aucun sinistre en attente pour le moment.",
     "riskAlertsTitle": "Alertes d'évaluation des risques",
     "riskAlertsDescription": "Alertes proactives pour les polices à haut risque basées sur des données en temps réel.",
-      "alert": "Alerte",
-      "severity": "Gravité",
+    "alert": "Alerte",
+    "severity": "Gravité",
     "investigateButton": "Enquêter",
     "noRiskAlerts": "Aucune alerte à haut risque actuellement.",
     "activePoliciesTitle": "Aperçu des polices actives",
@@ -1685,17 +1716,17 @@
     "title": "Tableau de bord du fournisseur d'emballages",
     "ordersTitle": "Commandes entrantes",
     "table": {
-        "customer": "Client",
-        "product": "Produit",
-        "quantity": "Quantité",
-        "status": "Statut",
-        "action": "Action"
+      "customer": "Client",
+      "product": "Produit",
+      "quantity": "Quantité",
+      "status": "Statut",
+      "action": "Action"
     },
     "viewOrderButton": "Voir la commande",
     "noOrders": "Aucune nouvelle commande.",
     "inventoryTitle": "État des stocks",
     "inStock": "En stock",
-    "reorderLevel": "Réapprovisionner à",
+    "reorderLevel": "Niveau de réapprovisionnement",
     "lowStock": "Stock faible",
     "noInventory": "Aucune donnée d'inventaire.",
     "listProductButton": "Lister un nouveau produit"
@@ -1707,13 +1738,13 @@
     "wasteTitle": "Réduction des déchets",
     "rawMaterialTitle": "Inventaire des matières premières",
     "table": {
-        "product": "Produit",
-        "quality": "Qualité",
-        "quantity": "Quantité (Tonnes)",
-        "supplier": "Fournisseur",
-        "deliveryDate": "Date de livraison",
-        "status": "Statut",
-        "action": "Action"
+      "product": "Produit",
+      "quality": "Qualité",
+      "quantity": "Quantité (Tonnes)",
+      "supplier": "Fournisseur",
+      "deliveryDate": "Date de livraison",
+      "status": "Statut",
+      "action": "Action"
     },
     "noInventoryData": "Aucune donnée d'inventaire de matières premières.",
     "packagingOrdersTitle": "Commandes d'emballage",
@@ -1730,14 +1761,14 @@
     "inspectionsTitle": "Inspections en attente",
     "inspectionsDescription": "Lots en attente d'inspection et de vérification de la qualité.",
     "table": {
-        "batchId": "ID de lot",
-        "product": "Produit",
-        "seller": "Vendeur",
-        "dueDate": "Date d'échéance",
-        "action": "Action",
-        "result": "Résultat",
-        "reason": "Raison",
-        "inspectedAt": "Inspecté le"
+      "batchId": "ID de lot",
+      "product": "Produit",
+      "seller": "Vendeur",
+      "dueDate": "Date d'échéance",
+      "action": "Action",
+      "result": "Résultat",
+      "reason": "Raison",
+      "inspectedAt": "Inspecté le"
     },
     "performInspectionButton": "Inspecter",
     "noPendingInspections": "Aucune inspection en attente pour le moment.",
@@ -1765,7 +1796,7 @@
   "ResearcherDashboard": {
     "title": "Tableau de bord du chercheur",
     "datasetsTitle": "Ensembles de données disponibles",
-    "datasetsDescription": "Anonymisierte Datensätze, die für Forschungszwecke verfügbar sind.",
+    "datasetsDescription": "Ensembles de données anonymisées disponibles à des fins de recherche.",
     "table": {
       "name": "Nom",
       "dataType": "Type de données",
@@ -1905,3 +1936,5 @@
     "noStakeholdersHint": "Essayez d'ajuster vos filtres de recherche."
   }
 }
+
+    
