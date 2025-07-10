@@ -1064,34 +1064,8 @@
           ],
           "whyItWorks": [
             "Evita que crezcan las malas hierbas.",
-            "Conserva una gran cantidad de humedad del suelo, reduciendo las necesidades de agua.",
-            "Alimenta la vida del suelo a medida que se descompone, creando una capa superficial rica.",
-            "Protege el suelo del calor directo del sol."
-          ],
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "Un campo cubierto con una gruesa capa de mantillo",
-          "dataAiHint": "mulch farming"
-        },
-        {
-          "id": "high-standards",
-          "title": "Estándares Altos",
-          "icon": "CheckCircle",
-          "summary": "Haz todo a tiempo, con un alto estándar, sin desperdicios y con alegría.",
-          "howTo": [
-            "Prepara tu tierra mucho antes de las primeras lluvias.",
-            "Planta en el momento óptimo para tu región y cultivo.",
-            "Sigue medidas precisas para la profundidad y el espaciamiento de la siembra.",
-            "Gestiona tus recursos (semillas, insumos, tiempo) sabiamente para evitar el desperdicio."
-          ],
-          "whyItWorks": [
-            "Maximiza el potencial genético de la semilla.",
-            "Asegura que el cultivo obtenga el máximo beneficio de las primeras lluvias.",
-            "Conduce a mayores rendimientos y mayor rentabilidad.",
-            "Honra a Dios a través de un trabajo excelente."
-          ],
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "Un agricultor plantando semillas cuidadosamente en un campo bien preparado",
-          "dataAiHint": "planting seeds precisely"
+            "Conserva una gran cantidad de humedad del suelo, reduciendo las necesidades de agua."
+          ]
         }
       ]
     },
@@ -1934,7 +1908,50 @@
     "allRoles": "Todos los roles",
     "noStakeholdersFound": "No se encontraron partes interesadas",
     "noStakeholdersHint": "Intente ajustar sus filtros de búsqueda."
+  },
+  "InsuranceProductsPage": {
+    "backLink": "Volver al Panel",
+    "title": "Gestionar Productos de Seguro",
+    "description": "Vea y gestione sus ofertas de productos de seguros actuales.",
+    "createButton": "Crear Nuevo Producto",
+    "table": {
+        "productName": "Nombre del Producto",
+        "type": "Tipo",
+        "status": "Estado",
+        "premium": "Prima"
+    },
+    "noProducts": "Aún no ha creado ningún producto de seguro.",
+    "toast": {
+        "errorTitle": "Error"
+    }
+  },
+  "InsuranceProductCreatePage": {
+      "backLink": "Volver a Productos",
+      "title": "Crear Nuevo Producto de Seguro",
+      "description": "Defina un nuevo producto de seguro para ofrecer en la plataforma.",
+      "form": {
+          "nameLabel": "Nombre del Producto",
+          "namePlaceholder": "Ej: Seguro de Cosecha de Maíz",
+          "typeLabel": "Tipo de Producto",
+          "typePlaceholder": "Seleccione un tipo de producto",
+          "crop": "Cosecha",
+          "livestock": "Ganado",
+          "asset": "Activo",
+          "weather": "Climático",
+          "descriptionLabel": "Descripción",
+          "descriptionPlaceholder": "Describa el producto, su propósito y criterios de elegibilidad.",
+          "coverageLabel": "Detalles de la Cobertura",
+          "coveragePlaceholder": "Describa qué cubre esta póliza...",
+          "premiumLabel": "Prima (USD)",
+          "premiumPlaceholder": "Ej: 150.00",
+          "currencyLabel": "Moneda",
+          "submitButton": "Crear Producto"
+      },
+      "toast": {
+          "notAuthenticated": "Debe iniciar sesión como Proveedor de Seguros para crear productos.",
+          "successTitle": "¡Producto Creado!",
+          "successDescription": "'{name}' ya está disponible en la plataforma.",
+          "errorTitle": "Creación Fallida"
+      }
   }
 }
-
-    

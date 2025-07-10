@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -265,6 +264,7 @@ export interface FiDashboardData {
         content: string;
         actionLink: string;
     }[];
+    activeProductsCount?: number;
 }
 
 export interface FieldAgentDashboardData {
@@ -456,7 +456,8 @@ export interface AgronomistDashboardData {
     id: string;
     farmerName: string;
     issueSummary: string;
-    requestDate: string; // ISO String
+    requestDate: string; // ISO String;
+    farmerId: string;
   }[];
   knowledgeHubContributions: {
     id: string;
@@ -648,6 +649,8 @@ export type KnfBatch = {
     status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
     nextStep: string;
     createdAt?: any;
+    quantityProduced: number;
+    unit: string;
 }
 
 export interface ForumPost {
@@ -854,4 +857,5 @@ export interface InsuranceProduct {
     coverageDetails: string;
     premium: number;
     currency: string;
-    provider?: {
+    status: 'Active' | 'Inactive';
+}

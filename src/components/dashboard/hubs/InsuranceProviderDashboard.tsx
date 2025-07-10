@@ -4,13 +4,13 @@
 import { useState, useEffect, useMemo } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-import { Shield, FileText, AlertTriangle } from 'lucide-react';
+import { Shield, FileText, AlertTriangle, PlusCircle } from 'lucide-react';
 import type { InsuranceProviderDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
@@ -94,6 +94,21 @@ export const InsuranceProviderDashboard = () => {
       <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+         {/* Manage Products Card */}
+        <Card className="md:col-span-2">
+            <CardHeader>
+                <CardTitle>{t('manageProductsTitle')}</CardTitle>
+                <CardDescription>{t('manageProductsDescription')}</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Button asChild>
+                    <Link href="/insurance/products">
+                        <PlusCircle className="mr-2 h-4 w-4"/> {t('manageProductsButton')}
+                    </Link>
+                </Button>
+            </CardContent>
+        </Card>
+         
          {/* Pending Claims */}
          <Card className="md:col-span-2">
            <CardHeader>
@@ -171,30 +186,6 @@ export const InsuranceProviderDashboard = () => {
              )}
            </CardContent>
          </Card>
-
-          {/* Active Policies */}
-         <Card className="md:col-span-2">
-            <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2"><Shield className="h-4 w-4 text-blue-500"/>{t('activePoliciesTitle')}</CardTitle>
-                <CardDescription>{t('activePoliciesDescription')}</CardDescription>
-            </CardHeader>
-            <CardContent>
-                {(activePolicies || []).length > 0 ? (
-                    <div className="space-y-3">
-                        {(activePolicies || []).map((policy) => (
-                            <div key={policy.id} className="text-sm p-3 border rounded-lg">
-                                <p className="font-medium">{policy.policyHolderName} ({policy.policyType})</p>
-                                <p className="text-xs text-muted-foreground">{t('coverage')}: ${policy.coverageAmount.toLocaleString()}</p>
-                                <p className="text-xs text-muted-foreground">{t('expires')}: {new Date(policy.expiryDate).toLocaleDateString()}</p>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                   <p className="text-sm text-muted-foreground text-center py-4">{t('noActivePolicies')}</p>
-                )}
-            </CardContent>
-         </Card>
-
       </div>
     </div>
   );
@@ -206,6 +197,5 @@ const DashboardSkeleton = () => (
         <Skeleton className="h-9 w-64 mb-6" />
         <Skeleton className="h-48 w-full rounded-lg" />
         <Skeleton className="h-64 w-full rounded-lg" />
-         <Skeleton className="h-32 w-full rounded-lg md:col-span-1" />
     </div>
 );
