@@ -824,42 +824,4 @@ export interface InsuranceProduct {
     }
 }
 
-export interface FinancialProduct {
-    id: string;
-    fiId: string;
-    name: string;
-    type: 'Loan' | 'Grant';
-    description: string;
-    interestRate?: number;
-    maxAmount?: number;
-    targetRoles?: string[];
-    status: 'Active' | 'Inactive';
-    createdAt: string;
-    updatedAt: string;
-}
-
-export interface AgroTourismDashboardData {
-  upcomingBookings: {
-    id: string;
-    experienceTitle: string;
-    guestName: string;
-    date: string; // ISO String
-    actionLink: string;
-  }[];
-  listedExperiences: {
-    id: string;
-    title: string;
-    location: string;
-    status: 'Published' | 'Draft';
-    bookingsCount: number;
-    actionLink: string;
-  }[];
-  guestReviews: {
-    id: string;
-    guestName: string;
-    experienceTitle: string;
-    rating: number;
-    comment: string;
-    actionLink: string;
-  }[];
-}
+      

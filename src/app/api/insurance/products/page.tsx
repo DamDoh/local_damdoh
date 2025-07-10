@@ -1,9 +1,9 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PlusCircle, Shield } from 'lucide-react';
 import Link from 'next/link';
@@ -26,24 +26,25 @@ export default function InsuranceProductsPage() {
     const functions = getFunctions(firebaseApp);
     const getProductsCallable = useMemo(() => httpsCallable(functions, 'getInsuranceProducts'), [functions]);
     
+    const fetchProducts = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const result = await getProductsCallable();
+            setProducts((result.data as any)?.products || []);
+        } catch (error: any) {
+            toast({ variant: 'destructive', title: t('toast.errorTitle'), description: error.message });
+        } finally {
+            setIsLoading(false);
+        }
+    }, [getProductsCallable, toast, t]);
+    
     useEffect(() => {
         if (user) {
-            const fetchProducts = async () => {
-                setIsLoading(true);
-                try {
-                    const result = await getProductsCallable();
-                    setProducts((result.data as any)?.products || []);
-                } catch (error: any) {
-                    toast({ variant: 'destructive', title: t('toast.errorTitle'), description: error.message });
-                } finally {
-                    setIsLoading(false);
-                }
-            };
             fetchProducts();
         } else {
             setIsLoading(false);
         }
-    }, [user, getProductsCallable, toast, t]);
+    }, [user, fetchProducts]);
 
     if (!user && !isLoading) {
         return <p>Please log in to manage insurance products.</p>;
@@ -94,3 +95,4 @@ export default function InsuranceProductsPage() {
     );
 }
 
+      

@@ -37,3 +37,5 @@ export const getInsuranceProductTypes = (t: any) => [
     { value: 'Asset', label: t('insuranceProductTypes.Asset') },
     { value: 'Weather', label: t('insuranceProductTypes.Weather') },
 ];
+
+      

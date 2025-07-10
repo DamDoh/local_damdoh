@@ -64,7 +64,7 @@ Based on your analysis, provide a structured response with the following informa
 4.  **suggestedActions**: Provide a list of 2-4 concrete, actionable suggestions. For each suggestion:
     -   Give it a clear 'title'.
     -   Provide 'details' explaining how to perform the action. Prioritize organic, regenerative, or KNF/FGW-based solutions where possible (e.g., "Apply a neem oil solution", "Introduce ladybugs for aphid control", "Top-dress with compost").
-    -   Categorize the action's 'type' as 'treatment', 'prevention', or 'further-investigation'.
+    -   Categorize the action's 'type' as 'treatment', 'prevention', 'further-investigation'.
     
 If the plant appears healthy, provide preventative suggestions. If the image is unclear or not a plant, state that in the 'potentialProblems' and provide no actions.
 `,
@@ -81,3 +81,5 @@ const diagnoseCropFlow = ai.defineFlow(
     return output!;
   }
 );
+
+      
