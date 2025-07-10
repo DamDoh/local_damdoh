@@ -235,7 +235,39 @@
       "subtitle": "Regístrese hoy y forme parte de una comunidad global dedicada a construir un futuro más transparente, sostenible y próspero para la agricultura.",
       "button": "Únase a DamDoh Hoy"
     }
+  },
+  "searchPage": {
+    "title": "Búsqueda Universal",
+    "description": "Encuentra cualquier cosa en la plataforma DamDoh, desde productos y servicios hasta personas y discusiones.",
+    "placeholder": "Busca café orgánico, reparación de tractores o un usuario...",
+    "searchButton": "Buscar",
+    "popularSearches": "Búsquedas Populares",
+    "popularSearch1": "Fertilizante Orgánico",
+    "popularSearch2": "Logística en Kenia",
+    "popularSearch3": "Compradores de café Europa",
+    "popularSearch4": "Mano de obra agrícola",
+    "popularSearch5": "Tractor en alquiler",
+    "modal": {
+      "title": "Búsqueda Universal",
+      "placeholder": "Estoy buscando...",
+      "searchButton": "Buscar",
+      "searchError": "Búsqueda Fallida",
+      "searchErrorDescription": "Se produjo un error inesperado durante la búsqueda. Por favor, inténtelo de nuevo.",
+      "invalidCodeError": "Esto no parece ser un código QR válido de DamDoh.",
+      "scanFailed": "Escaneo Fallido",
+      "scanError": "Error de Escaneo",
+      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtelo de nuevo.",
+      "interpretationTitle": "Interpretación de IA",
+      "interpretationNotesDefault": "Mostrando resultados generales.",
+      "filtersTitle": "Filtros Aplicados",
+      "results": {
+        "users": "Perfiles",
+        "marketplaceItems": "Mercado",
+        "forums": "Foros",
+        "vti_registry": "Informe de Trazabilidad"
+      },
+      "noResults": "No se encontraron resultados para su consulta.",
+      "tryAgain": "Intente con un término de búsqueda diferente o use palabras clave más amplias."
+    }
   }
 }
-
-    

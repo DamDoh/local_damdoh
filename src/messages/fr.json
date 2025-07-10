@@ -235,7 +235,39 @@
       "subtitle": "Inscrivez-vous aujourd'hui et faites partie d'une communauté mondiale dédiée à la construction d'un avenir plus transparent, durable et prospère pour l'agriculture.",
       "button": "Rejoindre DamDoh Aujourd'hui"
     }
+  },
+  "searchPage": {
+    "title": "Recherche Universelle",
+    "description": "Trouvez tout sur la plateforme DamDoh, des produits et services aux personnes et discussions.",
+    "placeholder": "Recherchez du café bio, une réparation de tracteur, ou un utilisateur...",
+    "searchButton": "Rechercher",
+    "popularSearches": "Recherches Populaires",
+    "popularSearch1": "Engrais Biologique",
+    "popularSearch2": "Logistique au Kenya",
+    "popularSearch3": "Acheteurs de café Europe",
+    "popularSearch4": "Main-d'œuvre agricole",
+    "popularSearch5": "Tracteur à louer",
+    "modal": {
+      "title": "Recherche Universelle",
+      "placeholder": "Je cherche...",
+      "searchButton": "Rechercher",
+      "searchError": "La recherche a échoué",
+      "searchErrorDescription": "Une erreur inattendue s'est produite lors de la recherche. Veuillez réessayer.",
+      "invalidCodeError": "Cela ne semble pas être un code QR DamDoh valide.",
+      "scanFailed": "Scan Échoué",
+      "scanError": "Erreur de Scan",
+      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
+      "interpretationTitle": "Interprétation de l'IA",
+      "interpretationNotesDefault": "Affichage des résultats généraux.",
+      "filtersTitle": "Filtres Appliqués",
+      "results": {
+        "users": "Profils",
+        "marketplaceItems": "Marché",
+        "forums": "Forums",
+        "vti_registry": "Rapport de Traçabilité"
+      },
+      "noResults": "Aucun résultat trouvé pour votre requête.",
+      "tryAgain": "Essayez un autre terme de recherche ou utilisez des mots-clés plus larges."
+    }
   }
 }
-
-    

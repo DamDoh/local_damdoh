@@ -235,7 +235,39 @@
       "subtitle": "Sign up today and become part of a global community dedicated to building a more transparent, sustainable, and prosperous future for agriculture.",
       "button": "Join DamDoh Today"
     }
+  },
+  "searchPage": {
+    "title": "Universal Search",
+    "description": "Find anything across the DamDoh platform, from products and services to people and discussions.",
+    "placeholder": "Search for organic coffee, tractor repair, or a user...",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic Fertilizer",
+    "popularSearch2": "Logistics in Kenya",
+    "popularSearch3": "Coffee Buyers Europe",
+    "popularSearch4": "Farm Labor",
+    "popularSearch5": "Tractor for rent",
+    "modal": {
+      "title": "Universal Search",
+      "placeholder": "I'm looking for...",
+      "searchButton": "Search",
+      "searchError": "Search Failed",
+      "searchErrorDescription": "An unexpected error occurred while searching. Please try again.",
+      "invalidCodeError": "This does not appear to be a valid DamDoh QR code.",
+      "scanFailed": "Scan Failed",
+      "scanError": "Scan Error",
+      "scanErrorDescription": "Could not read the QR code. Please try again.",
+      "interpretationTitle": "AI Interpretation",
+      "interpretationNotesDefault": "Showing general results.",
+      "filtersTitle": "Filters Applied",
+      "results": {
+        "users": "Profiles",
+        "marketplaceItems": "Marketplace",
+        "forums": "Forums",
+        "vti_registry": "Traceability Report"
+      },
+      "noResults": "No results found for your query.",
+      "tryAgain": "Try a different search term or use broader keywords."
+    }
   }
 }
-
-    
