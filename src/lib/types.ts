@@ -779,16 +779,6 @@ export type ServiceItem = MarketplaceItem & {
     experienceLevel: string;
 };
 
-export interface ApiKey {
-  id: string;
-  key: string;
-  status: 'Active' | 'Revoked';
-  environment: 'Sandbox' | 'Production';
-  createdAt: string; // ISO String
-  description: string;
-  keyPrefix: string;
-}
-
 export interface AgriTechInnovatorDashboardData {
   apiKeys: ApiKey[];
   sandboxStatus: {
@@ -804,18 +794,52 @@ export interface AgriTechInnovatorDashboardData {
   }[];
 }
 
-export interface InsuranceProduct {
+export interface ApiKey {
+  id: string;
+  key: string;
+  status: 'Active' | 'Revoked';
+  environment: 'Sandbox' | 'Production';
+  createdAt: string; // ISO String
+  description: string;
+  keyPrefix: string;
+}
+
+export interface FinancialProduct {
     id: string;
-    providerId: string;
+    fiId: string;
     name: string;
-    type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
+    type: 'Loan' | 'Grant';
     description: string;
-    coverageDetails: string;
-    premium: number;
-    currency: string;
+    interestRate?: number;
+    maxAmount?: number;
+    targetRoles?: string[];
     status: 'Active' | 'Inactive';
-    provider?: {
-        displayName: string;
-        avatarUrl?: string;
-    }
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface AgroTourismDashboardData {
+  upcomingBookings: {
+    id: string;
+    experienceTitle: string;
+    guestName: string;
+    date: string; // ISO String
+    actionLink: string;
+  }[];
+  listedExperiences: {
+    id: string;
+    title: string;
+    location: string;
+    status: 'Published' | 'Draft';
+    bookingsCount: number;
+    actionLink: string;
+  }[];
+  guestReviews: {
+    id: string;
+    guestName: string;
+    experienceTitle: string;
+    rating: number;
+    comment: string;
+    actionLink: string;
+  }[];
 }
