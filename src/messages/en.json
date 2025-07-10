@@ -1,49 +1,44 @@
 
 {
-  "ResearcherDashboard": {
-    "title": "Researcher Dashboard",
-    "datasetsTitle": "Available Datasets",
-    "datasetsDescription": "Anonymized datasets from the platform for research purposes.",
-    "projectsTitle": "Ongoing Projects",
-    "projectsDescription": "Your current research collaborations and projects on DamDoh.",
-    "contributionsTitle": "Knowledge Hub Contributions",
-    "table": {
-      "name": "Dataset Name",
-      "dataType": "Data Type",
-      "accessLevel": "Access Level",
-      "action": "Action",
-      "title": "Project Title",
-      "progress": "Progress",
-      "collaborators": "Collaborators",
-      "status": "Status"
-    },
-    "requestAccessButton": "Request Access",
-    "viewProjectButton": "View Project",
-    "viewButton": "View",
-    "noDatasets": "No datasets are currently available for request.",
-    "noProjects": "You are not involved in any ongoing research projects.",
-    "noContributions": "You have not contributed any articles to the Knowledge Hub yet."
+  "FeedItemCard": {
+    "signInToLikeToast": "You must be signed in to like a post.",
+    "repostPlaceholderToast": "Repost feature coming soon!",
+    "signInToVoteToast": "You must be signed in to vote.",
+    "voteSuccessToast": "Your vote has been counted!",
+    "voteErrorToast": "Could not save vote.",
+    "editPost": "Edit Post",
+    "deletePost": "Delete Post",
+    "like": "Like",
+    "comment": "Comment",
+    "repost": "Repost",
+    "likes": "{count, plural, =0 {Likes} =1 {Like} other {{count} Likes}}",
+    "comments": "{count, plural, =0 {Comments} =1 {Comment} other {{count} Comments}}",
+    "loadCommentsErrorToast": "Could not load comments.",
+    "noComments": "Be the first to comment!",
+    "loadingComments": "Loading comments...",
+    "loadMoreComments": "Load more comments",
+    "writeCommentPlaceholder": "Add a comment...",
+    "postButton": "Post",
+    "votes": "{count, plural, =0 {votes} =1 {vote} other {{count} votes}}"
   },
-  "CertificationBodyDashboard": {
-    "title": "Certification Body Dashboard",
-    "auditsTitle": "Pending Audits",
-    "auditsDescription": "Farms and businesses awaiting your certification audit.",
-    "entitiesTitle": "Certified Entities",
-    "entitiesDescription": "Overview of entities certified by your organization.",
-    "monitoringTitle": "Standards Monitoring",
-    "monitoringDescription": "High-level overview of adherence to your certification standards.",
-    "table": {
-      "farmName": "Farm/Business Name",
-      "standard": "Standard",
-      "dueDate": "Due Date",
-      "action": "Action",
-      "adherenceRate": "Adherence Rate"
-    },
-    "reviewAuditButton": "Review Audit",
-    "noPendingAudits": "There are no audits currently pending your review.",
-    "noCertifiedEntities": "No entities have been certified by your organization yet.",
-    "noMonitoringData": "No data available for standards monitoring.",
-    "alerts": "{count, plural, =1 {alert} other {alerts}}"
+  "CreatePostModal": {
+    "title": "Create a new post",
+    "description": "Share an update, ask a question, or start a conversation with the community.",
+    "yourName": "Your Name",
+    "shareUpdate": "Share an update",
+    "placeholder": "What's on your mind?",
+    "selectedFile": "Selected file:",
+    "pollOptionsLabel": "Poll Options",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Add Option",
+    "pollNote": "A maximum of {maxOptions} options are allowed.",
+    "photoVideo": "Photo/Video",
+    "agriEvent": "Agri-Event",
+    "shareDocumentButton": "Share Document",
+    "createPollButton": "Create Poll",
+    "postButton": "Post",
+    "pollOptionsError": "A poll must have at least 2 non-empty options.",
+    "emptyPostError": "Your post cannot be empty."
   },
   "AppHeader": {
     "searchPlaceholder": "Search people, products, services...",
@@ -196,12 +191,42 @@
     "sendResetLinkButton": "Send Reset Link",
     "sendingEmailButton": "Sending email...",
     "rememberPasswordPrompt": "Remember your password?",
+    "error": "Error",
+    "forgotPassword": {
+      "emailSentTitle": "Check your email",
+      "emailSentDescription": "A password reset link has been sent to {email}.",
+      "emailSentDescriptionIfAccountExists": "If an account exists with {email}, a password reset link has been sent.",
+      "successTitle": "Email Sent!",
+      "successDescription": "Please check your inbox (and spam folder) for the password reset link.",
+      "errors": {
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidEmail": "The email address is not valid.",
+        "tooManyRequests": "Too many requests. Please try again later.",
+        "default": "Failed to send reset email"
+      }
+    },
     "resetPasswordTitle": "Reset Your Password",
     "resetPasswordDescription": "Enter and confirm your new password below.",
     "newPasswordLabel": "New Password",
     "newPasswordPlaceholder": "Enter a strong new password",
     "resetPasswordButton": "Reset Password",
     "resettingPasswordButton": "Resetting...",
+    "resetPassword": {
+      "successTitle": "Password Reset Successfully!",
+      "successDescription": "You can now sign in with your new password.",
+      "successRedirect": "You will be redirected to the sign-in page shortly.",
+      "errors": {
+        "missingCode": "Invalid password reset link. Please request a new one.",
+        "missingCodeTitle": "Invalid Link",
+        "missingCodeDescription": "The password reset link is missing or invalid. Please return to the Forgot Password page to request a new one.",
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidOrExpiredCode": "The password reset link is invalid or has expired. Please request a new one.",
+        "userDisabled": "This user account has been disabled.",
+        "userNotFound": "No user found for this reset link.",
+        "weakPassword": "The new password is not strong enough.",
+        "default": "Failed to reset password"
+      }
+    },
     "recoverPage": {
       "title": "Recover Your Account",
       "description": "Use your network to regain access.",
@@ -217,12 +242,12 @@
     }
   },
   "AppFooter": {
-    "tagline": "The global agricultural supply chain platform.",
+    "tagline": "Connecting the agricultural value chain for a sustainable future.",
     "damdohTitle": "DamDoh",
-    "aboutLabel": "About",
+    "aboutLabel": "About Us",
     "contactLabel": "Contact",
     "careersLabel": "Careers",
-    "blogLabel": "Blog & News",
+    "blogLabel": "Blog",
     "resourcesTitle": "Resources",
     "helpCenterLabel": "Help Center",
     "communityGuidelinesLabel": "Community Guidelines",
@@ -275,35 +300,36 @@
   },
   "aboutPage": {
     "hero": {
-      "title": "About DamDoh",
-      "subtitle": "Connecting the global agricultural supply chain, one stakeholder at a time."
+      "title": "Cultivating Connections, Harvesting Prosperity",
+      "subtitle": "We are on a mission to digitize and connect the global agricultural supply chain, empowering every stakeholder from soil to shelf."
     },
     "vision": {
-      "title": "Our Vision",
-      "p1": "We envision a world where every agricultural stakeholder, from the smallest farmer to the largest retailer, is empowered by the data, connections, and tools they need to thrive.",
-      "p2": "DamDoh was founded on the belief that technology can bridge gaps, build trust, and create a more equitable and sustainable global food system.",
-      "foundersTitle": "The Founders"
+      "title": "Our Vision for a Connected Future",
+      "p1": "DamDoh was born from a simple yet powerful idea: that technology can bridge the gaps in the world of agriculture. We envision a world where smallholder farmers have direct access to global markets, where buyers can source products with provable trust, and where knowledge flows freely to create a more sustainable and equitable food system.",
+      "p2": "We're more than just a platform; we are a community dedicated to solving real-world challenges with innovative, user-centric solutions.",
+      "foundersTitle": "From the Founders"
     },
     "challenge": {
-      "title": "The Challenge We're Solving",
-      "description": "The agricultural supply chain is fragmented, inefficient, and often lacks the transparency needed for sustainable growth. Key challenges include:",
+      "title": "The Fragmented Landscape of Agriculture",
+      "description": "The agricultural supply chain is complex and often disconnected, presenting numerous challenges for everyone involved.",
       "list": {
-        "knowledge": "Fragmented knowledge and lack of access to best practices.",
-        "market": "Limited market access for smallholder farmers.",
-        "quality": "Inconsistent quality control and a lack of verifiable product data.",
-        "logistics": "Inefficient logistics leading to high post-harvest losses.",
-        "financial": "Difficulty accessing finance and insurance for small-scale producers.",
-        "climate": "Increasing pressure from climate change on traditional farming methods.",
-        "informal": "Informal and relationship-based systems that can exclude new entrants."
+        "knowledge": "Information Gaps: Farmers lack access to modern techniques and real-time market data.",
+        "market": "Market Access: Smallholders struggle to connect with larger, more profitable markets.",
+        "quality": "Quality & Trust: Buyers face uncertainty about product quality, origin, and farming practices.",
+        "logistics": "Inefficient Logistics: Poor coordination leads to high costs and significant post-harvest losses.",
+        "financial": "Financial Exclusion: Lack of formal records prevents access to credit and insurance.",
+        "climate": "Climate Change: Increasing unpredictability demands more resilient farming systems.",
+        "informal": "Informal Economy: A lack of digital records hinders growth and formalization."
       }
     },
     "solution": {
-      "title": "The DamDoh Solution",
-      "description": "We are building a comprehensive 'super app' that digitizes and connects the entire agricultural ecosystem through several key pillars:",
+      "title": "The DamDoh Solution: An Integrated Ecosystem",
+      "description": "We address these challenges by providing a single, unified platform with tools for everyone.",
       "list": {
-        "education": "Education & Knowledge Sharing",
-        "ai": "AI Assistance & Insights",
-        "logistics": "Integrated Logistics & Traceability"
+        "education": "AI-Powered Education",
+        "ai": "Intelligent Networking & AI",
+        "logistics": "Integrated Logistics",
+        "financial": "Financial Services"
       }
     },
     "beyondTechnology": {
@@ -315,24 +341,24 @@
         },
         "p2b": {
           "title": "Producer-to-Business",
-          "content": "Fostering direct, trusted relationships between producers and buyers."
+          "content": "Fostering direct, trusted relationships between producers and buyers, processors, and exporters."
         },
         "p2e": {
-          "title": "Producer-to-Ecosystem",
-          "content": "Giving individuals access to an entire ecosystem of services—finance, logistics, insurance, and more."
+          "title": "Producer-to-Expert",
+          "content": "Access to agronomists, financial advisors, and logistics providers to improve operations."
         },
         "p2w": {
           "title": "Producer-to-World",
-          "content": "Opening up global markets and opportunities to the most remote producers through digital access and traceability."
+          "content": "Enabling smallholder farmers to participate in the global market with confidence and transparency."
         }
       }
     },
     "commitment": {
-      "title": "Our Commitment to the Future",
-      "p1": "We are committed to using technology for good, building a platform that is not only profitable but also regenerative for our planet and empowering for its people.",
-      "p2": "Every connection made, every piece of knowledge shared, and every transaction streamlined on DamDoh is a step toward a more resilient and equitable food future.",
-      "p3": "Join us on this journey.",
-      "button": "Become a Member"
+      "title": "Join Our Growing Ecosystem",
+      "p1": "Our commitment is to the people who feed the world. We believe that by providing the digital tools they need, we can foster a more resilient, profitable, and sustainable agricultural sector for generations to come.",
+      "p2": "Whether you are planting a seed, buying in bulk, or financing a farm, you have a place in the DamDoh community.",
+      "p3": "Let's grow together.",
+      "button": "Create Your Profile"
     }
   },
   "contactPage": {
