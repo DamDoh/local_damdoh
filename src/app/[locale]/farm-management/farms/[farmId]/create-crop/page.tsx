@@ -33,8 +33,8 @@ import { useState, useMemo } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { app as firebaseApp } from "@/lib/firebase/client";
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
 import { useTranslations } from "next-intl";
 
 export default function CreateCropPage() {
