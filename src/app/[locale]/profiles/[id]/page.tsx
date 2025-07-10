@@ -24,6 +24,7 @@ import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { formatDistanceToNow } from "date-fns";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 function ProfileSkeleton() {
   return (
@@ -224,120 +225,90 @@ export default function ProfileDetailPage() {
             </div>
           </div>
         </CardHeader>
-        <CardContent className="px-6 space-y-6">
+        <CardContent className="px-6">
           {profile.profileSummary && (
-            <div>
-              <h3 className="text-lg font-semibold mb-2 flex items-center"><Leaf className="h-5 w-5 mr-2 text-primary" /> {t('summaryTitle')}</h3>
-              <p className="text-muted-foreground">{profile.profileSummary}</p>
-            </div>
-          )}
-          
-          {profile.bio && (
-            <div>
-              <h3 className="text-lg font-semibold mb-2 flex items-center"><FileText className="h-5 w-5 mr-2 text-primary" />{t('aboutTitle', {displayName: profile.displayName})}</h3>
-              <p className="text-muted-foreground whitespace-pre-line">{profile.bio}</p>
-            </div>
-          )}
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {(profile as any).stakeholderProfile?.yearsOfExperience !== undefined && (
-              <div className="flex items-start gap-3">
-                <Briefcase className="h-5 w-5 mt-1 text-primary" />
-                <div>
-                  <h4 className="font-semibold">{t('experienceTitle')}</h4>
-                  <p className="text-muted-foreground">{(profile as any).stakeholderProfile.yearsOfExperience} years</p>
-                </div>
-              </div>
-            )}
-             {profile.email && (
-              <div className="flex items-start gap-3">
-                <MessageSquare className="h-5 w-5 mt-1 text-primary" />
-                <div>
-                  <h4 className="font-semibold">{t('emailTitle')}</h4>
-                  <a href={`mailto:${profile.email}`} className="text-muted-foreground hover:underline">{profile.email}</a>
-                </div>
-              </div>
-            )}
-            {profile.contactInfo?.website && (
-              <div className="flex items-start gap-3">
-                <Globe className="h-5 w-5 mt-1 text-primary" />
-                <div>
-                  <h4 className="font-semibold">{t('websiteTitle')}</h4>
-                  <a href={profile.contactInfo.website.startsWith('http') ? profile.contactInfo.website : `https://${profile.contactInfo.website}`} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:underline">{profile.contactInfo.website}</a>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {Array.isArray(areasOfInterest) && areasOfInterest.length > 0 && (
-            <div>
-              <h3 className="text-lg font-semibold mb-2 flex items-center"><Tractor className="h-5 w-5 mr-2 text-primary" />{t('interestsTitle')}</h3>
-              <div className="flex flex-wrap gap-2">
-                {areasOfInterest.map((interest: string) => <Badge key={interest} variant="secondary">{interest}</Badge>)}
-              </div>
-            </div>
-          )}
-
-          {Array.isArray(needs) && needs.length > 0 && (
-            <div>
-              <h3 className="text-lg font-semibold mb-2 flex items-center"><TrendingUp className="h-5 w-5 mr-2 text-primary" />{t('needsTitle')}</h3>
-              <div className="flex flex-wrap gap-2">
-                {needs.map((need: string) => <Badge key={need}>{need}</Badge>)}
-              </div>
-            </div>
+            <p className="text-muted-foreground max-w-2xl">{profile.profileSummary}</p>
           )}
         </CardContent>
       </Card>
-      
-      {(profile as any).stakeholderProfile && Object.keys((profile as any).stakeholderProfile).length > 0 && (
-        <Card>
+
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">{t('tabs.overview')}</TabsTrigger>
+          <TabsTrigger value="activity">{t('tabs.activity')}</TabsTrigger>
+        </TabsList>
+        <TabsContent value="overview" className="mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="md:col-span-2 space-y-6">
+                 {profile.bio && (
+                    <Card>
+                        <CardHeader><CardTitle className="text-lg flex items-center"><FileText className="h-5 w-5 mr-2 text-primary" />{t('aboutTitle', {displayName: profile.displayName})}</CardTitle></CardHeader>
+                        <CardContent><p className="text-muted-foreground whitespace-pre-line">{profile.bio}</p></CardContent>
+                    </Card>
+                 )}
+                 {Array.isArray(areasOfInterest) && areasOfInterest.length > 0 && (
+                    <Card>
+                        <CardHeader><CardTitle className="text-lg flex items-center"><Tractor className="h-5 w-5 mr-2 text-primary" />{t('interestsTitle')}</CardTitle></CardHeader>
+                        <CardContent><div className="flex flex-wrap gap-2">{areasOfInterest.map((interest: string) => <Badge key={interest} variant="secondary">{interest}</Badge>)}</div></CardContent>
+                    </Card>
+                  )}
+            </div>
+             <div className="space-y-6">
+                 {profile.contactInfo && (Object.values(profile.contactInfo).some(val => val)) && (
+                     <Card>
+                        <CardHeader><CardTitle className="text-lg">{t('contactTitle')}</CardTitle></CardHeader>
+                        <CardContent className="space-y-3">
+                            {profile.contactInfo.phone && <div className="text-sm flex items-start gap-3"><MessageSquare className="h-4 w-4 mt-1 text-primary" /><span>{profile.contactInfo.phone}</span></div>}
+                             {profile.contactInfo.website && <div className="text-sm flex items-start gap-3"><Globe className="h-4 w-4 mt-1 text-primary" /><a href={profile.contactInfo.website.startsWith('http') ? profile.contactInfo.website : `https://${profile.contactInfo.website}`} target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline break-all">{profile.contactInfo.website}</a></div>}
+                        </CardContent>
+                     </Card>
+                 )}
+                 {Array.isArray(needs) && needs.length > 0 && (
+                    <Card>
+                        <CardHeader><CardTitle className="text-lg flex items-center"><TrendingUp className="h-5 w-5 mr-2 text-primary" />{t('needsTitle')}</CardTitle></CardHeader>
+                        <CardContent><div className="flex flex-wrap gap-2">{needs.map((need: string) => <Badge key={need}>{need}</Badge>)}</div></CardContent>
+                    </Card>
+                  )}
+            </div>
+          </div>
+        </TabsContent>
+        <TabsContent value="activity" className="mt-4">
+           <Card>
             <CardHeader>
-                <CardTitle>{profile.primaryRole} {t('detailsTitle')}</CardTitle>
-                <CardDescription>{t('roleSpecificInfo')}</CardDescription>
+              <CardTitle className="flex items-center gap-2"><Activity className="h-5 w-5"/>{t('recentActivityTitle')}</CardTitle>
             </CardHeader>
             <CardContent>
-                <pre className="p-4 bg-muted rounded-md text-xs whitespace-pre-wrap">
-                    {JSON.stringify((profile as any).stakeholderProfile, null, 2)}
-                </pre>
-                <p className="text-xs text-muted-foreground mt-2">{t('tempDisplayNotice')}</p>
+                {isActivityLoading ? (
+                    <div className="space-y-4">
+                        <Skeleton className="h-12 w-full" />
+                        <Skeleton className="h-12 w-full" />
+                        <Skeleton className="h-12 w-full" />
+                    </div>
+                ) : activity.length > 0 ? (
+                    <div className="space-y-3">
+                        {activity.map(act => {
+                            const Icon = activityIconMap[act.icon] || GitBranch;
+                            return (
+                                <div key={act.id} className="flex items-start gap-3 p-3 border rounded-md bg-muted/40">
+                                    <div className="p-2 bg-background rounded-full border">
+                                    <Icon className="h-4 w-4 text-muted-foreground" />
+                                    </div>
+                                    <div>
+                                        <p className="font-medium text-sm">{act.title}</p>
+                                        <p className="text-xs text-muted-foreground">{act.type} &bull; {formatDistanceToNow(new Date(act.timestamp), { addSuffix: true })}</p>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                ) : (
+                    <p className="text-sm text-muted-foreground text-center py-4">{t('noRecentActivity')}</p>
+                )}
             </CardContent>
-        </Card>
-      )}
-
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2"><Activity className="h-5 w-5"/>{t('recentActivityTitle')}</CardTitle>
-          <CardDescription>{t('recentActivityDescription', { appName: APP_NAME })}</CardDescription>
-        </CardHeader>
-        <CardContent>
-            {isActivityLoading ? (
-                <div className="space-y-4">
-                    <Skeleton className="h-12 w-full" />
-                    <Skeleton className="h-12 w-full" />
-                    <Skeleton className="h-12 w-full" />
-                </div>
-            ) : activity.length > 0 ? (
-                <div className="space-y-3">
-                    {activity.map(act => {
-                        const Icon = activityIconMap[act.icon] || GitBranch; // Fallback icon
-                        return (
-                            <div key={act.id} className="flex items-start gap-3 p-3 border rounded-md bg-muted/40">
-                                <div className="p-2 bg-background rounded-full border">
-                                <Icon className="h-4 w-4 text-muted-foreground" />
-                                </div>
-                                <div>
-                                    <p className="font-medium text-sm">{act.title}</p>
-                                    <p className="text-xs text-muted-foreground">{act.type} &bull; {formatDistanceToNow(new Date(act.timestamp), { addSuffix: true })}</p>
-                                </div>
-                            </div>
-                        )
-                    })}
-                </div>
-            ) : (
-                <p className="text-sm text-muted-foreground text-center py-4">{t('noRecentActivity')}</p>
-            )}
-        </CardContent>
-      </Card>
+          </Card>
+        </TabsContent>
+      </Tabs>
+      
     </div>
   );
 }

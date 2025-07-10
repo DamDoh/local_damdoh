@@ -1291,6 +1291,137 @@
         "successDescription": "'{farmName}' has been successfully updated.",
         "errorTitle": "Update Failed"
       }
+    },
+    "financials": {
+      "title": "Money Matters",
+      "description": "Keep track of your farm's financial health.",
+      "applyForFundingButton": "Apply for Funding",
+      "newTransactionButton": "New Transaction",
+      "totalIncome": "Total Income",
+      "totalExpense": "Total Expense",
+      "netFlow": "Net Flow",
+      "recentTransactions": "Recent Transactions",
+      "table": {
+        "description": "A list of your recent income and expenses.",
+        "date": "Date",
+        "category": "Category",
+        "amount": "Amount"
+      },
+      "noTransactions": "No transactions recorded yet.",
+      "signInPrompt": {
+        "title": "Sign In Required",
+        "description": "Please sign in to view your financial dashboard.",
+        "button": "Sign In"
+      },
+      "log": {
+        "backLink": "Back to Financials",
+        "title": "Log a Transaction",
+        "description": "Record a new income or expense to keep your books up to date.",
+        "typeLabel": "Transaction Type",
+        "typePlaceholder": "Select a type",
+        "types": {
+          "income": "Income",
+          "expense": "Expense"
+        },
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "e.g., Sale of 50kg of maize, Purchase of fertilizer",
+        "amountLabel": "Amount",
+        "amountPlaceholder": "e.g., 150.75",
+        "currencyLabel": "Currency",
+        "currencyPlaceholder": "e.g., USD",
+        "categoryLabel": "Category (Optional)",
+        "categoryPlaceholder": "e.g., Produce Sales, Labor, Inputs",
+        "categoryDescription": "Categorizing helps with analysis.",
+        "saveButton": "Save Transaction",
+        "savingButton": "Saving...",
+        "toast": {
+          "authErrorTitle": "Not Authenticated",
+          "authErrorDescription": "You must be signed in to log a transaction.",
+          "success": "Transaction Logged",
+          "description": "Your transaction has been successfully recorded.",
+          "fail": "Logging Failed"
+        }
+      },
+      "apply": {
+        "backLink": "Back to Financials",
+        "title": "Apply for Funding",
+        "description": "Submit an application for a loan or grant from a participating financial institution.",
+        "form": {
+          "institutionLabel": "Financial Institution",
+          "institutionPlaceholder": "Select an institution",
+          "noInstitutions": "No financial institutions available",
+          "typeLabel": "Application Type",
+          "loan": "Loan",
+          "grant": "Grant",
+          "amountLabel": "Amount",
+          "currencyLabel": "Currency",
+          "purposeLabel": "Purpose of Funding",
+          "purposePlaceholder": "Describe how you plan to use the funds (e.g., purchase equipment, expand operations, buy inputs).",
+          "purposeDescription": "Be specific. This will be sent to the financial institution for review.",
+          "submitButton": "Submit Application"
+        },
+        "toast": {
+          "error": "Error",
+          "fetchFiError": "Could not load financial institutions.",
+          "notAuthenticated": "You must be logged in to apply.",
+          "successTitle": "Application Submitted!",
+          "successDescription": "Your application has been sent for review."
+        }
+      }
+    },
+    "laborPage": {
+      "title": "Labor Management",
+      "description": "Track workers, hours, and payments for your farm.",
+      "backLink": "Back to Farm Hub",
+      "addWorker": "Add Worker",
+      "workerName": "Worker's Name",
+      "saveWorker": "Save Worker",
+      "logHours": "Log Hours",
+      "logPayment": "Log Payment",
+      "viewDetails": "View Details",
+      "noWorkers": "No workers added yet. Add your first worker to start tracking labor.",
+      "loading": "Loading...",
+      "hoursLogged": "Total Hours Logged",
+      "totalPaid": "Total Paid",
+      "logHoursFor": "Log Hours for",
+      "hoursWorked": "Hours Worked",
+      "date": "Date",
+      "pickDate": "Pick a date",
+      "taskDescription": "Task Description (Optional)",
+      "logPaymentFor": "Log Payment for",
+      "amountPaid": "Amount Paid (USD)",
+      "signInPrompt": {
+        "title": "Sign In Required",
+        "button": "Sign In"
+      },
+      "toast": {
+        "errorTitle": "Error",
+        "fetchWorkersError": "Could not fetch your list of workers.",
+        "nameRequired": "Worker name is required.",
+        "workerAdded": "Worker added successfully!",
+        "hoursLogged": "Hours have been logged.",
+        "paymentLoggedTitle": "Payment Logged",
+        "paymentLoggedDescription": "The payment has been recorded and an expense entry was created in your financial ledger."
+      },
+      "workerDetailPage": {
+        "backLink": "Back to Labor Management",
+        "notFoundTitle": "Worker Not Found",
+        "notFoundDescription": "The worker you are looking for does not exist.",
+        "goBackButton": "Go Back",
+        "workLogsTitle": "Work Logs",
+        "paymentHistoryTitle": "Payment History",
+        "table": {
+          "date": "Date",
+          "hours": "Hours",
+          "task": "Task",
+          "amount": "Amount"
+        },
+        "noWorkLogs": "No work hours have been logged for this worker.",
+        "noPayments": "No payments have been logged for this worker.",
+        "toasts": {
+          "errorTitle": "Error"
+        }
+      }
     }
   },
   "OfflineIndicator": {
@@ -2020,6 +2151,33 @@
         "title": "Error",
         "description": "Could not load services. Please try again later."
       }
+    }
+  },
+  "ProfilePage": {
+    "backToNetwork": "Back to Network",
+    "notFoundTitle": "Profile Not Found",
+    "notFoundDescription": "The profile you are looking for does not exist.",
+    "editProfile": "Edit Profile",
+    "showUniversalIdButton": "Show Universal ID",
+    "universalIdModalTitle": "Your Universal ID",
+    "universalIdModalDescription": "Other users can scan this QR code to quickly view your public profile.",
+    "connect": "Connect",
+    "message": "Message",
+    "summaryTitle": "Summary",
+    "aboutTitle": "About {displayName}",
+    "detailsTitle": "Details",
+    "contactTitle": "Contact Information",
+    "experienceTitle": "Experience",
+    "emailTitle": "Email",
+    "websiteTitle": "Website",
+    "interestsTitle": "Areas of Interest",
+    "needsTitle": "Looking For / Offering",
+    "recentActivityTitle": "Recent Activity",
+    "recentActivityDescription": "Latest actions and contributions on the {appName} platform.",
+    "noRecentActivity": "This user has no recent public activity.",
+    "tabs": {
+      "overview": "Overview",
+      "activity": "Activity"
     }
   }
 }
