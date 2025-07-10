@@ -5,6 +5,7 @@ import {
   getProfileByIdFromDB as getProfileByIdFromDB_internal,
   getAllProfilesFromDB as getAllProfilesFromDB_internal,
   performSearch as performSearch_internal,
+  getFinancialInstitutions as getFinancialInstitutions_internal
 } from './db-utils';
 import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";
 import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
@@ -70,4 +71,13 @@ export async function suggestCropRotationAction(input: CropRotationInput): Promi
         console.error("[Server Action] suggestCropRotationAction failed:", error);
         return { suggestions: [] };
     }
+}
+
+/**
+ * Server Action to fetch all financial institution profiles.
+ * It wraps the internal database utility function.
+ * @returns A promise that resolves to an array of UserProfile objects.
+ */
+export async function getFinancialInstitutions(): Promise<UserProfile[]> {
+  return getFinancialInstitutions_internal();
 }

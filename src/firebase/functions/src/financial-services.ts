@@ -763,32 +763,6 @@ const checkFiAuth = async (context: functions.https.CallableContext) => {
     return uid;
 };
 
-export const getFiApplications = functions.https.onCall(async (data, context) => {
-    const fiId = await checkFiAuth(context);
-    const { status } = data; // status can be "All", "Pending", "Approved", "Rejected"
-
-    let query: admin.firestore.Query = db.collection('financial_applications').where('fiId', '==', fiId);
-
-    if (status && status !== 'All') {
-        query = query.where('status', '==', status);
-    }
-    
-    query = query.orderBy('submittedAt', 'desc');
-
-    const snapshot = await query.get();
-    
-    const applications = snapshot.docs.map(doc => {
-        const appData = doc.data();
-        return {
-            id: doc.id,
-            ...appData,
-            submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
-        };
-    });
-
-    return { applications };
-});
-
 export const getFinancialApplicationDetails = functions.https.onCall(async (data, context) => {
     await checkFiAuth(context);
     const { applicationId } = data;
@@ -930,3 +904,15 @@ export const getFinancialProducts = functions.https.onCall(async (data, context)
     return { products };
 });
     
+
+export const getFinancialInstitutions = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
+    const fiSnapshot = await db.collection("users").where("primaryRole", "==", "Financial Institution (Micro-finance/Loans)").get();
+    
+    const fis = fiSnapshot.docs.map(doc => ({
+        id: doc.id,
+        displayName: doc.data().displayName,
+    }));
+
+    return fis;
+});
