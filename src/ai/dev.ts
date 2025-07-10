@@ -17,6 +17,7 @@ import '@/ai/flows/suggest-market-price-flow.ts';
 import '@/ai/tools/fgw-knf-knowledge-tool.ts';
 import '@/ai/flows/marketplace-recommendations.ts';
 import '@/ai/flows/crop-rotation-suggester';
+import '@/ai/flows/diagnose-crop-flow';
 
 
     
