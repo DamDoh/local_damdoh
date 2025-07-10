@@ -39,5 +39,20 @@
     "postButton": "Publicar",
     "pollOptionsError": "Una encuesta debe tener al menos 2 opciones no vacías.",
     "emptyPostError": "Tu publicación no puede estar vacía."
+  },
+  "Auth": {
+    "recoverPage": {
+      "title": "Recuperación de Cuenta",
+      "description": "Recupera el acceso a tu cuenta con la ayuda de un amigo de confianza.",
+      "howItWorksTitle": "Cómo funciona la recuperación social",
+      "step1": "Introduce tu número de teléfono para iniciar una sesión de recuperación.",
+      "step2": "Muestra el código QR generado a un amigo de confianza que también use DamDoh.",
+      "step3": "Tu amigo escanea el código con su aplicación para confirmar tu identidad.",
+      "startButton": "Iniciar Recuperación",
+      "scanTitle": "Pide a un Amigo que Escanee",
+      "scanDescription": "Pide a una conexión de confianza en tu red de DamDoh que escanee este código QR para verificar tu identidad.",
+      "scanNote": "Este código es temporal y expirará en 10 minutos.",
+      "startOverButton": "Empezar de Nuevo"
+    }
   }
 }

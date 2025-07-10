@@ -39,5 +39,20 @@
     "postButton": "Posten",
     "pollOptionsError": "Eine Umfrage muss mindestens 2 nicht leere Optionen haben.",
     "emptyPostError": "Ihr Beitrag darf nicht leer sein."
+  },
+  "Auth": {
+    "recoverPage": {
+      "title": "Kontowiederherstellung",
+      "description": "Erhalten Sie mit Hilfe eines vertrauenswürdigen Freundes wieder Zugriff auf Ihr Konto.",
+      "howItWorksTitle": "Wie die soziale Wiederherstellung funktioniert",
+      "step1": "Geben Sie Ihre Telefonnummer ein, um eine Wiederherstellungssitzung zu starten.",
+      "step2": "Zeigen Sie den generierten QR-Code einem vertrauenswürdigen Freund, der ebenfalls DamDoh verwendet.",
+      "step3": "Ihr Freund scannt den Code mit seiner App, um Ihre Identität zu bestätigen.",
+      "startButton": "Wiederherstellung starten",
+      "scanTitle": "Bitten Sie einen Freund zu scannen",
+      "scanDescription": "Lassen Sie eine vertrauenswürdige Verbindung in Ihrem DamDoh-Netzwerk diesen QR-Code scannen, um Ihre Identität zu überprüfen.",
+      "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
+      "startOverButton": "Neu starten"
+    }
   }
 }

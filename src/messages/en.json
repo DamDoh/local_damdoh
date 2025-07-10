@@ -39,5 +39,20 @@
     "postButton": "Post",
     "pollOptionsError": "A poll must have at least 2 non-empty options.",
     "emptyPostError": "Your post cannot be empty."
+  },
+  "Auth": {
+    "recoverPage": {
+      "title": "Account Recovery",
+      "description": "Regain access to your account with the help of a trusted friend.",
+      "howItWorksTitle": "How Social Recovery Works",
+      "step1": "Enter your phone number to start a recovery session.",
+      "step2": "Show the generated QR code to a trusted friend who also uses DamDoh.",
+      "step3": "Your friend scans the code with their app to confirm your identity.",
+      "startButton": "Start Recovery",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted connection in your DamDoh network scan this QR code to verify your identity.",
+      "scanNote": "This code is temporary and will expire in 10 minutes.",
+      "startOverButton": "Start Over"
+    }
   }
 }

@@ -39,5 +39,20 @@
     "postButton": "Publier",
     "pollOptionsError": "Un sondage doit avoir au moins 2 options non vides.",
     "emptyPostError": "Votre publication ne peut pas être vide."
+  },
+   "Auth": {
+    "recoverPage": {
+      "title": "Récupération de Compte",
+      "description": "Récupérez l'accès à votre compte avec l'aide d'un ami de confiance.",
+      "howItWorksTitle": "Comment fonctionne la récupération sociale",
+      "step1": "Entrez votre numéro de téléphone pour démarrer une session de récupération.",
+      "step2": "Montrez le code QR généré à un ami de confiance qui utilise également DamDoh.",
+      "step3": "Votre ami scanne le code avec son application pour confirmer votre identité.",
+      "startButton": "Démarrer la Récupération",
+      "scanTitle": "Demandez à un Ami de Scanner",
+      "scanDescription": "Demandez à une connexion de confiance de votre réseau DamDoh de scanner ce code QR pour vérifier votre identité.",
+      "scanNote": "Ce code est temporaire et expirera dans 10 minutes.",
+      "startOverButton": "Recommencer"
+    }
   }
 }
