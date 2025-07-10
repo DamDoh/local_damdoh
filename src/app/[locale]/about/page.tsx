@@ -1,9 +1,10 @@
+
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Leaf, Users, Shield, Heart, Handshake, CheckCircle, ArrowRight, BookOpen, Truck, CircleDollarSign, ShoppingCart, Brain, Briefcase, Globe } from "lucide-react";
+import { Leaf, Users, Shield, Heart, Handshake, CheckCircle, ArrowRight, BookOpen, Truck, CircleDollarSign, ShoppingCart, Brain, Briefcase, Globe, Database, Thermometer, Filter } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -13,15 +14,16 @@ export default function AboutPage() {
   const t = useTranslations('aboutPage');
 
   const challenges = [
-    { text: t('challenge.list.knowledge'), icon: <BookOpen className="h-5 w-5 text-destructive" /> },
-    { text: t('challenge.list.market'), icon: <ShoppingCart className="h-5 w-5 text-destructive" /> },
-    { text: t('challenge.list.quality'), icon: <CheckCircle className="h-5 w-5 text-destructive" /> },
-    { text: t('challenge.list.logistics'), icon: <Truck className="h-5 w-5 text-destructive" /> },
-    { text: t('challenge.list.financial'), icon: <CircleDollarSign className="h-5 w-5 text-destructive" /> },
-    { text: t('challenge.list.climate'), icon: <Leaf className="h-5 w-5 text-destructive" /> },
-    { text: t('challenge.list.informal'), icon: <Handshake className="h-5 w-5 text-destructive" /> },
+    { text: t('challenge.list.marketAccess'), icon: <ShoppingCart className="h-6 w-6 text-destructive" /> },
+    { text: t('challenge.list.inefficiency'), icon: <Truck className="h-6 w-6 text-destructive" /> },
+    { text: t('challenge.list.financialExclusion'), icon: <CircleDollarSign className="h-6 w-6 text-destructive" /> },
+    { text: t('challenge.list.informationGaps'), icon: <BookOpen className="h-6 w-6 text-destructive" /> },
+    { text: t('challenge.list.qualityTrust'), icon: <CheckCircle className="h-6 w-6 text-destructive" /> },
+    { text: t('challenge.list.climatePressure'), icon: <Thermometer className="h-6 w-6 text-destructive" /> },
+    { text: t('challenge.list.foodLoss'), icon: <Filter className="h-6 w-6 text-destructive" /> },
+    { text: t('challenge.list.dataFragmentation'), icon: <Database className="h-6 w-6 text-destructive" /> }
   ];
-
+  
   const solutions = [
     { text: t('solution.list.education'), icon: <BookOpen className="h-5 w-5 text-primary" /> },
     { text: t('solution.list.ai'), icon: <Brain className="h-5 w-5 text-primary" /> },
@@ -81,13 +83,16 @@ export default function AboutPage() {
           <Card className="bg-destructive/5 border-destructive/20">
               <CardHeader className="text-center">
                   <h2 className="text-3xl font-bold tracking-tight">{t('challenge.title')}</h2>
-                  <CardDescription>{t('challenge.description')}</CardDescription>
+                  <p className="text-destructive/80 max-w-2xl mx-auto mt-2">{t('challenge.description')}</p>
               </CardHeader>
-              <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
                   {challenges.map((challenge, index) => (
-                      <div key={index} className="flex items-start gap-3 p-3 bg-background rounded-lg">
-                          <div className="shrink-0">{challenge.icon}</div>
-                          <p className="text-sm text-muted-foreground">{challenge.text}</p>
+                      <div key={index} className="flex items-start gap-4 p-4 bg-background rounded-lg shadow-sm">
+                          <div className="flex-shrink-0 mt-1">{challenge.icon}</div>
+                          <div>
+                            <h4 className="font-semibold text-foreground">{challenge.text}</h4>
+                            <p className="text-sm text-muted-foreground">{t(`challenge.details.${index}`)}</p>
+                          </div>
                       </div>
                   ))}
               </CardContent>
