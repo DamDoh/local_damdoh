@@ -471,8 +471,23 @@
         "description": "Registre y siga su maquinaria agrícola, herramientas y otros activos valiosos. (Próximamente)",
         "button": "Gestionar Activos"
       }
+    },
+    "myFarms": {
+      "backToDashboard": "Volver al Centro de Gestión Agrícola",
+      "title": "Mis Granjas",
+      "addNewFarmButton": "Añadir Nueva Granja",
+      "size": "Tamaño",
+      "viewFarmButton": "Gestionar Granja",
+      "noFarmsTitle": "Aún no hay granjas",
+      "noFarmsDescription": "Comience añadiendo su primer perfil de granja.",
+      "auth": {
+        "title": "Por favor, inicie sesión",
+        "description": "Necesita iniciar sesión para ver sus granjas.",
+        "button": "Iniciar Sesión"
+      },
+      "toast": {
+        "errorTitle": "Error al obtener las granjas"
+      }
     }
   }
 }
-
-    

@@ -471,8 +471,111 @@
         "description": "Log and track your farm machinery, tools, and other valuable assets. (Coming Soon)",
         "button": "Manage Assets"
       }
+    },
+    "myFarms": {
+      "backToDashboard": "Back to Farm Management Hub",
+      "title": "My Farms",
+      "addNewFarmButton": "Add New Farm",
+      "size": "Size",
+      "viewFarmButton": "Manage Farm",
+      "noFarmsTitle": "No Farms Yet",
+      "noFarmsDescription": "Get started by adding your first farm profile.",
+      "auth": {
+        "title": "Please Sign In",
+        "description": "You need to be logged in to view your farms.",
+        "button": "Sign In"
+      },
+      "toast": {
+        "errorTitle": "Error fetching farms"
+      }
+    },
+    "createFarm": {
+      "backToFarms": "Back to My Farms",
+      "title": "Register a New Farm",
+      "description": "Provide the details for a new farm you own or manage.",
+      "form": {
+        "farmNameLabel": "Farm Name",
+        "farmNamePlaceholder": "e.g., Green Valley Organics",
+        "locationLabel": "Location",
+        "locationPlaceholder": "e.g., Nakuru, Kenya",
+        "locationDescription": "Provide the city, region, or general area.",
+        "sizeLabel": "Farm Size",
+        "sizePlaceholder": "e.g., 5 Hectares",
+        "sizeDescription": "Include the unit (e.g., acres, hectares).",
+        "typeLabel": "Farm Type",
+        "typePlaceholder": "Select a type",
+        "types": {
+          "crop": "Crop Farming",
+          "livestock": "Livestock Farming",
+          "mixed": "Mixed (Crops & Livestock)",
+          "aquaculture": "Aquaculture (Fish Farming)",
+          "other": "Other"
+        },
+        "descriptionLabel": "Description (Optional)",
+        "descriptionPlaceholder": "A brief description of your farm, its main activities, or mission.",
+        "irrigationLabel": "Irrigation Methods (Optional)",
+        "irrigationPlaceholder": "e.g., Drip irrigation, Rain-fed",
+        "irrigationDescription": "List the primary irrigation methods used.",
+        "submitButton": "Save Farm"
+      },
+      "toast": {
+        "authErrorTitle": "Authentication Error",
+        "authErrorDescription": "You must be logged in to create a farm.",
+        "successTitle": "Farm Created!",
+        "successDescription": "{farmName} has been successfully added to your profile.",
+        "errorTitle": "Creation Failed"
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Back to Farm Details",
+      "title": "Edit Farm Details",
+      "description": "Update the information for your farm.",
+      "form": {
+        "submitButton": "Save Changes"
+      },
+      "toast": {
+        "notFoundTitle": "Farm Not Found",
+        "loadError": "The farm you are trying to edit could not be found.",
+        "loadFail": "Failed to load farm data: {message}",
+        "errorTitle": "Error",
+        "successTitle": "Farm Updated",
+        "successDescription": "{farmName} has been successfully updated."
+      }
+    },
+    "createCrop": {
+      "backLink": "Back to Farm Details",
+      "title": "Log a New Crop",
+      "description": "Add a new crop or planting batch to your farm records.",
+      "cropTypeLabel": "Crop Type",
+      "cropTypePlaceholder": "e.g., Maize, Tomato, Coffee",
+      "cropTypeDescription": "What kind of crop are you planting?",
+      "plantingDateLabel": "Planting Date",
+      "harvestDateLabel": "Expected Harvest Date (Optional)",
+      "datePlaceholder": "Pick a date",
+      "yieldLabel": "Expected Yield (Optional)",
+      "yieldPlaceholder": "e.g., 5 Tons/Hectare",
+      "stageLabel": "Current Stage (Optional)",
+      "stagePlaceholder": "Select a stage",
+      "stages": {
+        "Planting": "Planting",
+        "Vegetative": "Vegetative",
+        "Flowering": "Flowering",
+        "Fruiting": "Fruiting",
+        "Harvesting": "Harvesting",
+        "Post-Harvest": "Post-Harvest"
+      },
+      "notesLabel": "Notes (Optional)",
+      "notesPlaceholder": "Add any relevant notes about this batch, like seed variety or plot number.",
+      "saveButton": "Save Crop",
+      "savingButton": "Saving...",
+      "toast": {
+        "authErrorTitle": "Authentication Error",
+        "authErrorDescription": "You must be logged in to add a crop.",
+        "successTitle": "Crop Added!",
+        "successDescription": "{cropType} has been added to your farm.",
+        "failTitle": "Failed to Add Crop",
+        "failDescription": "An error occurred while saving the crop. Please try again."
+      }
     }
   }
 }
-
-    

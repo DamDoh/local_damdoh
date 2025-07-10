@@ -471,8 +471,23 @@
         "description": "Enregistrez et suivez vos machines agricoles, outils et autres actifs de valeur. (Bientôt disponible)",
         "button": "Gérer les Actifs"
       }
+    },
+    "myFarms": {
+      "backToDashboard": "Retour au Centre de Gestion Agricole",
+      "title": "Mes Fermes",
+      "addNewFarmButton": "Ajouter une Nouvelle Ferme",
+      "size": "Taille",
+      "viewFarmButton": "Gérer la Ferme",
+      "noFarmsTitle": "Aucune Ferme pour le Moment",
+      "noFarmsDescription": "Commencez par ajouter votre premier profil de ferme.",
+      "auth": {
+        "title": "Veuillez vous Connecter",
+        "description": "Vous devez être connecté pour voir vos fermes.",
+        "button": "Se Connecter"
+      },
+      "toast": {
+        "errorTitle": "Erreur lors de la récupération des fermes"
+      }
     }
   }
 }
-
-    
