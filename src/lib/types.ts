@@ -262,6 +262,7 @@ export interface FiDashboardData {
         content: string;
         actionLink: string;
     }[];
+    activeProductsCount?: number;
 }
 
 export interface FieldAgentDashboardData {
@@ -796,12 +797,31 @@ export interface AgriTechInnovatorDashboardData {
 
 export interface ApiKey {
   id: string;
-  key: string;
+  key?: string; // Full key is only present on creation
+  keyPrefix: string;
   status: 'Active' | 'Revoked';
   environment: 'Sandbox' | 'Production';
   createdAt: string; // ISO String
   description: string;
-  keyPrefix: string;
+}
+
+
+export interface InsuranceProduct {
+    id: string;
+    providerId: string;
+    name: string;
+    type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
+    description: string;
+    coverageDetails: string;
+    premium: number;
+    currency: string;
+    status: 'Active' | 'Inactive';
+    createdAt: string;
+    updatedAt: string;
+    provider?: {
+        displayName: string;
+        avatarUrl?: string;
+    }
 }
 
 export interface FinancialProduct {
@@ -843,3 +863,4 @@ export interface AgroTourismDashboardData {
     actionLink: string;
   }[];
 }
+

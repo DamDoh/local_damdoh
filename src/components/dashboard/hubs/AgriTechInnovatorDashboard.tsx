@@ -9,7 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Brain, Key, Server, Rocket, Copy, EyeOff, Eye, PlusCircle, Trash2, Loader2 } from 'lucide-react';
+import { Brain, Key, Server, Rocket, Copy, EyeOff, Eye, PlusCircle, Trash2, Loader2, CheckCircle } from 'lucide-react';
 import type { ApiKey, AgriTechInnovatorDashboardData } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 import { format, formatDistanceToNow } from 'date-fns';
@@ -29,11 +29,11 @@ const ApiKeyRow = ({ apiKey, onRevoke }: { apiKey: ApiKey, onRevoke: (keyId: str
 
     const handleCopy = () => {
         if (!apiKey.key) {
-            toast({ title: "Key Not Available", description: "The full API key is only shown once upon creation for security.", variant: "destructive" });
+            toast({ title: t('toast.keyNotAvailable'), variant: "destructive" });
             return;
         }
         navigator.clipboard.writeText(apiKey.key);
-        toast({ title: t('apiKeyCopied') });
+        toast({ title: t('toast.apiKeyCopied') });
     };
 
     const handleRevokeClick = () => {
@@ -299,20 +299,20 @@ export const AgriTechInnovatorDashboard = () => {
      <Dialog open={!!newlyGeneratedKey} onOpenChange={(open) => !open && setNewlyGeneratedKey(null)}>
         <DialogContent>
             <DialogHeader>
-                <DialogTitle className="text-green-600 flex items-center gap-2"><CheckCircle className="h-5 w-5"/>API Key Generated Successfully</DialogTitle>
-                <DialogDescription>Please copy your new API key now. You will not be able to see it again for security reasons.</DialogDescription>
+                <DialogTitle className="text-green-600 flex items-center gap-2"><CheckCircle className="h-5 w-5"/>{t('newKeyModal.title')}</DialogTitle>
+                <DialogDescription>{t('newKeyModal.description')}</DialogDescription>
             </DialogHeader>
             <div className="p-4 bg-muted rounded-md font-mono break-all text-sm relative">
                 {newlyGeneratedKey?.key}
                 <Button variant="ghost" size="icon" className="absolute top-2 right-2 h-7 w-7" onClick={() => {
                     navigator.clipboard.writeText(newlyGeneratedKey?.key || '');
-                    toast({ title: "Copied!" });
+                    toast({ title: t('toast.apiKeyCopied') });
                 }}>
                     <Copy className="h-4 w-4" />
                 </Button>
             </div>
             <DialogFooter>
-                <Button onClick={() => setNewlyGeneratedKey(null)}>I have copied the key</Button>
+                <Button onClick={() => setNewlyGeneratedKey(null)}>{t('newKeyModal.closeButton')}</Button>
             </DialogFooter>
         </DialogContent>
     </Dialog>

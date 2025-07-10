@@ -45,8 +45,8 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
     return { 
         success: true, 
         message: 'API Key generated successfully. Please copy it now, you will not be able to see it again.',
-        apiKey: apiKey, // Return the full key to the user this one time.
-        keyId: keyRef.id,
+        key: apiKey, // Return the full key to the user this one time.
+        id: keyRef.id,
     };
 });
 
@@ -94,3 +94,4 @@ export const revokeApiKey = functions.https.onCall(async (data, context) => {
 
     return { success: true, message: 'API Key has been revoked.' };
 });
+
