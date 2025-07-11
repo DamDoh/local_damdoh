@@ -98,7 +98,7 @@
   "OfflineIndicator": {
     "tooltip": {
       "syncing": "Sincronizando {count} acciones pendientes...",
-      "onlinePending": "{count} acciones pendientes. La sincronización comenzará en breve.",
+      "onlinePending": "{count, plural, =1 {# acción pendiente} other {# acciones pendientes}}. La sincronización comenzará en breve.",
       "onlineSynced": "Estás en línea y todos los datos están sincronizados.",
       "offline": "Estás desconectado. {count, plural, =0 {No hay cambios pendientes.} =1 {1 cambio en cola.} other {{count} cambios en cola.}}"
     },
@@ -113,7 +113,7 @@
       },
       "syncing": {
         "title": "Sincronizando Datos",
-        "description": "Subiendo {count} acciones sin conexión al servidor."
+        "description": "Subiendo {count, plural, =1 {1 acción sin conexión} other {{count} acciones sin conexión}} al servidor."
       },
       "synced": {
         "title": "Sincronización Completa",
@@ -211,7 +211,1078 @@
     "photoVideo": "Foto/Video",
     "agriEvent": "Evento Agrícola",
     "createPoll": "Crear Encuesta"
+  },
+  "CropRotationSuggester": {
+    "title": "Sugerencias de Rotación de Cultivos",
+    "description": "Obtenga sugerencias de cultivos impulsadas por IA para mejorar la salud del suelo y los rendimientos.",
+    "buttonText": "Obtener Sugerencias",
+    "regenerateButton": "Regenerar Sugerencias",
+    "error": "No se pudieron obtener sugerencias. Por favor, inténtelo de nuevo más tarde.",
+    "noSuggestions": "No se encontraron sugerencias adecuadas para este historial de cultivos."
+  },
+  "AppFooter": {
+    "tagline": "Conectando la cadena de valor agrícola para un futuro sostenible.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Sobre Nosotros",
+    "contactLabel": "Contacto",
+    "careersLabel": "Carreras",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Recursos",
+    "helpCenterLabel": "Centro de ayuda",
+    "communityGuidelinesLabel": "Normas de la comunidad",
+    "industryNewsLabel": "Noticias del sector",
+    "eventsLabel": "Eventos",
+    "talentExchangeLabel": "Bolsa de talentos",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Política de privacidad",
+    "termsOfServiceLabel": "Términos de servicio",
+    "copyright": "© {year} {appName}. Todos los derechos reservados.",
+    "getMobileApp": "Obtener la aplicación móvil",
+    "googlePlayAlt": "Obtenlo en Google Play",
+    "appStoreAlt": "Descargar en la App Store"
+  },
+  "Auth": {
+    "signInWelcome": "Bienvenido de nuevo a {appName}",
+    "signUpWelcome": "Únase a la Red Agrícola de {appName}",
+    "forgotPasswordResetPrompt": "Restablezca su contraseña de {appName}",
+    "resetPasswordPrompt": "Cree una nueva contraseña para su cuenta de {appName}",
+    "signInTitle": "Inicie sesión en su cuenta",
+    "signInDescription": "Ingrese sus credenciales para acceder a su panel de control.",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "usted@ejemplo.com",
+    "passwordLabel": "Contraseña",
+    "forgotPasswordLink": "¿Olvidó su contraseña?",
+    "signingInButton": "Iniciando sesión...",
+    "signInButton": "Iniciar Sesión",
+    "noAccountPrompt": "¿No tiene una cuenta?",
+    "signUpLink": "Registrarse",
+    "signInLink": "Iniciar Sesión",
+    "recoverWithUniversalIdPrompt": "O recuperar cuenta con su ID Universal",
+    "signUpTitle": "Crear una Nueva Cuenta",
+    "signUpDescription": "Cuéntenos un poco sobre usted para comenzar.",
+    "nameLabel": "Su Nombre o Nombre de la Empresa",
+    "namePlaceholder": "p. ej. Jane Doe o Granjas del Valle Verde",
+    "roleLabel": "Su Rol Principal",
+    "rolePlaceholder": "Seleccione su rol en la cadena de suministro...",
+    "confirmPasswordLabel": "Confirmar Contraseña",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Creando cuenta...",
+    "signUpButton": "Crear Cuenta",
+    "alreadyHaveAccountPrompt": "¿Ya tiene una cuenta?",
+    "forgotPasswordTitle": "¿Olvidó su Contraseña?",
+    "forgotPasswordDescription": "No hay problema. Ingrese su dirección de correo electrónico a continuación y le enviaremos un enlace de reinicio.",
+    "sendResetLinkButton": "Enviar Enlace de Reinicio",
+    "sendingEmailButton": "Enviando correo electrónico...",
+    "rememberPasswordPrompt": "¿Recordó su contraseña?",
+    "resetPasswordTitle": "Restablecer Contraseña",
+    "resetPasswordDescription": "Ingrese y confirme su nueva contraseña a continuación.",
+    "newPasswordLabel": "Nueva Contraseña",
+    "newPasswordPlaceholder": "Ingrese una nueva contraseña segura",
+    "resetPasswordButton": "Restablecer Contraseña",
+    "resettingPasswordButton": "Restableciendo...",
+    "recoverPage": {
+      "title": "Recuperación de Cuenta",
+      "description": "Use su red para recuperar el acceso.",
+      "howItWorksTitle": "Cómo Funciona",
+      "step1": "Ingrese su número de teléfono para iniciar una sesión de recuperación.",
+      "step2": "Muestre el código QR temporal a un amigo de confianza en DamDoh.",
+      "step3": "Una vez que su amigo escanee el código para verificar su identidad, recuperará el acceso.",
+      "startButton": "Iniciar Recuperación de Cuenta",
+      "scanTitle": "Pídale a un Amigo que Escanee",
+      "scanDescription": "Haga que un contacto de confianza en DamDoh escanee este código QR con la función 'Ayudar a un amigo a recuperar' en su aplicación.",
+      "scanNote": "Este código es temporal y caducará en 10 minutos.",
+      "startOverButton": "Comenzar de Nuevo"
+    },
+    "forgotPassword": {
+      "emailSentTitle": "Revise su Correo Electrónico",
+      "emailSentDescription": "Se ha enviado un enlace para restablecer la contraseña a {email}.",
+      "emailSentDescriptionIfAccountExists": "Si existe una cuenta con {email}, se ha enviado un enlace para restablecer la contraseña.",
+      "successTitle": "¡Correo Enviado!",
+      "successDescription": "Por favor, revise su bandeja de entrada (y la carpeta de spam) para ver el enlace de restablecimiento de contraseña.",
+      "errors": {
+        "unexpected": "Ocurrió un error inesperado. Por favor, inténtelo de nuevo.",
+        "invalidEmail": "La dirección de correo electrónico no es válida.",
+        "tooManyRequests": "Demasiadas solicitudes. Por favor, inténtelo de nuevo más tarde.",
+        "default": "Error al enviar el correo electrónico de reinicio"
+      }
+    },
+    "resetPassword": {
+      "successTitle": "¡Contraseña Restablecida con Éxito!",
+      "successDescription": "Ahora puede iniciar sesión con su nueva contraseña.",
+      "successRedirect": "Será redirigido a la página de inicio de sesión en breve.",
+      "errors": {
+        "missingCode": "Enlace de restablecimiento de contraseña no válido. Por favor, solicite uno nuevo.",
+        "missingCodeTitle": "Enlace No Válido",
+        "missingCodeDescription": "El enlace de restablecimiento de contraseña falta o no es válido. Por favor, vuelva a la página de Olvidé mi Contraseña para solicitar uno nuevo.",
+        "unexpected": "Ocurrió un error inesperado. Por favor, inténtelo de nuevo.",
+        "invalidOrExpiredCode": "El enlace de restablecimiento de contraseña no es válido o ha caducado. Por favor, solicite uno nuevo.",
+        "userDisabled": "Esta cuenta de usuario ha sido deshabilitada.",
+        "userNotFound": "No se encontró ningún usuario correspondiente a este enlace de reinicio.",
+        "weakPassword": "La nueva contraseña no es lo suficientemente segura.",
+        "default": "Error al restablecer la contraseña"
+      }
+    },
+    "error": "Error"
+  },
+  "searchPage": {
+    "title": "Búsqueda Universal",
+    "description": "Encuentre cualquier cosa en la plataforma DamDoh, desde productos y servicios hasta personas y discusiones.",
+    "placeholder": "Busque café orgánico, reparación de tractores o un usuario...",
+    "searchButton": "Buscar",
+    "popularSearches": "Búsquedas Populares",
+    "popularSearch1": "Fertilizante Orgánico",
+    "popularSearch2": "Logística en Kenia",
+    "popularSearch3": "Compradores de café Europa",
+    "popularSearch4": "Mano de Obra Agrícola",
+    "popularSearch5": "Alquiler de Tractor",
+    "modal": {
+      "title": "Búsqueda Universal",
+      "placeholder": "Estoy buscando...",
+      "searchButton": "Buscar",
+      "searchError": "Búsqueda Fallida",
+      "searchErrorDescription": "Ocurrió un error inesperado durante la búsqueda. Por favor, inténtelo de nuevo.",
+      "invalidCodeError": "Este no parece ser un código QR válido de DamDoh.",
+      "scanFailed": "Escaneo Fallido",
+      "scanError": "Error de Escaneo",
+      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtelo de nuevo.",
+      "interpretationTitle": "Interpretación de IA",
+      "interpretationNotesDefault": "Mostrando resultados generales.",
+      "filtersTitle": "Filtros Aplicados",
+      "results": {
+        "users": "Perfiles",
+        "marketplaceItems": "Mercado",
+        "forums": "Foros",
+        "vti_registry": "Informe de Trazabilidad",
+        "knowledge_articles": "Centro de Conocimiento",
+        "agri_events": "Eventos Agrícolas"
+      },
+      "noResults": "No se encontraron resultados para su consulta.",
+      "tryAgain": "Pruebe con un término de búsqueda diferente o utilice palabras clave más amplias."
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Cultivando Conexiones, Cosechando Prosperidad",
+      "subtitle": "Estamos en una misión para digitalizar y conectar la cadena de suministro agrícola global, empoderando a cada parte interesada desde el suelo hasta el estante."
+    },
+    "vision": {
+      "title": "Nuestra Visión para un Futuro Conectado",
+      "p1": "DamDoh nació de una idea simple pero poderosa: que la tecnología puede cerrar las brechas en el mundo agrícola. Imaginamos un mundo donde los pequeños agricultores tienen acceso directo a los mercados globales, donde los compradores pueden obtener productos con confianza verificable, y donde el conocimiento fluye libremente para crear un sistema alimentario más sostenible y equitativo.",
+      "p2": "Somos más que una plataforma; somos una comunidad dedicada a resolver desafíos del mundo real con soluciones innovadoras y centradas en el usuario.",
+      "foundersTitle": "De los Fundadores"
+    },
+    "challenge": {
+      "title": "El Paisaje Fragmentado de la Agricultura",
+      "description": "La cadena de suministro agrícola es un ecosistema complejo y a menudo desconectado, que presenta numerosos desafíos para todos los involucrados.",
+      "list": {
+        "marketAccess": "Acceso al Mercado",
+        "inefficiency": "Logística Ineficiente",
+        "financialExclusion": "Exclusión Financiera",
+        "informationGaps": "Brechas de Información",
+        "qualityTrust": "Calidad y Confianza",
+        "climatePressure": "Presión Climática",
+        "foodLoss": "Pérdida de Alimentos",
+        "dataFragmentation": "Fragmentación de Datos"
+      },
+      "details": [
+        "Los pequeños agricultores luchan por conectarse con mercados más grandes y rentables.",
+        "La mala coordinación conduce a altos costos y pérdidas poscosecha significativas.",
+        "La falta de registros formales impide el acceso a crédito, préstamos y seguros.",
+        "Los agricultores carecen de acceso a técnicas modernas y datos de mercado en tiempo real.",
+        "Los compradores enfrentan incertidumbre sobre la calidad, el origen y las prácticas agrícolas de los productos.",
+        "La creciente imprevisibilidad requiere sistemas de cultivo más resilientes.",
+        "Una porción significativa de los alimentos se pierde entre la granja y el consumidor.",
+        "La información aislada impide una visión holística de la cadena de suministro."
+      ]
+    },
+    "solution": {
+      "title": "La Solución DamDoh: un Ecosistema Integrado",
+      "description": "Abordamos estos desafíos proporcionando una plataforma única y unificada con herramientas para todos.",
+      "list": {
+        "education": "Educación Impulsada por IA",
+        "ai": "Redes Inteligentes e IA",
+        "logistics": "Logística Integrada",
+        "financial": "Servicios Financieros"
+      }
+    },
+    "beyondTechnology": {
+      "title": "Más que Solo Tecnología",
+      "list": {
+        "p2p": {
+          "title": "De igual a igual (Peer-to-Peer)",
+          "content": "Agricultores que se conectan con otros agricultores para compartir conocimientos y formar cooperativas."
+        },
+        "p2b": {
+          "title": "Productor a Empresa (Producer-to-Business)",
+          "content": "Vínculos directos entre agricultores y compradores, procesadores y exportadores, eliminando intermediarios innecesarios."
+        },
+        "p2e": {
+          "title": "Productor a Experto (Producer-to-Expert)",
+          "content": "Acceso a agrónomos, asesores financieros y proveedores de logística para mejorar las operaciones."
+        },
+        "p2w": {
+          "title": "Productor al Mundo (Producer-to-World)",
+          "content": "Permitir que los pequeños agricultores participen en el mercado global con confianza y transparencia."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Únase a Nuestro Ecosistema en Crecimiento",
+      "p1": "Nuestro compromiso es con las personas que alimentan al mundo. Creemos que al proporcionar las herramientas digitales que necesitan, podemos fomentar un sector agrícola más resiliente, rentable y sostenible para las generaciones venideras.",
+      "p2": "Ya sea que esté plantando una semilla, comprando a granel o financiando una granja, tiene un lugar en la comunidad de DamDoh.",
+      "p3": "Crezcamos juntos.",
+      "button": "Cree su Perfil"
+    }
+  },
+  "careersPage": {
+    "title": "Carreras en DamDoh",
+    "subtitle": "Únase a un equipo apasionado dedicado a revolucionar la cadena de suministro agrícola global.",
+    "whyWorkWithUs": {
+      "title": "¿Por qué trabajar con nosotros?",
+      "intro": "En DamDoh, no solo estamos construyendo un producto; estamos construyendo un movimiento. Creemos en el poder de la tecnología para crear un sistema alimentario más equitativo y sostenible. Únase a nosotros para:",
+      "point1": "Trabajar en problemas desafiantes con un impacto en el mundo real.",
+      "point2": "Colaborar con un equipo diverso, talentoso y motivado por la misión.",
+      "point3": "Disfrutar de una cultura de aprendizaje, crecimiento e innovación.",
+      "point4": "Dar forma al futuro de la agricultura a escala global.",
+      "point5": "Beneficiarse de un entorno de trabajo flexible y de apoyo."
+    },
+    "currentOpenings": {
+      "title": "Ofertas de Empleo Actuales"
+    },
+    "noOpenings": {
+      "title": "No hay vacantes en este momento",
+      "content1": "Siempre estamos buscando personas apasionadas y talentosas. Si cree en nuestra misión y piensa que puede contribuir, nos encantaría saber de usted. Por favor, envíe su currículum y una carta de presentación a ",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Postular ahora",
+    "openings": {
+      "job1": {
+        "title": "Ingeniero Frontend Senior (Next.js)",
+        "location": "Remoto / Nairobi, Kenia",
+        "type": "Tiempo completo",
+        "description": "Estamos buscando un ingeniero frontend experimentado para liderar el desarrollo de nuestras aplicaciones web y móviles orientadas al usuario utilizando Next.js y TypeScript."
+      },
+      "job2": {
+        "title": "Ingeniero de IA/ML - Perspectivas Agrícolas",
+        "location": "Remoto / Global",
+        "type": "Tiempo completo",
+        "description": "Desarrollar e implementar modelos de aprendizaje automático para el diagnóstico de cultivos, la predicción de precios de mercado y recomendaciones personalizadas para los usuarios."
+      },
+      "job3": {
+        "title": "Gerente de Alianzas Regionales - África Oriental",
+        "location": "Nairobi, Kenia",
+        "type": "Tiempo completo",
+        "description": "Construir y gestionar alianzas estratégicas con cooperativas, instituciones financieras y proveedores de logística en toda África Oriental."
+      }
+    }
+  },
+  "communityGuidelines": {
+    "title": "Normas de la Comunidad",
+    "subtitle": "Nuestro compromiso con un entorno seguro, respetuoso y profesional.",
+    "intro": "¡Bienvenido a la comunidad de DamDoh! Nuestra misión es conectar la cadena de suministro agrícola global. Para asegurar que este sea un espacio productivo y de confianza para todos, le pedimos que siga estas pautas.",
+    "respectful": {
+      "title": "Sea Respetuoso y Constructivo",
+      "description": "Trate a todos los miembros con respeto, incluso cuando no esté de acuerdo. Se fomenta el debate saludable, pero no se tolerarán los ataques personales, el acoso, el discurso de odio o la intimidación."
+    },
+    "authentic": {
+      "title": "Sea Auténtico y Honesto",
+      "description": "Represéntese a sí mismo y a su negocio con veracidad. No se haga pasar por otros ni proporcione información engañosa sobre sus productos, servicios o credenciales."
+    },
+    "relevant": {
+      "title": "Manténgase en el Tema y Agregue Valor",
+      "description": "Mantenga sus publicaciones y comentarios relevantes para el foro o el tema de discusión. Comparta ideas valiosas, haga preguntas reflexivas y evite el spam o la autopromoción excesiva."
+    },
+    "fairTrade": {
+      "title": "Practique el Comercio Justo",
+      "description": "Realice todos los negocios en el mercado con integridad. Cumpla con sus pedidos, pague los precios acordados y comuníquese de manera clara y profesional."
+    },
+    "sustainable": {
+      "title": "Promueva la Sostenibilidad",
+      "description": "Aunque no es un requisito para todos, fomentamos las discusiones y prácticas que promueven la gestión ambiental, la salud del suelo y la sostenibilidad a largo plazo."
+    },
+    "reporting": {
+      "title": "Reportar Violaciones",
+      "content": "Si ve contenido que viola estas pautas, por favor repórtelo a nuestro equipo de moderación. Puede marcar las publicaciones o contactarnos directamente en {emailLink}."
+    },
+    "emailLinkText": "support@damdoh.org",
+    "conclusion": "Al usar DamDoh, usted acepta estas pautas. Nos reservamos el derecho de eliminar contenido y suspender cuentas que violen estos principios. Gracias por ayudarnos a construir una comunidad positiva y profesional."
+  },
+  "contactPage": {
+    "title": "Contáctenos",
+    "subtitle": "Estamos aquí para ayudar. Contáctenos a través de cualquiera de los siguientes canales.",
+    "emailUs": {
+      "title": "Envíenos un Correo Electrónico",
+      "general": "Consultas Generales",
+      "support": "Soporte",
+      "partnerships": "Alianzas"
+    },
+    "callUs": {
+      "title": "Llámenos",
+      "hours": "Lun - Vie, 9am - 5pm (EAT)",
+      "phone": "+254 700 000 000"
+    },
+    "ourOffice": {
+      "title": "Nuestra Oficina",
+      "org": "DamDoh Inc.",
+      "address": "123 Agri-Tech Ave, Nairobi, Kenia"
+    },
+    "sendMessage": {
+      "title": "Envíenos un Mensaje",
+      "nameLabel": "Su Nombre",
+      "namePlaceholder": "Juan Pérez",
+      "emailLabel": "Su Correo Electrónico",
+      "emailPlaceholder": "usted@ejemplo.com",
+      "subjectLabel": "Asunto",
+      "subjectPlaceholder": "p. ej. Consulta de Alianza",
+      "messageLabel": "Su Mensaje",
+      "messagePlaceholder": "Escriba su mensaje aquí...",
+      "buttonText": "Enviar Mensaje",
+      "note": "Haremos todo lo posible para responder dentro de 24 horas hábiles."
+    }
+  },
+  "helpCenterPage": {
+    "title": "Centro de Ayuda",
+    "subtitle": "Encuentre respuestas a sus preguntas y aprenda cómo aprovechar al máximo DamDoh.",
+    "howCanWeHelp": "¿Cómo podemos ayudarle?",
+    "searchPlaceholder": "Buscar artículos...",
+    "browseTopics": "Explorar Temas",
+    "gettingStarted": {
+      "title": "Primeros Pasos",
+      "description": "Aprenda los conceptos básicos para configurar su perfil y navegar por la plataforma.",
+      "placeholder": "El contenido de 'Primeros Pasos' se agregará aquí."
+    },
+    "marketplaceGuide": {
+      "title": "Guía del Mercado",
+      "description": "Cómo comprar, vender y crear anuncios de manera efectiva.",
+      "placeholder": "El contenido de la 'Guía del Mercado' se agregará aquí."
+    },
+    "accountManagement": {
+      "title": "Gestión de Cuenta",
+      "description": "Administre su configuración, notificaciones y privacidad.",
+      "placeholder": "El contenido de 'Gestión de Cuenta' se agregará aquí."
+    },
+    "troubleshooting": {
+      "title": "Solución de Problemas",
+      "description": "Encuentre soluciones a problemas comunes y dificultades técnicas.",
+      "placeholder": "El contenido de 'Solución de Problemas' se agregará aquí."
+    },
+    "stillNeedHelp": {
+      "title": "¿Aún necesita ayuda?",
+      "description": "Si no puede encontrar lo que busca, nuestro equipo de soporte estará encantado de ayudarle.",
+      "button": "Contactar a Soporte"
+    }
+  },
+  "industryNewsPage": {
+    "title": "Noticias del Sector",
+    "description": "Manténgase informado con las últimas noticias, tendencias e investigaciones en el sector agrícola mundial.",
+    "searchPlaceholder": "Buscar artículos de noticias...",
+    "categoryPlaceholder": "Filtrar por categoría...",
+    "allCategories": "Todas las categorías",
+    "sourceLabel": "Fuente",
+    "publishedLabel": "Publicado",
+    "categoryLabel": "Categoría",
+    "readButton": "Leer Historia Completa",
+    "noNews": {
+      "title": "No se encontraron noticias",
+      "description": "No hay artículos de noticias que coincidan con su búsqueda o filtros actuales. Por favor, inténtelo de nuevo más tarde."
+    },
+    "news1": {
+      "title": "Los precios mundiales del café aumentan en medio de interrupciones en la cadena de suministro",
+      "excerpt": "Una combinación de clima adverso en regiones de cultivo clave y desafíos logísticos continuos ha elevado los futuros del café a un máximo de dos años..."
+    },
+    "news2": {
+      "title": "La UE implementa nuevas regulaciones de empaque sostenible para importaciones de alimentos",
+      "excerpt": "Nuevas regulaciones que entrarán en vigor el próximo trimestre requerirán que todas las importaciones de alimentos cumplan con criterios más estrictos para empaques reciclables y compostables..."
+    },
+    "news3": {
+      "title": "Estudio muestra que las prácticas de agricultura regenerativa aumentan el carbono del suelo hasta en un 25%",
+      "excerpt": "Un estudio de una década revela que la agricultura sin labranza y los cultivos de cobertura pueden mejorar significativamente la captura de carbono en el suelo, ofreciendo una herramienta clave en la mitigación del cambio climático..."
+    }
+  },
+  "pinboardPage": {
+    "title": "Mi Tablero",
+    "description": "Su espacio personal para guardar perfiles, artículos y listados de mercado interesantes.",
+    "comingSoonTitle": "¡El Tablero llegará pronto!",
+    "comingSoonDescription": "Esta función le permitirá marcar contenido importante de toda la plataforma DamDoh para que pueda encontrarlo fácilmente más tarde.",
+    "stayTuned": "¡Manténgase atento a las actualizaciones!"
+  },
+  "settingsPage": {
+    "title": "Configuración",
+    "description": "Administre su perfil, la seguridad de la cuenta y las preferencias de notificación.",
+    "profileTab": "Perfil",
+    "accountTab": "Cuenta",
+    "notificationsTab": "Notificaciones",
+    "privacyTab": "Privacidad",
+    "appearanceTab": "Apariencia",
+    "stakeholderProfile": {
+      "title": "Perfil de Interesado",
+      "description": "Esta es su identidad profesional en DamDoh. Manténgala actualizada para atraer las oportunidades adecuadas."
+    },
+    "account": {
+      "title": "Configuración de la Cuenta",
+      "description": "Administre sus opciones de inicio de sesión y la seguridad de la cuenta.",
+      "currentPasswordLabel": "Contraseña Actual",
+      "newPasswordLabel": "Nueva Contraseña",
+      "confirmPasswordLabel": "Confirmar Nueva Contraseña",
+      "changePasswordButton": "Cambiar Contraseña",
+      "deactivateButton": "Desactivar Cuenta"
+    },
+    "notifications": {
+      "title": "Preferencias de Notificación",
+      "description": "Elija cómo desea ser notificado sobre la actividad en la plataforma.",
+      "emailDigestLabel": "Resumen por Correo Electrónico",
+      "emailDigestDescription": "Reciba un resumen de sus notificaciones por correo electrónico.",
+      "connectionRequestsLabel": "Solicitudes de Conexión",
+      "connectionRequestsDescription": "Notificarme cuando reciba nuevas solicitudes de conexión.",
+      "forumMentionsLabel": "Menciones y Respuestas del Foro",
+      "forumMentionsDescription": "Notificarme cuando alguien responda a mi publicación o me mencione.",
+      "marketplaceActivityLabel": "Actividad del Mercado",
+      "marketplaceActivityDescription": "Reciba actualizaciones sobre sus pedidos y listados.",
+      "talentExchangeLabel": "Bolsa de Talentos",
+      "talentExchangeDescription": "Reciba actualizaciones sobre sus ofertas de trabajo y servicios.",
+      "saveButton": "Guardar Preferencias"
+    },
+    "privacy": {
+      "title": "Privacidad y Visibilidad",
+      "description": "Controle quién puede ver su perfil y su actividad.",
+      "profileVisibilityLabel": "Visibilidad del Perfil",
+      "profileVisibilityDescription": "¿Quién puede ver su perfil completo?",
+      "profileVisibilityAll": "Todos",
+      "profileVisibilityConnections": "Solo Conexiones",
+      "profileVisibilityPrivate": "Privado (Solo yo)",
+      "connectionRequestsLabel": "¿Quién puede enviarle solicitudes de conexión?",
+      "connectionRequestsDescription": "Limite quién puede iniciar una nueva conexión con usted.",
+      "connectionRequestsAll": "Todos",
+      "connectionRequestsConnectionsOfConnections": "Conexiones de Conexiones",
+      "contactInfoVisibilityLabel": "¿Quién puede ver su información de contacto?",
+      "contactInfoVisibilityDescription": "Controle la visibilidad de su correo electrónico y número de teléfono.",
+      "contactInfoVisibilityAll": "Todos",
+      "contactInfoVisibilityConnections": "Solo Conexiones",
+      "activityStatusLabel": "Mostrar mi estado de actividad",
+      "activityStatusDescription": "Deje que otros sepan cuándo está activo en DamDoh.",
+      "searchIndexingLabel": "Visibilidad del Perfil en Buscadores",
+      "searchIndexingDescription": "Permitir que su perfil aparezca en motores de búsqueda externos.",
+      "saveButton": "Guardar Configuración de Privacidad",
+      "dataConsentTitle": "Compartir Datos y Consentimiento",
+      "dataConsentDescription": "Para proporcionar una experiencia fluida, DamDoh puede usar sus datos en diferentes módulos. Usted controla cómo se comparten sus datos.",
+      "marketplaceHistoryLabel": "Compartir Historial del Mercado con Instituciones Financieras",
+      "marketplaceHistoryDescription": "Permita que las instituciones financieras de confianza vean su historial de transacciones cuando solicite un préstamo o una subvención, lo que podría conducir a mejores ofertas.",
+      "traceabilityDataLabel": "Hacer que los Datos de VTI sean Buscables Públicamente",
+      "traceabilityDataDescription": "Permita que cualquier persona con un VTI vea su informe de trazabilidad público completo, aumentando la transparencia y la confianza.",
+      "financialApplicationDataLabel": "Usar Datos de Solicitud para Coincidencia de IA",
+      "financialApplicationDataDescription": "Permita que nuestra IA analice sus datos de solicitud anónimos para encontrar mejores coincidencias con productos financieros adecuados.",
+      "saveConsentButton": "Guardar Consentimientos"
+    },
+    "appearance": {
+      "title": "Apariencia",
+      "description": "Personalice la apariencia de la aplicación.",
+      "themeLabel": "Tema",
+      "themeDescription": "Elija un tema claro u oscuro para su interfaz.",
+      "lightTheme": "Claro",
+      "darkTheme": "Oscuro",
+      "languageLabel": "Idioma",
+      "languageDescription": "Seleccione su idioma preferido.",
+      "switchToLightAria": "Cambiar a modo claro",
+      "switchToDarkAria": "Cambiar a modo oscuro"
+    }
+  },
+  "walletPage": {
+    "title": "Mi Billetera",
+    "description": "Administre sus fondos, vea el historial de transacciones y acceda a servicios financieros.",
+    "underDevelopmentTitle": "¡La función de Billetera llegará pronto!",
+    "underDevelopmentDescription": "Estamos trabajando arduamente para ofrecerle una experiencia financiera segura y fluida directamente en la plataforma DamDoh. La billetera permitirá:",
+    "feature1": "Almacenamiento seguro de fondos",
+    "feature2": "Pagos instantáneos a otros usuarios",
+    "feature3": "Retiros fáciles de las ventas del mercado",
+    "feature4": "Integración con dinero móvil y bancos",
+    "stayTuned": "¡Esté atento a las actualizaciones!"
+  },
+  "blogPage": {
+    "title": "Blog de DamDoh",
+    "description": "Ideas, historias y actualizaciones del mundo de la agricultura y la tecnología de la cadena de suministro.",
+    "meta": "Por {author} el {date}",
+    "readMore": "Leer Más",
+    "backLink": "Volver al Blog",
+    "originalContentTitle": "Contenido original en {lang}",
+    "error": {
+      "title": "Error",
+      "description": "No se pudieron cargar las publicaciones del blog. Por favor, inténtelo de nuevo más tarde."
+    },
+    "notFound": {
+      "title": "Publicación No Encontrada",
+      "description": "La publicación del blog que busca no existe.",
+      "backButton": "Volver al Blog"
+    },
+    "noPosts": {
+      "title": "Aún no hay publicaciones",
+      "description": "No hay publicaciones de blog disponibles en este momento. ¡Vuelva pronto para ver actualizaciones e ideas!"
+    }
+  },
+  "common": {
+    "error": "Error",
+    "success": "Éxito"
+  },
+  "toast": {
+    "loggedOut": {
+      "title": "Sesión Cerrada",
+      "description": "Ha cerrado sesión correctamente."
+    },
+    "logoutFailed": {
+      "title": "Error al Cerrar Sesión",
+      "description": "No se pudo cerrar su sesión. Por favor, inténtelo de nuevo."
+    },
+    "signInSuccess": {
+      "title": "¡Inicio de Sesión Exitoso!",
+      "description": "Bienvenido de nuevo a {appName}."
+    },
+    "signInFailed": {
+      "title": "Error al Iniciar Sesión"
+    },
+    "signUpSuccess": {
+      "title": "¡Cuenta Creada e Inicio de Sesión Exitoso!",
+      "description": "¡Bienvenido a {appName}! Ha iniciado sesión correctamente."
+    },
+    "signUpFailed": {
+      "title": "Error al Registrarse"
+    }
+  },
+  "formErrors": {
+    "createMarketplaceItem": {
+      "name": {
+        "min": "El nombre debe tener al menos 3 caracteres.",
+        "max": "El nombre no puede exceder los 100 caracteres."
+      },
+      "listingType": {
+        "required": "Por favor, seleccione un tipo de listado (Producto o Servicio)."
+      },
+      "description": {
+        "min": "La descripción debe tener al menos 10 caracteres.",
+        "max": "La descripción no puede exceder los 2000 caracteres."
+      },
+      "price": {
+        "invalid": "El precio debe ser un número.",
+        "min": "El precio no puede ser negativo."
+      },
+      "currency": {
+        "length": "La moneda debe ser un código de 3 letras."
+      },
+      "perUnit": {
+        "max": "La descripción de la unidad (p. ej., /kg, /ton, /hora) es demasiado larga."
+      },
+      "category": {
+        "required": "Por favor, seleccione una categoría válida."
+      },
+      "location": {
+        "min": "La ubicación debe tener al menos 2 caracteres.",
+        "max": "La ubicación no puede exceder los 100 caracteres."
+      },
+      "imageUrl": {
+        "invalid": "Por favor, ingrese una URL válida para la imagen (p. ej., https://placehold.co/300x200.png)."
+      },
+      "contactInfo": {
+        "min": "La información de contacto debe tener al menos 5 caracteres.",
+        "max": "La información de contacto no puede exceder los 200 caracteres."
+      },
+      "skillsRequired": {
+        "max": "La lista de habilidades es demasiado larga (máx. 250 caracteres)."
+      },
+      "compensation": {
+        "max": "Los detalles de compensación son demasiado largos (máx. 100 caracteres)."
+      },
+      "brand": {
+        "max": "El nombre de la marca es demasiado largo."
+      },
+      "certifications": {
+        "max": "La lista de certificaciones es demasiado larga."
+      },
+      "relatedTraceabilityId": {
+        "max": "El ID de trazabilidad es demasiado largo."
+      }
+    },
+    "createForumTopic": {
+      "title": {
+        "min": "El título debe tener al menos 10 caracteres.",
+        "max": "El título no puede exceder los 150 caracteres."
+      },
+      "description": {
+        "min": "La descripción debe tener al menos 20 caracteres.",
+        "max": "La descripción no puede exceder los 2000 caracteres."
+      }
+    },
+    "createAgriEvent": {
+      "title": {
+        "min": "El título del evento debe tener al menos 5 caracteres.",
+        "max": "El título del evento no puede exceder los 100 caracteres."
+      },
+      "description": {
+        "min": "La descripción del evento debe tener al menos 20 caracteres.",
+        "max": "La descripción del evento no puede exceder los 2000 caracteres."
+      },
+      "eventDate": {
+        "required": "Se requiere la fecha del evento.",
+        "invalid": "¡Esa no es una fecha válida!"
+      },
+      "eventTime": {
+        "regex": "Por favor, ingrese una hora válida en formato HH:MM (p. ej., 14:30)."
+      },
+      "location": {
+        "min": "La ubicación debe tener al menos 3 caracteres.",
+        "max": "La ubicación no puede exceder los 150 caracteres."
+      },
+      "eventType": {
+        "required": "Por favor, seleccione un tipo de evento válido."
+      },
+      "organizer": {
+        "max": "El nombre del organizador no puede exceder los 100 caracteres."
+      },
+      "websiteLink": {
+        "invalid": "Por favor, ingrese una URL válida para el sitio web del evento."
+      },
+      "imageUrl": {
+        "invalid": "Por favor, ingrese una URL válida para la imagen del evento."
+      },
+      "attendeeLimit": {
+        "positive": "Debe ser un número positivo."
+      },
+      "price": {
+        "min": "El precio no puede ser negativo."
+      },
+      "currency": {
+        "length": "La moneda debe ser un código de 3 letras."
+      }
+    },
+    "createFarm": {
+      "name": {
+        "min": "El nombre de la granja debe tener al menos 3 caracteres."
+      },
+      "description": {
+        "max": "La descripción es demasiado larga."
+      },
+      "location": {
+        "min": "Por favor, proporcione una ubicación."
+      },
+      "size": {
+        "min": "Por favor, proporcione el tamaño de la granja."
+      },
+      "farmType": {
+        "required": "Por favor, seleccione un tipo de granja."
+      },
+      "irrigationMethods": {
+        "max": "La descripción de los métodos de riego es demasiado larga."
+      }
+    },
+    "createCrop": {
+      "cropType": {
+        "min": "El tipo de cultivo debe tener al menos 2 caracteres."
+      },
+      "plantingDate": {
+        "required": "Se requiere una fecha de siembra."
+      },
+      "expectedYield": {
+        "max": "La descripción del rendimiento esperado es demasiado larga."
+      },
+      "notes": {
+        "max": "Las notas son demasiado largas."
+      }
+    },
+    "createInputApplication": {
+      "applicationDate": {
+        "required": "Se requiere una fecha de aplicación."
+      },
+      "inputId": {
+        "min": "Se requiere el nombre/ID del insumo."
+      },
+      "quantity": {
+        "positive": "La cantidad debe ser un número positivo."
+      },
+      "unit": {
+        "min": "Se requiere la unidad."
+      }
+    },
+    "createObservation": {
+      "observationType": {
+        "min": "Por favor, seleccione un tipo de observación."
+      },
+      "observationDate": {
+        "required": "Se requiere una fecha de observación."
+      },
+      "details": {
+        "min": "Los detalles deben tener al menos 10 caracteres."
+      }
+    },
+    "createHarvest": {
+      "harvestDate": {
+        "required": "Se requiere una fecha de cosecha."
+      },
+      "yield_kg": {
+        "positive": "El rendimiento debe ser un número positivo."
+      },
+      "quality_grade": {
+        "min": "Se requiere la calificación de calidad."
+      }
+    },
+    "editProfile": {
+      "displayName": {
+        "min": "El nombre debe tener al menos 2 caracteres.",
+        "max": "El nombre no puede exceder los 100 caracteres."
+      },
+      "email": {
+        "invalid": "Por favor, ingrese una dirección de correo electrónico válida."
+      },
+      "role": {
+        "required": "Por favor, seleccione un rol de interesado válido."
+      },
+      "profileSummary": {
+        "max": "El resumen del perfil no puede exceder los 250 caracteres."
+      },
+      "bio": {
+        "max": "La biografía no puede exceder los 2000 caracteres."
+      },
+      "location": {
+        "min": "La ubicación debe tener al menos 2 caracteres.",
+        "max": "La ubicación no puede exceder los 100 caracteres."
+      },
+      "areasOfInterest": {
+        "max": "Las áreas de interés no pueden exceder los 500 caracteres (use valores separados por comas)."
+      },
+      "needs": {
+        "max": "Las necesidades/ofertas no pueden exceder los 500 caracteres (use valores separados por comas)."
+      },
+      "contactInfoPhone": {
+        "max": "El número de teléfono es demasiado largo."
+      },
+      "contactInfoWebsite": {
+        "invalid": "Por favor, ingrese una URL de sitio web válida."
+      }
+    },
+    "signIn": {
+      "email": {
+        "invalid": "Por favor, ingrese una dirección de correo electrónico válida."
+      },
+      "password": {
+        "min": "La contraseña debe tener al menos 6 caracteres."
+      }
+    },
+    "signUp": {
+      "name": {
+        "min": "El nombre debe tener al menos 2 caracteres.",
+        "max": "El nombre no puede tener más de 100 caracteres."
+      },
+      "email": {
+        "invalid": "Por favor, ingrese una dirección de correo electrónico válida."
+      },
+      "role": {
+        "required": "Por favor, seleccione un rol de interesado."
+      },
+      "password": {
+        "min": "La contraseña debe tener al menos 6 caracteres."
+      },
+      "confirmPassword": {
+        "match": "Las contraseñas no coinciden."
+      }
+    },
+    "logFinancialTransaction": {
+      "amount": {
+        "required": "Se requiere el monto.",
+        "invalid": "El monto debe ser un número.",
+        "min": "El monto debe ser positivo."
+      },
+      "currency": {
+        "min": "Por favor, seleccione una moneda."
+      },
+      "description": {
+        "min": "Se requiere una descripción.",
+        "max": "La descripción es demasiado larga."
+      },
+      "category": {
+        "max": "La categoría es demasiado larga."
+      }
+    },
+    "createShop": {
+      "name": {
+        "min": "El nombre de la tienda debe tener al menos 3 caracteres."
+      },
+      "description": {
+        "min": "La descripción debe tener al menos 10 caracteres."
+      },
+      "stakeholderType": {
+        "required": "Por favor, seleccione un tipo de negocio válido."
+      }
+    },
+    "createMarketplaceCoupon": {
+      "code": {
+        "min": "El código debe tener al menos 4 caracteres.",
+        "max": "El código no puede exceder los 20 caracteres.",
+        "regex": "El código debe ser alfanumérico."
+      },
+      "discountType": {
+        "required": "Por favor, seleccione un tipo de descuento."
+      },
+      "discountValue": {
+        "invalid": "El valor del descuento debe ser un número.",
+        "positive": "El valor del descuento debe ser positivo.",
+        "percentageMax": "El descuento porcentual no puede exceder el 100."
+      },
+      "usageLimit": {
+        "positive": "El límite de uso debe ser un número entero positivo."
+      }
+    },
+    "createInsuranceProduct": {
+      "name": {
+        "min": "El nombre del producto debe tener al menos 5 caracteres."
+      },
+      "type": {
+        "required": "Por favor, seleccione un tipo de producto."
+      },
+      "description": {
+        "min": "Por favor, proporcione una descripción detallada."
+      },
+      "coverageDetails": {
+        "min": "Por favor, proporcione los detalles de la cobertura."
+      },
+      "premium": {
+        "positive": "La prima debe ser un número positivo."
+      }
+    },
+    "createInsuranceApplication": {
+      "farmId": {
+        "required": "Por favor, seleccione la granja a asegurar."
+      },
+      "coverageValue": {
+        "positive": "El valor de la cobertura debe ser un número positivo."
+      }
+    }
+  },
+  "insurancePage": {
+    "title": "Centro de Seguros",
+    "description": "Proteja su granja y sus activos con productos de seguros a medida.",
+    "perTerm": "/ plazo",
+    "viewDetailsButton": "Ver Detalles",
+    "noProducts": "Actualmente no hay productos de seguros disponibles.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "Volver al Centro de Seguros",
+    "coverageTitle": "Detalles de la Cobertura",
+    "premiumTitle": "Prima",
+    "perTerm": "plazo",
+    "providerTitle": "Ofrecido por",
+    "applyButton": "Solicitar este Producto",
+    "notFound": "Producto de seguro no encontrado.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "Volver a Productos",
+    "title": "Solicitar Seguro",
+    "description": "Solicitar el producto de seguro '{productName}'.",
+    "form": {
+      "farmLabel": "Granja a Asegurar",
+      "farmPlaceholder": "Seleccionar una granja",
+      "noFarms": "Por favor, cree una granja primero.",
+      "coverageValueLabel": "Valor de Cobertura Deseado (USD)",
+      "coverageValuePlaceholder": "p. ej., 10000",
+      "coverageValueDescription": "El valor total que desea asegurar.",
+      "submitButton": "Enviar Solicitud"
+    },
+    "success": {
+      "title": "¡Solicitud Enviada!",
+      "description": "Su solicitud de seguro ha sido enviada para su revisión.",
+      "backToDashboardButton": "Volver al Panel de Control",
+      "applyForAnotherButton": "Solicitar Otro Producto"
+    },
+    "toast": {
+      "error": "Error",
+      "notAuthenticated": "Debe iniciar sesión para solicitar un seguro.",
+      "successTitle": "Solicitud Enviada"
+    }
+  },
+  "InsuranceProductsPage": {
+    "title": "Gestionar Productos de Seguro",
+    "description": "Cree y gestione los productos de seguro que ofrece en la plataforma.",
+    "createButton": "Crear Nuevo Producto",
+    "table": {
+      "productName": "Nombre del Producto",
+      "type": "Tipo",
+      "status": "Estado",
+      "premium": "Prima"
+    },
+    "noProducts": "Aún no ha creado ningún producto de seguro.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "Volver a Productos",
+    "title": "Crear Nuevo Producto de Seguro",
+    "description": "Defina un nuevo producto de seguro para ofrecer a los agricultores.",
+    "form": {
+      "nameLabel": "Nombre del Producto",
+      "namePlaceholder": "p. ej., Seguro de Pérdida de Cosecha de Maíz",
+      "typeLabel": "Tipo de Producto",
+      "typePlaceholder": "Seleccionar un tipo",
+      "crop": "Seguro de Cosecha",
+      "livestock": "Seguro de Ganado",
+      "asset": "Seguro de Activos Agrícolas",
+      "weather": "Seguro Paramétrico de Clima",
+      "descriptionLabel": "Breve Descripción",
+      "descriptionPlaceholder": "Un resumen conciso del producto.",
+      "coverageLabel": "Detalles de la Cobertura",
+      "coveragePlaceholder": "Describa qué está cubierto, deducibles, etc.",
+      "premiumLabel": "Monto de la Prima (USD)",
+      "premiumPlaceholder": "p. ej., 50.00",
+      "currencyLabel": "Moneda",
+      "submitButton": "Crear Producto"
+    },
+    "toast": {
+      "notAuthenticated": "Debe ser un Proveedor de Seguros autorizado para crear productos.",
+      "successTitle": "¡Producto Creado!",
+      "successDescription": "{name} ya está disponible.",
+      "errorTitle": "Error al Crear"
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "Volver a Productos",
+    "title": "Crear Nuevo Producto Financiero",
+    "description": "Defina un nuevo producto de préstamo o subvención para ofrecer a los interesados.",
+    "form": {
+      "nameLabel": "Nombre del Producto",
+      "namePlaceholder": "p. ej., Préstamo de Inicio de Temporada para Pequeños Agricultores",
+      "typeLabel": "Tipo de Producto",
+      "loan": "Préstamo",
+      "grant": "Subvención",
+      "descriptionLabel": "Descripción del Producto",
+      "descriptionPlaceholder": "Describa el producto, su propósito y los criterios de elegibilidad.",
+      "interestRateLabel": "Tasa de Interés (%)",
+      "interestRatePlaceholder": "p. ej., 12.5",
+      "maxAmountLabel": "Monto Máximo (USD)",
+      "maxAmountPlaceholder": "p. ej., 10000",
+      "targetRolesLabel": "Interesados Objetivo",
+      "targetRolesDescription": "Seleccione los roles a los que está disponible este producto.",
+      "submitButton": "Crear Producto"
+    },
+    "toast": {
+      "notAuthenticated": "Debe ser una Institución Financiera autorizada para crear productos.",
+      "successTitle": "¡Producto Creado!",
+      "successDescription": "{name} ya está disponible en la plataforma.",
+      "errorTitle": "Error al Crear"
+    }
+  },
+  "FiProductsPage": {
+    "backLink": "Volver al Panel de Control",
+    "title": "Gestionar Productos Financieros",
+    "description": "Vea y gestione los productos financieros que ofrece.",
+    "createButton": "Crear Nuevo Producto",
+    "table": {
+      "productName": "Nombre del Producto",
+      "type": "Tipo",
+      "status": "Estado",
+      "interestRate": "Tasa de Interés",
+      "maxAmount": "Monto Máximo"
+    },
+    "noProducts": "Aún no ha creado ningún producto financiero.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Panel de Administración",
+      "description": "Bienvenido al panel de administración.",
+      "content": "Use la navegación de la izquierda para gestionar diferentes partes de la aplicación, como contenido, usuarios e informes del sistema.",
+      "contentManagementButton": "Gestionar Contenido"
+    },
+    "layout": {
+      "contentManagement": "Contenido",
+      "reports": "Informes",
+      "title": "Panel de Administración",
+      "description": "Está viendo una sección administrativa."
+    },
+    "contentManagement": {
+      "title": "Gestión de Contenido",
+      "allArticles": {
+        "title": "Todos los Artículos y Publicaciones",
+        "description": "Ver, editar y gestionar todos los artículos y publicaciones de la plataforma.",
+        "refreshButton": "Actualizar"
+      },
+      "createArticle": {
+        "title": "Crear Nuevo Artículo",
+        "description": "Publique un nuevo artículo para el blog o el centro de conocimiento.",
+        "englishContent": "Contenido en Inglés",
+        "khmerContent": "Contenido en Khmer",
+        "titleEnLabel": "Título (Inglés)",
+        "excerptEnLabel": "Extracto (Inglés)",
+        "contentEnLabel": "Contenido (Markdown - Inglés)",
+        "titleKmLabel": "Título (Khmer)",
+        "excerptKmLabel": "Extracto (Khmer)",
+        "contentKmLabel": "Contenido (Markdown - Khmer)",
+        "metadataTitle": "Metadatos",
+        "categoryLabel": "Categoría",
+        "categoryPlaceholder": "p. ej., Blog, Noticias del Sector",
+        "authorLabel": "Autor",
+        "authorPlaceholder": "p. ej., Equipo DamDoh",
+        "statusLabel": "Estado",
+        "tagsLabel": "Etiquetas (separadas por comas)",
+        "imageUrlLabel": "URL de la Imagen",
+        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
+        "aiHintLabel": "Pista de IA para Imagen",
+        "aiHintPlaceholder": "p. ej., cosecha de granos de café",
+        "publishButton": "Publicar Artículo",
+        "publishingButton": "Publicando..."
+      },
+      "table": {
+        "title": "Título",
+        "category": "Categoría",
+        "status": "Estado",
+        "created": "Creado",
+        "actions": "Acciones",
+        "noArticles": "No se encontraron artículos."
+      },
+      "toast": {
+        "loadErrorTitle": "Error",
+        "loadErrorDescription": "No se pudieron obtener los artículos.",
+        "createSuccessTitle": "Artículo Creado",
+        "createSuccessDescription": "El nuevo artículo ha sido publicado con éxito.",
+        "createErrorTitle": "Error al Crear"
+      }
+    },
+    "reports": {
+      "generate": {
+        "title": "Generar Nuevo Informe",
+        "description": "Cree un informe regulatorio o de cumplimiento para un usuario específico.",
+        "reportTypeLabel": "Tipo de Informe",
+        "reportTypeVti": "Resumen de Eventos VTI",
+        "targetUserLabel": "Usuario Objetivo",
+        "userSearchPlaceholder": "Buscar por nombre o correo electrónico...",
+        "dateRangeLabel": "Rango de Fechas",
+        "datePlaceholder": "Seleccione un rango de fechas",
+        "submitButton": "Generar Informe"
+      },
+      "list": {
+        "title": "Informes Generados",
+        "description": "Ver y descargar informes generados previamente.",
+        "table": {
+          "reportType": "Tipo de Informe",
+          "generatedFor": "Generado para",
+          "date": "Fecha",
+          "status": "Estado",
+          "actions": "Acciones"
+        },
+        "viewButton": "Ver",
+        "noReports": "Aún no se han generado informes."
+      },
+      "toast": {
+        "loadErrorTitle": "Error al Cargar Informes",
+        "formIncompleteTitle": "Información Incompleta",
+        "formIncompleteDescription": "Por favor, seleccione un tipo de informe, un usuario objetivo y un rango de fechas.",
+        "generateSuccessTitle": "Generación de Informe Iniciada",
+        "generateSuccessDescription": "El informe se está creando en segundo plano.",
+        "generateErrorTitle": "Error al Generar Informe"
+      }
+    }
   }
 }
 
-    
