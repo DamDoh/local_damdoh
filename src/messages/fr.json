@@ -737,7 +737,7 @@
         },
         "incomplete": {
           "title": "Publication Incomplète",
-          "description": "Veuillez fournir un titre et un contenu pour votre publication."
+          "description": "Veuillez fournir un nom et un contenu pour votre publication."
         },
         "success": {
           "title": "Publication Créée !",
@@ -1194,3 +1194,5 @@
     "title": "Gestion Financière"
   }
 }
+
+    

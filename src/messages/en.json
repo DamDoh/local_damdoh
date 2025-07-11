@@ -398,7 +398,7 @@
         "label": "Have a coupon code?",
         "placeholder": "Enter code",
         "applyButton": "Apply",
-        "appliedText": "Applied '{code}'",
+        "appliedText": "'{code}' applied",
         "successTitle": "Coupon Applied",
         "successDescription": "Your {type} discount has been applied.",
         "failTitle": "Invalid Coupon",
@@ -1174,3 +1174,4 @@
   }
 }
 
+    

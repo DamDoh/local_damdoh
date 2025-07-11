@@ -572,23 +572,6 @@
       }
     }
   },
-  "talentExchangePage": {
-    "title": "Talentbörse",
-    "description": "Finden Sie qualifizierte Fachkräfte oder bieten Sie Ihre landwirtschaftlichen Dienstleistungen der Gemeinschaft an.",
-    "listServiceButton": "Dienstleistung anbieten",
-    "searchPlaceholder": "Dienstleistungen suchen (z.B. Agronomie, Drohnenpilot)...",
-    "locationPlaceholder": "Nach Standort filtern...",
-    "categoryPlaceholder": "Nach Dienstleistungskategorie filtern...",
-    "allCategories": "Alle Kategorien",
-    "noResultsTitle": "Keine Dienstleistungen gefunden",
-    "noResultsDescription": "Es gibt keine Dienstleistungen, die Ihren Kriterien entsprechen. Versuchen Sie, Ihre Suche anzupassen oder seien Sie der Erste, der eine Dienstleistung in dieser Kategorie anbietet!",
-    "toast": {
-      "error": {
-        "title": "Suche fehlgeschlagen",
-        "description": "Beim Abrufen der Dienstleistungen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
-      }
-    }
-  },
   "forumsPage": {
     "title": "Community-Foren",
     "description": "Vernetzen Sie sich, teilen Sie Wissen und diskutieren Sie wichtige Themen mit Kollegen aus dem Agrarsektor.",
@@ -768,13 +751,16 @@
     "backLink": "Zurück zum Netzwerk",
     "myConnectionsTab": "Meine Verbindungen ({count})",
     "pendingRequestsTab": "Ausstehende Anfragen",
+
     "connectionsTitle": "Meine Verbindungen",
     "connectionsDescription": "Ihr etabliertes berufliches Netzwerk auf DamDoh.",
     "noConnections": "Sie haben noch keine Verbindungen geknüpft. Beginnen Sie mit der Erkundung des Netzwerks!",
+
     "requestsTitle": "Verbindungsanfragen",
     "requestsDescription": "Überprüfen und beantworten Sie ausstehende Verbindungsanfragen.",
     "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen.",
     "sentTimeAgo": "Gesendet {timeAgo}",
+
     "toast": {
       "error": "Fehler",
       "loadError": "Ihre Netzwerkdaten konnten nicht geladen werden.",
@@ -1046,7 +1032,7 @@
         "loadError": "Kulturdetails konnten nicht geladen werden."
       },
       "eventPayload": {
-        "noDetails": "Für dieses Ereignis wurden keine weiteren Details angegeben.",
+        "noDetails": "Keine weiteren Details für dieses Ereignis angegeben.",
         "observationType": "Beobachtungstyp",
         "details": "Details",
         "aiDiagnosis": "KI-Diagnose"
@@ -1158,14 +1144,32 @@
         "notFoundTitle": "Nicht gefunden",
         "loadError": "Die Farmdetails zum Bearbeiten konnten nicht geladen werden.",
         "error": "Fehler",
-        "loadFail": "Laden der Farmdaten fehlgeschlagen: {message}",
+        "loadFail": "Failed to load farm data: {message}",
         "successTitle": "Farm aktualisiert",
-        "successDescription": "Die Details für {farmName} wurden gespeichert.",
+        "successDescription": "{farmName} details have been saved.",
         "errorTitle": "Aktualisierung fehlgeschlagen"
       }
     }
   },
   "financialsPage": {
     "title": "Finanzmanagement"
+  },
+  "talentExchangePage": {
+    "title": "Talentbörse",
+    "description": "Finden Sie qualifizierte Fachkräfte oder bieten Sie Ihre landwirtschaftlichen Dienstleistungen der Gemeinschaft an.",
+    "listServiceButton": "Dienstleistung anbieten",
+    "searchPlaceholder": "Dienstleistungen suchen (z.B. Agronomie, Drohnenpilot)...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "categoryPlaceholder": "Nach Dienstleistungskategorie filtern...",
+    "allCategories": "Alle Kategorien",
+    "noResultsTitle": "Keine Dienstleistungen gefunden",
+    "noResultsDescription": "Es gibt keine Dienstleistungen, die Ihren Kriterien entsprechen. Versuchen Sie, Ihre Suche anzupassen oder seien Sie der Erste, der eine Dienstleistung in dieser Kategorie anbietet!",
+    "toast": {
+      "error": {
+        "title": "Suche fehlgeschlagen",
+        "description": "Beim Abrufen der Dienstleistungen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+      }
+    }
   }
 }
+
