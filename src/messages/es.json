@@ -68,9 +68,9 @@
     "searchPlaceholder": "Buscar...",
     "home": "Inicio",
     "network": "Red",
-    "farmMgmt": "Granja",
+    "farmMgmt": "Gestión Granja",
     "marketplace": "Mercado",
-    "talentExchange": "Talento",
+    "talentExchange": "Talentos",
     "traceability": "Trazabilidad",
     "forums": "Foros",
     "sustainability": "Sostenibilidad",
@@ -98,7 +98,7 @@
   "OfflineIndicator": {
     "tooltip": {
       "syncing": "Sincronizando {count} acciones pendientes...",
-      "onlinePending": "{count, plural, =1 {# acción pendiente} other {# acciones pendientes}}. La sincronización comenzará en breve.",
+      "onlinePending": "{count} acciones pendientes. La sincronización comenzará en breve.",
       "onlineSynced": "Estás en línea y todos los datos están sincronizados.",
       "offline": "Estás desconectado. {count, plural, =0 {No hay cambios pendientes.} =1 {1 cambio en cola.} other {{count} cambios en cola.}}"
     },
@@ -213,3 +213,5 @@
     "createPoll": "Crear Encuesta"
   }
 }
+
+    

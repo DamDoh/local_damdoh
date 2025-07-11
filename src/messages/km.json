@@ -2,9 +2,9 @@
 {
   "MobileHomepage": {
     "welcome": {
-      "morning": "អរុណសួស្តី {name}",
-      "afternoon": "ទិវាសួស្តី {name}",
-      "evening": "សាយណ្ហសួស្តី {name}"
+      "morning": "អរុណសួស្តី, {name}",
+      "afternoon": "ទិវាសួស្តី, {name}",
+      "evening": "សាយណ្ហសួស្តី, {name}"
     },
     "discoverTitle": "ស្វែងយល់",
     "seeAllButton": "មើល​ទាំងអស់",
@@ -213,3 +213,5 @@
     "createPoll": "បង្កើតការស្ទង់មតិ"
   }
 }
+
+    
