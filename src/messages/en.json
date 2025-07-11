@@ -680,64 +680,6 @@
       "description": "There are currently no news articles matching your search or filter criteria. Check back soon for the latest updates."
     }
   },
-  "pinboardPage": {
-    "title": "My Pinboard",
-    "description": "Your personal space to save and organize profiles, listings, articles, and discussions from across the platform.",
-    "comingSoonTitle": "Coming Soon!",
-    "comingSoonDescription": "The Pinboard is a feature currently under development. It will allow you to bookmark important items and create custom collections for your projects and research.",
-    "stayTuned": "Stay tuned for updates!"
-  },
-  "common": {
-    "error": "Error",
-    "success": "Success",
-    "loading": "Loading..."
-  },
-  "termsOfService": {
-    "title": "Terms of Service",
-    "lastUpdated": "Last updated: October 29, 2023",
-    "introduction": "Welcome to DamDoh! These Terms of Service ('Terms') govern your use of the DamDoh website, applications, and services ('Services'). Please read these Terms carefully before using our Services.",
-    "agreementToTerms": {
-      "heading": "1. Agreement to Terms",
-      "content": "By using our Services, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the Services."
-    },
-    "intellectualProperty": {
-      "heading": "2. Intellectual Property Rights",
-      "content": "We own all rights, title, and interest in and to the Services, including all associated intellectual property rights. You may not use the Services for any commercial purpose without our prior written consent."
-    },
-    "userRepresentations": {
-      "heading": "3. User Representations",
-      "content": "By using the Services, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms."
-    },
-    "prohibitedActivities": {
-      "heading": "4. Prohibited Activities",
-      "content": "You may not access or use the Services for any purpose other than that for which we make the Services available. The Services may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us."
-    },
-    "platformManagement": {
-      "heading": "5. Platform Management",
-      "content": "We reserve the right, but not the obligation, to: (1) monitor the Services for violations of these Terms; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable any of your Contributions or any portion thereof."
-    },
-    "termAndTermination": {
-      "heading": "6. Term and Termination",
-      "content": "These Terms shall remain in full force and effect while you use the Services. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SERVICES (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON."
-    },
-    "modificationsAndInterruptions": {
-      "heading": "7. Modifications and Interruptions",
-      "content": "We reserve the right to change, modify, or remove the contents of the Services at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Services without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Services."
-    },
-    "governingLaw": {
-      "heading": "8. Governing Law",
-      "content": "These Terms and your use of the Services are governed by and construed in accordance with the laws of the jurisdiction where DamDoh is headquartered, without regard to its conflict of law principles."
-    },
-    "disputeResolution": {
-      "heading": "9. Dispute Resolution",
-      "content": "Any legal action of whatever nature brought by either you or us shall be commenced or prosecuted in the state and federal courts located in our headquarter's jurisdiction, and the parties hereby consent to, and waive all defenses of lack of personal jurisdiction and forum non conveniens with respect to venue and jurisdiction in such courts."
-    },
-    "contactUs": {
-      "heading": "10. Contact Us",
-      "content": "In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us."
-    },
-    "conclusion": "You can do so by visiting our {contactLink} page."
-  },
   "farmManagement": {
     "hub": {
       "title": "Farm Management Hub",
@@ -1805,51 +1747,595 @@
       }
     }
   },
-  "farmManagement": {
-    "hub": {
-      "title": "Farm Management Hub",
-      "description": "Your central place to track and optimize all your farming activities, from seed to harvest.",
-      "myFarms": {
-        "title": "My Farms & Crops",
-        "description": "Manage your farms, fields, and track individual crop cycles.",
-        "button": "Manage Farms"
-      },
-      "labor": {
-        "title": "Labor Management",
-        "description": "Keep track of hours and payments for your workforce.",
-        "button": "Manage Labor"
-      },
-      "knf": {
-        "title": "KNF Inputs Assistant",
-        "description": "Track your farmer-made Korean Natural Farming inputs.",
-        "button": "Manage Inputs"
-      },
-      "fgw": {
-        "title": "Farming God's Way Guide",
-        "description": "Learn the principles and practices of FGW for no-till, sustainable agriculture.",
-        "button": "View FGW Guide"
-      },
-      "financials": {
-        "title": "Financials & Analytics",
-        "description": "Track income, expenses, and gain insights into profitability.",
-        "button": "View Financials"
-      },
-      "seedStarting": {
-        "title": "Seed Starting Guide",
-        "description": "Learn best practices for starting seeds for a successful season.",
-        "button": "View Seed Guide"
-      },
-      "familyFarm": {
-        "title": "Diversified Family Farm Model",
-        "description": "Explore a sustainable 200sqm model for small-scale family farming.",
-        "button": "View Model"
-      },
-      "assetManagement": {
-        "title": "Asset Management",
-        "description": "Keep track of your machinery, tools, and other farm assets.",
-        "button": "Manage Assets"
-      }
+  "AgroExportDashboard": {
+    "title": "Agro-Export Dashboard",
+    "docsTitle": "Pending Customs Documents",
+    "table": {
+        "destination": "Destination",
+        "status": "Status"
+    },
+    "prepareDocsButton": "Prepare Docs",
+    "noDocs": "No documents are currently pending.",
+    "shipmentsTitle": "Tracked Shipments",
+    "noShipments": "No active shipments to track.",
+    "alertsTitle": "Compliance Alerts",
+    "readMore": "Read More",
+    "noAlerts": "No new compliance alerts."
+  },
+  "AgroTourismDashboard": {
+    "title": "Agro-Tourism Dashboard",
+    "bookingsTitle": "Upcoming Bookings",
+    "bookingsDescription": "Manage your upcoming guest arrivals.",
+    "table": {
+        "experience": "Experience",
+        "guest": "Guest",
+        "date": "Date",
+        "title": "Title",
+        "status": "Status",
+        "bookings": "Bookings",
+        "action": "Action"
+    },
+    "viewDetailsButton": "View",
+    "noBookings": "No upcoming bookings.",
+    "experiencesTitle": "Your Listed Experiences",
+    "experiencesDescription": "View and manage your service listings.",
+    "manageButton": "Manage",
+    "noExperiences": "You have not listed any agri-tourism services yet.",
+    "reviewsTitle": "Recent Guest Reviews",
+    "reviewsDescription": "See what your guests are saying.",
+    "on": "on",
+    "viewReviewButton": "View Review",
+    "noReviews": "No guest reviews yet."
+  },
+  "AgronomistDashboard": {
+    "title": "Agronomist Dashboard",
+    "stats": {
+        "assignedFarmers": "Assigned Farmers",
+        "farmersWithAlerts": "Farmers with Alerts",
+        "pendingConsultations": "Pending Consultations",
+        "knowledgeContributions": "Knowledge Contributions"
+    },
+    "portfolio": {
+        "title": "Farmer Portfolio",
+        "description": "An overview of your assigned farmers.",
+        "table": {
+            "farmer": "Farmer",
+            "location": "Location",
+            "alerts": "Alerts",
+            "action": "Action"
+        },
+        "alertsLabel": "Alerts",
+        "profileButton": "Profile",
+        "noFarmers": "No farmers are currently assigned to you."
+    },
+    "consultations": {
+        "title": "Pending Consultation Requests",
+        "description": "Respond to incoming requests for your expertise.",
+        "table": {
+            "farmer": "Farmer",
+            "issue": "Issue Summary",
+            "action": "Action"
+        },
+        "viewButton": "View Request",
+        "noRequests": "No pending consultation requests."
+    },
+    "contributions": {
+        "title": "Knowledge Hub Contributions",
+        "statusTitle": "Contribution Status",
+        "noContributions": "You have not made any contributions yet.",
+        "noData": "No contribution data to display."
+    },
+    "chart": {
+        "count": "Count",
+        "published": "Published",
+        "pending": "Pending Review",
+        "draft": "Draft"
     }
+  },
+  "BuyerDashboard": {
+    "title": "Buyer Dashboard",
+    "riskTitle": "Supply Chain Risk",
+    "onTimeDelivery": "On-Time Delivery",
+    "diversifySourcing": "Diversify Sourcing",
+    "priceTitle": "Market Price Intelligence",
+    "secureContracts": "Secure Forward Contracts",
+    "sourcingTitle": "Sourcing Recommendations",
+    "reliabilityScore": "Reliability Score",
+    "findSuppliersButton": "Find More Suppliers"
+  },
+  "CertificationBodyDashboard": {
+    "title": "Certification Body Dashboard",
+    "auditsTitle": "Pending Audits",
+    "auditsDescription": "Manage upcoming audits and certifications.",
+    "table": {
+        "farmName": "Farm Name",
+        "standard": "Standard",
+        "dueDate": "Due Date",
+        "action": "Action"
+    },
+    "reviewAuditButton": "Review",
+    "noPendingAudits": "No audits are currently pending.",
+    "entitiesTitle": "Certified Entities Overview",
+    "entitiesDescription": "A summary of entities you have certified.",
+    "noCertifiedEntities": "No data available to display chart.",
+    "monitoringTitle": "Standards Monitoring",
+    "monitoringDescription": "Track adherence and alerts for different standards.",
+    "alerts": "Alerts",
+    "viewDetailsButton": "View Details",
+    "noMonitoringData": "No monitoring data available."
+  },
+  "CooperativeDashboard": {
+    "title": "Cooperative Dashboard",
+    "membersTitle": "Members",
+    "membersDescription": "{count} active farmers",
+    "landAreaTitle": "Total Land Area",
+    "landAreaDescription": "Hectares under cultivation",
+    "pendingApplicationsTitle": "Pending Applications",
+    "pendingApplicationsDescription": "New members awaiting approval",
+    "produceTitle": "Aggregated Produce Ready for Market",
+    "produceDescription": "Consolidated view of available products from your members.",
+    "table": {
+        "product": "Product",
+        "quantity": "Quantity (Tons)",
+        "quality": "Quality",
+        "readyBy": "Ready By",
+        "action": "Action"
+    },
+    "createListingButton": "Create Listing",
+    "noProduce": "No produce currently available from members.",
+    "aggregateButton": "Aggregate New Produce"
+  },
+  "CrowdfunderDashboard": {
+    "title": "Impact Investment Dashboard",
+    "totalInvested": "Total Invested",
+    "numberOfInvestments": "Number of Investments",
+    "estimatedReturns": "Estimated Returns",
+    "opportunitiesTitle": "Suggested Opportunities",
+    "noOpportunities": "No new investment opportunities match your profile right now.",
+    "viewButton": "View",
+    "raisedOf": "raised of",
+    "goal": "goal",
+    "transactionsTitle": "Recent Transactions",
+    "table": {
+        "project": "Project",
+        "amount": "Amount"
+    },
+    "investment": "Investment",
+    "payout": "Payout",
+    "on": "on",
+    "noTransactions": "You have no recent transactions."
+  },
+  "EnergyProviderDashboard": {
+    "title": "Energy Solutions Dashboard",
+    "leadsTitle": "Project Leads",
+    "leadsCount": "{count} active leads",
+    "newLeadsDescription": "New entities seeking energy solutions.",
+    "projectsTitle": "Active Projects",
+    "activeProjectsCount": "{count} active projects",
+    "projectsCompleted": "projects completed.",
+    "impactTitle": "Cumulative Impact",
+    "impactDescription": "Estimated carbon reduction from your projects.",
+    "carbonReduction": "tCO2e/year from {count} installations",
+    "leadsTableTitle": "Project Leads Pipeline",
+    "leadsTableDescription": "Track potential and ongoing projects from initial contact to completion.",
+    "table": {
+        "entity": "Entity",
+        "location": "Location",
+        "energyNeed": "Estimated Energy Need",
+        "status": "Status",
+        "action": "Action"
+    },
+    "statusLabels": {
+        "new": "New",
+        "contacted": "Contacted",
+        "proposal_sent": "Proposal Sent",
+        "closed": "Closed",
+        "in_progress": "In Progress",
+        "completed": "Completed"
+    },
+    "viewLeadButton": "View Lead",
+    "noLeads": "No project leads at the moment."
+  },
+  "EquipmentSupplierDashboard": {
+    "title": "Equipment Supplier Dashboard",
+    "ordersTitle": "Rentals & Sales Orders",
+    "ordersDescription": "{count} total active orders",
+    "manageOrdersButton": "Manage Orders",
+    "listedEquipmentTitle": "Your Listed Equipment",
+    "table": {
+        "name": "Name",
+        "type": "Type",
+        "status": "Status",
+        "action": "Action"
+    },
+    "status": {
+        "available": "Available",
+        "rentedout": "Rented Out"
+    },
+    "manageButton": "Manage",
+    "noEquipment": "You have not listed any equipment.",
+    "listEquipmentButton": "List New Equipment",
+    "maintenanceTitle": "Maintenance Requests",
+    "noMaintenance": "No pending maintenance requests.",
+    "viewRequestButton": "View Request"
+  },
+  "FieldAgentDashboard": {
+    "title": "Field Agent Dashboard",
+    "portfolioHealthTitle": "Portfolio Health",
+    "activeAlerts": "active alerts",
+    "pendingReportsTitle": "Pending Reports",
+    "reportsToFile": "reports to file",
+    "dataVerificationTitle": "Data Verification",
+    "tasksPending": "tasks pending",
+    "assignedFarmersTitle": "Assigned Farmers",
+    "farmersInPortfolio": "farmers in your portfolio",
+    "portfolioTitle": "Assigned Farmer Portfolio",
+    "lastVisit": "Last visit",
+    "issues": "Issues",
+    "viewFarmerButton": "View Farmer",
+    "noFarmersAssigned": "No farmers have been assigned to you yet."
+  },
+  "InputSupplierDashboard": {
+    "title": "Input Supplier Dashboard",
+    "ordersTitle": "Active Orders",
+    "totalValue": "total value",
+    "manageOrdersButton": "Manage Orders",
+    "forecastTitle": "Demand Forecast",
+    "in": "in",
+    "noForecast": "No demand forecast data available.",
+    "performanceTitle": "Product Performance",
+    "noFeedback": "No product feedback received yet.",
+    "viewReviewsButton": "View Reviews",
+    "promotionsTitle": "Promotions",
+    "promotionsDescription": "Create coupons to boost sales and engage customers.",
+    "manageCouponsButton": "Create & Manage Coupons"
+  },
+  "InsuranceProviderDashboard": {
+    "title": "Insurance Provider Dashboard",
+    "manageProductsTitle": "Manage Insurance Products",
+    "manageProductsDescription": "Create, edit, and manage the insurance products you offer on the platform.",
+    "manageProductsButton": "Manage Products",
+    "claimsTitle": "Pending Claims",
+    "claimsDescription": "Review and process new insurance claims submitted by users.",
+    "table": {
+        "policyHolder": "Policy Holder",
+        "policyType": "Policy Type",
+        "claimDate": "Claim Date",
+        "status": "Status",
+        "action": "Action"
+    },
+    "reviewClaimButton": "Review Claim",
+    "noPendingClaims": "No pending claims to review.",
+    "riskAlertsTitle": "Risk Assessment Alerts",
+    "riskAlertsDescription": "Proactive alerts for policies with elevated risk factors.",
+    "table": {
+        "alert": "Alert",
+        "severity": "Severity"
+    },
+    "investigateButton": "Investigate",
+    "noRiskAlerts": "No active risk alerts."
+  },
+  "LogisticsDashboard": {
+    "title": "Logistics Dashboard",
+    "performanceTitle": "Performance Metrics",
+    "onTimeDelivery": "on-time delivery rate",
+    "viewReportButton": "View Full Report",
+    "activeShipmentsTitle": "Active Shipments",
+    "to": "To",
+    "trackButton": "Track",
+    "noActiveShipments": "No active shipments.",
+    "incomingJobsTitle": "Incoming Jobs",
+    "from": "From",
+    "acceptJobButton": "Accept Job",
+    "noIncomingJobs": "No new logistics jobs available."
+  },
+  "OperationsDashboard": {
+    "title": "Operations Dashboard",
+    "vtiRateTitle": "VTI Generation Rate",
+    "pipelineStatusTitle": "Data Pipeline Status",
+    "lastCheck": "Last checked",
+    "flaggedEventsTitle": "Flagged Events",
+    "viewVtiButton": "View VTI",
+    "noFlaggedEvents": "No events are currently flagged."
+  },
+  "PackagingSupplierDashboard": {
+    "title": "Packaging Supplier Dashboard",
+    "incomingOrdersTitle": "Incoming Orders",
+    "noNewOrders": "No new orders.",
+    "table": {
+        "customer": "Customer",
+        "product": "Product",
+        "quantity": "Quantity",
+        "status": "Status",
+        "action": "Action"
+    },
+    "viewOrderButton": "View Order",
+    "inventoryTitle": "Inventory Status",
+    "inStock": "in stock",
+    "reorderLevel": "Reorder at",
+    "lowStock": "Low Stock",
+    "noInventory": "No inventory data.",
+    "listProductButton": "List New Product"
+  },
+  "ProcessingUnitDashboard": {
+    "title": "Processing Unit Dashboard",
+    "yieldTitle": "Yield Optimization",
+    "potential": "Potential",
+    "wasteTitle": "Waste Reduction",
+    "packagingInventoryTitle": "Packaging Inventory",
+    "inStock": "In Stock",
+    "reorderLevel": "Reorder Level",
+    "noPackagingData": "No packaging inventory data.",
+    "sourcePackagingButton": "Source Packaging",
+    "rawMaterialTitle": "Raw Material Inventory",
+    "table": {
+        "product": "Product",
+        "quality": "Quality",
+        "quantity": "Quantity (Tons)",
+        "supplier": "Supplier",
+        "deliveryDate": "Delivery Date",
+        "status": "Status",
+        "action": "Action"
+    },
+    "noInventoryData": "No raw materials in inventory.",
+    "packagingOrdersTitle": "Packaging Orders",
+    "viewButton": "View",
+    "noPackagingOrders": "No active packaging orders."
+  },
+  "QaDashboard": {
+    "title": "Quality Assurance Dashboard",
+    "inspectionsTitle": "Pending Inspections",
+    "inspectionsDescription": "Manage upcoming quality inspections for various batches.",
+    "table": {
+        "batchId": "Batch ID",
+        "product": "Product",
+        "seller": "Seller",
+        "dueDate": "Due Date",
+        "action": "Action",
+        "result": "Result",
+        "reason": "Reason",
+        "inspectedAt": "Inspected At"
+    },
+    "performInspectionButton": "Perform Inspection",
+    "noPendingInspections": "No inspections are currently pending.",
+    "resultsTitle": "Recent Non-Compliance",
+    "resultsDescription": "A log of recent inspections that did not meet quality standards.",
+    "noRecentIssues": "No recent non-compliance issues found.",
+    "metricsTitle": "Quality Metrics",
+    "metricsDescription": "An overview of platform-wide quality trends.",
+    "passRate": "Pass Rate",
+    "averageScore": "Average Quality Score",
+    "noMetrics": "No quality metrics available yet."
+  },
+  "RegulatorDashboard": {
+    "title": "Regulator Dashboard",
+    "pendingCertificationsTitle": "Pending Certifications",
+    "reviewsOutstanding": "reviews outstanding",
+    "manageProductsButton": "Manage Products",
+    "reviewAllButton": "Review All",
+    "riskAlertsTitle": "Compliance Risk Alerts",
+    "investigateButton": "Investigate",
+    "noComplianceAlerts": "No active compliance alerts.",
+    "anomaliesTitle": "Supply Chain Anomalies",
+    "trackVtiButton": "Track VTI",
+    "noAnomalies": "No supply chain anomalies detected."
+  },
+  "ResearcherDashboard": {
+    "title": "Research & Academia Dashboard",
+    "datasetsTitle": "Available Datasets",
+    "datasetsDescription": "Access anonymized, aggregated datasets for your research.",
+    "table": {
+        "name": "Dataset Name",
+        "dataType": "Data Type",
+        "accessLevel": "Access Level",
+        "action": "Action",
+        "title": "Title",
+        "progress": "Progress",
+        "collaborators": "Collaborators",
+        "status": "Status"
+    },
+    "requestAccessButton": "Request Access",
+    "noDatasets": "No datasets are currently available for request.",
+    "projectsTitle": "Ongoing Research Projects",
+    "projectsDescription": "Manage your collaborative research projects on the platform.",
+    "viewProjectButton": "View Project",
+    "noProjects": "You have no ongoing research projects.",
+    "contributionsTitle": "Knowledge Hub Contributions",
+    "contributionsDescription": "Manage your submitted articles and research papers.",
+    "viewButton": "View",
+    "noContributions": "You have not made any contributions yet.",
+    "noData": "No dashboard data available."
+  },
+  "WarehouseDashboard": {
+    "title": "Warehouse Dashboard",
+    "utilizationTitle": "Storage Utilization",
+    "inventoryTitle": "Inventory Levels",
+    "itemsNeedingAttention": "items need attention",
+    "alertsTitle": "Predictive Alerts",
+    "investigateButton": "Investigate",
+    "noAlerts": "No predictive alerts at this time."
+  },
+  "WasteManagementDashboard": {
+    "title": "Waste Management Dashboard",
+    "wasteStreamsTitle": "Incoming Waste Streams",
+    "from": "From",
+    "acceptButton": "Accept",
+    "noWasteStreams": "No new incoming waste streams.",
+    "compostBatchesTitle": "Compost Batches",
+    "batch": "Batch",
+    "estReady": "Est. Ready",
+    "noCompostBatches": "No active compost batches.",
+    "inventoryTitle": "Finished Product Inventory",
+    "inStock": "In Stock",
+    "sellButton": "Sell on Marketplace",
+    "noFinishedProducts": "No finished products in inventory."
+  },
+  "AgriTechDashboard": {
+    "title": "Agri-Tech Developer Dashboard",
+    "sandboxTitle": "Sandbox Status",
+    "statusLabel": "Status",
+    "lastResetLabel": "Last Reset",
+    "accessDocsButton": "Access Docs",
+    "integrationsTitle": "Integration Projects",
+    "activeProjects": "Active Projects",
+    "integrationsDescription": "Partner with DamDoh to integrate your solutions.",
+    "proposeIntegrationButton": "Propose New Integration",
+    "apiKeysTitle": "Your API Keys",
+    "apiKeysDescription": "Manage your API keys for accessing DamDoh services.",
+    "generateNewKeyButton": "Generate New Key",
+    "table": {
+        "key": "Key",
+        "status": "Status",
+        "environment": "Environment",
+        "created": "Created",
+        "actions": "Actions"
+    },
+    "noApiKeys": "You have not generated any API keys yet.",
+    "revokeDialog": {
+        "title": "Are you sure you want to revoke this API key?",
+        "description": "This action cannot be undone. Any applications using this key will immediately lose access.",
+        "cancel": "Cancel",
+        "confirm": "Yes, Revoke Key"
+    },
+    "generateButton": "Generate",
+    "newKeyModal": {
+        "title": "API Key Generated Successfully",
+        "description": "Please copy your new API key. You will not be able to see it again.",
+        "closeButton": "I have copied the key"
+    },
+    "toast": {
+        "descriptionRequired": "A description for the API key is required.",
+        "keyGeneratedError": "Could not generate API key.",
+        "keyRevokedSuccess": "API key successfully revoked.",
+        "keyRevokedError": "Failed to revoke API key.",
+        "apiKeyCopied": "API Key copied to clipboard."
+    }
+  },
+  "InsurancePage": {
+      "title": "Insurance Hub",
+      "description": "Protect your agricultural investments with tailored insurance products.",
+      "noProducts": "No insurance products are currently available. Please check back later.",
+      "perTerm": "term",
+      "viewDetailsButton": "View Details",
+      "toast": {
+        "errorTitle": "Error"
+      }
+  },
+  "InsuranceDetailPage": {
+      "toast": {
+          "errorTitle": "Error fetching product"
+      },
+      "notFound": "Product not found.",
+      "backLink": "Back to Insurance Hub",
+      "coverageTitle": "Coverage Details",
+      "premiumTitle": "Premium",
+      "perTerm": "per term",
+      "providerTitle": "Provided By",
+      "applyButton": "Apply for this Product"
+  },
+  "InsuranceApplyPage": {
+      "backLink": "Back to Product Details",
+      "title": "Apply for Insurance",
+      "description": "Complete the form below to apply for {productName}.",
+      "success": {
+          "title": "Application Submitted!",
+          "description": "Your insurance application has been received and is now under review.",
+          "backToDashboardButton": "Back to Dashboard",
+          "applyForAnotherButton": "Apply for Another Policy"
+      },
+      "form": {
+          "farmLabel": "Farm to Insure",
+          "farmPlaceholder": "Select a farm",
+          "noFarms": "You must have a registered farm to apply",
+          "coverageValueLabel": "Desired Coverage Value",
+          "coverageValuePlaceholder": "e.g., 10000",
+          "coverageValueDescription": "The total value you wish to insure.",
+          "submitButton": "Submit Application"
+      },
+      "toast": {
+          "error": "Error",
+          "notAuthenticated": "You must be logged in to apply."
+      }
+  },
+  "InsuranceProductsPage": {
+      "title": "Manage Insurance Products",
+      "description": "Create and manage insurance products available on the platform.",
+      "createButton": "Create New Product",
+      "noProducts": "You have not created any insurance products yet.",
+      "table": {
+          "productName": "Product Name",
+          "type": "Type",
+          "status": "Status",
+          "premium": "Premium"
+      },
+       "toast": {
+          "errorTitle": "Error"
+      }
+  },
+  "InsuranceProviderDashboard": {
+    "title": "Insurance Provider Dashboard",
+    "manageProductsTitle": "Manage Insurance Products",
+    "manageProductsDescription": "Create, edit, and manage the insurance products you offer on the platform.",
+    "manageProductsButton": "Manage Products",
+    "claimsTitle": "Pending Claims",
+    "claimsDescription": "Review and process new insurance claims submitted by users.",
+    "table": {
+        "policyHolder": "Policy Holder",
+        "policyType": "Policy Type",
+        "claimDate": "Claim Date",
+        "status": "Status",
+        "action": "Action"
+    },
+    "reviewClaimButton": "Review Claim",
+    "noPendingClaims": "No pending claims to review.",
+    "riskAlertsTitle": "Risk Assessment Alerts",
+    "riskAlertsDescription": "Proactive alerts for policies with elevated risk factors.",
+    "table": {
+        "alert": "Alert",
+        "severity": "Severity"
+    },
+    "investigateButton": "Investigate",
+    "noRiskAlerts": "No active risk alerts."
+  },
+  "InsuranceProductCreatePage": {
+      "backLink": "Back to Product Management",
+      "title": "Create Insurance Product",
+      "description": "Define a new insurance product to offer to DamDoh users.",
+      "form": {
+          "nameLabel": "Product Name",
+          "namePlaceholder": "e.g., Drought Protection for Maize",
+          "typeLabel": "Product Type",
+          "typePlaceholder": "Select a type",
+          "crop": "Crop Insurance",
+          "livestock": "Livestock Insurance",
+          "asset": "Asset Insurance",
+          "weather": "Parametric (Weather) Insurance",
+          "descriptionLabel": "Short Description",
+          "descriptionPlaceholder": "A brief summary of what this product offers.",
+          "coverageLabel": "Coverage Details",
+          "coveragePlaceholder": "Describe in detail what is covered, the terms, and any exclusions.",
+          "premiumLabel": "Premium",
+          "premiumPlaceholder": "e.g., 250.00",
+          "currencyLabel": "Currency",
+          "submitButton": "Create Product"
+      },
+      "toast": {
+          "notAuthenticated": "You must be an Insurance Provider to create products.",
+          "successTitle": "Product Created!",
+          "successDescription": "{name} is now available on the platform.",
+          "errorTitle": "Creation Failed"
+      }
+  },
+  "walletPage": {
+    "title": "My Wallet",
+    "description": "Securely manage your funds, view transaction history, and access financial services.",
+    "underDevelopmentTitle": "Under Development",
+    "underDevelopmentDescription": "The DamDoh Wallet and integrated financial services are currently under active development. This feature will provide a secure and seamless way to manage your transactions on the platform.",
+    "feature1": "Securely hold your balances.",
+    "feature2": "View detailed transaction history.",
+    "feature3": "Facilitate direct payments on the Marketplace.",
+    "feature4": "Apply for and receive funds from financial partners.",
+    "stayTuned": "Stay tuned for updates!"
   }
 }
 
