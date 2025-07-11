@@ -1,5 +1,4 @@
 
-      
 {
   "MobileHomepage": {
     "welcome": {
@@ -688,51 +687,6 @@
     "comingSoonDescription": "The Pinboard is a feature currently under development. It will allow you to bookmark important items and create custom collections for your projects and research.",
     "stayTuned": "Stay tuned for updates!"
   },
-  "privacyPolicy": {
-    "title": "Privacy Policy",
-    "lastUpdated": "Last updated: October 29, 2023",
-    "introduction": "This privacy notice for DamDoh ('we', 'us', or 'our'), describes how and why we might collect, store, use, and/or share ('process') your information when you use our services ('Services').",
-    "whatInfoWeCollect": {
-      "heading": "1. WHAT INFORMATION DO WE COLLECT?",
-      "content": "We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us."
-    },
-    "howWeUseInfo": {
-      "heading": "2. HOW DO WE PROCESS YOUR INFORMATION?",
-      "content": "We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent."
-    },
-    "willInfoBeShared": {
-      "heading": "3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?",
-      "content": "We may share information in specific situations described in this section and/or with the following third parties: with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations."
-    },
-    "cookiesAndTracking": {
-      "heading": "4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?",
-      "content": "We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies is set out in our Cookie Notice."
-    },
-    "howLongWeKeepInfo": {
-      "heading": "5. HOW LONG DO WE KEEP YOUR INFORMATION?",
-      "content": "We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law."
-    },
-    "howWeKeepInfoSafe": {
-      "heading": "6. HOW DO WE KEEP YOUR INFORMATION SAFE?",
-      "content": "We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process."
-    },
-    "minors": {
-      "heading": "7. DO WE COLLECT INFORMATION FROM MINORS?",
-      "content": "We do not knowingly solicit data from or market to children under 18 years of age."
-    },
-    "privacyRights": {
-      "heading": "8. WHAT ARE YOUR PRIVACY RIGHTS?",
-      "content": "In some regions (like the EEA, UK, and Canada), you have certain rights under applicable data protection laws. These may include the right (i) to request access and obtain a copy of your personal information, (ii) to request rectification or erasure; (iii) to restrict the processing of your personal information; and (iv) if applicable, to data portability."
-    },
-    "controlsForDoNotTrack": {
-      "heading": "9. CONTROLS FOR DO-NOT-TRACK FEATURES",
-      "content": "Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected."
-    },
-    "updatesToNotice": {
-      "heading": "10. DO WE MAKE UPDATES TO THIS NOTICE?",
-      "content": "We may update this privacy notice from time to time. The updated version will be indicated by an updated 'Revised' date and the updated version will be effective as soon as it is accessible."
-    }
-  },
   "termsOfService": {
     "title": "Terms of Service",
     "lastUpdated": "Last updated: October 29, 2023",
@@ -748,10 +702,6 @@
     "userRepresentations": {
       "heading": "3. User Representations",
       "content": "By using the Services, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you have the legal capacity and you agree to comply with these Terms; (3) you will not use the Services for any illegal or unauthorized purpose."
-    },
-    "prohibitedActivities": {
-      "heading": "4. Prohibited Activities",
-      "content": "You may not access or use the Services for any purpose other than that for which we make the Services available. Prohibited activity includes, but is not limited to: systematic retrieval of data, tricking or misleading us and other users, or interfering with the security-related features of the Services."
     },
     "platformManagement": {
       "heading": "5. Platform Management",
@@ -778,17 +728,6 @@
       "content": "In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us."
     },
     "conclusion": "If you have any questions about these Terms, please {contactLink}."
-  },
-  "walletPage": {
-    "title": "DamDoh Wallet",
-    "description": "Securely manage your funds, track transactions, and access financial services.",
-    "underDevelopmentTitle": "Wallet Feature Under Development",
-    "underDevelopmentDescription": "We are building a secure and powerful digital wallet to streamline your financial activities on the DamDoh platform. This feature will enable:",
-    "feature1": "Secure payments for marketplace transactions.",
-    "feature2": "Direct payouts from sales and services.",
-    "feature3": "Easy management of your platform balance.",
-    "feature4": "A foundation for accessing credit and insurance products.",
-    "stayTuned": "Stay tuned for updates!"
   },
   "farmManagement": {
     "hub": {
@@ -869,11 +808,11 @@
         "typeLabel": "Farm Type",
         "typePlaceholder": "Select the primary type",
         "types": {
-          "crop": "Crop Production",
-          "livestock": "Livestock",
-          "mixed": "Mixed (Crops & Livestock)",
-          "aquaculture": "Aquaculture",
-          "other": "Other"
+            "crop": "Crop Production",
+            "livestock": "Livestock",
+            "mixed": "Mixed (Crops & Livestock)",
+            "aquaculture": "Aquaculture",
+            "other": "Other"
         },
         "descriptionLabel": "Description (optional)",
         "descriptionPlaceholder": "Briefly describe your farm...",
@@ -891,50 +830,34 @@
         "errorDescription": "Could not create the farm. Please try again."
       }
     },
-    "editFarm": {
-      "backToFarm": "Back to Farm Details",
-      "title": "Edit Farm",
-      "description": "Update the details of your farm.",
-      "form": {
-        "submitButton": "Save Changes"
-      },
-      "toast": {
-        "notFoundTitle": "Not Found",
-        "loadError": "The farm you are trying to edit could not be loaded.",
-        "loadFail": "Could not load farm data: {message}",
-        "successTitle": "Farm Updated!",
-        "successDescription": "'{farmName}' was successfully updated.",
-        "errorTitle": "Update Failed"
-      }
-    },
     "farmDetail": {
-      "backToFarms": "Back to My Farms",
-      "registeredOn": "Registered on {date}",
-      "editFarmButton": "Edit Farm",
-      "crops": {
-        "title": "Crops",
-        "description": "Manage all active crops on this farm.",
-        "addNewButton": "Add New Crop",
-        "plantedLabel": "Planted",
-        "stageLabel": "Stage",
-        "viewJourneyButton": "View Journey",
-        "noCrops": "No crops have been added to this farm yet.",
-        "addFirstButton": "Add your first crop"
-      },
-      "insights": {
-        "title": "Profitability Insights",
-        "description": "AI-powered analysis of your farm's activities."
-      },
-      "toast": {
-        "notFoundTitle": "Farm Not Found",
-        "loadErrorTitle": "Load Error",
-        "insightsErrorTitle": "Insights Error"
-      },
-      "notFound": {
-        "title": "Farm not found",
-        "description": "The farm you are looking for does not exist or you do not have permission to view it.",
-        "backButton": "Back to My Farms"
-      }
+        "backToFarms": "Back to My Farms",
+        "registeredOn": "Registered on {date}",
+        "editFarmButton": "Edit Farm",
+        "crops": {
+            "title": "Crops",
+            "description": "Manage all active crops on this farm.",
+            "addNewButton": "Add New Crop",
+            "plantedLabel": "Planted",
+            "stageLabel": "Stage",
+            "viewJourneyButton": "View Journey",
+            "noCrops": "No crops have been added to this farm yet.",
+            "addFirstButton": "Add your first crop"
+        },
+        "insights": {
+            "title": "Profitability Insights",
+            "description": "AI-powered analysis of your farm's activities."
+        },
+        "toast": {
+            "notFoundTitle": "Farm Not Found",
+            "loadErrorTitle": "Load Error",
+            "insightsErrorTitle": "Insights Error"
+        },
+        "notFound": {
+            "title": "Farm not found",
+            "description": "The farm you are looking for does not exist or you do not have permission to view it.",
+            "backButton": "Back to My Farms"
+        }
     },
     "createCrop": {
       "backLink": "Back to Farm Details",
@@ -971,45 +894,6 @@
         "failDescription": "An unexpected error occurred. Please try again."
       }
     },
-    "editCrop": {
-      "backLink": "Back to Crop Details",
-      "title": "Edit Crop",
-      "description": "Update the details for your crop.",
-      "savingButton": "Saving...",
-      "saveButton": "Save Changes",
-      "toast": {
-        "notFound": "Crop not found.",
-        "loadError": "Could not load crop data for editing.",
-        "error": "Error",
-        "loadFail": "Could not load crop data: {message}",
-        "success": "Crop Updated!",
-        "description": "{cropType} was successfully updated.",
-        "fail": "Update Failed."
-      }
-    },
-    "cropDetailPage": {
-      "backLink": "Back to Farm",
-      "plantedOn": "Planted on {date}",
-      "editButton": "Edit",
-      "quickActionsTitle": "Quick Actions",
-      "logInputButton": "Log Input",
-      "logObservationButton": "Log Observation",
-      "logHarvestButton": "Log Harvest",
-      "journeyTitle": "Crop Journey",
-      "noActivities": "No activities have been logged for this crop yet.",
-      "loading": "Loading crop details...",
-      "notFound": "Crop not found.",
-      "toast": {
-        "notFound": "Crop not found.",
-        "loadError": "Could not load crop data."
-      },
-      "eventPayload": {
-        "noDetails": "No additional details for this event.",
-        "observationType": "Observation Type",
-        "details": "Details",
-        "aiDiagnosis": "AI Diagnosis"
-      }
-    },
     "logInput": {
       "backLink": "Back to Farm",
       "title": "Log Input Application",
@@ -1035,46 +919,141 @@
         "fail": "Logging Failed."
       }
     },
-    "logObservation": {
+    "cropDetailPage": {
       "backLink": "Back to Farm",
-      "title": "Log Observation",
-      "description": "Record an observation about your crop, such as pest sightings, diseases, growth, or weather events.",
-      "typeLabel": "Observation Type",
-      "typePlaceholder": "Select a type",
-      "types": {
-        "Pest": "Pest",
-        "Disease": "Disease",
-        "Growth": "Growth",
-        "Weather": "Weather",
-        "Soil": "Soil",
-        "Weed": "Weed",
-        "Other": "Other",
-        "FGW_Stations": "Land Prep (FGW Stations)",
-        "FGW_Mulch": "Mulching (God's Blanket)"
-      },
-      "dateLabel": "Date of Observation",
-      "detailsLabel": "Details & Notes",
-      "detailsPlaceholder": "Describe what you observed...",
-      "uploadLabel": "Upload Photo (Optional)",
-      "uploadDescription": "A photo can help with diagnosis and will be analyzed by AI if provided.",
-      "saveButton": "Log Observation",
-      "processingButton": "Processing...",
+      "plantedOn": "Planted on {date}",
+      "editButton": "Edit",
+      "quickActionsTitle": "Quick Actions",
+      "logInputButton": "Log Input",
+      "logObservationButton": "Log Observation",
+      "logHarvestButton": "Log Harvest",
+      "journeyTitle": "Crop Journey",
+      "noActivities": "No activities have been logged for this crop yet.",
+      "loading": "Loading crop details...",
+      "notFound": "Crop not found.",
       "toast": {
-        "authErrorTitle": "Not Authenticated",
-        "authErrorDescription": "You must be signed in to log an observation.",
-        "aiAnalyzing": "AI Analyzing",
-        "aiDescription": "Your image data is being sent to the AI for diagnosis.",
-        "aiComplete": "AI Analysis Complete!",
-        "aiCompleteDescription": "The diagnosis has been included in your observation record.",
-        "aiFailTitle": "AI Analysis Failed",
-        "aiFailDescription": "We could not analyze the image. The observation will be saved without an AI diagnosis.",
-        "uploading": "Uploading Image...",
-        "uploadingDescription": "Please wait a moment.",
-        "uploadComplete": "Upload Complete!",
-        "success": "Observation Logged",
-        "successDescription": "Your observation has been successfully logged.",
-        "fail": "Logging Failed."
+        "notFound": "Crop not found.",
+        "loadError": "Could not load crop data."
+      },
+      "eventPayload": {
+        "noDetails": "No additional details for this event.",
+        "observationType": "Observation Type",
+        "details": "Details",
+        "aiDiagnosis": "AI Diagnosis"
       }
+    },
+    "fgwGuidePage": {
+      "backLink": "Back to Farm Hub",
+      "title": "Farming God's Way Guide",
+      "description": "A sustainable, no-till, faith-based agricultural solution for the poor.",
+      "intro": "Farming God's Way (FGW) is not just a technology, but a biblically-based management and technology solution to the agricultural needs of the poor. It's about being faithful stewards of the land God has given us. Below are the core principles.",
+      "howToTitle": "How to do it",
+      "whyItWorksTitle": "Why it works",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "No-Tillage",
+          "icon": "Shield",
+          "summary": "Protect the soil by not plowing it. This preserves the God-given soil structure.",
+          "howTo": [
+            "Create permanent planting stations (holes) instead of ridges.",
+            "Only dig where you are going to plant the seed.",
+            "Walk on permanent pathways to avoid compacting your planting soil."
+          ],
+          "whyItWorks": [
+            "Prevents soil erosion from wind and water.",
+            "Protects the soil life and fungal networks.",
+            "Dramatically increases water infiltration and retention.",
+            "Reduces labor and fuel costs associated with plowing."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field with no-till planting stations",
+          "dataAiHint": "no-till farming holes"
+        },
+        {
+          "id": "gods-blanket",
+          "title": "God's Blanket",
+          "icon": "Leaf",
+          "summary": "Keep the soil 100% covered with a thick layer of organic matter, just like in a forest.",
+          "howTo": [
+            "Gather dry organic matter like grass, straw, dry leaves, or maize stover.",
+            "Apply a thick blanket of mulch (at least 10-15cm) over the entire plot.",
+            "Never burn your crop residues; use them as mulch.",
+            "When planting, make a small opening in the mulch for your seed."
+          ],
+          "whyItWorks": [
+            "Prevents weed growth.",
+            "Saves significant soil moisture, reducing water needs.",
+            "Feeds the soil life as it decomposes, building rich topsoil.",
+            "Protects the soil from the direct heat of the sun."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field covered in a thick blanket of mulch",
+          "dataAiHint": "mulching agriculture"
+        },
+        {
+          "id": "high-standards",
+          "title": "High Standards",
+          "icon": "CheckCircle",
+          "summary": "Do everything on time, to a high standard, without wastefulness, and with joy.",
+          "howTo": [
+            "Prepare the land well before the first rains.",
+            "Plant at the optimal time for your region and crop.",
+            "Follow precise measurements for planting depth and spacing.",
+            "Manage your resources (seed, inputs, time) wisely to avoid waste."
+          ],
+          "whyItWorks": [
+            "Maximizes the genetic potential of the seed.",
+            "Ensures the crop gets the full benefit of the early rains.",
+            "Leads to higher yields and greater profitability.",
+            "Honors God through excellent work."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A farmer carefully planting seeds in a well-prepared field",
+          "dataAiHint": "planting seeds precisely"
+        }
+      ]
+    },
+    "logObservation": {
+        "backLink": "Back to Farm",
+        "title": "Log Observation",
+        "description": "Record an observation about your crop, such as pest sightings, diseases, growth, or weather events.",
+        "typeLabel": "Observation Type",
+        "typePlaceholder": "Select a type",
+        "types": {
+            "Pest": "Pest",
+            "Disease": "Disease",
+            "Growth": "Growth",
+            "Weather": "Weather",
+            "Soil": "Soil",
+            "Weed": "Weed",
+            "Other": "Other",
+            "FGW_Stations": "Land Prep (FGW Stations)",
+            "FGW_Mulch": "Mulching (God's Blanket)"
+        },
+        "dateLabel": "Date of Observation",
+        "detailsLabel": "Details & Notes",
+        "detailsPlaceholder": "Describe what you observed...",
+        "uploadLabel": "Upload Photo (Optional)",
+        "uploadDescription": "A photo can help with diagnosis and will be analyzed by AI if provided.",
+        "saveButton": "Log Observation",
+        "processingButton": "Processing...",
+        "toast": {
+            "authErrorTitle": "Not Authenticated",
+            "authErrorDescription": "You must be signed in to log an observation.",
+            "aiAnalyzing": "AI Analyzing",
+            "aiDescription": "Your image data is being sent to the AI for diagnosis.",
+            "aiComplete": "AI Analysis Complete!",
+            "aiCompleteDescription": "The diagnosis has been included in your observation record.",
+            "aiFailTitle": "AI Analysis Failed",
+            "aiFailDescription": "We could not analyze the image. The observation will be saved without an AI diagnosis.",
+            "uploading": "Uploading Image...",
+            "uploadingDescription": "Please wait a moment.",
+            "uploadComplete": "Upload Complete!",
+            "success": "Observation Logged",
+            "successDescription": "Your observation has been successfully logged.",
+            "fail": "Logging Failed."
+        }
     },
     "logHarvest": {
       "backLink": "Back to Farm",
@@ -1090,21 +1069,21 @@
       "saveButton": "Log Harvest & Create Batch",
       "savingButton": "Saving...",
       "offlineToast": {
-        "title": "Action added to offline queue.",
-        "description": "Your harvest will be logged and a VTI created when you're back online."
+          "title": "Action added to offline queue.",
+          "description": "Your harvest will be logged and a VTI created when you're back online."
       },
       "success": {
-        "title": "Harvest Logged!",
-        "description": "The harvest for {cropType} was logged successfully. A new traceable batch with ID '{vtiId}' has been created.",
-        "successCardTitle": "Harvest Logged!",
-        "successCardDescription": "A new traceable batch has been created for {cropType} with ID: {vtiId}",
-        "viewReportButton": "View Traceability Report",
-        "sellButton": "Sell on Marketplace",
-        "logAnotherButton": "Log Another Harvest",
-        "backToFarmButton": "Back to Farm"
+          "title": "Harvest Logged!",
+          "description": "The harvest for {cropType} was logged successfully. A new traceable batch with ID '{vtiId}' has been created.",
+          "successCardTitle": "Harvest Logged!",
+          "successCardDescription": "A new traceable batch has been created for {cropType} with ID: {vtiId}",
+          "viewReportButton": "View Traceability Report",
+          "sellButton": "Sell on Marketplace",
+          "logAnotherButton": "Log Another Harvest",
+          "backToFarmButton": "Back to Farm"
       },
       "fail": {
-        "title": "Logging Failed"
+          "title": "Logging Failed"
       }
     },
     "knfInputsPage": {
@@ -1194,6 +1173,115 @@
         "updateFailed": "Update Failed.",
         "couldNotUpdate": "Could not update batch status."
       }
+    },
+    "editCrop": {
+      "backLink": "Back to Crop Details",
+      "title": "Edit Crop",
+      "description": "Update the details for your crop.",
+      "savingButton": "Saving...",
+      "saveButton": "Save Changes",
+      "toast": {
+        "notFound": "Crop not found.",
+        "loadError": "Could not load crop data for editing.",
+        "error": "Error",
+        "loadFail": "Could not load crop data: {message}",
+        "success": "Crop Updated!",
+        "description": "{cropType} was successfully updated.",
+        "fail": "Update Failed."
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Back to Farm Details",
+      "title": "Edit Farm",
+      "description": "Update the details of your farm.",
+      "form": {
+        "submitButton": "Save Changes"
+      },
+      "toast": {
+        "notFoundTitle": "Not Found",
+        "loadError": "The farm you are trying to edit could not be loaded.",
+        "loadFail": "Could not load farm data: {message}",
+        "successTitle": "Farm Updated!",
+        "successDescription": "'{farmName}' was successfully updated.",
+        "errorTitle": "Update Failed"
+      }
+    },
+    "financials": {
+        "title": "Financials",
+        "description": "Track the financial health of your farm.",
+        "applyForFundingButton": "Apply for Funding",
+        "newTransactionButton": "Log Transaction",
+        "totalIncome": "Total Income",
+        "totalExpense": "Total Expense",
+        "netFlow": "Net Cashflow",
+        "recentTransactions": "Recent Transactions",
+        "noTransactions": "No transactions recorded yet.",
+        "table": {
+            "date": "Date",
+            "description": "Description",
+            "category": "Category",
+            "amount": "Amount"
+        },
+        "log": {
+            "backLink": "Back to Financials",
+            "title": "Log Financial Transaction",
+            "description": "Manually record an income or expense for your farm.",
+            "typeLabel": "Transaction Type",
+            "typePlaceholder": "Select a type",
+            "types": {
+                "income": "Income",
+                "expense": "Expense"
+            },
+            "descriptionLabel": "Description",
+            "descriptionPlaceholder": "e.g. Sale of 100kg of maize, Purchase of seeds",
+            "amountLabel": "Amount",
+            "amountPlaceholder": "e.g. 500.00",
+            "currencyLabel": "Currency",
+            "currencyPlaceholder": "Select a currency",
+            "categoryLabel": "Category (optional)",
+            "categoryPlaceholder": "e.g. Sales, Labor, Inputs",
+            "categoryDescription": "Assigning a category helps with analysis.",
+            "saveButton": "Save Transaction",
+            "savingButton": "Saving...",
+            "toast": {
+                "authErrorTitle": "Not Authenticated",
+                "authErrorDescription": "You must be signed in to log a transaction.",
+                "success": "Transaction Logged",
+                "description": "Your transaction has been successfully recorded.",
+                "fail": "Logging Failed"
+            }
+        },
+        "apply": {
+            "backLink": "Back to Financials",
+            "title": "Apply for Funding",
+            "description": "Submit an application for a loan or grant from a partner financial institution.",
+            "form": {
+                "institutionLabel": "Financial Institution",
+                "institutionPlaceholder": "Select an institution",
+                "noInstitutions": "No financial institutions available",
+                "typeLabel": "Application Type",
+                "loan": "Loan",
+                "grant": "Grant",
+                "amountLabel": "Amount",
+                "currencyLabel": "Currency",
+                "purposeLabel": "Purpose of Funding",
+                "purposePlaceholder": "Describe how you will use these funds (e.g., purchase new equipment, expand operations, buy seeds).",
+                "purposeDescription": "A clear description increases your chances of approval.",
+                "submitButton": "Submit Application"
+            },
+            "toast": {
+                "error": "Error",
+                "fetchFiError": "Could not retrieve financial institutions.",
+                "notAuthenticatedError": "You must be logged in to apply.",
+                "successTitle": "Application Submitted!",
+                "successDescription": "Your application has been sent for review."
+            }
+        },
+        "signInPrompt": {
+            "title": "Sign In Required",
+            "description": "Please sign in to manage your farm's financials.",
+            "button": "Sign In"
+        }
     },
     "seedStartingPage": {
       "backLink": "Back to Farm Hub",
@@ -1709,7 +1797,109 @@
         }
       }
     }
+  },
+  "InsurancePage": {
+    "title": "Insurance Hub",
+    "description": "Protect your farm and assets with tailored insurance products.",
+    "noProducts": "No insurance products are available at this time.",
+    "perTerm": "term",
+    "viewDetailsButton": "View Details",
+    "toast": {
+      "errorTitle": "Error fetching products"
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "Back to My Products",
+    "title": "Create Insurance Product",
+    "description": "Define a new insurance product to offer to the community.",
+    "toast": {
+      "notAuthenticated": "You must be logged in as an Insurance Provider to create a product.",
+      "successTitle": "Product Created!",
+      "successDescription": "'{name}' has been successfully created.",
+      "errorTitle": "Creation Failed"
+    },
+    "form": {
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Drought & Flood Crop Coverage",
+      "typeLabel": "Product Type",
+      "typePlaceholder": "Select a product type",
+      "crop": "Crop Insurance",
+      "livestock": "Livestock Insurance",
+      "asset": "Asset Insurance",
+      "weather": "Parametric Weather Insurance",
+      "descriptionLabel": "Short Description",
+      "descriptionPlaceholder": "A brief, one-sentence summary of the product.",
+      "coverageLabel": "Coverage Details",
+      "coveragePlaceholder": "Describe in detail what this insurance covers, including perils, limits, and exclusions.",
+      "premiumLabel": "Premium",
+      "premiumPlaceholder": "e.g., 250",
+      "currencyLabel": "Currency",
+      "submitButton": "Create Product"
+    }
+  },
+  "InsuranceProductsPage": {
+    "backLink": "Back to Insurance Hub",
+    "title": "My Insurance Products",
+    "description": "Manage the insurance products you offer on the platform.",
+    "createButton": "Create New Product",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "premium": "Premium"
+    },
+    "noProducts": "You have not created any insurance products yet.",
+    "toast": {
+      "errorTitle": "Error fetching products"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "Back to Insurance Hub",
+    "notFound": "Insurance product not found.",
+    "coverageTitle": "Coverage Details",
+    "premiumTitle": "Premium",
+    "perTerm": "per term",
+    "providerTitle": "Provided by",
+    "applyButton": "Apply for Coverage",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "Back to Product",
+    "title": "Apply for Insurance",
+    "description": "Apply for '{productName}' to protect your assets.",
+    "form": {
+      "farmLabel": "Select Farm to Insure",
+      "farmPlaceholder": "Choose a farm",
+      "noFarms": "You have no farms to insure.",
+      "coverageValueLabel": "Total Value to Insure (USD)",
+      "coverageValuePlaceholder": "e.g., 50000",
+      "coverageValueDescription": "The total estimated value of the crop or asset you are insuring.",
+      "submitButton": "Submit Application"
+    },
+    "toast": {
+      "error": "Error",
+      "successTitle": "Application Submitted!",
+      "successDescription": "Your application has been sent to the provider for review."
+    },
+    "success": {
+      "title": "Application Sent!",
+      "description": "The insurance provider has received your application and will be in touch soon.",
+      "backToDashboardButton": "Back to Dashboard",
+      "applyForAnotherButton": "Apply for Another Product"
+    }
+  },
+  "walletPage": {
+    "title": "DamDoh Wallet",
+    "description": "Securely manage your funds, track transactions, and access financial services.",
+    "underDevelopmentTitle": "Wallet Feature Under Development",
+    "underDevelopmentDescription": "We are building a secure and powerful digital wallet to streamline your financial activities on the DamDoh platform. This feature will enable:",
+    "feature1": "Secure payments for marketplace transactions.",
+    "feature2": "Direct payouts from sales and services.",
+    "feature3": "Easy management of your platform balance.",
+    "feature4": "A foundation for accessing credit and insurance products.",
+    "stayTuned": "Stay tuned for updates!"
   }
 }
 
-    
