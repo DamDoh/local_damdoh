@@ -1517,7 +1517,8 @@
   },
   "common": {
     "error": "Error",
-    "success": "Success"
+    "success": "Success",
+    "loading": "Loading..."
   },
   "constants": {
     "stakeholderRoles": {
@@ -1709,6 +1710,117 @@
         "updateFailedDescription": "Your profile could not be saved. Please try again."
       }
     }
+  },
+  "admin": {
+    "layout": {
+      "title": "Admin Area",
+      "description": "Manage platform content and settings.",
+      "contentManagement": "Content Management",
+      "reports": "Reports"
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "description": "Welcome to the DamDoh administration panel.",
+      "content": "Use the navigation on the left to manage different aspects of the platform, such as knowledge base articles and user-generated content.",
+      "contentManagementButton": "Manage Content"
+    },
+    "contentManagement": {
+      "toast": {
+        "loadErrorTitle": "Error Loading Articles",
+        "loadErrorDescription": "Could not fetch the list of articles.",
+        "createSuccessTitle": "Article Created",
+        "createSuccessDescription": "The new knowledge article has been successfully published.",
+        "createErrorTitle": "Creation Failed"
+      },
+      "allArticles": {
+        "title": "All Content",
+        "description": "View and manage all knowledge articles, blog posts, and news.",
+        "refreshButton": "Refresh"
+      },
+      "table": {
+        "title": "Title",
+        "category": "Category",
+        "status": "Status",
+        "created": "Created",
+        "actions": "Actions",
+        "noArticles": "No articles have been created yet."
+      },
+      "createArticle": {
+        "title": "Create New Content",
+        "description": "Add a new knowledge article, blog post, or news item. Translations can be auto-generated if one language is provided.",
+        "englishContent": "English Content",
+        "titleEnLabel": "Title (English)",
+        "excerptEnLabel": "Excerpt (English)",
+        "contentEnLabel": "Content (English, Markdown)",
+        "khmerContent": "Khmer Content",
+        "titleKmLabel": "Title (Khmer)",
+        "excerptKmLabel": "Excerpt (Khmer)",
+        "contentKmLabel": "Content (Khmer, Markdown)",
+        "metadataTitle": "Metadata",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "e.g., Blog, KNF, FGW, Industry News",
+        "authorLabel": "Author",
+        "authorPlaceholder": "Author's Name",
+        "statusLabel": "Status",
+        "tagsLabel": "Tags (comma-separated)",
+        "imageUrlLabel": "Image URL",
+        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
+        "aiHintLabel": "AI Image Hint",
+        "aiHintPlaceholder": "e.g., sustainable farming",
+        "publishingButton": "Publishing...",
+        "publishButton": "Publish Article"
+      }
+    },
+    "reports": {
+      "toast": {
+        "loadErrorTitle": "Error Loading Reports",
+        "formIncompleteTitle": "Incomplete Information",
+        "formIncompleteDescription": "Please select a report type, target user, and date range.",
+        "generateSuccessTitle": "Report Generation Started",
+        "generateSuccessDescription": "The report is being generated and will appear in the list below shortly.",
+        "generateErrorTitle": "Generation Failed"
+      },
+      "generate": {
+        "title": "Generate a New Report",
+        "description": "Create on-demand reports for regulatory and compliance purposes.",
+        "reportTypeLabel": "Report Type",
+        "reportTypeVti": "VTI Events Summary",
+        "targetUserLabel": "Target User",
+        "userSearchPlaceholder": "Search by name or email...",
+        "dateRangeLabel": "Date Range",
+        "datePlaceholder": "Pick a date range",
+        "submitButton": "Generate Report"
+      },
+      "list": {
+        "title": "Generated Reports",
+        "description": "View and download previously generated reports.",
+        "table": {
+          "reportType": "Report Type",
+          "generatedFor": "For User",
+          "date": "Generated On",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "viewButton": "View",
+        "noReports": "No reports have been generated yet."
+      }
+    }
+  },
+  "notificationsPage": {
+    "title": "Notifications",
+    "description": "Stay up-to-date with the latest activity relevant to you.",
+    "noNotifications": "You have no new notifications.",
+    "likedYourPost": "{name} liked your post.",
+    "commentedOnYourPost": "{name} commented on your post.",
+    "viewedYourProfile": "{name} viewed your profile.",
+    "placedNewOrder": "{name} placed an order for one of your listings.",
+    "sentConnectionRequest": "{name} sent you a connection request."
+  },
+  "pinboardPage": {
+    "title": "My Pinboard",
+    "description": "Your personal space to save and organize profiles, listings, articles, and discussions from across the platform.",
+    "comingSoonTitle": "Coming Soon!",
+    "comingSoonDescription": "The Pinboard is a feature currently under development. It will allow you to bookmark important items and create custom collections for your projects and research.",
+    "stayTuned": "Stay tuned for updates!"
   }
 }
-
