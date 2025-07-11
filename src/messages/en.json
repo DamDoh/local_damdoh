@@ -1280,6 +1280,208 @@
             "button": "Sign In"
         }
     },
+    "seedStartingPage": {
+      "backLink": "Back to Farm Hub",
+      "title": "Master Seed Starting Guide",
+      "description": "Give your crops the best possible start. Learn the art and science of starting seeds indoors for a stronger, healthier, and more productive season.",
+      "intro": "Starting seeds indoors gives you a major head start on the growing season, protects young plants from pests and harsh weather, and allows you to grow varieties that might not otherwise have time to mature in your climate. This guide will cover the essential steps, from choosing your supplies to transplanting your seedlings.",
+      "sections": [
+        {
+          "id": "why-start-indoors",
+          "title": "Why Start Seeds Indoors?",
+          "icon": "Lightbulb",
+          "intro": "There are several key advantages to starting seeds indoors versus direct sowing in the garden:",
+          "points": [
+            { "term": "Longer Growing Season", "def": "Begin weeks or months before your last frost date, which is crucial for plants that take a long time to mature, like tomatoes, peppers, and eggplants." },
+            { "term": "Protection", "def": "Seedlings are safe from harsh weather (heavy rain, wind, cold snaps) and common pests (slugs, birds, cutworms)." },
+            { "term": "Improved Germination", "def": "You can control temperature, moisture, and light to create the perfect conditions for seeds to sprout." },
+            { "term": "Cost-Effective", "def": "A packet of seeds is far cheaper than buying established nursery plants, especially for large plantings." },
+            { "term": "Wider Variety", "def": "You gain access to thousands of unique and heirloom varieties from seed catalogs that you'll never find at a local garden center." }
+          ]
+        },
+        {
+          "id": "key-supplies",
+          "title": "Key Seed-Starting Supplies",
+          "icon": "Package",
+          "intro": "Gathering the right supplies before you start makes the process smoother and more successful. You will need:",
+          "steps": [
+            "<b>Containers:</b> Seed-starting trays, cell packs, peat pots, or even recycled yogurt cups (with drainage holes) all work well.",
+            "<b>Seed-Starting Mix:</b> Use a sterile, soilless mix specifically designed for seed starting. It's lightweight and holds moisture well, which prevents diseases that can plague seedlings.",
+            "<b>Seeds:</b> Choose high-quality seeds from a reputable supplier. Check the packet for information on planting depth and timing.",
+            "<b>Light Source:</b> A sunny, south-facing window can work, but a simple fluorescent shop light or a dedicated LED grow light will provide much better results and prevent 'leggy' (tall and weak) seedlings.",
+            "<b>Heat Mat (Optional):</b> Many seeds, especially warm-weather crops like peppers, germinate much faster with bottom heat. A seedling heat mat is a great investment.",
+            "<b>Watering Can/Spray Bottle:</b> A gentle way to water your seeds without dislodging them.",
+            "<b>Labels:</b> Don't forget to label your trays! Use popsicle sticks, plastic plant markers, or even masking tape."
+          ]
+        },
+        {
+          "id": "step-by-step-guide",
+          "title": "Step-by-Step Planting Guide",
+          "icon": "Grid",
+          "intro": "Follow these steps to plant your seeds for optimal germination:",
+          "steps": [
+            "<b>Moisten the Mix:</b> Before filling your containers, put your seed-starting mix in a bucket or tub and slowly add warm water, mixing with your hands until it's damp like a wrung-out sponge, but not soggy.",
+            "<b>Fill Containers:</b> Fill your containers with the moistened mix, tapping it down lightly but not compacting it. Leave about a half-inch of space at the top.",
+            "<b>Sow the Seeds:</b> Plant 2-3 seeds per cell or pot. A general rule of thumb is to plant a seed twice as deep as it is wide. Check your seed packet for specific instructions.",
+            "<b>Cover and Label:</b> Lightly cover the seeds with more mix or vermiculite, then gently press the surface. Immediately label your tray with the plant variety and sowing date.",
+            "<b>Water Gently:</b> Gently water the surface with a spray bottle or water from the bottom by placing your trays in a tub of water. This prevents seeds from washing away.",
+            "<b>Provide Warmth & Cover:</b> Place trays in a warm spot or on a heat mat. Cover with a plastic dome or plastic wrap to hold in humidity until seeds sprout. Remove the cover as soon as you see the first signs of green."
+          ]
+        },
+        {
+          "id": "caring-for-seedlings",
+          "title": "Caring for Your Seedlings",
+          "icon": "Leaf",
+          "intro": "Once your seeds have sprouted, their needs change. Proper care now is crucial for strong plants.",
+          "steps": [
+            "<b>Light is Critical:</b> As soon as seeds germinate, they need abundant light. Place them under grow lights for 14-16 hours a day, keeping the lights just a few inches above the plant tops. If using a window, rotate trays daily to prevent leaning.",
+            "<b>Watering:</b> Keep the soil evenly moist but not waterlogged. Watering from the bottom is often best to encourage deep root growth.",
+            "<b>Thinning:</b> Once seedlings have their first 'true leaves' (the second set that appears), choose the strongest-looking seedling in each cell and snip the others off at the soil line with scissors. This prevents disturbing the winner's roots.",
+            "<b>Fertilizing:</b> Start feeding your seedlings with a diluted, balanced liquid fertilizer (at quarter-strength) after they have 2-3 sets of true leaves. Feed about once a week.",
+            "<b>Air Circulation:</b> A gentle fan blowing on your seedlings for a few hours a day helps prevent disease and strengthens their stems."
+          ]
+        },
+        {
+          "id": "hardening-off",
+          "title": "Hardening Off & Transplanting",
+          "icon": "Sun",
+          "intro": "'Hardening off' is the process of gradually acclimating your tender, indoor-grown plants to the harsh conditions outdoors.",
+          "steps": [
+            "<b>Start 1-2 Weeks Before Transplanting:</b> About 7-14 days before your local last frost date, begin the process.",
+            "<b>Day 1:</b> Place the seedlings in a shady, protected spot outdoors for 1-2 hours.",
+            "<b>Gradual Exposure:</b> Each day, increase the amount of time they spend outside by an hour or two, gradually introducing them to more direct sunlight and wind.",
+            "<b>Bring Them In:</b> Bring the plants back inside each night if temperatures drop significantly.",
+            "<b>Transplanting:</b> After a week or two of hardening off, your plants are ready for their new home in the garden. Choose a calm, overcast day to transplant to minimize shock. Water them in well."
+          ]
+        },
+        {
+          "id": "common-mistakes",
+          "title": "Common Mistakes to Avoid",
+          "icon": "AlertTriangle",
+          "intro": "Steer clear of these common pitfalls for a more successful seed-starting experience:",
+          "points": [
+            { "term": "Overwatering", "def": "This is the most common killer of seedlings. It leads to 'damping off,' a fungal disease that rots the stems at the soil line. Let the soil surface dry slightly between waterings." },
+            { "term": "Inadequate Light", "def": "Causes 'leggy,' weak seedlings that stretch for light. If you don't have grow lights, a very bright, south-facing window is the next best thing." },
+            { "term": "Starting Too Early", "def": "Eagerness is great, but starting seeds too soon results in large, root-bound plants that struggle after transplanting. Check your seed packet and count back from your local last frost date." },
+            { "term": "Forgetting to Thin", "def": "Overcrowded seedlings compete for light and nutrients, resulting in weak plants for everyone. It's tough, but thinning is necessary for strong individual plants." }
+          ]
+        }
+      ]
+    },
+    "familyFarmPage": {
+      "backLink": "Back to Farm Hub",
+      "title": "Integrated Family Farm Model (200 sqm)",
+      "description": "A holistic, diversified model for a small-scale family farm designed for resilience, nutritional security, and supplemental income.",
+      "intro": "This model demonstrates how a small plot of land (e.g., 20m x 10m) can be transformed into a productive, integrated system that mimics natural ecosystems. It combines various elements that support one another, reducing waste and external inputs while maximizing diversity and yield.",
+      "diagramCaption": "Conceptual diagram of the 200 sqm integrated family farm model.",
+      "detailsTitle": "Key Details & Yields",
+      "principlesTitle": "Key Principles & Synergies",
+      "zones": [
+        {
+          "id": "overall-layout",
+          "title": "Overall Layout & Principles",
+          "icon": "LayoutGrid",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "An overview of a lush, diversified small farm.",
+          "dataAiHint": "small farm layout diverse",
+          "description": [
+            "The 200 square meter (20m x 10m) plot is designed for intensive, regenerative production. The core idea is to create a closed-loop system where each component supports another, minimizing waste and maximizing resource use.",
+            "Water is the central, life-giving element, with the pond acting as a reservoir, nutrient source, and habitat. The layout is designed to use gravity and natural flows for irrigation and nutrient distribution."
+          ],
+          "subSections": [
+            { "title": "Resource Cycling", "content": ["Waste from one component becomes a resource for another (e.g., chicken manure fertilizes the plants, crop residues feed the chickens)."] },
+            { "title": "Diversity over Monoculture", "content": ["A wide variety of plants and animals creates resilience to pests and diseases."] },
+            { "title": "Vertical Stacking", "content": ["Utilizing trellises and multi-story cropping to maximize yield in a small space."] },
+            { "title": "Edge Effect", "content": ["The border between the pond and land is a highly productive zone for moisture-loving plants."] }
+          ]
+        },
+        {
+          "id": "vegetable-beds",
+          "title": "Raised Vegetable & Herb Beds (100 sqm)",
+          "icon": "Sprout",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Lush raised beds filled with a variety of greens and herbs.",
+          "dataAiHint": "raised bed vegetable garden",
+          "description": [
+            "This is the primary food production area, occupying half the total space. Raised beds improve drainage, reduce soil compaction, and are easier to manage.",
+            "Intensive planting methods like intercropping (planting different crops together) and succession planting (immediately replanting after harvest) are used to maximize production throughout the year."
+          ],
+          "details": [
+            { "title": "Crops", "content": ["Leafy greens (lettuce, spinach), root vegetables (carrots, radishes), fruiting vegetables (tomatoes, peppers), legumes (beans, peas), and essential kitchen/medicinal herbs."] },
+            { "title": "Fertility", "content": ["Maintained through compost made from farm waste, chicken manure, and nutrient-rich water from the fish pond."] }
+          ]
+        },
+        {
+          "id": "fruit-trees",
+          "title": "Fruit Trees & Perennials (Integrated)",
+          "icon": "Leaf",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A small orchard with various fruit trees and perennial plants.",
+          "dataAiHint": "fruit trees orchard",
+          "description": [
+            "Fruit trees are integrated along the borders and within the vegetable beds to provide a long-term food source, create microclimates, and add vertical structure.",
+            "These perennial plants require less annual labor than vegetables and help build soil stability with their deep root systems."
+          ],
+          "details": [
+            { "title": "Examples", "content": ["Dwarf varieties of banana, papaya, mango, and citrus trees are excellent choices for small spaces. Perennials like moringa or passion fruit on a trellis can also be integrated."] }
+          ]
+        },
+        {
+          "id": "fish-pond",
+          "title": "Fish Pond (15 sqm)",
+          "icon": "Fish",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A small, clear fish pond with tilapia and water plants.",
+          "dataAiHint": "backyard fish pond",
+          "description": [
+            "The fish pond is a key element of the integrated system. It acts as a water reservoir for irrigation during dry periods and provides a source of protein.",
+            "The nutrient-rich water from the pond, full of fish waste, is a natural, high-quality liquid fertilizer for the vegetable beds."
+          ],
+          "details": [
+            { "title": "Species", "content": ["Tilapia is a popular choice as they are hardy, fast-growing, and primarily vegetarian."] },
+            { "title": "Aquatic Plants", "content": ["Water spinach or duckweed can be grown on the surface to provide food for the fish and chickens, as well as for human consumption."] }
+          ]
+        },
+        {
+          "id": "chicken-coop",
+          "title": "Chicken Coop (5 sqm)",
+          "icon": "Bird",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A small, clean chicken coop with a few chickens.",
+          "dataAiHint": "backyard chicken coop",
+          "description": [
+            "A small flock of chickens (5-10) provides a constant source of eggs and meat for the family.",
+            "Their manure is a potent fertilizer for the compost pile, and they can be allowed to forage in finished garden beds to clean up pests and weed seeds."
+          ],
+          "details": [
+            { "title": "Integration", "content": ["Positioning the coop next to the compost pile allows for easy transfer of manure. Chickens are fed kitchen scraps and excess garden greens, reducing waste."] }
+          ]
+        },
+        {
+          "id": "compost-area",
+          "title": "Compost & Waste Management Area",
+          "icon": "Recycle",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A well-managed three-bin compost system.",
+          "dataAiHint": "compost pile garden",
+          "description": [
+            "This is the farm's recycling center. All organic 'waste'—kitchen scraps, garden trimmings, animal manure, and fallen leaves—is turned into 'black gold' (compost).",
+            "A simple three-bin system allows one pile to be actively built, one to 'cook', and one to be ready for use, ensuring a continuous supply of high-quality soil amendment."
+          ],
+          "details": [
+            { "title": "Function", "content": ["Closes the nutrient loop on the farm, eliminates the need for synthetic fertilizers, improves soil structure, and increases its water-holding capacity."] }
+          ]
+        }
+      ],
+      "conclusion": {
+        "title": "A Model of Abundance",
+        "content": [
+          "This 200 sqm model is more than just a farm; it's a living example of how to work with nature to create abundance in a small space.",
+          "It provides a diverse and nutritious diet, reduces reliance on external markets, generates a potential surplus for income, and builds a resilient system that can better withstand climate and economic shocks.",
+          "It is a pathway to food sovereignty and a healthier life for the family."
+        ]
+      }
+    },
     "laborPage": {
       "backLink": "Back to Farm Hub",
       "title": "Labor Management",
@@ -1511,6 +1713,7 @@
           "title": "Existing Coupons",
           "description": "View and manage all coupons for this event.",
           "expires": "Expires",
+          "never": "Never",
           "usage": "Usage",
           "share": "Share",
           "shareModal": {
@@ -1590,387 +1793,6 @@
         }
       }
     }
-  },
-  "FiDashboard": {
-    "title": "Financial Institution Dashboard",
-    "pendingApplicationsTitle": "Pending Applications",
-    "pendingApplicationsDescription": "Applications awaiting your review.",
-    "portfolioAtRiskTitle": "Portfolio at Risk",
-    "portfolioAtRiskDescription": "{count} clients with high-risk alerts.",
-    "marketUpdatesTitle": "Market Updates",
-    "marketUpdatesDescription": "Latest financial news and trends.",
-    "manageApplicationsButton": "Manage Applications",
-    "reviewRiskButton": "Review Risk",
-    "reviewButton": "Review",
-    "table": {
-      "applicant": "Applicant",
-      "type": "Type",
-      "amount": "Amount",
-      "riskScore": "Risk Score",
-      "action": "Action"
-    },
-    "noApplications": "No pending applications to review.",
-    "viewAllButton": "View All Applications",
-    "manageProductsTitle": "Financial Products",
-    "manageProductsDescription": "You have {activeProductsCount} active products.",
-    "manageProductsButton": "Manage Products"
-  },
-  "AgroExportDashboard": {
-    "title": "Agro-Export Dashboard",
-    "docsTitle": "Pending Customs Documents",
-    "shipmentsTitle": "Tracked Shipments",
-    "alertsTitle": "Compliance Alerts",
-    "noDocs": "No documents pending.",
-    "noShipments": "No active shipments.",
-    "noAlerts": "No compliance alerts.",
-    "prepareDocsButton": "Prepare Docs",
-    "readMore": "Read More",
-    "table": {
-      "destination": "Destination"
-    }
-  },
-  "AgroTourismDashboard": {
-    "title": "Agro-Tourism Dashboard",
-    "bookingsTitle": "Upcoming Bookings",
-    "bookingsDescription": "See who's visiting your farm or experience soon.",
-    "experiencesTitle": "Listed Experiences",
-    "experiencesDescription": "Manage your agri-tourism listings on the marketplace.",
-    "reviewsTitle": "Guest Reviews",
-    "reviewsDescription": "See what your guests are saying about their experience.",
-    "table": {
-      "experience": "Experience",
-      "guest": "Guest",
-      "date": "Date",
-      "action": "Action",
-      "title": "Title",
-      "status": "Status",
-      "bookings": "Bookings"
-    },
-    "viewDetailsButton": "View Details",
-    "manageButton": "Manage",
-    "viewReviewButton": "View Review",
-    "noBookings": "No upcoming bookings.",
-    "noExperiences": "You have not listed any experiences yet.",
-    "noReviews": "No guest reviews yet.",
-    "on": "on"
-  },
-  "AgronomistDashboard": {
-    "title": "Agronomist Dashboard",
-    "stats": {
-      "assignedFarmers": "Assigned Farmers",
-      "farmersWithAlerts": "Farmers with Alerts",
-      "pendingConsultations": "Pending Consultations",
-      "knowledgeContributions": "Knowledge Contributions"
-    },
-    "consultations": {
-      "title": "Consultation Requests",
-      "description": "New requests from farmers seeking your expertise.",
-      "table": {
-        "farmer": "Farmer",
-        "issue": "Issue",
-        "action": "Action"
-      },
-      "viewButton": "View Request",
-      "noRequests": "No pending consultation requests."
-    },
-    "portfolio": {
-      "title": "Farmer Portfolio",
-      "description": "An overview of the farmers you are currently advising.",
-      "table": {
-        "farmer": "Farmer",
-        "location": "Location",
-        "alerts": "Alerts",
-        "action": "Action"
-      },
-      "alertsLabel": "Alerts",
-      "profileButton": "View Profile",
-      "noFarmers": "You have no assigned farmers."
-    },
-    "contributions": {
-      "title": "Your Knowledge Contributions",
-      "statusTitle": "Contribution Status",
-      "noData": "No contribution data to display.",
-      "noContributions": "You have not contributed any articles yet."
-    },
-    "chart": {
-      "count": "Count",
-      "published": "Published",
-      "pending": "Pending Review",
-      "draft": "Draft"
-    },
-    "noData": "No dashboard data available."
-  },
-  "BuyerDashboard": {
-    "title": "Buyer Dashboard",
-    "riskTitle": "Supply Chain Risk",
-    "onTimeDelivery": "On-Time Delivery",
-    "priceTitle": "Market Price Intelligence",
-    "secureContracts": "Secure Forward Contracts",
-    "sourcingTitle": "Sourcing Recommendations",
-    "reliabilityScore": "Reliability Score",
-    "findSuppliersButton": "Find More Suppliers",
-    "diversifySourcing": "Diversify Sourcing"
-  },
-  "CertificationBodyDashboard": {
-    "title": "Certification Body Dashboard",
-    "auditsTitle": "Pending Audits",
-    "auditsDescription": "View and manage upcoming audits for certification.",
-    "table": {
-      "farmName": "Farm Name",
-      "standard": "Standard",
-      "dueDate": "Due Date",
-      "action": "Action"
-    },
-    "reviewAuditButton": "Review Audit",
-    "noPendingAudits": "No pending audits.",
-    "entitiesTitle": "Certified Entities Overview",
-    "entitiesDescription": "A summary of the certification status of entities you manage.",
-    "noCertifiedEntities": "No data on certified entities available.",
-    "monitoringTitle": "Standards Monitoring",
-    "monitoringDescription": "Track adherence and alerts for different certification standards.",
-    "alerts": "alerts",
-    "viewDetailsButton": "View Details",
-    "noMonitoringData": "No monitoring data available."
-  },
-  "CooperativeDashboard": {
-    "title": "Cooperative Dashboard",
-    "membersTitle": "Members",
-    "membersDescription": "{count} active farmers in your cooperative.",
-    "landAreaTitle": "Total Land Under Cultivation",
-    "landAreaDescription": "Aggregated across all members (Hectares).",
-    "pendingApplicationsTitle": "Pending Applications",
-    "pendingApplicationsDescription": "New farmers waiting to join.",
-    "produceTitle": "Aggregated Produce",
-    "produceDescription": "Consolidated view of harvest-ready produce from your members.",
-    "table": {
-      "product": "Product",
-      "quantity": "Quantity (Tons)",
-      "quality": "Quality",
-      "readyBy": "Ready By",
-      "action": "Action"
-    },
-    "createListingButton": "Create Listing",
-    "noProduce": "No aggregated produce available currently.",
-    "aggregateButton": "Aggregate New Produce"
-  },
-  "CrowdfunderDashboard": {
-    "title": "Crowdfunding Dashboard",
-    "totalInvested": "Total Invested",
-    "numberOfInvestments": "Number of Investments",
-    "estimatedReturns": "Estimated Returns",
-    "opportunitiesTitle": "Suggested Opportunities",
-    "viewButton": "View Project",
-    "raisedOf": "raised of",
-    "goal": "goal",
-    "noOpportunities": "No suggested opportunities at this time.",
-    "transactionsTitle": "Recent Transactions",
-    "table": {
-      "project": "Project",
-      "amount": "Amount"
-    },
-    "investment": "Investment",
-    "payout": "Payout",
-    "on": "on",
-    "noTransactions": "No recent transactions."
-  },
-  "EnergyProviderDashboard": {
-    "title": "Energy Solutions Dashboard",
-    "leadsTitle": "Project Leads",
-    "leadsCount": "You have {count} active leads.",
-    "newLeadsDescription": "New entities seeking energy solutions.",
-    "projectsTitle": "Active Projects",
-    "activeProjectsCount": "You have {count} ongoing projects.",
-    "projectsCompleted": "projects completed.",
-    "impactTitle": "Sustainability Impact",
-    "impactDescription": "Estimated carbon reduction from your projects.",
-    "carbonReduction": "tCO2e/year from {count} installations.",
-    "leadsTableTitle": "Project Leads Pipeline",
-    "leadsTableDescription": "Track your potential customers from initial contact to closure.",
-    "table": {
-      "entity": "Entity",
-      "location": "Location",
-      "energyNeed": "Estimated Need",
-      "status": "Status",
-      "action": "Action"
-    },
-    "statusLabels": {
-      "new": "New",
-      "contacted": "Contacted",
-      "proposal_sent": "Proposal Sent",
-      "closed": "Closed",
-      "in_progress": "In Progress",
-      "completed": "Completed"
-    },
-    "viewLeadButton": "View Lead",
-    "noLeads": "No active project leads at the moment."
-  },
-  "EquipmentSupplierDashboard": {
-    "title": "Equipment Supplier Dashboard",
-    "ordersTitle": "Rentals & Orders",
-    "ordersDescription": "{count} active rentals or sales.",
-    "manageOrdersButton": "Manage Orders",
-    "listedEquipmentTitle": "Listed Equipment",
-    "table": {
-      "name": "Name",
-      "type": "Type",
-      "status": "Status",
-      "action": "Action"
-    },
-    "status": {
-      "available": "Available",
-      "rentedout": "Rented Out"
-    },
-    "manageButton": "Manage",
-    "noEquipment": "You have not listed any equipment yet.",
-    "listEquipmentButton": "List New Equipment",
-    "maintenanceTitle": "Maintenance Requests",
-    "viewRequestButton": "View Request",
-    "noMaintenance": "No pending maintenance requests."
-  },
-  "FieldAgentDashboard": {
-    "title": "Field Agent Dashboard",
-    "portfolioHealthTitle": "Portfolio Health",
-    "activeAlerts": "active alerts",
-    "pendingReportsTitle": "Pending Reports",
-    "reportsToFile": "reports to file",
-    "dataVerificationTitle": "Data Verification",
-    "tasksPending": "tasks pending",
-    "assignedFarmersTitle": "Assigned Farmers",
-    "farmersInPortfolio": "farmers in portfolio",
-    "portfolioTitle": "Assigned Farmer Portfolio",
-    "lastVisit": "Last visit",
-    "issues": "issues",
-    "viewFarmerButton": "View Farmer",
-    "noFarmersAssigned": "You have no farmers assigned to your portfolio."
-  },
-  "InputSupplierDashboard": {
-    "title": "Input Supplier Dashboard",
-    "ordersTitle": "Active Orders",
-    "totalValue": "in total value",
-    "manageOrdersButton": "Manage Orders",
-    "forecastTitle": "Demand Forecast",
-    "in": "in",
-    "noForecast": "No demand forecast data available.",
-    "performanceTitle": "Product Performance",
-    "viewReviewsButton": "View Reviews",
-    "noFeedback": "No product feedback yet.",
-    "promotionsTitle": "Promotions & Coupons",
-    "promotionsDescription": "Create coupons to boost sales and attract new customers.",
-    "manageCouponsButton": "Create & Manage Coupons"
-  },
-  "LogisticsDashboard": {
-    "title": "Logistics Dashboard",
-    "performanceTitle": "Performance Metrics",
-    "onTimeDelivery": "On-time delivery rate",
-    "viewReportButton": "View Full Report",
-    "activeShipmentsTitle": "Active Shipments",
-    "to": "To",
-    "trackButton": "Track",
-    "noActiveShipments": "No active shipments.",
-    "incomingJobsTitle": "Incoming Jobs",
-    "from": "From",
-    "acceptJobButton": "View & Accept",
-    "noIncomingJobs": "No new jobs available."
-  },
-  "OperationsDashboard": {
-    "title": "Platform Operations Dashboard",
-    "vtiRateTitle": "VTI Generation Rate",
-    "pipelineStatusTitle": "Data Pipeline Status",
-    "lastCheck": "Last checked",
-    "flaggedEventsTitle": "Flagged Traceability Events",
-    "viewVtiButton": "View VTI",
-    "noFlaggedEvents": "No events have been flagged by the system."
-  },
-  "PackagingSupplierDashboard": {
-    "title": "Packaging Supplier Dashboard",
-    "ordersTitle": "Incoming Orders",
-    "inventoryTitle": "Inventory Status",
-    "table": {
-      "customer": "Customer",
-      "product": "Product",
-      "quantity": "Quantity",
-      "status": "Status",
-      "action": "Action"
-    },
-    "viewOrderButton": "View Order",
-    "noOrders": "No new orders.",
-    "inStock": "In Stock",
-    "reorderLevel": "Reorder Level",
-    "lowStock": "Low Stock",
-    "noInventory": "No inventory data.",
-    "listProductButton": "List New Product"
-  },
-  "QaDashboard": {
-    "title": "Quality Assurance Dashboard",
-    "inspectionsTitle": "Pending Inspections",
-    "inspectionsDescription": "Batches awaiting quality inspection.",
-    "table": {
-      "batchId": "Batch ID",
-      "product": "Product",
-      "seller": "Seller",
-      "dueDate": "Due Date",
-      "action": "Action",
-      "result": "Result",
-      "reason": "Reason",
-      "inspectedAt": "Inspected At"
-    },
-    "performInspectionButton": "Perform Inspection",
-    "noPendingInspections": "No batches are currently awaiting inspection.",
-    "resultsTitle": "Recent Results with Issues",
-    "resultsDescription": "Highlighting recent inspections that did not meet quality standards.",
-    "noRecentIssues": "No recent issues found in inspections.",
-    "metricsTitle": "Quality Metrics",
-    "metricsDescription": "Overall quality performance across the platform.",
-    "passRate": "Pass Rate",
-    "averageScore": "Average Quality Score",
-    "noMetrics": "Quality metrics data is not yet available."
-  },
-  "ResearcherDashboard": {
-    "title": "Researcher Dashboard",
-    "datasetsTitle": "Available Datasets",
-    "datasetsDescription": "Anonymized datasets available for research purposes.",
-    "table": {
-      "name": "Dataset Name",
-      "dataType": "Data Type",
-      "accessLevel": "Access Level",
-      "action": "Action",
-      "title": "Title",
-      "progress": "Progress",
-      "collaborators": "Collaborators",
-      "status": "Status"
-    },
-    "requestAccessButton": "Request Access",
-    "noDatasets": "No datasets are currently available.",
-    "projectsTitle": "Ongoing Projects",
-    "projectsDescription": "Your active research projects and collaborations.",
-    "viewProjectButton": "View Project",
-    "noProjects": "You have no ongoing research projects.",
-    "contributionsTitle": "Knowledge Hub Contributions",
-    "contributionsDescription": "Articles and insights you have published on the platform.",
-    "viewButton": "View",
-    "noContributions": "You have not published any articles yet.",
-    "chart": {
-      "count": "Count",
-      "published": "Published",
-      "pending": "Pending Review",
-      "draft": "Draft"
-    },
-    "noData": "No dashboard data available."
-  },
-  "WasteManagementDashboard": {
-    "title": "Waste Management Dashboard",
-    "wasteStreamsTitle": "Incoming Waste Streams",
-    "from": "From",
-    "acceptButton": "Accept",
-    "noWasteStreams": "No new waste streams available.",
-    "compostBatchesTitle": "Compost Batches",
-    "batch": "Batch",
-    "estReady": "Est. Ready",
-    "noCompostBatches": "No active compost batches.",
-    "inventoryTitle": "Finished Product Inventory",
-    "inStock": "In Stock",
-    "noFinishedProducts": "No finished products in inventory.",
-    "sellButton": "Sell on Marketplace"
   },
   "InsurancePage": {
     "title": "Insurance Hub",
@@ -2107,4 +1929,4 @@
   }
 }
 
-  
+    
