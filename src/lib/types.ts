@@ -246,23 +246,21 @@ export interface LogisticsDashboardData {
     };
 }
 
+export interface FinancialProduct {
+    id: string;
+    name: string;
+    type: 'Loan' | 'Grant';
+    interestRate?: number;
+    maxAmount?: number;
+    status?: 'Active' | 'Inactive';
+}
 export interface FiDashboardData {
     pendingApplications: FinancialApplication[];
-    portfolioAtRisk: {
-        count: number;
-        value: number;
-        highestRisk: {
-            name: string;
-            reason: string;
-        };
-        actionLink: string;
+    portfolioOverview: {
+        loanCount: number;
+        totalValue: number;
     };
-    marketUpdates: {
-        id: string;
-        content: string;
-        actionLink: string;
-    }[];
-    activeProductsCount?: number;
+    financialProducts: FinancialProduct[];
 }
 
 export interface FieldAgentDashboardData {
@@ -823,5 +821,3 @@ export interface InsuranceProduct {
         avatarUrl?: string;
     }
 }
-
-      

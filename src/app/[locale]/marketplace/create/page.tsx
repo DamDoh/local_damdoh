@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, Loader2, Sparkles, Save, Briefcase, Star } from "lucide-react";
+import { ArrowLeft, Loader2, Sparkles, Save, Briefcase, Star, MapPin } from "lucide-react";
 import { useRouter, useSearchParams, Link } from '@/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslations } from 'next-intl';
@@ -21,7 +21,6 @@ import { Switch } from '@/components/ui/switch';
 import { suggestMarketPrice } from '@/ai/flows/suggest-market-price-flow';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-
 
 export default function CreateListingPage() {
     const router = useRouter();
@@ -47,7 +46,7 @@ export default function CreateListingPage() {
         price: undefined,
         perUnit: "",
         category: undefined,
-        location: "",
+        location: { lat: 11.5564, lng: 104.9282, address: "Phnom Penh, Cambodia" }, // Default location
         isSustainable: false,
         imageUrl: "",
         skillsRequired: "",
@@ -85,7 +84,7 @@ export default function CreateListingPage() {
       setIsSuggestingPrice(true);
       setSuggestedPrice(null);
       try {
-        const result = await suggestMarketPrice({ productName: name, description, category, location });
+        const result = await suggestMarketPrice({ productName: name, description, category, location: location.address });
         const price = result.price;
         setSuggestedPrice(price.toFixed(2));
       } catch (error: any) {
@@ -99,6 +98,21 @@ export default function CreateListingPage() {
         setIsSuggestingPrice(false);
       }
     };
+    
+    const handleSetLocation = () => {
+        // In a real app, this would open a map modal.
+        // For now, we'll just cycle through a few locations.
+        const locations = [
+            { lat: 11.5564, lng: 104.9282, address: "Phnom Penh, Cambodia" },
+            { lat: 13.363, lng: 103.844, address: "Siem Reap, Cambodia" },
+            { lat: 10.6333, lng: 104.1833, address: "Sihanoukville, Cambodia" }
+        ];
+        const currentLocation = form.getValues('location');
+        const currentIndex = locations.findIndex(l => l.lat === currentLocation.lat);
+        const nextIndex = (currentIndex + 1) % locations.length;
+        form.setValue('location', locations[nextIndex]);
+         toast({ title: "Location Updated", description: `Set to ${locations[nextIndex].address}`})
+    }
 
     const handleSubmit = async (data: CreateMarketplaceItemValues) => {
         if (!user) {
@@ -202,10 +216,17 @@ export default function CreateListingPage() {
                               name="location"
                               render={({ field }) => (
                                 <FormItem>
-                                  <FormLabel>{t('form.locationLabel')}</FormLabel>
-                                  <FormControl>
-                                    <Input placeholder={t('form.locationPlaceholder')} {...field} />
-                                  </FormControl>
+                                    <FormLabel>{t('form.locationLabel')}</FormLabel>
+                                    <div className="flex items-center gap-4">
+                                        <MapPin className="h-8 w-8 text-muted-foreground" />
+                                        <div className="flex-grow">
+                                            <p className="font-semibold">{field.value.address}</p>
+                                            <p className="text-xs text-muted-foreground">
+                                                Lat: {field.value.lat.toFixed(4)}, Lng: {field.value.lng.toFixed(4)}
+                                            </p>
+                                        </div>
+                                        <Button type="button" variant="outline" onClick={handleSetLocation}>{t('form.changeLocationButton')}</Button>
+                                    </div>
                                   <FormMessage />
                                 </FormItem>
                               )}

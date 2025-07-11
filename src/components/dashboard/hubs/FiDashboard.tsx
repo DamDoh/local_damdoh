@@ -6,11 +6,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { UserCheck, PieChart, TrendingUp, Landmark, AlertTriangle, FileSpreadsheet } from 'lucide-react';
+import { UserCheck, PieChart, TrendingUp, Landmark, AlertTriangle, FileSpreadsheet, PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-import type { FiDashboardData, FinancialApplication } from '@/lib/types';
+import type { FiDashboardData, FinancialApplication, FinancialProduct } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useTranslations } from 'next-intl';
 
@@ -76,7 +76,7 @@ export const FiDashboard = () => {
         );
     }
     
-    const { pendingApplications, portfolioAtRisk, marketUpdates } = dashboardData;
+    const { pendingApplications, portfolioOverview, financialProducts } = dashboardData;
 
     return (
         <div>
@@ -92,16 +92,14 @@ export const FiDashboard = () => {
                     ctaText={t('manageApplicationsButton')}
                 />
                 <StatCard 
-                    title={t('portfolioAtRiskTitle')}
-                    value={`${(portfolioAtRisk?.value || 0).toLocaleString()} USD`}
-                    description={t('portfolioAtRiskDescription', { count: portfolioAtRisk?.count || 0 })}
-                    icon={<AlertTriangle className="h-4 w-4 text-muted-foreground" />}
-                    ctaLink={portfolioAtRisk?.actionLink || '#'}
-                    ctaText={t('reviewRiskButton')}
+                    title={t('activePortfolioTitle')}
+                    value={`${(portfolioOverview?.totalValue || 0).toLocaleString()} USD`}
+                    description={t('activePortfolioDescription', { count: portfolioOverview?.loanCount || 0 })}
+                    icon={<Landmark className="h-4 w-4 text-muted-foreground" />}
                 />
-                <StatCard 
+                 <StatCard 
                     title={t('manageProductsTitle')}
-                    value={(dashboardData as any).activeProductsCount || 0}
+                    value={financialProducts?.length || 0}
                     description={t('manageProductsDescription')}
                     icon={<FileSpreadsheet className="h-4 w-4 text-muted-foreground" />}
                     ctaLink="/fi/products"
@@ -109,11 +107,17 @@ export const FiDashboard = () => {
                 />
                 
                 <Card className="col-span-1 md:col-span-3">
-                     <CardHeader className="pb-4">
-                        <CardTitle className="text-base flex items-center gap-2">
-                           <UserCheck className="h-4 w-4" />
-                           {t('pendingApplicationsTitle')}
-                        </CardTitle>
+                     <CardHeader className="pb-4 flex flex-row items-center justify-between">
+                        <div>
+                            <CardTitle className="text-base flex items-center gap-2">
+                            <UserCheck className="h-4 w-4" />
+                            {t('pendingApplicationsTitle')}
+                            </CardTitle>
+                            <CardDescription>{t('pendingApplicationsTableDescription')}</CardDescription>
+                        </div>
+                        <Button asChild size="sm">
+                            <Link href="/fi/applications">{t('viewAllButton')}</Link>
+                        </Button>
                     </CardHeader>
                     <CardContent>
                        {(pendingApplications || []).length > 0 ? (
@@ -128,7 +132,7 @@ export const FiDashboard = () => {
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                    {pendingApplications.map((app: FinancialApplication) => (
+                                    {pendingApplications.slice(0,5).map((app: FinancialApplication) => (
                                         <TableRow key={app.id}>
                                             <TableCell className="font-medium">{app.applicantName}</TableCell>
                                             <TableCell><Badge variant="outline">{app.type}</Badge></TableCell>
@@ -147,11 +151,47 @@ export const FiDashboard = () => {
                             <p className="text-sm text-muted-foreground text-center py-4">{t('noApplications')}</p>
                        )}
                     </CardContent>
-                     <CardFooter>
-                        <Button asChild variant="outline" className="w-full">
-                            <Link href="/fi/applications">{t('viewAllButton')}</Link>
+                </Card>
+
+                 <Card className="col-span-1 md:col-span-3">
+                     <CardHeader className="pb-4 flex flex-row items-center justify-between">
+                        <div>
+                            <CardTitle className="text-base flex items-center gap-2">
+                                <FileSpreadsheet className="h-4 w-4" />
+                                {t('yourProductsTitle')}
+                            </CardTitle>
+                            <CardDescription>{t('yourProductsDescription')}</CardDescription>
+                        </div>
+                        <Button asChild size="sm">
+                            <Link href="/fi/products/create"><PlusCircle className="mr-2 h-4 w-4"/>{t('createNewProductButton')}</Link>
                         </Button>
-                    </CardFooter>
+                    </CardHeader>
+                    <CardContent>
+                       {(financialProducts || []).length > 0 ? (
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead>{t('productsTable.name')}</TableHead>
+                                        <TableHead>{t('productsTable.type')}</TableHead>
+                                        <TableHead>{t('productsTable.interestRate')}</TableHead>
+                                        <TableHead className="text-right">{t('productsTable.maxAmount')}</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {(financialProducts || []).map((prod: FinancialProduct) => (
+                                        <TableRow key={prod.id}>
+                                            <TableCell className="font-medium">{prod.name}</TableCell>
+                                            <TableCell><Badge variant="secondary">{prod.type}</Badge></TableCell>
+                                            <TableCell>{prod.interestRate ? `${prod.interestRate}%` : 'N/A'}</TableCell>
+                                            <TableCell className="text-right">${prod.maxAmount?.toLocaleString() || 'N/A'}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                       ) : (
+                            <p className="text-sm text-muted-foreground text-center py-4">{t('noProducts')}</p>
+                       )}
+                    </CardContent>
                 </Card>
             </div>
         </div>

@@ -226,14 +226,15 @@ export const getFiDashboardData = functions.https.onCall(
   async (data, context): Promise<FiDashboardData> => {
     const fiId = checkAuth(context);
     try {
-        const applicationsSnapshot = await db.collection('financial_applications')
+        // Fetch real pending applications
+        const pendingApplicationsSnapshot = await db.collection('financial_applications')
             .where('fiId', '==', fiId)
-            .where('status', 'in', ['Pending', 'Under Review'])
+            .where('status', '==', 'Pending')
             .orderBy('submittedAt', 'desc')
             .limit(10)
             .get();
             
-        const pendingApplications: FinancialApplication[] = applicationsSnapshot.docs.map(doc => {
+        const pendingApplications: FinancialApplication[] = pendingApplicationsSnapshot.docs.map(doc => {
             const appData = doc.data();
             return {
                 id: doc.id,
@@ -251,26 +252,44 @@ export const getFiDashboardData = functions.https.onCall(
             };
         });
 
-        const productsSnapshot = await db.collection('financial_products')
+        // --- Portfolio Overview (Live Data) ---
+        const approvedLoansSnapshot = await db.collection('financial_applications')
             .where('fiId', '==', fiId)
-            .where('status', '==', 'Active')
+            .where('status', '==', 'Approved')
             .get();
 
-        const portfolioAtRisk = {
-            count: 5,
-            value: 25000,
-            highestRisk: { name: 'Sunset Farms', reason: 'Drought Alert' },
-            actionLink: '#'
+        let totalValue = 0;
+        approvedLoansSnapshot.forEach(doc => {
+            totalValue += doc.data().amount || 0;
+        });
+
+        const portfolioOverview = {
+            loanCount: approvedLoansSnapshot.size,
+            totalValue: totalValue,
         };
-        const marketUpdates = [
-            { id: 'update1', content: 'Central Bank raises interest rates by 0.25%.', actionLink: '#' }
-        ];
+        
+        // --- Financial Products (Live Data) ---
+        const productsSnapshot = await db.collection("financial_products")
+            .where("fiId", "==", fiId)
+            .orderBy("createdAt", "desc")
+            .limit(5)
+            .get();
+            
+        const financialProducts = productsSnapshot.docs.map(doc => {
+            const data = doc.data();
+            return {
+                id: doc.id,
+                ...data,
+                createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            }
+        }) as FiDashboardData['financialProducts'];
+
 
         return {
             pendingApplications,
-            portfolioAtRisk,
-            marketUpdates,
-            activeProductsCount: productsSnapshot.size,
+            portfolioOverview,
+            financialProducts,
         };
     } catch (error) {
         console.error("Error fetching Financial Institution dashboard data:", error);
