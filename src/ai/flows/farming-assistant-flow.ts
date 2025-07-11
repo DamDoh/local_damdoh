@@ -12,13 +12,13 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import {fgwKnfKnowledgeTool} from '@/ai/tools/fgw-knf-knowledge-tool';
+import {fgw_knf_tool} from '@/ai/tools/fgw-knf-knowledge-tool';
 import {getStakeholderInfo} from '@/ai/tools/stakeholder-info-tool';
 import { diagnoseCrop, DiagnoseCropInputSchema, DiagnoseCropOutputSchema } from './diagnose-crop-flow';
 
 
 const FarmingAssistantInputSchema = z.object({
-  query: z.string().describe('The user\'s question about farming, agriculture, supply chain, farming business, app guidance, crop issues, or stakeholders in the agricultural ecosystem.'),
+  query: z.string().describe('The user's question about farming, agriculture, supply chain, farming business, app guidance, crop issues, or stakeholders in the agricultural ecosystem.'),
   photoDataUri: z.string().optional().describe("A photo of a plant or crop issue, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'. This is used for diagnosis."),
   language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code (e.g., "en", "km", "fr", "de", "th"). Defaults to English if not provided.'),
 });
@@ -44,7 +44,7 @@ const farmingAssistantPrompt = ai.definePrompt({
   name: 'farmingAssistantPrompt',
   input: {schema: FarmingAssistantInputSchema},
   output: {schema: FarmingAssistantOutputSchema},
-  tools: [fgwKnfKnowledgeTool, getStakeholderInfo, diagnoseCrop],
+  tools: [fgw_knf_tool, getStakeholderInfo, diagnoseCrop],
   prompt: `You are DamDoh AI's Knowledge, an expert AI assistant for the DamDoh platform. 
 
 **CRITICAL INSTRUCTION: You MUST respond in the language specified by the 'language' parameter. The language code is '{{{language}}}'. If no language is specified, you must default to English.**
@@ -65,7 +65,7 @@ Your expertise includes:
     
 **Tool Usage Instructions:**
 *   **For Crop Diagnosis:** If a user uploads an image (photoDataUri is present), you MUST call the \`diagnoseCrop\` tool. Use the user's text query as the 'description' for the tool. Then, format the tool's structured output into a user-friendly, natural language response. The 'summary' should state the main finding (e.g., "The plant appears to have Powdery Mildew."), and the 'detailedPoints' should present the 'suggestedActions' from the tool's output.
-*   **For FGW/KNF:** If a user asks for specific instructions, ingredients, amounts, or timings for a Farming God's Way (FGW) or Korean Natural Farming (KNF) technique (e.g., "how to make FPJ", "what do I need for God's Blanket?"), you MUST use the \`getFarmingTechniqueDetails\` tool to retrieve the structured data from the knowledge base. Once you have this data, formulate a clear, step-by-step, natural language response based on the retrieved information. Do not guess the recipe; use the tool. If the tool returns an error or no data, inform the user that you couldn't find that specific recipe in the knowledge base and offer to explain the general principles of the technique instead.
+*   **For FGW/KNF:** If a user asks for specific instructions, ingredients, amounts, or timings for a Farming God's Way (FGW) or Korean Natural Farming (KNF) technique (e.g., "how to make FPJ", "what do I need for God's Blanket?"), you MUST use the \`fgw_knf_knowledge_tool\` to retrieve the structured data from the knowledge base. Once you have this data, formulate a clear, step-by-step, natural language response based on the retrieved information. Do not guess the recipe; use the tool. If the tool returns an error or no data, inform the user that you couldn't find that specific recipe in the knowledge base and offer to explain the general principles of the technique instead.
 *   **For Stakeholder & Supply Chain Questions:** If a user asks about who to connect with, the roles of different people on the platform, or how the supply chain works (e.g., "I'm a farmer, how do I find a buyer?", "What does an Agro-Export Facilitator do?"), you MUST use the \`getStakeholderInfo\` tool. This tool gives you data on all stakeholder roles. Use this information to give specific, actionable advice on who the user should connect with on the DamDoh platform and how its features (Marketplace, Network, Forums) can help them achieve their goals.
 
 Your ultimate goal is to provide comprehensive, accurate, and actionable information that empowers users by explaining sustainable practices, diagnosing crop issues, clarifying supply chain dynamics, and guiding users on how to effectively use DamDoh's features to connect with relevant stakeholders.
@@ -111,5 +111,3 @@ const farmingAssistantFlow = ai.defineFlow(
     };
   }
 );
-
-      

@@ -232,7 +232,7 @@
       "searchError": "Suche fehlgeschlagen",
       "searchErrorDescription": "Bei der Suche ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es erneut.",
       "invalidCodeError": "Dies scheint kein gültiger DamDoh QR-Code zu sein.",
-      "scanFailed": "Scan fehlgeschlagen",
+      "scanFailed": "Scan Fehlgeschlagen",
       "scanError": "Scan-Fehler",
       "scanErrorDescription": "Der QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
       "interpretationTitle": "KI-Interpretation",
@@ -317,7 +317,8 @@
         "sustainableLabel": "Nachhaltig produziert",
         "sustainableDescription": "Dieser Artikel wurde unter Verwendung nachhaltiger oder regenerativer Praktiken hergestellt.",
         "submitButton": "Angebot erstellen",
-        "submittingButton": "Wird erstellt..."
+        "submittingButton": "Wird erstellt...",
+        "changeLocationButton": "Ändern"
       },
       "aiPriceSuggestion": {
         "generatingButton": "Wird generiert...",
@@ -569,6 +570,23 @@
         "createError": "Ein unerwarteter Fehler ist aufgetreten.",
         "linkCopied": "Link kopiert!",
         "shareDescription": "Gutscheinlink für '{code}' in die Zwischenablage kopiert."
+      }
+    }
+  },
+  "talentExchangePage": {
+    "title": "Talentbörse",
+    "description": "Finden Sie qualifizierte Fachkräfte oder bieten Sie Ihre landwirtschaftlichen Dienstleistungen der Gemeinschaft an.",
+    "listServiceButton": "Dienstleistung anbieten",
+    "searchPlaceholder": "Dienstleistungen suchen (z.B. Agronomie, Drohnenpilot)...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "categoryPlaceholder": "Nach Dienstleistungskategorie filtern...",
+    "allCategories": "Alle Kategorien",
+    "noResultsTitle": "Keine Dienstleistungen gefunden",
+    "noResultsDescription": "Es gibt keine Dienstleistungen, die Ihren Kriterien entsprechen. Versuchen Sie, Ihre Suche anzupassen oder seien Sie der Erste, der eine Dienstleistung in dieser Kategorie anbietet!",
+    "toast": {
+      "error": {
+        "title": "Suche fehlgeschlagen",
+        "description": "Beim Abrufen der Dienstleistungen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
       }
     }
   },
@@ -1144,7 +1162,7 @@
         "notFoundTitle": "Nicht gefunden",
         "loadError": "Die Farmdetails zum Bearbeiten konnten nicht geladen werden.",
         "error": "Fehler",
-        "loadFail": "Failed to load farm data: {message}",
+        "loadFail": "Laden der Farmdaten fehlgeschlagen: {message}",
         "successTitle": "Farm aktualisiert",
         "successDescription": "{farmName} details have been saved.",
         "errorTitle": "Aktualisierung fehlgeschlagen"
@@ -1153,23 +1171,7 @@
   },
   "financialsPage": {
     "title": "Finanzmanagement"
-  },
-  "talentExchangePage": {
-    "title": "Talentbörse",
-    "description": "Finden Sie qualifizierte Fachkräfte oder bieten Sie Ihre landwirtschaftlichen Dienstleistungen der Gemeinschaft an.",
-    "listServiceButton": "Dienstleistung anbieten",
-    "searchPlaceholder": "Dienstleistungen suchen (z.B. Agronomie, Drohnenpilot)...",
-    "locationPlaceholder": "Nach Standort filtern...",
-    "categoryPlaceholder": "Nach Dienstleistungskategorie filtern...",
-    "allCategories": "Alle Kategorien",
-    "noResultsTitle": "Keine Dienstleistungen gefunden",
-    "noResultsDescription": "Es gibt keine Dienstleistungen, die Ihren Kriterien entsprechen. Versuchen Sie, Ihre Suche anzupassen oder seien Sie der Erste, der eine Dienstleistung in dieser Kategorie anbietet!",
-    "toast": {
-      "error": {
-        "title": "Suche fehlgeschlagen",
-        "description": "Beim Abrufen der Dienstleistungen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
-      }
-    }
   }
 }
 
+    

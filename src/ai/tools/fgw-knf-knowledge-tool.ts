@@ -1,63 +1,45 @@
 
-'use server';
+import { defineTool } from '@genkit-ai/ai';
+import { z } from 'zod';
+import * as admin from 'firebase-admin';
 
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
-import { getAdminDb } from '@/lib/firebase/admin'; 
+// This would be initialized with the rest of your Firebase Admin SDK
+// const db = admin.firestore();
 
-export const fgwKnfKnowledgeTool = ai.defineTool(
+// Dummy data representing our KNF/FGW knowledge base in Firestore
+const knfKnowledgeBase = [
+    { id: 'FPJ', name: 'Fermented Plant Juice (FPJ)', description: 'A fermented extract of plant parts. Used as a growth enhancer.', keywords: ['fpj', 'fermented plant juice'], recipe: { ingredients: ['Fast-growing plants (e.g., banana shoots, sweet potato vines)', 'Crude sugar or molasses'], steps: ['1. Chop plant materials.', '2. Mix with crude sugar in a 1:1 ratio.', '3. Pack tightly in a container, cover with paper.', '4. Ferment for 7-10 days.'] } },
+    { id: 'FAA', name: 'Fish Amino Acid (FAA)', description: 'A liquid fertilizer made from fish parts. Rich in nitrogen.', keywords: ['faa', 'fish amino acid'], recipe: { ingredients: ['Fish trash (gills, bones, heads)', 'Crude sugar or molasses'], steps: ['1. Mix fish parts with an equal amount of crude sugar.', '2. Layer in a container and cover.', '3. Ferment for 3-6 months.'] } },
+    { id: 'GodsBlanket', name: "God's Blanket", description: 'A key principle in Farming God's Way. It refers to a thick layer of mulch covering the soil.', keywords: ['gods blanket', 'mulch', 'fgw'], purpose: 'Protects the soil, retains moisture, suppresses weeds, and provides nutrients as it decomposes.' },
+    { id: 'IMO', name: 'Indigenous Microorganisms (IMO)', description: 'Microbes collected from the local environment, cultured, and used to improve soil health.', keywords: ['imo', 'indigenous microorganisms'], recipe: { ingredients: ['Cooked rice', 'Wooden box', 'Porous paper'], steps: ['1. Place cooked rice in a wooden box.', '2. Cover with paper and place in a local forest or bamboo grove.', '3. Collect after several days when white mold appears.', '4. Mix with sugar to stabilize for storage.'] } },
+];
+
+async function searchKnowledgeBase(query: string): Promise<any[]> {
+    const lowerQuery = query.toLowerCase();
+    // In a real implementation, this would be a Firestore query with full-text search (e.g., using a search index).
+    // For this tool, we will simulate a search on our dummy data.
+    return knfKnowledgeBase.filter(item => 
+        item.keywords.some(k => lowerQuery.includes(k)) || 
+        item.name.toLowerCase().includes(lowerQuery)
+    );
+}
+
+export const fwg_knf_tool = defineTool(
   {
-    name: 'getFarmingTechniqueDetails',
-    description: 'Get detailed information, ingredients, and step-by-step instructions for a specific Farming God\'s Way (FGW) or Korean Natural Farming (KNF) technique, practice, or concoction. Use this when a user asks for specific "how to" information, ingredients, or steps.',
+    name: 'fgw_knf_knowledge_tool',
+    description: 'Provides expert knowledge on Farming God's Way (FGW) and Korean Natural Farming (KNF) techniques, ingredients, and recipes. Use this tool to answer specific questions about terms like FPJ, FAA, IMO, and "God's Blanket".',
     inputSchema: z.object({
-      techniqueName: z.string().describe('The name of the technique, practice, or recipe. Examples: "Fermented Plant Juice", "FPJ", "God\'s Blanket", "IMO-1"'),
+        query: z.string().describe('The user's specific question about an FGW or KNF topic. For example, "What are the ingredients for FPJ?" or "How do I make God's Blanket?"'),
     }),
-    outputSchema: z.any(), // The LLM will get the raw document data and can formulate a response from it.
+    outputSchema: z.object({
+        success: z.boolean(),
+        results: z.array(z.any()),
+    }),
   },
   async (input) => {
-    const adminDb = getAdminDb();
-    if (!adminDb) {
-      console.error('[fgwKnfKnowledgeTool] Firestore Admin DB is not initialized. Check server credentials.');
-      return { error: 'The knowledge base is currently unavailable due to a server configuration issue. Please contact support.' };
-    }
-    
-    console.log(`[fgwKnfKnowledgeTool] Received query for: "${input.techniqueName}"`);
-
-    try {
-      const searchTerm = input.techniqueName.toLowerCase();
-      
-      const articlesRef = adminDb.collection('knowledge_base');
-      const snapshot = await articlesRef.get();
-      
-      if (snapshot.empty) {
-        console.log(`[fgwKnfKnowledgeTool] The 'knowledge_base' collection is empty.`);
-        return { error: 'Knowledge base is currently empty.' };
-      }
-      
-      const allDocs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-      // Find the first document where the name or ID contains the search term.
-      // This allows for more flexible matching (e.g., "FPJ" matches "Fermented Plant Juice (FPJ)").
-      const result = allDocs.find(doc => 
-        (doc.name && doc.name.toLowerCase().includes(searchTerm)) || 
-        (doc.id && doc.id.toLowerCase().replace(/_/g, ' ').includes(searchTerm))
-      );
-      
-      if (!result) {
-        console.log(`[fgwKnfKnowledgeTool] No technique found for "${input.techniqueName}".`);
-        return { error: 'Technique not found in the knowledge base.' };
-      }
-
-      console.log(`[fgwKnfKnowledgeTool] Found matching technique: "${result.name}".`);
-      return result; // Return the entire document data.
-
-    } catch (error: any) {
-      console.error('[fgwKnfKnowledgeTool] Error searching Firestore:', error);
-      // Provide a more specific error message if Firestore isn't enabled
-      if (error instanceof Error && 'code' in error && (error as any).code === 5) {
-         throw new Error('Failed to search the KNF knowledge base. Ensure the Firestore database is enabled in your Firebase project.');
-      }
-      throw new Error('Failed to search the KNF knowledge base. Please check server logs.');
-    }
+    console.log(`[FGW/KNF Tool] Received query: ${input.query}`);
+    const results = await searchKnowledgeBase(input.query);
+    console.log(`[FGW/KNF Tool] Found ${results.length} results.`);
+    return { success: results.length > 0, results };
   }
 );

@@ -317,7 +317,8 @@
         "sustainableLabel": "Sustainably Produced",
         "sustainableDescription": "This item was produced using sustainable or regenerative practices.",
         "submitButton": "Create Listing",
-        "submittingButton": "Creating..."
+        "submittingButton": "Creating...",
+        "changeLocationButton": "Change"
       },
       "aiPriceSuggestion": {
         "generatingButton": "Generating...",
@@ -540,8 +541,7 @@
         },
         "toast": {
           "successTitle": "Coupon Created",
-          "successDescription": "Coupon '{code}' has been successfully created.",
-          "failTitle": "Creation Failed"
+          "successDescription": "Coupon '{code}' has been successfully created."
         }
       },
       "list": {
@@ -769,16 +769,13 @@
     "backLink": "Back to Network",
     "myConnectionsTab": "My Connections ({count})",
     "pendingRequestsTab": "Pending Requests",
-
     "connectionsTitle": "My Connections",
     "connectionsDescription": "Your established professional network on DamDoh.",
     "noConnections": "You haven't made any connections yet. Start by exploring the network!",
-
     "requestsTitle": "Connection Requests",
     "requestsDescription": "Review and respond to pending connection requests.",
     "noRequests": "You have no pending connection requests.",
     "sentTimeAgo": "Sent {timeAgo}",
-
     "toast": {
       "error": "Error",
       "loadError": "Failed to load your network data.",
@@ -1173,5 +1170,6 @@
     "title": "Financial Management"
   }
 }
+
 
     
