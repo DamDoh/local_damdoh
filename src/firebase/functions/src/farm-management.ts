@@ -17,7 +17,7 @@ export const createFarm = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError(
       "unauthenticated",
-      "User must be authenticated.",
+      "error.unauthenticated",
     );
   }
 
@@ -25,7 +25,7 @@ export const createFarm = functions.https.onCall(async (data, context) => {
   if (!name || !location || !size || !farmType) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "Name, location, size, and farm type are required.",
+      "error.farm.missingFields",
     );
   }
 
@@ -47,7 +47,7 @@ export const createFarm = functions.https.onCall(async (data, context) => {
     console.error("Error creating farm:", error);
     throw new functions.https.HttpsError(
       "internal",
-      "Failed to create farm in the database. Please check your project's Firestore setup.",
+      "error.farm.creationFailed",
       {originalError: error.message},
     );
   }
@@ -63,7 +63,7 @@ export const getUserFarms = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError(
       "unauthenticated",
-      "User must be authenticated.",
+      "error.unauthenticated",
     );
   }
 
@@ -77,14 +77,14 @@ export const getUserFarms = functions.https.onCall(async (data, context) => {
         return { 
             id: doc.id, 
             ...docData,
-            createdAt: docData.createdAt?.toDate ? docData.createdAt.toDate().toISOString() : null,
-            updatedAt: docData.updatedAt?.toDate ? docData.updatedAt.toDate().toISOString() : null,
+            createdAt: (docData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            updatedAt: (docData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         }
     });
     return farms;
   } catch (error) {
     console.error("Error fetching user farms:", error);
-    throw new functions.https.HttpsError("internal", "Failed to fetch farms.");
+    throw new functions.https.HttpsError("internal", "error.farm.fetchFailed");
   }
 });
 
@@ -98,39 +98,39 @@ export const getFarm = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError(
       "unauthenticated",
-      "User must be authenticated.",
+      "error.unauthenticated",
     );
   }
     const { farmId } = data;
     if (!farmId) {
-        throw new functions.https.HttpsError("invalid-argument", "A farmId must be provided.");
+        throw new functions.https.HttpsError("invalid-argument", "error.farm.idRequired");
     }
     
     try {
         const farmDoc = await db.collection('farms').doc(farmId).get();
         if (!farmDoc.exists) {
-            throw new functions.https.HttpsError("not-found", "Farm not found.");
+            throw new functions.https.HttpsError("not-found", "error.farm.notFound");
         }
         
         const farmData = farmDoc.data()!;
 
         // Security check: ensure the authenticated user owns this farm
         if (farmData.ownerId !== context.auth.uid) {
-            throw new functions.https.HttpsError("permission-denied", "You do not have permission to view this farm.");
+            throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
         }
         
         return { 
             id: farmDoc.id, 
             ...farmData,
-            createdAt: farmData.createdAt?.toDate ? farmData.createdAt.toDate().toISOString() : null,
-            updatedAt: farmData.updatedAt?.toDate ? farmData.updatedAt.toDate().toISOString() : null,
+            createdAt: (farmData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            updatedAt: (farmData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         };
     } catch (error) {
         console.error("Error fetching farm:", error);
         if (error instanceof functions.https.HttpsError) {
           throw error;
         }
-        throw new functions.https.HttpsError("internal", "Failed to fetch farm details.");
+        throw new functions.https.HttpsError("internal", "error.farm.fetchFailed");
   }
 });
 
@@ -144,7 +144,7 @@ export const updateFarm = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError(
       "unauthenticated",
-      "User must be authenticated to update a farm.",
+      "error.unauthenticated",
     );
   }
 
@@ -152,7 +152,7 @@ export const updateFarm = functions.https.onCall(async (data, context) => {
   if (!farmId || !name || !location || !size || !farmType) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "Farm ID, name, location, size, and farm type are required.",
+      "error.farm.missingFields",
     );
   }
 
@@ -162,10 +162,10 @@ export const updateFarm = functions.https.onCall(async (data, context) => {
     // Security Check: Verify owner
     const farmDoc = await farmRef.get();
     if (!farmDoc.exists) {
-        throw new functions.https.HttpsError("not-found", "Farm not found.");
+        throw new functions.https.HttpsError("not-found", "error.farm.notFound");
     }
     if (farmDoc.data()?.ownerId !== context.auth.uid) {
-        throw new functions.https.HttpsError("permission-denied", "You do not have permission to update this farm.");
+        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
 
     await farmRef.update({
@@ -186,7 +186,7 @@ export const updateFarm = functions.https.onCall(async (data, context) => {
     }
     throw new functions.https.HttpsError(
       "internal",
-      "Failed to update farm in the database.",
+      "error.farm.updateFailed",
       { originalError: error.message },
     );
   }
@@ -203,7 +203,7 @@ export const createCrop = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError(
       "unauthenticated",
-      "User must be authenticated.",
+      "error.unauthenticated",
     );
   }
 
@@ -219,7 +219,7 @@ export const createCrop = functions.https.onCall(async (data, context) => {
   if (!farmId || !cropType || !plantingDate) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "Farm ID, crop type, and planting date are required.",
+      "error.crop.missingFields",
     );
   }
 
@@ -229,7 +229,7 @@ export const createCrop = functions.https.onCall(async (data, context) => {
   if (!farmDoc.exists || farmDoc.data()?.ownerId !== context.auth.uid) {
     throw new functions.https.HttpsError(
       "permission-denied",
-      "You do not have permission to add a crop to this farm.",
+      "error.permissionDenied",
     );
   }
 
@@ -277,7 +277,7 @@ export const createCrop = functions.https.onCall(async (data, context) => {
     console.error("Error creating crop:", error);
     throw new functions.https.HttpsError(
       "internal",
-      "Failed to create crop in the database. Please check your project's Firestore setup.",
+      "error.crop.creationFailed",
       {originalError: error.message},
     );
   }
@@ -293,7 +293,7 @@ export const getFarmCrops = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     throw new functions.https.HttpsError(
       "unauthenticated",
-      "User must be authenticated.",
+      "error.unauthenticated",
     );
   }
 
@@ -301,7 +301,7 @@ export const getFarmCrops = functions.https.onCall(async (data, context) => {
   if (!farmId) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "A farmId must be provided.",
+      "error.farm.idRequired",
     );
   }
 
@@ -311,7 +311,7 @@ export const getFarmCrops = functions.https.onCall(async (data, context) => {
   if (!farmDoc.exists || farmDoc.data()?.ownerId !== context.auth.uid) {
     throw new functions.https.HttpsError(
       "permission-denied",
-      "You do not have permission to view crops for this farm.",
+      "error.permissionDenied",
     );
   }
 
@@ -322,45 +322,45 @@ export const getFarmCrops = functions.https.onCall(async (data, context) => {
             return { 
                 id: doc.id, 
                 ...docData,
-                plantingDate: docData.plantingDate?.toDate ? docData.plantingDate.toDate().toISOString() : null,
-                harvestDate: docData.harvestDate?.toDate ? docData.harvestDate.toDate().toISOString() : null,
-                createdAt: docData.createdAt?.toDate ? docData.createdAt.toDate().toISOString() : null,
+                plantingDate: (docData.plantingDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                harvestDate: (docData.harvestDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                createdAt: (docData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
             };
         });
         return crops;
     } catch (error) {
         console.error("Error fetching farm crops:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch crops.");
+        throw new functions.https.HttpsError("internal", "error.crop.fetchFailed");
     }
 });
 
 export const getCrop = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
     }
 
     const { cropId } = data;
     if (!cropId) {
-        throw new functions.https.HttpsError("invalid-argument", "A cropId must be provided.");
+        throw new functions.https.HttpsError("invalid-argument", "error.crop.idRequired");
     }
 
     try {
         const cropDoc = await db.collection('crops').doc(cropId).get();
         if (!cropDoc.exists) {
-            throw new functions.https.HttpsError("not-found", "Crop not found.");
+            throw new functions.https.HttpsError("not-found", "error.crop.notFound");
         }
 
         const cropData = cropDoc.data()!;
         if (cropData.ownerId !== context.auth.uid) {
-            throw new functions.https.HttpsError("permission-denied", "You do not have permission to view this crop.");
+            throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
         }
         
         return {
             id: cropDoc.id,
             ...cropData,
-            plantingDate: cropData.plantingDate?.toDate ? cropData.plantingDate.toDate().toISOString() : null,
-            harvestDate: cropData.harvestDate?.toDate ? cropData.harvestDate.toDate().toISOString() : null,
-            createdAt: cropData.createdAt?.toDate ? cropData.createdAt.toDate().toISOString() : null,
+            plantingDate: (cropData.plantingDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            harvestDate: (cropData.harvestDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            createdAt: (cropData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         };
 
     } catch(error) {
@@ -368,7 +368,7 @@ export const getCrop = functions.https.onCall(async (data, context) => {
         if (error instanceof functions.https.HttpsError) {
             throw error;
         }
-        throw new functions.https.HttpsError("internal", "Failed to fetch crop details.");
+        throw new functions.https.HttpsError("internal", "error.crop.fetchFailed");
     }
 });
 
@@ -385,20 +385,11 @@ export const getProfitabilityInsights = functions.https.onCall(
     if (!context.auth) {
       throw new functions.https.HttpsError(
         "unauthenticated",
-        "User must be authenticated.",
+        "error.unauthenticated",
       );
     }
 
     try {
-      // --- This function would perform more complex data aggregation and analysis ---
-      // 1. Fetch all financial records for the user (`farm_financials`).
-      // 2. Fetch all farm activity logs (`traceability_events`).
-      // 3. Correlate income from sales with specific `HARVESTING` events to determine revenue per crop/field.
-      // 4. Correlate expenses for inputs with `INPUT_APPLICATION` events to determine cost per crop/field.
-      // 5. Calculate net profit per crop/field.
-      // 6. Run logic/AI model to identify key insights from this data.
-
-      // --- We will return more detailed mock data that simulates this deeper analysis ---
       const mockInsights = [
         {
           id: "insight1",
@@ -418,31 +409,16 @@ export const getProfitabilityInsights = functions.https.onCall(
           recommendation:
             "A soil test for Field B could help tailor fertilizer application, potentially reducing costs without impacting yield.",
         },
-        {
-          id: "insight3",
-          type: "technique_correlation",
-          title: "Early Planting Shows Positive Results",
-          details:
-            "Your early planting date for Tomatoes in Field C correlated with a 15% higher yield compared to regional averages for later plantings.",
-          recommendation:
-            "Continue with this successful early planting strategy for tomatoes next season.",
-        },
       ];
 
       return {success: true, insights: mockInsights};
     } catch (error) {
       console.error("Error generating profitability insights:", error);
-      throw new functions.https.HttpsError("internal", "Failed to generate insights.");
+      throw new functions.https.HttpsError("internal", "error.insights.failed");
     }
   },
 );
 
-/**
- * Calculates the next step date for a KNF batch.
- * @param {string} type The type of KNF batch.
- * @param {Date} startDate The start date of the batch.
- * @return {{nextStep: string, nextStepDate: Date}} The next step and date.
- */
 const getNextStepDate = (
   type: string,
   startDate: Date,
@@ -450,52 +426,23 @@ const getNextStepDate = (
   let daysToAdd = 7;
   let stepDescription = "Ready for Straining";
   switch (type) {
-  case "fpj":
-    daysToAdd = 7;
-    stepDescription = "Ready for Straining";
-    break;
-  case "faa":
-    daysToAdd = 90;
-    stepDescription = "Ready for Straining (Approx. 3 months)";
-    break;
-  case "wca":
-    daysToAdd = 14;
-    stepDescription = "Ready (bubbling should stop)";
-    break;
-  case "imo":
-    daysToAdd = 5;
-    stepDescription = "Ready for IMO2 processing";
-    break;
-  case "lab":
-    daysToAdd = 7;
-    stepDescription = "Ready for milk cultivation";
-    break;
+  case "fpj": daysToAdd = 7; break;
+  case "faa": daysToAdd = 90; stepDescription = "Ready for Straining (Approx. 3 months)"; break;
+  case "wca": daysToAdd = 14; stepDescription = "Ready (bubbling should stop)"; break;
+  case "imo": daysToAdd = 5; stepDescription = "Ready for IMO2 processing"; break;
+  case "lab": daysToAdd = 7; stepDescription = "Ready for milk cultivation"; break;
   }
   const nextDate = new Date(startDate);
   nextDate.setDate(startDate.getDate() + daysToAdd);
   return {nextStep: stepDescription, nextStepDate: nextDate};
 };
 
-/**
- * Creates a new KNF batch document in Firestore for an authenticated user.
- * @param {any} data The data for the new batch.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{success: boolean, batchId: string}>} A promise that resolves with the new batch ID.
- */
 export const createKnfBatch = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError(
-      "unauthenticated",
-      "User must be authenticated.",
-    );
-  }
+  if (!context.auth) throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
 
-  const {type, typeName, ingredients, startDate} = data;
-  if (!type || !typeName || !ingredients || !startDate) {
-    throw new functions.https.HttpsError(
-      "invalid-argument",
-      "Type, typeName, ingredients, and startDate are required.",
-    );
+  const {type, typeName, ingredients, startDate, quantityProduced, unit} = data;
+  if (!type || !typeName || !ingredients || !startDate || !quantityProduced || !unit) {
+    throw new functions.https.HttpsError("invalid-argument", "error.knf.missingFields");
   }
 
   const userId = context.auth.uid;
@@ -513,6 +460,8 @@ export const createKnfBatch = functions.https.onCall(async (data, context) => {
       nextStepDate: admin.firestore.Timestamp.fromDate(nextStepDate),
       status: "Fermenting",
       nextStep: nextStep,
+      quantityProduced,
+      unit,
     };
 
     await newBatchRef.set({
@@ -523,32 +472,17 @@ export const createKnfBatch = functions.https.onCall(async (data, context) => {
     return {success: true, batchId: newBatchRef.id};
   } catch (error: any) {
     console.error("Error creating KNF batch:", error);
-    throw new functions.https.HttpsError(
-      "internal",
-      "Failed to create KNF batch in the database.",
-      {originalError: error.message},
-    );
+    throw new functions.https.HttpsError("internal", "error.knf.creationFailed", {originalError: error.message});
   }
 });
 
-/**
- * Fetches all KNF batches belonging to the currently authenticated user.
- * @param {any} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<any[]>} A promise that resolves with the user's KNF batches.
- */
+
 export const getUserKnfBatches = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "User must be authenticated.",
-      );
-    }
+    if (!context.auth) throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
 
     try {
-      const batchesSnapshot = await db
-        .collection("knf_batches")
+      const batchesSnapshot = await db.collection("knf_batches")
         .where("userId", "==", context.auth.uid)
         .orderBy("createdAt", "desc")
         .get();
@@ -558,84 +492,43 @@ export const getUserKnfBatches = functions.https.onCall(
         return {
           ...docData,
           id: doc.id,
-          startDate: (docData.startDate as unknown as admin.firestore.Timestamp)?.toDate ? (docData.startDate as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
-          nextStepDate: (docData.nextStepDate as unknown as admin.firestore.Timestamp)?.toDate ? (docData.nextStepDate as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
-          createdAt: (docData.createdAt as unknown as admin.firestore.Timestamp)?.toDate ? (docData.createdAt as unknown as admin.firestore.Timestamp).toDate().toISOString() : null,
+          startDate: (docData.startDate as unknown as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+          nextStepDate: (docData.nextStepDate as unknown as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+          createdAt: (docData.createdAt as unknown as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         };
       });
       return batches;
     } catch (error) {
       console.error("Error fetching user KNF batches:", error);
-      throw new functions.https.HttpsError(
-        "internal",
-        "Failed to fetch KNF batches.",
-      );
+      throw new functions.https.HttpsError("internal", "error.knf.fetchFailed");
     }
   },
 );
 
-/**
- * Updates the status of a KNF batch.
- * @param {any} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{success: boolean, message: string}>} A promise that resolves when the batch is updated.
- */
 export const updateKnfBatchStatus = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "User must be authenticated.",
-      );
-    }
+    if (!context.auth) throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
 
     const {batchId, status} = data;
-    if (!batchId || !status) {
-      throw new functions.https.HttpsError(
-        "invalid-argument",
-        "batchId and status are required.",
-      );
-    }
+    if (!batchId || !status) throw new functions.https.HttpsError("invalid-argument", "error.form.missingFields");
 
     const validStatuses = ["Fermenting", "Ready", "Used", "Archived"];
-    if (!validStatuses.includes(status)) {
-      throw new functions.https.HttpsError(
-        "invalid-argument",
-        `Invalid status provided. Must be one of: ${validStatuses.join(", ")}`,
-      );
-    }
+    if (!validStatuses.includes(status)) throw new functions.https.HttpsError("invalid-argument", `Invalid status provided.`);
 
     const userId = context.auth.uid;
     const batchRef = db.collection("knf_batches").doc(batchId);
 
     try {
       const batchDoc = await batchRef.get();
-      if (!batchDoc.exists) {
-        throw new functions.https.HttpsError("not-found", "Batch not found.");
-      }
-
-      if (batchDoc.data()?.userId !== userId) {
-        throw new functions.https.HttpsError(
-          "permission-denied",
-          "You do not have permission to update this batch.",
-        );
-      }
+      if (!batchDoc.exists) throw new functions.https.HttpsError("not-found", "error.knf.notFound");
+      if (batchDoc.data()?.userId !== userId) throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
 
       await batchRef.update({status: status});
-
       return {success: true, message: `Batch ${batchId} status updated to ${status}.`};
     } catch (error: any) {
       console.error(`Error updating KNF batch ${batchId}:`, error);
-      if (error instanceof functions.https.HttpsError) {
-        throw error;
-      }
-      throw new functions.https.HttpsError(
-        "internal",
-        "Failed to update KNF batch status.",
-        {originalError: error.message},
-      );
+      if (error instanceof functions.https.HttpsError) throw error;
+      throw new functions.https.HttpsError("internal", "error.knf.updateFailed", {originalError: error.message});
     }
   },
 );
-
-

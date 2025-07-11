@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {getRole} from "./profiles";
@@ -8,7 +9,7 @@ const db = admin.firestore();
 
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
   }
   return context.auth.uid;
 };
@@ -21,16 +22,10 @@ export const generateRegulatoryReport = functions.https.onCall(
     const {reportType, userId, reportPeriod} = data;
 
     if (!reportType || typeof reportType !== "string") {
-      throw new functions.https.HttpsError(
-        "invalid-argument",
-        "The 'reportType' parameter is required and must be a string.",
-      );
+      throw new functions.https.HttpsError("invalid-argument", "error.report.typeRequired");
     }
     if (!userId) {
-      throw new functions.https.HttpsError(
-        "invalid-argument",
-        "A target userId is required.",
-      );
+      throw new functions.https.HttpsError("invalid-argument", "error.report.userIdRequired");
     }
     if (
       !reportPeriod ||
@@ -38,19 +33,11 @@ export const generateRegulatoryReport = functions.https.onCall(
       typeof reportPeriod.endDate !== "number" ||
       reportPeriod.startDate >= reportPeriod.endDate
     ) {
-      throw new functions.https.HttpsError(
-        "invalid-argument",
-        "Valid reportPeriod with start and end timestamps is required.",
-      );
+      throw new functions.https.HttpsError("invalid-argument", "error.report.invalidPeriod");
     }
     
-    // For this implementation, we allow Admins to generate reports.
-    // This could be expanded to include 'Regulator' or 'Auditor' roles.
     if (callerRole !== "Admin") {
-      throw new functions.https.HttpsError(
-        "permission-denied",
-        "User is not authorized to generate regulatory reports.",
-      );
+      throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
 
     const startDate = admin.firestore.Timestamp.fromMillis(reportPeriod.startDate);
@@ -109,7 +96,7 @@ export const generateRegulatoryReport = functions.https.onCall(
       if (error instanceof functions.https.HttpsError) {
         throw error;
       }
-      throw new functions.https.HttpsError("internal", "Unable to generate regulatory report.", error.message);
+      throw new functions.https.HttpsError("internal", "error.report.generationFailed", {originalError: error.message});
     }
   },
 );
@@ -124,10 +111,18 @@ export const getGeneratedReports = functions.https.onCall(async (data, context) 
         .limit(20)
         .get();
         
-    const reports = reportsSnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-    }));
+    const reports = reportsSnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+            id: doc.id,
+            ...data,
+            generatedAt: (data.generatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            reportPeriod: {
+                startDate: (data.reportPeriod.startDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+                endDate: (data.reportPeriod.endDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            }
+        }
+    });
     
     return { reports };
 });

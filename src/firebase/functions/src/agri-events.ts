@@ -7,7 +7,7 @@ const db = admin.firestore();
 
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
   }
   return context.auth.uid;
 };
@@ -22,7 +22,7 @@ const _validateEventCoupon = async (eventId: string, couponCode: string): Promis
 
     const snapshot = await couponQuery.get();
     if (snapshot.empty) {
-        return { valid: false, message: "Coupon not found." };
+        return { valid: false, message: "error.coupon.notFound" };
     }
     
     const couponDoc = snapshot.docs[0];
@@ -30,11 +30,11 @@ const _validateEventCoupon = async (eventId: string, couponCode: string): Promis
 
     // Check expiry
     if (couponData.expiresAt && couponData.expiresAt.toDate() < new Date()) {
-        return { valid: false, message: "This coupon has expired." };
+        return { valid: false, message: "error.coupon.expired" };
     }
     // Check usage limit
     if (couponData.usageLimit && couponData.usageCount >= couponData.usageLimit) {
-        return { valid: false, message: "This coupon has reached its usage limit." };
+        return { valid: false, message: "error.coupon.limitReached" };
     }
     
     return {
@@ -51,13 +51,13 @@ export const createEventCoupon = functions.https.onCall(async (data, context) =>
     const { eventId, code, discountType, discountValue, expiryDate, usageLimit } = data;
 
     if (!eventId || !code || !discountType || !discountValue) {
-        throw new functions.https.HttpsError("invalid-argument", "Missing required coupon fields.");
+        throw new functions.https.HttpsError("invalid-argument", "error.form.missingFields");
     }
     
     const eventRef = db.collection("agri_events").doc(eventId);
     const eventDoc = await eventRef.get();
     if (!eventDoc.exists || eventDoc.data()?.organizerId !== uid) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to create coupons for this event.");
+        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
 
     const newCouponRef = eventRef.collection("coupons").doc();
@@ -77,13 +77,13 @@ export const getEventCoupons = functions.https.onCall(async (data, context) => {
     checkAuth(context);
     const { eventId } = data;
     if (!eventId) {
-        throw new functions.https.HttpsError("invalid-argument", "An eventId must be provided.");
+        throw new functions.https.HttpsError("invalid-argument", "error.eventId.required");
     }
 
     const eventRef = db.collection("agri_events").doc(eventId);
     const eventDoc = await eventRef.get();
     if (!eventDoc.exists || eventDoc.data()?.organizerId !== context.auth!.uid) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to view coupons for this event.");
+        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
 
     const couponsSnapshot = await eventRef.collection('coupons').orderBy('createdAt', 'desc').get();
@@ -107,7 +107,7 @@ export const createAgriEvent = functions.https.onCall(async (data, context) => {
     
     const validation = AgriEventSchema.omit({dataAiHint: true}).safeParse(data); // Omit client-side only fields
     if (!validation.success) {
-      throw new functions.https.HttpsError('invalid-argument', 'Invalid event data.', validation.error.format());
+      throw new functions.https.HttpsError('invalid-argument', 'error.form.invalidData', validation.error.format());
     }
 
     const { title, description, eventDate, eventTime, location, eventType, organizer, websiteLink, imageUrl, registrationEnabled, attendeeLimit, price, currency } = validation.data;
@@ -155,11 +155,11 @@ export const getAgriEvents = functions.https.onCall(async (data, context) => {
 
 export const getEventDetails = functions.https.onCall(async (data, context) => {
     const { eventId } = data;
-    if (!eventId) throw new functions.https.HttpsError('invalid-argument', 'Event ID is required.');
+    if (!eventId) throw new functions.https.HttpsError('invalid-argument', 'error.eventId.required');
     
     const eventDoc = await db.collection('agri_events').doc(eventId).get();
     if (!eventDoc.exists) {
-        throw new functions.https.HttpsError('not-found', 'Event not found.');
+        throw new functions.https.HttpsError('not-found', 'error.event.notFound');
     }
     
     const eventData = eventDoc.data()!;
@@ -182,36 +182,36 @@ export const getEventDetails = functions.https.onCall(async (data, context) => {
 export const registerForEvent = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { eventId, couponCode } = data;
-    if (!eventId) throw new functions.https.HttpsError('invalid-argument', 'Event ID is required.');
+    if (!eventId) throw new functions.https.HttpsError('invalid-argument', 'error.eventId.required');
     
     const eventRef = db.collection('agri_events').doc(eventId);
     const attendeeRef = eventRef.collection('attendees').doc(uid);
     const userProfileDoc = await db.collection('users').doc(uid).get();
 
     if (!userProfileDoc.exists) {
-        throw new functions.https.HttpsError('not-found', 'User profile not found.');
+        throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
     const userProfile = userProfileDoc.data()!;
 
     return db.runTransaction(async (transaction) => {
         const eventDoc = await transaction.get(eventRef);
         if (!eventDoc.exists) {
-            throw new functions.https.HttpsError('not-found', 'Event not found.');
+            throw new functions.https.HttpsError('not-found', 'error.event.notFound');
         }
 
         const eventData = eventDoc.data()!;
         if (!eventData.registrationEnabled) {
-            throw new functions.https.HttpsError('failed-precondition', 'Registration is not open for this event.');
+            throw new functions.https.HttpsError('failed-precondition', 'error.event.registrationClosed');
         }
 
         const attendeeDoc = await transaction.get(attendeeRef);
         if (attendeeDoc.exists) {
-            throw new functions.https.HttpsError('already-exists', 'You are already registered for this event.');
+            throw new functions.https.HttpsError('already-exists', 'error.event.alreadyRegistered');
         }
 
         const currentAttendees = eventData.registeredAttendeesCount || 0;
         if (eventData.attendeeLimit && currentAttendees >= eventData.attendeeLimit) {
-             throw new functions.https.HttpsError('resource-exhausted', 'This event is full.');
+             throw new functions.https.HttpsError('resource-exhausted', 'error.event.full');
         }
 
         let finalPrice = eventData.price || 0;
@@ -232,7 +232,7 @@ export const registerForEvent = functions.https.onCall(async (data, context) => 
                     finalPrice = finalPrice - discountApplied;
                 }
             } else {
-                 throw new functions.https.HttpsError('invalid-argument', couponResult.message || "Invalid coupon code.");
+                 throw new functions.https.HttpsError('invalid-argument', couponResult.message || "error.coupon.invalid");
             }
         }
         
@@ -267,14 +267,14 @@ export const checkInAttendee = functions.https.onCall(async (data, context) => {
     const { eventId, attendeeUid } = data;
 
     if (!eventId || !attendeeUid) {
-        throw new functions.https.HttpsError("invalid-argument", "Event ID and Attendee UID are required.");
+        throw new functions.https.HttpsError("invalid-argument", "error.form.missingFields");
     }
     
     const eventRef = db.collection('agri_events').doc(eventId);
     const eventDoc = await eventRef.get();
     const eventData = eventDoc.data();
     if (!eventDoc.exists) {
-        throw new functions.https.HttpsError("not-found", "Event not found.");
+        throw new functions.https.HttpsError("not-found", "error.event.notFound");
     }
     
     const organizerId = eventData?.organizerId;
@@ -282,12 +282,12 @@ export const checkInAttendee = functions.https.onCall(async (data, context) => {
     const staffDoc = await staffRef.get();
 
     if (organizerId !== callerId && !staffDoc.exists) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to check-in attendees for this event.");
+        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
 
     const attendeeUserDoc = await db.collection('users').doc(attendeeUid).get();
     if (!attendeeUserDoc.exists) {
-        throw new functions.https.HttpsError("not-found", "No user found with the provided ID.");
+        throw new functions.https.HttpsError("not-found", "error.user.notFound");
     }
     const attendeeName = attendeeUserDoc.data()?.displayName || 'Unknown Attendee';
 
@@ -295,12 +295,12 @@ export const checkInAttendee = functions.https.onCall(async (data, context) => {
     return db.runTransaction(async (transaction) => {
         const attendeeDoc = await transaction.get(attendeeRef);
         if (!attendeeDoc.exists) {
-            throw new functions.https.HttpsError("not-found", `${attendeeName} is not registered for this event.`);
+            throw new functions.https.HttpsError("not-found", "error.event.notRegistered");
         }
         
         const attendeeData = attendeeDoc.data()!;
         if (attendeeData.checkedIn) {
-            throw new functions.https.HttpsError("already-exists", `${attendeeName} has already been checked in.`);
+            throw new functions.https.HttpsError("already-exists", "error.event.alreadyCheckedIn");
         }
 
         transaction.update(attendeeRef, {
@@ -316,13 +316,13 @@ export const getEventAttendees = functions.https.onCall(async (data, context) =>
     const uid = checkAuth(context);
     const { eventId } = data;
     if (!eventId) {
-        throw new functions.https.HttpsError("invalid-argument", "An eventId must be provided.");
+        throw new functions.https.HttpsError("invalid-argument", "error.eventId.required");
     }
 
     const eventRef = db.collection("agri_events").doc(eventId);
     const eventDoc = await eventRef.get();
     if (!eventDoc.exists || eventDoc.data()?.organizerId !== uid) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to view attendees for this event.");
+        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
 
     const attendeesSnapshot = await eventRef.collection('attendees').orderBy('registeredAt', 'desc').get();
@@ -394,7 +394,7 @@ export const addEventStaff = functions.https.onCall(async (data, context) => {
     const eventRef = db.collection('agri_events').doc(eventId);
     const eventDoc = await eventRef.get();
     if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to add staff to this event.");
+        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
 
     const staffRef = eventRef.collection('staff').doc(staffUserId);
@@ -419,7 +419,7 @@ export const getEventStaff = functions.https.onCall(async (data, context) => {
     const eventRef = db.collection('agri_events').doc(eventId);
     const eventDoc = await eventRef.get();
     if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to view staff for this event.");
+        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
     
     const staffSnapshot = await eventRef.collection('staff').get();
@@ -443,7 +443,7 @@ export const removeEventStaff = functions.https.onCall(async (data, context) => 
     const eventRef = db.collection('agri_events').doc(eventId);
     const eventDoc = await eventRef.get();
     if (!eventDoc.exists || eventDoc.data()?.organizerId !== organizerId) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to remove staff from this event.");
+        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
 
     const staffRef = eventRef.collection('staff').doc(staffUserId);
