@@ -98,7 +98,7 @@
   "OfflineIndicator": {
     "tooltip": {
       "syncing": "Syncing {count} pending actions...",
-      "onlinePending": "{count} actions pending. Sync will start shortly.",
+      "onlinePending": "{count, plural, =1 {# action pending} other {# actions pending}}. Sync will start shortly.",
       "onlineSynced": "You are online and all data is synced.",
       "offline": "You are offline. {count, plural, =0 {No changes pending.} =1 {1 change queued.} other {{count} changes queued.}}"
     },
@@ -152,6 +152,125 @@
     "getMobileApp": "Get the Mobile App",
     "googlePlayAlt": "Get it on Google Play",
     "appStoreAlt": "Download on the App Store"
+  },
+  "Auth": {
+    "signInWelcome": "Welcome back to {appName}",
+    "signUpWelcome": "Join the {appName} Agricultural Network",
+    "forgotPasswordResetPrompt": "Reset your {appName} password",
+    "resetPasswordPrompt": "Create a new password for {appName}",
+    "signInTitle": "Sign in to your account",
+    "signInDescription": "Enter your credentials to access your dashboard.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "forgotPasswordLink": "Forgot password?",
+    "signingInButton": "Signing In...",
+    "signInButton": "Sign In",
+    "noAccountPrompt": "Don't have an account?",
+    "signUpLink": "Sign Up",
+    "signInLink": "Sign In",
+    "recoverWithUniversalIdPrompt": "Or recover account with your Universal ID",
+    "signUpTitle": "Create a New Account",
+    "signUpDescription": "Tell us a bit about yourself to get started.",
+    "nameLabel": "Your Name or Business Name",
+    "namePlaceholder": "e.g. Jane Doe or Green Valley Farms",
+    "roleLabel": "Your Primary Role",
+    "rolePlaceholder": "Select your role in the supply chain...",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Creating Account...",
+    "signUpButton": "Create Account",
+    "alreadyHaveAccountPrompt": "Already have an account?",
+    "forgotPasswordTitle": "Forgot Password?",
+    "forgotPasswordDescription": "No problem. Enter your email address below and we'll send you a reset link.",
+    "sendResetLinkButton": "Send Reset Link",
+    "sendingEmailButton": "Sending Email...",
+    "rememberPasswordPrompt": "Remembered your password?",
+    "resetPasswordTitle": "Reset Password",
+    "resetPasswordDescription": "Enter and confirm your new password below.",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "Enter a secure new password",
+    "resetPasswordButton": "Reset Password",
+    "resettingPasswordButton": "Resetting...",
+    "recoverPage": {
+      "title": "Account Recovery",
+      "description": "Use your network to regain access.",
+      "howItWorksTitle": "How It Works",
+      "step1": "Enter your phone number to start a recovery session.",
+      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
+      "step3": "Once your friend scans the code to verify your identity, you'll regain access.",
+      "startButton": "Start Account Recovery",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted contact on DamDoh scan this QR code with the 'Help a Friend Recover' feature in their app.",
+      "scanNote": "This code is temporary and will expire in 10 minutes.",
+      "startOverButton": "Start Over"
+    },
+    "forgotPassword": {
+      "emailSentTitle": "Check Your Email",
+      "emailSentDescription": "A password reset link has been sent to {email}.",
+      "emailSentDescriptionIfAccountExists": "If an account with {email} exists, a password reset link has been sent.",
+      "successTitle": "Email Sent!",
+      "successDescription": "Please check your inbox (and spam folder) for the password reset link.",
+      "errors": {
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidEmail": "The email address is not valid.",
+        "tooManyRequests": "Too many requests. Please try again later.",
+        "default": "Failed to send reset email"
+      }
+    },
+    "resetPassword": {
+      "successTitle": "Password Reset Successfully!",
+      "successDescription": "You can now sign in with your new password.",
+      "successRedirect": "You will be redirected to the sign-in page shortly.",
+      "errors": {
+        "missingCode": "Invalid password reset link. Please request a new one.",
+        "missingCodeTitle": "Invalid Link",
+        "missingCodeDescription": "The password reset link is missing or invalid. Please return to the Forgot Password page to request a new one.",
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidOrExpiredCode": "The password reset link is invalid or has expired. Please request a new one.",
+        "userDisabled": "This user account has been disabled.",
+        "userNotFound": "No user found corresponding to this reset link.",
+        "weakPassword": "The new password is not strong enough.",
+        "default": "Failed to reset password"
+      }
+    },
+    "error": "Error"
+  },
+  "searchPage": {
+    "title": "Universal Search",
+    "description": "Find anything across the DamDoh platform, from products and services to people and discussions.",
+    "placeholder": "Search for organic coffee, tractor repair, or a user...",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic Fertilizer",
+    "popularSearch2": "Logistics in Kenya",
+    "popularSearch3": "Coffee Buyers Europe",
+    "popularSearch4": "Farm Labor",
+    "popularSearch5": "Tractor for Rent",
+    "modal": {
+      "title": "Universal Search",
+      "placeholder": "I'm looking for...",
+      "searchButton": "Search",
+      "searchError": "Search Failed",
+      "searchErrorDescription": "An unexpected error occurred during the search. Please try again.",
+      "invalidCodeError": "This does not appear to be a valid DamDoh QR code.",
+      "scanFailed": "Scan Failed",
+      "scanError": "Scan Error",
+      "scanErrorDescription": "Could not read the QR code. Please try again.",
+      "interpretationTitle": "AI Interpretation",
+      "interpretationNotesDefault": "Showing general results.",
+      "filtersTitle": "Applied Filters",
+      "results": {
+        "users": "Profiles",
+        "marketplaceItems": "Marketplace",
+        "forums": "Forums",
+        "vti_registry": "Traceability Report",
+        "knowledge_articles": "Knowledge Hub",
+        "agri_events": "Agri Events"
+      },
+      "noResults": "No results found for your query.",
+      "tryAgain": "Try a different search term or use broader keywords."
+    }
   },
   "aboutPage": {
     "hero": {
@@ -509,6 +628,572 @@
     "noPosts": {
       "title": "No Posts Yet",
       "description": "There are no blog posts available at the moment. Please check back soon for updates and insights!"
+    }
+  },
+  "common": {
+    "error": "Error",
+    "success": "Success"
+  },
+  "toast": {
+    "loggedOut": {
+      "title": "Logged Out",
+      "description": "You have been successfully logged out."
+    },
+    "logoutFailed": {
+      "title": "Logout Failed",
+      "description": "Could not log you out. Please try again."
+    },
+    "signInSuccess": {
+      "title": "Signed In Successfully!",
+      "description": "Welcome back to {appName}."
+    },
+    "signInFailed": {
+      "title": "Sign In Failed"
+    },
+    "signUpSuccess": {
+      "title": "Account Created & Signed In!",
+      "description": "Welcome to {appName}! You have been successfully signed in."
+    },
+    "signUpFailed": {
+      "title": "Sign Up Failed"
+    }
+  },
+  "formErrors": {
+    "createMarketplaceItem": {
+      "name": {
+        "min": "Name must be at least 3 characters long.",
+        "max": "Name cannot exceed 100 characters."
+      },
+      "listingType": {
+        "required": "Please select a listing type (Product or Service)."
+      },
+      "description": {
+        "min": "Description must be at least 10 characters long.",
+        "max": "Description cannot exceed 2000 characters."
+      },
+      "price": {
+        "invalid": "Price must be a number.",
+        "min": "Price cannot be negative."
+      },
+      "currency": {
+        "length": "Currency must be a 3-letter code."
+      },
+      "perUnit": {
+        "max": "Unit description (e.g., /kg, /ton, /hour) is too long."
+      },
+      "category": {
+        "required": "Please select a valid category."
+      },
+      "location": {
+        "min": "Location must be at least 2 characters long.",
+        "max": "Location cannot exceed 100 characters."
+      },
+      "imageUrl": {
+        "invalid": "Please enter a valid URL for the image (e.g., https://placehold.co/300x200.png)."
+      },
+      "contactInfo": {
+        "min": "Contact information must be at least 5 characters long.",
+        "max": "Contact information cannot exceed 200 characters."
+      },
+      "skillsRequired": {
+        "max": "Skills list is too long (max 250 chars)."
+      },
+      "compensation": {
+        "max": "Compensation details are too long (max 100 chars)."
+      },
+      "brand": {
+        "max": "Brand name is too long."
+      },
+      "certifications": {
+        "max": "Certifications list is too long."
+      },
+      "relatedTraceabilityId": {
+        "max": "Traceability ID is too long."
+      }
+    },
+    "createForumTopic": {
+      "title": {
+        "min": "Title must be at least 10 characters long.",
+        "max": "Title cannot exceed 150 characters."
+      },
+      "description": {
+        "min": "Description must be at least 20 characters long.",
+        "max": "Description cannot exceed 2000 characters."
+      }
+    },
+    "createAgriEvent": {
+      "title": {
+        "min": "Event title must be at least 5 characters.",
+        "max": "Event title cannot exceed 100 characters."
+      },
+      "description": {
+        "min": "Event description must be at least 20 characters.",
+        "max": "Event description cannot exceed 2000 characters."
+      },
+      "eventDate": {
+        "required": "Event date is required.",
+        "invalid": "That's not a valid date!"
+      },
+      "eventTime": {
+        "regex": "Please enter a valid time in HH:MM format (e.g., 14:30)."
+      },
+      "location": {
+        "min": "Location must be at least 3 characters.",
+        "max": "Location cannot exceed 150 characters."
+      },
+      "eventType": {
+        "required": "Please select a valid event type."
+      },
+      "organizer": {
+        "max": "Organizer name cannot exceed 100 characters."
+      },
+      "websiteLink": {
+        "invalid": "Please enter a valid URL for the event website."
+      },
+      "imageUrl": {
+        "invalid": "Please enter a valid URL for the event image."
+      },
+      "attendeeLimit": {
+        "positive": "Must be a positive number."
+      },
+      "price": {
+        "min": "Price cannot be negative."
+      },
+      "currency": {
+        "length": "Currency must be a 3-letter code."
+      }
+    },
+    "createFarm": {
+      "name": {
+        "min": "Farm name must be at least 3 characters."
+      },
+      "description": {
+        "max": "Description is too long."
+      },
+      "location": {
+        "min": "Please provide a location."
+      },
+      "size": {
+        "min": "Please provide the farm size."
+      },
+      "farmType": {
+        "required": "Please select a farm type."
+      },
+      "irrigationMethods": {
+        "max": "Irrigation methods description is too long."
+      }
+    },
+    "createCrop": {
+      "cropType": {
+        "min": "Crop type must be at least 2 characters."
+      },
+      "plantingDate": {
+        "required": "A planting date is required."
+      },
+      "expectedYield": {
+        "max": "Expected yield description is too long."
+      },
+      "notes": {
+        "max": "Notes are too long."
+      }
+    },
+    "createInputApplication": {
+      "applicationDate": {
+        "required": "An application date is required."
+      },
+      "inputId": {
+        "min": "Input name/ID is required."
+      },
+      "quantity": {
+        "positive": "Quantity must be a positive number."
+      },
+      "unit": {
+        "min": "Unit is required."
+      }
+    },
+    "createObservation": {
+      "observationType": {
+        "min": "Please select an observation type."
+      },
+      "observationDate": {
+        "required": "An observation date is required."
+      },
+      "details": {
+        "min": "Details must be at least 10 characters."
+      }
+    },
+    "createHarvest": {
+      "harvestDate": {
+        "required": "A harvest date is required."
+      },
+      "yield_kg": {
+        "positive": "Yield must be a positive number."
+      },
+      "quality_grade": {
+        "min": "Quality grade is required."
+      }
+    },
+    "editProfile": {
+      "displayName": {
+        "min": "Name must be at least 2 characters.",
+        "max": "Name cannot exceed 100 characters."
+      },
+      "email": {
+        "invalid": "Please enter a valid email address."
+      },
+      "role": {
+        "required": "Please select a valid stakeholder role."
+      },
+      "profileSummary": {
+        "max": "Profile summary cannot exceed 250 characters."
+      },
+      "bio": {
+        "max": "Bio cannot exceed 2000 characters."
+      },
+      "location": {
+        "min": "Location must be at least 2 characters.",
+        "max": "Location cannot exceed 100 characters."
+      },
+      "areasOfInterest": {
+        "max": "Areas of interest cannot exceed 500 characters (use comma-separated values)."
+      },
+      "needs": {
+        "max": "Needs/offerings cannot exceed 500 characters (use comma-separated values)."
+      },
+      "contactInfoPhone": {
+        "max": "Phone number is too long."
+      },
+      "contactInfoWebsite": {
+        "invalid": "Please enter a valid website URL."
+      }
+    },
+    "signIn": {
+      "email": {
+        "invalid": "Please enter a valid email address."
+      },
+      "password": {
+        "min": "Password must be at least 6 characters long."
+      }
+    },
+    "signUp": {
+      "name": {
+        "min": "Name must be at least 2 characters.",
+        "max": "Name cannot be longer than 100 characters."
+      },
+      "email": {
+        "invalid": "Please enter a valid email address."
+      },
+      "role": {
+        "required": "Please select a stakeholder role."
+      },
+      "password": {
+        "min": "Password must be at least 6 characters long."
+      },
+      "confirmPassword": {
+        "match": "Passwords do not match."
+      }
+    },
+    "logFinancialTransaction": {
+      "amount": {
+        "required": "Amount is required.",
+        "invalid": "Amount must be a number.",
+        "min": "Amount must be positive."
+      },
+      "currency": {
+        "min": "Please select a currency."
+      },
+      "description": {
+        "min": "Description is required.",
+        "max": "Description is too long."
+      },
+      "category": {
+        "max": "Category is too long."
+      }
+    },
+    "createShop": {
+      "name": {
+        "min": "Shop name must be at least 3 characters."
+      },
+      "description": {
+        "min": "Description must be at least 10 characters long."
+      },
+      "stakeholderType": {
+        "required": "Please select a valid business type."
+      }
+    },
+    "createMarketplaceCoupon": {
+      "code": {
+        "min": "Code must be at least 4 characters.",
+        "max": "Code cannot exceed 20 characters.",
+        "regex": "Code must be alphanumeric."
+      },
+      "discountType": {
+        "required": "Please select a discount type."
+      },
+      "discountValue": {
+        "invalid": "Discount value must be a number.",
+        "positive": "Discount value must be positive.",
+        "percentageMax": "Percentage discount cannot exceed 100."
+      },
+      "usageLimit": {
+        "positive": "Usage limit must be a positive integer."
+      }
+    },
+    "createInsuranceProduct": {
+      "name": {
+        "min": "Product name must be at least 5 characters."
+      },
+      "type": {
+        "required": "Please select a product type."
+      },
+      "description": {
+        "min": "Please provide a detailed description."
+      },
+      "coverageDetails": {
+        "min": "Please provide coverage details."
+      },
+      "premium": {
+        "positive": "Premium must be a positive number."
+      }
+    },
+    "createInsuranceApplication": {
+      "farmId": {
+        "required": "Please select the farm to insure."
+      },
+      "coverageValue": {
+        "positive": "Coverage value must be a positive number."
+      }
+    }
+  },
+  "insurancePage": {
+    "title": "Insurance Hub",
+    "description": "Protect your farm and assets with tailored insurance products.",
+    "perTerm": "/ term",
+    "viewDetailsButton": "View Details",
+    "noProducts": "No insurance products are currently available.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "Back to Insurance Hub",
+    "coverageTitle": "Coverage Details",
+    "premiumTitle": "Premium",
+    "perTerm": "term",
+    "providerTitle": "Provided by",
+    "applyButton": "Apply for this Product",
+    "notFound": "Insurance product not found.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceApplyPage": {
+    "backLink": "Back to Products",
+    "title": "Apply for Insurance",
+    "description": "Apply for the '{productName}' insurance product.",
+    "form": {
+      "farmLabel": "Farm to Insure",
+      "farmPlaceholder": "Select a farm",
+      "noFarms": "Please create a farm first.",
+      "coverageValueLabel": "Desired Coverage Value (USD)",
+      "coverageValuePlaceholder": "e.g., 10000",
+      "coverageValueDescription": "The total value you wish to insure.",
+      "submitButton": "Submit Application"
+    },
+    "success": {
+      "title": "Application Submitted!",
+      "description": "Your insurance application has been sent for review.",
+      "backToDashboardButton": "Back to Dashboard",
+      "applyForAnotherButton": "Apply for Another Product"
+    },
+    "toast": {
+      "error": "Error",
+      "notAuthenticated": "You must be logged in to apply for insurance.",
+      "successTitle": "Application Submitted"
+    }
+  },
+  "InsuranceProductsPage": {
+    "title": "Manage Insurance Products",
+    "description": "Create and manage the insurance products you offer on the platform.",
+    "createButton": "Create New Product",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "premium": "Premium"
+    },
+    "noProducts": "You have not created any insurance products yet.",
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "Back to Products",
+    "title": "Create New Insurance Product",
+    "description": "Define a new insurance product to offer to farmers.",
+    "form": {
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Maize Crop Failure Insurance",
+      "typeLabel": "Product Type",
+      "typePlaceholder": "Select a type",
+      "crop": "Crop Insurance",
+      "livestock": "Livestock Insurance",
+      "asset": "Farm Asset Insurance",
+      "weather": "Parametric Weather Insurance",
+      "descriptionLabel": "Short Description",
+      "descriptionPlaceholder": "A brief summary of the product.",
+      "coverageLabel": "Coverage Details",
+      "coveragePlaceholder": "Describe what is covered, deductibles, etc.",
+      "premiumLabel": "Premium Amount (USD)",
+      "premiumPlaceholder": "e.g., 50.00",
+      "currencyLabel": "Currency",
+      "submitButton": "Create Product"
+    },
+    "toast": {
+      "notAuthenticated": "You must be an authorized Insurance Provider to create products.",
+      "successTitle": "Product Created!",
+      "successDescription": "{name} is now available.",
+      "errorTitle": "Creation Failed"
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "Back to Products",
+    "title": "Create New Financial Product",
+    "description": "Define a new loan or grant product to offer to stakeholders.",
+    "form": {
+        "nameLabel": "Product Name",
+        "namePlaceholder": "e.g., Smallholder Season Starter Loan",
+        "typeLabel": "Product Type",
+        "loan": "Loan",
+        "grant": "Grant",
+        "descriptionLabel": "Product Description",
+        "descriptionPlaceholder": "Describe the product, its purpose, and eligibility criteria.",
+        "interestRateLabel": "Interest Rate (%)",
+        "interestRatePlaceholder": "e.g., 12.5",
+        "maxAmountLabel": "Max Amount (USD)",
+        "maxAmountPlaceholder": "e.g., 10000",
+        "targetRolesLabel": "Target Stakeholders",
+        "targetRolesDescription": "Select the roles this product is available to.",
+        "submitButton": "Create Product"
+    },
+    "toast": {
+        "notAuthenticated": "You must be an authorized Financial Institution to create products.",
+        "successTitle": "Product Created!",
+        "successDescription": "{name} is now available on the platform.",
+        "errorTitle": "Creation Failed"
+    }
+  },
+  "FiProductsPage": {
+      "backLink": "Back to Dashboard",
+      "title": "Manage Financial Products",
+      "description": "View and manage the financial products you offer.",
+      "createButton": "Create New Product",
+      "table": {
+          "productName": "Product Name",
+          "type": "Type",
+          "status": "Status",
+          "interestRate": "Interest Rate",
+          "maxAmount": "Max Amount"
+      },
+      "noProducts": "You have not created any financial products yet.",
+      "toast": {
+          "errorTitle": "Error"
+      }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "description": "Welcome to the administration panel.",
+      "content": "Use the navigation on the left to manage different parts of the application, such as content, users, and system reports.",
+      "contentManagementButton": "Manage Content"
+    },
+    "layout": {
+      "contentManagement": "Content",
+      "reports": "Reports",
+      "title": "Admin Panel",
+      "description": "You are viewing an administrative section."
+    },
+    "contentManagement": {
+      "title": "Content Management",
+      "allArticles": {
+        "title": "All Articles & Posts",
+        "description": "View, edit, and manage all articles and posts across the platform.",
+        "refreshButton": "Refresh"
+      },
+      "createArticle": {
+        "title": "Create New Article",
+        "description": "Publish a new article for the blog or knowledge hub.",
+        "englishContent": "English Content",
+        "khmerContent": "Khmer Content",
+        "titleEnLabel": "Title (English)",
+        "excerptEnLabel": "Excerpt (English)",
+        "contentEnLabel": "Content (Markdown - English)",
+        "titleKmLabel": "Title (Khmer)",
+        "excerptKmLabel": "Excerpt (Khmer)",
+        "contentKmLabel": "Content (Markdown - Khmer)",
+        "metadataTitle": "Metadata",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "e.g., Blog, Industry News",
+        "authorLabel": "Author",
+        "authorPlaceholder": "e.g., DamDoh Team",
+        "statusLabel": "Status",
+        "tagsLabel": "Tags (comma-separated)",
+        "imageUrlLabel": "Image URL",
+        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
+        "aiHintLabel": "AI Image Hint",
+        "aiHintPlaceholder": "e.g., coffee beans harvest",
+        "publishButton": "Publish Article",
+        "publishingButton": "Publishing..."
+      },
+      "table": {
+        "title": "Title",
+        "category": "Category",
+        "status": "Status",
+        "created": "Created",
+        "actions": "Actions",
+        "noArticles": "No articles found."
+      },
+      "toast": {
+        "loadErrorTitle": "Error",
+        "loadErrorDescription": "Could not fetch articles.",
+        "createSuccessTitle": "Article Created",
+        "createSuccessDescription": "The new article has been published successfully.",
+        "createErrorTitle": "Creation Failed"
+      }
+    },
+    "reports": {
+      "generate": {
+        "title": "Generate New Report",
+        "description": "Create a regulatory or compliance report for a specific user.",
+        "reportTypeLabel": "Report Type",
+        "reportTypeVti": "VTI Events Summary",
+        "targetUserLabel": "Target User",
+        "userSearchPlaceholder": "Search by name or email...",
+        "dateRangeLabel": "Date Range",
+        "datePlaceholder": "Pick a date range",
+        "submitButton": "Generate Report"
+      },
+      "list": {
+        "title": "Generated Reports",
+        "description": "View and download previously generated reports.",
+        "table": {
+          "reportType": "Report Type",
+          "generatedFor": "Generated For",
+          "date": "Date",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "viewButton": "View",
+        "noReports": "No reports have been generated yet."
+      },
+      "toast": {
+        "loadErrorTitle": "Error Loading Reports",
+        "formIncompleteTitle": "Incomplete Information",
+        "formIncompleteDescription": "Please select a report type, target user, and date range.",
+        "generateSuccessTitle": "Report Generation Started",
+        "generateSuccessDescription": "The report is being created in the background.",
+        "generateErrorTitle": "Report Generation Failed"
+      }
     }
   }
 }
