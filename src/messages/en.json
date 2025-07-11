@@ -440,8 +440,7 @@
         },
         "insights": {
             "title": "Profitability Insights",
-            "description": "AI-driven analysis of your farm's activities.",
-            "noInsights": "Not enough data to generate insights. Start logging activities!"
+            "description": "AI-driven analysis of your farm's activities."
         },
         "toast": {
             "notFoundTitle": "Farm Not Found",
@@ -713,7 +712,7 @@
           "name": "Fermented Plant Juice (FPJ)",
           "description": "A fermented extract of a plant's sap and chlorophyll. Rich in enzymes and microorganisms, it's a potent growth enhancer for plants.",
           "ingredients": [
-            "1kg of fast-growing plant parts (e.g., sweet potato tips, bamboo shoots)",
+            "1kg of fast-growing plant parts (e.g., sweet potato tips, bamboo shoots, squash tips)",
             "1kg of brown sugar (or molasses)"
           ],
           "yield": "approx. 0.8 L",
@@ -1079,57 +1078,512 @@
           "It's a pathway to food sovereignty and a healthier life for the family."
         ]
       }
+    },
+    "laborPage": {
+      "backLink": "Back to Farm Hub",
+      "title": "Labor Management",
+      "description": "Add workers to your team and track their hours and payments.",
+      "addWorker": "Add Worker",
+      "workerName": "Worker's Name",
+      "saveWorker": "Save Worker",
+      "noWorkers": "You haven't added any workers yet. Click 'Add Worker' to get started.",
+      "hoursLogged": "Total Hours",
+      "totalPaid": "Total Paid",
+      "logHours": "Log Hours",
+      "logPayment": "Log Payment",
+      "viewDetails": "View Details",
+      "logHoursFor": "Log Hours for",
+      "hoursWorked": "Hours Worked",
+      "date": "Date",
+      "pickDate": "Pick a date",
+      "taskDescription": "Task Description (Optional)",
+      "logPaymentFor": "Log Payment for",
+      "amountPaid": "Amount Paid",
+      "workerDetailPage": {
+        "backLink": "Back to Labor Management",
+        "notFoundTitle": "Worker Not Found",
+        "notFoundDescription": "The worker profile you are looking for does not exist.",
+        "goBackButton": "Go Back",
+        "workLogsTitle": "Work Logs",
+        "paymentHistoryTitle": "Payment History",
+        "noWorkLogs": "No work hours have been logged for this worker.",
+        "noPayments": "No payments have been recorded for this worker.",
+        "table": {
+          "date": "Date",
+          "hours": "Hours",
+          "task": "Task",
+          "amount": "Amount"
+        },
+        "toasts": {
+          "errorTitle": "Error",
+          "loadError": "Could not load worker details."
+        }
+      },
+      "toast": {
+        "errorTitle": "Error",
+        "fetchWorkersError": "Could not fetch your list of workers.",
+        "nameRequired": "Worker name is required.",
+        "workerAdded": "Worker added successfully.",
+        "hoursLogged": "Hours logged successfully.",
+        "paymentLoggedTitle": "Payment Logged",
+        "paymentLoggedDescription": "The payment has been recorded and an expense was automatically created in your financial records."
+      }
     }
   },
-  "laborPage": {
-    "backLink": "Back to Farm Hub",
-    "title": "Labor Management",
-    "description": "Add workers to your team and track their hours and payments.",
-    "addWorker": "Add Worker",
-    "workerName": "Worker's Name",
-    "saveWorker": "Save Worker",
-    "noWorkers": "You haven't added any workers yet. Click 'Add Worker' to get started.",
-    "hoursLogged": "Total Hours",
-    "totalPaid": "Total Paid",
-    "logHours": "Log Hours",
-    "logPayment": "Log Payment",
+  "Marketplace": {
+    "title": "Marketplace",
+    "description": "Discover, buy, and sell agricultural products and services.",
+    "createShopButton": "Create Shop",
+    "myOrdersButton": "My Orders",
+    "createListingButton": "Create Listing",
+    "pinButton": "Pin as Homepage",
+    "unpinButton": "Unpin from Homepage",
+    "searchPlaceholder": "Search products & services...",
+    "locationPlaceholder": "Filter by location...",
+    "typePlaceholder": "Filter by type...",
+    "recommendedForYou": "Recommended for You",
+    "discoverMore": "Discover More",
     "viewDetails": "View Details",
-    "logHoursFor": "Log Hours for",
-    "hoursWorked": "Hours Worked",
-    "date": "Date",
-    "pickDate": "Pick a date",
-    "taskDescription": "Task Description (Optional)",
-    "logPaymentFor": "Log Payment for",
-    "amountPaid": "Amount Paid",
-    "workerDetailPage": {
-      "backLink": "Back to Labor Management",
-      "notFoundTitle": "Worker Not Found",
-      "notFoundDescription": "The worker profile you are looking for does not exist.",
-      "goBackButton": "Go Back",
-      "workLogsTitle": "Work Logs",
-      "paymentHistoryTitle": "Payment History",
-      "noWorkLogs": "No work hours have been logged for this worker.",
-      "noPayments": "No payments have been recorded for this worker.",
-      "table": {
-        "date": "Date",
-        "hours": "Hours",
-        "task": "Task",
-        "amount": "Amount"
+    "viewServiceButton": "View Service",
+    "noItemsFound": {
+      "title": "No listings found.",
+      "hint": "Try adjusting your search or filters."
+    },
+    "errors": {
+      "search": {
+        "title": "Search Failed",
+        "description": "Could not fetch marketplace items. Please try again."
       },
-      "toasts": {
-        "errorTitle": "Error",
-        "loadError": "Could not load worker details."
+      "loadItem": {
+        "description": "The requested item could not be loaded."
+      },
+      "unexpected": "An unexpected error occurred. Please try again."
+    },
+    "categories": {
+      "allCategories": "All Categories",
+      "viewAllCategory": "View All {categoryName}"
+    },
+    "pinning": {
+      "pinnedTitle": "Marketplace Pinned!",
+      "pinnedDescription": "The Marketplace is now your default homepage.",
+      "unpinnedTitle": "Marketplace Unpinned",
+      "unpinnedDescription": "Your homepage has been reset to the default."
+    },
+    "createListing": {
+      "backLink": "Back to Marketplace",
+      "title": "Create a New Listing",
+      "description": "Provide details about the product or service you're offering.",
+      "form": {
+        "nameLabel": "Listing Title",
+        "namePlaceholder": "e.g., Organic Hass Avocados (100kg)",
+        "typeLabel": "Listing Type",
+        "typePlaceholder": "Select a type",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Provide a detailed description...",
+        "locationLabel": "Location",
+        "locationPlaceholder": "e.g., Nairobi, Kenya or 'Ships Worldwide'",
+        "relatedVtiLabel": "Related Traceability ID (Optional)",
+        "relatedVtiPlaceholder": "e.g., vti-1234-abcd",
+        "relatedVtiDescription": "Link this listing to a specific harvest batch for full transparency.",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "Select a category",
+        "priceLabel": "Price (USD)",
+        "pricePlaceholder": "e.g., 25.50",
+        "unitLabel": "Unit",
+        "unitPlaceholder": "e.g., /kg, /ton, /hour",
+        "imageUrlLabel": "Image URL",
+        "sustainableLabel": "Sustainable Product/Service",
+        "sustainableDescription": "This item was produced using sustainable or regenerative practices.",
+        "compensationLabel": "Compensation / Rates",
+        "compensationPlaceholder": "e.g., $50/hour, Project-based, KES 2000/day",
+        "experienceLabel": "Experience Level",
+        "experiencePlaceholder": "e.g., Entry Level, Senior, Expert",
+        "skillsLabel": "Skills Required",
+        "skillsPlaceholder": "List required skills...",
+        "skillsDescription": "Separate skills with a comma.",
+        "submitButton": "Publish Listing",
+        "submittingButton": "Publishing..."
+      },
+      "aiPriceSuggestion": {
+        "generatingButton": "Generating...",
+        "button": "Suggest Price with AI",
+        "suggestionLabel": "AI Suggestion:",
+        "usePriceButton": "Use Price"
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Missing Information",
+            "description": "Please provide a Title and Description before suggesting a price."
+          },
+          "failed": {
+            "title": "AI Suggestion Failed",
+            "description": "Could not generate a price suggestion at this time."
+          }
+        },
+        "authentication": {
+          "title": "Not Signed In",
+          "description": "You must be signed in to create a listing."
+        },
+        "creation": {
+          "title": "Listing Creation Failed",
+          "description": "There was an error creating your listing. Please try again."
+        }
+      },
+      "success": {
+        "title": "Listing Created!",
+        "description": "Your listing is now live on the marketplace."
       }
     },
+    "createShop": {
+      "backLink": "Back to Marketplace",
+      "title": "Create a Digital Shopfront",
+      "description": "Establish your brand on DamDoh with a dedicated page for all your listings.",
+      "authErrorTitle": "Authentication Required",
+      "authErrorDescription": "You must be logged in to create a shop.",
+      "toast": {
+        "successTitle": "Shop Created!",
+        "successDescription": "Your shop '{shopName}' is now live.",
+        "failTitle": "Creation Failed",
+        "failDescription": "Could not create your shop. Please try again."
+      },
+      "form": {
+        "nameLabel": "Shop Name",
+        "namePlaceholder": "e.g., Green Valley Organics",
+        "typeLabel": "Business Type",
+        "typePlaceholder": "Select the best fit for your business",
+        "descriptionLabel": "Shop Description",
+        "descriptionPlaceholder": "Tell customers about your business, your mission, and what you offer.",
+        "submitButton": "Create Shop",
+        "submittingButton": "Creating..."
+      }
+    },
+    "shopView": {
+      "backLink": "Back to Marketplace",
+      "ownedBy": "Owned by",
+      "loadingOwner": "Loading owner...",
+      "editShopButton": "Edit Shopfront",
+      "contactButton": "Contact Seller",
+      "listingsTitle": "{shopName}'s Listings",
+      "noListings": "This shop has no active listings.",
+      "errors": {
+        "notFound": "Shop not found.",
+        "loadError": "Could not load shop data.",
+        "title": "Error"
+      }
+    },
+    "itemView": {
+      "backLink": "Back to Marketplace",
+      "aboutSeller": "About the Seller",
+      "viewShopfront": "View Shopfront",
+      "editListing": "Edit Listing",
+      "manageService": "Manage Service",
+      "buyNowButton": "Buy Now",
+      "contactForService": "Contact for Service",
+      "contactSeller": "Contact Seller",
+      "notFound": {
+        "description": "The item you are looking for does not exist."
+      },
+      "skillsLabel": "Skills Required",
+      "experienceLabel": "Experience Level",
+      "compensationLabel": "Compensation",
+      "traceabilityButton": "View Traceability Report",
+      "coupon": {
+        "label": "Have a coupon?",
+        "placeholder": "Enter coupon code",
+        "applyButton": "Apply",
+        "successTitle": "Coupon Applied!",
+        "successDescription": "{type} discount of {discount} applied.",
+        "failTitle": "Invalid Coupon",
+        "failDescription": "The coupon code is not valid for this seller or has expired.",
+        "appliedText": "{code} applied!"
+      },
+      "booking": {
+        "perNight": "night",
+        "checkIn": "CHECK-IN",
+        "checkOut": "CHECK-OUT",
+        "addDate": "Add date",
+        "guests": "GUESTS",
+        "reserveButton": "Reserve",
+        "reservingButton": "Reserving...",
+        "notCharged": "You won't be charged yet",
+        "nights": "{count, plural, =1 {night} other {nights}}",
+        "serviceFee": "Service Fee",
+        "total": "Total",
+        "authTitle": "Please sign in",
+        "authDescription": "You must be signed in to book a service.",
+        "failTitle": "Booking Failed",
+        "dateError": "Please select a check-in and check-out date.",
+        "successTitle": "Booking Successful!",
+        "successDescription": "Your reservation has been confirmed.",
+        "bookedTitle": "You've Booked This Experience!",
+        "bookedDescription": "You can find your ticket in your profile or show this QR code upon arrival.",
+        "ticketButton": "View Your Ticket",
+        "modalTitle": "Your Ticket",
+        "modalDescription": "For {itemName}",
+        "modalScan": "Present this code to the operator to check in."
+      },
+      "order": {
+        "title": "Place an order for {itemName}",
+        "description": "Specify the quantity and any notes for the seller.",
+        "quantityLabel": "Quantity",
+        "notesLabel": "Notes for the seller (optional)",
+        "notesPlaceholder": "e.g., Request for specific packaging, delivery instructions.",
+        "cancelButton": "Cancel",
+        "confirmButton": "Confirm Order",
+        "placingButton": "Placing Order...",
+        "authTitle": "Please sign in",
+        "authDescription": "You must be signed in to place an order.",
+        "quantityErrorTitle": "Invalid Quantity",
+        "quantityErrorDescription": "Please enter a quantity greater than zero.",
+        "successTitle": "Order Placed!",
+        "successDescription": "Your order has been sent to the seller for confirmation.",
+        "failTitle": "Order Failed",
+        "failDescription": "There was an error placing your order. Please try again."
+      }
+    },
+    "myOrders": {
+      "backLink": "Back to Marketplace",
+      "title": "My Orders",
+      "description": "Track and manage the orders you've received.",
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "Could not fetch your orders.",
+        "successTitle": "Status Updated",
+        "updateSuccess": "Order status updated to {status}.",
+        "failTitle": "Update Failed"
+      },
+      "table": {
+        "date": "Date",
+        "buyer": "Buyer",
+        "product": "Product",
+        "total": "Total",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "status": {
+        "new": "New",
+        "confirmed": "Confirmed",
+        "shipped": "Shipped",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "actions": {
+        "confirm": "Confirm Order",
+        "ship": "Mark as Shipped",
+        "complete": "Complete Order",
+        "cancel": "Cancel Order"
+      },
+      "noOrders": "You have not received any orders yet.",
+      "auth": {
+        "title": "Please Sign In",
+        "description": "You must be signed in to view your orders.",
+        "button": "Sign In"
+      }
+    },
+    "promotions": {
+      "backToDashboard": "Back to Dashboard",
+      "title": "Promotions & Coupons",
+      "description": "Create and manage coupon codes for your marketplace listings.",
+      "toast": {
+        "error": "Error",
+        "fetchError": "Could not fetch your coupons.",
+        "success": "Coupon Created!",
+        "createSuccess": "Coupon '{code}' has been successfully created.",
+        "createFail": "Creation Failed",
+        "createError": "Could not create coupon. Please try again.",
+        "linkCopied": "Link Copied!",
+        "shareDescription": "A shareable link for coupon '{code}' has been copied to your clipboard."
+      },
+      "create": {
+        "title": "Create New Coupon",
+        "form": {
+          "code": "Coupon Code",
+          "codePlaceholder": "e.g., HARVEST2024",
+          "discountType": "Discount Type",
+          "discountTypePlaceholder": "Select type",
+          "percentage": "Percentage",
+          "fixed": "Fixed Amount",
+          "discountValue": "Discount Value",
+          "usageLimit": "Usage Limit",
+          "usageLimitPlaceholder": "e.g., 100",
+          "expiryDate": "Expiry Date (Optional)",
+          "pickDate": "Pick a date",
+          "submitButton": "Create Coupon"
+        }
+      },
+      "list": {
+        "title": "Existing Coupons",
+        "description": "Manage your active and past coupons.",
+        "noCoupons": "You have not created any coupons yet.",
+        "expires": "Expires",
+        "never": "Never",
+        "usage": "Usage",
+        "share": "Share",
+        "shareModal": {
+          "title": "Share Coupon",
+          "description": "Share this link with your customers to apply the coupon directly.",
+          "link": "Link",
+          "copy": "Copy link",
+          "close": "Close"
+        },
+        "toastTitle": "Link Copied!",
+        "toastDescription": "Shareable link for coupon {link} has been copied to your clipboard."
+      }
+    },
+    "manageService": {
+      "backLink": "Back to Service",
+      "title": "Manage Service",
+      "loading": "Loading...",
+      "tabs": {
+        "checkin": "Check-in",
+        "bookings": "Bookings",
+        "staff": "Staff"
+      },
+      "bookingsTab": {
+        "title": "Bookings",
+        "description": "View and manage all bookings for this service.",
+        "downloadCsv": "Download CSV",
+        "error": "Error",
+        "fetchError": "Could not fetch booking data.",
+        "table": {
+          "guest": "Guest",
+          "bookedOn": "Booked On",
+          "status": "Status",
+          "checkedInAt": "Checked-in At"
+        },
+        "status": {
+          "booked": "Booked",
+          "checkedIn": "Checked In"
+        },
+        "noBookings": "There are no bookings for this service yet.",
+        "toast": {
+          "noBookings": "No bookings to download."
+        }
+      }
+    }
+  },
+  "talentExchangePage": {
+    "title": "Talent Exchange",
+    "description": "Find or offer specialized agricultural services, from agronomy consulting to equipment operation.",
+    "listServiceButton": "List a Service",
+    "searchPlaceholder": "Search by service or skill...",
+    "locationPlaceholder": "Filter by location...",
+    "categoryPlaceholder": "Filter by category...",
+    "allCategories": "All Categories",
+    "noResultsTitle": "No Services Found",
+    "noResultsDescription": "Try adjusting your search. No listings currently match your criteria.",
     "toast": {
-      "errorTitle": "Error",
-      "fetchWorkersError": "Could not fetch your list of workers.",
-      "nameRequired": "Worker name is required.",
-      "workerAdded": "Worker added successfully.",
-      "hoursLogged": "Hours logged successfully.",
-      "paymentLoggedTitle": "Payment Logged",
-      "paymentLoggedDescription": "The payment has been recorded and an expense was automatically created in your financial records."
+      "error": {
+        "title": "Error",
+        "description": "Could not load services."
+      }
+    }
+  },
+  "traceabilityPage": {
+    "title": "Traceability Hub",
+    "description": "Track your product's journey from farm to consumer. Enter a batch ID to begin.",
+    "inputPlaceholder": "Enter Traceability ID...",
+    "trackButton": "Track",
+    "vtiDescription": "The ID is a unique identifier for a specific batch of product.",
+    "recentTitle": "Recently Traceable Batches",
+    "recentDescription": "View the latest products with full traceability on the platform.",
+    "noRecentBatches": "No publicly traceable batches are available right now.",
+    "producerLabel": "Producer",
+    "harvestDateLabel": "Harvest Date",
+    "viewReportButton": "View Report",
+    "detailPage": {
+      "backLink": "Back to Traceability Hub",
+      "invalidIdError": "Invalid Batch ID provided.",
+      "loadError": "Error loading traceability data.",
+      "notFoundTitle": "Batch Not Found",
+      "notFoundDescription": "No batch with this ID was found, or it is not publicly viewable.",
+      "traceableProduct": "Traceable Product",
+      "batchIdLabel": "Batch ID",
+      "producerLabel": "Producer",
+      "sustainablyGrownTitle": "Sustainably Grown",
+      "sustainablyGrownDescription": "Activities logged for this batch align with sustainable practices.",
+      "harvestDateLabel": "Harvest Date",
+      "yieldLabel": "Yield",
+      "qualityLabel": "Quality",
+      "notSpecified": "Not specified",
+      "journeyTitle": "The Product's Journey",
+      "journeyDescription": "A chronological log of all events for this batch.",
+      "noEventDetails": "No additional details provided.",
+      "observationType": "Observation Type",
+      "details": "Details",
+      "aiDiagnosis": "AI Diagnosis",
+      "geoLocationLabel": "Location",
+      "noEventsFound": "No events have been logged for this batch."
+    }
+  },
+  "Forums": {
+    "title": "Forums",
+    "description": "Join discussions, ask questions, and share your expertise with the DamDoh community.",
+    "buttons": {
+      "createTopic": "Create New Topic",
+      "loadMore": "Load More"
+    },
+    "searchPlaceholder": "Search forums...",
+    "pinning": {
+      "pinnedTitle": "Forums Pinned!",
+      "pinnedDescription": "The forums are now your default homepage.",
+      "unpinnedTitle": "Forums Unpinned",
+      "unpinnedDescription": "Your homepage has been reset to the default."
+    },
+    "lastActivity": "Last activity {time}",
+    "noForums": "No forums found.",
+    "errors": {
+      "loadTitle": "Error",
+      "loadDescription": "Could not load forums."
+    },
+    "topic": {
+      "backLink": "Back to All Forums",
+      "buttons": {
+        "createPost": "Create Post",
+        "loadingMore": "Loading..."
+      },
+      "postMeta": "By {author} on {date}",
+      "noPosts": {
+        "title": "No Posts Yet",
+        "description": "Be the first to start a discussion in this topic.",
+        "button": "Create Your First Post"
+      },
+      "notFound": {
+        "title": "Topic Not Found",
+        "description": "The forum topic you are looking for does not exist.",
+        "backButton": "Back to All Forums"
+      }
+    }
+  },
+  "sustainabilityPage": {
+    "title": "Sustainability Dashboard",
+    "description": "Track and visualize the environmental impact of your farming practices.",
+    "carbonFootprint": "Carbon Footprint",
+    "waterEfficiency": "Water Efficiency",
+    "biodiversityScore": "Biodiversity Score",
+    "metricCard": {
+      "trendText": "vs last month"
+    },
+    "practicesTitle": "Logged Sustainable Practices",
+    "practicesTable": {
+      "practice": "Practice",
+      "lastLogged": "Last Logged"
+    },
+    "certificationsTitle": "Your Certifications",
+    "certificationsTable": {
+      "certification": "Certification",
+      "status": "Status",
+      "expiry": "Expiry"
+    },
+    "auth": {
+      "title": "Please Sign In",
+      "description": "You need to be logged in to view your sustainability dashboard.",
+      "button": "Sign In"
+    },
+    "noData": {
+      "title": "No Data Available",
+      "description": "Start logging farm activities to see your sustainability metrics."
     }
   }
 }
-
