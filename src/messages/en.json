@@ -1520,5 +1520,153 @@
   "errors": {
     "unauthenticated": "You must be logged in to perform this action.",
     "permissionDenied": "You do not have permission to perform this action."
+  },
+  "common": {
+    "error": "Error"
+  },
+  "editProfilePage": {
+    "title": "Edit Profile for {name}",
+    "description": "Keep your profile up to date to attract the best opportunities.",
+    "profileTab": "Profile",
+    "detailsTab": "Details",
+    "contactTab": "Contact",
+    "nameLabel": "Display Name",
+    "namePlaceholder": "Your full name or your business name",
+    "roleLabel": "Primary Role",
+    "rolePlaceholder": "Select your main role",
+    "summaryLabel": "Profile Summary / Headline",
+    "summaryPlaceholder": "A short, one-line professional headline.",
+    "summaryDescription": "A concise summary that appears under your name.",
+    "generateWithAI": "Generate with AI",
+    "bioLabel": "About / Bio",
+    "bioPlaceholder": "Tell the community more about yourself, your mission, and your experience...",
+    "bioDescription": "A more detailed description of you or your business.",
+    "locationLabel": "Location",
+    "locationPlaceholder": "e.g., Nairobi, Kenya",
+    "interestsLabel": "Areas of Interest",
+    "interestsPlaceholder": "e.g., Sustainable Coffee, Agri-Tech, Export Markets",
+    "commaSeparated": "Separate multiple items with a comma.",
+    "needsLabel": "I am looking for / I can provide",
+    "needsPlaceholder": "e.g., Logistics Partners, Organic Fertilizers, Agronomy Advice",
+    "emailLabel": "Account Email",
+    "emailDescription": "Your email address cannot be changed.",
+    "phoneLabel": "Phone Number",
+    "websiteLabel": "Website",
+    "savingButton": "Saving...",
+    "saveButton": "Save Changes",
+    "cancelButton": "Cancel",
+    "toast": {
+      "profileNotFound": "The requested profile could not be found.",
+      "fetchError": "Failed to load profile data for editing.",
+      "notAuthenticatedTitle": "Not Authenticated",
+      "notAuthenticatedDescription": "You must be logged in to edit a profile.",
+      "unauthorizedTitle": "Unauthorized",
+      "unauthorizedDescription": "You do not have permission to edit this profile.",
+      "missingInfoTitle": "Missing Information",
+      "missingInfoDescription": "Please fill out your Role and Interests to generate a summary.",
+      "summaryGeneratedTitle": "Summary Generated!",
+      "summaryGeneratedDescription": "The AI has suggested a new profile summary for you.",
+      "generationFailedTitle": "Generation Failed",
+      "generationFailedDescription": "Could not generate a summary at this time.",
+      "missingIdError": "Cannot update profile without a valid user ID.",
+      "profileUpdatedTitle": "Profile Updated!",
+      "profileUpdatedDescription": "Your changes have been saved successfully.",
+      "updateFailedTitle": "Update Failed",
+      "updateFailedDescription": "There was a problem saving your profile."
+    },
+    "notFound": {
+      "title": "Profile Not Found",
+      "description": "Could not find a profile to edit.",
+      "backButton": "Go to Profiles"
+    }
+  },
+  "FiApplicationListPage": {
+    "backLink": "Back to Dashboard",
+    "title": "Financial Applications",
+    "description": "Review and manage all loan and grant applications submitted to your institution.",
+    "tabs": {
+      "all": "All",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "table": {
+      "applicant": "Applicant",
+      "type": "Type",
+      "amount": "Amount",
+      "date": "Submitted",
+      "status": "Status",
+      "action": "Action"
+    },
+    "reviewButton": "Review",
+    "noApplications": "No applications match the current filter."
+  },
+  "FiApplicationPage": {
+    "backLink": "Back to Applications",
+    "title": "Application Details",
+    "applicationTitle": "Application",
+    "submittedOn": "Submitted on",
+    "amountRequested": "Amount Requested",
+    "purpose": "Purpose of Funds",
+    "approveButton": "Approve",
+    "rejectButton": "Reject",
+    "requestInfoButton": "Request Info",
+    "applicantDetails": "Applicant Details",
+    "profileNotFound": "Applicant profile could not be loaded.",
+    "viewProfileButton": "View Full Profile",
+    "riskAssessment": "Risk Assessment",
+    "creditScore": "DamDoh Credit Score",
+    "notFound": "Application not found.",
+    "toast": {
+      "errorTitle": "Error",
+      "updateSuccessTitle": "Status Updated",
+      "updateSuccessDescription": "Application status has been updated to {status}.",
+      "updateFailTitle": "Update Failed"
+    }
+  },
+  "FiProductsPage": {
+    "backLink": "Back to Dashboard",
+    "title": "Financial Products",
+    "description": "Manage the loan and grant products your institution offers on the platform.",
+    "createButton": "Create New Product",
+    "noProducts": "You have not created any financial products yet.",
+    "table": {
+      "productName": "Product Name",
+      "type": "Type",
+      "status": "Status",
+      "interestRate": "Interest Rate",
+      "maxAmount": "Max Amount"
+    },
+    "toast": {
+      "errorTitle": "Error"
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "Back to Products",
+    "title": "Create Financial Product",
+    "description": "Define a new loan or grant product to offer to DamDoh users.",
+    "form": {
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g., Smallholder Season Starter Loan",
+      "typeLabel": "Product Type",
+      "loan": "Loan",
+      "grant": "Grant",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "A brief summary of what this product is for.",
+      "interestRateLabel": "Interest Rate (%)",
+      "interestRatePlaceholder": "e.g., 12.5",
+      "maxAmountLabel": "Max Amount (USD)",
+      "maxAmountPlaceholder": "e.g., 5000",
+      "targetRolesLabel": "Target Audience",
+      "targetRolesDescription": "Select which user roles are eligible for this product.",
+      "submitButton": "Create Product"
+    },
+    "toast": {
+      "notAuthenticated": "You must be a Financial Institution to create products.",
+      "successTitle": "Product Created!",
+      "successDescription": "{name} is now available for applications.",
+      "errorTitle": "Creation Failed"
+    }
   }
 }
+
