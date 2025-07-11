@@ -1,17 +1,84 @@
 
 {
-  "MobileHomepage": {
-    "welcome": {
-      "morning": "អរុណសួស្តី, {name}",
-      "afternoon": "ទិវាសួស្តី, {name}",
-      "evening": "សាយណ្ហសួស្តី, {name}"
+  "common": {
+    "error": "កំហុស",
+    "success": "ជោគជ័យ"
+  },
+  "toast": {
+    "loggedOut": {
+      "title": "បានចាកចេញ",
+      "description": "អ្នកបានចាកចេញដោយជោគជ័យ។"
     },
-    "discoverTitle": "ស្វែងយល់",
-    "seeAllButton": "មើល​ទាំងអស់",
-    "communityFeedTitle": "ព័ត៌មានសហគមន៍",
-    "communityFeedDescription": "ភ្ជាប់ទំនាក់ទំនងជាមួយអ្នកដទៃ ចែករំលែកចំណេះដឹងរបស់អ្នក និងទទួលបានព័ត៌មានថ្មីៗពីការសន្ទនាចុងក្រោយបំផុត។",
-    "goToFeedButton": "ទៅកាន់ព័ត៌មាន",
-    "noRecommendations": "មិនមានការណែនាំទេនាពេលនេះ។ សូមស្វែងរកទីផ្សារដើម្បីចាប់ផ្តើម!"
+    "logoutFailed": {
+      "title": "ការចាកចេញបានបរាជ័យ",
+      "description": "មិនអាចចាកចេញបានទេ។ សូមព្យាយាមម្តងទៀត។"
+    },
+    "signInSuccess": {
+      "title": "បានចូលដោយជោគជ័យ!",
+      "description": "សូមស្វាគមន៍មកកាន់ {appName} ជាថ្មី។"
+    },
+    "signInFailed": {
+      "title": "ការចូលបានបរាជ័យ"
+    },
+    "signUpSuccess": {
+      "title": "គណនីបានបង្កើត & បានចូល!",
+      "description": "សូមស្វាគមន៍មកកាន់ {appName}! អ្នកបានចូលដោយជោគជ័យ។"
+    },
+    "signUpFailed": {
+      "title": "ការចុះឈ្មោះបានបរាជ័យ"
+    }
+  },
+  "AppHeader": {
+    "searchPlaceholder": "ស្វែងរក...",
+    "home": "ទំព័រដើម",
+    "network": "បណ្តាញ",
+    "farmMgmt": "កសិដ្ឋាន",
+    "marketplace": "ទីផ្សារ",
+    "talentExchange": "ទេពកោសល្យ",
+    "traceability": "ការតាមដាន",
+    "forums": "វេទិកា",
+    "sustainability": "និរន្តរភាព",
+    "notifications": "ការជូនដំណឹង",
+    "messages": "សារ",
+    "wallet": "កាបូប",
+    "signIn": "ចូល",
+    "signUp": "ចុះឈ្មោះ",
+    "myProfile": "ប្រវត្តិរូបខ្ញុំ",
+    "myOrders": "ការបញ្ជាទិញរបស់ខ្ញុំ",
+    "settings": "ការកំណត់",
+    "helpCenter": "ជំនួយ",
+    "logOut": "ចាកចេញ",
+    "switchToLightAria": "ប្តូរទៅជារបៀបភ្លឺ",
+    "switchToDarkAria": "ប្តូរទៅជារបៀបងងឹត"
+  },
+  "MobileBottomNav": {
+    "home": "ទំព័រដើម",
+    "market": "ទីផ្សារ",
+    "search": "ស្វែងរក",
+    "forums": "វេទិកា",
+    "profile": "ប្រវត្តិរូប",
+    "messages": "សារ"
+  },
+  "AppFooter": {
+    "tagline": "Connecter la chaîne de valeur agricole pour un avenir durable.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "À propos",
+    "contactLabel": "Contact",
+    "careersLabel": "Carrières",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressources",
+    "helpCenterLabel": "Centre d'aide",
+    "communityGuidelinesLabel": "Règles de la communauté",
+    "industryNewsLabel": "Actualités du secteur",
+    "eventsLabel": "Événements",
+    "talentExchangeLabel": "Bourse de talents",
+    "legalTitle": "Légal",
+    "privacyPolicyLabel": "Politique de confidentialité",
+    "termsOfServiceLabel": "Conditions d'utilisation",
+    "copyright": "© {year} {appName}. Tous droits réservés.",
+    "getMobileApp": "Obtenir l'application mobile",
+    "googlePlayAlt": "Obtenez-le sur Google Play",
+    "appStoreAlt": "Télécharger sur l'App Store"
   },
   "LandingPage": {
     "hero": {
@@ -50,11 +117,11 @@
       },
       "buyers": {
         "title": "អ្នកទិញ និងអ្នកកែច្នៃ",
-        "description": "ទិញផលិតផលដែលមានគុណភាពខ្ពស់និងអាចតាមដានបានដោយផ្ទាល់ពីអ្នកដាំនិងសហគមន៍កសិកម្ម ធានាបាននូវភាពជឿជាក់នៃខ្សែសង្វាក់ផ្គត់ផ្គង់។"
+        "description": "ទិញផលិតផលដែលមានគុណភាពខ្ពស់และអាចតាមដានបានដោយផ្ទាល់ពីអ្នកដាំនិងសហគមន៍កសិកម្ម ធានាបាននូវភាពជឿជាក់នៃខ្សែសង្វាក់ផ្គត់ផ្គង់។"
       },
       "experts": {
         "title": "អ្នកជំនាញ និងអ្នកផ្តល់សេវា",
-        "description": "ផ្តល់ជំនាញនិងសេវាកម្មឯកទេសរបស់អ្នកដល់ទស្សនិកជនកសិកម្មដ៏ធំទូលាយដែលកំពុងស្វែងរកជំនាញរបស់អ្នក។"
+        "description": "ផ្តល់ជំនាញและសេវាកម្មឯកទេសរបស់អ្នកដល់ទស្សនិកជនកសិកម្មដ៏ធំទូលាយដែលកំពុងស្វែងរកជំនាញរបស់អ្នក។"
       },
       "imageAlt": "ក្រុមចម្រុះនៃអ្នកពាក់ព័ន្ធផ្នែកកសិកម្មកំពុងសហការគ្នា"
     },
@@ -63,95 +130,6 @@
       "subtitle": "ចុះឈ្មោះថ្ងៃនេះហើយក្លាយជាផ្នែកមួយនៃបណ្តាញសកលដែលកំពុងរីកចម្រើន ដែលឧទ្ទិសដល់ការផ្លាស់ប្តូរអនាគតនៃអាហារ។",
       "button": "បង្កើតគណនីឥតគិតថ្លៃរបស់អ្នក"
     }
-  },
-  "AppHeader": {
-    "searchPlaceholder": "ស្វែងរក...",
-    "home": "ទំព័រដើម",
-    "network": "បណ្តាញ",
-    "farmMgmt": "កសិដ្ឋាន",
-    "marketplace": "ទីផ្សារ",
-    "talentExchange": "ទេពកោសល្យ",
-    "traceability": "ការតាមដាន",
-    "forums": "វេទិកា",
-    "sustainability": "និរន្តរភាព",
-    "notifications": "ការជូនដំណឹង",
-    "messages": "សារ",
-    "wallet": "កាបូប",
-    "signIn": "ចូល",
-    "signUp": "ចុះឈ្មោះ",
-    "myProfile": "ប្រវត្តិរូបខ្ញុំ",
-    "myOrders": "ការបញ្ជាទិញរបស់ខ្ញុំ",
-    "settings": "ការកំណត់",
-    "helpCenter": "ជំនួយ",
-    "logOut": "ចាកចេញ",
-    "switchToLightAria": "ប្តូរទៅជារបៀបភ្លឺ",
-    "switchToDarkAria": "ប្តូរទៅជារបៀបងងឹត"
-  },
-  "MobileBottomNav": {
-    "home": "ទំព័រដើម",
-    "market": "ទីផ្សារ",
-    "search": "ស្វែងរក",
-    "forums": "វេទិកា",
-    "profile": "ប្រវត្តិរូប",
-    "messages": "សារ"
-  },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "កំពុងធ្វើសមកាលកម្ម {count} ប្រតិបត្តិការដែលមិនទាន់សម្រេច...",
-      "onlinePending": "{count} ប្រតិបត្តិការដែលមិនទាន់សម្រេច នឹងធ្វើសមកាលកម្មក្នុងពេលឆាប់ៗនេះ",
-      "onlineSynced": "អ្នកបានភ្ជាប់អ៊ីនធឺណិតហើយ ការផ្លាស់ប្តូរទាំងអស់ត្រូវបានធ្វើសមកាលកម្ម",
-      "offline": "អ្នកគ្មានអ៊ីនធឺណិត {count, plural, =0 {គ្មានការផ្លាស់ប្តូរដែលមិនទាន់សម្រេច} =1 {មានការផ្លាស់ប្តូរ ១ នៅក្នុងជួរ} other {{count} ការផ្លាស់ប្តូរនៅក្នុងជួរ}}"
-    },
-    "toast": {
-      "online": {
-        "title": "អ្នកបានភ្ជាប់អ៊ីនធឺណិតឡើងវិញហើយ!",
-        "description": "ការតភ្ជាប់របស់អ្នកត្រូវបានស្ដារឡើងវិញហើយ"
-      },
-      "offline": {
-        "title": "អ្នកគ្មានអ៊ីនធឺណិត",
-        "description": "ការផ្លាស់ប្តូររបស់អ្នកនឹងត្រូវបានរក្សាទុក และធ្វើសមកាលកម្មនៅពេលអ្នកភ្ជាប់អ៊ីនធឺណិតឡើងវិញ"
-      },
-      "syncing": {
-        "title": "កំពុងធ្វើសមកាលកម្មការផ្លាស់ប្តូរក្រៅបណ្តាញ",
-        "description": "កំពុងផ្ទុក {count} ប្រតិបត្តិការទៅម៉ាស៊ីនមេ"
-      },
-      "synced": {
-        "title": "ការធ្វើសមកាលកម្មបានបញ្ចប់",
-        "description": "រាល់ការផ្លាស់ប្តូរក្រៅបណ្តាញរបស់អ្នកត្រូវបានរក្សាទុកហើយ"
-      },
-      "syncFailed": {
-        "title": "ការធ្វើសមកាលកម្មបរាជ័យ",
-        "description": "យើងមិនអាចធ្វើសមកាលកម្មការផ្លាស់ប្តូរក្រៅបណ្តាញរបស់អ្នកបានទេ យើងនឹងព្យាយាមម្ដងទៀតនៅពេលក្រោយ"
-      },
-      "queued": {
-        "title": "បានបន្ថែមប្រតិបត្តិការទៅក្នុងជួរហើយ",
-        "description": "ប្រតិបត្តិការនេះនឹងត្រូវបានដំណើរការនៅពេលអ្នកភ្ជាប់អ៊ីនធឺណិតឡើងវិញ"
-      }
-    }
-  },
-  "LanguageSwitcher": {
-    "toggle": "ប្តូរភាសា"
-  },
-  "AppFooter": {
-    "tagline": "Connecter la chaîne de valeur agricole pour un avenir durable.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "À propos",
-    "contactLabel": "Contact",
-    "careersLabel": "Carrières",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Ressources",
-    "helpCenterLabel": "Centre d'aide",
-    "communityGuidelinesLabel": "Règles de la communauté",
-    "industryNewsLabel": "Actualités du secteur",
-    "eventsLabel": "Événements",
-    "talentExchangeLabel": "Bourse de talents",
-    "legalTitle": "Légal",
-    "privacyPolicyLabel": "Politique de confidentialité",
-    "termsOfServiceLabel": "Conditions d'utilisation",
-    "copyright": "© {year} {appName}. Tous droits réservés.",
-    "getMobileApp": "Obtenir l'application mobile",
-    "googlePlayAlt": "Obtenez-le sur Google Play",
-    "appStoreAlt": "Télécharger sur l'App Store"
   },
   "Auth": {
     "signInWelcome": "សូមស្វាគមន៍មកកាន់ {appName} ជាថ្មី",
@@ -239,7 +217,7 @@
   "searchPage": {
     "title": "ស្វែងរកសកល",
     "description": "ស្វែងរកអ្វីៗគ្រប់យ៉ាងនៅលើវេទិកា DamDoh ចាប់ពីផលិតផលและសេវាកម្ម រហូតដល់មនុស្សនិងការពិភាក្សា។",
-    "placeholder": "ស្វែងរកកាហ្វេอินทรีย์ ការซ่อมแซมรถแทรกเตอร์ ឬผู้ใช้...",
+    "placeholder": "ស្វែងរកកាហ្វេอินทรีย์ ការซ่อมแซมรถแทรกเตอร์ หรือผู้ใช้...",
     "searchButton": "ស្វែងរក",
     "popularSearches": "ការស្វែងរកពេញនិយម",
     "popularSearch1": "ជីอินทรีย์",
@@ -275,7 +253,7 @@
   "aboutPage": {
     "hero": {
       "title": "បណ្ដុះបណ្ដាលទំនាក់ទំនង ប្រមូលផលវិបុលភាព",
-      "subtitle": "យើងមានបេសកកម្មក្នុងការធ្វើឌីជីថលនិងភ្ជាប់ខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្មសកល ដោយផ្ដល់អំណាចដល់ភាគីពាក់ព័ន្ធគ្រប់រូបពីដីដល់ធ្នើ។"
+      "subtitle": "យើងមានបេសកកម្មក្នុងការធ្វើឌីជីថលและភ្ជាប់ខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្មសកល ដោយផ្ដល់អំណាចដល់ភាគីពាក់ព័ន្ធគ្រប់រូបពីដីដល់ធ្នើ។"
     },
     "vision": {
       "title": "ចក្ខុវិស័យរបស់យើងសម្រាប់អនាគតដែលបានភ្ជាប់គ្នា",
@@ -343,7 +321,7 @@
       "p1": "ความมุ่งมั่นของเรามีต่อผู้คนที่เลี้ยงดูโลก เราเชื่อว่าโดยการจัดหาเครื่องมือดิจิทัลที่พวกเขาต้องการ เราสามารถส่งเสริมภาคเกษตรกรรมที่ยืดหยุ่น มีกำไร และยั่งยืนมากขึ้นสำหรับคนรุ่นต่อไป",
       "p2": "ไม่ว่าคุณจะปลูกเมล็ดพันธุ์ ซื้อจำนวนมาก หรือให้ทุนสนับสนุนฟาร์ม คุณก็มีที่ในชุมชน DamDoh",
       "p3": "มาเติบโตไปด้วยกัน",
-      "button": "สร้างប្រវត្តិរូបរបស់អ្នក"
+      "button": "បង្កើតប្រវត្តិរូបរបស់អ្នក"
     }
   },
   "careersPage": {

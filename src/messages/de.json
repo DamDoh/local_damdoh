@@ -1,17 +1,84 @@
 
 {
-  "MobileHomepage": {
-    "welcome": {
-      "morning": "Guten Morgen, {name}",
-      "afternoon": "Guten Tag, {name}",
-      "evening": "Guten Abend, {name}"
+  "common": {
+    "error": "Fehler",
+    "success": "Erfolg"
+  },
+  "toast": {
+    "loggedOut": {
+      "title": "Abgemeldet",
+      "description": "Sie wurden erfolgreich abgemeldet."
     },
-    "discoverTitle": "Entdecken",
-    "seeAllButton": "Alle sehen",
-    "communityFeedTitle": "Community-Feed",
-    "communityFeedDescription": "Vernetzen Sie sich mit anderen, teilen Sie Ihr Wissen und bleiben Sie über die neuesten Gespräche auf dem Laufenden.",
-    "goToFeedButton": "Zum Feed gehen",
-    "noRecommendations": "Im Moment keine Empfehlungen verfügbar. Erkunden Sie den Marktplatz, um loszulegen!"
+    "logoutFailed": {
+      "title": "Abmeldung fehlgeschlagen",
+      "description": "Sie konnten nicht abgemeldet werden. Bitte versuchen Sie es erneut."
+    },
+    "signInSuccess": {
+      "title": "Erfolgreich angemeldet!",
+      "description": "Willkommen zurück bei {appName}."
+    },
+    "signInFailed": {
+      "title": "Anmeldung fehlgeschlagen"
+    },
+    "signUpSuccess": {
+      "title": "Konto erstellt & angemeldet!",
+      "description": "Willkommen bei {appName}! Sie wurden erfolgreich angemeldet."
+    },
+    "signUpFailed": {
+      "title": "Registrierung fehlgeschlagen"
+    }
+  },
+  "AppHeader": {
+    "searchPlaceholder": "Suchen...",
+    "home": "Startseite",
+    "network": "Netzwerk",
+    "farmMgmt": "Farm-Mgmt",
+    "marketplace": "Marktplatz",
+    "talentExchange": "Talente",
+    "traceability": "Rückverfolgbarkeit",
+    "forums": "Foren",
+    "sustainability": "Nachhaltigkeit",
+    "notifications": "Benachrichtigungen",
+    "messages": "Nachrichten",
+    "wallet": "Brieftasche",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "myProfile": "Mein Profil",
+    "myOrders": "Meine Bestellungen",
+    "settings": "Einstellungen",
+    "helpCenter": "Hilfe",
+    "logOut": "Abmelden",
+    "switchToLightAria": "Zum hellen Modus wechseln",
+    "switchToDarkAria": "Zum dunklen Modus wechseln"
+  },
+  "MobileBottomNav": {
+    "home": "Start",
+    "market": "Markt",
+    "search": "Suche",
+    "forums": "Foren",
+    "profile": "Profil",
+    "messages": "Nachrichten"
+  },
+  "AppFooter": {
+    "tagline": "Die landwirtschaftliche Wertschöpfungskette für eine nachhaltige Zukunft verbinden.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Über uns",
+    "contactLabel": "Kontakt",
+    "careersLabel": "Karriere",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressourcen",
+    "helpCenterLabel": "Hilfezentrum",
+    "communityGuidelinesLabel": "Community-Richtlinien",
+    "industryNewsLabel": "Branchennachrichten",
+    "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
+    "legalTitle": "Rechtliches",
+    "privacyPolicyLabel": "Datenschutzrichtlinie",
+    "termsOfServiceLabel": "Nutzungsbedingungen",
+    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
+    "getMobileApp": "Holen Sie sich die mobile App",
+    "googlePlayAlt": "Bei Google Play holen",
+    "appStoreAlt": "Im App Store herunterladen"
   },
   "LandingPage": {
     "hero": {
@@ -183,928 +250,922 @@
       "tryAgain": "Versuchen Sie einen anderen Suchbegriff oder verwenden Sie breitere Schlüsselwörter."
     }
   },
-  "aboutPage": {
-    "hero": {
-      "title": "Verbindungen pflegen, Wohlstand ernten",
-      "subtitle": "Wir haben es uns zur Aufgabe gemacht, die globale landwirtschaftliche Lieferkette zu digitalisieren und zu vernetzen und damit jeden Beteiligten vom Boden bis zum Regal zu stärken."
+  "Marketplace": {
+    "title": "Marktplatz",
+    "description": "Entdecken Sie Produkte, Dienstleistungen und Talente aus der gesamten landwirtschaftlichen Lieferkette.",
+    "createShopButton": "Ladenfront erstellen",
+    "myOrdersButton": "Meine Bestellungen",
+    "createListingButton": "Angebot erstellen",
+    "pinButton": "Als Startseite pinnen",
+    "unpinButton": "Pin von Startseite entfernen",
+    "searchPlaceholder": "Angebote suchen...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "typePlaceholder": "Nach Typ filtern...",
+    "recommendedForYou": "Empfohlen für Sie",
+    "discoverMore": "Mehr entdecken",
+    "viewServiceButton": "Dienstleistung anzeigen",
+    "viewDetails": "Details anzeigen",
+    "pinning": {
+      "unpinnedTitle": "Startseite losgelöst",
+      "unpinnedDescription": "Der Marktplatz wurde von Ihrer Startseite entfernt.",
+      "pinnedTitle": "Startseite gepinnt",
+      "pinnedDescription": "Der Marktplatz ist jetzt Ihre Standard-Startseite."
     },
-    "vision": {
-      "title": "Unsere Vision für eine vernetzte Zukunft",
-      "p1": "DamDoh entstand aus einer einfachen, aber kraftvollen Idee: Technologie kann die Lücken in der landwirtschaftlichen Welt schließen. Wir stellen uns eine Welt vor, in der Kleinbauern direkten Zugang zu globalen Märkten haben, Käufer Produkte mit überprüfbarer Sicherheit beziehen können und Wissen frei fließt, um ein nachhaltigeres und gerechteres Lebensmittelsystem zu schaffen.",
-      "p2": "Wir sind mehr als nur eine Plattform; wir sind eine Gemeinschaft, die sich der Lösung realer Herausforderungen mit innovativen, benutzerzentrierten Lösungen widmet.",
-      "foundersTitle": "Von den Gründern"
-    },
-    "challenge": {
-      "title": "Die fragmentierte Landschaft der Landwirtschaft",
-      "description": "Die landwirtschaftliche Lieferkette ist ein komplexes und oft unzusammenhängendes Ökosystem, das für alle Beteiligten zahlreiche Herausforderungen birgt.",
-      "list": {
-        "marketAccess": "Marktzugang",
-        "inefficiency": "Ineffiziente Logistik",
-        "financialExclusion": "Finanzielle Ausgrenzung",
-        "informationGaps": "Informationslücken",
-        "qualityTrust": "Qualität & Vertrauen",
-        "climatePressure": "Klimadruck",
-        "foodLoss": "Lebensmittelverluste",
-        "dataFragmentation": "Datenfragmentierung"
+    "errors": {
+      "search": {
+        "title": "Suche fehlgeschlagen",
+        "description": "Bei der Suche ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
       },
-      "details": [
-        "Kleinbauern kämpfen darum, sich mit größeren, profitableren Märkten zu verbinden.",
-        "Schlechte Koordination führt zu hohen Kosten und erheblichen Nachernteverlusten.",
-        "Fehlende formale Aufzeichnungen verhindern den Zugang zu Krediten, Darlehen und Versicherungen.",
-        "Bauern fehlt der Zugang zu modernen Techniken und Echtzeit-Marktdaten.",
-        "Käufer sind unsicher über Qualität, Herkunft und Anbaupraktiken der Produkte.",
-        "Zunehmende Unvorhersehbarkeit erfordert widerstandsfähigere Anbausysteme.",
-        "Ein erheblicher Teil der Lebensmittel geht zwischen Bauernhof und Verbraucher verloren.",
-        "Isolierte Informationen verhindern eine ganzheitliche Sicht auf die Lieferkette."
-      ]
-    },
-    "solution": {
-      "title": "Die DamDoh-Lösung: Ein integriertes Ökosystem",
-      "description": "Wir begegnen diesen Herausforderungen, indem wir eine einzige, einheitliche Plattform mit Werkzeugen für alle bereitstellen.",
-      "list": {
-        "education": "KI-gestützte Bildung",
-        "ai": "Intelligentes Netzwerken & KI",
-        "logistics": "Integrierte Logistik",
-        "financial": "Finanzdienstleistungen"
+      "aiRecommendations": {
+        "title": "Momentan keine Empfehlungen verfügbar."
       }
     },
-    "beyondTechnology": {
-      "title": "Mehr als nur Technologie",
-      "list": {
-        "p2p": {
-          "title": "Peer-to-Peer",
-          "content": "Bauern vernetzen sich mit anderen Bauern, um Wissen zu teilen und Genossenschaften zu gründen."
+    "noItemsFound": {
+      "title": "Keine Angebote entsprechen Ihrer Suche.",
+      "hint": "Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen."
+    },
+    "createListing": {
+      "backLink": "Zurück zum Marktplatz",
+      "title": "Neues Angebot erstellen",
+      "description": "Listen Sie ein Produkt oder eine Dienstleistung, um es der DamDoh-Community zur Verfügung zu stellen.",
+      "form": {
+        "nameLabel": "Name des Angebots",
+        "namePlaceholder": "z.B. Bio-Hass-Avocados",
+        "typeLabel": "Angebotstyp",
+        "typePlaceholder": "Wählen Sie einen Angebotstyp...",
+        "descriptionLabel": "Beschreibung",
+        "descriptionPlaceholder": "Geben Sie Details zu Ihrem Produkt oder Ihrer Dienstleistung an...",
+        "locationLabel": "Standort",
+        "locationPlaceholder": "z.B. Nakuru, Kenia",
+        "relatedVtiLabel": "Zugehörige Rückverfolgbarkeits-ID (VTI)",
+        "relatedVtiPlaceholder": "z.B. 123e4567-e89b-12d3-a456-426614174000",
+        "relatedVtiDescription": "Verknüpfen Sie dieses Angebot mit einer VTI-Charge für mehr Vertrauen.",
+        "categoryLabel": "Kategorie",
+        "categoryPlaceholder": "Wählen Sie eine Kategorie...",
+        "priceLabel": "Preis (USD)",
+        "pricePlaceholder": "z.B. 15.50",
+        "unitLabel": "Einheit",
+        "unitPlaceholder": "z.B. pro kg",
+        "compensationLabel": "Vergütung / Tarife",
+        "compensationPlaceholder": "z.B. 50 $/Stunde, projektbasiert",
+        "experienceLabel": "Erfahrungsniveau",
+        "experiencePlaceholder": "z.B. 5+ Jahre, zertifizierter Fachmann",
+        "skillsLabel": "Erforderliche Fähigkeiten",
+        "skillsPlaceholder": "Listen Sie erforderliche Fähigkeiten auf...",
+        "skillsDescription": "Trennen Sie Fähigkeiten mit einem Komma.",
+        "imageUrlLabel": "Bild-URL",
+        "sustainableLabel": "Nachhaltig produziert",
+        "sustainableDescription": "Dieser Artikel wurde unter Verwendung nachhaltiger oder regenerativer Praktiken hergestellt.",
+        "submitButton": "Angebot erstellen",
+        "submittingButton": "Wird erstellt..."
+      },
+      "aiPriceSuggestion": {
+        "generatingButton": "Wird generiert...",
+        "button": "Preis mit KI vorschlagen",
+        "suggestionLabel": "KI-Vorschlag:",
+        "usePriceButton": "Preis verwenden"
+      },
+      "errors": {
+        "authentication": {
+          "title": "Nicht authentifiziert",
+          "description": "Sie müssen angemeldet sein, um ein Angebot zu erstellen."
         },
-        "p2b": {
-          "title": "Erzeuger-zu-Unternehmen",
-          "content": "Direkte Verbindungen zwischen Bauern und Käufern, Verarbeitern und Exporteuren, wodurch unnötige Zwischenhändler wegfallen."
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "Fehlende Informationen",
+            "description": "Bitte geben Sie einen Namen und eine Beschreibung an, um einen Preis vorzuschlagen."
+          },
+          "failed": {
+            "title": "Preisvorschlag fehlgeschlagen",
+            "description": "Preisvorschlag konnte nicht generiert werden. Bitte versuchen Sie es erneut."
+          }
         },
-        "p2e": {
-          "title": "Erzeuger-zu-Experte",
-          "content": "Zugang zu Agronomen, Finanzberatern und Logistikdienstleistern zur Verbesserung der Betriebsabläufe."
-        },
-        "p2w": {
-          "title": "Erzeuger-zur-Welt",
-          "content": "Ermöglicht Kleinbauern die Teilnahme am globalen Markt mit Vertrauen und Transparenz."
+        "creation": {
+          "title": "Angebotserstellung fehlgeschlagen",
+          "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
         }
-      }
-    },
-    "commitment": {
-      "title": "Treten Sie unserem wachsenden Ökosystem bei",
-      "p1": "Unser Engagement gilt den Menschen, die die Welt ernähren. Wir glauben, dass wir durch die Bereitstellung der benötigten digitalen Werkzeuge einen widerstandsfähigeren, profitableren und nachhaltigeren Agrarsektor für kommende Generationen fördern können.",
-      "p2": "Ob Sie ein Saatgut pflanzen, in großen Mengen kaufen oder eine Farm finanzieren, Sie haben einen Platz in der DamDoh-Community.",
-      "p3": "Lassen Sie uns gemeinsam wachsen.",
-      "button": "Profil erstellen"
-    }
-  },
-  "careersPage": {
-    "title": "Karriere bei DamDoh",
-    "subtitle": "Treten Sie einem leidenschaftlichen Team bei, das sich der Revolutionierung der globalen landwirtschaftlichen Lieferkette verschrieben hat.",
-    "whyWorkWithUs": {
-      "title": "Warum bei uns arbeiten?",
-      "intro": "Bei DamDoh bauen wir nicht nur ein Produkt, wir bauen eine Bewegung. Wir glauben an die Kraft der Technologie, ein gerechteres und nachhaltigeres Lebensmittelsystem zu schaffen. Schließen Sie sich uns an, um:",
-      "point1": "An herausfordernden Problemen mit realem Einfluss zu arbeiten.",
-      "point2": "Mit einem vielfältigen, talentierten und missionsorientierten Team zusammenzuarbeiten.",
-      "point3": "Eine Kultur des Lernens, des Wachstums und der Innovation zu genießen.",
-      "point4": "Die Zukunft der Landwirtschaft auf globaler Ebene zu gestalten.",
-      "point5": "Von einem flexiblen und unterstützenden Arbeitsumfeld zu profitieren."
-    },
-    "currentOpenings": {
-      "title": "Aktuelle Stellenangebote"
-    },
-    "noOpenings": {
-      "title": "Im Moment keine offenen Stellen",
-      "content1": "Wir sind immer auf der Suche nach leidenschaftlichen und talentierten Personen. Wenn Sie an unsere Mission glauben und denken, dass Sie einen Beitrag leisten können, würden wir uns freuen, von Ihnen zu hören. Bitte senden Sie Ihren Lebenslauf und ein Anschreiben an ",
-      "emailLinkText": "careers@damdoh.org"
-    },
-    "applyNowButton": "Jetzt bewerben",
-    "openings": {
-      "job1": {
-        "title": "Senior Frontend Engineer (Next.js)",
-        "location": "Remote / Nairobi, Kenia",
-        "type": "Vollzeit",
-        "description": "Wir suchen einen erfahrenen Frontend-Ingenieur, der die Entwicklung unserer benutzerorientierten Web- und Mobilanwendungen mit Next.js und TypeScript leitet."
       },
-      "job2": {
-        "title": "AI/ML Engineer - Landwirtschaftliche Einblicke",
-        "location": "Remote / Global",
-        "type": "Vollzeit",
-        "description": "Entwickeln und implementieren Sie maschinelle Lernmodelle für die Diagnose von Pflanzen, die Vorhersage von Marktpreisen und personalisierte Benutzerempfehlungen."
-      },
-      "job3": {
-        "title": "Regionaler Partnerschaftsmanager - Ostafrika",
-        "location": "Nairobi, Kenia",
-        "type": "Vollzeit",
-        "description": "Aufbau und Management strategischer Partnerschaften mit Genossenschaften, Finanzinstitutionen und Logistikdienstleistern in ganz Ostafrika."
-      }
-    }
-  },
-  "communityGuidelines": {
-    "title": "Community-Richtlinien",
-    "subtitle": "Unser Engagement für eine sichere, respektvolle und professionelle Umgebung.",
-    "intro": "Willkommen in der DamDoh-Community! Unsere Mission ist es, die globale landwirtschaftliche Lieferkette zu verbinden. Um sicherzustellen, dass dies ein produktiver und vertrauenswürdiger Raum für alle ist, bitten wir Sie, diese Richtlinien zu befolgen.",
-    "respectful": {
-      "title": "Seien Sie respektvoll und konstruktiv",
-      "description": "Behandeln Sie alle Mitglieder mit Respekt, auch wenn Sie anderer Meinung sind. Gesunde Debatten werden gefördert, aber persönliche Angriffe, Belästigung, Hassreden oder Mobbing werden nicht toleriert."
-    },
-    "authentic": {
-      "title": "Seien Sie authentisch und ehrlich",
-      "description": "Stellen Sie sich und Ihr Unternehmen wahrheitsgemäß dar. Geben Sie sich nicht als andere aus oder machen Sie irreführende Angaben zu Ihren Produkten, Dienstleistungen oder Qualifikationen."
-    },
-    "relevant": {
-      "title": "Bleiben Sie beim Thema und schaffen Sie Mehrwert",
-      "description": "Halten Sie Ihre Beiträge und Kommentare für das Forum oder Diskussionsthema relevant. Teilen Sie wertvolle Einblicke, stellen Sie durchdachte Fragen und vermeiden Sie Spam oder übermäßige Eigenwerbung."
-    },
-    "fairTrade": {
-      "title": "Praktizieren Sie fairen Handel",
-      "description": "Führen Sie alle Geschäfte auf dem Marktplatz mit Integrität durch. Erfüllen Sie Ihre Bestellungen, zahlen Sie vereinbarte Preise und kommunizieren Sie klar und professionell."
-    },
-    "sustainable": {
-      "title": "Fördern Sie Nachhaltigkeit",
-      "description": "Obwohl dies keine Anforderung für alle ist, ermutigen wir Diskussionen und Praktiken, die den Umweltschutz, die Bodengesundheit und die langfristige Nachhaltigkeit fördern."
-    },
-    "reporting": {
-      "title": "Verstöße melden",
-      "content": "Wenn Sie Inhalte sehen, die gegen diese Richtlinien verstoßen, melden Sie dies bitte unserem Moderationsteam. Sie können Beiträge melden oder uns direkt unter {emailLink} kontaktieren."
-    },
-    "emailLinkText": "support@damdoh.org",
-    "conclusion": "Durch die Nutzung von DamDoh stimmen Sie diesen Richtlinien zu. Wir behalten uns das Recht vor, Inhalte zu entfernen und Konten zu sperren, die gegen diese Grundsätze verstoßen. Vielen Dank, dass Sie uns helfen, eine positive und professionelle Gemeinschaft aufzubauen."
-  },
-  "contactPage": {
-    "title": "Kontaktieren Sie uns",
-    "subtitle": "Wir sind hier, um zu helfen. Kontaktieren Sie uns über einen der folgenden Kanäle.",
-    "emailUs": {
-      "title": "E-Mail an uns",
-      "general": "Allgemeine Anfragen",
-      "support": "Support",
-      "partnerships": "Partnerschaften"
-    },
-    "callUs": {
-      "title": "Rufen Sie uns an",
-      "hours": "Mo - Fr, 9:00 - 17:00 (EAT)",
-      "phone": "+254 700 000 000"
-    },
-    "ourOffice": {
-      "title": "Unser Büro",
-      "org": "DamDoh Inc.",
-      "address": "123 Agri-Tech Ave, Nairobi, Kenia"
-    },
-    "sendMessage": {
-      "title": "Senden Sie uns eine Nachricht",
-      "nameLabel": "Ihr Name",
-      "namePlaceholder": "Max Mustermann",
-      "emailLabel": "Ihre E-Mail",
-      "emailPlaceholder": "sie@beispiel.com",
-      "subjectLabel": "Betreff",
-      "subjectPlaceholder": "z.B. Partnerschaftsanfrage",
-      "messageLabel": "Ihre Nachricht",
-      "messagePlaceholder": "Schreiben Sie Ihre Nachricht hier...",
-      "buttonText": "Nachricht senden",
-      "note": "Wir werden unser Bestes tun, um innerhalb von 24 Geschäftsstunden zu antworten."
-    }
-  },
-  "helpCenterPage": {
-    "title": "Hilfezentrum",
-    "subtitle": "Finden Sie Antworten auf Ihre Fragen und lernen Sie, wie Sie das Beste aus DamDoh herausholen.",
-    "howCanWeHelp": "Wie können wir Ihnen helfen?",
-    "searchPlaceholder": "Suchen Sie nach Artikeln...",
-    "browseTopics": "Themen durchsuchen",
-    "gettingStarted": {
-      "title": "Erste Schritte",
-      "description": "Lernen Sie die Grundlagen zum Einrichten Ihres Profils und zur Navigation auf der Plattform.",
-      "placeholder": "Inhalte für 'Erste Schritte' werden hier hinzugefügt."
-    },
-    "marketplaceGuide": {
-      "title": "Marktplatz-Anleitung",
-      "description": "Wie man effektiv kauft, verkauft und Angebote erstellt.",
-      "placeholder": "Inhalte für 'Marktplatz-Anleitung' werden hier hinzugefügt."
-    },
-    "accountManagement": {
-      "title": "Kontoverwaltung",
-      "description": "Verwalten Sie Ihre Einstellungen, Benachrichtigungen und Datenschutz.",
-      "placeholder": "Inhalte für 'Kontoverwaltung' werden hier hinzugefügt."
-    },
-    "troubleshooting": {
-      "title": "Fehlerbehebung",
-      "description": "Finden Sie Lösungen für häufige Probleme und technische Schwierigkeiten.",
-      "placeholder": "Inhalte für 'Fehlerbehebung' werden hier hinzugefügt."
-    },
-    "stillNeedHelp": {
-      "title": "Benötigen Sie weitere Hilfe?",
-      "description": "Wenn Sie nicht finden, was Sie suchen, hilft Ihnen unser Support-Team gerne weiter.",
-      "button": "Support kontaktieren"
-    }
-  },
-  "industryNewsPage": {
-    "title": "Branchennachrichten",
-    "description": "Bleiben Sie mit den neuesten Nachrichten, Trends und Forschungsergebnissen im globalen Agrarsektor auf dem Laufenden.",
-    "searchPlaceholder": "Nachrichtenartikel suchen...",
-    "categoryPlaceholder": "Nach Kategorie filtern...",
-    "allCategories": "Alle Kategorien",
-    "sourceLabel": "Quelle",
-    "publishedLabel": "Veröffentlicht",
-    "categoryLabel": "Kategorie",
-    "readButton": "Ganze Geschichte lesen",
-    "noNews": {
-      "title": "Keine Nachrichtenartikel gefunden",
-      "description": "Es gibt keine Nachrichtenartikel, die Ihrer aktuellen Suche oder Ihren Filtern entsprechen. Bitte versuchen Sie es später noch einmal."
-    },
-    "news1": {
-      "title": "Weltweite Kaffeepreise steigen aufgrund von Lieferkettenunterbrechungen",
-      "excerpt": "Eine Kombination aus ungünstigem Wetter in wichtigen Anbaugebieten und anhaltenden logistischen Herausforderungen hat die Kaffee-Futures auf ein Zweijahreshoch getrieben..."
-    },
-    "news2": {
-      "title": "EU führt neue nachhaltige Verpackungsvorschriften für Lebensmittelimporte ein",
-      "excerpt": "Neue Vorschriften, die im nächsten Quartal in Kraft treten, verlangen, dass alle Lebensmittelimporte strengere Kriterien für recycelbare und kompostierbare Verpackungen erfüllen..."
-    },
-    "news3": {
-      "title": "Studie zeigt, dass regenerative Anbaupraktiken den Bodenkohlenstoff um bis zu 25% erhöhen",
-      "excerpt": "Eine zehnjährige Studie zeigt, dass pfluglose Landwirtschaft und Zwischenfrüchte die Kohlenstoffbindung im Boden erheblich verbessern können und ein wichtiges Instrument zur Eindämmung des Klimawandels darstellen..."
-    }
-  },
-  "pinboardPage": {
-    "title": "Meine Pinnwand",
-    "description": "Ihr persönlicher Bereich zum Speichern von interessanten Profilen, Artikeln und Marktplatzangeboten.",
-    "comingSoonTitle": "Pinnwand bald verfügbar!",
-    "comingSoonDescription": "Diese Funktion ermöglicht es Ihnen, wichtige Inhalte von der gesamten DamDoh-Plattform mit einem Lesezeichen zu versehen, damit Sie sie später leicht wiederfinden können.",
-    "stayTuned": "Bleiben Sie auf dem Laufenden!"
-  },
-  "settingsPage": {
-    "title": "Einstellungen",
-    "description": "Verwalten Sie Ihr Profil, die Kontosicherheit und die Benachrichtigungseinstellungen.",
-    "profileTab": "Profil",
-    "accountTab": "Konto",
-    "notificationsTab": "Benachrichtigungen",
-    "privacyTab": "Datenschutz",
-    "appearanceTab": "Erscheinungsbild",
-    "stakeholderProfile": {
-      "title": "Stakeholder-Profil",
-      "description": "Dies ist Ihre berufliche Identität auf DamDoh. Halten Sie es auf dem neuesten Stand, um die richtigen Möglichkeiten anzuziehen."
-    },
-    "account": {
-      "title": "Kontoeinstellungen",
-      "description": "Verwalten Sie Ihre Anmeldeoptionen und die Kontosicherheit.",
-      "currentPasswordLabel": "Aktuelles Passwort",
-      "newPasswordLabel": "Neues Passwort",
-      "confirmPasswordLabel": "Neues Passwort bestätigen",
-      "changePasswordButton": "Passwort ändern",
-      "deactivateButton": "Konto deaktivieren"
-    },
-    "notifications": {
-      "title": "Benachrichtigungseinstellungen",
-      "description": "Wählen Sie aus, wie Sie über Aktivitäten auf der Plattform benachrichtigt werden möchten.",
-      "emailDigestLabel": "E-Mail-Zusammenfassung",
-      "emailDigestDescription": "Erhalten Sie eine Zusammenfassung Ihrer Benachrichtigungen per E-Mail.",
-      "connectionRequestsLabel": "Verbindungsanfragen",
-      "connectionRequestsDescription": "Benachrichtigen Sie mich, wenn ich neue Verbindungsanfragen erhalte.",
-      "forumMentionsLabel": "Forums-Erwähnungen & Antworten",
-      "forumMentionsDescription": "Benachrichtigen Sie mich, wenn jemand auf meinen Beitrag antwortet oder mich erwähnt.",
-      "marketplaceActivityLabel": "Marktplatz-Aktivität",
-      "marketplaceActivityDescription": "Erhalten Sie Updates zu Ihren Bestellungen und Angeboten.",
-      "talentExchangeLabel": "Talentbörse",
-      "talentExchangeDescription": "Erhalten Sie Updates zu Ihren Job- und Dienstleistungsangeboten.",
-      "saveButton": "Einstellungen speichern"
-    },
-    "privacy": {
-      "title": "Datenschutz & Sichtbarkeit",
-      "description": "Kontrollieren Sie, wer Ihr Profil und Ihre Aktivitäten sehen kann.",
-      "profileVisibilityLabel": "Profilsichtbarkeit",
-      "profileVisibilityDescription": "Wer kann Ihr vollständiges Profil sehen?",
-      "profileVisibilityAll": "Jeder",
-      "profileVisibilityConnections": "Nur Verbindungen",
-      "profileVisibilityPrivate": "Privat (Nur ich)",
-      "connectionRequestsLabel": "Wer kann Ihnen Verbindungsanfragen senden?",
-      "connectionRequestsDescription": "Beschränken Sie, wer eine neue Verbindung mit Ihnen initiieren kann.",
-      "connectionRequestsAll": "Jeder",
-      "connectionRequestsConnectionsOfConnections": "Verbindungen von Verbindungen",
-      "contactInfoVisibilityLabel": "Wer kann Ihre Kontaktdaten sehen?",
-      "contactInfoVisibilityDescription": "Kontrollieren Sie die Sichtbarkeit Ihrer E-Mail und Telefonnummer.",
-      "contactInfoVisibilityAll": "Jeder",
-      "contactInfoVisibilityConnections": "Nur Verbindungen",
-      "activityStatusLabel": "Meinen Aktivitätsstatus anzeigen",
-      "activityStatusDescription": "Lassen Sie andere wissen, wann Sie auf DamDoh aktiv sind.",
-      "searchIndexingLabel": "Profilauffindbarkeit",
-      "searchIndexingDescription": "Erlauben Sie Ihrem Profil, in externen Suchmaschinen zu erscheinen.",
-      "saveButton": "Datenschutzeinstellungen speichern",
-      "dataConsentTitle": "Datenfreigabe & Zustimmung",
-      "dataConsentDescription": "Um ein nahtloses Erlebnis zu bieten, kann DamDoh Ihre Daten über verschiedene Module hinweg verwenden. Sie kontrollieren, wie Ihre Daten geteilt werden.",
-      "marketplaceHistoryLabel": "Marktplatzverlauf mit Finanzinstituten teilen",
-      "marketplaceHistoryDescription": "Ermöglichen Sie vertrauenswürdigen FIs, Ihren Transaktionsverlauf einzusehen, wenn Sie einen Kredit oder eine Förderung beantragen, was zu besseren Angeboten führen kann.",
-      "traceabilityDataLabel": "VTI-Daten öffentlich durchsuchbar machen",
-      "traceabilityDataDescription": "Erlauben Sie jedem mit einem VTI, den vollständigen öffentlichen Rückverfolgungsbericht anzuzeigen, was Transparenz und Vertrauen erhöht.",
-      "financialApplicationDataLabel": "Antragsdaten für KI-Matching verwenden",
-      "financialApplicationDataDescription": "Erlauben Sie unserer KI, Ihre anonymisierten Antragsdaten zu analysieren, um Sie besser mit geeigneten Finanzprodukten abzugleichen.",
-      "saveConsentButton": "Zustimmungen speichern"
-    },
-    "appearance": {
-      "title": "Erscheinungsbild",
-      "description": "Passen Sie das Aussehen und die Handhabung der Anwendung an.",
-      "themeLabel": "Thema",
-      "themeDescription": "Wählen Sie ein helles oder dunkles Thema für Ihre Benutzeroberfläche.",
-      "lightTheme": "Hell",
-      "darkTheme": "Dunkel",
-      "languageLabel": "Sprache",
-      "languageDescription": "Wählen Sie Ihre bevorzugte Sprache.",
-      "switchToLightAria": "Zum hellen Modus wechseln",
-      "switchToDarkAria": "Zum dunklen Modus wechseln"
-    }
-  },
-  "walletPage": {
-    "title": "Meine Brieftasche",
-    "description": "Verwalten Sie Ihr Geld, sehen Sie den Transaktionsverlauf ein und greifen Sie auf Finanzdienstleistungen zu.",
-    "underDevelopmentTitle": "Wallet-Funktion kommt bald!",
-    "underDevelopmentDescription": "Wir arbeiten hart daran, Ihnen ein sicheres und nahtloses Finanzerlebnis direkt auf der DamDoh-Plattform zu bieten. Die Brieftasche wird ermöglichen:",
-    "feature1": "Sichere Aufbewahrung von Geldern",
-    "feature2": "Sofortige Zahlungen an andere Benutzer",
-    "feature3": "Einfache Auszahlungen aus Marktplatzverkäufen",
-    "feature4": "Integration mit mobilem Geld und Banken",
-    "stayTuned": "Bleiben Sie dran für Updates!"
-  },
-  "blogPage": {
-    "title": "DamDoh Blog",
-    "description": "Einblicke, Geschichten und Updates aus der Welt der Landwirtschaft und Lieferkettentechnologie.",
-    "meta": "Von {author} am {date}",
-    "readMore": "Weiterlesen",
-    "backLink": "Zurück zum Blog",
-    "originalContentTitle": "Originalinhalt auf {lang}",
-    "error": {
-      "title": "Fehler",
-      "description": "Blogbeiträge konnten nicht geladen werden. Bitte versuchen Sie es später erneut."
-    },
-    "notFound": {
-      "title": "Beitrag nicht gefunden",
-      "description": "Der gesuchte Blogbeitrag existiert nicht.",
-      "backButton": "Zurück zum Blog"
-    },
-    "noPosts": {
-      "title": "Noch keine Beiträge",
-      "description": "Momentan sind keine Blogbeiträge verfügbar. Bitte schauen Sie bald wieder vorbei für Updates und Einblicke!"
-    }
-  },
-  "common": {
-    "error": "Fehler",
-    "success": "Erfolg"
-  },
-  "toast": {
-    "loggedOut": {
-      "title": "Abgemeldet",
-      "description": "Sie wurden erfolgreich abgemeldet."
-    },
-    "logoutFailed": {
-      "title": "Abmeldung fehlgeschlagen",
-      "description": "Sie konnten nicht abgemeldet werden. Bitte versuchen Sie es erneut."
-    },
-    "signInSuccess": {
-      "title": "Erfolgreich angemeldet!",
-      "description": "Willkommen zurück bei {appName}."
-    },
-    "signInFailed": {
-      "title": "Anmeldung fehlgeschlagen"
-    },
-    "signUpSuccess": {
-      "title": "Konto erstellt & angemeldet!",
-      "description": "Willkommen bei {appName}! Sie wurden erfolgreich angemeldet."
-    },
-    "signUpFailed": {
-      "title": "Registrierung fehlgeschlagen"
-    }
-  },
-  "formErrors": {
-    "createMarketplaceItem": {
-      "name": {
-        "min": "Name muss mindestens 3 Zeichen lang sein.",
-        "max": "Name darf nicht länger als 100 Zeichen sein."
-      },
-      "listingType": {
-        "required": "Bitte wählen Sie einen Angebotstyp (Produkt oder Dienstleistung)."
-      },
-      "description": {
-        "min": "Beschreibung muss mindestens 10 Zeichen lang sein.",
-        "max": "Beschreibung darf nicht länger als 2000 Zeichen sein."
-      },
-      "price": {
-        "invalid": "Preis muss eine Zahl sein.",
-        "min": "Preis darf nicht negativ sein."
-      },
-      "currency": {
-        "length": "Währung muss ein 3-stelliger Code sein."
-      },
-      "perUnit": {
-        "max": "Einheitenbeschreibung (z.B. /kg, /Tonne, /Stunde) ist zu lang."
-      },
-      "category": {
-        "required": "Bitte wählen Sie eine gültige Kategorie."
-      },
-      "location": {
-        "min": "Standort muss mindestens 2 Zeichen lang sein.",
-        "max": "Standort darf nicht länger als 100 Zeichen sein."
-      },
-      "imageUrl": {
-        "invalid": "Bitte geben Sie eine gültige URL für das Bild ein (z.B. https://placehold.co/300x200.png)."
-      },
-      "contactInfo": {
-        "min": "Kontaktinformationen müssen mindestens 5 Zeichen lang sein.",
-        "max": "Kontaktinformationen dürfen nicht länger als 200 Zeichen sein."
-      },
-      "skillsRequired": {
-        "max": "Liste der Fähigkeiten ist zu lang (max. 250 Zeichen)."
-      },
-      "compensation": {
-        "max": "Vergütungsdetails sind zu lang (max. 100 Zeichen)."
-      },
-      "brand": {
-        "max": "Markenname ist zu lang."
-      },
-      "certifications": {
-        "max": "Liste der Zertifizierungen ist zu lang."
-      },
-      "relatedTraceabilityId": {
-        "max": "Rückverfolgungs-ID ist zu lang."
-      }
-    },
-    "createForumTopic": {
-      "title": {
-        "min": "Titel muss mindestens 10 Zeichen lang sein.",
-        "max": "Titel darf nicht länger als 150 Zeichen sein."
-      },
-      "description": {
-        "min": "Beschreibung muss mindestens 20 Zeichen lang sein.",
-        "max": "Beschreibung darf nicht länger als 2000 Zeichen sein."
-      }
-    },
-    "createAgriEvent": {
-      "title": {
-        "min": "Veranstaltungstitel muss mindestens 5 Zeichen lang sein.",
-        "max": "Veranstaltungstitel darf nicht länger als 100 Zeichen sein."
-      },
-      "description": {
-        "min": "Veranstaltungsbeschreibung muss mindestens 20 Zeichen lang sein.",
-        "max": "Veranstaltungsbeschreibung darf nicht länger als 2000 Zeichen sein."
-      },
-      "eventDate": {
-        "required": "Veranstaltungsdatum ist erforderlich.",
-        "invalid": "Das ist kein gültiges Datum!"
-      },
-      "eventTime": {
-        "regex": "Bitte geben Sie eine gültige Uhrzeit im HH:MM-Format ein (z.B. 14:30)."
-      },
-      "location": {
-        "min": "Standort muss mindestens 3 Zeichen lang sein.",
-        "max": "Standort darf nicht länger als 150 Zeichen sein."
-      },
-      "eventType": {
-        "required": "Bitte wählen Sie einen gültigen Veranstaltungstyp."
-      },
-      "organizer": {
-        "max": "Name des Organisators darf nicht länger als 100 Zeichen sein."
-      },
-      "websiteLink": {
-        "invalid": "Bitte geben Sie eine gültige URL für die Veranstaltungswebsite ein."
-      },
-      "imageUrl": {
-        "invalid": "Bitte geben Sie eine gültige URL für das Veranstaltungsbild ein."
-      },
-      "attendeeLimit": {
-        "positive": "Muss eine positive Zahl sein."
-      },
-      "price": {
-        "min": "Preis darf nicht negativ sein."
-      },
-      "currency": {
-        "length": "Währung muss ein 3-stelliger Code sein."
-      }
-    },
-    "createFarm": {
-      "name": {
-        "min": "Farmname muss mindestens 3 Zeichen lang sein."
-      },
-      "description": {
-        "max": "Beschreibung ist zu lang."
-      },
-      "location": {
-        "min": "Bitte geben Sie einen Standort an."
-      },
-      "size": {
-        "min": "Bitte geben Sie die Farmgröße an."
-      },
-      "farmType": {
-        "required": "Bitte wählen Sie einen Farmtyp."
-      },
-      "irrigationMethods": {
-        "max": "Beschreibung der Bewässerungsmethoden ist zu lang."
-      }
-    },
-    "createCrop": {
-      "cropType": {
-        "min": "Kulturart muss mindestens 2 Zeichen lang sein."
-      },
-      "plantingDate": {
-        "required": "Ein Pflanzdatum ist erforderlich."
-      },
-      "expectedYield": {
-        "max": "Beschreibung des erwarteten Ertrags ist zu lang."
-      },
-      "notes": {
-        "max": "Notizen sind zu lang."
-      }
-    },
-    "createInputApplication": {
-      "applicationDate": {
-        "required": "Ein Anwendungsdatum ist erforderlich."
-      },
-      "inputId": {
-        "min": "Name/ID des Inputs ist erforderlich."
-      },
-      "quantity": {
-        "positive": "Menge muss eine positive Zahl sein."
-      },
-      "unit": {
-        "min": "Einheit ist erforderlich."
-      }
-    },
-    "createObservation": {
-      "observationType": {
-        "min": "Bitte wählen Sie einen Beobachtungstyp."
-      },
-      "observationDate": {
-        "required": "Ein Beobachtungsdatum ist erforderlich."
-      },
-      "details": {
-        "min": "Details müssen mindestens 10 Zeichen lang sein."
-      }
-    },
-    "createHarvest": {
-      "harvestDate": {
-        "required": "Ein Erntedatum ist erforderlich."
-      },
-      "yield_kg": {
-        "positive": "Ertrag muss eine positive Zahl sein."
-      },
-      "quality_grade": {
-        "min": "Qualitätsstufe ist erforderlich."
-      }
-    },
-    "editProfile": {
-      "displayName": {
-        "min": "Name muss mindestens 2 Zeichen lang sein.",
-        "max": "Name darf nicht länger als 100 Zeichen sein."
-      },
-      "email": {
-        "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein."
-      },
-      "role": {
-        "required": "Bitte wählen Sie eine gültige Stakeholder-Rolle."
-      },
-      "profileSummary": {
-        "max": "Profilzusammenfassung darf nicht länger als 250 Zeichen sein."
-      },
-      "bio": {
-        "max": "Bio darf nicht länger als 2000 Zeichen sein."
-      },
-      "location": {
-        "min": "Standort muss mindestens 2 Zeichen lang sein.",
-        "max": "Standort darf nicht länger als 100 Zeichen sein."
-      },
-      "areasOfInterest": {
-        "max": "Interessengebiete dürfen nicht länger als 500 Zeichen sein (verwenden Sie kommagetrennte Werte)."
-      },
-      "needs": {
-        "max": "Bedürfnisse/Angebote dürfen nicht länger als 500 Zeichen sein (verwenden Sie kommagetrennte Werte)."
-      },
-      "contactInfoPhone": {
-        "max": "Telefonnummer ist zu lang."
-      },
-      "contactInfoWebsite": {
-        "invalid": "Bitte geben Sie eine gültige Website-URL ein."
-      }
-    },
-    "signIn": {
-      "email": {
-        "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein."
-      },
-      "password": {
-        "min": "Passwort muss mindestens 6 Zeichen lang sein."
-      }
-    },
-    "signUp": {
-      "name": {
-        "min": "Name muss mindestens 2 Zeichen lang sein.",
-        "max": "Name darf nicht länger als 100 Zeichen sein."
-      },
-      "email": {
-        "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein."
-      },
-      "role": {
-        "required": "Bitte wählen Sie eine Stakeholder-Rolle."
-      },
-      "password": {
-        "min": "Passwort muss mindestens 6 Zeichen lang sein."
-      },
-      "confirmPassword": {
-        "match": "Passwörter stimmen nicht überein."
-      }
-    },
-    "logFinancialTransaction": {
-      "amount": {
-        "required": "Betrag ist erforderlich.",
-        "invalid": "Betrag muss eine Zahl sein.",
-        "min": "Betrag muss positiv sein."
-      },
-      "currency": {
-        "min": "Bitte wählen Sie eine Währung."
-      },
-      "description": {
-        "min": "Beschreibung ist erforderlich.",
-        "max": "Beschreibung ist zu lang."
-      },
-      "category": {
-        "max": "Kategorie ist zu lang."
+      "success": {
+        "title": "Angebot erstellt!",
+        "description": "Ihr neues Angebot ist jetzt auf dem Marktplatz live."
       }
     },
     "createShop": {
-      "name": {
-        "min": "Shop-Name muss mindestens 3 Zeichen lang sein."
+      "backLink": "Zurück zum Marktplatz",
+      "title": "Erstellen Sie Ihre digitale Ladenfront",
+      "description": "Etablieren Sie Ihre professionelle Präsenz auf DamDoh, um alle Ihre Produkte und Dienstleistungen an einem Ort zu präsentieren.",
+      "authErrorTitle": "Authentifizierung erforderlich",
+      "authErrorDescription": "Sie müssen angemeldet sein, um eine Ladenfront zu erstellen.",
+      "form": {
+        "nameLabel": "Name der Ladenfront",
+        "namePlaceholder": "z.B. Green Valley Organics",
+        "typeLabel": "Hauptgeschäftstyp",
+        "typePlaceholder": "Wählen Sie Ihre Hauptgeschäftskategorie",
+        "descriptionLabel": "Shop-Beschreibung",
+        "descriptionPlaceholder": "Beschreiben Sie kurz Ihr Unternehmen, was Sie anbieten und Ihre Mission.",
+        "submitButton": "Ladenfront erstellen",
+        "submittingButton": "Wird erstellt..."
       },
-      "description": {
-        "min": "Beschreibung muss mindestens 10 Zeichen lang sein."
-      },
-      "stakeholderType": {
-        "required": "Bitte wählen Sie einen gültigen Geschäftstyp."
-      }
-    },
-    "createMarketplaceCoupon": {
-      "code": {
-        "min": "Code muss mindestens 4 Zeichen lang sein.",
-        "max": "Code darf nicht länger als 20 Zeichen sein.",
-        "regex": "Code muss alphanumerisch sein."
-      },
-      "discountType": {
-        "required": "Bitte wählen Sie einen Rabatt-Typ."
-      },
-      "discountValue": {
-        "invalid": "Rabattwert muss eine Zahl sein.",
-        "positive": "Rabattwert muss positiv sein.",
-        "percentageMax": "Prozentualer Rabatt darf 100 nicht überschreiten."
-      },
-      "usageLimit": {
-        "positive": "Nutzungslimit muss eine positive ganze Zahl sein."
-      }
-    },
-    "createInsuranceProduct": {
-      "name": {
-        "min": "Produktname muss mindestens 5 Zeichen lang sein."
-      },
-      "type": {
-        "required": "Bitte wählen Sie einen Produkttyp."
-      },
-      "description": {
-        "min": "Bitte geben Sie eine detaillierte Beschreibung an."
-      },
-      "coverageDetails": {
-        "min": "Bitte geben Sie Details zur Deckung an."
-      },
-      "premium": {
-        "positive": "Prämie muss eine positive Zahl sein."
-      }
-    },
-    "createInsuranceApplication": {
-      "farmId": {
-        "required": "Bitte wählen Sie die zu versichernde Farm aus."
-      },
-      "coverageValue": {
-        "positive": "Deckungssumme muss eine positive Zahl sein."
-      }
-    }
-  },
-  "insurancePage": {
-    "title": "Versicherungs-Hub",
-    "description": "Schützen Sie Ihre Farm und Ihr Vermögen mit maßgeschneiderten Versicherungsprodukten.",
-    "perTerm": "/ Laufzeit",
-    "viewDetailsButton": "Details anzeigen",
-    "noProducts": "Derzeit sind keine Versicherungsprodukte verfügbar.",
-    "toast": {
-      "errorTitle": "Fehler"
-    }
-  },
-  "InsuranceDetailPage": {
-    "backLink": "Zurück zum Versicherungs-Hub",
-    "coverageTitle": "Deckungsdetails",
-    "premiumTitle": "Prämie",
-    "perTerm": "Laufzeit",
-    "providerTitle": "Angeboten von",
-    "applyButton": "Für dieses Produkt bewerben",
-    "notFound": "Versicherungsprodukt nicht gefunden.",
-    "toast": {
-      "errorTitle": "Fehler"
-    }
-  },
-  "InsuranceApplyPage": {
-    "backLink": "Zurück zu den Produkten",
-    "title": "Versicherung beantragen",
-    "description": "Antrag auf das Versicherungsprodukt '{productName}'.",
-    "form": {
-      "farmLabel": "Zu versichernde Farm",
-      "farmPlaceholder": "Eine Farm auswählen",
-      "noFarms": "Bitte erstellen Sie zuerst eine Farm.",
-      "coverageValueLabel": "Gewünschte Deckungssumme (USD)",
-      "coverageValuePlaceholder": "z.B. 10000",
-      "coverageValueDescription": "Der Gesamtwert, den Sie versichern möchten.",
-      "submitButton": "Antrag einreichen"
-    },
-    "success": {
-      "title": "Antrag eingereicht!",
-      "description": "Ihr Versicherungsantrag wurde zur Prüfung gesendet.",
-      "backToDashboardButton": "Zurück zum Dashboard",
-      "applyForAnotherButton": "Für ein anderes Produkt bewerben"
-    },
-    "toast": {
-      "error": "Fehler",
-      "notAuthenticated": "Sie müssen angemeldet sein, um eine Versicherung zu beantragen.",
-      "successTitle": "Antrag eingereicht"
-    }
-  },
-  "InsuranceProductsPage": {
-    "title": "Versicherungsprodukte verwalten",
-    "description": "Erstellen und verwalten Sie die Versicherungsprodukte, die Sie auf der Plattform anbieten.",
-    "createButton": "Neues Produkt erstellen",
-    "table": {
-      "productName": "Produktname",
-      "type": "Typ",
-      "status": "Status",
-      "premium": "Prämie"
-    },
-    "noProducts": "Sie haben noch keine Versicherungsprodukte erstellt.",
-    "toast": {
-      "errorTitle": "Fehler"
-    }
-  },
-  "InsuranceProductCreatePage": {
-    "backLink": "Zurück zu den Produkten",
-    "title": "Neues Versicherungsprodukt erstellen",
-    "description": "Definieren Sie ein neues Versicherungsprodukt, das Landwirten angeboten wird.",
-    "form": {
-      "nameLabel": "Produktname",
-      "namePlaceholder": "z.B. Mais-Ernteausfallversicherung",
-      "typeLabel": "Produkttyp",
-      "typePlaceholder": "Einen Typ auswählen",
-      "crop": "Ernteversicherung",
-      "livestock": "Tierversicherung",
-      "asset": "Landwirtschaftliche Betriebsversicherung",
-      "weather": "Parametrische Wetterversicherung",
-      "descriptionLabel": "Kurzbeschreibung",
-      "descriptionPlaceholder": "Ein kurzer Überblick über das Produkt.",
-      "coverageLabel": "Deckungsdetails",
-      "coveragePlaceholder": "Beschreiben Sie, was abgedeckt ist, Selbstbehalte usw.",
-      "premiumLabel": "Prämienbetrag (USD)",
-      "premiumPlaceholder": "z.B. 50.00",
-      "currencyLabel": "Währung",
-      "submitButton": "Produkt erstellen"
-    },
-    "toast": {
-      "notAuthenticated": "Sie müssen ein autorisierter Versicherungsanbieter sein, um Produkte zu erstellen.",
-      "successTitle": "Produkt erstellt!",
-      "successDescription": "{name} ist jetzt verfügbar.",
-      "errorTitle": "Erstellung fehlgeschlagen"
-    }
-  },
-  "FiProductCreatePage": {
-    "backLink": "Zurück zu den Produkten",
-    "title": "Neues Finanzprodukt erstellen",
-    "description": "Definieren Sie ein neues Kredit- oder Zuschussprodukt, das den Beteiligten angeboten wird.",
-    "form": {
-        "nameLabel": "Produktname",
-        "namePlaceholder": "z.B. Saisonstart-Darlehen für Kleinbauern",
-        "typeLabel": "Produkttyp",
-        "loan": "Darlehen",
-        "grant": "Zuschuss",
-        "descriptionLabel": "Produktbeschreibung",
-        "descriptionPlaceholder": "Beschreiben Sie das Produkt, seinen Zweck und die Förderkriterien.",
-        "interestRateLabel": "Zinssatz (%)",
-        "interestRatePlaceholder": "z.B. 12,5",
-        "maxAmountLabel": "Höchstbetrag (USD)",
-        "maxAmountPlaceholder": "z.B. 10000",
-        "targetRolesLabel": "Zielgruppen",
-        "targetRolesDescription": "Wählen Sie die Rollen aus, für die dieses Produkt verfügbar ist.",
-        "submitButton": "Produkt erstellen"
-    },
-    "toast": {
-        "notAuthenticated": "Sie müssen ein autorisiertes Finanzinstitut sein, um Produkte zu erstellen.",
-        "successTitle": "Produkt erstellt!",
-        "successDescription": "{name} ist jetzt auf der Plattform verfügbar.",
-        "errorTitle": "Erstellung fehlgeschlagen"
-    }
-  },
-  "FiProductsPage": {
-      "backLink": "Zurück zum Dashboard",
-      "title": "Finanzprodukte verwalten",
-      "description": "Sehen und verwalten Sie die von Ihnen angebotenen Finanzprodukte.",
-      "createButton": "Neues Produkt erstellen",
-      "table": {
-          "productName": "Produktname",
-          "type": "Typ",
-          "status": "Status",
-          "interestRate": "Zinssatz",
-          "maxAmount": "Höchstbetrag"
-      },
-      "noProducts": "Sie haben noch keine Finanzprodukte erstellt.",
       "toast": {
-          "errorTitle": "Fehler"
+        "successTitle": "Ladenfront erstellt!",
+        "successDescription": "Ihr Geschäft, {shopName}, ist jetzt live.",
+        "failTitle": "Erstellung fehlgeschlagen",
+        "failDescription": "Ihre Ladenfront konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
       }
-  },
-  "admin": {
-    "dashboard": {
-      "title": "Admin-Dashboard",
-      "description": "Willkommen im Administrationsbereich.",
-      "content": "Verwenden Sie die Navigation auf der linken Seite, um verschiedene Teile der Anwendung zu verwalten, z. B. Inhalte, Benutzer und Systemberichte.",
-      "contentManagementButton": "Inhalte verwalten"
     },
-    "layout": {
-      "contentManagement": "Inhalt",
-      "reports": "Berichte",
-      "title": "Admin-Bereich",
-      "description": "Sie sehen einen administrativen Bereich."
-    },
-    "contentManagement": {
-      "title": "Inhaltsverwaltung",
-      "allArticles": {
-        "title": "Alle Artikel & Beiträge",
-        "description": "Anzeigen, Bearbeiten und Verwalten aller Artikel und Beiträge auf der gesamten Plattform.",
-        "refreshButton": "Aktualisieren"
+    "itemView": {
+      "backLink": "Zurück zum Marktplatz",
+      "notFound": {
+        "description": "Dieses Angebot konnte nicht gefunden werden."
       },
-      "createArticle": {
-        "title": "Neuen Artikel erstellen",
-        "description": "Veröffentlichen Sie einen neuen Artikel für den Blog oder das Wissenszentrum.",
-        "englishContent": "Englischer Inhalt",
-        "khmerContent": "Khmer-Inhalt",
-        "titleEnLabel": "Titel (Englisch)",
-        "excerptEnLabel": "Auszug (Englisch)",
-        "contentEnLabel": "Inhalt (Markdown - Englisch)",
-        "titleKmLabel": "Titel (Khmer)",
-        "excerptKmLabel": "Auszug (Khmer)",
-        "contentKmLabel": "Inhalt (Markdown - Khmer)",
-        "metadataTitle": "Metadaten",
-        "categoryLabel": "Kategorie",
-        "categoryPlaceholder": "z.B. Blog, Branchennachrichten",
-        "authorLabel": "Autor",
-        "authorPlaceholder": "z.B. DamDoh Team",
-        "statusLabel": "Status",
-        "tagsLabel": "Tags (kommagetrennt)",
-        "imageUrlLabel": "Bild-URL",
-        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
-        "aiHintLabel": "KI-Bildhinweis",
-        "aiHintPlaceholder": "z.B. Kaffeebohnenernte",
-        "publishButton": "Artikel veröffentlichen",
-        "publishingButton": "Wird veröffentlicht..."
+      "errors": {
+        "loadItem": {
+          "description": "Artikeldetails konnten nicht geladen werden."
+        },
+        "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
+      },
+      "skillsLabel": "Erforderliche Fähigkeiten",
+      "experienceLabel": "Erfahrungsniveau",
+      "compensationLabel": "Vergütung",
+      "contactForRates": "Preise auf Anfrage",
+      "aboutSeller": "Über den Verkäufer",
+      "viewShopfront": "Ladenfront ansehen",
+      "editListing": "Angebot bearbeiten",
+      "buyNowButton": "Jetzt kaufen",
+      "contactForService": "Für Dienstleistung kontaktieren",
+      "contactSeller": "Verkäufer kontaktieren",
+      "coupon": {
+        "label": "Haben Sie einen Gutscheincode?",
+        "placeholder": "Code eingeben",
+        "applyButton": "Anwenden",
+        "appliedText": "'{code}' angewendet",
+        "successTitle": "Gutschein angewendet",
+        "successDescription": "Ihr {type}-Rabatt wurde angewendet.",
+        "failTitle": "Ungültiger Gutschein",
+        "failDescription": "Der Gutscheincode ist für diesen Verkäufer nicht gültig oder ist abgelaufen."
+      },
+      "traceabilityButton": "Rückverfolgungsbericht anzeigen",
+      "order": {
+        "title": "Bestellung für {itemName} aufgeben",
+        "description": "Bestätigen Sie die Menge und fügen Sie Notizen für den Verkäufer hinzu.",
+        "authTitle": "Bitte anmelden",
+        "authDescription": "Sie müssen angemeldet sein, um eine Bestellung aufzugeben.",
+        "quantityErrorTitle": "Ungültige Menge",
+        "quantityErrorDescription": "Bitte geben Sie eine Menge größer als Null ein.",
+        "successTitle": "Bestellung aufgegeben!",
+        "successDescription": "Ihre Bestellung wurde an den Verkäufer gesendet.",
+        "failTitle": "Bestellung fehlgeschlagen",
+        "failDescription": "Bei der Aufgabe Ihrer Bestellung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+        "quantityLabel": "Menge",
+        "notesLabel": "Notizen für den Verkäufer (optional)",
+        "notesPlaceholder": "z.B. besondere Lieferanweisungen",
+        "cancelButton": "Abbrechen",
+        "placingButton": "Bestellung wird aufgegeben...",
+        "confirmButton": "Bestellung bestätigen"
+      },
+      "booking": {
+        "authTitle": "Zum Buchen anmelden",
+        "authDescription": "Sie müssen angemeldet sein, um diesen Dienst zu reservieren.",
+        "failTitle": "Buchung fehlgeschlagen",
+        "dateError": "Bitte wählen Sie ein Start- und Enddatum für Ihre Buchung.",
+        "successTitle": "Buchung bestätigt!",
+        "successDescription": "Ihre Buchungsanfrage wurde an den Betreiber gesendet.",
+        "perNight": "Nacht",
+        "checkIn": "ANREISE",
+        "checkOut": "ABREISE",
+        "addDate": "Datum hinzufügen",
+        "guests": "Gäste",
+        "reserveButton": "Reservieren",
+        "reservingButton": "Reservierung...",
+        "notCharged": "Ihnen wird noch nichts berechnet",
+        "nights": "{count, plural, =1 {Nacht} other {Nächte}}",
+        "serviceFee": "Servicegebühr",
+        "total": "Gesamt",
+        "bookedTitle": "Sie sind gebucht!",
+        "bookedDescription": "Ihre Buchung ist bestätigt. Sehen Sie sich Ihr Ticket für den Check-in an.",
+        "ticketButton": "Check-in-Ticket anzeigen",
+        "modalTitle": "Ihr Buchungsticket",
+        "modalDescription": "Zeigen Sie diesen QR-Code zum Einchecken bei {itemName} vor.",
+        "modalScan": "Der Betreiber scannt diesen QR-Code zum Einchecken."
+      },
+      "manageService": {
+        "title": "Dienstleistung verwalten",
+        "backLink": "Zurück zur Dienstleistung",
+        "tabs": {
+          "checkin": "Check-in",
+          "bookings": "Buchungen",
+          "staff": "Personal"
+        },
+        "bookingsTab": {
+          "title": "Gästebuchungen",
+          "description": "Alle Buchungen für diese Dienstleistung anzeigen und verwalten.",
+          "error": "Fehler beim Abrufen der Buchungen.",
+          "toast": {
+            "noBookings": "Keine Buchungen zum Herunterladen."
+          },
+          "downloadCsv": "CSV herunterladen",
+          "table": {
+            "guest": "Gast",
+            "bookedOn": "Gebucht am",
+            "status": "Status",
+            "checkedInAt": "Eingecheckt um"
+          },
+          "status": {
+            "checkedIn": "Eingecheckt",
+            "booked": "Gebucht"
+          },
+          "noBookings": "Es gibt noch keine Buchungen für diese Dienstleistung."
+        }
+      }
+    },
+    "myOrders": {
+      "backLink": "Zurück zum Marktplatz",
+      "title": "Meine Bestellungen & Verkäufe",
+      "description": "Verwalten Sie Bestellungen, die Sie aufgegeben haben, und Verkäufe, die Sie erhalten haben.",
+      "auth": {
+        "title": "Bitte anmelden",
+        "description": "Sie müssen angemeldet sein, um Ihre Bestellungen anzuzeigen.",
+        "button": "Anmelden"
+      },
+      "toast": {
+        "errorTitle": "Fehler",
+        "fetchError": "Ihre Bestellungen konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
+        "successTitle": "Bestellung aktualisiert",
+        "updateSuccess": "Bestellstatus wurde auf {status} aktualisiert.",
+        "failTitle": "Aktualisierung fehlgeschlagen"
       },
       "table": {
-        "title": "Titel",
-        "category": "Kategorie",
+        "date": "Datum",
+        "buyer": "Käufer",
+        "product": "Produkt",
+        "total": "Gesamt",
         "status": "Status",
-        "created": "Erstellt am",
-        "actions": "Aktionen",
-        "noArticles": "Keine Artikel gefunden."
+        "actions": "Aktionen"
       },
-      "toast": {
-        "loadErrorTitle": "Fehler",
-        "loadErrorDescription": "Artikel konnten nicht abgerufen werden.",
-        "createSuccessTitle": "Artikel erstellt",
-        "createSuccessDescription": "Der neue Artikel wurde erfolgreich veröffentlicht.",
-        "createErrorTitle": "Erstellung fehlgeschlagen"
+      "noOrders": "Sie haben noch keine Bestellungen erhalten.",
+      "status": {
+        "new": "Neu",
+        "confirmed": "Bestätigt",
+        "shipped": "Versendet",
+        "completed": "Abgeschlossen",
+        "cancelled": "Storniert"
+      },
+      "actions": {
+        "confirm": "Bestellung bestätigen",
+        "ship": "Als versendet markieren",
+        "complete": "Bestellung abschließen",
+        "cancel": "Bestellung stornieren"
       }
     },
-    "reports": {
-      "generate": {
-        "title": "Neuen Bericht erstellen",
-        "description": "Erstellen Sie einen regulatorischen oder Compliance-Bericht für einen bestimmten Benutzer.",
-        "reportTypeLabel": "Berichtstyp",
-        "reportTypeVti": "Zusammenfassung der VTI-Ereignisse",
-        "targetUserLabel": "Zielbenutzer",
-        "userSearchPlaceholder": "Nach Name oder E-Mail suchen...",
-        "dateRangeLabel": "Datumsbereich",
-        "datePlaceholder": "Einen Datumsbereich auswählen",
-        "submitButton": "Bericht erstellen"
+    "promotions": {
+      "backToDashboard": "Zurück zum Dashboard",
+      "title": "Meine Werbeaktionen & Gutscheine",
+      "description": "Erstellen und verwalten Sie Rabattcodes für Ihre Marktplatzangebote.",
+      "signInPrompt": "Bitte melden Sie sich an, um Ihre Werbeaktionen zu verwalten.",
+      "create": {
+        "title": "Neuen Gutschein erstellen",
+        "form": {
+          "code": "Gutscheincode",
+          "codePlaceholder": "z.B. ERNTE2024",
+          "usageLimit": "Nutzungslimit",
+          "usageLimitPlaceholder": "z.B. 100",
+          "discountType": "Rabattart",
+          "discountTypePlaceholder": "Wählen Sie eine Art",
+          "percentage": "Prozentual",
+          "fixed": "Fester Betrag",
+          "discountValue": "Rabattwert",
+          "expiryDate": "Ablaufdatum",
+          "pickDate": "Wählen Sie ein Datum",
+          "submitButton": "Gutschein erstellen"
+        },
+        "toast": {
+          "successTitle": "Gutschein erstellt",
+          "successDescription": "Gutschein '{code}' wurde erfolgreich erstellt."
+        }
       },
       "list": {
-        "title": "Erstellte Berichte",
-        "description": "Anzeigen und Herunterladen zuvor erstellter Berichte.",
-        "table": {
-          "reportType": "Berichtstyp",
-          "generatedFor": "Erstellt für",
-          "date": "Datum",
-          "status": "Status",
-          "actions": "Aktionen"
+        "title": "Bestehende Gutscheine",
+        "description": "Sehen und teilen Sie Ihre aktiven Gutscheine.",
+        "expires": "Läuft ab",
+        "usage": "Nutzung",
+        "never": "Nie",
+        "share": "Teilen",
+        "toastTitle": "Link kopiert!",
+        "toastDescription": "Ein teilbarer Link für den Gutschein {link} wurde in Ihre Zwischenablage kopiert.",
+        "shareModal": {
+          "title": "Gutschein teilen",
+          "description": "Teilen Sie diesen Link mit Kunden, um den Gutschein automatisch anzuwenden.",
+          "link": "Link",
+          "copy": "Kopieren",
+          "close": "Schließen"
         },
-        "viewButton": "Ansehen",
-        "noReports": "Es wurden noch keine Berichte erstellt."
+        "noCoupons": "Sie haben noch keine Gutscheine erstellt."
       },
       "toast": {
-        "loadErrorTitle": "Fehler beim Laden der Berichte",
-        "formIncompleteTitle": "Unvollständige Informationen",
-        "formIncompleteDescription": "Bitte wählen Sie einen Berichtstyp, einen Zielbenutzer und einen Datumsbereich.",
-        "generateSuccessTitle": "Berichterstellung gestartet",
-        "generateSuccessDescription": "Der Bericht wird im Hintergrund erstellt.",
-        "generateErrorTitle": "Fehler bei der Berichterstellung"
+        "error": "Fehler",
+        "fetchError": "Ihre Gutscheine konnten nicht abgerufen werden.",
+        "createSuccess": "Gutschein '{code}' wurde erfolgreich erstellt.",
+        "createFail": "Gutscheinerstellung fehlgeschlagen",
+        "createError": "Ein unerwarteter Fehler ist aufgetreten.",
+        "linkCopied": "Link kopiert!",
+        "shareDescription": "Gutscheinlink für '{code}' in die Zwischenablage kopiert."
       }
     }
+  },
+  "talentExchangePage": {
+    "title": "Talentbörse",
+    "description": "Finden Sie qualifizierte Fachkräfte oder bieten Sie Ihre landwirtschaftlichen Dienstleistungen der Gemeinschaft an.",
+    "listServiceButton": "Dienstleistung anbieten",
+    "searchPlaceholder": "Dienstleistungen suchen (z.B. Agronomie, Drohnenpilot)...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "categoryPlaceholder": "Nach Dienstleistungskategorie filtern...",
+    "allCategories": "Alle Kategorien",
+    "noResultsTitle": "Keine Dienstleistungen gefunden",
+    "noResultsDescription": "Es gibt keine Dienstleistungen, die Ihren Kriterien entsprechen. Versuchen Sie, Ihre Suche anzupassen oder seien Sie der Erste, der eine Dienstleistung in dieser Kategorie anbietet!",
+    "toast": {
+      "error": {
+        "title": "Suche fehlgeschlagen",
+        "description": "Beim Abrufen der Dienstleistungen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+      }
+    }
+  },
+  "forumsPage": {
+    "title": "Community-Foren",
+    "description": "Vernetzen Sie sich, teilen Sie Wissen und diskutieren Sie wichtige Themen mit Kollegen aus dem Agrarsektor.",
+    "createTopic": "Neues Thema erstellen",
+    "searchPlaceholder": "Themen suchen...",
+    "viewAll": "Alle ansehen",
+    "posts": "Beiträge",
+    "activity": "Letzte Aktivität",
+    "joinDiscussion": "Diskussion beitreten",
+    "noTopics": "Keine Themen gefunden. Seien Sie der Erste, der eines erstellt!",
+    "pinning": {
+      "unpinnedTitle": "Startseite losgelöst",
+      "unpinnedDescription": "Die Forenseite wurde von Ihrer Startseite entfernt.",
+      "pinnedTitle": "Startseite gepinnt",
+      "pinnedDescription": "Die Forenseite ist jetzt Ihre Standard-Startseite."
+    },
+    "errors": {
+      "loadTitle": "Laden der Themen fehlgeschlagen",
+      "loadDescription": "Beim Abrufen der Forumthemen ist ein Problem aufgetreten. Bitte versuchen Sie es später erneut."
+    }
+  },
+  "groupsPage": {
+    "title": "Community-Gruppen",
+    "description": "Treten Sie öffentlichen oder privaten Gruppen bei, um an bestimmten Projekten, Interessen oder regionalen Initiativen zusammenzuarbeiten.",
+    "createGroupButton": "Neue Gruppe erstellen",
+    "searchPlaceholder": "Gruppen suchen...",
+    "notFound": "Keine Gruppen gefunden, die Ihrer Suche entsprechen.",
+    "create": {
+      "backLink": "Zurück zu den Gruppen",
+      "title": "Neue Gruppe erstellen",
+      "description": "Starten Sie eine neue Community-Gruppe zur Zusammenarbeit.",
+      "form": {
+        "nameLabel": "Gruppenname",
+        "namePlaceholder": "z.B. Kartoffelbauern im Rift Valley",
+        "descriptionLabel": "Gruppenbeschreibung",
+        "descriptionPlaceholder": "Was ist der Zweck dieser Gruppe?",
+        "publicLabel": "Öffentliche Gruppe (jeder kann beitreten)",
+        "submitButton": "Gruppe erstellen",
+        "submittingButton": "Wird erstellt..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentifizierung erforderlich",
+          "description": "Sie müssen angemeldet sein, um eine Gruppe zu erstellen."
+        },
+        "incomplete": {
+          "title": "Unvollständige Informationen",
+          "description": "Bitte geben Sie einen Namen und eine Beschreibung für die Gruppe an."
+        },
+        "success": {
+          "title": "Gruppe erstellt!",
+          "description": "Ihre neue Gruppe wurde erfolgreich erstellt."
+        },
+        "error": {
+          "title": "Erstellung fehlgeschlagen",
+          "description": "Ein unerwarteter Fehler ist aufgetreten."
+        }
+      }
+    },
+    "detail": {
+      "backLink": "Zurück zu allen Gruppen",
+      "discussionsTitle": "Diskussionen",
+      "startDiscussionButton": "Diskussion starten",
+      "noDiscussions": "Noch keine Diskussionen.",
+      "beTheFirst": "Seien Sie der Erste, der eine Unterhaltung beginnt!",
+      "actionsTitle": "Gruppenaktionen",
+      "leaveButton": "Gruppe verlassen",
+      "leavingButton": "Verlasse...",
+      "joinButton": "Gruppe beitreten",
+      "joiningButton": "Beitritt...",
+      "requestJoinButton": "Beitrittsanfrage",
+      "loginToJoinButton": "Zum Beitreten anmelden",
+      "membersTitle": "Mitglieder ({memberCount})",
+      "by": "Von {author}"
+    },
+    "postDetail": {
+      "backLink": "Zurück zu {groupName}",
+      "repliesTitle": "{count, plural, =0 {Noch keine Antworten} =1 {1 Antwort} other {{count} Antworten}}",
+      "noReplies": "Seien Sie der Erste, der auf diesen Beitrag antwortet.",
+      "loadMoreButton": "Weitere Antworten laden",
+      "loadingMoreButton": "Wird geladen...",
+      "yourReplyTitle": "Ihre Antwort",
+      "replyPlaceholder": "Schreiben Sie Ihre Antwort hier...",
+      "replySubmitButton": "Antwort posten",
+      "replySubmittingButton": "Wird gepostet...",
+      "toast": {
+        "emptyReply": "Ihre Antwort darf nicht leer sein.",
+        "replySuccess": "Antwort erfolgreich gepostet!",
+        "submitError": {
+          "title": "Antwort fehlgeschlagen",
+          "description": "Ihre Antwort konnte nicht gepostet werden. Bitte versuchen Sie es erneut."
+        },
+        "loadRepliesError": {
+          "title": "Fehler",
+          "description": "Antworten konnten nicht geladen werden."
+        },
+        "loadPostError": {
+          "title": "Fehler",
+          "description": "Beitragsdetails konnten nicht geladen werden."
+        }
+      },
+      "notFound": {
+        "title": "Beitrag nicht gefunden",
+        "description": "Der von Ihnen gesuchte Beitrag existiert in dieser Gruppe nicht.",
+        "backButton": "Zurück zur Gruppe"
+      }
+    },
+    "createPost": {
+      "backLink": "Zurück zur Gruppe",
+      "title": "Neue Diskussion starten",
+      "description": "Erstellen Sie einen neuen Beitrag, um mit anderen Gruppenmitgliedern zu interagieren.",
+      "form": {
+        "titleLabel": "Beitragstitel",
+        "titlePlaceholder": "Geben Sie einen klaren und prägnanten Titel ein",
+        "contentLabel": "Ihre Nachricht",
+        "contentPlaceholder": "Teilen Sie Details, stellen Sie Fragen oder starten Sie eine Diskussion...",
+        "submitButton": "Beitrag erstellen",
+        "submittingButton": "Wird erstellt..."
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentifizierung erforderlich",
+          "description": "Sie müssen angemeldet sein, um einen Beitrag zu erstellen."
+        },
+        "incomplete": {
+          "title": "Unvollständiger Beitrag",
+          "description": "Bitte geben Sie einen Titel und Inhalt für Ihren Beitrag an."
+        },
+        "success": {
+          "title": "Beitrag erstellt!",
+          "description": "Ihr Beitrag wurde zur Gruppendiskussion hinzugefügt."
+        },
+        "error": {
+          "title": "Erstellung fehlgeschlagen",
+          "description": "Ein unerwarteter Fehler ist aufgetreten."
+        }
+      }
+    },
+    "toast": {
+      "loadError": {
+        "title": "Fehler",
+        "description": "Gruppen konnten nicht geladen werden. Bitte versuchen Sie es später erneut."
+      },
+      "loginToJoin": "Sie müssen angemeldet sein, um einer Gruppe beizutreten.",
+      "joinSuccess": "Gruppe erfolgreich beigetreten!",
+      "joinError": "Beitritt zur Gruppe fehlgeschlagen.",
+      "leaveSuccess": "Sie haben die Gruppe verlassen.",
+      "leaveError": "Verlassen der Gruppe fehlgeschlagen."
+    }
+  },
+  "networkPage": {
+    "title": "Mein Netzwerk",
+    "description": "Entdecken und vernetzen Sie sich mit Interessengruppen aus der gesamten landwirtschaftlichen Wertschöpfungskette.",
+    "myNetworkButton": "Meine Verbindungen",
+    "agentToolsButton": "Agentenwerkzeuge",
+    "aiSuggestionsTitle": "KI-gestützte Vorschläge",
+    "aiSuggestionsDescription": "Basierend auf Ihrem Profil finden Sie hier einige Personen, mit denen Sie sich möglicherweise vernetzen möchten.",
+    "loadError": "Profile konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
+    "noSuggestions": "Derzeit keine neuen Vorschläge. Vervollständigen Sie Ihr Profil für bessere Empfehlungen!",
+    "connect": "Verbinden",
+    "profile": "Profil",
+    "browseAllTitle": "Alle Interessengruppen durchsuchen",
+    "browseAllDescription": "Verwenden Sie die Filter, um genau das zu finden, wonach Sie suchen.",
+    "searchPlaceholder": "Nach Name oder Schlüsselwort suchen...",
+    "locationPlaceholder": "Nach Standort filtern...",
+    "rolePlaceholder": "Nach Rolle filtern...",
+    "allRoles": "Alle Rollen",
+    "noStakeholdersFound": "Keine Interessengruppen gefunden, die Ihren Kriterien entsprechen.",
+    "noStakeholdersHint": "Versuchen Sie, Ihre Suche oder Filter anzupassen.",
+    "toast": {
+      "errorTitle": "Fehler",
+      "loadError": "Netzwerkdaten konnten nicht geladen werden.",
+      "noSuggestions": "KI-Vorschläge konnten nicht geladen werden."
+    }
+  },
+  "myNetworkPage": {
+    "backLink": "Zurück zum Netzwerk",
+    "myConnectionsTab": "Meine Verbindungen ({count})",
+    "pendingRequestsTab": "Ausstehende Anfragen",
+    "connectionsTitle": "Meine Verbindungen",
+    "connectionsDescription": "Ihr etabliertes berufliches Netzwerk auf DamDoh.",
+    "noConnections": "Sie haben noch keine Verbindungen geknüpft. Beginnen Sie mit der Erkundung des Netzwerks!",
+    "requestsTitle": "Verbindungsanfragen",
+    "requestsDescription": "Überprüfen und beantworten Sie ausstehende Verbindungsanfragen.",
+    "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen.",
+    "sentTimeAgo": "Gesendet {timeAgo}",
+    "toast": {
+      "error": "Fehler",
+      "loadError": "Ihre Netzwerkdaten konnten nicht geladen werden.",
+      "respondError": "Antwort auf Anfrage fehlgeschlagen.",
+      "removeError": "Verbindung konnte nicht entfernt werden.",
+      "success": "Erfolg",
+      "requestAccepted": "Verbindungsanfrage angenommen.",
+      "requestDeclined": "Verbindungsanfrage abgelehnt.",
+      "connectionRemoved": "Verbindung wurde entfernt."
+    }
+  },
+  "agentToolsPage": {
+    "backLink": "Zurück zum Netzwerk",
+    "title": "Werkzeuge für Feldagenten",
+    "description": "Suchen Sie sicher nach Benutzerinformationen zur Überprüfung und Unterstützung.",
+    "accessDeniedTitle": "Zugriff verweigert",
+    "accessDeniedDescription": "Sie haben nicht die erforderlichen Berechtigungen, um auf diese Seite zuzugreifen.",
+    "findUserLabel": "Benutzer nach Telefonnummer suchen",
+    "findButton": "Suchen",
+    "resultsTitle": "Suchergebnis",
+    "resultsPlaceholder": "Benutzerdetails werden hier nach einer erfolgreichen Suche angezeigt.",
+    "phoneRequiredError": "Telefonnummer ist erforderlich."
+  },
+  "traceabilityPage": {
+    "title": "Produktrückverfolgbarkeit",
+    "description": "Verfolgen Sie den Weg landwirtschaftlicher Produkte vom Bauernhof bis zum Tisch. Geben Sie eine Vibrant Traceability ID (VTI) ein, um die vollständige Geschichte eines Produkts anzuzeigen.",
+    "inputPlaceholder": "VTI hier eingeben...",
+    "trackButton": "Verfolgen",
+    "vtiDescription": "Die VTI ist ein eindeutiger Code, der auf VTI-fähigen Produktverpackungen zu finden ist.",
+    "recentTitle": "Zuletzt hinzugefügte Chargen",
+    "recentDescription": "Entdecken Sie einige der neuesten rückverfolgbaren Produkte auf der Plattform.",
+    "producerLabel": "Produzent",
+    "harvestDateLabel": "Erntedatum",
+    "viewReportButton": "Vollständigen Bericht anzeigen",
+    "noRecentBatches": "Keine kürzlich hinzugefügten rückverfolgbaren Chargen gefunden.",
+    "detailPage": {
+      "backLink": "Zurück zum Rückverfolgungs-Hub",
+      "invalidIdError": "Ungültige Chargen-ID angegeben.",
+      "loadError": "Rückverfolgungsdaten für diese Charge konnten nicht geladen werden.",
+      "notFoundTitle": "Charge nicht gefunden",
+      "notFoundDescription": "Die von Ihnen eingegebene Rückverfolgungs-ID stimmt mit keiner Charge in unserem System überein.",
+      "traceableProduct": "Rückverfolgbares Produkt",
+      "batchIdLabel": "Chargen-ID",
+      "producerLabel": "Produzent",
+      "harvestDateLabel": "Erntedatum",
+      "yieldLabel": "Anfänglicher Ertrag",
+      "qualityLabel": "Anfängliche Qualitätsstufe",
+      "notSpecified": "Nicht angegeben",
+      "sustainablyGrownTitle": "Nachhaltig angebaut",
+      "sustainablyGrownDescription": "Dieses Produkt wurde mit nachhaltigen Betriebsmitteln angebaut, die auf der DamDoh-Plattform protokolliert wurden.",
+      "journeyTitle": "Produktreise",
+      "journeyDescription": "Ein vollständiges Protokoll der Ereignisse für diese Charge vom Bauernhof bis zu Ihnen.",
+      "geoLocationLabel": "Geolokalisierung",
+      "noEventsFound": "Für diese Charge wurden noch keine Rückverfolgungsereignisse protokolliert.",
+      "noEventDetails": "Keine weiteren Details für dieses Ereignis angegeben.",
+      "observationType": "Beobachtungstyp",
+      "details": "Details",
+      "aiDiagnosis": "KI-Diagnose"
+    }
+  },
+  "aiAssistantPage": {
+    "reset": "Zurücksetzen",
+    "welcome": {
+      "summary": "Hallo! Ich bin der Wissensassistent von {appName} KI, Ihr engagierter Partner für alles rund um die Landwirtschaft! Haben Sie Fragen zur nachhaltigen Landwirtschaft, zur Navigation in der landwirtschaftlichen Lieferkette oder zur Förderung Ihres landwirtschaftlichen Geschäfts? Fragen Sie einfach! Ich kann Sie auch durch die Nutzung der Funktionen der DamDoh-App führen.",
+      "title": "Willkommen bei DamDoh KI",
+      "imagePrompt": "Haben Sie ein Problem mit einer Pflanze? Laden Sie ein Foto hoch und ich werde es analysieren.",
+      "example1": "Wie stelle ich Fisch-Aminosäure her?",
+      "example2": "Was ist 'Gottes Decke' in der Landwirtschaft nach Gottes Weg?",
+      "example3": "Wie kann ich die Gesundheit meines Bodens verbessern?"
+    },
+    "error": "Entschuldigung, ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+  },
+  "farmManagement": {
+    "hub": {
+      "title": "Farm-Management-Zentrale",
+      "description": "Ihr zentrales Dashboard zur Verwaltung aller landwirtschaftlichen Betriebsabläufe, von den Fruchtfolgen bis zu den Finanzen.",
+      "myFarms": {
+        "title": "Meine Farmen & Kulturen",
+        "description": "Fügen Sie Ihre Farmen und Felder hinzu und verwalten Sie sie, und verfolgen Sie die Lebenszyklen einzelner Kulturen.",
+        "button": "Farmen verwalten"
+      },
+      "labor": {
+        "title": "Arbeitsmanagement",
+        "description": "Behalten Sie den Überblick über Ihre Arbeiter, protokollieren Sie Stunden und verwalten Sie Zahlungen.",
+        "button": "Arbeit verwalten"
+      },
+      "knf": {
+        "title": "KNF-Betriebsmittel",
+        "description": "Erstellen und verwalten Sie Ihre eigenen Betriebsmittel nach koreanischer Naturlandwirtschaft.",
+        "button": "KNF-Betriebsmittel verwalten"
+      },
+      "fgw": {
+        "title": "Landwirtschaft nach Gottes Weg",
+        "description": "Lernen und wenden Sie die Prinzipien der Landwirtschaft nach Gottes Weg an.",
+        "button": "FGW-Leitfaden anzeigen"
+      },
+      "financials": {
+        "title": "Geldangelegenheiten",
+        "description": "Verfolgen Sie Einnahmen, Ausgaben und erhalten Sie Einblicke in die Rentabilität.",
+        "button": "Finanzen anzeigen"
+      },
+      "seedStarting": {
+        "title": "Anleitung zur Aussaat",
+        "description": "Eine Anleitung zum erfolgreichen Start von Samen im Innenbereich.",
+        "button": "Anleitung anzeigen"
+      },
+      "familyFarm": {
+        "title": "200m² Familienfarm",
+        "description": "Erkunden Sie das Modell für eine hochproduktive, integrierte Kleinbauernfarm.",
+        "button": "Modell anzeigen"
+      },
+      "assetManagement": {
+        "title": "Vermögensverwaltung",
+        "description": "Verfolgen Sie Ihre Ausrüstung, Werkzeuge und andere landwirtschaftliche Vermögenswerte.",
+        "button": "Vermögen verwalten"
+      }
+    },
+    "myFarms": {
+      "backToDashboard": "Zurück zur Zentrale",
+      "title": "Meine Farmen",
+      "addNewFarmButton": "Neue Farm hinzufügen",
+      "size": "Größe",
+      "viewFarmButton": "Farmdetails anzeigen",
+      "noFarmsTitle": "Keine Farmen gefunden",
+      "noFarmsDescription": "Sie haben noch keine Farmen hinzugefügt. Beginnen Sie, indem Sie Ihre erste hinzufügen.",
+      "toast": {
+        "errorTitle": "Fehler",
+        "fetchError": "Ihre Farmen konnten nicht abgerufen werden. Bitte versuchen Sie es erneut."
+      },
+      "auth": {
+        "title": "Bitte anmelden",
+        "description": "Sie müssen angemeldet sein, um Ihre Farmen zu verwalten.",
+        "button": "Anmelden"
+      }
+    },
+    "createFarm": {
+      "backToFarms": "Zurück zu Meine Farmen",
+      "title": "Neue Farm hinzufügen",
+      "description": "Füllen Sie die folgenden Details aus, um eine neue Farm in Ihrem Profil zu registrieren.",
+      "toast": {
+        "authErrorTitle": "Nicht authentifiziert",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Farm zu erstellen.",
+        "successTitle": "Farm erstellt!",
+        "successDescription": "{farmName} wurde erfolgreich zu Ihrem Profil hinzugefügt.",
+        "errorTitle": "Erstellung fehlgeschlagen"
+      },
+      "form": {
+        "farmNameLabel": "Farmname",
+        "farmNamePlaceholder": "z.B. Green Valley Organics",
+        "locationLabel": "Standort",
+        "locationPlaceholder": "z.B. Nakuru, Kenia",
+        "locationDescription": "Geben Sie einen allgemeinen Standort an, wie Stadt/Region und Land.",
+        "sizeLabel": "Farmgröße",
+        "sizePlaceholder": "z.B. 50 Hektar",
+        "sizeDescription": "Geben Sie die Einheit an (z.B. acres, Hektar).",
+        "typeLabel": "Farmtyp",
+        "typePlaceholder": "Wählen Sie einen Typ",
+        "types": {
+          "crop": "Ackerbau",
+          "livestock": "Viehzucht",
+          "mixed": "Gemischt (Ackerbau & Viehzucht)",
+          "aquaculture": "Aquakultur",
+          "other": "Andere"
+        },
+        "descriptionLabel": "Beschreibung (optional)",
+        "descriptionPlaceholder": "Eine kurze Beschreibung des Schwerpunkts oder der Mission Ihrer Farm.",
+        "irrigationLabel": "Bewässerungsmethoden (optional)",
+        "irrigationPlaceholder": "z.B. Tröpfchenbewässerung, Regenfeldbau",
+        "irrigationDescription": "Beschreiben Sie die primäre Wasserquelle oder die verwendeten Methoden.",
+        "submitButton": "Farm speichern"
+      }
+    },
+    "farmDetail": {
+      "backToFarms": "Zurück zu Meine Farmen",
+      "registeredOn": "Registriert am {date}",
+      "editFarmButton": "Farmdetails bearbeiten",
+      "crops": {
+        "title": "Kulturen & Felder",
+        "description": "Verwalten Sie die derzeit auf dieser Farm angebauten Kulturen.",
+        "addNewButton": "Neue Kultur hinzufügen",
+        "plantedLabel": "Gepflanzt",
+        "stageLabel": "Aktuelles Stadium",
+        "viewJourneyButton": "Reise anzeigen",
+        "noCrops": "Auf dieser Farm wurden noch keine Kulturen hinzugefügt.",
+        "addFirstButton": "Fügen Sie Ihre erste Kultur hinzu"
+      },
+      "insights": {
+        "title": "Rentabilitätseinblicke",
+        "description": "KI-gestützte Einblicke basierend auf den Daten Ihrer Farm.",
+        "noInsights": "Protokollieren Sie mehr Aktivitäten, um Einblicke zu generieren."
+      },
+      "notFound": {
+        "title": "Farm nicht gefunden",
+        "description": "Wir konnten die gesuchte Farm nicht finden.",
+        "backButton": "Zurück zu Meine Farmen"
+      },
+      "toast": {
+        "notFoundTitle": "Farm nicht gefunden",
+        "loadErrorTitle": "Laden der Farmdaten fehlgeschlagen",
+        "insightsErrorTitle": "Einblicke konnten nicht geladen werden."
+      },
+      "loading": "Lade Farmdetails..."
+    },
+    "createCrop": {
+      "backLink": "Zurück zu den Farmdetails",
+      "title": "Neue Kultur hinzufügen",
+      "description": "Protokollieren Sie eine neue Kultur oder Feldparzelle, um ihre Reise zu verfolgen.",
+      "cropTypeLabel": "Kulturart oder Feld-ID",
+      "cropTypePlaceholder": "z.B. Mais (Feld A), Tomaten (Gewächshaus 2)",
+      "cropTypeDescription": "Seien Sie für eine bessere Verfolgung spezifisch.",
+      "plantingDateLabel": "Pflanzdatum",
+      "datePlaceholder": "Wählen Sie ein Datum",
+      "harvestDateLabel": "Erwartetes Erntedatum (optional)",
+      "yieldLabel": "Erwarteter Ertrag (optional)",
+      "yieldPlaceholder": "z.B. 5 Tonnen/Hektar",
+      "stageLabel": "Aktuelles Stadium (optional)",
+      "stagePlaceholder": "Wählen Sie ein Stadium",
+      "stages": {
+        "Planting": "Pflanzung",
+        "Vegetative": "Vegetativ",
+        "Flowering": "Blüte",
+        "Fruiting": "Fruchtbildung",
+        "Harvesting": "Ernte",
+        "Post-Harvest": "Nach der Ernte"
+      },
+      "notesLabel": "Notizen (optional)",
+      "notesPlaceholder": "Fügen Sie relevante Notizen zu dieser Kultur oder diesem Feld hinzu.",
+      "saveButton": "Kultur speichern",
+      "savingButton": "Speichere...",
+      "toast": {
+        "authErrorTitle": "Nicht authentifiziert",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Kultur anzulegen.",
+        "successTitle": "Kultur hinzugefügt!",
+        "successDescription": "{cropType} wurde erfolgreich protokolliert.",
+        "failTitle": "Erstellung fehlgeschlagen",
+        "failDescription": "Die neue Kultur konnte nicht gespeichert werden. Bitte versuchen Sie es erneut."
+      }
+    },
+    "editCrop": {
+      "backLink": "Zurück zu den Kulturdetails",
+      "title": "Kultur bearbeiten",
+      "description": "Aktualisieren Sie die Details für diese Kultur oder Feldparzelle.",
+      "saveButton": "Änderungen speichern",
+      "savingButton": "Speichere...",
+      "toast": {
+        "notFound": "Kultur nicht gefunden.",
+        "loadError": "Die Kulturdetails zum Bearbeiten konnten nicht geladen werden.",
+        "error": "Fehler",
+        "loadFail": "Laden der Kulturdaten fehlgeschlagen: {message}",
+        "success": "Kultur aktualisiert",
+        "description": "Die Details für {cropType} wurden gespeichert.",
+        "fail": "Aktualisierung fehlgeschlagen"
+      }
+    },
+    "cropDetailPage": {
+      "backLink": "Zurück zu den Farmdetails",
+      "plantedOn": "Gepflanzt am {date}",
+      "editButton": "Kultur bearbeiten",
+      "quickActionsTitle": "Schnellaktionen",
+      "logInputButton": "Betriebsmittel protokollieren",
+      "logObservationButton": "Beobachtung protokollieren",
+      "logHarvestButton": "Ernte protokollieren",
+      "journeyTitle": "Kulturreise & Rückverfolgungsprotokoll",
+      "noActivities": "Für diese Kultur wurden noch keine Aktivitäten protokolliert.",
+      "loading": "Lade Kulturdetails...",
+      "notFound": "Kultur nicht gefunden.",
+      "toast": {
+        "notFound": "Kultur nicht gefunden.",
+        "loadError": "Kulturdetails konnten nicht geladen werden."
+      },
+      "eventPayload": {
+        "noDetails": "Für dieses Ereignis wurden keine weiteren Details angegeben.",
+        "observationType": "Beobachtungstyp",
+        "details": "Details",
+        "aiDiagnosis": "KI-Diagnose"
+      }
+    },
+    "logInput": {
+      "backLink": "Zurück zu den Farmdetails",
+      "title": "Betriebsmittelanwendung protokollieren",
+      "description": "Erfassen Sie die Anwendung von Düngemitteln, Pestiziden, KNF-Betriebsmitteln oder Wasser.",
+      "useKNFLabel": "Gespeicherte KNF-Charge verwenden (optional)",
+      "useKNFPlaceholder": "Wählen Sie eine fertige Charge",
+      "manualInputLabel": "Betriebsmittelname / -typ",
+      "manualInputPlaceholder": "z.B. DAP-Dünger, Neemöl, Bewässerungswasser",
+      "dateLabel": "Anwendungsdatum",
+      "quantityLabel": "Menge",
+      "quantityPlaceholder": "z.B. 50",
+      "unitLabel": "Einheit",
+      "unitPlaceholder": "z.B. kg, Liter, ml",
+      "methodLabel": "Anwendungsmethode (optional)",
+      "methodPlaceholder": "z.B. Blattspritzung, Bodendüngung",
+      "saveButton": "Protokoll speichern",
+      "savingButton": "Speichere...",
+      "toast": {
+        "authErrorTitle": "Nicht authentifiziert",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Anwendung zu protokollieren.",
+        "success": "Protokoll gespeichert",
+        "description": "Die Betriebsmittelanwendung wurde erfolgreich erfasst.",
+        "fail": "Speichern fehlgeschlagen"
+      }
+    },
+    "logObservation": {
+      "backLink": "Zurück zu den Farmdetails",
+      "title": "Beobachtung protokollieren",
+      "description": "Erfassen Sie Beobachtungen zur Gesundheit der Pflanzen, zum Wachstum, zu Schädlingen oder zu den Umgebungsbedingungen.",
+      "typeLabel": "Beobachtungstyp",
+      "typePlaceholder": "Wählen Sie einen Typ...",
+      "types": {
+        "Growth": "Wachstumsstadium-Update",
+        "Pest": "Schädlingsbefall",
+        "Disease": "Krankheitssymptome",
+        "Nutrient": "Nährstoffmangelzeichen",
+        "Water": "Wasserstress/Überfluss",
+        "Weather": "Wetterauswirkung",
+        "General": "Allgemeine Notiz"
+      },
+      "dateLabel": "Beobachtungsdatum",
+      "detailsLabel": "Details & Notizen",
+      "detailsPlaceholder": "Beschreiben Sie detailliert, was Sie beobachtet haben.",
+      "uploadLabel": "Bild hochladen (optional)",
+      "uploadDescription": "Fügen Sie ein Foto für eine KI-Diagnose oder für visuelle Aufzeichnungen hinzu.",
+      "saveButton": "Beobachtung speichern",
+      "processingButton": "Verarbeite...",
+      "toast": {
+        "authErrorTitle": "Nicht authentifiziert",
+        "authErrorDescription": "Sie müssen angemeldet sein, um eine Beobachtung zu protokollieren.",
+        "aiAnalyzing": "Analysiere Bild...",
+        "aiDescription": "Unsere KI untersucht Ihr Foto, das kann einen Moment dauern.",
+        "aiComplete": "KI-Analyse abgeschlossen!",
+        "aiCompleteDescription": "Überprüfen Sie die Analyse im Rückverfolgungsprotokoll.",
+        "aiFailTitle": "KI-Analyse fehlgeschlagen",
+        "aiFailDescription": "Das Bild konnte nicht analysiert werden. Die Beobachtung wird ohne KI-Einblicke gespeichert.",
+        "uploading": "Lade Bild hoch",
+        "uploadingDescription": "Ihr Bild wird hochgeladen.",
+        "uploadComplete": "Upload abgeschlossen!",
+        "success": "Beobachtung gespeichert",
+        "successDescription": "Ihre Beobachtung wurde erfolgreich protokolliert.",
+        "fail": "Speichern fehlgeschlagen"
+      }
+    },
+    "logHarvest": {
+      "backLink": "Zurück zu den Farmdetails",
+      "title": "Ernte für {cropType} protokollieren",
+      "description": "Erfassen Sie die Details Ihrer Ernte. Dadurch wird eine neue rückverfolgbare Charge (VTI) erstellt.",
+      "harvestDateLabel": "Erntedatum",
+      "yieldLabel": "Ertrag (in kg)",
+      "yieldPlaceholder": "z.B. 500",
+      "qualityLabel": "Qualitätsstufe",
+      "qualityPlaceholder": "z.B. Güteklasse A, Exportqualität",
+      "notesLabel": "Erntenotizen (optional)",
+      "notesPlaceholder": "z.B. Geerntet aus dem nördlichen Bereich.",
+      "saveButton": "Ernte protokollieren & VTI erstellen",
+      "savingButton": "Speichere...",
+      "offlineToast": {
+        "title": "Offline arbeiten",
+        "description": "Das Ernteprotokoll wurde lokal gespeichert und wird synchronisiert, um eine VTI zu erstellen, wenn Sie wieder online sind."
+      },
+      "success": {
+        "title": "Ernte protokolliert!",
+        "description": "Eine neue VTI ({vtiId}) wurde für Ihre Charge von {cropType} erstellt.",
+        "successCardTitle": "Ernte protokolliert & VTI erstellt!",
+        "successCardDescription": "Sie haben die Ernte für Ihre {cropType}-Charge erfolgreich protokolliert. Ihr wurde die überprüfbare Rückverfolgungs-ID zugewiesen: {vtiId}",
+        "viewReportButton": "Rückverfolgungsbericht anzeigen",
+        "sellButton": "Diese Charge verkaufen",
+        "logAnotherButton": "Weitere Ernte protokollieren",
+        "backToFarmButton": "Zurück zu den Farmdetails"
+      },
+      "fail": {
+        "title": "Protokollierung der Ernte fehlgeschlagen"
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Zurück zur Farm",
+      "title": "Farmdetails bearbeiten",
+      "description": "Aktualisieren Sie die Informationen für diese Farm.",
+      "form": {
+        "submitButton": "Änderungen speichern"
+      },
+      "toast": {
+        "notFoundTitle": "Nicht gefunden",
+        "loadError": "Die Farmdetails zum Bearbeiten konnten nicht geladen werden.",
+        "error": "Fehler",
+        "loadFail": "Laden der Farmdaten fehlgeschlagen: {message}",
+        "successTitle": "Farm aktualisiert",
+        "successDescription": "Die Details für {farmName} wurden gespeichert.",
+        "errorTitle": "Aktualisierung fehlgeschlagen"
+      }
+    }
+  },
+  "financialsPage": {
+    "title": "Finanzmanagement"
   }
 }

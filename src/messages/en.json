@@ -448,26 +448,34 @@
         "modalDescription": "Present this QR code for check-in at {itemName}.",
         "modalScan": "Operator will scan this QR code for check-in."
       },
-      "manageService": "Manage Service",
-      "bookingsTab": {
-        "title": "Guest Bookings",
-        "description": "View and manage all bookings for this service.",
-        "error": "Error fetching bookings.",
-        "toast": {
-          "noBookings": "No bookings to download."
+      "manageService": {
+        "title": "Manage Service",
+        "backLink": "Back to Service",
+        "tabs": {
+          "checkin": "Check-in",
+          "bookings": "Bookings",
+          "staff": "Staff"
         },
-        "downloadCsv": "Download CSV",
-        "table": {
-          "guest": "Guest",
-          "bookedOn": "Booked On",
-          "status": "Status",
-          "checkedInAt": "Checked In At"
-        },
-        "status": {
-          "checkedIn": "Checked In",
-          "booked": "Booked"
-        },
-        "noBookings": "There are no bookings for this service yet."
+        "bookingsTab": {
+          "title": "Guest Bookings",
+          "description": "View and manage all bookings for this service.",
+          "error": "Error fetching bookings.",
+          "toast": {
+            "noBookings": "No bookings to download."
+          },
+          "downloadCsv": "Download CSV",
+          "table": {
+            "guest": "Guest",
+            "bookedOn": "Booked On",
+            "status": "Status",
+            "checkedInAt": "Checked In At"
+          },
+          "status": {
+            "checkedIn": "Checked In",
+            "booked": "Booked"
+          },
+          "noBookings": "There are no bookings for this service yet."
+        }
       }
     },
     "myOrders": {
@@ -825,7 +833,7 @@
       "journeyDescription": "A complete log of events for this batch from farm to you.",
       "geoLocationLabel": "Geo-location",
       "noEventsFound": "No traceability events have been logged for this batch yet.",
-      "noEventDetails": "No details provided for this event.",
+      "noEventDetails": "No further details provided for this event.",
       "observationType": "Observation Type",
       "details": "Details",
       "aiDiagnosis": "AI Diagnosis"
@@ -834,7 +842,7 @@
   "aiAssistantPage": {
     "reset": "Reset",
     "welcome": {
-      "summary": "Hello! I'm DamDoh AI's Knowledge, your dedicated partner for all things agriculture! Wondering about sustainable farming, navigating the agri-supply chain, or boosting your farming business? Just ask! I can also guide you through using the DamDoh app's features.",
+      "summary": "Hello! I'm {appName}'s AI Knowledge assistant, your dedicated partner for all things agriculture! Wondering about sustainable farming, navigating the agri-supply chain, or boosting your farming business? Just ask! I can also guide you through using the DamDoh app's features.",
       "title": "Welcome to DamDoh AI",
       "imagePrompt": "Got a crop concern? Upload a photo and I'll analyze it.",
       "example1": "How do I make Fish Amino Acid?",
