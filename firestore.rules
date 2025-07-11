@@ -3,227 +3,139 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-<<<<<<< HEAD
-  
-    // Helper function to check if a user is authenticated
+
+    // --- Helper Functions ---
     function isAuthenticated() {
       return request.auth != null;
     }
-    
-    // Helper function to check if the requesting user is the owner of a document
+
     function isOwner(userId) {
       return request.auth.uid == userId;
     }
 
+    // Checks if the user has one of the specified roles.
+    function hasRole(roles) {
+      return isAuthenticated() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles.hasAny(roles);
+    }
+    
+    // Checks if incoming data for a write request contains all required keys.
+    function hasAllKeys(keys) {
+      return request.resource.data.keys().hasAll(keys);
+    }
+    
+    // --- Default Deny Rule ---
+    // Security Best Practice: By default, deny all access. Specific rules below will grant access.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
     // =================================
-    // Users Collection
+    //  Core User & System Collections
     // =================================
+
     match /users/{userId} {
-      // Anyone can read a user's public profile
-      allow read: if true;
-      // Only the user themselves can create or update their own profile
-      allow write: if isOwner(userId);
-      // Nobody can delete user profiles from the client
+      // Authenticated users can read public profiles, but not sensitive fields.
+      // This will be complemented by stripping sensitive data in Cloud Functions.
+      allow read: if isAuthenticated();
+      // A user can create their own profile.
+      allow create: if isOwner(userId);
+      // A user can only update their own profile, and cannot change their role.
+      allow update: if isOwner(userId) && request.resource.data.role == resource.data.role;
+      // Users cannot delete their profiles directly; this must be done via a Cloud Function.
       allow delete: if false;
     }
 
-    // =================================
-    // Marketplace, Orders & Coupons
-    // =================================
-    match /marketplaceItems/{listingId} {
-      // Anyone can read marketplace listings
-      allow read: if true;
-      // Any authenticated user can create a listing
-      allow create: if isAuthenticated();
-      // Only the seller can update or delete their own listing
-      allow update, delete: if isOwner(resource.data.sellerId);
-    }
-    
-    match /marketplace_orders/{orderId} {
-      // Only the buyer or seller can read an order
-      allow read: if isOwner(resource.data.buyerId) || isOwner(resource.data.sellerId);
-      // Orders are created by backend functions, not directly by clients
+    match /search_index/{docId} {
+      // The search index is read-only for all authenticated clients.
+      allow read: if isAuthenticated();
+      // Writes are handled exclusively by the `onSourceDocumentWriteIndex` Cloud Function.
       allow write: if false;
     }
 
-    match /marketplace_coupons/{couponId} {
-        // Coupons can only be read by the seller or validated by a cloud function
-        allow read: if isOwner(resource.data.sellerId);
-        // Coupons are created by backend functions
-        allow write: if false;
-    }
-
-
-    // =================================
-    // Farm Management Collections
-    // =================================
-    match /farms/{farmId} {
-      // A user can read/write/delete only their own farm documents
-      allow read, write, delete: if isOwner(resource.data.owner_id);
-      allow create: if isOwner(request.resource.data.owner_id);
-    }
-
-    match /crops/{cropId} {
-      // A user can read/write/delete only their own crop documents
-      allow read, write, delete: if isOwner(resource.data.owner_id);
-      allow create: if isOwner(request.resource.data.owner_id);
-    }
-    
-    match /knf_batches/{batchId} {
-      // A user can read/write/delete only their own KNF batches
+    match /notifications/{notificationId} {
+      // A user can only access their own notifications.
       allow read, write, delete: if isOwner(resource.data.userId);
       allow create: if isOwner(request.resource.data.userId);
     }
+    
+    match /vti_registry/{vtiId} {
+        // VTI data is public and immutable from the client-side.
+        allow read: if true;
+        allow write: if false; // All traceability events are logged via secure Cloud Functions.
+    }
 
     // =================================
-    // Community (Forums & Groups)
+    //  Marketplace
     // =================================
+
+    match /marketplaceItems/{listingId} {
+      // Anyone can read marketplace listings.
+      allow read: if true;
+      // Any authenticated user can create a listing, provided it has the correct schema.
+      allow create: if isAuthenticated() && hasAllKeys(['sellerId', 'name', 'price', 'listingType']);
+      // Only the seller can update their listing, and they cannot change the sellerId.
+      allow update: if isOwner(resource.data.sellerId) && request.resource.data.sellerId == resource.data.sellerId;
+      // Only the seller can delete their listing.
+      allow delete: if isOwner(resource.data.sellerId);
+    }
+
+    match /marketplace_orders/{orderId} {
+      // Only the buyer or seller can read an order. Admins can also read orders.
+      allow read: if isOwner(resource.data.buyerId) || isOwner(resource.data.sellerId) || hasRole(['admin']);
+      // Orders are created and updated by backend functions, not directly by clients.
+      allow write: if false;
+    }
+
+    // =================================
+    //  Farm Management
+    // =================================
+
+    match /farms/{farmId} {
+      // A user can manage their own farm documents.
+      allow create: if isOwner(request.resource.data.owner_id);
+      allow read, update, delete: if isOwner(resource.data.owner_id);
+    }
+
+    match /crops/{cropId} {
+       // A user can manage their own crop documents.
+      allow create: if isOwner(request.resource.data.owner_id);
+      allow read, update, delete: if isOwner(resource.data.owner_id);
+    }
+
+    // =================================
+    //  Community (Forums & Groups)
+    // =================================
+
     match /forums/{topicId} {
-      // Any authenticated user can read topics
       allow read: if isAuthenticated();
-      // Any authenticated user can create a new topic
       allow create: if isAuthenticated();
-      // Only the creator can update/delete their topic (can be expanded to admins/mods)
-      allow update, delete: if isOwner(resource.data.createdBy);
+      // Only the creator or a moderator/admin can update or delete a topic.
+      allow update, delete: if isOwner(resource.data.createdBy) || hasRole(['moderator', 'admin']);
     }
 
     match /forums/{topicId}/posts/{postId} {
-        // Any authenticated user can read posts
-        allow read: if isAuthenticated();
-        // Any authenticated user can create a post
-        allow create: if isAuthenticated();
-        // Only post author can update/delete
-        allow update, delete: if isOwner(resource.data.authorRef);
-    }
-
-    match /forums/{topicId}/posts/{postId}/replies/{replyId} {
-        // Any authenticated user can read replies
-        allow read: if isAuthenticated();
-        // Any authenticated user can create a reply
-        allow create: if isAuthenticated();
-        // Only reply author can update/delete
-        allow update, delete: if isOwner(resource.data.authorRef);
-    }
-    
-    match /groups/{groupId} {
-        // Allow read if the group is public, or if the user is a member (future implementation)
-        allow read: if resource.data.isPublic == true || isAuthenticated(); // Simplified for now
-        // Any authenticated user can create a group
-        allow create: if isAuthenticated();
-        // Only the owner can update/delete
-        allow update, delete: if isOwner(resource.data.ownerId);
-    }
-    
-     match /groups/{groupId}/members/{memberId} {
-        // A user can join/leave a group (write to their own member doc)
-        allow write: if isOwner(memberId);
-        // Members can read the member list
-        allow read: if isAuthenticated();
-     }
-
-
-    // =================================
-    // Read-Only & Backend-Managed Collections
-    // =================================
-    match /knowledge_base/{docId} {
-      // Anyone authenticated can read the knowledge base
       allow read: if isAuthenticated();
-      // No client-side writes
-      allow write: if false;
-    }
-    
-    match /traceability_events/{eventId} {
-       // Only allow reading of public events or events related to the user
-       allow read: if isAuthenticated();
-       // All events must be logged via backend Cloud Functions
-       allow write: if false;
+      allow create: if isAuthenticated();
+      // Only the author or a moderator/admin can update or delete a post.
+      allow update, delete: if isOwner(resource.data.authorRef) || hasRole(['moderator', 'admin']);
     }
 
-    // Default deny all other collections
-    match /{document=**} {
-      allow read, write: if false;
-=======
-
-    // By default, deny all access. Specific rules below will override this.
-    match /{document=**} {
-      allow read, write: if false;
+    match /groups/{groupId} {
+      // Allow read if the group is public, or if the user is a member (future).
+      allow read: if resource.data.isPublic == true || isAuthenticated(); // Simplified for now
+      allow create: if isAuthenticated();
+      // Only the owner or an admin can update or delete a group.
+      allow update, delete: if isOwner(resource.data.ownerId) || hasRole(['admin']);
     }
 
-    // Users can read any profile, but only write to their own.
-    match /users/{userId} {
-      allow read: if request.auth != null;
-      // Allow create/update/delete only if the user is modifying their own document.
-      allow write: if request.auth.uid == userId;
-    }
+    // =================================
+    //  Read-Only / Backend-Managed
+    // =================================
 
-    // Authenticated users can create/read/write/delete their own data in these collections.
-    // The functions check for ownership (e.g., resource.data.owner_id == request.auth.uid)
-    match /farms/{farmId} {
-      allow read, write: if request.auth != null;
-    }
-    
-    match /crops/{cropId} {
-      allow read, write: if request.auth != null;
-    }
-    
-    match /knf_batches/{batchId} {
-      allow read, write: if request.auth != null;
-    }
-
-    // Marketplace is public to read. Authenticated users can create/edit their own items.
-    match /marketplaceItems/{itemId} {
-      allow read: if true; 
-      allow create: if request.auth != null;
-      allow update, delete: if request.auth != null && resource.data.sellerId == request.auth.uid;
-    }
-    
-    // Marketplace coupons are managed by their seller.
-    match /marketplace_coupons/{couponId} {
-        allow read: if true;
-        allow write: if request.auth != null && resource.data.sellerId == request.auth.uid;
-    }
-
-    // Events are public. Only authenticated users can interact.
-    // Specific write logic (like registering vs editing) is handled in Cloud Functions.
-    match /agri_events/{eventId}/{documents=**} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-
-    // Knowledge base is public read-only for clients.
     match /knowledge_base/{docId} {
-      allow read: if true;
-      allow write: if false; // Managed by backend functions.
-    }
-    
-    // Forums and Groups are public to read, but only authenticated users can write.
-    match /forums/{topicId}/{documents=**} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-    
-    match /groups/{groupId}/{documents=**} {
-        allow read: if true;
-        allow write: if request.auth != null;
-    }
-
-    // Posts are public to read, but writing is restricted.
-    match /posts/{postId}/{documents=**} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-    
-    // Notifications are private to the user they are for.
-    match /notifications/{notificationId} {
-      allow read, write: if request.auth != null && resource.data.userId == request.auth.uid;
-    }
-    
-    // Financial transactions are private to the user.
-    match /financial_transactions/{txId} {
-        // userRef is a document reference, so we access its id with .id
-        allow write: if request.auth != null && request.resource.data.userRef == /databases/$(database)/documents/users/$(request.auth.uid);
-        allow read: if request.auth != null && resource.data.userRef.id == request.auth.uid;
->>>>>>> Market-Place-Traceability
+      // Knowledge base is read-only for authenticated users.
+      allow read: if isAuthenticated();
+      allow write: if false;
     }
   }
 }

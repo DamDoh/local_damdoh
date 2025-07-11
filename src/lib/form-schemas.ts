@@ -31,7 +31,11 @@ export const createMarketplaceItemSchema = z.object({
     errorMap: () => ({ message: "Please select a valid category." }),
   }),
   isSustainable: z.boolean().default(false).optional(),
-  location: z.string().min(2, "Location must be at least 2 characters long.").max(100, "Location cannot exceed 100 characters."),
+  location: z.object({
+    lat: z.number(),
+    lng: z.number(),
+    address: z.string().optional(),
+  }),
   imageUrl: z.string().url({ message: "Please enter a valid URL for the image (e.g., https://placehold.co/300x200.png)." }).optional().or(z.literal('')),
   imageFile: imageFileSchema,
   dataAiHint: z.string().optional(),
@@ -248,5 +252,3 @@ export const createInsuranceApplicationSchema = z.object({
   coverageValue: z.coerce.number().positive("Coverage value must be a positive number."),
 });
 export type CreateInsuranceApplicationValues = z.infer<typeof createInsuranceApplicationSchema>;
-
-      
