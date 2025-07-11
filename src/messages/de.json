@@ -952,7 +952,7 @@
       "asset": "Landwirtschaftliche Betriebsversicherung",
       "weather": "Parametrische Wetterversicherung",
       "descriptionLabel": "Kurzbeschreibung",
-      "descriptionPlaceholder": "Eine kurze Zusammenfassung des Produkts.",
+      "descriptionPlaceholder": "Ein kurzer Überblick über das Produkt.",
       "coverageLabel": "Deckungsdetails",
       "coveragePlaceholder": "Beschreiben Sie, was abgedeckt ist, Selbstbehalte usw.",
       "premiumLabel": "Prämienbetrag (USD)",
@@ -1108,5 +1108,3 @@
     }
   }
 }
-
-    
