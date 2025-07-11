@@ -41,7 +41,8 @@
     "market": "Mercado",
     "search": "Buscar",
     "forums": "Foros",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "messages": "Mensajes"
   },
   "OfflineIndicator": {
     "tooltip": {
@@ -392,7 +393,7 @@
     "findUserLabel": "Buscar Usuario por Número de Teléfono",
     "phoneRequiredError": "Se requiere un número de teléfono.",
     "findButton": "Buscar",
-    "resultsTitle": "Resultados de la Búsqueda",
+    "resultsTitle": "Resultados de la búsqueda",
     "resultsPlaceholder": "Los detalles del usuario aparecerán aquí después de una búsqueda exitosa."
   },
   "Marketplace": {
@@ -433,7 +434,7 @@
     "description": "Siga el viaje de sus productos desde la granja hasta el consumidor. Ingrese un ID de lote para comenzar.",
     "inputPlaceholder": "Ingrese el ID de Trazabilidad...",
     "trackButton": "Rastrear",
-    "vtiDescription": "El ID es un identificador único para un lote específico de un producto.",
+    "vtiDescription": "El ID es un identificador único para un lote de producto específico.",
     "recentTitle": "Lotes Recientemente Rastreables",
     "recentDescription": "Vea los productos más recientes con trazabilidad completa en la plataforma.",
     "noRecentBatches": "No hay lotes públicamente rastreables disponibles en este momento.",

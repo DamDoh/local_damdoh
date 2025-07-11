@@ -40,8 +40,9 @@
     "home": "หน้าแรก",
     "market": "ตลาด",
     "search": "ค้นหา",
-    "messages": "ข้อความ",
-    "profile": "โปรไฟล์"
+    "forums": "ฟอรั่ม",
+    "profile": "โปรไฟล์",
+    "messages": "ข้อความ"
   },
   "OfflineIndicator": {
     "tooltip": {

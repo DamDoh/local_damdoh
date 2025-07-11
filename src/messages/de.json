@@ -40,8 +40,9 @@
     "home": "Start",
     "market": "Markt",
     "search": "Suche",
-    "messages": "Nachrichten",
-    "profile": "Profil"
+    "forums": "Foren",
+    "profile": "Profil",
+    "messages": "Nachrichten"
   },
   "OfflineIndicator": {
     "tooltip": {
@@ -405,7 +406,7 @@
       "qualityLabel": "Qualität",
       "notSpecified": "Nicht angegeben",
       "journeyTitle": "Die Reise des Produkts",
-      "journeyDescription": "Eine chronologische Aufzeichnung aller Ereignisse für diesen Batch.",
+      "journeyDescription": "Ein chronologisches Protokoll aller Ereignisse für diesen Batch.",
       "noEventDetails": "Keine zusätzlichen Details für dieses Ereignis.",
       "observationType": "Beobachtungstyp",
       "details": "Details",

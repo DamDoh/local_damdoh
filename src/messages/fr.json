@@ -40,8 +40,9 @@
     "home": "Accueil",
     "market": "Marché",
     "search": "Recherche",
-    "messages": "Messages",
-    "profile": "Profil"
+    "forums": "Forums",
+    "profile": "Profil",
+    "messages": "Messages"
   },
   "OfflineIndicator": {
     "tooltip": {
@@ -349,7 +350,7 @@
   },
   "networkPage": {
     "title": "Réseau des Acteurs",
-    "description": "Découvrez et connectez-vous avec des agriculteurs, des acheteurs, des prestataires de services et des experts tout au long de la chaîne de valeur agricole.",
+    "description": "Découvrez et connectez-vous avec des agriculteurs, des acheteurs, des prestataires de services et des experts en toute la chaîne de valeur agricole.",
     "myNetworkButton": "Mon Réseau",
     "agentToolsButton": "Outils d'Agent",
     "aiSuggestionsTitle": "Suggestions par IA",
@@ -442,8 +443,8 @@
   },
   "traceabilityPage": {
     "title": "Centre de Traçabilité",
-    "description": "Suivez le parcours de vos produits de la ferme à la table. Entrez un ID de lot pour commencer.",
-    "inputPlaceholder": "Entrez l'ID de traçabilité...",
+    "description": "Suivez le voyage de vos produits de la ferme à la table. Entrez un ID de lot pour commencer.",
+    "inputPlaceholder": "Entrez l'ID de Traçabilité...",
     "trackButton": "Suivre",
     "vtiDescription": "L'ID est un identifiant unique pour un lot de produit spécifique.",
     "recentTitle": "Lots Récemment Traçables",
