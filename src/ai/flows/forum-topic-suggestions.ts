@@ -1,63 +1,45 @@
-// ForumTopicSuggestions.ts
+
 'use server';
+import { ai } from '@/ai/genkit';
+import { z } from 'zod';
 
-/**
- * @fileOverview This file defines a Genkit flow for suggesting relevant forum topics to users.
- *
- * It takes user profile information and activity data as input and returns a list of suggested forum topics.
- * - suggestForumTopics - A function that suggests forum topics.
- * - SuggestForumTopicsInput - The input type for the suggestForumTopics function.
- * - SuggestForumTopicsOutput - The return type for the suggestForumTopics function.
- */
-
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
-
-const SuggestForumTopicsInputSchema = z.object({
-  stakeholderProfile: z
-    .string()
-    .describe('The profile information of the stakeholder, including their role, preferences, and location.'),
-  recentActivity: z
-    .string()
-    .describe('A summary of the users recent activity on the platform, including forum posts, liked content, and searches.'),
-});
-export type SuggestForumTopicsInput = z.infer<typeof SuggestForumTopicsInputSchema>;
-
-const SuggestForumTopicsOutputSchema = z.object({
-  suggestedTopics: z
-    .array(z.string())
-    .describe('A list of suggested forum topics based on the users profile and activity.'),
-});
-export type SuggestForumTopicsOutput = z.infer<typeof SuggestForumTopicsOutputSchema>;
-
-export async function suggestForumTopics(input: SuggestForumTopicsInput): Promise<SuggestForumTopicsOutput> {
-  return suggestForumTopicsFlow(input);
-}
-
-const prompt = ai.definePrompt({
-  name: 'suggestForumTopicsPrompt',
-  input: {schema: SuggestForumTopicsInputSchema},
-  output: {schema: SuggestForumTopicsOutputSchema},
-  prompt: `You are an expert in matching users with relevant forum topics on an agricultural social media platform.
-
-  Given the following user profile and recent activity, suggest a list of forum topics that would be of interest to the user.
-  Return ONLY a list of topics, one topic per line.
-
-  Stakeholder Profile: {{{stakeholderProfile}}}
-  Recent Activity: {{{recentActivity}}}
-  `,
+export const ForumTopicSuggestionSchema = z.object({
+  title: z.string().describe('A compelling and engaging title for a new forum topic. Should be a question or a statement that encourages discussion.'),
+  description: z.string().describe('A brief, one-sentence description of what the topic will be about, to be used as a placeholder or helper text.'),
+  category: z.enum(['General', 'Technology', 'Markets', 'Sustainability', 'Logistics', 'Policy']).describe('The most relevant category for this suggested topic.'),
 });
 
-const suggestForumTopicsFlow = ai.defineFlow(
+export const ForumTopicSuggestionsOutputSchema = z.object({
+  suggestions: z.array(ForumTopicSuggestionSchema),
+});
+
+const existingTopicsSchema = z.array(z.object({
+    name: z.string(),
+    description: z.string(),
+}));
+
+export const suggestForumTopics = ai.defineFlow(
   {
-    name: 'suggestForumTopicsFlow',
-    inputSchema: SuggestForumTopicsInputSchema,
-    outputSchema: SuggestForumTopicsOutputSchema,
+    name: 'suggestForumTopics',
+    inputSchema: z.object({ existingTopics: existingTopicsSchema }),
+    outputSchema: ForumTopicSuggestionsOutputSchema,
   },
-  async input => {
-    const {output} = await prompt(input);
-    return {
-      suggestedTopics: output!.suggestedTopics,
-    };
+  async (input) => {
+    const llmResponse = await ai.generate({
+      prompt: `Based on the following list of existing forum topics, generate 5 new, engaging, and relevant topic suggestions for an agricultural community platform. The suggestions should cover a range of categories and encourage discussion. Avoid creating duplicates of existing topics.
+
+      Existing Topics:
+      ${input.existingTopics.map(t => `- ${t.name}`).join('
+')}
+
+      Your suggestions should be diverse and interesting.
+      `,
+      output: {
+        schema: ForumTopicSuggestionsOutputSchema,
+      },
+      temperature: 0.8, // Increase creativity
+    });
+
+    return llmResponse.output() || { suggestions: [] };
   }
 );

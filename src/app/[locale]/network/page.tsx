@@ -8,15 +8,14 @@ import Link from "next/link";
 import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { Search, UserPlus, Link as LinkIcon, UserCog, Users, Frown, Loader2, Brain, MapPin } from "lucide-react";
+import { STAKEHOLDER_ROLES } from "@/lib/stakeholder-data"; // Use the new structured data
+import { Search, UserPlus, Link as LinkIcon, UserCog, Users, Frown, Loader2, Brain, MapPin, User } from "lucide-react";
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getAllProfilesFromDB, getMarketplaceRecommendationsAction } from "@/lib/server-actions";
 import { useTranslations } from "next-intl";
 import { useUserProfile } from '@/hooks/useUserProfile';
-import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
 import { useAuth } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { getFunctions, httpsCallable } from 'firebase/functions';
@@ -51,7 +50,6 @@ export default function NetworkPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [roleFilter, setRoleFilter] = useState("all");
-  const [interestFilter, setInterestFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState("");
   const [isConnecting, setIsConnecting] = useState<string | null>(null);
 
@@ -63,10 +61,8 @@ export default function NetworkPage() {
   const { user } = useAuth();
   const { toast } = useToast();
   const functions = getFunctions(firebaseApp);
-  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'sendConnectionRequest'), []);
-  const suggestConnectionsCallable = useMemo(() => httpsCallable(functions, 'suggestConnections'), []);
-  
-  const interests = ['all', 'Grain Trading', 'Organic Inputs', 'Coffee Supply Chain', 'Precision Agriculture', 'Food Processing', 'Agri-Finance', 'Sustainable Sourcing', 'Cold Chain Logistics', 'Export Markets', 'Local Food Systems', 'Post-Harvest Technology', 'Water Management', 'Soil Health'];
+  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'sendConnectionRequest'), [functions]);
+  const suggestConnectionsCallable = useMemo(() => httpsCallable(functions, 'suggestConnections'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -131,24 +127,19 @@ export default function NetworkPage() {
       if (!profile || profile.id === user?.uid) return false;
       const searchLower = searchTerm.toLowerCase();
       const locationLower = locationFilter.toLowerCase();
-
+      
       const nameMatch = (profile.displayName || '').toLowerCase().includes(searchLower);
       const summaryMatch = (profile.profileSummary || '').toLowerCase().includes(searchLower);
       
-      const userRoles = [profile.primaryRole, ...(profile.secondaryRoles || [])].filter(Boolean);
-      const roleMatch = roleFilter === 'all' || userRoles.includes(roleFilter);
-      
-      const interestKeywords = interestFilter.toLowerCase().replace(/-/g, ' ').split(' ');
-      const areasOfInterestLower = (Array.isArray(profile.areasOfInterest) ? profile.areasOfInterest.join(' ') : '').toLowerCase();
-      const interestMatch = interestFilter === 'all' || interestKeywords.every(keyword => areasOfInterestLower.includes(keyword));
+      const roleMatch = roleFilter === 'all' || profile.primaryRole === roleFilter;
       
       const locationMatch = !locationFilter || (profile.location || '').toLowerCase().includes(locationLower);
 
-      return (nameMatch || summaryMatch) && roleMatch && interestMatch && locationMatch;
+      return (nameMatch || summaryMatch) && roleMatch && locationMatch;
     });
-  }, [searchTerm, roleFilter, interestFilter, locationFilter, profiles, user]);
+  }, [searchTerm, roleFilter, locationFilter, profiles, user]);
 
-  const isAgent = currentUserProfile?.primaryRole === 'Field Agent/Agronomist (DamDoh Internal)' || currentUserProfile?.primaryRole === 'Admin';
+  const isAgent = currentUserProfile?.primaryRole === 'Field Agent/Agronomist' || currentUserProfile?.primaryRole === 'Admin';
 
 
   return (
@@ -191,15 +182,16 @@ export default function NetworkPage() {
                         <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow bg-primary/5">
                              <CardHeader className="items-center text-center">
                                 <Avatar className="h-24 w-24 border-2 border-primary mb-2">
-                                    <AvatarImage src={profile.avatarUrl} alt={profile.name} data-ai-hint="profile agriculture business" />
+                                    <AvatarImage src={profile.avatarUrl} alt={profile.name} />
                                     <AvatarFallback className="text-3xl">{profile.name?.substring(0,1) ?? '?'}</AvatarFallback>
                                 </Avatar>
                                 <Link href={`/profiles/${profile.id}`}>
                                     <CardTitle className="text-lg hover:text-primary transition-colors">{profile.name}</CardTitle>
                                 </Link>
                                 <CardDescription className="flex items-center gap-2">
-                                <StakeholderIcon role={profile.role} className="h-4 w-4 text-muted-foreground" />
-                                {profile.role}
+                                  {STAKEHOLDER_ROLES.find(r => r.name === profile.role)?.icon &&
+                                      React.createElement(STAKEHOLDER_ROLES.find(r => r.name === profile.role)!.icon, { className: "h-4 w-4 text-muted-foreground" })}
+                                  {profile.role}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="flex-grow text-center">
@@ -255,7 +247,7 @@ export default function NetworkPage() {
                 onChange={e => setLocationFilter(e.target.value)}
               />
             </div>
-            <div className="grid grid-cols-2 gap-2 lg:col-span-1">
+            <div className="lg:col-span-1">
               <Select value={roleFilter} onValueChange={setRoleFilter}>
                 <SelectTrigger id="role-filter-network">
                   <SelectValue placeholder={t('rolePlaceholder')} />
@@ -263,10 +255,10 @@ export default function NetworkPage() {
                 <SelectContent>
                   <SelectItem value="all">{t('allRoles')}</SelectItem>
                   {STAKEHOLDER_ROLES.map(role => (
-                    <SelectItem key={role} value={role}>
+                    <SelectItem key={role.id} value={role.name}>
                       <div className="flex items-center gap-2">
-                        <StakeholderIcon role={role} className="h-4 w-4 text-muted-foreground" />
-                        <span>{role}</span>
+                        <role.icon className="h-4 w-4 text-muted-foreground" />
+                        <span>{role.name}</span>
                       </div>
                     </SelectItem>
                   ))}
@@ -283,14 +275,15 @@ export default function NetworkPage() {
                 <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow">
                     <CardHeader className="items-center text-center">
                     <Avatar className="h-24 w-24 border-2 border-primary mb-2">
-                        <AvatarImage src={profile.avatarUrl} alt={profile.displayName} data-ai-hint="profile agriculture business" />
+                        <AvatarImage src={profile.avatarUrl} alt={profile.displayName} />
                         <AvatarFallback className="text-3xl">{profile.displayName?.substring(0,1) ?? '?'}</AvatarFallback>
                     </Avatar>
                     <Link href={`/profiles/${profile.id}`}>
                         <CardTitle className="text-lg hover:text-primary transition-colors">{profile.displayName}</CardTitle>
                     </Link>
                     <CardDescription className="flex items-center gap-2">
-                      <StakeholderIcon role={profile.primaryRole} className="h-4 w-4 text-muted-foreground" />
+                      {STAKEHOLDER_ROLES.find(r => r.name === profile.primaryRole)?.icon &&
+                          React.createElement(STAKEHOLDER_ROLES.find(r => r.name === profile.primaryRole)!.icon, { className: "h-4 w-4 text-muted-foreground" })}
                       {profile.primaryRole} - {profile.location}
                     </CardDescription>
                     </CardHeader>

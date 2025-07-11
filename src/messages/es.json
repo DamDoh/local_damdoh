@@ -59,6 +59,40 @@
     "profile": "Perfil",
     "messages": "Mensajes"
   },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Sincronizando {count} acciones pendientes...",
+      "onlinePending": "{count} acciones pendientes. La sincronización comenzará pronto.",
+      "onlineSynced": "Estás en línea. Todos los datos están sincronizados.",
+      "offline": "Estás desconectado. {count, plural, =0 {No hay cambios pendientes.} =1 {1 cambio pendiente.} other {{count} cambios pendientes.}}"
+    },
+    "toast": {
+      "online": {
+        "title": "¡Estás en línea de nuevo!",
+        "description": "Tu conexión ha sido restaurada."
+      },
+      "offline": {
+        "title": "Actualmente estás desconectado",
+        "description": "Los cambios se guardarán localmente y se sincronizarán cuando vuelvas a estar en línea."
+      },
+      "syncing": {
+        "title": "Sincronizando datos...",
+        "description": "Enviando {count, plural, =1 {1 acción sin conexión} other {{count} acciones sin conexión}} al servidor."
+      },
+      "synced": {
+        "title": "Sincronización completa",
+        "description": "Tus cambios sin conexión se han guardado correctamente."
+      },
+      "syncFailed": {
+        "title": "Error de sincronización",
+        "description": "No se pudieron sincronizar los cambios sin conexión. Lo intentaremos de nuevo más tarde."
+      },
+      "queued": {
+        "title": "Acción en cola",
+        "description": "Esta acción se completará cuando vuelvas a estar en línea."
+      }
+    }
+  },
   "AppFooter": {
     "tagline": "Conectando la cadena de valor agrícola para un futuro sostenible.",
     "damdohTitle": "DamDoh",
@@ -537,7 +571,7 @@
           "discountValue": "Valor del Descuento",
           "expiryDate": "Fecha de Vencimiento",
           "pickDate": "Elija una fecha",
-          "submitButton": "Crear Cupón"
+          "submitButton": "Crear el Cupón"
         },
         "toast": {
           "successTitle": "Cupón Creado",
@@ -627,7 +661,7 @@
         "descriptionLabel": "Descripción del Grupo",
         "descriptionPlaceholder": "¿Cuál es el propósito de este grupo?",
         "publicLabel": "Grupo Público (cualquiera puede unirse)",
-        "submitButton": "Crear Grupo",
+        "submitButton": "Crear el Grupo",
         "submittingButton": "Creando..."
       },
       "toast": {
@@ -652,7 +686,7 @@
     "detail": {
       "backLink": "Volver a Todos los Grupos",
       "discussionsTitle": "Discusiones",
-      "startDiscussionButton": "Iniciar Discusión",
+      "startDiscussionButton": "Démarrer une Discussion",
       "noDiscussions": "Aún no hay discusiones.",
       "beTheFirst": "¡Sé el primero en iniciar una conversación!",
       "actionsTitle": "Acciones del Grupo",
@@ -706,7 +740,7 @@
         "titlePlaceholder": "Introduzca un título claro y conciso",
         "contentLabel": "Su Mensaje",
         "contentPlaceholder": "Comparta detalles, haga preguntas o inicie una discusión...",
-        "submitButton": "Crear Publicación",
+        "submitButton": "Crear la Publicación",
         "submittingButton": "Creando..."
       },
       "toast": {
@@ -781,7 +815,7 @@
 
     "toast": {
       "error": "Error",
-      "loadError": "No se pudieron cargar sus datos de red.",
+      "loadError": "Error al cargar sus datos de red.",
       "respondError": "Error al responder a la solicitud.",
       "removeError": "Error al eliminar la conexión.",
       "success": "Éxito",

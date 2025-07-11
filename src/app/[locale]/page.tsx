@@ -8,7 +8,7 @@ import { LandingPage } from '@/components/landing/LandingPage';
 import { useAuth } from '@/lib/auth-utils';
 import { useHomepageRedirect } from '@/hooks/useHomepageRedirect';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { MobileHomepage } from '@/components/dashboard/MobileHomepage';
+import { MobileHomepage, MobileHomepageSkeleton } from '@/components/dashboard/MobileHomepage';
 
 
 function HomePageContent() {
@@ -19,6 +19,10 @@ function HomePageContent() {
   useHomepageRedirect();
 
   if (authLoading || isMobile === undefined) {
+    // If we know it's going to be mobile, show the mobile-specific skeleton
+    if(isMobile) {
+      return <MobileHomepageSkeleton />;
+    }
     return <PageSkeleton />;
   }
 

@@ -98,7 +98,7 @@
   "OfflineIndicator": {
     "tooltip": {
       "syncing": "Synchronisation de {count} actions en attente...",
-      "onlinePending": "{count} actions en attente. Synchronisation imminente.",
+      "onlinePending": "{count} actions en attente. La synchronisation commencera bientôt.",
       "onlineSynced": "Vous êtes en ligne. Toutes les données sont synchronisées.",
       "offline": "Vous êtes hors ligne. {count, plural, =0 {Aucun changement en attente.} =1 {1 changement en attente.} other {{count} changements en attente.}}"
     },
@@ -128,9 +128,6 @@
         "description": "Cette action sera complétée lorsque vous serez de nouveau en ligne."
       }
     }
-  },
-  "LanguageSwitcher": {
-    "toggle": "Changer de langue"
   },
   "AppFooter": {
     "tagline": "Connecter la chaîne de valeur agricole pour un avenir durable.",
@@ -329,7 +326,7 @@
         "unitLabel": "Unité",
         "unitPlaceholder": "ex: par kg",
         "compensationLabel": "Rémunération / Tarifs",
-        "compensationPlaceholder": "ex: 50$/heure, Basé sur le projet",
+        "compensationPlaceholder": "ex: 50$/hr, Basé sur le projet",
         "experienceLabel": "Niveau d'Expérience",
         "experiencePlaceholder": "ex: 5+ ans, Professionnel certifié",
         "skillsLabel": "Compétences Requises",
@@ -1192,6 +1189,5 @@
     "title": "Gestion Financière"
   }
 }
-
 
     

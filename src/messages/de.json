@@ -59,6 +59,40 @@
     "profile": "Profil",
     "messages": "Nachrichten"
   },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Synchronisiere {count} ausstehende Aktionen...",
+      "onlinePending": "{count} Aktionen warten. Synchronisierung wird bald gestartet.",
+      "onlineSynced": "Sie sind online. Alle Daten sind synchronisiert.",
+      "offline": "Sie sind offline. {count, plural, =0 {Keine Änderungen warten.} =1 {1 Änderung wartet.} other {{count} Änderungen warten.}}"
+    },
+    "toast": {
+      "online": {
+        "title": "Sie sind wieder online!",
+        "description": "Ihre Verbindung wurde wiederhergestellt."
+      },
+      "offline": {
+        "title": "Sie sind derzeit offline",
+        "description": "Änderungen werden lokal gespeichert und synchronisiert, wenn Sie wieder online sind."
+      },
+      "syncing": {
+        "title": "Daten werden synchronisiert...",
+        "description": "Sende {count, plural, =1 {1 Offline-Aktion} other {{count} Offline-Aktionen}} an den Server."
+      },
+      "synced": {
+        "title": "Synchronisation abgeschlossen",
+        "description": "Ihre Offline-Änderungen wurden erfolgreich gespeichert."
+      },
+      "syncFailed": {
+        "title": "Synchronisation fehlgeschlagen",
+        "description": "Offline-Änderungen konnten nicht synchronisiert werden. Wir werden es später erneut versuchen."
+      },
+      "queued": {
+        "title": "Aktion in die Warteschlange gestellt",
+        "description": "Diese Aktion wird abgeschlossen, wenn Sie wieder online sind."
+      }
+    }
+  },
   "AppFooter": {
     "tagline": "Die landwirtschaftliche Wertschöpfungskette für eine nachhaltige Zukunft verbinden.",
     "damdohTitle": "DamDoh",
@@ -569,7 +603,7 @@
         "createFail": "Gutscheinerstellung fehlgeschlagen",
         "createError": "Ein unerwarteter Fehler ist aufgetreten.",
         "linkCopied": "Link kopiert!",
-        "shareDescription": "Gutscheinlink für '{code}' in die Zwischenablage kopiert."
+        "shareDescription": "Gutscheinlink für '{code}' kopiert in die Zwischenablage."
       }
     }
   },
@@ -769,16 +803,13 @@
     "backLink": "Zurück zum Netzwerk",
     "myConnectionsTab": "Meine Verbindungen ({count})",
     "pendingRequestsTab": "Ausstehende Anfragen",
-
     "connectionsTitle": "Meine Verbindungen",
     "connectionsDescription": "Ihr etabliertes berufliches Netzwerk auf DamDoh.",
     "noConnections": "Sie haben noch keine Verbindungen geknüpft. Beginnen Sie mit der Erkundung des Netzwerks!",
-
     "requestsTitle": "Verbindungsanfragen",
     "requestsDescription": "Überprüfen und beantworten Sie ausstehende Verbindungsanfragen.",
     "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen.",
     "sentTimeAgo": "Gesendet {timeAgo}",
-
     "toast": {
       "error": "Fehler",
       "loadError": "Ihre Netzwerkdaten konnten nicht geladen werden.",

@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { MessageSquare, PlusCircle, Search, Frown, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin, PinOff, Clock, Users } from "lucide-react";
+import { MessageSquare, PlusCircle, Search, Frown, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin, PinOff, Clock, Users, Lightbulb } from "lucide-react";
 import Link from 'next/link';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
@@ -18,6 +18,11 @@ import { usePathname } from 'next/navigation';
 import { useHomepagePreference } from '@/hooks/useHomepagePreference';
 import { formatDistanceToNow } from 'date-fns';
 import { useTranslations } from 'next-intl';
+import { suggestForumTopics } from '@/ai/flows/forum-topic-suggestions';
+import { ForumTopicSuggestionSchema } from '@/ai/flows/forum-topic-suggestions';
+import { z } from 'zod';
+
+type SuggestedTopic = z.infer<typeof ForumTopicSuggestionSchema>;
 
 const getIconForTopic = (topicName: string = '') => {
   const name = topicName.toLowerCase();
@@ -34,10 +39,36 @@ const getIconForTopic = (topicName: string = '') => {
   return <MessageSquare className={iconProps} />;
 };
 
+function TopicCardSkeleton() {
+    return (
+        <Card className="flex flex-col">
+            <CardHeader>
+                <div className="flex items-center justify-between">
+                    <Skeleton className="h-8 w-8 rounded-full" />
+                    <Skeleton className="h-5 w-10" />
+                </div>
+                <Skeleton className="h-6 w-3/4 mt-2" />
+                 <Skeleton className="h-4 w-1/2" />
+            </CardHeader>
+            <CardContent className="flex-grow space-y-2">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-5/6" />
+            </CardContent>
+            <CardFooter className="flex flex-col items-start gap-2">
+                <Skeleton className="h-4 w-1/2" />
+                <Skeleton className="h-10 w-full mt-2" />
+            </CardFooter>
+        </Card>
+    );
+}
+
 export default function ForumsPage() {
-    const t = useTranslations('Forums');
+    const t = useTranslations('forumsPage');
     const [topics, setTopics] = useState<ForumTopic[]>([]);
+    const [suggestedTopics, setSuggestedTopics] = useState<SuggestedTopic[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const { user } = useAuth();
     const { toast } = useToast();
@@ -53,6 +84,21 @@ export default function ForumsPage() {
                 const result = await getTopicsCallable();
                 const data = result.data as { topics?: ForumTopic[] };
                 setTopics(data?.topics || []);
+                
+                // Fetch suggestions after topics are loaded
+                if (data?.topics && data.topics.length > 0) {
+                    setIsLoadingSuggestions(true);
+                    try {
+                        const suggestionsResult = await suggestForumTopics({ existingTopics: data.topics.map(t => ({ name: t.name, description: t.description })) });
+                        setSuggestedTopics(suggestionsResult.suggestions);
+                    } catch (e) {
+                        console.error("Failed to fetch topic suggestions:", e);
+                    } finally {
+                        setIsLoadingSuggestions(false);
+                    }
+                } else {
+                    setIsLoadingSuggestions(false);
+                }
             } catch (error) {
                 console.error("Error fetching topics:", error);
                 toast({
@@ -100,9 +146,7 @@ export default function ForumsPage() {
         if (isLoading) {
             return (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <Skeleton className="h-48 w-full rounded-lg" />
-                    <Skeleton className="h-48 w-full rounded-lg" />
-                    <Skeleton className="h-48 w-full rounded-lg" />
+                    {Array.from({ length: 6 }).map((_, i) => <TopicCardSkeleton key={`skel-topic-${i}`} />)}
                 </div>
             );
         }
@@ -111,15 +155,15 @@ export default function ForumsPage() {
             return (
                 <div className="text-center py-16 col-span-full border-2 border-dashed rounded-lg">
                     <Frown className="mx-auto h-12 w-12 text-muted-foreground" />
-                    <h3 className="mt-4 text-lg font-semibold">{t('notFound.title')}</h3>
+                    <h3 className="mt-4 text-lg font-semibold">{t('noTopics')}</h3>
                     <p className="mt-2 text-sm text-muted-foreground">
-                        {searchTerm ? t('notFound.tryDifferentSearch') : t('notFound.beTheFirst')}
+                        {searchTerm ? t('noTopics') : t('noTopics')}
                     </p>
                     {user && !searchTerm && (
                          <Button asChild className="mt-4">
                             <Link href="/forums/create">
                                 <PlusCircle className="mr-2 h-4 w-4" />
-                                {t('buttons.createTopic')}
+                                {t('createTopic')}
                             </Link>
                         </Button>
                     )}
@@ -144,11 +188,11 @@ export default function ForumsPage() {
                 <CardFooter className="flex flex-col items-start gap-2 text-xs text-muted-foreground">
                     <div className="flex items-center gap-1.5">
                         <Clock className="h-3 w-3" />
-                        <span>{t('lastActivity', { time: formatDistanceToNow(new Date(topic.lastActivityAt), { addSuffix: true }) })}</span>
+                        <span>{t('activity', { time: formatDistanceToNow(new Date(topic.lastActivityAt), { addSuffix: true }) })}</span>
                     </div>
                     <Button asChild className="w-full mt-2">
                         <Link href={`/forums/${topic.id}`}>
-                            <MessageSquare className="mr-2 h-4 w-4" />{t('buttons.joinDiscussion')}
+                            <MessageSquare className="mr-2 h-4 w-4" />{t('joinDiscussion')}
                         </Link>
                     </Button>
                 </CardFooter>
@@ -172,13 +216,13 @@ export default function ForumsPage() {
                                 <Button asChild className="w-full sm:w-auto">
                                     <Link href="/forums/create">
                                         <PlusCircle className="mr-2 h-4 w-4" />
-                                        {t('buttons.createTopic')}
+                                        {t('createTopic')}
                                     </Link>
                                 </Button>
                             )}
                             <Button variant="outline" onClick={handleSetHomepage} className="w-full sm:w-auto">
                                 {isCurrentHomepage ? <PinOff className="mr-2 h-4 w-4" /> : <Pin className="mr-2 h-4 w-4" />}
-                                {isCurrentHomepage ? t('buttons.unpinHomepage') : t('buttons.pinHomepage')}
+                                {isCurrentHomepage ? t('pinning.unpinButton') : t('pinning.pinButton')}
                              </Button>
                         </div>
                     </div>
@@ -195,6 +239,32 @@ export default function ForumsPage() {
                             />
                         </div>
                     </div>
+                    
+                    {user && (
+                        <div className="mb-8">
+                            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                                <Lightbulb className="h-5 w-5 text-yellow-400" />
+                                {t('suggestedTopicsTitle')}
+                            </h3>
+                            {isLoadingSuggestions ? (
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                    <Skeleton className="h-10 w-full" />
+                                    <Skeleton className="h-10 w-full" />
+                                </div>
+                            ) : (
+                                <div className="flex flex-wrap gap-2">
+                                    {suggestedTopics.map(suggestion => (
+                                        <Button key={suggestion.title} variant="outline" asChild>
+                                            <Link href={`/forums/create?title=${encodeURIComponent(suggestion.title)}&description=${encodeURIComponent(suggestion.description)}`}>
+                                                {suggestion.title}
+                                            </Link>
+                                        </Button>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    )}
+
                     {renderTopicList()}
                 </CardContent>
             </Card>

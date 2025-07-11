@@ -21,6 +21,49 @@ interface RecommendedItem {
   reason: string;
 }
 
+export function MobileHomepageSkeleton() {
+  return (
+    <div className="space-y-6 pb-20 animate-pulse">
+      <div className="px-4">
+        <Skeleton className="h-7 w-48" />
+      </div>
+      <div>
+        <div className="flex space-x-4 p-4">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} className="flex flex-col items-center gap-2 w-20">
+              <Skeleton className="h-14 w-14 rounded-full" />
+              <Skeleton className="h-3 w-16" />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="px-4 space-y-3">
+        <Skeleton className="h-6 w-3/4" />
+        <div className="flex space-x-4 pb-4">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <Card key={i} className="w-40 shrink-0 overflow-hidden">
+              <Skeleton className="h-24 w-full" />
+              <CardContent className="p-2 space-y-1">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-3 w-1/2" />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+      <div className="px-4 space-y-3">
+        <Skeleton className="h-6 w-1/2" />
+        <Card className="p-4">
+          <Skeleton className="h-4 w-full mb-2" />
+          <Skeleton className="h-4 w-5/6" />
+          <Skeleton className="h-10 w-full mt-4" />
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+
 export function MobileHomepage() {
   const { profile, loading } = useUserProfile();
   const t = useTranslations('MobileHomepage');
@@ -102,7 +145,7 @@ export function MobileHomepage() {
                 <Card key={item.id} className="w-40 shrink-0 overflow-hidden">
                     <Link href={`/marketplace/${item.id}`} className="block">
                         <div className="relative h-24">
-                            <Image src={item.imageUrl || 'https://placehold.co/200x250.png'} alt={item.name} fill style={{objectFit: 'cover'}} data-ai-hint={item.dataAiHint || "marketplace item"} />
+                            <Image src={item.imageUrl || 'https://placehold.co/200x250.png'} alt={item.name} fill style={{objectFit: 'cover'}} />
                         </div>
                         <CardContent className="p-2">
                             <p className="text-xs font-semibold line-clamp-2">{item.name}</p>

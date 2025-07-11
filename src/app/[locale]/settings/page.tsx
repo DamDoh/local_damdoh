@@ -7,29 +7,47 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
-import { User, Bell, Shield, Palette, Lock, Users as ConnectionsIcon, SearchCheck, Save, ShieldOff, Briefcase, Mail, FileText, Sparkles, TrendingUp, Settings as SettingsIconLucide, Globe, Edit } from "lucide-react"; 
+import { User, Bell, Shield, Palette, Lock, Users as ConnectionsIcon, SearchCheck, Save, ShieldOff, Briefcase, Mail, FileText, Sparkles, TrendingUp, Settings as SettingsIconLucide, Globe, Edit, Info } from "lucide-react"; 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { Textarea } from "@/components/ui/textarea";
-import { getStakeholderRoles } from "@/lib/i18n-constants"; 
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
-// Super App Vision Note: This Settings page becomes a critical hub for user trust and control.
-// The "Privacy & Visibility" section introduces the concept of data consent management,
-// which is foundational for a super app that shares data between modules (e.g., sharing
-// marketplace history with a financial institution for a loan). This empowers users
-// and builds the trust needed for a vibrant digital ecosystem.
+function PrivacySetting({ icon, title, description, helpText, children }: { icon: React.ReactNode, title: string, description: string, helpText: string, children: React.ReactNode }) {
+    return (
+        <div className="flex items-start justify-between rounded-lg border p-4">
+            <div className="flex items-start gap-4">
+                <div className="text-primary">{icon}</div>
+                <div>
+                    <p className="font-medium flex items-center">{title}
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Info className="h-4 w-4 ml-2 text-muted-foreground cursor-help" />
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p className="max-w-xs">{helpText}</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
+                    </p>
+                    <p className="text-sm text-muted-foreground">{description}</p>
+                </div>
+            </div>
+            {children}
+        </div>
+    );
+}
 
 export default function SettingsPage() {
     const t = useTranslations('settingsPage');
-    const tConstants = useTranslations('constants');
-    const stakeholderRoles = getStakeholderRoles(tConstants);
+
   return (
     <div className="space-y-6">
-      <CardHeader className="p-0 mb-2"> {/* Reduced bottom margin */}
+      <CardHeader className="p-0 mb-2">
         <div className="flex items-center gap-2">
             <SettingsIconLucide className="h-8 w-8 text-primary" />
             <CardTitle className="text-3xl">{t('title')}</CardTitle>
@@ -53,10 +71,10 @@ export default function SettingsPage() {
               <CardDescription>{t('stakeholderProfile.description')}</CardDescription>
             </CardHeader>
             <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">Your profile is your identity on DamDoh. A complete and detailed profile helps build trust and attracts the right connections and opportunities.</p>
+                <p className="text-sm text-muted-foreground mb-4">{t('stakeholderProfile.explanation')}</p>
                 <Button asChild>
                     <Link href="/profiles/me/edit" className="flex items-center">
-                         <Edit className="mr-2 h-4 w-4" /> Go to Profile Editor
+                         <Edit className="mr-2 h-4 w-4" /> {t('stakeholderProfile.editButton')}
                     </Link>
                 </Button>
             </CardContent>
@@ -71,20 +89,20 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-1">
-                  <Label htmlFor="current-password" className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-muted-foreground" />{t('account.currentPasswordLabel')}</Label>
+                  <Label htmlFor="current-password">{t('account.currentPasswordLabel')}</Label>
                   <Input id="current-password" type="password" />
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="new-password" className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-muted-foreground" />{t('account.newPasswordLabel')}</Label>
+                  <Label htmlFor="new-password">{t('account.newPasswordLabel')}</Label>
                   <Input id="new-password" type="password" />
                 </div>
                  <div className="space-y-1">
-                  <Label htmlFor="confirm-password" className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-muted-foreground" />{t('account.confirmPasswordLabel')}</Label>
+                  <Label htmlFor="confirm-password">{t('account.confirmPasswordLabel')}</Label>
                   <Input id="confirm-password" type="password" />
- </div>
- <Button className="flex items-center"><Save className="mr-2 h-4 w-4" />{t('account.changePasswordButton')}</Button>
- <Separator />
-              <Button variant="destructive"><ShieldOff className="mr-2 h-4 w-4" />{t('account.deactivateButton')}</Button>
+                </div>
+                <Button><Save className="mr-2 h-4 w-4" />{t('account.changePasswordButton')}</Button>
+                <Separator />
+                <Button variant="destructive"><ShieldOff className="mr-2 h-4 w-4" />{t('account.deactivateButton')}</Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -96,43 +114,23 @@ export default function SettingsPage() {
               <CardDescription>{t('notifications.description')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex items-center justify-between rounded-lg border p-4">
-                <div>
-                  <p className="font-medium">{t('notifications.emailDigestLabel')}</p>
-                  <p className="text-sm text-muted-foreground">{t('notifications.emailDigestDescription')}</p>
-                </div>
-                <Switch id="email-notifications" defaultChecked />
-              </div>
-              <div className="flex items-center justify-between rounded-lg border p-4">
-                <div>
-                  <p className="font-medium">{t('notifications.connectionRequestsLabel')}</p>
-                  <p className="text-sm text-muted-foreground">{t('notifications.connectionRequestsDescription')}</p>
-                </div>
-                <Switch id="connection-requests-notifications" defaultChecked />
-              </div>
-              <div className="flex items-center justify-between rounded-lg border p-4">
-                <div>
-                  <p className="font-medium">{t('notifications.forumMentionsLabel')}</p>
-                  <p className="text-sm text-muted-foreground">{t('notifications.forumMentionsDescription')}</p>
-                </div>
+              <PrivacySetting icon={<Mail className="h-6 w-6"/>} title={t('notifications.emailDigestLabel')} description={t('notifications.emailDigestDescription')} helpText={t('notifications.emailDigestHelpText')}>
+                  <Switch id="email-notifications" defaultChecked />
+              </PrivacySetting>
+              <PrivacySetting icon={<ConnectionsIcon className="h-6 w-6"/>} title={t('notifications.connectionRequestsLabel')} description={t('notifications.connectionRequestsDescription')} helpText={t('notifications.connectionRequestsHelpText')}>
+                 <Switch id="connection-requests-notifications" defaultChecked />
+              </PrivacySetting>
+              <PrivacySetting icon={<MessageSquare className="h-6 w-6"/>} title={t('notifications.forumMentionsLabel')} description={t('notifications.forumMentionsDescription')} helpText={t('notifications.forumMentionsHelpText')}>
                 <Switch id="forum-mentions-notifications" defaultChecked />
-              </div>
-               <div className="flex items-center justify-between rounded-lg border p-4">
-                <div>
-                  <p className="font-medium">{t('notifications.marketplaceActivityLabel')}</p>
-                  <p className="text-sm text-muted-foreground">{t('notifications.marketplaceActivityDescription')}</p>
-                </div>
-                <Switch id="marketplace-updates-notifications" />
-              </div>
-                <div className="flex items-center justify-between rounded-lg border p-4">
-                <div>
-                  <p className="font-medium">{t('notifications.talentExchangeLabel')}</p>
-                  <p className="text-sm text-muted-foreground">{t('notifications.talentExchangeDescription')}</p>
-                </div>
-                <Switch id="talent-exchange-notifications" defaultChecked/>
-              </div>
+              </PrivacySetting>
+              <PrivacySetting icon={<ShoppingCart className="h-6 w-6"/>} title={t('notifications.marketplaceActivityLabel')} description={t('notifications.marketplaceActivityDescription')} helpText={t('notifications.marketplaceActivityHelpText')}>
+                 <Switch id="marketplace-updates-notifications" />
+              </PrivacySetting>
+              <PrivacySetting icon={<Briefcase className="h-6 w-6"/>} title={t('notifications.talentExchangeLabel')} description={t('notifications.talentExchangeDescription')} helpText={t('notifications.talentExchangeHelpText')}>
+                  <Switch id="talent-exchange-notifications" defaultChecked/>
+              </PrivacySetting>
               <Button><Save className="mr-2 h-4 w-4" />{t('notifications.saveButton')}</Button>
- </CardContent>
+            </CardContent>
           </Card>
         </TabsContent>
 
@@ -142,105 +140,49 @@ export default function SettingsPage() {
               <CardTitle>{t('privacy.title')}</CardTitle>
               <CardDescription>{t('privacy.description')}</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between rounded-lg border p-4">
-                <div>
-                  <p className="font-medium flex items-center"><User className="mr-2 h-4 w-4 text-primary" />{t('privacy.profileVisibilityLabel')}</p>
-                  <p className="text-sm text-muted-foreground ml-6">{t('privacy.profileVisibilityDescription')}</p>
-                </div>
-                <Select defaultValue="everyone">
-                    <SelectTrigger className="w-[220px]"> 
-                        <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="everyone">{t('privacy.profileVisibilityAll')}</SelectItem>
-                        <SelectItem value="connections">{t('privacy.profileVisibilityConnections')}</SelectItem>
-                        <SelectItem value="private">{t('privacy.profileVisibilityPrivate')}</SelectItem>
-                    </SelectContent>
-                </Select>
-              </div>
-
-              <div className="flex items-center justify-between rounded-lg border p-4">
-                <div>
-                  <p className="font-medium flex items-center"><ConnectionsIcon className="mr-2 h-4 w-4 text-primary" />{t('privacy.connectionRequestsLabel')}</p>
-                  <p className="text-sm text-muted-foreground ml-6">{t('privacy.connectionRequestsDescription')}</p>
-                </div>
-                <Select defaultValue="everyone">
-                    <SelectTrigger className="w-[220px]">
-                        <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="everyone">{t('privacy.connectionRequestsAll')}</SelectItem>
-                        <SelectItem value="connections-of-connections">{t('privacy.connectionRequestsConnectionsOfConnections')}</SelectItem>
-                    </SelectContent>
-                </Select>
-              </div>
-
-              <div className="flex items-center justify-between rounded-lg border p-4">
-                <div>
-                  <p className="font-medium flex items-center"><Briefcase className="mr-2 h-4 w-4 text-primary" />{t('privacy.contactInfoVisibilityLabel')}</p>
-                  <p className="text-sm text-muted-foreground ml-6">{t('privacy.contactInfoVisibilityDescription')}</p>
-                </div>
-                 <Select defaultValue="connections">
-                    <SelectTrigger className="w-[220px]">
-                        <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="everyone">{t('privacy.contactInfoVisibilityAll')}</SelectItem>
-                        <SelectItem value="connections">{t('privacy.contactInfoVisibilityConnections')}</SelectItem>
-                    </SelectContent>
-                </Select>
-              </div>
-
-               <div className="flex items-center justify-between rounded-lg border p-4">
-                <div>
-                  <p className="font-medium flex items-center"><Bell className="mr-2 h-4 w-4 text-primary" />{t('privacy.activityStatusLabel')}</p>
-                  <p className="text-sm text-muted-foreground ml-6">{t('privacy.activityStatusDescription')}</p>
-                </div>
-                <Switch id="activity-status" defaultChecked />
-              </div>
-
-              <div className="flex items-center justify-between rounded-lg border p-4">
-                <div>
-                  <p className="font-medium flex items-center"><SearchCheck className="mr-2 h-4 w-4 text-primary" />{t('privacy.searchIndexingLabel')}</p>
-                  <p className="text-sm text-muted-foreground ml-6">{t('privacy.searchIndexingDescription')}</p>
-                </div>
-                <Switch id="search-engine-indexing" defaultChecked />
-              </div>
- <Button className="flex items-center"><Save className="mr-2 h-4 w-4" />{t('privacy.saveButton')}</Button>
+            <CardContent className="space-y-6">
+                <PrivacySetting icon={<User className="h-6 w-6" />} title={t('privacy.profileVisibilityLabel')} description={t('privacy.profileVisibilityDescription')} helpText={t('privacy.profileVisibilityHelpText')}>
+                    <Select defaultValue="everyone">
+                        <SelectTrigger className="w-[220px]"><SelectValue /></SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="everyone">{t('privacy.profileVisibilityAll')}</SelectItem>
+                            <SelectItem value="connections">{t('privacy.profileVisibilityConnections')}</SelectItem>
+                            <SelectItem value="private">{t('privacy.profileVisibilityPrivate')}</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </PrivacySetting>
+                <PrivacySetting icon={<ConnectionsIcon className="h-6 w-6" />} title={t('privacy.connectionRequestsLabel')} description={t('privacy.connectionRequestsDescription')} helpText={t('privacy.connectionRequestsHelpText')}>
+                    <Select defaultValue="everyone">
+                        <SelectTrigger className="w-[220px]"><SelectValue /></SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="everyone">{t('privacy.connectionRequestsAll')}</SelectItem>
+                            <SelectItem value="connections-of-connections">{t('privacy.connectionRequestsConnectionsOfConnections')}</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </PrivacySetting>
+                <PrivacySetting icon={<SearchCheck className="h-6 w-6" />} title={t('privacy.searchIndexingLabel')} description={t('privacy.searchIndexingDescription')} helpText={t('privacy.searchIndexingHelpText')}>
+                    <Switch id="search-engine-indexing" defaultChecked />
+                </PrivacySetting>
               
-              {/* Super App Vision Note: This section is key for trust. It allows users to control how their data is used across different modules. */}
               <Separator className="my-8" /> 
-              <CardTitle className="text-xl flex items-center gap-2"><Shield className="h-6 w-6 text-primary" />{t('privacy.dataConsentTitle')}</CardTitle>
-              <CardDescription>{t('privacy.dataConsentDescription')}</CardDescription>
+              
+              <CardHeader className="p-0">
+                <CardTitle className="text-xl flex items-center gap-2"><Shield className="h-6 w-6 text-primary" />{t('privacy.dataConsentTitle')}</CardTitle>
+                <CardDescription>{t('privacy.dataConsentDescription')}</CardDescription>
+              </CardHeader>
 
               <div className="space-y-4 pt-2">
-                <div className="flex items-center justify-between rounded-lg border p-4">
-                  <div>
-                    <p className="font-medium flex items-center"><FileText className="mr-2 h-4 w-4 text-primary" />{t('privacy.marketplaceHistoryLabel')}</p>
-                    <p className="text-sm text-muted-foreground ml-6">{t('privacy.marketplaceHistoryDescription')}</p>
-                  </div>
+                <PrivacySetting icon={<TrendingUp className="h-6 w-6" />} title={t('privacy.marketplaceHistoryLabel')} description={t('privacy.marketplaceHistoryDescription')} helpText={t('privacy.marketplaceHistoryHelpText')}>
                   <Switch id="consent-marketplace-fi" defaultChecked /> 
-                </div>
-
-                 <div className="flex items-center justify-between rounded-lg border p-4">
-                  <div>
-                    <p className="font-medium flex items-center"><SearchCheck className="mr-2 h-4 w-4 text-primary" />{t('privacy.traceabilityDataLabel')}</p>
-                    <p className="text-sm text-muted-foreground ml-6">{t('privacy.traceabilityDataDescription')}</p>
-                  </div>
+                </PrivacySetting>
+                 <PrivacySetting icon={<Sparkles className="h-6 w-6" />} title={t('privacy.aiPersonalizationLabel')} description={t('privacy.aiPersonalizationDescription')} helpText={t('privacy.aiPersonalizationHelpText')}>
                    <Switch id="consent-traceability-public" defaultChecked /> 
-                 </div>
-
-                 <div className="flex items-center justify-between rounded-lg border p-4">
-                   <div>
-                     <p className="font-medium flex items-center"><Briefcase className="mr-2 h-4 w-4 text-primary" />{t('privacy.financialApplicationDataLabel')}</p>
-                     <p className="text-sm text-muted-foreground ml-6">{t('privacy.financialApplicationDataDescription')}</p>
-                   </div>
+                 </PrivacySetting>
+                 <PrivacySetting icon={<FileText className="h-6 w-6" />} title={t('privacy.financialApplicationDataLabel')} description={t('privacy.financialApplicationDataDescription')} helpText={t('privacy.financialApplicationDataHelpText')}>
                     <Switch id="consent-financial-ai" defaultChecked /> 
-                 </div>
+                 </PrivacySetting>
               </div>
- <Button className="flex items-center"><Save className="mr-2 h-4 w-4" />{t('privacy.saveConsentButton')}</Button>
-
+              <Button><Save className="mr-2 h-4 w-4" />{t('privacy.saveConsentButton')}</Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -252,20 +194,12 @@ export default function SettingsPage() {
               <CardDescription>{t('appearance.description')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-                <div className="flex items-center justify-between rounded-lg border p-4">
-                    <div>
-                        <p className="font-medium">{t('appearance.themeLabel')}</p>
-                        <p className="text-sm text-muted-foreground">{t('appearance.themeDescription')}</p>
-                    </div>
+                <PrivacySetting icon={<Palette className="h-6 w-6" />} title={t('appearance.themeLabel')} description={t('appearance.themeDescription')} helpText={t('appearance.themeHelpText')}>
                     <ThemeToggle />
-                </div>
-                <div className="flex items-center justify-between rounded-lg border p-4">
-                    <div>
-                        <p className="font-medium">{t('appearance.languageLabel')}</p>
-                        <p className="text-sm text-muted-foreground">{t('appearance.languageDescription')}</p>
-                    </div>
+                </PrivacySetting>
+                 <PrivacySetting icon={<Globe className="h-6 w-6" />} title={t('appearance.languageLabel')} description={t('appearance.languageDescription')} helpText={t('appearance.languageHelpText')}>
                     <LanguageSwitcher />
-                </div>
+                </PrivacySetting>
             </CardContent>
           </Card>
         </TabsContent>

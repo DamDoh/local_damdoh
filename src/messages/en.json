@@ -59,6 +59,40 @@
     "profile": "Profile",
     "messages": "Messages"
   },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Syncing {count} pending actions...",
+      "onlinePending": "{count} actions pending. Sync will start soon.",
+      "onlineSynced": "You are online. All data is in sync.",
+      "offline": "You are offline. {count, plural, =0 {No changes are pending.} =1 {1 change is pending.} other {{count} changes are pending.}}"
+    },
+    "toast": {
+      "online": {
+        "title": "You're back online!",
+        "description": "Your connection has been restored."
+      },
+      "offline": {
+        "title": "You are currently offline",
+        "description": "Changes will be saved locally and synced when you reconnect."
+      },
+      "syncing": {
+        "title": "Syncing data...",
+        "description": "Sending {count, plural, =1 {1 offline action} other {{count} offline actions}} to the server."
+      },
+      "synced": {
+        "title": "Sync complete",
+        "description": "Your offline changes have been successfully saved."
+      },
+      "syncFailed": {
+        "title": "Sync failed",
+        "description": "Could not sync offline changes. We will try again later."
+      },
+      "queued": {
+        "title": "Action Queued",
+        "description": "This action will be completed when you are back online."
+      }
+    }
+  },
   "AppFooter": {
     "tagline": "Connecting the agricultural value chain for a sustainable future.",
     "damdohTitle": "DamDoh",
@@ -716,7 +750,7 @@
         },
         "incomplete": {
           "title": "Incomplete Post",
-          "description": "Please provide a title and content for your post."
+          "description": "Please provide a name and content for your post."
         },
         "success": {
           "title": "Post Created!",
@@ -1170,6 +1204,5 @@
     "title": "Financial Management"
   }
 }
-
 
     
