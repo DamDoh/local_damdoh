@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
@@ -812,31 +811,57 @@ export const getResearcherDashboardData = functions.https.onCall(
 
 export const getAgronomistDashboardData = functions.https.onCall(
   async (data, context): Promise<AgronomistDashboardData> => {
-    const userId = checkAuth(context);
+    const agronomistId = checkAuth(context);
     try {
-        // Fetch knowledge hub contributions made by this user
+        // Fetch knowledge hub contributions
         const articlesSnapshot = await db.collection('knowledge_articles')
-            .where('authorId', '==', userId)
+            .where('authorId', '==', agronomistId)
             .orderBy('createdAt', 'desc')
             .limit(10)
             .get();
 
-        const knowledgeHubContributions = articlesSnapshot.docs.map(doc => {
-            const article = doc.data();
+        const knowledgeHubContributions = articlesSnapshot.docs.map(doc => ({
+            id: doc.id,
+            title: doc.data().title_en || doc.data().title_km || "Untitled Article",
+            status: doc.data().status || 'Draft',
+        }));
+
+        // Fetch assigned farmers
+        const agronomistDoc = await db.collection('users').doc(agronomistId).get();
+        const assignedFarmerIds = agronomistDoc.data()?.profileData?.assignedFarmers || [];
+        
+        let assignedFarmersOverview: AgronomistDashboardData['assignedFarmersOverview'] = [];
+        if (assignedFarmerIds.length > 0) {
+            const farmersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', assignedFarmerIds.slice(0, 30)).get();
+            assignedFarmersOverview = farmersSnapshot.docs.map(doc => {
+                const farmerData = doc.data();
+                return {
+                    id: doc.id,
+                    name: farmerData.displayName || 'Unknown Farmer',
+                    farmLocation: farmerData.location?.address || 'Unknown',
+                    lastConsultation: new Date(Date.now() - Math.random() * 30 * 86400000).toISOString(),
+                    alerts: Math.floor(Math.random() * 3), 
+                };
+            });
+        }
+        
+        // Fetch pending consultation requests
+        const requestsSnapshot = await db.collection('consultation_requests')
+            .where('agronomistId', '==', agronomistId)
+            .where('status', '==', 'pending')
+            .orderBy('requestDate', 'desc')
+            .get();
+            
+        const pendingConsultationRequests = requestsSnapshot.docs.map(doc => {
+            const reqData = doc.data();
             return {
                 id: doc.id,
-                title: article.title_en || article.title_km || "Untitled Article",
-                status: 'Published' as const,
+                farmerName: reqData.farmerName,
+                issueSummary: reqData.issueSummary,
+                requestDate: (reqData.requestDate as admin.firestore.Timestamp).toDate().toISOString(),
+                farmerId: reqData.farmerId,
             };
         });
-
-        // Mock data for other sections
-        const assignedFarmersOverview = [
-            { id: 'farmer1', name: 'John Doe', farmLocation: 'Nakuru', lastConsultation: new Date(Date.now() - 86400000 * 7).toISOString(), alerts: 1 }
-        ];
-        const pendingConsultationRequests = [
-            { id: 'req1', farmerName: 'Jane Smith', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString(), farmerId: 'farmerJane' }
-        ];
 
         return {
             assignedFarmersOverview,

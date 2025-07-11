@@ -207,7 +207,7 @@ export const AgronomistDashboard = () => {
             <CardContent>
                 {contributionStatusCounts.length > 0 ? (
                     <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-                        <BarChart data={contributionStatusCounts} layout="vertical" margin={{ left: 10 }}>
+                        <BarChart accessibilityLayer data={contributionStatusCounts} layout="vertical" margin={{ left: 10 }}>
                             <CartesianGrid horizontal={false} />
                             <YAxis
                                 dataKey="name"

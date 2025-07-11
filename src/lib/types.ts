@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -247,13 +246,14 @@ export interface LogisticsDashboardData {
 }
 
 export interface FinancialProduct {
-    id: string;
-    name: string;
-    type: 'Loan' | 'Grant';
-    interestRate?: number;
-    maxAmount?: number;
-    status?: 'Active' | 'Inactive';
+  id: string;
+  name: string;
+  type: 'Loan' | 'Grant';
+  interestRate?: number;
+  maxAmount?: number;
+  status?: 'Active' | 'Inactive';
 }
+
 export interface FiDashboardData {
     pendingApplications: FinancialApplication[];
     portfolioOverview: {
@@ -458,7 +458,7 @@ export interface AgronomistDashboardData {
   knowledgeHubContributions: {
     id: string;
     title: string;
-    status: 'Published' | 'Pending Review';
+    status: 'Published' | 'Pending Review' | 'Draft';
   }[];
 }
 
