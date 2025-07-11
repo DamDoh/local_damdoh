@@ -400,7 +400,7 @@
     "title": "Mercado",
     "description": "Descubra, compre y venda productos y servicios agrícolas.",
     "createShopButton": "Crear Tienda",
-    "myOrdersButton": "Mis Pedidos",
+    "myOrdersButton": "Mis pedidos",
     "createListingButton": "Crear Anuncio",
     "pinButton": "Fijar como Inicio",
     "unpinButton": "Quitar de Inicio",
@@ -473,7 +473,7 @@
       "aiPriceSuggestion": {
         "generatingButton": "Generando...",
         "button": "Sugerir Precio con IA",
-        "suggestionLabel": "Sugerencia de IA:",
+        "suggestionLabel": "Sugerencia IA:",
         "usePriceButton": "Usar Precio"
       },
       "errors": {
@@ -610,7 +610,7 @@
     },
     "myOrders": {
       "backLink": "Volver al Mercado",
-      "title": "Mis Pedidos",
+      "title": "Mis pedidos",
       "description": "Rastree y gestione los pedidos que ha recibido.",
       "toast": {
         "errorTitle": "Error",
@@ -854,4 +854,3 @@
   }
 }
 
-    

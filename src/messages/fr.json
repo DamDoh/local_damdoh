@@ -204,14 +204,25 @@
       "title": "Le Paysage Fragmenté de l'Agriculture",
       "description": "La chaîne d'approvisionnement agricole est un écosystème complexe et souvent déconnecté, présentant de nombreux défis pour toutes les parties prenantes.",
       "list": {
-        "knowledge": "Manque d'information : Les agriculteurs n'ont pas accès aux techniques modernes et aux données de marché en temps réel.",
-        "market": "Accès au marché : Les petits exploitants ont du mal à se connecter à des marchés plus grands et plus rentables.",
-        "quality": "Qualité et confiance : Les acheteurs sont confrontés à l'incertitude quant à la qualité, l'origine et les pratiques agricoles des produits.",
-        "logistics": "Logistique inefficace : Une mauvaise coordination entraîne des coûts élevés et des pertes après récolte importantes.",
-        "financial": "Exclusion financière : Le manque de dossiers formels empêche l'accès au crédit et à l'assurance.",
-        "climate": "Changement climatique : Une imprévisibilité croissante exige des systèmes agricoles plus résilients.",
-        "informal": "Économie informelle : L'absence d'enregistrements numériques entrave la croissance et la formalisation."
-      }
+        "marketAccess": "Accès au marché",
+        "inefficiency": "Logistique inefficace",
+        "financialExclusion": "Exclusion financière",
+        "informationGaps": "Manque d'information",
+        "qualityTrust": "Qualité et confiance",
+        "climatePressure": "Pression climatique",
+        "foodLoss": "Pertes alimentaires",
+        "dataFragmentation": "Fragmentation des données"
+      },
+      "details": [
+        "Les petits exploitants ont du mal à se connecter à des marchés plus grands et plus rentables.",
+        "Une mauvaise coordination entraîne des coûts élevés et des pertes après récolte importantes.",
+        "Le manque de dossiers formels empêche l'accès au crédit, aux prêts et à l'assurance.",
+        "Les agriculteurs n'ont pas accès aux techniques modernes et aux données de marché en temps réel.",
+        "Les acheteurs sont confrontés à l'incertitude quant à la qualité, l'origine et les pratiques agricoles des produits.",
+        "Une imprévisibilité croissante exige des systèmes agricoles plus résilients.",
+        "Une part importante des aliments est perdue entre la ferme et le consommateur.",
+        "Les informations cloisonnées empêchent une vue d'ensemble de la chaîne d'approvisionnement."
+      ]
     },
     "solution": {
       "title": "La Solution DamDoh : Un Écosystème Intégré",
@@ -331,7 +342,7 @@
       "step3": "Votre ami scanne le code avec son application pour confirmer votre identité.",
       "startButton": "Démarrer la Récupération",
       "scanTitle": "Demandez à un Ami de Scanner",
-      "scanDescription": "Demandez à un contact de confiance sur votre réseau DamDoh de scanner ce code QR pour vérifier votre identité.",
+      "scanDescription": "Demandez à une connexion de confiance sur votre réseau de DamDoh de scanner ce code QR pour vérifier votre identité.",
       "scanNote": "Ce code est temporaire et expirera dans 10 minutes.",
       "startOverButton": "Recommencer"
     }
@@ -342,7 +353,7 @@
     "myNetworkButton": "Mon Réseau",
     "agentToolsButton": "Outils d'Agent",
     "aiSuggestionsTitle": "Suggestions par IA",
-    "aiSuggestionsDescription": "En fonction de votre profil, voici quelques personnes avec qui vous pourriez vouloir vous connecter.",
+    "aiSuggestionsDescription": "Selon votre profil, voici quelques personnes avec qui vous pourriez vouloir vous connecter.",
     "browseAllTitle": "Parcourir Tous les Acteurs",
     "browseAllDescription": "Utilisez les filtres ci-dessous pour trouver des personnes ou des entreprises spécifiques sur le réseau.",
     "searchPlaceholder": "Rechercher par nom ou mot-clé...",
@@ -407,7 +418,7 @@
     "searchPlaceholder": "Rechercher des produits et services...",
     "locationPlaceholder": "Filtrer par lieu...",
     "typePlaceholder": "Filtrer par type...",
-    "recommendedForYou": "Recommandé pour vous",
+    "recommendedForYou": "Recommandé pour Vous",
     "discoverMore": "Découvrir plus",
     "viewDetails": "Voir les détails",
     "viewServiceButton": "Voir le service",
@@ -785,7 +796,7 @@
   },
   "Forums": {
     "title": "Forums",
-    "description": "Participez à des discussions, posez des questions et partagez votre expertise avec la communauté DamDoh.",
+    "description": "Participez à des discussions, posez des questions et partagez votre expertise avec la communauté de DamDoh.",
     "buttons": {
       "createTopic": "Créer un Nouveau Sujet",
       "loadMore": "Charger Plus"
@@ -854,4 +865,3 @@
   }
 }
 
-    

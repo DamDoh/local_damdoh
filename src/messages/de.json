@@ -945,7 +945,7 @@
           "icon": "Sun",
           "intro": "Das 'Abhärten' ist der Prozess, Ihre zarten, im Haus gezogenen Pflanzen allmählich an die rauen Bedingungen im Freien zu gewöhnen.",
           "steps": [
-            "<b>Beginnen Sie 1-2 Wochen vor dem Umpflanzen:</b> Etwa 7-14 Tage vor Ihrem letzten Frostdatum, beginnen Sie den Prozess.",
+            "<b>Beginnen Sie 1-2 Wochen vor dem Umpflanzen:</b> Etwa 7-14 Tage vor Ihrem lokalen letzten Frostdatum, beginnen Sie den Prozess.",
             "<b>Tag 1:</b> Stellen Sie die Setzlinge für 1-2 Stunden an einen schattigen, geschützten Ort im Freien.",
             "<b>Allmähliche Exposition:</b> Erhöhen Sie jeden Tag die Zeit, die sie draußen verbringen, um ein oder zwei Stunden und führen Sie sie allmählich an mehr direktes Sonnenlicht und Wind heran.",
             "<b>Hereinholen:</b> Bringen Sie die Pflanzen jede Nacht wieder herein, wenn die Temperaturen erheblich fallen.",
@@ -1133,4 +1133,3 @@
   }
 }
 
-    
