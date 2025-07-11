@@ -1786,5 +1786,20 @@
     "comingSoonTitle": "Coming Soon!",
     "comingSoonDescription": "The Pinboard is a feature currently under development. It will allow you to bookmark important items and create custom collections for your projects and research.",
     "stayTuned": "Stay tuned for updates!"
+  },
+  "messagingPage": {
+    "title": "Messages",
+    "searchPlaceholder": "Search conversations...",
+    "noConversations": "No conversations yet. Connect with someone to start chatting!",
+    "error": "Error",
+    "couldNotLoadConversations": "Could not load your conversations.",
+    "couldNotStartConversation": "Could not start a new conversation.",
+    "sendFailed": "Message Failed",
+    "couldNotSendMessage": "Your message could not be sent. Please try again.",
+    "noMessages": "No messages in this conversation yet. Be the first to say hello!",
+    "typeMessagePlaceholder": "Type a message...",
+    "selectConversation": "Select a conversation to start messaging.",
+    "signInToView": "Please sign in to view your messages.",
+    "signIn": "Sign In"
   }
 }
