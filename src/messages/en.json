@@ -64,899 +64,987 @@
       "button": "Create Your Free Account"
     }
   },
-  "aboutPage": {
-    "hero": {
-      "title": "Cultivating Connections, Harvesting Prosperity",
-      "subtitle": "We're on a mission to digitize and connect the global agricultural supply chain, empowering every stakeholder from the soil to the shelf."
+  "AppHeader": {
+    "searchPlaceholder": "Search...",
+    "home": "Home",
+    "network": "Network",
+    "farmMgmt": "Farm Mgmt",
+    "marketplace": "Marketplace",
+    "talentExchange": "Talent",
+    "traceability": "Traceability",
+    "forums": "Forums",
+    "sustainability": "Sustainability",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Wallet",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "myProfile": "My Profile",
+    "myOrders": "My Orders",
+    "settings": "Settings",
+    "helpCenter": "Help Center",
+    "logOut": "Log Out",
+    "switchToLightAria": "Switch to light mode",
+    "switchToDarkAria": "Switch to dark mode"
+  },
+  "MobileBottomNav": {
+    "home": "Home",
+    "market": "Market",
+    "search": "Search",
+    "forums": "Forums",
+    "profile": "Profile",
+    "messages": "Messages"
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Syncing {count} pending actions...",
+      "onlinePending": "{count} actions pending. Sync will start shortly.",
+      "onlineSynced": "You are online and all data is synced.",
+      "offline": "You are offline. {count, plural, =0 {No changes pending.} =1 {1 change queued.} other {{count} changes queued.}}"
     },
-    "vision": {
-      "title": "Our Vision for a Connected Future",
-      "p1": "DamDoh was born from a simple yet powerful idea: that technology can bridge the gaps in the agricultural world. We envision a world where smallholder farmers have direct access to global markets, where buyers can source produce with verifiable confidence, and where knowledge flows freely to create a more sustainable and equitable food system.",
-      "p2": "We are more than a platform; we are a community dedicated to solving real-world challenges with innovative, user-centric solutions.",
-      "foundersTitle": "From the Founders"
-    },
-    "challenge": {
-      "title": "The Fragmented Landscape of Agriculture",
-      "description": "The agricultural supply chain is a complex and often disconnected ecosystem, presenting numerous challenges for everyone involved.",
-      "list": {
-        "marketAccess": "Market Access",
-        "inefficiency": "Inefficient Logistics",
-        "financialExclusion": "Financial Exclusion",
-        "informationGaps": "Information Gaps",
-        "qualityTrust": "Quality & Trust",
-        "climatePressure": "Climate Pressure",
-        "foodLoss": "Food Loss",
-        "dataFragmentation": "Data Fragmentation"
+    "toast": {
+      "online": {
+        "title": "You're back online!",
+        "description": "Your connection has been restored."
       },
-      "details": [
-        "Smallholders struggle to connect with larger, more profitable markets.",
-        "Poor coordination leads to high costs and significant post-harvest losses.",
-        "Lack of formal records prevents access to credit, loans, and insurance.",
-        "Farmers lack access to modern techniques and real-time market data.",
-        "Buyers face uncertainty about produce quality, origin, and farming practices.",
-        "Increasing unpredictability requires more resilient farming systems.",
-        "A significant portion of food is lost between the farm and the consumer.",
-        "Siloed information prevents a holistic view of the supply chain."
-      ]
-    },
-    "solution": {
-      "title": "The DamDoh Solution: An Integrated Ecosystem",
-      "description": "We address these challenges by providing a single, unified platform with tools for everyone.",
-      "list": {
-        "education": "AI-Driven Education",
-        "ai": "Intelligent Networking & AI",
-        "logistics": "Integrated Logistics",
-        "financial": "Financial Services"
+      "offline": {
+        "title": "You are currently offline",
+        "description": "Changes will be saved locally and synced when you reconnect."
+      },
+      "syncing": {
+        "title": "Syncing Offline Changes",
+        "description": "Uploading {count, plural, =1 {1 offline action} other {{count} offline actions}} to the server."
+      },
+      "synced": {
+        "title": "Sync Complete",
+        "description": "Your offline changes have been saved successfully."
+      },
+      "syncFailed": {
+        "title": "Sync Failed",
+        "description": "Could not sync your offline changes. Will try again later."
+      },
+      "queued": {
+        "title": "Action Queued for Offline",
+        "description": "This action will be completed when you're back online."
       }
-    },
-    "beyondTechnology": {
-      "title": "More Than Just Technology",
-      "list": {
-        "p2p": {
-          "title": "Peer-to-Peer",
-          "content": "Farmers connecting with other farmers to share knowledge and form cooperatives."
-        },
-        "p2b": {
-          "title": "Producer-to-Business",
-          "content": "Direct links between farmers and buyers, processors, and exporters, cutting out unnecessary middlemen."
-        },
-        "p2e": {
-          "title": "Producer-to-Expert",
-          "content": "Access to agronomists, financial advisors, and logistics providers to improve operations."
-        },
-        "p2w": {
-          "title": "Producer-to-World",
-          "content": "Allowing smallholder farmers to participate in the global market with confidence and transparency."
-        }
-      }
-    },
-    "commitment": {
-      "title": "Join Our Growing Ecosystem",
-      "p1": "Our commitment is to the people who feed the world. We believe that by providing the digital tools they need, we can foster a more resilient, profitable, and sustainable agricultural sector for generations to come.",
-      "p2": "Whether you're planting a seed, buying in bulk, or financing a farm, you have a place in the DamDoh community.",
-      "p3": "Let's grow together.",
-      "button": "Create Your Profile"
     }
   },
-  "contactPage": {
-    "title": "Contact Us",
-    "subtitle": "We're here to help. Reach out to us with any questions, partnerships, or feedback.",
-    "emailUs": {
-      "title": "Email Us",
-      "general": "General Inquiries",
-      "support": "Support",
-      "partnerships": "Partnerships"
+  "LanguageSwitcher": {
+    "toggle": "Change language"
+  },
+  "DashboardLeftSidebar": {
+    "viewProfileLink": "View Profile",
+    "profileViewers": "Profile viewers",
+    "postEngagements": "Post engagements",
+    "pro": {
+      "unlock": "Unlock advanced analytics & insights.",
+      "try": "Try DamDoh Pro"
     },
-    "callUs": {
-      "title": "Call Us",
-      "hours": "Mon-Fri, 9am - 5pm",
-      "phone": "+1 (555) 123-4567"
-    },
-    "ourOffice": {
-      "title": "Our Office",
-      "org": "DamDoh Platform",
-      "address": "123 Agri-Tech Ave, Innovation City, 54321"
-    },
-    "sendMessage": {
-      "title": "Send us a Message",
-      "nameLabel": "Your Name",
-      "namePlaceholder": "Jane Doe",
-      "emailLabel": "Your Email",
-      "emailPlaceholder": "you@example.com",
-      "subjectLabel": "Subject",
-      "subjectPlaceholder": "e.g., Partnership Inquiry",
-      "messageLabel": "Your Message",
-      "messagePlaceholder": "Type your message here...",
-      "buttonText": "Send Message",
-      "note": "We'll do our best to respond within 2 business days."
+    "recent": {
+      "title": "Recent",
+      "myPinBoard": "My Pinboard",
+      "communityGroups": "Community Groups",
+      "industryNews": "Industry News",
+      "agriEvents": "Agri-Events",
+      "mySupplyChainNetwork": "My Supply Chain Network"
     }
   },
-  "privacyPolicy": {
-    "title": "Privacy Policy",
-    "lastUpdated": "Last updated on October 29, 2023",
-    "introduction": "Welcome to DamDoh. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website (regardless of where you visit it from) and tell you about your privacy rights and how the law protects you.",
-    "whatInfoWeCollect": {
-      "heading": "1. What Information We Collect",
-      "content": "We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows: Identity Data, Contact Data, Financial Data, Transaction Data, Technical Data, Profile Data, Usage Data, and Marketing and Communications Data."
-    },
-    "howWeUseInfo": {
-      "heading": "2. How We Use Your Information",
-      "content": "We will only use your personal data when the law allows us to. Most commonly, we will use your personal data to perform the contract we are about to enter into or have entered into with you, to comply with a legal obligation, and where it is necessary for our legitimate interests."
-    },
-    "willInfoBeShared": {
-      "heading": "3. Will Your Information Be Shared With Anyone?",
-      "content": "We may have to share your personal data with external third parties such as service providers, professional advisers, regulators and other authorities. We require all third parties to respect the security of your personal data and to treat it in accordance with the law."
-    },
-    "cookiesAndTracking": {
-      "heading": "4. Do We Use Cookies and Other Tracking Technologies?",
-      "content": "We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Policy."
-    },
-    "howLongWeKeepInfo": {
-      "heading": "5. How Long Do We Keep Your Information?",
-      "content": "We will only retain your personal data for as long as necessary to fulfill the purposes we collected it for, including for the purposes of satisfying any legal, accounting, or reporting requirements."
-    },
-    "howWeKeepInfoSafe": {
-      "heading": "6. How Do We Keep Your Information Safe?",
-      "content": "We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used or accessed in an unauthorized way, altered or disclosed. In addition, we limit access to your personal data to those employees, agents, contractors and other third parties who have a business need to know."
-    },
-    "minors": {
-      "heading": "7. Do We Collect Information From Minors?",
-      "content": "We do not knowingly collect data from or market to children under 18 years of age. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the Services."
-    },
-    "privacyRights": {
-      "heading": "8. What Are Your Privacy Rights?",
-      "content": "In some regions, such as the European Economic Area (EEA) and UK, you have rights that allow you greater access to and control over your personal data. You may review, change, or terminate your account at any time."
-    },
-    "controlsForDoNotTrack": {
-      "heading": "9. Controls for Do-Not-Track Features",
-      "content": "Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. We do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online."
-    },
-    "updatesToNotice": {
-      "heading": "10. Do We Make Updates to This Notice?",
-      "content": "Yes, we will update this notice as necessary to stay compliant with relevant laws. The updated version will be indicated by an updated 'Revised' date and the updated version will be effective as soon as it is accessible."
+  "DashboardRightSidebar": {
+    "networkTitle": "Add to your feed",
+    "refreshSuggestions": "Refresh suggestions",
+    "infoTooltip": "Suggestions are based on your profile interests and needs.",
+    "signInPrompt": "Sign in for personalized recommendations.",
+    "loadError": "Could not load suggestions.",
+    "noSuggestions": "No new suggestions right now. Check back later!",
+    "following": "Following",
+    "follow": "Follow",
+    "promotionsTitle": "Promotions",
+    "promotionsDescription": "Check out special offers and deals from partners in the ecosystem.",
+    "managePromotionsButton": "Manage Promotions",
+    "ad": "Ad",
+    "adTitle": "Unlock Market Insights",
+    "adDescription": "Get real-time data and analytics with DamDoh Pro.",
+    "adButton": "Learn More"
+  },
+  "FeedItemCard": {
+    "signInToLikeToast": "You must be signed in to like a post.",
+    "repostPlaceholderToast": "Repost feature coming soon!",
+    "signInToVoteToast": "You must be signed in to vote.",
+    "voteSuccessToast": "Your vote has been counted!",
+    "voteErrorToast": "Could not save vote.",
+    "editPost": "Edit Post",
+    "deletePost": "Delete Post",
+    "like": "Like",
+    "comment": "Comment",
+    "repost": "Repost",
+    "likes": "{count, plural, =0 {Likes} =1 {Like} other {{count} Likes}}",
+    "comments": "{count, plural, =0 {Comments} =1 {Comment} other {{count} Comments}}",
+    "loadCommentsErrorToast": "Could not load comments.",
+    "noComments": "Be the first to comment!",
+    "loadingComments": "Loading comments...",
+    "loadMoreComments": "Load more comments",
+    "writeCommentPlaceholder": "Add a comment...",
+    "postButton": "Post",
+    "votes": "{count, plural, =0 {votes} =1 {vote} other {votes}}"
+  },
+  "CreatePostModal": {
+    "title": "Create a New Post",
+    "description": "Share an update, ask a question, or start a conversation with the community.",
+    "yourName": "Your Name",
+    "shareUpdate": "Share an update",
+    "placeholder": "What's on your mind?",
+    "selectedFile": "Selected file:",
+    "pollOptionsLabel": "Poll Options",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Add Option",
+    "pollNote": "A maximum of {maxOptions} options are allowed.",
+    "photoVideo": "Photo/Video",
+    "agriEvent": "Agri-Event",
+    "shareDocumentButton": "Share Document",
+    "createPollButton": "Create Poll",
+    "postButton": "Post",
+    "pollOptionsError": "A poll must have at least 2 non-empty options.",
+    "emptyPostError": "Your post cannot be empty."
+  },
+  "StartPost": {
+    "placeholder": "Start a post...",
+    "photoVideo": "Photo/Video",
+    "agriEvent": "Agri-Event",
+    "createPoll": "Create Poll"
+  },
+  "formErrors": {
+    "createMarketplaceCoupon": {
+      "code": {
+        "min": "Code must be at least 4 characters.",
+        "max": "Code must be no more than 20 characters.",
+        "regex": "Code must be alphanumeric."
+      },
+      "discountType": {
+        "required": "Please select a discount type."
+      },
+      "discountValue": {
+        "invalid": "Discount value must be a number.",
+        "positive": "Discount value must be positive.",
+        "percentageMax": "Percentage discount must not exceed 100."
+      },
+      "usageLimit": {
+        "positive": "Usage limit must be a positive integer."
+      }
     }
   },
-  "termsOfService": {
-    "title": "Terms of Service",
-    "lastUpdated": "Last updated on October 29, 2023",
-    "introduction": "These Terms of Use constitute a legally binding agreement made between you, whether personally or on behalf of an entity (“you”) and DamDoh (“Company”, “we”, “us”, or “our”), concerning your access to and use of the DamDoh website as well as any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto (collectively, the “Site”).",
-    "agreementToTerms": {
-      "heading": "1. Agreement to Terms",
-      "content": "By using the Site, you agree to be bound by these Terms of Use. If you do not agree with all of these Terms of Use, then you are expressly prohibited from using the Site and you must discontinue use immediately."
-    },
-    "intellectualProperty": {
-      "heading": "2. Intellectual Property Rights",
-      "content": "Unless otherwise indicated, the Site is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the “Content”) and the trademarks, service marks, and logos contained therein (the “Marks”) are owned or controlled by us or licensed to us."
-    },
-    "userRepresentations": {
-      "heading": "3. User Representations",
-      "content": "By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Use; (4) you are not a minor in the jurisdiction in which you reside; (5) you will not access the Site through automated or non-human means, whether through a bot, script, or otherwise; (6) you will not use the Site for any illegal or unauthorized purpose; and (7) your use of the Site will not violate any applicable law or regulation."
-    },
-    "prohibitedActivities": {
-      "heading": "4. Prohibited Activities",
-      "content": "You may not access or use the Site for any purpose other than that for which we make the Site available. The Site may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us."
-    },
-    "platformManagement": {
-      "heading": "5. Platform Management",
-      "content": "We reserve the right, but not the obligation, to: (1) monitor the Site for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable any of your Contributions or any portion thereof."
-    },
-    "termAndTermination": {
-      "heading": "6. Term and Termination",
-      "content": "These Terms of Use shall remain in full force and effect while you use the Site. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS OF USE, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SITE (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON."
-    },
-    "modificationsAndInterruptions": {
-      "heading": "7. Modifications and Interruptions",
-      "content": "We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Site without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Site."
-    },
-    "governingLaw": {
-      "heading": "8. Governing Law",
-      "content": "These Terms of Use and your use of the Site are governed by and construed in accordance with the laws of the jurisdiction where the Company is established, without regard to its conflict of law principles."
-    },
-    "disputeResolution": {
-      "heading": "9. Dispute Resolution",
-      "content": "Any legal action of whatever nature brought by either you or us (collectively, the “Parties” and individually, a “Party”) shall be commenced or prosecuted in the state and federal courts located in the jurisdiction where the Company is established, and the Parties hereby consent to, and waive all defenses of lack of personal jurisdiction and forum non conveniens with respect to venue and jurisdiction in such state and federal courts."
-    },
-    "contactUs": {
-      "heading": "10. Contact Us",
-      "content": "In order to resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us."
-    },
-    "conclusion": "To resolve a complaint or get more info, please {contactLink}."
+  "CropRotationSuggester": {
+    "title": "AI Crop Rotation Suggester",
+    "description": "Get AI-powered suggestions for your next crop to improve soil health and break pest cycles.",
+    "buttonText": "Get Rotation Suggestion",
+    "loadingText": "Analyzing field history...",
+    "error": "Could not get a suggestion right now. Please try again.",
+    "noSuggestions": "The AI could not generate a specific suggestion based on the history provided.",
+    "regenerateButton": "Regenerate Suggestion"
   },
-  "communityGuidelines": {
-    "title": "Community Guidelines",
-    "subtitle": "Our commitment to a safe, respectful, and professional community.",
-    "intro": "Welcome to the DamDoh community! We are building a professional network based on trust and mutual respect. To ensure a positive experience for everyone, we ask all members to adhere to the following guidelines:",
-    "respectful": {
-      "title": "Be Respectful and Professional",
-      "description": "Engage in courteous and constructive discussions. Personal attacks, harassment, hate speech, and any form of bullying will not be tolerated. Treat everyone with the professionalism you expect."
-    },
-    "authentic": {
-      "title": "Be Authentic and Honest",
-      "description": "Represent yourself and your business truthfully. Do not misrepresent your products, services, certifications, or experience. Transparency is key to building trust in our network."
-    },
-    "relevant": {
-      "title": "Stay On-Topic and Add Value",
-      "description": "Contribute relevant, high-quality content in forums and discussions. Avoid spam, unsolicited promotions, or off-topic comments. Share your knowledge and help others learn."
-    },
-    "fairTrade": {
-      "title": "Uphold Fair Trade Practices",
-      "description": "Conduct all business on the Marketplace with integrity. Fulfill your orders, pay agreed-upon prices, and communicate clearly with your transaction partners. Do not engage in fraudulent or deceptive practices."
-    },
-    "sustainable": {
-      "title": "Promote Sustainability",
-      "description": "We are a platform dedicated to improving the agricultural ecosystem. We encourage discussions and practices that promote environmental stewardship, economic viability, and social equity."
-    },
-    "reporting": {
-      "title": "Reporting Violations",
-      "content": "If you see content or behavior that violates these guidelines, please report it to our team. You can flag content directly within the platform or contact us via email at {emailLink}.",
-      "emailLinkText": "support@damdoh.org"
-    },
-    "conclusion": "By using DamDoh, you agree to these guidelines. Violations may result in content removal, account suspension, or permanent removal from the platform. Thank you for helping us build a trusted and valuable community."
-  },
-  "careersPage": {
-    "title": "Careers at DamDoh",
-    "subtitle": "Join our mission to revolutionize the global agricultural supply chain.",
-    "whyWorkWithUs": {
-      "title": "Why Work With Us?",
-      "intro": "At DamDoh, we are a passionate team of technologists, agricultural experts, and innovators dedicated to making a real-world impact. We offer:",
-      "point1": "A mission-driven culture focused on sustainability and empowerment.",
-      "point2": "Opportunities to work with cutting-edge technology like AI and blockchain.",
-      "point3": "A collaborative, global team environment.",
-      "point4": "Competitive compensation and benefits.",
-      "point5": "The chance to solve meaningful problems that affect billions of people."
-    },
-    "currentOpenings": {
-      "title": "Current Openings"
-    },
-    "openings": {
-      "job1": {
-        "title": "Senior Frontend Engineer (Next.js)",
-        "location": "Remote",
-        "type": "Full-time",
-        "description": "We are looking for an experienced Next.js developer to lead the development of our user-facing platform features."
+  "farmManagement": {
+    "hub": {
+      "title": "Farm Management Hub",
+      "description": "Your central place to track and optimize all your farm activities, from seed to harvest.",
+      "myFarms": {
+        "title": "My Farms & Crops",
+        "description": "Manage your farms, fields, and track individual crop cycles.",
+        "button": "Manage Farms"
       },
-      "job2": {
-        "title": "Supply Chain Analyst",
-        "location": "Nairobi, Kenya",
-        "type": "Full-time",
-        "description": "Analyze supply chain data to identify inefficiencies and opportunities for optimization within our platform."
+      "labor": {
+        "title": "Labor Management",
+        "description": "Track hours and payments for your workers.",
+        "button": "Manage Labor"
       },
-      "job3": {
-        "title": "Community Manager",
-        "location": "Remote",
-        "type": "Contract",
-        "description": "Engage with our user community, moderate forums, and create content to foster a vibrant and supportive network."
+      "knf": {
+        "title": "KNF Inputs Assistant",
+        "description": "Track your homemade Korean Natural Farming inputs.",
+        "button": "Manage Inputs"
+      },
+      "fgw": {
+        "title": "Farming God's Way Guide",
+        "description": "Learn the principles and practices of FGW for sustainable, no-till agriculture.",
+        "button": "View FGW Guide"
+      },
+      "financials": {
+        "title": "Financials & Analytics",
+        "description": "Track income, expenses, and gain insights into profitability.",
+        "button": "View Financials"
+      },
+      "seedStarting": {
+        "title": "Seed Starting Guide",
+        "description": "Learn best practices for starting seeds for a successful season.",
+        "button": "View Seed Guide"
+      },
+      "familyFarm": {
+        "title": "Diversified Family Farm Model",
+        "description": "Explore a sustainable 200sqm model for small family farms.",
+        "button": "View Model"
+      },
+      "assetManagement": {
+        "title": "Asset Management",
+        "description": "Keep track of your machinery, tools, and other farm assets.",
+        "button": "Manage Assets"
       }
     },
-    "applyNowButton": "Apply Now",
-    "noOpenings": {
-      "title": "No Open Positions at the Moment",
-      "content1": "We are always looking for talented individuals to join our team. If you are passionate about our mission, feel free to send your resume and a cover letter to {emailLink}.",
-      "emailLinkText": "careers@damdoh.org"
-    }
-  },
-  "helpCenterPage": {
-    "title": "Help Center",
-    "subtitle": "Find answers to your questions and learn how to get the most out of DamDoh.",
-    "howCanWeHelp": "How can we help you?",
-    "searchPlaceholder": "Search for topics or keywords...",
-    "browseTopics": "Browse Topics",
-    "gettingStarted": {
-      "title": "Getting Started",
-      "description": "Learn how to set up your profile and begin using the platform.",
-      "placeholder": "Content for Getting Started will be added here."
-    },
-    "marketplaceGuide": {
-      "title": "Marketplace Guide",
-      "description": "Everything you need to know about buying and selling on DamDoh.",
-      "placeholder": "Content for Marketplace Guide will be added here."
-    },
-    "accountManagement": {
-      "title": "Account Management",
-      "description": "Manage your settings, privacy, and notification preferences.",
-      "placeholder": "Content for Account Management will be added here."
-    },
-    "troubleshooting": {
-      "title": "Troubleshooting",
-      "description": "Find solutions to common issues and technical problems.",
-      "placeholder": "Content for Troubleshooting will be added here."
-    },
-    "stillNeedHelp": {
-      "title": "Still need help?",
-      "description": "If you can't find the answer you're looking for, our support team is happy to assist you.",
-      "button": "Contact Support"
-    }
-  },
-  "industryNewsPage": {
-    "title": "Industry News",
-    "description": "The latest news, trends, and analysis from across the agricultural sector.",
-    "searchPlaceholder": "Search news articles...",
-    "categoryPlaceholder": "Filter by category",
-    "allCategories": "All Categories",
-    "sourceLabel": "Source",
-    "publishedLabel": "Published",
-    "categoryLabel": "Category",
-    "readButton": "Read Full Article",
-    "news1": {
-      "title": "Global Coffee Prices Surge Amidst Supply Chain Disruptions",
-      "excerpt": "A combination of poor weather in key growing regions and ongoing logistical challenges has caused a significant spike in arabica coffee futures."
-    },
-    "news2": {
-      "title": "EU Implements New Sustainable Packaging Regulations for Food Imports",
-      "excerpt": "Exporters targeting the European Union must now comply with stricter regulations regarding recyclable and compostable packaging materials."
-    },
-    "news3": {
-      "title": "Venture Capital Pours into Regenerative Agriculture Tech Startups",
-      "excerpt": "Startups focused on soil health, carbon sequestration, and biodiversity are seeing a record-breaking influx of investment."
-    },
-    "noNews": {
-      "title": "No News Articles Found",
-      "description": "Check back later for the latest updates from the agricultural industry."
-    }
-  },
-  "pinboardPage": {
-    "title": "My Pinboard",
-    "description": "Your personal space to save and organize important items from across the platform.",
-    "comingSoonTitle": "Coming Soon: The Pinboard",
-    "comingSoonDescription": "This feature will allow you to save marketplace listings, forum posts, profiles, and more to your own personal board for easy access.",
-    "stayTuned": "Stay tuned for updates!"
-  },
-  "walletPage": {
-    "title": "My Wallet",
-    "description": "Securely manage your funds, view transaction history, and access financial services.",
-    "underDevelopmentTitle": "Under Development",
-    "underDevelopmentDescription": "The DamDoh Wallet and integrated financial services are currently under active development. This feature will provide a secure and seamless way to manage your transactions on the platform.",
-    "feature1": "Securely hold your balances.",
-    "feature2": "View detailed transaction history.",
-    "feature3": "Facilitate direct payments on the Marketplace.",
-    "feature4": "Apply for and receive funds from financial partners.",
-    "stayTuned": "Stay tuned for updates!"
-  },
-  "Auth": {
-    "signInWelcome": "Welcome back to {appName}",
-    "signUpWelcome": "Join the DamDoh Agricultural Network",
-    "forgotPasswordResetPrompt": "Reset your {appName} password",
-    "resetPasswordPrompt": "Set a new password for your {appName} account",
-    "signInTitle": "Sign in to your account",
-    "signInDescription": "Enter your credentials to access your dashboard.",
-    "emailLabel": "Email",
-    "emailPlaceholder": "you@example.com",
-    "passwordLabel": "Password",
-    "forgotPasswordLink": "Forgot password?",
-    "signingInButton": "Signing In...",
-    "signInButton": "Sign In",
-    "noAccountPrompt": "Don't have an account?",
-    "signUpLink": "Sign Up",
-    "signInLink": "Sign In",
-    "recoverWithUniversalIdPrompt": "Or recover account with your Universal ID",
-    "signUpTitle": "Create a new account",
-    "signUpDescription": "Tell us a bit about yourself to get started.",
-    "nameLabel": "Your Name or Business Name",
-    "namePlaceholder": "e.g., Jane Doe or Green Valley Farms",
-    "roleLabel": "Your Primary Role",
-    "rolePlaceholder": "Select your role in the supply chain...",
-    "confirmPasswordLabel": "Confirm Password",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Creating Account...",
-    "signUpButton": "Create Account",
-    "alreadyHaveAccountPrompt": "Already have an account?",
-    "forgotPasswordTitle": "Forgot Password?",
-    "forgotPasswordDescription": "No problem. Enter your email below and we'll send you a reset link.",
-    "sendResetLinkButton": "Send Reset Link",
-    "sendingEmailButton": "Sending email...",
-    "rememberPasswordPrompt": "Remember your password?",
-    "resetPasswordTitle": "Reset Password",
-    "resetPasswordDescription": "Enter and confirm your new password below.",
-    "newPasswordLabel": "New Password",
-    "newPasswordPlaceholder": "Enter a secure new password",
-    "resetPasswordButton": "Reset Password",
-    "resettingPasswordButton": "Resetting...",
-    "recoverPage": {
-      "title": "Account Recovery",
-      "description": "Use your network to regain access.",
-      "howItWorksTitle": "How It Works",
-      "step1": "Enter your phone number to start a recovery session.",
-      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
-      "step3": "Once your friend scans the code to verify your identity, you'll get access back.",
-      "startButton": "Start Account Recovery",
-      "scanTitle": "Have a Friend Scan",
-      "scanDescription": "Let a trusted contact on DamDoh scan this QR code using the 'Help a Friend Recover' feature in their app.",
-      "scanNote": "This code is temporary and will expire in 10 minutes.",
-      "startOverButton": "Start Over"
-    },
-    "forgotPassword": {
-      "emailSentTitle": "Check your email",
-      "emailSentDescription": "A password reset link has been sent to {email}.",
-      "emailSentDescriptionIfAccountExists": "If an account with {email} exists, a password reset link has been sent.",
-      "successTitle": "Email Sent!",
-      "successDescription": "Please check your inbox (and spam folder) for the password reset link.",
-      "errors": {
-        "unexpected": "An unexpected error occurred. Please try again.",
-        "invalidEmail": "The email address is not valid.",
-        "tooManyRequests": "Too many requests. Please try again later.",
-        "default": "Failed to send reset email"
-      }
-    },
-    "resetPassword": {
-      "successTitle": "Password Reset Successfully!",
-      "successDescription": "You can now sign in with your new password.",
-      "successRedirect": "You will be redirected to the sign in page shortly.",
-      "errors": {
-        "missingCode": "Invalid password reset link. Please request a new one.",
-        "missingCodeTitle": "Invalid Link",
-        "missingCodeDescription": "The password reset link is missing or invalid. Please go back to the 'Forgot Password' page to request a new one.",
-        "unexpected": "An unexpected error occurred. Please try again.",
-        "invalidOrExpiredCode": "The password reset link is invalid or has expired. Please request a new one.",
-        "userDisabled": "This user account has been disabled.",
-        "userNotFound": "No user found corresponding to this reset link.",
-        "weakPassword": "The new password is not strong enough.",
-        "default": "Failed to reset password"
-      }
-    },
-    "error": "Error"
-  },
-  "searchPage": {
-    "title": "Universal Search",
-    "description": "Find anything across the DamDoh platform, from products and services to people and discussions.",
-    "placeholder": "Search for organic coffee, tractor repair, or a user...",
-    "searchButton": "Search",
-    "popularSearches": "Popular Searches",
-    "popularSearch1": "Organic Fertilizer",
-    "popularSearch2": "Logistics in Kenya",
-    "popularSearch3": "Coffee buyers Europe",
-    "popularSearch4": "Farm labor",
-    "popularSearch5": "Tractor for rent",
-    "modal": {
-      "title": "Universal Search",
-      "placeholder": "I'm looking for...",
-      "searchButton": "Search",
-      "searchError": "Search Failed",
-      "searchErrorDescription": "An unexpected error occurred during the search. Please try again.",
-      "invalidCodeError": "This does not appear to be a valid DamDoh QR code.",
-      "scanFailed": "Scan Failed",
-      "scanError": "Scan Error",
-      "scanErrorDescription": "Could not read the QR code. Please try again.",
-      "interpretationTitle": "AI Interpretation",
-      "interpretationNotesDefault": "Showing general results.",
-      "filtersTitle": "Applied Filters",
-      "results": {
-        "users": "Profiles",
-        "marketplaceItems": "Marketplace",
-        "forums": "Forums",
-        "vti_registry": "Traceability Report",
-        "knowledge_articles": "Knowledge Hub",
-        "agri_events": "Agri-Events"
-      },
-      "noResults": "No results found for your query.",
-      "tryAgain": "Try a different search term or use broader keywords."
-    }
-  },
-  "common": {
-    "error": "Error"
-  },
-  "Marketplace": {
-    "title": "Marketplace",
-    "description": "Discover, buy, and sell agricultural products and services.",
-    "createShopButton": "Create Shopfront",
-    "myOrdersButton": "My Orders",
-    "createListingButton": "Create Listing",
-    "pinButton": "Pin as Homepage",
-    "unpinButton": "Unpin from Homepage",
-    "searchPlaceholder": "Search products & services...",
-    "locationPlaceholder": "Filter by location...",
-    "typePlaceholder": "Filter by type...",
-    "recommendedForYou": "Recommended For You",
-    "discoverMore": "Discover More",
-    "viewDetails": "View Details",
-    "viewServiceButton": "View Service",
-    "noItemsFound": {
-      "title": "No listings found.",
-      "hint": "Try adjusting your search or filters."
-    },
-    "errors": {
-      "search": {
-        "title": "Search Failed",
-        "description": "Could not retrieve marketplace items. Please try again."
-      },
-      "loadItem": {
-        "description": "The requested item could not be loaded."
-      },
-      "unexpected": "An unexpected error occurred. Please try again."
-    },
-    "categories": {
-      "allCategories": "All Categories",
-      "viewAllCategory": "View all in {categoryName}"
-    },
-    "pinning": {
-      "pinnedTitle": "Marketplace Pinned!",
-      "pinnedDescription": "The Marketplace is now your default homepage.",
-      "unpinnedTitle": "Marketplace Unpinned",
-      "unpinnedDescription": "Your homepage has been reset to the default."
-    },
-    "createListing": {
-      "backLink": "Back to Marketplace",
-      "title": "Create a New Listing",
-      "description": "Provide details about the product or service you're offering.",
-      "form": {
-        "nameLabel": "Listing Title",
-        "namePlaceholder": "e.g., Organic Hass Avocados (100kg)",
-        "typeLabel": "Listing Type",
-        "typePlaceholder": "Select type",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Provide a detailed description...",
-        "locationLabel": "Location",
-        "locationPlaceholder": "e.g., Nairobi, Kenya or 'Ships Worldwide'",
-        "relatedVtiLabel": "Related Traceability ID (Optional)",
-        "relatedVtiPlaceholder": "e.g., vti-1234-abcd",
-        "relatedVtiDescription": "Link this listing to a specific harvest batch for full transparency.",
-        "categoryLabel": "Category",
-        "categoryPlaceholder": "Select category",
-        "priceLabel": "Price (USD)",
-        "pricePlaceholder": "e.g., 25.50",
-        "unitLabel": "Unit",
-        "unitPlaceholder": "e.g., /kg, /ton, /hour",
-        "imageUrlLabel": "Image URL",
-        "sustainableLabel": "Sustainable Product/Service",
-        "sustainableDescription": "This item was produced using sustainable or regenerative practices.",
-        "compensationLabel": "Compensation / Rates",
-        "compensationPlaceholder": "e.g., $50/hr, Project-based, KES 2000/day",
-        "experienceLabel": "Experience Level",
-        "experiencePlaceholder": "e.g., Entry-level, Senior, Expert",
-        "skillsLabel": "Skills Required",
-        "skillsPlaceholder": "List required skills...",
-        "skillsDescription": "Separate skills with a comma.",
-        "submitButton": "Publish Listing",
-        "submittingButton": "Publishing..."
-      },
-      "aiPriceSuggestion": {
-        "generatingButton": "Generating...",
-        "button": "Suggest Price with AI",
-        "suggestionLabel": "AI Suggestion:",
-        "usePriceButton": "Use Price"
-      },
-      "errors": {
-        "priceSuggestion": {
-          "missingInfo": {
-            "title": "Missing Information",
-            "description": "Please provide a Title and Description before suggesting a price."
-          },
-          "failed": {
-            "title": "AI Suggestion Failed",
-            "description": "Could not generate a price suggestion at this time."
-          }
-        },
-        "authentication": {
-          "title": "Not Logged In",
-          "description": "You must be logged in to create a listing."
-        },
-        "creation": {
-          "title": "Listing Creation Failed",
-          "description": "There was an error creating your listing. Please try again."
-        }
-      },
-      "success": {
-        "title": "Listing Created!",
-        "description": "Your listing is now live on the marketplace."
-      }
-    },
-    "createShop": {
-      "backLink": "Back to Marketplace",
-      "title": "Create a Digital Shopfront",
-      "description": "Establish your brand on DamDoh with a dedicated page for all your listings.",
-      "authErrorTitle": "Authentication Required",
-      "authErrorDescription": "You must be logged in to create a shop.",
-      "toast": {
-        "successTitle": "Shop Created!",
-        "successDescription": "Your shop '{shopName}' is now live.",
-        "failTitle": "Creation Failed",
-        "failDescription": "Could not create your shop. Please try again."
-      },
-      "form": {
-        "nameLabel": "Shop Name",
-        "namePlaceholder": "e.g., Green Valley Organics",
-        "typeLabel": "Business Type",
-        "typePlaceholder": "Select what best describes your business",
-        "descriptionLabel": "Shop Description",
-        "descriptionPlaceholder": "Tell customers about your business, your mission, and what you offer.",
-        "submitButton": "Create Shop",
-        "submittingButton": "Creating..."
-      }
-    },
-    "shopView": {
-      "backLink": "Back to Marketplace",
-      "ownedBy": "Owned by:",
-      "loadingOwner": "Loading owner...",
-      "editShopButton": "Edit Shop",
-      "contactButton": "Contact Seller",
-      "listingsTitle": "Listings from {shopName}",
-      "noListings": "This shop has no active listings.",
-      "errors": {
-        "notFound": "Shop not found.",
-        "loadError": "Could not load shop data.",
-        "title": "Error"
-      }
-    },
-    "itemView": {
-      "backLink": "Back to Marketplace",
-      "aboutSeller": "About the Seller",
-      "viewShopfront": "View Shopfront",
-      "editListing": "Edit Listing",
-      "manageService": "Manage Service",
-      "buyNowButton": "Buy Now",
-      "contactForService": "Contact for Service",
-      "contactSeller": "Contact Seller",
-      "notFound": {
-        "description": "The item you're looking for does not exist."
-      },
-      "skillsLabel": "Skills Required",
-      "experienceLabel": "Experience Level",
-      "compensationLabel": "Compensation",
-      "traceabilityButton": "View Traceability Report",
-      "coupon": {
-        "label": "Have a coupon?",
-        "placeholder": "Enter coupon code",
-        "applyButton": "Apply",
-        "successTitle": "Coupon Applied!",
-        "successDescription": "{discount} {type, select, fixed {$} percentage {%} other {}} discount has been applied.",
-        "failTitle": "Invalid Coupon",
-        "failDescription": "The coupon code is not valid for this seller or has expired.",
-        "appliedText": "{code} applied!"
-      },
-      "booking": {
-        "perNight": "night",
-        "checkIn": "CHECK-IN",
-        "checkOut": "CHECKOUT",
-        "addDate": "Add date",
-        "guests": "GUESTS",
-        "reserveButton": "Reserve",
-        "reservingButton": "Reserving...",
-        "notCharged": "You won't be charged yet",
-        "nights": "{count, plural, =1 {night} other {nights}}",
-        "serviceFee": "Service fee",
-        "total": "Total",
-        "authTitle": "Please Log In",
-        "authDescription": "You must be logged in to book a service.",
-        "failTitle": "Booking Failed",
-        "dateError": "Please select a check-in and check-out date.",
-        "successTitle": "Booking Successful!",
-        "successDescription": "Your reservation has been confirmed.",
-        "bookedTitle": "You've booked this experience!",
-        "bookedDescription": "You can find your ticket in your profile, or show this QR code upon arrival.",
-        "ticketButton": "View Your Ticket",
-        "modalTitle": "Your Ticket",
-        "modalDescription": "For {itemName}",
-        "modalScan": "Present this code to the operator to check-in."
-      },
-      "order": {
-        "title": "Place an order for {itemName}",
-        "description": "Specify the quantity and any notes for the seller.",
-        "quantityLabel": "Quantity",
-        "notesLabel": "Notes for seller (optional)",
-        "notesPlaceholder": "e.g., Special packaging request, delivery instructions.",
-        "cancelButton": "Cancel",
-        "confirmButton": "Confirm Order",
-        "placingButton": "Placing order...",
-        "authTitle": "Please Log In",
-        "authDescription": "You must be logged in to place an order.",
-        "quantityErrorTitle": "Invalid Quantity",
-        "quantityErrorDescription": "Please enter a quantity greater than zero.",
-        "successTitle": "Order Placed!",
-        "successDescription": "Your order has been sent to the seller for confirmation.",
-        "failTitle": "Order Failed",
-        "failDescription": "There was an error placing your order. Please try again."
-      }
-    },
-    "myOrders": {
-      "backLink": "Back to Marketplace",
-      "title": "My Orders",
-      "description": "Track and manage the orders you have received.",
-      "toast": {
-        "errorTitle": "Error",
-        "fetchError": "Could not retrieve your orders.",
-        "successTitle": "Status Updated",
-        "updateSuccess": "Order status updated to {status}.",
-        "failTitle": "Update Failed"
-      },
-      "table": {
-        "date": "Date",
-        "buyer": "Buyer",
-        "product": "Product",
-        "total": "Total",
-        "status": "Status",
-        "actions": "Actions"
-      },
-      "status": {
-        "new": "New",
-        "confirmed": "Confirmed",
-        "shipped": "Shipped",
-        "completed": "Completed",
-        "cancelled": "Cancelled"
-      },
-      "actions": {
-        "confirm": "Confirm Order",
-        "ship": "Mark as Shipped",
-        "complete": "Complete Order",
-        "cancel": "Cancel Order"
-      },
-      "noOrders": "You have not received any orders yet.",
+    "myFarms": {
+      "backToDashboard": "Back to Farm Hub",
+      "title": "My Farms",
+      "addNewFarmButton": "Add New Farm",
+      "size": "Size",
+      "viewFarmButton": "View Farm Dashboard",
+      "noFarmsTitle": "You haven't added any farms yet.",
+      "noFarmsDescription": "Get started by creating your first farm profile to track crops and activities.",
       "auth": {
         "title": "Please Sign In",
-        "description": "You need to be logged in to see your orders.",
+        "description": "You need to be logged in to view your farms.",
         "button": "Sign In"
-      }
-    },
-    "promotions": {
-      "backToDashboard": "Back to Dashboard",
-      "title": "Promotions & Coupons",
-      "description": "Create and manage coupon codes for your marketplace listings.",
+      },
       "toast": {
-        "error": "Error",
-        "fetchError": "Could not retrieve your coupons.",
-        "success": "Coupon Created!",
-        "createSuccess": "Coupon '{code}' has been created successfully.",
-        "createFail": "Creation Failed",
-        "createError": "Could not create coupon. Please try again.",
-        "linkCopied": "Link Copied!",
-        "shareDescription": "A sharable link for the coupon '{code}' has been copied to your clipboard."
-      },
-      "create": {
-        "title": "Create New Coupon",
-        "form": {
-          "code": "Coupon Code",
-          "codePlaceholder": "e.g., HARVEST2024",
-          "discountType": "Discount Type",
-          "discountTypePlaceholder": "Select type",
-          "percentage": "Percentage",
-          "fixed": "Fixed Amount",
-          "discountValue": "Discount Value",
-          "usageLimit": "Usage Limit",
-          "usageLimitPlaceholder": "e.g., 100",
-          "expiryDate": "Expiration Date (Optional)",
-          "pickDate": "Pick a date",
-          "submitButton": "Create Coupon"
-        }
-      },
-      "list": {
-        "title": "Existing Coupons",
-        "description": "Manage your active and past coupons.",
-        "noCoupons": "You have not created any coupons yet.",
-        "expires": "Expires",
-        "never": "Never",
-        "usage": "Usage",
-        "share": "Share",
-        "shareModal": {
-          "title": "Share Coupon",
-          "description": "Share this link with your customers to apply the coupon directly.",
-          "link": "Link",
-          "copy": "Copy link",
-          "close": "Close"
-        },
-        "toastTitle": "Link Copied!",
-        "toastDescription": "The sharable link for coupon {link} has been copied to your clipboard."
+        "errorTitle": "Error",
+        "fetchError": "Could not retrieve your farm data."
       }
     },
-    "manageService": {
-      "backLink": "Back to Service",
-      "title": "Manage Service",
-      "loading": "Loading...",
-      "tabs": {
-        "checkin": "Check-in",
-        "bookings": "Bookings",
-        "staff": "Staff"
+    "createFarm": {
+      "backToFarms": "Back to My Farms",
+      "title": "Create a New Farm",
+      "description": "Add a new farm to your profile to start tracking crops, inputs, and activities.",
+      "form": {
+        "farmNameLabel": "Farm Name",
+        "farmNamePlaceholder": "e.g., Green Valley Organics",
+        "locationLabel": "Location",
+        "locationPlaceholder": "e.g., Rift Valley, Kenya",
+        "locationDescription": "Provide a general location (City, Region).",
+        "sizeLabel": "Farm Size",
+        "sizePlaceholder": "e.g., 5 Hectares, 12 Acres",
+        "sizeDescription": "Include the units (e.g. Hectares, Acres).",
+        "typeLabel": "Farm Type",
+        "typePlaceholder": "Select the primary type",
+        "types": {
+            "crop": "Crop Production",
+            "livestock": "Livestock",
+            "mixed": "Mixed (Crops & Livestock)",
+            "aquaculture": "Aquaculture",
+            "other": "Other"
+        },
+        "descriptionLabel": "Description (Optional)",
+        "descriptionPlaceholder": "Briefly describe your farm...",
+        "irrigationLabel": "Irrigation Method (Optional)",
+        "irrigationPlaceholder": "e.g., Drip irrigation, rain-fed",
+        "irrigationDescription": "Specify the main irrigation method used.",
+        "submitButton": "Save Farm"
       },
-      "bookingsTab": {
-        "title": "Bookings",
-        "description": "View and manage all bookings for this service.",
-        "downloadCsv": "Download CSV",
-        "error": "Error",
-        "fetchError": "Could not load booking data.",
-        "table": {
-          "guest": "Guest",
-          "bookedOn": "Booked On",
-          "status": "Status",
-          "checkedInAt": "Checked-in At"
+      "toast": {
+        "authErrorTitle": "Authentication Error",
+        "authErrorDescription": "You must be logged in to create a farm.",
+        "successTitle": "Farm Created!",
+        "successDescription": "'{farmName}' has been added to your profile.",
+        "errorTitle": "Creation Failed",
+        "errorDescription": "Could not create the farm. Please try again."
+      }
+    },
+    "farmDetail": {
+        "backToFarms": "Back to My Farms",
+        "registeredOn": "Registered on {date}",
+        "editFarmButton": "Edit Farm",
+        "crops": {
+            "title": "Crops",
+            "description": "Manage all active crops on this farm.",
+            "addNewButton": "Add New Crop",
+            "plantedLabel": "Planted",
+            "stageLabel": "Stage",
+            "viewJourneyButton": "View Journey",
+            "noCrops": "No crops have been added to this farm yet.",
+            "addFirstButton": "Add your first crop"
         },
-        "status": {
-          "booked": "Booked",
-          "checkedIn": "Checked In"
+        "insights": {
+            "title": "Profitability Insights",
+            "description": "AI-powered analysis of your farm activities."
         },
-        "noBookings": "There are no bookings for this service yet.",
         "toast": {
-          "noBookings": "No bookings to download."
+            "notFoundTitle": "Farm not found",
+            "loadErrorTitle": "Load Error",
+            "insightsErrorTitle": "Insights Error"
+        },
+        "notFound": {
+            "title": "Farm Not Found",
+            "description": "The farm you are looking for does not exist or you do not have permission to view it.",
+            "backButton": "Back to My Farms"
         }
+    },
+    "createCrop": {
+      "backLink": "Back to Farm Details",
+      "title": "Add New Crop",
+      "description": "Log a new crop or planting to start tracking its journey.",
+      "cropTypeLabel": "Crop Name / Variety",
+      "cropTypePlaceholder": "e.g., Hass Avocado, Roma Tomato",
+      "cropTypeDescription": "Be as specific as possible.",
+      "plantingDateLabel": "Planting Date",
+      "harvestDateLabel": "Estimated Harvest Date (Optional)",
+      "datePlaceholder": "Pick a date",
+      "yieldLabel": "Expected Yield (Optional)",
+      "yieldPlaceholder": "e.g. 5 Tonnes/Hectare",
+      "stageLabel": "Current Stage (Optional)",
+      "stagePlaceholder": "Select stage",
+      "stages": {
+        "Planting": "Planting",
+        "Vegetative": "Vegetative",
+        "Flowering": "Flowering",
+        "Fruiting": "Fruiting",
+        "Harvesting": "Harvesting",
+        "Post-Harvest": "Post-Harvest"
+      },
+      "notesLabel": "Notes (Optional)",
+      "notesPlaceholder": "Add any relevant notes about this batch...",
+      "saveButton": "Save Crop",
+      "savingButton": "Saving...",
+      "toast": {
+        "authErrorTitle": "Not Authenticated",
+        "authErrorDescription": "You must be logged in to add a crop.",
+        "successTitle": "Crop Added!",
+        "successDescription": "{cropType} has been successfully added to your farm.",
+        "failTitle": "Could not add crop.",
+        "failDescription": "An unexpected error occurred. Please try again."
       }
-    }
-  },
-  "talentExchangePage": {
-    "title": "Talent Exchange",
-    "description": "Find or offer specialized agricultural services, from agronomy consultation to machinery operation.",
-    "listServiceButton": "List a Service",
-    "searchPlaceholder": "Search by service or skill...",
-    "locationPlaceholder": "Filter by location...",
-    "categoryPlaceholder": "Filter by category...",
-    "allCategories": "All categories",
-    "noResultsTitle": "No Services Found",
-    "noResultsDescription": "Try adjusting your search. There are currently no listings that match your criteria.",
-    "toast": {
-      "error": {
-        "title": "Error",
-        "description": "Could not load services."
+    },
+    "logInput": {
+      "backLink": "Back to Farm",
+      "title": "Log Input Application",
+      "description": "Record the application of fertilizers, pesticides, or other inputs to your crop.",
+      "useKNFLabel": "Use KNF Batch",
+      "useKNFPlaceholder": "Select a ready batch",
+      "manualInputLabel": "Or Enter Manually",
+      "manualInputPlaceholder": "e.g., NPK 10-10-10 Fertilizer",
+      "dateLabel": "Application Date",
+      "quantityLabel": "Quantity",
+      "quantityPlaceholder": "e.g., 50",
+      "unitLabel": "Unit",
+      "unitPlaceholder": "e.g., kg, litres, ml/L",
+      "methodLabel": "Application Method (Optional)",
+      "methodPlaceholder": "e.g., Foliar spray, soil drench",
+      "saveButton": "Log Application",
+      "savingButton": "Logging...",
+      "toast": {
+        "authErrorTitle": "Not Authenticated",
+        "authErrorDescription": "You must be logged in to log an application.",
+        "success": "Application Logged",
+        "description": "The input application has been successfully logged to your crop's journey.",
+        "fail": "Logging Failed."
       }
-    }
-  },
-  "traceabilityPage": {
-    "title": "Traceability Center",
-    "description": "Follow the journey of your products from farm to consumer. Enter a batch ID to begin.",
-    "inputPlaceholder": "Enter Traceability ID...",
-    "trackButton": "Track",
-    "vtiDescription": "The ID is a unique identifier for a specific product batch.",
-    "recentTitle": "Recently Traceable Batches",
-    "recentDescription": "See the latest products with full traceability on the platform.",
-    "noRecentBatches": "No publicly traceable batches available at the moment.",
-    "producerLabel": "Producer",
-    "harvestDateLabel": "Harvest Date",
-    "viewReportButton": "View Report",
-    "detailPage": {
-      "backLink": "Back to Traceability Center",
-      "invalidIdError": "Invalid batch ID provided.",
-      "loadError": "Error loading traceability data.",
-      "notFoundTitle": "Batch Not Found",
-      "notFoundDescription": "No batch with this ID was found or it is not publicly viewable.",
-      "traceableProduct": "Traceable Product",
-      "batchIdLabel": "Batch ID",
-      "producerLabel": "Producer",
-      "sustainablyGrownTitle": "Sustainably Grown",
-      "sustainablyGrownDescription": "Activities logged for this batch align with sustainable practices.",
+    },
+    "cropDetailPage": {
+      "backLink": "Back to Farm",
+      "plantedOn": "Planted on {date}",
+      "editButton": "Edit",
+      "quickActionsTitle": "Quick Actions",
+      "logInputButton": "Log Input",
+      "logObservationButton": "Log Observation",
+      "logHarvestButton": "Log Harvest",
+      "journeyTitle": "Crop Journey",
+      "noActivities": "No activities have been logged for this crop yet.",
+      "loading": "Loading crop details...",
+      "notFound": "Crop not found.",
+      "toast": {
+        "notFound": "Crop not found.",
+        "loadError": "Could not load crop data."
+      },
+      "eventPayload": {
+        "noDetails": "No additional details provided for this event.",
+        "observationType": "Observation Type",
+        "details": "Details",
+        "aiDiagnosis": "AI Diagnosis"
+      }
+    },
+    "fgwGuidePage": {
+      "backLink": "Back to Farm Hub",
+      "title": "Farming God's Way Guide",
+      "description": "A sustainable, no-till, faith-based agricultural solution for the poor.",
+      "intro": "Farming God's Way (FGW) is not just a technology, but a biblically-based management and technological solution to the agricultural needs of the poor. It's about being faithful stewards of the land God has given us. Below are the core principles.",
+      "howToTitle": "How To",
+      "whyItWorksTitle": "Why It Works",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "No-Tillage",
+          "icon": "Shield",
+          "summary": "Protect the soil by not plowing it. This preserves the God-given soil structure.",
+          "howTo": [
+            "Create permanent planting stations (holes) instead of ridges.",
+            "Only dig where you will plant the seed.",
+            "Walk on permanent pathways to avoid compacting your planting soil."
+          ],
+          "whyItWorks": [
+            "Prevents soil erosion from wind and water.",
+            "Protects the soil life and fungal networks.",
+            "Dramatically increases water infiltration and retention.",
+            "Reduces labor and fuel costs associated with plowing."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field with no-tillage planting stations",
+          "dataAiHint": "no tillage farming holes"
+        },
+        {
+          "id": "gods-blanket",
+          "title": "God's Blanket",
+          "icon": "Leaf",
+          "summary": "Keep the soil 100% covered with a thick layer of organic matter, just like in a forest.",
+          "howTo": [
+            "Gather dry organic matter like grass, straw, dry leaves, or maize stalks.",
+            "Apply a thick layer of mulch (at least 10-15cm) over the entire plot.",
+            "Never burn your crop residues; use them as mulch.",
+            "When planting, make a small opening in the mulch for your seed."
+          ],
+          "whyItWorks": [
+            "Prevents weed growth.",
+            "Saves significant soil moisture, reducing water needs.",
+            "Feeds soil life as it decomposes, building rich topsoil.",
+            "Protects the soil from the sun's direct heat."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field covered in a thick blanket of mulch",
+          "dataAiHint": "mulch farming agriculture"
+        },
+        {
+          "id": "high-standards",
+          "title": "High Standards",
+          "icon": "CheckCircle",
+          "summary": "Do everything on time, to a high standard, without wastage, and with joy.",
+          "howTo": [
+            "Prepare the land well before the first rains.",
+            "Plant at the optimal time for your region and crop.",
+            "Follow precise measurements for planting depth and spacing.",
+            "Manage your resources (seed, inputs, time) wisely to avoid waste."
+          ],
+          "whyItWorks": [
+            "Maximizes the genetic potential of the seed.",
+            "Ensures the crop gets the full benefit of the early rains.",
+            "Leads to higher yields and greater profitability.",
+            "Honors God through excellent work."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A farmer carefully planting seeds in a well-prepared field",
+          "dataAiHint": "planting seeds precision"
+        }
+      ]
+    },
+    "logObservation": {
+        "backLink": "Back to Farm",
+        "title": "Log Observation",
+        "description": "Record an observation about your crop, such as pest sightings, disease, growth, or weather events.",
+        "typeLabel": "Observation Type",
+        "typePlaceholder": "Select type",
+        "types": {
+            "Pest": "Pest",
+            "Disease": "Disease",
+            "Growth": "Growth",
+            "Weather": "Weather",
+            "Soil": "Soil",
+            "Weed": "Weed",
+            "Other": "Other",
+            "FGW_Stations": "Land Prep (FGW Stations)",
+            "FGW_Mulch": "Mulching (God's Blanket)"
+        },
+        "dateLabel": "Observation Date",
+        "detailsLabel": "Details & Notes",
+        "detailsPlaceholder": "Describe what you observed...",
+        "uploadLabel": "Upload Photo (Optional)",
+        "uploadDescription": "A photo can help with diagnosis. It will be analyzed by AI if provided.",
+        "saveButton": "Log Observation",
+        "processingButton": "Processing...",
+        "toast": {
+            "authErrorTitle": "Not Authenticated",
+            "authErrorDescription": "You must be logged in to log an observation.",
+            "aiAnalyzing": "AI Analyzing",
+            "aiDescription": "Your image data is being sent to the AI for diagnosis.",
+            "aiComplete": "AI Analysis Complete!",
+            "aiCompleteDescription": "The diagnosis has been included in your observation log.",
+            "aiFailTitle": "AI Analysis Failed",
+            "aiFailDescription": "We could not analyze the image. The observation will be saved without an AI diagnosis.",
+            "uploading": "Uploading image...",
+            "uploadingDescription": "Please wait a moment.",
+            "uploadComplete": "Upload Complete!",
+            "success": "Observation Logged",
+            "successDescription": "Your observation was successfully logged.",
+            "fail": "Logging Failed."
+        }
+    },
+    "logHarvest": {
+      "backLink": "Back to Farm",
+      "title": "Log Harvest for {cropType}",
+      "description": "Record your harvest to create a new traceable batch.",
       "harvestDateLabel": "Harvest Date",
-      "yieldLabel": "Yield",
-      "qualityLabel": "Quality",
-      "notSpecified": "Not specified",
-      "journeyTitle": "The Product Journey",
-      "journeyDescription": "A chronological record of all events for this batch.",
-      "noEventDetails": "No additional details provided for this event.",
-      "observationType": "Observation Type",
-      "details": "Details",
-      "aiDiagnosis": "AI Diagnosis",
-      "geoLocationLabel": "Geolocation",
-      "noEventsFound": "No events have been logged for this batch."
-    }
-  },
-  "Forums": {
-    "title": "Forums",
-    "description": "Engage in discussions, ask questions, and share your expertise with the DamDoh community.",
-    "buttons": {
-      "createTopic": "Create New Topic",
-      "loadMore": "Load More"
-    },
-    "searchPlaceholder": "Search forums...",
-    "pinning": {
-      "pinnedTitle": "Forums Pinned",
-      "pinnedDescription": "The forums are now your default homepage.",
-      "unpinnedTitle": "Forums Unpinned",
-      "unpinnedDescription": "Your homepage has been reset to the default."
-    },
-    "lastActivity": "Last activity {time}",
-    "noForums": "No forums found.",
-    "errors": {
-      "loadTitle": "Error",
-      "loadDescription": "Could not load forums."
-    },
-    "topic": {
-      "backLink": "Back to All Forums",
-      "buttons": {
-        "createPost": "Create Post",
-        "loadingMore": "Loading..."
+      "yieldLabel": "Total Yield (kg)",
+      "yieldPlaceholder": "e.g., 1500",
+      "qualityLabel": "Quality Grade",
+      "qualityPlaceholder": "e.g., Grade A, Export Quality",
+      "notesLabel": "Harvest Notes (Optional)",
+      "notesPlaceholder": "Specific details about this harvest...",
+      "saveButton": "Log Harvest & Create Batch",
+      "savingButton": "Saving...",
+      "offlineToast": {
+          "title": "Action added to offline queue.",
+          "description": "Your harvest will be logged and a VTI will be created when you're back online."
       },
-      "postMeta": "By {author} on {date}",
-      "noPosts": {
-        "title": "No Posts Yet",
-        "description": "Be the first one to start a discussion in this topic.",
-        "button": "Create your first post"
+      "success": {
+          "title": "Harvest Logged!",
+          "description": "The harvest for {cropType} has been logged successfully. A new traceable batch with ID '{vtiId}' has been created.",
+          "successCardTitle": "Harvest Logged!",
+          "successCardDescription": "A new traceable batch has been created for {cropType} with ID: {vtiId}",
+          "viewReportButton": "View Traceability Report",
+          "sellButton": "Sell on Marketplace",
+          "logAnotherButton": "Log Another Harvest",
+          "backToFarmButton": "Back to Farm"
       },
-      "notFound": {
-        "title": "Topic Not Found",
-        "description": "The forum topic you are looking for does not exist.",
-        "backButton": "Back to All Forums"
+      "fail": {
+          "title": "Logging Failed"
+      }
+    },
+    "knfInputsPage": {
+      "backLink": "Back to Farm Hub",
+      "title": "KNF Inputs Assistant",
+      "description": "Create, track, and manage your homemade Korean Natural Farming inputs.",
+      "guidesTitle": "KNF Guides",
+      "ingredients": "Ingredients",
+      "steps": "Steps",
+      "usage": "Usage",
+      "fermentingBatchesTitle": "Fermenting Batches",
+      "started": "Started",
+      "nextStepOn": "Next step on",
+      "markReady": "Mark as Ready",
+      "noFermentingBatches": "No fermenting batches.",
+      "readyBatchesTitle": "Ready Batches",
+      "readySince": "Ready since",
+      "logUsage": "Log Usage",
+      "archive": "Archive",
+      "noReadyBatches": "No ready batches available.",
+      "startNewBatch": "Start New Batch",
+      "createNewBatchTitle": "Create New KNF Batch",
+      "cancel": "Cancel",
+      "quantity": "Quantity",
+      "quantityPlaceholder": "e.g., 5 or 20",
+      "unit": "Unit",
+      "unitPlaceholder": "e.g., Litres, kg",
+      "sellSurplus": "Sell Surplus",
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Fermented Plant Juice (FPJ)",
+          "description": "A fermented extract of a plant's sap and chlorophylls. Rich in enzymes and microorganisms, it's a potent growth enhancer for plants.",
+          "ingredients": [
+            "1kg of fast-growing plant parts (e.g., sweet potato tips, bamboo shoots, squash tips)",
+            "1kg of brown sugar (or molasses)"
+          ],
+          "yield": "Approx. 0.8 L",
+          "steps": [
+            "Collect plant materials before sunrise when they are most potent. Do not wash.",
+            "Roughly chop the plant materials.",
+            "Add an equal weight of brown sugar and mix thoroughly.",
+            "Pack the mixture tightly into a clay pot or glass jar, filling to about 2/3 capacity.",
+            "Cover with a breathable cloth and store in a cool, dark place.",
+            "Let it ferment for about 7 days."
+          ],
+          "usage": "Dilution ratio: 1:500 to 1:1000 with water. Apply as a foliar spray or soil drench."
+        },
+        {
+          "id": "faa",
+          "name": "Fish Amino Acid (FAA)",
+          "description": "A potent liquid fertilizer made from fish waste, rich in nitrogen and amino acids. Excellent for boosting plant growth.",
+          "ingredients": [
+            "1kg of fish scraps (heads, bones, guts)",
+            "1kg of brown sugar (or molasses)"
+          ],
+          "yield": "Approx. 1.5 L",
+          "steps": [
+            "Chop the fish parts into small pieces.",
+            "In a container, layer the fish parts and brown sugar, starting and ending with a layer of sugar.",
+            "Fill the container to about 2/3 capacity and cover with a breathable cloth.",
+            "Store in a cool, dark place and let it ferment for at least 3-6 months."
+          ],
+          "usage": "Dilution ratio: 1:1000 with water. Primarily used as a soil drench."
+        }
+      ],
+      "form": {
+        "typeLabel": "Input Type",
+        "typePlaceholder": "Select a KNF input",
+        "ingredientsLabel": "Ingredients Used",
+        "quantityLabel": "Quantity Produced",
+        "unitLabel": "Unit",
+        "startDateLabel": "Start Date",
+        "startButton": "Start Batch",
+        "startingButton": "Starting..."
+      },
+      "toasts": {
+        "loadErrorTitle": "Error",
+        "loadErrorDescription": "Could not retrieve your KNF batches.",
+        "validationError": "Please fill out all fields to start a batch.",
+        "batchStartedTitle": "Batch Started!",
+        "batchStartedDescription": "Your new KNF batch is now fermenting.",
+        "batchStartFailed": "Batch Start Failed",
+        "unexpectedError": "An unexpected error occurred.",
+        "batchUpdatedTitle": "Status Updated",
+        "batchUpdatedDescription": "Batch status successfully updated to {status}.",
+        "updateFailed": "Update Failed",
+        "couldNotUpdate": "Could not update the batch status."
+      }
+    },
+    "editCrop": {
+      "backLink": "Back to Crop Details",
+      "title": "Edit Crop",
+      "description": "Update the details for your crop.",
+      "savingButton": "Saving...",
+      "saveButton": "Save Changes",
+      "toast": {
+        "notFound": "Crop not found.",
+        "loadError": "Could not load crop data for editing.",
+        "error": "Error",
+        "loadFail": "Failed to load crop data: {message}",
+        "success": "Crop Updated!",
+        "description": "{cropType} has been successfully updated.",
+        "fail": "Update Failed"
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Back to Farm Details",
+      "title": "Edit Farm",
+      "description": "Update your farm's details.",
+      "form": {
+        "submitButton": "Save Changes"
+      },
+      "toast": {
+        "notFoundTitle": "Not Found",
+        "loadError": "Could not load the farm you wish to edit.",
+        "loadFail": "Failed to load farm data: {message}",
+        "successTitle": "Farm Updated!",
+        "successDescription": "'{farmName}' has been successfully updated.",
+        "errorTitle": "Update Failed"
+      }
+    },
+    "financials": {
+        "title": "Financials",
+        "description": "Keep track of your farm's financial health.",
+        "applyForFundingButton": "Apply for Funding",
+        "newTransactionButton": "Log Transaction",
+        "totalIncome": "Total Income",
+        "totalExpense": "Total Expense",
+        "netFlow": "Net Cash Flow",
+        "recentTransactions": "Recent Transactions",
+        "noTransactions": "No transactions logged yet.",
+        "table": {
+            "date": "Date",
+            "description": "Description",
+            "category": "Category",
+            "amount": "Amount"
+        },
+        "log": {
+            "backLink": "Back to Financials",
+            "title": "Log Financial Transaction",
+            "description": "Manually record an income or expense for your farm.",
+            "typeLabel": "Transaction Type",
+            "typePlaceholder": "Select type",
+            "types": {
+                "income": "Income",
+                "expense": "Expense"
+            },
+            "descriptionLabel": "Description",
+            "descriptionPlaceholder": "e.g., Sale of 100kg maize, Purchase of seeds",
+            "amountLabel": "Amount",
+            "amountPlaceholder": "e.g., 500.00",
+            "currencyLabel": "Currency",
+            "currencyPlaceholder": "Select currency",
+            "categoryLabel": "Category (Optional)",
+            "categoryPlaceholder": "e.g., Sales, Labor, Inputs",
+            "categoryDescription": "Assigning a category helps with analysis.",
+            "saveButton": "Save Transaction",
+            "savingButton": "Saving...",
+            "toast": {
+                "authErrorTitle": "Not Authenticated",
+                "authErrorDescription": "You must be logged in to log a transaction.",
+                "success": "Transaction Logged",
+                "description": "Your transaction has been successfully recorded.",
+                "fail": "Logging Failed"
+            }
+        },
+        "apply": {
+            "backLink": "Back to Financials",
+            "title": "Apply for Funding",
+            "description": "Submit an application for a loan or grant from a partner financial institution.",
+            "form": {
+                "institutionLabel": "Financial Institution",
+                "institutionPlaceholder": "Select an institution",
+                "noInstitutions": "No financial institutions available",
+                "typeLabel": "Application Type",
+                "loan": "Loan",
+                "grant": "Grant",
+                "amountLabel": "Amount",
+                "currencyLabel": "Currency",
+                "purposeLabel": "Purpose of Funds",
+                "purposePlaceholder": "Describe how you will use these funds (e.g., purchase new equipment, expand operations, buy seeds).",
+                "purposeDescription": "A clear description increases your chances of approval.",
+                "submitButton": "Submit Application"
+            },
+            "toast": {
+                "error": "Error",
+                "fetchFiError": "Could not retrieve financial institutions.",
+                "notAuthenticatedError": "You must be logged in to apply.",
+                "successTitle": "Application Submitted!",
+                "successDescription": "Your application has been sent for review."
+            }
+        },
+        "signInPrompt": {
+            "title": "Sign In Required",
+            "description": "Please sign in to manage your farm's financials.",
+            "button": "Sign In"
+        }
+    },
+    "seedStartingPage": {
+      "backLink": "Back to Farm Hub",
+      "title": "Master Seed Starting Guide",
+      "description": "Give your crops the best possible start. Learn the art and science of starting seeds indoors for a stronger, healthier, and more productive season.",
+      "intro": "Starting seeds indoors gives you a major head start on the growing season, protects young plants from pests and harsh weather, and allows you to grow varieties that might not otherwise have time to mature in your climate. This guide covers the essential steps from choosing your equipment to transplanting your seedlings.",
+      "sections": [
+        {
+          "id": "why-start-indoors",
+          "title": "Why Start Seeds Indoors?",
+          "icon": "Lightbulb",
+          "intro": "There are several key advantages to starting seeds inside rather than direct-sowing in the garden:",
+          "points": [
+            { "term": "Longer Growing Season", "def": "Begin weeks or months before your last frost date, which is crucial for plants that take a long time to mature like tomatoes, peppers, and eggplants." },
+            { "term": "Protection", "def": "Seedlings are safe from harsh weather (heavy rain, wind, cold snaps) and common pests (slugs, birds, cutworms)." },
+            { "term": "Improved Germination", "def": "You can control the temperature, moisture, and light to create the perfect conditions for seeds to sprout." },
+            { "term": "Cost-Effective", "def": "A packet of seeds is far cheaper than buying established nursery plants, especially for large plantings." },
+            { "term": "Wider Variety", "def": "You gain access to thousands of unique and heirloom varieties from seed catalogs that you'll never find at a local garden center." }
+          ]
+        },
+        {
+          "id": "key-supplies",
+          "title": "Key Seed Starting Supplies",
+          "icon": "Package",
+          "intro": "Gathering the right supplies before you start makes the process smoother and more successful. You will need:",
+          "steps": [
+            "<b>Containers:</b> Seed starting trays, cell packs, peat pots, or even recycled yogurt cups (with drainage holes) all work well.",
+            "<b>Seed Starting Mix:</b> Use a sterile, soilless mix designed for seed starting. It's lightweight and holds moisture well, which prevents diseases that can affect seedlings.",
+            "<b>Seeds:</b> Choose high-quality seeds from a reputable company. Check the packet for information on planting depth and timing.",
+            "<b>Light Source:</b> A sunny, south-facing window can work, but a simple fluorescent shop light or a dedicated LED grow light will provide much better results and prevent 'leggy' (tall and weak) seedlings.",
+            "<b>Heat Mat (Optional):</b> Many seeds, especially warm-weather crops like peppers, germinate much faster with bottom heat. A seedling heat mat is a great investment.",
+            "<b>Watering Can/Spray Bottle:</b> A gentle way to water your seeds without dislodging them.",
+            "<b>Labels:</b> Don't forget to label your trays! Use popsicle sticks, plastic plant tags, or even masking tape."
+          ]
+        },
+        {
+          "id": "step-by-step-guide",
+          "title": "Step-by-Step Planting Guide",
+          "icon": "Grid",
+          "intro": "Follow these steps to plant your seeds for optimal germination:",
+          "steps": [
+            "<b>Moisten the Mix:</b> Before filling your containers, put your seed starting mix in a bucket or tub and slowly add warm water, mixing with your hands until it's damp like a wrung-out sponge, but not sopping wet.",
+            "<b>Fill Containers:</b> Fill your containers with the pre-moistened mix, tamping it down gently but not compacting it. Leave about half an inch of space at the top.",
+            "<b>Sow Seeds:</b> Plant 2-3 seeds per cell or pot. A general rule of thumb is to plant a seed twice as deep as it is wide. Check your seed packet for specific instructions.",
+            "<b>Cover and Label:</b> Lightly cover the seeds with more mix or vermiculite, then gently firm the surface. Immediately label your tray with the plant variety and the date sown.",
+            "<b>Water Gently:</b> Gently water the surface with a spray bottle or by bottom-watering, which involves placing your trays in a tub of water. This prevents the seeds from being washed away.",
+            "<b>Provide Warmth & Cover:</b> Place the trays in a warm spot or on a heat mat. Cover them with a plastic dome or plastic wrap to retain humidity until the seeds sprout. Remove the cover as soon as you see the first signs of green."
+          ]
+        },
+        {
+          "id": "caring-for-seedlings",
+          "title": "Caring For Your Seedlings",
+          "icon": "Leaf",
+          "intro": "Once your seeds have germinated, their needs change. Proper care now is crucial for strong plants.",
+          "steps": [
+            "<b>Light is Critical:</b> As soon as seeds sprout, they need abundant light. Place them under grow lights for 14-16 hours a day, keeping the lights just a few inches above the tops of the plants. If using a window, rotate trays daily to prevent leaning.",
+            "<b>Watering:</b> Keep the soil consistently moist but not waterlogged. Bottom-watering is often best to encourage deep root growth.",
+            "<b>Thinning:</b> Once seedlings have their first 'true leaves' (the second set that appears), choose the strongest-looking seedling in each cell and snip the others off at the soil line with scissors. This avoids disturbing the winner's roots.",
+            "<b>Fertilizing:</b> Start feeding your seedlings with a diluted, balanced liquid fertilizer (at quarter strength) after they have 2-3 sets of true leaves. Feed about once a week.",
+            "<b>Air Circulation:</b> A gentle fan blowing on your seedlings for a few hours a day helps prevent disease and strengthens their stems."
+          ]
+        },
+        {
+          "id": "hardening-off",
+          "title": "Hardening Off & Transplanting",
+          "icon": "Sun",
+          "intro": "'Hardening off' is the process of gradually acclimating your tender, indoor-grown plants to the harsh conditions outdoors.",
+          "steps": [
+            "<b>Begin 1-2 Weeks Before Transplanting:</b> About 7-14 days before your local last frost date, start the process.",
+            "<b>Day 1:</b> Place seedlings in a shady, protected spot outdoors for 1-2 hours.",
+            "<b>Gradual Exposure:</b> Each day, increase the amount of time they spend outside by an hour or two, gradually introducing them to more direct sun and wind.",
+            "<b>Bring Indoors:</b> Bring the plants back inside each night if temperatures drop significantly.",
+            "<b>Transplant:</b> After a week or two of hardening off, your plants are ready for their new home in the garden. Choose a calm, overcast day to transplant to minimize shock. Water them in well."
+          ]
+        },
+        {
+          "id": "common-mistakes",
+          "title": "Common Mistakes to Avoid",
+          "icon": "AlertTriangle",
+          "intro": "Avoid these common pitfalls for a more successful seed-starting experience:",
+          "points": [
+            { "term": "Overwatering", "def": "This is the most common seedling killer. It leads to 'damping off,' a fungal disease that rots the stems at the soil line. Let the soil surface dry out slightly between waterings." },
+            { "term": "Inadequate Light", "def": "Causes 'leggy,' weak seedlings that stretch for light. If you don't have grow lights, a very bright south-facing window is the next best thing." },
+            { "term": "Starting Too Early", "def": "Eagerness is great, but starting seeds too soon results in large, root-bound plants that struggle after transplanting. Check your seed packet and count back from your local last frost date." },
+            { "term": "Forgetting to Thin", "def": "Overcrowded seedlings compete for light and nutrients, resulting in weak plants for everyone. It's tough, but thinning is necessary for strong individual plants." }
+          ]
+        }
+      ]
+    },
+    "familyFarmPage": {
+      "backLink": "Back to Farm Hub",
+      "title": "Integrated Family Farm Model (200 sqm)",
+      "description": "A holistic, diversified model for a small-scale family farm, designed for resilience, nutritional security, and supplemental income.",
+      "intro": "This model demonstrates how a small plot of land (e.g. 20m x 10m) can be transformed into a productive, integrated system that mimics natural ecosystems. It combines various elements that support each other, reducing waste and external inputs while maximizing diversity and yield.",
+      "diagramCaption": "Conceptual diagram of the 200 sqm integrated family farm model.",
+      "detailsTitle": "Key Details & Outputs",
+      "principlesTitle": "Key Principles & Synergies",
+      "zones": [
+        {
+          "id": "overall-layout",
+          "title": "Overall Layout & Principles",
+          "icon": "LayoutGrid",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "An overview of a lush, diversified small farm.",
+          "dataAiHint": "small farm layout diverse",
+          "description": [
+            "The 200 square meter (20m x 10m) plot is designed for intensive, regenerative production. The core idea is to create a closed-loop system where each component supports another, minimizing waste and maximizing resource use.",
+            "Water is the central, life-giving element, with the pond acting as a reservoir, nutrient source, and habitat. The layout is designed to use gravity and natural flows for irrigation and nutrient distribution."
+          ],
+          "subSections": [
+            { "title": "Resource Cycling", "content": ["Waste from one component becomes a resource for another (e.g., chicken manure fertilizes crops, crop residues feed chickens)."] },
+            { "title": "Diversity over Monoculture", "content": ["A wide variety of plants and animals creates resilience against pests and diseases."] },
+            { "title": "Vertical Stacking", "content": ["Utilizing trellises and multi-story cropping to maximize yield in a small space."] },
+            { "title": "Edge Effect", "content": ["The boundary between the pond and the land is a highly productive zone for moisture-loving plants."] }
+          ]
+        },
+        {
+          "id": "vegetable-beds",
+          "title": "Raised Vegetable & Herb Beds (100 sqm)",
+          "icon": "Sprout",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "Lush raised beds filled with a variety of greens and herbs.",
+          "dataAiHint": "raised bed vegetable garden",
+          "description": [
+            "This is the primary food production area, occupying half of the total space. Raised beds improve drainage, reduce soil compaction, and are easier to manage.",
+            "Intensive planting methods like intercropping (planting different crops together) and succession planting (immediately replanting after harvest) are used to maximize production year-round."
+          ],
+          "details": [
+            { "title": "Crops", "content": ["Leafy greens (lettuce, spinach), root vegetables (carrots, radishes), fruiting vegetables (tomatoes, peppers), legumes (beans, peas), and essential culinary/medicinal herbs."] },
+            { "title": "Fertility", "content": ["Maintained by compost from the farm's waste, chicken manure, and nutrient-rich water from the fish pond."] }
+          ]
+        },
+        {
+          "id": "fruit-trees",
+          "title": "Fruit Trees & Perennials (Integrated)",
+          "icon": "Leaf",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A small orchard with various fruit trees and perennial plants.",
+          "dataAiHint": "fruit trees orchard",
+          "description": [
+            "Fruit trees are integrated along the borders and within the vegetable beds to provide a long-term food source, create microclimates, and add vertical structure.",
+            "These perennial plants require less annual labor than vegetables and help build soil stability with their deep root systems."
+          ],
+          "details": [
+            { "title": "Examples", "content": ["Dwarf varieties of banana, papaya, mango, and citrus trees are excellent choices for small spaces. Perennials like moringa or passionfruit on a trellis can also be integrated."] }
+          ]
+        },
+        {
+          "id": "fish-pond",
+          "title": "Fish Pond (15 sqm)",
+          "icon": "Fish",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A small, clear fish pond with tilapia and water plants.",
+          "dataAiHint": "backyard fish pond",
+          "description": [
+            "The fish pond is a key element of the integrated system. It acts as a water reservoir for irrigation during dry periods and provides a source of protein.",
+            "The nutrient-rich water from the pond, full of fish excrement, is a natural, high-quality liquid fertilizer for the vegetable beds."
+          ],
+          "details": [
+            { "title": "Species", "content": ["Tilapia is a popular choice as they are hardy, fast-growing, and primarily vegetarian."] },
+            { "title": "Aquatic Plants", "content": ["Water spinach or duckweed can be grown on the surface to provide feed for the fish and chickens, as well as for human consumption."] }
+          ]
+        },
+        {
+          "id": "chicken-coop",
+          "title": "Chicken Coop (5 sqm)",
+          "icon": "Bird",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A small, clean chicken coop with a few chickens inside.",
+          "dataAiHint": "backyard chicken coop",
+          "description": [
+            "A small flock of chickens (5-10) provides a consistent source of eggs and meat for the family.",
+            "Their manure is a potent fertilizer for the compost pile, and they can be used to forage in harvested garden beds to clean up pests and weed seeds."
+          ],
+          "details": [
+            { "title": "Integration", "content": ["Positioning the coop next to the compost pile allows for easy transfer of manure. The chickens are fed kitchen scraps and excess garden produce, reducing waste."] }
+          ]
+        },
+        {
+          "id": "compost-area",
+          "title": "Compost & Waste Management Area",
+          "icon": "Recycle",
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A well-managed three-bin compost system.",
+          "dataAiHint": "compost pile garden",
+          "description": [
+            "This is the farm's recycling center. All organic 'waste'—kitchen scraps, garden trimmings, animal manure, and fallen leaves—is turned into 'black gold' (compost).",
+            "A simple three-bin system allows one pile to be actively built, one to be 'cooking,' and one to be ready for use, ensuring a continuous supply of high-quality soil amendment."
+          ],
+          "details": [
+            { "title": "Function", "content": ["Closes the nutrient loop on the farm, eliminates the need for synthetic fertilizers, improves soil structure, and increases its water-holding capacity."] }
+          ]
+        }
+      ],
+      "conclusion": {
+        "title": "A Model of Abundance",
+        "content": [
+          "This 200 sqm model is more than just a farm; it's a living example of how to work with nature to create abundance in a small space.",
+          "It provides a diverse and nutritious diet, reduces reliance on external markets, generates potential surplus for income, and builds a resilient system that can better withstand climate and economic shocks.",
+          "It's a pathway to food sovereignty and a healthier life for the family."
+        ]
+      }
+    },
+    "laborPage": {
+      "backLink": "Back to Farm Hub",
+      "title": "Labor Management",
+      "description": "Add workers to your team and track their hours and payments.",
+      "addWorker": "Add Worker",
+      "workerName": "Worker's Name",
+      "saveWorker": "Save Worker",
+      "noWorkers": "You haven't added any workers yet. Click 'Add Worker' to start.",
+      "hoursLogged": "Total Hours",
+      "totalPaid": "Total Paid",
+      "logHours": "Log Hours",
+      "logPayment": "Log Payment",
+      "viewDetails": "View Details",
+      "logHoursFor": "Log Hours For",
+      "hoursWorked": "Hours Worked",
+      "date": "Date",
+      "pickDate": "Pick a date",
+      "taskDescription": "Task Description (Optional)",
+      "logPaymentFor": "Log Payment For",
+      "amountPaid": "Amount Paid",
+      "workerDetailPage": {
+        "backLink": "Back to Labor Management",
+        "notFoundTitle": "Worker Not Found",
+        "notFoundDescription": "The worker profile you are looking for does not exist.",
+        "goBackButton": "Go Back",
+        "workLogsTitle": "Work Logs",
+        "paymentHistoryTitle": "Payment History",
+        "noWorkLogs": "No work hours have been logged for this worker.",
+        "noPayments": "No payments have been recorded for this worker.",
+        "table": {
+          "date": "Date",
+          "hours": "Hours",
+          "task": "Task",
+          "amount": "Amount"
+        },
+        "toasts": {
+          "errorTitle": "Error",
+          "loadError": "Could not load worker details."
+        }
+      },
+      "toast": {
+        "errorTitle": "Error",
+        "fetchWorkersError": "Could not retrieve your list of workers.",
+        "nameRequired": "Worker name is required.",
+        "workerAdded": "Worker added successfully.",
+        "hoursLogged": "Hours logged successfully.",
+        "paymentLoggedTitle": "Payment Logged",
+        "paymentLoggedDescription": "The payment was recorded and an expense was automatically created in your financials."
       }
     }
   }
