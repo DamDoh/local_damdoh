@@ -13,139 +13,6 @@
     "goToFeedButton": "Aller au Fil d'Actualité",
     "noRecommendations": "Aucune recommandation pour le moment. Explorez le marché pour commencer !"
   },
-  "LandingPage": {
-    "hero": {
-      "title": "Valoriser l'Agriculture, du Sol à la Vente sur {appName}",
-      "subtitle": "La plateforme unique qui connecte chaque acteur de la chaîne de valeur agricole pour un avenir plus transparent, efficace et durable.",
-      "getStartedButton": "Commencez Gratuitement",
-      "learnMoreButton": "En Savoir Plus"
-    },
-    "features": {
-      "title": "Fonctionnalités Principales de DamDoh",
-      "subtitle": "Tout ce dont vous avez besoin pour cultiver, vous connecter et commercer, au même endroit.",
-      "networking": {
-        "title": "Réseautage Intelligent",
-        "description": "Suggestions de connexion basées sur l'IA pour vous mettre en relation avec les bons partenaires, des fournisseurs aux acheteurs internationaux."
-      },
-      "marketplace": {
-        "title": "Marché Direct",
-        "description": "Achetez et vendez des produits et services directement, augmentant la transparence et la rentabilité pour tous les acteurs."
-      },
-      "forums": {
-        "title": "Forums Thématiques",
-        "description": "Partagez vos connaissances, discutez des défis et collaborez sur des solutions dans des forums dédiés à des sujets spécifiques."
-      },
-      "talent": {
-        "title": "Bourse de Talents",
-        "description": "Proposez ou trouvez des services agricoles spécialisés, de la récolte à la demande aux relevés par drone."
-      }
-    },
-    "forWho": {
-      "badge": "Pour Tous les Acteurs Agricoles",
-      "title": "Une Plateforme pour Toute la Chaîne de Valeur",
-      "description": "DamDoh est conçu de manière unique pour servir l'ensemble de l'écosystème agricole, créant un point de vérité et d'opportunité unique pour tous.",
-      "farmers": {
-        "title": "Agriculteurs",
-        "description": "Accédez à de meilleurs marchés, trouvez des intrants de qualité et obtenez des conseils d'experts pour augmenter votre rendement et votre rentabilité."
-      },
-      "buyers": {
-        "title": "Acheteurs & Transformateurs",
-        "description": "Approvisionnez-vous en produits traçables de haute qualité directement auprès des producteurs et des coopératives, garantissant la fiabilité de la chaîne d'approvisionnement."
-      },
-      "experts": {
-        "title": "Experts & Fournisseurs de Services",
-        "description": "Proposez vos compétences et services spécialisés à un large public agricole à la recherche de votre expertise."
-      },
-      "imageAlt": "Un groupe diversifié d'acteurs agricoles collaborant"
-    },
-    "cta": {
-      "title": "Rejoignez la Révolution Agricole",
-      "subtitle": "Inscrivez-vous dès aujourd'hui et faites partie d'un réseau mondial en pleine croissance, dédié à la transformation de l'avenir de l'alimentation.",
-      "button": "Créez Votre Compte Gratuit"
-    }
-  },
-  "Auth": {
-    "signInWelcome": "Bienvenue à nouveau sur {appName}",
-    "signUpWelcome": "Rejoignez le réseau agricole {appName}",
-    "forgotPasswordResetPrompt": "Réinitialisez votre mot de passe pour {appName}",
-    "resetPasswordPrompt": "Créez un nouveau mot de passe pour {appName}",
-    "signInTitle": "Se connecter à votre compte",
-    "signInDescription": "Entrez vos identifiants pour accéder à votre tableau de bord.",
-    "emailLabel": "E-mail",
-    "emailPlaceholder": "vous@exemple.com",
-    "passwordLabel": "Mot de passe",
-    "forgotPasswordLink": "Mot de passe oublié ?",
-    "signingInButton": "Connexion en cours...",
-    "signInButton": "Se connecter",
-    "noAccountPrompt": "Vous n'avez pas de compte ?",
-    "signUpLink": "S'inscrire",
-    "signInLink": "Se connecter",
-    "recoverWithUniversalIdPrompt": "Ou récupérer l'accès avec votre ID Universel",
-    "signUpTitle": "Créer un nouveau compte",
-    "signUpDescription": "Parlez-nous un peu de vous pour commencer.",
-    "nameLabel": "Votre nom ou nom d'entreprise",
-    "namePlaceholder": "ex: Jean Dupont ou Les Fermes de la Vallée Verte",
-    "roleLabel": "Votre rôle principal",
-    "rolePlaceholder": "Sélectionnez votre rôle dans la chaîne d'approvisionnement...",
-    "confirmPasswordLabel": "Confirmer le mot de passe",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Création du compte...",
-    "signUpButton": "Créer un compte",
-    "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
-    "forgotPasswordTitle": "Mot de passe oublié ?",
-    "forgotPasswordDescription": "Pas de problème. Entrez votre adresse e-mail ci-dessous, et nous vous enverrons un lien pour le réinitialiser.",
-    "sendResetLinkButton": "Envoyer le lien de réinitialisation",
-    "sendingEmailButton": "Envoi de l'e-mail...",
-    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
-    "resetPasswordTitle": "Réinitialisez votre mot de passe",
-    "resetPasswordDescription": "Entrez et confirmez votre nouveau mot de passe ci-dessous.",
-    "newPasswordLabel": "Nouveau mot de passe",
-    "newPasswordPlaceholder": "Entrez un nouveau mot de passe sécurisé",
-    "resetPasswordButton": "Réinitialiser le mot de passe",
-    "resettingPasswordButton": "Réinitialisation en cours...",
-    "recoverPage": {
-      "title": "Récupération de Compte",
-      "description": "Utilisez votre réseau pour retrouver l'accès.",
-      "howItWorksTitle": "Comment ça marche",
-      "step1": "Saisissez votre numéro de téléphone pour démarrer une session de récupération.",
-      "step2": "Montrez le code QR temporaire à un ami de confiance sur DamDoh.",
-      "step3": "Une fois que votre ami aura scanné le code pour vérifier votre identité, vous retrouverez l'accès.",
-      "startButton": "Démarrer la récupération de compte",
-      "scanTitle": "Demandez à un ami de scanner",
-      "scanDescription": "Demandez à un contact de confiance sur DamDoh de scanner ce code QR en utilisant la fonction 'Aider un ami à récupérer son compte' dans leur application.",
-      "scanNote": "Ce code est temporaire et expire dans 10 minutes.",
-      "startOverButton": "Recommencer"
-    },
-    "forgotPassword": {
-      "emailSentTitle": "Vérifiez votre e-mail",
-      "emailSentDescription": "Un lien de réinitialisation de mot de passe a été envoyé à {email}.",
-      "emailSentDescriptionIfAccountExists": "Si un compte avec {email} existe, un lien de réinitialisation de mot de passe a été envoyé.",
-      "successTitle": "E-mail envoyé !",
-      "successDescription": "Veuillez vérifier votre boîte de réception (et votre dossier spam) pour le lien de réinitialisation de mot de passe.",
-      "errors": {
-        "unexpected": "Une erreur inattendue est survenue. Veuillez réessayer.",
-        "invalidEmail": "L'adresse e-mail n'est pas valide.",
-        "tooManyRequests": "Trop de tentatives. Veuillez réessayer plus tard.",
-        "default": "Échec de l'envoi de l'e-mail de réinitialisation"
-      }
-    },
-    "resetPassword": {
-      "successTitle": "Mot de passe réinitialisé avec succès !",
-      "successDescription": "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
-      "successRedirect": "Vous allez être redirigé vers la page de connexion.",
-      "errors": {
-        "missingCode": "Lien de réinitialisation de mot de passe non valide. Veuillez en demander un nouveau.",
-        "missingCodeTitle": "Lien invalide",
-        "missingCodeDescription": "Le lien de réinitialisation de mot de passe est manquant ou invalide. Veuillez retourner à la page 'Mot de passe oublié' pour en demander un nouveau.",
-        "unexpected": "Une erreur inattendue est survenue. Veuillez réessayer.",
-        "invalidOrExpiredCode": "Le lien de réinitialisation du mot de passe est invalide ou a expiré. Veuillez en demander un nouveau.",
-        "userDisabled": "Ce compte utilisateur a été désactivé.",
-        "userNotFound": "Aucun utilisateur trouvé correspondant à ce lien de réinitialisation.",
-        "weakPassword": "Le nouveau mot de passe n'est pas assez sécurisé.",
-        "default": "Échec de la réinitialisation du mot de passe"
-      }
-    }
-  },
   "AppHeader": {
     "searchPlaceholder": "Rechercher...",
     "home": "Accueil",
@@ -214,921 +81,320 @@
   "LanguageSwitcher": {
     "toggle": "Changer de langue"
   },
-  "DashboardLeftSidebar": {
-    "viewProfileLink": "Voir le profil",
-    "profileViewers": "Visites du profil",
-    "postEngagements": "Engagements sur les posts",
-    "pro": {
-      "unlock": "Débloquez les statistiques et insights avancés.",
-      "try": "Essayer DamDoh Pro"
+  "LandingPage": {
+    "hero": {
+      "title": "Valoriser l'Agriculture, du Sol à la Vente sur {appName}",
+      "subtitle": "La plateforme unique qui connecte chaque acteur de la chaîne de valeur agricole pour un avenir plus transparent, efficace et durable.",
+      "getStartedButton": "Commencez Gratuitement",
+      "learnMoreButton": "En Savoir Plus"
     },
-    "recent": {
-      "title": "Récent",
-      "myPinBoard": "Mon Tableau d'Épingles",
-      "communityGroups": "Groupes Communautaires",
-      "industryNews": "Actualités du Secteur",
-      "agriEvents": "Événements Agricoles",
-      "mySupplyChainNetwork": "Mon Réseau de Chaîne d'Approvisionnement"
+    "features": {
+      "title": "Fonctionnalités Principales de DamDoh",
+      "subtitle": "Tout ce dont vous avez besoin pour cultiver, vous connecter et commercer, au même endroit.",
+      "networking": {
+        "title": "Réseautage Intelligent",
+        "description": "Suggestions de connexion basées sur l'IA pour vous mettre en relation avec les bons partenaires, des fournisseurs aux acheteurs internationaux."
+      },
+      "marketplace": {
+        "title": "Marché Direct",
+        "description": "Achetez et vendez des produits et services directement, augmentant la transparence et la rentabilité pour tous les acteurs."
+      },
+      "forums": {
+        "title": "Forums Thématiques",
+        "description": "Partagez vos connaissances, discutez des défis et collaborez sur des solutions dans des forums dédiés à des sujets spécifiques."
+      },
+      "talent": {
+        "title": "Bourse de Talents",
+        "description": "Proposez ou trouvez des services agricoles spécialisés, de la récolte à la demande aux relevés par drone."
+      }
+    },
+    "forWho": {
+      "badge": "Pour Tous les Acteurs Agricoles",
+      "title": "Une Plateforme pour Toute la Chaîne de Valeur",
+      "description": "DamDoh est conçu de manière unique pour servir l'ensemble de l'écosystème agricole, créant un point de vérité et d'opportunité unique pour tous.",
+      "farmers": {
+        "title": "Agriculteurs",
+        "description": "Accédez à de meilleurs marchés, trouvez des intrants de qualité et obtenez des conseils d'experts pour augmenter votre rendement et votre rentabilité."
+      },
+      "buyers": {
+        "title": "Acheteurs & Transformateurs",
+        "description": "Approvisionnez-vous en produits traçables de haute qualité directement auprès des producteurs et des coopératives, garantissant la fiabilité de la chaîne d'approvisionnement."
+      },
+      "experts": {
+        "title": "Experts & Fournisseurs de Services",
+        "description": "Proposez vos compétences et services spécialisés à un large public agricole à la recherche de votre expertise."
+      },
+      "imageAlt": "Un groupe diversifié d'acteurs agricoles collaborant"
+    },
+    "cta": {
+      "title": "Rejoignez la Révolution Agricole",
+      "subtitle": "Inscrivez-vous dès aujourd'hui et faites partie d'un réseau mondial en pleine croissance, dédié à la transformation de l'avenir de l'alimentation.",
+      "button": "Créez Votre Compte Gratuit"
     }
   },
-  "DashboardRightSidebar": {
-    "networkTitle": "Ajouter à votre fil",
-    "refreshSuggestions": "Actualiser les suggestions",
-    "infoTooltip": "Les suggestions sont basées sur les intérêts et besoins de votre profil.",
-    "signInPrompt": "Connectez-vous pour des recommandations personnalisées.",
-    "loadError": "Impossible de charger les suggestions.",
-    "noSuggestions": "Aucune nouvelle suggestion pour le moment. Revenez plus tard !",
-    "following": "Abonné",
+  "AppFooter": {
+    "tagline": "Connecter la chaîne de valeur agricole pour un avenir durable.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "À propos",
+    "contactLabel": "Contact",
+    "careersLabel": "Carrières",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressources",
+    "helpCenterLabel": "Centre d'aide",
+    "communityGuidelinesLabel": "Règles de la communauté",
+    "industryNewsLabel": "Actualités du secteur",
+    "eventsLabel": "Événements",
+    "talentExchangeLabel": "Bourse de talents",
+    "legalTitle": "Légal",
+    "privacyPolicyLabel": "Politique de confidentialité",
+    "termsOfServiceLabel": "Conditions d'utilisation",
+    "copyright": "© {year} {appName}. Tous droits réservés.",
+    "getMobileApp": "Obtenir l'application mobile",
+    "googlePlayAlt": "Obtenez-le sur Google Play",
+    "appStoreAlt": "Télécharger sur l'App Store"
+  },
+  "searchPage": {
+    "title": "Recherche Universelle",
+    "description": "Trouvez tout sur la plateforme DamDoh, des produits et services aux personnes et discussions.",
+    "placeholder": "Rechercher du café bio, une réparation de tracteur ou un utilisateur...",
+    "searchButton": "Rechercher",
+    "popularSearches": "Recherches Populaires",
+    "popularSearch1": "Engrais Organique",
+    "popularSearch2": "Logistique au Kenya",
+    "popularSearch3": "Acheteurs de café Europe",
+    "popularSearch4": "Main d'œuvre agricole",
+    "popularSearch5": "Location de tracteur",
+    "modal": {
+      "title": "Recherche Universelle",
+      "placeholder": "Je cherche...",
+      "searchButton": "Rechercher",
+      "searchError": "Échec de la recherche",
+      "searchErrorDescription": "Une erreur inattendue est survenue lors de la recherche. Veuillez réessayer.",
+      "invalidCodeError": "Cela ne semble pas être un code QR DamDoh valide.",
+      "scanFailed": "Scan Échoué",
+      "scanError": "Erreur de scan",
+      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
+      "interpretationTitle": "Interprétation IA",
+      "interpretationNotesDefault": "Affichage des résultats généraux.",
+      "filtersTitle": "Filtres Appliqués",
+      "results": {
+        "users": "Profils",
+        "marketplaceItems": "Marché",
+        "forums": "Forums",
+        "vti_registry": "Rapport de Traçabilité",
+        "knowledge_articles": "Centre de connaissances",
+        "agri_events": "Événements Agricoles"
+      },
+      "noResults": "Aucun résultat trouvé pour votre requête.",
+      "tryAgain": "Essayez un terme de recherche différent ou utilisez des mots-clés plus larges."
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Cultiver des Connexions, Récolter la Prospérité",
+      "subtitle": "Nous avons pour mission de numériser et de connecter la chaîne d'approvisionnement agricole mondiale, en donnant du pouvoir à chaque acteur, de la terre à l'étalage."
+    },
+    "vision": {
+      "title": "Notre Vision pour un Avenir Connecté",
+      "p1": "DamDoh est né d'une idée simple mais puissante : la technologie peut combler les lacunes du monde agricole. Nous imaginons un monde où les petits agriculteurs ont un accès direct aux marchés mondiaux, où les acheteurs peuvent s'approvisionner en produits avec une confiance vérifiable, et où la connaissance circule librement pour créer un système alimentaire plus durable et équitable.",
+      "p2": "Nous sommes plus qu'une plateforme ; nous sommes une communauté dédiée à la résolution de défis réels avec des solutions innovantes et centrées sur l'utilisateur.",
+      "foundersTitle": "Des Fondateurs"
+    },
+    "challenge": {
+      "title": "Le Paysage Fragmenté de l'Agriculture",
+      "description": "La chaîne d'approvisionnement agricole est un écosystème complexe et souvent déconnecté, présentant de nombreux défis pour toutes les parties prenantes.",
+      "list": {
+        "knowledge": "Manque d'information : Les agriculteurs n'ont pas accès aux techniques modernes et aux données de marché en temps réel.",
+        "market": "Accès au marché : Les petits exploitants ont du mal à se connecter à des marchés plus grands et plus rentables.",
+        "quality": "Qualité et confiance : Les acheteurs sont confrontés à l'incertitude quant à la qualité, l'origine et les pratiques agricoles des produits.",
+        "logistics": "Logistique inefficace : Une mauvaise coordination entraîne des coûts élevés et des pertes après récolte importantes.",
+        "financial": "Exclusion financière : Le manque de dossiers formels empêche l'accès au crédit et à l'assurance.",
+        "climate": "Changement climatique : Une imprévisibilité croissante exige des systèmes agricoles plus résilients.",
+        "informal": "Économie informelle : L'absence d'enregistrements numériques entrave la croissance et la formalisation."
+      }
+    },
+    "solution": {
+      "title": "La Solution DamDoh : Un Écosystème Intégré",
+      "description": "Nous relevons ces défis en fournissant une plateforme unique et unifiée avec des outils pour tous.",
+      "list": {
+        "education": "Éducation pilotée par l'IA",
+        "ai": "Mise en réseau intelligente et IA",
+        "logistics": "Logistique intégrée",
+        "financial": "Services financiers"
+      }
+    },
+    "beyondTechnology": {
+      "title": "Au-delà de la Technologie",
+      "list": {
+        "p2p": {
+          "title": "Pair-à-Pair (Peer-to-Peer)",
+          "content": "Des agriculteurs se connectant à d'autres agriculteurs pour partager leurs connaissances et former des coopératives."
+        },
+        "p2b": {
+          "title": "Producteur-à-Entreprise (Producer-to-Business)",
+          "content": "Des liens directs entre les agriculteurs et les acheteurs, les transformateurs et les exportateurs, en éliminant les intermédiaires inutiles."
+        },
+        "p2e": {
+          "title": "Producteur-à-Expert (Producer-to-Expert)",
+          "content": "Accès à des agronomes, conseillers financiers et fournisseurs de logistique pour améliorer les opérations."
+        },
+        "p2w": {
+          "title": "Producteur-au-Monde (Producer-to-World)",
+          "content": "Permettre aux petits agriculteurs de participer au marché mondial avec confiance et transparence."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Rejoignez Notre Écosystème en Croissance",
+      "p1": "Notre engagement va aux personnes qui nourrissent le monde. Nous croyons qu'en fournissant les outils numériques dont ils ont besoin, nous pouvons favoriser un secteur agricole plus résilient, rentable et durable pour les générations à venir.",
+      "p2": "Que vous plantiez une graine, achetiez en gros ou financiez une ferme, vous avez votre place dans la communauté DamDoh.",
+      "p3": "Grandissons ensemble.",
+      "button": "Créez votre profil"
+    }
+  },
+  "Auth": {
+    "signUpWelcome": "Rejoignez le réseau agricole {appName}",
+    "signUpTitle": "Créer un compte",
+    "signUpDescription": "Entrez vos informations pour commencer.",
+    "nameLabel": "Nom complet",
+    "namePlaceholder": "Marie Dubois",
+    "roleLabel": "Votre rôle principal",
+    "rolePlaceholder": "Sélectionnez votre rôle...",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "nom@exemple.com",
+    "passwordLabel": "Mot de passe",
+    "passwordPlaceholder": "••••••••",
+    "confirmPasswordLabel": "Confirmez le mot de passe",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Création du compte...",
+    "signUpButton": "S'inscrire",
+    "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
+    "signInLink": "Se connecter",
+    "signUpLink": "S'inscrire",
+    "signInWelcome": "Bon retour sur {appName}",
+    "signInTitle": "Se connecter",
+    "signInDescription": "Entrez vos informations d'identification pour accéder à votre compte.",
+    "forgotPasswordLink": "Mot de passe oublié ?",
+    "signingInButton": "Connexion en cours...",
+    "signInButton": "Se connecter",
+    "noAccountPrompt": "Pas de compte ?",
+    "recoverWithUniversalIdPrompt": "Récupérer le compte avec l'ID Universel",
+    "forgotPasswordResetPrompt": "Réinitialisez votre mot de passe {appName}",
+    "forgotPasswordTitle": "Mot de passe oublié",
+    "forgotPasswordDescription": "Pas de problème, nous vous enverrons des instructions pour le réinitialiser.",
+    "sendResetLinkButton": "Envoyer le lien de réinitialisation",
+    "sendingEmailButton": "Envoi en cours...",
+    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
+    "error": "Erreur",
+    "forgotPassword": {
+      "emailSentTitle": "Vérifiez votre e-mail",
+      "emailSentDescription": "Un lien de réinitialisation de mot de passe a été envoyé à {email}.",
+      "emailSentDescriptionIfAccountExists": "Si un compte existe avec {email}, un lien de réinitialisation de mot de passe a été envoyé.",
+      "successTitle": "E-mail envoyé !",
+      "successDescription": "Veuillez vérifier votre boîte de réception (et votre dossier de spam) pour le lien de réinitialisation de mot de passe.",
+      "errors": {
+        "unexpected": "Une erreur inattendue est survenue. Veuillez réessayer.",
+        "invalidEmail": "L'adresse e-mail n'est pas valide.",
+        "tooManyRequests": "Trop de tentatives. Veuillez réessayer plus tard.",
+        "default": "Impossible d'envoyer l'e-mail de réinitialisation"
+      }
+    },
+    "resetPasswordPrompt": "Créez un nouveau mot de passe pour votre compte {appName}",
+    "resetPasswordTitle": "Réinitialiser votre mot de passe",
+    "resetPasswordDescription": "Entrez un nouveau mot de passe sécurisé pour votre compte.",
+    "newPasswordLabel": "Nouveau mot de passe",
+    "newPasswordPlaceholder": "••••••••",
+    "resettingPasswordButton": "Réinitialisation en cours...",
+    "resetPasswordButton": "Réinitialiser le mot de passe",
+    "resetPassword": {
+      "successTitle": "Mot de passe réinitialisé avec succès !",
+      "successDescription": "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
+      "successRedirect": "Vous allez être redirigé vers la page de connexion.",
+      "errors": {
+        "missingCode": "Lien de réinitialisation de mot de passe non valide. Veuillez en demander un nouveau.",
+        "missingCodeTitle": "Lien invalide",
+        "missingCodeDescription": "Le lien de réinitialisation de mot de passe est manquant ou invalide. Veuillez retourner à la page 'Mot de passe oublié' pour en demander un nouveau.",
+        "unexpected": "Une erreur inattendue est survenue. Veuillez réessayer.",
+        "invalidOrExpiredCode": "Le lien de réinitialisation du mot de passe est invalide ou a expiré. Veuillez en demander un nouveau.",
+        "userDisabled": "Ce compte utilisateur a été désactivé.",
+        "userNotFound": "Aucun utilisateur trouvé correspondant à ce lien de réinitialisation.",
+        "weakPassword": "Le nouveau mot de passe n'est pas assez sécurisé.",
+        "default": "Impossible de réinitialiser le mot de passe"
+      }
+    },
+    "recoverPage": {
+      "title": "Récupération de Compte",
+      "description": "Récupérez l'accès à votre compte avec l'aide d'un ami de confiance.",
+      "howItWorksTitle": "Comment fonctionne la récupération sociale",
+      "step1": "Entrez votre numéro de téléphone pour commencer une session de récupération.",
+      "step2": "Montrez le code QR généré à un ami de confiance qui utilise également DamDoh.",
+      "step3": "Votre ami scanne le code avec son application pour confirmer votre identité.",
+      "startButton": "Démarrer la Récupération",
+      "scanTitle": "Demandez à un Ami de Scanner",
+      "scanDescription": "Demandez à un contact de confiance sur votre réseau DamDoh de scanner ce code QR pour vérifier votre identité.",
+      "scanNote": "Ce code est temporaire et expirera dans 10 minutes.",
+      "startOverButton": "Recommencer"
+    }
+  },
+  "networkPage": {
+    "title": "Réseau d'Acteurs",
+    "description": "Découvrez et connectez-vous avec des agriculteurs, des acheteurs, des prestataires de services et des experts de toute la chaîne de valeur agricole.",
+    "myNetworkButton": "Mon Réseau",
+    "agentToolsButton": "Outils d'Agent",
+    "aiSuggestionsTitle": "Suggestions par IA",
+    "aiSuggestionsDescription": "En fonction de votre profil, voici quelques personnes avec qui vous pourriez vouloir vous connecter.",
+    "browseAllTitle": "Parcourir Tous les Acteurs",
+    "browseAllDescription": "Utilisez les filtres ci-dessous pour trouver des personnes ou des entreprises spécifiques sur le réseau.",
+    "searchPlaceholder": "Rechercher par nom ou mot-clé...",
+    "locationPlaceholder": "Filtrer par lieu...",
+    "rolePlaceholder": "Filtrer par rôle...",
+    "allRoles": "Tous les Rôles",
+    "noStakeholdersFound": "Aucun acteur trouvé.",
+    "noStakeholdersHint": "Essayez d'ajuster vos filtres de recherche ou réessayez plus tard.",
+    "connect": "Connecter",
+    "profile": "Profil",
     "follow": "Suivre",
-    "promotionsTitle": "Promotions",
-    "promotionsDescription": "Voir les offres spéciales des partenaires de l'écosystème.",
-    "managePromotionsButton": "Gérer les Promotions",
-    "ad": "Publicité",
-    "adTitle": "Débloquez des Informations sur le Marché",
-    "adDescription": "Obtenez des données et des analyses en temps réel avec DamDoh Pro.",
-    "adButton": "En savoir plus"
+    "following": "Abonné",
+    "toast": {
+      "errorTitle": "Erreur",
+      "loadError": "Impossible de charger les données du réseau.",
+      "noSuggestions": "Aucune nouvelle suggestion pour le moment."
+    },
+    "noSuggestions": "Aucune suggestion disponible pour le moment. Complétez votre profil pour de meilleures recommandations."
   },
-  "FeedItemCard": {
-    "signInToLikeToast": "Vous devez être connecté pour aimer une publication.",
-    "repostPlaceholderToast": "La fonction de republication sera bientôt disponible !",
-    "signInToVoteToast": "Vous devez être connecté pour voter.",
-    "voteSuccessToast": "Votre vote a été comptabilisé !",
-    "voteErrorToast": "Impossible d'enregistrer le vote.",
-    "editPost": "Modifier la publication",
-    "deletePost": "Supprimer la publication",
-    "like": "J'aime",
-    "comment": "Commenter",
-    "repost": "Republier",
-    "likes": "{count, plural, =0 {j'aime} =1 {j'aime} other {{count} j'aime}}",
-    "comments": "{count, plural, =0 {commentaires} =1 {commentaire} other {{count} commentaires}}",
-    "loadCommentsErrorToast": "Impossible de charger les commentaires.",
-    "noComments": "Soyez le premier à commenter !",
-    "loadingComments": "Chargement des commentaires...",
-    "loadMoreComments": "Charger plus de commentaires",
-    "writeCommentPlaceholder": "Ajouter un commentaire...",
-    "postButton": "Publier",
-    "votes": "{count, plural, =0 {votes} =1 {vote} other {{count} votes}}"
-  },
-  "CreatePostModal": {
-    "title": "Créer une nouvelle publication",
-    "description": "Partagez une mise à jour, posez une question, ou lancez une conversation avec la communauté.",
-    "yourName": "Votre Nom",
-    "shareUpdate": "Partager une mise à jour",
-    "placeholder": "À quoi pensez-vous ?",
-    "selectedFile": "Fichier sélectionné :",
-    "pollOptionsLabel": "Options du sondage",
-    "pollOptionPlaceholder": "Option {index}",
-    "addOptionButton": "Ajouter une option",
-    "pollNote": "Un maximum de {maxOptions} options est autorisé.",
-    "photoVideo": "Photo/Vidéo",
-    "agriEvent": "Événement Agri",
-    "shareDocumentButton": "Partager un document",
-    "createPollButton": "Créer un sondage",
-    "postButton": "Publier",
-    "pollOptionsError": "Un sondage doit avoir au moins 2 options non vides.",
-    "emptyPostError": "Votre publication ne peut pas être vide."
-  },
-  "StartPost": {
-    "placeholder": "Commencer une publication...",
-    "photoVideo": "Photo/Vidéo",
-    "agriEvent": "Événement Agri",
-    "createPoll": "Créer un sondage"
-  },
-  "formErrors": {
-    "createMarketplaceCoupon": {
-      "code": {
-        "min": "Le code doit comporter au moins 4 caractères.",
-        "max": "Le code ne peut pas dépasser 20 caractères.",
-        "regex": "Le code doit être alphanumérique."
-      },
-      "discountType": {
-        "required": "Veuillez sélectionner un type de réduction."
-      },
-      "discountValue": {
-        "invalid": "La valeur de la réduction doit être un nombre.",
-        "positive": "La valeur de la réduction doit être positive.",
-        "percentageMax": "La réduction en pourcentage ne peut pas dépasser 100."
-      },
-      "usageLimit": {
-        "positive": "La limite d'utilisation doit être un entier positif."
-      }
+  "myNetworkPage": {
+    "backLink": "Retour au Réseau",
+    "myConnectionsTab": "Mes Connexions ({count})",
+    "pendingRequestsTab": "Demandes en Attente",
+    "connectionsTitle": "Mes Connexions",
+    "connectionsDescription": "Ce sont vos connexions approuvées sur la plateforme. Vous pouvez maintenant leur envoyer des messages directement.",
+    "noConnections": "Vous n'avez pas encore établi de connexions. Commencez à explorer le réseau !",
+    "requestsTitle": "Demandes de Connexion",
+    "requestsDescription": "Examinez et répondez aux demandes de connexion en attente.",
+    "noRequests": "Vous n'avez aucune demande de connexion en attente.",
+    "sentTimeAgo": "Envoyé il y a {timeAgo}",
+    "toast": {
+      "error": "Erreur",
+      "loadError": "Impossible de charger les données du réseau.",
+      "respondError": "Impossible de répondre à la demande.",
+      "removeError": "Impossible de supprimer la connexion.",
+      "success": "Succès",
+      "requestAccepted": "Demande acceptée.",
+      "requestDeclined": "Demande refusée.",
+      "connectionRemoved": "Connexion supprimée."
     }
   },
-  "CropRotationSuggester": {
-    "title": "Suggerimenti di Rotazione delle Colture AI",
-    "description": "Ottieni suggerimenti basati sull'IA per la tua prossima coltura per migliorare la salute del suolo e interrompere i cicli dei parassiti.",
-    "buttonText": "Ottieni Suggerimento di Rotazione",
-    "loadingText": "Analisi della cronologia del campo...",
-    "error": "Impossibile ottenere un suggerimento in questo momento. Riprova.",
-    "noSuggestions": "L'IA non ha potuto generare un suggerimento specifico basato sulla cronologia fornita.",
-    "regenerateButton": "Rigenera Suggerimento"
-  },
-  "farmManagement": {
-    "hub": {
-      "title": "Centre de Gestion Agricole",
-      "description": "Votre espace central pour suivre et optimiser toutes vos activités agricoles, de la plantation à la récolte.",
-      "myFarms": {
-        "title": "Mes Fermes & Cultures",
-        "description": "Gérez vos fermes, vos champs, et suivez les cycles individuels des cultures.",
-        "button": "Gérer les Fermes"
-      },
-      "labor": {
-        "title": "Gestion de la Main-d'œuvre",
-        "description": "Suivez les heures et les paiements de votre personnel.",
-        "button": "Gérer la Main-d'œuvre"
-      },
-      "knf": {
-        "title": "Assistant Intrants KNF",
-        "description": "Suivez vos intrants d'Agriculture Naturelle Coréenne (KNF) fabriqués par vous-même.",
-        "button": "Gérer les Intrants"
-      },
-      "fgw": {
-        "title": "Guide 'Farming God's Way'",
-        "description": "Apprenez les principes et pratiques de FGW pour une agriculture durable sans labour.",
-        "button": "Voir le Guide FGW"
-      },
-      "financials": {
-        "title": "Finances & Analyses",
-        "description": "Suivez les revenus, les dépenses, et obtenez des informations sur la rentabilité.",
-        "button": "Voir les Finances"
-      },
-      "seedStarting": {
-        "title": "Guide de Démarrage des Semis",
-        "description": "Apprenez les meilleures pratiques pour démarrer les semis pour une saison réussie.",
-        "button": "Voir le Guide des Semis"
-      },
-      "familyFarm": {
-        "title": "Modèle de Ferme Familiale Diversifiée",
-        "description": "Explorez un modèle durable de 200 m² pour les petites fermes familiales.",
-        "button": "Voir le Modèle"
-      },
-      "assetManagement": {
-        "title": "Gestion des Actifs",
-        "description": "Gardez une trace de vos machines, outils et autres actifs de la ferme.",
-        "button": "Gérer les Actifs"
-      }
-    },
-    "myFarms": {
-      "backToDashboard": "Retour au Hub Agricole",
-      "title": "Mes Fermes",
-      "addNewFarmButton": "Ajouter une Nouvelle Ferme",
-      "size": "Taille",
-      "viewFarmButton": "Voir le Tableau de Bord",
-      "noFarmsTitle": "Vous n'avez pas encore ajouté de fermes.",
-      "noFarmsDescription": "Commencez par créer votre premier profil de ferme pour suivre les cultures et les activités.",
-      "auth": {
-        "title": "Veuillez vous connecter",
-        "description": "Vous devez être connecté pour voir vos fermes.",
-        "button": "Se connecter"
-      },
-      "toast": {
-        "errorTitle": "Erreur",
-        "fetchError": "Impossible de récupérer les données de votre ferme."
-      }
-    },
-    "createFarm": {
-      "backToFarms": "Retour à Mes Fermes",
-      "title": "Créer une Nouvelle Ferme",
-      "description": "Ajoutez une nouvelle ferme à votre profil pour commencer à suivre les cultures, les intrants et les activités.",
-      "form": {
-        "farmNameLabel": "Nom de la Ferme",
-        "farmNamePlaceholder": "ex: Les Vergers de la Vallée Verte",
-        "locationLabel": "Emplacement",
-        "locationPlaceholder": "ex: Vallée de la Loire, France",
-        "locationDescription": "Fournissez un emplacement général (Ville, Région).",
-        "sizeLabel": "Taille de la Ferme",
-        "sizePlaceholder": "ex: 5 Hectares, 12 Acres",
-        "sizeDescription": "Précisez les unités (ex: Hectares, Acres).",
-        "typeLabel": "Type de Ferme",
-        "typePlaceholder": "Sélectionnez le type principal",
-        "types": {
-            "crop": "Production Végétale",
-            "livestock": "Élevage",
-            "mixed": "Mixte (Cultures & Élevage)",
-            "aquaculture": "Aquaculture",
-            "other": "Autre"
-        },
-        "descriptionLabel": "Description (Optionnel)",
-        "descriptionPlaceholder": "Décrivez brièvement votre ferme...",
-        "irrigationLabel": "Méthode d'Irrigation (Optionnel)",
-        "irrigationPlaceholder": "ex: Goutte-à-goutte, Pluvial",
-        "irrigationDescription": "Spécifiez la principale méthode d'irrigation utilisée.",
-        "submitButton": "Enregistrer la Ferme"
-      },
-      "toast": {
-        "authErrorTitle": "Erreur d'Authentification",
-        "authErrorDescription": "Vous devez être connecté pour créer une ferme.",
-        "successTitle": "Ferme Créée !",
-        "successDescription": "'{farmName}' a été ajouté à votre profil.",
-        "errorTitle": "Échec de la Création",
-        "errorDescription": "Impossible de créer la ferme. Veuillez réessayer."
-      }
-    },
-    "farmDetail": {
-        "backToFarms": "Retour à Mes Fermes",
-        "registeredOn": "Enregistré le {date}",
-        "editFarmButton": "Modifier la Ferme",
-        "crops": {
-            "title": "Cultures",
-            "description": "Gérez toutes les cultures actives de cette ferme.",
-            "addNewButton": "Ajouter une Culture",
-            "plantedLabel": "Planté le",
-            "stageLabel": "Stade",
-            "viewJourneyButton": "Voir le Parcours",
-            "noCrops": "Aucune culture n'a encore été ajoutée à cette ferme.",
-            "addFirstButton": "Ajoutez Votre Première Culture"
-        },
-        "insights": {
-            "title": "Analyses de Rentabilité",
-            "description": "Analyse par IA de vos activités agricoles."
-        },
-        "toast": {
-            "notFoundTitle": "Ferme Introuvable",
-            "loadErrorTitle": "Erreur de Chargement",
-            "insightsErrorTitle": "Erreur d'Analyse"
-        },
-        "notFound": {
-            "title": "Ferme Introuvable",
-            "description": "La ferme que vous recherchez n'existe pas, ou vous n'avez pas la permission de la voir.",
-            "backButton": "Retour à Mes Fermes"
-        }
-    },
-    "createCrop": {
-      "backLink": "Retour aux détails de la ferme",
-      "title": "Ajouter une nouvelle culture",
-      "description": "Enregistrez une nouvelle culture ou plantation pour commencer à suivre son parcours.",
-      "cropTypeLabel": "Nom / Type de culture",
-      "cropTypePlaceholder": "Ex: Avocat Hass, Tomate Roma",
-      "cropTypeDescription": "Soyez aussi précis que possible.",
-      "plantingDateLabel": "Date de plantation",
-      "harvestDateLabel": "Date de récolte estimée (Optionnel)",
-      "datePlaceholder": "Choisissez une date",
-      "yieldLabel": "Rendement attendu (Optionnel)",
-      "yieldPlaceholder": "Ex: 5 tonnes/hectare",
-      "stageLabel": "Stade actuel (Optionnel)",
-      "stagePlaceholder": "Sélectionnez un stade",
-      "stages": {
-        "Planting": "Plantation",
-        "Vegetative": "Végétatif",
-        "Flowering": "Floraison",
-        "Fruiting": "Fructification",
-        "Harvesting": "Récolte",
-        "Post-Harvest": "Après récolte"
-      },
-      "notesLabel": "Notes (Optionnel)",
-      "notesPlaceholder": "Ajoutez des notes pertinentes sur ce lot...",
-      "saveButton": "Enregistrer la culture",
-      "savingButton": "Enregistrement...",
-      "toast": {
-        "authErrorTitle": "Non authentifié",
-        "authErrorDescription": "Vous devez être connecté pour ajouter une culture.",
-        "successTitle": "Culture ajoutée !",
-        "successDescription": "{cropType} a été ajouté avec succès à votre ferme.",
-        "failTitle": "Impossible d'ajouter la culture.",
-        "failDescription": "Une erreur inattendue est survenue. Veuillez réessayer."
-      }
-    },
-    "logInput": {
-      "backLink": "Retour à la ferme",
-      "title": "Enregistrer une application d'intrant",
-      "description": "Enregistrez l'application d'engrais, de pesticides ou d'autres intrants sur votre culture.",
-      "useKNFLabel": "Utiliser un lot KNF",
-      "useKNFPlaceholder": "Sélectionner un lot prêt",
-      "manualInputLabel": "Ou entrer manuellement",
-      "manualInputPlaceholder": "Ex: Engrais NPK 10-10-10",
-      "dateLabel": "Date d'application",
-      "quantityLabel": "Quantité",
-      "quantityPlaceholder": "Ex: 50",
-      "unitLabel": "Unité",
-      "unitPlaceholder": "Ex: kg, Litres, ml/L",
-      "methodLabel": "Méthode d'application (Optionnel)",
-      "methodPlaceholder": "Ex: Pulvérisation foliaire, Arrosage au sol",
-      "saveButton": "Enregistrer l'application",
-      "savingButton": "Enregistrement...",
-      "toast": {
-        "authErrorTitle": "Non authentifié",
-        "authErrorDescription": "Vous devez être connecté pour enregistrer une application.",
-        "success": "Application enregistrée",
-        "description": "L'application d'intrant a été enregistrée avec succès dans le parcours de votre culture.",
-        "fail": "Échec de l'enregistrement."
-      }
-    },
-    "cropDetailPage": {
-      "backLink": "Retour à la ferme",
-      "plantedOn": "Planté le {date}",
-      "editButton": "Modifier",
-      "quickActionsTitle": "Actions rapides",
-      "logInputButton": "Enregistrer un intrant",
-      "logObservationButton": "Enregistrer une observation",
-      "logHarvestButton": "Enregistrer la récolte",
-      "journeyTitle": "Parcours de la culture",
-      "noActivities": "Aucune activité n'a encore été enregistrée pour cette culture.",
-      "loading": "Chargement des détails de la culture...",
-      "notFound": "Culture non trouvée.",
-      "toast": {
-        "notFound": "Culture non trouvée.",
-        "loadError": "Impossible de charger les données de la culture."
-      },
-      "eventPayload": {
-        "noDetails": "Aucun détail supplémentaire pour cet événement.",
-        "observationType": "Type d'observation",
-        "details": "Détails",
-        "aiDiagnosis": "Diagnostic IA"
-      }
-    },
-    "fgwGuidePage": {
-      "backLink": "Retour au Hub Agricole",
-      "title": "Guide de l'Agriculture selon Dieu",
-      "description": "Une solution agricole durable, sans labour et basée sur la foi pour les pauvres.",
-      "intro": "L'Agriculture selon Dieu (FGW) n'est pas seulement une technologie, mais une solution de gestion et technologique basée sur la Bible pour les besoins agricoles des pauvres. Il s'agit d'être de fidèles intendants de la terre que Dieu nous a donnée. Voici les principes fondamentaux.",
-      "howToTitle": "Comment faire",
-      "whyItWorksTitle": "Pourquoi ça marche",
-      "principles": [
-        {
-          "id": "no-tillage",
-          "title": "Sans Labour",
-          "icon": "Shield",
-          "summary": "Protéger le sol en ne le labourant pas. Cela préserve la structure du sol donnée par Dieu.",
-          "howTo": [
-            "Créez des stations de plantation permanentes (trous) au lieu de buttes.",
-            "Ne creusez que là où vous planterez la graine.",
-            "Marchez sur des sentiers permanents pour éviter de compacter votre sol de plantation."
-          ],
-          "whyItWorks": [
-            "Empêche l'érosion du sol par le vent et l'eau.",
-            "Protège la vie du sol et les réseaux fongiques.",
-            "Augmente considérablement l'infiltration et la rétention d'eau.",
-            "Réduit les coûts de main-d'œuvre et de carburant liés au labour."
-          ],
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "Un champ avec des stations de plantation sans labour",
-          "dataAiHint": "agriculture sans labour trous"
-        },
-        {
-          "id": "gods-blanket",
-          "title": "La Couverture de Dieu",
-          "icon": "Leaf",
-          "summary": "Gardez le sol couvert à 100% avec une épaisse couche de matière organique, comme dans une forêt.",
-          "howTo": [
-            "Rassemblez de la matière organique sèche comme de l'herbe, de la paille, des feuilles mortes ou des tiges de maïs.",
-            "Appliquez une couche épaisse de paillis (au moins 10-15 cm) sur toute la surface de la parcelle.",
-            "Ne brûlez jamais vos résidus de culture ; utilisez-les comme paillis.",
-            "Lors de la plantation, faites une petite ouverture dans le paillis pour votre graine."
-          ],
-          "whyItWorks": [
-            "Empêche la croissance des mauvaises herbes.",
-            "Économise une quantité importante d'humidité du sol, réduisant les besoins en eau.",
-            "Nourrit la vie du sol en se décomposant, créant une riche couche arable.",
-            "Protège le sol de la chaleur directe du soleil."
-          ],
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "Un champ couvert d'une épaisse couverture de paillis",
-          "dataAiHint": "agriculture paillis"
-        },
-        {
-          "id": "high-standards",
-          "title": "Normes Élevées",
-          "icon": "CheckCircle",
-          "summary": "Faites tout à temps, avec un haut niveau de qualité, sans gaspillage et avec joie.",
-          "howTo": [
-            "Préparez bien la terre avant les premières pluies.",
-            "Plantez au moment optimal pour votre région et votre culture.",
-            "Suivez des mesures précises pour la profondeur et l'espacement de la plantation.",
-            "Gérez judicieusement vos ressources (semences, intrants, temps) pour éviter le gaspillage."
-          ],
-          "whyItWorks": [
-            "Maximise le potentiel génétique de la semence.",
-            "Assure que la culture profite pleinement des premières pluies.",
-            "Conduit à des rendements plus élevés et à une plus grande rentabilité.",
-            "Honore Dieu par un travail d'excellence."
-          ],
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "Un agriculteur plantant soigneusement des graines dans un champ bien préparé",
-          "dataAiHint": "planter des graines précisément"
-        }
-      ]
-    },
-    "logObservation": {
-        "backLink": "Retour à la ferme",
-        "title": "Enregistrer une observation",
-        "description": "Enregistrez une observation sur votre culture, comme une infestation de ravageurs, une maladie, la croissance ou des événements météorologiques.",
-        "typeLabel": "Type d'observation",
-        "typePlaceholder": "Sélectionnez un type",
-        "types": {
-            "Pest": "Ravageur",
-            "Disease": "Maladie",
-            "Growth": "Croissance",
-            "Weather": "Météo",
-            "Soil": "Sol",
-            "Weed": "Mauvaise herbe",
-            "Other": "Autre",
-            "FGW_Stations": "Préparation du terrain (Stations FGW)",
-            "FGW_Mulch": "Paillage (Couverture de Dieu)"
-        },
-        "dateLabel": "Date de l'observation",
-        "detailsLabel": "Détails et notes",
-        "detailsPlaceholder": "Décrivez ce que vous avez observé...",
-        "uploadLabel": "Télécharger une photo (Optionnel)",
-        "uploadDescription": "Une photo peut aider au diagnostic. Elle sera analysée par l'IA si elle est fournie.",
-        "saveButton": "Enregistrer l'observation",
-        "processingButton": "Traitement en cours...",
-        "toast": {
-            "authErrorTitle": "Non authentifié",
-            "authErrorDescription": "Vous devez être connecté pour enregistrer une observation.",
-            "aiAnalyzing": "Analyse par l'IA",
-            "aiDescription": "Les données de votre image sont envoyées à l'IA pour diagnostic.",
-            "aiComplete": "Analyse IA terminée !",
-            "aiCompleteDescription": "Le diagnostic a été inclus dans votre journal d'observation.",
-            "aiFailTitle": "Échec de l'analyse IA",
-            "aiFailDescription": "Nous n'avons pas pu analyser l'image. L'observation sera sauvegardée sans diagnostic IA.",
-            "uploading": "Téléchargement de l'image...",
-            "uploadingDescription": "Veuillez patienter un instant.",
-            "uploadComplete": "Téléchargement terminé !",
-            "success": "Observation enregistrée",
-            "successDescription": "Votre observation a été enregistrée avec succès.",
-            "fail": "Échec de l'enregistrement."
-        }
-    },
-    "logHarvest": {
-      "backLink": "Retour à la ferme",
-      "title": "Enregistrer la récolte pour {cropType}",
-      "description": "Enregistrez votre récolte pour créer un nouveau lot traçable.",
-      "harvestDateLabel": "Date de la récolte",
-      "yieldLabel": "Rendement total (kg)",
-      "yieldPlaceholder": "ex: 1500",
-      "qualityLabel": "Grade de qualité",
-      "qualityPlaceholder": "ex: Grade A, Qualité exportation",
-      "notesLabel": "Notes sur la récolte (Optionnel)",
-      "notesPlaceholder": "Détails spécifiques sur cette récolte...",
-      "saveButton": "Enregistrer la récolte et créer le lot",
-      "savingButton": "Enregistrement...",
-      "offlineToast": {
-          "title": "Action ajoutée à la file d'attente hors ligne.",
-          "description": "Votre récolte sera enregistrée et un VTI sera créé lorsque vous serez de nouveau en ligne."
-      },
-      "success": {
-          "title": "Récolte enregistrée !",
-          "description": "La récolte pour {cropType} a été enregistrée avec succès. Un nouveau lot traçable a été créé avec l'ID '{vtiId}'.",
-          "successCardTitle": "Récolte enregistrée !",
-          "successCardDescription": "Un nouveau lot traçable a été créé pour {cropType} avec l'ID : {vtiId}",
-          "viewReportButton": "Voir le rapport de traçabilité",
-          "sellButton": "Vendre sur le marché",
-          "logAnotherButton": "Enregistrer une autre récolte",
-          "backToFarmButton": "Retour à la ferme"
-      },
-      "fail": {
-          "title": "Échec de l'enregistrement"
-      }
-    },
-    "knfInputsPage": {
-      "backLink": "Retour au Hub Agricole",
-      "title": "Assistant Intrants KNF",
-      "description": "Créez, suivez et gérez vos intrants d'Agriculture Naturelle Coréenne.",
-      "guidesTitle": "Guides KNF",
-      "ingredients": "Ingrédients",
-      "steps": "Étapes",
-      "usage": "Utilisation",
-      "fermentingBatchesTitle": "Lots en Fermentation",
-      "started": "Commencé",
-      "nextStepOn": "Prochaine étape le",
-      "markReady": "Marquer comme Prêt",
-      "noFermentingBatches": "Aucun lot en fermentation.",
-      "readyBatchesTitle": "Lots Prêts",
-      "readySince": "Prêt depuis le",
-      "logUsage": "Enregistrer l'utilisation",
-      "archive": "Archiver",
-      "noReadyBatches": "Aucun lot prêt disponible.",
-      "startNewBatch": "Démarrer un Nouveau Lot",
-      "createNewBatchTitle": "Créer un Nouveau Lot KNF",
-      "cancel": "Annuler",
-      "quantity": "Quantité",
-      "quantityPlaceholder": "ex: 5 ou 20",
-      "unit": "Unité",
-      "unitPlaceholder": "ex: Litres, kg",
-      "sellSurplus": "Vendre l'excédent",
-      "recipeData": [
-        {
-          "id": "fpj",
-          "name": "Jus de Plante Fermenté (FPJ)",
-          "description": "Un extrait fermenté de la sève et des chlorophylles d'une plante. Riche en enzymes et micro-organismes, c'est un puissant stimulateur de croissance pour les plantes.",
-          "ingredients": [
-            "1kg de parties de plantes à croissance rapide (ex: pointes de patate douce, pousses de bambou)",
-            "1kg de sucre brun (ou mélasse)"
-          ],
-          "yield": "environ 0.8 L",
-          "steps": [
-            "Collecter le matériel végétal avant le lever du soleil. Ne pas laver.",
-            "Hacher grossièrement le matériel végétal.",
-            "Ajouter un poids égal de sucre brun et bien mélanger.",
-            "Tasser fermement dans un pot en argile ou un bocal en verre jusqu'à 2/3 de sa capacité.",
-            "Couvrir avec un tissu respirant et conserver dans un endroit frais et sombre.",
-            "Laisser fermenter environ 7 jours."
-          ],
-          "usage": "Taux de dilution : 1:500 à 1:1000 avec de l'eau. Appliquer en pulvérisation foliaire ou en arrosage au sol."
-        },
-        {
-          "id": "faa",
-          "name": "Acide Aminé de Poisson (FAA)",
-          "description": "Un engrais liquide puissant à base de déchets de poisson, riche en azote et en acides aminés. Excellent pour stimuler la croissance des plantes.",
-          "ingredients": [
-            "1kg de déchets de poisson (têtes, arêtes, entrailles)",
-            "1kg de sucre brun (ou mélasse)"
-          ],
-          "yield": "environ 1.5 L",
-          "steps": [
-            "Hacher les parties de poisson en petits morceaux.",
-            "Dans un récipient, superposer les parties de poisson et le sucre brun, en commençant et en terminant par une couche de sucre.",
-            "Remplir le récipient jusqu'à environ 2/3 de sa capacité et couvrir avec un tissu respirant.",
-            "Conserver dans un endroit frais et sombre et laisser fermenter pendant au moins 3-6 mois."
-          ],
-          "usage": "Taux de dilution : 1:1000 avec de l'eau. Principalement utilisé en arrosage au sol."
-        }
-      ],
-      "form": {
-        "typeLabel": "Type d'intrant",
-        "typePlaceholder": "Sélectionner un intrant KNF",
-        "ingredientsLabel": "Ingrédients utilisés",
-        "quantityLabel": "Quantité Produite",
-        "unitLabel": "Unité",
-        "startDateLabel": "Date de début",
-        "startButton": "Démarrer le Lot",
-        "startingButton": "Démarrage..."
-      },
-      "toasts": {
-        "loadErrorTitle": "Erreur",
-        "loadErrorDescription": "Impossible de récupérer vos lots KNF.",
-        "validationError": "Veuillez remplir tous les champs pour démarrer un lot.",
-        "batchStartedTitle": "Lot Démarré !",
-        "batchStartedDescription": "Votre nouveau lot KNF est maintenant en fermentation.",
-        "batchStartFailed": "Échec du démarrage du lot.",
-        "unexpectedError": "Une erreur inattendue est survenue.",
-        "batchUpdatedTitle": "Statut Mis à Jour",
-        "batchUpdatedDescription": "Le statut du lot a été mis à jour avec succès à {status}.",
-        "updateFailed": "Mise à jour échouée.",
-        "couldNotUpdate": "Impossible de mettre à jour le statut du lot."
-      }
-    },
-    "editCrop": {
-      "backLink": "Retour aux détails de la culture",
-      "title": "Modifier la culture",
-      "description": "Mettez à jour les détails de votre culture.",
-      "savingButton": "Enregistrement...",
-      "saveButton": "Enregistrer les modifications",
-      "toast": {
-        "notFound": "Culture non trouvée.",
-        "loadError": "Impossible de charger les données de la culture à modifier.",
-        "error": "Erreur",
-        "loadFail": "Impossible de charger les données de la culture : {message}",
-        "success": "Culture mise à jour !",
-        "description": "{cropType} a été mis à jour avec succès.",
-        "fail": "Échec de la mise à jour."
-      }
-    },
-    "editFarm": {
-      "backToFarm": "Retour aux détails de la ferme",
-      "title": "Modifier la ferme",
-      "description": "Mettez à jour les détails de votre ferme.",
-      "form": {
-        "submitButton": "Enregistrer les modifications"
-      },
-      "toast": {
-        "notFoundTitle": "Non trouvé",
-        "loadError": "Impossible de charger la ferme que vous souhaitez modifier.",
-        "loadFail": "Impossible de charger les données de la ferme : {message}",
-        "successTitle": "Ferme mise à jour !",
-        "successDescription": "'{farmName}' a été mis à jour avec succès.",
-        "errorTitle": "Échec de la mise à jour"
-      }
-    },
-    "financials": {
-        "title": "Gestion Financière",
-        "description": "Suivez la santé financière de votre ferme.",
-        "applyForFundingButton": "Demander un Financement",
-        "newTransactionButton": "Enregistrer une Transaction",
-        "totalIncome": "Revenu Total",
-        "totalExpense": "Dépense Totale",
-        "netFlow": "Flux de Trésorerie Net",
-        "recentTransactions": "Transactions Récentes",
-        "noTransactions": "Aucune transaction enregistrée pour le moment.",
-        "table": {
-            "date": "Date",
-            "description": "Description",
-            "category": "Catégorie",
-            "amount": "Montant"
-        },
-        "log": {
-            "backLink": "Retour aux Finances",
-            "title": "Enregistrer une Transaction Financière",
-            "description": "Enregistrez manuellement un revenu ou une dépense pour votre ferme.",
-            "typeLabel": "Type de Transaction",
-            "typePlaceholder": "Sélectionner le type",
-            "types": {
-                "income": "Revenu",
-                "expense": "Dépense"
-            },
-            "descriptionLabel": "Description",
-            "descriptionPlaceholder": "ex: Vente de 100kg de Maïs, Achat de semences",
-            "amountLabel": "Montant",
-            "amountPlaceholder": "ex: 500.00",
-            "currencyLabel": "Devise",
-            "currencyPlaceholder": "Sélectionner la devise",
-            "categoryLabel": "Catégorie (Optionnel)",
-            "categoryPlaceholder": "ex: Ventes, Main-d'œuvre, Intrants",
-            "categoryDescription": "Attribuer une catégorie aide à l'analyse.",
-            "saveButton": "Enregistrer la Transaction",
-            "savingButton": "Enregistrement...",
-            "toast": {
-                "authErrorTitle": "Non Authentifié",
-                "authErrorDescription": "Vous devez être connecté pour enregistrer une transaction.",
-                "success": "Transaction Enregistrée",
-                "description": "Votre transaction a été enregistrée avec succès.",
-                "fail": "Échec de l'enregistrement"
-            }
-        },
-        "apply": {
-            "backLink": "Retour aux Finances",
-            "title": "Demander un Financement",
-            "description": "Soumettez une demande de prêt ou de subvention auprès d'une institution financière partenaire.",
-            "form": {
-                "institutionLabel": "Institution Financière",
-                "institutionPlaceholder": "Sélectionner une institution",
-                "noInstitutions": "Aucune institution financière disponible",
-                "typeLabel": "Type de Demande",
-                "loan": "Prêt",
-                "grant": "Subvention",
-                "amountLabel": "Montant",
-                "currencyLabel": "Devise",
-                "purposeLabel": "Objet du Financement",
-                "purposePlaceholder": "Décrivez comment vous utiliserez ces fonds (ex: achat de nouvel équipement, expansion des opérations, achat de semences).",
-                "purposeDescription": "Une description claire augmente vos chances d'approbation.",
-                "submitButton": "Soumettre la Demande"
-            },
-            "toast": {
-                "error": "Erreur",
-                "fetchFiError": "Impossible de récupérer les institutions financières.",
-                "notAuthenticatedError": "Vous devez être connecté pour postuler.",
-                "successTitle": "Demande Soumise !",
-                "successDescription": "Votre demande a été envoyée pour examen."
-            }
-        },
-        "signInPrompt": {
-            "title": "Connexion requise",
-            "description": "Veuillez vous connecter pour gérer les finances de votre ferme.",
-            "button": "Se connecter"
-        }
-    },
-    "seedStartingPage": {
-      "backLink": "Retour au Hub Agricole",
-      "title": "Guide Complet pour le Démarrage des Semis",
-      "description": "Donnez à vos cultures le meilleur départ possible. Apprenez l'art et la science de démarrer les semis à l'intérieur pour une saison plus forte, plus saine et plus productive.",
-      "intro": "Démarrer les semis à l'intérieur vous donne une avance considérable sur la saison de croissance, protège les jeunes plants des ravageurs et des intempéries, et vous permet de cultiver des variétés qui n'auraient peut-être pas le temps de mûrir dans votre climat. Ce guide couvre les étapes essentielles, du choix de votre installation au repiquage de vos plants.",
-      "sections": [
-        {
-          "id": "why-start-indoors",
-          "title": "Pourquoi démarrer les semis à l'intérieur ?",
-          "icon": "Lightbulb",
-          "intro": "Il y a plusieurs avantages clés à démarrer les semis à l'intérieur par rapport au semis direct dans le jardin :",
-          "points": [
-            { "term": "Saison de croissance plus longue", "def": "Commencez des semaines ou des mois avant votre dernière date de gel, ce qui est crucial pour les plantes qui ont besoin de beaucoup de temps pour mûrir comme les tomates, les poivrons et les aubergines." },
-            { "term": "Protection", "def": "Les semis sont protégés des intempéries (pluies torrentielles, vent, coups de froid) et des ravageurs courants (limaces, oiseaux, vers gris)." },
-            { "term": "Meilleure germination", "def": "Vous pouvez contrôler la température, l'humidité et la lumière pour créer les conditions parfaites pour la germination des graines." },
-            { "term": "Économique", "def": "Un sachet de graines est beaucoup moins cher que d'acheter des plants établis en pépinière, surtout pour les grandes plantations." },
-            { "term": "Plus grande variété", "def": "Vous avez accès à des milliers de variétés uniques et anciennes disponibles dans les catalogues de semences que vous ne trouverez jamais dans une jardinerie locale." }
-          ]
-        },
-        {
-          "id": "key-supplies",
-          "title": "Fournitures clés pour le démarrage des semis",
-          "icon": "Package",
-          "intro": "Rassembler les bonnes fournitures avant de commencer rendra le processus plus fluide et plus réussi. Vous aurez besoin de :",
-          "steps": [
-            "<b>Récipients :</b> Plateaux de semis, alvéoles, pots en tourbe, ou même des pots de yaourt recyclés (avec des trous de drainage) fonctionnent tous bien.",
-            "<b>Terreau de semis :</b> Utilisez un mélange stérile et sans terre spécialement conçu pour le démarrage des semis. Il est léger et retient bien l'humidité, prévenant les maladies qui peuvent affecter les semis.",
-            "<b>Graines :</b> Choisissez des graines de haute qualité auprès d'un fournisseur réputé. Vérifiez le paquet pour des informations sur la profondeur et le moment de la plantation.",
-            "<b>Source de lumière :</b> Une fenêtre ensoleillée orientée au sud peut fonctionner, mais une simple lampe d'atelier fluorescente ou une lampe de culture LED dédiée donne de bien meilleurs résultats, évitant les semis 'étiolés' (grands et faibles).",
-            "<b>Tapis chauffant (Optionnel) :</b> De nombreuses graines, en particulier les cultures de saison chaude comme les poivrons, germent beaucoup plus rapidement avec une chaleur par le bas. Un tapis chauffant pour semis est un excellent investissement.",
-            "<b>Arrosoir/Vaporisateur :</b> Une façon douce d'arroser vos graines sans les déloger.",
-            "<b>Étiquettes :</b> N'oubliez pas d'étiqueter vos plateaux ! Utilisez des bâtonnets de popsicle, des étiquettes de plantes en plastique, ou même du ruban de masquage."
-          ]
-        },
-        {
-          "id": "step-by-step-guide",
-          "title": "Guide de plantation étape par étape",
-          "icon": "Grid",
-          "intro": "Suivez ces étapes pour planter vos graines pour une germination optimale :",
-          "steps": [
-            "<b>Humidifiez le mélange :</b> Avant de remplir vos récipients, mettez votre terreau de semis dans un seau ou une bassine et ajoutez lentement de l'eau tiède, en mélangeant avec vos mains jusqu'à ce qu'il soit humide comme une éponge essorée, mais pas détrempé.",
-            "<b>Remplissez les récipients :</b> Remplissez vos récipients avec le mélange humidifié, en le tassant doucement mais sans le compacter. Laissez environ un demi-centimètre d'espace en haut.",
-            "<b>Semez les graines :</b> Plantez 2-3 graines par alvéole ou pot. Une règle générale est de planter une graine deux fois plus profondément que sa largeur. Vérifiez le paquet de graines pour des instructions spécifiques.",
-            "<b>Couvrez et étiquetez :</b> Recouvrez légèrement les graines avec plus de mélange ou de vermiculite, puis tassez doucement la surface. Étiquetez immédiatement votre plateau avec la variété de la plante et la date de semis.",
-            "<b>Arrosez doucement :</b> Arrosez doucement la surface avec un vaporisateur ou par le bas en plaçant vos plateaux dans une soucoupe d'eau. Cela empêche les graines de s'en aller.",
-            "<b>Fournissez de la chaleur et couvrez :</b> Placez les plateaux dans un endroit chaud ou sur un tapis chauffant. Couvrez avec un dôme en plastique ou du film plastique pour retenir l'humidité jusqu'à ce que les graines germent. Retirez le couvercle dès que vous voyez les premiers signes de vert."
-          ]
-        },
-        {
-          "id": "caring-for-seedlings",
-          "title": "Prendre soin de vos semis",
-          "icon": "Leaf",
-          "intro": "Une fois que vos graines ont germé, leurs besoins changent. Des soins appropriés sont maintenant cruciaux pour des plantes fortes.",
-          "steps": [
-            "<b>La lumière est essentielle :</b> Dès que les graines germent, elles ont besoin d'une lumière abondante. Placez-les sous des lampes de culture pendant 14 à 16 heures par jour, en gardant les lampes à quelques centimètres au-dessus du sommet des plantes. Si vous utilisez une fenêtre, faites pivoter les plateaux tous les jours pour éviter qu'ils ne s'inclinent.",
-            "<b>Arrosage :</b> Gardez le sol constamment humide mais pas détrempé. Il est souvent préférable d'arroser par le bas pour encourager une croissance profonde des racines.",
-            "<b>Éclaircissage :</b> Une fois que les semis ont leur première série de 'vraies feuilles' (la deuxième série qui apparaît), choisissez le plant le plus fort dans chaque alvéole et coupez les autres au ras du sol avec des ciseaux. Cela évite de déranger les racines du gagnant.",
-            "<b>Fertilisation :</b> Commencez à nourrir vos semis avec un engrais liquide équilibré et dilué (au quart de sa force) après qu'ils aient 2-3 séries de vraies feuilles. Nourrissez environ une fois par semaine.",
-            "<b>Circulation de l'air :</b> Un ventilateur doux soufflant sur vos semis pendant quelques heures par jour aide à prévenir les maladies et renforce leurs tiges."
-          ]
-        },
-        {
-          "id": "hardening-off",
-          "title": "Acclimatation et repiquage",
-          "icon": "Sun",
-          "intro": "L'acclimatation est le processus d'adaptation progressive de vos plantes tendres cultivées à l'intérieur aux conditions difficiles de l'extérieur.",
-          "steps": [
-            "<b>Commencez 1 à 2 semaines avant le repiquage :</b> Environ 7 à 14 jours avant votre dernière date de gel, commencez le processus.",
-            "<b>Jour 1 :</b> Placez les semis dans un endroit ombragé et protégé à l'extérieur pendant 1 à 2 heures.",
-            "<b>Exposition progressive :</b> Chaque jour, augmentez le temps qu'ils passent à l'extérieur d'une heure ou deux, en les introduisant progressivement à plus de lumière directe du soleil et de vent.",
-            "<b>Rentrez-les :</b> Ramenez les plantes à l'intérieur chaque nuit si les températures baissent de manière significative.",
-            "<b>Repiquage :</b> Après une semaine ou deux d'acclimatation, vos plantes seront prêtes pour leur nouvelle maison dans le jardin. Choisissez une journée calme et nuageuse pour repiquer afin de minimiser le choc. Arrosez-les bien."
-          ]
-        },
-        {
-          "id": "common-mistakes",
-          "title": "Erreurs courantes à éviter",
-          "icon": "AlertTriangle",
-          "intro": "Évitez ces pièges courants pour une expérience de démarrage de semis plus réussie :",
-          "points": [
-            { "term": "Arrosage excessif", "def": "C'est la cause la plus fréquente de la mort des semis. Cela conduit à la 'fonte des semis', une maladie fongique qui fait pourrir les tiges au niveau du sol. Laissez la surface du sol sécher légèrement entre les arrosages." },
-            { "term": "Lumière insuffisante", "def": "Provoque des semis 'étiolés' et faibles qui s'étirent vers la lumière. Si vous n'avez pas de lampes de culture, une fenêtre très lumineuse orientée au sud est la meilleure alternative." },
-            { "term": "Commencer trop tôt", "def": "L'empressement est une bonne chose, mais commencer les semis trop tôt conduit à des plantes grandes et aux racines serrées qui ont du mal après le repiquage. Vérifiez votre paquet de graines et comptez à rebours à partir de votre dernière date de gel locale." },
-            { "term": "Oublier d'éclaircir", "def": "Les semis surpeuplés se feront concurrence pour la lumière et les nutriments, ce qui donnera des plantes faibles pour tous. C'est difficile, mais l'éclaircissage est nécessaire pour des plantes individuelles fortes." }
-          ]
-        }
-      ]
-    },
-    "familyFarmPage": {
-      "backLink": "Retour au Hub Agricole",
-      "title": "Modèle de Ferme Familiale Intégrée (200 m²)",
-      "description": "Un modèle holistique et diversifié pour une petite ferme familiale, conçu pour la résilience, la sécurité alimentaire et un revenu supplémentaire.",
-      "intro": "Ce modèle montre comment une petite parcelle de terrain (par exemple, 20m x 10m) peut être transformée en un système productif et intégré qui imite les écosystèmes naturels. Il combine divers éléments qui se soutiennent mutuellement, réduisant les déchets et les intrants externes tout en maximisant la diversité et le rendement.",
-      "diagramCaption": "Schéma conceptuel du modèle de ferme familiale intégrée de 200 m².",
-      "detailsTitle": "Détails et Productions Clés",
-      "principlesTitle": "Principes et Synergies Clés",
-      "zones": [
-        {
-          "id": "overall-layout",
-          "title": "Agencement et Principes Généraux",
-          "icon": "LayoutGrid",
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "Vue d'ensemble d'une petite ferme luxuriante et diversifiée.",
-          "dataAiHint": "aménagement petite ferme diverse",
-          "description": [
-            "La parcelle de 200 mètres carrés (20m x 10m) est conçue pour une production intensive et régénérative. L'idée principale est de créer un système en circuit fermé où chaque composant en soutient un autre, minimisant les déchets et maximisant l'utilisation des ressources.",
-            "L'eau est l'élément central et vital, l'étang servant de réservoir, de source de nutriments et d'habitat. L'aménagement est conçu pour utiliser la gravité et les flux naturels pour l'irrigation et la distribution des nutriments."
-          ],
-          "subSections": [
-            { "title": "Recyclage des Ressources", "content": ["Les déchets d'un composant deviennent une ressource pour un autre (par exemple, le fumier de poule fertilise les cultures, les résidus de culture nourrissent les poules)."] },
-            { "title": "Diversité plutôt que Monoculture", "content": ["Une grande variété de plantes et d'animaux crée une résilience contre les ravageurs et les maladies."] },
-            { "title": "Superposition Verticale", "content": ["Utilisation de treillages et de plantations à plusieurs niveaux pour maximiser le rendement dans un petit espace."] },
-            { "title": "Effet de Lisière", "content": ["La limite entre l'étang et la terre est une zone très productive pour les plantes qui aiment l'humidité."] }
-          ]
-        },
-        {
-          "id": "vegetable-beds",
-          "title": "Carrés Potagers surélevés (100 m²)",
-          "icon": "Sprout",
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "Carrés potagers surélevés luxuriants avec une variété de légumes verts et d'herbes.",
-          "dataAiHint": "potager surélevé",
-          "description": [
-            "C'est la principale zone de production alimentaire, occupant la moitié de l'espace total. Les carrés surélevés améliorent le drainage, réduisent le compactage du sol et sont plus faciles à gérer.",
-            "Des méthodes de plantation intensive comme la culture associée (planter différentes cultures ensemble) et la plantation successive (replanter immédiatement après la récolte) sont utilisées pour maximiser la production tout au long de l'année."
-          ],
-          "details": [
-            { "title": "Cultures", "content": ["Légumes-feuilles (laitue, épinards), légumes-racines (carottes, radis), légumes-fruits (tomates, poivrons), légumineuses (haricots, pois) et herbes culinaires/médicinales essentielles."] },
-            { "title": "Fertilité", "content": ["Maintenue à l'aide de compost provenant des déchets de la ferme, de fumier de poule et d'eau riche en nutriments de l'étang à poissons."] }
-          ]
-        },
-        {
-          "id": "fruit-trees",
-          "title": "Arbres Fruitiers et Vivaces (Intégrés)",
-          "icon": "Leaf",
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "Un petit verger avec divers arbres fruitiers et plantes vivaces.",
-          "dataAiHint": "verger arbres fruitiers",
-          "description": [
-            "Les arbres fruitiers sont intégrés le long des bordures et dans les carrés de légumes pour fournir une source de nourriture à long terme, créer des microclimats et ajouter une structure verticale.",
-            "Ces plantes vivaces nécessitent moins de travail annuel que les légumes et aident à renforcer la stabilité du sol avec leurs systèmes racinaires profonds."
-          ],
-          "details": [
-            { "title": "Exemples", "content": ["Les variétés naines de bananiers, de papayers, de manguiers et d'agrumes sont d'excellents choix pour les petits espaces. Des plantes vivaces comme le moringa ou la passiflore sur un treillage peuvent également être intégrées."] }
-          ]
-        },
-        {
-          "id": "fish-pond",
-          "title": "Étang à Poissons (15 m²)",
-          "icon": "Fish",
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "Un petit étang à poissons clair avec des tilapias et des plantes aquatiques.",
-          "dataAiHint": "étang à poissons jardin",
-          "description": [
-            "L'étang à poissons est un élément clé du système intégré. Il sert de réservoir d'eau pour l'irrigation pendant les périodes sèches et fournit une source de protéines.",
-            "L'eau riche en nutriments de l'étang, pleine de déjections de poissons, est un engrais liquide naturel et de haute qualité pour les carrés de légumes."
-          ],
-          "details": [
-            { "title": "Espèces", "content": ["Les tilapias sont un choix populaire car ils sont robustes, à croissance rapide et principalement végétariens."] },
-            { "title": "Plantes Aquatiques", "content": ["L'épinard d'eau ou la lentille d'eau peuvent être cultivés à la surface pour fournir de la nourriture aux poissons et aux poules, ainsi que pour la consommation humaine."] }
-          ]
-        },
-        {
-          "id": "chicken-coop",
-          "title": "Poulailler (5 m²)",
-          "icon": "Bird",
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "Un petit poulailler propre avec quelques poules.",
-          "dataAiHint": "poulailler jardin",
-          "description": [
-            "Un petit groupe de poules (5-10) fournit une source constante d'œufs et de viande pour la famille.",
-            "Leur fumier est un engrais puissant pour le tas de compost, et elles peuvent être autorisées à picorer dans les plates-bandes récoltées pour nettoyer les ravageurs et les graines de mauvaises herbes."
-          ],
-          "details": [
-            { "title": "Intégration", "content": ["Positionner le poulailler à côté du tas de compost facilite le transfert du fumier. Les poules sont nourries avec les restes de cuisine et les surplus de légumes du jardin, ce qui réduit les déchets."] }
-          ]
-        },
-        {
-          "id": "compost-area",
-          "title": "Zone de Compost et de Gestion des Déchets",
-          "icon": "Recycle",
-          "imageSrc": "https://placehold.co/600x400.png",
-          "imageAlt": "Un système de compostage à trois bacs bien géré.",
-          "dataAiHint": "tas de compost jardin",
-          "description": [
-            "C'est le centre de recyclage de la ferme. Tous les 'déchets' organiques — restes de cuisine, résidus de jardin, fumier animal et feuilles mortes — sont transformés en 'or noir' (compost).",
-            "Un système simple à trois bacs permet d'avoir un tas en cours de construction, un en 'cuisson', et un prêt à l'emploi, assurant un approvisionnement continu en amendement de sol de haute qualité."
-          ],
-          "details": [
-            { "title": "Fonction", "content": ["Ferme la boucle des nutriments sur la ferme, éliminant le besoin d'engrais synthétiques, améliorant la structure du sol et augmentant sa capacité de rétention d'eau."] }
-          ]
-        }
-      ],
-      "conclusion": {
-        "title": "Un Modèle d'Abondance",
-        "content": [
-          "Ce modèle de 200 m² est plus qu'une simple ferme ; c'est un exemple vivant de la manière de travailler avec la nature pour créer l'abondance dans un petit espace.",
-          "Il fournit une alimentation diversifiée et nutritive, réduit la dépendance aux marchés extérieurs, génère un surplus potentiel de revenus et construit un système résilient capable de mieux résister aux chocs climatiques et économiques.",
-          "C'est une voie vers la souveraineté alimentaire et une vie plus saine pour la famille."
-        ]
-      }
-    },
-    "laborPage": {
-      "backLink": "Retour au Hub Agricole",
-      "title": "Gestion de la Main-d'œuvre",
-      "description": "Ajoutez des travailleurs à votre équipe et suivez leurs heures et leurs paiements.",
-      "addWorker": "Ajouter un Travailleur",
-      "workerName": "Nom du travailleur",
-      "saveWorker": "Enregistrer le travailleur",
-      "noWorkers": "Vous n'avez encore ajouté aucun travailleur. Cliquez sur 'Ajouter un Travailleur' pour commencer.",
-      "hoursLogged": "Heures totales",
-      "totalPaid": "Total payé",
-      "logHours": "Enregistrer les heures",
-      "logPayment": "Enregistrer un paiement",
-      "viewDetails": "Voir les détails",
-      "logHoursFor": "Enregistrer les heures pour",
-      "hoursWorked": "Heures travaillées",
-      "date": "Date",
-      "pickDate": "Choisir une date",
-      "taskDescription": "Description de la tâche (Optionnel)",
-      "logPaymentFor": "Enregistrer un paiement pour",
-      "amountPaid": "Montant payé",
-      "workerDetailPage": {
-        "backLink": "Retour à la Gestion de la Main-d'œuvre",
-        "notFoundTitle": "Travailleur non trouvé",
-        "notFoundDescription": "Le profil du travailleur que vous recherchez n'existe pas.",
-        "goBackButton": "Retour",
-        "workLogsTitle": "Journaux de travail",
-        "paymentHistoryTitle": "Historique des paiements",
-        "noWorkLogs": "Aucune heure de travail n'a été enregistrée pour ce travailleur.",
-        "noPayments": "Aucun paiement n'a été enregistré pour ce travailleur.",
-        "table": {
-          "date": "Date",
-          "hours": "Heures",
-          "task": "Tâche",
-          "amount": "Montant"
-        },
-        "toasts": {
-          "errorTitle": "Erreur",
-          "loadError": "Impossible de charger les détails du travailleur."
-        }
-      },
-      "toast": {
-        "errorTitle": "Erreur",
-        "fetchWorkersError": "Impossible de récupérer votre liste de travailleurs.",
-        "nameRequired": "Le nom du travailleur est requis.",
-        "workerAdded": "Travailleur ajouté avec succès.",
-        "hoursLogged": "Heures enregistrées avec succès.",
-        "paymentLoggedTitle": "Paiement Enregistré",
-        "paymentLoggedDescription": "Le paiement a été enregistré et une dépense a été automatiquement créée dans vos registres financiers."
-      }
-    }
+  "agentToolsPage": {
+    "backLink": "Retour au Réseau",
+    "accessDeniedTitle": "Accès Refusé",
+    "accessDeniedDescription": "Vous n'avez pas les autorisations nécessaires pour accéder à ces outils.",
+    "title": "Outils d'Agent de Terrain",
+    "description": "Outils pour les agents autorisés à aider et gérer les utilisateurs sur le terrain.",
+    "findUserLabel": "Trouver un Utilisateur par Numéro de Téléphone",
+    "phoneRequiredError": "Un numéro de téléphone est requis.",
+    "findButton": "Trouver",
+    "resultsTitle": "Résultats de la recherche",
+    "resultsPlaceholder": "Les détails de l'utilisateur apparaîtront ici après une recherche réussie."
   },
   "Marketplace": {
     "title": "Marché",
@@ -1587,3 +853,5 @@
     }
   }
 }
+
+    
