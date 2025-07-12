@@ -81,6 +81,13 @@
     "sendResetLinkButton": "Enviar enlace de restablecimiento",
     "sendingEmailButton": "Enviando correo...",
     "rememberPasswordPrompt": "¿Recordaste tu contraseña?",
+    "resetPasswordTitle": "Restablecer Contraseña",
+    "resetPasswordDescription": "Introduce tu nueva contraseña.",
+    "resetPasswordPrompt": "Restablece tu contraseña para {appName}",
+    "newPasswordLabel": "Nueva Contraseña",
+    "newPasswordPlaceholder": "••••••••",
+    "resettingPasswordButton": "Restableciendo contraseña...",
+    "resetPasswordButton": "Restablecer Contraseña",
     "forgotPassword": {
       "emailSentTitle": "¡Correo enviado!",
       "emailSentDescription": "Se ha enviado un enlace de restablecimiento a {email}.",
@@ -96,13 +103,6 @@
         "missingCodeTitle": "Código de restablecimiento no válido"
       }
     },
-    "resetPasswordTitle": "Restablecer Contraseña",
-    "resetPasswordDescription": "Introduce tu nueva contraseña.",
-    "resetPasswordPrompt": "Restablece tu contraseña para {appName}",
-    "newPasswordLabel": "Nueva Contraseña",
-    "newPasswordPlaceholder": "••••••••",
-    "resettingPasswordButton": "Restableciendo contraseña...",
-    "resetPasswordButton": "Restablecer Contraseña",
     "resetPassword": {
       "successRedirect": "Serás redirigido a la página de inicio de sesión...",
       "errors": {
@@ -140,5 +140,3 @@
     "toggle": "Cambiar idioma"
   }
 }
-
-    

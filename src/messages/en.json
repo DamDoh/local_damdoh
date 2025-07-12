@@ -1027,9 +1027,6 @@
       "connectionRemoved": "Connection removed.",
       "removeError": "Could not remove connection."
     },
-    "invite": {
-      "button": "Invite"
-    },
     "invitePrompt": "Enter the email address of the person you want to invite:",
     "inviteSuccessTitle": "Invite Sent!",
     "inviteSuccessDescription": "An invitation has been sent to {email}.",
@@ -1052,7 +1049,7 @@
     "notFoundTitle": "Profile Not Found",
     "postComments": "Post Comments",
     "postLikes": "Post Likes",
-    "profileViews": "Profile Views",
+    "profileViews": "Profile Viewers",
     "tabs": {
       "activity": "Activity",
       "overview": "Overview"
@@ -1088,13 +1085,6 @@
     "communityFeedDescription": "Catch up with the latest posts and discussions from your network.",
     "goToFeedButton": "Go to Feed"
   },
-  "MobileBottomNav": {
-    "home": "Home",
-    "market": "Market",
-    "search": "Search",
-    "forums": "Forums",
-    "profile": "Profile"
-  },
   "DashboardLeftSidebar": {
     "viewProfileLink": "View My Profile",
     "profileViewers": "Profile Viewers",
@@ -1111,23 +1101,6 @@
       "agriEvents": "Agri-Events",
       "mySupplyChainNetwork": "My Supply Chain Network"
     }
-  },
-  "DashboardRightSidebar": {
-    "networkTitle": "Suggested for your Network",
-    "refreshSuggestions": "Refresh Suggestions",
-    "infoTooltip": "These suggestions are AI-powered and based on your profile and activity.",
-    "signInPrompt": "Sign in to see personalized network suggestions.",
-    "loadError": "Could not load suggestions.",
-    "noSuggestions": "No new suggestions right now. Check back later!",
-    "following": "Following",
-    "follow": "Follow",
-    "promotionsTitle": "Promotions",
-    "promotionsDescription": "See special offers and deals from partners in the ecosystem.",
-    "managePromotionsButton": "Manage Promotions",
-    "ad": "Ad",
-    "adTitle": "DamDoh Market Trends",
-    "adDescription": "Unlock real-time price data and market forecasts.",
-    "adButton": "Explore Pro"
   },
   "CreatePostModal": {
     "title": "Create a new post",
@@ -1271,110 +1244,5 @@
       "noResults": "No results found",
       "tryAgain": "Try another query or broaden your search."
     }
-  },
-    "AgroTourismDashboard": {
-        "title": "Agro-Tourism Dashboard",
-        "bookingsTitle": "Upcoming Bookings",
-        "bookingsDescription": "Manage your upcoming tours and events.",
-        "noBookings": "No upcoming bookings found.",
-        "table.experience": "Experience",
-        "table.guest": "Guest",
-        "table.date": "Date",
-        "table.action": "Action",
-        "viewDetailsButton": "View Details",
-        "experiencesTitle": "Listed Experiences",
-        "experiencesDescription": "Your currently listed agro-tourism experiences.",
-        "table.title": "Title",
-        "table.status": "Status",
-        "table.bookings": "Bookings",
-        "manageButton": "Manage",
-        "noExperiences": "No experiences listed yet.",
-        "reviewsTitle": "Guest Reviews",
-        "reviewsDescription": "Latest feedback from guests who have enjoyed your experiences.",
-        "noReviews": "No reviews available yet.",
-        "viewReviewButton": "View Full Review",
-        "on": "on"
-    },
-    "EnergyProviderDashboard": {
-        "title": "Energy Solutions Dashboard",
-        "leadsTitle": "Project Leads",
-        "leadsCount": "{count, plural, =0 {No leads available} one {# lead} other {# leads}}",
-        "leadsDescription": "Potential new projects for energy solutions.",
-        "newLeadsDescription": "New leads awaiting action.",
-        "projectsTitle": "Active Projects",
-        "activeProjectsCount": "{count, plural, =0 {No active projects} one {# project} other {# projects}}",
-        "projectsCompleted": "Completed energy projects.",
-        "impactTitle": "Impact Metrics",
-        "impactDescription": "Total energy savings and environmental impact.",
-        "carbonReduction": "Impacting {count} communities so far.",
-        "leadsTableTitle": "Project Leads Overview",
-        "leadsTableDescription": "A quick overview of potential energy projects.",
-        "table.entity": "Entity",
-        "table.location": "Location",
-        "table.energyNeed": "Energy Need",
-        "table.status": "Status",
-        "table.action": "Action",
-        "statusLabels.new": "New",
-        "statusLabels.contacted": "Contacted",
-        "statusLabels.proposal_sent": "Proposal Sent",
-        "statusLabels.in_progress": "In Progress",
-        "statusLabels.completed": "Completed",
-        "statusLabels.closed": "Closed",
-        "viewLeadButton": "View Lead",
-        "noLeads": "No new project leads available."
-    },
-    "ResearcherDashboard": {
-        "title": "Researcher Dashboard",
-        "datasetsTitle": "Available Datasets",
-        "datasetsDescription": "Explore agricultural data for research.",
-        "table.name": "Name",
-        "table.dataType": "Data Type",
-        "table.accessLevel": "Access Level",
-        "table.action": "Action",
-        "requestAccessButton": "Request Access",
-        "noDatasets": "No datasets are currently available.",
-        "projectsTitle": "Ongoing Projects",
-        "projectsDescription": "Collaborate on cutting-edge agricultural research.",
-        "table.title": "Title",
-        "table.progress": "Progress",
-        "table.collaborators": "Collaborators",
-        "viewProjectButton": "View Project",
-        "noProjects": "No ongoing research projects found.",
-        "contributionsTitle": "Knowledge Hub Contributions",
-        "contributionsDescription": "Share your findings and expertise with the community.",
-        "table.status": "Status",
-        "table.action": "Action",
-        "viewButton": "View",
-        "noContributions": "No contributions to the Knowledge Hub yet.",
-        "chart.count": "Count",
-        "chart.published": "Published",
-        "chart.pending": "Pending Review",
-        "chart.draft": "Draft"
-    },
-    "WasteManagementDashboard": {
-        "title": "Waste Management Dashboard",
-        "wasteStreamsTitle": "Incoming Waste Streams",
-        "noWasteStreams": "No incoming waste streams at this time.",
-        "from": "From",
-        "acceptButton": "Accept Stream",
-        "compostBatchesTitle": "Active Compost Batches",
-        "noCompostBatches": "No active compost batches.",
-        "batch": "Batch",
-        "estReady": "Est. Ready",
-        "inventoryTitle": "Finished Product Inventory",
-        "noFinishedProducts": "No finished compost products in stock.",
-        "inStock": "In Stock",
-        "sellButton": "Sell Now"
-    },
-    "WarehouseDashboard": {
-        "title": "Warehouse Dashboard",
-        "utilizationTitle": "Storage Utilization",
-        "inventoryTitle": "Inventory Levels",
-        "alertsTitle": "Predictive Alerts",
-        "itemsNeedingAttention": "items need attention",
-        "investigateButton": "Investigate",
-        "noAlerts": "No predictive alerts at this time.",
-        "noData": "No dashboard data available."
-    }
+  }
 }
-    
