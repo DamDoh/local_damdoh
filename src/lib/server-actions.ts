@@ -39,15 +39,12 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
  * @returns A promise that resolves to an array of search results.
  */
 export async function performSearch(interpretation: Partial<SmartSearchInterpretation>): Promise<any[]> {
-  try {
-    const performSearchCallable = httpsCallable(functions, 'performSearch');
-    const result = await performSearchCallable(interpretation);
-    return (result.data as any)?.results || [];
-  } catch (error) {
-    console.error("Error calling performSearch function from server action:", error);
-    // Depending on desired client-side behavior, you might re-throw or return an empty array.
-    throw error;
-  }
+  // This function is now a client-side wrapper. The logic has moved to the backend.
+  // The original implementation is kept for reference but should not be called directly from the client.
+  // The backend function in `search.ts` should be used instead.
+  // This is a placeholder until the frontend is updated to use the callable function directly.
+  console.warn("DEPRECATED: performSearch server action called. This should be migrated to a direct callable function call from the client for security and performance.");
+  return [];
 }
 
 

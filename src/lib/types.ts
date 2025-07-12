@@ -460,7 +460,7 @@ export interface AgronomistDashboardData {
   knowledgeHubContributions: {
     id: string;
     title: string;
-    status: 'Published' | 'Pending Review';
+    status: 'Published' | 'Pending Review' | 'Draft';
   }[];
 }
 
