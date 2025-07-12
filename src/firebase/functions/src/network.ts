@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile } from "./types";
@@ -24,15 +25,31 @@ export const sendConnectionRequest = functions.https.onCall(async (data, context
     if (requesterId === recipientId) {
         throw new functions.https.HttpsError('invalid-argument', 'You cannot send a connection request to yourself.');
     }
-
-    // Check if a request already exists
-    const existingReqQuery = db.collection('connection_requests')
-        .where('requesterId', '==', requesterId)
-        .where('recipientId', '==', recipientId);
     
-    const existingReqSnap = await existingReqQuery.get();
-    if (!existingReqSnap.empty) {
-        throw new functions.https.HttpsError('already-exists', 'A connection request has already been sent.');
+    const recipientDoc = await db.collection('users').doc(recipientId).get();
+    if (!recipientDoc.exists) {
+        throw new functions.https.HttpsError('not-found', 'The user you are trying to connect with does not exist.');
+    }
+
+    // Check if users are already connected
+    const connections = recipientDoc.data()?.connections || [];
+    if (connections.includes(requesterId)) {
+        throw new functions.https.HttpsError('already-exists', 'You are already connected with this user.');
+    }
+
+    // Check if a request already exists in either direction
+    const requestQuery1 = db.collection('connection_requests')
+        .where('requesterId', '==', requesterId)
+        .where('recipientId', '==', recipientId).get();
+    
+    const requestQuery2 = db.collection('connection_requests')
+        .where('requesterId', '==', recipientId)
+        .where('recipientId', '==', requesterId).get();
+        
+    const [reqSnap1, reqSnap2] = await Promise.all([requestQuery1, requestQuery2]);
+
+    if (!reqSnap1.empty || !reqSnap2.empty) {
+        throw new functions.https.HttpsError('already-exists', 'A connection request already exists between you and this user.');
     }
 
     const requestRef = db.collection('connection_requests').doc();
@@ -209,3 +226,48 @@ export const sendInvite = functions.https.onCall(async (data, context) => {
 
   return { success: true, message: `An invitation has been sent to ${inviteeEmail}.` };
 });
+
+// Used on the Network page to determine connection status between the current user and other profiles
+export const getProfileConnectionStatuses = functions.https.onCall(async (data, context) => {
+    const currentUserId = checkAuth(context);
+    const { profileIds } = data;
+
+    if (!Array.isArray(profileIds) || profileIds.length === 0) {
+        return {};
+    }
+
+    const currentUserDoc = await db.collection('users').doc(currentUserId).get();
+    const currentUserConnections = currentUserDoc.data()?.connections || [];
+    
+    const sentReqsQuery = db.collection('connection_requests')
+        .where('requesterId', '==', currentUserId)
+        .where('recipientId', 'in', profileIds)
+        .where('status', '==', 'pending').get();
+        
+    const receivedReqsQuery = db.collection('connection_requests')
+        .where('recipientId', '==', currentUserId)
+        .where('requesterId', 'in', profileIds)
+        .where('status', '==', 'pending').get();
+        
+    const [sentSnapshot, receivedSnapshot] = await Promise.all([sentReqsQuery, receivedReqsQuery]);
+    
+    const sentRequests = new Set(sentSnapshot.docs.map(doc => doc.data().recipientId));
+    const receivedRequests = new Set(receivedSnapshot.docs.map(doc => doc.data().requesterId));
+
+    const statuses: Record<string, 'connected' | 'pending_sent' | 'pending_received' | 'none'> = {};
+    
+    for (const profileId of profileIds) {
+        if (currentUserConnections.includes(profileId)) {
+            statuses[profileId] = 'connected';
+        } else if (sentRequests.has(profileId)) {
+            statuses[profileId] = 'pending_sent';
+        } else if (receivedRequests.has(profileId)) {
+            statuses[profileId] = 'pending_received';
+        } else {
+            statuses[profileId] = 'none';
+        }
+    }
+    
+    return statuses;
+});
+

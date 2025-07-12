@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
@@ -9,7 +10,7 @@ import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { Search, UserPlus, Link as LinkIcon, UserCog, Users, Frown, Loader2, Send } from "lucide-react";
+import { Search, UserPlus, Link as LinkIcon, UserCog, Users, Frown, Loader2, Send, CheckCircle, Clock } from "lucide-react";
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -52,20 +53,36 @@ export default function NetworkPage() {
   const [roleFilter, setRoleFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState("");
   const [isConnecting, setIsConnecting] = useState<string | null>(null);
+  
+  const [connectionStatuses, setConnectionStatuses] = useState<Record<string, 'connected' | 'pending_sent' | 'pending_received' | 'none'>>({});
+  const [isLoadingStatuses, setIsLoadingStatuses] = useState(true);
 
   const { profile: currentUserProfile, loading: profileLoading } = useUserProfile();
   const { user } = useAuth();
   const { toast } = useToast();
   const functions = getFunctions(firebaseApp);
-  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'sendConnectionRequest'), [functions]);
+  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'sendConnectionRequest'), []);
   const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), [functions]);
+  const getProfileStatusesCallable = useMemo(() => httpsCallable(functions, 'getProfileConnectionStatuses'), []);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
         const fetchedProfiles = await getAllProfilesFromDB();
-        setProfiles(Array.isArray(fetchedProfiles) ? fetchedProfiles : []);
+        const profilesArray = Array.isArray(fetchedProfiles) ? fetchedProfiles : [];
+        setProfiles(profilesArray);
+        
+        if (user && profilesArray.length > 0) {
+            setIsLoadingStatuses(true);
+            const profileIds = profilesArray.map(p => p.id);
+            const statusesResult = await getProfileStatusesCallable({ profileIds });
+            setConnectionStatuses(statusesResult.data as any);
+            setIsLoadingStatuses(false);
+        } else {
+            setIsLoadingStatuses(false);
+        }
+
       } catch (error) {
         console.error("Failed to load profiles:", error);
         toast({ title: t('toast.errorTitle'), description: t('toast.loadError'), variant: "destructive" });
@@ -75,7 +92,7 @@ export default function NetworkPage() {
       }
     };
     fetchData();
-  }, [toast, t]);
+  }, [user, getProfileStatusesCallable, toast, t]);
 
 
   const handleConnect = async (recipientId: string) => {
@@ -87,6 +104,7 @@ export default function NetworkPage() {
     try {
         await sendConnectionRequestCallable({ recipientId });
         toast({ title: "Connection Request Sent!", description: "Your request has been sent to the user."});
+        setConnectionStatuses(prev => ({...prev, [recipientId]: 'pending_sent'}));
     } catch (error: any) {
          toast({ title: "Could Not Send Request", description: error.message, variant: "destructive" });
     } finally {
@@ -105,9 +123,10 @@ export default function NetworkPage() {
       const nameMatch = (profile.displayName || '').toLowerCase().includes(searchLower);
       const summaryMatch = (profile.profileSummary || '').toLowerCase().includes(searchLower);
       
-      const roleMatch = roleFilter === 'all' || profile.primaryRole === roleFilter;
+      const userRoles = [profile.primaryRole, ...(profile.secondaryRoles || [])].filter(Boolean);
+      const roleMatch = roleFilter === 'all' || userRoles.includes(roleFilter);
       
-      const locationMatch = !locationFilter || (profile.location || '').toLowerCase().includes(locationLower);
+      const locationMatch = !locationFilter || (profile.location?.address || '').toLowerCase().includes(locationLower);
 
       return (nameMatch || summaryMatch) && roleMatch && locationMatch;
     });
@@ -133,6 +152,30 @@ export default function NetworkPage() {
       }
     }
   };
+  
+  const ConnectButton = ({ profileId }: { profileId: string }) => {
+    const status = connectionStatuses[profileId];
+
+    if (isLoadingStatuses) {
+        return <Skeleton className="h-10 w-full" />;
+    }
+
+    switch (status) {
+        case 'connected':
+            return <Button className="w-full sm:flex-1" variant="outline" disabled><CheckCircle className="mr-2 h-4 w-4" />{t('connected')}</Button>;
+        case 'pending_sent':
+            return <Button className="w-full sm:flex-1" variant="outline" disabled><Clock className="mr-2 h-4 w-4" />{t('pending')}</Button>;
+        case 'pending_received':
+             return <Button className="w-full sm:flex-1" asChild><Link href="/network/my-network">{t('respond')}</Link></Button>
+        default:
+            return (
+                <Button className="w-full sm:flex-1" onClick={() => handleConnect(profileId)} disabled={isConnecting === profileId}>
+                    {isConnecting === profileId ? <Loader2 className="h-4 w-4 animate-spin"/> : <LinkIcon className="mr-2 h-4 w-4" />}
+                    {t('connect')}
+                </Button>
+            );
+    }
+};
 
 
   return (
@@ -228,17 +271,14 @@ export default function NetworkPage() {
                     </Link>
                     <CardDescription className="flex items-center gap-2">
                       <StakeholderIcon role={profile.primaryRole} className="h-4 w-4 text-muted-foreground" />
-                      {profile.primaryRole} - {profile.location}
+                      {profile.primaryRole} - {profile.location?.address}
                     </CardDescription>
                     </CardHeader>
                     <CardContent className="flex-grow text-center">
                     <p className="text-sm text-muted-foreground line-clamp-3">{profile.profileSummary}</p>
                     </CardContent>
                     <CardFooter className="flex flex-col sm:flex-row gap-2 p-4">
-                        <Button className="w-full sm:flex-1" onClick={() => handleConnect(profile.id)} disabled={isConnecting === profile.id}>
-                            {isConnecting === profile.id ? <Loader2 className="h-4 w-4 animate-spin"/> : <LinkIcon className="mr-2 h-4 w-4" />}
-                            {t('connect')}
-                        </Button>
+                        <ConnectButton profileId={profile.id} />
                         <Button variant="outline" className="w-full sm:flex-1" asChild>
                             <Link href={`/profiles/${profile.id}`}><User className="mr-2 h-4 w-4" />{t('profile')}</Link>
                         </Button>

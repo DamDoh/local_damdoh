@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -30,7 +31,7 @@ export default function MyNetworkPage() {
 
     const functions = getFunctions(firebaseApp);
     const getPendingRequests = useMemo(() => httpsCallable(functions, 'getPendingRequests'), []);
-    const getConnections = useMemo(() => httpsCallable(functions, 'getConnections'), []);
+    const getConnectionsCallable = useMemo(() => httpsCallable(functions, 'getConnections'), []);
     const respondToRequest = useMemo(() => httpsCallable(functions, 'respondToConnectionRequest'), []);
     const removeConnection = useMemo(() => httpsCallable(functions, 'removeConnection'), []);
     const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), [functions]);
@@ -40,7 +41,7 @@ export default function MyNetworkPage() {
         try {
             const [requestsResult, connectionsResult] = await Promise.all([
                 getPendingRequests(),
-                getConnections()
+                getConnectionsCallable()
             ]);
             setRequests((requestsResult.data as any)?.requests || []);
             setConnections((connectionsResult.data as any)?.connections || []);
@@ -50,7 +51,7 @@ export default function MyNetworkPage() {
         } finally {
             setIsLoading(false);
         }
-    }, [getPendingRequests, getConnections, toast, t]);
+    }, [getPendingRequests, getConnectionsCallable, toast, t]);
 
     useEffect(() => {
         if (user) {
@@ -206,12 +207,16 @@ export default function MyNetworkPage() {
                                         </div>
                                         <div className="flex gap-2 self-end sm:self-center">
                                             <Button size="sm" variant="secondary" onClick={() => handleRespondToRequest(req.id, 'declined')} disabled={!!isResponding}><X className="h-4 w-4"/></Button>
-                                            <Button size="sm" onClick={() => handleRespondToRequest(req.id, 'accepted')} disabled={!!isResponding}>
+                                            <Button size="sm" onClick={() => handleRespondToRequest(req.id, 'accepted')} disabled={isResponding === req.id}>
                                                 {isResponding === req.id ? <Loader2 className="h-4 w-4 animate-spin"/> : <Check className="h-4 w-4"/>}
                                             </Button>
                                         </div>
                                     </div>
-                                )) : <p className="text-center text-muted-foreground py-8">{t('noRequests')}</p>}
+                                )) : (
+                                    <div className="text-center py-8 border-2 border-dashed rounded-lg">
+                                      <p className="text-muted-foreground">{t('noRequests')}</p>
+                                    </div>
+                                )}
                             </div>
                         </CardContent>
                     </Card>
