@@ -198,7 +198,10 @@
         "unexpected": "Une erreur inattendue s'est produite. Veuillez réessayer.",
         "invalidEmail": "L'adresse e-mail n'est pas valide.",
         "tooManyRequests": "Trop de demandes. Veuillez réessayer plus tard.",
-        "default": "Échec de l'envoi de l'e-mail de réinitialisation"
+        "default": "Échec de l'envoi de l'e-mail de réinitialisation",
+        "missingCode": "Lien de réinitialisation de mot de passe invalide. Veuillez en demander un nouveau.",
+        "missingCodeTitle": "Lien invalide",
+        "missingCodeDescription": "Le lien de réinitialisation du mot de passe est manquant ou invalide. Veuillez retourner à la page 'Mot de passe oublié' pour en demander un nouveau."
       }
     },
     "resetPassword": {
@@ -361,7 +364,7 @@
         },
         "p2e": {
           "title": "De personne à écosystème",
-          "content": "Donner aux individus l'accès à tout un écosystème de services - finance, logistique, assurance, etc."
+          "content": "Donner aux individus l'accès à tout un écosystème de services – finance, logistique, assurance, et plus encore."
         },
         "p2w": {
           "title": "De personne au monde",
@@ -547,7 +550,7 @@
     },
     "privacyRights": {
       "heading": "8. QUELS SONT VOS DROITS EN MATIÈRE DE CONFIDENTIALITÉ ?",
-      "content": "Dans certaines régions, vous disposez de certains droits en vertu des lois applicables sur la protection des données. Ceux-ci могут inclure le droit (i) de demander l'accès et d'obtenir une copie de vos données personnelles, (ii) de demander la rectification ou l'effacement, (iii) de restreindre le traitement de vos informations personnelles, et (iv) le cas échéant, à la portabilité des données."
+      "content": "Dans certaines régions, vous disposez de certains droits en vertu des lois applicables sur la protection des données. Ceux-ci peuvent inclure le droit (i) de demander l'accès et d'obtenir une copie de vos données personnelles, (ii) de demander la rectification ou l'effacement, (iii) de restreindre le traitement de vos informations personnelles, et (iv) le cas échéant, à la portabilité des données."
     },
     "controlsForDoNotTrack": {
       "heading": "9. CONTRÔLES POUR LES FONCTIONNALITÉS DO-NOT-TRACK",
@@ -635,3 +638,5 @@
     "couldNotSendMessage": "Impossible d'envoyer le message. Veuillez réessayer."
   }
 }
+
+    

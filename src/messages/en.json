@@ -198,7 +198,10 @@
         "unexpected": "An unexpected error occurred. Please try again.",
         "invalidEmail": "The email address is not valid.",
         "tooManyRequests": "Too many requests. Please try again later.",
-        "default": "Failed to send reset email"
+        "default": "Failed to send reset email",
+        "missingCode": "Invalid password reset link. Please request a new one.",
+        "missingCodeTitle": "Invalid Link",
+        "missingCodeDescription": "The password reset link is missing or invalid. Please return to the 'Forgot Password' page to request a new one."
       }
     },
     "resetPassword": {
@@ -1227,6 +1230,7 @@
       "searchButton": "Search",
       "searchError": "Search Error",
       "searchErrorDescription": "Could not perform search at this time. Please try again.",
+      "scanFailed": "Scan Failed",
       "scanError": "Scan Error",
       "scanErrorDescription": "Could not read the QR code. Please try again.",
       "invalidCodeError": "This is not a valid DamDoh recovery or profile code.",
@@ -1246,3 +1250,5 @@
     }
   }
 }
+
+    

@@ -198,7 +198,10 @@
         "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
         "invalidEmail": "Die E-Mail-Adresse ist ungültig.",
         "tooManyRequests": "Zu viele Anfragen. Bitte versuchen Sie es später erneut.",
-        "default": "Fehler beim Senden der E-Mail zum Zurücksetzen"
+        "default": "Fehler beim Senden der E-Mail zum Zurücksetzen",
+        "missingCode": "Ungültiger Link zum Zurücksetzen des Passworts. Bitte fordern Sie einen neuen an.",
+        "missingCodeTitle": "Ungültiger Link",
+        "missingCodeDescription": "Der Link zum Zurücksetzen des Passworts fehlt oder ist ungültig. Bitte kehren Sie zur Seite 'Passwort vergessen' zurück, um einen neuen anzufordern."
       }
     },
     "resetPassword": {
@@ -635,3 +638,5 @@
     "couldNotSendMessage": "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
   }
 }
+
+    
