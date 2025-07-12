@@ -3,7 +3,7 @@
 
 import { Suspense } from 'react';
 import { PageSkeleton } from '@/components/Skeletons';
-import { MainDashboard } from '@/components/dashboard/page';
+import { MainDashboard } from '@/components/dashboard/page'; // Corrected import path
 import { LandingPage } from '@/components/landing/LandingPage';
 import { useAuth } from '@/lib/auth-utils';
 import { useHomepageRedirect } from '@/hooks/useHomepageRedirect';
