@@ -76,7 +76,7 @@ export default function ProfilesPage() {
       const userRoles = [profile.primaryRole, ...(profile.secondaryRoles || [])].filter(Boolean);
       const roleMatch = roleFilter === 'all' || userRoles.includes(roleFilter);
 
-      const locationMatch = !locationFilter || (profile.location || '').toLowerCase().includes(locationLower);
+      const locationMatch = !locationFilter || (profile.location?.address || '').toLowerCase().includes(locationLower);
       
       return (nameMatch || summaryMatch) && roleMatch && locationMatch;
     });
@@ -153,7 +153,7 @@ export default function ProfilesPage() {
                     </Avatar>
                     <div>
                       <CardTitle className="text-lg">{profile.displayName}</CardTitle>
-                      <CardDescription>{profile.primaryRole} - {profile.location}</CardDescription>
+                      <CardDescription>{profile.primaryRole} - {profile.location?.address}</CardDescription>
                     </div>
                   </CardHeader>
                   <CardContent className="flex-grow">

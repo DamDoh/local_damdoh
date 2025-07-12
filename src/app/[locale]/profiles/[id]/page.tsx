@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter } from "@/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import QRCode from 'qrcode.react';
@@ -89,7 +89,7 @@ export default function ProfileDetailPage() {
   const functions = getFunctions(firebaseApp);
   const getUserActivity = useMemo(() => httpsCallable(functions, 'getUserActivity'), [functions]);
   const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'logProfileView'), [functions]);
-  const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'getUserEngagementStats'), []);
+  const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'getUserEngagementStats'), [functions]);
   const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), [functions]);
   
   useEffect(() => {

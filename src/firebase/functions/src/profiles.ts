@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
@@ -362,6 +363,7 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError('internal', 'Could not fetch engagement statistics.');
     }
 });
+
 
 /**
  * Deletes a user's data from across the entire Firestore database upon their Auth deletion.
