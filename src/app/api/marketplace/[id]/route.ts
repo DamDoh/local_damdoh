@@ -12,7 +12,7 @@ import {
   notFoundResponse, 
   clientErrorResponse, 
   serverErrorResponse 
-} from '@/lib/api-utils';
+} from '@/app/api/api-utils';
 import { isServerAuthenticated } from '@/lib/server-auth-utils';
 
 

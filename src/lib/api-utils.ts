@@ -9,7 +9,7 @@ export const is_server = typeof window === 'undefined';
 // Super App Vision Note: This file contains helpers for our API routes, but more importantly,
 // it outlines the conceptual logic for backend Cloud Functions that will act as the "connective tissue"
 // for the super app. Functions like `requestVerifiedData` are crucial for enabling secure,
-// consent-based data sharing between different modules and stakeholders, a cornerstone of a trusted ecosystem.
+// consent-based data sharing between modules and stakeholders, a cornerstone of a trusted ecosystem.
 // The AI-related notes describe how backend triggers will proactively provide value, like matching farmers
 // with financial products, which is a key "smart" feature.
 

@@ -13,7 +13,7 @@ import {
   notFoundResponse, 
   clientErrorResponse, 
   serverErrorResponse 
-} from '@/lib/api-utils';
+} from '@/app/api/api-utils';
 import { isServerAuthenticated } from '@/lib/server-auth-utils';
 
 
@@ -36,7 +36,7 @@ export async function GET(request: Request, { params }: RouteParams) {
 }
 
 export async function PUT(request: Request, { params }: RouteParams) {
-  if (!await isServerAuthenticated()) {
+   if (!await isServerAuthenticated()) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
   // TODO: Add logic to ensure only the profile owner or an admin can update

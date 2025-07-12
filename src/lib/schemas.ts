@@ -1,5 +1,6 @@
 
 import { z } from "zod";
+import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from '@/lib/constants';
 
 // =================================================================
 // SINGLE SOURCE OF TRUTH FOR CORE DATA SCHEMAS
@@ -9,6 +10,7 @@ import { z } from "zod";
 
 export const StakeholderProfileSchema = z.object({
   id: z.string(),
+  uid: z.string(),
   displayName: z.string(),
   email: z.string().email(),
   primaryRole: z.string(),
@@ -34,6 +36,7 @@ export const StakeholderProfileSchema = z.object({
   updatedAt: z.any(), // Firestore Timestamp
   // Added for shopfront feature
   shops: z.array(z.string()).optional(),
+  universalId: z.string().optional(),
 });
 export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 
@@ -52,7 +55,7 @@ export const MarketplaceItemSchema = z.object({
     lat: z.number(),
     lng: z.number(),
     address: z.string(),
-  }).optional().nullable(),
+  }),
   imageUrl: z.string().url().optional().nullable(),
   imageUrls: z.array(z.string().url()).optional(),
   dataAiHint: z.string().optional().nullable(),

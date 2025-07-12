@@ -4,7 +4,7 @@
 import { collection, query, where, getDocs, doc, getDoc, updateDoc, deleteDoc, orderBy, limit } from "firebase/firestore";
 import { getAdminDb } from './firebase/admin';
 import type { UserProfile, MarketplaceItem, SmartSearchInterpretation } from '@/lib/types';
-import * as admin from 'firebase-admin';
+import * as admin from 'firebase/admin';
 
 const PROFILES_COLLECTION = 'users';
 const MARKETPLACE_COLLECTION = 'marketplaceItems';
@@ -173,8 +173,8 @@ export async function performSearch(interpretation: Partial<SmartSearchInterpret
             q = q.where('tags', 'array-contains', categoryFilter);
         }
         if (identifiedLocation) {
-            q = q.where("location", ">=", identifiedLocation);
-            q = q.where("location", "<=", identifiedLocation + '\uf8ff');
+            q = q.where("location.address", ">=", identifiedLocation);
+            q = q.where("location.address", "<=", identifiedLocation + '\uf8ff');
         }
         if (perUnit) {
             q = q.where("perUnit", "==", perUnit);
