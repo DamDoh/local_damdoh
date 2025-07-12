@@ -183,8 +183,8 @@ export const performSearch = functions.https.onCall(async (data, context) => {
         query = query.where('tags', 'array-contains', categoryFilter);
     }
     if (identifiedLocation) {
-        query = query.where("location.address", ">=", identifiedLocation);
-        query = query.where("location.address", "<=", identifiedLocation + '\uf8ff');
+        query = query.where("location", ">=", identifiedLocation);
+        query = query.where("location", "<=", identifiedLocation + '\uf8ff');
     }
     if (perUnit) {
         query = query.where("perUnit", "==", perUnit);
