@@ -287,6 +287,23 @@
       "tryAgain": "Try a different search term or use broader keywords."
     }
   },
+  "talentExchangePage": {
+    "title": "Talent Exchange",
+    "description": "Find skilled professionals or offer your agricultural services to the community.",
+    "listServiceButton": "List a Service",
+    "searchPlaceholder": "Search for services (e.g., agronomy, drone pilot)...",
+    "locationPlaceholder": "Filter by location...",
+    "categoryPlaceholder": "Filter by service category...",
+    "allCategories": "All Categories",
+    "noResultsTitle": "No Services Found",
+    "noResultsDescription": "There are no services matching your criteria. Try adjusting your search or be the first to offer a service in this category!",
+    "toast": {
+      "error": {
+        "title": "Search Failed",
+        "description": "There was an error fetching services. Please try again."
+      }
+    }
+  },
   "Marketplace": {
     "title": "Marketplace",
     "description": "Discover products, services, and talent across the agricultural supply chain.",
@@ -610,23 +627,6 @@
       }
     }
   },
-  "talentExchangePage": {
-    "title": "Talent Exchange",
-    "description": "Find skilled professionals or offer your agricultural services to the community.",
-    "listServiceButton": "List a Service",
-    "searchPlaceholder": "Search for services (e.g., agronomy, drone pilot)...",
-    "locationPlaceholder": "Filter by location...",
-    "categoryPlaceholder": "Filter by service category...",
-    "allCategories": "All Categories",
-    "noResultsTitle": "No Services Found",
-    "noResultsDescription": "There are no services matching your criteria. Try adjusting your search or be the first to offer a service in this category!",
-    "toast": {
-      "error": {
-        "title": "Search Failed",
-        "description": "There was an error fetching services. Please try again."
-      }
-    }
-  },
   "forumsPage": {
     "title": "Community Forums",
     "description": "Connect, share knowledge, and discuss important topics with peers in the agricultural sector.",
@@ -689,7 +689,7 @@
     "detail": {
       "backLink": "Back to All Groups",
       "discussionsTitle": "Discussions",
-      "startDiscussionButton": "Start Discussion",
+      "startDiscussionButton": "Démarrer une Discussion",
       "noDiscussions": "No discussions yet.",
       "beTheFirst": "Be the first to start a conversation!",
       "actionsTitle": "Group Actions",
@@ -1210,7 +1210,5 @@
     "title": "Financial Management"
   }
 }
-
-    
 
     
