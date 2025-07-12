@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -463,7 +462,7 @@ export default function ManageEventPage() {
     const [event, setEvent] = useState<AgriEvent | null>(null);
 
     const getEventCouponsCallable = useMemo(() => httpsCallable(functions, 'getEventCoupons'), []);
-    const getEventDetailsCallable = useMemo(() => httpsCallable(functions, 'getEventDetails'), []);
+    const getEventDetailsCallable = useMemo(() => httpsCallable(functions, 'getEventDetails'), [functions]);
 
     const fetchCoupons = useCallback(async () => {
         setIsLoadingCoupons(true);

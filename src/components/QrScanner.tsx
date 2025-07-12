@@ -1,8 +1,7 @@
-
 "use client";
 
 import { useEffect, useRef } from 'react';
-import { Html5Qrcode, type Html5QrcodeScannerState } from 'html5-qrcode';
+import { Html5Qrcode } from 'html5-qrcode';
 import { Card, CardContent } from './ui/card';
 import { X } from 'lucide-react';
 import { Button } from './ui/button';
