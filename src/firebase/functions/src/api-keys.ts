@@ -34,25 +34,24 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
     const apiKey = `${keyPrefix}_${randomBytes(24).toString('hex')}`;
     const keyRef = db.collection('users').doc(innovatorId).collection('api_keys').doc();
 
-    await keyRef.set({
+    const newKeyDataToStore = {
         description,
         environment,
         status: 'Active',
-        keyPrefix: apiKey.substring(0, 12), 
+        keyPrefix: apiKey.substring(0, 12),
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    });
+    };
+
+    await keyRef.set(newKeyDataToStore);
 
     return { 
         success: true, 
         message: 'API Key generated successfully. Please copy it now, you will not be able to see it again.',
         key: apiKey,
         id: keyRef.id,
-        description,
-        environment,
-        status: 'Active',
-        keyPrefix: apiKey.substring(0, 12),
-        createdAt: new Date().toISOString(),
-    } as ApiKey & { success: boolean, message: string };
+        ...newKeyDataToStore,
+        createdAt: new Date().toISOString(), // Return ISO string for client
+    };
 });
 
 export const getApiKeys = functions.https.onCall(async (data, context) => {
@@ -100,4 +99,3 @@ export const revokeApiKey = functions.https.onCall(async (data, context) => {
 
     return { success: true, message: 'API Key has been revoked.' };
 });
-
