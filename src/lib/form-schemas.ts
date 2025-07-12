@@ -34,7 +34,7 @@ export const createMarketplaceItemSchema = z.object({
   location: z.object({
     lat: z.number(),
     lng: z.number(),
-    address: z.string().optional(),
+    address: z.string(),
   }),
   imageUrl: z.string().url({ message: "Please enter a valid URL for the image (e.g., https://placehold.co/300x200.png)." }).optional().or(z.literal('')),
   imageFile: imageFileSchema,
@@ -252,3 +252,12 @@ export const createInsuranceApplicationSchema = z.object({
   coverageValue: z.coerce.number().positive("Coverage value must be a positive number."),
 });
 export type CreateInsuranceApplicationValues = z.infer<typeof createInsuranceApplicationSchema>;
+
+export const financialApplicationSchema = z.object({
+  fiId: z.string({ required_error: "Please select a financial institution." }),
+  type: z.enum(['Loan', 'Grant']),
+  amount: z.coerce.number().positive("Please enter a valid loan amount."),
+  currency: z.string().length(3, "Currency must be a 3-letter code.").default("USD"),
+  purpose: z.string().min(20, "Please describe the purpose of the funding.").max(2000),
+});
+export type FinancialApplicationValues = z.infer<typeof financialApplicationSchema>;

@@ -942,4 +942,3 @@ export const getFiApplications = functions.https.onCall(async (data, context) =>
 
     return { applications };
 });
-
