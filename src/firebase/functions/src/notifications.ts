@@ -327,40 +327,35 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
     }
 
     // 2. Handle Agro-Tourism Bookings
-    // NOTE: This part is conceptual. It assumes a `bookingDate` field exists on the booking documents.
-    // This logic needs to be activated once the data model supports specific booking dates.
     try {
         const upcomingBookingsQuery = db.collectionGroup("bookings")
-            // This query is commented out because 'bookingDate' does not exist on the documents yet.
-            // .where("bookingDate", ">=", now) 
-            // .where("bookingDate", "<=", aDayFromNow)
-            .get(); // We get all for now for demonstration, but this is inefficient.
+            .where("startDate", ">=", now) 
+            .where("startDate", "<=", aDayFromNow);
         
-        console.log("Conceptually checking for Agro-Tourism bookings... (This part is not fully functional without a booking date field)");
-        // The loop below is commented out to prevent it from running with an inefficient query.
-        // It serves as a blueprint for future implementation.
-        /*
-        for (const bookingDoc of (await upcomingBookingsQuery).docs) {
-            const bookingData = bookingDoc.data();
-            const serviceRef = bookingDoc.ref.parent.parent; // This gets the marketplaceItem doc
-            if (serviceRef) {
-              const serviceDoc = await serviceRef.get();
-              if (serviceDoc.exists) {
-                const serviceData = serviceDoc.data()!;
-                const guestId = bookingData.userId;
-                const notificationPayload = {
-                    type: "service_reminder",
-                    title_en: "Service Reminder",
-                    body_en: `Your booked service, "${serviceData.name}", is coming up soon!`,
-                    actorId: 'system',
-                    linkedEntity: { collection: "marketplaceItems", documentId: serviceDoc.id },
-                };
-                await createAndSendNotification(guestId, notificationPayload);
-              }
+        const bookingsSnapshot = await upcomingBookingsQuery.get();
+        if (bookingsSnapshot.empty) {
+             console.log("No upcoming agro-tourism bookings in the next 24 hours.");
+        } else {
+            for (const bookingDoc of bookingsSnapshot.docs) {
+                const bookingData = bookingDoc.data();
+                const serviceRef = bookingDoc.ref.parent.parent; // This gets the marketplaceItem doc
+                if (serviceRef) {
+                  const serviceDoc = await serviceRef.get();
+                  if (serviceDoc.exists) {
+                    const serviceData = serviceDoc.data()!;
+                    const guestId = bookingData.userId;
+                    const notificationPayload = {
+                        type: "service_reminder",
+                        title_en: "Service Reminder",
+                        body_en: `Your booked service, "${serviceData.name}", is coming up soon!`,
+                        actorId: 'system',
+                        linkedEntity: { collection: "marketplaceItems", documentId: serviceDoc.id },
+                    };
+                    await createAndSendNotification(guestId, notificationPayload);
+                  }
+                }
             }
         }
-        */
-
     } catch (error) {
         console.error("Error processing agro-tourism booking reminders:", error);
     }

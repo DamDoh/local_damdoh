@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CalendarDays, Clock, MapPin, Users, PlusCircle, Pin, PinOff, Search as SearchIconLucide, Frown } from "lucide-react";
+import { CalendarDays, Clock, MapPin, Users, PlusCircle, Pin, PinOff, Search as SearchIconLucide, Frown, MessageSquare, Briefcase, GitBranch } from "lucide-react";
 import type { AgriEvent } from "@/lib/types";
 import { getAgriEventFilterOptions, type AgriEventTypeConstant } from "@/lib/constants";
 import { usePathname } from "next/navigation";
@@ -18,18 +18,19 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { app as firebaseApp } from "@/lib/firebase/client";
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
 
 const getEventTypeIcon = (eventType: AgriEvent['eventType']) => {
   const iconProps = { className: "h-4 w-4 mr-1.5 text-primary" };
   switch (eventType) {
     case 'Conference': return <Users {...iconProps} />;
     case 'Webinar': return <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={iconProps.className}><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>; // Laptop icon
-    case 'Workshop': return <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={iconProps.className}><polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon><line x1="3" y1="22" x2="21" y2="22"></line></svg>; // Edit3 icon
+    case 'Workshop': return <Briefcase {...iconProps} />;
     case 'Trade Show': return <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={iconProps.className}><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>; // Package icon
     case 'Field Day': return <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={iconProps.className}><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><line x1="12" y1="17" x2="12" y2="10"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg>; // Tractor or similar - using a placeholder
-    case 'Networking Event': return <Users {...iconProps} />; // Users icon
+    case 'Networking Event': return <MessageSquare {...iconProps} />; // Users icon
+    case 'Online Course Launch': return <GitBranch {...iconProps} />;
     default: return <CalendarDays {...iconProps} />;
   }
 };
@@ -199,7 +200,6 @@ export default function AgriEventsPage() {
                     </Link>
                   <CardHeader>
                     <div className="flex items-center gap-2 mb-1">
-                        {getEventTypeIcon(event.eventType)}
                         <Badge variant="secondary">{event.eventType}</Badge>
                     </div>
                     <Link href={`/agri-events/${event.id}`} className="block">
