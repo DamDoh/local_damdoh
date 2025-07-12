@@ -2,7 +2,16 @@
 {
   "common": {
     "error": "ข้อผิดพลาด",
-    "success": "สำเร็จ"
+    "success": "สำเร็จ",
+    "loading": "กำลังโหลด...",
+    "noData": "ไม่มีข้อมูล",
+    "save": "บันทึก",
+    "cancel": "ยกเลิก",
+    "viewDetails": "ดูรายละเอียด",
+    "edit": "แก้ไข",
+    "delete": "ลบ",
+    "back": "กลับ",
+    "submit": "ส่ง"
   },
   "toast": {
     "loggedOut": {
@@ -29,12 +38,79 @@
     }
   },
   "Auth": {
+    "signInTitle": "เข้าสู่ระบบ",
+    "signInWelcome": "ยินดีต้อนรับสู่ {appName}",
+    "signInDescription": "เข้าสู่ระบบบัญชีของคุณเพื่อดำเนินการต่อ",
+    "emailLabel": "อีเมล",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "รหัสผ่าน",
+    "forgotPasswordLink": "ลืมรหัสผ่าน?",
+    "signInButton": "เข้าสู่ระบบ",
+    "signingInButton": "กำลังเข้าสู่ระบบ...",
+    "noAccountPrompt": "ยังไม่มีบัญชี?",
+    "signUpLink": "ลงทะเบียน",
+    "signUpTitle": "สร้างบัญชี",
+    "signUpWelcome": "เข้าร่วมชุมชน {appName}",
+    "signUpDescription": "กรอกแบบฟอร์มเพื่อเริ่มต้น",
+    "nameLabel": "ชื่อ",
+    "namePlaceholder": "ชื่อของคุณ",
+    "roleLabel": "บทบาทของคุณ",
+    "rolePlaceholder": "เลือกบทบาทของคุณ...",
+    "confirmPasswordLabel": "ยืนยันรหัสผ่าน",
+    "confirmPasswordPlaceholder": "••••••••",
+    "signUpButton": "สร้างบัญชี",
+    "creatingAccountButton": "กำลังสร้างบัญชี...",
+    "alreadyHaveAccountPrompt": "มีบัญชีอยู่แล้ว?",
+    "signInLink": "เข้าสู่ระบบ",
     "passwordStrength": {
       "label": "ความแข็งแกร่ง",
       "weak": "อ่อน",
       "medium": "ปานกลาง",
       "strong": "แข็งแกร่ง",
       "veryStrong": "แข็งแกร่งมาก"
+    },
+    "errors": {
+      "emailInUse": "อีเมลนี้ถูกใช้งานแล้ว",
+      "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
+      "weakPassword": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
+      "default": "เกิดข้อผิดพลาดที่ไม่คาดคิด"
+    },
+    "forgotPasswordTitle": "ลืมรหัสผ่าน",
+    "forgotPasswordDescription": "ป้อนอีเมลของคุณเพื่อรับลิงก์รีเซ็ต",
+    "forgotPasswordResetPrompt": "รีเซ็ตรหัสผ่านของคุณสำหรับ {appName}",
+    "sendResetLinkButton": "ส่งลิงก์รีเซ็ต",
+    "sendingEmailButton": "กำลังส่งอีเมล...",
+    "rememberPasswordPrompt": "จำรหัสผ่านของคุณได้แล้ว?",
+    "forgotPassword": {
+      "emailSentTitle": "ส่งอีเมลแล้ว!",
+      "emailSentDescription": "ลิงก์รีเซ็ตถูกส่งไปยัง {email} แล้ว",
+      "emailSentDescriptionIfAccountExists": "หากมีบัญชีที่ใช้ {email} อยู่ ลิงก์รีเซ็ตจะถูกส่งไปแล้ว",
+      "successTitle": "รีเซ็ตสำเร็จ!",
+      "successDescription": "ตอนนี้คุณสามารถเข้าสู่ระบบด้วยรหัสผ่านใหม่ของคุณได้แล้ว",
+      "errors": {
+        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด",
+        "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
+        "tooManyRequests": "มีการร้องขอมากเกินไป โปรดลองอีกครั้งในภายหลัง",
+        "default": "ข้อผิดพลาด",
+        "missingCode": "รหัสรีเซ็ตรหัสผ่านหายไปหรือไม่ถูกต้อง โปรดขอรหัสใหม่",
+        "missingCodeTitle": "รหัสรีเซ็ตไม่ถูกต้อง"
+      }
+    },
+    "resetPasswordTitle": "รีเซ็ตรหัสผ่าน",
+    "resetPasswordDescription": "ป้อนรหัสผ่านใหม่ของคุณ",
+    "resetPasswordPrompt": "รีเซ็ตรหัสผ่านของคุณสำหรับ {appName}",
+    "newPasswordLabel": "รหัสผ่านใหม่",
+    "newPasswordPlaceholder": "••••••••",
+    "resettingPasswordButton": "กำลังรีเซ็ตรหัสผ่าน...",
+    "resetPasswordButton": "รีเซ็ตรหัสผ่าน",
+    "resetPassword": {
+      "successRedirect": "คุณจะถูกนำไปยังหน้าเข้าสู่ระบบ...",
+      "errors": {
+        "invalidOrExpiredCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้องหรือหมดอายุ",
+        "userDisabled": "บัญชีผู้ใช้นี้ถูกปิดใช้งาน",
+        "userNotFound": "ไม่พบผู้ใช้",
+        "weakPassword": "รหัสผ่านอ่อนแอเกินไป"
+      }
     }
   },
   "AppHeader": {
@@ -62,126 +138,7 @@
   },
   "LanguageSwitcher": {
     "toggle": "เปลี่ยนภาษา"
-  },
-  "MobileBottomNav": {
-    "home": "หน้าแรก",
-    "market": "ตลาด",
-    "search": "ค้นหา",
-    "forums": "ฟอรั่ม",
-    "profile": "โปรไฟล์",
-    "messages": "ข้อความ"
-  },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "กำลังซิงค์ {count} การกระทำที่รอดำเนินการ...",
-      "onlinePending": "{count} การกระทำที่รอดำเนินการ การซิงค์จะเริ่มเร็วๆ นี้",
-      "onlineSynced": "คุณออนไลน์อยู่ ข้อมูลทั้งหมดซิงค์กันแล้ว",
-      "offline": "คุณออฟไลน์อยู่ {count, plural, =0 {ไม่มีการเปลี่ยนแปลงที่รอดำเนินการ} =1 {1 การเปลี่ยนแปลงที่รอดำเนินการ} other {{count} การเปลี่ยนแปลงที่รอดำเนินการ}}"
-    },
-    "toast": {
-      "online": {
-        "title": "คุณกลับมาออนไลน์แล้ว!",
-        "description": "การเชื่อมต่อของคุณได้รับการคืนค่าแล้ว"
-      },
-      "offline": {
-        "title": "ขณะนี้คุณออฟไลน์อยู่",
-        "description": "การเปลี่ยนแปลงจะถูกบันทึกไว้ในเครื่องและจะซิงค์เมื่อคุณเชื่อมต่ออีกครั้ง"
-      },
-      "syncing": {
-        "title": "กำลังซิงค์ข้อมูล...",
-        "description": "กำลังส่ง {count, plural, =1 {1 การกระทำออฟไลน์} other {{count} การกระทำออฟไลน์}} ไปยังเซิร์ฟเวอร์"
-      },
-      "synced": {
-        "title": "การซิงค์เสร็จสมบูรณ์",
-        "description": "การเปลี่ยนแปลงออฟไลน์ของคุณถูกบันทึกเรียบร้อยแล้ว"
-      },
-      "syncFailed": {
-        "title": "การซิงค์ล้มเหลว",
-        "description": "ไม่สามารถซิงค์การเปลี่ยนแปลงออฟไลน์ได้ เราจะลองอีกครั้งในภายหลัง"
-      },
-      "queued": {
-        "title": "การกระทำอยู่ในคิว",
-        "description": "การกระทำนี้จะเสร็จสมบูรณ์เมื่อคุณกลับมาออนไลน์อีกครั้ง"
-      }
-    }
-  },
-  "AppFooter": {
-    "tagline": "Connecter la chaîne de valeur agricole pour un avenir durable.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "À propos",
-    "contactLabel": "Contact",
-    "careersLabel": "Carrières",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Ressources",
-    "helpCenterLabel": "Centre d'aide",
-    "communityGuidelinesLabel": "Règles de la communauté",
-    "industryNewsLabel": "Actualités du secteur",
-    "eventsLabel": "Événements",
-    "talentExchangeLabel": "Bourse de talents",
-    "legalTitle": "Légal",
-    "privacyPolicyLabel": "Politique de confidentialité",
-    "termsOfServiceLabel": "Conditions d'utilisation",
-    "copyright": "© {year} {appName}. Tous droits réservés.",
-    "getMobileApp": "Obtenir l'application mobile",
-    "googlePlayAlt": "Obtenez-le sur Google Play",
-    "appStoreAlt": "Télécharger sur l'App Store"
-  },
-  "LandingPage": {
-    "hero": {
-      "title": "เสริมสร้างศักยภาพการเกษตรตั้งแต่ดินสู่การขายบน {appName}",
-      "subtitle": "แพลตฟอร์มเดียวที่เชื่อมโยงผู้มีส่วนได้ส่วนเสียทุกคนในห่วงโซ่คุณค่าทางการเกษตรเพื่ออนาคตที่โปร่งใส มีประสิทธิภาพ และยั่งยืนยิ่งขึ้น",
-      "getStartedButton": "เริ่มต้นใช้งานฟรี",
-      "learnMoreButton": "เรียนรู้เพิ่มเติม"
-    },
-    "features": {
-      "title": "คุณสมบัติหลักของ DamDoh",
-      "subtitle": "ทุกสิ่งที่คุณต้องการเพื่อการเติบโต เชื่อมต่อ และค้าขาย ทั้งหมดในที่เดียว",
-      "networking": {
-        "title": "เครือข่ายอัจฉริยะ",
-        "description": "คำแนะนำการเชื่อมต่อที่ขับเคลื่อนด้วย AI เพื่อเชื่อมโยงคุณกับพันธมิตรที่เหมาะสม ตั้งแต่ซัพพลายเออร์ไปจนถึงผู้ซื้อต่างประเทศ"
-      },
-      "marketplace": {
-        "title": "ตลาดโดยตรง",
-        "description": "ซื้อและขายสินค้าและบริการโดยตรง เพิ่มความโปร่งใสและผลกำไรให้กับผู้มีส่วนได้ส่วนเสียทุกคน"
-      },
-      "forums": {
-        "title": "ฟอรั่มตามหัวข้อ",
-        "description": "แบ่งปันความรู้ หารือเกี่ยวกับความท้าทาย และร่วมมือกันหาทางแก้ไขในฟอรั่มเฉพาะเรื่อง"
-      },
-      "talent": {
-        "title": "ตลาดนัดความสามารถ",
-        "description": "เสนอหรือค้นหาบริการทางการเกษตรเฉพาะทาง ตั้งแต่การเก็บเกี่ยวตามสั่งไปจนถึงการสำรวจด้วยโดรน"
-      }
-    },
-    "forWho": {
-      "badge": "สำหรับทุกคนในภาคเกษตรกรรม",
-      "title": "แพลตฟอร์มเดียวสำหรับทั้งห่วงโซ่คุณค่า",
-      "description": "DamDoh ได้รับการออกแบบมาโดยเฉพาะเพื่อให้บริการระบบนิเวศทางการเกษตรทั้งหมด สร้างจุดศูนย์กลางของความจริงและโอกาสสำหรับทุกคน",
-      "farmers": {
-        "title": "เกษตรกร",
-        "description": "เข้าถึงตลาดที่ดีขึ้น ค้นหาปัจจัยการผลิตที่มีคุณภาพ และรับคำแนะนำจากผู้เชี่ยวชาญเพื่อเพิ่มผลผลิตและผลกำไร"
-      },
-      "buyers": {
-        "title": "ผู้ซื้อและผู้แปรรูป",
-        "description": "จัดหาผลผลิตคุณภาพสูงที่ตรวจสอบย้อนกลับได้โดยตรงจากเกษตรกรและสหกรณ์ รับประกันความน่าเชื่อถือของห่วงโซ่อุปทาน"
-      },
-      "experts": {
-        "title": "ผู้เชี่ยวชาญและผู้ให้บริการ",
-        "description": "เสนอทักษะและบริการเฉพาะทางของคุณแก่ผู้ชมทางการเกษตรในวงกว้างที่ต้องการความเชี่ยวชาญของคุณ"
-      },
-      "fis": {
-        "title": "สถาบันการเงิน",
-        "description": "ให้บริการสินเชื่อและการลงทุนแก่เครือข่ายเกษตรกรและธุรกิจการเกษตรที่ผ่านการตรวจสอบแล้ว โดยพิจารณาจากข้อมูลและประวัติบนแพลตฟอร์ม"
-      },
-      "imageAlt": "กลุ่มผู้มีส่วนได้ส่วนเสียทางการเกษตรที่หลากหลายกำลังทำงานร่วมกัน"
-    },
-    "cta": {
-      "title": "เข้าร่วมการปฏิวัติการเกษตร",
-      "subtitle": "ลงทะเบียนวันนี้และเป็นส่วนหนึ่งของเครือข่ายระดับโลกที่กำลังเติบโต ซึ่งอุทิศตนเพื่อเปลี่ยนแปลงอนาคตของอาหาร",
-      "button": "สร้างบัญชีฟรีของคุณ"
-    }
-  },
-  "financialsPage": {
-    "title": "การจัดการทางการเงิน"
   }
 }
+
+    

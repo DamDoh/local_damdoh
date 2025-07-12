@@ -2,7 +2,16 @@
 {
   "common": {
     "error": "កំហុស",
-    "success": "ជោគជ័យ"
+    "success": "ជោគជ័យ",
+    "loading": "កំពុង​ផ្ទុក...",
+    "noData": "គ្មាន​ទិន្នន័យ។",
+    "save": "រក្សាទុក",
+    "cancel": "បោះបង់",
+    "viewDetails": "មើល​លម្អិត",
+    "edit": "កែសម្រួល",
+    "delete": "លុប",
+    "back": "ត្រឡប់",
+    "submit": "ដាក់ស្នើ"
   },
   "toast": {
     "loggedOut": {
@@ -29,12 +38,107 @@
     }
   },
   "Auth": {
+    "signInTitle": "ចូល",
+    "signInWelcome": "សូមស្វាគមន៍មកកាន់ {appName}",
+    "signInDescription": "ចូលគណនីរបស់អ្នកដើម្បីបន្ត។",
+    "emailLabel": "អ៊ីមែល",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "ពាក្យសម្ងាត់",
+    "forgotPasswordLink": "ភ្លេចពាក្យសម្ងាត់?",
+    "signInButton": "ចូល",
+    "signingInButton": "កំពុងចូល...",
+    "noAccountPrompt": "មិនទាន់មានគណនី?",
+    "signUpLink": "ចុះឈ្មោះ",
+    "signUpTitle": "បង្កើតគណនី",
+    "signUpWelcome": "ចូលរួមសហគមន៍ {appName}",
+    "signUpDescription": "បំពេញទម្រង់បែបបទដើម្បីចាប់ផ្តើម។",
+    "nameLabel": "ឈ្មោះ",
+    "namePlaceholder": "ឈ្មោះរបស់អ្នក",
+    "roleLabel": "តួនាទីរបស់អ្នក",
+    "rolePlaceholder": "ជ្រើសរើសតួនាទីរបស់អ្នក...",
+    "confirmPasswordLabel": "បញ្ជាក់ពាក្យសម្ងាត់",
+    "confirmPasswordPlaceholder": "••••••••",
+    "signUpButton": "បង្កើតគណនី",
+    "creatingAccountButton": "កំពុងបង្កើតគណនី...",
+    "alreadyHaveAccountPrompt": "មានគណនីហើយ?",
+    "signInLink": "ចូល",
     "passwordStrength": {
       "label": "កម្លាំង",
       "weak": "ខ្សោយ",
       "medium": "មធ្យម",
       "strong": "ខ្លាំង",
       "veryStrong": "ខ្លាំង​ណាស់"
+    },
+    "errors": {
+      "emailInUse": "អ៊ីមែលនេះត្រូវបានប្រើប្រាស់រួចហើយ។",
+      "invalidEmail": "អាសយដ្ឋានអ៊ីមែលមិនត្រឹមត្រូវ។",
+      "weakPassword": "ពាក្យសម្ងាត់ត្រូវមានយ៉ាងហោចណាស់ ៦ តួអក្សរ។",
+      "default": "មានកំហុសដែលមិនបានរំពឹងទុកកើតឡើង។"
+    },
+    "forgotPasswordTitle": "ភ្លេច​លេខសំងាត់",
+    "forgotPasswordDescription": "បញ្ចូលអ៊ីមែលរបស់អ្នកដើម្បីទទួលបានតំណកំណត់ឡើងវិញ។",
+    "forgotPasswordResetPrompt": "កំណត់ពាក្យសម្ងាត់របស់អ្នកឡើងវិញសម្រាប់ {appName}",
+    "sendResetLinkButton": "ផ្ញើតំណកំណត់ឡើងវិញ",
+    "sendingEmailButton": "កំពុងផ្ញើអ៊ីមែល...",
+    "rememberPasswordPrompt": "ចាំពាក្យសម្ងាត់របស់អ្នកហើយឬនៅ?",
+    "forgotPassword": {
+      "emailSentTitle": "បានផ្ញើអ៊ីមែល!",
+      "emailSentDescription": "តំណកំណត់ឡើងវិញត្រូវបានផ្ញើទៅ {email}។",
+      "emailSentDescriptionIfAccountExists": "ប្រសិនបើមានគណនីជាមួយ {email} តំណកំណត់ឡើងវិញត្រូវបានផ្ញើ។",
+      "successTitle": "កំណត់ឡើងវិញបានជោគជ័យ!",
+      "successDescription": "ឥឡូវនេះអ្នកអាចចូលដោយប្រើពាក្យសម្ងាត់ថ្មីរបស់អ្នក។",
+      "errors": {
+        "unexpected": "មានកំហុសដែលមិនបានរំពឹងទុកកើតឡើង។",
+        "invalidEmail": "អាសយដ្ឋានអ៊ីមែលមិនត្រឹមត្រូវទេ។",
+        "tooManyRequests": "សំណើច្រើនពេក។ សូម​ព្យាយាម​ម្តង​ទៀត​នៅ​ពេល​ក្រោយ។",
+        "default": "កំហុស",
+        "missingCode": "លេខកូដកំណត់ពាក្យសម្ងាត់ឡើងវិញបាត់ឬមិនត្រឹមត្រូវ។ សូមស្នើសុំលេខកូដថ្មី។",
+        "missingCodeTitle": "លេខកូដកំណត់ឡើងវិញមិនត្រឹមត្រូវ"
+      }
+    },
+    "resetPasswordTitle": "កំណត់​ពាក្យ​សម្ងាត់​ឡើង​វិញ",
+    "resetPasswordDescription": "បញ្ចូលពាក្យសម្ងាត់ថ្មីរបស់អ្នក។",
+    "resetPasswordPrompt": "កំណត់ពាក្យសម្ងាត់របស់អ្នកឡើងវិញសម្រាប់ {appName}",
+    "newPasswordLabel": "ពាក្យសម្ងាត់​ថ្មី",
+    "newPasswordPlaceholder": "••••••••",
+    "resettingPasswordButton": "កំពុងកំណត់ពាក្យសម្ងាត់ឡើងវិញ...",
+    "resetPasswordButton": "កំណត់​ពាក្យ​សម្ងាត់​ឡើង​វិញ",
+    "resetPassword": {
+      "successRedirect": "អ្នកនឹងត្រូវបានបញ្ជូនបន្តទៅកាន់ទំព័រចូល...",
+      "errors": {
+        "invalidOrExpiredCode": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញមិនត្រឹមត្រូវឬផុតកំណត់។",
+        "userDisabled": "គណនីអ្នកប្រើប្រាស់នេះត្រូវបានបិទ។",
+        "userNotFound": "រក​មិន​ឃើញ​អ្នក​ប្រើ។",
+        "weakPassword": "ពាក្យសម្ងាត់ខ្សោយពេក។"
+      }
     }
+  },
+  "AppHeader": {
+    "searchPlaceholder": "ស្វែងរក...",
+    "home": "ទំព័រដើម",
+    "network": "បណ្តាញ",
+    "farmMgmt": "ការគ្រប់គ្រងកសិដ្ឋាន",
+    "marketplace": "ទីផ្សារ",
+    "talentExchange": "ការផ្លាស់ប្តូរទេពកោសល្យ",
+    "traceability": "ការតាមដាន",
+    "forums": "វេទិកា",
+    "sustainability": "និរន្តរភាព",
+    "notifications": "ការជូនដំណឹង",
+    "messages": "សារ",
+    "wallet": "កាបូប",
+    "signIn": "ចូល",
+    "signUp": "ចុះឈ្មោះ",
+    "myProfile": "ប្រវត្តិរូបរបស់ខ្ញុំ",
+    "myOrders": "ការបញ្ជាទិញរបស់ខ្ញុំ",
+    "settings": "ការកំណត់",
+    "helpCenter": "មជ្ឈមណ្ឌលជំនួយ",
+    "logOut": "ចេញ",
+    "switchToLightAria": "ប្តូរទៅជារបៀបស្រាល",
+    "switchToDarkAria": "ប្តូរទៅជារបៀបងងឹត"
+  },
+  "LanguageSwitcher": {
+    "toggle": "ផ្លាស់ប្តូរភាសា"
   }
 }
+
+    

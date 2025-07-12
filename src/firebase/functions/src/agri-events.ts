@@ -451,3 +451,5 @@ export const removeEventStaff = functions.https.onCall(async (data, context) => 
     
     return { success: true, message: "Staff member has been removed." };
 });
+
+    

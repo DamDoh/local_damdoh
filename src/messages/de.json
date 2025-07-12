@@ -2,39 +2,145 @@
 {
   "common": {
     "error": "Fehler",
-    "success": "Erfolg"
-  },
-  "toast": {
-    "loggedOut": {
-      "title": "Abgemeldet",
-      "description": "Sie wurden erfolgreich abgemeldet."
-    },
-    "logoutFailed": {
-      "title": "Abmeldung fehlgeschlagen",
-      "description": "Sie konnten nicht abgemeldet werden. Bitte versuchen Sie es erneut."
-    },
-    "signInSuccess": {
-      "title": "Erfolgreich angemeldet!",
-      "description": "Willkommen zurück bei {appName}."
-    },
-    "signInFailed": {
-      "title": "Anmeldung fehlgeschlagen"
-    },
-    "signUpSuccess": {
-      "title": "Konto erstellt & angemeldet!",
-      "description": "Willkommen bei {appName}! Sie wurden erfolgreich angemeldet."
-    },
-    "signUpFailed": {
-      "title": "Registrierung fehlgeschlagen"
-    }
+    "success": "Erfolg",
+    "loading": "Wird geladen...",
+    "noData": "Keine Daten verfügbar.",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "viewDetails": "Details anzeigen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "back": "Zurück",
+    "submit": "Einreichen"
   },
   "Auth": {
+    "signInTitle": "Anmelden",
+    "signInWelcome": "Willkommen bei {appName}",
+    "signInDescription": "Melden Sie sich bei Ihrem Konto an, um fortzufahren.",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "name@beispiel.com",
+    "passwordLabel": "Passwort",
+    "forgotPasswordLink": "Passwort vergessen?",
+    "signInButton": "Anmelden",
+    "signingInButton": "Anmeldung läuft...",
+    "noAccountPrompt": "Sie haben noch kein Konto?",
+    "signUpLink": "Registrieren",
+    "signUpTitle": "Konto erstellen",
+    "signUpWelcome": "Treten Sie der {appName} Community bei",
+    "signUpDescription": "Füllen Sie das Formular aus, um loszulegen.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Ihr Name",
+    "roleLabel": "Ihre Rolle",
+    "rolePlaceholder": "Wählen Sie Ihre Rolle...",
+    "confirmPasswordLabel": "Passwort bestätigen",
+    "confirmPasswordPlaceholder": "••••••••",
+    "signUpButton": "Konto erstellen",
+    "creatingAccountButton": "Konto wird erstellt...",
+    "alreadyHaveAccountPrompt": "Sie haben bereits ein Konto?",
+    "signInLink": "Anmelden",
     "passwordStrength": {
       "label": "Stärke",
       "weak": "Schwach",
       "medium": "Mittel",
       "strong": "Stark",
-      "veryStrong": "Sehr Stark"
+      "veryStrong": "Sehr stark"
+    },
+    "errors": {
+      "emailInUse": "Diese E-Mail wird bereits verwendet.",
+      "invalidEmail": "Ungültige E-Mail-Adresse.",
+      "weakPassword": "Das Passwort muss mindestens 6 Zeichen lang sein.",
+      "default": "Ein unerwarteter Fehler ist aufgetreten."
+    },
+    "signUpSuccess": {
+      "title": "Konto erstellt & angemeldet!",
+      "description": "Willkommen bei {appName}! Sie wurden erfolgreich angemeldet."
+    },
+    "signUpFailed": "Registrierung fehlgeschlagen",
+    "forgotPasswordTitle": "Passwort vergessen",
+    "forgotPasswordDescription": "Geben Sie Ihre E-Mail ein, um einen Link zum Zurücksetzen zu erhalten.",
+    "forgotPasswordResetPrompt": "Setzen Sie Ihr Passwort für {appName} zurück",
+    "sendResetLinkButton": "Link zum Zurücksetzen senden",
+    "sendingEmailButton": "E-Mail wird gesendet...",
+    "rememberPasswordPrompt": "Passwort wieder eingefallen?",
+    "forgotPassword": {
+      "emailSentTitle": "E-Mail gesendet!",
+      "emailSentDescription": "Ein Link zum Zurücksetzen wurde an {email} gesendet.",
+      "emailSentDescriptionIfAccountExists": "Wenn ein Konto mit {email} existiert, wurde ein Link zum Zurücksetzen gesendet.",
+      "successTitle": "Zurücksetzen erfolgreich!",
+      "successDescription": "Sie können sich jetzt mit Ihrem neuen Passwort anmelden.",
+      "errors": {
+        "unexpected": "Ein unerwarteter Fehler ist aufgetreten.",
+        "invalidEmail": "Die E-Mail-Adresse ist ungültig.",
+        "tooManyRequests": "Zu viele Anfragen. Bitte versuchen Sie es später erneut.",
+        "default": "Fehler",
+        "missingCode": "Der Code zum Zurücksetzen des Passworts fehlt oder ist ungültig. Bitte fordern Sie einen neuen an.",
+        "missingCodeTitle": "Code zum Zurücksetzen des Passworts ungültig"
+      }
+    },
+    "resetPasswordTitle": "Passwort zurücksetzen",
+    "resetPasswordDescription": "Geben Sie Ihr neues Passwort ein.",
+    "resetPasswordPrompt": "Setzen Sie Ihr Passwort für {appName} zurück",
+    "newPasswordLabel": "Neues Passwort",
+    "newPasswordPlaceholder": "••••••••",
+    "resettingPasswordButton": "Passwort wird zurückgesetzt...",
+    "resetPasswordButton": "Passwort zurücksetzen",
+    "resetPassword": {
+      "successRedirect": "Sie werden zur Anmeldeseite weitergeleitet...",
+      "errors": {
+        "invalidOrExpiredCode": "Der Link zum Zurücksetzen des Passworts ist ungültig oder abgelaufen.",
+        "userDisabled": "Dieses Benutzerkonto wurde deaktiviert.",
+        "userNotFound": "Benutzer nicht gefunden.",
+        "weakPassword": "Das Passwort ist zu schwach."
+      }
     }
+  },
+  "AppHeader": {
+    "searchPlaceholder": "Suchen...",
+    "home": "Startseite",
+    "network": "Netzwerk",
+    "farmMgmt": "Farmverwaltung",
+    "marketplace": "Marktplatz",
+    "talentExchange": "Talentbörse",
+    "traceability": "Rückverfolgbarkeit",
+    "forums": "Foren",
+    "sustainability": "Nachhaltigkeit",
+    "notifications": "Benachrichtigungen",
+    "messages": "Nachrichten",
+    "wallet": "Brieftasche",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "myProfile": "Mein Profil",
+    "myOrders": "Meine Bestellungen",
+    "settings": "Einstellungen",
+    "helpCenter": "Hilfecenter",
+    "logOut": "Abmelden",
+    "switchToLightAria": "Zum hellen Modus wechseln",
+    "switchToDarkAria": "Zum dunklen Modus wechseln"
+  },
+  "AppFooter": {
+    "tagline": "Die landwirtschaftliche Wertschöpfungskette für eine nachhaltige Zukunft verbinden.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Über uns",
+    "contactLabel": "Kontakt",
+    "careersLabel": "Karriere",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressourcen",
+    "helpCenterLabel": "Hilfecenter",
+    "communityGuidelinesLabel": "Community-Richtlinien",
+    "industryNewsLabel": "Branchennachrichten",
+    "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
+    "legalTitle": "Rechtliches",
+    "privacyPolicyLabel": "Datenschutzrichtlinie",
+    "termsOfServiceLabel": "Nutzungsbedingungen",
+    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
+    "getMobileApp": "Holen Sie sich die mobile App",
+    "googlePlayAlt": "Bei Google Play holen",
+    "appStoreAlt": "Im App Store herunterladen"
+  },
+  "LanguageSwitcher": {
+    "toggle": "Sprache wechseln"
   }
 }
+
+    

@@ -2,7 +2,16 @@
 {
   "common": {
     "error": "Erreur",
-    "success": "Succès"
+    "success": "Succès",
+    "loading": "Chargement...",
+    "noData": "Aucune donnée disponible.",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "viewDetails": "Voir les détails",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "back": "Retour",
+    "submit": "Soumettre"
   },
   "toast": {
     "loggedOut": {
@@ -29,12 +38,107 @@
     }
   },
   "Auth": {
+    "signInTitle": "Se connecter",
+    "signInWelcome": "Bienvenue sur {appName}",
+    "signInDescription": "Connectez-vous à votre compte pour continuer.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "nom@exemple.com",
+    "passwordLabel": "Mot de passe",
+    "forgotPasswordLink": "Mot de passe oublié ?",
+    "signInButton": "Se connecter",
+    "signingInButton": "Connexion en cours...",
+    "noAccountPrompt": "Vous n'avez pas de compte ?",
+    "signUpLink": "Inscrivez-vous",
+    "signUpTitle": "Créer un compte",
+    "signUpWelcome": "Rejoignez la communauté {appName}",
+    "signUpDescription": "Remplissez le formulaire pour commencer.",
+    "nameLabel": "Nom",
+    "namePlaceholder": "Votre nom",
+    "roleLabel": "Votre rôle",
+    "rolePlaceholder": "Sélectionnez votre rôle...",
+    "confirmPasswordLabel": "Confirmez le mot de passe",
+    "confirmPasswordPlaceholder": "••••••••",
+    "signUpButton": "Créer un compte",
+    "creatingAccountButton": "Création du compte...",
+    "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
+    "signInLink": "Se connecter",
     "passwordStrength": {
       "label": "Force",
       "weak": "Faible",
       "medium": "Moyen",
       "strong": "Fort",
-      "veryStrong": "Très Fort"
+      "veryStrong": "Très fort"
+    },
+    "errors": {
+      "emailInUse": "Cet e-mail est déjà utilisé.",
+      "invalidEmail": "Adresse e-mail invalide.",
+      "weakPassword": "Le mot de passe doit comporter au moins 6 caractères.",
+      "default": "Une erreur inattendue s'est produite."
+    },
+    "forgotPasswordTitle": "Mot de passe oublié",
+    "forgotPasswordDescription": "Entrez votre e-mail pour recevoir un lien de réinitialisation.",
+    "forgotPasswordResetPrompt": "Réinitialisez votre mot de passe pour {appName}",
+    "sendResetLinkButton": "Envoyer le lien de réinitialisation",
+    "sendingEmailButton": "Envoi de l'e-mail...",
+    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
+    "forgotPassword": {
+      "emailSentTitle": "E-mail envoyé !",
+      "emailSentDescription": "Un lien de réinitialisation a été envoyé à {email}.",
+      "emailSentDescriptionIfAccountExists": "Si un compte avec {email} existe, un lien de réinitialisation a été envoyé.",
+      "successTitle": "Réinitialisation réussie !",
+      "successDescription": "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
+      "errors": {
+        "unexpected": "Une erreur inattendue s'est produite.",
+        "invalidEmail": "L'adresse e-mail n'est pas valide.",
+        "tooManyRequests": "Trop de demandes. Veuillez réessayer plus tard.",
+        "default": "Erreur",
+        "missingCode": "Le code de réinitialisation du mot de passe est manquant ou invalide. Veuillez en demander un nouveau.",
+        "missingCodeTitle": "Code de réinitialisation invalide"
+      }
+    },
+    "resetPasswordTitle": "Réinitialiser le mot de passe",
+    "resetPasswordDescription": "Entrez votre nouveau mot de passe.",
+    "resetPasswordPrompt": "Réinitialisez votre mot de passe pour {appName}",
+    "newPasswordLabel": "Nouveau mot de passe",
+    "newPasswordPlaceholder": "••••••••",
+    "resettingPasswordButton": "Réinitialisation du mot de passe...",
+    "resetPasswordButton": "Réinitialiser le mot de passe",
+    "resetPassword": {
+      "successRedirect": "Vous allez être redirigé vers la page de connexion...",
+      "errors": {
+        "invalidOrExpiredCode": "Le lien de réinitialisation du mot de passe est invalide ou a expiré.",
+        "userDisabled": "Ce compte utilisateur a été désactivé.",
+        "userNotFound": "Utilisateur non trouvé.",
+        "weakPassword": "Le mot de passe est trop faible."
+      }
     }
+  },
+  "AppHeader": {
+    "searchPlaceholder": "Rechercher...",
+    "home": "Accueil",
+    "network": "Réseau",
+    "farmMgmt": "Gestion de la ferme",
+    "marketplace": "Marché",
+    "talentExchange": "Bourse de talents",
+    "traceability": "Traçabilité",
+    "forums": "Forums",
+    "sustainability": "Durabilité",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Portefeuille",
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "myProfile": "Mon profil",
+    "myOrders": "Mes commandes",
+    "settings": "Paramètres",
+    "helpCenter": "Centre d'aide",
+    "logOut": "Se déconnecter",
+    "switchToLightAria": "Passer au thème clair",
+    "switchToDarkAria": "Passer au thème sombre"
+  },
+  "LanguageSwitcher": {
+    "toggle": "Changer de langue"
   }
 }
+
+    

@@ -2,7 +2,16 @@
 {
   "common": {
     "error": "Error",
-    "success": "Éxito"
+    "success": "Éxito",
+    "loading": "Cargando...",
+    "noData": "No hay datos disponibles.",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "viewDetails": "Ver detalles",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "back": "Volver",
+    "submit": "Enviar"
   },
   "toast": {
     "loggedOut": {
@@ -29,12 +38,79 @@
     }
   },
   "Auth": {
+    "signInTitle": "Iniciar Sesión",
+    "signInWelcome": "Bienvenido a {appName}",
+    "signInDescription": "Inicia sesión en tu cuenta para continuar.",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "nombre@ejemplo.com",
+    "passwordLabel": "Contraseña",
+    "forgotPasswordLink": "¿Olvidaste tu contraseña?",
+    "signInButton": "Iniciar Sesión",
+    "signingInButton": "Iniciando sesión...",
+    "noAccountPrompt": "¿No tienes una cuenta?",
+    "signUpLink": "Regístrate",
+    "signUpTitle": "Crear una cuenta",
+    "signUpWelcome": "Únete a la comunidad de {appName}",
+    "signUpDescription": "Completa el formulario para comenzar.",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "roleLabel": "Tu Rol",
+    "rolePlaceholder": "Selecciona tu rol...",
+    "confirmPasswordLabel": "Confirmar Contraseña",
+    "confirmPasswordPlaceholder": "••••••••",
+    "signUpButton": "Crear Cuenta",
+    "creatingAccountButton": "Creando cuenta...",
+    "alreadyHaveAccountPrompt": "¿Ya tienes una cuenta?",
+    "signInLink": "Iniciar Sesión",
     "passwordStrength": {
       "label": "Fortaleza",
       "weak": "Débil",
       "medium": "Media",
       "strong": "Fuerte",
       "veryStrong": "Muy Fuerte"
+    },
+    "errors": {
+      "emailInUse": "Este correo electrónico ya está en uso.",
+      "invalidEmail": "Dirección de correo electrónico no válida.",
+      "weakPassword": "La contraseña debe tener al menos 6 caracteres.",
+      "default": "Ocurrió un error inesperado."
+    },
+    "forgotPasswordTitle": "Olvidé mi contraseña",
+    "forgotPasswordDescription": "Introduce tu correo electrónico para recibir un enlace de restablecimiento.",
+    "forgotPasswordResetPrompt": "Restablece tu contraseña para {appName}",
+    "sendResetLinkButton": "Enviar enlace de restablecimiento",
+    "sendingEmailButton": "Enviando correo...",
+    "rememberPasswordPrompt": "¿Recordaste tu contraseña?",
+    "forgotPassword": {
+      "emailSentTitle": "¡Correo enviado!",
+      "emailSentDescription": "Se ha enviado un enlace de restablecimiento a {email}.",
+      "emailSentDescriptionIfAccountExists": "Si existe una cuenta con {email}, se ha enviado un enlace de restablecimiento.",
+      "successTitle": "¡Restablecimiento exitoso!",
+      "successDescription": "Ahora puedes iniciar sesión con tu nueva contraseña.",
+      "errors": {
+        "unexpected": "Ocurrió un error inesperado.",
+        "invalidEmail": "La dirección de correo electrónico no es válida.",
+        "tooManyRequests": "Demasiadas solicitudes. Por favor, inténtalo de nuevo más tarde.",
+        "default": "Error",
+        "missingCode": "El código de restablecimiento de contraseña falta o no es válido. Por favor, solicita uno nuevo.",
+        "missingCodeTitle": "Código de restablecimiento no válido"
+      }
+    },
+    "resetPasswordTitle": "Restablecer Contraseña",
+    "resetPasswordDescription": "Introduce tu nueva contraseña.",
+    "resetPasswordPrompt": "Restablece tu contraseña para {appName}",
+    "newPasswordLabel": "Nueva Contraseña",
+    "newPasswordPlaceholder": "••••••••",
+    "resettingPasswordButton": "Restableciendo contraseña...",
+    "resetPasswordButton": "Restablecer Contraseña",
+    "resetPassword": {
+      "successRedirect": "Serás redirigido a la página de inicio de sesión...",
+      "errors": {
+        "invalidOrExpiredCode": "El enlace de restablecimiento de contraseña no es válido o ha caducado.",
+        "userDisabled": "Esta cuenta de usuario ha sido deshabilitada.",
+        "userNotFound": "Usuario no encontrado.",
+        "weakPassword": "La contraseña es demasiado débil."
+      }
     }
   },
   "AppHeader": {
@@ -62,482 +138,7 @@
   },
   "LanguageSwitcher": {
     "toggle": "Cambiar idioma"
-  },
-  "MobileBottomNav": {
-    "home": "Inicio",
-    "market": "Mercado",
-    "search": "Buscar",
-    "forums": "Foros",
-    "profile": "Perfil",
-    "messages": "Mensajes"
-  },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "Sincronizando {count} acciones pendientes...",
-      "onlinePending": "{count} acciones pendientes. La sincronización comenzará pronto.",
-      "onlineSynced": "Estás en línea. Todos los datos están sincronizados.",
-      "offline": "Estás desconectado. {count, plural, =0 {No hay cambios pendientes.} =1 {1 cambio pendiente.} other {{count} cambios pendientes.}}"
-    },
-    "toast": {
-      "online": {
-        "title": "¡Estás en línea de nuevo!",
-        "description": "Tu conexión ha sido restaurada."
-      },
-      "offline": {
-        "title": "Actualmente estás desconectado",
-        "description": "Los cambios se guardarán localmente y se sincronizarán cuando vuelvas a estar en línea."
-      },
-      "syncing": {
-        "title": "Sincronizando datos...",
-        "description": "Enviando {count, plural, =1 {1 acción sin conexión} other {{count} acciones sin conexión}} al servidor."
-      },
-      "synced": {
-        "title": "Sincronización completa",
-        "description": "Tus cambios sin conexión se han guardado correctamente."
-      },
-      "syncFailed": {
-        "title": "Error de sincronización",
-        "description": "No se pudieron sincronizar los cambios sin conexión. Lo intentaremos de nuevo más tarde."
-      },
-      "queued": {
-        "title": "Acción en cola",
-        "description": "Esta acción se completará cuando vuelvas a estar en línea."
-      }
-    }
-  },
-  "AppFooter": {
-    "tagline": "Conectando la cadena de valor agrícola para un futuro sostenible.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Sobre nosotros",
-    "contactLabel": "Contacto",
-    "careersLabel": "Carreras",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Recursos",
-    "helpCenterLabel": "Centro de ayuda",
-    "communityGuidelinesLabel": "Normas de la comunidad",
-    "industryNewsLabel": "Noticias del sector",
-    "eventsLabel": "Eventos",
-    "talentExchangeLabel": "Intercambio de talentos",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Política de privacidad",
-    "termsOfServiceLabel": "Términos de servicio",
-    "copyright": "© {year} {appName}. Todos los derechos reservados.",
-    "getMobileApp": "Obtener la aplicación móvil",
-    "googlePlayAlt": "Consíguelo en Google Play",
-    "appStoreAlt": "Descargar en la App Store"
-  },
-  "LandingPage": {
-    "hero": {
-      "title": "Potenciando la Agricultura desde el Suelo hasta la Venta en {appName}",
-      "subtitle": "La plataforma única que conecta a todos los actores de la cadena de valor agrícola para un futuro más transparente, eficiente y sostenible.",
-      "getStartedButton": "Empezar Gratis",
-      "learnMoreButton": "Aprender Más"
-    },
-    "features": {
-      "title": "Características Principales de DamDoh",
-      "subtitle": "Todo lo que necesitas para crecer, conectar y comerciar, todo en un solo lugar.",
-      "networking": {
-        "title": "Red Inteligente",
-        "description": "Sugerencias de conexión impulsadas por IA para vincularte con los socios adecuados, desde proveedores hasta compradores internacionales."
-      },
-      "marketplace": {
-        "title": "Mercado Directo",
-        "description": "Compra y vende productos y servicios directamente, aumentando la transparencia y la rentabilidad para todos los interesados."
-      },
-      "forums": {
-        "title": "Foros Temáticos",
-        "description": "Comparte conocimientos, discute desafíos y colabora en soluciones en foros específicos por tema."
-      },
-      "talent": {
-        "title": "Intercambio de Talentos",
-        "description": "Ofrece o encuentra servicios agrícolas especializados, desde cosecha bajo demanda hasta levantamientos con drones."
-      }
-    },
-    "forWho": {
-      "badge": "Para Todos en la Agricultura",
-      "title": "Una Plataforma para Toda la Cadena de Valor",
-      "description": "DamDoh está diseñado de manera única para servir a todo el ecosistema agrícola, creando un único punto de verdad y oportunidad para todos.",
-      "farmers": {
-        "title": "Agricultores",
-        "description": "Accede a mejores mercados, encuentra insumos de calidad y obtén asesoramiento de expertos para aumentar el rendimiento y la rentabilidad."
-      },
-      "buyers": {
-        "title": "Compradores y Procesadores",
-        "description": "Obtén productos trazables de alta calidad directamente de los productores y cooperativas, asegurando la fiabilidad de la cadena de suministro."
-      },
-      "experts": {
-        "title": "Expertos y Proveedores de Servicios",
-        "description": "Ofrece tus habilidades y servicios especializados a una amplia audiencia agrícola que busca tu experiencia."
-      },
-      "fis": {
-        "title": "Instituciones Financieras",
-        "description": "Proporciona préstamos e inversiones a una red verificada de agricultores y agronegocios basándose en datos y rendimiento de la plataforma."
-      },
-      "imageAlt": "Un grupo diverso de actores agrícolas colaborando"
-    },
-    "cta": {
-      "title": "Únete a la Revolución Agrícola",
-      "subtitle": "Regístrate hoy y forma parte de una creciente red global dedicada a transformar el futuro de los alimentos.",
-      "button": "Crea Tu Cuenta Gratuita"
-    }
-  },
-  "searchPage": {
-    "title": "Búsqueda Universal",
-    "description": "Encuentra cualquier cosa en la plataforma DamDoh, desde productos y servicios hasta personas y discusiones.",
-    "placeholder": "Busca café orgánico, reparación de tractores o un usuario...",
-    "searchButton": "Buscar",
-    "popularSearches": "Búsquedas Populares",
-    "popularSearch1": "Fertilizante Orgánico",
-    "popularSearch2": "Logística en Kenia",
-    "popularSearch3": "Compradores de café Europa",
-    "popularSearch4": "Mano de obra agrícola",
-    "popularSearch5": "Alquiler de tractor",
-    "modal": {
-      "title": "Búsqueda Universal",
-      "placeholder": "Estoy buscando...",
-      "searchButton": "Buscar",
-      "searchError": "Búsqueda fallida",
-      "searchErrorDescription": "Se ha producido un error inesperado durante la búsqueda. Por favor, inténtelo de nuevo.",
-      "invalidCodeError": "Esto no parece ser un código QR de DamDoh válido.",
-      "scanFailed": "Escaneo Fallido",
-      "scanError": "Error de escaneo",
-      "scanErrorDescription": "No se pudo leer el código QR. Por favor, inténtelo de nuevo.",
-      "interpretationTitle": "Interpretación de IA",
-      "interpretationNotesDefault": "Mostrando resultados generales.",
-      "filtersTitle": "Filtros Aplicados",
-      "results": {
-        "users": "Perfiles",
-        "marketplaceItems": "Mercado",
-        "forums": "Foros",
-        "vti_registry": "Informe de Trazabilidad",
-        "knowledge_articles": "Centro de conocimiento",
-        "agri_events": "Eventos Agrícolas"
-      },
-      "noResults": "No se encontraron resultados para su consulta.",
-      "tryAgain": "Pruebe con un término de búsqueda diferente o utilice palabras clave más amplias."
-    }
-  },
-  "Marketplace": {
-    "title": "Mercado",
-    "description": "Descubra productos, servicios y talentos en toda la cadena de suministro agrícola.",
-    "createShopButton": "Crear Escaparate",
-    "myOrdersButton": "Mis Pedidos",
-    "createListingButton": "Crear Anuncio",
-    "pinButton": "Fijar como Página de Inicio",
-    "unpinButton": "Desfijar Página de Inicio",
-    "searchPlaceholder": "Buscar anuncios...",
-    "locationPlaceholder": "Filtrar por ubicación...",
-    "typePlaceholder": "Filtrar por tipo...",
-    "recommendedForYou": "Recomendado para ti",
-    "discoverMore": "Descubre más",
-    "viewServiceButton": "Ver servicio",
-    "viewDetails": "Ver detalles",
-    "pinning": {
-      "unpinnedTitle": "Página de Inicio Desfijada",
-      "unpinnedDescription": "El Mercado ha sido desfijado de su página de inicio.",
-      "pinnedTitle": "Página de Inicio Fijada",
-      "pinnedDescription": "El Mercado es ahora su página de inicio por defecto."
-    },
-    "errors": {
-      "search": {
-        "title": "Búsqueda Fallida",
-        "description": "Se ha producido un error al realizar la búsqueda. Por favor, inténtelo de nuevo más tarde."
-      },
-      "aiRecommendations": {
-        "title": "No hay recomendaciones disponibles en este momento."
-      }
-    },
-    "noItemsFound": {
-      "title": "Ningún anuncio coincide con su búsqueda.",
-      "hint": "Intente ajustar sus filtros o términos de búsqueda."
-    },
-    "createListing": {
-      "backLink": "Volver al Mercado",
-      "title": "Crear un Nuevo Anuncio",
-      "description": "Anuncie un producto o servicio para que esté disponible para la comunidad de DamDoh.",
-      "form": {
-        "nameLabel": "Nombre del Anuncio",
-        "namePlaceholder": "ej: Aguacates Hass Orgánicos",
-        "typeLabel": "Tipo de Anuncio",
-        "typePlaceholder": "Seleccione un tipo de anuncio...",
-        "descriptionLabel": "Descripción",
-        "descriptionPlaceholder": "Proporcione detalles sobre su producto o servicio...",
-        "locationLabel": "Ubicación",
-        "locationPlaceholder": "ej: Nakuru, Kenia",
-        "relatedVtiLabel": "ID de Trazabilidad Relacionado (VTI)",
-        "relatedVtiPlaceholder": "ej: 123e4567-e89b-12d3-a456-426614174000",
-        "relatedVtiDescription": "Vincule este anuncio a un lote VTI para mayor confianza.",
-        "categoryLabel": "Categoría",
-        "categoryPlaceholder": "Seleccione una categoría...",
-        "priceLabel": "Precio (USD)",
-        "pricePlaceholder": "ej: 15.50",
-        "unitLabel": "Unidad",
-        "unitPlaceholder": "ej: por kg",
-        "compensationLabel": "Compensación / Tarifas",
-        "compensationPlaceholder": "ej: $50/hr, Basado en proyecto",
-        "experienceLabel": "Nivel de Experiencia",
-        "experiencePlaceholder": "ej: 5+ años, Profesional certificado",
-        "skillsLabel": "Habilidades Requeridas",
-        "skillsPlaceholder": "Enumere las habilidades requeridas...",
-        "skillsDescription": "Separe las habilidades con una coma.",
-        "imageUrlLabel": "URL de la Imagen",
-        "sustainableLabel": "Producido Sosteniblemente",
-        "sustainableDescription": "Este artículo fue producido utilizando prácticas sostenibles o regenerativas.",
-        "submitButton": "Crear Anuncio",
-        "submittingButton": "Creando...",
-        "changeLocationButton": "Cambiar"
-      },
-      "aiPriceSuggestion": {
-        "generatingButton": "Generando...",
-        "button": "Sugerir Precio con IA",
-        "suggestionLabel": "Sugerencia de IA:",
-        "usePriceButton": "Usar Precio"
-      },
-      "errors": {
-        "authentication": {
-          "title": "No Autenticado",
-          "description": "Debe iniciar sesión para crear un anuncio."
-        },
-        "priceSuggestion": {
-          "missingInfo": {
-            "title": "Información Faltante",
-            "description": "Por favor, proporcione un nombre y una descripción para sugerir un precio."
-          },
-          "failed": {
-            "title": "Sugerencia de Precio Fallida",
-            "description": "No se pudo generar una sugerencia de precio. Por favor, inténtelo de nuevo."
-          }
-        },
-        "creation": {
-          "title": "Creación de Anuncio Fallida",
-          "description": "Se ha producido un error inesperado. Por favor, inténtelo de nuevo."
-        }
-      },
-      "success": {
-        "title": "¡Anuncio Creado!",
-        "description": "Su nuevo anuncio está ahora en vivo en el mercado."
-      }
-    },
-    "createShop": {
-      "backLink": "Volver al Mercado",
-      "title": "Cree su Escaparate Digital",
-      "description": "Establezca su presencia profesional en DamDoh para mostrar todos sus productos y servicios en un solo lugar.",
-      "authErrorTitle": "Autenticación Requerida",
-      "authErrorDescription": "Debe iniciar sesión para crear un escaparate.",
-      "form": {
-        "nameLabel": "Nombre del Escaparate",
-        "namePlaceholder": "ej: Green Valley Organics",
-        "typeLabel": "Tipo de Negocio Principal",
-        "typePlaceholder": "Seleccione su categoría de negocio principal",
-        "descriptionLabel": "Descripción de la Tienda",
-        "descriptionPlaceholder": "Describa brevemente su negocio, lo que ofrece y su misión.",
-        "submitButton": "Crear Escaparate",
-        "submittingButton": "Creando..."
-      },
-      "toast": {
-        "successTitle": "¡Escaparate Creado!",
-        "successDescription": "Su tienda, {shopName}, está ahora en vivo.",
-        "failTitle": "Creación Fallida",
-        "failDescription": "No se pudo crear su escaparate. Por favor, inténtelo de nuevo."
-      }
-    },
-    "itemView": {
-      "backLink": "Volver al Mercado",
-      "notFound": {
-        "description": "No se pudo encontrar este anuncio."
-      },
-      "errors": {
-        "loadItem": {
-          "description": "No se pudieron cargar los detalles del artículo."
-        },
-        "unexpected": "Se ha producido un error inesperado."
-      },
-      "skillsLabel": "Habilidades Requeridas",
-      "experienceLabel": "Nivel de Experiencia",
-      "compensationLabel": "Compensación",
-      "contactForRates": "Contactar para tarifas",
-      "aboutSeller": "Sobre el Vendedor",
-      "viewShopfront": "Ver Escaparate",
-      "editListing": "Editar Anuncio",
-      "buyNowButton": "Comprar Ahora",
-      "contactForService": "Contactar por Servicio",
-      "contactSeller": "Contactar al Vendedor",
-      "coupon": {
-        "label": "¿Tiene un código de cupón?",
-        "placeholder": "Introducir código",
-        "applyButton": "Aplicar",
-        "appliedText": "'{code}' aplicado",
-        "successTitle": "Cupón Aplicado",
-        "successDescription": "Se ha aplicado su descuento de {type}.",
-        "failTitle": "Cupón Inválido",
-        "failDescription": "El código de cupón no es válido para este vendedor o ha caducado."
-      },
-      "traceabilityButton": "Ver Informe de Trazabilidad",
-      "order": {
-        "title": "Hacer Pedido de {itemName}",
-        "description": "Confirme la cantidad y agregue cualquier nota para el vendedor.",
-        "authTitle": "Por favor, Inicie Sesión",
-        "authDescription": "Necesita iniciar sesión para realizar un pedido.",
-        "quantityErrorTitle": "Cantidad Inválida",
-        "quantityErrorDescription": "Por favor, introduzca una cantidad mayor que cero.",
-        "successTitle": "¡Pedido Realizado!",
-        "successDescription": "Su pedido ha sido enviado al vendedor.",
-        "failTitle": "Pedido Fallido",
-        "failDescription": "Hubo un error al realizar su pedido. Por favor, inténtelo de nuevo.",
-        "quantityLabel": "Cantidad",
-        "notesLabel": "Notas para el Vendedor (opcional)",
-        "notesPlaceholder": "ej: instrucciones de entrega especiales",
-        "cancelButton": "Cancelar",
-        "placingButton": "Realizando Pedido...",
-        "confirmButton": "Confirmar Pedido"
-      },
-      "booking": {
-        "authTitle": "Iniciar Sesión para Reservar",
-        "authDescription": "Debe iniciar sesión para reservar este servicio.",
-        "failTitle": "Reserva Fallida",
-        "dateError": "Por favor, seleccione una fecha de inicio y fin para su reserva.",
-        "successTitle": "¡Reserva Confirmada!",
-        "successDescription": "Su solicitud de reserva ha sido enviada al operador.",
-        "perNight": "noche",
-        "checkIn": "LLEGADA",
-        "checkOut": "SALIDA",
-        "addDate": "Añadir fecha",
-        "guests": "Huéspedes",
-        "reserveButton": "Reservar",
-        "reservingButton": "Reservando...",
-        "notCharged": "Todavía no se le cobrará",
-        "nights": "{count, plural, =1 {noche} other {noches}}",
-        "serviceFee": "Tarifa de servicio",
-        "total": "Total",
-        "bookedTitle": "¡Ha Reservado!",
-        "bookedDescription": "Su reserva está confirmada. Vea su boleto para el check-in.",
-        "ticketButton": "Ver Boleto de Check-in",
-        "modalTitle": "Su Boleto de Reserva",
-        "modalDescription": "Presente este código QR para el check-in en {itemName}.",
-        "modalScan": "El operador escaneará este código QR para el check-in."
-      },
-      "manageService": {
-        "title": "Gestionar Servicio",
-        "backLink": "Volver al Servicio",
-        "tabs": {
-          "checkin": "Check-in",
-          "bookings": "Reservas",
-          "staff": "Personal"
-        },
-        "bookingsTab": {
-          "title": "Reservas de Huéspedes",
-          "description": "Ver y gestionar todas las reservas para este servicio.",
-          "error": "Error al obtener las reservas.",
-          "toast": {
-            "noBookings": "No hay reservas para descargar."
-          },
-          "downloadCsv": "Descargar CSV",
-          "table": {
-            "guest": "Huésped",
-            "bookedOn": "Reservado el",
-            "status": "Estado",
-            "checkedInAt": "Registrado a las"
-          },
-          "status": {
-            "checkedIn": "Registrado",
-            "booked": "Reservado"
-          },
-          "noBookings": "Todavía no hay reservas para este servicio."
-        }
-      }
-    },
-    "myOrders": {
-      "backLink": "Volver al Mercado",
-      "title": "Mis Pedidos y Ventas",
-      "description": "Gestiona los pedidos que has realizado y las ventas que has recibido.",
-      "auth": {
-        "title": "Por favor, Inicie Sesión",
-        "description": "Necesita iniciar sesión para ver sus pedidos.",
-        "button": "Iniciar Sesión"
-      },
-      "toast": {
-        "errorTitle": "Error",
-        "fetchError": "No se pudieron cargar sus pedidos. Por favor, inténtelo de nuevo.",
-        "successTitle": "Pedido Actualizado",
-        "updateSuccess": "El estado del pedido ha sido actualizado a {status}.",
-        "failTitle": "Actualización Fallida"
-      },
-      "table": {
-        "date": "Fecha",
-        "buyer": "Comprador",
-        "product": "Producto",
-        "total": "Total",
-        "status": "Estado",
-        "actions": "Acciones"
-      },
-      "noOrders": "Todavía no ha recibido ningún pedido.",
-      "status": {
-        "new": "Nuevo",
-        "confirmed": "Confirmado",
-        "shipped": "Enviado",
-        "completed": "Completado",
-        "cancelled": "Cancelado"
-      },
-      "actions": {
-        "confirm": "Confirmar pedido",
-        "ship": "Marcar como enviado",
-        "complete": "Completar pedido",
-        "cancel": "Cancelar pedido"
-      }
-    },
-    "promotions": {
-      "backToDashboard": "Volver al Panel",
-      "title": "Mis Promociones y Cupones",
-      "description": "Cree y gestione códigos de descuento para sus anuncios en el mercado.",
-      "signInPrompt": "Por favor, inicie sesión para gestionar sus promociones.",
-      "create": {
-        "title": "Crear un Nuevo Cupón",
-        "form": {
-          "code": "Código de Cupón",
-          "codePlaceholder": "ej: COSECHA2024",
-          "usageLimit": "Límite de Uso",
-          "usageLimitPlaceholder": "ej: 100",
-          "discountType": "Tipo de Descuento",
-          "discountTypePlaceholder": "Seleccione un tipo",
-          "percentage": "Porcentaje",
-          "fixed": "Monto Fijo",
-          "discountValue": "Valor del Descuento",
-          "expiryDate": "Fecha de Vencimiento",
-          "pickDate": "Elija una fecha",
-          "submitButton": "Crear el Cupón"
-        },
-        "toast": {
-          "successTitle": "Cupón Creado",
-          "successDescription": "El cupón '{code}' ha sido creado con éxito."
-        }
-      },
-      "list": {
-        "title": "Cupones Existentes",
-        "description": "Vea y comparta sus cupones activos.",
-        "expires": "Expira el",
-        "usage": "Uso",
-        "never": "Nunca",
-        "share": "Compartir",
-        "toastTitle": "¡Enlace Copiado!",
-        "toastDescription": "Se ha copiado a su portapapeles un enlace compartible para el cupón {link}.",
-        "shareModal": {
-          "title": "Compartir Cupón",
-          "description": "Comparta este enlace con los clientes para aplicar el cupón automáticamente.",
-          "link": "Enlace",
-          "copy": "Copiar",
-          "close": "Cerrar"
-        },
-        "noCoupons": "Todavía no ha creado ningún cupón."
-      },
-      "toast": {
-        "error": "Error",
-        "fetchError": "No se pudieron obtener sus cupones.",
-        "createSuccess": "El cupón '{code}' ha sido creado con éxito.",
-        "createFail": "Error al Crear el Cupón",
-        "createError": "Se ha producido un error inesperado.",
-        "linkCopied": "¡Enlace Copiado!",
-        "shareDescription": "Enlace del cupón para '{code}' copiado al portapapeles."
-      }
-    }
   }
 }
+
+    

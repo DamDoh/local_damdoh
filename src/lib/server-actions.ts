@@ -39,13 +39,11 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
  * @returns A promise that resolves to an array of search results.
  */
 export async function performSearch(interpretation: Partial<SmartSearchInterpretation>): Promise<any[]> {
-  const performSearchCallable = httpsCallable(functions, 'performSearch');
   try {
-      const result = await performSearchCallable(interpretation);
-      // The cloud function now returns the results directly as an array
-      return (result.data as any) || [];
+      const results = await performSearch_internal(interpretation);
+      return results;
   } catch (error) {
-      console.error("Error calling performSearch cloud function:", error);
+      console.error("Error performing search from server action:", error);
       throw error;
   }
 }
@@ -93,3 +91,5 @@ export async function getFinancialInstitutions(): Promise<UserProfile[]> {
     throw error;
   }
 }
+
+    

@@ -787,3 +787,5 @@ export type ServiceItem = MarketplaceItem & {
     compensation: string;
     experienceLevel: string;
 };
+
+    
