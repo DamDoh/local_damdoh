@@ -120,6 +120,7 @@
     }
   },
   "Auth": {
+    "createAccount": "Konto erstellen",
     "signInWelcome": "Willkommen zurück bei {appName}",
     "signUpWelcome": "Treten Sie dem landwirtschaftlichen Netzwerk von DamDoh bei",
     "forgotPasswordResetPrompt": "Setzen Sie Ihr Passwort für {appName} zurück",
@@ -169,7 +170,23 @@
       "scanTitle": "Bitten Sie einen Freund zu scannen",
       "scanDescription": "Lassen Sie einen vertrauenswürdigen DamDoh-Kontakt diesen QR-Code mit der Funktion 'Einem Freund bei der Wiederherstellung helfen' in seiner App scannen.",
       "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
-      "startOverButton": "Neu starten"
+      "startOverButton": "Neu starten",
+      "enterPhone": {
+        "title": "Geben Sie Ihre Telefonnummer ein",
+        "description": "Geben Sie die Telefonnummer an, die mit dem Konto verknüpft ist, das Sie wiederherstellen möchten.",
+        "phoneNumberLabel": "Telefonnummer",
+        "phoneNumberPlaceholder": "z.B. +491512345678",
+        "verifyingButton": "Wird überprüft...",
+        "getRecoveryCodeButton": "Wiederherstellungscode erhalten",
+        "phoneRequiredError": "Bitte geben Sie eine gültige Telefonnummer ein.",
+        "genericError": "Wiederherstellung konnte nicht gestartet werden. Bitte überprüfen Sie die Telefonnummer und versuchen Sie es erneut."
+      },
+      "helpFriend": {
+        "button": "Einem Freund helfen",
+        "scanError": "Dies ist kein gültiger DamDoh-Wiederherstellungscode.",
+        "scanSuccess": "Bestätigung erfolgreich!",
+        "scanFail": "QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut."
+      }
     },
     "forgotPassword": {
       "emailSentTitle": "Überprüfen Sie Ihre E-Mails",
@@ -234,7 +251,9 @@
       "medium": "Mittel",
       "strong": "Stark",
       "veryStrong": "Sehr stark"
-    }
+    },
+    "invalidEmail": "Die E-Mail-Adresse ist nicht gültig.",
+    "weakPassword": "Das Passwort muss mindestens 6 Zeichen lang sein."
   },
   "AppHeader": {
     "home": "Start",
@@ -261,5 +280,360 @@
   },
   "LanguageSwitcher": {
     "toggle": "Sprache ändern"
+  },
+  "AppFooter": {
+    "tagline": "Die globale Plattform für die landwirtschaftliche Lieferkette.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Über uns",
+    "contactLabel": "Kontakt",
+    "careersLabel": "Karriere",
+    "blogLabel": "Blog & Nachrichten",
+    "resourcesTitle": "Ressourcen",
+    "helpCenterLabel": "Hilfecenter",
+    "communityGuidelinesLabel": "Community-Richtlinien",
+    "industryNewsLabel": "Branchennachrichten",
+    "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
+    "legalTitle": "Rechtliches",
+    "privacyPolicyLabel": "Datenschutzrichtlinie",
+    "termsOfServiceLabel": "Nutzungsbedingungen",
+    "copyright": "© {year} {appName} Alle Rechte vorbehalten.",
+    "getMobileApp": "Holen Sie sich die mobile App",
+    "googlePlayAlt": "Bei Google Play holen",
+    "appStoreAlt": "Im App Store herunterladen"
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Über DamDoh",
+      "subtitle": "Verbindung der globalen landwirtschaftlichen Lieferkette, ein Stakeholder nach dem anderen."
+    },
+    "vision": {
+      "title": "Unsere Vision",
+      "p1": "Wir stellen uns eine Welt vor, in der jeder landwirtschaftliche Akteur, vom kleinsten Landwirt bis zum größten Einzelhändler, mit den Daten, Verbindungen und Werkzeugen ausgestattet ist, die er zum Gedeihen braucht.",
+      "p2": "DamDoh wurde auf der Überzeugung gegründet, dass Technologie Lücken schließen, Vertrauen aufbauen und ein gerechteres und nachhaltigeres globales Lebensmittelsystem schaffen kann.",
+      "foundersTitle": "Die Gründer"
+    },
+    "challenge": {
+      "title": "Die Herausforderung, die wir lösen",
+      "description": "Die landwirtschaftliche Lieferkette ist fragmentiert, ineffizient und es fehlt ihr oft an der für ein nachhaltiges Wachstum erforderlichen Transparenz. Zu den wichtigsten Herausforderungen gehören:",
+      "details": {
+        "marketAccess": "Begrenzter Marktzugang für Kleinbauern.",
+        "inefficiency": "Ineffiziente Logistik, die zu Nachernteverlusten führt.",
+        "financialExclusion": "Schwierigkeiten beim Zugang zu Finanzierungen und Versicherungen für Kleinproduzenten.",
+        "informationGaps": "Fragmentiertes Wissen und fehlender Zugang zu bewährten Verfahren.",
+        "qualityTrust": "Inkonsistente Qualitätskontrolle und ein Mangel an überprüfbaren Produktdaten.",
+        "climatePressure": "Zunehmender Druck durch den Klimawandel auf traditionelle Anbaumethoden.",
+        "foodLoss": "Signifikanter Lebensmittelverlust und -abfall in mehreren Phasen der Lieferkette.",
+        "dataFragmentation": "Datenfragmentierung über verschiedene unverbundene Systeme hinweg."
+      },
+      "list": {
+        "marketAccess": "Begrenzter Marktzugang",
+        "inefficiency": "Ineffizienz der Lieferkette",
+        "financialExclusion": "Finanzielle Ausgrenzung",
+        "informationGaps": "Informationslücken",
+        "qualityTrust": "Qualitäts- & Vertrauensdefizit",
+        "climatePressure": "Klimadruck",
+        "foodLoss": "Lebensmittelverlust & -abfall",
+        "dataFragmentation": "Datenfragmentierung"
+      }
+    },
+    "solution": {
+      "title": "Die DamDoh-Lösung",
+      "description": "Wir bauen eine umfassende 'Super-App', die das gesamte landwirtschaftliche Ökosystem durch mehrere Schlüsselsäulen digitalisiert und verbindet:",
+      "list": {
+        "education": "Bildung und Wissensaustausch",
+        "ai": "KI-gestützte Unterstützung und Einblicke",
+        "marketplace": "Ein direkter, transparenter Marktplatz",
+        "logistics": "Integrierte Logistik und Rückverfolgbarkeit",
+        "financial": "Zugang zu Finanzdienstleistungen"
+      }
+    },
+    "beyondTechnology": {
+      "title": "Jenseits der Technologie: Es geht um Menschen",
+      "list": {
+        "p2p": {
+          "title": "Menschen zu Menschen",
+          "content": "Landwirte mit anderen Landwirten verbinden, um Wissen zu teilen und eine Gemeinschaft aufzubauen."
+        },
+        "p2b": {
+          "title": "Menschen zu Unternehmen",
+          "content": "Förderung direkter, vertrauensvoller Beziehungen zwischen Produzenten und Käufern."
+        },
+        "p2e": {
+          "title": "Menschen zum Ökosystem",
+          "content": "Einzelpersonen Zugang zu einem ganzen Ökosystem von Dienstleistungen geben – Finanzen, Logistik, Versicherungen und mehr."
+        },
+        "p2w": {
+          "title": "Menschen zur Welt",
+          "content": "Globale Märkte und Möglichkeiten für selbst die entlegensten Produzenten durch digitalen Zugang und Rückverfolgbarkeit öffnen."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Unser Engagement für die Zukunft",
+      "p1": "Wir verpflichten uns, Technologie für das Gute einzusetzen und eine Plattform zu schaffen, die nicht nur profitabel ist, sondern auch regenerativ für unseren Planeten und stärkend für seine Menschen.",
+      "p2": "Jede auf DamDoh hergestellte Verbindung, jedes geteilte Wissen und jede optimierte Transaktion ist ein Schritt in Richtung einer widerstandsfähigeren und gerechteren Lebensmittelzukunft.",
+      "p3": "Begleiten Sie uns auf dieser Reise.",
+      "button": "Werden Sie Mitglied"
+    }
+  },
+  "contactPage": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Wir sind hier, um zu helfen. Kontaktieren Sie uns über einen der folgenden Kanäle.",
+    "emailUs": {
+      "title": "E-Mail an uns",
+      "general": "Allgemeine Anfragen",
+      "support": "Support",
+      "partnerships": "Partnerschaften"
+    },
+    "callUs": {
+      "title": "Rufen Sie uns an",
+      "hours": "Mo - Fr, 9:00 - 17:00 Uhr (OAZ)",
+      "phone": "+254 20 123 4567"
+    },
+    "ourOffice": {
+      "title": "Unser Büro",
+      "org": "Die DamDoh Stiftung",
+      "address": "123 Agri-Tech Avenue, Nairobi, Kenia"
+    },
+    "sendMessage": {
+      "title": "Senden Sie uns eine Nachricht",
+      "nameLabel": "Ihr Name",
+      "namePlaceholder": "Maria Mustermann",
+      "emailLabel": "Ihre E-Mail",
+      "emailPlaceholder": "maria.mustermann@beispiel.com",
+      "subjectLabel": "Betreff",
+      "subjectPlaceholder": "z.B. Partnerschaftsanfrage",
+      "messageLabel": "Ihre Nachricht",
+      "messagePlaceholder": "Geben Sie hier Ihre Nachricht ein...",
+      "buttonText": "Nachricht senden",
+      "note": "Wir bemühen uns, innerhalb von 24 Geschäftsstunden zu antworten."
+    }
+  },
+  "careers": {
+    "title": "Karriere bei DamDoh",
+    "subtitle": "Beteiligen Sie sich an unserer Mission, die landwirtschaftliche Lieferkette zu revolutionieren.",
+    "whyWorkWithUs": {
+      "title": "Warum bei uns arbeiten?",
+      "intro": "Bei DamDoh sind wir ein Team von Innovatoren, Technologen und Landwirtschaftsexperten, die leidenschaftlich daran arbeiten, eine greifbare, globale Wirkung zu erzielen. Wir bieten:",
+      "point1": "Eine missionsorientierte und dynamische Arbeitsumgebung.",
+      "point2": "Möglichkeiten für berufliches Wachstum und Lernen.",
+      "point3": "Eine Kultur der Zusammenarbeit und Transparenz.",
+      "point4": "Die Chance, mit Spitzentechnologien wie KI und Blockchain zu arbeiten.",
+      "point5": "Ein Engagement für Nachhaltigkeit und soziale Auswirkungen."
+    },
+    "currentOpenings": {
+      "title": "Aktuelle Stellenangebote",
+      "job1": {
+        "title": "Senior Full-Stack-Ingenieur (Next.js, Firebase)",
+        "location": "Remote",
+        "type": "Vollzeit",
+        "description": "Wir suchen einen erfahrenen Full-Stack-Ingenieur, der die Entwicklung der Kernfunktionen unserer Plattform leitet."
+      },
+      "job2": {
+        "title": "Agronomie-Inhaltsspezialist",
+        "location": "Nairobi, Kenia",
+        "type": "Vertrag",
+        "description": "Helfen Sie uns, die weltweit umfassendste Wissensdatenbank für nachhaltige landwirtschaftliche Praktiken aufzubauen."
+      },
+      "job3": {
+        "title": "UX/UI-Designer",
+        "location": "Remote",
+        "type": "Vollzeit",
+        "description": "Entwerfen Sie intuitive und zugängliche Benutzererlebnisse für eine vielfältige und globale Benutzerbasis."
+      }
+    },
+    "noOpenings": {
+      "title": "Keine aktuellen Stellenangebote",
+      "content1": "Wir sind immer auf der Suche nach talentierten Personen, die sich für unsere Mission begeistern. Wenn Sie glauben, dass Sie gut in unser Team passen würden, senden Sie bitte Ihren Lebenslauf und Ihr Anschreiben an {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Jetzt bewerben"
+  },
+  "communityGuidelines": {
+    "title": "Community-Richtlinien",
+    "subtitle": "Förderung einer professionellen, vertrauenswürdigen und kooperativen Umgebung.",
+    "intro": "Willkommen in der DamDoh-Community! Um sicherzustellen, dass unsere Plattform ein produktiver und sicherer Ort für alle landwirtschaftlichen Akteure bleibt, bitten wir Sie, die folgenden Richtlinien zu beachten:",
+    "respectful": {
+      "title": "Seien Sie respektvoll und professionell",
+      "description": "Beteiligen Sie sich an zivilen und konstruktiven Diskussionen. Meinungsverschiedenheiten sind normal, aber persönliche Angriffe, Belästigung und Hassreden sind inakzeptabel."
+    },
+    "authentic": {
+      "title": "Seien Sie ehrlich und authentisch",
+      "description": "Stellen Sie sich und Ihr Unternehmen korrekt dar. Geben Sie sich nicht als andere aus und machen Sie keine falschen Angaben zu Ihren Produkten, Dienstleistungen oder Zertifizierungen."
+    },
+    "relevant": {
+      "title": "Bleiben Sie relevant",
+      "description": "Tragen Sie zu Diskussionen und Angeboten in einer Weise bei, die für die landwirtschaftliche Lieferkette relevant ist. Spam, Betrug und irrelevante Werbeinhalte werden entfernt."
+    },
+    "fairTrade": {
+      "title": "Halten Sie Ihre Verpflichtungen ein",
+      "description": "Wenn Sie auf der Plattform eine Vereinbarung treffen, halten Sie sich daran. Der Aufbau von Vertrauen ist für den Erfolg unserer Community unerlässlich."
+    },
+    "sustainable": {
+      "title": "Fördern Sie Nachhaltigkeit",
+      "description": "Obwohl dies keine strikte Anforderung für alle Mitglieder ist, ermutigen wir den Austausch von Wissen und Praktiken, die ökologische, wirtschaftliche und soziale Nachhaltigkeit fördern."
+    },
+    "reporting": {
+      "title": "Verstöße melden",
+      "content": "Wenn Sie Inhalte oder Verhaltensweisen sehen, die gegen diese Richtlinien verstoßen, melden Sie dies bitte unserem Team unter {emailLink}. Wir werden alle Meldungen prüfen und entsprechende Maßnahmen ergreifen.",
+      "emailLinkText": "support@damdoh.org"
+    },
+    "conclusion": "Durch die Nutzung von DamDoh stimmen Sie diesen Richtlinien zu. Wir behalten uns das Recht vor, Inhalte zu entfernen und Konten zu sperren, die gegen diese Grundsätze verstoßen. Vielen Dank, dass Sie uns helfen, eine großartige Community aufzubauen!"
+  },
+  "helpCenterPage": {
+    "title": "Hilfecenter",
+    "subtitle": "Ihr Leitfaden, um das Beste aus der DamDoh-Plattform herauszuholen.",
+    "howCanWeHelp": "Wie können wir Ihnen helfen?",
+    "searchPlaceholder": "Suchen Sie nach Themen, Funktionen oder Fragen...",
+    "browseTopics": "Hilfethemen durchsuchen",
+    "gettingStarted": {
+      "title": "Erste Schritte",
+      "description": "Erfahren Sie, wie Sie Ihr Profil einrichten und mit dem Verbinden beginnen.",
+      "placeholder": "Inhalte für 'Erste Schritte' werden bald verfügbar sein."
+    },
+    "marketplaceGuide": {
+      "title": "Marktplatz-Leitfaden",
+      "description": "Tipps zum Erstellen effektiver Angebote und zum Finden dessen, was Sie benötigen.",
+      "placeholder": "Inhalte für 'Marktplatz-Leitfaden' werden bald verfügbar sein."
+    },
+    "accountManagement": {
+      "title": "Kontoverwaltung",
+      "description": "Verwalten Sie Ihre Einstellungen, Privatsphäre und Benachrichtigungen.",
+      "placeholder": "Inhalte für 'Kontoverwaltung' werden bald verfügbar sein."
+    },
+    "troubleshooting": {
+      "title": "Fehlerbehebung",
+      "description": "Finden Sie Lösungen für häufige Probleme und technische Schwierigkeiten.",
+      "placeholder": "Inhalte für 'Fehlerbehebung' werden bald verfügbar sein."
+    },
+    "stillNeedHelp": {
+      "title": "Benötigen Sie immer noch Hilfe?",
+      "description": "Unser Support-Team steht Ihnen bei allen Fragen zur Verfügung.",
+      "button": "Support kontaktieren"
+    }
+  },
+  "privacyPolicy": {
+    "title": "Datenschutzrichtlinie",
+    "lastUpdated": "Zuletzt aktualisiert: 29. Oktober 2023",
+    "introduction": "Diese Datenschutzerklärung für DamDoh erklärt, wie und warum wir Ihre Informationen sammeln, speichern, verwenden und/oder weitergeben ('verarbeiten'), wenn Sie unsere Dienste ('Dienste') nutzen, z. B. wenn Sie unsere Website oder unsere mobile Anwendung besuchen.",
+    "whatInfoWeCollect": {
+      "heading": "1. WELCHE INFORMATIONEN SAMMELN WIR?",
+      "content": "Wir sammeln personenbezogene Daten, die Sie uns freiwillig zur Verfügung stellen, wenn Sie sich bei den Diensten registrieren, Interesse an Informationen über uns oder unsere Produkte und Dienste bekunden, an Aktivitäten auf den Diensten teilnehmen oder uns anderweitig kontaktieren."
+    },
+    "howWeUseInfo": {
+      "heading": "2. WIE VERARBEITEN WIR IHRE INFORMATIONEN?",
+      "content": "Wir verarbeiten Ihre Informationen für Zwecke, die auf legitimen Geschäftsinteressen, der Erfüllung unseres Vertrags mit Ihnen, der Einhaltung unserer rechtlichen Verpflichtungen und/oder Ihrer Zustimmung beruhen. Dazu gehören die Erleichterung der Kontoerstellung, die Ermöglichung der Kommunikation zwischen Benutzern und die Bereitstellung unserer Kerndienste."
+    },
+    "willInfoBeShared": {
+      "heading": "3. WERDEN IHRE INFORMATIONEN MIT ANDEREN GETEILT?",
+      "content": "Wir geben Informationen nur mit Ihrer Zustimmung weiter, um Gesetze einzuhalten, Ihnen Dienstleistungen zu erbringen, Ihre Rechte zu schützen oder geschäftliche Verpflichtungen zu erfüllen. Zum Beispiel teilen wir Ihre öffentlichen Profilinformationen mit anderen Benutzern, um Verbindungen zu erleichtern."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. VERWENDEN WIR COOKIES UND ANDERE TRACKING-TECHNOLOGIEN?",
+      "content": "Wir können Cookies und ähnliche Tracking-Technologien (wie Web-Beacons und Pixel) verwenden, um auf Informationen zuzugreifen oder diese zu speichern. Spezifische Informationen darüber, wie wir solche Technologien verwenden und wie Sie bestimmte Cookies ablehnen können, finden Sie in unserer Cookie-Richtlinie."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. WIE LANGE BEWAHREN WIR IHRE INFORMATIONEN AUF?",
+      "content": "Wir bewahren Ihre Informationen so lange auf, wie es zur Erfüllung der in dieser Datenschutzerklärung dargelegten Zwecke erforderlich ist, es sei denn, dies ist gesetzlich anders vorgeschrieben. Wenn wir keinen fortlaufenden legitimen geschäftlichen Bedarf haben, Ihre personenbezogenen Daten zu verarbeiten, werden wir sie entweder löschen oder anonymisieren."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. WIE SCHÜTZEN WIR IHRE INFORMATIONEN?",
+      "content": "Wir haben angemessene technische und organisatorische Sicherheitsmaßnahmen implementiert, die darauf ausgelegt sind, die Sicherheit aller von uns verarbeiteten personenbezogenen Daten zu schützen. Trotz unserer Schutzmaßnahmen und Bemühungen kann jedoch keine elektronische Übertragung über das Internet als 100% sicher garantiert werden."
+    },
+    "minors": {
+      "heading": "7. SAMMELN WIR INFORMATIONEN VON MINDERJÄHRIGEN?",
+      "content": "Wir fordern nicht wissentlich Daten von Kindern unter 18 Jahren an oder vermarkten an sie. Durch die Nutzung der Dienste versichern Sie, dass Sie mindestens 18 Jahre alt sind oder dass Sie der Elternteil oder Erziehungsberechtigte eines solchen Minderjährigen sind und der Nutzung der Dienste durch diesen minderjährigen Abhängigen zustimmen."
+    },
+    "privacyRights": {
+      "heading": "8. WAS SIND IHRE DATENSCHUTZRECHTE?",
+      "content": "In einigen Regionen haben Sie bestimmte Rechte gemäß den geltenden Datenschutzgesetzen. Dazu können das Recht gehören, (i) Zugang zu Ihren personenbezogenen Daten zu beantragen und eine Kopie davon zu erhalten, (ii) Berichtigung oder Löschung zu beantragen, (iii) die Verarbeitung Ihrer personenbezogenen Daten einzuschränken und (iv) gegebenenfalls auf Datenübertragbarkeit."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. STEUERUNGEN FÜR DO-NOT-TRACK-FUNKTIONEN",
+      "content": "Die meisten Webbrowser und einige mobile Betriebssysteme und mobile Anwendungen enthalten eine Do-Not-Track ('DNT')-Funktion oder -Einstellung, die Sie aktivieren können, um Ihre Datenschutzpräferenz zu signalisieren, dass Daten über Ihre Online-Browseraktivitäten nicht überwacht und gesammelt werden sollen. Zum jetzigen Zeitpunkt wurde noch kein einheitlicher Technologiestandard für die Erkennung und Implementierung von DNT-Signalen festgelegt. Daher reagieren wir derzeit nicht auf DNT-Browsersignale."
+    },
+    "updatesToNotice": {
+      "heading": "10. AKTUALISIEREN WIR DIESE MITTEILUNG?",
+      "content": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Die aktualisierte Version wird durch ein aktualisiertes 'Überarbeitet'-Datum angezeigt und die aktualisierte Version wird wirksam, sobald sie zugänglich ist. Wir empfehlen Ihnen, diese Datenschutzerklärung regelmäßig zu überprüfen, um darüber informiert zu sein, wie wir Ihre Informationen schützen."
+    },
+    "contactUs": {
+      "heading": "11. KONTAKTIEREN SIE UNS",
+      "content": "Um eine Beschwerde bezüglich der Website beizulegen oder weitere Informationen zur Nutzung der Website zu erhalten, kontaktieren Sie uns bitte."
+    },
+    "conclusion": "Um eine Beschwerde beizulegen oder weitere Informationen zu erhalten, {contactLink}."
+  },
+  "pinboardPage": {
+    "title": "Pin-Board",
+    "description": "Ihr persönlicher Bereich, um wichtige Elemente aus ganz DamDoh zu speichern.",
+    "comingSoonTitle": "Pin-Board kommt bald!",
+    "comingSoonDescription": "Mit dieser Funktion können Sie Marktplatzartikel, Forenbeiträge, Profile und mehr an eine persönliche Pinnwand heften, um schnell darauf zugreifen zu können.",
+    "stayTuned": "Bleiben Sie dran für Updates!"
+  },
+  "walletPage": {
+    "title": "Meine Brieftasche",
+    "description": "Verwalten Sie Ihre Finanzen, sehen Sie Transaktionen ein und greifen Sie auf Finanzdienstleistungen zu.",
+    "underDevelopmentTitle": "Finanzzentrum in Entwicklung",
+    "underDevelopmentDescription": "Wir bauen eine robuste und sichere digitale Brieftasche, um alle Ihre Plattformtransaktionen zu verwalten. Zu den Funktionen gehören:",
+    "feature1": "Sichere Guthabenaufbewahrung.",
+    "feature2": "Transaktionsverlauf für Marktplatzverkäufe und Dienstleistungszahlungen.",
+    "feature3": "Einfache Auszahlungen auf Ihr lokales mobiles Geld- oder Bankkonto.",
+    "feature4": "Zugang zur Beantragung von Krediten und Zuschüssen direkt aus Ihrer Brieftasche.",
+    "stayTuned": "Bleiben Sie dran für diese aufregende Funktion!"
+  },
+  "industryNewsPage": {
+    "title": "Branchennachrichten",
+    "description": "Bleiben Sie informiert über die neuesten Trends, Forschungsergebnisse und politischen Änderungen in der Landwirtschaft.",
+    "searchPlaceholder": "Nachrichtenartikel suchen...",
+    "categoryPlaceholder": "Nach Kategorie filtern",
+    "allCategories": "Alle Kategorien",
+    "sourceLabel": "Quelle",
+    "publishedLabel": "Veröffentlicht",
+    "categoryLabel": "Kategorie",
+    "readButton": "Ganze Geschichte lesen",
+    "news1": {
+      "title": "Weltweite Kaffeepreise steigen aufgrund von Frösten in Brasilien und Lieferverzögerungen",
+      "excerpt": "Eine Kombination aus widrigem Wetter in wichtigen Anbaugebieten und anhaltenden globalen Logistikproblemen hat die Arabica-Kaffee-Futures auf ein Siebenjahreshoch getrieben..."
+    },
+    "news2": {
+      "title": "EU setzt neue 'Farm to Fork'-Strategie-Verordnungen für Verpackungen um",
+      "excerpt": "Neue Vorschriften verlangen von Lebensmittelexporteuren in die EU, strengere Standards für recycelbare und kompostierbare Verpackungen zu erfüllen, was die gesamte Lieferkette betrifft."
+    },
+    "news3": {
+      "title": "Studie zeigt, dass regenerative Praktiken den Bodenkohlenstoff in 5 Jahren um 15% erhöhen können",
+      "excerpt": "Eine Langzeitstudie, die in Nature veröffentlicht wurde, zeigt das erhebliche Potenzial von Direktsaat- und Deckfruchtpraktiken für die Kohlenstoffbindung und die Bodengesundheit."
+    },
+    "noNews": {
+      "title": "Keine Nachrichten gefunden",
+      "description": "Derzeit gibt es keine Nachrichtenartikel, die Ihren Kriterien entsprechen."
+    }
+  },
+  "notificationsPage": {
+    "title": "Benachrichtigungen",
+    "description": "Bleiben Sie auf dem Laufenden über die neuesten Aktivitäten aus Ihrem Netzwerk.",
+    "noNotifications": "Sie haben keine neuen Benachrichtigungen.",
+    "likedYourPost": "{name} hat Ihren Beitrag mit 'Gefällt mir' markiert.",
+    "commentedOnYourPost": "{name} hat Ihren Beitrag kommentiert.",
+    "viewedYourProfile": "{name} hat Ihr Profil angesehen.",
+    "placedNewOrder": "{name} hat eine Bestellung für Ihr Angebot aufgegeben.",
+    "sentConnectionRequest": "{name} hat Ihnen eine Verbindungsanfrage gesendet.",
+    "error": "Fehler"
+  },
+  "messagingPage": {
+    "title": "Nachrichten",
+    "searchPlaceholder": "Gespräche suchen...",
+    "noConversations": "Sie haben noch keine Gespräche. Beginnen Sie eines, indem Sie sich mit jemandem auf der Netzwerkseite verbinden.",
+    "selectConversation": "Wählen Sie ein Gespräch aus, um mit dem Chatten zu beginnen.",
+    "noMessages": "Noch keine Nachrichten in diesem Gespräch. Seien Sie der Erste, der etwas sagt!",
+    "typeMessagePlaceholder": "Nachricht eingeben...",
+    "signInToView": "Bitte melden Sie sich an, um Ihre Nachrichten anzuzeigen.",
+    "signIn": "Anmelden",
+    "error": "Fehler",
+    "couldNotLoadConversations": "Ihre Gespräche konnten nicht geladen werden.",
+    "couldNotStartConversation": "Ein neues Gespräch konnte nicht gestartet werden.",
+    "sendFailed": "Senden fehlgeschlagen",
+    "couldNotSendMessage": "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
   }
 }
+
+    
