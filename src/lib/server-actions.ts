@@ -42,6 +42,7 @@ export async function performSearch(interpretation: Partial<SmartSearchInterpret
   const performSearchCallable = httpsCallable(functions, 'performSearch');
   try {
       const result = await performSearchCallable(interpretation);
+      // The cloud function now returns the results directly as an array
       return (result.data as any) || [];
   } catch (error) {
       console.error("Error calling performSearch cloud function:", error);
@@ -81,11 +82,7 @@ export async function suggestCropRotationAction(input: CropRotationInput): Promi
     }
 }
 
-/**
- * Server Action to fetch all financial institution profiles.
- * It wraps the internal database utility function.
- * @returns A promise that resolves to an array of UserProfile objects.
- */
+// --- Financials Actions ---
 export async function getFinancialInstitutions(): Promise<UserProfile[]> {
   try {
     const getFiCallable = httpsCallable(functions, 'getFinancialInstitutions');

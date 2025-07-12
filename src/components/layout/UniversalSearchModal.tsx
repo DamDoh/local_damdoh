@@ -32,7 +32,7 @@ interface SearchResult {
   description: string;
   imageUrl?: string;
   tags?: string[];
-  location?: string;
+  location?: any;
 }
 
 interface UniversalSearchModalProps {
@@ -74,7 +74,6 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
   const router = useRouter();
 
   const [isScanning, setIsScanning] = useState(false);
-  const getUniversalIdDataCallable = httpsCallable(functions, 'getUniversalIdData');
 
   const handleQuerySubmit = useCallback(async (queryToSubmit: string) => {
     if (!queryToSubmit.trim() || isLoading) return;
@@ -124,39 +123,8 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
 
   const handleScanSuccess = async (decodedText: string) => {
       setIsScanning(false);
-      setIsLoading(true);
-      try {
-        let idToLookup;
-        let type: 'user' | 'batch' | null = null;
-        
-        // This regex is a simple way to differentiate a potential user ID from a VTI
-        const isVti = /^[0-9a-f]{8}-/i.test(decodedText);
-
-        if (decodedText.includes('/profiles/')) {
-            idToLookup = decodedText.split('/profiles/')[1];
-            type = 'user';
-        } else if (decodedText.includes('/traceability/batches/')) {
-            idToLookup = decodedText.split('/traceability/batches/')[1];
-            type = 'batch';
-        } else if (isVti) {
-            idToLookup = decodedText;
-            type = 'batch';
-        } else {
-             throw new Error(t('modal.invalidCodeError'));
-        }
-
-        if (type === 'user') {
-            onClose();
-            router.push(`/profiles/${idToLookup}`);
-        } else if (type === 'batch') {
-            onClose();
-            router.push(`/traceability/batches/${idToLookup}`);
-        }
-      } catch (error: any) {
-         toast({ title: t('modal.scanFailed'), description: error.message, variant: "destructive" });
-      } finally {
-        setIsLoading(false);
-      }
+      onClose(); // Close the search modal
+      router.push(decodedText); // Navigate to the scanned URL
   };
 
   const handleScanFailure = (error: string) => {
