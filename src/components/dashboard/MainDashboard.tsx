@@ -18,6 +18,7 @@ import { collection, query, orderBy, onSnapshot, getFirestore, limit } from "fir
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { uploadFileAndGetURL } from '@/lib/storage-utils';
 import { useTranslations } from 'next-intl';
+import { STAKEHOLDER_ROLES } from '@/lib/constants';
 
 // Hub Components
 import { AgroExportDashboard } from '@/components/dashboard/hubs/AgroExportDashboard';
@@ -48,7 +49,7 @@ import { OperationsDashboard } from './hubs/OperationsDashboard';
 const { useState, useEffect, useMemo } = React;
 const db = getFirestore(firebaseApp);
 
-const HubComponentMap: { [key: string]: React.ComponentType } = {
+const HubComponentMap: { [key in typeof STAKEHOLDER_ROLES[number]]?: React.ComponentType } = {
     'Agricultural Cooperative': CooperativeDashboard,
     'Agro-Export Facilitator/Customs Broker': AgroExportDashboard,
     'Agri-Tech Innovator/Developer': AgriTechInnovatorDashboard,
@@ -74,6 +75,7 @@ const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Waste Management & Compost Facility': WasteManagementDashboard,
     'Operations/Logistics Team (DamDoh Internal)': OperationsDashboard,
 };
+
 
 function MainContent() {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
@@ -195,11 +197,12 @@ function MainContent() {
     }
   
     // Use the stable key from the profile for logic
-    const HubComponent = profile ? HubComponentMap[profile.primaryRole] : null;
+    const HubComponent = profile ? HubComponentMap[profile.primaryRole as keyof typeof HubComponentMap] : null;
     if (HubComponent) {
       return <HubComponent />;
     }
 
+    // Default feed view if no specific hub component
     if (isLoadingFeed) {
       return (
         <div className="space-y-6">
@@ -256,3 +259,5 @@ export function MainDashboard() {
     </Suspense>
   );
 }
+
+    
