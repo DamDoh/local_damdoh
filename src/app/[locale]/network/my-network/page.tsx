@@ -1,12 +1,11 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowLeft, UserPlus, Check, X, Users, UserMinus, Loader2 } from "lucide-react";
+import { ArrowLeft, UserPlus, Check, X, Users, UserMinus, Loader2, Send } from "lucide-react";
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
@@ -34,6 +33,7 @@ export default function MyNetworkPage() {
     const getConnections = useMemo(() => httpsCallable(functions, 'getConnections'), []);
     const respondToRequest = useMemo(() => httpsCallable(functions, 'respondToConnectionRequest'), []);
     const removeConnection = useMemo(() => httpsCallable(functions, 'removeConnection'), []);
+    const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), [functions]);
 
     const fetchData = useCallback(async () => {
         setIsLoading(true);
@@ -84,6 +84,25 @@ export default function MyNetworkPage() {
         } finally {
             setIsResponding(null);
         }
+    };
+
+    const handleInvite = async () => {
+      const inviteeEmail = prompt(t('invitePrompt'));
+      if (inviteeEmail) {
+        try {
+          await sendInviteCallable({ inviteeEmail });
+          toast({
+            title: t('inviteSuccessTitle'),
+            description: t('inviteSuccessDescription', { email: inviteeEmail }),
+          });
+        } catch (error: any) {
+          toast({
+            title: t('inviteErrorTitle'),
+            description: error.message,
+            variant: 'destructive',
+          });
+        }
+      }
     };
 
     if (isLoading || authLoading) {
@@ -149,7 +168,14 @@ export default function MyNetworkPage() {
                                             {isResponding === conn.id ? <Loader2 className="h-4 w-4 animate-spin"/> : <UserMinus className="h-4 w-4"/>}
                                         </Button>
                                     </div>
-                                )) : <p className="text-center text-muted-foreground py-8">{t('noConnections')}</p>}
+                                )) : (
+                                    <div className="md:col-span-2 text-center py-10 border-2 border-dashed rounded-lg">
+                                        <Users className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                                        <h3 className="font-semibold">{t('noConnections.title')}</h3>
+                                        <p className="text-sm text-muted-foreground mb-4">{t('noConnections.description')}</p>
+                                        <Button onClick={handleInvite}><Send className="mr-2 h-4 w-4" />{t('noConnections.inviteButton')}</Button>
+                                    </div>
+                                )}
                             </div>
                         </CardContent>
                     </Card>
