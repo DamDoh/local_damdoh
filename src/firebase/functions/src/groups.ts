@@ -166,6 +166,39 @@ export const leaveGroup = functions.https.onCall(async (data, context) => {
     return { success: true, message: 'Successfully left the group.' };
 });
 
+export const requestToJoinGroup = functions.https.onCall(async (data, context) => {
+    const uid = checkAuth(context);
+    const { groupId } = data;
+
+    const groupRef = db.collection('groups').doc(groupId);
+    const groupDoc = await groupRef.get();
+    if (!groupDoc.exists || groupDoc.data()?.isPublic) {
+        throw new functions.https.HttpsError('failed-precondition', 'This group does not accept join requests.');
+    }
+    
+    const requestRef = groupRef.collection('join_requests').doc(uid);
+    const requestDoc = await requestRef.get();
+    if (requestDoc.exists) {
+        throw new functions.https.HttpsError('already-exists', 'You have already requested to join this group.');
+    }
+
+    const userProfile = await db.collection('users').doc(uid).get();
+    if (!userProfile.exists) {
+        throw new functions.https.HttpsError('not-found', 'User profile not found.');
+    }
+
+    await requestRef.set({
+        status: 'pending',
+        requesterId: uid,
+        requesterName: userProfile.data()?.displayName,
+        requesterAvatarUrl: userProfile.data()?.avatarUrl,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return { success: true, message: "Your request to join has been sent." };
+});
+
+
 // --- NEW FUNCTIONS FOR GROUP DISCUSSIONS ---
 
 export const createGroupPost = functions.https.onCall(async (data, context) => {

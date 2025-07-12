@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -30,10 +30,67 @@ import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertTriangle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Users } from "lucide-react";
 import { Logo } from "@/components/Logo";
-import { APP_NAME, STAKEHOLDER_ROLES, STAKEHOLDER_ICONS } from "@/lib/constants";
-import type { StakeholderRole } from "@/lib/constants";
+import { APP_NAME } from "@/lib/constants";
+import { STAKEHOLDER_ROLES } from "@/lib/stakeholder-data";
 import React from "react";
 import { useTranslations } from "next-intl";
+import { Progress } from "@/components/ui/progress";
+
+const PasswordStrengthIndicator = ({ password = "" }) => {
+    const t = useTranslations('Auth.passwordStrength');
+    const strength = useMemo(() => {
+        let score = 0;
+        if (password.length > 8) score++;
+        if (password.match(/[a-z]/)) score++;
+        if (password.match(/[A-Z]/)) score++;
+        if (password.match(/[0-9]/)) score++;
+        if (password.match(/[^a-zA-Z0-9]/)) score++;
+        return score;
+    }, [password]);
+
+    const getStrengthLabel = () => {
+        switch (strength) {
+            case 0:
+            case 1:
+            case 2:
+                return t('weak');
+            case 3:
+                return t('medium');
+            case 4:
+                return t('strong');
+            case 5:
+                return t('veryStrong');
+            default:
+                return "";
+        }
+    };
+    
+    const progressColor = () => {
+        switch (strength) {
+            case 0:
+            case 1:
+            case 2:
+                return "bg-red-500";
+            case 3:
+                return "bg-yellow-500";
+            case 4:
+                return "bg-green-500";
+            case 5:
+                return "bg-green-700";
+            default:
+                return "bg-gray-300";
+        }
+    }
+
+    if (!password) return null;
+
+    return (
+        <div className="space-y-1">
+            <Progress value={strength * 20} className="h-2" indicatorClassName={progressColor()}/>
+            <p className="text-xs text-muted-foreground">{t('label')}: <span className="font-semibold">{getStrengthLabel()}</span></p>
+        </div>
+    );
+};
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -53,19 +110,21 @@ export default function SignUpPage() {
     },
   });
 
+  const password = form.watch("password");
+
   async function onSubmit(data: SignUpValues) {
     setIsLoading(true);
     setAuthError(null);
     
     try {
-      await registerUser(data.name, data.email, data.password, data.role as StakeholderRole);
+      await registerUser(data.name, data.email, data.password, data.role as any);
       
       // Automatically log the user in after successful registration
       await logIn(data.email, data.password);
 
       toast({
-        title: "Account Created & Signed In!",
-        description: `Welcome to ${APP_NAME}! You have been successfully signed in.`,
+        title: t('signUpSuccess.title'),
+        description: t('signUpSuccess.description', { appName: APP_NAME }),
         variant: "default", 
       });
       router.push("/"); // Redirect to the main dashboard after login
@@ -74,21 +133,21 @@ export default function SignUpPage() {
       if (error.code) {
         switch (error.code) {
           case "auth/email-already-in-use":
-            errorMessage = "This email address is already in use. Please try signing in.";
+            errorMessage = t('errors.emailInUse');
             break;
           case "auth/invalid-email":
-            errorMessage = "The email address you entered is not valid.";
+            errorMessage = t('errors.invalidEmail');
             break;
           case "auth/weak-password":
-            errorMessage = "The password is too weak. Please choose a stronger password (at least 6 characters).";
+            errorMessage = t('errors.weakPassword');
             break;
           default:
-            errorMessage = `Registration failed: ${error.message}`;
+            errorMessage = t('errors.default');
         }
       }
       setAuthError(errorMessage);
       toast({
-        title: "Sign Up Failed",
+        title: t('signUpFailed'),
         description: errorMessage,
         variant: "destructive",
       });
@@ -112,7 +171,7 @@ export default function SignUpPage() {
           {authError && (
             <Alert variant="destructive" className="mb-4">
               <AlertTriangle className="h-4 w-4" />
-              <AlertTitle>Registration Error</AlertTitle>
+              <AlertTitle>{t('error')}</AlertTitle>
               <AlertDescription>{authError}</AlertDescription>
             </Alert>
           )}
@@ -138,7 +197,7 @@ export default function SignUpPage() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="flex items-center"><Briefcase className="mr-2 h-4 w-4 text-muted-foreground" />{t('roleLabel')}</FormLabel>
-                    <Select onValueChange={(value) => field.onChange(value as StakeholderRole)} value={field.value}>
+                    <Select onValueChange={(value) => field.onChange(value as any)} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder={t('rolePlaceholder')} />
@@ -146,12 +205,11 @@ export default function SignUpPage() {
                       </FormControl>
                       <SelectContent>
                         {STAKEHOLDER_ROLES.map((role) => {
-                          const Icon = STAKEHOLDER_ICONS[role] || Users;
                           return (
-                            <SelectItem key={role} value={role}>
+                            <SelectItem key={role.id} value={role.name}>
                               <div className="flex items-center gap-2">
-                               <Icon className="h-4 w-4 text-muted-foreground" />
-                                <span>{role}</span>
+                               <role.icon className="h-4 w-4 text-muted-foreground" />
+                                <span>{role.name}</span>
                               </div>
                             </SelectItem>
                           );
@@ -183,8 +241,9 @@ export default function SignUpPage() {
                   <FormItem>
                     <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />{t('passwordLabel')}</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder={t('passwordPlaceholder')} {...field} />
+                      <Input type="password" placeholder="••••••••" {...field} />
                     </FormControl>
+                     <PasswordStrengthIndicator password={field.value} />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -196,7 +255,7 @@ export default function SignUpPage() {
                   <FormItem>
                     <FormLabel className="flex items-center"><Lock className="mr-2 h-4 w-4 text-muted-foreground" />{t('confirmPasswordLabel')}</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder={t('confirmPasswordPlaceholder')} {...field} />
+                      <Input type="password" placeholder="••••••••" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

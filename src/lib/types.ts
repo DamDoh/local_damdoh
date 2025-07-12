@@ -1,11 +1,14 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
     MarketplaceItemSchema,
     MarketplaceOrderSchema,
     ForumPostSchema,
-    AgriEventSchema
+    AgriEventSchema,
+    ShopSchema,
+    FinancialProductSchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 
@@ -24,6 +27,8 @@ export type AgriEvent = z.infer<typeof AgriEventSchema> & {
   organizerId: string;
 };
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
+export type Shop = z.infer<typeof ShopSchema>;
+export type FinancialProduct = z.infer<typeof FinancialProductSchema>;
 export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";
 
 
@@ -42,24 +47,6 @@ export interface MarketplaceCoupon {
     createdAt: any;
 }
 
-export interface Shop {
-    id: string;
-    ownerId: string;
-    name: string;
-    description: string;
-    stakeholderType: string;
-    createdAt: any;
-    updatedAt: any;
-    logoUrl: string | null;
-    bannerUrl: string | null;
-    contactInfo: {
-        phone?: string;
-        website?: string;
-    };
-    itemCount: number;
-    rating: number;
-}
-
 export type ForumGroup = {
   id: string;
   name: string;
@@ -76,6 +63,14 @@ export interface Connection {
     avatarUrl?: string;
     primaryRole: string;
     profileSummary: string;
+}
+
+export interface JoinRequest {
+    id: string; // Document ID of the request
+    requesterId: string;
+    requesterName: string;
+    requesterAvatarUrl?: string;
+    createdAt: string; // ISO string
 }
 
 export interface ConnectionRequest {
@@ -243,15 +238,6 @@ export interface LogisticsDashboardData {
         fuelEfficiency: string;
         actionLink: string;
     };
-}
-
-export interface FinancialProduct {
-  id: string;
-  name: string;
-  type: 'Loan' | 'Grant';
-  interestRate?: number;
-  maxAmount?: number;
-  status?: 'Active' | 'Inactive';
 }
 
 export interface FiDashboardData {
@@ -453,7 +439,7 @@ export interface AgronomistDashboardData {
     farmerName: string;
     issueSummary: string;
     requestDate: string; // ISO String
-    farmerId: string; // Added to link to farmer's profile
+    farmerId: string;
   }[];
   knowledgeHubContributions: {
     id: string;

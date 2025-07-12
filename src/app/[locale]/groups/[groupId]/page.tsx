@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowLeft, UserPlus, Users, Lock, LogOut, MessageSquare, PlusCircle } from "lucide-react";
+import { ArrowLeft, UserPlus, Users, Lock, LogOut, MessageSquare, PlusCircle, Check, Loader2 } from "lucide-react";
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -46,6 +46,7 @@ export default function GroupPage() {
     const getGroupPosts = useMemo(() => httpsCallable(functions, 'getGroupPosts'), [functions]);
     const joinGroup = useMemo(() => httpsCallable(functions, 'joinGroup'), [functions]);
     const leaveGroup = useMemo(() => httpsCallable(functions, 'leaveGroup'), [functions]);
+    const requestToJoinGroup = useMemo(() => httpsCallable(functions, 'requestToJoinGroup'), [functions]);
 
     const fetchData = useCallback(async () => {
         if (!groupId) return;
@@ -88,7 +89,7 @@ export default function GroupPage() {
         fetchData();
     }, [groupId, fetchData]);
     
-    const handleJoinGroup = async () => {
+    const handleJoinAction = async () => {
         if (!user) {
             toast({ title: t('toast.loginToJoin'), variant: "destructive" });
             router.push('/auth/signin');
@@ -96,11 +97,16 @@ export default function GroupPage() {
         }
         setIsJoining(true);
         try {
-            await joinGroup({ groupId });
-            toast({ title: t('toast.joinSuccess') });
+            if (group?.isPublic) {
+                await joinGroup({ groupId });
+                toast({ title: t('toast.joinSuccess') });
+            } else {
+                await requestToJoinGroup({ groupId });
+                toast({ title: t('toast.requestSuccess') });
+            }
             fetchData(); // Refetch all data to update UI
         } catch (error: any) {
-            console.error("Error joining group:", error);
+            console.error("Error joining/requesting group:", error);
             toast({ title: t('toast.joinError'), description: error.message || t('toast.error.description'), variant: "destructive" });
         } finally {
             setIsJoining(false);
@@ -232,11 +238,13 @@ export default function GroupPage() {
                              {user && (
                                 isMember ? (
                                     <Button onClick={handleLeaveGroup} variant="destructive" className="w-full" disabled={isJoining}>
-                                        <LogOut className="mr-2 h-4 w-4" /> {isJoining ? t('detail.leavingButton') : t('detail.leaveButton')}
+                                        {isJoining ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <LogOut className="mr-2 h-4 w-4" />}
+                                        {isJoining ? t('detail.leavingButton') : t('detail.leaveButton')}
                                     </Button>
                                 ) : (
-                                    <Button onClick={handleJoinGroup} className="w-full" disabled={isJoining || !group.isPublic}>
-                                        <UserPlus className="mr-2 h-4 w-4" /> {isJoining ? t('detail.joiningButton') : (group.isPublic ? t('detail.joinButton') : t('detail.requestJoinButton'))}
+                                    <Button onClick={handleJoinAction} className="w-full" disabled={isJoining}>
+                                        {isJoining ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <UserPlus className="mr-2 h-4 w-4" />}
+                                        {isJoining ? t('detail.joiningButton') : (group.isPublic ? t('detail.joinButton') : t('detail.requestJoinButton'))}
                                     </Button>
                                 )
                             )}

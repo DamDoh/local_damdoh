@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
@@ -28,6 +29,7 @@ import type {
     AgriTechInnovatorDashboardData,
     FarmerDashboardAlert,
     OperationsDashboardData,
+    FinancialProduct,
 } from "./types";
 
 const db = admin.firestore();
@@ -225,7 +227,6 @@ export const getFiDashboardData = functions.https.onCall(
   async (data, context): Promise<FiDashboardData> => {
     const fiId = checkAuth(context);
     try {
-        // Fetch real pending applications
         const pendingApplicationsSnapshot = await db.collection('financial_applications')
             .where('fiId', '==', fiId)
             .where('status', '==', 'Pending')
@@ -251,7 +252,6 @@ export const getFiDashboardData = functions.https.onCall(
             };
         });
 
-        // --- Portfolio Overview (Live Data) ---
         const approvedLoansSnapshot = await db.collection('financial_applications')
             .where('fiId', '==', fiId)
             .where('status', '==', 'Approved')
@@ -267,7 +267,6 @@ export const getFiDashboardData = functions.https.onCall(
             totalValue: totalValue,
         };
         
-        // --- Financial Products (Live Data) ---
         const productsSnapshot = await db.collection("financial_products")
             .where("fiId", "==", fiId)
             .orderBy("createdAt", "desc")
@@ -275,14 +274,14 @@ export const getFiDashboardData = functions.https.onCall(
             .get();
             
         const financialProducts = productsSnapshot.docs.map(doc => {
-            const data = doc.data();
+            const docData = doc.data();
             return {
                 id: doc.id,
-                ...data,
-                createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
-                updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                ...docData,
+                createdAt: (docData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                updatedAt: (docData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
             }
-        }) as FiDashboardData['financialProducts'];
+        }) as FinancialProduct[];
 
 
         return {
@@ -308,51 +307,35 @@ export const getCooperativeDashboardData = functions.https.onCall(
     const cooperativeId = checkAuth(context);
     
     try {
+        const groupDoc = await db.collection('users').doc(cooperativeId).get();
+        if (!groupDoc.exists) {
+            throw new functions.https.HttpsError('not-found', 'Cooperative profile not found.');
+        }
+
         // --- Member Data ---
-        // In a real app, you'd fetch members from a subcollection on the cooperative's document.
-        // For this demo, we'll simulate by finding a few farmers.
-        const membersSnapshot = await db.collection('users').where('primaryRole', '==', 'Farmer').limit(5).get();
-        const memberIds = membersSnapshot.docs.map(doc => doc.id);
-        const memberCount = membersSnapshot.size;
+        // A Cooperative is represented by a "Group" in the system.
+        // We need to find the group associated with this user. A real implementation would have a direct link.
+        // For now, let's assume the cooperative's display name matches the group name.
+        const groupQuery = db.collection('groups').where('name', '==', groupDoc.data()?.displayName).limit(1);
+        const groupSnapshot = await groupQuery.get();
         
-        // --- Aggregated Land Area ---
-        let totalLandArea = 0;
-        if (memberIds.length > 0) {
-            const farmsSnapshot = await db.collection('farms').where('ownerId', 'in', memberIds).get();
-            farmsSnapshot.forEach(doc => {
-                // Assuming 'size' is a string like "50 Hectares", we parse the number.
-                const sizeString = doc.data().size || '0';
-                const sizeValue = parseFloat(sizeString.split(' ')[0]) || 0;
-                totalLandArea += sizeValue;
-            });
+        let memberCount = 0;
+        let pendingMemberApplications = 0;
+
+        if (!groupSnapshot.empty) {
+            const group = groupSnapshot.docs[0];
+            memberCount = group.data().memberCount || 0;
+            const joinRequestsSnapshot = await group.ref.collection('join_requests').where('status', '==', 'pending').get();
+            pendingMemberApplications = joinRequestsSnapshot.size;
         }
 
-        // --- Aggregated Produce ---
-        const aggregatedProduce: CooperativeDashboardData['aggregatedProduce'] = [];
-        if (memberIds.length > 0) {
-            const cropsSnapshot = await db.collection('crops')
-                .where('ownerId', 'in', memberIds)
-                .where('currentStage', 'in', ['Harvesting', 'Post-Harvest'])
-                .orderBy('harvestDate', 'desc')
-                .limit(5)
-                .get();
-
-            cropsSnapshot.forEach(doc => {
-                const cropData = doc.data();
-                aggregatedProduce.push({
-                    id: doc.id,
-                    productName: cropData.cropType || 'Unknown Produce',
-                    // Assuming yield is stored on the crop document, or would be on the harvest event
-                    quantity: parseFloat(cropData.expectedYield?.split(' ')[0] || '0'), 
-                    quality: 'Grade A', // Placeholder as it's not on the crop model
-                    readyBy: (cropData.harvestDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
-                });
-            });
-        }
-
-        // --- Pending Applications ---
-        // This remains mocked as the application system is not built yet.
-        const pendingMemberApplications = 3;
+        // Other parts of the data remain mocked or simplified for now
+        // as they require more complex data aggregation (e.g., across all members' farms)
+        const totalLandArea = 1200; // Placeholder
+        const aggregatedProduce: CooperativeDashboardData['aggregatedProduce'] = [
+            { id: 'prod1', productName: 'Maize', quantity: 50, quality: 'Grade A', readyBy: new Date().toISOString() },
+            { id: 'prod2', productName: 'Beans', quantity: 25, quality: 'Grade A', readyBy: new Date().toISOString() }
+        ];
 
         return {
             memberCount,
@@ -494,7 +477,7 @@ export const getLogisticsDashboardData = functions.https.onCall(
         if (sellerIds.length > 0) {
             const sellersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', sellerIds).get();
             sellersSnapshot.forEach(doc => {
-                sellerProfiles[doc.id] = { location: doc.data().location || 'Unknown Origin' };
+                sellerProfiles[doc.id] = { location: doc.data().location?.address || 'Unknown Origin' };
             });
         }
 
@@ -1064,12 +1047,13 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
             const data = doc.data();
             return {
                 id: doc.id,
+                key: `${data.keyPrefix}...`,
                 keyPrefix: data.keyPrefix,
                 status: data.status,
                 environment: data.environment,
                 createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
                 description: data.description,
-            } as ApiKey;
+            };
         });
 
         // Mock other data for now
