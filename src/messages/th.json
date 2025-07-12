@@ -28,6 +28,15 @@
       "title": "ลงทะเบียนล้มเหลว"
     }
   },
+  "Auth": {
+    "passwordStrength": {
+      "label": "ความแข็งแกร่ง",
+      "weak": "อ่อน",
+      "medium": "ปานกลาง",
+      "strong": "แข็งแกร่ง",
+      "veryStrong": "แข็งแกร่งมาก"
+    }
+  },
   "AppHeader": {
     "searchPlaceholder": "ค้นหา...",
     "home": "หน้าแรก",
@@ -172,147 +181,7 @@
       "button": "สร้างบัญชีฟรีของคุณ"
     }
   },
-  "Auth": {
-    "signInWelcome": "ยินดีต้อนรับกลับสู่ {appName}",
-    "signUpWelcome": "เข้าร่วมเครือข่ายเกษตรกรรม {appName}",
-    "forgotPasswordResetPrompt": "รีเซ็ตรหัสผ่าน {appName} ของคุณ",
-    "resetPasswordPrompt": "สร้างรหัสผ่านใหม่สำหรับบัญชี {appName} ของคุณ",
-    "signInTitle": "เข้าสู่ระบบบัญชีของคุณ",
-    "signInDescription": "ป้อนข้อมูลประจำตัวของคุณเพื่อเข้าถึงแดชบอร์ดของคุณ",
-    "emailLabel": "อีเมล",
-    "emailPlaceholder": "you@example.com",
-    "passwordLabel": "รหัสผ่าน",
-    "forgotPasswordLink": "ลืมรหัสผ่าน?",
-    "signingInButton": "กำลังเข้าสู่ระบบ...",
-    "signInButton": "เข้าสู่ระบบ",
-    "noAccountPrompt": "ยังไม่มีบัญชี?",
-    "signUpLink": "ลงทะเบียน",
-    "signInLink": "เข้าสู่ระบบ",
-    "recoverWithUniversalIdPrompt": "หรือกู้คืนบัญชีด้วย Universal ID ของคุณ",
-    "signUpTitle": "สร้างบัญชีใหม่",
-    "signUpDescription": "บอกเราเกี่ยวกับตัวคุณเล็กน้อยเพื่อเริ่มต้น",
-    "nameLabel": "ชื่อของคุณหรือชื่อธุรกิจของคุณ",
-    "namePlaceholder": "เช่น สมศรี ใจดี หรือฟาร์มกรีนวัลเล่ย์",
-    "roleLabel": "บทบาทหลักของคุณ",
-    "rolePlaceholder": "เลือกบทบาทของคุณในห่วงโซ่อุปทาน...",
-    "confirmPasswordLabel": "ยืนยันรหัสผ่าน",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "กำลังสร้างบัญชี...",
-    "signUpButton": "สร้างบัญชี",
-    "alreadyHaveAccountPrompt": "มีบัญชีอยู่แล้ว?",
-    "forgotPasswordTitle": "ลืมรหัสผ่าน?",
-    "forgotPasswordDescription": "ไม่มีปัญหา ป้อนที่อยู่อีเมลของคุณด้านล่างแล้วเราจะส่งลิงก์รีเซ็ตให้คุณ",
-    "sendResetLinkButton": "ส่งลิงก์รีเซ็ต",
-    "sendingEmailButton": "กำลังส่งอีเมล...",
-    "rememberPasswordPrompt": "จำรหัสผ่านของคุณได้ไหม?",
-    "resetPasswordTitle": "รีเซ็ตรหัสผ่าน",
-    "resetPasswordDescription": "ป้อนและยืนยันรหัสผ่านใหม่ของคุณด้านล่าง",
-    "newPasswordLabel": "รหัสผ่านใหม่",
-    "newPasswordPlaceholder": "ป้อนรหัสผ่านใหม่ที่ปลอดภัย",
-    "resetPasswordButton": "รีเซ็ตรหัสผ่าน",
-    "resettingPasswordButton": "กำลังรีเซ็ต...",
-    "recoverPage": {
-      "title": "การกู้คืนบัญชี",
-      "description": "ใช้เครือข่ายของคุณเพื่อเข้าถึงอีกครั้ง",
-      "howItWorksTitle": "วิธีการทำงาน",
-      "step1": "ป้อนหมายเลขโทรศัพท์ของคุณเพื่อเริ่มเซสชั่นการกู้คืน",
-      "step2": "แสดงรหัส QR ชั่วคราวให้เพื่อนที่เชื่อถือได้บน DamDoh",
-      "step3": "เมื่อเพื่อนของคุณสแกนรหัสเพื่อยืนยันตัวตนของคุณ คุณจะสามารถเข้าถึงได้อีกครั้ง",
-      "startButton": "เริ่มการกู้คืนบัญชี",
-      "scanTitle": "ขอให้เพื่อนสแกน",
-      "scanDescription": "ให้ผู้ติดต่อที่เชื่อถือได้บน DamDoh สแกนรหัส QR นี้ด้วยคุณสมบัติ 'ช่วยเพื่อนกู้คืน' ในแอปของพวกเขา",
-      "scanNote": "รหัสนี้เป็นรหัสชั่วคราวและจะหมดอายุใน 10 นาที",
-      "startOverButton": "เริ่มใหม่"
-    },
-    "forgotPassword": {
-      "emailSentTitle": "ตรวจสอบอีเมลของคุณ",
-      "emailSentDescription": "ลิงก์รีเซ็ตรหัสผ่านถูกส่งไปยัง {email} แล้ว",
-      "emailSentDescriptionIfAccountExists": "หากมีบัญชีที่ใช้ {email} อยู่ ลิงก์รีเซ็ตรหัสผ่านได้ถูกส่งไปแล้ว",
-      "successTitle": "ส่งอีเมลแล้ว!",
-      "successDescription": "โปรดตรวจสอบกล่องจดหมายของคุณ (และโฟลเดอร์สแปม) สำหรับลิงก์รีเซ็ตรหัสผ่าน",
-      "errors": {
-        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
-        "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
-        "tooManyRequests": "มีการร้องขอมากเกินไป โปรดลองอีกครั้งในภายหลัง",
-        "default": "ส่งอีเมลรีเซ็ตล้มเหลว"
-      }
-    },
-    "resetPassword": {
-      "successTitle": "รีเซ็ตรหัสผ่านสำเร็จ!",
-      "successDescription": "ตอนนี้คุณสามารถเข้าสู่ระบบด้วยรหัสผ่านใหม่ของคุณได้แล้ว",
-      "successRedirect": "คุณจะถูกนำไปยังหน้าเข้าสู่ระบบในไม่ช้า",
-      "errors": {
-        "missingCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้อง โปรดขอลิงก์ใหม่",
-        "missingCodeTitle": "ลิงก์ไม่ถูกต้อง",
-        "missingCodeDescription": "ลิงก์รีเซ็ตรหัสผ่านหายไปหรือไม่ถูกต้อง โปรดกลับไปที่หน้าลืมรหัสผ่านเพื่อขอลิงก์ใหม่",
-        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
-        "invalidOrExpiredCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้องหรือหมดอายุแล้ว โปรดขอลิงก์ใหม่",
-        "userDisabled": "บัญชีผู้ใช้นี้ถูกปิดใช้งานแล้ว",
-        "userNotFound": "ไม่พบผู้ใช้ที่ตรงกับลิงก์รีเซ็ตนี้",
-        "weakPassword": "รหัสผ่านใหม่ไม่ปลอดภัยพอ",
-        "default": "รีเซ็ตรหัสผ่านล้มเหลว"
-      }
-    },
-    "error": "ข้อผิดพลาด"
-  },
-  "searchPage": {
-    "title": "ค้นหาแบบสากล",
-    "description": "ค้นหาทุกสิ่งบนแพลตฟอร์ม DamDoh ตั้งแต่ผลิตภัณฑ์และบริการไปจนถึงผู้คนและการสนทนา",
-    "placeholder": "ค้นหากาแฟออร์แกนิก, การซ่อมรถแทรกเตอร์, หรือผู้ใช้...",
-    "searchButton": "ค้นหา",
-    "popularSearches": "การค้นหายอดนิยม",
-    "popularSearch1": "ปุ๋ยอินทรีย์",
-    "popularSearch2": "โลจิสติกส์ในเคนยา",
-    "popularSearch3": "ผู้ซื้อกาแฟในยุโรป",
-    "popularSearch4": "แรงงานเกษตร",
-    "popularSearch5": "เช่ารถแทรกเตอร์",
-    "modal": {
-      "title": "ค้นหาแบบสากล",
-      "placeholder": "ฉันกำลังมองหา...",
-      "searchButton": "ค้นหา",
-      "searchError": "การค้นหาล้มเหลว",
-      "searchErrorDescription": "เกิดข้อผิดพลาดที่ไม่คาดคิดระหว่างการค้นหา โปรดลองอีกครั้ง",
-      "invalidCodeError": "นี่ไม่ใช่รหัส QR ของ DamDoh ที่ถูกต้อง",
-      "scanFailed": "การสแกนล้มเหลว",
-      "scanError": "ข้อผิดพลาดในการสแกน",
-      "scanErrorDescription": "ไม่สามารถอ่านรหัส QR ได้ โปรดลองอีกครั้ง",
-      "interpretationTitle": "การตีความโดย AI",
-      "interpretationNotesDefault": "แสดงผลลัพธ์ทั่วไป",
-      "filtersTitle": "ตัวกรองที่ใช้",
-      "results": {
-        "users": "โปรไฟล์",
-        "marketplaceItems": "ตลาด",
-        "forums": "ฟอรั่ม",
-        "vti_registry": "รายงานการตรวจสอบย้อนกลับ",
-        "knowledge_articles": "ศูนย์ความรู้",
-        "agri_events": "กิจกรรมการเกษตร"
-      },
-      "noResults": "ไม่พบผลลัพธ์สำหรับคำค้นหาของคุณ",
-      "tryAgain": "ลองใช้คำค้นหาอื่นหรือใช้คำหลักที่กว้างขึ้น"
-    }
-  },
-  "talentExchangePage": {
-    "title": "ตลาดนัดความสามารถ",
-    "description": "ค้นหาผู้เชี่ยวชาญที่มีทักษะหรือเสนอบริการทางการเกษตรของคุณแก่ชุมชน",
-    "listServiceButton": "ลงรายการบริการ",
-    "searchPlaceholder": "ค้นหาบริการ (เช่น การเกษตร, นักบินโดรน)...",
-    "locationPlaceholder": "กรองตามสถานที่...",
-    "categoryPlaceholder": "กรองตามประเภทบริการ...",
-    "allCategories": "ทุกประเภท",
-    "noResultsTitle": "ไม่พบบริการ",
-    "noResultsDescription": "ไม่มีบริการที่ตรงกับเกณฑ์ของคุณ ลองปรับการค้นหาของคุณหรือเป็นคนแรกที่เสนอบริการในหมวดหมู่นี้!",
-    "toast": {
-      "error": {
-        "title": "การค้นหาล้มเหลว",
-        "description": "เกิดข้อผิดพลาดในการดึงข้อมูลบริการ โปรดลองอีกครั้ง"
-      }
-    }
-  },
   "financialsPage": {
     "title": "การจัดการทางการเงิน"
   }
 }
-
-    
-
-    
