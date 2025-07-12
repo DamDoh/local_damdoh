@@ -107,7 +107,7 @@
         "title": "Expertos y proveedores de servicios",
         "description": "Ofrece tus habilidades y servicios especializados a una amplia audiencia agrícola que busca tu experiencia."
       },
-       "fis": {
+      "fis": {
         "title": "Instituciones financieras",
         "description": "Proporciona préstamos, subvenciones y productos de seguros específicos a una red verificada de empresas agrícolas."
       },
@@ -220,7 +220,7 @@
         "default": "No se pudo restablecer la contraseña"
       }
     },
-     "errors": {
+    "errors": {
       "emailInUse": "Este correo electrónico ya está en uso.",
       "invalidEmail": "Dirección de correo electrónico no válida.",
       "weakPassword": "La contraseña debe tener al menos 6 caracteres.",
@@ -261,9 +261,9 @@
   "AppHeader": {
     "home": "Inicio",
     "network": "Red",
-    "farmMgmt": "Gestión Granja",
+    "farmMgmt": "Gestión de la granja",
     "marketplace": "Mercado",
-    "talentExchange": "Talento",
+    "talentExchange": "Bolsa de talentos",
     "traceability": "Trazabilidad",
     "forums": "Foros",
     "sustainability": "Sostenibilidad",
@@ -550,7 +550,7 @@
     },
     "privacyRights": {
       "heading": "8. ¿CUÁLES SON TUS DERECHOS DE PRIVACIDAD?",
-      "content": "En algunas regiones, tienes ciertos derechos bajo las leyes de protección de datos aplicables. Estos pueden incluir el derecho (i) a solicitar acceso y obtener una copia de tus datos personales, (ii) a solicitar la rectificación o el borrado, (iii) a restringir el procesamiento de tu información personal y (iv) si corresponde, a la portabilidad de los datos."
+      "content": "En algunas regiones, tienes ciertos derechos bajo las leyes de protección de datos aplicables. Estos pueden incluir el derecho (i) a solicitar acceso y obtener una copia de tus datos personales, (ii) a solicitar la rectificación o el borrado, (iii) a restringir el procesamiento de tu información personal, y (iv) si corresponde, a la portabilidad de los datos."
     },
     "controlsForDoNotTrack": {
       "heading": "9. CONTROLES PARA LAS FUNCIONES DE NO SEGUIMIENTO",
@@ -564,13 +564,13 @@
       "heading": "11. CONTÁCTANOS",
       "content": "Para resolver una queja sobre el Sitio o para recibir más información sobre el uso del Sitio, por favor contáctanos."
     },
-    "conclusion": "Para resolver una queja o recibir más información, por favor {contactLink}."
+    "conclusion": "Para resolver una queja o recibir más información, {contactLink}."
   },
   "pinboardPage": {
     "title": "Tablero de Pines",
     "description": "Tu espacio personal para guardar elementos importantes de todo DamDoh.",
     "comingSoonTitle": "¡El tablero de pines llegará pronto!",
-    "comingSoonDescription": "Esta función te permitirá 'fijar' artículos del mercado, publicaciones de foros, perfiles y más a un tablero personal para un fácil acceso.",
+    "comingSoonDescription": "Esta función te permitirá 'fijar' artículos del mercado, publicaciones de foros, perfiles, y más a un tablero personal para un fácil acceso.",
     "stayTuned": "¡Mantente atento a las actualizaciones!"
   },
   "walletPage": {
@@ -639,4 +639,4 @@
   }
 }
 
-    
+  

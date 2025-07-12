@@ -220,7 +220,7 @@
         "default": "Échec de la réinitialisation du mot de passe"
       }
     },
-     "errors": {
+    "errors": {
       "emailInUse": "Cet e-mail est déjà utilisé.",
       "invalidEmail": "Adresse e-mail invalide.",
       "weakPassword": "Le mot de passe doit comporter au moins 6 caractères.",
@@ -479,10 +479,10 @@
     },
     "reporting": {
       "title": "Signaler les violations",
-      "content": "Si vous voyez du contenu ou un comportement qui enfreint ces directives, veuillez le signaler à notre équipe à l'adresse {emailLink}. Nous examinerons tous les rapports et prendrons les mesures appropriées.",
+      "content": "Si vous voyez du contenu ou un comportement qui enfreint ces directives, please report it to our team at {emailLink}. We will review all reports and take appropriate action.",
       "emailLinkText": "support@damdoh.org"
     },
-    "conclusion": "En utilisant DamDoh, vous acceptez ces directives. Nous nous réservons le droit de supprimer du contenu et de suspendre les comptes qui enfreignent ces principes. Merci de nous aider à construire une grande communauté !"
+    "conclusion": "By using DamDoh, you agree to these guidelines. We reserve the right to remove content and suspend accounts that violate these principles. Thanks for helping us build a great community!"
   },
   "helpCenterPage": {
     "title": "Centre d'aide",
@@ -639,4 +639,4 @@
   }
 }
 
-    
+  

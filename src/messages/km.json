@@ -80,7 +80,7 @@
       },
       "marketplace": {
         "title": "ទីផ្សារផ្ទាល់",
-        "description": "ទិញនិងលក់ផលិតផលនិងសេវាកម្មដោយផ្ទាល់ បង្កើនតម្លាភាពនិងប្រាក់ចំណេញសម្រាប់គ្រប់តួអង្គ។"
+        "description": "ទិញและលក់ផលិតផលនិងសេវាកម្មដោយផ្ទាល់ បង្កើនតម្លាភាពនិងប្រាក់ចំណេញសម្រាប់គ្រប់តួអង្គ។"
       },
       "forums": {
         "title": "វេទិកាប្រធានបទ",
@@ -88,7 +88,7 @@
       },
       "talent": {
         "title": "ការផ្លាស់ប្តូរទេពកោសល្យ",
-        "description": "ផ្តល់ជូនឬស្វែងរកសេវាកម្មកសិកម្មឯកទេស ចាប់ពីការប្រមូលផលតាមតម្រូវការរហូតដល់ការស្ទង់មតិដោយដ្រូន។"
+        "description": "ផ្តល់ជូនหรือค้นหาบริการทางการเกษตรเฉพาะทาง ចាប់ពីការប្រមូលផលតាមតម្រូវការរហូតដល់ការស្ទង់មតិដោយដ្រូន។"
       }
     },
     "forWho": {
@@ -97,7 +97,7 @@
       "description": "ដាំដុះត្រូវបានរចនាឡើងដោយឡែកដើម្បីបម្រើប្រព័ន្ធអេកូឡូស៊ីកសិកម្មទាំងមូល បង្កើតចំណុចតែមួយនៃការពិត និងឱកាសសម្រាប់ទាំងអស់គ្នា។",
       "farmers": {
         "title": "កសិករ",
-        "description": "ចូលទៅកាន់ទីផ្សារល្អប្រសើរ ស្វែងរកធាតុចូលដែលមានគុណភាព និងទទួលបានការណែនាំពីអ្នកជំនាញដើម្បីបង្កើនទិន្នផលនិងប្រាក់ចំណេញ។"
+        "description": "ចូលទៅកាន់ទីផ្សារល្អប្រសើរ ស្វែងរកធាតុចូលដែលមានគុណភាព និងទទួលបានការណែនាំពីអ្នកជំនាញដើម្បីបង្កើនទិន្នផលและប្រាក់ចំណេញ។"
       },
       "buyers": {
         "title": "អ្នកទិញនិងអ្នកកែច្នៃ",
@@ -107,7 +107,7 @@
         "title": "អ្នកជំនាញនិងអ្នកផ្តល់សេវា",
         "description": "ផ្តល់ជំនាញ និងសេវាកម្មពិសេសរបស់អ្នកទៅកាន់ទស្សនិកជនកសិកម្មដ៏ធំទូលាយដែលកំពុងស្វែងរកជំនាញរបស់អ្នក។"
       },
-       "fis": {
+      "fis": {
         "title": "គ្រឹះស្ថានហិរញ្ញវត្ថុ",
         "description": "ផ្តល់ជូនកម្ចី ជំនួយ និងផលិតផលធានារ៉ាប់រងដែលបានកំណត់គោលដៅទៅកាន់បណ្តាញអាជីវកម្មកសិកម្មដែលបានផ្ទៀងផ្ទាត់។"
       },
@@ -193,7 +193,7 @@
       "emailSentDescription": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញត្រូវបានផ្ញើទៅ {email}។",
       "emailSentDescriptionIfAccountExists": "ប្រសិនបើមានគណនីដែលមាន {email} តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញត្រូវបានផ្ញើ។",
       "successTitle": "បានផ្ញើអ៊ីមែល!",
-      "successDescription": "សូមពិនិត្យមើលប្រអប់សំបុត្ររបស់អ្នក (និងថតសារឥតបានការ) សម្រាប់តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញ។",
+      "successDescription": "សូមពិនិត្យមើលប្រអប់សំបុត្ររបស់អ្នក (และថតសារឥតបានការ) សម្រាប់តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញ។",
       "errors": {
         "unexpected": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង។ សូម​ព្យាយាម​ម្តង​ទៀត។",
         "invalidEmail": "អាសយដ្ឋានអ៊ីមែលមិនត្រឹមត្រូវទេ។",
@@ -211,7 +211,7 @@
       "errors": {
         "missingCode": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញមិនត្រឹមត្រូវទេ។ សូមស្នើសុំតំណថ្មី។",
         "missingCodeTitle": "តំណមិនត្រឹមត្រូវ",
-        "missingCodeDescription": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញបាត់ឬមិនត្រឹមត្រូវ។ សូមត្រឡប់ទៅទំព័រ 'ភ្លេចពាក្យសម្ងាត់' ដើម្បីស្នើសុំថ្មី។",
+        "missingCodeDescription": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញបាត់หรือមិនត្រឹមត្រូវ។ សូមត្រឡប់ទៅទំព័រ 'ភ្លេចពាក្យសម្ងាត់' ដើម្បីស្នើសុំថ្មី។",
         "unexpected": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង។ សូមព្យាយាមម្តងទៀត។",
         "invalidOrExpiredCode": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញមិនត្រឹមត្រូវ ឬផុតកំណត់ហើយ។ សូមស្នើសុំតំណថ្មី។",
         "userDisabled": "គណនីអ្នកប្រើប្រាស់នេះត្រូវបានបិទ។",
@@ -227,7 +227,7 @@
       "default": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង。"
     },
     "signUpSuccess": {
-      "title": "បានបង្កើតគណនី និងចូលហើយ!",
+      "title": "បានបង្កើតគណនី และចូលហើយ!",
       "description": "សូមស្វាគមន៍មកកាន់ {appName}! អ្នកបានចូលដោយជោគជ័យ។"
     },
     "signUpFailed": "ការចុះឈ្មោះបានបរាជ័យ",
@@ -291,18 +291,18 @@
   "DashboardRightSidebar": {
     "networkTitle": "បន្ថែមទៅក្នុងហ្វីតរបស់អ្នក",
     "refreshSuggestions": "ធ្វើឱ្យការណែនាំស្រស់ស្រាយ",
-    "infoTooltip": "ការណែនាំគឺផ្អែកលើចំណាប់អារម្មណ៍និងតម្រូវការនៃប្រវត្តិរូបរបស់អ្នក។",
+    "infoTooltip": "ការណែនាំគឺផ្អែកលើចំណាប់អារម្មណ៍และតម្រូវការនៃប្រវត្តិរូបរបស់អ្នក។",
     "signInPrompt": "ចូលដើម្បីទទួលបានការណែនាំផ្ទាល់ខ្លួន។",
     "loadError": "មិនអាចផ្ទុកការណែនាំបានទេ។",
     "noSuggestions": "មិនមានការណែនាំថ្មីនៅពេលនេះទេ។ សូមពិនិត្យមើលពេលក្រោយ!",
     "following": "កំពុងតាមដាន",
     "follow": "តាមដាន",
     "promotionsTitle": "ការផ្សព្វផ្សាយ",
-    "promotionsDescription": "មើលការផ្តល់ជូនពិសេស និងកិច្ចព្រមព្រៀងពីដៃគូក្នុងប្រព័ន្ធអេកូឡូស៊ី។",
+    "promotionsDescription": "មើលការផ្តល់ជូនពិសេស และកិច្ចព្រមព្រៀងពីដៃគូក្នុងប្រព័ន្ធអេកូឡូស៊ី។",
     "managePromotionsButton": "គ្រប់គ្រងការផ្សព្វផ្សាយ",
     "ad": "ពាណិជ្ជកម្ម",
     "adTitle": "ដោះសោការយល់ដឹងទីផ្សារ",
-    "adDescription": "ទទួលបានទិន្នន័យ និងការវិភាគតាមពេលវេលាជាក់ស្តែងជាមួយដាំដុះប្រូ។",
+    "adDescription": "ទទួលបានទិន្នន័យ และការវិភាគតាមពេលវេលាជាក់ស្តែងជាមួយដាំដុះប្រូ។",
     "adButton": "ស្វែងយល់បន្ថែម"
   },
   "LanguageSwitcher": {
@@ -314,7 +314,7 @@
     "aboutLabel": "អំពី​ពួក​យើង",
     "contactLabel": "ទំនាក់ទំនង",
     "careersLabel": "អាជីព",
-    "blogLabel": "ប្លុក និងព័ត៌មាន",
+    "blogLabel": "ប្លុក และព័ត៌មាន",
     "resourcesTitle": "ធនធាន",
     "helpCenterLabel": "មជ្ឈមណ្ឌលជំនួយ",
     "communityGuidelinesLabel": "គោលការណ៍ណែនាំសហគមន៍",
@@ -337,7 +337,7 @@
     "vision": {
       "title": "ចក្ខុវិស័យរបស់យើង",
       "p1": "យើងមានចក្ខុវិស័យលើពិភពលោកមួយដែលគ្រប់តួអង្គកសិកម្ម ចាប់ពីកសិករតូចបំផុតរហូតដល់អ្នកលក់រាយធំបំផុត ត្រូវបានពង្រឹងដោយទិន្នន័យ ការតភ្ជាប់ និងឧបករណ៍ដែលពួកគេត្រូវការដើម្បីរីកចម្រើន។",
-      "p2": "ដាំដុះត្រូវបានបង្កើតឡើងដោយផ្អែកលើជំនឿថាបច្ចេកវិទ្យាអាចជួយបង្រួមគម្លាត ពង្រឹងទំនុកចិត្ត និងបង្កើតប្រព័ន្ធស្បៀងអាហារសកលមួយដែលកាន់តែមានសមធម៌និងនិរន្តរភាព។",
+      "p2": "ដាំដុះត្រូវបានបង្កើតឡើងដោយផ្អែកលើជំនឿថាបច្ចេកវិទ្យាអាចជួយបង្រួមគម្លាត ពង្រឹងទំនុកចិត្ត และបង្កើតប្រព័ន្ធស្បៀងអាហារសកលមួយដែលកាន់តែមានសមធម៌និងនិរន្តរភាព។",
       "foundersTitle": "ស្ថាបនិក"
     },
     "challenge": {
@@ -347,10 +347,10 @@
         "marketAccess": "ការចូលទៅកាន់ទីផ្សារមានកម្រិតសម្រាប់កសិករខ្នាតតូច។",
         "inefficiency": "ការដឹកជញ្ជូនគ្មានប្រសិទ្ធភាពដែលនាំឱ្យមានការខាតបង់ក្រោយការប្រមូលផល។",
         "financialExclusion": "ការលំបាកក្នុងការទទួលបានហិរញ្ញវត្ថុនិងការធានារ៉ាប់រងសម្រាប់អ្នកផលិតខ្នាតតូច។",
-        "informationGaps": "ចំណេះដឹងដែលបែកខ្ញែក និងកង្វះការចូលទៅកាន់ការអនុវត្តល្អបំផុត។",
+        "informationGaps": "ចំណេះដឹងដែលបែកខ្ញែក และកង្វះការចូលទៅកាន់ការអនុវត្តល្អបំផុត។",
         "qualityTrust": "ការត្រួតពិនិត្យគុណភាពមិនទៀងទាត់ និងការខ្វះទិន្នន័យផលិតផលដែលអាចផ្ទៀងផ្ទាត់បាន។",
         "climatePressure": "សម្ពាធកើនឡើងពីការប្រែប្រួលអាកាសធាតុលើវិធីសាស្រ្តធ្វើកសិកម្មប្រពៃណី។",
-        "foodLoss": "ការបាត់បង់ និងការខ្ជះខ្ជាយអាហារយ៉ាងច្រើននៅដំណាក់កាលជាច្រើននៃខ្សែសង្វាក់ផ្គត់ផ្គង់។",
+        "foodLoss": "ការបាត់បង់ และការខ្ជះខ្ជាយអាហារយ៉ាងច្រើននៅដំណាក់កាលជាច្រើននៃខ្សែសង្វាក់ផ្គត់ផ្គង់។",
         "dataFragmentation": "ការបែកខ្ញែកទិន្នន័យឆ្លងកាត់ប្រព័ន្ធផ្សេងៗដែលមិនបានតភ្ជាប់។"
       },
       "list": {
@@ -366,13 +366,13 @@
     },
     "solution": {
       "title": "ដំណោះស្រាយរបស់ដាំដុះ",
-      "description": "យើងកំពុងកសាង 'កម្មវិធីទំនើប' មួយដែលគ្រប់ជ្រុងជ្រោយដែលធ្វើឌីជីថលនូបនីយកម្មនិងភ្ជាប់ប្រព័ន្ធអេកូឡូស៊ីកសិកម្មទាំងមូលតាមរយៈសសរស្តម្ភសំខាន់ៗជាច្រើន៖",
+      "description": "យើងកំពុងកសាង 'កម្មវិធីទំនើប' មួយដែលគ្រប់ជ្រុងជ្រោយដែលធ្វើឌីជីថលនូបនីយកម្មและភ្ជាប់ប្រព័ន្ធអេកូឡូស៊ីកសិកម្មទាំងមូលតាមរយៈសសរស្តម្ភសំខាន់ៗជាច្រើន៖",
       "list": {
-        "education": "ការអប់រំនិងការចែករំលែកចំណេះដឹង",
-        "ai": "ជំនួយនិងការយល់ដឹងដោយបញ្ញាសិប្បនិម្មិត",
-        "logistics": "ការដឹកជញ្ជូននិងការតាមដានរួមបញ្ចូលគ្នា",
-        "financial": "ការចូលទៅកាន់សេវាហិរញ្ញវត្ថុ",
-        "marketplace": "ទីផ្សារផ្ទាល់និងមានតម្លាភាព"
+        "education": "ការអប់រំและการចែករំលែកចំណេះដឹង",
+        "ai": "ជំនួយและการយល់ដឹងដោយបញ្ញាសិប្បនិម្មិត",
+        "logistics": "ការដឹកជញ្ជូនและการតាមដានរួមបញ្ចូលគ្នា",
+        "marketplace": "ទីផ្សារផ្ទាល់และមានតម្លាភាព",
+        "financial": "ការចូលទៅកាន់សេវាហិរញ្ញវត្ថុ"
       }
     },
     "beyondTechnology": {
@@ -380,7 +380,7 @@
       "list": {
         "p2p": {
           "title": "មនុស្សទៅមនុស្ស",
-          "content": "ការភ្ជាប់កសិករទៅកសិករផ្សេងទៀតដើម្បីចែករំលែកចំណេះដឹងនិងកសាងសហគមន៍។"
+          "content": "ការភ្ជាប់កសិករទៅកសិករផ្សេងទៀតដើម្បីចែករំលែកចំណេះដឹងและកសាងសហគមន៍។"
         },
         "p2b": {
           "title": "មនុស្សទៅអាជីវកម្ម",
@@ -392,23 +392,23 @@
         },
         "p2w": {
           "title": "មនុស្សទៅកាន់ពិភពលោក",
-          "content": "ការបើកទីផ្សារនិងឱកាសសកលសម្រាប់អ្នកផលិតដែលនៅឆ្ងាយបំផុតតាមរយៈការចូលប្រើឌីជីថលនិងការតាមដាន។"
+          "content": "ការបើកទីផ្សារและឱកាសសកលសម្រាប់អ្នកផលិតដែលនៅឆ្ងាយបំផុតតាមរយៈការចូលប្រើឌីជីថលនិងការតាមដាន។"
         }
       }
     },
     "commitment": {
       "title": "ការប្តេជ្ញាចិត្តរបស់យើងចំពោះអនាគត",
       "p1": "យើងប្តេជ្ញាប្រើប្រាស់បច្ចេកវិទ្យាដើម្បីអ្វីដែលល្អ បង្កើតវេទិកាមួយដែលមិនត្រឹមតែមានផលចំណេញប៉ុណ្ណោះទេ ប៉ុន្តែថែមទាំងបង្កើតភពផែនដីរបស់យើងឡើងវិញនិងផ្តល់អំណាចដល់ប្រជាជនរបស់ខ្លួន។",
-      "p2": "រាល់ការតភ្ជាប់ដែលបានធ្វើ រាល់ចំណេះដឹងដែលបានចែករំលែក និងរាល់ប្រតិបត្តិការដែលបានសម្រួលនៅលើដាំដុះ គឺជាជំហានមួយឆ្ពោះទៅរកអនាគតអាហារដែលមានភាពធន់និងសមធម៌ជាងមុន។",
-      "p3": "ចូលរួមជាមួយយើងក្នុងការធ្វើដំណើរនេះ។",
+      "p2": "រាល់ការតភ្ជាប់ដែលបានធ្វើ រាល់ចំណេះដឹងដែលបានចែករំលែក และរាល់ប្រតិបត្តិការដែលបានសម្រួលនៅលើដាំដុះ គឺជាជំហានមួយឆ្ពោះទៅរកអនាគតអាហារដែលមានភាពធន់និងសមធម៌ជាងមុន។",
+      "p3": "ចូលរួមជាមួយเราในการធ្វើដំណើរនេះ។",
       "button": "ក្លាយជាសមាជិក"
     }
   },
   "contactPage": {
-    "title": "ទំនាក់ទំនងមកយើង",
-    "subtitle": "យើងនៅទីនេះដើម្បីជួយ។ ទាក់ទងមកយើងតាមរយៈបណ្តាញណាមួយខាងក្រោម។",
+    "title": "ទំនាក់ទំនងមកเรา",
+    "subtitle": "เราនៅទីនេះដើម្បីជួយ។ ទាក់ទងមកเราតាមរយៈបណ្តាញណាមួយខាងក្រោម។",
     "emailUs": {
-      "title": "ផ្ញើអ៊ីមែលមកយើង",
+      "title": "ផ្ញើអ៊ីមែលមកเรา",
       "general": "ការសាកសួរទូទៅ",
       "support": "ផ្នែកជំនួយ",
       "partnerships": "ភាពជាដៃគូ"
@@ -419,12 +419,12 @@
       "phone": "+254 20 123 4567"
     },
     "ourOffice": {
-      "title": "ការិយាល័យរបស់យើង",
+      "title": "ការិយាល័យของเรา",
       "org": "មូលនិធិដាំដុះ",
       "address": "123 វិថីកសិ-បច្ចេកវិទ្យា, ណៃរ៉ូប៊ី, កេនយ៉ា"
     },
     "sendMessage": {
-      "title": "ផ្ញើសារមកយើង",
+      "title": "ផ្ញើសារមកเรา",
       "nameLabel": "ឈ្មោះ​របស់​អ្នក",
       "namePlaceholder": "ចាន់ ណារី",
       "emailLabel": "អ៊ីមែល​របស់​អ្នក",
@@ -434,20 +434,20 @@
       "messageLabel": "សារ​របស់​អ្នក",
       "messagePlaceholder": "វាយសាររបស់អ្នកនៅទីនេះ...",
       "buttonText": "ផ្ញើសារ",
-      "note": "យើងព្យាយាមឆ្លើយតបក្នុងរយៈពេល 24 ម៉ោងធ្វើការ។"
+      "note": "เราព្យាយាមឆ្លើយតបក្នុងរយៈពេល 24 ម៉ោងធ្វើការ។"
     }
   },
   "careers": {
     "title": "អាជីពនៅដាំដុះ",
     "subtitle": "ចូលរួមបេសកកម្មរបស់យើងដើម្បីធ្វើបដិវត្តន៍ខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្ម។",
     "whyWorkWithUs": {
-      "title": "ហេតុអ្វីធ្វើការជាមួយយើង?",
-      "intro": "នៅដាំដុះ យើងគឺជាក្រុមអ្នកច្នៃប្រឌិត អ្នកបច្ចេកទេស និងអ្នកជំនាញកសិកម្មដែលខិតខំបង្កើតឥទ្ធិពលសកលដែលអាចមើលឃើញ។ យើងផ្តល់ជូន៖",
-      "point1": "បរិយាកាសការងារដែលជំរុញដោយបេសកកម្មនិងមានភាពស្វាហាប់។",
-      "point2": "ឱកាសសម្រាប់ការរីកចម្រើននិងការរៀនសូត្រវិជ្ជាជីវៈ។",
-      "point3": "វប្បធម៌នៃកិច្ចសហប្រតិបត្តិការនិងតម្លាភាព។",
-      "point4": "ឱកាសក្នុងការធ្វើការជាមួយបច្ចេកវិទ្យាទំនើបដូចជា AI និង blockchain។",
-      "point5": "ការប្តេជ្ញាចិត្តចំពោះនិរន្តរភាពនិងឥទ្ធិពលសង្គម។"
+      "title": "ហេតុអ្វីធ្វើការជាមួយเรา?",
+      "intro": "នៅដាំដុះ เราគឺជាក្រុមអ្នកច្នៃប្រឌិត អ្នកបច្ចេកទេស และអ្នកជំនាញកសិកម្មដែលខិតខំបង្កើតឥទ្ធិពលសកលដែលអាចមើលឃើញ។ เราផ្តល់ជូន៖",
+      "point1": "បរិយាកាសការងារដែលជំរុញដោយបេសកកម្មและមានភាពស្វាហាប់។",
+      "point2": "ឱកាសសម្រាប់ការរីកចម្រើនและการរៀនសូត្រវិជ្ជាជីវៈ។",
+      "point3": "វប្បធម៌នៃកិច្ចសហប្រតិបត្តិការและតម្លាភាព។",
+      "point4": "ឱកាសក្នុងការធ្វើការជាមួយបច្ចេកវិទ្យាទំនើបដូចជា AI และ blockchain។",
+      "point5": "ការប្តេជ្ញាចិត្តចំពោះនិរន្តរភាពและឥទ្ធិពលសង្គម។"
     },
     "currentOpenings": {
       "title": "ការងារបច្ចុប្បន្ន",
@@ -455,43 +455,43 @@
         "title": "វិស្វករ Full-Stack ជាន់ខ្ពស់ (Next.js, Firebase)",
         "location": "ពីចម្ងាយ",
         "type": "ពេញ​ម៉ោង",
-        "description": "យើងកំពុងស្វែងរកវិស្វករ full-stack ដែលមានបទពិសោធន៍ដើម្បីដឹកនាំការអភិវឌ្ឍលក្ខណៈពិសេសស្នូលនៃវេទិការបស់យើង។"
+        "description": "เรากำลังស្វែងរកវិស្វករ full-stack ដែលមានបទពិសោធន៍ដើម្បីដឹកនាំការអភិវឌ្ឍលក្ខណៈពិសេសស្នូលនៃវេទិការបស់យើង។"
       },
       "job2": {
         "title": "អ្នកឯកទេសមាតិកាក្សេត្រសាស្ត្រ",
         "location": "ណៃរ៉ូប៊ី, កេនយ៉ា",
         "type": "កិច្ចសន្យា",
-        "description": "ជួយយើងបង្កើតមូលដ្ឋានចំណេះដឹងដ៏ទូលំទូលាយបំផុតរបស់ពិភពលោកសម្រាប់ការអនុវត្តកសិកម្មប្រកបដោយនិរន្តរភាព។"
+        "description": "ជួយเราបង្កើតមូលដ្ឋានចំណេះដឹងដ៏ទូលំទូលាយបំផុតរបស់ពិភពលោកសម្រាប់ការអនុវត្តកសិកម្មប្រកបដោយនិរន្តរភាព។"
       },
       "job3": {
         "title": "អ្នករចនា UX/UI",
         "location": "ពីចម្ងាយ",
         "type": "ពេញ​ម៉ោង",
-        "description": "រចនាបទពិសោធន៍អ្នកប្រើប្រាស់ដែលងាយស្រួលនិងអាចចូលប្រើបានសម្រាប់មូលដ្ឋានអ្នកប្រើប្រាស់ចម្រុះនិងសកល។"
+        "description": "រចនាបទពិសោធន៍អ្នកប្រើប្រាស់ដែលងាយស្រួលและអាចចូលប្រើបានសម្រាប់មូលដ្ឋានអ្នកប្រើប្រាស់ចម្រុះនិងសកល។"
       }
     },
     "noOpenings": {
       "title": "បច្ចុប្បន្នមិនមានការងារទំនេរទេ",
-      "content1": "យើងតែងតែស្វែងរកបុគ្គលដែលមានទេពកោសល្យ ដែលមានចំណង់ចំណូលចិត្តចំពោះបេសកកម្មរបស់យើង។ ប្រសិនបើអ្នកគិតថាអ្នកស័ក្តិសមនឹងក្រុមរបស់យើង សូមផ្ញើប្រវត្តិរូបសង្ខេប និងលិខិតអមរបស់អ្នកមកកាន់ {emailLink}។",
+      "content1": "เราតែងតែស្វែងរកបុគ្គលដែលមានទេពកោសល្យ ដែលមានចំណង់ចំណូលចិត្តចំពោះបេសកកម្មរបស់យើង។ ប្រសិនបើអ្នកគិតថាអ្នកស័ក្តិសមនឹងក្រុមរបស់យើង សូមផ្ញើប្រវត្តិរូបសង្ខេប และលិខិតអមរបស់អ្នកមកកាន់ {emailLink}។",
       "emailLinkText": "careers@damdoh.org"
     },
     "applyNowButton": "ដាក់ពាក្យឥឡូវនេះ"
   },
   "communityGuidelines": {
     "title": "គោលការណ៍ណែនាំសហគមន៍",
-    "subtitle": "ការលើកកម្ពស់បរិយាកាសវិជ្ជាជីវៈ គួរឱ្យទុកចិត្ត និងសហការ។",
-    "intro": "សូមស្វាគមន៍មកកាន់សហគមន៍ដាំដុះ! ដើម្បីធានាថាវេទិការបស់យើងនៅតែជាកន្លែងផលិតភាពនិងសុវត្ថិភាពសម្រាប់គ្រប់តួអង្គកសិកម្ម យើងសូមឱ្យអ្នកគោរពតាមគោលការណ៍ណែនាំខាងក្រោម៖",
+    "subtitle": "ការលើកកម្ពស់បរិយាកាសវិជ្ជាជីវៈ គួរឱ្យទុកចិត្ត และសហការ។",
+    "intro": "សូមស្វាគមន៍មកកាន់សហគមន៍ដាំដុះ! ដើម្បីធានាថាវេទិការបស់យើងនៅតែជាកន្លែងផលិតភាពและសុវត្ថិភាពសម្រាប់គ្រប់តួអង្គកសិកម្ម เราសូមឱ្យអ្នកគោរពតាមគោលការណ៍ណែនាំខាងក្រោម៖",
     "respectful": {
-      "title": "គោរពនិងមានវិជ្ជាជីវៈ",
-      "description": "ចូលរួមក្នុងការពិភាក្សាប្រកបដោយសុជីវធម៌និងស្ថាបនា។ ការខ្វែងគំនិតគ្នាជារឿងធម្មតា ប៉ុន្តែការវាយប្រហារផ្ទាល់ខ្លួន ការបៀតបៀន និងការនិយាយស្អប់ខ្ពើមគឺមិនអាចទទួលយកបានទេ។"
+      "title": "គោរពและមានវិជ្ជាជីវៈ",
+      "description": "ចូលរួមក្នុងការពិភាក្សាប្រកបដោយសុជីវធម៌และស្ថាបនា។ ការខ្វែងគំនិតគ្នាជារឿងធម្មតា ប៉ុន្តែការវាយប្រហារផ្ទាល់ខ្លួន ការបៀតបៀន และការនិយាយស្អប់ខ្ពើមគឺមិនអាចទទួលយកបានទេ។"
     },
     "authentic": {
-      "title": "មានភាពស្មោះត្រង់និងពិតប្រាកដ",
-      "description": "បង្ហាញខ្លួនអ្នកនិងអាជីវកម្មរបស់អ្នកឱ្យបានត្រឹមត្រូវ។ កុំបន្លំខ្លួនជាអ្នកដទៃឬបង្ហាញព័ត៌មានមិនពិតអំពីផលិតផល សេវាកម្ម ឬវិញ្ញាបនបត្ររបស់អ្នក។"
+      "title": "មានភាពស្មោះត្រង់และពិតប្រាកដ",
+      "description": "បង្ហាញខ្លួនអ្នកและអាជីវកម្មរបស់អ្នកឱ្យបានត្រឹមត្រូវ។ កុំបន្លំខ្លួនជាអ្នកដទៃหรือแสดงព័ត៌មានមិនពិតអំពីផលិតផល សេវាកម្ម ឬវិញ្ញាបនបត្ររបស់អ្នក។"
     },
     "relevant": {
       "title": "រក្សាភាពពាក់ព័ន្ធ",
-      "description": "ចូលរួមចំណែកក្នុងការពិភាក្សានិងការចុះបញ្ជីក្នុងលក្ខណៈដែលពាក់ព័ន្ធនឹងខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្ម។ សារឥតបានការ ការបោកប្រាស់ និងមាតិកាផ្សព្វផ្សាយដែលមិនពាក់ព័ន្ធនឹងត្រូវបានលុបចេញ។"
+      "description": "ចូលរួមចំណែកក្នុងការពិភាក្សានិងការចុះបញ្ជីក្នុងលក្ខណៈដែលពាក់ព័ន្ធនឹងខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្ម។ សារឥតបានការ ការបោកប្រាស់ และមាតិកាផ្សព្វផ្សាយដែលមិនពាក់ព័ន្ធនឹងត្រូវបានលុបចេញ។"
     },
     "fairTrade": {
       "title": "គោរពការប្តេជ្ញាចិត្តរបស់អ្នក",
@@ -499,14 +499,14 @@
     },
     "sustainable": {
       "title": "លើកកម្ពស់និរន្តរភាព",
-      "description": "ទោះបីជាវាមិនមែនជាតម្រូវការដ៏តឹងរ៉ឹងសម្រាប់សមាជិកទាំងអស់ក៏ដោយ ក៏យើងលើកទឹកចិត្តឱ្យមានការចែករំលែកចំណេះដឹង និងការអនុវត្តដែលជំរុញនិរន្តរភាពបរិស្ថាន សេដ្ឋកិច្ច និងសង្គម។"
+      "description": "ទោះបីជាវាមិនមែនជាតម្រូវការដ៏តឹងរ៉ឹងសម្រាប់សមាជិកទាំងអស់ក៏ដោយ ក៏យើងលើកទឹកចិត្តឱ្យមានការចែករំលែកចំណេះដឹង และការអនុវត្តដែលជំរុញនិរន្តរភាពបរិស្ថាន សេដ្ឋកិច្ច และសង្គម។"
     },
     "reporting": {
       "title": "ការរាយការណ៍ការរំលោភបំពាន",
-      "content": "ប្រសិនបើអ្នកឃើញខ្លឹមសារ ឬអាកប្បកិរិយាដែលរំលោភលើគោលការណ៍ណែនាំទាំងនេះ សូមរាយការណ៍ទៅក្រុមរបស់យើងតាមរយៈ {emailLink}។ យើងនឹងពិនិត្យមើលរាល់របាយការណ៍ទាំងអស់ ហើយចាត់វិធានការសមស្រប។",
+      "content": "ប្រសិនបើអ្នកឃើញខ្លឹមសារ ឬអាកប្បកិរិយាដែលរំលោភលើគោលការណ៍ណែនាំទាំងនេះ សូមរាយការណ៍ទៅក្រុមរបស់យើងតាមរយៈ {emailLink}។ เราនឹងពិនិត្យមើលរាល់របាយការណ៍ទាំងអស់ ហើយចាត់វិធានការសមស្រប។",
       "emailLinkText": "support@damdoh.org"
     },
-    "conclusion": "ដោយការប្រើ DamDoh អ្នកយល់ព្រមតាមគោលការណ៍ណែនាំទាំងនេះ។ យើងរក្សាសិទ្ធិក្នុងការលុបខ្លឹមសារ និងព្យួរគណនីដែលបំពានគោលការណ៍ទាំងនេះ។ អរគុណសម្រាប់ការជួយយើងបង្កើតសហគមន៍ដ៏អស្ចារ្យ!"
+    "conclusion": "ដោយការប្រើ DamDoh អ្នកយល់ព្រមតាមគោលការណ៍ណែនាំទាំងនេះ។ เราរក្សាសិទ្ធិក្នុងការលុបខ្លឹមសារ และព្យួរគណនីដែលបំពានគោលការណ៍ទាំងនេះ។ អរគុណសម្រាប់ការជួយเราបង្កើតសហគមន៍ដ៏អស្ចារ្យ!"
   },
   "helpCenterPage": {
     "title": "មជ្ឈមណ្ឌលជំនួយ",
@@ -521,17 +521,17 @@
     },
     "marketplaceGuide": {
       "title": "មគ្គុទ្ទេសក៍ទីផ្សារ",
-      "description": "គន្លឹះក្នុងការបង្កើតបញ្ជីដែលមានប្រសិទ្ធភាព និងស្វែងរកអ្វីដែលអ្នកត្រូវការ។",
+      "description": "គន្លឹះក្នុងការបង្កើតបញ្ជីដែលមានប្រសិទ្ធភាព และស្វែងរកអ្វីដែលអ្នកត្រូវការ។",
       "placeholder": "ខ្លឹមសារសម្រាប់ 'មគ្គុទ្ទេសក៍ទីផ្សារ' នឹងមានឆាប់ៗនេះ។"
     },
     "accountManagement": {
       "title": "ការគ្រប់គ្រងគណនី",
-      "description": "គ្រប់គ្រងការកំណត់ ឯកជនភាព និងការជូនដំណឹងរបស់អ្នក។",
+      "description": "គ្រប់គ្រងការកំណត់ ឯកជនភាព และការជូនដំណឹងរបស់អ្នក។",
       "placeholder": "ខ្លឹមសារសម្រាប់ 'ការគ្រប់គ្រងគណនី' នឹងមានឆាប់ៗនេះ។"
     },
     "troubleshooting": {
       "title": "ការ​ដោះស្រាយ​បញ្ហា",
-      "description": "ស្វែងរកដំណោះស្រាយចំពោះបញ្ហាទូទៅ និងបញ្ហាបច្ចេកទេស។",
+      "description": "ស្វែងរកដំណោះស្រាយចំពោះបញ្ហាទូទៅ และបញ្ហាបច្ចេកទេស។",
       "placeholder": "ខ្លឹមសារសម្រាប់ 'ការដោះស្រាយបញ្ហា' នឹងមានឆាប់ៗនេះ។"
     },
     "stillNeedHelp": {
@@ -543,420 +543,111 @@
   "privacyPolicy": {
     "title": "គោលការណ៍ឯកជនភាព",
     "lastUpdated": "កែសម្រួលចុងក្រោយ: 29 តុលា 2023",
-    "introduction": "សេចក្តីជូនដំណឹងអំពីឯកជនភាពនេះសម្រាប់ DamDoh ពន្យល់ពីរបៀប និងមូលហេតុដែលយើងអាចប្រមូល ផ្ទុក ប្រើប្រាស់ និង/ឬចែករំលែក ('ដំណើរការ') ព័ត៌មានរបស់អ្នកនៅពេលអ្នកប្រើប្រាស់សេវាកម្មរបស់យើង ('សេវាកម្ម') ដូចជានៅពេលអ្នកចូលមើលគេហទំព័រ ឬកម្មវិធីទូរស័ព្ទរបស់យើង។",
+    "introduction": "សេចក្តីជូនដំណឹងអំពីឯកជនភាពនេះសម្រាប់ DamDoh ពន្យល់ពីរបៀប និងមូលហេតុដែលเราអាចប្រមូល ផ្ទុក ប្រើប្រាស់ และ/หรือចែករំលែក ('ដំណើរការ') ព័ត៌មានរបស់អ្នកនៅពេលអ្នកប្រើប្រាស់សេវាកម្មរបស់យើង ('សេវាកម្ម') ដូចជានៅពេលអ្នកចូលមើលគេហទំព័រ ឬកម្មវិធីទូរស័ព្ទរបស់យើង។",
     "whatInfoWeCollect": {
       "heading": "1. តើយើងប្រមូលព័ត៌មានអ្វីខ្លះ?",
-      "content": "យើងប្រមូលព័ត៌មានផ្ទាល់ខ្លួនដែលអ្នកផ្តល់ឱ្យយើងដោយស្ម័គ្រចិត្តនៅពេលអ្នកចុះឈ្មោះក្នុងសេវាកម្ម បង្ហាញចំណាប់អារម្មណ៍ក្នុងការទទួលបានព័ត៌មានអំពីយើង ឬផលិតផល និងសេវាកម្មរបស់យើង នៅពេលអ្នកចូលរួមក្នុងសកម្មភាពនៅលើសេវាកម្ម ឬនៅពេលអ្នកទាក់ទងមកយើង។"
+      "content": "យើងប្រមូលព័ត៌មានផ្ទាល់ខ្លួនដែលអ្នកផ្តល់ឱ្យเราដោយស្ម័គ្រចិត្តនៅពេលអ្នកចុះឈ្មោះក្នុងសេវាកម្ម បង្ហាញចំណាប់អារម្មណ៍ក្នុងការទទួលបានព័ត៌មានអំពីយើង ឬផលិតផល และសេវាកម្មរបស់យើង នៅពេលអ្នកចូលរួមក្នុងសកម្មភាពនៅលើសេវាកម្ម ឬនៅពេលអ្នកទាក់ទងមកเรา។"
     },
     "howWeUseInfo": {
       "heading": "2. តើយើងដំណើរការព័ត៌មានរបស់អ្នកដោយរបៀបណា?",
-      "content": "យើងដំណើរការព័ត៌មានរបស់អ្នកសម្រាប់គោលបំណងដោយផ្អែកលើផលប្រយោជន៍អាជីវកម្មស្របច្បាប់ ការបំពេញកិច្ចសន្យារបស់យើងជាមួយអ្នក ការអនុលោមតាមកាតព្វកិច្ចច្បាប់របស់យើង និង/ឬការយល់ព្រមរបស់អ្នក រួមទាំងការសម្របសម្រួលការបង្កើតគណនី ការបើកដំណើរការទំនាក់ទំនងរវាងអ្នកប្រើប្រាស់ និងការផ្តល់សេវាកម្មស្នូលរបស់យើង។"
+      "content": "យើងដំណើរការព័ត៌មានរបស់អ្នកសម្រាប់គោលបំណងដោយផ្អែកលើផលប្រយោជន៍អាជីវកម្មស្របច្បាប់ ការបំពេញកិច្ចសន្យារបស់យើងជាមួយអ្នក ការអនុលោមតាមកាតព្វកិច្ចច្បាប់របស់យើង และ/ឬការយល់ព្រមរបស់អ្នក រួមទាំងការសម្របសម្រួលការបង្កើតគណនី ការបើកដំណើរការទំនាក់ទំនងរវាងអ្នកប្រើប្រាស់ และការផ្តល់សេវាកម្មស្នូលរបស់យើង។"
     },
     "willInfoBeShared": {
       "heading": "3. តើព័ត៌មានរបស់អ្នកនឹងត្រូវបានចែករំលែកជាមួយនរណាម្នាក់ដែរឬទេ?",
-      "content": "យើងចែករំលែកព័ត៌មានលុះត្រាតែមានការយល់ព្រមពីអ្នក ដើម្បីគោរពតាមច្បាប់ ដើម្បីផ្តល់សេវាកម្មដល់អ្នក ដើម្បីការពារសិទ្ធិរបស់អ្នក ឬដើម្បីបំពេញកាតព្វកិច្ចអាជីវកម្ម។ ឧទាហរណ៍ យើងចែករំលែកព័ត៌មានប្រវត្តិរូបសាធារណៈរបស់អ្នកជាមួយអ្នកប្រើប្រាស់ផ្សេងទៀតដើម្បីសម្របសម្រួលការតភ្ជាប់។"
+      "content": "เราចែករំលែកព័ត៌មានលុះត្រាតែមានការយល់ព្រមពីអ្នក ដើម្បីគោរពតាមច្បាប់ ដើម្បីផ្តល់សេវាកម្មដល់អ្នក ដើម្បីការពារសិទ្ធិរបស់អ្នក ឬដើម្បីបំពេញកាតព្វកិច្ចអាជីវកម្ម។ ឧទាហរណ៍ យើងចែករំលែកព័ត៌មានប្រវត្តិរូបសាធារណៈរបស់អ្នកជាមួយអ្នកប្រើប្រាស់ផ្សេងទៀតដើម្បីសម្របសម្រួលការតភ្ជាប់។"
     },
     "cookiesAndTracking": {
-      "heading": "4. តើយើងប្រើឃុកឃីនិងបច្ចេកវិទ្យាតាមដានផ្សេងទៀតដែរឬទេ?",
-      "content": "យើងអាចប្រើឃុកឃី និងបច្ចេកវិទ្យាតាមដានស្រដៀងគ្នា (ដូចជា web beacons និង pixels) ដើម្បីចូលប្រើ ឬផ្ទុកព័ត៌មាន។ ព័ត៌មានជាក់លាក់អំពីរបៀបដែលយើងប្រើប្រាស់បច្ចេកវិទ្យាបែបនេះ និងរបៀបដែលអ្នកអាចបដិសេធឃុកឃីមួយចំនួនត្រូវបានកំណត់នៅក្នុងសេចក្តីជូនដំណឹងអំពីឃុកឃីរបស់យើង។"
+      "heading": "4. តើយើងប្រើឃុកឃីและបច្ចេកវិទ្យាតាមដានផ្សេងទៀតដែរឬទេ?",
+      "content": "เราអាចប្រើឃុកឃី และបច្ចេកវិទ្យាតាមដានស្រដៀងគ្នា (ដូចជា web beacons และ pixels) ដើម្បីចូលប្រើ ឬផ្ទុកព័ត៌មាន។ ព័ត៌មានជាក់លាក់អំពីរបៀបដែលเราប្រើប្រាស់បច្ចេកវិទ្យាបែបនេះ និងរបៀបដែលអ្នកអាចបដិសេធឃុកឃីមួយចំនួនត្រូវបានកំណត់នៅក្នុងសេចក្តីជូនដំណឹងអំពីឃុកឃីរបស់យើង។"
     },
     "howLongWeKeepInfo": {
       "heading": "5. តើយើងរក្សាទុកព័ត៌មានរបស់អ្នករយៈពេលប៉ុន្មាន?",
-      "content": "យើងរក្សាទុកព័ត៌មានរបស់អ្នកដរាបណាវាចាំបាច់ដើម្បីបំពេញគោលបំណងដែលបានកំណត់នៅក្នុងសេចក្តីជូនដំណឹងអំពីឯកជនភាពនេះ លុះត្រាតែមានការកំណត់ដោយច្បាប់។ នៅពេលដែលយើងលែងមានតម្រូវការអាជីវកម្មស្របច្បាប់ដើម្បីដំណើរការព័តណីផ្ទាល់ខ្លួនរបស់អ្នក យើងនឹងលុប ឬធ្វើឱ្យវាអនាមិក។"
+      "content": "เราរក្សាទុកព័ត៌មានរបស់អ្នកដរាបណាវាចាំបាច់ដើម្បីបំពេញគោលបំណងដែលបានកំណត់នៅក្នុងសេចក្តីជូនដំណឹងអំពីឯកជនភាពនេះ លុះត្រាតែមានការកំណត់ដោយច្បាប់។ នៅពេលដែលเราលែងមានតម្រូវការអាជីវកម្មស្របច្បាប់ដើម្បីដំណើរការព័តណីផ្ទាល់ខ្លួនរបស់អ្នក យើងនឹងលុប หรือធ្វើឱ្យវាអនាមិក។"
     },
     "howWeKeepInfoSafe": {
       "heading": "6. តើយើងរក្សាព័ត៌មានរបស់អ្នកឱ្យមានសុវត្ថិភាពដោយរបៀបណា?",
-      "content": "យើងបានអនុវត្តវិធានការសុវត្ថិភាពបច្ចេកទេស និងអង្គការសមស្របដែលបានរចនាឡើងដើម្បីការពារសុវត្ថិភាពនៃព័ត៌មានផ្ទាល់ខ្លួនណាមួយដែលយើងដំណើរការ។ ទោះជាយ៉ាងណាក៏ដោយ ទោះបីជាមានការការពារ និងការខិតខំប្រឹងប្រែងរបស់យើងក៏ដោយ គ្មានការបញ្ជូនអេឡិចត្រូនិចណាមួយតាមរយៈអ៊ីនធឺណិតអាចត្រូវបានធានាថាសុវត្ថិភាព 100% នោះទេ។"
+      "content": "เราបានអនុវត្តវិធានការសុវត្ថិភាពបច្ចេកទេស និងអង្គការសមស្របដែលបានរចនាឡើងដើម្បីការពារសុវត្ថិភាពនៃព័ត៌មានផ្ទាល់ខ្លួនណាមួយដែលយើងដំណើរការ។ ទោះជាយ៉ាងណាក៏ដោយ ទោះបីជាមានការការពារ และការខិតខំប្រឹងប្រែងរបស់យើងក៏ដោយ គ្មានការបញ្ជូនអេឡិចត្រូនិចណាមួយតាមរយៈអ៊ីនធឺណិតអាចត្រូវបានធានាថាសុវត្ថិភាព 100% នោះទេ។"
     },
     "minors": {
       "heading": "7. តើយើងប្រមូលព័ត៌មានពីអនីតិជនដែរឬទេ?",
-      "content": "យើងមិនស្នើសុំព័ត៌មានដោយចេតនាពី ឬធ្វើទីផ្សារដល់កុមារអាយុក្រោម 18 ឆ្នាំនោះទេ។ តាមរយៈការប្រើប្រាស់សេវាកម្ម អ្នកតំណាងឱ្យអ្នកមានអាយុយ៉ាងតិច 18 ឆ្នាំ ឬអ្នកគឺជាឪពុកម្តាយ ឬអាណាព្យាបាលនៃអនីតិជនបែបនោះ ហើយយល់ព្រមឱ្យអនីតិជនដែលស្ថិតក្រោមការមើលការខុសត្រូវរបស់អ្នកប្រើប្រាស់សេវាកម្ម។"
+      "content": "เราមិនស្នើសុំព័ត៌មានដោយចេតនាពី ឬធ្វើទីផ្សារដល់កុមារអាយុក្រោម 18 ឆ្នាំនោះទេ។ តាមរយៈការប្រើប្រាស់សេវាកម្ម អ្នកតំណាងឱ្យអ្នកមានអាយុយ៉ាងតិច 18 ឆ្នាំ ឬអ្នកគឺជាឪពុកម្តាយ ឬអាណាព្យាបាលនៃអនីតិជនបែបនោះ និងយល់ព្រមឱ្យអនីតិជនដែលស្ថិតក្រោមការមើលការខុសត្រូវរបស់អ្នកប្រើប្រាស់សេវាកម្ម។"
     },
     "privacyRights": {
       "heading": "8. តើសិទ្ធិឯកជនភាពរបស់អ្នកមានអ្វីខ្លះ?",
-      "content": "នៅក្នុងតំបន់មួយចំនួន អ្នកមានសិទ្ធិជាក់លាក់ក្រោមច្បាប់ការពារទិន្នន័យជាធរមាន ដែលអាចរួមបញ្ចូលសិទ្ធិ (i) ក្នុងការស្នើសុំចូលប្រើ និងទទួលបានច្បាប់ចម្លងនៃទិន្នន័យផ្ទាល់ខ្លួនរបស់អ្នក (ii) ក្នុងការស្នើសុំការកែតម្រូវ ឬលុប (iii) ក្នុងការកំណត់ការដំណើរការព័ត៌មានផ្ទាល់ខ្លួនរបស់អ្នក និង (iv) ប្រសិនបើមាន សិទ្ធិក្នុងការចល័តទិន្នន័យ។"
+      "content": "នៅក្នុងតំបន់មួយចំនួន អ្នកមានសិទ្ធិជាក់លាក់ក្រោមច្បាប់ការពារទិន្នន័យជាធរមាន ដែលអាចរួមបញ្ចូលសិទ្ធិ (i) ក្នុងការស្នើសុំចូលប្រើ และទទួលបានច្បាប់ចម្លងនៃទិន្នន័យផ្ទាល់ខ្លួនរបស់អ្នក (ii) ក្នុងការស្នើសុំការកែតម្រូវ หรือលុប (iii) ក្នុងការកំណត់ការដំណើរការព័ត៌មានផ្ទាល់ខ្លួនរបស់អ្នក និង (iv) ប្រសិនបើមាន សិទ្ធិក្នុងការចល័តទិន្នន័យ។"
     },
     "controlsForDoNotTrack": {
       "heading": "9. ការគ្រប់គ្រងសម្រាប់មុខងារ Do-Not-Track",
-      "content": "កម្មវិធីរុករកតាមអ៊ីនធឺណិត និងប្រព័ន្ធប្រតិបត្តិការទូរស័ព្ទភាគច្រើន និងកម្មវិធីទូរស័ព្ទមានមុខងារ ឬការកំណត់ Do-Not-Track ('DNT') ដែលអ្នកអាចធ្វើឱ្យសកម្មដើម្បីបង្ហាញចំណូលចិត្តឯកជនភាពរបស់អ្នកថាមិនឱ្យព័ត៌មានអំពីសកម្មភាពរុករកតាមអ៊ីនធឺណិតរបស់អ្នកត្រូវបានត្រួតពិនិត្យ និងប្រមូល។ នៅដំណាក់កាលនេះ មិនទាន់មានស្តង់ដារបច្ចេកវិទ្យាឯកភាពសម្រាប់ការទទួលស្គាល់ និងអនុវត្តសញ្ញា DNT នោះទេ។ ដូច្នេះ យើងមិនឆ្លើយតបនឹងសញ្ញា DNT របស់កម្មវិធីរុករកបច្ចុប្បន្ននោះទេ។"
+      "content": "កម្មវិធីរុករកតាមអ៊ីនធឺណិត និងប្រព័ន្ធប្រតិបត្តិការទូរស័ព្ទភាគច្រើន និងកម្មវិធីទូរស័ព្ទមានមុខងារ ឬការកំណត់ Do-Not-Track ('DNT') ដែលអ្នកអាចធ្វើឱ្យសកម្មដើម្បីបង្ហាញចំណូលចិត្តឯកជនភាពរបស់អ្នកថាមិនឱ្យព័ត៌មានអំពីសកម្មភាពរុករកតាមអ៊ីនធឺណិតរបស់អ្នកត្រូវបានត្រួតពិនិត្យ និងប្រមូល។ នៅដំណាក់កាលនេះ មិនទាន់មានស្តង់ដារបច្ចេកវិទ្យាឯកភាពសម្រាប់ការទទួលស្គាល់ และអនុវត្តសញ្ញា DNT នោះទេ។ ដូច្នេះ เราមិនឆ្លើយតបនឹងសញ្ញា DNT របស់កម្មវិធីរុករកបច្ចុប្បន្ននោះទេ។"
     },
     "updatesToNotice": {
       "heading": "10. តើយើងធ្វើបច្ចុប្បន្នភាពសេចក្តីជូនដំណឹងនេះដែរឬទេ?",
-      "content": "យើងអាចធ្វើបច្ចុប្បន្នភាពសេចក្តីជូនដំណឹងអំពីឯកជនភាពនេះម្តងម្កាល។ កំណែដែលបានកែសម្រួលនឹងត្រូវបានបង្ហាញដោយកាលបរិច្ឆេទ 'កែសម្រួល' ដែលបានធ្វើបច្ចុប្បន្នភាព ហើយកំណែដែលបានកែសម្រួលនឹងមានប្រសិទ្ធភាពភ្លាមៗនៅពេលដែលវាអាចចូលប្រើបាន។ យើងលើកទឹកចិត្តអ្នកឱ្យពិនិត្យមើលសេចក្តីជូនដំណឹងអំពីឯកជនភាពនេះញឹកញាប់ ដើម្បីទទួលបានព័ត៌មានអំពីរបៀបដែលយើងកំពុងការពារព័ត៌មានរបស់អ្នក។"
+      "content": "เราអាចធ្វើបច្ចុប្បន្នភាពសេចក្តីជូនដំណឹងអំពីឯកជនភាពនេះម្តងម្កាល។ កំណែដែលបានកែសម្រួលនឹងត្រូវបានបង្ហាញដោយកាលបរិច្ឆេទ 'កែសម្រួល' ដែលបានធ្វើបច្ចុប្បន្នភាព และកំណែដែលបានកែសម្រួលនឹងមានប្រសិទ្ធភាពភ្លាមៗនៅពេលដែលវាអាចចូលប្រើបាន។ យើងលើកទឹកចិត្តអ្នកឱ្យពិនិត្យមើលសេចក្តីជូនដំណឹងអំពីឯកជនភាពនេះញឹកញាប់ ដើម្បីទទួលបានព័ត៌មានអំពីរបៀបដែលเราកំពុងការពារព័ត៌មានរបស់អ្នក។"
     },
     "contactUs": {
       "heading": "11. ទំនាក់ទំនងមកយើង",
-      "content": "ដើម្បីដោះស្រាយពាក្យបណ្តឹងទាក់ទងនឹងគេហទំព័រ ឬដើម្បីទទួលបានព័ត៌មានបន្ថែមទាក់ទងនឹងការប្រើប្រាស់គេហទំព័រ សូមទំនាក់ទំនងមកយើង។"
+      "content": "เพื่อដោះស្រាយពាក្យបណ្តឹងទាក់ទងនឹងគេហទំព័រ หรือเพื่อรับข้อมูลเพิ่มเติมទាក់ទងនឹងការប្រើប្រាស់គេហទំព័រ សូមទំនាក់ទំនងមកเรา។"
     },
-    "conclusion": "ដើម្បីដោះស្រាយข้อร้องเรียนឬទទួលព័ត៌មានបន្ថែម សូម {contactLink}"
-  },
-  "pinboardPage": {
-    "title": "Pin-Board",
-    "description": "Your personal space to save important items from across DamDoh.",
-    "comingSoonTitle": "Pin-Board Coming Soon!",
-    "comingSoonDescription": "This feature will allow you to 'pin' marketplace items, forum posts, profiles, and more to a personal board for easy access.",
-    "stayTuned": "Stay tuned for updates!"
-  },
-  "walletPage": {
-    "title": "My Wallet",
-    "description": "Manage your finances, view transactions, and access financial services.",
-    "underDevelopmentTitle": "Financial Hub Under Development",
-    "underDevelopmentDescription": "We are building a robust and secure digital wallet to manage all your platform transactions. Features will include:",
-    "feature1": "Secure balance storage.",
-    "feature2": "Transaction history for marketplace sales and service payments.",
-    "feature3": "Easy payouts to your local mobile money or bank account.",
-    "feature4": "Access to apply for loans and grants directly from your wallet.",
-    "stayTuned": "Stay tuned for this exciting feature!"
-  },
-  "industryNewsPage": {
-    "title": "Industry News",
-    "description": "Stay informed with the latest trends, research, and policy changes in agriculture.",
-    "searchPlaceholder": "Search news articles...",
-    "categoryPlaceholder": "Filter by category",
-    "allCategories": "All Categories",
-    "sourceLabel": "Source",
-    "publishedLabel": "Published",
-    "categoryLabel": "Category",
-    "readButton": "Read Full Story",
-    "news1": {
-      "title": "Global Coffee Prices Surge Amidst Brazil Frosts and Shipping Delays",
-      "excerpt": "A combination of adverse weather in key growing regions and ongoing global logistics challenges has pushed Arabica coffee futures to a seven-year high..."
-    },
-    "news2": {
-      "title": "EU Implements New 'Farm to Fork' Strategy Regulations on Packaging",
-      "excerpt": "New regulations will require food exporters to the EU to meet stricter standards for recyclable and compostable packaging, affecting the entire supply chain."
-    },
-    "news3": {
-      "title": "Study Shows Regenerative Practices Can Increase Soil Carbon by 15% in 5 Years",
-      "excerpt": "A long-term study published in Nature demonstrates the significant potential of no-till and cover cropping practices for carbon sequestration and soil health."
-    },
-    "noNews": {
-      "title": "No News Found",
-      "description": "There are no news articles matching your criteria at this time."
-    }
-  },
-  "notificationsPage": {
-    "title": "Notifications",
-    "description": "Stay up to date with the latest activity from your network.",
-    "noNotifications": "You have no new notifications.",
-    "likedYourPost": "{name} liked your post.",
-    "commentedOnYourPost": "{name} commented on your post.",
-    "viewedYourProfile": "{name} viewed your profile.",
-    "placedNewOrder": "{name} placed an order for your listing.",
-    "sentConnectionRequest": "{name} sent you a connection request.",
-    "error": "Error"
-  },
-  "messagingPage": {
-    "title": "Messages",
-    "searchPlaceholder": "Search conversations...",
-    "noConversations": "You have no conversations yet. Start one by connecting with someone on the Network page.",
-    "selectConversation": "Select a conversation to start chatting.",
-    "noMessages": "No messages in this conversation yet. Be the first to say something!",
-    "typeMessagePlaceholder": "Type a message...",
-    "signInToView": "Please sign in to view your messages.",
-    "signIn": "Sign In",
-    "error": "Error",
-    "couldNotLoadConversations": "Could not load your conversations.",
-    "couldNotStartConversation": "Could not start a new conversation.",
-    "sendFailed": "Send Failed",
-    "couldNotSendMessage": "Could not send the message. Please try again."
-  },
-  "knowledgeHub": {
-    "title": "Knowledge Hub",
-    "description": "Your center for learning, growth, and agricultural expertise.",
-    "courses": {
-      "title": "Courses",
-      "description": "Structured learning paths to enhance your skills.",
-      "body": "Browse our catalog of courses designed by industry experts, covering everything from sustainable farming techniques to agribusiness management.",
-      "cta": "Explore Courses"
-    },
-    "blog": {
-      "title": "Blog & Industry News",
-      "description": "Stay informed with the latest insights and trends.",
-      "body": "Read articles from our team and community experts on market trends, new technologies, success stories, and important policy changes.",
-      "cta": "Read the Blog"
-    },
-    "featured": {
-      "title": "Featured Content",
-      "loading": "Loading featured content...",
-      "error": "Could not load featured content",
-      "noArticles": "No featured articles available at this time."
-    }
-  },
-  "InsurancePage": {
-    "title": "Agricultural Insurance Hub",
-    "description": "Protect your farm and investments against unforeseen risks.",
-    "toast": {
-      "errorTitle": "Error"
-    },
-    "perTerm": "term",
-    "viewDetailsButton": "View Details & Apply",
-    "noProducts": "No insurance products are currently available. Please check back later."
-  },
-  "InsuranceApplyPage": {
-    "backLink": "Back to Insurance Hub",
-    "title": "Insurance Application",
-    "description": "Apply for the {productName} policy.",
-    "form": {
-      "farmLabel": "Select Farm to Insure",
-      "farmPlaceholder": "Choose one of your farms",
-      "noFarms": "No farms found. Please create one first.",
-      "coverageValueLabel": "Desired Coverage Value (in USD)",
-      "coverageValuePlaceholder": "e.g., 10000",
-      "coverageValueDescription": "The total value you wish to insure.",
-      "submitButton": "Submit Application"
-    },
-    "toast": {
-      "error": "Error",
-      "successTitle": "Application Submitted!",
-      "successDescription": "Your insurance application has been sent for review.",
-      "notAuthenticated": "You must be logged in to apply."
-    },
-    "success": {
-      "title": "Application Received",
-      "description": "Thank you! Your application is now under review. The insurance provider will contact you with the next steps.",
-      "backToDashboardButton": "Back to Dashboard",
-      "applyForAnotherButton": "Apply for Another Policy"
-    }
-  },
-  "InsuranceDetailPage": {
-    "backLink": "Back to Insurance Hub",
-    "notFound": "Insurance product not found.",
-    "coverageTitle": "Coverage Details",
-    "premiumTitle": "Premium",
-    "perTerm": "term",
-    "providerTitle": "Provided by",
-    "applyButton": "Apply for this Policy",
-    "toast": {
-      "errorTitle": "Error Loading"
-    }
-  },
-  "InsuranceProductCreatePage": {
-    "backLink": "Back to Products",
-    "title": "Create New Insurance Product",
-    "description": "Define a new insurance product to offer on the platform.",
-    "form": {
-      "nameLabel": "Product Name",
-      "namePlaceholder": "e.g., Multi-Peril Crop Insurance",
-      "typeLabel": "Product Type",
-      "typePlaceholder": "Select a type",
-      "crop": "Crop",
-      "livestock": "Livestock",
-      "asset": "Asset",
-      "weather": "Weather",
-      "descriptionLabel": "Short Description",
-      "descriptionPlaceholder": "A brief summary of the product.",
-      "coverageLabel": "Coverage Details",
-      "coveragePlaceholder": "Describe in detail what this policy covers...",
-      "premiumLabel": "Premium ($)",
-      "premiumPlaceholder": "e.g., 500",
-      "currencyLabel": "Currency",
-      "submitButton": "Create Product"
-    },
-    "toast": {
-      "notAuthenticated": "You must be an Insurance Provider to create products.",
-      "successTitle": "Product Created",
-      "successDescription": "'{name}' has been successfully created.",
-      "errorTitle": "Creation Failed"
-    }
-  },
-  "InsuranceProductsPage": {
-    "title": "Manage Your Insurance Products",
-    "description": "View, create, and manage your insurance offerings.",
-    "createButton": "Create New Product",
-    "table": {
-      "productName": "Product Name",
-      "type": "Type",
-      "status": "Status",
-      "premium": "Premium"
-    },
-    "noProducts": "You have not created any insurance products yet.",
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "FiApplicationListPage": {
-    "backLink": "Back to Dashboard",
-    "title": "Financial Applications",
-    "description": "Review and manage incoming loan and grant applications.",
-    "tabs": {
-      "all": "All",
-      "pending": "Pending",
-      "approved": "Approved",
-      "rejected": "Rejected"
-    },
-    "table": {
-      "applicant": "Applicant",
-      "type": "Type",
-      "amount": "Amount (USD)",
-      "date": "Submitted",
-      "status": "Status",
-      "action": "Action"
-    },
-    "reviewButton": "Review",
-    "noApplications": "No applications in this category."
-  },
-  "FiApplicationPage": {
-    "backLink": "Back to Applications",
-    "title": "Application Details",
-    "applicationTitle": "Application",
-    "submittedOn": "Submitted on",
-    "amountRequested": "Amount Requested",
-    "purpose": "Purpose of Funds",
-    "approveButton": "Approve",
-    "rejectButton": "Reject",
-    "requestInfoButton": "Request More Info",
-    "applicantDetails": "Applicant Details",
-    "viewProfileButton": "View Full Profile",
-    "profileNotFound": "Applicant profile not found.",
-    "riskAssessment": "AI Risk Assessment",
-    "creditScore": "Credit Score",
-    "notFound": "Application not found or you do not have permission to view it.",
-    "toast": {
-      "errorTitle": "Error",
-      "updateSuccessTitle": "Status Updated",
-      "updateSuccessDescription": "Application status has been set to '{status}'.",
-      "updateFailTitle": "Update Failed"
-    }
-  },
-  "FiProductsPage": {
-    "backLink": "Back to Dashboard",
-    "title": "Financial Products",
-    "description": "Create and manage your loan and grant products.",
-    "createButton": "Create New Product",
-    "table": {
-      "productName": "Product Name",
-      "type": "Type",
-      "status": "Status",
-      "interestRate": "Interest Rate",
-      "maxAmount": "Max Amount"
-    },
-    "noProducts": "You have not created any financial products yet.",
-    "toast": {
-      "errorTitle": "Error"
-    }
-  },
-  "FiProductCreatePage": {
-    "backLink": "Back to Products",
-    "title": "Create New Financial Product",
-    "description": "Define a new financial product to offer to platform users.",
-    "form": {
-      "nameLabel": "Product Name",
-      "namePlaceholder": "e.g., Smallholder Growth Loan",
-      "typeLabel": "Product Type",
-      "loan": "Loan",
-      "grant": "Grant",
-      "descriptionLabel": "Description",
-      "descriptionPlaceholder": "Describe the product, its purpose, and eligibility criteria.",
-      "interestRateLabel": "Interest Rate (%)",
-      "interestRatePlaceholder": "e.g., 12.5",
-      "maxAmountLabel": "Max Amount (USD)",
-      "maxAmountPlaceholder": "e.g., 10000",
-      "targetRolesLabel": "Target Audience",
-      "targetRolesDescription": "Select the stakeholder roles this product is for.",
-      "submitButton": "Create Product"
-    },
-    "toast": {
-      "notAuthenticated": "You must be a Financial Institution to create products.",
-      "successTitle": "Product Created",
-      "successDescription": "'{name}' has been successfully created and is now active.",
-      "errorTitle": "Creation Failed"
-    }
-  },
-  "traceabilityPage": {
-    "title": "Product Traceability",
-    "description": "Track the journey of your food from farm to fork with our Verifiable Traceability ID (VTI) system.",
-    "inputPlaceholder": "Enter VTI Batch ID...",
-    "trackButton": "Track",
-    "vtiDescription": "The VTI is a unique identifier found on product packaging.",
-    "recentTitle": "Recently Tracked Batches",
-    "recentDescription": "Explore some of the latest products with public traceability reports.",
-    "producerLabel": "Producer",
-    "harvestDateLabel": "Harvest Date",
-    "viewReportButton": "View Report",
-    "noRecentBatches": "No recently tracked batches with public data.",
-    "detailPage": {
-      "invalidIdError": "Invalid Batch ID provided.",
-      "loadError": "Failed to load traceability history.",
-      "backLink": "Back to Traceability Hub",
-      "notFoundTitle": "Batch Not Found",
-      "notFoundDescription": "The VTI you entered does not match any batch in our records.",
-      "traceableProduct": "Traceable Product",
-      "batchIdLabel": "Batch ID",
-      "producerLabel": "Producer",
-      "qualityLabel": "Initial Quality",
-      "notSpecified": "Not Specified",
-      "journeyTitle": "The Journey of this Batch",
-      "journeyDescription": "A complete, time-stamped log of every event in this product's lifecycle.",
-      "noEventDetails": "No additional details for this event.",
-      "observationType": "Observation Type",
-      "details": "Details",
-      "aiDiagnosis": "AI Diagnosis",
-      "noEventsFound": "No traceability events have been logged for this batch yet.",
-      "geoLocationLabel": "Geo-location",
-      "sustainablyGrownTitle": "Sustainably Grown",
-      "sustainablyGrownDescription": "This product's traceability log indicates the use of sustainable and/or organic farming practices.",
-      "harvestDateLabel": "Harvest Date"
-    }
+    "conclusion": "เพื่อដោះស្រាយข้อร้องเรียนหรือรับข้อมูลเพิ่มเติม សូម {contactLink}"
   },
   "termsOfService": {
-    "title": "Terms of Service",
-    "lastUpdated": "Last updated: October 29, 2023",
-    "introduction": "These Terms of Use constitute a legally binding agreement made between you and DamDoh, concerning your access to and use of the DamDoh website as well as any other media form, media channel, mobile website, or mobile application related, linked, or otherwise connected thereto.",
+    "title": "លក្ខខណ្ឌប្រើប្រាស់",
+    "lastUpdated": "កែសម្រួលចុងក្រោយ: 29 តុលា 2023",
+    "introduction": "លក្ខខណ្ឌប្រើប្រាស់ទាំងនេះបង្កើតបានជាកិច្ចព្រមព្រៀងដែលមានកាតព្វកិច្ចផ្លូវច្បាប់រវាងអ្នក และ DamDoh ទាក់ទងនឹងការចូលប្រើ និងការប្រើប្រាស់គេហទំព័រ DamDoh ក៏ដូចជាទម្រង់ប្រព័ន្ធផ្សព្វផ្សាយផ្សេងទៀត ឆានែលប្រព័ន្ធផ្សព្វផ្សាយ គេហទំព័រទូរស័ព្ទ หรือកម្មវិធីទូរស័ព្ទដែលពាក់ព័ន្ធ តភ្ជាប់ หรือភ្ជាប់ជាមួយនោះ។",
     "agreementToTerms": {
-      "heading": "1. AGREEMENT TO TERMS",
-      "content": "By using the platform, you agree to be bound by these Terms of Use. If you do not agree, you are not permitted to use the platform. We reserve the right to make changes to these Terms at any time."
+      "heading": "1. ការយល់ព្រមតាមលក្ខខណ្ឌ",
+      "content": "តាមរយៈការប្រើប្រាស់វេទិកា អ្នកយល់ព្រមអនុវត្តតាមលក្ខខណ្ឌប្រើប្រាស់ទាំងនេះ។ ប្រសិនបើអ្នកមិនយល់ព្រម អ្នកមិនអាចប្រើប្រាស់វេទិកាបានទេ។ យើងរក្សាសិទ្ធិក្នុងការផ្លាស់ប្តូរលក្ខខណ្ឌទាំងនេះនៅពេលណាក៏បាន។"
     },
     "intellectualProperty": {
-      "heading": "2. INTELLECTUAL PROPERTY RIGHTS",
-      "content": "Unless otherwise indicated, the Platform is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the 'Content') and the trademarks, service marks, and logos contained therein are owned or controlled by us or licensed to us."
+      "heading": "2. សិទ្ធិកម្មសិទ្ធិបញ្ញា",
+      "content": "លុះត្រាតែមានការបញ្ជាក់ផ្សេងពីនេះ វេទិកាគឺជាកម្មសិទ្ធិផ្តាច់មុខរបស់យើង และលេខកូដប្រភព មូលដ្ឋានទិន្នន័យ មុខងារកម្មវិធី គេហទំព័រ សំឡេង វីដេអូ អត្ថបទ រូបថត และក្រាហ្វិកទាំងអស់នៅលើគេហទំព័រ (រួមគ្នាហៅថា 'ខ្លឹមសារ') และពាណិជ្ជសញ្ញា សញ្ញាសេវាកម្ម និងស្លាកសញ្ញាដែលមាននៅក្នុងនោះ គឺជាកម្មសិទ្ធិ ឬគ្រប់គ្រងដោយเรา ឬត្រូវបានផ្តល់អាជ្ញាប័ណ្ណឱ្យយើង។"
     },
     "userRepresentations": {
-      "heading": "3. USER REPRESENTATIONS",
-      "content": "By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Use; (4) you will not use the Site for any illegal or unauthorized purpose; and (5) your use of the Site will not violate any applicable law or regulation."
+      "heading": "3. ការតំណាងអ្នកប្រើប្រាស់",
+      "content": "តាមរយៈការប្រើប្រាស់គេហទំព័រ អ្នកតំណាង และធានាថា៖ (1) ព័ត៌មានចុះឈ្មោះទាំងអស់ដែលអ្នកបានដាក់ស្នើនឹងពិតត្រឹមត្រូវ បច្ចុប្បន្នភាព และពេញលេញ (2) អ្នកនឹងរក្សាភាពត្រឹមត្រូវនៃព័ត៌មានបែបនេះ ហើយធ្វើបច្ចុប្បន្នភាពព័ត៌មានចុះឈ្មោះបែបនោះតាមតម្រូវការ (3) អ្នកមានសមត្ថភាពស្របច្បាប់ และអ្នកយល់ព្រមអនុវត្តតាមលក្ខខណ្ឌប្រើប្រាស់ទាំងនេះ (4) អ្នកនឹងមិនប្រើប្រាស់គេហទំព័រសម្រាប់គោលបំណងខុសច្បាប់ หรือមិនមានការអនុញ្ញាតឡើយ ហើយ (5) ការប្រើប្រាស់គេហទំព័ររបស់អ្នកនឹងមិនបំពានច្បាប់ หรือបទប្បញ្ញត្តិជាធរមានណាមួយឡើយ។"
     },
     "prohibitedActivities": {
-      "heading": "4. PROHIBITED ACTIVITIES",
-      "content": "You may not access or use the Site for any purpose other than that for which we make the Site available. Prohibited activities include, but are not limited to: systematic retrieval of data, tricking or defrauding us or other users, attempting to impersonate another user, harassing or threatening our employees or other users, and uploading or transmitting viruses or other types of malicious code."
+      "heading": "4. សកម្មភាពហាមឃាត់",
+      "content": "អ្នកមិនអាចចូលប្រើ ឬប្រើប្រាស់គេហទំព័រសម្រាប់គោលបំណងផ្សេងទៀតក្រៅពីអ្វីដែលเราផ្តល់គេហទំព័រឱ្យនោះទេ។ សកម្មភាពហាមឃាត់រួមមាន ប៉ុន្តែមិនកំណត់ចំពោះ៖ ការស្រង់ទិន្នន័យជាប្រព័ន្ធ ការបោកប្រាស់เรา หรือអ្នកប្រើប្រាស់ផ្សេងទៀត ការព្យាយាមក្លែងបន្លំជាអ្នកប្រើប្រាស់ផ្សេងទៀត ការគំរាមកំហែង หรือការបំភិតបំភ័យបុគ្គលិកของเรา ឬអ្នកប្រើប្រាស់ផ្សេងទៀត និងការបង្ហោះ หรือបញ្ជូនមេរោគ หรือលេខកូដព្យាបាទប្រភេទផ្សេងទៀត។"
     },
     "platformManagement": {
-      "heading": "5. PLATFORM MANAGEMENT",
-      "content": "We reserve the right, but not the obligation, to: (1) monitor the Site for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable any of your Contributions or any portion thereof."
+      "heading": "5. ការគ្រប់គ្រងវេទិកា",
+      "content": "យើងរក្សាសិទ្ធិ ប៉ុន្តែគ្មានកាតព្វកិច្ច ក្នុងការ៖ (1) ត្រួតពិនិត្យគេហទំព័រសម្រាប់ការរំលោភលើលក្ខខណ្ឌប្រើប្រាស់ទាំងនេះ (2) ចាត់វិធានការផ្លូវច្បាប់សមស្របប្រឆាំងនឹងនរណាម្នាក់ដែលបំពានច្បាប់ หรือលក្ខខណ្ឌប្រើប្រាស់ទាំងនេះតាមការសម្រេចចិត្តតែមួយគត់របស់យើង (3) តាមការសម្រេចចិត្តតែមួយគត់របស់យើង และដោយគ្មានដែនកំណត់ បដិសេធ កំណត់ការចូលប្រើប្រាស់ កំណត់ភាពអាចរកបាន หรือបិទការរួមចំណែករបស់អ្នក หรือផ្នែកណាមួយនៃវា។"
     },
     "termAndTermination": {
-      "heading": "6. TERM AND TERMINATION",
-      "content": "These Terms of Use shall remain in full force and effect while you use the Site. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS OF USE, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SITE (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON."
+      "heading": "6. រយៈពេលและการបញ្ចប់",
+      "content": "លក្ខខណ្ឌប្រើប្រាស់ទាំងនេះនឹងនៅតែមានប្រសិទ្ធភាពពេញលេញដរាបណាអ្នកប្រើប្រាស់គេហទំព័រ។ ដោយមិនកំណត់លក្ខខណ្ឌផ្សេងទៀតនៃលក្ខខណ្ឌប្រើប្រាស់ទាំងនេះ យើងរក្សាសិទ្ធិក្នុងការបដិសេធការចូលប្រើ และការប្រើប្រាស់គេហទំព័រ (រួមទាំងការបិទអាសយដ្ឋាន IP ជាក់លាក់) ដល់បុគ្គលណាមួយសម្រាប់ហេតុផលណាមួយ หรือគ្មានហេតុផលណាមួយ តាមការសម្រេចចិត្តតែមួយគត់របស់យើង และដោយគ្មានការជូនដំណឹងជាមុន หรือការទទួលខុសត្រូវ។"
     },
     "modificationsAndInterruptions": {
-      "heading": "7. MODIFICATIONS AND INTERRUPTIONS",
-      "content": "We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Site without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Site."
+      "heading": "7. ការកែប្រែและการរំខាន",
+      "content": "เราរក្សាសិទ្ធិក្នុងការផ្លាស់ប្តូរ កែប្រែ ឬលុបខ្លឹមសារនៃគេហទំព័រនៅពេលណាក៏បាន ឬសម្រាប់ហេតុផលណាមួយ តាមការសម្រេចចិត្តតែមួយគត់របស់យើងដោយគ្មានការជូនដំណឹងជាមុន។ លើសពីនេះ เราរក្សាសិទ្ធិក្នុងការកែប្រែ ឬបញ្ឈប់គេហទំព័រទាំងមូល ឬមួយផ្នែកដោយគ្មានការជូនដំណឹងនៅពេលណាក៏បាន។ យើងនឹងមិនទទួលខុសត្រូវចំពោះអ្នក ឬភាគីទីបីណាមួយសម្រាប់ការកែប្រែ ការផ្លាស់ប្តូរតម្លៃ ការព្យួរ ឬការបញ្ឈប់គេហទំព័រនោះទេ។"
     },
     "governingLaw": {
-      "heading": "8. GOVERNING LAW",
-      "content": "These Terms of Use and your use of the Site are governed by and construed in accordance with the laws of the jurisdiction where DamDoh is registered, without regard to its conflict of law principles."
+      "heading": "8. ច្បាប់គ្រប់គ្រង",
+      "content": "លក្ខខណ្ឌប្រើប្រាស់ទាំងនេះ และការប្រើប្រាស់គេហទំព័ររបស់អ្នកត្រូវបានគ្រប់គ្រង និងបកស្រាយស្របតាមច្បាប់នៃដែនសមត្ថកិច្ចដែល DamDoh ត្រូវបានចុះបញ្ជី ដោយមិនគិតពីគោលការណ៍ជម្លោះនៃច្បាប់។"
     },
     "disputeResolution": {
-      "heading": "9. DISPUTE RESOLUTION",
-      "content": "Any legal action of whatever nature brought by either you or us shall be commenced or prosecuted in the state and federal courts located in the jurisdiction where we are registered, and the parties hereby consent to, and waive all defenses of lack of personal jurisdiction and forum non conveniens with respect to venue and jurisdiction in such courts."
+      "heading": "9. ការដោះស្រាយវិវាទ",
+      "content": "បណ្តឹងផ្លូវច្បាប់ណាមួយ មិនថាមានលក្ខណៈបែបណានោះទេ ដែលផ្តួចផ្តើមដោយអ្នក หรือเรา ត្រូវតែចាប់ផ្តើម หรือดำเนินคดีในศาลនៃរដ្ឋ และសហព័ន្ធដែលស្ថិតនៅក្នុងដែនសមត្ថកិច្ចដែលเราត្រូវបានចុះបញ្ជី ហើយភាគីទាំងពីរយល់ព្រម และលះបង់ការការពារទាំងអស់នៃការខ្វះខាតដែនសមត្ថកិច្ចផ្ទាល់ខ្លួន และ forum non conveniens ទាក់ទងនឹងទីកន្លែង และដែនសមត្ថកិច្ចនៅក្នុងតុលាការបែបនោះ។"
     },
     "contactUs": {
-      "heading": "11. CONTACT US",
-      "content": "To resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us."
+      "heading": "11. ទំនាក់ទំនងមកយើង",
+      "content": "เพื่อដោះស្រាយពាក្យបណ្តឹងទាក់ទងនឹងគេហទំព័រ ឬเพื่อรับข้อมูลเพิ่มเติมទាក់ទងនឹងការប្រើប្រាស់គេហទំព័រ សូមទំនាក់ទំនងមកเรา។"
     },
-    "conclusion": "To resolve a complaint or receive further information, please {contactLink}."
+    "conclusion": "เพื่อដោះស្រាយข้อร้องเรียนឬទទួលព័ត៌មានបន្ថែម សូម {contactLink}"
   },
   "blogPage": {
-    "title": "DamDoh Blog & News",
-    "description": "Insights, stories, and updates from the agricultural world.",
-    "meta": "By {author} on {date}",
-    "readMore": "Read More",
+    "title": "ប្លុក និងព័ត៌មានរបស់ DamDoh",
+    "description": "ការយល់ដឹង រឿងរ៉ាវ និងព័ត៌មានថ្មីៗពីពិភពកសិកម្ម។",
+    "meta": "ដោយ {author} នៅថ្ងៃទី {date}",
+    "readMore": "អានបន្ត",
     "noPosts": {
-      "title": "No Posts Yet",
-      "description": "Check back soon for articles on sustainable farming, market trends, and community stories."
+      "title": "មិនទាន់មានការបង្ហោះទេ",
+      "description": "ត្រឡប់មកពិនិត្យមើលអត្ថបទអំពីកសិកម្មនិរន្តរភាព និន្នាការទីផ្សារ និងរឿងរ៉ាវសហគមន៍នៅពេលក្រោយ។"
     },
     "error": {
-      "title": "Error Loading Posts",
-      "description": "Could not fetch the latest articles. Please try again later."
+      "title": "កំហុសក្នុងការផ្ទុកការបង្ហោះ",
+      "description": "មិនអាចទាញយកអត្ថបទចុងក្រោយបានទេ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
     }
   },
   "Blog": {
@@ -966,7 +657,7 @@
     "originalContentTitle": "មាតិកាដើមជាភាសា {lang}",
     "notFound": {
       "title": "រកមិនឃើញការបង្ហោះ",
-      "description": "ការបង្ហោះប្លក់ដែលអ្នកកំពុងស្វែងរកមិនមានទេ ឬត្រូវបានផ្លាស់ទី។",
+      "description": "ការបង្ហោះប្លក់ដែលអ្នកកំពុងស្វែងរកមិនមានទេ หรือត្រូវបានផ្លាស់ទី។",
       "backButton": "ទៅកាន់ប្លក់"
     },
     "errors": {
@@ -987,7 +678,7 @@
     "generateWithAI": "បង្កើតដោយ AI",
     "bioLabel": "អំពី / ជីវប្រវត្តិ",
     "bioPlaceholder": "ប្រាប់សហគមន៍អំពីខ្លួនអ្នក អាជីវកម្មរបស់អ្នក បេសកកម្មរបស់អ្នក...",
-    "bioDescription": "ការពិពណ៌នាលម្អិតអំពីប្រវត្តិ ជំនាញ និងអ្វីដែលអ្នកធ្វើ។",
+    "bioDescription": "ការពិពណ៌នាលម្អិតអំពីប្រវត្តិ ជំនាញ และអ្វីដែលអ្នកធ្វើ។",
     "profileTab": "ប្រវត្តិរូប",
     "detailsTab": "ព័ត៌មានលម្អិត",
     "contactTab": "ទំនាក់ទំនង",
@@ -1013,7 +704,7 @@
       "unauthorizedTitle": "គ្មានការអនុញ្ញាត",
       "unauthorizedDescription": "អ្នកគ្មានសិទ្ធិកែសម្រួលប្រវត្តិរូបនេះទេ។",
       "missingInfoTitle": "ព័ត៌មានបាត់",
-      "missingInfoDescription": "សូមបំពេញតួនាទី ទីតាំង ចំណាប់អារម្មណ៍ និងតម្រូវការរបស់អ្នកដើម្បីបង្កើតសេចក្តីសង្ខេប។",
+      "missingInfoDescription": "សូមបំពេញតួនាទី ទីតាំង ចំណាប់អារម្មណ៍ และតម្រូវការរបស់អ្នកដើម្បីបង្កើតសេចក្តីសង្ខេប។",
       "summaryGeneratedTitle": "បានបង្កើតសេចក្តីសង្ខេប!",
       "summaryGeneratedDescription": "AI បានស្នើសេចក្តីសង្ខេបប្រវត្តិរូបថ្មីសម្រាប់អ្នក។",
       "generationFailedTitle": "ការបង្កើតបានបរាជ័យ",
@@ -1035,10 +726,10 @@
     "myConnectionsTab": "ការតភ្ជាប់របស់ខ្ញុំ ({count})",
     "pendingRequestsTab": "សំណើដែលមិនទាន់សម្រេច",
     "connectionsTitle": "ការតភ្ជាប់របស់អ្នក",
-    "connectionsDescription": "បណ្តាញដៃគូ និងទំនាក់ទំនងដែលបានបង្កើតឡើងរបស់អ្នក។",
+    "connectionsDescription": "បណ្តាញដៃគូ และទំនាក់ទំនងដែលបានបង្កើតឡើងរបស់អ្នក។",
     "noConnections": {
       "title": "បណ្តាញរបស់អ្នកនៅទទេ",
-      "description": "ចាប់ផ្តើមដោយការរុករកបណ្តាញ និងផ្ញើសំណើភ្ជាប់។",
+      "description": "ចាប់ផ្តើមដោយការរុករកបណ្តាញ และផ្ញើសំណើភ្ជាប់។",
       "inviteButton": "អញ្ជើញមិត្តរួមការងារ"
     },
     "requestsTitle": "សំណើភ្ជាប់",
@@ -1065,7 +756,7 @@
     "invite": {
       "button": "អញ្ជើញមិត្តរួមការងារ",
       "description": "ស្គាល់អ្នកណាដែលគួរតែនៅលើ DamDoh?",
-      "explanation": "ផ្ញើការអញ្ជើញឱ្យពួកគេចូលរួមវេទិកា។",
+      "explanation": "ផ្ញើការអញ្ជើញឱ្យพวกเขาចូលរួមវេទិកា។",
       "title": "ពង្រីកបណ្តាញរបស់អ្នក"
     },
     "inviteErrorTitle": "មិនអាចផ្ញើការអញ្ជើញបានទេ",
@@ -1089,14 +780,14 @@
     "message": "សារ",
     "aboutTitle": "អំពី {displayName}",
     "interestsTitle": "វិស័យដែលចាប់អារម្មណ៍",
-    "needsTitle": "តម្រូវការ និងការផ្តល់ជូន",
+    "needsTitle": "តម្រូវការ และการផ្តល់ជូន",
     "contactTitle": "ព័ត៌មានទំនាក់ទំនង",
     "recentActivityTitle": "សកម្មភាពថ្មីៗ",
     "noRecentActivity": "អ្នកប្រើប្រាស់នេះមិនមានសកម្មភាពសាធារណៈនៅឡើយទេ។"
   },
   "NotFoundPage": {
     "title": "404 - រកមិនឃើញទំព័រ",
-    "description": "សូមអភ័យទោស ប៉ុន្តែទំព័រដែលអ្នកកំពុងស្វែងរកមិនមាន ឬត្រូវបានផ្លាស់ទី។",
+    "description": "សូមអភ័យទោស ប៉ុន្តែទំព័រដែលអ្នកកំពុងស្វែងរកមិនមាន หรือត្រូវបានផ្លាស់ទី។",
     "goHomeButton": "ទៅកាន់ទំព័រដើម"
   },
   "MobileHomepage": {
@@ -1109,7 +800,7 @@
     "seeAllButton": "មើល​ទាំងអស់",
     "noRecommendations": "គ្មានការណែនាំនៅពេលនេះទេ។",
     "communityFeedTitle": "ហ្វីតសហគមន៍",
-    "communityFeedDescription": "តាមដានការបង្ហោះ និងការពិភាក្សាចុងក្រោយបង្អស់ពីបណ្តាញរបស់អ្នក។",
+    "communityFeedDescription": "តាមដានការបង្ហោះ และការពិភាក្សាចុងក្រោយបង្អស់ពីបណ្តាញរបស់អ្នក។",
     "goToFeedButton": "ទៅកាន់ហ្វីត"
   },
   "DashboardLeftSidebar": {
@@ -1131,7 +822,7 @@
   },
   "CreatePostModal": {
     "title": "បង្កើតការបង្ហោះថ្មី",
-    "description": "ចែករំលែកព័ត៌មានថ្មីៗ សួរសំណួរ ឬចាប់ផ្តើមការសន្ទនាជាមួយសហគមន៍",
+    "description": "ចែករំលែកព័ត៌មានថ្មីៗ សួរសំណួរ หรือចាប់ផ្តើមការសន្ទនាជាមួយសហគមន៍",
     "yourName": "ឈ្មោះរបស់អ្នក",
     "shareUpdate": "ចែករំលែកព័ត៌មានថ្មីៗ",
     "placeholder": "តើអ្នកកំពុងគិតអ្វី?",
@@ -1270,9 +961,9 @@
         "vti_registry": "របាយការណ៍តាមដាន"
       },
       "noResults": "រកមិនឃើញលទ្ធផល",
-      "tryAgain": "ព្យាយាមប្រើពាក្យស្វែងរកផ្សេងទៀត ឬពង្រីកការស្វែងរករបស់អ្នក"
+      "tryAgain": "ព្យាយាមប្រើពាក្យស្វែងរកផ្សេងទៀត หรือពង្រីកការស្វែងរករបស់អ្នក"
     }
   }
 }
 
-    
+  

@@ -107,7 +107,7 @@
         "title": "Experten & Dienstleister",
         "description": "Bieten Sie Ihre spezialisierten Fähigkeiten und Dienstleistungen einem breiten landwirtschaftlichen Publikum an, das Ihre Expertise sucht."
       },
-       "fis": {
+      "fis": {
         "title": "Finanzinstitute",
         "description": "Bieten Sie gezielte Kredite, Zuschüsse und Versicherungsprodukte für ein verifiziertes Netzwerk von landwirtschaftlichen Betrieben an."
       },
@@ -220,7 +220,7 @@
         "default": "Passwort zurücksetzen fehlgeschlagen"
       }
     },
-     "errors": {
+    "errors": {
       "emailInUse": "Diese E-Mail wird bereits verwendet.",
       "invalidEmail": "Ungültige E-Mail-Adresse.",
       "weakPassword": "Das Passwort muss mindestens 6 Zeichen lang sein.",
@@ -636,7 +636,619 @@
     "couldNotStartConversation": "Ein neues Gespräch konnte nicht gestartet werden.",
     "sendFailed": "Senden fehlgeschlagen",
     "couldNotSendMessage": "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+  },
+  "knowledgeHub": {
+    "title": "Wissenszentrum",
+    "description": "Ihr Zentrum für Lernen, Wachstum und landwirtschaftliche Expertise.",
+    "courses": {
+      "title": "Kurse",
+      "description": "Strukturierte Lernpfade zur Verbesserung Ihrer Fähigkeiten.",
+      "body": "Durchsuchen Sie unseren Kurskatalog, der von Branchenexperten entworfen wurde und alles von nachhaltigen Anbautechniken bis hin zum Agribusiness-Management abdeckt.",
+      "cta": "Kurse erkunden"
+    },
+    "blog": {
+      "title": "Blog & Branchennachrichten",
+      "description": "Bleiben Sie informiert mit den neuesten Erkenntnissen und Trends.",
+      "body": "Lesen Sie Artikel von unserem Team und Community-Experten zu Markttrends, neuen Technologien, Erfolgsgeschichten und wichtigen politischen Änderungen.",
+      "cta": "Blog lesen"
+    },
+    "featured": {
+      "title": "Ausgewählte Inhalte",
+      "loading": "Lade ausgewählte Inhalte...",
+      "error": "Ausgewählte Inhalte konnten nicht geladen werden",
+      "noArticles": "Derzeit sind keine ausgewählten Artikel verfügbar."
+    }
+  },
+  "InsurancePage": {
+    "title": "Zentrum für Agrarversicherungen",
+    "description": "Schützen Sie Ihre Farm und Investitionen vor unvorhergesehenen Risiken.",
+    "toast": {
+      "errorTitle": "Fehler"
+    },
+    "perTerm": "Laufzeit",
+    "viewDetailsButton": "Details anzeigen & beantragen",
+    "noProducts": "Derzeit sind keine Versicherungsprodukte verfügbar. Bitte schauen Sie später wieder vorbei."
+  },
+  "InsuranceApplyPage": {
+    "backLink": "Zurück zum Versicherungszentrum",
+    "title": "Versicherungsantrag",
+    "description": "Antrag für die {productName}-Police.",
+    "form": {
+      "farmLabel": "Farm zur Versicherung auswählen",
+      "farmPlaceholder": "Wählen Sie eine Ihrer Farmen",
+      "noFarms": "Keine Farmen gefunden. Bitte erstellen Sie zuerst eine.",
+      "coverageValueLabel": "Gewünschter Deckungswert (in USD)",
+      "coverageValuePlaceholder": "z.B. 10000",
+      "coverageValueDescription": "Der Gesamtwert, den Sie versichern möchten.",
+      "submitButton": "Antrag einreichen"
+    },
+    "toast": {
+      "error": "Fehler",
+      "successTitle": "Antrag eingereicht!",
+      "successDescription": "Ihr Versicherungsantrag wurde zur Prüfung gesendet.",
+      "notAuthenticated": "Sie müssen angemeldet sein, um einen Antrag zu stellen."
+    },
+    "success": {
+      "title": "Antrag erhalten",
+      "description": "Vielen Dank! Ihr Antrag wird nun geprüft. Der Versicherungsanbieter wird Sie für die nächsten Schritte kontaktieren.",
+      "backToDashboardButton": "Zurück zum Dashboard",
+      "applyForAnotherButton": "Eine weitere Police beantragen"
+    }
+  },
+  "InsuranceDetailPage": {
+    "backLink": "Zurück zum Versicherungszentrum",
+    "notFound": "Versicherungsprodukt nicht gefunden.",
+    "coverageTitle": "Deckungsdetails",
+    "premiumTitle": "Prämie",
+    "perTerm": "Laufzeit",
+    "providerTitle": "Angeboten von",
+    "applyButton": "Diese Police beantragen",
+    "toast": {
+      "errorTitle": "Fehler beim Laden"
+    }
+  },
+  "InsuranceProductCreatePage": {
+    "backLink": "Zurück zu den Produkten",
+    "title": "Neues Versicherungsprodukt erstellen",
+    "description": "Definieren Sie ein neues Versicherungsprodukt, das auf der Plattform angeboten werden soll.",
+    "form": {
+      "nameLabel": "Produktname",
+      "namePlaceholder": "z.B. Mehrgefahren-Ernteversicherung",
+      "typeLabel": "Produkttyp",
+      "typePlaceholder": "Wählen Sie einen Typ",
+      "crop": "Ernte",
+      "livestock": "Vieh",
+      "asset": "Vermögenswert",
+      "weather": "Wetter",
+      "descriptionLabel": "Kurzbeschreibung",
+      "descriptionPlaceholder": "Eine kurze Zusammenfassung des Produkts.",
+      "coverageLabel": "Deckungsdetails",
+      "coveragePlaceholder": "Beschreiben Sie detailliert, was diese Police abdeckt...",
+      "premiumLabel": "Prämie ($)",
+      "premiumPlaceholder": "z.B. 500",
+      "currencyLabel": "Währung",
+      "submitButton": "Produkt erstellen"
+    },
+    "toast": {
+      "notAuthenticated": "Sie müssen ein Versicherungsanbieter sein, um Produkte zu erstellen.",
+      "successTitle": "Produkt erstellt",
+      "successDescription": "'{name}' wurde erfolgreich erstellt.",
+      "errorTitle": "Erstellung fehlgeschlagen"
+    }
+  },
+  "InsuranceProductsPage": {
+    "title": "Ihre Versicherungsprodukte verwalten",
+    "description": "Anzeigen, Erstellen und Verwalten Ihrer Versicherungsangebote.",
+    "createButton": "Neues Produkt erstellen",
+    "table": {
+      "productName": "Produktname",
+      "type": "Typ",
+      "status": "Status",
+      "premium": "Prämie"
+    },
+    "noProducts": "Sie haben noch keine Versicherungsprodukte erstellt.",
+    "toast": {
+      "errorTitle": "Fehler"
+    }
+  },
+  "FiApplicationListPage": {
+    "backLink": "Zurück zum Dashboard",
+    "title": "Finanzierungsanträge",
+    "description": "Überprüfen und verwalten Sie eingehende Kredit- und Zuschussanträge.",
+    "tabs": {
+      "all": "Alle",
+      "pending": "Ausstehend",
+      "approved": "Genehmigt",
+      "rejected": "Abgelehnt"
+    },
+    "table": {
+      "applicant": "Antragsteller",
+      "type": "Typ",
+      "amount": "Betrag (USD)",
+      "date": "Eingereicht am",
+      "status": "Status",
+      "action": "Aktion"
+    },
+    "reviewButton": "Überprüfen",
+    "noApplications": "Keine Anträge in dieser Kategorie."
+  },
+  "FiApplicationPage": {
+    "backLink": "Zurück zu den Anträgen",
+    "title": "Antragsdetails",
+    "applicationTitle": "Antrag",
+    "submittedOn": "Eingereicht am",
+    "amountRequested": "Beantragter Betrag",
+    "purpose": "Verwendungszweck der Mittel",
+    "approveButton": "Genehmigen",
+    "rejectButton": "Ablehnen",
+    "requestInfoButton": "Weitere Informationen anfordern",
+    "applicantDetails": "Antragstellerdetails",
+    "viewProfileButton": "Vollständiges Profil anzeigen",
+    "profileNotFound": "Antragstellerprofil nicht gefunden.",
+    "riskAssessment": "KI-Risikobewertung",
+    "creditScore": "Kredit-Score",
+    "notFound": "Antrag nicht gefunden oder Sie haben keine Berechtigung, ihn anzuzeigen.",
+    "toast": {
+      "errorTitle": "Fehler",
+      "updateSuccessTitle": "Status aktualisiert",
+      "updateSuccessDescription": "Der Antragsstatus wurde auf '{status}' gesetzt.",
+      "updateFailTitle": "Aktualisierung fehlgeschlagen"
+    }
+  },
+  "FiProductsPage": {
+    "backLink": "Zurück zum Dashboard",
+    "title": "Finanzprodukte",
+    "description": "Erstellen und verwalten Sie Ihre Kredit- und Zuschussprodukte.",
+    "createButton": "Neues Produkt erstellen",
+    "table": {
+      "productName": "Produktname",
+      "type": "Typ",
+      "status": "Status",
+      "interestRate": "Zinssatz",
+      "maxAmount": "Höchstbetrag"
+    },
+    "noProducts": "Sie haben noch keine Finanzprodukte erstellt.",
+    "toast": {
+      "errorTitle": "Fehler"
+    }
+  },
+  "FiProductCreatePage": {
+    "backLink": "Zurück zu den Produkten",
+    "title": "Neues Finanzprodukt erstellen",
+    "description": "Definieren Sie ein neues Finanzprodukt, das den Plattformbenutzern angeboten wird.",
+    "form": {
+      "nameLabel": "Produktname",
+      "namePlaceholder": "z.B. Wachstumskredit für Kleinbauern",
+      "typeLabel": "Produkttyp",
+      "loan": "Darlehen",
+      "grant": "Zuschuss",
+      "descriptionLabel": "Beschreibung",
+      "descriptionPlaceholder": "Beschreiben Sie das Produkt, seinen Zweck und die Zulassungskriterien.",
+      "interestRateLabel": "Zinssatz (%)",
+      "interestRatePlaceholder": "z.B. 12.5",
+      "maxAmountLabel": "Höchstbetrag (USD)",
+      "maxAmountPlaceholder": "z.B. 10000",
+      "targetRolesLabel": "Zielgruppe",
+      "targetRolesDescription": "Wählen Sie die Stakeholder-Rollen aus, für die dieses Produkt bestimmt ist.",
+      "submitButton": "Produkt erstellen"
+    },
+    "toast": {
+      "notAuthenticated": "Sie müssen eine Finanzinstitution sein, um Produkte zu erstellen.",
+      "successTitle": "Produkt erstellt",
+      "successDescription": "'{name}' wurde erfolgreich erstellt und ist jetzt aktiv.",
+      "errorTitle": "Erstellung fehlgeschlagen"
+    }
+  },
+  "traceabilityPage": {
+    "title": "Produktrückverfolgbarkeit",
+    "description": "Verfolgen Sie den Weg Ihrer Lebensmittel vom Hof bis auf den Tisch mit unserem Verifiable Traceability ID (VTI) System.",
+    "inputPlaceholder": "VTI-Chargen-ID eingeben...",
+    "trackButton": "Verfolgen",
+    "vtiDescription": "Die VTI ist eine eindeutige Kennung, die sich auf der Produktverpackung befindet.",
+    "recentTitle": "Kürzlich verfolgte Chargen",
+    "recentDescription": "Entdecken Sie einige der neuesten Produkte mit öffentlichen Rückverfolgungsberichten.",
+    "producerLabel": "Produzent",
+    "harvestDateLabel": "Erntedatum",
+    "viewReportButton": "Bericht anzeigen",
+    "noRecentBatches": "Keine kürzlich verfolgten Chargen mit öffentlichen Daten.",
+    "detailPage": {
+      "invalidIdError": "Ungültige Chargen-ID angegeben.",
+      "loadError": "Fehler beim Laden des Rückverlauf.",
+      "backLink": "Zurück zum Rückverfolgungs-Hub",
+      "notFoundTitle": "Charge nicht gefunden",
+      "notFoundDescription": "Die von Ihnen eingegebene VTI stimmt mit keinem Datensatz überein.",
+      "traceableProduct": "Rückverfolgbares Produkt",
+      "batchIdLabel": "Chargen-ID",
+      "producerLabel": "Produzent",
+      "qualityLabel": "Anfängliche Qualität",
+      "notSpecified": "Nicht angegeben",
+      "journeyTitle": "Der Weg dieser Charge",
+      "journeyDescription": "Ein vollständiges, zeitgestempeltes Protokoll jedes Ereignisses im Lebenszyklus dieses Produkts.",
+      "noEventDetails": "Keine zusätzlichen Details für dieses Ereignis.",
+      "observationType": "Beobachtungstyp",
+      "details": "Details",
+      "aiDiagnosis": "KI-Diagnose",
+      "noEventsFound": "Für diese Charge wurden noch keine Rückverfolgungsereignisse protokolliert.",
+      "geoLocationLabel": "Geostandort",
+      "sustainablyGrownTitle": "Nachhaltig angebaut",
+      "sustainablyGrownDescription": "Das Rückverfolgungsprotokoll dieses Produkts weist auf die Verwendung nachhaltiger und/oder biologischer Anbaupraktiken hin.",
+      "harvestDateLabel": "Erntedatum"
+    }
+  },
+  "termsOfService": {
+    "title": "Nutzungsbedingungen",
+    "lastUpdated": "Zuletzt aktualisiert: 29. Oktober 2023",
+    "introduction": "Diese Nutzungsbedingungen stellen eine rechtsverbindliche Vereinbarung dar, die zwischen Ihnen und DamDoh bezüglich Ihres Zugriffs auf und Ihrer Nutzung der DamDoh-Website sowie aller anderen Medienformen, Medienkanäle, mobilen Websites oder mobilen Anwendungen, die damit in Beziehung stehen, verknüpft oder anderweitig verbunden sind, geschlossen wird.",
+    "agreementToTerms": {
+      "heading": "1. ZUSTIMMUNG ZU DEN BEDINGUNGEN",
+      "content": "Durch die Nutzung der Plattform erklären Sie sich mit diesen Nutzungsbedingungen einverstanden. Wenn Sie nicht zustimmen, dürfen Sie die Plattform nicht nutzen. Wir behalten uns das Recht vor, diese Bedingungen jederzeit zu ändern."
+    },
+    "intellectualProperty": {
+      "heading": "2. RECHTE AN GEISTIGEM EIGENTUM",
+      "content": "Sofern nicht anders angegeben, ist die Plattform unser proprietäres Eigentum, und alle Quellcodes, Datenbanken, Funktionalitäten, Software, Website-Designs, Audio-, Video-, Text-, Foto- und Grafikdateien auf der Website (zusammenfassend als „Inhalt“ bezeichnet) sowie die darin enthaltenen Marken, Dienstleistungsmarken und Logos sind unser Eigentum oder werden von uns kontrolliert oder an uns lizenziert."
+    },
+    "userRepresentations": {
+      "heading": "3. ZUSICHERUNGEN DES BENUTZERS",
+      "content": "Durch die Nutzung der Website sichern Sie zu und gewährleisten, dass: (1) alle von Ihnen übermittelten Registrierungsinformationen wahr, korrekt, aktuell und vollständig sind; (2) Sie die Richtigkeit dieser Informationen aufrechterhalten und diese Registrierungsinformationen bei Bedarf umgehend aktualisieren; (3) Sie die Rechtsfähigkeit besitzen und sich mit diesen Nutzungsbedingungen einverstanden erklären; (4) Sie die Website nicht für illegale oder nicht autorisierte Zwecke nutzen werden; und (5) Ihre Nutzung der Website keine geltenden Gesetze oder Vorschriften verletzt."
+    },
+    "prohibitedActivities": {
+      "heading": "4. VERBOTENE AKTIVITÄTEN",
+      "content": "Sie dürfen die Website nicht für andere Zwecke nutzen, als die, für die wir sie zur Verfügung stellen. Verbotene Aktivitäten umfassen unter anderem: systematisches Abrufen von Daten, Täuschen oder Betrügen von uns oder anderen Benutzern, Versuch, sich als ein anderer Benutzer auszugeben, Belästigung oder Bedrohung unserer Mitarbeiter oder anderer Benutzer sowie das Hochladen oder Übertragen von Viren oder anderen Arten von bösartigem Code."
+    },
+    "platformManagement": {
+      "heading": "5. PLATTFORMMANAGEMENT",
+      "content": "Wir behalten uns das Recht vor, sind aber nicht verpflichtet, (1) die Website auf Verstöße gegen diese Nutzungsbedingungen zu überwachen; (2) geeignete rechtliche Schritte gegen jeden einzuleiten, der nach unserem alleinigen Ermessen gegen das Gesetz oder diese Nutzungsbedingungen verstößt; (3) nach unserem alleinigen Ermessen und ohne Einschränkung den Zugang zu Ihren Beiträgen oder Teilen davon zu verweigern, einzuschränken, deren Verfügbarkeit zu begrenzen oder zu deaktivieren."
+    },
+    "termAndTermination": {
+      "heading": "6. LAUFZEIT UND KÜNDIGUNG",
+      "content": "Diese Nutzungsbedingungen bleiben in vollem Umfang in Kraft, solange Sie die Website nutzen. OHNE EINSCHRÄNKUNG ANDERER BESTIMMUNGEN DIESER NUTZUNGSBEDINGUNGEN BEHALTEN WIR UNS DAS RECHT VOR, NACH UNSEREM ALLEINIGEN ERMESSEN UND OHNE VORANKÜNDIGUNG ODER HAFTUNG DEN ZUGANG ZU UND DIE NUTZUNG DER WEBSITE (EINSCHLIESSLICH DER SPERRUNG BESTIMMTER IP-ADRESSEN) FÜR JEDE PERSON AUS JEDEM GRUND ODER OHNE GRUND ZU VERWEIGERN."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. ÄNDERUNGEN UND UNTERBRECHUNGEN",
+      "content": "Wir behalten uns das Recht vor, den Inhalt der Website jederzeit oder aus irgendeinem Grund nach unserem alleinigen Ermessen ohne Vorankündigung zu ändern, zu modifizieren oder zu entfernen. Wir behalten uns auch das Recht vor, die gesamte Website oder einen Teil davon jederzeit ohne Vorankündigung zu ändern oder einzustellen. Wir haften Ihnen oder Dritten gegenüber nicht für Änderungen, Preisänderungen, Aussetzungen oder die Einstellung der Website."
+    },
+    "governingLaw": {
+      "heading": "8. GELTENDES RECHT",
+      "content": "Diese Nutzungsbedingungen und Ihre Nutzung der Website unterliegen den Gesetzen der Gerichtsbarkeit, in der DamDoh registriert ist, und werden in Übereinstimmung mit diesen ausgelegt, ohne Rücksicht auf die Grundsätze des Kollisionsrechts."
+    },
+    "disputeResolution": {
+      "heading": "9. STREITBEILEGUNG",
+      "content": "Alle rechtlichen Schritte jeglicher Art, die von Ihnen oder uns eingeleitet werden, müssen in den staatlichen und bundesstaatlichen Gerichten in der Gerichtsbarkeit, in der wir registriert sind, eingeleitet oder verfolgt werden, und die Parteien stimmen hiermit zu und verzichten auf alle Einreden des Mangels an persönlicher Gerichtsbarkeit und des Forum non conveniens in Bezug auf den Gerichtsstand und die Gerichtsbarkeit in solchen Gerichten."
+    },
+    "contactUs": {
+      "heading": "11. KONTAKTIEREN SIE UNS",
+      "content": "Um eine Beschwerde bezüglich der Website beizulegen oder weitere Informationen zur Nutzung der Website zu erhalten, kontaktieren Sie uns bitte."
+    },
+    "conclusion": "Um eine Beschwerde beizulegen oder weitere Informationen zu erhalten, {contactLink}."
+  },
+  "blogPage": {
+    "title": "DamDoh Blog & Nachrichten",
+    "description": "Einblicke, Geschichten und Updates aus der Welt der Landwirtschaft.",
+    "meta": "Von {author} am {date}",
+    "readMore": "Mehr lesen",
+    "noPosts": {
+      "title": "Noch keine Beiträge",
+      "description": "Schauen Sie bald wieder vorbei für Artikel über nachhaltige Landwirtschaft, Markttrends und Community-Geschichten."
+    },
+    "error": {
+      "title": "Fehler beim Laden der Beiträge",
+      "description": "Die neuesten Artikel konnten nicht abgerufen werden. Bitte versuchen Sie es später erneut."
+    }
+  },
+  "Blog": {
+    "backLink": "Zurück zum Blog",
+    "meta": "Von {author} am {date}",
+    "readMore": "Mehr lesen",
+    "originalContentTitle": "Originalinhalt in {lang}",
+    "notFound": {
+      "title": "Beitrag nicht gefunden",
+      "description": "Der von Ihnen gesuchte Blogbeitrag existiert nicht oder wurde verschoben.",
+      "backButton": "Zum Blog gehen"
+    },
+    "errors": {
+      "title": "Fehler",
+      "load": "Der Beitrag konnte nicht geladen werden."
+    }
+  },
+  "editProfilePage": {
+    "title": "Profil für {name} bearbeiten",
+    "description": "Halten Sie Ihr Profil auf dem neuesten Stand, um die besten Verbindungen herzustellen.",
+    "nameLabel": "Anzeigename",
+    "namePlaceholder": "z.B. Grüne Tal Biobauernhöfe",
+    "roleLabel": "Hauptrolle",
+    "rolePlaceholder": "Wählen Sie Ihre Hauptrolle",
+    "summaryLabel": "Profilübersicht / Schlagzeile",
+    "summaryPlaceholder": "z.B. Zertifizierter Bio-Kaffeebauer, spezialisiert auf den Export.",
+    "summaryDescription": "Eine kurze, einzeilige Zusammenfassung für Ihre Profilkarte.",
+    "generateWithAI": "Mit KI generieren",
+    "bioLabel": "Über / Bio",
+    "bioPlaceholder": "Erzählen Sie der Community von sich, Ihrem Unternehmen, Ihrer Mission...",
+    "bioDescription": "Eine detaillierte Beschreibung Ihres Hintergrunds, Ihrer Expertise und Ihrer Tätigkeit.",
+    "profileTab": "Profil",
+    "detailsTab": "Details",
+    "contactTab": "Kontakt",
+    "locationLabel": "Standort",
+    "locationPlaceholder": "z.B. Rift Valley, Kenia",
+    "interestsLabel": "Interessensgebiete",
+    "interestsPlaceholder": "z.B. Nachhaltige Landwirtschaft, Exportmärkte, Agri-Tech",
+    "commaSeparated": "Trennen Sie mehrere Elemente durch ein Komma.",
+    "needsLabel": "Ich suche / biete...",
+    "needsPlaceholder": "z.B. Fair-Trade-Käufer, Logistikpartner, Bodentestdienste",
+    "emailLabel": "Konto-E-Mail",
+    "emailDescription": "Ihre Anmelde-E-Mail kann nicht geändert werden.",
+    "phoneLabel": "Öffentliche Telefonnummer",
+    "websiteLabel": "Webseite",
+    "saveButton": "Änderungen speichern",
+    "savingButton": "Speichern...",
+    "cancelButton": "Abbrechen",
+    "toast": {
+      "profileNotFound": "Das zu bearbeitende Profil konnte nicht gefunden werden.",
+      "fetchError": "Ihre Profildaten konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
+      "notAuthenticatedTitle": "Nicht angemeldet",
+      "notAuthenticatedDescription": "Sie müssen angemeldet sein, um ein Profil zu bearbeiten.",
+      "unauthorizedTitle": "Unbefugt",
+      "unauthorizedDescription": "Sie haben keine Berechtigung, dieses Profil zu bearbeiten.",
+      "missingInfoTitle": "Fehlende Informationen",
+      "missingInfoDescription": "Bitte füllen Sie Ihre Rolle, Ihren Standort, Ihre Interessen und Bedürfnisse aus, um eine Zusammenfassung zu generieren.",
+      "summaryGeneratedTitle": "Zusammenfassung generiert!",
+      "summaryGeneratedDescription": "Die KI hat eine neue Profilzusammenfassung für Sie vorgeschlagen.",
+      "generationFailedTitle": "Generierung fehlgeschlagen",
+      "generationFailedDescription": "Eine KI-Zusammenfassung konnte nicht generiert werden. Bitte versuchen Sie es erneut.",
+      "missingIdError": "Profil-ID fehlt. Änderungen können nicht gespeichert werden.",
+      "profileUpdatedTitle": "Profil aktualisiert",
+      "profileUpdatedDescription": "Ihre Änderungen wurden erfolgreich gespeichert.",
+      "updateFailedTitle": "Aktualisierung fehlgeschlagen",
+      "updateFailedDescription": "Ihr Profil konnte nicht gespeichert werden. Bitte versuchen Sie es erneut."
+    },
+    "notFound": {
+      "title": "Profil nicht gefunden",
+      "description": "Das Profil zur Bearbeitung konnte nicht geladen werden.",
+      "backButton": "Zurück"
+    }
+  },
+  "myNetworkPage": {
+    "backLink": "Zurück zum Netzwerk",
+    "myConnectionsTab": "Meine Verbindungen ({count})",
+    "pendingRequestsTab": "Ausstehende Anfragen",
+    "connectionsTitle": "Ihre Verbindungen",
+    "connectionsDescription": "Ihr etabliertes Netzwerk von Partnern und Kontakten.",
+    "noConnections": {
+      "title": "Ihr Netzwerk ist leer",
+      "description": "Beginnen Sie damit, das Netzwerk zu erkunden und Verbindungsanfragen zu senden.",
+      "inviteButton": "Einen Kollegen einladen"
+    },
+    "requestsTitle": "Verbindungsanfragen",
+    "requestsDescription": "Akzeptieren oder lehnen Sie eingehende Verbindungsanfragen ab.",
+    "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen.",
+    "sentTimeAgo": "Gesendet vor {timeAgo}",
+    "toast": {
+      "error": "Fehler",
+      "loadError": "Ihre Netzwerkdaten konnten nicht abgerufen werden.",
+      "requestAccepted": "Verbindungsanfrage angenommen.",
+      "requestDeclined": "Verbindungsanfrage abgelehnt.",
+      "respondError": "Auf die Anfrage konnte nicht geantwortet werden.",
+      "connectionRemoved": "Verbindung entfernt.",
+      "removeError": "Verbindung konnte nicht entfernt werden."
+    },
+    "invitePrompt": "Geben Sie die E-Mail-Adresse der Person ein, die Sie einladen möchten:",
+    "inviteSuccessTitle": "Einladung gesendet!",
+    "inviteSuccessDescription": "Eine Einladung wurde an {email} gesendet.",
+    "inviteErrorTitle": "Einladung konnte nicht gesendet werden"
+  },
+  "ProfilePage": {
+    "backToNetwork": "Zurück zum Netzwerk",
+    "engagementStats": "Engagement-Statistiken",
+    "invite": {
+      "button": "Einen Kollegen einladen",
+      "description": "Kennen Sie jemanden, der auf DamDoh sein sollte?",
+      "explanation": "Senden Sie ihnen eine Einladung, der Plattform beizutreten.",
+      "title": "Erweitern Sie Ihr Netzwerk"
+    },
+    "inviteErrorTitle": "Einladung konnte nicht gesendet werden",
+    "invitePrompt": "Geben Sie die E-Mail-Adresse der Person ein, die Sie einladen möchten:",
+    "inviteSuccessDescription": "Eine Einladung wurde an {email} gesendet.",
+    "inviteSuccessTitle": "Einladung gesendet!",
+    "notFoundDescription": "Das gesuchte Benutzerprofil konnte nicht gefunden werden.",
+    "notFoundTitle": "Profil nicht gefunden",
+    "postComments": "Beitragskommentare",
+    "postLikes": "Beitrags-Likes",
+    "profileViews": "Profilansichten",
+    "tabs": {
+      "activity": "Aktivität",
+      "overview": "Übersicht"
+    },
+    "editProfile": "Profil bearbeiten",
+    "showUniversalIdButton": "Universal-ID anzeigen",
+    "universalIdModalTitle": "Ihre Universal-ID",
+    "universalIdModalDescription": "Andere Benutzer können diesen Code scannen, um Ihr öffentliches Profil schnell anzuzeigen.",
+    "connect": "Verbinden",
+    "message": "Nachricht",
+    "aboutTitle": "Über {displayName}",
+    "interestsTitle": "Interessensgebiete",
+    "needsTitle": "Bedarf & Angebote",
+    "contactTitle": "Kontaktinformationen",
+    "recentActivityTitle": "Letzte Aktivität",
+    "noRecentActivity": "Dieser Benutzer hat noch keine öffentlichen Aktivitäten."
+  },
+  "NotFoundPage": {
+    "title": "404 - Seite nicht gefunden",
+    "description": "Entschuldigung, aber die von Ihnen gesuchte Seite existiert nicht oder wurde verschoben.",
+    "goHomeButton": "Zur Startseite"
+  },
+  "MobileHomepage": {
+    "welcome": {
+      "morning": "Guten Morgen, {name}",
+      "afternoon": "Guten Tag, {name}",
+      "evening": "Guten Abend, {name}"
+    },
+    "discoverTitle": "Entdecken",
+    "seeAllButton": "Alle ansehen",
+    "noRecommendations": "Momentan keine Empfehlungen verfügbar.",
+    "communityFeedTitle": "Community-Feed",
+    "communityFeedDescription": "Informieren Sie sich über die neuesten Beiträge und Diskussionen aus Ihrem Netzwerk.",
+    "goToFeedButton": "Zum Feed gehen"
+  },
+  "DashboardLeftSidebar": {
+    "viewProfileLink": "Mein Profil anzeigen",
+    "profileViewers": "Profilansichten",
+    "postEngagements": "Beitragsinteraktionen",
+    "pro": {
+      "unlock": "Schalten Sie erweiterte Analysen und Einblicke frei.",
+      "try": "Pro kostenlos testen"
+    },
+    "recent": {
+      "title": "Kürzlich",
+      "myPinBoard": "Meine Pinnwand",
+      "communityGroups": "Community-Gruppen",
+      "industryNews": "Branchennachrichten",
+      "agriEvents": "Agri-Veranstaltungen",
+      "mySupplyChainNetwork": "Mein Lieferketten-Netzwerk"
+    }
+  },
+  "CreatePostModal": {
+    "title": "Neuen Beitrag erstellen",
+    "description": "Teilen Sie ein Update, stellen Sie eine Frage oder starten Sie eine Konversation mit der Community.",
+    "yourName": "Ihr Name",
+    "shareUpdate": "Ein Update teilen",
+    "placeholder": "Was beschäftigt Sie?",
+    "selectedFile": "Ausgewählte Datei:",
+    "pollOptionsLabel": "Umfrageoptionen",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Option hinzufügen",
+    "pollNote": "Es sind maximal {maxOptions} Optionen erlaubt.",
+    "photoVideo": "Foto/Video",
+    "agriEvent": "Agri-Veranstaltung",
+    "shareDocumentButton": "Dokument teilen",
+    "createPollButton": "Umfrage erstellen",
+    "postButton": "Posten",
+    "pollOptionsError": "Eine Umfrage muss mindestens 2 nicht leere Optionen haben.",
+    "emptyPostError": "Ihr Beitrag darf nicht leer sein."
+  },
+  "FeedItemCard": {
+    "signInToLikeToast": "Sie müssen angemeldet sein, um einen Beitrag zu liken.",
+    "repostPlaceholderToast": "Die Repost-Funktion kommt bald!",
+    "signInToVoteToast": "Sie müssen angemeldet sein, um abzustimmen.",
+    "voteSuccessToast": "Ihre Stimme wurde gezählt!",
+    "voteErrorToast": "Stimme konnte nicht gespeichert werden.",
+    "editPost": "Beitrag bearbeiten",
+    "deletePost": "Beitrag löschen",
+    "like": "Gefällt mir",
+    "comment": "Kommentieren",
+    "repost": "Reposten",
+    "likes": "{count, plural, =0 {Likes} =1 {Like} other {{count} Likes}}",
+    "comments": "{count, plural, =0 {Kommentare} =1 {Kommentar} other {{count} Kommentare}}",
+    "loadCommentsErrorToast": "Kommentare konnten nicht geladen werden.",
+    "noComments": "Seien Sie der Erste, der kommentiert!",
+    "loadingComments": "Lade Kommentare...",
+    "loadMoreComments": "Weitere Kommentare laden",
+    "writeCommentPlaceholder": "Einen Kommentar hinzufügen...",
+    "postButton": "Posten",
+    "votes": "{count, plural, =0 {Stimmen} =1 {Stimme} other {{count} Stimmen}}"
+  },
+  "MainDashboard": {
+    "feedError": {
+      "title": "Feed-Fehler",
+      "description": "Die neuesten Beiträge konnten nicht geladen werden. Bitte versuchen Sie, die Seite neu zu laden."
+    },
+    "uploadingMedia": "Lade Medien hoch...",
+    "uploadComplete": "Upload abgeschlossen!",
+    "postSuccess": {
+      "title": "Beitrag erstellt",
+      "description": "Ihr Beitrag wurde erfolgreich geteilt."
+    },
+    "postError": {
+      "auth": "Sie müssen angemeldet sein, um einen Beitrag zu erstellen.",
+      "fail": "Beitrag konnte nicht erstellt werden."
+    },
+    "likeError": {
+      "auth": "Sie müssen angemeldet sein, um einen Beitrag zu liken.",
+      "fail": "Like-Status konnte nicht aktualisiert werden."
+    },
+    "commentError": {
+      "auth": "Sie müssen angemeldet sein, um zu kommentieren.",
+      "fail": "Kommentar konnte nicht hinzugefügt werden."
+    },
+    "commentSuccess": "Kommentar erfolgreich gepostet.",
+    "deleteError": {
+      "auth": "Sie müssen angemeldet sein, um einen Beitrag zu löschen.",
+      "fail": "Beitrag konnte nicht gelöscht werden."
+    },
+    "deleteSuccess": {
+      "title": "Beitrag gelöscht",
+      "description": "Der Beitrag wurde erfolgreich entfernt."
+    },
+    "noActivity": "Es gibt noch keine Aktivität in Ihrem Netzwerk. Beginnen Sie, indem Sie sich mit anderen verbinden!"
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Synchronisiere {count} ausstehende Aktionen...",
+      "onlinePending": "{count, plural, =0 {Sie sind online und alle Änderungen sind synchronisiert.} =1 {# ausstehende Aktion. Wird bald synchronisiert.} other {{count} ausstehende Aktionen. Wird bald synchronisiert.}}",
+      "onlineSynced": "Sie sind online und alle Änderungen sind synchronisiert.",
+      "offline": "Sie sind offline. {count, plural, =0 {Keine ausstehenden Änderungen.} =1 {1 Änderung in der Warteschlange.} other {{count} Änderungen in der Warteschlange.}}"
+    },
+    "toast": {
+      "online": {
+        "title": "Sie sind wieder online!",
+        "description": "Ihre Verbindung wurde wiederhergestellt."
+      },
+      "offline": {
+        "title": "Sie sind offline.",
+        "description": "Ihre Änderungen werden gespeichert und synchronisiert, wenn Sie wieder eine Verbindung herstellen."
+      },
+      "syncing": {
+        "title": "Synchronisiere Offline-Änderungen",
+        "description": "Lade {count} Aktionen auf den Server hoch."
+      },
+      "synced": {
+        "title": "Synchronisation abgeschlossen",
+        "description": "Alle Ihre Offline-Änderungen wurden gespeichert."
+      },
+      "syncFailed": {
+        "title": "Synchronisation fehlgeschlagen",
+        "description": "Wir konnten Ihre Offline-Änderungen nicht synchronisieren. Wir werden es später erneut versuchen."
+      },
+      "queued": {
+        "title": "Aktion in die Warteschlange gestellt",
+        "description": "Diese Aktion wird ausgeführt, wenn Sie wieder online sind."
+      }
+    }
+  },
+  "searchPage": {
+    "title": "Universelle Suche",
+    "description": "Finden Sie alles auf der gesamten DamDoh-Plattform.",
+    "placeholder": "Wonach suchen Sie?",
+    "searchButton": "Suchen",
+    "popularSearches": "Beliebte Suchen",
+    "popularSearch1": "Bio-Kaffee",
+    "popularSearch2": "Traktorverleih in Kenia",
+    "popularSearch3": "Experte für Bodengesundheit",
+    "popularSearch4": "Exportfinanzierung",
+    "popularSearch5": "Forum für Nachernteverluste",
+    "modal": {
+      "title": "Universelle Suche",
+      "placeholder": "Suchen Sie nach Produkten, Dienstleistungen, Personen, Forenbeiträgen...",
+      "searchButton": "Suchen",
+      "searchError": "Suchfehler",
+      "searchErrorDescription": "Suche konnte zu diesem Zeitpunkt nicht durchgeführt werden. Bitte versuchen Sie es erneut.",
+      "scanFailed": "Scan fehlgeschlagen",
+      "scanError": "Scanfehler",
+      "scanErrorDescription": "QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut.",
+      "invalidCodeError": "Dies ist kein gültiger DamDoh-Wiederherstellungs- oder Profilcode.",
+      "interpretationTitle": "KI-Interpretation",
+      "interpretationNotesDefault": "Suche nach Schlüsselwörtern.",
+      "filtersTitle": "Filter",
+      "results": {
+        "users": "Profile",
+        "marketplaceItems": "Marktplatz",
+        "forums": "Foren",
+        "agri_events": "Veranstaltungen",
+        "knowledge_articles": "Wissenszentrum",
+        "vti_registry": "Rückverfolgungsberichte"
+      },
+      "noResults": "Keine Ergebnisse gefunden",
+      "tryAgain": "Versuchen Sie eine andere Abfrage oder erweitern Sie Ihre Suche."
+    }
   }
 }
 
-    
+  
