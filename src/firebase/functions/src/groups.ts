@@ -198,6 +198,63 @@ export const requestToJoinGroup = functions.https.onCall(async (data, context) =
     return { success: true, message: "Your request to join has been sent." };
 });
 
+export const getGroupJoinRequests = functions.https.onCall(async (data, context) => {
+    const ownerId = checkAuth(context);
+    const { groupId } = data;
+    if (!groupId) {
+        throw new functions.https.HttpsError('invalid-argument', 'A groupId must be provided.');
+    }
+
+    const groupRef = db.collection('groups').doc(groupId);
+    const groupDoc = await groupRef.get();
+
+    if (!groupDoc.exists || groupDoc.data()?.ownerId !== ownerId) {
+        throw new functions.https.HttpsError('permission-denied', 'You are not the owner of this group.');
+    }
+
+    const requestsSnapshot = await groupRef.collection('join_requests').where('status', '==', 'pending').get();
+    const requests = requestsSnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+            id: doc.id,
+            ...data,
+            createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+        };
+    });
+
+    return { requests };
+});
+
+
+export const respondToJoinRequest = functions.https.onCall(async (data, context) => {
+    const ownerId = checkAuth(context);
+    const { groupId, requestId, requesterId, action } = data;
+
+    if (!groupId || !requestId || !requesterId || !action) {
+        throw new functions.https.HttpsError('invalid-argument', 'Missing required parameters.');
+    }
+    if (action !== 'accept' && action !== 'decline') {
+        throw new functions.https.HttpsError('invalid-argument', 'Action must be "accept" or "decline".');
+    }
+
+    const groupRef = db.collection('groups').doc(groupId);
+    const groupDoc = await groupRef.get();
+    if (!groupDoc.exists || groupDoc.data()?.ownerId !== ownerId) {
+        throw new functions.https.HttpsError('permission-denied', 'You are not authorized to manage this group.');
+    }
+
+    const requestRef = groupRef.collection('join_requests').doc(requestId);
+    
+    if (action === 'accept') {
+        await modifyMembership(groupId, requesterId, true); // Use our existing helper
+        await requestRef.delete(); // Remove the request after accepting
+    } else { // 'decline'
+        await requestRef.delete();
+    }
+
+    return { success: true, message: `Request has been ${action}ed.` };
+});
+
 
 // --- NEW FUNCTIONS FOR GROUP DISCUSSIONS ---
 

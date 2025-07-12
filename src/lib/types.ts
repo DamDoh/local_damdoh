@@ -444,7 +444,7 @@ export interface AgronomistDashboardData {
   knowledgeHubContributions: {
     id: string;
     title: string;
-    status: 'Published' | 'Pending Review' | 'Draft';
+    status: 'Published' | 'Pending Review';
   }[];
 }
 
