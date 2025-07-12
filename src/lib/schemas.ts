@@ -177,11 +177,12 @@ export type InsuranceApplication = z.infer<typeof InsuranceApplicationSchema>;
 
 export const ApiKeySchema = z.object({
   id: z.string(),
-  description: z.string(),
+  description: z.string().optional(),
   environment: z.enum(['Sandbox', 'Production']),
   status: z.enum(['Active', 'Revoked']),
   key: z.string(),
   keyPrefix: z.string(),
+  lastFour: z.string(),
   createdAt: z.string(),
 });
 export type ApiKey = z.infer<typeof ApiKeySchema>;

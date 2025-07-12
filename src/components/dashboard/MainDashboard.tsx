@@ -1,22 +1,22 @@
 
 "use client";
 
-import { useEffect, useState, useMemo, Suspense } from 'react';
+import { useEffect, Suspense } from 'react';
 import { usePathname, useRouter } from '@/navigation';
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import type { FeedItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
 import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSidebar";
 import { StartPost } from "@/components/dashboard/StartPost";
-import { useHomepagePreference } from '@/hooks/useHomepageRedirect';
+import { PageSkeleton } from '@/components/Skeletons';
+import { useHomepageRedirect } from '@/hooks/useHomepageRedirect';
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from '@/lib/auth-utils';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
-import { doc, getDoc, getFirestore, collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, getFirestore } from "firebase/firestore";
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { uploadFileAndGetURL } from '@/lib/storage-utils';
 
@@ -76,24 +76,6 @@ const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Operations/Logistics Team (DamDoh Internal)': OperationsDashboard,
 };
 
-function PageSkeleton() {
-    return (
-        <div className="grid md:grid-cols-12 gap-6 items-start">
-            <div className="md:col-span-3 lg:col-span-2">
-                 <Skeleton className="h-[400px] w-full" />
-            </div>
-            <div className="md:col-span-6 lg:col-span-7 space-y-6">
-                <Skeleton className="h-28 w-full" />
-                <Skeleton className="h-64 w-full" />
-                <Skeleton className="h-56 w-full" />
-            </div>
-            <div className="hidden lg:block md:col-span-3">
-                 <Skeleton className="h-[400px] w-full" />
-            </div>
-        </div>
-    );
-}
-
 function MainContent() {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
@@ -102,15 +84,14 @@ function MainContent() {
   const { user, loading: authLoading } = useAuth();
   const { profile, loading: profileLoading } = useUserProfile();
   
-  const createPostCallable = useMemo(() => httpsCallable(functions, 'createFeedPost'), [functions]);
-  const likePostCallable = useMemo(() => httpsCallable(functions, 'likePost'), [functions]);
-  const addCommentCallable = useMemo(() => httpsCallable(functions, 'addComment'), [functions]);
-  const deletePostCallable = useMemo(() => httpsCallable(functions, 'deletePost'), [functions]);
+  const createPostCallable = httpsCallable(functions, 'createFeedPost');
+  const likePostCallable = httpsCallable(functions, 'likePost');
+  const addCommentCallable = httpsCallable(functions, 'addComment');
+  const deletePostCallable = httpsCallable(functions, 'deletePost');
   
   useEffect(() => {
     let unsubscribeFeed: () => void = () => {};
 
-    // For everyone (guests included), set up the real-time listener for the main feed.
     setIsLoadingFeed(true);
     const q = query(collection(db, "posts"), orderBy("createdAt", "desc"), limit(20));
     unsubscribeFeed = onSnapshot(q, (snapshot) => {
@@ -146,17 +127,15 @@ function MainContent() {
     
     try {
       let imageUrl: string | undefined = undefined;
-      // Step 1: Upload media if it exists
+      let dataAiHint: string | undefined = undefined;
       if (media) {
         toast({ title: "Uploading media..." });
         imageUrl = await uploadFileAndGetURL(media, `feed-posts/${user.uid}`);
         toast({ title: "Upload complete!" });
       }
 
-      // Step 2: Call the cloud function with all data
-      await createPostCallable({ content, pollOptions: pollData, imageUrl });
+      await createPostCallable({ content, pollOptions: pollData, imageUrl, dataAiHint });
       toast({ title: "Post Created!", description: "Your post is now live." });
-      // Feed will update automatically via onSnapshot
     } catch (error) {
       console.error("Error creating post:", error);
       toast({ title: "Failed to create post", variant: "destructive" });
@@ -199,7 +178,6 @@ function MainContent() {
     try {
         await deletePostCallable({ postId });
         toast({ title: "Post Deleted", description: "Your post has been successfully removed." });
-        // The real-time listener will automatically remove the post from the UI.
     } catch (error) {
         console.error("Error deleting post:", error);
         toast({ title: "Failed to delete post", variant: "destructive" });
@@ -216,13 +194,11 @@ function MainContent() {
       );
     }
   
-    // If the user is logged in AND has a profile with a specific hub component, show that hub.
     const HubComponent = profile ? HubComponentMap[profile.primaryRole] : null;
     if (HubComponent) {
       return <HubComponent />;
     }
 
-    // Default to showing the public feed for guests or users without a specific hub.
     if (isLoadingFeed) {
       return (
         <div className="space-y-6">

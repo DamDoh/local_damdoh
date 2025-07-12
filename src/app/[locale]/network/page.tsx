@@ -57,7 +57,7 @@ export default function NetworkPage() {
   const { user } = useAuth();
   const { toast } = useToast();
   const functions = getFunctions(firebaseApp);
-  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'sendConnectionRequest'), []);
+  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'sendConnectionRequest'), [functions]);
   const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), [functions]);
 
   useEffect(() => {
@@ -227,8 +227,7 @@ export default function NetworkPage() {
                         <CardTitle className="text-lg hover:text-primary transition-colors">{profile.displayName}</CardTitle>
                     </Link>
                     <CardDescription className="flex items-center gap-2">
-                      {STAKEHOLDER_ROLES.find(r => r.name === profile.primaryRole)?.icon &&
-                          React.createElement(STAKEHOLDER_ROLES.find(r => r.name === profile.primaryRole)!.icon, { className: "h-4 w-4 text-muted-foreground" })}
+                      <StakeholderIcon role={profile.primaryRole} className="h-4 w-4 text-muted-foreground" />
                       {profile.primaryRole} - {profile.location}
                     </CardDescription>
                     </CardHeader>

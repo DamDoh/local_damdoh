@@ -30,15 +30,17 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'error.apiKey.invalidEnvironment');
     }
 
-    const keyPrefix = `sk_${environment.substring(0,4).toLowerCase()}`;
-    const apiKey = `${keyPrefix}_${randomBytes(24).toString('hex')}`;
+    const keyPrefix = `damdoh_${environment.substring(0,4).toLowerCase()}`;
+    const secret = randomBytes(24).toString('hex');
+    const fullKey = `${keyPrefix}_${secret}`;
     const keyRef = db.collection('users').doc(innovatorId).collection('api_keys').doc();
 
     const newKeyDataToStore = {
         description,
         environment,
         status: 'Active',
-        keyPrefix: apiKey.substring(0, 12),
+        keyPrefix: `${keyPrefix}_...`,
+        lastFour: secret.slice(-4),
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     };
 
@@ -47,7 +49,7 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
     return { 
         success: true, 
         message: 'API Key generated successfully. Please copy it now, you will not be able to see it again.',
-        key: apiKey,
+        key: fullKey,
         id: keyRef.id,
         ...newKeyDataToStore,
         createdAt: new Date().toISOString(), // Return ISO string for client
@@ -70,7 +72,7 @@ export const getApiKeys = functions.https.onCall(async (data, context) => {
             status: keyData.status,
             keyPrefix: keyData.keyPrefix, 
             createdAt: (keyData.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
-            key: `${keyData.keyPrefix}...` 
+            key: `${keyData.keyPrefix}...${keyData.lastFour}` 
         }
     });
 
@@ -99,4 +101,3 @@ export const revokeApiKey = functions.https.onCall(async (data, context) => {
 
     return { success: true, message: 'API Key has been revoked.' };
 });
-

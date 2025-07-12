@@ -4,7 +4,7 @@
 import { useEffect, Suspense } from 'react';
 import { usePathname, useRouter } from '@/navigation';
 import { useHomepagePreference } from '@/hooks/useHomepageRedirect';
-import { MainDashboard as MainContent } from '@/components/dashboard/MainDashboard'; // Correctly import the component
+import { MainDashboard as MainContent } from '@/components/dashboard/MainDashboard';
 import { PageSkeleton } from '@/components/Skeletons';
 
 // This component remains the entry point for the dashboard logic on the main page.

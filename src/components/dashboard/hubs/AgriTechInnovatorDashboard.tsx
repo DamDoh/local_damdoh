@@ -39,7 +39,6 @@ const ApiKeyRow = ({ apiKey, onRevoke }: { apiKey: ApiKey, onRevoke: (keyId: str
     const handleRevokeClick = () => {
         setIsRevoking(true);
         onRevoke(apiKey.id);
-        // The parent component will handle UI updates and toast messages.
     };
 
     return (
@@ -95,13 +94,11 @@ export const AgriTechInnovatorDashboard = () => {
   const [error, setError] = useState<string | null>(null);
   const [isGenerateModalOpen, setIsGenerateModalOpen] = useState(false);
 
-  // Form state for the new key dialog
   const [newKeyDescription, setNewKeyDescription] = useState('');
   const [newKeyEnv, setNewKeyEnv] = useState<'Sandbox' | 'Production'>('Sandbox');
   
   const [newlyGeneratedKey, setNewlyGeneratedKey] = useState<ApiKey | null>(null);
 
-  const getApiKeysCallable = useMemo(() => httpsCallable(functions, 'getApiKeys'), []);
   const generateApiKeyCallable = useMemo(() => httpsCallable(functions, 'generateApiKey'), []);
   const revokeApiKeyCallable = useMemo(() => httpsCallable(functions, 'revokeApiKey'), []);
   const getAgriTechInnovatorDashboardDataCallable = useMemo(() => httpsCallable(functions, 'getAgriTechInnovatorDashboardData'), []);
@@ -110,22 +107,15 @@ export const AgriTechInnovatorDashboard = () => {
       setIsLoading(true);
       setError(null);
       try {
-        const [dashboardResult, apiKeysResult] = await Promise.all([
-          getAgriTechInnovatorDashboardDataCallable(),
-          getApiKeysCallable()
-        ]);
-        
-        const data = dashboardResult.data as AgriTechInnovatorDashboardData;
-        data.apiKeys = (apiKeysResult.data as any).keys || [];
-
-        setDashboardData(data);
+        const result = await getAgriTechInnovatorDashboardDataCallable();
+        setDashboardData(result.data as AgriTechInnovatorDashboardData);
       } catch (err: any) {
         console.error("Error fetching Agri-Tech dashboard data:", err);
         setError("Failed to load dashboard data. Please try again later.");
       } finally {
         setIsLoading(false);
       }
-  }, [getApiKeysCallable, getAgriTechInnovatorDashboardDataCallable]);
+  }, [getAgriTechInnovatorDashboardDataCallable]);
   
   useEffect(() => {
       fetchDashboardData();
@@ -142,7 +132,7 @@ export const AgriTechInnovatorDashboard = () => {
           const newKeyData = result.data as ApiKey;
           setNewlyGeneratedKey(newKeyData);
           setNewKeyDescription('');
-          fetchDashboardData(); // Refresh data in background
+          fetchDashboardData();
       } catch (error: any) {
           toast({ title: t('toast.keyGeneratedError'), description: error.message, variant: 'destructive' });
       } finally {
@@ -155,9 +145,8 @@ export const AgriTechInnovatorDashboard = () => {
        try {
           await revokeApiKeyCallable({ keyId });
           toast({ title: t('toast.keyRevokedSuccess') });
-          // Close any open dialogs. This is a bit of a hack, might need a better solution for complex modals.
           document.querySelector('[role="dialog"] [aria-label="Close"]')?.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
-          fetchDashboardData(); // Refresh data
+          fetchDashboardData();
       } catch (error: any) {
           toast({ title: t('toast.keyRevokedError'), description: error.message, variant: 'destructive' });
       }
