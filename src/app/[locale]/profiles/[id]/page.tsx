@@ -91,6 +91,7 @@ export default function ProfileDetailPage() {
   const getUserActivity = useMemo(() => httpsCallable(functions, 'getUserActivity'), [functions]);
   const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'logProfileView'), [functions]);
   const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'getUserEngagementStats'), []);
+  const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), [functions]);
   
   useEffect(() => {
     const profileIdParam = params.id as string;
@@ -151,6 +152,25 @@ export default function ProfileDetailPage() {
       setIsLoading(false);
     }
   }, [params.id, authUser, authLoading, router, getUserActivity, logProfileViewCallable, getEngagementStatsCallable]);
+  
+  const handleInvite = async () => {
+    const inviteeEmail = prompt(t('invitePrompt'));
+    if (inviteeEmail) {
+      try {
+        await sendInviteCallable({ inviteeEmail });
+        toast({
+          title: t('inviteSuccessTitle'),
+          description: t('inviteSuccessDescription', { email: inviteeEmail }),
+        });
+      } catch (error: any) {
+        toast({
+          title: t('inviteErrorTitle'),
+          description: error.message,
+          variant: 'destructive',
+        });
+      }
+    }
+  };
 
 
   if (isLoading || authLoading) {
@@ -257,7 +277,7 @@ export default function ProfileDetailPage() {
             </CardHeader>
             <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">{t('invite.explanation')}</p>
-                <Button>{t('invite.button')}</Button>
+                <Button onClick={handleInvite}>{t('invite.button')}</Button>
             </CardContent>
         </Card>
       )}

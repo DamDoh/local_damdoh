@@ -27,7 +27,7 @@ Your goal is to suggest relevant products and services to a user based on their 
 
 Analyze the following user profile:
 - Role: {{{userProfile.primaryRole}}}
-- Location: {{{userProfile.location}}}
+- Location: {{{userProfile.location.address}}}
 - Interests: {{#if userProfile.areasOfInterest}}{{#each userProfile.areasOfInterest}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}{{else}}Not specified{{/if}}
 - Needs: {{#if userProfile.needs}}{{#each userProfile.needs}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}{{else}}Not specified{{/if}}
 

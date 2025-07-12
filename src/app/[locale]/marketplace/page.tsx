@@ -22,6 +22,11 @@ import { ItemCard } from "@/components/marketplace/ItemCard";
 import { useTranslations } from "next-intl";
 import { useAuth } from "@/lib/auth-utils";
 
+interface RecommendedItem {
+  item: MarketplaceItem;
+  reason: string;
+}
+
 function MarketplaceContent() {
   const t = useTranslations('Marketplace');
   const tConstants = useTranslations('constants');
@@ -34,7 +39,7 @@ function MarketplaceContent() {
   const [displayedItems, setDisplayedItems] = useState<MarketplaceItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   
-  const [aiRecommendations, setAiRecommendations] = useState<Awaited<ReturnType<typeof getMarketplaceRecommendationsAction>>>([]);
+  const [aiRecommendations, setAiRecommendations] = useState<RecommendedItem[]>([]);
   const [isLoadingAiRecommendations, setIsLoadingAiRecommendations] = useState(true);
 
   const pathname = usePathname();
