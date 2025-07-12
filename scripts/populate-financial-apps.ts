@@ -1,3 +1,4 @@
+
 // A standalone script to populate the 'financial_applications' collection in Firestore.
 // To run this:
 // 1. Make sure your .env.local file has the correct Firebase project credentials.
@@ -57,7 +58,11 @@ const APPLICATIONS_DATA = [
 // Initialize Firebase Admin SDK
 if (!getApps().length) {
     try {
-        const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY as string);
+        const serviceAccountEnv = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
+        if (!serviceAccountEnv) {
+            throw new Error("FIREBASE_SERVICE_ACCOUNT_KEY environment variable is not set.");
+        }
+        const serviceAccount = JSON.parse(serviceAccountEnv);
         initializeApp({
             credential: cert(serviceAccount),
             databaseURL: `https://${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.firebaseio.com`
@@ -95,4 +100,10 @@ async function populateFinancialApps() {
     }
 }
 
-populateFinancialApps();
+populateFinancialApps().then(() => {
+    console.log("Script finished.");
+    process.exit(0);
+}).catch((error) => {
+    console.error("Script failed:", error);
+    process.exit(1);
+});
