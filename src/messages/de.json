@@ -13,113 +13,6 @@
     "back": "Zurück",
     "submit": "Einreichen"
   },
-  "Auth": {
-    "signInTitle": "Anmelden",
-    "signInWelcome": "Willkommen bei {appName}",
-    "signInDescription": "Melden Sie sich bei Ihrem Konto an, um fortzufahren.",
-    "emailLabel": "E-Mail",
-    "emailPlaceholder": "name@beispiel.com",
-    "passwordLabel": "Passwort",
-    "forgotPasswordLink": "Passwort vergessen?",
-    "signInButton": "Anmelden",
-    "signingInButton": "Anmeldung läuft...",
-    "noAccountPrompt": "Sie haben noch kein Konto?",
-    "signUpLink": "Registrieren",
-    "signUpTitle": "Konto erstellen",
-    "signUpWelcome": "Treten Sie der {appName} Community bei",
-    "signUpDescription": "Füllen Sie das Formular aus, um loszulegen.",
-    "nameLabel": "Name",
-    "namePlaceholder": "Ihr Name",
-    "roleLabel": "Ihre Rolle",
-    "rolePlaceholder": "Wählen Sie Ihre Rolle...",
-    "confirmPasswordLabel": "Passwort bestätigen",
-    "confirmPasswordPlaceholder": "••••••••",
-    "signUpButton": "Konto erstellen",
-    "creatingAccountButton": "Konto wird erstellt...",
-    "alreadyHaveAccountPrompt": "Sie haben bereits ein Konto?",
-    "signInLink": "Anmelden",
-    "passwordStrength": {
-      "label": "Stärke",
-      "weak": "Schwach",
-      "medium": "Mittel",
-      "strong": "Stark",
-      "veryStrong": "Sehr stark"
-    },
-    "errors": {
-      "emailInUse": "Diese E-Mail wird bereits verwendet.",
-      "invalidEmail": "Ungültige E-Mail-Adresse.",
-      "weakPassword": "Das Passwort muss mindestens 6 Zeichen lang sein.",
-      "default": "Ein unerwarteter Fehler ist aufgetreten."
-    },
-    "signUpSuccess": {
-      "title": "Konto erstellt & angemeldet!",
-      "description": "Willkommen bei {appName}! Sie wurden erfolgreich angemeldet."
-    },
-    "signUpFailed": "Registrierung fehlgeschlagen",
-    "forgotPasswordTitle": "Passwort vergessen",
-    "forgotPasswordDescription": "Geben Sie Ihre E-Mail ein, um einen Link zum Zurücksetzen zu erhalten.",
-    "forgotPasswordResetPrompt": "Setzen Sie Ihr Passwort für {appName} zurück",
-    "sendResetLinkButton": "Link zum Zurücksetzen senden",
-    "sendingEmailButton": "E-Mail wird gesendet...",
-    "rememberPasswordPrompt": "Passwort wieder eingefallen?",
-    "forgotPassword": {
-      "emailSentTitle": "E-Mail gesendet!",
-      "emailSentDescription": "Ein Link zum Zurücksetzen wurde an {email} gesendet.",
-      "emailSentDescriptionIfAccountExists": "Wenn ein Konto mit {email} existiert, wurde ein Link zum Zurücksetzen gesendet.",
-      "successTitle": "Zurücksetzen erfolgreich!",
-      "successDescription": "Sie können sich jetzt mit Ihrem neuen Passwort anmelden.",
-      "errors": {
-        "unexpected": "Ein unerwarteter Fehler ist aufgetreten.",
-        "invalidEmail": "Die E-Mail-Adresse ist ungültig.",
-        "tooManyRequests": "Zu viele Anfragen. Bitte versuchen Sie es später erneut.",
-        "default": "Fehler",
-        "missingCode": "Der Code zum Zurücksetzen des Passworts fehlt oder ist ungültig. Bitte fordern Sie einen neuen an.",
-        "missingCodeTitle": "Code zum Zurücksetzen des Passworts ungültig"
-      }
-    },
-    "resetPasswordTitle": "Passwort zurücksetzen",
-    "resetPasswordDescription": "Geben Sie Ihr neues Passwort ein.",
-    "resetPasswordPrompt": "Setzen Sie Ihr Passwort für {appName} zurück",
-    "newPasswordLabel": "Neues Passwort",
-    "newPasswordPlaceholder": "••••••••",
-    "resettingPasswordButton": "Passwort wird zurückgesetzt...",
-    "resetPasswordButton": "Passwort zurücksetzen",
-    "resetPassword": {
-      "successRedirect": "Sie werden zur Anmeldeseite weitergeleitet...",
-      "errors": {
-        "invalidOrExpiredCode": "Der Link zum Zurücksetzen des Passworts ist ungültig oder abgelaufen.",
-        "userDisabled": "Dieses Benutzerkonto wurde deaktiviert.",
-        "userNotFound": "Benutzer nicht gefunden.",
-        "weakPassword": "Das Passwort ist zu schwach."
-      }
-    }
-  },
-  "AppHeader": {
-    "searchPlaceholder": "Suchen...",
-    "home": "Startseite",
-    "network": "Netzwerk",
-    "farmMgmt": "Farmverwaltung",
-    "marketplace": "Marktplatz",
-    "talentExchange": "Talentbörse",
-    "traceability": "Rückverfolgbarkeit",
-    "forums": "Foren",
-    "sustainability": "Nachhaltigkeit",
-    "notifications": "Benachrichtigungen",
-    "messages": "Nachrichten",
-    "wallet": "Brieftasche",
-    "signIn": "Anmelden",
-    "signUp": "Registrieren",
-    "myProfile": "Mein Profil",
-    "myOrders": "Meine Bestellungen",
-    "settings": "Einstellungen",
-    "helpCenter": "Hilfecenter",
-    "logOut": "Abmelden",
-    "switchToLightAria": "Zum hellen Modus wechseln",
-    "switchToDarkAria": "Zum dunklen Modus wechseln"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Sprache wechseln"
-  },
   "constants": {
     "stakeholderRoles": {
       "Farmer": "Landwirt",
@@ -147,6 +40,397 @@
       "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Impact Investor, Einzelperson)",
       "InsuranceProvider": "Versicherungsanbieter",
       "PackagingSupplier": "Verpackungslieferant"
+    },
+    "listingTypes": {
+      "All": "Alle Typen",
+      "Product": "Produkt",
+      "Service": "Dienstleistung"
+    },
+    "agriEventTypes": {
+      "All": "Alle Typen",
+      "Conference": "Konferenz",
+      "Webinar": "Webinar",
+      "Workshop": "Workshop",
+      "TradeShow": "Messe",
+      "FieldDay": "Feldtag",
+      "NetworkingEvent": "Networking-Veranstaltung",
+      "OnlineCourseLaunch": "Start eines Online-Kurses",
+      "PolicyBriefing": "Informationsveranstaltung zur Politik"
+    },
+    "insuranceProductTypes": {
+      "Crop": "Ernteversicherung",
+      "Livestock": "Tierversicherung",
+      "Asset": "Vermögensversicherung",
+      "Weather": "Wetterbasiert (Parametrisch)"
+    }
+  },
+  "LandingPage": {
+    "hero": {
+      "title": "Landwirtschaft von Boden bis Verkauf auf {appName} stärken",
+      "subtitle": "Die einzige Plattform, die jeden Stakeholder in der landwirtschaftlichen Wertschöpfungskette für eine transparentere, effizientere und nachhaltigere Zukunft verbindet.",
+      "getStartedButton": "Kostenlos starten",
+      "learnMoreButton": "Mehr erfahren"
+    },
+    "features": {
+      "title": "Hauptfunktionen von DamDoh",
+      "subtitle": "Alles, was Sie zum Wachsen, Verbinden und Handeln benötigen, an einem Ort.",
+      "networking": {
+        "title": "Intelligentes Networking",
+        "description": "KI-gestützte Verbindungsvorschläge, um Sie mit den richtigen Partnern zu verbinden, von Lieferanten bis zu internationalen Käufern."
+      },
+      "marketplace": {
+        "title": "Direkter Marktplatz",
+        "description": "Kaufen und verkaufen Sie Produkte und Dienstleistungen direkt und erhöhen Sie so die Transparenz und Rentabilität für alle Beteiligten."
+      },
+      "forums": {
+        "title": "Themenforen",
+        "description": "Teilen Sie Wissen, diskutieren Sie Herausforderungen und arbeiten Sie an Lösungen in themenspezifischen Foren."
+      },
+      "talent": {
+        "title": "Talentbörse",
+        "description": "Bieten oder finden Sie spezialisierte landwirtschaftliche Dienstleistungen, von der Ernte auf Abruf bis zur Drohnenvermessung."
+      }
+    },
+    "forWho": {
+      "badge": "Für alle in der Landwirtschaft",
+      "title": "Eine Plattform für die gesamte Wertschöpfungskette",
+      "description": "DamDoh ist einzigartig konzipiert, um das gesamte landwirtschaftliche Ökosystem zu bedienen und einen einzigen Punkt der Wahrheit und der Möglichkeiten für alle zu schaffen.",
+      "farmers": {
+        "title": "Landwirte",
+        "description": "Erhalten Sie Zugang zu besseren Märkten, finden Sie hochwertige Betriebsmittel und erhalten Sie Expertenrat, um Ertrag und Rentabilität zu steigern."
+      },
+      "buyers": {
+        "title": "Käufer & Verarbeiter",
+        "description": "Beziehen Sie hochwertige, rückverfolgbare Produkte direkt von Erzeugern und Genossenschaften und gewährleisten Sie so die Zuverlässigkeit der Lieferkette."
+      },
+      "experts": {
+        "title": "Experten & Dienstleister",
+        "description": "Bieten Sie Ihre spezialisierten Fähigkeiten und Dienstleistungen einem breiten landwirtschaftlichen Publikum an, das Ihre Expertise sucht."
+      },
+       "fis": {
+        "title": "Finanzinstitute",
+        "description": "Bieten Sie gezielte Kredite, Zuschüsse und Versicherungsprodukte für ein verifiziertes Netzwerk von landwirtschaftlichen Betrieben an."
+      },
+      "imageAlt": "Eine vielfältige Gruppe von landwirtschaftlichen Akteuren bei der Zusammenarbeit"
+    },
+    "cta": {
+      "title": "Nehmen Sie an der landwirtschaftlichen Revolution teil",
+      "subtitle": "Melden Sie sich noch heute an und werden Sie Teil eines wachsenden globalen Netzwerks, das sich der Transformation der Zukunft der Ernährung widmet.",
+      "button": "Erstellen Sie Ihr kostenloses Konto"
+    }
+  },
+  "Auth": {
+    "signInWelcome": "Willkommen zurück bei {appName}",
+    "signUpWelcome": "Treten Sie dem landwirtschaftlichen Netzwerk von DamDoh bei",
+    "forgotPasswordResetPrompt": "Setzen Sie Ihr Passwort für {appName} zurück",
+    "resetPasswordPrompt": "Erstellen Sie ein neues Passwort für {appName}",
+    "signInTitle": "Bei Ihrem Konto anmelden",
+    "signInDescription": "Geben Sie Ihre Anmeldedaten ein, um auf Ihr Dashboard zuzugreifen.",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "sie@beispiel.com",
+    "passwordLabel": "Passwort",
+    "forgotPasswordLink": "Passwort vergessen?",
+    "signingInButton": "Anmeldung läuft...",
+    "signInButton": "Anmelden",
+    "noAccountPrompt": "Sie haben noch kein Konto?",
+    "signUpLink": "Registrieren",
+    "signInLink": "Anmelden",
+    "recoverWithUniversalIdPrompt": "Oder stellen Sie den Zugriff mit Ihrer Universal-ID wieder her",
+    "signUpTitle": "Neues Konto erstellen",
+    "signUpDescription": "Erzählen Sie uns ein wenig über sich, um loszulegen.",
+    "nameLabel": "Ihr Name oder Firmenname",
+    "namePlaceholder": "z.B. Maria Mustermann oder Grüne Tal Bio-Höfe",
+    "roleLabel": "Ihre Hauptrolle",
+    "rolePlaceholder": "Wählen Sie Ihre Rolle in der Lieferkette...",
+    "confirmPasswordLabel": "Passwort bestätigen",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Konto wird erstellt...",
+    "signUpButton": "Konto erstellen",
+    "alreadyHaveAccountPrompt": "Sie haben bereits ein Konto?",
+    "forgotPasswordTitle": "Passwort vergessen?",
+    "forgotPasswordDescription": "Kein Problem. Geben Sie unten Ihre E-Mail-Adresse ein, und wir senden Ihnen einen Link, um es zurückzusetzen.",
+    "sendResetLinkButton": "Link zum Zurücksetzen senden",
+    "sendingEmailButton": "E-Mail wird gesendet...",
+    "rememberPasswordPrompt": "Passwort wieder eingefallen?",
+    "resetPasswordTitle": "Passwort zurücksetzen",
+    "resetPasswordDescription": "Geben Sie unten Ihr neues Passwort ein und bestätigen Sie es.",
+    "newPasswordLabel": "Neues Passwort",
+    "newPasswordPlaceholder": "Geben Sie ein sicheres neues Passwort ein",
+    "resetPasswordButton": "Passwort zurücksetzen",
+    "resettingPasswordButton": "Zurücksetzen...",
+    "recoverPage": {
+      "title": "Ihr Konto wiederherstellen",
+      "description": "Nutzen Sie Ihr Netzwerk, um wieder Zugriff zu erhalten.",
+      "howItWorksTitle": "Wie es funktioniert",
+      "step1": "Geben Sie Ihre Telefonnummer ein, um eine Wiederherstellungssitzung zu starten.",
+      "step2": "Zeigen Sie den temporären QR-Code einem vertrauenswürdigen Freund auf DamDoh.",
+      "step3": "Sobald Ihr Freund den Code scannt, um Ihre Identität zu überprüfen, erhalten Sie wieder Zugriff.",
+      "startButton": "Kontowiederherstellung starten",
+      "scanTitle": "Bitten Sie einen Freund zu scannen",
+      "scanDescription": "Lassen Sie einen vertrauenswürdigen DamDoh-Kontakt diesen QR-Code mit der Funktion 'Einem Freund bei der Wiederherstellung helfen' in seiner App scannen.",
+      "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
+      "startOverButton": "Neu starten"
+    },
+    "forgotPassword": {
+      "emailSentTitle": "Überprüfen Sie Ihre E-Mails",
+      "emailSentDescription": "Ein Link zum Zurücksetzen des Passworts wurde an {email} gesendet.",
+      "emailSentDescriptionIfAccountExists": "Wenn ein Konto mit {email} existiert, wurde ein Link zum Zurücksetzen des Passworts gesendet.",
+      "successTitle": "E-Mail gesendet!",
+      "successDescription": "Bitte überprüfen Sie Ihren Posteingang (und den Spam-Ordner) auf den Link zum Zurücksetzen des Passworts.",
+      "errors": {
+        "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+        "invalidEmail": "Die E-Mail-Adresse ist ungültig.",
+        "tooManyRequests": "Zu viele Anfragen. Bitte versuchen Sie es später erneut.",
+        "default": "Fehler beim Senden der E-Mail zum Zurücksetzen"
+      }
+    },
+    "resetPassword": {
+      "successTitle": "Passwort erfolgreich zurückgesetzt!",
+      "successDescription": "Sie können sich jetzt mit Ihrem neuen Passwort anmelden.",
+      "successRedirect": "Sie werden in Kürze zur Anmeldeseite weitergeleitet...",
+      "errors": {
+        "missingCode": "Ungültiger Link zum Zurücksetzen des Passworts. Bitte fordern Sie einen neuen an.",
+        "missingCodeTitle": "Ungültiger Link",
+        "missingCodeDescription": "Der Link zum Zurücksetzen des Passworts fehlt oder ist ungültig. Bitte kehren Sie zur Seite 'Passwort vergessen' zurück, um einen neuen anzufordern.",
+        "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+        "invalidOrExpiredCode": "Der Link zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordern Sie einen neuen an.",
+        "userDisabled": "Dieses Benutzerkonto wurde deaktiviert.",
+        "userNotFound": "Kein Benutzer gefunden, der diesem Zurücksetzungslink entspricht.",
+        "weakPassword": "Das neue Passwort ist nicht stark genug.",
+        "default": "Passwort zurücksetzen fehlgeschlagen"
+      }
+    },
+     "errors": {
+      "emailInUse": "Diese E-Mail wird bereits verwendet.",
+      "invalidEmail": "Ungültige E-Mail-Adresse.",
+      "weakPassword": "Das Passwort muss mindestens 6 Zeichen lang sein.",
+      "default": "Ein unerwarteter Fehler ist aufgetreten."
+    },
+    "signUpSuccess": {
+      "title": "Konto erstellt & angemeldet!",
+      "description": "Willkommen bei {appName}! Sie wurden erfolgreich angemeldet."
+    },
+    "signUpFailed": "Registrierung fehlgeschlagen",
+    "toast": {
+      "loggedOut": {
+        "title": "Abgemeldet",
+        "description": "Sie wurden erfolgreich abgemeldet."
+      },
+      "logoutFailed": {
+        "title": "Abmeldung fehlgeschlagen",
+        "description": "Konnte Sie nicht abmelden. Bitte versuchen Sie es erneut."
+      },
+      "signInSuccess": {
+        "title": "Erfolgreich angemeldet!",
+        "description": "Willkommen zurück bei {appName}."
+      },
+      "signInFailed": {
+        "title": "Anmeldung fehlgeschlagen"
+      }
+    },
+    "passwordStrength": {
+      "label": "Stärke",
+      "weak": "Schwach",
+      "medium": "Mittel",
+      "strong": "Stark",
+      "veryStrong": "Sehr stark"
+    }
+  },
+  "AppHeader": {
+    "home": "Start",
+    "network": "Netzwerk",
+    "farmMgmt": "Farm-Verw.",
+    "marketplace": "Marktplatz",
+    "talentExchange": "Talentbörse",
+    "traceability": "Rückverfolgb.",
+    "forums": "Foren",
+    "sustainability": "Nachhaltigk.",
+    "notifications": "Benachrichtig.",
+    "messages": "Nachrichten",
+    "wallet": "Wallet",
+    "searchPlaceholder": "Personen, Produkte, Dienste suchen...",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "myProfile": "Mein Profil",
+    "myOrders": "Meine Bestellungen",
+    "settings": "Einstellungen",
+    "helpCenter": "Hilfecenter",
+    "logOut": "Abmelden",
+    "switchToLightAria": "Zum hellen Modus wechseln",
+    "switchToDarkAria": "Zum dunklen Modus wechseln"
+  },
+  "MobileBottomNav": {
+    "home": "Start",
+    "market": "Markt",
+    "search": "Suche",
+    "messages": "Nachrichten",
+    "profile": "Profil"
+  },
+  "DashboardLeftSidebar": {
+    "viewProfileLink": "Mein Profil anzeigen",
+    "profileViewers": "Profilbesucher",
+    "postEngagements": "Beitragsinteraktionen",
+    "pro": {
+      "unlock": "Schalten Sie mehr Einblicke mit DamDoh Pro frei.",
+      "try": "Pro ausprobieren"
+    },
+    "recent": {
+      "title": "Kürzlich",
+      "myPinBoard": "Meine Pinnwand",
+      "communityGroups": "Community-Gruppen",
+      "industryNews": "Branchennachrichten",
+      "agriEvents": "Agri-Veranstaltungen",
+      "mySupplyChainNetwork": "Mein Lieferkettennetzwerk"
+    }
+  },
+  "MainDashboard": {
+    "feedError": {
+      "title": "Fehler beim Laden des Feeds",
+      "description": "Die neuesten Aktivitäten konnten nicht abgerufen werden. Bitte überprüfen Sie Ihre Verbindung."
+    },
+    "postError": {
+      "auth": "Sie müssen angemeldet sein, um einen Beitrag zu erstellen.",
+      "fail": "Fehler beim Erstellen des Beitrags. Bitte versuchen Sie es erneut."
+    },
+    "uploadingMedia": "Medien werden hochgeladen...",
+    "uploadComplete": "Upload abgeschlossen!",
+    "postSuccess": {
+      "title": "Beitrag erstellt!",
+      "description": "Ihr Update wurde mit dem Netzwerk geteilt."
+    },
+    "likeError": {
+      "auth": "Sie müssen sich anmelden, um einen Beitrag zu mögen.",
+      "fail": "Konnte den Beitrag nicht mögen. Bitte versuchen Sie es erneut."
+    },
+    "commentError": {
+      "auth": "Sie müssen angemeldet sein, um zu kommentieren.",
+      "fail": "Fehler beim Posten des Kommentars."
+    },
+    "commentSuccess": "Kommentar gepostet!",
+    "deleteError": {
+      "auth": "Sie müssen angemeldet sein, um einen Beitrag zu löschen.",
+      "fail": "Fehler beim Löschen des Beitrags."
+    },
+    "deleteSuccess": {
+      "title": "Beitrag gelöscht",
+      "description": "Ihr Beitrag wurde erfolgreich entfernt."
+    },
+    "noActivity": "Keine aktuellen Aktivitäten in Ihrem Netzwerk. Starten Sie eine Konversation oder erkunden Sie den Marktplatz!"
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "Zu Ihrem Feed hinzufügen",
+    "refreshSuggestions": "Vorschläge aktualisieren",
+    "infoTooltip": "Vorschläge basieren auf Ihren Profilinteressen und Bedürfnissen.",
+    "signInPrompt": "Melden Sie sich für personalisierte Empfehlungen an.",
+    "loadError": "Vorschläge konnten nicht geladen werden.",
+    "noSuggestions": "Momentan keine neuen Vorschläge. Schauen Sie später noch einmal vorbei!",
+    "following": "Folge ich",
+    "follow": "Folgen",
+    "promotionsTitle": "Marketing & Aktionen",
+    "promotionsDescription": "Erstellen und verwalten Sie Gutscheine, um Ihren Umsatz zu steigern.",
+    "managePromotionsButton": "Aktionen verwalten",
+    "ad": "Anzeige",
+    "adTitle": "Markteinblicke freischalten",
+    "adDescription": "Erhalten Sie Echtzeitdaten und Analysen mit DamDoh Pro.",
+    "adButton": "Mehr erfahren"
+  },
+  "LanguageSwitcher": {
+    "toggle": "Sprache ändern"
+  },
+  "AppFooter": {
+    "tagline": "Die globale Plattform für die landwirtschaftliche Lieferkette.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Über uns",
+    "contactLabel": "Kontakt",
+    "careersLabel": "Karriere",
+    "blogLabel": "Blog & Nachrichten",
+    "resourcesTitle": "Ressourcen",
+    "helpCenterLabel": "Hilfecenter",
+    "communityGuidelinesLabel": "Community-Richtlinien",
+    "industryNewsLabel": "Branchennachrichten",
+    "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
+    "legalTitle": "Rechtliches",
+    "privacyPolicyLabel": "Datenschutzrichtlinie",
+    "termsOfServiceLabel": "Nutzungsbedingungen",
+    "copyright": "© {year} {appName} Alle Rechte vorbehalten.",
+    "getMobileApp": "Holen Sie sich die Mobile App",
+    "googlePlayAlt": "Bei Google Play holen",
+    "appStoreAlt": "Im App Store herunterladen"
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Über DamDoh",
+      "subtitle": "Verbindung der globalen landwirtschaftlichen Lieferkette, ein Stakeholder nach dem anderen."
+    },
+    "vision": {
+      "title": "Unsere Vision",
+      "p1": "Wir stellen uns eine Welt vor, in der jeder landwirtschaftliche Akteur, vom kleinsten Bauern bis zum größten Einzelhändler, mit den Daten, Verbindungen und Werkzeugen ausgestattet ist, die er zum Gedeihen benötigt.",
+      "p2": "DamDoh wurde auf der Überzeugung gegründet, dass Technologie Lücken schließen, Vertrauen aufbauen und ein gerechteres und nachhaltigeres globales Ernährungssystem schaffen kann.",
+      "foundersTitle": "Die Gründer"
+    },
+    "challenge": {
+      "title": "Die Herausforderung, die wir lösen",
+      "description": "Die landwirtschaftliche Lieferkette ist fragmentiert, ineffizient und es fehlt oft an der für ein nachhaltiges Wachstum erforderlichen Transparenz. Zu den wichtigsten Herausforderungen gehören:",
+      "details": {
+        "marketAccess": "Begrenzter Marktzugang für Kleinbauern.",
+        "inefficiency": "Ineffiziente Logistik führt zu Nachernteverlusten.",
+        "financialExclusion": "Schwierigkeiten beim Zugang zu Finanzierungen und Versicherungen für Kleinproduzenten.",
+        "informationGaps": "Fragmentiertes Wissen und mangelnder Zugang zu bewährten Verfahren.",
+        "qualityTrust": "Inkonsistente Qualitätskontrolle und Mangel an überprüfbaren Produktdaten.",
+        "climatePressure": "Zunehmender Druck durch den Klimawandel auf traditionelle Anbaumethoden.",
+        "foodLoss": "Erhebliche Lebensmittelverluste und -verschwendung auf mehreren Stufen der Lieferkette.",
+        "dataFragmentation": "Datenfragmentierung über verschiedene, nicht verbundene Systeme."
+      },
+      "list": {
+        "marketAccess": "Begrenzter Marktzugang",
+        "inefficiency": "Ineffizienz der Lieferkette",
+        "financialExclusion": "Finanzielle Ausgrenzung",
+        "informationGaps": "Informationslücken",
+        "qualityTrust": "Qualitäts- & Vertrauensdefizit",
+        "climatePressure": "Klimadruck",
+        "foodLoss": "Lebensmittelverlust & -verschwendung",
+        "dataFragmentation": "Datenfragmentierung"
+      }
+    },
+    "solution": {
+      "title": "Die DamDoh-Lösung",
+      "description": "Wir bauen eine umfassende 'Super-App', die das gesamte landwirtschaftliche Ökosystem durch mehrere Schlüsselsäulen digitalisiert und verbindet:",
+      "list": {
+        "education": "Bildung und Wissensaustausch",
+        "ai": "KI-gestützte Unterstützung und Einblicke",
+        "marketplace": "Ein direkter, transparenter Marktplatz",
+        "logistics": "Integrierte Logistik und Rückverfolgbarkeit",
+        "financial": "Zugang zu Finanzdienstleistungen"
+      }
+    },
+    "beyondTechnology": {
+      "title": "Mehr als nur Technologie: Es geht um Menschen",
+      "list": {
+        "p2p": {
+          "title": "Mensch zu Mensch",
+          "content": "Verbindung von Landwirten mit anderen Landwirten, um Wissen zu teilen und eine Gemeinschaft aufzubauen."
+        },
+        "p2b": {
+          "title": "Mensch zu Unternehmen",
+          "content": "Förderung direkter, vertrauensvoller Beziehungen zwischen Produzenten und Käufern."
+        },
+        "p2e": {
+          "title": "Mensch zu Ökosystem",
+          "content": "Einzelpersonen den Zugang zu einem ganzen Ökosystem von Dienstleistungen ermöglichen – Finanzen, Logistik, Versicherungen und mehr."
+        },
+        "p2w": {
+          "title": "Mensch zu Welt",
+          "content": "Öffnung globaler Märkte und Möglichkeiten für selbst die entlegensten Produzenten durch digitalen Zugang und Rückverfolgbarkeit."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Unser Engagement für die Zukunft",
+      "p1": "Wir verpflichten uns, Technologie für das Gute einzusetzen und eine Plattform zu schaffen, die nicht nur rentabel ist, sondern auch regenerativ für unseren Planeten und stärkend für seine Menschen.",
+      "p2": "Jede Verbindung, die auf DamDoh hergestellt wird, jedes geteilte Wissen und jede optimierte Transaktion ist ein Schritt in eine widerstandsfähigere und gerechtere Zukunft der Ernährung.",
+      "p3": "Begleiten Sie uns auf dieser Reise.",
+      "button": "Mitglied werden"
     }
   }
 }
