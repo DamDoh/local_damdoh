@@ -9,7 +9,7 @@ const db = admin.firestore();
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
-const SUPPORTED_LANGUAGES = ["en", "km", "es", "fr", "th", "de"];
+const SUPPORTED_LANGUAGES = ["en", "km", "es", "fr", "de"];
 
 /**
  * A helper function to translate text using the Gemini API.
@@ -271,7 +271,7 @@ export const createKnowledgeArticle = functions.https.onCall(
     }
     const callerUid = context.auth.uid; // Get the UID of the user calling the function
 
-    const { title_en, content_markdown_en, tags, category, excerpt_en, imageUrl, dataAiHint, author, title_km, content_markdown_km, excerpt_km } = data;
+    const { title_en, content_markdown_en, tags, category, excerpt_en, imageUrl, dataAiHint, author, title_km, content_markdown_km, excerpt_km, status } = data;
     if (!title_en && !title_km) {
         throw new functions.https.HttpsError("invalid-argument", "At least one title (English or Khmer) is required.");
     }
@@ -296,6 +296,7 @@ export const createKnowledgeArticle = functions.https.onCall(
             tags: tags || [],
             author: author || "DamDoh Team",
             authorId: callerUid, // Store the author's UID
+            status: status || 'Draft',
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         });
