@@ -4,6 +4,7 @@
 import {
   getProfileByIdFromDB as getProfileByIdFromDB_internal,
   getAllProfilesFromDB as getAllProfilesFromDB_internal,
+  performSearch as performSearch_internal,
 } from './db-utils';
 
 import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";
@@ -33,18 +34,19 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
 
 /**
  * Server Action to perform a search based on an AI-interpreted query.
- * This function is now designed to be called from the client using `httpsCallable`.
- * The actual server-side logic is in `firebase/functions/src/search.ts`.
+ * This function now calls the secure backend cloud function.
  * @param interpretation The structured search query.
  * @returns A promise that resolves to an array of search results.
  */
 export async function performSearch(interpretation: Partial<SmartSearchInterpretation>): Promise<any[]> {
-  // This function is now a client-side wrapper. The logic has moved to the backend.
-  // The original implementation is kept for reference but should not be called directly from the client.
-  // The backend function in `search.ts` should be used instead.
-  // This is a placeholder until the frontend is updated to use the callable function directly.
-  console.warn("DEPRECATED: performSearch server action called. This should be migrated to a direct callable function call from the client for security and performance.");
-  return [];
+  const performSearchCallable = httpsCallable(functions, 'performSearch');
+  try {
+      const result = await performSearchCallable(interpretation);
+      return (result.data as any) || [];
+  } catch (error) {
+      console.error("Error calling performSearch cloud function:", error);
+      throw error;
+  }
 }
 
 

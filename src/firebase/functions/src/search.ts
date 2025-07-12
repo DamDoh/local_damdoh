@@ -53,6 +53,7 @@ export const onSourceDocumentWriteIndex = functions.firestore
       "agri_events",
       "knowledge_articles",
       "groups",
+      "vti_registry",
     ];
 
     if (!INDEXABLE_COLLECTIONS.includes(collectionId)) {
@@ -69,7 +70,7 @@ export const onSourceDocumentWriteIndex = functions.firestore
     }
 
     // Standardize common fields
-    const title = documentData.name || documentData.title || documentData.displayName || "Untitled";
+    const title = documentData.name || documentData.title || documentData.displayName || documentData.metadata?.cropType || "Untitled";
     const description = documentData.description || documentData.profileSummary || documentData.bio || documentData.excerpt_en || "";
 
     // Build a comprehensive list of tags for filtering
@@ -138,7 +139,7 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     minPrice,
     maxPrice,
     perUnit,
-    limit = 50,
+    limit: queryLimit = 50,
   } = data;
 
   if (!Array.isArray(mainKeywords)) {
@@ -175,7 +176,7 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     // --- Standard Filter Application ---
     const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category')?.value;
     const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType')?.value;
-
+    
     if (listingTypeFilter) {
         query = query.where('listingType', '==', listingTypeFilter);
     }
@@ -183,8 +184,8 @@ export const performSearch = functions.https.onCall(async (data, context) => {
         query = query.where('tags', 'array-contains', categoryFilter);
     }
     if (identifiedLocation) {
-        query = query.where("location", ">=", identifiedLocation);
-        query = query.where("location", "<=", identifiedLocation + '\uf8ff');
+        query = query.where("location.address", ">=", identifiedLocation);
+        query = query.where("location.address", "<=", identifiedLocation + '\uf8ff');
     }
     if (perUnit) {
         query = query.where("perUnit", "==", perUnit);
@@ -207,13 +208,14 @@ export const performSearch = functions.https.onCall(async (data, context) => {
         query = query.orderBy("updatedAt", "desc");
     }
 
-    query = query.limit(limit);
+    query = query.limit(queryLimit);
 
     const snapshot = await query.get();
     let results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
     // --- In-memory Keyword Filtering on the pre-filtered set ---
     const searchTerms = mainKeywords.flatMap((k: any) => (k || '').toLowerCase().split(/\s+/)).filter(Boolean);
+
     if (searchTerms.length > 0) {
       results = results.filter(r => {
         const item = r as SearchableItem;
@@ -224,8 +226,8 @@ export const performSearch = functions.https.onCall(async (data, context) => {
         return false;
       });
     }
-
-    return { results };
+    
+    return results;
 
   } catch (error: any) {
     console.error(`Error during search for query: ${JSON.stringify(data)}`, error);

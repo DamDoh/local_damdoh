@@ -34,19 +34,17 @@ Your task is to analyze the user's raw search query and extract structured infor
 User's Raw Query: "{{{rawQuery}}}"
 
 Based on this query, please provide:
-1.  **originalQuery**: Reiterate the user's original raw query.
-2.  **mainKeywords**: Identify the primary items, products, services, or concepts the user is searching for. Extract these as an array of strings. (e.g., ["organic mangoes", "tractor repair"], ["coffee beans"]).
-3.  **identifiedLocation**: If a specific location (city, region, country, continent) is mentioned or strongly implied, state it. If no location is clear, omit this field.
-4.  **identifiedIntent**: Infer the user's likely intent (e.g., 'buy', 'sell', 'rent', 'find service'). If unclear, omit.
-5.  **price constraints**: If the user mentions a price (e.g., 'under $50', 'over $1000', 'between $20 and $40', 'costs 300'), extract the minimum and maximum price into the 'minPrice' and 'maxPrice' fields. Extract only the numbers.
-6.  **unit constraints**: If a pricing unit is mentioned (e.g., '/kg', '/ton', per hour), extract it into the 'perUnit' field.
-7.  **suggestedFilters**: Based on the query and intent, suggest potential filters an e-commerce platform might use. For example:
+1.  **mainKeywords**: Identify the primary items, products, services, or concepts the user is searching for. Extract these as an array of strings. (e.g., ["organic mangoes", "tractor repair"], ["coffee beans"]).
+2.  **identifiedLocation**: If a specific location (city, region, country, continent) is mentioned or strongly implied, state it. If no location is clear, omit this field.
+3.  **identifiedIntent**: Infer the user's likely intent (e.g., 'buy', 'sell', 'rent', 'find service'). If unclear, omit.
+4.  **price constraints**: If the user mentions a price (e.g., 'under $50', 'over $1000', 'between $20 and $40', 'costs 300'), extract the minimum and maximum price into the 'minPrice' and 'maxPrice' fields. Extract only the numbers.
+5.  **unit constraints**: If a pricing unit is mentioned (e.g., '/kg', '/ton', per hour), extract it into the 'perUnit' field.
+6.  **suggestedFilters**: Based on the query and intent, suggest potential filters an e-commerce platform might use. For example:
     *   "buy fresh tomatoes Nairobi under $2/kg" -> filters: \`[{ type: 'listingType', value: 'Product' }, { type: 'category', value: 'fresh-produce-vegetables' }]\`, minPrice: 0, maxPrice: 2, perUnit: "/kg".
     *   "agronomy consultant Kenya" -> filters: \`[{ type: 'listingType', value: 'Service' }, { type: 'category', value: 'consultancy-advisory' }]\`.
-8.  **interpretationNotes**: Briefly explain your interpretation.
+7.  **interpretationNotes**: Briefly explain your interpretation.
 
 Example for query "used tractors for sale in East Africa between $5000 and $10000":
-- originalQuery: "used tractors for sale in East Africa between $5000 and $10000"
 - mainKeywords: ["used tractors"]
 - identifiedLocation: "East Africa"
 - identifiedIntent: "buy"
