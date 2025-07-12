@@ -11,7 +11,7 @@ import { PageSkeleton } from '@/components/Skeletons';
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from '@/lib/auth-utils';
 import { httpsCallable } from 'firebase/functions';
-import { functions } from '@/lib/firebase/client';
+import { functions, app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
 import { collection, query, orderBy, onSnapshot, getFirestore, limit } from "firebase/firestore";
