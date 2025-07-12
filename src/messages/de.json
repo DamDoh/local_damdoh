@@ -51,6 +51,9 @@
     "switchToLightAria": "Zum hellen Modus wechseln",
     "switchToDarkAria": "Zum dunklen Modus wechseln"
   },
+  "LanguageSwitcher": {
+    "toggle": "Sprache wechseln"
+  },
   "MobileBottomNav": {
     "home": "Start",
     "market": "Markt",
@@ -686,7 +689,7 @@
     "detail": {
       "backLink": "Zurück zu allen Gruppen",
       "discussionsTitle": "Diskussionen",
-      "startDiscussionButton": "Diskussion starten",
+      "startDiscussionButton": "Démarrer une Discussion",
       "noDiscussions": "Noch keine Diskussionen.",
       "beTheFirst": "Seien Sie der Erste, der eine Unterhaltung beginnt!",
       "actionsTitle": "Gruppenaktionen",
@@ -750,7 +753,7 @@
         },
         "incomplete": {
           "title": "Unvollständiger Beitrag",
-          "description": "Bitte geben Sie einen Titel und Inhalt für Ihren Beitrag an."
+          "description": "Bitte geben Sie einen Namen und einen Inhalt für Ihren Beitrag an."
         },
         "success": {
           "title": "Beitrag erstellt!",
@@ -803,13 +806,16 @@
     "backLink": "Zurück zum Netzwerk",
     "myConnectionsTab": "Meine Verbindungen ({count})",
     "pendingRequestsTab": "Ausstehende Anfragen",
+
     "connectionsTitle": "Meine Verbindungen",
     "connectionsDescription": "Ihr etabliertes berufliches Netzwerk auf DamDoh.",
     "noConnections": "Sie haben noch keine Verbindungen geknüpft. Beginnen Sie mit der Erkundung des Netzwerks!",
+
     "requestsTitle": "Verbindungsanfragen",
     "requestsDescription": "Überprüfen und beantworten Sie ausstehende Verbindungsanfragen.",
     "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen.",
     "sentTimeAgo": "Gesendet {timeAgo}",
+
     "toast": {
       "error": "Fehler",
       "loadError": "Ihre Netzwerkdaten konnten nicht geladen werden.",
@@ -1204,5 +1210,7 @@
     "title": "Finanzmanagement"
   }
 }
+
+    
 
     

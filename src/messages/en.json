@@ -51,6 +51,9 @@
     "switchToLightAria": "Switch to light mode",
     "switchToDarkAria": "Switch to dark mode"
   },
+  "LanguageSwitcher": {
+    "toggle": "Toggle language"
+  },
   "MobileBottomNav": {
     "home": "Home",
     "market": "Market",
@@ -803,13 +806,16 @@
     "backLink": "Back to Network",
     "myConnectionsTab": "My Connections ({count})",
     "pendingRequestsTab": "Pending Requests",
+
     "connectionsTitle": "My Connections",
     "connectionsDescription": "Your established professional network on DamDoh.",
     "noConnections": "You haven't made any connections yet. Start by exploring the network!",
+
     "requestsTitle": "Connection Requests",
     "requestsDescription": "Review and respond to pending connection requests.",
     "noRequests": "You have no pending connection requests.",
     "sentTimeAgo": "Sent {timeAgo}",
+
     "toast": {
       "error": "Error",
       "loadError": "Failed to load your network data.",
@@ -1204,5 +1210,7 @@
     "title": "Financial Management"
   }
 }
+
+    
 
     

@@ -87,6 +87,9 @@
     "switchToLightAria": "Passer au thème clair",
     "switchToDarkAria": "Passer au thème sombre"
   },
+  "LanguageSwitcher": {
+    "toggle": "Changer de langue"
+  },
   "MobileBottomNav": {
     "home": "Accueil",
     "market": "Marché",
@@ -788,13 +791,16 @@
     "backLink": "Retour au Réseau",
     "myConnectionsTab": "Mes Connexions ({count})",
     "pendingRequestsTab": "Demandes en Attente",
+
     "connectionsTitle": "Mes Connexions",
     "connectionsDescription": "Votre réseau professionnel établi sur DamDoh.",
     "noConnections": "Vous n'avez encore établi aucune connexion. Commencez par explorer le réseau !",
+
     "requestsTitle": "Demandes de Connexion",
     "requestsDescription": "Examinez et répondez aux demandes de connexion en attente.",
     "noRequests": "Vous n'avez aucune demande de connexion en attente.",
     "sentTimeAgo": "Envoyé {timeAgo}",
+
     "toast": {
       "error": "Erreur",
       "loadError": "Échec du chargement de vos données réseau.",
@@ -1189,5 +1195,7 @@
     "title": "Gestion Financière"
   }
 }
+
+    
 
     

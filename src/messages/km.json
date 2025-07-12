@@ -51,6 +51,9 @@
     "switchToLightAria": "ប្តូរ​ទៅ​របៀប​ពន្លឺ",
     "switchToDarkAria": "ប្តូរ​ទៅ​របៀប​ងងឹត"
   },
+  "LanguageSwitcher": {
+    "toggle": "ប្តូរភាសា"
+  },
   "MobileBottomNav": {
     "home": "ទំព័រដើម",
     "market": "ទីផ្សារ",
@@ -686,7 +689,7 @@
     "detail": {
       "backLink": "ត្រឡប់​ទៅ​ក្រុម​ទាំងអស់​វិញ",
       "discussionsTitle": "ការ​ពិភាក្សា",
-      "startDiscussionButton": "ចាប់ផ្តើម​ការ​ពិភាក្សា",
+      "startDiscussionButton": "Démarrer une Discussion",
       "noDiscussions": "មិន​ទាន់​មាន​ការ​ពិភាក្សា​ណា​មួយ​នៅ​ឡើយ​ទេ។",
       "beTheFirst": "ធ្វើ​ជា​មនុស្ស​ដំបូង​គេ​ដែល​ចាប់ផ្តើម​ការ​សន្ទនា!",
       "actionsTitle": "សកម្មភាព​ក្រុម",
@@ -1207,5 +1210,7 @@
     "title": "ការ​គ្រប់គ្រង​ហិរញ្ញវត្ថុ"
   }
 }
+
+    
 
     

@@ -51,6 +51,9 @@
     "switchToLightAria": "Cambiar a tema claro",
     "switchToDarkAria": "Cambiar a tema oscuro"
   },
+  "LanguageSwitcher": {
+    "toggle": "Cambiar idioma"
+  },
   "MobileBottomNav": {
     "home": "Inicio",
     "market": "Mercado",
@@ -1207,5 +1210,7 @@
     "title": "Gestión Financiera"
   }
 }
+
+    
 
     
