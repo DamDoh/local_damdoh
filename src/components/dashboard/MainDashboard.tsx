@@ -110,36 +110,32 @@ function MainContent() {
   useEffect(() => {
     let unsubscribeFeed: () => void = () => {};
 
-    // Set up real-time listener for the feed only if no specific hub will be shown
-    if (!profileLoading && (!profile || !HubComponentMap[profile.primaryRole])) {
-      setIsLoadingFeed(true);
-      const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
-      unsubscribeFeed = onSnapshot(q, (snapshot) => {
-          const posts = snapshot.docs.map(doc => {
-            const data = doc.data();
-            return {
-                id: doc.id,
-                ...data,
-                timestamp: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
-            } as FeedItem
-          });
-          setFeedItems(posts);
-          setIsLoadingFeed(false);
-      }, (error) => {
-          console.error("Error fetching real-time feed:", error);
-          toast({
-              title: "Could not load feed",
-              description: "There was an error fetching the latest posts.",
-              variant: "destructive"
-          });
-          setIsLoadingFeed(false);
-      });
-    } else {
+    // For everyone (guests included), set up the real-time listener for the main feed.
+    setIsLoadingFeed(true);
+    const q = query(collection(db, "posts"), orderBy("createdAt", "desc"), limit(20));
+    unsubscribeFeed = onSnapshot(q, (snapshot) => {
+        const posts = snapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+              id: doc.id,
+              ...data,
+              timestamp: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
+          } as FeedItem
+        });
+        setFeedItems(posts);
         setIsLoadingFeed(false);
-    }
+    }, (error) => {
+        console.error("Error fetching real-time feed:", error);
+        toast({
+            title: "Could not load feed",
+            description: "There was an error fetching the latest posts.",
+            variant: "destructive"
+        });
+        setIsLoadingFeed(false);
+    });
     
     return () => unsubscribeFeed();
-  }, [profile, profileLoading, toast]);
+  }, [toast]);
 
 
   const handleCreatePost = async (content: string, media?: File, pollData?: { text: string }[]) => {
@@ -220,13 +216,13 @@ function MainContent() {
       );
     }
   
+    // If the user is logged in AND has a profile with a specific hub component, show that hub.
     const HubComponent = profile ? HubComponentMap[profile.primaryRole] : null;
-
     if (HubComponent) {
       return <HubComponent />;
     }
 
-    // Default to feed for guests or users with unhandled roles
+    // Default to showing the public feed for guests or users without a specific hub.
     if (isLoadingFeed) {
       return (
         <div className="space-y-6">
@@ -266,13 +262,6 @@ function MainContent() {
       </div>
       <div className="md:col-span-6 lg:col-span-7 space-y-6">
         {user && <StartPost onCreatePost={handleCreatePost} />}
-        {user && !profile?.primaryRole && (
-           <div className="flex items-center gap-2">
-            <hr className="flex-grow"/>
-            <span className="text-xs text-muted-foreground">Or View the Main Feed</span>
-            <hr className="flex-grow"/>
-          </div>
-        )}
         {renderContent()}
       </div>
       <div className="hidden lg:block md:col-span-3">
@@ -295,11 +284,11 @@ export function MainDashboard() {
   }, [homepagePreference, isPreferenceLoading, pathname, router]);
 
   if (isPreferenceLoading || (homepagePreference && homepagePreference !== "/" && pathname === "/")) {
-      return <div className="flex justify-center items-center min-h-screen"><p>Loading...</p></div>;
+      return <PageSkeleton />;
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<PageSkeleton />}>
       <MainContent />
     </Suspense>
   );
