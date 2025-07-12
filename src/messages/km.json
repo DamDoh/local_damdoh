@@ -1,5 +1,69 @@
 
 {
+  "common": {
+    "error": "កំហុស",
+    "success": "ជោគជ័យ",
+    "loading": "កំពុងផ្ទុក...",
+    "noData": "គ្មានទិន្នន័យ",
+    "save": "រក្សាទុក",
+    "cancel": "បោះបង់",
+    "viewDetails": "មើលលម្អិត",
+    "edit": "កែសម្រួល",
+    "delete": "លុប",
+    "back": "ត្រឡប់",
+    "submit": "ដាក់ស្នើ"
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "កសិករ",
+      "AgriculturalCooperative": "សហគមន៍កសិកម្ម",
+      "FieldAgentAgronomistDamDohInternal": "ភ្នាក់ងារ/អ្នកជំនាញកសិកម្ម (ផ្ទៃក្នុងដាំដុះ)",
+      "OperationsLogisticsTeamDamDohInternal": "ក្រុមប្រតិបត្តិការ/ភស្តុភារ (ផ្ទៃក្នុងដាំដុះ)",
+      "QualityAssuranceTeamDamDohInternal": "ក្រុមធានាគុណភាព (ផ្ទៃក្នុងដាំដុះ)",
+      "ProcessingPackagingUnit": "អង្គភាពកែច្នៃ និងវេចខ្ចប់",
+      "BuyerRestaurantSupermarketExporter": "អ្នកទិញ (ភោជនីយដ្ឋាន, ផ្សារទំនើប, អ្នកនាំចេញ)",
+      "InputSupplierSeedFertilizerPesticide": "អ្នកផ្គត់ផ្គង់ធាតុចូល (គ្រាប់ពូជ, ជី, ថ្នាំសំលាប់សត្វល្អិត)",
+      "EquipmentSupplierSalesofMachineryIoT": "អ្នកផ្គត់ផ្គង់ឧបករណ៍ (លក់គ្រឿងចក្រ/IoT)",
+      "FinancialInstitutionMicrofinanceLoans": "គ្រឹះស្ថានហិរញ្ញវត្ថុ (មីក្រូហិរញ្ញវត្ថុ/កម្ចី)",
+      "GovernmentRegulatorAuditor": "និយតករ/សវនកររដ្ឋាភិបាល",
+      "CertificationBodyOrganicFairTradeetc": "ស្ថាប័នបញ្ជាក់ (សរីរាង្គ, ពាណិជ្ជកម្មដោយត្រឹមត្រូវ ។ល។)",
+      "Consumer": "អ្នកប្រើប្រាស់",
+      "ResearcherAcademic": "អ្នកស្រាវជ្រាវ/អ្នកសិក្សា",
+      "LogisticsPartnerThirdPartyTransporter": "ដៃគូភស្តុភារ (អ្នកដឹកជញ្ជូនភាគីទីបី)",
+      "StorageWarehouseFacility": "កន្លែងផ្ទុក/ឃ្លាំង",
+      "AgronomyExpertConsultantExternal": "អ្នកជំនាញ/ទីប្រឹក្សាកសិកម្ម (ខាងក្រៅ)",
+      "AgroTourismOperator": "ប្រតិបត្តិករទេសចរណ៍កសិកម្ម",
+      "EnergySolutionsProviderSolarBiogas": "អ្នកផ្តល់ដំណោះស្រាយថាមពល (ថាមពលព្រះអាទិត្យ, ជីវឧស្ម័ន)",
+      "AgroExportFacilitatorCustomsBroker": "អ្នកសម្របសម្រួលការនាំចេញកសិផល/ឈ្មួញកណ្តាលគយ",
+      "AgriTechInnovatorDeveloper": "អ្នកបង្កើតថ្មី/អ្នកអភិវឌ្ឍន៍បច្ចេកវិទ្យាកសិកម្ម",
+      "WasteManagementCompostFacility": "កន្លែងគ្រប់គ្រងកាកសំណល់ និងជីកំប៉ុស្តិ៍",
+      "CrowdfunderImpactInvestorIndividual": "អ្នករៃអង្គាសប្រាក់ (អ្នកវិនិយោគមានឥទ្ធិពល, បុគ្គល)",
+      "InsuranceProvider": "អ្នកផ្តល់សេវាធានារ៉ាប់រង",
+      "PackagingSupplier": "អ្នកផ្គត់ផ្គង់វេចខ្ចប់"
+    },
+    "listingTypes": {
+      "All": "គ្រប់ប្រភេទ",
+      "Product": "ផលិតផល",
+      "Service": "សេវាកម្ម"
+    },
+    "agriEventTypes": {
+      "All": "គ្រប់ប្រភេទ",
+      "Conference": "សន្និសីទ",
+      "Webinar": "វេប៊ីណា",
+      "Workshop": "សិក្ខាសាលា",
+      "TradeShow": "ពិព័រណ៍ពាណិជ្ជកម្ម",
+      "FieldDay": "ទិវាស្រែ",
+      "NetworkingEvent": "ព្រឹត្តិការណ៍បង្កើតបណ្តាញ",
+      "OnlineCourseLaunch": "ការចាប់ផ្តើមវគ្គសិក្សាអនឡាញ",
+      "PolicyBriefing": "ការសង្ខេបគោលនយោបាយ"
+    },
+    "insuranceProductTypes": {
+      "Crop": "ធានារ៉ាប់រងដំណាំ",
+      "Livestock": "ធានារ៉ាប់រងបសុសត្វ",
+      "Asset": "ធានារ៉ាប់រងទ្រព្យសកម្ម",
+      "Weather": "ផ្អែកលើអាកាសធាតុ (ប៉ារ៉ាម៉ែត្រ)"
+    }
+  },
   "LandingPage": {
     "hero": {
       "title": "ពង្រឹងវិស័យកសិកម្មពីដីដល់ការលក់នៅលើ {appName}",
@@ -43,6 +107,10 @@
         "title": "អ្នកជំនាញនិងអ្នកផ្តល់សេវា",
         "description": "ផ្តល់ជំនាញ និងសេវាកម្មពិសេសរបស់អ្នកទៅកាន់ទស្សនិកជនកសិកម្មដ៏ធំទូលាយដែលកំពុងស្វែងរកជំនាញរបស់អ្នក។"
       },
+      "fis": {
+        "title": "គ្រឹះស្ថានហិរញ្ញវត្ថុ",
+        "description": "ផ្តល់កម្ចី ជំនួយឥតសំណង និងផលិតផលធានារ៉ាប់រងដល់បណ្តាញកសិដ្ឋានដែលបានផ្ទៀងផ្ទាត់។"
+      },
       "imageAlt": "ក្រុមចម្រុះនៃតួអង្គកសិកម្មកំពុងសហការគ្នា"
     },
     "cta": {
@@ -52,6 +120,7 @@
     }
   },
   "Auth": {
+    "createAccount": "បង្កើតគណនី",
     "signInWelcome": "សូមស្វាគមន៍មកកាន់ {appName} ជាថ្មី",
     "signUpWelcome": "ចូលរួមបណ្តាញកសិកម្មដាំដុះ",
     "forgotPasswordResetPrompt": "កំណត់ពាក្យសម្ងាត់របស់អ្នកសម្រាប់ {appName} ឡើងវិញ",
@@ -101,7 +170,84 @@
       "scanTitle": "សុំឱ្យមិត្តម្នាក់ស្កេន",
       "scanDescription": "ឱ្យទំនាក់ទំនងដាំដុះដែលជឿទុកចិត្តស្កេនកូដ QR នេះដោយប្រើមុខងារ 'ជួយមិត្តម្នាក់ស្តារ' នៅក្នុងកម្មវិធីរបស់ពួកគេ។",
       "scanNote": "កូដនេះគឺបណ្តោះអាសន្នហើយផុតកំណត់ក្នុងរយៈពេល 10 នាទី។",
-      "startOverButton": "ចាប់ផ្តើមឡើងវិញ"
+      "startOverButton": "ចាប់ផ្តើមឡើងវិញ",
+      "enterPhone": {
+        "title": "បញ្ចូលលេខទូរស័ព្ទរបស់អ្នក",
+        "description": "ផ្តល់លេខទូរស័ព្ទដែលភ្ជាប់ជាមួយគណនីដែលអ្នកចង់ស្តារ។",
+        "phoneNumberLabel": "លេខទូរស័ព្ទ",
+        "phoneNumberPlaceholder": "ឧ. +85512345678",
+        "verifyingButton": "កំពុងផ្ទៀងផ្ទាត់...",
+        "getRecoveryCodeButton": "ទទួលបានលេខកូដស្តារ",
+        "phoneRequiredError": "សូមបញ្ចូលលេខទូរស័ព្ទត្រឹមត្រូវ។",
+        "genericError": "មិនអាចចាប់ផ្តើមការស្តារបានទេ។ សូមពិនិត្យលេខទូរស័ព្ទ ហើយព្យាយាមម្តងទៀត។"
+      },
+      "helpFriend": {
+        "button": "ជួយមិត្តម្នាក់",
+        "scanError": "នេះមិនមែនជាលេខកូដស្តាររបស់ DamDoh ដែលត្រឹមត្រូវទេ។",
+        "scanSuccess": "ការបញ្ជាក់បានជោគជ័យ!",
+        "scanFail": "មិនអាចអានកូដ QR បានទេ។ សូមព្យាយាមម្តងទៀត។"
+      }
+    },
+    "forgotPassword": {
+      "emailSentTitle": "ពិនិត្យអ៊ីមែលរបស់អ្នក",
+      "emailSentDescription": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញត្រូវបានផ្ញើទៅ {email}។",
+      "emailSentDescriptionIfAccountExists": "ប្រសិនបើមានគណនីដែលមាន {email} តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញត្រូវបានផ្ញើ។",
+      "successTitle": "បានផ្ញើអ៊ីមែល!",
+      "successDescription": "សូមពិនិត្យមើលប្រអប់សំបុត្ររបស់អ្នក (និងថតសារឥតបានការ) សម្រាប់តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញ។",
+      "errors": {
+        "unexpected": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង។ សូម​ព្យាយាម​ម្តង​ទៀត។",
+        "invalidEmail": "អាសយដ្ឋានអ៊ីមែលមិនត្រឹមត្រូវទេ។",
+        "tooManyRequests": "មានសំណើច្រើនពេក។ សូម​ព្យាយាម​ម្តង​ទៀត​នៅ​ពេល​ក្រោយ។",
+        "default": "មិនអាចផ្ញើអ៊ីមែលកំណត់ឡើងវិញបានទេ",
+        "missingCode": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញមិនត្រឹមត្រូវទេ។ សូមស្នើសុំតំណថ្មី។",
+        "missingCodeTitle": "តំណមិនត្រឹមត្រូវ"
+      }
+    },
+    "resetPassword": {
+      "successTitle": "បានកំណត់ពាក្យសម្ងាត់ឡើងវិញដោយជោគជ័យ!",
+      "successDescription": "ឥឡូវនេះអ្នកអាចចូលដោយប្រើពាក្យសម្ងាត់ថ្មីរបស់អ្នក។",
+      "successRedirect": "អ្នកនឹងត្រូវបានបញ្ជូនបន្តទៅទំព័រចូលក្នុងពេលឆាប់ៗនេះ...",
+      "errors": {
+        "invalidOrExpiredCode": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញមិនត្រឹមត្រូវ ឬផុតកំណត់ហើយ។ សូមស្នើសុំតំណថ្មី។",
+        "userDisabled": "គណនីអ្នកប្រើប្រាស់នេះត្រូវបានបិទ។",
+        "userNotFound": "រកមិនឃើញអ្នកប្រើប្រាស់ដែលត្រូវនឹងតំណកំណត់ឡើងវិញនេះទេ។",
+        "weakPassword": "ពាក្យសម្ងាត់ថ្មីមិនរឹងមាំគ្រប់គ្រាន់ទេ។"
+      }
+    },
+    "errors": {
+      "emailInUse": "អ៊ីមែលនេះត្រូវបានប្រើប្រាស់រួចហើយ។",
+      "invalidEmail": "អាសយដ្ឋានអ៊ីមែលមិនត្រឹមត្រូវទេ។",
+      "weakPassword": "ពាក្យសម្ងាត់ត្រូវមានយ៉ាងហោចណាស់ 6 តួអក្សរ។",
+      "default": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង។"
+    },
+    "signUpSuccess": {
+      "title": "បានបង្កើតគណនី និងចូលហើយ!",
+      "description": "សូមស្វាគមន៍មកកាន់ {appName}! អ្នកបានចូលដោយជោគជ័យ។"
+    },
+    "signUpFailed": "ការចុះឈ្មោះបានបរាជ័យ",
+    "toast": {
+      "loggedOut": {
+        "title": "បានចេញ",
+        "description": "អ្នកត្រូវបានចេញពីគណនីដោយជោគជ័យ។"
+      },
+      "logoutFailed": {
+        "title": "ការចេញពីគណនីបានបរាជ័យ",
+        "description": "មិនអាចចេញពីគណនីអ្នកបានទេ។ សូមព្យាយាមម្តងទៀត។"
+      },
+      "signInSuccess": {
+        "title": "បានចូលដោយជោគជ័យ!",
+        "description": "សូមស្វាគមន៍មកកាន់ {appName} ជាថ្មី។"
+      },
+      "signInFailed": {
+        "title": "ការចូលបានបរាជ័យ"
+      }
+    },
+    "passwordStrength": {
+      "label": "កម្លាំង",
+      "weak": "ខ្សោយ",
+      "medium": "មធ្យម",
+      "strong": "ខ្លាំង",
+      "veryStrong": "ខ្លាំងណាស់"
     }
   },
   "AppHeader": {
@@ -120,35 +266,12 @@
     "signIn": "ចូលគណនី",
     "signUp": "ចុះឈ្មោះ",
     "myProfile": "ប្រវត្តិរូបខ្ញុំ",
+    "myOrders": "ការបញ្ជាទិញរបស់ខ្ញុំ",
     "settings": "ការកំណត់",
     "helpCenter": "មជ្ឈមណ្ឌលជំនួយ",
     "logOut": "ចេញពីគណនី",
     "switchToLightAria": "ប្តូរទៅផ្ទៃភ្លឺ",
     "switchToDarkAria": "ប្តូរទៅផ្ទៃងងឹត"
-  },
-  "MobileBottomNav": {
-    "home": "ទំព័រដើម",
-    "market": "ទីផ្សារ",
-    "search": "ស្វែងរក",
-    "forums": "វេទិកា",
-    "profile": "ប្រវត្តិរូប"
-  },
-  "DashboardRightSidebar": {
-    "networkTitle": "បន្ថែមទៅក្នុងហ្វីតរបស់អ្នក",
-    "refreshSuggestions": "ធ្វើឱ្យការណែនាំស្រស់ស្រាយ",
-    "infoTooltip": "ការណែនាំគឺផ្អែកលើចំណាប់អារម្មណ៍និងតម្រូវការនៃប្រវត្តិរូបរបស់អ្នក។",
-    "signInPrompt": "ចូលដើម្បីទទួលបានការណែនាំផ្ទាល់ខ្លួន។",
-    "loadError": "មិនអាចផ្ទុកការណែនាំបានទេ។",
-    "noSuggestions": "មិនមានការណែនាំថ្មីនៅពេលនេះទេ។ សូមពិនិត្យមើលពេលក្រោយ!",
-    "following": "កំពុងតាមដាន",
-    "follow": "តាមដាន",
-    "promotionsTitle": "ការផ្សព្វផ្សាយ",
-    "promotionsDescription": "មើលការផ្តល់ជូនពិសេស និងកិច្ចព្រមព្រៀងពីដៃគូក្នុងប្រព័ន្ធអេកូឡូស៊ី។",
-    "managePromotionsButton": "គ្រប់គ្រងការផ្សព្វផ្សាយ",
-    "ad": "ពាណិជ្ជកម្ម",
-    "adTitle": "ដោះសោការយល់ដឹងទីផ្សារ",
-    "adDescription": "ទទួលបានទិន្នន័យ និងការវិភាគតាមពេលវេលាជាក់ស្តែងជាមួយដាំដុះប្រូ។",
-    "adButton": "ស្វែងយល់បន្ថែម"
   },
   "LanguageSwitcher": {
     "toggle": "ផ្លាស់ប្តូរភាសា"
@@ -465,4 +588,3 @@
   }
 }
 
-    
