@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -63,20 +62,20 @@ export type ForumGroup = {
   createdAt: string; // ISO String
 }
 
-export interface Connection {
-    id: string; // User ID of the connection
-    displayName: string;
-    avatarUrl?: string;
-    primaryRole: string;
-    profileSummary: string;
-}
-
 export interface JoinRequest {
     id: string; // Document ID of the request
     requesterId: string;
     requesterName: string;
     requesterAvatarUrl?: string;
     createdAt: string; // ISO string
+}
+
+export interface Connection {
+    id: string; // User ID of the connection
+    displayName: string;
+    avatarUrl?: string;
+    primaryRole: string;
+    profileSummary: string;
 }
 
 export interface ConnectionRequest {

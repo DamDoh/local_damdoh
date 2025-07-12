@@ -9,12 +9,12 @@ const db = admin.firestore();
 const checkAgriTechAuth = async (context: functions.https.CallableContext) => {
     const uid = context.auth?.uid;
     if (!uid) {
-        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
     }
     const userDoc = await db.collection("users").doc(uid).get();
     const userRole = userDoc.data()?.primaryRole;
     if (userRole !== 'Agri-Tech Innovator/Developer') {
-         throw new functions.https.HttpsError("permission-denied", "You are not authorized to perform this action.");
+         throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
     return uid;
 };
@@ -24,10 +24,10 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
     const { description, environment } = data;
 
     if (!description || typeof description !== 'string') {
-        throw new functions.https.HttpsError('invalid-argument', 'A description for the API key is required.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.apiKey.descriptionRequired');
     }
      if (!['Sandbox', 'Production'].includes(environment)) {
-        throw new functions.https.HttpsError('invalid-argument', 'Invalid environment specified.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.apiKey.invalidEnvironment');
     }
 
     const keyPrefix = `sk_${environment.substring(0,4).toLowerCase()}`;
@@ -83,14 +83,14 @@ export const revokeApiKey = functions.https.onCall(async (data, context) => {
     const { keyId } = data;
 
     if (!keyId) {
-        throw new functions.https.HttpsError('invalid-argument', 'An API Key ID is required.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.apiKey.idRequired');
     }
     
     const keyRef = db.collection('users').doc(innovatorId).collection('api_keys').doc(keyId);
     
     const keyDoc = await keyRef.get();
     if (!keyDoc.exists) {
-        throw new functions.https.HttpsError('not-found', 'API Key not found.');
+        throw new functions.https.HttpsError('not-found', 'error.apiKey.notFound');
     }
 
     await keyRef.update({
