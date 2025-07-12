@@ -1,5 +1,3 @@
-
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile, JoinRequest } from './types';
@@ -253,6 +251,35 @@ export const respondToJoinRequest = functions.https.onCall(async (data, context)
     }
 
     return { success: true, message: `Request has been ${action}ed.` };
+});
+
+export const inviteUserToGroup = functions.https.onCall(async (data, context) => {
+    const ownerId = checkAuth(context);
+    const { groupId, email } = data;
+    if (!groupId || !email) {
+        throw new functions.https.HttpsError('invalid-argument', 'Group ID and email are required.');
+    }
+
+    const groupRef = db.collection('groups').doc(groupId);
+    const groupDoc = await groupRef.get();
+    if (!groupDoc.exists || groupDoc.data()?.ownerId !== ownerId) {
+        throw new functions.https.HttpsError('permission-denied', 'You are not the owner of this group.');
+    }
+
+    // This is a placeholder for sending an email. In a real app, you would integrate
+    // with an email service (e.g., SendGrid, Firebase Trigger Email extension).
+    console.log(`Simulating sending an invite to ${email} for group ${groupId} by owner ${ownerId}.`);
+
+    // Optionally, you could store the invite in Firestore to track its status
+    const inviteRef = groupRef.collection('invites').doc(email);
+    await inviteRef.set({
+        email: email,
+        inviterId: ownerId,
+        status: 'sent',
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+
+    return { success: true, message: `An invitation has been sent to ${email}.` };
 });
 
 
