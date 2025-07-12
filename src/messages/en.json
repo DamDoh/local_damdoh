@@ -286,79 +286,6 @@
     "adDescription": "Get real-time data and analytics with DamDoh Pro.",
     "adButton": "Learn More"
   },
-  "MobileHomepage": {
-    "welcome": {
-      "morning": "Good morning, {name}",
-      "afternoon": "Good afternoon, {name}",
-      "evening": "Good evening, {name}"
-    },
-    "discoverTitle": "Discover",
-    "seeAllButton": "See all",
-    "noRecommendations": "Nothing to show right now. Explore the marketplace!",
-    "communityFeedTitle": "Community Feed",
-    "communityFeedDescription": "What's happening in your network? Jump into the main feed to see posts, news, and updates.",
-    "goToFeedButton": "Go to Feed"
-  },
-  "FeedItemCard": {
-    "signInToLikeToast": "You must be signed in to like a post.",
-    "repostPlaceholderToast": "Repost feature coming soon!",
-    "signInToVoteToast": "You must be signed in to vote.",
-    "voteSuccessToast": "Your vote has been counted!",
-    "voteErrorToast": "Could not save vote.",
-    "editPost": "Edit Post",
-    "deletePost": "Delete Post",
-    "like": "Like",
-    "comment": "Comment",
-    "repost": "Repost",
-    "likes": "{count, plural, =0 {likes} =1 {like} other {{count} likes}}",
-    "comments": "{count, plural, =0 {comments} =1 {comment} other {{count} comments}}",
-    "loadCommentsErrorToast": "Could not load comments.",
-    "noComments": "Be the first to comment!",
-    "loadingComments": "Loading comments...",
-    "loadMoreComments": "Load more comments",
-    "writeCommentPlaceholder": "Add a comment...",
-    "postButton": "Post",
-    "votes": "{count, plural, =0 {votes} =1 {vote} other {{count} votes}}"
-  },
-  "CreatePostModal": {
-    "title": "Create a new post",
-    "description": "Share an update, ask a question, or start a conversation with the community.",
-    "yourName": "Your Name",
-    "shareUpdate": "Share an update",
-    "placeholder": "What's on your mind?",
-    "selectedFile": "Selected file:",
-    "pollOptionsLabel": "Poll Options",
-    "pollOptionPlaceholder": "Option {index}",
-    "addOptionButton": "Add Option",
-    "pollNote": "A maximum of {maxOptions} options are allowed.",
-    "addMediaButton": "Add Photo/Video",
-    "createEventButton": "Create Agri-Event",
-    "shareDocumentButton": "Share Document",
-    "createPollButton": "Create Poll",
-    "postButton": "Post",
-    "pollOptionsError": "A poll must have at least 2 non-empty options.",
-    "emptyPostError": "Your post cannot be empty."
-  },
-  "formErrors": {
-    "createMarketplaceCoupon": {
-      "code": {
-        "min": "Code must be at least 4 characters.",
-        "max": "Code must be no more than 20 characters.",
-        "regex": "Code must be alphanumeric."
-      },
-      "discountType": {
-        "required": "Please select a discount type."
-      },
-      "discountValue": {
-        "invalid": "Discount value must be a number.",
-        "positive": "Discount value must be positive.",
-        "percentageMax": "Percentage discount cannot exceed 100."
-      },
-      "usageLimit": {
-        "positive": "Usage limit must be a positive integer."
-      }
-    }
-  },
   "LanguageSwitcher": {
     "toggle": "Change language"
   },
@@ -424,8 +351,8 @@
       "list": {
         "education": "Education and Knowledge Sharing",
         "ai": "AI-Powered Assistance and Insights",
-        "logistics": "Integrated Logistics and Traceability",
         "marketplace": "A direct, transparent marketplace",
+        "logistics": "Integrated Logistics and Traceability",
         "financial": "Access to financial services"
       }
     },
@@ -764,7 +691,7 @@
     "couldNotSendMessage": "Could not send the message. Please try again."
   },
   "networkPage": {
-    "title": "My Supply Chain Network",
+    "title": "Network",
     "description": "Discover and connect with stakeholders across the agricultural supply chain.",
     "myNetworkButton": "My Network",
     "agentToolsButton": "Agent Tools",
@@ -775,7 +702,7 @@
       "loadError": "Could not load network data.",
       "connectError": "Could not send connection request."
     },
-    "following": "Request Sent",
+    "following": "Following",
     "follow": "Follow",
     "connect": "Connect",
     "profile": "Profile",
@@ -836,8 +763,8 @@
     "stakeholderRoles": {
       "Farmer": "Farmer",
       "AgriculturalCooperative": "Agricultural Cooperative",
-      "FieldAgentAgronomist(DamDohInternal)": "Field Agent/Agronomist (DamDoh Internal)",
-      "OperationsLogisticsTeam(DamDohInternal)": "Operations/Logistics Team (DamDoh Internal)",
+      "FieldAgent/Agronomist(DamDohInternal)": "Field Agent/Agronomist (DamDoh Internal)",
+      "Operations/LogisticsTeam(DamDohInternal)": "Operations/Logistics Team (DamDoh Internal)",
       "QualityAssuranceTeam(DamDohInternal)": "Quality Assurance Team (DamDoh Internal)",
       "Processing&PackagingUnit": "Processing & Packaging Unit",
       "Buyer(Restaurant,Supermarket,Exporter)": "Buyer (Restaurant, Supermarket, Exporter)",
