@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import type { FeedItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
