@@ -239,7 +239,7 @@ export default function CreateListingPage() {
                                 <FormItem>
                                   <FormLabel>{t('form.relatedVtiLabel')}</FormLabel>
                                   <FormControl>
-                                    <Input placeholder={t('form.relatedVtiPlaceholder')} {...field} />
+                                    <Input placeholder={t('form.relatedVtiPlaceholder')} {...field} disabled={!!searchParams.get('vtiId')} />
                                   </FormControl>
                                   <FormDescription>{t('form.relatedVtiDescription')}</FormDescription>
                                   <FormMessage />
