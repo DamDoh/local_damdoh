@@ -5,18 +5,22 @@ import { logFinancialTransaction } from "./financial-services";
 
 const db = admin.firestore();
 
+// Helper to check for authentication
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
+    throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
   }
   return context.auth.uid;
 };
 
+// Add a new worker profile
 export const addWorker = functions.https.onCall(async (data, context) => {
   const farmerId = checkAuth(context);
   const { name, contactInfo, payRate, payRateUnit } = data;
 
-  if (!name) throw new functions.https.HttpsError("invalid-argument", "error.worker.nameRequired");
+  if (!name) {
+    throw new functions.https.HttpsError("invalid-argument", "Worker name is required.");
+  }
 
   const workerRef = db.collection(`users/${farmerId}/workers`).doc();
   await workerRef.set({
@@ -32,6 +36,7 @@ export const addWorker = functions.https.onCall(async (data, context) => {
   return { success: true, workerId: workerRef.id };
 });
 
+// Get all workers for a farmer
 export const getWorkers = functions.https.onCall(async (data, context) => {
   const farmerId = checkAuth(context);
   const workersSnapshot = await db.collection(`users/${farmerId}/workers`).orderBy('name').get();
@@ -45,11 +50,15 @@ export const getWorkers = functions.https.onCall(async (data, context) => {
   return { workers };
 });
 
+
+// Log hours for a worker
 export const logHours = functions.https.onCall(async (data, context) => {
   const farmerId = checkAuth(context);
   const { workerId, hours, date, taskDescription } = data;
 
-  if (!workerId || !hours || !date) throw new functions.https.HttpsError("invalid-argument", "error.form.missingFields");
+  if (!workerId || !hours || !date) {
+    throw new functions.https.HttpsError("invalid-argument", "Worker ID, hours, and date are required.");
+  }
 
   const workLogRef = db.collection(`users/${farmerId}/workers/${workerId}/work_logs`).doc();
   const workerRef = db.collection(`users/${farmerId}/workers`).doc(workerId);
@@ -69,19 +78,28 @@ export const logHours = functions.https.onCall(async (data, context) => {
   });
 
   await batch.commit();
+
   return { success: true, workLogId: workLogRef.id };
 });
 
+// Log a payment made to a worker and automatically create a corresponding expense
 export const logPayment = functions.https.onCall(async (data, context) => {
     const farmerId = checkAuth(context);
     const { workerId, amount, date, notes, currency } = data;
-    if (!workerId || !amount || !date || !currency) throw new functions.https.HttpsError("invalid-argument", "error.form.missingFields");
+
+    if (!workerId || !amount || !date || !currency) {
+        throw new functions.https.HttpsError("invalid-argument", "Worker ID, amount, currency, and date are required.");
+    }
     
     const workerRef = db.collection(`users/${farmerId}/workers`).doc(workerId);
     const workerSnap = await workerRef.get();
-    if(!workerSnap.exists) throw new functions.https.HttpsError("not-found", "error.worker.notFound");
+    if(!workerSnap.exists) {
+        throw new functions.https.HttpsError("not-found", "Worker profile not found.");
+    }
     const workerName = workerSnap.data()?.name || "a worker";
     
+    // --- Automatic Interconnection with Financials Module ---
+    // Log this payment as an expense in the "Money Matters" module
     try {
         await logFinancialTransaction({
             type: 'expense',
@@ -92,7 +110,9 @@ export const logPayment = functions.https.onCall(async (data, context) => {
         }, context);
     } catch (error) {
         console.error("Failed to auto-log labor payment as an expense:", error);
-        throw new functions.https.HttpsError('internal', 'error.financial.logFailed');
+        // Decide if this should be a critical failure or just a warning
+        // For now, we'll let it fail but a more robust system might queue it for retry
+        throw new functions.https.HttpsError('internal', 'Could not record the payment in your financial ledger.');
     }
 
     const paymentRef = db.collection(`users/${farmerId}/workers/${workerId}/payments`).doc();
@@ -107,15 +127,19 @@ export const logPayment = functions.https.onCall(async (data, context) => {
     await workerRef.update({
         totalPaid: admin.firestore.FieldValue.increment(Number(amount)),
     });
+    
+    // Note: A more advanced system would link specific unpaid work_logs to this payment
+    // and mark them as paid. For simplicity, we are just tracking totals for now.
 
     return { success: true, paymentId: paymentRef.id };
 });
 
+// Fetch detailed logs for a single worker
 export const getWorkerDetails = functions.https.onCall(async (data, context) => {
     const farmerId = checkAuth(context);
     const { workerId } = data;
 
-    if(!workerId) throw new functions.https.HttpsError('invalid-argument', 'error.worker.idRequired');
+    if(!workerId) throw new functions.https.HttpsError('invalid-argument', 'A worker ID is required.');
     
     const workerRef = db.collection(`users/${farmerId}/workers`).doc(workerId);
     const workLogsRef = workerRef.collection('work_logs').orderBy('date', 'desc').limit(20);
@@ -127,7 +151,9 @@ export const getWorkerDetails = functions.https.onCall(async (data, context) => 
         paymentsRef.get()
     ]);
 
-    if (!workerSnap.exists) throw new functions.https.HttpsError('not-found', 'error.worker.notFound');
+    if (!workerSnap.exists) {
+        throw new functions.https.HttpsError('not-found', 'Worker not found.');
+    }
     
     const workLogs = workLogsSnap.docs.map(doc => ({ 
         id: doc.id, 
@@ -146,7 +172,7 @@ export const getWorkerDetails = functions.https.onCall(async (data, context) => 
         profile: { 
             id: workerSnap.id, 
             ...workerSnap.data(),
-            createdAt: (workerSnap.data()?.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            createdAt: workerSnap.data()?.createdAt.toDate().toISOString(),
         },
         workLogs,
         payments

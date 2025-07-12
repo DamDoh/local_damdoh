@@ -169,7 +169,6 @@ export interface FarmerDashboardData {
 }
 
 export interface CooperativeDashboardData {
-    groupId: string | null;
     memberCount: number;
     totalLandArea: number; // in Hectares
     aggregatedProduce: {
@@ -779,12 +778,3 @@ export type ServiceItem = MarketplaceItem & {
     compensation: string;
     experienceLevel: string;
 };
-
-export interface JoinRequest {
-    id: string;
-    status: 'pending';
-    requesterId: string;
-    requesterName: string;
-    requesterAvatarUrl?: string;
-    createdAt: string; // ISO string
-}
