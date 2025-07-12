@@ -59,6 +59,7 @@ interface EventAttendee {
     email: string;
     registeredAt: string;
     checkedIn: boolean;
+    checkedInAt?: string;
 }
 
 // --- Promotions Tab Components ---
@@ -389,10 +390,10 @@ const AttendeesTab = ({ eventId }: { eventId: string }) => {
             return;
         }
 
-        const headers = ["displayName", "email", "registeredAt", "checkedIn"];
+        const headers = ["displayName", "email", "registeredAt", "checkedIn", "checkedInAt"];
         const csvContent = "data:text/csv;charset=utf-8," 
             + headers.join(",") + "\n" 
-            + attendees.map(e => headers.map(header => `"${e[header as keyof EventAttendee]}"`).join(",")).join("\n");
+            + attendees.map(e => headers.map(header => `"${e[header as keyof EventAttendee] || ''}"`).join(",")).join("\n");
 
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement("a");
@@ -492,10 +493,9 @@ export default function ManageEventPage() {
             <h1 className="text-3xl font-bold mb-2">{t('title')}</h1>
             <p className="text-muted-foreground mb-6">{event?.title || 'Loading event...'}</p>
             <Tabs defaultValue="check-in" className="w-full">
-                <TabsList className="grid w-full grid-cols-5">
+                <TabsList className="grid w-full grid-cols-4">
                     <TabsTrigger value="check-in">{t('tabs.checkin')}</TabsTrigger>
                     <TabsTrigger value="staff">{t('tabs.staff')}</TabsTrigger>
-                    <TabsTrigger value="dashboard">{t('tabs.dashboard')}</TabsTrigger>
                     <TabsTrigger value="attendees">{t('tabs.attendees')}</TabsTrigger>
                     <TabsTrigger value="promotions">{t('tabs.promotions')}</TabsTrigger>
                 </TabsList>
@@ -505,9 +505,6 @@ export default function ManageEventPage() {
                 </TabsContent>
                  <TabsContent value="staff" className="mt-4">
                     <StaffManagementTab eventId={eventId} organizerId={event?.organizerId} />
-                </TabsContent>
-                <TabsContent value="dashboard" className="mt-4">
-                    <Card><CardHeader><CardTitle>{t('tabs.dashboard')}</CardTitle></CardHeader><CardContent><p>Event dashboard will be here.</p></CardContent></Card>
                 </TabsContent>
                 <TabsContent value="attendees" className="mt-4">
                    <AttendeesTab eventId={eventId} />

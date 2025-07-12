@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useRef } from 'react';
-import { Html5Qrcode } from 'html5-qrcode';
+import { Html5Qrcode, type Html5QrcodeScannerState } from 'html5-qrcode';
 import { Card, CardContent } from './ui/card';
 import { X } from 'lucide-react';
 import { Button } from './ui/button';
@@ -22,31 +22,35 @@ export const QrScanner = ({ onScanSuccess, onScanFailure, onClose }: QrScannerPr
       const html5QrCode = new Html5Qrcode(qrCodeReaderRef.current.id);
       html5QrCodeRef.current = html5QrCode;
 
-      html5QrCode.start(
-        { facingMode: "environment" },
-        {
-          fps: 10,
-          qrbox: { width: 250, height: 250 }
-        },
-        (decodedText, decodedResult) => {
-          // Wrap success call to stop scanner first
-          if (html5QrCodeRef.current) {
-            html5QrCodeRef.current.stop().then(() => {
-                onScanSuccess(decodedText);
-            }).catch(err => console.error("Failed to stop scanner after success", err));
-          }
-        },
-        (errorMessage) => {
-          // This function is called frequently, so we don't log every "failure"
+      const startScanner = async () => {
+        try {
+          await html5QrCode.start(
+            { facingMode: "environment" },
+            {
+              fps: 10,
+              qrbox: { width: 250, height: 250 }
+            },
+            (decodedText, decodedResult) => {
+              if (html5QrCodeRef.current?.isScanning) {
+                html5QrCodeRef.current.stop().then(() => {
+                    onScanSuccess(decodedText);
+                }).catch(err => console.error("Failed to stop scanner after success", err));
+              }
+            },
+            (errorMessage) => {
+              // This function is called frequently, so we don't log every "failure"
+            }
+          );
+        } catch (err: any) {
+            onScanFailure(`Unable to start scanning, error: ${err.message}`);
         }
-      ).catch(err => {
-        onScanFailure(`Unable to start scanning, error: ${err}`);
-      });
+      };
+      startScanner();
     }
 
     // Cleanup function
     return () => {
-      if (html5QrCodeRef.current?.isScanning) {
+      if (html5QrCodeRef.current && html5QrCodeRef.current.isScanning) {
         html5QrCodeRef.current.stop().catch(err => {
           console.error("Failed to stop QR scanner on cleanup:", err);
         });

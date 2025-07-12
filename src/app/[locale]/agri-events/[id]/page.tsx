@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import QRCode from 'qrcode.react';
 import { useTranslations } from 'next-intl';
@@ -75,10 +75,7 @@ export default function AgriEventDetailPage() {
   const getEventDetails = useMemo(() => httpsCallable(functions, 'getEventDetails'), [functions]);
   const registerForEvent = useMemo(() => httpsCallable(functions, 'registerForEvent'), [functions]);
 
-  useEffect(() => {
-    if (!eventId) return;
-
-    const fetchEvent = async () => {
+   const fetchEvent = useCallback(async () => {
       setIsLoading(true);
       try {
         const result = await getEventDetails({ eventId });
@@ -90,9 +87,12 @@ export default function AgriEventDetailPage() {
       } finally {
         setIsLoading(false);
       }
-    };
+    }, [eventId, getEventDetails, toast, t]);
+
+  useEffect(() => {
+    if (!eventId) return;
     fetchEvent();
-  }, [eventId, getEventDetails, toast, user, t]);
+  }, [eventId, fetchEvent, user]); // Refetch when user changes to update isRegistered status
 
   useEffect(() => {
     const couponFromUrl = searchParams.get('coupon');
@@ -116,20 +116,22 @@ export default function AgriEventDetailPage() {
         const result = await registerForEvent({ eventId, couponCode });
         const data = result.data as { success: boolean; message: string; finalPrice?: number; discountApplied?: number };
 
-        setEvent(prev => prev ? { ...prev, isRegistered: true, registeredAttendeesCount: (prev.registeredAttendeesCount || 0) + 1 } : null);
-        
-        let toastDescription = t('registration.successDescription');
-        if (data.discountApplied && data.discountApplied > 0) {
-            toastDescription += ` ${t('registration.discountApplied', {
-                amount: data.discountApplied.toFixed(2),
-                currency: event?.currency || 'USD'
-            })} ${t('registration.finalPrice', {
-                price: data.finalPrice?.toFixed(2),
-                currency: event?.currency || 'USD'
-            })}`;
+        if (data.success) {
+            setEvent(prev => prev ? { ...prev, isRegistered: true, registeredAttendeesCount: (prev.registeredAttendeesCount || 0) + 1 } : null);
+            let toastDescription = t('registration.successDescription');
+            if (data.discountApplied && data.discountApplied > 0) {
+                toastDescription += ` ${t('registration.discountApplied', {
+                    amount: data.discountApplied.toFixed(2),
+                    currency: event?.currency || 'USD'
+                })} ${t('registration.finalPrice', {
+                    price: data.finalPrice?.toFixed(2),
+                    currency: event?.currency || 'USD'
+                })}`;
+            }
+            toast({ title: t('registration.successTitle'), description: toastDescription});
+        } else {
+             throw new Error(data.message || t('errors.unknown'));
         }
-
-        toast({ title: t('registration.successTitle'), description: toastDescription});
     } catch (error: any) {
         console.error("Registration failed:", error);
         toast({ variant: "destructive", title: t('registration.failTitle'), description: error.message });
@@ -325,4 +327,3 @@ export default function AgriEventDetailPage() {
     </div>
   )
 }
-    
