@@ -8,19 +8,19 @@ import Link from "next/link";
 import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { STAKEHOLDER_ROLES } from "@/lib/stakeholder-data"; // Use the new structured data
-import { Search, UserPlus, Link as LinkIcon, UserCog, Users, Frown, Loader2, Brain, MapPin, User } from "lucide-react";
+import { STAKEHOLDER_ROLES } from "@/lib/constants";
+import { Search, UserPlus, Link as LinkIcon, UserCog, Users, Frown, Loader2, Send } from "lucide-react";
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getAllProfilesFromDB, getMarketplaceRecommendationsAction } from "@/lib/server-actions";
+import { getAllProfilesFromDB } from "@/lib/server-actions";
 import { useTranslations } from "next-intl";
-import { useUserProfile } from '@/hooks/useUserProfile';
+import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 import { useAuth } from "@/lib/auth-utils";
+import { useUserProfile } from "@/hooks/useUserProfile";
 import { useToast } from "@/hooks/use-toast";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import type { SuggestedConnectionsOutput } from "@/ai/flows/suggested-connections";
 
 function ProfileCardSkeleton() {
   return (
@@ -53,16 +53,12 @@ export default function NetworkPage() {
   const [locationFilter, setLocationFilter] = useState("");
   const [isConnecting, setIsConnecting] = useState<string | null>(null);
 
-  // New state for AI suggestions
-  const [aiSuggestions, setAiSuggestions] = useState<any[]>([]);
-  const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(true);
-
   const { profile: currentUserProfile, loading: profileLoading } = useUserProfile();
   const { user } = useAuth();
   const { toast } = useToast();
   const functions = getFunctions(firebaseApp);
-  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'sendConnectionRequest'), [functions]);
-  const suggestConnectionsCallable = useMemo(() => httpsCallable(functions, 'suggestConnections'), [functions]);
+  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'sendConnectionRequest'), []);
+  const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,27 +77,6 @@ export default function NetworkPage() {
     fetchData();
   }, [toast, t]);
 
-  useEffect(() => {
-    const fetchAiSuggestions = async () => {
-      if (!user) {
-        setIsLoadingSuggestions(false);
-        return;
-      };
-      setIsLoadingSuggestions(true);
-      try {
-        const result = await suggestConnectionsCallable({ userId: user.uid, count: 3 });
-        const data = result.data as SuggestedConnectionsOutput;
-        setAiSuggestions(data.suggestions || []);
-      } catch (error) {
-         console.error("Failed to fetch AI suggestions:", error);
-         toast({ title: t('toast.errorTitle'), description: t('toast.noSuggestions'), variant: "destructive" });
-         setAiSuggestions([]);
-      } finally {
-        setIsLoadingSuggestions(false);
-      }
-    };
-    fetchAiSuggestions();
-  }, [user, suggestConnectionsCallable, toast, t]);
 
   const handleConnect = async (recipientId: string) => {
     if (!user) {
@@ -112,7 +87,6 @@ export default function NetworkPage() {
     try {
         await sendConnectionRequestCallable({ recipientId });
         toast({ title: "Connection Request Sent!", description: "Your request has been sent to the user."});
-        setAiSuggestions(prev => prev.filter(s => s.id !== recipientId)); // Optimistically remove from suggestions
     } catch (error: any) {
          toast({ title: "Could Not Send Request", description: error.message, variant: "destructive" });
     } finally {
@@ -139,7 +113,26 @@ export default function NetworkPage() {
     });
   }, [searchTerm, roleFilter, locationFilter, profiles, user]);
 
-  const isAgent = currentUserProfile?.primaryRole === 'Field Agent/Agronomist' || currentUserProfile?.primaryRole === 'Admin';
+  const isAgent = currentUserProfile?.primaryRole === 'Field Agent/Agronomist (DamDoh Internal)' || currentUserProfile?.primaryRole === 'Admin';
+  
+  const handleInvite = async () => {
+    const inviteeEmail = prompt(t('invitePrompt'));
+    if (inviteeEmail) {
+      try {
+        await sendInviteCallable({ inviteeEmail });
+        toast({
+          title: t('inviteSuccessTitle'),
+          description: t('inviteSuccessDescription', { email: inviteeEmail }),
+        });
+      } catch (error: any) {
+        toast({
+          title: t('inviteErrorTitle'),
+          description: error.message,
+          variant: 'destructive',
+        });
+      }
+    }
+  };
 
 
   return (
@@ -164,59 +157,11 @@ export default function NetworkPage() {
                     </Link>
                 </Button>
             )}
+             <Button onClick={handleInvite} variant="outline">
+                <Send className="mr-2 h-4 w-4" />{t('invite.button')}
+            </Button>
         </div>
       </div>
-
-      {user && (
-        <Card>
-            <CardHeader>
-                <CardTitle className="flex items-center gap-2"><Brain className="h-5 w-5 text-primary"/>{t('aiSuggestionsTitle')}</CardTitle>
-                <CardDescription>{t('aiSuggestionsDescription')}</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {isLoadingSuggestions ? (
-                    Array.from({ length: 3 }).map((_, i) => <ProfileCardSkeleton key={`sugg-skel-${i}`} />)
-                ) : aiSuggestions.length > 0 ? (
-                    aiSuggestions.map(profile => (
-                        <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow bg-primary/5">
-                             <CardHeader className="items-center text-center">
-                                <Avatar className="h-24 w-24 border-2 border-primary mb-2">
-                                    <AvatarImage src={profile.avatarUrl} alt={profile.name} />
-                                    <AvatarFallback className="text-3xl">{profile.name?.substring(0,1) ?? '?'}</AvatarFallback>
-                                </Avatar>
-                                <Link href={`/profiles/${profile.id}`}>
-                                    <CardTitle className="text-lg hover:text-primary transition-colors">{profile.name}</CardTitle>
-                                </Link>
-                                <CardDescription className="flex items-center gap-2">
-                                  {STAKEHOLDER_ROLES.find(r => r.name === profile.role)?.icon &&
-                                      React.createElement(STAKEHOLDER_ROLES.find(r => r.name === profile.role)!.icon, { className: "h-4 w-4 text-muted-foreground" })}
-                                  {profile.role}
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent className="flex-grow text-center">
-                                <p className="text-xs text-muted-foreground italic">"{profile.reason}"</p>
-                            </CardContent>
-                            <CardFooter className="flex flex-col sm:flex-row gap-2 p-4">
-                                <Button className="w-full sm:flex-1" onClick={() => handleConnect(profile.id)} disabled={isConnecting === profile.id}>
-                                    {isConnecting === profile.id ? <Loader2 className="h-4 w-4 animate-spin"/> : <LinkIcon className="mr-2 h-4 w-4" />}
-                                    {t('connect')}
-                                </Button>
-                                <Button variant="outline" className="w-full sm:flex-1" asChild>
-                                    <Link href={`/profiles/${profile.id}`}><User className="mr-2 h-4 w-4" />{t('profile')}</Link>
-                                </Button>
-                            </CardFooter>
-                        </Card>
-                    ))
-                ) : (
-                    <div className="col-span-full text-center py-8">
-                        <p className="text-sm text-muted-foreground">{t('noSuggestions')}</p>
-                    </div>
-                )}
-                </div>
-            </CardContent>
-        </Card>
-      )}
 
       <Card>
         <CardHeader>
@@ -255,10 +200,10 @@ export default function NetworkPage() {
                 <SelectContent>
                   <SelectItem value="all">{t('allRoles')}</SelectItem>
                   {STAKEHOLDER_ROLES.map(role => (
-                    <SelectItem key={role.id} value={role.name}>
+                    <SelectItem key={role} value={role}>
                       <div className="flex items-center gap-2">
-                        <role.icon className="h-4 w-4 text-muted-foreground" />
-                        <span>{role.name}</span>
+                        <StakeholderIcon role={role} className="h-4 w-4 text-muted-foreground" />
+                        <span>{role}</span>
                       </div>
                     </SelectItem>
                   ))}
@@ -275,7 +220,7 @@ export default function NetworkPage() {
                 <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow">
                     <CardHeader className="items-center text-center">
                     <Avatar className="h-24 w-24 border-2 border-primary mb-2">
-                        <AvatarImage src={profile.avatarUrl} alt={profile.displayName} />
+                        <AvatarImage src={profile.avatarUrl} alt={profile.displayName} data-ai-hint="profile agriculture person" />
                         <AvatarFallback className="text-3xl">{profile.displayName?.substring(0,1) ?? '?'}</AvatarFallback>
                     </Avatar>
                     <Link href={`/profiles/${profile.id}`}>

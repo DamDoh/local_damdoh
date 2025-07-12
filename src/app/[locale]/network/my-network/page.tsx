@@ -105,6 +105,7 @@ export default function MyNetworkPage() {
       }
     };
 
+
     if (isLoading || authLoading) {
         return <NetworkPageSkeleton />;
     }

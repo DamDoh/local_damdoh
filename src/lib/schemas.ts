@@ -13,7 +13,11 @@ export const StakeholderProfileSchema = z.object({
   email: z.string().email(),
   primaryRole: z.string(),
   secondaryRoles: z.array(z.string()).optional(),
-  location: z.string().optional(),
+  location: z.object({
+    lat: z.number(),
+    lng: z.number(),
+    address: z.string(),
+  }).optional().nullable(),
   avatarUrl: z.string().url().optional().nullable(),
   bannerUrl: z.string().url().optional().nullable(),
   profileSummary: z.string().optional(),
@@ -170,6 +174,18 @@ export const InsuranceApplicationSchema = z.object({
     submittedAt: z.any(),
 });
 export type InsuranceApplication = z.infer<typeof InsuranceApplicationSchema>;
+
+export const ApiKeySchema = z.object({
+  id: z.string(),
+  description: z.string(),
+  environment: z.enum(['Sandbox', 'Production']),
+  status: z.enum(['Active', 'Revoked']),
+  key: z.string(),
+  keyPrefix: z.string(),
+  createdAt: z.string(),
+});
+export type ApiKey = z.infer<typeof ApiKeySchema>;
+
 
 
 // =================================================================
