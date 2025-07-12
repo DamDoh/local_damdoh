@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -50,7 +51,7 @@ export const ProcessingUnitDashboard = () => {
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">No dashboard data available.</p>
+                <p className="text-muted-foreground">{t('noData')}</p>
             </div>
         );
     }
