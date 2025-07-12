@@ -15,13 +15,12 @@ import { usePathname, useRouter } from '@/navigation';
 
 function HomePageContent() {
   const { user, loading: authLoading } = useAuth();
-  const { isPreferenceLoading } = useHomepageRedirect();
+  const { isPreferenceLoading, homepagePreference } = useHomepageRedirect();
   const isMobile = useIsMobile();
   const pathname = usePathname();
   const router = useRouter();
   
   // This hook now also returns the loading state.
-  const { homepagePreference } = useHomepagePreference();
 
   useEffect(() => {
     // This effect ensures redirection happens after preferences are loaded.
@@ -49,7 +48,7 @@ function HomePageContent() {
   }
 
   // If a homepage preference is set and we're not on it, don't render MainDashboard to avoid a flash of content.
-  if (homepagePreference && homepagePreference !== pathname) {
+  if (homepagePreference && homepagePreference !== pathname && pathname === '/') {
       return <PageSkeleton />;
   }
 
