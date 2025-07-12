@@ -29,6 +29,7 @@ import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useTranslations } from "next-intl";
+import { useOfflineSync } from "@/hooks/useOfflineSync";
 
 export default function LogHarvestPage() {
   const t = useTranslations('farmManagement.logHarvest');
@@ -44,6 +45,8 @@ export default function LogHarvestPage() {
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
   const [createdVtiId, setCreatedVtiId] = useState<string | null>(null);
   const { user } = useAuth();
+  const { isOnline, addActionToQueue } = useOfflineSync();
+
   const functions = getFunctions(firebaseApp);
   const handleHarvestEvent = httpsCallable(functions, 'handleHarvestEvent');
 
@@ -66,30 +69,34 @@ export default function LogHarvestPage() {
       });
       return;
     }
+    
+    setIsSubmitting(true);
 
-    if (typeof window !== 'undefined' && !window.navigator.onLine) {
-      toast({
-        title: t('offlineToast.title'),
-        description: t('offlineToast.description'),
-        variant: "default",
+    const payload = {
+      farmFieldId: cropId,
+      cropType: cropType,
+      yieldKg: data.yield_kg,
+      qualityGrade: data.quality_grade,
+      actorVtiId: user.uid,
+      geoLocation: null, // Placeholder for future location capture
+    };
+
+    if (!isOnline) {
+      // Offline logic: Add to queue
+      await addActionToQueue({
+        operation: 'create', // This is a complex operation, we'll represent it as a single 'create'
+        collectionPath: 'harvest_events', // Conceptual collection
+        documentId: `harvest-${Date.now()}`,
+        payload: payload,
       });
       setSubmissionSuccess(true);
       setCreatedVtiId('offline-vti-placeholder');
+      setIsSubmitting(false);
       return;
     }
-
-    setIsSubmitting(true);
-
+    
+    // Online logic
     try {
-      const payload = {
-        farmFieldId: cropId,
-        cropType: cropType,
-        yieldKg: data.yield_kg,
-        qualityGrade: data.quality_grade,
-        actorVtiId: user.uid,
-        geoLocation: null,
-      };
-
       const result = await handleHarvestEvent(payload);
       const newVtiId = (result.data as any)?.vtiId;
       setCreatedVtiId(newVtiId);
@@ -127,16 +134,19 @@ export default function LogHarvestPage() {
                     </div>
                     <CardTitle className="text-2xl pt-4">{t('success.successCardTitle')}</CardTitle>
                     <CardDescription>
-                       {t('success.successCardDescription', { cropType, vtiId: createdVtiId })}
+                       {createdVtiId === 'offline-vti-placeholder' 
+                            ? t('offlineToast.description')
+                            : t('success.successCardDescription', { cropType, vtiId: createdVtiId })
+                       }
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                    <Button size="lg" className="w-full" asChild>
+                    <Button size="lg" className="w-full" asChild disabled={createdVtiId === 'offline-vti-placeholder'}>
                        <Link href={`/traceability/batches/${createdVtiId}`}>
                             <GitBranch className="mr-2 h-4 w-4" /> {t('success.viewReportButton')}
                         </Link>
                     </Button>
-                    <Button size="lg" className="w-full" asChild>
+                    <Button size="lg" className="w-full" asChild disabled={createdVtiId === 'offline-vti-placeholder'}>
                         <Link href={`/marketplace/create?vtiId=${createdVtiId}&productName=${encodeURIComponent(cropType)}`}>
                             <DollarSign className="mr-2 h-4 w-4" /> {t('success.sellButton')}
                         </Link>
