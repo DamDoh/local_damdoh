@@ -70,7 +70,7 @@
   },
   "Auth": {
     "signInWelcome": "Welcome back to {appName}",
-    "signUpWelcome": "Join the DamDoh Agricultural Network",
+    "signUpWelcome": "Join the {appName} Agricultural Network",
     "forgotPasswordResetPrompt": "Reset your password for {appName}",
     "resetPasswordPrompt": "Create a new password for {appName}",
     "signInTitle": "Sign in to your account",
@@ -212,7 +212,7 @@
     "home": "Home",
     "market": "Market",
     "search": "Search",
-    "forums": "Forums",
+    "messages": "Messages",
     "profile": "Profile"
   },
   "DashboardRightSidebar": {
@@ -558,77 +558,6 @@
     },
     "conclusion": "To resolve a complaint or receive further information, please {contactLink}."
   },
-  "DashboardLeftSidebar": {
-    "viewProfileLink": "View My Profile",
-    "profileViewers": "Who's viewed your profile",
-    "postEngagements": "Engagements on your posts",
-    "pro": {
-      "unlock": "Unlock advanced analytics",
-      "try": "Try DamDoh Pro"
-    },
-    "recent": {
-      "title": "Recent",
-      "myPinBoard": "My Pinboard",
-      "communityGroups": "Community Groups",
-      "industryNews": "Industry News",
-      "agriEvents": "Agri-Events",
-      "mySupplyChainNetwork": "My Network"
-    }
-  },
-  "MobileHomepage": {
-    "welcome": {
-      "morning": "Good Morning, {name}",
-      "afternoon": "Good Afternoon, {name}",
-      "evening": "Good Evening, {name}"
-    },
-    "discoverTitle": "Discover",
-    "seeAllButton": "See all",
-    "noRecommendations": "No recommendations available right now.",
-    "communityFeedTitle": "Community Feed",
-    "communityFeedDescription": "Catch up on the latest posts and discussions from the community.",
-    "goToFeedButton": "Go to Feed"
-  },
-  "MainDashboard": {
-    "feedError": {
-      "title": "Could not load feed",
-      "description": "There was an issue fetching the latest posts. Please try again."
-    },
-    "postError": {
-      "auth": "You must be logged in to post.",
-      "fail": "Could not create post."
-    },
-    "uploadingMedia": "Uploading media...",
-    "uploadComplete": "Upload complete!",
-    "postSuccess": {
-      "title": "Post Created",
-      "description": "Your post has been shared with the community."
-    },
-    "likeError": {
-      "auth": "You must be signed in to like a post.",
-      "fail": "Could not like post."
-    },
-    "commentError": {
-      "auth": "You must be signed in to comment.",
-      "fail": "Could not post comment."
-    },
-    "commentSuccess": "Comment posted!",
-    "deleteError": {
-      "auth": "You must be signed in to delete posts.",
-      "fail": "Could not delete post."
-    },
-    "deleteSuccess": {
-      "title": "Post Deleted",
-      "description": "Your post has been removed."
-    },
-    "noActivity": "No new activity in the feed. Why not start a conversation?"
-  },
-  "StartPost": {
-    "placeholder": "Start a post, ask a question, or share an update...",
-    "photoVideo": "Photo/Video",
-    "agriEvent": "Agri-Event",
-    "shareDocumentButton": "Share Document",
-    "createPoll": "Create Poll"
-  },
   "Marketplace": {
     "title": "Marketplace",
     "description": "Discover, buy, and sell agricultural products and services.",
@@ -680,6 +609,7 @@
         "descriptionLabel": "Description",
         "descriptionPlaceholder": "Describe your product or service in detail...",
         "locationLabel": "Location",
+        "locationPlaceholder": "e.g., Nakuru, Kenya",
         "changeLocationButton": "Change",
         "relatedVtiLabel": "Related Traceability ID (Optional)",
         "relatedVtiPlaceholder": "Enter VTI if available",
@@ -888,60 +818,60 @@
       }
     },
     "promotions": {
-      "title": "My Promotions",
-      "description": "Create and manage coupon codes to attract more buyers.",
-      "backToDashboard": "Back to Dashboard",
-      "signInPrompt": "Please sign in to manage your promotions.",
-      "create": {
-        "title": "Create New Coupon",
-        "description": "Define the details for your new promotional coupon.",
-        "form": {
-          "code": "Coupon Code",
-          "codePlaceholder": "e.g., SALE20",
-          "usageLimit": "Usage Limit",
-          "usageLimitPlaceholder": "e.g., 100",
-          "discountType": "Discount Type",
-          "discountTypePlaceholder": "Select type",
-          "percentage": "Percentage",
-          "fixed": "Fixed Amount",
-          "discountValue": "Discount Value",
-          "expiryDate": "Expiry Date (Optional)",
-          "pickDate": "Pick a date",
-          "submitButton": "Create Coupon"
+        "title": "My Promotions",
+        "description": "Create and manage coupon codes to attract more buyers.",
+        "backToDashboard": "Back to Dashboard",
+        "signInPrompt": "Please sign in to manage your promotions.",
+        "create": {
+            "title": "Create New Coupon",
+            "description": "Define the details for your new promotional coupon.",
+            "form": {
+                "code": "Coupon Code",
+                "codePlaceholder": "e.g., SALE20",
+                "usageLimit": "Usage Limit",
+                "usageLimitPlaceholder": "e.g., 100",
+                "discountType": "Discount Type",
+                "discountTypePlaceholder": "Select type",
+                "percentage": "Percentage",
+                "fixed": "Fixed Amount",
+                "discountValue": "Discount Value",
+                "expiryDate": "Expiry Date (Optional)",
+                "pickDate": "Pick a date",
+                "submitButton": "Create Coupon"
+            },
+            "toast": {
+                "successTitle": "Coupon Created!",
+                "successDescription": "Coupon '{code}' is now available.",
+                "failTitle": "Creation Failed"
+            }
+        },
+        "list": {
+            "title": "Existing Coupons",
+            "description": "View and manage your active promotional codes.",
+            "usage": "Usage",
+            "expires": "Expires",
+            "never": "Never",
+            "share": "Share",
+            "noCoupons": "You haven't created any coupons yet.",
+            "toastTitle": "Link Copied!",
+            "toastDescription": "A shareable link for coupon '{link}' has been copied to your clipboard.",
+            "shareModal": {
+                "title": "Share Coupon Code",
+                "description": "Share this link with your customers to automatically apply the coupon.",
+                "link": "Link",
+                "copy": "Copy",
+                "close": "Close"
+            }
         },
         "toast": {
-          "successTitle": "Coupon Created!",
-          "successDescription": "Coupon '{code}' is now available.",
-          "failTitle": "Creation Failed"
+            "error": "Error",
+            "fetchError": "Could not fetch your coupons.",
+            "createSuccess": "Coupon '{code}' created successfully.",
+            "createFail": "Could not create coupon.",
+            "createError": "An unexpected error occurred.",
+            "linkCopied": "Link Copied!",
+            "shareDescription": "Shareable link for coupon '{code}' copied."
         }
-      },
-      "list": {
-        "title": "Existing Coupons",
-        "description": "View and manage your active promotional codes.",
-        "usage": "Usage",
-        "expires": "Expires",
-        "never": "Never",
-        "share": "Share",
-        "noCoupons": "You haven't created any coupons yet.",
-        "toastTitle": "Link Copied!",
-        "toastDescription": "A shareable link for coupon '{code}' has been copied to your clipboard.",
-        "shareModal": {
-          "title": "Share Coupon Code",
-          "description": "Share this link with your customers to automatically apply the coupon.",
-          "link": "Link",
-          "copy": "Copy",
-          "close": "Close"
-        }
-      },
-      "toast": {
-        "error": "Error",
-        "fetchError": "Could not fetch your coupons.",
-        "createSuccess": "Coupon '{code}' created successfully.",
-        "createFail": "Could not create coupon.",
-        "createError": "An unexpected error occurred.",
-        "linkCopied": "Link Copied!",
-        "shareDescription": "Shareable link for coupon '{code}' copied."
-      }
     },
     "manageService": {
       "title": "Manage Service",
@@ -975,49 +905,559 @@
       }
     }
   },
-  "constants": {
-    "stakeholderRoles": {
-      "Farmer": "Farmer",
-      "AgriculturalCooperative": "Agricultural Cooperative",
-      "FieldAgentAgronomistDamDohInternal": "Field Agent/Agronomist (DamDoh Internal)",
-      "OperationsLogisticsTeamDamDohInternal": "Operations/Logistics Team (DamDoh Internal)",
-      "QualityAssuranceTeamDamDohInternal": "Quality Assurance Team (DamDoh Internal)",
-      "ProcessingPackagingUnit": "Processing & Packaging Unit",
-      "BuyerRestaurant,Supermarket,Exporter": "Buyer (Restaurant, Supermarket, Exporter)",
-      "InputSupplierSeed,Fertilizer,Pesticide": "Input Supplier (Seed, Fertilizer, Pesticide)",
-      "EquipmentSupplierSalesofMachineryIoT": "Equipment Supplier (Sales of Machinery/IoT)",
-      "FinancialInstitutionMicro-financeLoans": "Financial Institution (Micro-finance/Loans)",
-      "GovernmentRegulatorAuditor": "Government Regulator/Auditor",
-      "CertificationBodyOrganic,FairTradeetc": "Certification Body (Organic, Fair Trade etc.)",
-      "Consumer": "Consumer",
-      "ResearcherAcademic": "Researcher/Academic",
-      "LogisticsPartnerThird-PartyTransporter": "Logistics Partner (Third-Party Transporter)",
-      "StorageWarehouseFacility": "Storage/Warehouse Facility",
-      "AgronomyExpertConsultantExternal": "Agronomy Expert/Consultant (External)",
-      "Agro-TourismOperator": "Agro-Tourism Operator",
-      "EnergySolutionsProviderSolar,Biogas": "Energy Solutions Provider (Solar, Biogas)",
-      "Agro-ExportFacilitatorCustomsBroker": "Agro-Export Facilitator/Customs Broker",
-      "Agri-TechInnovatorDeveloper": "Agri-Tech Innovator/Developer",
-      "WasteManagementCompostFacility": "Waste Management & Compost Facility",
-      "CrowdfunderImpactInvestor,Individual": "Crowdfunder (Impact Investor, Individual)",
-      "InsuranceProvider": "Insurance Provider",
-      "PackagingSupplier": "Packaging Supplier"
+  "farmManagement": {
+    "hub": {
+      "title": "Farm Management Hub",
+      "description": "Your central place to track and optimize all your farming activities, from planting to harvest.",
+      "myFarms": {
+        "title": "My Farms & Crops",
+        "description": "Manage your farms, fields, and track individual crop cycles.",
+        "button": "Manage Farms"
+      },
+      "labor": {
+        "title": "Labor Management",
+        "description": "Keep track of hours and payments for your workforce.",
+        "button": "Manage Labor"
+      },
+      "knf": {
+        "title": "KNF Inputs Assistant",
+        "description": "Track your farmer-made Korean Natural Farming inputs.",
+        "button": "Manage Inputs"
+      },
+      "fgw": {
+        "title": "Farming God's Way Guide",
+        "description": "Learn the principles and practices of FGW for sustainable, no-till agriculture.",
+        "button": "View FGW Guide"
+      },
+      "financials": {
+        "title": "Financials & Analytics",
+        "description": "Track income, expenses, and gain insights into profitability.",
+        "button": "View Financials"
+      },
+      "seedStarting": {
+        "title": "Seed Starting Guide",
+        "description": "Learn best practices for starting seeds for a successful season.",
+        "button": "View Seed Guide"
+      },
+      "familyFarm": {
+        "title": "Diversified Family Farm Model",
+        "description": "Explore a sustainable 200 sq meter model for small family farms.",
+        "button": "View Model"
+      },
+      "assetManagement": {
+        "title": "Asset Management",
+        "description": "Keep track of your machinery, tools, and other farm assets.",
+        "button": "Manage Assets"
+      }
     },
-    "listingTypes": {
-      "All": "All Types",
-      "Product": "Product",
-      "Service": "Service"
+    "myFarms": {
+      "backToDashboard": "Back to Farm Hub",
+      "title": "My Farms",
+      "addNewFarmButton": "Add New Farm",
+      "size": "Size",
+      "viewFarmButton": "View Farm Dashboard",
+      "noFarmsTitle": "You haven't added any farms yet.",
+      "noFarmsDescription": "Get started by creating your first farm profile to track crops and activities.",
+      "auth": {
+        "title": "Please Sign In",
+        "description": "You must be signed in to view your farms.",
+        "button": "Sign In"
+      },
+      "toast": {
+        "errorTitle": "Error",
+        "fetchError": "Could not fetch your farm data."
+      }
     },
-    "agriEventTypes": {
-        "All": "All Event Types",
-        "Conference": "Conference",
-        "Webinar": "Webinar",
-        "Workshop": "Workshop",
-        "TradeShow": "Trade Show",
-        "FieldDay": "Field Day",
-        "NetworkingEvent": "Networking Event",
-        "OnlineCourseLaunch": "Online Course Launch",
-        "PolicyBriefing": "Policy Briefing"
+    "createFarm": {
+      "backToFarms": "Back to My Farms",
+      "title": "Create New Farm",
+      "description": "Add a new farm to your profile to start tracking crops, inputs, and activities.",
+      "form": {
+        "farmNameLabel": "Farm Name",
+        "farmNamePlaceholder": "e.g., Green Valley Organics",
+        "locationLabel": "Location",
+        "locationPlaceholder": "e.g., Rift Valley, Kenya",
+        "locationDescription": "Provide a general location (City, Region).",
+        "sizeLabel": "Farm Size",
+        "sizePlaceholder": "e.g., 5 Hectares, 12 Acres",
+        "sizeDescription": "Specify the units (e.g., Hectares, Acres).",
+        "typeLabel": "Farm Type",
+        "typePlaceholder": "Select the primary type",
+        "types": {
+            "crop": "Crop Production",
+            "livestock": "Livestock",
+            "mixed": "Mixed (Crops & Livestock)",
+            "aquaculture": "Aquaculture",
+            "other": "Other"
+        },
+        "descriptionLabel": "Description (Optional)",
+        "descriptionPlaceholder": "Briefly describe your farm...",
+        "irrigationLabel": "Irrigation Method (Optional)",
+        "irrigationPlaceholder": "e.g., Drip irrigation, Rain-fed",
+        "irrigationDescription": "Specify the main irrigation method used.",
+        "submitButton": "Save Farm"
+      },
+      "toast": {
+        "authErrorTitle": "Authentication Error",
+        "authErrorDescription": "You must be signed in to create a farm.",
+        "successTitle": "Farm Created!",
+        "successDescription": "'{farmName}' has been added to your profile.",
+        "errorTitle": "Creation Failed",
+        "errorDescription": "Could not create the farm. Please try again."
+      }
+    },
+    "farmDetail": {
+        "backLink": "Back to My Farms",
+        "registeredOn": "Registered on {date}",
+        "editFarmButton": "Edit Farm",
+        "crops": {
+            "title": "Crops",
+            "description": "Manage all active crops on this farm.",
+            "addNewButton": "Add New Crop",
+            "plantedLabel": "Planted",
+            "stageLabel": "Stage",
+            "viewJourneyButton": "View Journey",
+            "noCrops": "No crops have been added to this farm yet.",
+            "addFirstButton": "Add Your First Crop"
+        },
+        "insights": {
+            "title": "Profitability Insights",
+            "description": "AI-driven analysis of your farm's activities.",
+            "noInsights": "Not enough data to generate insights. Start logging activities!"
+        },
+        "toast": {
+            "notFoundTitle": "Farm Not Found",
+            "loadErrorTitle": "Loading Error",
+            "insightsErrorTitle": "Insights Error"
+        },
+        "notFound": {
+            "title": "Farm Not Found",
+            "description": "The farm you are looking for does not exist, or you do not have permission to view it.",
+            "backButton": "Back to My Farms"
+        }
+    },
+    "createCrop": {
+      "backLink": "Back to Farm Detail",
+      "title": "Add New Crop",
+      "description": "Log a new crop or planting to start tracking its journey.",
+      "cropTypeLabel": "Crop Name / Type",
+      "cropTypePlaceholder": "e.g., Hass Avocado, Roma Tomato",
+      "cropTypeDescription": "Be as specific as possible.",
+      "plantingDateLabel": "Planting Date",
+      "harvestDateLabel": "Estimated Harvest Date (Optional)",
+      "datePlaceholder": "Select a date",
+      "yieldLabel": "Expected Yield (Optional)",
+      "yieldPlaceholder": "e.g., 5 Tons/Hectare",
+      "stageLabel": "Current Stage (Optional)",
+      "stagePlaceholder": "Select a stage",
+      "stages": {
+        "Planting": "Planting",
+        "Vegetative": "Vegetative",
+        "Flowering": "Flowering",
+        "Fruiting": "Fruiting",
+        "Harvesting": "Harvesting",
+        "Post-Harvest": "Post-Harvest"
+      },
+      "notesLabel": "Notes (Optional)",
+      "notesPlaceholder": "Add any relevant notes about this batch...",
+      "saveButton": "Save Crop",
+      "savingButton": "Saving...",
+      "toast": {
+        "authErrorTitle": "Not Authenticated",
+        "authErrorDescription": "You must be signed in to add a crop.",
+        "successTitle": "Crop Added!",
+        "successDescription": "{cropType} was successfully added to your farm.",
+        "failTitle": "Could not add crop.",
+        "failDescription": "An unexpected error occurred. Please try again."
+      }
+    },
+    "logInput": {
+      "backLink": "Back to Farm",
+      "title": "Log Input Application",
+      "description": "Record the application of fertilizers, pesticides, or other inputs to your crop.",
+      "useKNFLabel": "Use KNF Batch",
+      "useKNFPlaceholder": "Select a ready batch",
+      "manualInputLabel": "Or Enter Manually",
+      "manualInputPlaceholder": "e.g., NPK 10-10-10 Fertilizer",
+      "dateLabel": "Application Date",
+      "quantityLabel": "Quantity",
+      "quantityPlaceholder": "e.g., 50",
+      "unitLabel": "Unit",
+      "unitPlaceholder": "e.g., kg, Liters, ml/L",
+      "methodLabel": "Application Method (Optional)",
+      "methodPlaceholder": "e.g., Foliar spray, Soil drench",
+      "saveButton": "Log Application",
+      "savingButton": "Logging...",
+      "toast": {
+        "authErrorTitle": "Not Authenticated",
+        "authErrorDescription": "You must be signed in to log an application.",
+        "success": "Application Logged",
+        "description": "The input application has been successfully logged to your crop's journey.",
+        "fail": "Logging failed."
+      }
+    },
+    "cropDetailPage": {
+      "backLink": "Back to Farm",
+      "plantedOn": "Planted on {date}",
+      "editButton": "Edit",
+      "quickActionsTitle": "Quick Actions",
+      "logInputButton": "Log Input",
+      "logObservationButton": "Log Observation",
+      "logHarvestButton": "Log Harvest",
+      "journeyTitle": "Crop Journey",
+      "noActivities": "No activities have been logged for this crop yet.",
+      "loading": "Loading crop details...",
+      "notFound": "Crop not found.",
+      "toast": {
+        "notFound": "Crop not found.",
+        "loadError": "Could not load crop data."
+      },
+      "eventPayload": {
+        "noDetails": "No additional details for this event.",
+        "observationType": "Observation Type",
+        "details": "Details",
+        "aiDiagnosis": "AI Diagnosis"
+      }
+    },
+    "fgwGuidePage": {
+      "backLink": "Back to Farm Hub",
+      "title": "Farming God's Way Guide",
+      "description": "A sustainable, no-till, faith-based agricultural solution for the poor.",
+      "intro": "Farming God's Way (FGW) is not just a technology, but a biblically-based, management, and technological solution for the agricultural needs of the poor. It's about being faithful stewards of the land God has given us. Below are the core principles.",
+      "howToTitle": "How To",
+      "whyItWorksTitle": "Why It Works",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "No-Tillage",
+          "icon": "Shield",
+          "summary": "Protect the soil by not plowing it. This preserves the God-given soil structure.",
+          "howTo": [
+            "Create permanent planting stations (holes) instead of ridges.",
+            "Only dig where you will plant the seed.",
+            "Walk on permanent pathways to avoid compacting your planting soil."
+          ],
+          "whyItWorks": [
+            "Prevents soil erosion by wind and water.",
+            "Protects soil life and fungal networks.",
+            "Dramatically increases water infiltration and retention.",
+            "Reduces labor and fuel costs associated with plowing."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field with no-tillage planting stations",
+          "dataAiHint": "no-till farming holes"
+        },
+        {
+          "id": "gods-blanket",
+          "title": "God's Blanket",
+          "icon": "Leaf",
+          "summary": "Keep the soil 100% covered with a thick layer of organic matter, just like in a forest.",
+          "howTo": [
+            "Gather dry organic matter like grass, straw, leaves, or maize stover.",
+            "Apply a thick mulch (at least 10-15 cm) across the entire plot.",
+            "Never burn your crop residues; use them for mulch.",
+            "When planting, make a small opening in the mulch for your seed."
+          ],
+          "whyItWorks": [
+            "Prevents weeds from growing.",
+            "Saves significant soil moisture, reducing water needs.",
+            "Feeds soil life as it decomposes, building rich topsoil.",
+            "Protects the soil from the direct heat of the sun."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field covered in a thick blanket of mulch",
+          "dataAiHint": "mulch farming"
+        },
+        {
+          "id": "high-standards",
+          "title": "High Standards",
+          "icon": "CheckCircle",
+          "summary": "Do everything on time, to a high standard, with no waste, and with joy.",
+          "howTo": [
+            "Prepare the land well before the first rains.",
+            "Plant at the optimal time for your region and crop.",
+            "Follow precise measurements for planting depth and spacing.",
+            "Manage your resources (seed, inputs, time) wisely to avoid wastage."
+          ],
+          "whyItWorks": [
+            "Maximizes the genetic potential of the seed.",
+            "Ensures the crop gets the full benefit of the early rains.",
+            "Leads to higher yields and greater profitability.",
+            "Honors God through excellent work."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A farmer carefully planting seeds in a well-prepared field",
+          "dataAiHint": "planting seeds precisely"
+        }
+      ]
+    },
+    "logObservation": {
+        "backLink": "Back to Farm",
+        "title": "Log Observation",
+        "description": "Record an observation about your crop, such as pest outbreaks, diseases, growth, or weather events.",
+        "typeLabel": "Observation Type",
+        "typePlaceholder": "Select a type",
+        "types": {
+            "Pest": "Pest",
+            "Disease": "Disease",
+            "Growth": "Growth",
+            "Weather": "Weather",
+            "Soil": "Soil",
+            "Weed": "Weed",
+            "Other": "Other",
+            "FGW_Stations": "Land Prep (FGW Stations)",
+            "FGW_Mulch": "Mulching (God's Blanket)"
+        },
+        "dateLabel": "Observation Date",
+        "detailsLabel": "Details & Notes",
+        "detailsPlaceholder": "Describe what you observed...",
+        "uploadLabel": "Upload Photo (Optional)",
+        "uploadDescription": "A photo can help with diagnosis. It will be analyzed by AI if provided.",
+        "saveButton": "Log Observation",
+        "processingButton": "Processing...",
+        "toast": {
+            "authErrorTitle": "Not Authenticated",
+            "authErrorDescription": "You must be signed in to log an observation.",
+            "aiAnalyzing": "AI Analyzing",
+            "aiDescription": "Your image data is being sent to the AI for diagnosis.",
+            "aiComplete": "AI Analysis Complete!",
+            "aiCompleteDescription": "The diagnosis has been included in your observation log.",
+            "aiFailTitle": "AI Analysis Failed",
+            "aiFailDescription": "We couldn't analyze the image. The observation will be saved without an AI diagnosis.",
+            "uploading": "Uploading image...",
+            "uploadingDescription": "Please wait a moment.",
+            "uploadComplete": "Upload Complete!",
+            "success": "Observation Logged",
+            "successDescription": "Your observation has been successfully logged.",
+            "fail": "Logging failed."
+        }
+    },
+    "logHarvest": {
+      "backLink": "Back to Farm",
+      "title": "Log Harvest for {cropType}",
+      "description": "Record your harvest to create a new traceable batch.",
+      "harvestDateLabel": "Harvest Date",
+      "yieldLabel": "Total Yield (kg)",
+      "yieldPlaceholder": "e.g., 1500",
+      "qualityLabel": "Quality Grade",
+      "qualityPlaceholder": "e.g., Grade A, Export Quality",
+      "notesLabel": "Harvest Notes (Optional)",
+      "notesPlaceholder": "Specific details about this harvest...",
+      "saveButton": "Log Harvest & Create Batch",
+      "savingButton": "Saving...",
+      "offlineToast": {
+          "description": "Your harvest will be logged and a VTI created when you're back online."
+      },
+      "success": {
+          "title": "Harvest Logged!",
+          "description": "The harvest for {cropType} has been successfully logged. A new traceable batch has been created with ID '{vtiId}'.",
+          "successCardTitle": "Harvest Logged!",
+          "successCardDescription": "A new traceable batch has been created for {cropType} with ID: {vtiId}",
+          "viewReportButton": "View Traceability Report",
+          "sellButton": "Sell on Marketplace",
+          "logAnotherButton": "Log Another Harvest",
+          "backToFarmButton": "Back to Farm"
+      },
+      "fail": {
+          "title": "Logging Failed"
+      }
+    },
+    "knfInputsPage": {
+      "backLink": "Back to Farm Hub",
+      "title": "KNF Inputs Assistant",
+      "description": "Create, track, and manage your Korean Natural Farming inputs.",
+      "guidesTitle": "KNF Guides",
+      "ingredients": "Ingredients",
+      "steps": "Steps",
+      "usage": "Usage",
+      "fermentingBatchesTitle": "Fermenting Batches",
+      "started": "Started",
+      "nextStepOn": "Next Step On",
+      "markReady": "Mark as Ready",
+      "noFermentingBatches": "No fermenting batches.",
+      "readyBatchesTitle": "Ready Batches",
+      "readySince": "Ready since",
+      "logUsage": "Log Usage",
+      "archive": "Archive",
+      "noReadyBatches": "No ready batches available.",
+      "startNewBatch": "Start a New Batch",
+      "createNewBatchTitle": "Create a New KNF Batch",
+      "cancel": "Cancel",
+      "quantity": "Quantity",
+      "quantityPlaceholder": "e.g., 5 or 20",
+      "unit": "Unit",
+      "unitPlaceholder": "e.g., Liters, kg",
+      "sellSurplus": "Sell Surplus",
+      "knfOptions": [
+        {"value": "fpj", "label": "Fermented Plant Juice (FPJ)", "placeholder": "e.g., Sweet potato tips, bamboo shoots"},
+        {"value": "faa", "label": "Fish Amino Acid (FAA)", "placeholder": "e.g., Fish heads, bones, guts"},
+        {"value": "wca", "label": "Water Soluble Calcium (WCA)", "placeholder": "e.g., Eggshells"},
+        {"value": "imo", "label": "Indigenous Microorganisms (IMO)", "placeholder": "e.g., Cooked rice, forest soil"},
+        {"value": "lab", "label": "Lactic Acid Bacteria (LAB)", "placeholder": "e.g., Rice wash, milk"}
+      ],
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Fermented Plant Juice (FPJ)",
+          "description": "A fermented extract of a plant's sap and chlorophyll. Rich in enzymes and microorganisms, it's a potent growth enhancer for plants.",
+          "ingredients": [
+            "1kg of fast-growing plant parts (e.g., sweet potato tips, bamboo shoots)",
+            "1kg of brown sugar (or molasses)"
+          ],
+          "yield": "approx. 0.8 L",
+          "steps": [
+            "Collect plant material before sunrise when it is most potent. Do not wash.",
+            "Roughly chop the plant material.",
+            "Add an equal weight of brown sugar and mix well.",
+            "Pack tightly into a clay pot or glass jar, filling to about 2/3 capacity.",
+            "Cover with a breathable cloth and store in a cool, dark place.",
+            "Allow to ferment for about 7 days."
+          ],
+          "usage": "Dilution rate: 1:500 to 1:1000 with water. Applied as a foliar spray or soil drench."
+        },
+        {
+          "id": "faa",
+          "name": "Fish Amino Acid (FAA)",
+          "description": "A potent liquid fertilizer made from fish waste, rich in nitrogen and amino acids. Excellent for boosting plant growth, especially during the vegetative stage.",
+          "ingredients": [
+            "1kg of fish waste (heads, bones, entrails)",
+            "1kg of brown sugar (or molasses)"
+          ],
+          "yield": "approx. 1.5 L",
+          "steps": [
+            "Chop the fish parts into small pieces.",
+            "In a container, layer the fish parts and brown sugar, starting and ending with a layer of sugar.",
+            "Fill the container to about 2/3 capacity and cover with a breathable cloth.",
+            "Store in a cool, dark place and allow to ferment for at least 3-6 months."
+          ],
+          "usage": "Dilution rate: 1:1000 with water. Primarily used as a soil drench."
+        }
+      ],
+      "form": {
+        "typeLabel": "Input Type",
+        "typePlaceholder": "Select a KNF input",
+        "ingredientsLabel": "Ingredients Used",
+        "quantityLabel": "Quantity Produced",
+        "unitLabel": "Unit",
+        "startDateLabel": "Start Date",
+        "startButton": "Start Batch",
+        "startingButton": "Starting..."
+      },
+      "toasts": {
+        "loadErrorTitle": "Error",
+        "loadErrorDescription": "Could not fetch your KNF batches.",
+        "validationError": "Please fill out all fields to start a batch.",
+        "batchStartedTitle": "Batch Started!",
+        "batchStartedDescription": "Your new KNF batch is now fermenting.",
+        "batchStartFailed": "Batch start failed.",
+        "unexpectedError": "An unexpected error occurred.",
+        "batchUpdatedTitle": "Status Updated",
+        "batchUpdatedDescription": "Batch status successfully updated to {status}.",
+        "updateFailed": "Update failed.",
+        "couldNotUpdate": "Could not update the batch status."
+      }
+    },
+    "editCrop": {
+      "backLink": "Back to Crop Detail",
+      "title": "Edit Crop",
+      "description": "Update the details for your crop.",
+      "savingButton": "Saving...",
+      "saveButton": "Save Changes",
+      "toast": {
+        "notFound": "Crop not found.",
+        "loadError": "Could not load crop data to edit.",
+        "error": "Error",
+        "loadFail": "Could not load crop data: {message}",
+        "success": "Crop Updated!",
+        "description": "{cropType} was updated successfully.",
+        "fail": "Update failed."
+      }
+    },
+    "editFarm": {
+      "backToFarm": "Back to Farm Detail",
+      "title": "Edit Farm",
+      "description": "Update the details of your farm.",
+      "form": {
+        "submitButton": "Save Changes"
+      },
+      "toast": {
+        "notFoundTitle": "Not Found",
+        "loadError": "Could not load the farm you wish to edit.",
+        "loadFail": "Could not load farm data: {message}",
+        "successTitle": "Farm Updated!",
+        "successDescription": "'{farmName}' was updated successfully.",
+        "errorTitle": "Update Failed"
+      }
+    }
+  },
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Syncing {count} pending actions...",
+      "onlinePending": "{count} pending actions. Will sync soon.",
+      "onlineSynced": "You are online and all changes are synced.",
+      "offline": "You are offline. {count, plural, =0 {No pending changes.} =1 {1 change is queued.} other {{count} changes are queued.}}"
+    },
+    "toast": {
+      "online": {
+        "title": "You are back online!",
+        "description": "Your connection has been restored."
+      },
+      "offline": {
+        "title": "You are offline.",
+        "description": "Your changes will be saved and synced when you reconnect."
+      },
+      "syncing": {
+        "title": "Syncing offline changes",
+        "description": "Uploading {count} actions to the server."
+      },
+      "synced": {
+        "title": "Sync complete",
+        "description": "All your offline changes have been saved."
+      },
+      "syncFailed": {
+        "title": "Sync failed",
+        "description": "We could not sync your offline changes. We will try again later."
+      },
+      "queued": {
+        "title": "Action queued",
+        "description": "This action will be performed when you are back online."
+      }
+    }
+  },
+  "searchPage": {
+    "title": "Universal Search",
+    "description": "Find anything across the entire DamDoh platform.",
+    "placeholder": "What are you looking for?",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Organic Coffee",
+    "popularSearch2": "Tractor rental in Kenya",
+    "popularSearch3": "Soil health expert",
+    "popularSearch4": "Export financing",
+    "popularSearch5": "Post-harvest loss forum",
+    "modal": {
+      "title": "Universal Search",
+      "placeholder": "Search products, services, people, forum posts...",
+      "searchButton": "Search",
+      "searchError": "Search Error",
+      "searchErrorDescription": "Could not perform search at this time. Please try again.",
+      "scanFailed": "Scan Failed",
+      "scanError": "Scan Error",
+      "scanErrorDescription": "Could not read the QR code. Please try again.",
+      "invalidCodeError": "This is not a valid DamDoh recovery or profile code.",
+      "interpretationTitle": "AI Interpretation",
+      "interpretationNotesDefault": "Searching by keywords.",
+      "filtersTitle": "Filters",
+      "results": {
+        "users": "Profiles",
+        "marketplaceItems": "Marketplace",
+        "forums": "Forums",
+        "agri_events": "Events",
+        "knowledge_articles": "Knowledge Hub",
+        "vti_registry": "Traceability Reports"
+      },
+      "noResults": "No results found",
+      "tryAgain": "Try another query or broaden your search."
     }
   }
 }
