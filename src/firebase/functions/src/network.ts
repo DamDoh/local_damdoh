@@ -202,6 +202,10 @@ export const sendInvite = functions.https.onCall(async (data, context) => {
   const inviterName = inviterProfile.data()?.displayName || 'A DamDoh user';
 
   console.log(`Simulating sending invite from ${inviterName} (${inviterId}) to ${inviteeEmail}`);
+  
+  // Here you would add logic to determine the language for the email template
+  // const inviterLang = inviterProfile.data()?.preferredLanguage || 'en';
+  // Then use inviterLang to select the correct email template.
 
   return { success: true, message: `An invitation has been sent to ${inviteeEmail}.` };
 });
