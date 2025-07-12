@@ -1,16 +1,12 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
     MarketplaceItemSchema,
     MarketplaceOrderSchema,
     ForumPostSchema,
-    AgriEventSchema,
-    ShopSchema,
-    FinancialProductSchema,
-    InsuranceProductSchema,
-    InsuranceApplicationSchema,
-    ApiKeySchema
+    AgriEventSchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 
@@ -29,11 +25,6 @@ export type AgriEvent = z.infer<typeof AgriEventSchema> & {
   organizerId: string;
 };
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
-export type Shop = z.infer<typeof ShopSchema>;
-export type FinancialProduct = z.infer<typeof FinancialProductSchema>;
-export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
-export type InsuranceApplication = z.infer<typeof InsuranceApplicationSchema>;
-export type ApiKey = z.infer<typeof ApiKeySchema>;
 export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";
 
 
@@ -52,6 +43,24 @@ export interface MarketplaceCoupon {
     createdAt: any;
 }
 
+export interface Shop {
+    id: string;
+    ownerId: string;
+    name: string;
+    description: string;
+    stakeholderType: string;
+    createdAt: any;
+    updatedAt: any;
+    logoUrl: string | null;
+    bannerUrl: string | null;
+    contactInfo: {
+        phone?: string;
+        website?: string;
+    };
+    itemCount: number;
+    rating: number;
+}
+
 export type ForumGroup = {
   id: string;
   name: string;
@@ -60,14 +69,6 @@ export type ForumGroup = {
   isPublic: boolean;
   ownerId: string;
   createdAt: string; // ISO String
-}
-
-export interface JoinRequest {
-    id: string; // Document ID of the request
-    requesterId: string;
-    requesterName: string;
-    requesterAvatarUrl?: string;
-    createdAt: string; // ISO string
 }
 
 export interface Connection {
@@ -159,7 +160,6 @@ export interface FarmerDashboardData {
 }
 
 export interface CooperativeDashboardData {
-    groupId: string | null;
     memberCount: number;
     totalLandArea: number; // in Hectares
     aggregatedProduce: {
@@ -248,11 +248,20 @@ export interface LogisticsDashboardData {
 
 export interface FiDashboardData {
     pendingApplications: FinancialApplication[];
-    portfolioOverview: {
-        loanCount: number;
-        totalValue: number;
+    portfolioAtRisk: {
+        count: number;
+        value: number;
+        highestRisk: {
+            name: string;
+            reason: string;
+        };
+        actionLink: string;
     };
-    financialProducts: FinancialProduct[];
+    marketUpdates: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
 }
 
 export interface FieldAgentDashboardData {
@@ -445,7 +454,6 @@ export interface AgronomistDashboardData {
     farmerName: string;
     issueSummary: string;
     requestDate: string; // ISO String
-    farmerId: string;
   }[];
   knowledgeHubContributions: {
     id: string;
@@ -622,7 +630,7 @@ export interface FinancialApplication {
   purpose: string;
   submittedAt: string | null;
   actionLink?: string;
-  applicant?: UserProfile;
+  applicantProfile?: UserProfile;
 }
 
 
@@ -637,8 +645,6 @@ export interface KnfBatch {
     status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
     nextStep: string;
     createdAt?: any;
-    quantityProduced?: number;
-    unit?: string;
 }
 
 export interface ForumPost {
