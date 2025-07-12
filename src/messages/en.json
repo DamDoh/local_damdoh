@@ -919,13 +919,15 @@
   "blogPage": {
     "title": "DamDoh Blog & News",
     "description": "Insights, stories, and updates from the agricultural world.",
-    "error": {
-      "title": "Error Loading Posts",
-      "description": "Could not fetch the latest articles. Please try again later."
-    },
+    "meta": "By {author} on {date}",
+    "readMore": "Read More",
     "noPosts": {
       "title": "No Posts Yet",
       "description": "Check back soon for articles on sustainable farming, market trends, and community stories."
+    },
+    "error": {
+      "title": "Error Loading Posts",
+      "description": "Could not fetch the latest articles. Please try again later."
     }
   },
   "Blog": {
@@ -1010,112 +1012,24 @@
     "description": "We're sorry, but the page you are looking for does not exist or has been moved.",
     "goHomeButton": "Go to Homepage"
   },
-  "CreatePostModal": {
-    "addOptionButton": "Add Option",
-    "agriEvent": "Agri-Event",
-    "createPollButton": "Create Poll",
-    "description": "Share an update, ask a question, or start a conversation with the community.",
-    "emptyPostError": "Your post cannot be empty.",
-    "photoVideo": "Photo/Video",
-    "placeholder": "What's on your mind?",
-    "pollNote": "A maximum of {maxOptions} options are allowed.",
-    "pollOptionPlaceholder": "Option {index}",
-    "pollOptionsError": "A poll must have at least 2 non-empty options.",
-    "pollOptionsLabel": "Poll Options",
-    "postButton": "Post",
-    "selectedFile": "Selected file:",
-    "shareDocumentButton": "Share Document",
-    "shareUpdate": "Share an update",
-    "title": "Create a new post",
-    "yourName": "Your Name"
+  "MobileHomepage": {
+    "welcome": {
+        "morning": "Good Morning, {name}",
+        "afternoon": "Good Afternoon, {name}",
+        "evening": "Good Evening, {name}"
+    },
+    "discoverTitle": "Discover",
+    "seeAllButton": "See All",
+    "noRecommendations": "No recommendations available right now.",
+    "communityFeedTitle": "Community Feed",
+    "communityFeedDescription": "Catch up with the latest posts and discussions from your network.",
+    "goToFeedButton": "Go to Feed"
   },
-  "DashboardLeftSidebar": {
-    "postEngagements": "Post Engagements",
-    "pro": {
-      "try": "Try Pro for Free",
-      "unlock": "Unlock advanced analytics and insights."
-    },
-    "profileViewers": "Profile Viewers",
-    "recent": {
-      "agriEvents": "Agri-Events",
-      "communityGroups": "Community Groups",
-      "industryNews": "Industry News",
-      "myPinBoard": "My Pin-Board",
-      "mySupplyChainNetwork": "My Network",
-      "title": "Recent"
-    },
-    "viewProfileLink": "View My Profile"
-  },
-  "DashboardRightSidebar": {
-    "ad": "Ad",
-    "adButton": "Learn More",
-    "adDescription": "Get deeper market insights with DamDoh Trends.",
-    "adTitle": "Unlock Market Trends",
-    "follow": "Follow",
-    "following": "Following",
-    "infoTooltip": "These suggestions are based on your profile and activity.",
-    "loadError": "Could not load suggestions.",
-    "managePromotionsButton": "Manage Coupons",
-    "networkTitle": "Who to Follow",
-    "noSuggestions": "No new suggestions right now.",
-    "promotionsDescription": "Create coupons to attract more buyers.",
-    "promotionsTitle": "Promotions & Marketing",
-    "refreshSuggestions": "Refresh Suggestions",
-    "signInPrompt": "Sign in to see personalized recommendations."
-  },
-  "FeedItemCard": {
-    "comment": "Comment",
-    "comments": "{count, plural, =0 {comments} =1 {comment} other {{count} comments}}",
-    "deletePost": "Delete Post",
-    "editPost": "Edit Post",
-    "like": "Like",
-    "likes": "{count, plural, =0 {likes} =1 {like} other {{count} likes}}",
-    "loadCommentsErrorToast": "Could not load comments.",
-    "loadMoreComments": "Load more comments",
-    "loadingComments": "Loading comments...",
-    "noComments": "Be the first to comment!",
-    "postButton": "Post",
-    "repost": "Repost",
-    "repostPlaceholderToast": "Repost feature coming soon!",
-    "signInToLikeToast": "You must be signed in to like a post.",
-    "signInToVoteToast": "You must be signed in to vote.",
-    "voteErrorToast": "Could not save vote.",
-    "voteSuccessToast": "Your vote has been counted!",
-    "votes": "{count, plural, =0 {votes} =1 {vote} other {{count} votes}}",
-    "writeCommentPlaceholder": "Add a comment..."
-  },
-  "MainDashboard": {
-    "commentError": {
-      "auth": "You must be signed in to comment.",
-      "fail": "Failed to post comment."
-    },
-    "commentSuccess": "Comment posted!",
-    "deleteError": {
-      "auth": "You must be signed in to delete a post.",
-      "fail": "Failed to delete post."
-    },
-    "deleteSuccess": {
-      "description": "Your post has been removed.",
-      "title": "Post Deleted"
-    },
-    "feedError": {
-      "description": "Could not load the latest posts from your network.",
-      "title": "Feed Error"
-    },
-    "likeError": {
-      "auth": "You must be signed in to like a post.",
-      "fail": "Could not like post."
-    },
-    "noActivity": "No activity in your network yet. Start by connecting with others!",
-    "postError": {
-      "auth": "You must be signed in to create a post.",
-      "fail": "Failed to create post."
-    },
-    "postSuccess": {
-      "description": "Your post is now live on the feed.",
-      "title": "Post Created!"
-    },
-    "uploadComplete": "Upload complete!",
-    "uploadingMedia": "Uploading media..."
+   "MobileBottomNav": {
+    "home": "Home",
+    "market": "Market",
+    "search": "Search",
+    "messages": "Messages",
+    "profile": "Profile"
   }
 }
