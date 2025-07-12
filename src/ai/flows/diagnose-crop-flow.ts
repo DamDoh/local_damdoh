@@ -10,6 +10,7 @@
 
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
+import { fileWriterTool } from '@/ai/tools/file-writer-tool';
 
 export const DiagnoseCropInputSchema = z.object({
   photoDataUri: z
@@ -46,6 +47,7 @@ export async function diagnoseCrop(input: DiagnoseCropInput): Promise<DiagnoseCr
 
 const prompt = ai.definePrompt({
   name: 'diagnoseCropPrompt',
+  tools: [fileWriterTool],
   input: { schema: DiagnoseCropInputSchema },
   output: { schema: DiagnoseCropOutputSchema },
   prompt: `You are an expert plant pathologist and agronomist specializing in sustainable and organic farming.
