@@ -151,9 +151,9 @@ export default function BlogPostPage() {
       )}
 
       <div className="prose dark:prose-invert max-w-none">
-          <pre className="whitespace-pre-wrap font-sans text-base">
+          <p className="whitespace-pre-wrap font-sans text-base">
               {displayContent}
-          </pre>
+          </p>
       </div>
       
       {originalTitle && originalContent && (
@@ -162,9 +162,9 @@ export default function BlogPostPage() {
             <div className="space-y-2 p-4 bg-muted/50 rounded-lg">
                 <h2 className="text-2xl font-bold leading-tight">{originalTitle}</h2>
                  <div className="prose dark:prose-invert max-w-none">
-                    <pre className="whitespace-pre-wrap font-sans text-base text-muted-foreground">
+                    <p className="whitespace-pre-wrap font-sans text-base text-muted-foreground">
                         {originalContent}
-                    </pre>
+                    </p>
                 </div>
             </div>
         </div>
