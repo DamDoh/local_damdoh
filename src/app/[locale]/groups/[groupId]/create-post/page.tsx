@@ -21,7 +21,7 @@ export default function CreateGroupPostPage() {
     const router = useRouter();
     const { toast } = useToast();
     const { user } = useAuth();
-    const t = useTranslations('GroupsPage.createPost');
+    const t = useTranslations('groupsPage.createPost');
     const groupId = params.groupId as string;
 
     const [title, setTitle] = useState("");

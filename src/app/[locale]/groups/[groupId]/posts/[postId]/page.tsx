@@ -103,7 +103,7 @@ export default function GroupPostPage() {
     const params = useParams();
     const { user } = useAuth();
     const { toast } = useToast();
-    const t = useTranslations('GroupsPage.postDetail');
+    const t = useTranslations('groupsPage.postDetail');
     
     const groupId = params.groupId as string;
     const postId = params.postId as string;

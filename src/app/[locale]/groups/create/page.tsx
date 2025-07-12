@@ -18,7 +18,7 @@ import { useAuth } from '@/lib/auth-utils';
 import { useTranslations } from 'next-intl';
 
 export default function CreateGroupPage() {
-    const t = useTranslations('GroupsPage.create');
+    const t = useTranslations('groupsPage.create');
     const router = useRouter();
     const { user } = useAuth();
     const { toast } = useToast();

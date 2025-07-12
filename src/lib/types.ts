@@ -80,6 +80,15 @@ export type ForumGroup = {
   createdAt: string; // ISO String
 }
 
+export interface JoinRequest {
+    id: string;
+    requesterId: string;
+    requesterName: string;
+    requesterAvatarUrl?: string;
+    createdAt: string; // ISO string
+}
+
+
 export interface Connection {
     id: string; // User ID of the connection
     displayName: string;
@@ -179,6 +188,7 @@ export interface CooperativeDashboardData {
         readyBy: string; // ISO Date string
     }[];
     pendingMemberApplications: number;
+    groupId: string | null;
 }
 
 

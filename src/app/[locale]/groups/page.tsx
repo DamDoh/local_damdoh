@@ -16,7 +16,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useTranslations } from 'next-intl';
 
 export default function GroupsPage() {
-    const t = useTranslations('GroupsPage');
+    const t = useTranslations('groupsPage');
     const [groups, setGroups] = useState<ForumGroup[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");

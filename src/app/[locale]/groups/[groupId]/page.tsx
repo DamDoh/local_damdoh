@@ -29,7 +29,7 @@ export default function GroupPage() {
     const router = useRouter();
     const { user } = useAuth();
     const { toast } = useToast();
-    const t = useTranslations('GroupsPage');
+    const t = useTranslations('groupsPage.detail');
     
     const groupId = params.groupId as string;
 
@@ -169,23 +169,23 @@ export default function GroupPage() {
     const isOwner = user?.uid === group.ownerId;
     const renderJoinButton = () => {
         if (!user) {
-            return <Button asChild className="w-full"><Link href="/auth/signin">{t('detail.loginToJoinButton')}</Link></Button>;
+            return <Button asChild className="w-full"><Link href="/auth/signin">{t('loginToJoinButton')}</Link></Button>;
         }
         if (isMember) {
             return (
                 <Button onClick={handleLeaveGroup} variant="destructive" className="w-full" disabled={isJoining}>
                     {isJoining ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <LogOut className="mr-2 h-4 w-4" />}
-                    {isJoining ? t('detail.leavingButton') : t('detail.leaveButton')}
+                    {isJoining ? t('leavingButton') : t('leaveButton')}
                 </Button>
             );
         }
         if (hasRequested) {
-            return <Button className="w-full" disabled>{t('detail.requestSentButton')}</Button>;
+            return <Button className="w-full" disabled>{t('requestSentButton')}</Button>;
         }
         return (
              <Button onClick={handleJoinAction} className="w-full" disabled={isJoining}>
                 {isJoining ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <UserPlus className="mr-2 h-4 w-4" />}
-                {isJoining ? t('detail.joiningButton') : (group.isPublic ? t('detail.joinButton') : t('detail.requestJoinButton'))}
+                {isJoining ? t('joiningButton') : (group.isPublic ? t('joinButton') : t('requestJoinButton'))}
             </Button>
         );
     }
@@ -194,7 +194,7 @@ export default function GroupPage() {
         <div className="container mx-auto max-w-4xl py-8">
             <Link href="/groups" className="flex items-center text-sm text-muted-foreground hover:underline mb-4">
                 <ArrowLeft className="h-4 w-4 mr-1" />
-                {t('detail.backLink')}
+                {t('backLink')}
             </Link>
             
             <div className="grid md:grid-cols-3 gap-6">
@@ -212,11 +212,11 @@ export default function GroupPage() {
                     <Card>
                         <CardHeader>
                              <div className="flex justify-between items-center">
-                                <CardTitle className="text-lg">{t('detail.discussionsTitle')}</CardTitle>
+                                <CardTitle className="text-lg">{t('discussionsTitle')}</CardTitle>
                                 {isMember && (
                                     <Button asChild>
                                         <Link href={`/groups/${groupId}/create-post`}>
-                                            <PlusCircle className="mr-2 h-4 w-4"/>{t('detail.startDiscussionButton')}
+                                            <PlusCircle className="mr-2 h-4 w-4"/>{t('startDiscussionButton')}
                                         </Link>
                                     </Button>
                                 )}
@@ -237,7 +237,7 @@ export default function GroupPage() {
                                                 <div className="flex-grow overflow-hidden">
                                                     <h4 className="font-semibold truncate text-sm">{post.title}</h4>
                                                     <p className="text-xs text-muted-foreground">
-                                                        {t('detail.by', { author: post.authorName })} &bull; {new Date(post.createdAt).toLocaleDateString()}
+                                                        {t('by', { author: post.authorName })} &bull; {new Date(post.createdAt).toLocaleDateString()}
                                                     </p>
                                                 </div>
                                                 <div className="text-sm text-muted-foreground flex items-center gap-1 shrink-0">
@@ -250,8 +250,8 @@ export default function GroupPage() {
                                 ) : (
                                     <div className="text-center py-10 border-2 border-dashed rounded-lg">
                                         <MessageSquare className="mx-auto h-12 w-12 text-muted-foreground" />
-                                        <h3 className="mt-4 text-lg font-semibold">{t('detail.noDiscussions')}</h3>
-                                        {isMember && <p className="mt-2 text-sm text-muted-foreground">{t('detail.beTheFirst')}</p>}
+                                        <h3 className="mt-4 text-lg font-semibold">{t('noDiscussions')}</h3>
+                                        {isMember && <p className="mt-2 text-sm text-muted-foreground">{t('beTheFirst')}</p>}
                                     </div>
                                 )}
                             </div>
@@ -262,7 +262,7 @@ export default function GroupPage() {
                 <div className="space-y-6">
                      <Card>
                         <CardHeader>
-                            <CardTitle className="text-lg">{t('detail.actionsTitle')}</CardTitle>
+                            <CardTitle className="text-lg">{t('actionsTitle')}</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-2">
                             {renderJoinButton()}
@@ -279,7 +279,7 @@ export default function GroupPage() {
 
                     <Card>
                         <CardHeader>
-                            <CardTitle className="text-lg">{t('detail.membersTitle', { memberCount: group.memberCount })}</CardTitle>
+                            <CardTitle className="text-lg">{t('membersTitle', { memberCount: group.memberCount })}</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3">
                             {Array.isArray(members) && members.filter(Boolean).map(member => (
