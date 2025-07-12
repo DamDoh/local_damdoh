@@ -11,6 +11,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { MobileHomepage, MobileHomepageSkeleton } from '@/components/dashboard/MobileHomepage';
 import { useTranslations } from 'next-intl';
 import { usePathname, useRouter } from '@/navigation';
+import { useHomepagePreference } from '@/hooks/useHomepagePreference';
 
 
 function HomePageContent() {
@@ -63,3 +64,4 @@ export default function RootPage() {
     </Suspense>
   );
 }
+
