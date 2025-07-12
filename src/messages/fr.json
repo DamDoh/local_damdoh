@@ -1,338 +1,40 @@
 
 {
-  "MobileHomepage": {
-    "welcome": {
-      "morning": "Bonjour, {name}",
-      "afternoon": "Bon après-midi, {name}",
-      "evening": "Bonsoir, {name}"
-    },
-    "discoverTitle": "Découvrir",
-    "seeAllButton": "Voir tout",
-    "communityFeedTitle": "Fil d'Actualité de la Communauté",
-    "communityFeedDescription": "Connectez-vous avec les autres, partagez vos connaissances et restez à jour avec les dernières conversations.",
-    "goToFeedButton": "Aller au Fil d'Actualité",
-    "noRecommendations": "Aucune recommandation pour le moment. Explorez le marché pour commencer !"
+  "common": {
+    "error": "Erreur",
+    "success": "Succès"
   },
-  "LandingPage": {
-    "hero": {
-      "title": "Valoriser l'Agriculture, du Sol à la Vente sur {appName}",
-      "subtitle": "La plateforme unique qui connecte chaque acteur de la chaîne de valeur agricole pour un avenir plus transparent, efficace et durable.",
-      "getStartedButton": "Commencez Gratuitement",
-      "learnMoreButton": "En Savoir Plus"
+  "toast": {
+    "loggedOut": {
+      "title": "Déconnecté",
+      "description": "Vous avez été déconnecté avec succès."
     },
-    "features": {
-      "title": "Fonctionnalités Principales de DamDoh",
-      "subtitle": "Tout ce dont vous avez besoin pour cultiver, vous connecter et commercer, au même endroit.",
-      "networking": {
-        "title": "Réseautage Intelligent",
-        "description": "Suggestions de connexion basées sur l'IA pour vous mettre en relation avec les bons partenaires, des fournisseurs aux acheteurs internationaux."
-      },
-      "marketplace": {
-        "title": "Marché Direct",
-        "description": "Achetez et vendez des produits et services directement, augmentant la transparence et la rentabilité pour tous les acteurs."
-      },
-      "forums": {
-        "title": "Forums Thématiques",
-        "description": "Partagez vos connaissances, discutez des défis et collaborez sur des solutions dans des forums dédiés à des sujets spécifiques."
-      },
-      "talent": {
-        "title": "Bourse de Talents",
-        "description": "Proposez ou trouvez des services agricoles spécialisés, de la récolte à la demande aux relevés par drone."
-      }
+    "logoutFailed": {
+      "title": "Échec de la déconnexion",
+      "description": "Impossible de vous déconnecter. Veuillez réessayer."
     },
-    "forWho": {
-      "badge": "Pour Tous les Acteurs Agricoles",
-      "title": "Une Plateforme pour Toute la Chaîne de Valeur",
-      "description": "DamDoh est conçu de manière unique pour servir l'ensemble de l'écosystème agricole, créant un point de vérité et d'opportunité unique pour tous.",
-      "farmers": {
-        "title": "Agriculteurs",
-        "description": "Accédez à de meilleurs marchés, trouvez des intrants de qualité et obtenez des conseils d'experts pour augmenter votre rendement et votre rentabilité."
-      },
-      "buyers": {
-        "title": "Acheteurs & Transformateurs",
-        "description": "Approvisionnez-vous en produits traçables de haute qualité directement auprès des producteurs et des coopératives, garantissant la fiabilité de la chaîne d'approvisionnement."
-      },
-      "experts": {
-        "title": "Experts & Fournisseurs de Services",
-        "description": "Proposez vos compétences et services spécialisés à un large public agricole à la recherche de votre expertise."
-      },
-      "fis": {
-        "title": "Institutions Financières",
-        "description": "Fournissez du crédit et des investissements à un réseau vérifié d'agriculteurs et d'agro-entreprises en fonction de leurs données et de leur historique sur la plateforme."
-      },
-      "imageAlt": "Un groupe diversifié d'acteurs agricoles collaborant"
+    "signInSuccess": {
+      "title": "Connexion réussie !",
+      "description": "Bienvenue à nouveau sur {appName}."
     },
-    "cta": {
-      "title": "Rejoignez la Révolution Agricole",
-      "subtitle": "Inscrivez-vous dès aujourd'hui et faites partie d'un réseau mondial en pleine croissance, dédié à la transformation de l'avenir de l'alimentation.",
-      "button": "Créez Votre Compte Gratuit"
+    "signInFailed": {
+      "title": "Échec de la connexion"
+    },
+    "signUpSuccess": {
+      "title": "Compte créé et connecté !",
+      "description": "Bienvenue sur {appName} ! Vous avez été connecté avec succès."
+    },
+    "signUpFailed": {
+      "title": "Échec de l'inscription"
     }
-  },
-  "AppHeader": {
-    "searchPlaceholder": "Rechercher...",
-    "home": "Accueil",
-    "network": "Réseau",
-    "farmMgmt": "Gestion Ferme",
-    "marketplace": "Marché",
-    "talentExchange": "Talents",
-    "traceability": "Traçabilité",
-    "forums": "Forums",
-    "sustainability": "Durabilité",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Portefeuille",
-    "signIn": "Se Connecter",
-    "signUp": "S'inscrire",
-    "myProfile": "Mon Profil",
-    "myOrders": "Mes Commandes",
-    "settings": "Paramètres",
-    "helpCenter": "Aide",
-    "logOut": "Se Déconnecter",
-    "switchToLightAria": "Passer au thème clair",
-    "switchToDarkAria": "Passer au thème sombre"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Changer de langue"
-  },
-  "MobileBottomNav": {
-    "home": "Accueil",
-    "market": "Marché",
-    "search": "Recherche",
-    "forums": "Forums",
-    "profile": "Profil",
-    "messages": "Messages"
-  },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "Synchronisation de {count} actions en attente...",
-      "onlinePending": "{count} actions en attente. La synchronisation commencera bientôt.",
-      "onlineSynced": "Vous êtes en ligne. Toutes les données sont synchronisées.",
-      "offline": "Vous êtes hors ligne. {count, plural, =0 {Aucun changement en attente.} =1 {1 changement en attente.} other {{count} changements en attente.}}"
-    },
-    "toast": {
-      "online": {
-        "title": "Vous êtes de nouveau en ligne !",
-        "description": "Votre connexion a été restaurée."
-      },
-      "offline": {
-        "title": "Vous êtes actuellement hors ligne",
-        "description": "Les changements seront sauvegardés localement et synchronisés à votre retour en ligne."
-      },
-      "syncing": {
-        "title": "Synchronisation des données...",
-        "description": "Envoi de {count, plural, =1 {1 action hors ligne} other {{count} actions hors ligne}} vers le serveur."
-      },
-      "synced": {
-        "title": "Synchronisation terminée",
-        "description": "Vos changements hors ligne ont été sauvegardés avec succès."
-      },
-      "syncFailed": {
-        "title": "Échec de la synchronisation",
-        "description": "Impossible de synchroniser les changements hors ligne. Nous réessaierons plus tard."
-      },
-      "queued": {
-        "title": "Action mise en file d'attente",
-        "description": "Cette action sera complétée lorsque vous serez de nouveau en ligne."
-      }
-    }
-  },
-  "AppFooter": {
-    "tagline": "Connecter la chaîne de valeur agricole pour un avenir durable.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "À propos",
-    "contactLabel": "Contact",
-    "careersLabel": "Carrières",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Ressources",
-    "helpCenterLabel": "Centre d'aide",
-    "communityGuidelinesLabel": "Règles de la communauté",
-    "industryNewsLabel": "Actualités du secteur",
-    "eventsLabel": "Événements",
-    "talentExchangeLabel": "Bourse de talents",
-    "legalTitle": "Légal",
-    "privacyPolicyLabel": "Politique de confidentialité",
-    "termsOfServiceLabel": "Conditions d'utilisation",
-    "copyright": "© {year} {appName}. Tous droits réservés.",
-    "getMobileApp": "Obtenir l'application mobile",
-    "googlePlayAlt": "Obtenez-le sur Google Play",
-    "appStoreAlt": "Télécharger sur l'App Store"
   },
   "Auth": {
-    "signInWelcome": "Bienvenue à nouveau sur {appName}",
-    "signUpWelcome": "Rejoignez le réseau agricole {appName}",
-    "forgotPasswordResetPrompt": "Réinitialisez votre mot de passe {appName}",
-    "resetPasswordPrompt": "Créez un nouveau mot de passe pour {appName}",
-    "signInTitle": "Connectez-vous à votre compte",
-    "signInDescription": "Entrez vos identifiants pour accéder à votre tableau de bord.",
-    "emailLabel": "E-mail",
-    "emailPlaceholder": "vous@exemple.com",
-    "passwordLabel": "Mot de passe",
-    "forgotPasswordLink": "Mot de passe oublié ?",
-    "signingInButton": "Connexion en cours...",
-    "signInButton": "Se connecter",
-    "noAccountPrompt": "Vous n'avez pas de compte ?",
-    "signUpLink": "S'inscrire",
-    "signInLink": "Se connecter",
-    "recoverWithUniversalIdPrompt": "Ou récupérer le compte avec votre ID Universel",
-    "signUpTitle": "Créer un nouveau compte",
-    "signUpDescription": "Parlez-nous un peu de vous pour commencer.",
-    "nameLabel": "Votre nom ou nom d'entreprise",
-    "namePlaceholder": "ex: Jane Doe ou Fermes de la Vallée Verte",
-    "roleLabel": "Votre rôle principal",
-    "rolePlaceholder": "Sélectionnez votre rôle dans la chaîne d'approvisionnement...",
-    "confirmPasswordLabel": "Confirmez le mot de passe",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Création du compte...",
-    "signUpButton": "Créer un compte",
-    "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
-    "forgotPasswordTitle": "Mot de passe oublié ?",
-    "forgotPasswordDescription": "Pas de problème. Entrez votre adresse e-mail ci-dessous et nous vous enverrons un lien de réinitialisation.",
-    "sendResetLinkButton": "Envoyer le lien de réinitialisation",
-    "sendingEmailButton": "Envoi de l'e-mail...",
-    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
-    "resetPasswordTitle": "Réinitialiser le mot de passe",
-    "resetPasswordDescription": "Entrez et confirmez votre nouveau mot de passe ci-dessous.",
-    "newPasswordLabel": "Nouveau mot de passe",
-    "newPasswordPlaceholder": "Entrez un mot de passe sécurisé",
-    "resetPasswordButton": "Réinitialiser le mot de passe",
-    "resettingPasswordButton": "Réinitialisation en cours...",
-    "recoverPage": {
-      "title": "Récupération de Compte",
-      "description": "Utilisez votre réseau pour récupérer l'accès.",
-      "howItWorksTitle": "Comment ça marche",
-      "step1": "Entrez votre numéro de téléphone pour démarrer une session de récupération.",
-      "step2": "Montrez le code QR temporaire à un ami de confiance sur DamDoh.",
-      "step3": "Une fois que votre ami aura scanné le code pour vérifier votre identité, vous retrouverez l'accès.",
-      "startButton": "Démarrer la Récupération de Compte",
-      "scanTitle": "Demandez à un Ami de Scanner",
-      "scanDescription": "Demandez à un contact de confiance sur DamDoh de scanner ce code QR avec la fonction 'Aider un ami à récupérer son compte' dans son application.",
-      "scanNote": "Ce code est temporaire et expirera dans 10 minutes.",
-      "startOverButton": "Recommencer"
-    },
-    "forgotPassword": {
-      "emailSentTitle": "Vérifiez vos e-mails",
-      "emailSentDescription": "Un lien de réinitialisation de mot de passe a été envoyé à {email}.",
-      "emailSentDescriptionIfAccountExists": "Si un compte avec {email} existe, un lien de réinitialisation de mot de passe a été envoyé.",
-      "successTitle": "E-mail envoyé !",
-      "successDescription": "Veuillez vérifier votre boîte de réception (et votre dossier spam) pour le lien de réinitialisation de mot de passe.",
-      "errors": {
-        "unexpected": "Une erreur inattendue est survenue. Veuillez réessayer.",
-        "invalidEmail": "L'adresse e-mail n'est pas valide.",
-        "tooManyRequests": "Trop de demandes. Veuillez réessayer plus tard.",
-        "default": "Échec de l'envoi de l'e-mail de réinitialisation"
-      }
-    },
-    "resetPassword": {
-      "successTitle": "Mot de passe réinitialisé avec succès !",
-      "successDescription": "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
-      "successRedirect": "Vous allez être redirigé vers la page de connexion.",
-      "errors": {
-        "missingCode": "Lien de réinitialisation de mot de passe non valide. Veuillez en demander un nouveau.",
-        "missingCodeTitle": "Lien invalide",
-        "missingCodeDescription": "Le lien de réinitialisation de mot de passe est manquant ou invalide. Veuillez retourner à la page 'Mot de passe oublié' pour en demander un nouveau.",
-        "unexpected": "Une erreur inattendue est survenue. Veuillez réessayer.",
-        "invalidOrExpiredCode": "Le lien de réinitialisation du mot de passe est invalide ou a expiré. Veuillez en demander un nouveau.",
-        "userDisabled": "Ce compte utilisateur a été désactivé.",
-        "userNotFound": "Aucun utilisateur trouvé correspondant à ce lien de réinitialisation.",
-        "weakPassword": "Le nouveau mot de passe n'est pas assez sécurisé.",
-        "default": "Impossible de réinitialiser le mot de passe"
-      }
-    },
-    "error": "Erreur"
-  },
-  "searchPage": {
-    "title": "Recherche Universelle",
-    "description": "Trouvez tout sur la plateforme DamDoh, des produits et services aux personnes et discussions.",
-    "placeholder": "Rechercher du café bio, une réparation de tracteur ou un utilisateur...",
-    "searchButton": "Rechercher",
-    "popularSearches": "Recherches Populaires",
-    "popularSearch1": "Engrais Organique",
-    "popularSearch2": "Logistique au Kenya",
-    "popularSearch3": "Acheteurs de café Europe",
-    "popularSearch4": "Main d'œuvre agricole",
-    "popularSearch5": "Location de tracteur",
-    "modal": {
-      "title": "Recherche Universelle",
-      "placeholder": "Je cherche...",
-      "searchButton": "Rechercher",
-      "searchError": "Échec de la recherche",
-      "searchErrorDescription": "Une erreur inattendue est survenue lors de la recherche. Veuillez réessayer.",
-      "invalidCodeError": "Cela ne semble pas être un code QR DamDoh valide.",
-      "scanFailed": "Scan Échoué",
-      "scanError": "Erreur de scan",
-      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
-      "interpretationTitle": "Interprétation IA",
-      "interpretationNotesDefault": "Affichage des résultats généraux.",
-      "filtersTitle": "Filtres Appliqués",
-      "results": {
-        "users": "Profils",
-        "marketplaceItems": "Marché",
-        "forums": "Forums",
-        "vti_registry": "Rapport de Traçabilité",
-        "knowledge_articles": "Centre de connaissances",
-        "agri_events": "Événements Agricoles"
-      },
-      "noResults": "Aucun résultat trouvé pour votre requête.",
-      "tryAgain": "Essayez un terme de recherche différent ou utilisez des mots-clés plus larges."
+    "passwordStrength": {
+      "label": "Force",
+      "weak": "Faible",
+      "medium": "Moyen",
+      "strong": "Fort",
+      "veryStrong": "Très Fort"
     }
-  },
-  "Marketplace": {
-    "title": "Marché",
-    "description": "Découvrez des produits, services et talents à travers la chaîne d'approvisionnement agricole.",
-    "createShopButton": "Créer une Vitrine",
-    "myOrdersButton": "Mes Commandes",
-    "createListingButton": "Créer une Annonce",
-    "pinButton": "Épingler comme Page d'Accueil",
-    "unpinButton": "Désépingler la Page d'Accueil",
-    "searchPlaceholder": "Rechercher des annonces...",
-    "locationPlaceholder": "Filtrer par lieu...",
-    "typePlaceholder": "Filtrer par type...",
-    "recommendedForYou": "Recommandé pour vous",
-    "discoverMore": "Découvrez-en plus",
-    "viewServiceButton": "Voir le service",
-    "viewDetails": "Voir les détails",
-    "pinning": {
-      "unpinnedTitle": "Page d'Accueil Désépinglée",
-      "unpinnedDescription": "Le Marché a été désépinglé de votre page d'accueil.",
-      "pinnedTitle": "Page d'Accueil Épinglée",
-      "pinnedDescription": "Le Marché est maintenant votre page d'accueil par défaut."
-    },
-    "errors": {
-      "search": {
-        "title": "Échec de la Recherche",
-        "description": "Une erreur s'est produite lors de la recherche. Veuillez réessayer plus tard."
-      },
-      "aiRecommendations": {
-        "title": "Aucune recommandation disponible pour le moment."
-      }
-    },
-    "noItemsFound": {
-      "title": "Aucune annonce ne correspond à votre recherche.",
-      "hint": "Essayez d'ajuster vos filtres ou termes de recherche."
-    }
-  },
-  "talentExchangePage": {
-    "title": "Bourse de Talents",
-    "description": "Trouvez des professionnels qualifiés ou proposez vos services agricoles à la communauté.",
-    "listServiceButton": "Lister un Service",
-    "searchPlaceholder": "Rechercher des services (ex: agronomie, pilote de drone)...",
-    "locationPlaceholder": "Filtrer par lieu...",
-    "categoryPlaceholder": "Filtrer par catégorie de service...",
-    "allCategories": "Toutes les catégories",
-    "noResultsTitle": "Aucun service trouvé",
-    "noResultsDescription": "Il n'y a aucun service correspondant à vos critères. Essayez d'ajuster votre recherche ou soyez le premier à proposer un service dans cette catégorie !",
-    "toast": {
-      "error": {
-        "title": "Échec de la Recherche",
-        "description": "Une erreur s'est produite lors de la récupération des services. Veuillez réessayer."
-      }
-    }
-  },
-  "financialsPage": {
-    "title": "Gestion Financière"
   }
 }
-
-    
-
-    

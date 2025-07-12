@@ -31,10 +31,11 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertTriangle, Loader2, Mail, Lock, User, UserPlus, Briefcase, Users } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME } from "@/lib/constants";
-import { STAKEHOLDER_ROLES } from "@/lib/stakeholder-data";
+import { STAKEHOLDER_ROLES } from "@/lib/constants";
 import React from "react";
 import { useTranslations } from "next-intl";
 import { Progress } from "@/components/ui/progress";
+import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 
 const PasswordStrengthIndicator = ({ password = "" }) => {
     const t = useTranslations('Auth.passwordStrength');
@@ -86,7 +87,7 @@ const PasswordStrengthIndicator = ({ password = "" }) => {
 
     return (
         <div className="space-y-1">
-            <Progress value={strength * 20} className="h-2" indicatorClassName={progressColor()}/>
+            <Progress value={strength * 20} className="h-2 [&>div]:bg-red-500" indicatorClassName={progressColor()}/>
             <p className="text-xs text-muted-foreground">{t('label')}: <span className="font-semibold">{getStrengthLabel()}</span></p>
         </div>
     );
@@ -204,12 +205,12 @@ export default function SignUpPage() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {STAKEHOLDER_ROLES.map((role) => {
+                        {STAKEHOLDER_ROLES.map((roleName) => {
                           return (
-                            <SelectItem key={role.id} value={role.name}>
+                            <SelectItem key={roleName} value={roleName}>
                               <div className="flex items-center gap-2">
-                               <role.icon className="h-4 w-4 text-muted-foreground" />
-                                <span>{role.name}</span>
+                               <StakeholderIcon role={roleName} className="h-4 w-4 text-muted-foreground" />
+                                <span>{roleName}</span>
                               </div>
                             </SelectItem>
                           );
