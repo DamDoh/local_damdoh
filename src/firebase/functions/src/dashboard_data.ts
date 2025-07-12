@@ -304,33 +304,33 @@ export const getFiDashboardData = functions.https.onCall(
 
 export const getCooperativeDashboardData = functions.https.onCall(
   async (data, context): Promise<CooperativeDashboardData> => {
-    const cooperativeId = checkAuth(context);
+    const cooperativeUserId = checkAuth(context);
     
     try {
-        const groupDoc = await db.collection('users').doc(cooperativeId).get();
-        if (!groupDoc.exists) {
-            throw new functions.https.HttpsError('not-found', 'Cooperative profile not found.');
+        const userDoc = await db.collection('users').doc(cooperativeUserId).get();
+        if (!userDoc.exists) {
+            throw new functions.https.HttpsError('not-found', 'Cooperative user profile not found.');
         }
 
-        // --- Member Data ---
-        // A Cooperative is represented by a "Group" in the system.
-        // We need to find the group associated with this user. A real implementation would have a direct link.
-        // For now, let's assume the cooperative's display name matches the group name.
-        const groupQuery = db.collection('groups').where('name', '==', groupDoc.data()?.displayName).limit(1);
+        // A Cooperative is represented by a "Group" owned by the cooperative user.
+        const groupQuery = db.collection('groups').where('ownerId', '==', cooperativeUserId).limit(1);
         const groupSnapshot = await groupQuery.get();
         
         let memberCount = 0;
         let pendingMemberApplications = 0;
+        let groupId = null;
 
         if (!groupSnapshot.empty) {
             const group = groupSnapshot.docs[0];
+            groupId = group.id;
             memberCount = group.data().memberCount || 0;
             const joinRequestsSnapshot = await group.ref.collection('join_requests').where('status', '==', 'pending').get();
             pendingMemberApplications = joinRequestsSnapshot.size;
+        } else {
+             console.warn(`No group found for cooperative user ${cooperativeUserId}. Dashboard data will be incomplete.`);
         }
 
-        // Other parts of the data remain mocked or simplified for now
-        // as they require more complex data aggregation (e.g., across all members' farms)
+        // Mock other data as it's complex to aggregate across all members
         const totalLandArea = 1200; // Placeholder
         const aggregatedProduce: CooperativeDashboardData['aggregatedProduce'] = [
             { id: 'prod1', productName: 'Maize', quantity: 50, quality: 'Grade A', readyBy: new Date().toISOString() },
@@ -338,6 +338,7 @@ export const getCooperativeDashboardData = functions.https.onCall(
         ];
 
         return {
+            groupId: groupId, // Pass group ID to the frontend
             memberCount,
             totalLandArea,
             aggregatedProduce,
@@ -1067,3 +1068,4 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
      }
   }
 );
+

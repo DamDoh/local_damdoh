@@ -10,7 +10,8 @@ import type {
     ShopSchema,
     FinancialProductSchema,
     InsuranceProductSchema,
-    InsuranceApplicationSchema
+    InsuranceApplicationSchema,
+    ApiKeySchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 
@@ -33,6 +34,7 @@ export type Shop = z.infer<typeof ShopSchema>;
 export type FinancialProduct = z.infer<typeof FinancialProductSchema>;
 export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
 export type InsuranceApplication = z.infer<typeof InsuranceApplicationSchema>;
+export type ApiKey = z.infer<typeof ApiKeySchema>;
 export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";
 
 
@@ -158,6 +160,7 @@ export interface FarmerDashboardData {
 }
 
 export interface CooperativeDashboardData {
+    groupId: string | null;
     memberCount: number;
     totalLandArea: number; // in Hectares
     aggregatedProduce: {
@@ -767,28 +770,3 @@ export type ServiceItem = MarketplaceItem & {
     compensation: string;
     experienceLevel: string;
 };
-
-export interface AgriTechInnovatorDashboardData {
-  apiKeys: ApiKey[];
-  sandboxStatus: {
-    status: 'Operational' | 'Degraded' | 'Offline';
-    lastReset: string; // ISO String
-  };
-  integrationProjects: {
-    id: string;
-    title: string;
-    status: 'In Development' | 'Live' | 'Archived';
-    partner: string;
-    actionLink: string;
-  }[];
-}
-
-export interface ApiKey {
-  id: string;
-  key?: string; // Full key is only present on creation
-  keyPrefix: string;
-  status: 'Active' | 'Revoked';
-  environment: 'Sandbox' | 'Production';
-  createdAt: string; // ISO String
-  description: string;
-}

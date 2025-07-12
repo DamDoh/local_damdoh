@@ -6,13 +6,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { Users, LandPlot, Package, FileCheck, CircleDollarSign, PlusCircle } from 'lucide-react';
+import { Users, LandPlot, Package, FileCheck, CircleDollarSign, PlusCircle, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import type { CooperativeDashboardData } from '@/lib/types';
-import { BarChart } from "lucide-react";
 import { useTranslations } from 'next-intl';
 
 export const CooperativeDashboard = () => {
@@ -57,7 +56,7 @@ export const CooperativeDashboard = () => {
         );
     }
 
-    const { memberCount, totalLandArea, aggregatedProduce, pendingMemberApplications } = dashboardData;
+    const { memberCount, totalLandArea, aggregatedProduce, pendingMemberApplications, groupId } = dashboardData;
 
     return (
         <div>
@@ -95,6 +94,16 @@ export const CooperativeDashboard = () => {
                         <div className="text-2xl font-bold">{pendingMemberApplications}</div>
                         <p className="text-xs text-muted-foreground">{t('pendingApplicationsDescription')}</p>
                     </CardContent>
+                    <CardFooter>
+                         {groupId && (
+                            <Button asChild variant="secondary" size="sm" className="w-full">
+                                <Link href={`/groups/${groupId}/manage`}>
+                                    <Settings className="h-4 w-4 mr-2" />
+                                    {t('manageButton')}
+                                </Link>
+                            </Button>
+                         )}
+                    </CardFooter>
                 </Card>
                 
                 <Card className="col-span-1 md:col-span-3">
