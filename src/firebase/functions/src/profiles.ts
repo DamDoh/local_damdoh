@@ -283,7 +283,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
                 id: doc.id,
                 type: 'Shared a Post',
                 title: post.content.substring(0, 70) + (post.content.length > 70 ? '...' : ''),
-                timestamp: post.createdAt.toDate().toISOString(),
+                timestamp: (post.createdAt as admin.firestore.Timestamp)?.toDate().toISOString(),
                 icon: 'MessageSquare'
             });
         });
@@ -294,7 +294,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
                 id: doc.id,
                 type: 'Placed an Order',
                 title: `For: ${order.listingName}`,
-                timestamp: order.createdAt.toDate().toISOString(),
+                timestamp: (order.createdAt as admin.firestore.Timestamp)?.toDate().toISOString(),
                 icon: 'ShoppingCart'
             });
         });
@@ -305,7 +305,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
                 id: doc.id,
                 type: 'Received an Order',
                 title: `For: ${sale.listingName}`,
-                timestamp: sale.createdAt.toDate().toISOString(),
+                timestamp: (sale.createdAt as admin.firestore.Timestamp)?.toDate().toISOString(),
                 icon: 'CircleDollarSign'
             });
         });
@@ -316,7 +316,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
                 id: doc.id,
                 type: `Logged Event: ${event.eventType}`,
                 title: event.payload?.inputId || event.payload?.cropType || 'Traceability Update',
-                timestamp: event.timestamp.toDate().toISOString(),
+                timestamp: (event.timestamp as admin.firestore.Timestamp)?.toDate().toISOString(),
                 icon: 'GitBranch'
             });
         });
@@ -339,12 +339,12 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
     }
 
     try {
-        const viewsQuery = db.collection('profile_views').where('viewedId', '==', userId).count().get();
+        const viewsQuery = db.collection('profile_views').where('viewedId', '==', userId).get();
         const postsQuery = db.collection('posts').where('userId', '==', userId).get();
 
         const [viewsSnapshot, postsSnapshot] = await Promise.all([viewsQuery, postsQuery]);
 
-        const profileViews = viewsSnapshot.data().count;
+        const profileViews = viewsSnapshot.size;
 
         let postLikes = 0;
         let postComments = 0;
