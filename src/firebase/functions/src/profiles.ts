@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
@@ -46,7 +47,7 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
 
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
   }
   return context.auth.uid;
 };
@@ -282,7 +283,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
                 id: doc.id,
                 type: 'Shared a Post',
                 title: post.content.substring(0, 70) + (post.content.length > 70 ? '...' : ''),
-                timestamp: (post.createdAt as admin.firestore.Timestamp)?.toDate().toISOString(),
+                timestamp: (post.createdAt as admin.firestore.Timestamp)?.toDate().toISOString() || new Date().toISOString(),
                 icon: 'MessageSquare'
             });
         });
@@ -293,7 +294,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
                 id: doc.id,
                 type: 'Placed an Order',
                 title: `For: ${order.listingName}`,
-                timestamp: (order.createdAt as admin.firestore.Timestamp)?.toDate().toISOString(),
+                timestamp: (order.createdAt as admin.firestore.Timestamp)?.toDate().toISOString() || new Date().toISOString(),
                 icon: 'ShoppingCart'
             });
         });
@@ -304,7 +305,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
                 id: doc.id,
                 type: 'Received an Order',
                 title: `For: ${sale.listingName}`,
-                timestamp: (sale.createdAt as admin.firestore.Timestamp)?.toDate().toISOString(),
+                timestamp: (sale.createdAt as admin.firestore.Timestamp)?.toDate().toISOString() || new Date().toISOString(),
                 icon: 'CircleDollarSign'
             });
         });
@@ -315,7 +316,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
                 id: doc.id,
                 type: `Logged Event: ${event.eventType}`,
                 title: event.payload?.inputId || event.payload?.cropType || 'Traceability Update',
-                timestamp: (event.timestamp as admin.firestore.Timestamp)?.toDate().toISOString(),
+                timestamp: (event.timestamp as admin.firestore.Timestamp)?.toDate().toISOString() || new Date().toISOString(),
                 icon: 'GitBranch'
             });
         });
