@@ -287,23 +287,6 @@
       "tryAgain": "Try a different search term or use broader keywords."
     }
   },
-  "talentExchangePage": {
-    "title": "Talent Exchange",
-    "description": "Find skilled professionals or offer your agricultural services to the community.",
-    "listServiceButton": "List a Service",
-    "searchPlaceholder": "Search for services (e.g., agronomy, drone pilot)...",
-    "locationPlaceholder": "Filter by location...",
-    "categoryPlaceholder": "Filter by service category...",
-    "allCategories": "All Categories",
-    "noResultsTitle": "No Services Found",
-    "noResultsDescription": "There are no services matching your criteria. Try adjusting your search or be the first to offer a service in this category!",
-    "toast": {
-      "error": {
-        "title": "Search Failed",
-        "description": "There was an error fetching services. Please try again."
-      }
-    }
-  },
   "Marketplace": {
     "title": "Marketplace",
     "description": "Discover products, services, and talent across the agricultural supply chain.",
@@ -624,6 +607,23 @@
         "createError": "An unexpected error occurred.",
         "linkCopied": "Link Copied!",
         "shareDescription": "Coupon link for '{code}' copied to clipboard."
+      }
+    }
+  },
+  "talentExchangePage": {
+    "title": "Talent Exchange",
+    "description": "Find skilled professionals or offer your agricultural services to the community.",
+    "listServiceButton": "List a Service",
+    "searchPlaceholder": "Search for services (e.g., agronomy, drone pilot)...",
+    "locationPlaceholder": "Filter by location...",
+    "categoryPlaceholder": "Filter by service category...",
+    "allCategories": "All categories",
+    "noResultsTitle": "No Services Found",
+    "noResultsDescription": "There are no services matching your criteria. Try adjusting your search or be the first to offer a service in this category!",
+    "toast": {
+      "error": {
+        "title": "Search Failed",
+        "description": "There was an error fetching services. Please try again."
       }
     }
   },
