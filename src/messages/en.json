@@ -107,7 +107,7 @@
         "title": "Experts & Service Providers",
         "description": "Offer your specialized skills and services to a wide agricultural audience seeking your expertise."
       },
-      "fis": {
+       "fis": {
         "title": "Financial Institutions",
         "description": "Provide targeted loans, grants, and insurance products to a verified network of agricultural businesses."
       },
@@ -1039,7 +1039,8 @@
       "noEventsFound": "No traceability events have been logged for this batch yet.",
       "geoLocationLabel": "Geo-location",
       "sustainablyGrownTitle": "Sustainably Grown",
-      "sustainablyGrownDescription": "This product's traceability log indicates the use of sustainable and/or organic farming practices."
+      "sustainablyGrownDescription": "This product's traceability log indicates the use of sustainable and/or organic farming practices.",
+      "harvestDateLabel": "Harvest Date"
     }
   },
   "OfflineIndicator": {
@@ -1146,7 +1147,12 @@
       "keyRevokedSuccess": "API key revoked.",
       "keyRevokedError": "Could not revoke API key."
     },
-    "generateButton": "Generate"
+    "generateButton": "Generate",
+    "newKeyModal": {
+      "title": "API Key Generated Successfully",
+      "description": "Copy this key now. You will not be able to see it again.",
+      "closeButton": "I have copied the key"
+    }
   },
   "AgroExportDashboard": {
     "title": "Agro-Export Dashboard",
@@ -1196,8 +1202,8 @@
       "knowledgeContributions": "Knowledge Contributions"
     },
     "activeAlerts": "Active Alerts",
-    "reportsToFile": "reports to file.",
-    "tasksPending": "tasks pending.",
+    "reportsToFile": "Reports to File",
+    "tasksPending": "Tasks Pending",
     "consultations": {
       "title": "Consultation Requests",
       "description": "Respond to incoming requests from farmers.",
@@ -1817,5 +1823,228 @@
         "generateErrorTitle": "Generation Failed"
       }
     }
+  },
+  "MobileHomepage": {
+    "welcome": {
+        "morning": "Good Morning, {name}",
+        "afternoon": "Good Afternoon, {name}",
+        "evening": "Good Evening, {name}"
+    },
+    "discoverTitle": "Discover",
+    "seeAllButton": "See All",
+    "noRecommendations": "No recommendations available right now.",
+    "communityFeedTitle": "Community Feed",
+    "communityFeedDescription": "Catch up with the latest posts and discussions from your network.",
+    "goToFeedButton": "Go to Feed"
+  },
+  "Blog": {
+    "backLink": "Back to Blog",
+    "meta": "By {author} on {date}",
+    "readMore": "Read More",
+    "originalContentTitle": "Original Content in {lang}",
+    "notFound": {
+        "title": "Post Not Found",
+        "description": "The blog post you are looking for does not exist or has been moved.",
+        "backButton": "Go to Blog"
+    },
+    "errors": {
+        "title": "Error",
+        "load": "Could not load the post."
+    }
+  },
+  "blogPage": {
+    "title": "DamDoh Blog & News",
+    "description": "Insights, stories, and updates from the agricultural world.",
+    "meta": "By {author} on {date}",
+    "readMore": "Read More",
+    "noPosts": {
+        "title": "No Posts Yet",
+        "description": "Check back soon for articles on sustainable farming, market trends, and community stories."
+    },
+    "error": {
+        "title": "Error Loading Posts",
+        "description": "Could not fetch the latest articles. Please try again later."
+    }
+  },
+  "ProfilePage": {
+    "editProfile": "Edit Profile",
+    "showUniversalIdButton": "Show Universal ID",
+    "universalIdModalTitle": "Your Universal ID",
+    "universalIdModalDescription": "Other users can scan this code to quickly view your public profile.",
+    "connect": "Connect",
+    "message": "Message",
+    "aboutTitle": "About {displayName}",
+    "interestsTitle": "Areas of Interest",
+    "needsTitle": "Needs & Offerings",
+    "contactTitle": "Contact Information",
+    "tabs": {
+        "overview": "Overview",
+        "activity": "Activity"
+    },
+    "recentActivityTitle": "Recent Activity",
+    "noRecentActivity": "This user has no public activity yet.",
+    "engagementStats": "Engagement Stats",
+    "profileViews": "Profile Views",
+    "postLikes": "Post Likes",
+    "postComments": "Post Comments",
+    "invite": {
+      "title": "Expand Your Network",
+      "description": "Know someone who should be on DamDoh?",
+      "explanation": "Send them an invitation to join the platform.",
+      "button": "Invite a Colleague"
+    },
+    "invitePrompt": "Enter the email address of the person you want to invite:",
+    "inviteSuccessTitle": "Invite Sent!",
+    "inviteSuccessDescription": "An invitation has been sent to {email}.",
+    "inviteErrorTitle": "Failed to Send Invite",
+    "notFoundTitle": "Profile Not Found",
+    "notFoundDescription": "The user profile you are looking for could not be found.",
+    "backToNetwork": "Back to Network"
+  },
+  "editProfilePage": {
+    "title": "Edit Profile for {name}",
+    "description": "Keep your profile up-to-date to make the best connections.",
+    "nameLabel": "Display Name",
+    "namePlaceholder": "e.g., Green Valley Farms",
+    "roleLabel": "Primary Role",
+    "rolePlaceholder": "Select your main role",
+    "summaryLabel": "Profile Summary / Headline",
+    "summaryPlaceholder": "e.g., Certified organic coffee grower specializing in export.",
+    "summaryDescription": "A short, one-line summary for your profile card.",
+    "generateWithAI": "Generate with AI",
+    "bioLabel": "About / Bio",
+    "bioPlaceholder": "Tell the community about yourself, your business, your mission...",
+    "bioDescription": "A detailed description of your background, expertise, and what you do.",
+    "profileTab": "Profile",
+    "detailsTab": "Details",
+    "contactTab": "Contact",
+    "locationLabel": "Location",
+    "locationPlaceholder": "e.g., Rift Valley, Kenya",
+    "interestsLabel": "Areas of Interest",
+    "interestsPlaceholder": "e.g., Sustainable Agriculture, Export Markets, Agri-Tech",
+    "commaSeparated": "Separate multiple items with a comma.",
+    "needsLabel": "I am looking for / offering...",
+    "needsPlaceholder": "e.g., Fair Trade Buyers, Logistics Partners, Soil Testing Services",
+    "emailLabel": "Account Email",
+    "emailDescription": "Your login email cannot be changed.",
+    "phoneLabel": "Public Phone Number",
+    "websiteLabel": "Website",
+    "saveButton": "Save Changes",
+    "savingButton": "Saving...",
+    "cancelButton": "Cancel",
+    "toast": {
+      "profileNotFound": "The profile you are trying to edit could not be found.",
+      "fetchError": "Could not load your profile data. Please try again.",
+      "notAuthenticatedTitle": "Not Logged In",
+      "notAuthenticatedDescription": "You must be signed in to edit a profile.",
+      "unauthorizedTitle": "Unauthorized",
+      "unauthorizedDescription": "You do not have permission to edit this profile.",
+      "missingInfoTitle": "Missing Information",
+      "missingInfoDescription": "Please fill out your role, location, interests, and needs to generate a summary.",
+      "summaryGeneratedTitle": "Summary Generated!",
+      "summaryGeneratedDescription": "The AI has suggested a new profile summary for you.",
+      "generationFailedTitle": "Generation Failed",
+      "generationFailedDescription": "Could not generate an AI summary. Please try again.",
+      "missingIdError": "Profile ID is missing. Cannot save changes.",
+      "profileUpdatedTitle": "Profile Updated",
+      "profileUpdatedDescription": "Your changes have been saved successfully.",
+      "updateFailedTitle": "Update Failed",
+      "updateFailedDescription": "Your profile could not be saved. Please try again."
+    },
+    "notFound": {
+        "title": "Profile Not Found",
+        "description": "Could not load the profile for editing.",
+        "backButton": "Go Back"
+    }
+  },
+  "settingsPage": {
+    "title": "Settings",
+    "description": "Manage your account, privacy, and notification settings.",
+    "profileTab": "Profile",
+    "accountTab": "Account",
+    "notificationsTab": "Notifications",
+    "privacyTab": "Privacy",
+    "appearanceTab": "Appearance",
+    "stakeholderProfile": {
+        "title": "Stakeholder Profile",
+        "description": "This is your main identity on the platform.",
+        "explanation": "Your profile details, including interests and needs, are used to recommend connections and opportunities. Keep it up-to-date for the best experience.",
+        "editButton": "Edit My Profile"
+    },
+    "account": {
+        "title": "Account Settings",
+        "description": "Manage your login credentials and account status.",
+        "currentPasswordLabel": "Current Password",
+        "newPasswordLabel": "New Password",
+        "confirmPasswordLabel": "Confirm New Password",
+        "changePasswordButton": "Change Password",
+        "deactivateButton": "Deactivate Account"
+    },
+    "notifications": {
+      "title": "Notification Preferences",
+      "description": "Choose how and when you want to be notified.",
+      "emailDigestLabel": "Email Digests",
+      "emailDigestDescription": "Receive periodic summaries of your activity.",
+      "emailDigestHelpText": "Enable to get weekly or monthly emails with your notifications and network updates.",
+      "connectionRequestsLabel": "Connection Requests",
+      "connectionRequestsDescription": "Notify me about new connection requests.",
+      "connectionRequestsHelpText": "Get real-time push notifications when someone wants to connect with you.",
+      "forumMentionsLabel": "Forum Mentions & Replies",
+      "forumMentionsDescription": "Notify me when someone mentions me or replies to my post.",
+      "forumMentionsHelpText": "Stay on top of conversations you're involved in.",
+      "marketplaceActivityLabel": "Marketplace Activity",
+      "marketplaceActivityDescription": "Notify me about new orders or inquiries.",
+      "marketplaceActivityHelpText": "Get notified when a buyer places an order for one of your listings.",
+      "talentExchangeLabel": "Talent Exchange",
+      "talentExchangeDescription": "Notify me about new job proposals or service requests.",
+      "talentExchangeHelpText": "Get real-time alerts for opportunities on the Talent Exchange.",
+      "saveButton": "Save Preferences"
+    },
+    "privacy": {
+      "title": "Privacy & Data Sharing",
+      "description": "Control how your information is used and seen on the platform.",
+      "profileVisibilityLabel": "Profile Visibility",
+      "profileVisibilityDescription": "Control who can see your full profile.",
+      "profileVisibilityHelpText": "You can choose to make your profile visible to everyone, only your connections, or keep it private.",
+      "profileVisibilityAll": "Everyone",
+      "profileVisibilityConnections": "Connections Only",
+      "profileVisibilityPrivate": "Private",
+      "connectionRequestsLabel": "Who can send you connection requests?",
+      "connectionRequestsDescription": "Limit who can send you requests to connect.",
+      "connectionRequestsHelpText": "You can allow requests from anyone on the platform or limit it to people who are already connected to your existing network (connections of connections).",
+      "connectionRequestsAll": "Everyone",
+      "connectionRequestsConnectionsOfConnections": "Connections of Connections",
+      "searchIndexingLabel": "Allow search engines to index my profile",
+      "searchIndexingDescription": "Let search engines like Google show your profile in results.",
+      "searchIndexingHelpText": "Disabling this will attempt to prevent search engines from indexing your public profile page.",
+      "dataConsentTitle": "Data & AI Consent Management",
+      "dataConsentDescription": "Your data powers the platform's intelligent features. Choose how it's used.",
+      "marketplaceHistoryLabel": "Marketplace History for Financial Analysis",
+      "marketplaceHistoryDescription": "Allow your anonymized transaction history to be used to generate market insights and inform financial product offerings.",
+      "marketplaceHistoryHelpText": "This helps Financial Institutions create better loan products and provides more accurate market price data for everyone.",
+      "aiPersonalizationLabel": "Use my activity for AI Personalization",
+      "aiPersonalizationDescription": "Allow the AI to learn from your activity to provide better recommendations for connections and marketplace items.",
+      "aiPersonalizationHelpText": "Enabling this will improve the quality of your 'Recommended For You' sections.",
+      "financialApplicationDataLabel": "Use Financial Application Data for AI Risk Scoring",
+      "financialApplicationDataDescription": "Allow anonymized data from your funding applications to be used to train and improve our credit risk assessment models.",
+      "financialApplicationDataHelpText": "This helps create a fairer and more accurate credit scoring system for the entire community.",
+      "saveConsentButton": "Save Consent Settings"
+    },
+    "appearance": {
+        "title": "Appearance",
+        "description": "Customize the look and feel of the application.",
+        "themeLabel": "Theme",
+        "themeDescription": "Choose between light and dark mode.",
+        "themeHelpText": "Your preference will be saved for your next visit.",
+        "lightTheme": "Light",
+        "darkTheme": "Dark",
+        "switchToLightAria": "Switch to light theme",
+        "switchToDarkAria": "Switch to dark theme",
+        "languageLabel": "Language",
+        "languageDescription": "Select your preferred language for the interface.",
+        "languageHelpText": "The application's text will be displayed in the language you choose."
+    }
   }
 }
+
+    
