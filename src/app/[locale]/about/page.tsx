@@ -14,20 +14,20 @@ export default function AboutPage() {
   const t = useTranslations('aboutPage');
 
   const challenges = [
-    { text: t('challenge.list.marketAccess'), icon: <ShoppingCart className="h-6 w-6 text-destructive" /> },
-    { text: t('challenge.list.inefficiency'), icon: <Truck className="h-6 w-6 text-destructive" /> },
-    { text: t('challenge.list.financialExclusion'), icon: <CircleDollarSign className="h-6 w-6 text-destructive" /> },
-    { text: t('challenge.list.informationGaps'), icon: <BookOpen className="h-6 w-6 text-destructive" /> },
-    { text: t('challenge.list.qualityTrust'), icon: <CheckCircle className="h-6 w-6 text-destructive" /> },
-    { text: t('challenge.list.climatePressure'), icon: <Thermometer className="h-6 w-6 text-destructive" /> },
-    { text: t('challenge.list.foodLoss'), icon: <Filter className="h-6 w-6 text-destructive" /> },
-    { text: t('challenge.list.dataFragmentation'), icon: <Database className="h-6 w-6 text-destructive" /> }
+    { text: t('challenge.list.marketAccess'), icon: <ShoppingCart className="h-6 w-6 text-destructive" />, detailKey: 'marketAccess' },
+    { text: t('challenge.list.inefficiency'), icon: <Truck className="h-6 w-6 text-destructive" />, detailKey: 'inefficiency' },
+    { text: t('challenge.list.financialExclusion'), icon: <CircleDollarSign className="h-6 w-6 text-destructive" />, detailKey: 'financialExclusion' },
+    { text: t('challenge.list.informationGaps'), icon: <BookOpen className="h-6 w-6 text-destructive" />, detailKey: 'informationGaps' },
+    { text: t('challenge.list.qualityTrust'), icon: <CheckCircle className="h-6 w-6 text-destructive" />, detailKey: 'qualityTrust' },
+    { text: t('challenge.list.climatePressure'), icon: <Thermometer className="h-6 w-6 text-destructive" />, detailKey: 'climatePressure' },
+    { text: t('challenge.list.foodLoss'), icon: <Filter className="h-6 w-6 text-destructive" />, detailKey: 'foodLoss' },
+    { text: t('challenge.list.dataFragmentation'), icon: <Database className="h-6 w-6 text-destructive" />, detailKey: 'dataFragmentation' }
   ];
   
   const solutions = [
     { text: t('solution.list.education'), icon: <BookOpen className="h-5 w-5 text-primary" /> },
     { text: t('solution.list.ai'), icon: <Brain className="h-5 w-5 text-primary" /> },
-    { text: 'Marketplace & E-Commerce', icon: <ShoppingCart className="h-5 w-5 text-primary" /> },
+    { text: t('solution.list.marketplace'), icon: <ShoppingCart className="h-5 w-5 text-primary" /> },
     { text: t('solution.list.logistics'), icon: <Truck className="h-5 w-5 text-primary" /> },
     { text: t('solution.list.financial'), icon: <CircleDollarSign className="h-5 w-5 text-primary" /> },
   ];
@@ -91,7 +91,7 @@ export default function AboutPage() {
                           <div className="flex-shrink-0 mt-1">{challenge.icon}</div>
                           <div>
                             <h4 className="font-semibold text-foreground">{challenge.text}</h4>
-                            <p className="text-sm text-muted-foreground">{t(`challenge.details.${index}`)}</p>
+                            <p className="text-sm text-muted-foreground">{t(`challenge.details.${challenge.detailKey}`)}</p>
                           </div>
                       </div>
                   ))}

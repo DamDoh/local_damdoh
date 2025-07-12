@@ -5,7 +5,7 @@ import { Link } from '@/navigation';
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Leaf, Users, ShoppingCart, MessageSquare, ArrowRight, CheckCircle, Briefcase } from "lucide-react";
+import { Leaf, Users, ShoppingCart, MessageSquare, ArrowRight, CheckCircle, Briefcase, CircleDollarSign } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { APP_NAME } from "@/lib/constants";
 import { Badge } from "@/components/ui/badge";
@@ -35,6 +35,14 @@ export function LandingPage() {
       description: t('features.talent.description')
     }
   ];
+  
+  const forWhoItems = [
+    { title: t('forWho.farmers.title'), description: t('forWho.farmers.description'), icon: <CheckCircle className="h-5 w-5 mt-1 text-primary" /> },
+    { title: t('forWho.buyers.title'), description: t('forWho.buyers.description'), icon: <CheckCircle className="h-5 w-5 mt-1 text-primary" /> },
+    { title: t('forWho.experts.title'), description: t('forWho.experts.description'), icon: <CheckCircle className="h-5 w-5 mt-1 text-primary" /> },
+    { title: t('forWho.fis.title'), description: t('forWho.fis.description'), icon: <CircleDollarSign className="h-5 w-5 mt-1 text-primary" /> },
+  ];
+
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -96,27 +104,15 @@ export function LandingPage() {
               {t('forWho.description')}
             </p>
             <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <CheckCircle className="h-5 w-5 mt-1 text-primary" />
-                <div>
-                  <h4 className="font-semibold">{t('forWho.farmers.title')}</h4>
-                  <p className="text-sm text-muted-foreground">{t('forWho.farmers.description')}</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle className="h-5 w-5 mt-1 text-primary" />
-                <div>
-                  <h4 className="font-semibold">{t('forWho.buyers.title')}</h4>
-                  <p className="text-sm text-muted-foreground">{t('forWho.buyers.description')}</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle className="h-5 w-5 mt-1 text-primary" />
-                <div>
-                  <h4 className="font-semibold">{t('forWho.experts.title')}</h4>
-                  <p className="text-sm text-muted-foreground">{t('forWho.experts.description')}</p>
-                </div>
-              </li>
+              {forWhoItems.map((item, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  {item.icon}
+                  <div>
+                    <h4 className="font-semibold">{item.title}</h4>
+                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                  </div>
+                </li>
+              ))}
             </ul>
           </div>
            <div className="relative w-full aspect-square">

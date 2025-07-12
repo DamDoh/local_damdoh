@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { usePathname, useRouter } from '@/navigation';
 import { Card, CardContent } from "@/components/ui/card";
 import type { FeedItem } from "@/lib/types";
@@ -45,6 +45,7 @@ import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logis
 import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
 import { AgriTechInnovatorDashboard } from './hubs/AgriTechInnovatorDashboard';
 import { OperationsDashboard } from './hubs/OperationsDashboard';
+import { useTranslations } from 'next-intl';
 
 const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -83,6 +84,7 @@ function MainContent() {
   const { toast } = useToast();
   const { user, loading: authLoading } = useAuth();
   const { profile, loading: profileLoading } = useUserProfile();
+  const t = useTranslations('MainDashboard');
   
   const createPostCallable = httpsCallable(functions, 'createFeedPost');
   const likePostCallable = httpsCallable(functions, 'likePost');
@@ -108,20 +110,20 @@ function MainContent() {
     }, (error) => {
         console.error("Error fetching real-time feed:", error);
         toast({
-            title: "Could not load feed",
-            description: "There was an error fetching the latest posts.",
+            title: t('feedError.title'),
+            description: t('feedError.description'),
             variant: "destructive"
         });
         setIsLoadingFeed(false);
     });
     
     return () => unsubscribeFeed();
-  }, [toast]);
+  }, [toast, t]);
 
 
   const handleCreatePost = async (content: string, media?: File, pollData?: { text: string }[]) => {
     if (!user) {
-      toast({ title: "You must be logged in to post.", variant: "destructive" });
+      toast({ title: t('postError.auth'), variant: "destructive" });
       return;
     }
     
@@ -129,58 +131,58 @@ function MainContent() {
       let imageUrl: string | undefined = undefined;
       let dataAiHint: string | undefined = undefined;
       if (media) {
-        toast({ title: "Uploading media..." });
+        toast({ title: t('uploadingMedia') });
         imageUrl = await uploadFileAndGetURL(media, `feed-posts/${user.uid}`);
-        toast({ title: "Upload complete!" });
+        toast({ title: t('uploadComplete') });
       }
 
       await createPostCallable({ content, pollOptions: pollData, imageUrl, dataAiHint });
-      toast({ title: "Post Created!", description: "Your post is now live." });
+      toast({ title: t('postSuccess.title'), description: t('postSuccess.description') });
     } catch (error) {
       console.error("Error creating post:", error);
-      toast({ title: "Failed to create post", variant: "destructive" });
+      toast({ title: t('postError.fail'), variant: "destructive" });
     }
   };
 
   const handleLikePost = async (postId: string) => {
     if (!user) {
-        toast({ title: "You must be logged in to like a post.", variant: "destructive" });
+        toast({ title: t('likeError.auth'), variant: "destructive" });
         return;
     }
     try {
       await likePostCallable({ postId });
     } catch(error) {
       console.error("Error liking post:", error);
-      toast({ title: "Failed to like post", variant: "destructive" });
+      toast({ title: t('likeError.fail'), variant: "destructive" });
     }
   };
   
   const handleCommentOnPost = async (postId: string, commentText: string) => {
      if (!user) {
-        toast({ title: "You must be logged in to comment.", variant: "destructive" });
+        toast({ title: t('commentError.auth'), variant: "destructive" });
         return;
     }
      try {
         await addCommentCallable({ postId, content: commentText });
-        toast({ title: "Comment added!" });
+        toast({ title: t('commentSuccess') });
      } catch(error) {
          console.error("Error adding comment:", error);
-         toast({ title: "Failed to add comment", variant: "destructive" });
+         toast({ title: t('commentError.fail'), variant: "destructive" });
      }
   };
 
   const handleDeletePost = async (postId: string) => {
     if (!user) {
-        toast({ title: "You must be logged in to delete a post.", variant: "destructive" });
+        toast({ title: t('deleteError.auth'), variant: "destructive" });
         return;
     }
 
     try {
         await deletePostCallable({ postId });
-        toast({ title: "Post Deleted", description: "Your post has been successfully removed." });
+        toast({ title: t('deleteSuccess.title'), description: t('deleteSuccess.description') });
     } catch (error) {
         console.error("Error deleting post:", error);
-        toast({ title: "Failed to delete post", variant: "destructive" });
+        toast({ title: t('deleteError.fail'), variant: "destructive" });
     }
   };
 
@@ -221,7 +223,7 @@ function MainContent() {
     ) : (
       <Card>
         <CardContent className="pt-6">
-          <p className="text-sm text-muted-foreground text-center py-10">No activity yet. Share your agricultural insights or explore the network!</p>
+          <p className="text-sm text-muted-foreground text-center py-10">{t('noActivity')}</p>
         </CardContent>
       </Card>
     );
@@ -251,7 +253,7 @@ function MainContent() {
 export function MainDashboard() {
   const router = useRouter();
   const pathname = usePathname();
-  const { homepagePreference, isPreferenceLoading } = useHomepagePreference();
+  const { homepagePreference, isPreferenceLoading } = useHomepageRedirect();
 
   useEffect(() => {
       if (!isPreferenceLoading && homepagePreference && homepagePreference !== pathname && pathname === '/') {
