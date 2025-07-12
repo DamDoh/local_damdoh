@@ -561,52 +561,6 @@
     },
     "conclusion": "To resolve a complaint or receive further information, please {contactLink}."
   },
-  "termsOfService": {
-    "title": "Terms of Service",
-    "lastUpdated": "Last updated: October 29, 2023",
-    "introduction": "These Terms of Use constitute a legally binding agreement made between you and DamDoh, concerning your access to and use of the DamDoh website as well as any other media form, media channel, mobile website, or mobile application related, linked, or otherwise connected thereto.",
-    "agreementToTerms": {
-      "heading": "1. AGREEMENT TO TERMS",
-      "content": "By using the platform, you agree to be bound by these Terms of Use. If you do not agree, you are not permitted to use the platform. We reserve the right to make changes to these Terms at any time."
-    },
-    "intellectualProperty": {
-      "heading": "2. INTELLECTUAL PROPERTY RIGHTS",
-      "content": "Unless otherwise indicated, the Platform is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the 'Content') and the trademarks, service marks, and logos contained therein are owned or controlled by us or licensed to us."
-    },
-    "userRepresentations": {
-      "heading": "3. USER REPRESENTATIONS",
-      "content": "By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Use; (4) you will not use the Site for any illegal or unauthorized purpose; and (5) your use of the Site will not violate any applicable law or regulation."
-    },
-    "prohibitedActivities": {
-      "heading": "4. PROHIBITED ACTIVITIES",
-      "content": "You may not access or use the Site for any purpose other than that for which we make the Site available. Prohibited activities include, but are not limited to: systematic retrieval of data, tricking or defrauding us or other users, attempting to impersonate another user, harassing or threatening our employees or other users, and uploading or transmitting viruses or other types of malicious code."
-    },
-    "platformManagement": {
-      "heading": "5. PLATFORM MANAGEMENT",
-      "content": "We reserve the right, but not the obligation, to: (1) monitor the Site for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable any of your Contributions or any portion thereof."
-    },
-    "termAndTermination": {
-      "heading": "6. TERM AND TERMINATION",
-      "content": "These Terms of Use shall remain in full force and effect while you use the Site. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS OF USE, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SITE (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON."
-    },
-    "modificationsAndInterruptions": {
-      "heading": "7. MODIFICATIONS AND INTERRUPTIONS",
-      "content": "We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Site without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Site."
-    },
-    "governingLaw": {
-      "heading": "8. GOVERNING LAW",
-      "content": "These Terms of Use and your use of the Site are governed by and construed in accordance with the laws of the jurisdiction where DamDoh is registered, without regard to its conflict of law principles."
-    },
-    "disputeResolution": {
-      "heading": "9. DISPUTE RESOLUTION",
-      "content": "Any legal action of whatever nature brought by either you or us shall be commenced or prosecuted in the state and federal courts located in the jurisdiction where we are registered, and the parties hereby consent to, and waive all defenses of lack of personal jurisdiction and forum non conveniens with respect to venue and jurisdiction in such courts."
-    },
-    "contactUs": {
-      "heading": "11. CONTACT US",
-      "content": "To resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us."
-    },
-    "conclusion": "To resolve a complaint or receive further information, please {contactLink}."
-  },
   "pinboardPage": {
     "title": "Pin-Board",
     "description": "Your personal space to save important items from across DamDoh.",
@@ -916,812 +870,62 @@
       "harvestDateLabel": "Harvest Date"
     }
   },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "Syncing {count} pending actions...",
-      "onlinePending": "{count} pending actions. Will sync soon.",
-      "onlineSynced": "You are online and all changes are synced.",
-      "offline": "You are offline. {count, plural, =0 {No pending changes.} =1 {1 change is queued.} other {{count} changes are queued.}}"
+  "termsOfService": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: October 29, 2023",
+    "introduction": "These Terms of Use constitute a legally binding agreement made between you and DamDoh, concerning your access to and use of the DamDoh website as well as any other media form, media channel, mobile website, or mobile application related, linked, or otherwise connected thereto.",
+    "agreementToTerms": {
+      "heading": "1. AGREEMENT TO TERMS",
+      "content": "By using the platform, you agree to be bound by these Terms of Use. If you do not agree, you are not permitted to use the platform. We reserve the right to make changes to these Terms at any time."
     },
-    "toast": {
-      "online": {
-        "title": "You are back online!",
-        "description": "Your connection has been restored."
-      },
-      "offline": {
-        "title": "You are offline.",
-        "description": "Your changes will be saved and synced when you reconnect."
-      },
-      "syncing": {
-        "title": "Syncing offline changes",
-        "description": "Uploading {count} actions to the server."
-      },
-      "synced": {
-        "title": "Sync complete",
-        "description": "All your offline changes have been saved."
-      },
-      "syncFailed": {
-        "title": "Sync failed",
-        "description": "We could not sync your offline changes. We will try again later."
-      },
-      "queued": {
-        "title": "Action queued",
-        "description": "This action will be performed when you are back online."
-      }
-    }
-  },
-  "searchPage": {
-    "title": "Universal Search",
-    "description": "Find anything across the entire DamDoh platform.",
-    "placeholder": "What are you looking for?",
-    "searchButton": "Search",
-    "popularSearches": "Popular Searches",
-    "popularSearch1": "Organic Coffee",
-    "popularSearch2": "Tractor rental in Kenya",
-    "popularSearch3": "Soil health expert",
-    "popularSearch4": "Export financing",
-    "popularSearch5": "Post-harvest loss forum",
-    "modal": {
-      "title": "Universal Search",
-      "placeholder": "Search products, services, people, forum posts...",
-      "searchButton": "Search",
-      "searchError": "Search Error",
-      "searchErrorDescription": "Could not perform search at this time. Please try again.",
-      "scanError": "Scan Error",
-      "scanErrorDescription": "Could not read the QR code. Please try again.",
-      "invalidCodeError": "This is not a valid DamDoh recovery or profile code.",
-      "interpretationTitle": "AI Interpretation",
-      "interpretationNotesDefault": "Searching by keywords.",
-      "filtersTitle": "Filters",
-      "results": {
-        "users": "Profiles",
-        "marketplaceItems": "Marketplace",
-        "forums": "Forums",
-        "agri_events": "Events",
-        "knowledge_articles": "Knowledge Hub",
-        "vti_registry": "Traceability Reports"
-      },
-      "noResults": "No results found",
-      "tryAgain": "Try another query or broaden your search."
-    }
-  },
-  "AgriTechDashboard": {
-    "title": "Agri-Tech Innovator Dashboard",
-    "sandboxTitle": "Sandbox Environment",
-    "statusLabel": "Status",
-    "lastResetLabel": "Last Reset",
-    "accessDocsButton": "Access API Docs",
-    "integrationsTitle": "Active Integrations",
-    "activeProjects": "{count, plural, =0 {active projects} =1 {1 active project} other {{count} active projects}}",
-    "integrationsDescription": "Your active projects integrated with DamDoh.",
-    "proposeIntegrationButton": "Propose New Integration",
-    "apiKeysTitle": "API Keys",
-    "apiKeysDescription": "Manage your API keys for accessing DamDoh services.",
-    "generateNewKeyButton": "Generate New Key",
-    "table": {
-      "key": "Key / Description",
-      "status": "Status",
-      "environment": "Environment",
-      "created": "Created",
-      "actions": "Actions"
+    "intellectualProperty": {
+      "heading": "2. INTELLECTUAL PROPERTY RIGHTS",
+      "content": "Unless otherwise indicated, the Platform is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the 'Content') and the trademarks, service marks, and logos contained therein are owned or controlled by us or licensed to us."
     },
-    "noApiKeys": "You haven't generated any API keys yet.",
-    "apiKeyCopied": "API Key copied to clipboard!",
-    "revokeDialog": {
-      "title": "Are you sure you want to revoke this API key?",
-      "description": "This action cannot be undone. Any applications using this key will immediately lose access.",
-      "cancel": "Cancel",
-      "confirm": "Yes, Revoke Key"
+    "userRepresentations": {
+      "heading": "3. USER REPRESENTATIONS",
+      "content": "By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Use; (4) you will not use the Site for any illegal or unauthorized purpose; and (5) your use of the Site will not violate any applicable law or regulation."
     },
-    "toast": {
-      "descriptionRequired": "A description is required for a new key.",
-      "keyGeneratedSuccess": "New API key generated successfully.",
-      "keyGeneratedError": "Could not generate API key.",
-      "keyRevokedSuccess": "API key revoked.",
-      "keyRevokedError": "Could not revoke API key."
+    "prohibitedActivities": {
+      "heading": "4. PROHIBITED ACTIVITIES",
+      "content": "You may not access or use the Site for any purpose other than that for which we make the Site available. Prohibited activities include, but are not limited to: systematic retrieval of data, tricking or defrauding us or other users, attempting to impersonate another user, harassing or threatening our employees or other users, and uploading or transmitting viruses or other types of malicious code."
     },
-    "generateButton": "Generate",
-    "newKeyModal": {
-      "title": "API Key Generated Successfully",
-      "description": "Copy this key now. You will not be able to see it again.",
-      "closeButton": "I have copied the key"
-    }
-  },
-  "AgroExportDashboard": {
-    "title": "Agro-Export Dashboard",
-    "docsTitle": "Pending Customs Documents",
-    "shipmentsTitle": "Tracked Shipments",
-    "alertsTitle": "Compliance Alerts",
-    "table": {
-      "destination": "Destination"
+    "platformManagement": {
+      "heading": "5. PLATFORM MANAGEMENT",
+      "content": "We reserve the right, but not the obligation, to: (1) monitor the Site for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable any of your Contributions or any portion thereof."
     },
-    "prepareDocsButton": "Prepare Documents",
-    "readMore": "Read More",
-    "noDocs": "No pending customs documents.",
-    "noShipments": "No active shipments to track.",
-    "noAlerts": "No new compliance alerts."
-  },
-  "AgroTourismDashboard": {
-    "title": "Agro-Tourism Dashboard",
-    "bookingsTitle": "Upcoming Bookings",
-    "bookingsDescription": "Your next guests and experiences.",
-    "experiencesTitle": "Your Listed Experiences",
-    "experiencesDescription": "Manage your agro-tourism offerings.",
-    "reviewsTitle": "Guest Reviews",
-    "reviewsDescription": "Recent feedback from your visitors.",
-    "table": {
-      "experience": "Experience",
-      "guest": "Guest",
-      "date": "Date",
-      "action": "Action",
-      "title": "Title",
-      "status": "Status",
-      "bookings": "Bookings"
+    "termAndTermination": {
+      "heading": "6. TERM AND TERMINATION",
+      "content": "These Terms of Use shall remain in full force and effect while you use the Site. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS OF USE, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SITE (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON."
     },
-    "viewDetailsButton": "View Details",
-    "manageButton": "Manage",
-    "noBookings": "No upcoming bookings.",
-    "noExperiences": "You haven't listed any experiences yet.",
-    "noReviews": "No guest reviews yet.",
-    "viewReviewButton": "View",
-    "on": "on"
-  },
-  "AgronomistDashboard": {
-    "title": "Agronomist Dashboard",
-    "stats": {
-      "assignedFarmers": "Assigned Farmers",
-      "farmersWithAlerts": "Farmers with Alerts",
-      "pendingConsultations": "Pending Consultations",
-      "knowledgeContributions": "Knowledge Contributions"
+    "modificationsAndInterruptions": {
+      "heading": "7. MODIFICATIONS AND INTERRUPTIONS",
+      "content": "We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Site without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Site."
     },
-    "activeAlerts": "Active Alerts",
-    "reportsToFile": "Reports to File",
-    "tasksPending": "Tasks Pending",
-    "consultations": {
-      "title": "Consultation Requests",
-      "description": "Respond to incoming requests from farmers.",
-      "table": {
-        "farmer": "Farmer",
-        "issue": "Issue Summary",
-        "action": "Action"
-      },
-      "viewButton": "View",
-      "noRequests": "No pending consultation requests."
+    "governingLaw": {
+      "heading": "8. GOVERNING LAW",
+      "content": "These Terms of Use and your use of the Site are governed by and construed in accordance with the laws of the jurisdiction where DamDoh is registered, without regard to its conflict of law principles."
     },
-    "portfolio": {
-      "title": "Farmer Portfolio",
-      "description": "An overview of the farmers you manage.",
-      "table": {
-        "farmer": "Farmer",
-        "location": "Location",
-        "alerts": "Alerts",
-        "action": "Action"
-      },
-      "alertsLabel": "Alerts",
-      "profileButton": "Profile",
-      "noFarmers": "No farmers have been assigned to your portfolio yet."
+    "disputeResolution": {
+      "heading": "9. DISPUTE RESOLUTION",
+      "content": "Any legal action of whatever nature brought by either you or us shall be commenced or prosecuted in the state and federal courts located in the jurisdiction where we are registered, and the parties hereby consent to, and waive all defenses of lack of personal jurisdiction and forum non conveniens with respect to venue and jurisdiction in such courts."
     },
-    "contributions": {
-      "statusTitle": "Contribution Status",
-      "title": "Your Contributions to the Knowledge Hub",
-      "noData": "No contribution data available.",
-      "noContributions": "You have not made any contributions yet."
+    "contactUs": {
+      "heading": "11. CONTACT US",
+      "content": "To resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us."
     },
-    "noData": "No dashboard data available.",
-    "lastVisit": "Last Visit",
-    "issues": "Issues",
-    "chart": {
-      "count": "Count",
-      "published": "Published",
-      "pending": "Pending Review",
-      "draft": "Draft"
-    }
-  },
-  "BuyerDashboard": {
-    "title": "Buyer Dashboard",
-    "riskTitle": "Supply Chain Risks",
-    "diversifySourcing": "Diversify Sourcing",
-    "priceTitle": "Market Price Insights",
-    "secureContracts": "Secure Forward Contracts",
-    "sourcingTitle": "Sourcing Recommendations",
-    "reliabilityScore": "Reliability Score",
-    "findSuppliersButton": "Find More Suppliers"
-  },
-  "CertificationBodyDashboard": {
-    "title": "Certification Body Dashboard",
-    "auditsTitle": "Pending Audits",
-    "auditsDescription": "Upcoming audits that require your attention.",
-    "table": {
-      "farmName": "Farm Name",
-      "standard": "Standard",
-      "dueDate": "Due Date",
-      "action": "Action"
-    },
-    "reviewAuditButton": "Review Audit",
-    "noPendingAudits": "No pending audits at this time.",
-    "entitiesTitle": "Status of Certified Entities",
-    "entitiesDescription": "An overview of your certified entities.",
-    "noCertifiedEntities": "No data for certified entities.",
-    "monitoringTitle": "Standards Monitoring",
-    "monitoringDescription": "Compliance rates for key standards.",
-    "alerts": "Alerts",
-    "viewDetailsButton": "View Details",
-    "noMonitoringData": "No monitoring data available."
-  },
-  "CooperativeDashboard": {
-    "title": "Cooperative Dashboard",
-    "membersTitle": "Total Members",
-    "membersDescription": "{count} active farmers in your cooperative.",
-    "landAreaTitle": "Total Land Area",
-    "landAreaDescription": "Hectares under cultivation.",
-    "pendingApplicationsTitle": "Pending Applications",
-    "pendingApplicationsDescription": "New farmers awaiting approval.",
-    "produceTitle": "Available Aggregated Produce",
-    "produceDescription": "A combined view of your members' ready-for-sale produce.",
-    "table": {
-      "product": "Product",
-      "quantity": "Quantity (Tons)",
-      "quality": "Quality",
-      "readyBy": "Ready By",
-      "action": "Action"
-    },
-    "createListingButton": "Create Listing",
-    "noProduce": "No aggregated produce to list.",
-    "aggregateButton": "Aggregate New Produce",
-    "manageButton": "Manage Members"
-  },
-  "CrowdfunderDashboard": {
-    "title": "Crowdfunder Dashboard",
-    "totalInvested": "Total Invested",
-    "numberOfInvestments": "Number of Investments",
-    "estimatedReturns": "Estimated Returns",
-    "opportunitiesTitle": "Recommended Opportunities",
-    "viewButton": "View",
-    "raisedOf": "raised of",
-    "goal": "goal",
-    "noOpportunities": "No new investment opportunities match your profile.",
-    "transactionsTitle": "Recent Transactions",
-    "table": {
-      "project": "Project",
-      "amount": "Amount"
-    },
-    "investment": "Investment",
-    "payout": "Payout",
-    "on": "on",
-    "noTransactions": "No recent transactions."
-  },
-  "EnergyProviderDashboard": {
-    "title": "Energy Provider Dashboard",
-    "leadsTitle": "Project Leads",
-    "leadsCount": "{count, plural, =0 {leads} =1 {1 lead} other {{count} leads}}",
-    "newLeadsDescription": "new leads require attention.",
-    "projectsTitle": "Active Projects",
-    "activeProjectsCount": "{count, plural, =0 {projects} =1 {1 project} other {{count} projects}}",
-    "projectsCompleted": "projects completed.",
-    "impactTitle": "Cumulative Impact",
-    "impactDescription": "The total estimated impact of your projects.",
-    "carbonReduction": "tCO2e/year reduced from {count} installations.",
-    "accessDocsButton": "Access API Docs",
-    "proposeIntegrationButton": "Propose New Integration",
-    "leadsTableTitle": "Project Pipeline",
-    "leadsTableDescription": "Track your leads from initial contact to project completion.",
-    "table": {
-      "entity": "Entity",
-      "location": "Location",
-      "energyNeed": "Estimated Need",
-      "status": "Status",
-      "action": "Action"
-    },
-    "viewLeadButton": "View Lead",
-    "noLeads": "No active project leads.",
-    "statusLabels": {
-      "new": "New",
-      "contacted": "Contacted",
-      "proposal_sent": "Proposal Sent",
-      "closed": "Closed"
-    }
-  },
-  "EquipmentSupplierDashboard": {
-    "title": "Equipment Supplier Dashboard",
-    "ordersTitle": "Rentals & Sales",
-    "ordersDescription": "{count} active orders",
-    "manageOrdersButton": "Manage Orders",
-    "listedEquipmentTitle": "Your Listed Equipment",
-    "table": {
-      "name": "Name",
-      "type": "Type",
-      "status": "Status",
-      "action": "Action"
-    },
-    "status": {
-      "available": "Available",
-      "rentedout": "Rented Out"
-    },
-    "manageButton": "Manage",
-    "noEquipment": "No equipment listed yet.",
-    "listEquipmentButton": "List New Equipment",
-    "maintenanceTitle": "Maintenance Requests",
-    "viewRequestButton": "View Request",
-    "noMaintenance": "No pending maintenance requests."
-  },
-  "FiDashboard": {
-    "title": "Financial Institution Dashboard",
-    "pendingApplicationsTitle": "Pending Applications",
-    "pendingApplicationsDescription": "applications require your review.",
-    "manageApplicationsButton": "Manage Applications",
-    "activePortfolioTitle": "Active Portfolio Value",
-    "activePortfolioDescription": "{count} active loans",
-    "reviewRiskButton": "Review Risk",
-    "manageProductsTitle": "Financial Products",
-    "manageProductsDescription": "Active loan and grant products.",
-    "manageProductsButton": "Manage Products",
-    "table": {
-      "applicant": "Applicant",
-      "type": "Type",
-      "amount": "Amount",
-      "riskScore": "Risk Score",
-      "action": "Action"
-    },
-    "reviewButton": "Review",
-    "noApplications": "No pending applications to review.",
-    "viewAllButton": "View All Applications",
-    "yourProductsTitle": "Your Financial Products",
-    "yourProductsDescription": "Products you currently offer on the platform.",
-    "createNewProductButton": "Create New Product",
-    "productsTable": {
-      "name": "Name",
-      "type": "Type",
-      "interestRate": "Interest Rate",
-      "maxAmount": "Max Amount"
-    },
-    "noProducts": "No financial products have been created yet."
-  },
-  "FieldAgentDashboard": {
-    "title": "Field Agent Dashboard",
-    "portfolioHealthTitle": "Portfolio Health",
-    "activeAlerts": "Active Alerts",
-    "pendingReportsTitle": "Pending Reports",
-    "reportsToFile": "reports to file.",
-    "dataVerificationTitle": "Data Verification",
-    "tasksPending": "tasks pending.",
-    "assignedFarmersTitle": "Assigned Farmers",
-    "farmersInPortfolio": "farmers in portfolio.",
-    "portfolioTitle": "Farmer Portfolio",
-    "lastVisit": "Last Visit",
-    "issues": "Issues",
-    "viewFarmerButton": "View Farmer",
-    "noFarmersAssigned": "No farmers have been assigned to your portfolio yet."
-  },
-  "InputSupplierDashboard": {
-    "title": "Input Supplier Dashboard",
-    "ordersTitle": "Active Orders",
-    "totalValue": "total value",
-    "manageOrdersButton": "Manage Orders",
-    "forecastTitle": "Demand Forecast",
-    "in": "in",
-    "noForecast": "No demand forecast data available.",
-    "performanceTitle": "Product Performance",
-    "viewReviewsButton": "View Reviews",
-    "noFeedback": "No product feedback yet.",
-    "promotionsTitle": "Marketing & Promotions",
-    "promotionsDescription": "Create and manage coupons to boost your sales.",
-    "manageCouponsButton": "Manage Coupons"
-  },
-  "InsuranceProviderDashboard": {
-    "title": "Insurance Provider Dashboard",
-    "manageProductsTitle": "Manage Insurance Products",
-    "manageProductsDescription": "Create and view the insurance products you offer on the platform.",
-    "manageProductsButton": "Manage Products",
-    "claimsTitle": "Pending Claims",
-    "claimsDescription": "Review and process new claims from policyholders.",
-    "table": {
-      "policyHolder": "Policy Holder",
-      "policyType": "Policy Type",
-      "claimDate": "Claim Date",
-      "status": "Status",
-      "action": "Action"
-    },
-    "reviewClaimButton": "Review Claim",
-    "noPendingClaims": "No pending claims at this time.",
-    "riskAlertsTitle": "Risk Assessment Alerts",
-    "riskAlertsDescription": "Proactive alerts for high-risk policies based on real-time data.",
-    "alert": "Alert",
-    "severity": "Severity",
-    "investigateButton": "Investigate",
-    "noRiskAlerts": "No high-risk alerts at this time.",
-    "activePoliciesTitle": "Active Policies Overview",
-    "activePoliciesDescription": "An overview of your active insurance policies.",
-    "coverage": "Coverage",
-    "expires": "Expires",
-    "noActivePolicies": "No active policies found."
-  },
-  "LogisticsDashboard": {
-    "title": "Logistics Dashboard",
-    "performanceTitle": "Performance",
-    "onTimeDelivery": "On-time delivery rate",
-    "viewReportButton": "View Full Report",
-    "activeShipmentsTitle": "Active Shipments",
-    "to": "to",
-    "trackButton": "Track",
-    "noActiveShipments": "No active shipments.",
-    "incomingJobsTitle": "Incoming Jobs",
-    "from": "from",
-    "acceptJobButton": "Accept Job",
-    "noIncomingJobs": "No new jobs."
-  },
-  "OperationsDashboard": {
-    "title": "Platform Operations Dashboard",
-    "vtiRateTitle": "VTI Creation Rate",
-    "pipelineStatusTitle": "Data Pipeline Status",
-    "lastCheck": "Last checked",
-    "flaggedEventsTitle": "Flagged Traceability Events",
-    "viewVtiButton": "View VTI",
-    "noFlaggedEvents": "No flagged events to review."
-  },
-  "PackagingSupplierDashboard": {
-    "title": "Packaging Supplier Dashboard",
-    "ordersTitle": "Incoming Orders",
-    "table": {
-      "customer": "Customer",
-      "product": "Product",
-      "quantity": "Quantity",
-      "status": "Status",
-      "action": "Action"
-    },
-    "viewOrderButton": "View Order",
-    "noOrders": "No new orders.",
-    "inventoryTitle": "Inventory Status",
-    "inStock": "in stock",
-    "reorderLevel": "reorder level",
-    "lowStock": "Low Stock",
-    "noInventory": "No inventory data.",
-    "listProductButton": "List New Product"
-  },
-  "ProcessingUnitDashboard": {
-    "title": "Processing Unit Dashboard",
-    "yieldTitle": "Yield Optimization",
-    "potential": "potential",
-    "wasteTitle": "Waste Reduction",
-    "rawMaterialTitle": "Raw Material Inventory",
-    "table": {
-      "product": "Product",
-      "quality": "Quality",
-      "quantity": "Quantity (Tons)",
-      "supplier": "Supplier",
-      "deliveryDate": "Delivery Date",
-      "status": "Status",
-      "action": "Action"
-    },
-    "noInventoryData": "No raw material inventory data.",
-    "packagingOrdersTitle": "Packaging Orders",
-    "noPackagingOrders": "No active packaging orders.",
-    "viewButton": "View",
-    "packagingInventoryTitle": "Packaging Inventory",
-    "inStock": "in stock",
-    "reorderLevel": "reorder level",
-    "noPackagingData": "No packaging inventory data.",
-    "sourcePackagingButton": "Source Packaging"
-  },
-  "QaDashboard": {
-    "title": "Quality Assurance Dashboard",
-    "inspectionsTitle": "Pending Inspections",
-    "inspectionsDescription": "Batches awaiting quality inspection and verification.",
-    "table": {
-      "batchId": "Batch ID",
-      "product": "Product",
-      "seller": "Seller",
-      "dueDate": "Due Date",
-      "action": "Action",
-      "result": "Result",
-      "reason": "Reason",
-      "inspectedAt": "Inspected At"
-    },
-    "performInspectionButton": "Perform Inspection",
-    "noPendingInspections": "No pending inspections at this time.",
-    "resultsTitle": "Recent Quality Issues",
-    "resultsDescription": "The latest flagged quality issues that may require action.",
-    "noRecentIssues": "No recent quality issues logged.",
-    "metricsTitle": "Quality Metrics",
-    "metricsDescription": "Overall quality performance across the platform.",
-    "passRate": "Pass rate",
-    "averageScore": "Average score",
-    "noMetrics": "No quality metrics available yet."
-  },
-  "RegulatorDashboard": {
-    "title": "Regulator Dashboard",
-    "pendingCertificationsTitle": "Pending Certifications",
-    "reviewsOutstanding": "reviews outstanding.",
-    "reviewAllButton": "Review All",
-    "riskAlertsTitle": "Compliance Risk Alerts",
-    "investigateButton": "Investigate",
-    "noComplianceAlerts": "No active compliance alerts.",
-    "anomaliesTitle": "Supply Chain Anomalies",
-    "trackVtiButton": "Track VTI",
-    "noAnomalies": "No supply chain anomalies detected."
-  },
-  "ResearcherDashboard": {
-    "title": "Researcher Dashboard",
-    "datasetsTitle": "Available Datasets",
-    "datasetsDescription": "Anonymized datasets available for research purposes.",
-    "table": {
-      "name": "Name",
-      "dataType": "Data Type",
-      "accessLevel": "Access Level",
-      "action": "Action",
-      "title": "Title",
-      "progress": "Progress",
-      "collaborators": "Collaborators",
-      "status": "Status"
-    },
-    "requestAccessButton": "Request Access",
-    "noDatasets": "No datasets are currently available.",
-    "projectsTitle": "Ongoing Projects",
-    "projectsDescription": "Your active research projects on the platform.",
-    "viewProjectButton": "View Project",
-    "noProjects": "You are not involved in any ongoing projects.",
-    "contributionsTitle": "Contributions to Knowledge Hub",
-    "contributionsDescription": "Your submitted articles and research papers.",
-    "viewButton": "View",
-    "noContributions": "You have not submitted any contributions yet.",
-    "chart": {
-      "count": "Count",
-      "published": "Published",
-      "pending": "Pending Review",
-      "draft": "Draft"
-    },
-    "noData": "No dashboard data available."
-  },
-  "WasteManagementDashboard": {
-    "title": "Waste Management Dashboard",
-    "wasteStreamsTitle": "Incoming Waste Streams",
-    "from": "from",
-    "acceptButton": "Accept",
-    "noWasteStreams": "No new incoming waste streams.",
-    "compostBatchesTitle": "Compost Batches",
-    "batch": "Batch",
-    "estReady": "Est. Ready",
-    "noCompostBatches": "No active compost batches.",
-    "inventoryTitle": "Finished Product Inventory",
-    "inStock": "in stock",
-    "noFinishedProducts": "No finished products in stock.",
-    "sellButton": "Sell on Marketplace"
-  },
-  "FeedItemCard": {
-    "signInToLikeToast": "You must be signed in to like a post.",
-    "repostPlaceholderToast": "Repost feature coming soon!",
-    "signInToVoteToast": "You must be signed in to vote.",
-    "voteSuccessToast": "Your vote has been counted!",
-    "voteErrorToast": "Could not save vote.",
-    "editPost": "Edit Post",
-    "deletePost": "Delete Post",
-    "like": "Like",
-    "comment": "Comment",
-    "repost": "Repost",
-    "likes": "{count, plural, =0 {likes} =1 {like} other {{count} likes}}",
-    "comments": "{count, plural, =0 {comments} =1 {comment} other {{count} comments}}",
-    "loadCommentsErrorToast": "Could not load comments.",
-    "noComments": "Be the first to comment!",
-    "loadingComments": "Loading comments...",
-    "loadMoreComments": "Load more comments",
-    "writeCommentPlaceholder": "Add a comment...",
-    "postButton": "Post",
-    "votes": "{count, plural, =0 {votes} =1 {vote} other {{count} votes}}"
-  },
-  "CreatePostModal": {
-    "title": "Create a new post",
-    "description": "Share an update, ask a question, or start a conversation with the community.",
-    "yourName": "Your Name",
-    "shareUpdate": "Share an update",
-    "placeholder": "What's on your mind?",
-    "selectedFile": "Selected file:",
-    "pollOptionsLabel": "Poll Options",
-    "pollOptionPlaceholder": "Option {index}",
-    "addOptionButton": "Add Option",
-    "pollNote": "A maximum of {maxOptions} options are allowed.",
-    "photoVideo": "Photo/Video",
-    "agriEvent": "Agri-Event",
-    "shareDocumentButton": "Share Document",
-    "createPollButton": "Create Poll",
-    "postButton": "Post",
-    "pollOptionsError": "A poll must have at least 2 non-empty options.",
-    "emptyPostError": "Your post cannot be empty."
-  },
-  "formErrors": {
-    "createMarketplaceCoupon": {
-      "code": {
-        "min": "Code must be at least 4 characters.",
-        "max": "Code must be no more than 20 characters.",
-        "regex": "Code must be alphanumeric."
-      },
-      "discountType": {
-        "required": "Please select a discount type."
-      },
-      "discountValue": {
-        "invalid": "Discount value must be a number.",
-        "positive": "Discount value must be positive.",
-        "percentageMax": "Percentage discount cannot exceed 100."
-      },
-      "usageLimit": {
-        "positive": "Usage limit must be a positive integer."
-      }
-    }
-  },
-  "CropRotationSuggester": {
-    "title": "AI Crop Rotation Suggester",
-    "description": "Get AI-powered suggestions for your next crop to improve soil health and break pest cycles.",
-    "buttonText": "Get Rotation Suggestion",
-    "loadingText": "Analyzing field history...",
-    "error": "Could not get a suggestion at this time. Please try again.",
-    "noSuggestions": "The AI could not generate a specific suggestion based on the history provided.",
-    "regenerateButton": "Regenerate Suggestion"
-  },
-  "sustainabilityPage": {
-    "title": "Sustainability Dashboard",
-    "description": "Track and improve your farm's environmental impact.",
-    "carbonFootprint": "Carbon Footprint",
-    "waterEfficiency": "Water Efficiency",
-    "biodiversityScore": "Biodiversity Score",
-    "practicesTitle": "Logged Sustainable Practices",
-    "practicesTable": {
-      "practice": "Practice",
-      "lastLogged": "Last Logged"
-    },
-    "certificationsTitle": "Your Certifications",
-    "certificationsTable": {
-      "certification": "Certification",
-      "status": "Status",
-      "expiry": "Expiry"
-    },
-    "auth": {
-      "title": "Please Sign In",
-      "description": "You need to be logged in to view your sustainability dashboard.",
-      "button": "Sign In"
-    },
-    "noData": {
-      "title": "No Data Yet",
-      "description": "Start logging your farm activities to see your sustainability metrics here."
-    },
-    "metricCard": {
-      "trendText": "from last month"
-    }
-  },
-  "talentExchangePage": {
-    "title": "Talent Exchange",
-    "description": "Find skilled professionals or offer your agricultural expertise.",
-    "listServiceButton": "List Your Service",
-    "searchPlaceholder": "Search for services (e.g., agronomist, drone pilot)...",
-    "locationPlaceholder": "Filter by location...",
-    "categoryPlaceholder": "Filter by service category",
-    "allCategories": "All Service Categories",
-    "noResultsTitle": "No Services Found",
-    "noResultsDescription": "Try adjusting your search filters to find the talent you need.",
-    "toast": {
-      "error": {
-        "title": "Search Error",
-        "description": "Could not retrieve services at this time. Please try again."
-      }
-    }
-  },
-  "admin": {
-    "layout": {
-      "title": "Admin Panel",
-      "description": "This is a restricted area.",
-      "contentManagement": "Content Management",
-      "reports": "Reports & Audits"
-    },
-    "dashboard": {
-      "title": "Admin Dashboard",
-      "description": "Welcome to the DamDoh administrative area.",
-      "content": "Use the navigation on the left to manage platform content, run reports, and perform other administrative tasks.",
-      "contentManagementButton": "Manage Content"
-    },
-    "contentManagement": {
-      "allArticles": {
-        "title": "All Articles",
-        "description": "View, edit, and manage all knowledge hub articles and blog posts.",
-        "refreshButton": "Refresh"
-      },
-      "table": {
-        "title": "Title",
-        "category": "Category",
-        "status": "Status",
-        "created": "Created",
-        "actions": "Actions",
-        "noArticles": "No articles have been created yet."
-      },
-      "createArticle": {
-        "title": "Create New Article",
-        "description": "Publish a new blog post or knowledge article.",
-        "englishContent": "English Content",
-        "khmerContent": "Khmer Content",
-        "titleEnLabel": "Title (English)",
-        "excerptEnLabel": "Excerpt (English)",
-        "contentEnLabel": "Content (English, Markdown)",
-        "titleKmLabel": "Title (Khmer)",
-        "excerptKmLabel": "Excerpt (Khmer)",
-        "contentKmLabel": "Content (Khmer, Markdown)",
-        "metadataTitle": "Metadata",
-        "categoryLabel": "Category",
-        "categoryPlaceholder": "e.g., Blog, Industry News, KNF",
-        "authorLabel": "Author",
-        "authorPlaceholder": "e.g., DamDoh Team",
-        "statusLabel": "Status",
-        "tagsLabel": "Tags (comma-separated)",
-        "imageUrlLabel": "Image URL",
-        "imageUrlPlaceholder": "https://placehold.co/600x400.png",
-        "aiHintLabel": "AI Hint for Image",
-        "aiHintPlaceholder": "e.g., coffee beans",
-        "publishButton": "Publish Article",
-        "publishingButton": "Publishing..."
-      },
-      "toast": {
-        "loadErrorTitle": "Error",
-        "loadErrorDescription": "Could not load articles.",
-        "createSuccessTitle": "Article Created!",
-        "createSuccessDescription": "The new article has been published.",
-        "createErrorTitle": "Creation Failed"
-      }
-    },
-    "reports": {
-      "generate": {
-        "title": "Generate Regulatory Report",
-        "description": "Generate on-demand reports for compliance and auditing purposes.",
-        "reportTypeLabel": "Report Type",
-        "reportTypeVti": "VTI Events Summary",
-        "targetUserLabel": "Target User",
-        "userSearchPlaceholder": "Search user by name or email",
-        "dateRangeLabel": "Date Range",
-        "datePlaceholder": "Pick a date range",
-        "submitButton": "Generate Report"
-      },
-      "list": {
-        "title": "Generated Reports",
-        "description": "View and download previously generated reports.",
-        "table": {
-          "reportType": "Report Type",
-          "generatedFor": "Generated For",
-          "date": "Date",
-          "status": "Status",
-          "actions": "Actions"
-        },
-        "viewButton": "View/Download",
-        "noReports": "No reports have been generated yet."
-      },
-      "toast": {
-        "loadErrorTitle": "Error",
-        "formIncompleteTitle": "Incomplete Form",
-        "formIncompleteDescription": "Please select a report type, user, and date range.",
-        "generateSuccessTitle": "Report Generation Started",
-        "generateSuccessDescription": "The report is being generated and will appear in the list below shortly.",
-        "generateErrorTitle": "Generation Failed"
-      }
-    }
-  },
-  "MobileHomepage": {
-    "welcome": {
-        "morning": "Good Morning, {name}",
-        "afternoon": "Good Afternoon, {name}",
-        "evening": "Good Evening, {name}"
-    },
-    "discoverTitle": "Discover",
-    "seeAllButton": "See All",
-    "noRecommendations": "No recommendations available right now.",
-    "communityFeedTitle": "Community Feed",
-    "communityFeedDescription": "Catch up with the latest posts and discussions from your network.",
-    "goToFeedButton": "Go to Feed"
+    "conclusion": "To resolve a complaint or receive further information, please {contactLink}."
   },
   "blogPage": {
     "title": "DamDoh Blog & News",
     "description": "Insights, stories, and updates from the agricultural world.",
-    "meta": "By {author} on {date}",
-    "readMore": "Read More",
-    "noPosts": {
-        "title": "No Posts Yet",
-        "description": "Check back soon for articles on sustainable farming, market trends, and community stories."
-    },
     "error": {
-        "title": "Error Loading Posts",
-        "description": "Could not fetch the latest articles. Please try again later."
+      "title": "Error Loading Posts",
+      "description": "Could not fetch the latest articles. Please try again later."
+    },
+    "noPosts": {
+      "title": "No Posts Yet",
+      "description": "Check back soon for articles on sustainable farming, market trends, and community stories."
     }
   },
   "Blog": {
@@ -1730,69 +934,20 @@
     "readMore": "Read More",
     "originalContentTitle": "Original Content in {lang}",
     "notFound": {
-        "title": "Post Not Found",
-        "description": "The blog post you are looking for does not exist or has been moved.",
-        "backButton": "Go to Blog"
+      "title": "Post Not Found",
+      "description": "The blog post you are looking for does not exist or has been moved.",
+      "backButton": "Go to Blog"
     },
     "errors": {
-        "title": "Error",
-        "load": "Could not load the post."
+      "title": "Error",
+      "load": "Could not load the post."
     }
   },
   "editProfilePage": {
-    "title": "Edit Profile for {name}",
-    "description": "Keep your profile up-to-date to make the best connections.",
-    "nameLabel": "Display Name",
-    "namePlaceholder": "e.g., Green Valley Farms",
-    "roleLabel": "Primary Role",
-    "rolePlaceholder": "Select your main role",
-    "summaryLabel": "Profile Summary / Headline",
-    "summaryPlaceholder": "e.g., Certified organic coffee grower specializing in export.",
-    "summaryDescription": "A short, one-line summary for your profile card.",
-    "generateWithAI": "Generate with AI",
-    "bioLabel": "About / Bio",
-    "bioPlaceholder": "Tell the community about yourself, your business, your mission...",
-    "bioDescription": "A detailed description of your background, expertise, and what you do.",
-    "profileTab": "Profile",
-    "detailsTab": "Details",
-    "contactTab": "Contact",
-    "locationLabel": "Location",
-    "locationPlaceholder": "e.g., Rift Valley, Kenya",
-    "interestsLabel": "Areas of Interest",
-    "interestsPlaceholder": "e.g., Sustainable Agriculture, Export Markets, Agri-Tech",
-    "commaSeparated": "Separate multiple items with a comma.",
-    "needsLabel": "I am looking for / offering...",
-    "needsPlaceholder": "e.g., Fair Trade Buyers, Logistics Partners, Soil Testing Services",
-    "emailLabel": "Account Email",
-    "emailDescription": "Your login email cannot be changed.",
-    "phoneLabel": "Public Phone Number",
-    "websiteLabel": "Website",
-    "saveButton": "Save Changes",
-    "savingButton": "Saving...",
-    "cancelButton": "Cancel",
-    "toast": {
-      "profileNotFound": "The profile you are trying to edit could not be found.",
-      "fetchError": "Could not load your profile data. Please try again.",
-      "notAuthenticatedTitle": "Not Logged In",
-      "notAuthenticatedDescription": "You must be signed in to edit a profile.",
-      "unauthorizedTitle": "Unauthorized",
-      "unauthorizedDescription": "You do not have permission to edit this profile.",
-      "missingInfoTitle": "Missing Information",
-      "missingInfoDescription": "Please fill out your role, location, interests, and needs to generate a summary.",
-      "summaryGeneratedTitle": "Summary Generated!",
-      "summaryGeneratedDescription": "The AI has suggested a new profile summary for you.",
-      "generationFailedTitle": "Generation Failed",
-      "generationFailedDescription": "Could not generate an AI summary. Please try again.",
-      "missingIdError": "Profile ID is missing. Cannot save changes.",
-      "profileUpdatedTitle": "Profile Updated",
-      "profileUpdatedDescription": "Your changes have been saved successfully.",
-      "updateFailedTitle": "Update Failed",
-      "updateFailedDescription": "Your profile could not be saved. Please try again."
-    },
     "notFound": {
-        "title": "Profile Not Found",
-        "description": "Could not load the profile for editing.",
-        "backButton": "Go Back"
+      "title": "Profile Not Found",
+      "description": "Could not load the profile for editing.",
+      "backButton": "Go Back"
     }
   },
   "myNetworkPage": {
@@ -1828,43 +983,139 @@
     "inviteErrorTitle": "Failed to Send Invite"
   },
   "ProfilePage": {
-    "editProfile": "Edit Profile",
-    "showUniversalIdButton": "Show Universal ID",
-    "universalIdModalTitle": "Your Universal ID",
-    "universalIdModalDescription": "Other users can scan this code to quickly view your public profile.",
-    "connect": "Connect",
-    "message": "Message",
-    "aboutTitle": "About {displayName}",
-    "interestsTitle": "Areas of Interest",
-    "needsTitle": "Needs & Offerings",
-    "contactTitle": "Contact Information",
-    "tabs": {
-        "overview": "Overview",
-        "activity": "Activity"
-    },
-    "recentActivityTitle": "Recent Activity",
-    "noRecentActivity": "This user has no public activity yet.",
+    "backToNetwork": "Back to Network",
     "engagementStats": "Engagement Stats",
-    "profileViews": "Profile Views",
-    "postLikes": "Post Likes",
-    "postComments": "Post Comments",
     "invite": {
-      "title": "Expand Your Network",
+      "button": "Invite a Colleague",
       "description": "Know someone who should be on DamDoh?",
       "explanation": "Send them an invitation to join the platform.",
-      "button": "Invite a Colleague"
+      "title": "Expand Your Network"
     },
-    "invitePrompt": "Enter the email address of the person you want to invite:",
-    "inviteSuccessTitle": "Invite Sent!",
-    "inviteSuccessDescription": "An invitation has been sent to {email}.",
     "inviteErrorTitle": "Failed to Send Invite",
-    "notFoundTitle": "Profile Not Found",
+    "invitePrompt": "Enter the email address of the person you want to invite:",
+    "inviteSuccessDescription": "An invitation has been sent to {email}.",
+    "inviteSuccessTitle": "Invite Sent!",
     "notFoundDescription": "The user profile you are looking for could not be found.",
-    "backToNetwork": "Back to Network"
+    "notFoundTitle": "Profile Not Found",
+    "postComments": "Post Comments",
+    "postLikes": "Post Likes",
+    "profileViews": "Profile Views",
+    "tabs": {
+      "activity": "Activity",
+      "overview": "Overview"
+    }
   },
   "NotFoundPage": {
     "title": "404 - Page Not Found",
     "description": "We're sorry, but the page you are looking for does not exist or has been moved.",
     "goHomeButton": "Go to Homepage"
+  },
+  "CreatePostModal": {
+    "addOptionButton": "Add Option",
+    "agriEvent": "Agri-Event",
+    "createPollButton": "Create Poll",
+    "description": "Share an update, ask a question, or start a conversation with the community.",
+    "emptyPostError": "Your post cannot be empty.",
+    "photoVideo": "Photo/Video",
+    "placeholder": "What's on your mind?",
+    "pollNote": "A maximum of {maxOptions} options are allowed.",
+    "pollOptionPlaceholder": "Option {index}",
+    "pollOptionsError": "A poll must have at least 2 non-empty options.",
+    "pollOptionsLabel": "Poll Options",
+    "postButton": "Post",
+    "selectedFile": "Selected file:",
+    "shareDocumentButton": "Share Document",
+    "shareUpdate": "Share an update",
+    "title": "Create a new post",
+    "yourName": "Your Name"
+  },
+  "DashboardLeftSidebar": {
+    "postEngagements": "Post Engagements",
+    "pro": {
+      "try": "Try Pro for Free",
+      "unlock": "Unlock advanced analytics and insights."
+    },
+    "profileViewers": "Profile Viewers",
+    "recent": {
+      "agriEvents": "Agri-Events",
+      "communityGroups": "Community Groups",
+      "industryNews": "Industry News",
+      "myPinBoard": "My Pin-Board",
+      "mySupplyChainNetwork": "My Network",
+      "title": "Recent"
+    },
+    "viewProfileLink": "View My Profile"
+  },
+  "DashboardRightSidebar": {
+    "ad": "Ad",
+    "adButton": "Learn More",
+    "adDescription": "Get deeper market insights with DamDoh Trends.",
+    "adTitle": "Unlock Market Trends",
+    "follow": "Follow",
+    "following": "Following",
+    "infoTooltip": "These suggestions are based on your profile and activity.",
+    "loadError": "Could not load suggestions.",
+    "managePromotionsButton": "Manage Coupons",
+    "networkTitle": "Who to Follow",
+    "noSuggestions": "No new suggestions right now.",
+    "promotionsDescription": "Create coupons to attract more buyers.",
+    "promotionsTitle": "Promotions & Marketing",
+    "refreshSuggestions": "Refresh Suggestions",
+    "signInPrompt": "Sign in to see personalized recommendations."
+  },
+  "FeedItemCard": {
+    "comment": "Comment",
+    "comments": "{count, plural, =0 {comments} =1 {comment} other {{count} comments}}",
+    "deletePost": "Delete Post",
+    "editPost": "Edit Post",
+    "like": "Like",
+    "likes": "{count, plural, =0 {likes} =1 {like} other {{count} likes}}",
+    "loadCommentsErrorToast": "Could not load comments.",
+    "loadMoreComments": "Load more comments",
+    "loadingComments": "Loading comments...",
+    "noComments": "Be the first to comment!",
+    "postButton": "Post",
+    "repost": "Repost",
+    "repostPlaceholderToast": "Repost feature coming soon!",
+    "signInToLikeToast": "You must be signed in to like a post.",
+    "signInToVoteToast": "You must be signed in to vote.",
+    "voteErrorToast": "Could not save vote.",
+    "voteSuccessToast": "Your vote has been counted!",
+    "votes": "{count, plural, =0 {votes} =1 {vote} other {{count} votes}}",
+    "writeCommentPlaceholder": "Add a comment..."
+  },
+  "MainDashboard": {
+    "commentError": {
+      "auth": "You must be signed in to comment.",
+      "fail": "Failed to post comment."
+    },
+    "commentSuccess": "Comment posted!",
+    "deleteError": {
+      "auth": "You must be signed in to delete a post.",
+      "fail": "Failed to delete post."
+    },
+    "deleteSuccess": {
+      "description": "Your post has been removed.",
+      "title": "Post Deleted"
+    },
+    "feedError": {
+      "description": "Could not load the latest posts from your network.",
+      "title": "Feed Error"
+    },
+    "likeError": {
+      "auth": "You must be signed in to like a post.",
+      "fail": "Could not like post."
+    },
+    "noActivity": "No activity in your network yet. Start by connecting with others!",
+    "postError": {
+      "auth": "You must be signed in to create a post.",
+      "fail": "Failed to create post."
+    },
+    "postSuccess": {
+      "description": "Your post is now live on the feed.",
+      "title": "Post Created!"
+    },
+    "uploadComplete": "Upload complete!",
+    "uploadingMedia": "Uploading media..."
   }
 }
