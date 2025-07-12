@@ -13,6 +13,57 @@
     "back": "Back",
     "submit": "Submit"
   },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "Farmer",
+      "AgriculturalCooperative": "Agricultural Cooperative",
+      "FieldAgentAgronomistDamDohInternal": "Field Agent/Agronomist (DamDoh Internal)",
+      "OperationsLogisticsTeamDamDohInternal": "Operations/Logistics Team (DamDoh Internal)",
+      "QualityAssuranceTeamDamDohInternal": "Quality Assurance Team (DamDoh Internal)",
+      "ProcessingPackagingUnit": "Processing & Packaging Unit",
+      "BuyerRestaurantSupermarketExporter": "Buyer (Restaurant, Supermarket, Exporter)",
+      "InputSupplierSeedFertilizerPesticide": "Input Supplier (Seed, Fertilizer, Pesticide)",
+      "EquipmentSupplierSalesofMachineryIoT": "Equipment Supplier (Sales of Machinery/IoT)",
+      "FinancialInstitutionMicrofinanceLoans": "Financial Institution (Micro-finance/Loans)",
+      "GovernmentRegulatorAuditor": "Government Regulator/Auditor",
+      "CertificationBodyOrganicFairTradeetc": "Certification Body (Organic, Fair Trade etc.)",
+      "Consumer": "Consumer",
+      "ResearcherAcademic": "Researcher/Academic",
+      "LogisticsPartnerThirdPartyTransporter": "Logistics Partner (Third-Party Transporter)",
+      "StorageWarehouseFacility": "Storage/Warehouse Facility",
+      "AgronomyExpertConsultantExternal": "Agronomy Expert/Consultant (External)",
+      "AgroTourismOperator": "Agro-Tourism Operator",
+      "EnergySolutionsProviderSolarBiogas": "Energy Solutions Provider (Solar, Biogas)",
+      "AgroExportFacilitatorCustomsBroker": "Agro-Export Facilitator/Customs Broker",
+      "AgriTechInnovatorDeveloper": "Agri-Tech Innovator/Developer",
+      "WasteManagementCompostFacility": "Waste Management & Compost Facility",
+      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Impact Investor, Individual)",
+      "InsuranceProvider": "Insurance Provider",
+      "PackagingSupplier": "Packaging Supplier"
+    },
+    "listingTypes": {
+      "All": "All Types",
+      "Product": "Product",
+      "Service": "Service"
+    },
+    "agriEventTypes": {
+      "All": "All Types",
+      "Conference": "Conference",
+      "Webinar": "Webinar",
+      "Workshop": "Workshop",
+      "TradeShow": "Trade Show",
+      "FieldDay": "Field Day",
+      "NetworkingEvent": "Networking Event",
+      "OnlineCourseLaunch": "Online Course Launch",
+      "PolicyBriefing": "Policy Briefing"
+    },
+    "insuranceProductTypes": {
+      "Crop": "Crop Insurance",
+      "Livestock": "Livestock Insurance",
+      "Asset": "Asset Insurance",
+      "Weather": "Weather-based (Parametric)"
+    }
+  },
   "LandingPage": {
     "hero": {
       "title": "Empowering Agriculture from Soil to Sale on {appName}",
@@ -56,7 +107,7 @@
         "title": "Experts & Service Providers",
         "description": "Offer your specialized skills and services to a wide agricultural audience seeking your expertise."
       },
-      "fis": {
+       "fis": {
         "title": "Financial Institutions",
         "description": "Provide targeted loans, grants, and insurance products to a verified network of agricultural businesses."
       },
@@ -132,8 +183,7 @@
         "tooManyRequests": "Too many requests. Please try again later.",
         "default": "Failed to send reset email",
         "missingCode": "Invalid password reset link. Please request a new one.",
-        "missingCodeTitle": "Invalid Link",
-        "missingCodeDescription": "The password reset link is missing or invalid. Please return to the 'Forgot Password' page to request a new one."
+        "missingCodeTitle": "Invalid Link"
       }
     },
     "resetPassword": {
@@ -152,7 +202,7 @@
         "default": "Failed to reset password"
       }
     },
-    "errors": {
+     "errors": {
       "emailInUse": "This email is already in use.",
       "invalidEmail": "Invalid email address.",
       "weakPassword": "Password must be at least 6 characters.",
@@ -431,9 +481,7 @@
       "point5": "A commitment to sustainability and social impact."
     },
     "currentOpenings": {
-      "title": "Current Openings"
-    },
-    "openings": {
+      "title": "Current Openings",
       "job1": {
         "title": "Senior Full-Stack Engineer (Next.js, Firebase)",
         "location": "Remote",
@@ -759,57 +807,6 @@
     "accessDeniedTitle": "Access Denied",
     "accessDeniedDescription": "You do not have the required permissions to access these tools."
   },
-  "constants": {
-    "stakeholderRoles": {
-      "Farmer": "Farmer",
-      "AgriculturalCooperative": "Agricultural Cooperative",
-      "FieldAgent/Agronomist(DamDohInternal)": "Field Agent/Agronomist (DamDoh Internal)",
-      "Operations/LogisticsTeam(DamDohInternal)": "Operations/Logistics Team (DamDoh Internal)",
-      "QualityAssuranceTeam(DamDohInternal)": "Quality Assurance Team (DamDoh Internal)",
-      "Processing&PackagingUnit": "Processing & Packaging Unit",
-      "Buyer(Restaurant,Supermarket,Exporter)": "Buyer (Restaurant, Supermarket, Exporter)",
-      "InputSupplier(Seed,Fertilizer,Pesticide)": "Input Supplier (Seed, Fertilizer, Pesticide)",
-      "EquipmentSupplier(SalesofMachinery/IoT)": "Equipment Supplier (Sales of Machinery/IoT)",
-      "FinancialInstitution(Micro-finance/Loans)": "Financial Institution (Micro-finance/Loans)",
-      "GovernmentRegulator/Auditor": "Government Regulator/Auditor",
-      "CertificationBody(Organic,FairTradeetc.)": "Certification Body (Organic, Fair Trade etc.)",
-      "Consumer": "Consumer",
-      "Researcher/Academic": "Researcher/Academic",
-      "LogisticsPartner(Third-PartyTransporter)": "Logistics Partner (Third-Party Transporter)",
-      "Storage/WarehouseFacility": "Storage/Warehouse Facility",
-      "AgronomyExpert/Consultant(External)": "Agronomy Expert/Consultant (External)",
-      "Agro-TourismOperator": "Agro-Tourism Operator",
-      "EnergySolutionsProvider(Solar,Biogas)": "Energy Solutions Provider (Solar, Biogas)",
-      "Agro-ExportFacilitator/CustomsBroker": "Agro-Export Facilitator/Customs Broker",
-      "Agri-TechInnovator/Developer": "Agri-Tech Innovator/Developer",
-      "WasteManagement&CompostFacility": "Waste Management & Compost Facility",
-      "Crowdfunder(ImpactInvestor,Individual)": "Crowdfunder (Impact Investor, Individual)",
-      "InsuranceProvider": "Insurance Provider",
-      "PackagingSupplier": "Packaging Supplier"
-    },
-    "listingTypes": {
-      "All": "All Types",
-      "Product": "Product",
-      "Service": "Service"
-    },
-    "agriEventTypes": {
-      "All": "All Types",
-      "Conference": "Conference",
-      "Webinar": "Webinar",
-      "Workshop": "Workshop",
-      "TradeShow": "Trade Show",
-      "FieldDay": "Field Day",
-      "NetworkingEvent": "Networking Event",
-      "OnlineCourseLaunch": "Online Course Launch",
-      "PolicyBriefing": "Policy Briefing"
-    },
-    "insuranceProductTypes": {
-      "Crop": "Crop Insurance",
-      "Livestock": "Livestock Insurance",
-      "Asset": "Asset Insurance",
-      "Weather": "Weather-based (Parametric)"
-    }
-  },
   "knowledgeHub": {
     "title": "Knowledge Hub",
     "description": "Your center for learning, growth, and agricultural expertise.",
@@ -1011,7 +1008,42 @@
       "successDescription": "'{name}' has been successfully created and is now active.",
       "errorTitle": "Creation Failed"
     }
+  },
+  "traceabilityPage": {
+    "title": "Product Traceability",
+    "description": "Track the journey of your food from farm to fork with our Verifiable Traceability ID (VTI) system.",
+    "inputPlaceholder": "Enter VTI Batch ID...",
+    "trackButton": "Track",
+    "vtiDescription": "The VTI is a unique identifier found on product packaging.",
+    "recentTitle": "Recently Tracked Batches",
+    "recentDescription": "Explore some of the latest products with public traceability reports.",
+    "producerLabel": "Producer",
+    "harvestDateLabel": "Harvest Date",
+    "viewReportButton": "View Report",
+    "noRecentBatches": "No recently tracked batches with public data.",
+    "detailPage": {
+      "invalidIdError": "Invalid Batch ID provided.",
+      "loadError": "Failed to load traceability history.",
+      "backLink": "Back to Traceability Hub",
+      "notFoundTitle": "Batch Not Found",
+      "notFoundDescription": "The VTI you entered does not match any batch in our records.",
+      "traceableProduct": "Traceable Product",
+      "batchIdLabel": "Batch ID",
+      "producerLabel": "Producer",
+      "harvestDateLabel": "Harvest Date",
+      "yieldLabel": "Initial Yield",
+      "qualityLabel": "Initial Quality",
+      "notSpecified": "Not Specified",
+      "journeyTitle": "The Journey of this Batch",
+      "journeyDescription": "A complete, time-stamped log of every event in this product's lifecycle.",
+      "noEventDetails": "No additional details for this event.",
+      "observationType": "Observation Type",
+      "details": "Details",
+      "aiDiagnosis": "AI Diagnosis",
+      "noEventsFound": "No traceability events have been logged for this batch yet.",
+      "geoLocationLabel": "Geo-location",
+      "sustainablyGrownTitle": "Sustainably Grown",
+      "sustainablyGrownDescription": "This product's traceability log indicates the use of sustainable and/or organic farming practices."
+    }
   }
 }
-
-    

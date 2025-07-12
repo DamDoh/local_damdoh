@@ -138,7 +138,34 @@
   },
   "LanguageSwitcher": {
     "toggle": "ផ្លាស់ប្តូរភាសា"
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "កសិករ",
+      "AgriculturalCooperative": "សហគមន៍កសិកម្ម",
+      "FieldAgentAgronomistDamDohInternal": "ភ្នាក់ងារ/អ្នកជំនាញកសិកម្ម (ផ្ទៃក្នុង DamDoh)",
+      "OperationsLogisticsTeamDamDohInternal": "ក្រុមប្រតិបត្តិការ/ភស្តុភារ (ផ្ទៃក្នុង DamDoh)",
+      "QualityAssuranceTeamDamDohInternal": "ក្រុមធានាគុណភាព (ផ្ទៃក្នុង DamDoh)",
+      "ProcessingPackagingUnit": "หน่วยประมวลผลและบรรจุภัณฑ์",
+      "BuyerRestaurantSupermarketExporter": "អ្នកទិញ (ភោជនីយដ្ឋាន, ផ្សារទំនើប, អ្នកនាំចេញ)",
+      "InputSupplierSeedFertilizerPesticide": "អ្នកផ្គត់ផ្គង់ធាតុចូល (គ្រាប់ពូជ, ជី, ថ្នាំសំលាប់សត្វល្អិត)",
+      "EquipmentSupplierSalesofMachineryIoT": "អ្នកផ្គត់ផ្គង់ឧបករណ៍ (លក់គ្រឿងចក្រ/IoT)",
+      "FinancialInstitutionMicrofinanceLoans": "គ្រឹះស្ថានហិរញ្ញវត្ថុ (មីក្រូហិរញ្ញវត្ថុ/កម្ចី)",
+      "GovernmentRegulatorAuditor": "និយតករ/សវនកររដ្ឋាភិបាល",
+      "CertificationBodyOrganicFairTradeetc": "ស្ថាប័នបញ្ជាក់ (សរីរាង្គ, ពាណិជ្ជកម្មដោយត្រឹមត្រូវ ។ល។)",
+      "Consumer": "អ្នកប្រើប្រាស់",
+      "ResearcherAcademic": "អ្នកស្រាវជ្រាវ/អ្នកសិក្សា",
+      "LogisticsPartnerThirdPartyTransporter": "ដៃគូភស្តុភារ (អ្នកដឹកជញ្ជូនភាគីទីបី)",
+      "StorageWarehouseFacility": "កន្លែងស្តុក/ឃ្លាំង",
+      "AgronomyExpertConsultantExternal": "អ្នកជំនាញ/ទីប្រឹក្សាកសិកម្ម (ខាងក្រៅ)",
+      "AgroTourismOperator": "ប្រតិបត្តិករទេសចរណ៍កសិកម្ម",
+      "EnergySolutionsProviderSolarBiogas": "អ្នកផ្តល់ដំណោះស្រាយថាមពល (ថាមពលព្រះអាទិត្យ, ជីវឧស្ម័ន)",
+      "AgroExportFacilitatorCustomsBroker": "អ្នកសម្របសម្រួលការនាំចេញកសិផល/ឈ្មួញកណ្តាលគយ",
+      "AgriTechInnovatorDeveloper": "អ្នកបង្កើតថ្មី/អ្នកអភិវឌ្ឍន៍បច្ចេកវិទ្យាកសិកម្ម",
+      "WasteManagementCompostFacility": "កន្លែងគ្រប់គ្រងសំរាម & កំប៉ុស្ត",
+      "CrowdfunderImpactInvestorIndividual": "អ្នកផ្តល់មូលនិធិសហគមន៍ (អ្នកវិនិយោគផលប៉ះពាល់, បុគ្គល)",
+      "InsuranceProvider": "អ្នកផ្តល់សេវាធានារ៉ាប់រង",
+      "PackagingSupplier": "អ្នកផ្គត់ផ្គង់ការវេចខ្ចប់"
+    }
   }
 }
-
-    

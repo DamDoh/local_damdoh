@@ -51,30 +51,30 @@ const functions = getFunctions(firebaseApp);
 const db = getFirestore(firebaseApp);
 
 const HubComponentMap: { [key: string]: React.ComponentType } = {
-    'Agricultural Cooperative': CooperativeDashboard,
-    'Agro-Export Facilitator/Customs Broker': AgroExportDashboard,
-    'Agri-Tech Innovator/Developer': AgriTechInnovatorDashboard,
-    'Agronomy Expert/Consultant (External)': AgronomistDashboard,
-    'Agro-Tourism Operator': AgroTourismDashboard,
-    'Buyer (Restaurant, Supermarket, Exporter)': BuyerDashboard,
-    'Certification Body (Organic, Fair Trade etc.)': CertificationBodyDashboard,
-    'Crowdfunder (Impact Investor, Individual)': CrowdfunderDashboard,
-    'Energy Solutions Provider (Solar, Biogas)': EnergyProviderDashboard,
-    'Equipment Supplier (Sales of Machinery/IoT)': EquipmentSupplierDashboard,
+    'AgriculturalCooperative': CooperativeDashboard,
+    'AgroExportFacilitatorCustomsBroker': AgroExportDashboard,
+    'AgriTechInnovatorDeveloper': AgriTechInnovatorDashboard,
+    'AgronomyExpertConsultantExternal': AgronomistDashboard,
+    'AgroTourismOperator': AgroTourismDashboard,
+    'BuyerRestaurantSupermarketExporter': BuyerDashboard,
+    'CertificationBodyOrganicFairTradeetc': CertificationBodyDashboard,
+    'CrowdfunderImpactInvestorIndividual': CrowdfunderDashboard,
+    'EnergySolutionsProviderSolarBiogas': EnergyProviderDashboard,
+    'EquipmentSupplierSalesofMachineryIoT': EquipmentSupplierDashboard,
     'Farmer': FarmerDashboard,
-    'Field Agent/Agronomist (DamDoh Internal)': FieldAgentDashboard,
-    'Financial Institution (Micro-finance/Loans)': FiDashboard,
-    'Government Regulator/Auditor': RegulatorDashboard,
-    'Input Supplier (Seed, Fertilizer, Pesticide)': InputSupplierDashboard,
-    'Insurance Provider': InsuranceProviderDashboard,
-    'Logistics Partner (Third-Party Transporter)': LogisticsDashboard,
-    'Packaging Supplier': PackagingSupplierDashboard,
-    'Processing & Packaging Unit': ProcessingUnitDashboard,
-    'Quality Assurance Team (DamDoh Internal)': QaDashboard,
-    'Researcher/Academic': ResearcherDashboard,
-    'Storage/Warehouse Facility': WarehouseDashboard,
-    'Waste Management & Compost Facility': WasteManagementDashboard,
-    'Operations/Logistics Team (DamDoh Internal)': OperationsDashboard,
+    'FieldAgentAgronomistDamDohInternal': FieldAgentDashboard,
+    'FinancialInstitutionMicrofinanceLoans': FiDashboard,
+    'GovernmentRegulatorAuditor': RegulatorDashboard,
+    'InputSupplierSeedFertilizerPesticide': InputSupplierDashboard,
+    'InsuranceProvider': InsuranceProviderDashboard,
+    'LogisticsPartnerThirdPartyTransporter': LogisticsDashboard,
+    'PackagingSupplier': PackagingSupplierDashboard,
+    'ProcessingPackagingUnit': ProcessingUnitDashboard,
+    'QualityAssuranceTeamDamDohInternal': QaDashboard,
+    'ResearcherAcademic': ResearcherDashboard,
+    'StorageWarehouseFacility': WarehouseDashboard,
+    'WasteManagementCompostFacility': WasteManagementDashboard,
+    'OperationsLogisticsTeamDamDohInternal': OperationsDashboard,
 };
 
 function MainContent() {
@@ -265,6 +265,7 @@ export function MainDashboard() {
       return <PageSkeleton />;
   }
 
+  // The MainContent component handles its own internal loading states.
   return (
     <Suspense fallback={<PageSkeleton />}>
       <MainContent />

@@ -138,7 +138,34 @@
   },
   "LanguageSwitcher": {
     "toggle": "Changer de langue"
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "Agriculteur",
+      "AgriculturalCooperative": "Coopérative Agricole",
+      "FieldAgentAgronomistDamDohInternal": "Agent de Terrain/Agronome (Interne DamDoh)",
+      "OperationsLogisticsTeamDamDohInternal": "Équipe Opérations/Logistique (Interne DamDoh)",
+      "QualityAssuranceTeamDamDohInternal": "Équipe d'Assurance Qualité (Interne DamDoh)",
+      "ProcessingPackagingUnit": "Unité de Traitement & Emballage",
+      "BuyerRestaurantSupermarketExporter": "Acheteur (Restaurant, Supermarché, Exportateur)",
+      "InputSupplierSeedFertilizerPesticide": "Fournisseur d'Intrants (Semences, Engrais, Pesticides)",
+      "EquipmentSupplierSalesofMachineryIoT": "Fournisseur d'Équipement (Vente de Machines/IoT)",
+      "FinancialInstitutionMicrofinanceLoans": "Institution Financière (Micro-finance/Prêts)",
+      "GovernmentRegulatorAuditor": "Régulateur/Auditeur Gouvernemental",
+      "CertificationBodyOrganicFairTradeetc": "Organisme de Certification (Bio, Commerce Équitable, etc.)",
+      "Consumer": "Consommateur",
+      "ResearcherAcademic": "Chercheur/Académique",
+      "LogisticsPartnerThirdPartyTransporter": "Partenaire Logistique (Transporteur Tiers)",
+      "StorageWarehouseFacility": "Installation de Stockage/Entrepôt",
+      "AgronomyExpertConsultantExternal": "Expert/Consultant en Agronomie (Externe)",
+      "AgroTourismOperator": "Opérateur d'Agrotourisme",
+      "EnergySolutionsProviderSolarBiogas": "Fournisseur de Solutions Énergétiques (Solaire, Biogaz)",
+      "AgroExportFacilitatorCustomsBroker": "Facilitateur d'Agro-Export/Courtier en Douane",
+      "AgriTechInnovatorDeveloper": "Innovateur/Développeur Agri-Tech",
+      "WasteManagementCompostFacility": "Installation de Gestion des Déchets & Compostage",
+      "CrowdfunderImpactInvestorIndividual": "Financeur Participatif (Investisseur d'Impact, Particulier)",
+      "InsuranceProvider": "Fournisseur d'Assurance",
+      "PackagingSupplier": "Fournisseur d'Emballages"
+    }
   }
 }
-
-    
