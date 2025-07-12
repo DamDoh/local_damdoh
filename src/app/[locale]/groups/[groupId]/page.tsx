@@ -9,7 +9,7 @@ import { ArrowLeft, UserPlus, Users, Lock, LogOut, MessageSquare, PlusCircle, Ch
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import type { ForumGroup, UserProfile, GroupPost } from '@/lib/types';
+import type { ForumGroup, UserProfile, GroupPost, JoinRequest } from '@/lib/types';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -39,6 +39,7 @@ export default function GroupPage() {
     const [isMember, setIsMember] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [isJoining, setIsJoining] = useState(false);
+    const [hasRequested, setHasRequested] = useState(false); // To track join request status
 
     const functions = getFunctions(firebaseApp);
     const getGroupDetails = useMemo(() => httpsCallable(functions, 'getGroupDetails'), [functions]);
@@ -102,11 +103,16 @@ export default function GroupPage() {
                 toast({ title: t('toast.joinSuccess') });
             } else {
                 await requestToJoinGroup({ groupId });
+                setHasRequested(true); // Update state to show request is sent
                 toast({ title: t('toast.requestSuccess') });
             }
             fetchData(); // Refetch all data to update UI
         } catch (error: any) {
             console.error("Error joining/requesting group:", error);
+            // Check for specific error code from backend
+            if (error.code === 'already-exists') {
+                setHasRequested(true);
+            }
             toast({ title: t('toast.joinError'), description: error.message || t('toast.error.description'), variant: "destructive" });
         } finally {
             setIsJoining(false);
@@ -161,6 +167,28 @@ export default function GroupPage() {
     }
 
     const isOwner = user?.uid === group.ownerId;
+    const renderJoinButton = () => {
+        if (!user) {
+            return <Button asChild className="w-full"><Link href="/auth/signin">{t('detail.loginToJoinButton')}</Link></Button>;
+        }
+        if (isMember) {
+            return (
+                <Button onClick={handleLeaveGroup} variant="destructive" className="w-full" disabled={isJoining}>
+                    {isJoining ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <LogOut className="mr-2 h-4 w-4" />}
+                    {isJoining ? t('detail.leavingButton') : t('detail.leaveButton')}
+                </Button>
+            );
+        }
+        if (hasRequested) {
+            return <Button className="w-full" disabled>{t('detail.requestSentButton')}</Button>;
+        }
+        return (
+             <Button onClick={handleJoinAction} className="w-full" disabled={isJoining}>
+                {isJoining ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <UserPlus className="mr-2 h-4 w-4" />}
+                {isJoining ? t('detail.joiningButton') : (group.isPublic ? t('detail.joinButton') : t('detail.requestJoinButton'))}
+            </Button>
+        );
+    }
 
     return (
         <div className="container mx-auto max-w-4xl py-8">
@@ -237,21 +265,8 @@ export default function GroupPage() {
                             <CardTitle className="text-lg">{t('detail.actionsTitle')}</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-2">
-                             {user && (
-                                isMember ? (
-                                    <Button onClick={handleLeaveGroup} variant="destructive" className="w-full" disabled={isJoining}>
-                                        {isJoining ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <LogOut className="mr-2 h-4 w-4" />}
-                                        {isJoining ? t('detail.leavingButton') : t('detail.leaveButton')}
-                                    </Button>
-                                ) : (
-                                    <Button onClick={handleJoinAction} className="w-full" disabled={isJoining}>
-                                        {isJoining ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <UserPlus className="mr-2 h-4 w-4" />}
-                                        {isJoining ? t('detail.joiningButton') : (group.isPublic ? t('detail.joinButton') : t('detail.requestJoinButton'))}
-                                    </Button>
-                                )
-                            )}
-                            {!user && <Button asChild className="w-full"><Link href="/auth/signin">{t('detail.loginToJoinButton')}</Link></Button>}
-                             {isOwner && (
+                            {renderJoinButton()}
+                            {isOwner && (
                                 <Button asChild variant="secondary" className="w-full">
                                     <Link href={`/groups/${groupId}/manage`}>
                                         <Settings className="mr-2 h-4 w-4" />

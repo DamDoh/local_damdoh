@@ -2,7 +2,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import type { UserProfile } from './types';
+import type { UserProfile, JoinRequest } from './types';
 
 const db = admin.firestore();
 
@@ -220,7 +220,7 @@ export const getGroupJoinRequests = functions.https.onCall(async (data, context)
             ...data,
             createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         };
-    });
+    }) as JoinRequest[];
 
     return { requests };
 });

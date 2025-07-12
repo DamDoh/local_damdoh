@@ -128,7 +128,7 @@ export default function GroupPostPage() {
         else setIsLoadingMore(true);
 
         try {
-            const result = await getRepliesForPost({ groupId, postId, lastVisible });
+            const result = await getRepliesForPost({ groupId, postId, lastVisible: isInitialLoad ? null : lastVisible });
             const data = result.data as { replies?: any[], lastVisible?: string | null };
             const backendReplies = data?.replies || [];
             
