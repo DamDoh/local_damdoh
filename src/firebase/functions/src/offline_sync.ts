@@ -4,6 +4,7 @@ import * as admin from "firebase-admin";
 
 const db = admin.firestore();
 
+
 // --- Cross-Cutting Data Synchronization for Offline Use ---
 
 /**
