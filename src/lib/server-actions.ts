@@ -40,11 +40,14 @@ export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
  */
 export async function performSearch(interpretation: Partial<SmartSearchInterpretation>): Promise<any[]> {
   try {
-      const results = await performSearch_internal(interpretation);
-      return results;
+      const performSearchCallable = httpsCallable(functions, 'performSearch');
+      const result = await performSearchCallable(interpretation);
+      return result.data as any[];
   } catch (error) {
       console.error("Error performing search from server action:", error);
-      throw error;
+      // In a real app, you might want to re-throw a more user-friendly error
+      // or handle it gracefully. For now, we'll return an empty array.
+      return [];
   }
 }
 

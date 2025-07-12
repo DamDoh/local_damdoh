@@ -1,13 +1,18 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import * as geofire from "geofire-common";
+import { geohashForLocation } from "geofire-common";
 
 const db = admin.firestore();
 
-/**
- * Interface for the standardized search index document.
- */
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+  }
+  return context.auth.uid;
+};
+
+
 interface SearchableItem {
   itemId: string;
   itemCollection: string;
@@ -19,13 +24,13 @@ interface SearchableItem {
   tags: string[];
   searchable_terms: string[];
   // Location and Geohash for geospatial queries
-  location?: string | null;
+  location?: { address?: string, lat?: number, lng?: number } | null;
   geohash?: string | null;
   // Fields for Marketplace
   price?: number | null;
   currency?: string | null;
   perUnit?: string | null;
-  listingType?: "service" | "product" | null;
+  listingType?: "Service" | "Product" | null;
   // Fields for User Profiles
   primaryRole?: string | null;
 }
@@ -48,6 +53,7 @@ export const onSourceDocumentWriteIndex = functions.firestore
       "agri_events",
       "knowledge_articles",
       "groups",
+      "vti_registry",
     ];
 
     if (!INDEXABLE_COLLECTIONS.includes(collectionId)) {
@@ -64,7 +70,7 @@ export const onSourceDocumentWriteIndex = functions.firestore
     }
 
     // Standardize common fields
-    const title = documentData.name || documentData.title || documentData.displayName || "Untitled";
+    const title = documentData.name || documentData.title || documentData.displayName || documentData.metadata?.cropType || "Untitled";
     const description = documentData.description || documentData.profileSummary || documentData.bio || documentData.excerpt_en || "";
 
     // Build a comprehensive list of tags for filtering
@@ -74,12 +80,12 @@ export const onSourceDocumentWriteIndex = functions.firestore
       documentData.category,
       documentData.listingType,
       documentData.primaryRole,
-      documentData.location,
+      documentData.location?.address, // Use address for tags if available
     ].filter(Boolean))] as string[];
 
     // Create a searchable text field by combining all relevant text fields
     const allText = [title, description, ...tags].join(" ").toLowerCase();
-    const searchable_terms = [...new Set(allText.match(/(\w+)/g) || [])];
+    const searchable_terms = [...new Set(allText.match(/\b(\w+)\b/g) || [])];
 
     // --- Prepare the base index data ---
     const indexData: SearchableItem = {
@@ -95,11 +101,12 @@ export const onSourceDocumentWriteIndex = functions.firestore
       location: documentData.location || null,
       primaryRole: documentData.primaryRole || null,
     };
-
+    
     // --- Add Geohash for items with lat/lng ---
-    if (documentData.lat && documentData.lng) {
-      indexData.geohash = geofire.geohashForLocation([documentData.lat, documentData.lng]);
+    if (documentData.location && typeof documentData.location.lat === 'number' && typeof documentData.location.lng === 'number') {
+      indexData.geohash = geohashForLocation([documentData.location.lat, documentData.location.lng]);
     }
+
 
     // --- Add collection-specific fields ---
     if (collectionId === "marketplaceItems") {
@@ -123,90 +130,104 @@ export const onSourceDocumentWriteIndex = functions.firestore
  * Supports keyword, filter, and geospatial searching.
  */
 export const performSearch = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-  }
+  checkAuth(context);
 
   const {
-    keywords,
-    filters,
-    center, // { lat: number, lng: number }
-    radiusInM = 50000, // 50km default
-    limit = 50,
+    mainKeywords = [],
+    identifiedLocation,
+    suggestedFilters,
+    minPrice,
+    maxPrice,
+    perUnit,
+    limit: queryLimit = 50,
   } = data;
 
-  let query: admin.firestore.Query = db.collection("search_index");
+  if (!Array.isArray(mainKeywords)) {
+      throw new functions.https.HttpsError("invalid-argument", "mainKeywords must be an array.");
+  }
 
-  // --- Geospatial Filtering (if center provided) ---
-  if (center && center.lat && center.lng) {
-    const bounds = geofire.geohashQueryBounds([center.lat, center.lng], radiusInM);
-    const promises = bounds.map((b) => {
-      const q = query.orderBy("geohash").startAt(b[0]).endAt(b[1]);
-      return q.get();
-    });
-    
-    // Execute all queries and merge the results
-    const snapshots = await Promise.all(promises);
-    const matchingDocs = snapshots.flatMap(snap => snap.docs);
-    
-    // Filter out false positives that are outside the radius
-    const results = matchingDocs
-        .map(doc => ({ id: doc.id, ...doc.data() as SearchableItem }))
-        .filter(item => {
-            const lat = item.location?.lat; // Assuming location stores {lat, lng}
-            const lng = item.location?.lng;
-            if (lat && lng) {
-                const distanceInKm = geofire.distanceBetween([lat, lng], [center.lat, center.lng]);
-                return distanceInKm * 1000 <= radiusInM;
+  const rawQuery = mainKeywords.join(' ');
+  const isVtiQuery = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(rawQuery);
+
+    if (isVtiQuery) {
+        try {
+            const vtiDoc = await db.collection("vti_registry").doc(rawQuery).get();
+            if (vtiDoc.exists) {
+                const vtiData = vtiDoc.data()!;
+                return {
+                    results: [{
+                        id: `vti_${vtiDoc.id}`,
+                        itemId: vtiDoc.id,
+                        itemCollection: 'vti_registry',
+                        title: `VTI Batch: ${vtiData.metadata?.cropType || 'Product'}`,
+                        description: `Traceability report for batch ID ${vtiDoc.id}`,
+                    }]
+                };
             }
-            return false;
-        });
-
-    // NOTE: Further filtering (keywords, etc.) on geo results is done client-side for this example.
-    // For production, you'd combine the geo results with further server-side filtering.
-    return { results };
-  }
-
-  // --- Standard Filter Application ---
-  if (filters && Array.isArray(filters)) {
-    for (const filter of filters) {
-      if (filter.field && filter.value) {
-        // Use 'array-contains' for the 'tags' field, '==' for others.
-        const op = filter.field === 'tags' ? 'array-contains' : '==';
-        query = query.where(filter.field, op, filter.value);
-      }
+        } catch (error) {
+            console.error(`Error performing direct VTI search for ${rawQuery}:`, error);
+        }
     }
-  }
 
-  // Determine sorting order
-  const hasPriceFilter = filters?.some((f:any) => f.field === 'price');
-  if (hasPriceFilter) {
-      query = query.orderBy('price', 'asc');
-  } else {
-      query = query.orderBy("updatedAt", "desc");
-  }
-
-  query = query.limit(limit);
 
   try {
+    let query: admin.firestore.Query = db.collection("search_index");
+
+    // --- Standard Filter Application ---
+    const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category')?.value;
+    const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType')?.value;
+    
+    if (listingTypeFilter) {
+        query = query.where('listingType', '==', listingTypeFilter);
+    }
+    if (categoryFilter) {
+        query = query.where('tags', 'array-contains', categoryFilter);
+    }
+    if (identifiedLocation) {
+        query = query.where("location.address", ">=", identifiedLocation);
+        query = query.where("location.address", "<=", identifiedLocation + '\uf8ff');
+    }
+    if (perUnit) {
+        query = query.where("perUnit", "==", perUnit);
+    }
+
+    let hasPriceFilter = false;
+    if (typeof minPrice === 'number' && minPrice > 0) {
+        query = query.where('price', '>=', minPrice);
+        hasPriceFilter = true;
+    }
+    if (typeof maxPrice === 'number' && maxPrice > 0) {
+        query = query.where('price', '<=', maxPrice);
+        hasPriceFilter = true;
+    }
+
+    // Determine sorting order
+    if (hasPriceFilter) {
+        query = query.orderBy('price', 'asc');
+    } else {
+        query = query.orderBy("updatedAt", "desc");
+    }
+
+    query = query.limit(queryLimit);
+
     const snapshot = await query.get();
     let results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
     // --- In-memory Keyword Filtering on the pre-filtered set ---
-    if (keywords && typeof keywords === 'string' && keywords.trim() !== '') {
-      const searchTerms = keywords.toLowerCase().split(/\s+/).filter(Boolean);
+    const searchTerms = mainKeywords.flatMap((k: any) => (k || '').toLowerCase().split(/\s+/)).filter(Boolean);
+
+    if (searchTerms.length > 0) {
       results = results.filter(r => {
         const item = r as SearchableItem;
-        // Ensure searchable_terms exists and is an array
         if (Array.isArray(item.searchable_terms)) {
             const searchableText = item.searchable_terms.join(' ');
-            return searchTerms.every(term => searchableText.includes(term));
+            return searchTerms.some(term => searchableText.includes(term));
         }
         return false;
       });
     }
-
-    return { results };
+    
+    return results;
 
   } catch (error: any) {
     console.error(`Error during search for query: ${JSON.stringify(data)}`, error);
