@@ -145,7 +145,7 @@ export function MobileHomepage() {
                 <Card key={item.id} className="w-40 shrink-0 overflow-hidden">
                     <Link href={`/marketplace/${item.id}`} className="block">
                         <div className="relative h-24">
-                            <Image src={item.imageUrl || 'https://placehold.co/200x250.png'} alt={item.name} fill style={{objectFit: 'cover'}} />
+                            <Image src={item.imageUrl || 'https://placehold.co/200x250.png'} alt={item.name} fill style={{objectFit: 'cover'}} data-ai-hint="marketplace item" />
                         </div>
                         <CardContent className="p-2">
                             <p className="text-xs font-semibold line-clamp-2">{item.name}</p>
