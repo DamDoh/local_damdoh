@@ -62,7 +62,7 @@ export const getFarmerDashboardData = functions.https.onCall(
         const [farmsSnapshot, cropsSnapshot, knfBatchesSnapshot, financialsSnapshot] = await Promise.all([
             farmsPromise,
             cropsPromise,
-            knfBatchesPromise,
+            knfBatchesSnapshot,
             financialsPromise,
         ]);
         

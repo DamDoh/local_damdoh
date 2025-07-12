@@ -4,11 +4,12 @@ import cors from 'cors';
 import * as admin from 'firebase-admin';
 import { _internalAssessCreditRisk } from './financial-services'; // Assuming this function is accessible
 
-// Initialize Firebase Admin
+// Initialize Firebase Admin if it hasn't been already.
+// This is important because this file might be the entry point in a Cloud Run environment,
+// or it might be imported by `index.ts` where initialization also happens.
 if (admin.apps.length === 0) {
     admin.initializeApp();
 }
-
 
 const app = express();
 const port = process.env.PORT || 8080;

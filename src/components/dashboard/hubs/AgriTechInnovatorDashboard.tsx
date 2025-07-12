@@ -90,7 +90,6 @@ export const AgriTechInnovatorDashboard = () => {
   const { toast } = useToast();
   const [dashboardData, setDashboardData] = useState<AgriTechInnovatorDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isGenerateModalOpen, setIsGenerateModalOpen] = useState(false);
 

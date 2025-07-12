@@ -21,7 +21,7 @@ const checkAuth = (context: functions.https.CallableContext) => {
  * This ensures better performance by avoiding cold starts.
  * The function is kept here as a placeholder to avoid breaking potential old references
  * but should not be used for new development. New client calls should be directed
-* to the Cloud Run endpoint.
+ * to the Cloud Run endpoint.
  */
 
 export const assessCreditRiskWithAI = functions.https.onCall(
