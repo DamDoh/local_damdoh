@@ -44,7 +44,11 @@ export const MarketplaceItemSchema = z.object({
   currency: z.string().optional().nullable(),
   perUnit: z.string().optional().nullable(),
   category: z.string(), // Should map to a valid category ID
-  location: z.string().optional().nullable(),
+  location: z.object({
+    lat: z.number(),
+    lng: z.number(),
+    address: z.string(),
+  }).optional().nullable(),
   imageUrl: z.string().url().optional().nullable(),
   imageUrls: z.array(z.string().url()).optional(),
   dataAiHint: z.string().optional().nullable(),
@@ -121,6 +125,51 @@ export const ForumPostSchema = z.object({
     updatedAt: z.any(),
 });
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
+
+export const FinancialProductSchema = z.object({
+  id: z.string(),
+  fiId: z.string(),
+  name: z.string(),
+  type: z.enum(['Loan', 'Grant']),
+  description: z.string(),
+  interestRate: z.number().optional().nullable(),
+  maxAmount: z.number().optional().nullable(),
+  targetRoles: z.array(z.string()),
+  status: z.enum(['Active', 'Inactive']),
+  createdAt: z.any(),
+  updatedAt: z.any(),
+});
+export type FinancialProduct = z.infer<typeof FinancialProductSchema>;
+
+export const InsuranceProductSchema = z.object({
+    id: z.string(),
+    providerId: z.string(),
+    name: z.string(),
+    type: z.enum(['Crop', 'Livestock', 'Asset', 'Weather']),
+    description: z.string(),
+    coverageDetails: z.string(),
+    premium: z.number(),
+    currency: z.string(),
+    status: z.enum(['Active', 'Inactive']),
+    createdAt: z.any(),
+    updatedAt: z.any(),
+    provider: z.object({
+        displayName: z.string(),
+        avatarUrl: z.string().url().optional().nullable()
+    }).optional()
+});
+export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
+
+export const InsuranceApplicationSchema = z.object({
+    id: z.string(),
+    applicantId: z.string(),
+    productId: z.string(),
+    farmId: z.string(),
+    coverageValue: z.number(),
+    status: z.string(), // e.g., 'Submitted', 'Under Review', 'Approved', 'Rejected'
+    submittedAt: z.any(),
+});
+export type InsuranceApplication = z.infer<typeof InsuranceApplicationSchema>;
 
 
 // =================================================================

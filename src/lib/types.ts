@@ -8,7 +8,9 @@ import type {
     ForumPostSchema,
     AgriEventSchema,
     ShopSchema,
-    FinancialProductSchema
+    FinancialProductSchema,
+    InsuranceProductSchema,
+    InsuranceApplicationSchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 
@@ -29,6 +31,8 @@ export type AgriEvent = z.infer<typeof AgriEventSchema> & {
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
 export type Shop = z.infer<typeof ShopSchema>;
 export type FinancialProduct = z.infer<typeof FinancialProductSchema>;
+export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
+export type InsuranceApplication = z.infer<typeof InsuranceApplicationSchema>;
 export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";
 
 
@@ -787,23 +791,4 @@ export interface ApiKey {
   environment: 'Sandbox' | 'Production';
   createdAt: string; // ISO String
   description: string;
-}
-
-
-export interface InsuranceProduct {
-    id: string;
-    providerId: string;
-    name: string;
-    type: 'Crop' | 'Livestock' | 'Asset' | 'Weather';
-    description: string;
-    coverageDetails: string;
-    premium: number;
-    currency: string;
-    status: 'Active' | 'Inactive';
-    createdAt: string;
-    updatedAt: string;
-    provider?: {
-        displayName: string;
-        avatarUrl?: string;
-    }
 }
