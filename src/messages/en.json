@@ -160,6 +160,10 @@
         "title": "Experts & Service Providers",
         "description": "Offer your specialized skills and services to a wide agricultural audience seeking your expertise."
       },
+      "fis": {
+        "title": "Financial Institutions",
+        "description": "Provide credit and investment to a verified network of farmers and agribusinesses based on their on-platform data and history."
+      },
       "imageAlt": "A diverse group of agricultural stakeholders collaborating"
     },
     "cta": {
@@ -1210,5 +1214,7 @@
     "title": "Financial Management"
   }
 }
+
+    
 
     
