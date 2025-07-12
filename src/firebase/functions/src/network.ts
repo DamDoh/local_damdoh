@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile } from "./types";
@@ -179,4 +180,29 @@ export const removeConnection = functions.https.onCall(async (data, context) => 
     await batch.commit();
 
     return { success: true, message: "Connection removed." };
+});
+
+
+// --- Invitation Functions for Growth ---
+
+/**
+ * Sends an invitation to a non-user. Placeholder for a full email implementation.
+ */
+export const sendInvite = functions.https.onCall(async (data, context) => {
+  const inviterId = checkAuth(context);
+  const { inviteeEmail } = data;
+
+  if (!inviteeEmail || typeof inviteeEmail !== 'string') {
+    throw new functions.https.HttpsError('invalid-argument', 'A valid email address is required.');
+  }
+
+  // Placeholder logic: In a real app, you would generate a unique token,
+  // store it with the invite details, and use a service like SendGrid
+  // to send an email with a special sign-up link containing the token.
+  const inviterProfile = await db.collection('users').doc(inviterId).get();
+  const inviterName = inviterProfile.data()?.displayName || 'A DamDoh user';
+
+  console.log(`Simulating sending invite from ${inviterName} (${inviterId}) to ${inviteeEmail}`);
+
+  return { success: true, message: `An invitation has been sent to ${inviteeEmail}.` };
 });

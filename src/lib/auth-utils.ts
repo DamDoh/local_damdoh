@@ -8,7 +8,8 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   confirmPasswordReset,
-  type User as FirebaseUser
+  type User as FirebaseUser,
+  updateProfile,
 } from "firebase/auth";
 import { auth, functions } from './firebase/client';
 import { httpsCallable } from "firebase/functions";
@@ -74,6 +75,10 @@ export async function registerUser(name: string, email: string, password: string
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     console.log("Firebase Auth user registered successfully:", userCredential.user.uid);
     
+    // Step 1.5: Update the Firebase Auth profile with the display name.
+    await updateProfile(userCredential.user, { displayName: name });
+    console.log("Firebase Auth profile updated with display name.");
+
     // Step 2: Call a secure Cloud Function to create the initial profile.
     // The onUserCreate trigger will handle the actual Firestore document creation.
     // We still call this function to pass along the initial display name and role.

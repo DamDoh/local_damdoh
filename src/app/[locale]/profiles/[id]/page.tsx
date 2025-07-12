@@ -18,13 +18,14 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Briefcase, MapPin, MessageSquare, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, FileText, QrCode, Activity, GitBranch, ShoppingCart, CircleDollarSign, Eye, ThumbsUp, MessagesSquare } from "lucide-react";
+import { Briefcase, MapPin, MessageSquare, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, FileText, QrCode, Activity, GitBranch, ShoppingCart, CircleDollarSign, Eye, ThumbsUp, MessagesSquare, Send } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { formatDistanceToNow } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from "@/hooks/use-toast";
 
 function ProfileSkeleton() {
   return (
@@ -77,6 +78,7 @@ export default function ProfileDetailPage() {
   const params = useParams();
   const router = useRouter();
   const { user: authUser, loading: authLoading } = useAuth();
+  const { toast } = useToast();
   
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [activity, setActivity] = useState<any[]>([]);
@@ -245,6 +247,19 @@ export default function ProfileDetailPage() {
           )}
         </CardContent>
       </Card>
+      
+      {isCurrentUserProfile && (
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Send className="h-5 w-5 text-primary" />{t('invite.title')}</CardTitle>
+                <CardDescription>{t('invite.description')}</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <p className="text-sm text-muted-foreground mb-4">{t('invite.explanation')}</p>
+                <Button>{t('invite.button')}</Button>
+            </CardContent>
+        </Card>
+      )}
 
       <Tabs defaultValue="overview">
         <TabsList>
