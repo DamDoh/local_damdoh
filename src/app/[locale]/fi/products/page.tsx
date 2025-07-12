@@ -24,7 +24,7 @@ export default function FinancialProductsPage() {
     const [isLoading, setIsLoading] = useState(true);
 
     const functions = getFunctions(firebaseApp);
-    const getProductsCallable = useMemo(() => httpsCallable(functions, 'getFinancialProducts'), [functions]);
+    const getProductsCallable = useMemo(() => httpsCallable(functions, 'getFinancialProducts'), []);
     
     const fetchProducts = useCallback(async () => {
         setIsLoading(true);
@@ -76,7 +76,7 @@ export default function FinancialProductsPage() {
                                     <TableHead>{t('table.type')}</TableHead>
                                     <TableHead>{t('table.status')}</TableHead>
                                     <TableHead>{t('table.interestRate')}</TableHead>
-                                    <TableHead>{t('table.maxAmount')}</TableHead>
+                                    <TableHead className="text-right">{t('table.maxAmount')}</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -86,7 +86,7 @@ export default function FinancialProductsPage() {
                                         <TableCell><Badge variant="secondary">{product.type}</Badge></TableCell>
                                         <TableCell><Badge>{product.status}</Badge></TableCell>
                                         <TableCell>{product.interestRate ? `${product.interestRate}%` : 'N/A'}</TableCell>
-                                        <TableCell>{product.maxAmount ? `$${product.maxAmount.toLocaleString()}` : 'N/A'}</TableCell>
+                                        <TableCell className="text-right">{product.maxAmount ? `$${product.maxAmount.toLocaleString()}` : 'N/A'}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
