@@ -10,11 +10,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Brain, Key, Server, Rocket, Copy, EyeOff, Eye, PlusCircle, Trash2, Loader2, CheckCircle } from 'lucide-react';
-import type { ApiKey, AgriTechInnovatorDashboardData } from '@/lib/types';
+import type { ApiKey } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 import { format, formatDistanceToNow } from 'date-fns';
 import { useTranslations } from 'next-intl';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -53,15 +53,15 @@ const ApiKeyRow = ({ apiKey, onRevoke }: { apiKey: ApiKey, onRevoke: (keyId: str
             <TableCell><Badge variant={apiKey.environment === 'Sandbox' ? 'secondary' : 'outline'}>{apiKey.environment}</Badge></TableCell>
             <TableCell>{apiKey.createdAt ? format(new Date(apiKey.createdAt), "PPP") : 'N/A'}</TableCell>
             <TableCell className="text-right flex justify-end gap-1">
-                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setIsVisible(!isVisible)} title={isVisible ? 'Hide key' : 'Show key'}>
+                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setIsVisible(!isVisible)} title={isVisible ? t('table.hideKey') : t('table.showKey')}>
                     {isVisible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </Button>
-                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handleCopy} title="Copy key">
+                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handleCopy} title={t('table.copyKey')}>
                     <Copy className="h-4 w-4" />
                 </Button>
                  <Dialog>
                     <DialogTrigger asChild>
-                        <Button variant="ghost" size="icon" className="h-8 w-8" title="Revoke key" disabled={apiKey.status === 'Revoked'}>
+                        <Button variant="ghost" size="icon" className="h-8 w-8" title={t('table.revokeKey')} disabled={apiKey.status === 'Revoked'}>
                             <Trash2 className="h-4 w-4 text-destructive" />
                         </Button>
                     </DialogTrigger>
@@ -92,6 +92,7 @@ export const AgriTechInnovatorDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isGenerateModalOpen, setIsGenerateModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [newKeyDescription, setNewKeyDescription] = useState('');
   const [newKeyEnv, setNewKeyEnv] = useState<'Sandbox' | 'Production'>('Sandbox');
@@ -110,11 +111,11 @@ export const AgriTechInnovatorDashboard = () => {
         setDashboardData(result.data as AgriTechInnovatorDashboardData);
       } catch (err: any) {
         console.error("Error fetching Agri-Tech dashboard data:", err);
-        setError("Failed to load dashboard data. Please try again later.");
+        setError(t('errors.load'));
       } finally {
         setIsLoading(false);
       }
-  }, [getAgriTechInnovatorDashboardDataCallable]);
+  }, [getAgriTechInnovatorDashboardDataCallable, t]);
   
   useEffect(() => {
       fetchDashboardData();
@@ -169,7 +170,7 @@ export const AgriTechInnovatorDashboard = () => {
       return (
            <Card>
                 <CardContent className="pt-6 text-center text-muted-foreground">
-                    <p>No dashboard data available.</p>
+                    <p>{t('noData')}</p>
                 </CardContent>
            </Card>
       );
@@ -208,7 +209,7 @@ export const AgriTechInnovatorDashboard = () => {
             <CardTitle className="text-base flex items-center gap-2"><Rocket className="h-4 w-4"/>{t('integrationsTitle')}</CardTitle>
           </CardHeader>
            <CardContent>
-            <p className="text-lg font-bold">{(integrationProjects || []).length} {t('activeProjects')}</p>
+            <p className="text-lg font-bold">{t('activeProjects', {count: (integrationProjects || []).length})}</p>
             <p className="text-xs text-muted-foreground">{t('integrationsDescription')}</p>
           </CardContent>
            <CardFooter>
@@ -233,18 +234,18 @@ export const AgriTechInnovatorDashboard = () => {
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
                             <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="key-desc" className="text-right">Description</Label>
+                                <Label htmlFor="key-desc" className="text-right">{t('generateDialog.descriptionLabel')}</Label>
                                 <Input id="key-desc" value={newKeyDescription} onChange={(e) => setNewKeyDescription(e.target.value)} className="col-span-3" />
                             </div>
                              <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="key-env" className="text-right">Environment</Label>
+                                <Label htmlFor="key-env" className="text-right">{t('generateDialog.environmentLabel')}</Label>
                                 <Select value={newKeyEnv} onValueChange={(val) => setNewKeyEnv(val as any)}>
                                     <SelectTrigger className="col-span-3">
-                                        <SelectValue placeholder="Select environment" />
+                                        <SelectValue placeholder={t('generateDialog.environmentPlaceholder')} />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="Sandbox">Sandbox</SelectItem>
-                                        <SelectItem value="Production">Production</SelectItem>
+                                        <SelectItem value="Sandbox">{t('generateDialog.sandbox')}</SelectItem>
+                                        <SelectItem value="Production">{t('generateDialog.production')}</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
