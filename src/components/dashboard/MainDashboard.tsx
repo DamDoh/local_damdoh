@@ -1,24 +1,23 @@
 
 "use client";
 
-import { Suspense, useEffect } from 'react';
-import { usePathname, useRouter } from '@/navigation';
+import { Suspense } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import type { FeedItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
 import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSidebar";
 import { StartPost } from "@/components/dashboard/StartPost";
 import { PageSkeleton } from '@/components/Skeletons';
-import { useHomepageRedirect } from '@/hooks/useHomepageRedirect';
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from '@/lib/auth-utils';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { httpsCallable } from 'firebase/functions';
+import { functions } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
-import { collection, query, orderBy, onSnapshot, getFirestore } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, getFirestore, limit } from "firebase/firestore";
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { uploadFileAndGetURL } from '@/lib/storage-utils';
+import { useTranslations } from 'next-intl';
 
 // Hub Components
 import { AgroExportDashboard } from '@/components/dashboard/hubs/AgroExportDashboard';
@@ -45,9 +44,8 @@ import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logis
 import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
 import { AgriTechInnovatorDashboard } from './hubs/AgriTechInnovatorDashboard';
 import { OperationsDashboard } from './hubs/OperationsDashboard';
-import { useTranslations } from 'next-intl';
 
-const functions = getFunctions(firebaseApp);
+const { useState, useEffect, useMemo } = React;
 const db = getFirestore(firebaseApp);
 
 const HubComponentMap: { [key: string]: React.ComponentType } = {
@@ -196,6 +194,7 @@ function MainContent() {
       );
     }
   
+    // Use the stable key from the profile for logic
     const HubComponent = profile ? HubComponentMap[profile.primaryRole] : null;
     if (HubComponent) {
       return <HubComponent />;
@@ -251,21 +250,6 @@ function MainContent() {
 
 
 export function MainDashboard() {
-  const router = useRouter();
-  const pathname = usePathname();
-  const { homepagePreference, isPreferenceLoading } = useHomepageRedirect();
-
-  useEffect(() => {
-      if (!isPreferenceLoading && homepagePreference && homepagePreference !== pathname && pathname === '/') {
-        router.replace(homepagePreference);
-      }
-  }, [homepagePreference, isPreferenceLoading, pathname, router]);
-
-  if (isPreferenceLoading || (homepagePreference && homepagePreference !== "/" && pathname === "/")) {
-      return <PageSkeleton />;
-  }
-
-  // The MainContent component handles its own internal loading states.
   return (
     <Suspense fallback={<PageSkeleton />}>
       <MainContent />

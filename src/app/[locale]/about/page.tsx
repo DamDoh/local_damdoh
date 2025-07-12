@@ -8,7 +8,7 @@ import { Leaf, Users, Shield, Heart, Handshake, CheckCircle, ArrowRight, BookOpe
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Link from 'next/link';
+import { Link } from '@/navigation';
 
 export default function AboutPage() {
   const t = useTranslations('aboutPage');

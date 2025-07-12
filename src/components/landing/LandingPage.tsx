@@ -4,8 +4,8 @@
 import { Link } from '@/navigation';
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Leaf, Users, ShoppingCart, MessageSquare, ArrowRight, CheckCircle, Briefcase, CircleDollarSign } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Users, ShoppingCart, MessageSquare, ArrowRight, CheckCircle, Briefcase, CircleDollarSign } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { APP_NAME } from "@/lib/constants";
 import { Badge } from "@/components/ui/badge";

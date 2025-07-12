@@ -1,5 +1,5 @@
 
-import { redirect } from '@/navigation';
+import { redirect } from 'next/navigation';
 import { locales } from '@/i18n-config';
 
 // This page only redirects to the default locale.

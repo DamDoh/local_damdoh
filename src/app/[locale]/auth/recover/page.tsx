@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { QrCode, ArrowLeft, Users, Shield, Loader2, Phone } from 'lucide-react';
 import QRCode from 'qrcode.react';
 import { useTranslations } from 'next-intl';
@@ -45,7 +45,7 @@ export default function RecoverPage() {
   const handlePhoneNumberSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!phoneNumber.trim()) {
-      setErrorMessage("Please enter a valid phone number.");
+      setErrorMessage(t('enterPhone.phoneRequiredError'));
       return;
     }
     setIsLoading(true);
@@ -58,7 +58,7 @@ export default function RecoverPage() {
         setRecoveryStep('display_qr');
     } catch (error: any) {
         console.error("Error creating recovery session:", error);
-        setErrorMessage(error.message || "Could not start recovery. Please check the phone number and try again.");
+        setErrorMessage(error.message || t('enterPhone.genericError'));
         setRecoveryStep('enter_phone');
     } finally {
         setIsLoading(false);
@@ -74,7 +74,7 @@ export default function RecoverPage() {
     // Expected format: damdoh:recover:SESSION_ID:SECRET
     const parts = decodedText.split(':');
     if (parts.length !== 4 || parts[0] !== 'damdoh' || parts[1] !== 'recover') {
-        toast({ title: "Invalid QR Code", description: "This is not a valid DamDoh recovery code.", variant: "destructive"});
+        toast({ title: "Invalid QR Code", description: t('helpFriend.scanError'), variant: "destructive"});
         return;
     }
     const [, , sessionId, scannedSecret] = parts;
@@ -84,7 +84,7 @@ export default function RecoverPage() {
         const result = await scanRecoveryQrCallable({ sessionId, scannedSecret });
         const data = result.data as { success: boolean; message: string; recoveryComplete: boolean };
         if (data.success) {
-            toast({ title: "Confirmation Successful!", description: data.message });
+            toast({ title: t('helpFriend.scanSuccess'), description: data.message });
         } else {
             throw new Error((data.message) || "Confirmation failed.");
         }
@@ -97,7 +97,7 @@ export default function RecoverPage() {
 
   const handleScanFailure = (error: string) => {
       console.error("QR Scan Error:", error);
-      toast({ title: "Scan Failed", description: "Could not read the QR code. Please try again.", variant: "destructive"});
+      toast({ title: "Scan Failed", description: t('helpFriend.scanFail'), variant: "destructive"});
       setIsScanning(false);
   };
 
@@ -123,18 +123,18 @@ export default function RecoverPage() {
 
   const renderEnterPhoneStep = () => (
     <>
-      <CardTitle className="text-2xl">Enter Your Phone Number</CardTitle>
+      <CardTitle className="text-2xl">{t('enterPhone.title')}</CardTitle>
       <CardDescription>
-        Provide the phone number associated with the account you wish to recover.
+        {t('enterPhone.description')}
       </CardDescription>
       <CardContent className="pt-6">
         <form onSubmit={handlePhoneNumberSubmit} className="space-y-4">
             <div className="space-y-2">
-                <Label htmlFor="phone-number" className="flex items-center gap-2"><Phone className="h-4 w-4 text-muted-foreground"/> Phone Number</Label>
+                <Label htmlFor="phone-number" className="flex items-center gap-2"><Phone className="h-4 w-4 text-muted-foreground"/> {t('enterPhone.phoneNumberLabel')}</Label>
                 <Input
                     id="phone-number"
                     type="tel"
-                    placeholder="e.g., +14155552671"
+                    placeholder={t('enterPhone.phoneNumberPlaceholder')}
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     disabled={isLoading}
@@ -144,7 +144,7 @@ export default function RecoverPage() {
              {errorMessage && <p className="text-sm text-destructive">{errorMessage}</p>}
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : null}
-              {isLoading ? 'Verifying...' : 'Get Recovery Code'}
+              {isLoading ? t('enterPhone.verifyingButton') : t('enterPhone.getRecoveryCodeButton')}
             </Button>
         </form>
       </CardContent>
@@ -197,9 +197,9 @@ export default function RecoverPage() {
         <CardFooter>
             {!authLoading && user && (
                 <div className="text-center w-full pt-4 border-t">
-                    <p className="text-sm text-muted-foreground mb-2">Know someone trying to recover their account?</p>
+                    <p className="text-sm text-muted-foreground mb-2">{t('helpFriend.prompt')}</p>
                     <Button variant="secondary" onClick={handleHelpFriend}>
-                        <Users className="mr-2 h-4 w-4" /> Help a Friend Recover
+                        <Users className="mr-2 h-4 w-4" /> {t('helpFriend.button')}
                     </Button>
                 </div>
             )}
