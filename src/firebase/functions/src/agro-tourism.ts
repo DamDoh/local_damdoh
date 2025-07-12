@@ -50,7 +50,8 @@ export const bookAgroTourismService = functions.https.onCall(async (data, contex
             avatarUrl: userProfileDoc.avatarUrl || null,
             bookedAt: admin.firestore.FieldValue.serverTimestamp(),
             checkedIn: false,
-            checkedInAt: null
+            checkedInAt: null,
+            startDate: admin.firestore.Timestamp.fromDate(new Date(bookingDetails.startDate)),
         });
         
         // Optionally, increment a booking counter on the item itself
