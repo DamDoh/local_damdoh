@@ -16,37 +16,37 @@ export function AppFooter() {
         <div className="container mx-auto max-w-screen-2xl px-4 py-10 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             <div className="space-y-3 md:col-span-12 lg:col-span-3">
-              <Logo iconSize={32} textSize="text-2xl" className="text-primary-foreground" />
-              <p className="text-sm text-primary-foreground/80">
+              <Logo iconSize={32} textSize="text-2xl" className="text-white" />
+              <p className="text-sm text-white/80">
                 {t('tagline')}
               </p>
             </div>
             
             <div className="md:col-span-12 lg:col-span-9 grid grid-cols-2 sm:grid-cols-3 gap-8" data-ai-hint="Footer navigation links">
               <div>
-                <h4 className="font-semibold mb-3 text-md text-primary-foreground">{t('damdohTitle')}</h4>
-                <ul className="space-y-2 text-sm text-primary-foreground/90" data-ai-hint="Damdoh links">
-                  <li><Link href="/about" className="hover:text-primary-foreground hover:underline transition-colors">{t('aboutLabel')}</Link></li>
-                  <li><Link href="/contact" className="hover:text-primary-foreground hover:underline transition-colors">{t('contactLabel')}</Link></li>
-                  <li><Link href="/careers" className="hover:text-primary-foreground hover:underline transition-colors">{t('careersLabel')}</Link></li>
-                  <li><Link href="/blog" className="hover:text-primary-foreground hover:underline transition-colors">{t('blogLabel')}</Link></li>
+                <h4 className="font-semibold mb-3 text-md text-white">{t('damdohTitle')}</h4>
+                <ul className="space-y-2 text-sm text-white/90" data-ai-hint="Damdoh links">
+                  <li><Link href="/about" className="hover:text-white hover:underline transition-colors">{t('aboutLabel')}</Link></li>
+                  <li><Link href="/contact" className="hover:text-white hover:underline transition-colors">{t('contactLabel')}</Link></li>
+                  <li><Link href="/careers" className="hover:text-white hover:underline transition-colors">{t('careersLabel')}</Link></li>
+                  <li><Link href="/blog" className="hover:text-white hover:underline transition-colors">{t('blogLabel')}</Link></li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold mb-3 text-md text-primary-foreground">{t('resourcesTitle')}</h4>
-                <ul className="space-y-2 text-sm text-primary-foreground/90" data-ai-hint="Resource links">
-                  <li><Link href="/help-center" className="hover:text-primary-foreground hover:underline transition-colors">{t('helpCenterLabel')}</Link></li>
-                  <li><Link href="/community-guidelines" className="hover:text-primary-foreground hover:underline transition-colors">{t('communityGuidelinesLabel')}</Link></li>
-                  <li><Link href="/industry-news" className="hover:text-primary-foreground hover:underline transition-colors">{t('industryNewsLabel')}</Link></li>
-                  <li><Link href="/agri-events" className="hover:text-primary-foreground hover:underline transition-colors">{t('eventsLabel')}</Link></li>
-                  <li><Link href="/talent-exchange" className="hover:text-primary-foreground hover:underline transition-colors">{t('talentExchangeLabel')}</Link></li>
+                <h4 className="font-semibold mb-3 text-md text-white">{t('resourcesTitle')}</h4>
+                <ul className="space-y-2 text-sm text-white/90" data-ai-hint="Resource links">
+                  <li><Link href="/help-center" className="hover:text-white hover:underline transition-colors">{t('helpCenterLabel')}</Link></li>
+                  <li><Link href="/community-guidelines" className="hover:text-white hover:underline transition-colors">{t('communityGuidelinesLabel')}</Link></li>
+                  <li><Link href="/industry-news" className="hover:text-white hover:underline transition-colors">{t('industryNewsLabel')}</Link></li>
+                  <li><Link href="/agri-events" className="hover:text-white hover:underline transition-colors">{t('eventsLabel')}</Link></li>
+                  <li><Link href="/talent-exchange" className="hover:text-white hover:underline transition-colors">{t('talentExchangeLabel')}</Link></li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold mb-3 text-md text-primary-foreground">{t('legalTitle')}</h4>
-                <ul className="space-y-2 text-sm text-primary-foreground/90">
-                  <li><Link href="/privacy" className="hover:text-primary-foreground hover:underline transition-colors">{t('privacyPolicyLabel')}</Link></li>
-                  <li><Link href="/terms" className="hover:text-primary-foreground hover:underline transition-colors">{t('termsOfServiceLabel')}</Link></li>
+                <h4 className="font-semibold mb-3 text-md text-white">{t('legalTitle')}</h4>
+                <ul className="space-y-2 text-sm text-white/90">
+                  <li><Link href="/privacy" className="hover:text-white hover:underline transition-colors">{t('privacyPolicyLabel')}</Link></li>
+                  <li><Link href="/terms" className="hover:text-white hover:underline transition-colors">{t('termsOfServiceLabel')}</Link></li>
                 </ul>
               </div>
             </div>
