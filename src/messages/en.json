@@ -120,6 +120,7 @@
     }
   },
   "Auth": {
+    "createAccount": "Create Account",
     "signInWelcome": "Welcome back to {appName}",
     "signUpWelcome": "Join the DamDoh Agricultural Network",
     "forgotPasswordResetPrompt": "Reset your password for {appName}",
@@ -169,7 +170,23 @@
       "scanTitle": "Ask a Friend to Scan",
       "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
       "scanNote": "This code is temporary and expires in 10 minutes.",
-      "startOverButton": "Start Over"
+      "startOverButton": "Start Over",
+      "enterPhone": {
+        "title": "Enter Your Phone Number",
+        "description": "Provide the phone number associated with the account you wish to recover.",
+        "phoneNumberLabel": "Phone Number",
+        "phoneNumberPlaceholder": "e.g., +14155552671",
+        "verifyingButton": "Verifying...",
+        "getRecoveryCodeButton": "Get Recovery Code",
+        "phoneRequiredError": "Please enter a valid phone number.",
+        "genericError": "Could not start recovery. Please check the phone number and try again."
+      },
+      "helpFriend": {
+        "button": "Help a Friend Recover",
+        "scanError": "This is not a valid DamDoh recovery code.",
+        "scanSuccess": "Confirmation Successful!",
+        "scanFail": "Could not read the QR code. Please try again."
+      }
     },
     "forgotPassword": {
       "emailSentTitle": "Check Your Email",
@@ -200,7 +217,7 @@
         "default": "Failed to reset password"
       }
     },
-    "errors": {
+     "errors": {
       "emailInUse": "This email is already in use.",
       "invalidEmail": "Invalid email address.",
       "weakPassword": "Password must be at least 6 characters.",
@@ -539,9 +556,10 @@
       "content": "We may update this privacy notice from time to time. The updated version will be indicated by an updated 'Revised' date and the updated version will be effective as soon as it is accessible. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information."
     },
     "contactUs": {
-      "heading": "10. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?",
+      "heading": "11. CONTACT US",
       "content": "If you have questions or comments about this notice, you may email us at support@damdoh.org or by post to our office address."
-    }
+    },
+    "conclusion": "To resolve a complaint or receive further information, please {contactLink}."
   },
   "termsOfService": {
     "title": "Terms of Service",
@@ -1820,9 +1838,12 @@
     "interestsTitle": "Areas of Interest",
     "needsTitle": "Needs & Offerings",
     "contactTitle": "Contact Information",
+    "tabs": {
+        "overview": "Overview",
+        "activity": "Activity"
+    },
     "recentActivityTitle": "Recent Activity",
     "noRecentActivity": "This user has no public activity yet.",
-    "backToNetwork": "Back to Network",
     "engagementStats": "Engagement Stats",
     "profileViews": "Profile Views",
     "postLikes": "Post Likes",
@@ -1839,10 +1860,7 @@
     "inviteErrorTitle": "Failed to Send Invite",
     "notFoundTitle": "Profile Not Found",
     "notFoundDescription": "The user profile you are looking for could not be found.",
-    "tabs": {
-        "overview": "Overview",
-        "activity": "Activity"
-    }
+    "backToNetwork": "Back to Network"
   },
   "NotFoundPage": {
     "title": "404 - Page Not Found",
