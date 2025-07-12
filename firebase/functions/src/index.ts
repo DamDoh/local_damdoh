@@ -7,8 +7,17 @@
 
 import * as admin from "firebase-admin";
 
-admin.initializeApp();
+// The 'server.ts' file handles its own initialization.
+// We import it to ensure Express routes are registered with Cloud Functions.
+import expressApp from "./server";
+import * as functions from "firebase-functions";
 
+// We only need to initialize the admin SDK once for all other functions.
+if (admin.apps.length === 0) {
+  admin.initializeApp();
+}
+
+// Export all other cloud functions
 export * from "./traceability";
 export * from "./profiles";
 export * from "./farm-management";
@@ -34,3 +43,7 @@ export * from "./agro-tourism";
 export * from "./network";
 export * from "./labor";
 export * from "./ai-services";
+export * from "./api-keys";
+
+// Export the Express app as a Cloud Function
+export const api = functions.https.onRequest(expressApp);

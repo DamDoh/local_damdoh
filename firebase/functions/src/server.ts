@@ -4,8 +4,12 @@ import cors from 'cors';
 import * as admin from 'firebase-admin';
 import { _internalAssessCreditRisk } from './financial-services'; // Assuming this function is accessible
 
-// Initialize Firebase Admin
-admin.initializeApp();
+// Initialize Firebase Admin if it hasn't been already.
+// This is important because this file might be the entry point in a Cloud Run environment,
+// or it might be imported by `index.ts` where initialization also happens.
+if (admin.apps.length === 0) {
+    admin.initializeApp();
+}
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -59,8 +63,12 @@ app.post('/ai/assess-risk', authenticate, async (req: Request, res: Response) =>
 
 // TODO: Migrate other AI Cloud Functions here
 
-app.listen(port, () => {
-  console.log(`DamDoh AI Service listening on port ${port}`);
-});
+// Only start the server if not in a test environment or when running directly
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(port, () => {
+        console.log(`DamDoh AI Service listening on port ${port}`);
+    });
+}
+
 
 export default app;
