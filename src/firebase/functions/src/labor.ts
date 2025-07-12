@@ -8,7 +8,7 @@ const db = admin.firestore();
 // Helper to check for authentication
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
   }
   return context.auth.uid;
 };
@@ -19,7 +19,7 @@ export const addWorker = functions.https.onCall(async (data, context) => {
   const { name, contactInfo, payRate, payRateUnit } = data;
 
   if (!name) {
-    throw new functions.https.HttpsError("invalid-argument", "Worker name is required.");
+    throw new functions.https.HttpsError("invalid-argument", "error.worker.nameRequired");
   }
 
   const workerRef = db.collection(`users/${farmerId}/workers`).doc();
@@ -57,7 +57,7 @@ export const logHours = functions.https.onCall(async (data, context) => {
   const { workerId, hours, date, taskDescription } = data;
 
   if (!workerId || !hours || !date) {
-    throw new functions.https.HttpsError("invalid-argument", "Worker ID, hours, and date are required.");
+    throw new functions.https.HttpsError("invalid-argument", "error.worker.logHoursMissingFields");
   }
 
   const workLogRef = db.collection(`users/${farmerId}/workers/${workerId}/work_logs`).doc();
@@ -88,13 +88,13 @@ export const logPayment = functions.https.onCall(async (data, context) => {
     const { workerId, amount, date, notes, currency } = data;
 
     if (!workerId || !amount || !date || !currency) {
-        throw new functions.https.HttpsError("invalid-argument", "Worker ID, amount, currency, and date are required.");
+        throw new functions.https.HttpsError("invalid-argument", "error.worker.logPaymentMissingFields");
     }
     
     const workerRef = db.collection(`users/${farmerId}/workers`).doc(workerId);
     const workerSnap = await workerRef.get();
     if(!workerSnap.exists) {
-        throw new functions.https.HttpsError("not-found", "Worker profile not found.");
+        throw new functions.https.HttpsError("not-found", "error.worker.notFound");
     }
     const workerName = workerSnap.data()?.name || "a worker";
     
@@ -112,7 +112,7 @@ export const logPayment = functions.https.onCall(async (data, context) => {
         console.error("Failed to auto-log labor payment as an expense:", error);
         // Decide if this should be a critical failure or just a warning
         // For now, we'll let it fail but a more robust system might queue it for retry
-        throw new functions.https.HttpsError('internal', 'Could not record the payment in your financial ledger.');
+        throw new functions.https.HttpsError('internal', 'error.worker.financialLogError');
     }
 
     const paymentRef = db.collection(`users/${farmerId}/workers/${workerId}/payments`).doc();
@@ -139,7 +139,7 @@ export const getWorkerDetails = functions.https.onCall(async (data, context) => 
     const farmerId = checkAuth(context);
     const { workerId } = data;
 
-    if(!workerId) throw new functions.https.HttpsError('invalid-argument', 'A worker ID is required.');
+    if(!workerId) throw new functions.https.HttpsError('invalid-argument', 'error.worker.idRequired');
     
     const workerRef = db.collection(`users/${farmerId}/workers`).doc(workerId);
     const workLogsRef = workerRef.collection('work_logs').orderBy('date', 'desc').limit(20);
@@ -152,7 +152,7 @@ export const getWorkerDetails = functions.https.onCall(async (data, context) => 
     ]);
 
     if (!workerSnap.exists) {
-        throw new functions.https.HttpsError('not-found', 'Worker not found.');
+        throw new functions.https.HttpsError('not-found', 'error.worker.notFound');
     }
     
     const workLogs = workLogsSnap.docs.map(doc => ({ 

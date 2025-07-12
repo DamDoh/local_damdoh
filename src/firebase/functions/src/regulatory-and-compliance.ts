@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {getRole} from "./profiles";
@@ -21,10 +22,16 @@ export const generateRegulatoryReport = functions.https.onCall(
     const {reportType, userId, reportPeriod} = data;
 
     if (!reportType || typeof reportType !== "string") {
-      throw new functions.https.HttpsError("invalid-argument", "error.report.typeRequired");
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "error.report.typeRequired",
+      );
     }
     if (!userId) {
-      throw new functions.https.HttpsError("invalid-argument", "error.report.userIdRequired");
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "error.report.userIdRequired",
+      );
     }
     if (
       !reportPeriod ||
@@ -32,11 +39,17 @@ export const generateRegulatoryReport = functions.https.onCall(
       typeof reportPeriod.endDate !== "number" ||
       reportPeriod.startDate >= reportPeriod.endDate
     ) {
-      throw new functions.https.HttpsError("invalid-argument", "error.report.invalidPeriod");
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "error.report.invalidPeriod",
+      );
     }
     
     if (callerRole !== "Admin") {
-      throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
+      throw new functions.https.HttpsError(
+        "permission-denied",
+        "error.permissionDenied",
+      );
     }
 
     const startDate = admin.firestore.Timestamp.fromMillis(reportPeriod.startDate);
