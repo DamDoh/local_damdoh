@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { geohashForLocation } from "geofire-common";
@@ -86,7 +85,7 @@ export const onSourceDocumentWriteIndex = functions.firestore
 
     // Create a searchable text field by combining all relevant text fields
     const allText = [title, description, ...tags].join(" ").toLowerCase();
-    const searchable_terms = [...new Set(allText.match(/\b(\w+)\b/g) || [])];
+    const searchable_terms = [...new Set(allText.match(/\\b(\\w+)\\b/g) || [])];
 
     // --- Prepare the base index data ---
     const indexData: SearchableItem = {
@@ -186,7 +185,7 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     }
     if (identifiedLocation) {
         query = query.where("location.address", ">=", identifiedLocation);
-        query = query.where("location.address", "<=", identifiedLocation + '\uf8ff');
+        query = query.where("location.address", "<=", identifiedLocation + '\\uf8ff');
     }
     if (perUnit) {
         query = query.where("perUnit", "==", perUnit);
@@ -215,7 +214,7 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     let results = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
     // --- In-memory Keyword Filtering on the pre-filtered set ---
-    const searchTerms = mainKeywords.flatMap((k: any) => (k || '').toLowerCase().split(/\s+/)).filter(Boolean);
+    const searchTerms = mainKeywords.flatMap((k: any) => (k || '').toLowerCase().split(/\\s+/)).filter(Boolean);
 
     if (searchTerms.length > 0) {
       results = results.filter(r => {
