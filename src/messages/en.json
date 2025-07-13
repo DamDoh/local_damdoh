@@ -73,21 +73,21 @@
         "events": "Events"
     },
     "cropStages": {
-        "Planting": "Planting",
-        "Vegetative": "Vegetative",
-        "Flowering": "Flowering",
-        "Fruiting": "Fruiting",
-        "Harvesting": "Harvesting",
-        "Post-Harvest": "Post-Harvest"
+      "Planting": "Planting",
+      "Vegetative": "Vegetative",
+      "Flowering": "Flowering",
+      "Fruiting": "Fruiting",
+      "Harvesting": "Harvesting",
+      "Post-Harvest": "Post-Harvest"
     },
     "observationTypes": {
-        "GeneralNote": "General Note",
-        "PestSighting": "Pest Sighting",
-        "DiseaseSighting": "Disease Sighting",
-        "SoilCondition": "Soil Condition",
-        "WeatherEvent": "Weather Event",
-        "GrowthStageChange": "Growth Stage Change",
-        "IrrigationEvent": "Irrigation Event"
+      "GeneralNote": "General Note",
+      "PestSighting": "Pest Sighting",
+      "DiseaseSighting": "Disease Sighting",
+      "SoilCondition": "Soil Condition",
+      "WeatherEvent": "Weather Event",
+      "GrowthStageChange": "Growth Stage Change",
+      "IrrigationEvent": "Irrigation Event"
     }
   },
   "farmManagement": {
@@ -100,12 +100,12 @@
       "detailsTitle": "Key Components",
       "principlesTitle": "Core Principles",
       "conclusion": {
-          "title": "A Model of Resilience and Abundance",
-          "content": [
-              "The 200sqm Integrated Family Farm is more than just a method of farming; it's a philosophy of working in harmony with nature.",
-              "It empowers families to achieve food sovereignty, generate diverse income streams, and build a resilient livelihood in the face of climate change.",
-              "By adopting these principles, even the smallest plot of land can become a source of abundance."
-          ]
+        "title": "A Model of Resilience and Abundance",
+        "content": [
+          "The 200sqm Integrated Family Farm is more than just a method of farming; it's a philosophy of working in harmony with nature.",
+          "It empowers families to achieve food sovereignty, generate diverse income streams, and build a resilient livelihood in the face of climate change.",
+          "By adopting these principles, even the smallest plot of land can become a source of abundance."
+        ]
       },
       "zones": [
         {
@@ -223,6 +223,79 @@
                 "content": ["Protects soil from the sun, retains moisture, suppresses weeds, and provides organic matter as it decomposes."]
             }
           ]
+        }
+      ]
+    },
+    "fgwGuidePage": {
+      "backLink": "Back to Farm Management Hub",
+      "title": "Farming God's Way Guide",
+      "description": "An introduction to the core principles of Farming God's Way (FGW).",
+      "intro": "Farming God's Way is a resource-saving, God-honoring, and life-giving agricultural solution for the rural and urban poor. It's built upon understanding and implementing biblical principles of agriculture, focusing on faithfulness in management to bring about restoration.",
+      "howToTitle": "How to Implement",
+      "whyItWorksTitle": "Why It Works",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "No-Tillage",
+          "icon": "Shield",
+          "summary": "This principle prohibits the plowing or turning of the soil. Instead, planting stations are made with minimal disturbance.",
+          "howTo": [
+            "Measure out your permanent planting stations accurately.",
+            "Use a hoe to dig a small hole (approx. 20cm deep) for each station, placing the topsoil and subsoil in separate piles.",
+            "Add compost or well-rotted manure to the hole and mix with the topsoil.",
+            "Return the mixed soil to the hole, leaving a slight depression for planting."
+          ],
+          "whyItWorks": [
+            "Protects the soil structure and prevents erosion.",
+            "Maintains the soil's natural layers and ecosystem of microorganisms.",
+            "Reduces labor and saves costs on machinery and fuel.",
+            "Increases water infiltration and retention."
+          ],
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A field with planting stations and no plowing.",
+          "dataAiHint": "no-till farming holes"
+        },
+        {
+          "id": "mulching",
+          "title": "God's Blanket (100% Mulching)",
+          "icon": "Leaf",
+          "summary": "The soil surface is kept covered at all times with a thick layer of organic mulch, referred to as 'God's Blanket'.",
+          "howTo": [
+            "Gather abundant dry organic matter like grass, straw, or maize stalks.",
+            "Apply a thick layer (at least 10-15cm or 4-6 inches) over the entire soil surface between planting stations.",
+            "Do not remove the blanket to plant; simply make a hole through it at the station.",
+            "Replenish the blanket as it decomposes over time."
+          ],
+          "whyItWorks": [
+            "Conserves massive amounts of water by reducing evaporation.",
+            "Suppresses almost all weed growth, drastically reducing labor.",
+            "Regulates soil temperature, protecting roots from extreme heat.",
+            "Feeds soil life and builds rich topsoil as it breaks down."
+          ],
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A thick layer of straw mulch covering a field.",
+          "dataAiHint": "mulch field straw"
+        },
+        {
+          "id": "high-standards",
+          "title": "High Standards",
+          "icon": "CheckCircle",
+          "summary": "This principle emphasizes doing everything with excellence, on time, and with diligence, reflecting God's character.",
+          "howTo": [
+            "Prepare the land well before the first rains.",
+            "Plant on time to take full advantage of the rainy season.",
+            "Use accurate measurements for spacing and inputs.",
+            "Practice faithful stewardship over all resources."
+          ],
+          "whyItWorks": [
+            "Maximizes the potential of the land and climate.",
+            "Reduces waste and increases efficiency.",
+            "Leads to higher yields and better quality produce.",
+            "Honors God through excellent work."
+          ],
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A farmer carefully measuring out planting stations.",
+          "dataAiHint": "farmer measuring field"
         }
       ]
     }

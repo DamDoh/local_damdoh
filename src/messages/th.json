@@ -120,24 +120,9 @@
             "Water from the pond is used to irrigate crops and provide water for livestock. Wastewater from livestock pens is then channeled back, often through a simple filter, to fertilize the pond, which in turn can be used for aquaculture."
           ],
           "details": [
-            {
-              "title": "Pond",
-              "content": [
-                "Acts as a heat sink, moderates microclimate, and is a source for irrigation and aquaculture."
-              ]
-            },
-            {
-              "title": "High Beds",
-              "content": [
-                "Raised beds prevent waterlogging during heavy rains and improve soil aeration."
-              ]
-            },
-            {
-              "title": "Paths",
-              "content": [
-                "Paths are covered with mulch to suppress weeds and retain soil moisture."
-              ]
-            }
+            { "title": "Pond", "content": ["Acts as a heat sink, moderates microclimate, and is a source for irrigation and aquaculture."] },
+            { "title": "High Beds", "content": ["Raised beds prevent waterlogging during heavy rains and improve soil aeration."] },
+            { "title": "Paths", "content": ["Paths are covered with mulch to suppress weeds and retain soil moisture."] }
           ]
         },
         {
@@ -152,24 +137,9 @@
             "Techniques like intercropping (planting different crops together) and succession planting (replanting a new crop immediately after one is harvested) are used to maximize space and time."
           ],
           "details": [
-            {
-              "title": "Trellising",
-              "content": [
-                "Vining plants like beans and cucumbers are grown vertically on trellises to save space."
-              ]
-            },
-            {
-              "title": "Crop Rotation",
-              "content": [
-                "Crops are rotated to prevent soil nutrient depletion and break pest cycles."
-              ]
-            },
-            {
-              "title": "Compost Application",
-              "content": [
-                "On-farm compost is regularly applied to maintain soil fertility."
-              ]
-            }
+            { "title": "Trellising", "content": ["Vining plants like beans and cucumbers are grown vertically on trellises to save space."] },
+            { "title": "Crop Rotation", "content": ["Crops are rotated to prevent soil nutrient depletion and break pest cycles."] },
+            { "title": "Compost Application", "content": ["On-farm compost is regularly applied to maintain soil fertility."] }
           ]
         },
         {
@@ -245,18 +215,87 @@
           ],
           "subSections": [
             {
-              "title": "No-Till/Minimum Tillage",
-              "content": [
-                "Reduces soil erosion, protects soil structure, and preserves microbial life."
-              ]
+                "title": "No-Till/Minimum Tillage",
+                "content": ["Reduces soil erosion, protects soil structure, and preserves microbial life."]
             },
             {
-              "title": "Constant Mulching",
-              "content": [
-                "Protects soil from the sun, retains moisture, suppresses weeds, and provides organic matter as it decomposes."
-              ]
+                "title": "Constant Mulching",
+                "content": ["Protects soil from the sun, retains moisture, suppresses weeds, and provides organic matter as it decomposes."]
             }
           ]
+        }
+      ]
+    },
+    "fgwGuidePage": {
+      "backLink": "Back to Farm Management Hub",
+      "title": "Farming God's Way Guide",
+      "description": "An introduction to the core principles of Farming God's Way (FGW).",
+      "intro": "Farming God's Way is a resource-saving, God-honoring, and life-giving agricultural solution for the rural and urban poor. It's built upon understanding and implementing biblical principles of agriculture, focusing on faithfulness in management to bring about restoration.",
+      "howToTitle": "How to Implement",
+      "whyItWorksTitle": "Why It Works",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "No-Tillage",
+          "icon": "Shield",
+          "summary": "This principle prohibits the plowing or turning of the soil. Instead, planting stations are made with minimal disturbance.",
+          "howTo": [
+            "Measure out your permanent planting stations accurately.",
+            "Use a hoe to dig a small hole (approx. 20cm deep) for each station, placing the topsoil and subsoil in separate piles.",
+            "Add compost or well-rotted manure to the hole and mix with the topsoil.",
+            "Return the mixed soil to the hole, leaving a slight depression for planting."
+          ],
+          "whyItWorks": [
+            "Protects the soil structure and prevents erosion.",
+            "Maintains the soil's natural layers and ecosystem of microorganisms.",
+            "Reduces labor and saves costs on machinery and fuel.",
+            "Increases water infiltration and retention."
+          ],
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A field with planting stations and no plowing.",
+          "dataAiHint": "no-till farming holes"
+        },
+        {
+          "id": "mulching",
+          "title": "God's Blanket (100% Mulching)",
+          "icon": "Leaf",
+          "summary": "The soil surface is kept covered at all times with a thick layer of organic mulch, referred to as 'God's Blanket'.",
+          "howTo": [
+            "Gather abundant dry organic matter like grass, straw, or maize stalks.",
+            "Apply a thick layer (at least 10-15cm or 4-6 inches) over the entire soil surface between planting stations.",
+            "Do not remove the blanket to plant; simply make a hole through it at the station.",
+            "Replenish the blanket as it decomposes over time."
+          ],
+          "whyItWorks": [
+            "Conserves massive amounts of water by reducing evaporation.",
+            "Suppresses almost all weed growth, drastically reducing labor.",
+            "Regulates soil temperature, protecting roots from extreme heat.",
+            "Feeds soil life and builds rich topsoil as it breaks down."
+          ],
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A thick layer of straw mulch covering a field.",
+          "dataAiHint": "mulch field straw"
+        },
+        {
+          "id": "high-standards",
+          "title": "High Standards",
+          "icon": "CheckCircle",
+          "summary": "This principle emphasizes doing everything with excellence, on time, and with diligence, reflecting God's character.",
+          "howTo": [
+            "Prepare the land well before the first rains.",
+            "Plant on time to take full advantage of the rainy season.",
+            "Use accurate measurements for spacing and inputs.",
+            "Practice faithful stewardship over all resources."
+          ],
+          "whyItWorks": [
+            "Maximizes the potential of the land and climate.",
+            "Reduces waste and increases efficiency.",
+            "Leads to higher yields and better quality produce.",
+            "Honors God through excellent work."
+          ],
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A farmer carefully measuring out planting stations.",
+          "dataAiHint": "farmer measuring field"
         }
       ]
     }
