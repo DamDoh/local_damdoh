@@ -469,8 +469,8 @@
       "list": {
         "education": "Education and Knowledge Sharing",
         "ai": "AI-Powered Assistance and Insights",
-        "marketplace": "A direct, transparent marketplace",
         "logistics": "Integrated Logistics and Traceability",
+        "marketplace": "A direct, transparent marketplace",
         "financial": "Access to financial services"
       }
     },
@@ -940,7 +940,6 @@
     "notFound": "Insurance product not found.",
     "coverageTitle": "Coverage Details",
     "premiumTitle": "Premium",
-    "perTerm": "term",
     "providerTitle": "Provided by",
     "applyButton": "Apply for this Policy",
     "toast": {
@@ -1208,7 +1207,7 @@
     "aboutTitle": "About {displayName}",
     "interestsTitle": "Areas of Interest",
     "engagementStats": "Engagement Stats",
-    "profileViews": "Profile Views",
+    "profileViewers": "Profile Views",
     "postLikes": "Post Likes",
     "postComments": "Post Comments",
     "contactTitle": "Contact Information",
@@ -1363,5 +1362,17 @@
         "emptyReply": "Reply cannot be empty."
       }
     }
+  },
+  "ErrorPage": {
+    "title": "Something went wrong",
+    "description": "Sorry, but an unexpected error has occurred. Our team has been notified.",
+    "tryAgainButton": "Try again",
+    "goHomeButton": "Go to Homepage"
+  },
+  "NotFoundPage": {
+    "title": "404 - Page Not Found",
+    "description": "Sorry, we couldn't find the page you're looking for.",
+    "goHomeButton": "Go to Homepage"
   }
 }
+

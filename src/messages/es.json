@@ -283,7 +283,8 @@
       "medium": "Media",
       "strong": "Fuerte",
       "veryStrong": "Muy Fuerte"
-    }
+    },
+    "error": "Error"
   },
   "AppHeader": {
     "home": "Inicio",
@@ -337,7 +338,7 @@
     },
     "recent": {
       "title": "Recientes",
-      "myPinBoard": "Mi Tablero",
+      "myPinBoard": "Mi Pin-Board",
       "communityGroups": "Grupos Comunitarios",
       "industryNews": "Noticias del Sector",
       "agriEvents": "Eventos Agrícolas",
@@ -446,7 +447,7 @@
         "inefficiency": "Logística ineficiente que conduce a pérdidas post-cosecha.",
         "financialExclusion": "Dificultad para acceder a financiación y seguros para los pequeños productores.",
         "informationGaps": "Conocimiento fragmentado y falta de acceso a las mejores prácticas.",
-        "qualityTrust": "Control de calidad inconsistente y falta de datos de productos verificables.",
+        "qualityTrust": "Control de calidad inconsistente y una falta de datos de productos verificables.",
         "climatePressure": "Presión creciente del cambio climático sobre las prácticas agrícolas tradicionales.",
         "foodLoss": "Pérdida y desperdicio significativos de alimentos en múltiples etapas de la cadena de suministro.",
         "dataFragmentation": "Fragmentación de datos en varios sistemas desconectados."
@@ -811,7 +812,7 @@
     "myNetworkButton": "Mi Red",
     "agentToolsButton": "Herramientas de Agente",
     "aiSuggestionsTitle": "Sugerencias de IA",
-    "aiSuggestionsDescription": "Conéctate con personas que podrías conocer según tu perfil y actividad.",
+    "aiSuggestionsDescription": "Conéctate con personas que podrías conocer según tu perfil y tu actividad.",
     "toast": {
       "errorTitle": "Error",
       "loadError": "No se pudieron cargar los datos de la red.",
@@ -939,7 +940,6 @@
     "notFound": "Producto de seguro no encontrado.",
     "coverageTitle": "Detalles de la Cobertura",
     "premiumTitle": "Prima",
-    "perTerm": "por período",
     "providerTitle": "Ofrecido por",
     "applyButton": "Solicitar esta Póliza",
     "toast": {
@@ -1004,7 +1004,7 @@
       "applicant": "Solicitante",
       "type": "Tipo",
       "amount": "Monto (USD)",
-      "date": "Enviado",
+      "date": "Enviado el",
       "status": "Estado",
       "action": "Acción"
     },
@@ -1207,7 +1207,7 @@
     "aboutTitle": "Acerca de {displayName}",
     "interestsTitle": "Áreas de Interés",
     "engagementStats": "Estadísticas de Interacción",
-    "profileViews": "Vistas del Perfil",
+    "profileViewers": "Vistas del Perfil",
     "postLikes": "'Me gusta' en Publicaciones",
     "postComments": "Comentarios en Publicaciones",
     "contactTitle": "Información de Contacto",
@@ -1362,5 +1362,17 @@
         "emptyReply": "La respuesta no puede estar vacía."
       }
     }
+  },
+  "ErrorPage": {
+    "title": "Algo salió mal",
+    "description": "Lo sentimos, pero parece que ha ocurrido un error inesperado. Nuestro equipo ha sido notificado.",
+    "tryAgainButton": "Intentar de nuevo",
+    "goHomeButton": "Ir a la página de inicio"
+  },
+  "NotFoundPage": {
+    "title": "404 - Página no encontrada",
+    "description": "Lo sentimos, no pudimos encontrar la página que estás buscando.",
+    "goHomeButton": "Ir a la página de inicio"
   }
 }
+

@@ -283,7 +283,8 @@
       "medium": "Mittel",
       "strong": "Stark",
       "veryStrong": "Sehr stark"
-    }
+    },
+    "error": "Fehler"
   },
   "AppHeader": {
     "home": "Startseite",
@@ -686,7 +687,7 @@
       "heading": "11. WIE KÖNNEN SIE UNS BEZÜGLICH DIESER HINWEISE KONTAKTIEREN?",
       "content": "Wenn Sie Fragen oder Kommentare zu dieser Mitteilung haben, können Sie uns eine E-Mail an support@damdoh.org senden oder uns per Post an unsere Büroadresse schreiben."
     },
-    "conclusion": "Um eine Beschwerde zu lösen oder weitere Informationen zu erhalten, {contactLink}."
+    "conclusion": "Um eine Beschwerde zu lösen oder weitere Informationen zu erhalten, bitte {contactLink}."
   },
   "termsOfService": {
     "title": "Nutzungsbedingungen",
@@ -732,7 +733,7 @@
       "heading": "10. KONTAKTIEREN SIE UNS",
       "content": "Um eine Beschwerde bezüglich der Website zu klären oder weitere Informationen zur Nutzung der Website zu erhalten, kontaktieren Sie uns bitte."
     },
-    "conclusion": "Um eine Beschwerde zu lösen oder weitere Informationen zu erhalten, {contactLink}."
+    "conclusion": "Um eine Beschwerde zu lösen oder weitere Informationen zu erhalten, bitte {contactLink}."
   },
   "pinboardPage": {
     "title": "Pin-Board",
@@ -939,7 +940,6 @@
     "notFound": "Versicherungsprodukt nicht gefunden.",
     "coverageTitle": "Deckungsdetails",
     "premiumTitle": "Prämie",
-    "perTerm": "pro Laufzeit",
     "providerTitle": "Angeboten von",
     "applyButton": "Für diese Police bewerben",
     "toast": {
@@ -1193,7 +1193,7 @@
     "invite": {
       "title": "Einen Kollegen einladen",
       "description": "Helfen Sie mit, das Netzwerk zu erweitern, indem Sie andere einladen, DamDoh beizutreten.",
-      "explanation": "Senden Sie eine Einladung an einen Kollegen oder Partner, der DamDoh-Plattform beizutreten. Er erhält eine E-Mail mit Anweisungen zur Anmeldung.",
+      "explanation": "Senden Sie eine Einladung an einen Kollegen oder Geschäftspartner, der DamDoh-Plattform beizutreten. Er erhält eine E-Mail mit Anweisungen zur Anmeldung.",
       "button": "Einladung senden"
     },
     "invitePrompt": "Geben Sie die E-Mail-Adresse der Person ein, die Sie einladen möchten:",
@@ -1207,7 +1207,7 @@
     "aboutTitle": "Über {displayName}",
     "interestsTitle": "Interessengebiete",
     "engagementStats": "Engagement-Statistiken",
-    "profileViews": "Profilaufrufe",
+    "profileViewers": "Profilaufrufe",
     "postLikes": "Beitrag-Likes",
     "postComments": "Beitrag-Kommentare",
     "contactTitle": "Kontaktinformationen",
@@ -1362,5 +1362,17 @@
         "emptyReply": "Antwort darf nicht leer sein."
       }
     }
+  },
+  "ErrorPage": {
+    "title": "Etwas ist schiefgelaufen",
+    "description": "Es tut uns leid, aber es scheint ein unerwarteter Fehler aufgetreten zu sein. Unser Team wurde benachrichtigt.",
+    "tryAgainButton": "Erneut versuchen",
+    "goHomeButton": "Zur Startseite"
+  },
+  "NotFoundPage": {
+    "title": "404 - Seite nicht gefunden",
+    "description": "Entschuldigung, wir konnten die gesuchte Seite nicht finden.",
+    "goHomeButton": "Zur Startseite"
   }
 }
+
