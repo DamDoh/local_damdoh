@@ -794,4 +794,3 @@ export type ServiceItem = MarketplaceItem & {
     compensation: string;
     experienceLevel: string;
 };
-export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
