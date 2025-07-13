@@ -7,7 +7,7 @@ const db = admin.firestore();
 
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
   }
   return context.auth.uid;
 };
@@ -19,25 +19,25 @@ const checkAuth = (context: functions.https.CallableContext) => {
 export const bookAgroTourismService = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { itemId, bookingDetails } = data; // bookingDetails could contain dates, number of people, etc.
-    if (!itemId) throw new functions.https.HttpsError('invalid-argument', 'An Item ID for the service is required.');
+    if (!itemId) throw new functions.https.HttpsError('invalid-argument', 'error.itemId.required');
 
     const itemRef = db.collection('marketplaceItems').doc(itemId);
     const bookingRef = itemRef.collection('bookings').doc(uid);
     const userProfileDoc = await getProfileByIdFromDB(uid);
     
     if (!userProfileDoc) {
-        throw new functions.https.HttpsError('not-found', 'User profile not found.');
+        throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
 
     return db.runTransaction(async (transaction) => {
         const itemDoc = await transaction.get(itemRef);
         if (!itemDoc.exists || itemDoc.data()?.listingType !== 'Service' || itemDoc.data()?.category !== 'agri-tourism-services') {
-            throw new functions.https.HttpsError('not-found', 'Valid Agro-Tourism service not found.');
+            throw new functions.https.HttpsError('not-found', 'error.agroTourism.serviceNotFound');
         }
 
         const bookingDoc = await transaction.get(bookingRef);
         if (bookingDoc.exists) {
-            throw new functions.https.HttpsError('already-exists', 'You have already booked this service.');
+            throw new functions.https.HttpsError('already-exists', 'error.agroTourism.alreadyBooked');
         }
 
         // TODO: Add payment processing logic here if the service has a price.
@@ -67,14 +67,14 @@ export const checkInAgroTourismBooking = functions.https.onCall(async (data, con
     const { itemId, attendeeUid } = data;
 
     if (!itemId || !attendeeUid) {
-        throw new functions.https.HttpsError("invalid-argument", "Item ID and Attendee UID are required.");
+        throw new functions.https.HttpsError("invalid-argument", "error.form.missingFields");
     }
     
     const itemRef = db.collection('marketplaceItems').doc(itemId);
     const itemDoc = await itemRef.get();
     const itemData = itemDoc.data();
     if (!itemDoc.exists) {
-        throw new functions.https.HttpsError("not-found", "Service not found.");
+        throw new functions.https.HttpsError("not-found", "error.agroTourism.serviceNotFound");
     }
 
     const organizerId = itemData?.sellerId;
@@ -82,12 +82,12 @@ export const checkInAgroTourismBooking = functions.https.onCall(async (data, con
     const staffDoc = await staffRef.get();
     
     if (organizerId !== callerId && !staffDoc.exists) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to check-in guests for this service.");
+        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
 
     const guestUserDoc = await db.collection('users').doc(attendeeUid).get();
     if (!guestUserDoc.exists) {
-        throw new functions.https.HttpsError("not-found", "No user found with this ID.");
+        throw new functions.https.HttpsError("not-found", "error.user.notFound");
     }
     const guestName = guestUserDoc.data()?.displayName || 'Unknown Guest';
 
@@ -95,12 +95,12 @@ export const checkInAgroTourismBooking = functions.https.onCall(async (data, con
     return db.runTransaction(async (transaction) => {
         const bookingDoc = await transaction.get(bookingRef);
         if (!bookingDoc.exists) {
-            throw new functions.https.HttpsError("not-found", `${guestName} does not have a booking for this service.`);
+            throw new functions.https.HttpsError("not-found", "error.agroTourism.bookingNotFound");
         }
         
         const bookingData = bookingDoc.data()!;
         if (bookingData.checkedIn) {
-            throw new functions.https.HttpsError("already-exists", `${guestName} has already been checked in.`);
+            throw new functions.https.HttpsError("already-exists", "error.agroTourism.alreadyCheckedIn");
         }
 
         transaction.update(bookingRef, {
@@ -127,7 +127,7 @@ export const addAgroTourismStaff = functions.https.onCall(async (data, context) 
     const itemRef = db.collection('marketplaceItems').doc(itemId);
     const itemDoc = await itemRef.get();
     if (!itemDoc.exists || itemDoc.data()?.sellerId !== operatorId) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to add staff to this service.");
+        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
 
     const staffRef = itemRef.collection('staff').doc(staffUserId);
@@ -152,7 +152,7 @@ export const getAgroTourismStaff = functions.https.onCall(async (data, context) 
     const itemRef = db.collection('marketplaceItems').doc(itemId);
     const itemDoc = await itemRef.get();
     if (!itemDoc.exists || itemDoc.data()?.sellerId !== operatorId) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to view staff for this service.");
+        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
     
     const staffSnapshot = await itemRef.collection('staff').get();
@@ -176,7 +176,7 @@ export const removeAgroTourismStaff = functions.https.onCall(async (data, contex
     const itemRef = db.collection('marketplaceItems').doc(itemId);
     const itemDoc = await itemRef.get();
     if (!itemDoc.exists || itemDoc.data()?.sellerId !== operatorId) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to remove staff from this service.");
+        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
 
     const staffRef = itemRef.collection('staff').doc(staffUserId);
@@ -195,7 +195,7 @@ export const getAgroTourismBookings = functions.https.onCall(async (data, contex
     const itemRef = db.collection('marketplaceItems').doc(itemId);
     const itemDoc = await itemRef.get();
     if (!itemDoc.exists || itemDoc.data()?.sellerId !== operatorId) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to view bookings for this service.");
+        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
     
     const bookingsSnapshot = await itemRef.collection('bookings').orderBy('bookedAt', 'desc').get();

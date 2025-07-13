@@ -49,7 +49,7 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
                 <Link href={`/marketplace/${item.id}`} className="hover:text-primary">
                     <CardTitle className="text-sm font-semibold line-clamp-2 leading-tight h-10">{item.name}</CardTitle>
                 </Link>
-                <CardDescription className="text-xs text-muted-foreground">{item.location}</CardDescription>
+                <CardDescription className="text-xs text-muted-foreground">{item.location.address}</CardDescription>
                 
                 <div className="text-md font-bold pt-1 flex items-center gap-1.5">
                     {isService ? <Briefcase className="h-4 w-4" /> : <DollarSign className="h-4 w-4" />}
@@ -78,7 +78,7 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
             <CardFooter className="p-2 pt-0">
                 <Button asChild size="sm" className="w-full">
                     <Link href={`/marketplace/${item.id}`} className="flex items-center justify-center gap-2">
-                        {isService ? t('viewServiceButton') : t('viewDetails')}
+                        {isService ? t('viewServiceButton') : t('itemView.viewDetails')}
                     </Link>
                 </Button>
             </CardFooter>

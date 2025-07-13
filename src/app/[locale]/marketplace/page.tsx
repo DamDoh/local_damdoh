@@ -83,7 +83,7 @@ function MarketplaceContent() {
           price: res.price,
           currency: res.currency,
           perUnit: res.perUnit,
-          category: res.tags?.find((t: string) => UNIFIED_MARKETPLACE_CATEGORY_IDS.includes(t)) || res.tags?.[0] || '',
+          category: res.tags?.find((tag: string) => UNIFIED_MARKETPLACE_CATEGORY_IDS.includes(tag)) || res.tags?.[0] || '',
           sellerId: 'unknown',
           createdAt: (res.createdAt as any)?.toDate ? (res.createdAt as any).toDate().toISOString() : new Date().toISOString(),
           updatedAt: (res.updatedAt as any)?.toDate ? (res.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
