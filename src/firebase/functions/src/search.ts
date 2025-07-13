@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { geohashForLocation } from "geofire-common";
@@ -103,8 +104,8 @@ export const onSourceDocumentWriteIndex = functions.firestore
     };
     
     // --- Add Geohash for items with lat/lng ---
-    if (documentData.location && typeof documentData.location.lat === 'number' && typeof documentData.location.lng === 'number') {
-      indexData.geohash = geohashForLocation([documentData.location.lat, documentData.location.lng]);
+    if (documentData.geohash) {
+      indexData.geohash = documentData.geohash;
     }
 
 
