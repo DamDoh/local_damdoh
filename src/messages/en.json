@@ -141,7 +141,7 @@
       },
       "fis": {
         "title": "Financial Institutions",
-        "description": "Provide targeted loans, grants, and insurance products to a verified network of agricultural businesses."
+        "description": "Offer targeted loans, grants, and insurance products to a verified network of agricultural businesses."
       },
       "imageAlt": "A diverse group of agricultural stakeholders collaborating"
     },
@@ -283,7 +283,8 @@
       "medium": "Medium",
       "strong": "Strong",
       "veryStrong": "Very Strong"
-    }
+    },
+    "error": "Error"
   },
   "AppHeader": {
     "home": "Home",
@@ -852,7 +853,7 @@
       "inviteButton": "Invite Colleagues"
     },
     "noRequests": "You have no pending connection requests.",
-    "sentTimeAgo": "Sent {timeAgo}",
+    "sentTimeAgo": "Sent {timeAgo} ago",
     "toast": {
       "error": "Error",
       "success": "Success",
@@ -868,7 +869,7 @@
     "backLink": "Back to Network",
     "title": "Agent Tools",
     "description": "Securely look up user information for verification and support.",
-    "findUserLabel": "Find User by Phone Number",
+    "findUserLabel": "Find user by phone number",
     "findButton": "Find",
     "resultsTitle": "Result",
     "resultsPlaceholder": "User details will appear here.",
