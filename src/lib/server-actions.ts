@@ -84,15 +84,3 @@ export async function suggestCropRotationAction(input: Omit<CropRotationInput, '
         return { suggestions: [] };
     }
 }
-
-// --- Financials Actions ---
-export async function getFinancialInstitutions(): Promise<UserProfile[]> {
-  try {
-    const getFiCallable = httpsCallable(functions, 'getFinancialInstitutions');
-    const result = await getFiCallable();
-    return (result.data as any) || [];
-  } catch (error) {
-    console.error("Error calling getFinancialInstitutions from server action:", error);
-    throw error;
-  }
-}

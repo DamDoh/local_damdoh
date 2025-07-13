@@ -19,7 +19,7 @@ interface ApiResponseOptions {
 }
 
 export function successResponse(data: any, options?: ApiResponseOptions): NextResponse {
-  return NextResponse.json({ success: true, data }, {
+  return NextResponse.json(data, {
     status: options?.status || 200,
     headers: options?.headers,
   });
@@ -28,7 +28,6 @@ export function successResponse(data: any, options?: ApiResponseOptions): NextRe
 export function errorResponse(message: string, status: number, details?: any): NextResponse {
   return NextResponse.json(
     {
-      success: false,
       error: {
         message,
         status,

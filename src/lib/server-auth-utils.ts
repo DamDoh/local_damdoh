@@ -24,6 +24,10 @@ export async function isServerAuthenticated(): Promise<boolean> {
 
   try {
     const adminAuth = getAdminAuth();
+    if (!adminAuth) {
+        console.error("isServerAuthenticated: Firebase Admin SDK is not initialized. Cannot verify token.");
+        return false;
+    }
     // This will throw an error if the token is invalid or expired
     await adminAuth.verifyIdToken(token);
     return true;
