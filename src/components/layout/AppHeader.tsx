@@ -22,7 +22,8 @@ import {
   X,
   Fingerprint,
   ShoppingCart,
-  Leaf
+  Leaf,
+  ChevronDown
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
@@ -30,6 +31,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useAuth, logOut } from "@/lib/auth-utils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Sheet,
   SheetContent,
@@ -239,14 +247,28 @@ export function AppHeader() {
               ) : user ? (
                 <UserAvatar name={user.displayName || user.email} email={user.email} imageUrl={user.photoURL} />
               ) : (
-                <div className="flex items-center space-x-1">
-                  <Button variant="ghost" asChild className="text-white hover:bg-white/20 hover:text-white text-xs h-auto py-1.5 px-2.5 flex items-center">
-                    <Link href="/auth/signin"><LogIn className="mr-1.5 h-3.5 w-3.5"/>{t('signIn')}</Link>
-                  </Button>
-                  <Button variant="outline" asChild className="text-white bg-white hover:bg-white/90 border-white text-xs h-auto py-1.5 px-2.5 flex items-center">
-                    <Link href="/auth/signup"><UserPlus className="mr-1.5 h-3.5 w-3.5"/>{t('signUp')}</Link>
-                  </Button>
-                </div>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" className="text-white hover:bg-white/20 hover:text-white text-xs h-auto py-1.5 px-2.5 flex items-center">
+                            {t('signIn')}
+                            <ChevronDown className="ml-1 h-3.5 w-3.5"/>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuItem asChild>
+                            <Link href="/auth/signin" className="flex items-center gap-2 cursor-pointer">
+                                <LogIn className="h-4 w-4" />
+                                <span>{t('signIn')}</span>
+                            </Link>
+                        </DropdownMenuItem>
+                         <DropdownMenuItem asChild>
+                            <Link href="/auth/signup" className="flex items-center gap-2 cursor-pointer">
+                                <UserPlus className="h-4 w-4" />
+                                <span>{t('signUp')}</span>
+                            </Link>
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
               )}
             </div>
           </nav>
