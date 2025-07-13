@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -12,6 +11,7 @@ import type {
     ApiKeySchema,
     CropRotationInputSchema,
     CropRotationOutputSchema,
+    InsuranceProductSchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 
@@ -27,7 +27,9 @@ export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema> & {
     buyerProfile: { displayName: string, avatarUrl?: string }
 };
 export type AgriEvent = z.infer<typeof AgriEventSchema> & {
+  id: string; // Add id to the type for frontend use
   organizerId: string;
+  registeredAttendeesCount: number;
 };
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
 export type FinancialProduct = z.infer<typeof FinancialProductSchema>;
@@ -35,6 +37,7 @@ export type InsuranceApplication = z.infer<typeof InsuranceApplicationSchema>;
 export type ApiKey = z.infer<typeof ApiKeySchema>;
 export type CropRotationInput = z.infer<typeof CropRotationInputSchema>;
 export type CropRotationOutput = z.infer<typeof CropRotationOutputSchema>;
+export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
 
 
 export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";
@@ -792,22 +795,3 @@ export type ServiceItem = MarketplaceItem & {
     experienceLevel: string;
 };
 export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
-
-// Need to define this schema for the type to be inferred.
-export const InsuranceProductSchema = z.object({
-  id: z.string(),
-  providerId: z.string(),
-  name: z.string(),
-  type: z.string(),
-  description: z.string(),
-  coverageDetails: z.string(),
-  premium: z.number(),
-  currency: z.string(),
-  status: z.enum(['Active', 'Inactive']),
-  createdAt: z.any(),
-  updatedAt: z.any(),
-  provider: z.object({
-    displayName: z.string(),
-    avatarUrl: z.string().url().optional().nullable(),
-  }).optional(),
-});

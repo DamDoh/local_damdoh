@@ -3,7 +3,7 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Loader2, ScanLine, UserCheck, AlertCircle, Users, UserPlus, Trash2, Search, ArrowLeft, Download, Ticket } from "lucide-react";
+import { Loader2, ScanLine, UserCheck, AlertCircle, Users, UserPlus, Trash2, Search, ArrowLeft, Download, Ticket, PlusCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { httpsCallable } from "firebase/functions";
@@ -22,6 +22,16 @@ import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useFormatter, useTranslations } from "next-intl";
+import { useForm } from "react-hook-form";
+import { getCreateEventCouponSchema, type CreateEventCouponValues } from "@/lib/form-schemas";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { cn } from "@/lib/utils";
+import { format } from 'date-fns';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 
 const QrScanner = dynamic(() => import('@/components/QrScanner').then(mod => mod.QrScanner), {
     ssr: false,
@@ -214,7 +224,7 @@ const AttendeesTab = ({ eventId }: { eventId: string }) => {
                                     <TableCell>{attendee.email}</TableCell>
                                     <TableCell>{format.dateTime(new Date(attendee.registeredAt), {dateStyle: 'medium'})}</TableCell>
                                     <TableCell>
-                                        <Badge variant={attendee.checkedIn ? "default" : "secondary"}>
+                                        <Badge variant={attendee.checkedIn ? 'default' : 'secondary'}>
                                             {attendee.checkedIn ? t('status.checkedIn') : t('status.registered')}
                                         </Badge>
                                     </TableCell>
@@ -350,6 +360,138 @@ const StaffManagementTab = ({ eventId }: { eventId: string }) => {
     );
 };
 
+const CouponsTab = ({ eventId }: { eventId: string }) => {
+    const t = useTranslations('AgriEvents.manage.coupons');
+    const tFormErrors = useTranslations('formErrors.createEventCoupon');
+    const { toast } = useToast();
+    const [coupons, setCoupons] = useState<Coupon[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const getCouponsCallable = useMemo(() => httpsCallable(functions, 'getEventCoupons'), []);
+    const createCouponCallable = useMemo(() => httpsCallable(functions, 'createEventCoupon'), []);
+
+    const fetchCoupons = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const result = await getCouponsCallable({ eventId });
+            setCoupons((result.data as any)?.coupons || []);
+        } catch (error) {
+            toast({ variant: "destructive", title: t('toast.error'), description: t('fetchError') });
+        } finally {
+            setIsLoading(false);
+        }
+    }, [eventId, getCouponsCallable, toast, t]);
+
+    useEffect(() => {
+        fetchCoupons();
+    }, [fetchCoupons]);
+
+    const createEventCouponSchema = getCreateEventCouponSchema(tFormErrors);
+
+    const form = useForm<CreateEventCouponValues>({
+        resolver: zodResolver(createEventCouponSchema),
+        defaultValues: {
+            code: "",
+            discountType: undefined,
+            discountValue: undefined,
+            expiresAt: undefined,
+            usageLimit: 100,
+        },
+    });
+
+    const handleCreateCoupon = async (data: CreateEventCouponValues) => {
+        try {
+            const payload = {
+                ...data,
+                eventId,
+                expiryDate: data.expiresAt?.toISOString()
+            };
+            await createCouponCallable(payload);
+            toast({ title: t('toast.success'), description: t('toast.createSuccess', { code: data.code }) });
+            form.reset();
+            fetchCoupons();
+        } catch (error: any) {
+             toast({ variant: "destructive", title: t('toast.createFail'), description: error.message });
+        }
+    };
+    
+
+    return (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <Card className="lg:col-span-1">
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2"><PlusCircle className="h-5 w-5"/>{t('create.title')}</CardTitle>
+                    <CardDescription>{t('create.description')}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(handleCreateCoupon)} className="space-y-4">
+                           <FormField control={form.control} name="code" render={({ field }) => ( <FormItem> <Label>{t('create.form.code')}</Label> <FormControl> <Input placeholder={t('create.form.codePlaceholder')} {...field} /> </FormControl> <FormMessage /> </FormItem> )} />
+                           <FormField control={form.control} name="discountType" render={({ field }) => ( <FormItem> <Label>{t('create.form.discountType')}</Label> <Select onValueChange={field.onChange} value={field.value}> <FormControl> <SelectTrigger><SelectValue placeholder={t('create.form.discountTypePlaceholder')} /></SelectTrigger> </FormControl> <SelectContent> <SelectItem value="percentage">{t('create.form.percentage')}</SelectItem> <SelectItem value="fixed">{t('create.form.fixed')}</SelectItem> </SelectContent> </Select> <FormMessage /> </FormItem> )} />
+                           <FormField control={form.control} name="discountValue" render={({ field }) => ( <FormItem> <Label>{t('create.form.discountValue')}</Label> <FormControl> <Input type="number" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} /> </FormControl> <FormMessage /> </FormItem> )} />
+                           <FormField control={form.control} name="usageLimit" render={({ field }) => ( <FormItem> <Label>{t('create.form.usageLimit')}</Label> <FormControl> <Input type="number" {...field} onChange={e => field.onChange(parseInt(e.target.value, 10))}/> </FormControl> <FormMessage /> </FormItem> )} />
+                            <FormField
+                                control={form.control}
+                                name="expiresAt"
+                                render={({ field }) => (
+                                <FormItem className="flex flex-col">
+                                    <Label>{t('create.form.expiryDate')}</Label>
+                                    <Popover>
+                                    <PopoverTrigger asChild>
+                                        <Button variant={"outline"} className={cn("w-full justify-start text-left font-normal", !field.value && "text-muted-foreground")}>
+                                            {field.value ? format(field.value, "PPP") : <span>{t('create.form.pickDate')}</span>}
+                                        </Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-auto p-0" align="start">
+                                        <Calendar mode="single" selected={field.value} onSelect={field.onChange} disabled={(date) => date < new Date(new Date().setHours(0,0,0,0))} />
+                                    </PopoverContent>
+                                    </Popover>
+                                    <FormMessage />
+                                </FormItem>
+                                )}
+                            />
+                            <Button type="submit" disabled={form.formState.isSubmitting}> {form.formState.isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>} {t('create.form.submitButton')} </Button>
+                        </form>
+                    </Form>
+                </CardContent>
+            </Card>
+            <Card className="lg:col-span-2">
+                <CardHeader>
+                    <CardTitle>{t('list.title')}</CardTitle>
+                    <CardDescription>{t('list.description')}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    {isLoading ? <Skeleton className="h-40 w-full" /> :
+                     coupons.length > 0 ? (
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>{t('list.table.code')}</TableHead>
+                                    <TableHead>{t('list.table.value')}</TableHead>
+                                    <TableHead>{t('list.table.usage')}</TableHead>
+                                    <TableHead>{t('list.table.expires')}</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {coupons.map(coupon => (
+                                    <TableRow key={coupon.id}>
+                                        <TableCell className="font-mono text-primary">{coupon.code}</TableCell>
+                                        <TableCell>{coupon.discountType === 'percentage' ? `${coupon.discountValue}%` : `$${coupon.discountValue.toFixed(2)}`}</TableCell>
+                                        <TableCell>{coupon.usageCount} / {coupon.usageLimit || '∞'}</TableCell>
+                                        <TableCell>{coupon.expiresAt ? format(new Date(coupon.expiresAt), 'PPP') : 'Never'}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    ) : (
+                        <p className="text-sm text-center text-muted-foreground py-8">{t('list.noCoupons')}</p>
+                    )}
+                </CardContent>
+            </Card>
+        </div>
+    )
+}
+
 // Main Page Component
 export default function ManageEventPage() {
     const t = useTranslations('AgriEvents.manage');
@@ -395,7 +537,7 @@ export default function ManageEventPage() {
                     <StaffManagementTab eventId={eventId} />
                 </TabsContent>
                 <TabsContent value="coupons" className="mt-4">
-                    <p>Coupons Management coming soon...</p>
+                    <CouponsTab eventId={eventId} />
                 </TabsContent>
             </Tabs>
         </div>

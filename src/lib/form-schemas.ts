@@ -53,6 +53,24 @@ export const createMarketplaceItemSchema = z.object({
 
 export type CreateMarketplaceItemValues = z.infer<typeof createMarketplaceItemSchema>;
 
+export const getCreateEventCouponSchema = (t: (key: string) => string) => z.object({
+  code: z.string().min(4, t('code.min')).max(20, t('code.max')),
+  discountType: z.enum(['percentage', 'fixed'], { required_error: t('discountType.required') }),
+  discountValue: z.coerce.number({ invalid_type_error: t('discountValue.invalid') }).positive(t('discountValue.positive')),
+  expiresAt: z.date().optional(),
+  usageLimit: z.coerce.number().int().positive(t('usageLimit.positive')).optional(),
+}).refine(data => {
+    if (data.discountType === 'percentage' && data.discountValue > 100) {
+        return false;
+    }
+    return true;
+}, {
+    message: t('discountValue.percentageMax'),
+    path: ["discountValue"],
+});
+
+export type CreateEventCouponValues = z.infer<ReturnType<typeof getCreateEventCouponSchema>>;
+
 
 export const createForumTopicSchema = z.object({
   title: z.string().min(10, "Title must be at least 10 characters long.").max(150, "Title cannot exceed 150 characters."),
@@ -261,3 +279,25 @@ export const financialApplicationSchema = z.object({
   purpose: z.string().min(20, "Please describe the purpose of the funding.").max(2000),
 });
 export type FinancialApplicationValues = z.infer<typeof financialApplicationSchema>;
+
+// Internationalized schema using a factory function
+export const getCreateEventCouponSchema = (t: (key: string) => string) => z.object({
+  code: z.string()
+      .min(4, t('code.min'))
+      .max(20, t('code.max'))
+      .regex(/^[a-zA-Z0-9]+$/, t('code.regex')),
+  discountType: z.enum(['percentage', 'fixed'], { required_error: t('discountType.required') }),
+  discountValue: z.coerce.number({invalid_type_error: t('discountValue.invalid')}).positive(t('discountValue.positive')),
+  expiresAt: z.date().optional(),
+  usageLimit: z.coerce.number().int().positive(t('usageLimit.positive')).optional(),
+}).refine(data => {
+    if (data.discountType === 'percentage' && data.discountValue > 100) {
+        return false;
+    }
+    return true;
+}, {
+    message: t('discountValue.percentageMax'),
+    path: ["discountValue"],
+});
+
+export type CreateEventCouponValues = z.infer<ReturnType<typeof getCreateEventCouponSchema>>;

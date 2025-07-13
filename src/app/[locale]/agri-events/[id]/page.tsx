@@ -22,6 +22,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 
 function EventPageSkeleton() {
@@ -62,10 +63,14 @@ function EventPageContent() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [isRegistering, setIsRegistering] = useState(false);
+    const [couponCode, setCouponCode] = useState('');
+    const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
+    const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; finalPrice: number } | null>(null);
     
     const functions = getFunctions(firebaseApp);
     const getEventDetailsCallable = useMemo(() => httpsCallable(functions, 'getEventDetails'), [functions]);
     const registerForEventCallable = useMemo(() => httpsCallable(functions, 'registerForEvent'), [functions]);
+    const validateCouponCallable = useMemo(() => httpsCallable(functions, 'validateEventCoupon'), [functions]);
 
     useEffect(() => {
         if (!eventId) return;
@@ -97,7 +102,7 @@ function EventPageContent() {
         if (!user || !event) return;
         setIsRegistering(true);
         try {
-            await registerForEventCallable({ eventId: event.id });
+            await registerForEventCallable({ eventId: event.id, couponCode: appliedCoupon?.code });
             toast({
                 title: t('toast.registrationSuccess.title'),
                 description: t('toast.registrationSuccess.description'),
@@ -113,6 +118,32 @@ function EventPageContent() {
             });
         } finally {
             setIsRegistering(false);
+        }
+    };
+
+    const handleApplyCoupon = async () => {
+        if (!couponCode.trim() || !event) return;
+        setIsApplyingCoupon(true);
+        try {
+            const result = await validateCouponCallable({ eventId: event.id, couponCode });
+            const data = result.data as { valid: boolean, message?: string, discountType?: 'fixed' | 'percentage', discountValue?: number };
+
+            if (data.valid && data.discountType && data.discountValue) {
+                let finalPrice = event.price || 0;
+                if (data.discountType === 'fixed') {
+                    finalPrice = Math.max(0, finalPrice - data.discountValue);
+                } else if (data.discountType === 'percentage') {
+                    finalPrice -= finalPrice * (data.discountValue / 100);
+                }
+                setAppliedCoupon({ code: couponCode.toUpperCase(), finalPrice });
+                toast({ title: t('toast.couponSuccess.title'), description: t('toast.couponSuccess.description') });
+            } else {
+                 throw new Error(data.message || t('toast.couponFail.unknownError'));
+            }
+        } catch (error: any) {
+             toast({ variant: 'destructive', title: t('toast.couponFail.title'), description: error.message });
+        } finally {
+             setIsApplyingCoupon(false);
         }
     };
     
@@ -195,16 +226,37 @@ function EventPageContent() {
                          <>
                             <div className="flex justify-between items-center text-sm">
                                 <span>{t('registration.price')}</span>
-                                <span className="font-bold text-lg">{event.price ? format.number(event.price, {style: 'currency', currency: 'USD'}) : t('registration.free')}</span>
+                                {appliedCoupon ? (
+                                    <div className="text-right">
+                                        <p className="font-bold text-lg text-green-600">${appliedCoupon.finalPrice.toFixed(2)}</p>
+                                        <p className="text-xs text-muted-foreground line-through">${(event.price || 0).toFixed(2)}</p>
+                                    </div>
+                                ) : (
+                                    <span className="font-bold text-lg">{event.price ? format.number(event.price, {style: 'currency', currency: 'USD'}) : t('registration.free')}</span>
+                                )}
                             </div>
                              <div className="flex justify-between items-center text-sm">
                                 <span>{t('registration.attendees')}</span>
                                 <span className="font-bold">{event.registeredAttendeesCount} / {event.attendeeLimit || t('registration.unlimited')}</span>
                             </div>
+
+                             {event.price > 0 && !isOwner && !(event as any).isRegistered && (
+                                <div className="p-3 border rounded-lg bg-muted/30">
+                                    <Label htmlFor="coupon-code" className="text-sm font-medium flex items-center gap-1.5 mb-2"><Ticket className="h-4 w-4" />{t('coupon.label')}</Label>
+                                    <div className="flex gap-2">
+                                        <Input id="coupon-code" placeholder={t('coupon.placeholder')} value={couponCode} onChange={e => setCouponCode(e.target.value)} disabled={!!appliedCoupon} />
+                                        <Button onClick={handleApplyCoupon} disabled={!couponCode || isApplyingCoupon || !!appliedCoupon}>
+                                            {isApplyingCoupon && <Loader2 className="h-4 w-4 animate-spin"/>}
+                                            {t('coupon.applyButton')}
+                                        </Button>
+                                    </div>
+                                    {appliedCoupon && <p className="text-xs text-green-600 mt-1">{t('coupon.appliedText', {code: appliedCoupon.code})}</p>}
+                                </div>
+                            )}
+
                             {isOwner ? (
                                 <div className="flex gap-2">
                                 <Button asChild className="w-full"><Link href={`/agri-events/${event.id}/manage`}>{t('manageEventButton')}</Link></Button>
-                                <Button variant="secondary" className="w-full">{t('viewAttendeesButton')}</Button>
                                 </div>
                             ) : (event as any).isRegistered ? (
                                  <Dialog>
@@ -253,4 +305,3 @@ export default function EventDetailPageWrapper() {
     </Suspense>
   );
 }
-
