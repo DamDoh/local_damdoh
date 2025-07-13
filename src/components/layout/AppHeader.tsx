@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Link, usePathname, useRouter } from '@/navigation';
+import { Link, usePathname, useRouter, getPathname } from '@/navigation';
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import {
@@ -57,9 +57,8 @@ interface NavLinkProps {
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, className, onClick }) => {
-  const pathWithoutLocale = pathname.split('/').slice(2).join('/');
-  const baseHref = href.substring(1); // remove leading '/'
-  const isActive = (baseHref === '' && pathWithoutLocale === '') || (baseHref !== '' && pathWithoutLocale.startsWith(baseHref));
+  const pathWithoutLocale = getPathname({href: pathname, locale: 'en' });
+  const isActive = (href === "/" && pathWithoutLocale === href) || (href !== "/" && pathWithoutLocale.startsWith(href));
 
   return (
     <Link
@@ -78,9 +77,8 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, label, pathname, cl
 };
 
 const MobileSheetNavLink: React.FC<NavLinkProps & {isSheetLink?: boolean}> = ({ href, icon: Icon, label, pathname, onClick, isSheetLink }) => {
-  const pathWithoutLocale = pathname.split('/').slice(2).join('/');
-  const baseHref = href.substring(1); // remove leading '/'
-  const isActive = (baseHref === '' && pathWithoutLocale === '') || (baseHref !== '' && pathWithoutLocale.startsWith(baseHref));
+  const pathWithoutLocale = getPathname({href: pathname, locale: 'en' });
+  const isActive = (href === "/" && pathWithoutLocale === href) || (href !== "/" && pathWithoutLocale.startsWith(href));
 
   return (
     <Link
@@ -168,29 +166,31 @@ export function AppHeader() {
     try {
       await logOut();
       toast({
-        title: "Logged Out",
-        description: "You have been successfully logged out.",
+        title: t('toast.logOut.title'),
+        description: t('toast.logOut.description'),
       });
       setIsMobileSheetOpen(false); 
       router.push('/auth/signin'); 
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Logout Failed",
-        description: "Could not log you out. Please try again.",
+        title: t('toast.logOut.failTitle'),
+        description: t('toast.logOut.failDescription'),
       });
     }
   };
 
   const getSectionTitle = () => {
-    const pathSegments = pathname.split('/').filter(Boolean);
-    if (pathSegments.length > 0 && (locales as readonly string[]).includes(pathSegments[0])) {
-      pathSegments.shift();
-    }
-    const path = pathSegments[0] || '';
+    const pathWithoutLocale = getPathname({href: pathname, locale: 'en' });
+    const path = pathWithoutLocale.split('/')[1] || '';
     if (!path) return t('home');
-    const item = desktopNavItems.find(item => item.href.includes(path));
-    return item ? t(item.label as any) : path.charAt(0).toUpperCase() + path.slice(1);
+    
+    const matchedItem = desktopNavItems.find(item => {
+        const itemBase = item.href.substring(1);
+        return itemBase && path.startsWith(itemBase);
+    });
+
+    return matchedItem ? t(matchedItem.label as any) : path.charAt(0).toUpperCase() + path.slice(1);
   }
 
   const sectionTitle = getSectionTitle();
@@ -263,10 +263,10 @@ export function AppHeader() {
             </SheetTrigger>
             <SheetContent side="left" className="w-72 p-0 flex flex-col bg-background">
               <SheetHeader className="p-4 border-b">
-                <SheetTitle className="text-left">Main Menu</SheetTitle>
+                <SheetTitle className="text-left">{t('mobileMenu.title')}</SheetTitle>
                 <VisuallyHidden>
                   <SheetDescription>
-                    Navigate to different sections of the application.
+                    {t('mobileMenu.description')}
                   </SheetDescription>
                 </VisuallyHidden>
               </SheetHeader>

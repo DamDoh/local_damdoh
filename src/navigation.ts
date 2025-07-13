@@ -98,7 +98,7 @@ export const pathnames = {
   '/traceability/batches/[batchId]': '/traceability/batches/[batchId]',
 } satisfies Pathnames<typeof locales>;
 
-export const {Link, redirect, usePathname, useRouter} =
+export const {Link, redirect, usePathname, useRouter, getPathname} =
   createLocalizedPathnamesNavigation({
     locales,
     pathnames,

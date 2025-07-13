@@ -8,7 +8,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Brain, Lightbulb, Recycle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { suggestCropRotationAction } from '@/lib/server-actions';
-import type { CropRotationOutput } from '@/ai/flows/crop-rotation-suggester';
+import type { CropRotationOutput, CropRotationInput } from '@/lib/types';
 
 interface CropRotationSuggesterProps {
   cropHistory: string[];
@@ -37,10 +37,11 @@ export function CropRotationSuggester({ cropHistory, location }: CropRotationSug
     setIsLoading(true);
     setError(null);
     try {
-      const result = await suggestCropRotationAction({
+      const payload: Omit<CropRotationInput, 'language'> = {
         cropHistory,
         location,
-      });
+      };
+      const result = await suggestCropRotationAction(payload);
       setSuggestions(result.suggestions);
     } catch (err) {
       console.error(err);
@@ -99,5 +100,3 @@ export function CropRotationSuggester({ cropHistory, location }: CropRotationSug
     </Card>
   );
 }
-
-    

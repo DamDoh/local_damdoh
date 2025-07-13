@@ -41,22 +41,22 @@ export const getInsuranceProductTypes = (t: any) => [
 ];
 
 export const getCropStages = (t: any) => [
-    { value: 'Planting', label: t('farmManagement.createCrop.stages.Planting') },
-    { value: 'Vegetative', label: t('farmManagement.createCrop.stages.Vegetative') },
-    { value: 'Flowering', label: t('farmManagement.createCrop.stages.Flowering') },
-    { value: 'Fruiting', label: t('farmManagement.createCrop.stages.Fruiting') },
-    { value: 'Harvesting', label: t('farmManagement.createCrop.stages.Harvesting') },
-    { value: 'Post-Harvest', label: t('farmManagement.createCrop.stages.Post-Harvest') }
+    { value: 'Planting', label: t('cropStages.Planting') },
+    { value: 'Vegetative', label: t('cropStages.Vegetative') },
+    { value: 'Flowering', label: t('cropStages.Flowering') },
+    { value: 'Fruiting', label: t('cropStages.Fruiting') },
+    { value: 'Harvesting', label: t('cropStages.Harvesting') },
+    { value: 'Post-Harvest', label: t('cropStages.Post-Harvest') }
 ];
 
 export const getObservationTypes = (t: any) => [
-    { value: 'General Note', label: t('farmManagement.logObservation.types.GeneralNote') },
-    { value: 'Pest Sighting', label: t('farmManagement.logObservation.types.PestSighting') },
-    { value: 'Disease Sighting', label: t('farmManagement.logObservation.types.DiseaseSighting') },
-    { value: 'Soil Condition', label: t('farmManagement.logObservation.types.SoilCondition') },
-    { value: 'Weather Event', label: t('farmManagement.logObservation.types.WeatherEvent') },
-    { value: 'Growth Stage Change', label: t('farmManagement.logObservation.types.GrowthStageChange') },
-    { value: 'Irrigation Event', label: t('farmManagement.logObservation.types.IrrigationEvent') },
+    { value: 'General Note', label: t('observationTypes.GeneralNote') },
+    { value: 'Pest Sighting', label: t('observationTypes.PestSighting') },
+    { value: 'Disease Sighting', label: t('observationTypes.DiseaseSighting') },
+    { value: 'Soil Condition', label: t('observationTypes.SoilCondition') },
+    { value: 'Weather Event', label: t('observationTypes.WeatherEvent') },
+    { value: 'Growth Stage Change', label: t('observationTypes.GrowthStageChange') },
+    { value: 'Irrigation Event', label: t('observationTypes.IrrigationEvent') },
 ];
 
 export const getMobileHomeCategories = (t: any): { id: string; name: string; icon: LucideIcon; href: string; dataAiHint?: string; }[] => [

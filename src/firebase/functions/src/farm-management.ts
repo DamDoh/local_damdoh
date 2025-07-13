@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type {KnfBatch} from "./types";
@@ -531,3 +532,40 @@ export const updateKnfBatchStatus = functions.https.onCall(
     }
   },
 );
+
+export const updateCrop = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
+    }
+    const { cropId, ...updateData } = data;
+    if (!cropId) {
+        throw new functions.https.HttpsError("invalid-argument", "error.crop.idRequired");
+    }
+    
+    const cropRef = db.collection('crops').doc(cropId);
+    
+    try {
+        const cropDoc = await cropRef.get();
+        if (!cropDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "error.crop.notFound");
+        }
+        if (cropDoc.data()?.ownerId !== context.auth.uid) {
+            throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
+        }
+        
+        const payload: { [key: string]: any } = { ...updateData, updatedAt: admin.firestore.FieldValue.serverTimestamp() };
+        
+        if (updateData.plantingDate) payload.plantingDate = admin.firestore.Timestamp.fromDate(new Date(updateData.plantingDate));
+        if (updateData.harvestDate) payload.harvestDate = admin.firestore.Timestamp.fromDate(new Date(updateData.harvestDate));
+
+        await cropRef.update(payload);
+        return { success: true, message: "Crop updated successfully." };
+
+    } catch(error: any) {
+        console.error(`Error updating crop ${cropId}:`, error);
+        if (error instanceof functions.https.HttpsError) {
+            throw error;
+        }
+        throw new functions.https.HttpsError("internal", "error.crop.updateFailed");
+    }
+});

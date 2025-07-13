@@ -1,11 +1,10 @@
 
 "use client";
 
-import { Link, usePathname } from '@/navigation';
+import { Link, usePathname, getPathname } from '@/navigation';
 import { Home, Search, ShoppingCart, MessageSquare, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
-import { locales } from '@/i18n-config';
 
 interface NavItem {
   href: string;
@@ -29,7 +28,7 @@ export function MobileBottomNavigation() {
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-background border-t border-border shadow-lg z-40 flex justify-around items-center print:hidden">
       {navItems.map((item) => {
-        const pathWithoutLocale = pathname.startsWith('/en') || pathname.startsWith('/es') || pathname.startsWith('/de') || pathname.startsWith('/km') ? pathname.substring(3) : pathname;
+        const pathWithoutLocale = getPathname({href: pathname, locale: 'en'});
         const isActive = item.href === "/" ? pathWithoutLocale === "/" : pathWithoutLocale.startsWith(item.href);
         return (
           <Link

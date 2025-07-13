@@ -75,7 +75,7 @@ export async function getMarketplaceRecommendationsAction(userId: string, count:
  * @param input The crop history and location details.
  * @returns A promise that resolves to the crop rotation suggestions.
  */
-export async function suggestCropRotationAction(input: CropRotationInput): Promise<CropRotationOutput> {
+export async function suggestCropRotationAction(input: Omit<CropRotationInput, 'language'>): Promise<CropRotationOutput> {
     try {
         const locale = await getLocale();
         return await suggestCropRotation({ ...input, language: locale });

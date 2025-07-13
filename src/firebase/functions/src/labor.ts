@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { logFinancialTransaction } from "./financial-services"; 
@@ -158,25 +159,23 @@ export const getWorkerDetails = functions.https.onCall(async (data, context) => 
     const workLogs = workLogsSnap.docs.map(doc => ({ 
         id: doc.id, 
         ...doc.data(), 
-        date: doc.data().date.toDate().toISOString(),
-        createdAt: doc.data().createdAt.toDate().toISOString(),
+        date: (doc.data().date as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+        createdAt: (doc.data().createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
     }));
     const payments = paymentsSnap.docs.map(doc => ({ 
         id: doc.id, 
         ...doc.data(), 
-        date: doc.data().date.toDate().toISOString(),
-        createdAt: doc.data().createdAt.toDate().toISOString(),
+        date: (doc.data().date as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+        createdAt: (doc.data().createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
     }));
 
     return {
         profile: { 
             id: workerSnap.id, 
             ...workerSnap.data(),
-            createdAt: workerSnap.data()?.createdAt.toDate().toISOString(),
+            createdAt: (workerSnap.data()?.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         },
         workLogs,
         payments
     }
 });
-
-    
