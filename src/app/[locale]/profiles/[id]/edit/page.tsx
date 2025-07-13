@@ -22,7 +22,7 @@ import { editProfileSchema, type EditProfileValues } from "@/lib/form-schemas";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
 import { getProfileByIdFromDB } from "@/lib/server-actions";
 import type { UserProfile } from "@/lib/types";
-import { ArrowLeft, Save, User, Mail, Briefcase, FileText, MapPin, Sparkles, TrendingUp, Phone, Globe, Loader2, Info } from "lucide-react";
+import { ArrowLeft, Save, User, Mail, Briefcase, FileText, MapPin, Sparkles, TrendingUp, Phone, Globe, Loader2, Info, Settings as SettingsIconLucide } from "lucide-react";
 import React from "react"; 
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState, useCallback, useMemo } from "react";
@@ -30,7 +30,7 @@ import { useAuth } from "@/lib/auth-utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { generateProfileSummary } from '@/ai/flows/profile-summary-generator';
 
@@ -60,6 +60,7 @@ export default function EditProfilePage() {
   const tCommon = useTranslations('common');
   const router = useRouter();
   const params = useParams();
+  const locale = useLocale();
 
   const { toast } = useToast();
   const { user: authUser, loading: authLoading } = useAuth();
@@ -102,7 +103,7 @@ export default function EditProfilePage() {
           role: userProfile.primaryRole,
           profileSummary: userProfile.profileSummary || "",
           bio: userProfile.bio || "",
-          location: userProfile.location || "",
+          location: userProfile.location?.address || "",
           areasOfInterest: Array.isArray(userProfile.areasOfInterest) ? userProfile.areasOfInterest.join(", ") : "",
           needs: Array.isArray(userProfile.needs) ? userProfile.needs.join(", ") : "",
           contactInfoPhone: userProfile.contactInfo?.phone || "",
@@ -168,6 +169,7 @@ export default function EditProfilePage() {
             location: location,
             areasOfInterest: areasOfInterest,
             needs: needs,
+            language: locale,
         });
         if (result.summary) {
             form.setValue('profileSummary', result.summary, { shouldValidate: true });
@@ -200,7 +202,7 @@ export default function EditProfilePage() {
         primaryRole: data.role,
         profileSummary: data.profileSummary,
         bio: data.bio,
-        location: data.location,
+        location: { address: data.location }, // Assuming simple address for now
         areasOfInterest: data.areasOfInterest?.split(',').map(s => s.trim()).filter(Boolean) || [],
         needs: data.needs?.split(',').map(s => s.trim()).filter(Boolean) || [],
         contactInfoPhone: data.contactInfoPhone,
@@ -302,7 +304,7 @@ export default function EditProfilePage() {
                   )}
                 </Button>
                 <Button type="button" variant="outline" className="w-full sm:w-auto" onClick={() => router.back()} disabled={isSubmitting}>
-                  <ArrowLeft className="mr-2 h-4 w-4" /> {tEdit('cancelButton')}
+                  <ArrowLeft className="mr-2 h-4 w-4" /> {tCommon('cancel')}
                 </Button>
               </div>
             </form>

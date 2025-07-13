@@ -11,57 +11,398 @@
     "edit": "កែសម្រួល",
     "delete": "លុប",
     "back": "ត្រឡប់",
-    "submit": "ដាក់ស្នើ"
+    "submit": "ដាក់ស្នើ",
+    "yes": "បាទ/ចាស",
+    "no": "ទេ",
+    "confirm": "បញ្ជាក់",
+    "close": "បិទ",
+    "optional": "ស្រេចចិត្ត"
   },
-  "myNetworkPage": {
-    "backLink": "ត្រឡប់ទៅមជ្ឈមណ្ឌលបណ្តាញ",
-    "myConnectionsTab": "ការតភ្ជាប់របស់ខ្ញុំ ({count})",
-    "pendingRequestsTab": "សំណើកំពុងរង់ចាំ",
-    "connectionsTitle": "ការតភ្ជាប់របស់ខ្ញុំ",
-    "connectionsDescription": "នេះគឺជាបណ្តាញអាជីពរបស់អ្នកនៅលើ DamDoh។ ទាំងនេះគឺជាមនុស្សដែលអ្នកអាចផ្ញើសារដោយផ្ទាល់ និងសហការជាមួយ។",
-    "requestsTitle": "សំណើរសុំតភ្ជាប់",
-    "requestsDescription": "យល់ព្រម ឬបដិសេធសំណើពីអ្នកប្រើប្រាស់ផ្សេងទៀត ដើម្បីបន្ថែមពួកគេទៅក្នុងបណ្តាញរបស់អ្នក។",
-    "noConnections": {
-      "title": "បង្កើតបណ្តាញរបស់អ្នក",
-      "description": "អ្នកមិនទាន់បានបង្កើតការតភ្ជាប់ណាមួយនៅឡើយទេ។ ចាប់ផ្តើមដោយការរុករកបណ្តាញ ឬអញ្ជើញមនុស្សដែលអ្នកស្គាល់។",
-      "inviteButton": "អញ្ជើញមិត្តរួមការងារ"
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "កសិករ",
+      "AgriculturalCooperative": "សហគមន៍កសិកម្ម",
+      "FieldAgentAgronomistDamDohInternal": "ភ្នាក់ងារ/អ្នកជំនាញកសិកម្ម (បុគ្គលិកដាំដុះ)",
+      "OperationsLogisticsTeamDamDohInternal": "ក្រុមប្រតិបត្តិការ/ភស្តុភារ (បុគ្គលិកដាំដុះ)",
+      "QualityAssuranceTeamDamDohInternal": "ក្រុមធានាគុណភាព (បុគ្គលិកដាំដុះ)",
+      "ProcessingPackagingUnit": "หน่วยแปรรูปและบรรจุภัณฑ์",
+      "BuyerRestaurantSupermarketExporter": "អ្នកទិញ (ភោជនីយដ្ឋាន, ផ្សារទំនើប, អ្នកនាំចេញ)",
+      "InputSupplierSeedFertilizerPesticide": "អ្នកផ្គត់ផ្គង់ធាតុចូល (គ្រាប់ពូជ, ជី, ថ្នាំសំលាប់សត្វល្អិត)",
+      "EquipmentSupplierSalesofMachineryIoT": "អ្នកផ្គត់ផ្គង់គ្រឿងចក្រ (លក់គ្រឿងចក្រ/IoT)",
+      "FinancialInstitutionMicrofinanceLoans": "គ្រឹះស្ថានហិរញ្ញវត្ថុ (មីក្រូហិរញ្ញវត្ថុ/កម្ចី)",
+      "GovernmentRegulatorAuditor": "និយតករ/សវនកររដ្ឋាភិបាល",
+      "CertificationBodyOrganicFairTradeetc": "ស្ថាប័នបញ្ជាក់ (សរីរាង្គ, ពាណិជ្ជកម្មដោយត្រឹមត្រូវ ។ល។)",
+      "Consumer": "អ្នកប្រើប្រាស់",
+      "ResearcherAcademic": "អ្នកស្រាវជ្រាវ/អ្នកសិក្សា",
+      "LogisticsPartnerThirdPartyTransporter": "ដៃគូដឹកជញ្ជូន (ភាគីទីបី)",
+      "StorageWarehouseFacility": "កន្លែងផ្ទុក/ឃ្លាំង",
+      "AgronomyExpertConsultantExternal": "អ្នកជំនាញ/ទីប្រឹក្សាកសិកម្ម (ខាងក្រៅ)",
+      "AgroTourismOperator": "ប្រតិបត្តិករទេសចរណ៍កសិកម្ម",
+      "EnergySolutionsProviderSolarBiogas": "អ្នកផ្តល់ដំណោះស្រាយថាមពល (ថាមពលព្រះអាទិត្យ, ឧស្ម័នជីវៈ)",
+      "AgroExportFacilitatorCustomsBroker": "អ្នកសម្របសម្រួលការនាំចេញកសិផល/ឈ្មួញកណ្តាលគយ",
+      "AgriTechInnovatorDeveloper": "អ្នកបង្កើតថ្មី/អ្នកអភិវឌ្ឍន៍បច្ចេកវិទ្យាកសិកម្ម",
+      "WasteManagementCompostFacility": "កន្លែងគ្រប់គ្រងកាកសំណល់ និងជីកំប៉ុស",
+      "CrowdfunderImpactInvestorIndividual": "អ្នកផ្តល់មូលនិធិសហគមន៍ (អ្នកវិនិយោគមានឥទ្ធិពល, បុគ្គល)",
+      "InsuranceProvider": "អ្នកផ្តល់សេវាធានារ៉ាប់រង",
+      "PackagingSupplier": "អ្នកផ្គត់ផ្គង់ការវេចខ្ចប់"
     },
-    "noRequests": "អ្នកមិនមានសំណើតភ្ជាប់ដែលកំពុងរង់ចាំទេ។",
-    "sentTimeAgo": "បានផ្ញើ {timeAgo} មុន",
-    "toast": {
-      "error": "កំហុស",
-      "success": "ជោគជ័យ",
-      "loadError": "មិនអាចផ្ទុកទិន្នន័យបណ្តាញរបស់អ្នកបានទេ។ សូម​ព្យាយាម​ម្តង​ទៀត។",
-      "respondError": "ការឆ្លើយតបទៅនឹងសំណើបានបរាជ័យ។",
-      "requestAccepted": "បានទទួលយកសំណើតភ្ជាប់។",
-      "requestDeclined": "បានបដិសេធសំណើតភ្ជាប់។",
-      "connectionRemoved": "ការតភ្ជាប់ត្រូវបានដកចេញ។",
-      "removeError": "មិនអាចដកការតភ្ជាប់ចេញបានទេ។"
+    "listingTypes": {
+      "All": "គ្រប់ប្រភេទ",
+      "Product": "ផលិតផល",
+      "Service": "សេវាកម្ម"
+    },
+    "agriEventTypes": {
+      "All": "គ្រប់ប្រភេទ",
+      "Conference": "សន្និសីទ",
+      "Webinar": "សិក្ខាសាលាអនឡាញ",
+      "Workshop": "សិក្ខាសាលា",
+      "TradeShow": "ពិព័រណ៍ពាណិជ្ជកម្ម",
+      "FieldDay": "ទិវាស្រែ",
+      "NetworkingEvent": "ព្រឹត្តិការណ៍បណ្តាញ",
+      "OnlineCourseLaunch": "ការចាប់ផ្តើមវគ្គសិក្សាអនឡាញ",
+      "PolicyBriefing": "សង្ខេបគោលនយោបាយ"
+    },
+    "insuranceProductTypes": {
+      "Crop": "ការធានារ៉ាប់រងដំណាំ",
+      "Livestock": "ការធានារ៉ាប់រងបសុសត្វ",
+      "Asset": "ការធានារ៉ាប់រងទ្រព្យសកម្ម",
+      "Weather": "ផ្អែកលើអាកាសធាតុ (ប៉ារ៉ាម៉ែត្រ)"
+    },
+    "financialServiceTypes": {},
+    "cropStages": {
+      "Planting": "ការដាំដុះ",
+      "Vegetative": "ការលូតលាស់",
+      "Flowering": "ការចេញផ្កា",
+      "Fruiting": "ការចេញផ្លែ",
+      "Harvesting": "ការប្រមូលផល",
+      "Post-Harvest": "ក្រោយការប្រមូលផល"
+    },
+    "observationTypes": {
+      "GeneralNote": "កំណត់ចំណាំទូទៅ",
+      "PestSighting": "ការមើលឃើញសត្វល្អិត",
+      "DiseaseSighting": "ការមើលឃើញជំងឺ",
+      "SoilCondition": "លក្ខខណ្ឌដី",
+      "WeatherEvent": "ព្រឹត្តិការណ៍អាកាសធាតុ",
+      "GrowthStageChange": "ការផ្លាស់ប្តូរដំណាក់កាលលូតលាស់",
+      "IrrigationEvent": "ព្រឹត្តិការណ៍ប្រព័ន្ធធារាសាស្រ្ត"
+    },
+    "mobileHomeCategories": {
+      "produceMarket": "ទីផ្សារកសិផល",
+      "farmInputs": "ធាតុចូលកសិកម្ម",
+      "talentExchange": "ការផ្លាស់ប្តូរទេពកោសល្យ",
+      "machinery": "គ្រឿងចក្រ",
+      "community": "សហគមន៍",
+      "aiAssistant": "ជំនួយការ AI",
+      "events": "ព្រឹត្តិការណ៍"
     }
   },
-  "DashboardRightSidebar": {
-    "networkTitle": "អ្នកណាដែលត្រូវតាមដាន",
-    "refreshSuggestions": "ធ្វើឱ្យស្រស់នូវការណែនាំ",
-    "infoTooltip": "ការណែនាំដោយ AI ផ្អែកលើប្រវត្តិរូប និងសកម្មភាពរបស់អ្នក។",
-    "follow": "តាមដាន",
-    "following": "បានស្នើសុំ",
-    "viewAllButton": "មើលការណែនាំទាំងអស់",
-    "promotionsTitle": "ការផ្សព្វផ្សាយរបស់ខ្ញុំ",
-    "promotionsDescription": "បង្កើត និងគ្រប់គ្រងប័ណ្ណបញ្ចុះតម្លៃដើម្បីទាក់ទាញអតិថិជនបន្ថែម។",
-    "managePromotionsButton": "គ្រប់គ្រងប័ណ្ណ",
-    "ad": "ពាណិជ្ជកម្ម",
-    "adTitle": "ទទួលបានការយល់ដឹងពីទីផ្សារ",
-    "adDescription": "ចូលមើលតម្លៃ និងនិន្នាការតាមពេលវេលាជាក់ស្តែងសម្រាប់ផលិតផលរបស់អ្នក។",
-    "adButton": "មើលទិន្នន័យទីផ្សារ",
-    "adAlt": "គំនូសតាងទិន្នន័យបង្ហាញពីនិន្នាការទីផ្សារ",
-    "loadError": "មិនអាចផ្ទុកការណែនាំបានទេនៅពេលនេះ។",
-    "signInPrompt": "ចូលដើម្បីមើលការណែនាំផ្ទាល់ខ្លួន។",
-    "noSuggestions": "មិនមានការណែនាំថ្មីនៅពេលនេះទេ។ សាកល្បងពង្រីកប្រវត្តិរូបរបស់អ្នក!",
+  "LandingPage": {
+    "hero": {
+      "title": "ពង្រឹងវិស័យកសិកម្មពីដីដល់ការលក់នៅលើ {appName}",
+      "subtitle": "វេទិកាតែមួយដែលភ្ជាប់គ្រប់តួអង្គក្នុងខ្សែសង្វាក់តម្លៃកសិកម្មសម្រាប់អនាគតមួយដែលកាន់តែមានតម្លាភាព ប្រសិទ្ធភាព និងនិរន្តរភាព។",
+      "getStartedButton": "ចាប់ផ្តើមដោយឥតគិតថ្លៃ",
+      "learnMoreButton": "ស្វែងយល់បន្ថែម"
+    },
+    "features": {
+      "title": "លក្ខណៈពិសេសចម្បងរបស់ដាំដុះ",
+      "subtitle": "អ្វីគ្រប់យ៉ាងដែលអ្នកត្រូវការដើម្បីរីកចម្រើន ភ្ជាប់ទំនាក់ទំនង និងធ្វើពាណិជ្ជកម្ម នៅកន្លែងតែមួយ។",
+      "networking": {
+        "title": "បណ្តាញឆ្លាតវៃ",
+        "description": "ការណែនាំអំពីការតភ្ជាប់ដោយបញ្ញាសិប្បនិម្មិត ដើម្បីភ្ជាប់អ្នកជាមួយដៃគូត្រឹមត្រូវ ចាប់ពីអ្នកផ្គត់ផ្គង់រហូតដល់អ្នកទិញអន្តរជាតិ។"
+      },
+      "marketplace": {
+        "title": "ទីផ្សារផ្ទាល់",
+        "description": "ទិញនិងលក់ផលិតផលនិងសេវាកម្មដោយផ្ទាល់ បង្កើនតម្លាភាពនិងប្រាក់ចំណេញសម្រាប់គ្រប់តួអង្គ។"
+      },
+      "forums": {
+        "title": "វេទិកាប្រធានបទ",
+        "description": "ចែករំលែកចំណេះដឹង ពិភាក្សាអំពីបញ្ហាប្រឈម និងសហការលើដំណោះស្រាយនៅក្នុងវេទិកាប្រធានបទជាក់លាក់។"
+      },
+      "talent": {
+        "title": "ការផ្លាស់ប្តូរទេពកោសល្យ",
+        "description": "ផ្តល់ជូនឬស្វែងរកសេវាកម្មកសិកម្មឯកទេស ចាប់ពីការប្រមូលផលតាមតម្រូវការរហូតដល់ការស្ទង់មតិដោយដ្រូន។"
+      }
+    },
+    "forWho": {
+      "badge": "សម្រាប់អ្នករាល់គ្នាក្នុងវិស័យកសិកម្ម",
+      "title": "វេទិកាមួយសម្រាប់ខ្សែសង្វាក់តម្លៃទាំងមូល",
+      "description": "ដាំដុះត្រូវបានរចនាឡើងដោយឡែកដើម្បីបម្រើប្រព័ន្ធអេកូឡូស៊ីកសិកម្មទាំងមូល បង្កើតចំណុចតែមួយនៃការពិត និងឱកាសសម្រាប់ទាំងអស់គ្នា។",
+      "farmers": {
+        "title": "កសិករ",
+        "description": "ចូលទៅកាន់ទីផ្សារល្អប្រសើរ ស្វែងរកធាតុចូលដែលមានគុណភាព និងទទួលបានការណែនាំពីអ្នកជំនាញដើម្បីបង្កើនទិន្នផលនិងប្រាក់ចំណេញ។"
+      },
+      "buyers": {
+        "title": "អ្នកទិញនិងអ្នកកែច្នៃ",
+        "description": "ស្វែងរកផលិតផលដែលមានគុណភាពខ្ពស់ និងអាចតាមដានបានដោយផ្ទាល់ពីអ្នកដាំនិងសហគមន៍កសិកម្ម ធានានូវភាពជឿជាក់នៃខ្សែសង្វាក់ផ្គត់ផ្គង់។"
+      },
+      "experts": {
+        "title": "អ្នកជំនាញនិងអ្នកផ្តល់សេវា",
+        "description": "ផ្តល់ជំនាញ និងសេវាកម្មពិសេសរបស់អ្នកទៅកាន់ទស្សនិកជនកសិកម្មដ៏ធំទូលាយដែលកំពុងស្វែងរកជំនាញរបស់អ្នក។"
+      },
+      "fis": {
+        "title": "สถาบันการเงิน",
+        "description": "เสนอสินเชื่อ, เงินช่วยเหลือ, และผลิตภัณฑ์ประกันภัยที่ตรงเป้าหมายให้กับเครือข่ายธุรกิจการเกษตรที่ได้รับการยืนยันแล้ว"
+      },
+      "imageAlt": "ក្រុមចម្រុះនៃតួអង្គកសិកម្មកំពុងសហការគ្នា"
+    },
+    "cta": {
+      "title": "ចូលរួមបដិវត្តន៍កសិកម្ម",
+      "subtitle": "ចុះឈ្មោះថ្ងៃនេះ ហើយក្លាយជាផ្នែកមួយនៃបណ្តាញសកលដែលកំពុងរីកចម្រើន ឧទ្ទិសដល់ការផ្លាស់ប្តូរអនាគតនៃម្ហូបអាហារ។",
+      "button": "បង្កើតគណនីឥតគិតថ្លៃរបស់អ្នក"
+    }
+  },
+  "Auth": {
+    "signInWelcome": "សូមស្វាគមន៍មកកាន់ {appName} ជាថ្មី",
+    "signUpWelcome": "ចូលរួមបណ្តាញកសិកម្មដាំដុះ",
+    "forgotPasswordResetPrompt": "កំណត់ពាក្យសម្ងាត់របស់អ្នកសម្រាប់ {appName} ឡើងវិញ",
+    "resetPasswordPrompt": "បង្កើតពាក្យសម្ងាត់ថ្មីសម្រាប់ {appName}",
+    "signInTitle": "ចូលគណនីរបស់អ្នក",
+    "signInDescription": "បញ្ចូលព័ត៌មានសម្គាល់របស់អ្នកដើម្បីចូលប្រើផ្ទាំងគ្រប់គ្រងរបស់អ្នក។",
+    "emailLabel": "អ៊ីមែល",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "ពាក្យសម្ងាត់",
+    "forgotPasswordLink": "ភ្លេចពាក្យសម្ងាត់?",
+    "signingInButton": "កំពុងចូល...",
+    "signInButton": "ចូលគណនី",
+    "noAccountPrompt": "មិនទាន់មានគណនី?",
+    "signUpLink": "ចុះឈ្មោះ",
+    "signInLink": "ចូលគណនី",
+    "recoverWithUniversalIdPrompt": "ឬស្តារការចូលប្រើដោយប្រើ ID សកលរបស់អ្នក",
+    "signUpTitle": "បង្កើតគណនីថ្មី",
+    "signUpDescription": "ប្រាប់យើងបន្តិចអំពីខ្លួនអ្នកដើម្បីចាប់ផ្តើម។",
+    "nameLabel": "ឈ្មោះរបស់អ្នក ឬឈ្មោះអាជីវកម្ម",
+    "namePlaceholder": "ឧ: ចាន់ ណារី ឬ កសិដ្ឋានជ្រលងបៃតង",
+    "roleLabel": "តួនាទីចម្បងរបស់អ្នក",
+    "rolePlaceholder": "ជ្រើសរើសតួនាទីរបស់អ្នកក្នុងខ្សែសង្វាក់ផ្គត់ផ្គង់...",
+    "confirmPasswordLabel": "បញ្ជាក់ពាក្យសម្ងាត់",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "កំពុងបង្កើតគណនី...",
+    "signUpButton": "បង្កើតគណនី",
+    "alreadyHaveAccountPrompt": "មានគណនីហើយ?",
+    "forgotPasswordTitle": "ភ្លេចពាក្យសម្ងាត់?",
+    "forgotPasswordDescription": "គ្មានបញ្ហាទេ។ បញ្ចូលអាសយដ្ឋានអ៊ីមែលរបស់អ្នកខាងក្រោម ហើយយើងនឹងផ្ញើតំណដើម្បីកំណត់វាឡើងវិញ។",
+    "sendResetLinkButton": "ផ្ញើតំណកំណត់ឡើងវិញ",
+    "sendingEmailButton": "កំពុងផ្ញើអ៊ីមែល...",
+    "rememberPasswordPrompt": "ចាំពាក្យសម្ងាត់របស់អ្នកវិញហើយ?",
+    "resetPasswordTitle": "កំណត់ពាក្យសម្ងាត់របស់អ្នកឡើងវិញ",
+    "resetPasswordDescription": "បញ្ចូល និងបញ្ជាក់ពាក្យសម្ងាត់ថ្មីរបស់អ្នកខាងក្រោម។",
+    "newPasswordLabel": "ពាក្យសម្ងាត់ថ្មី",
+    "newPasswordPlaceholder": "បញ្ចូលពាក្យសម្ងាត់ថ្មីដែលរឹងមាំ",
+    "resetPasswordButton": "កំណត់ពាក្យសម្ងាត់ឡើងវិញ",
+    "resettingPasswordButton": "កំពុងកំណត់ឡើងវិញ...",
+    "recoverPage": {
+      "title": "ស្តារគណនីរបស់អ្នក",
+      "description": "ប្រើបណ្តាញរបស់អ្នកដើម្បីទទួលបានការចូលប្រើឡើងវិញ។",
+      "howItWorksTitle": "របៀបដែលវាដំណើរការ",
+      "step1": "បញ្ចូលលេខទូរស័ព្ទរបស់អ្នកដើម្បីចាប់ផ្តើមវគ្គស្តារ។",
+      "step2": "បង្ហាញកូដ QR បណ្តោះអាសន្នទៅមិត្តភក្តិដែលជឿទុកចិត្តនៅលើដាំដុះ។",
+      "step3": "នៅពេលដែលមិត្តរបស់អ្នកស្កេនកូដដើម្បីបញ្ជាក់អត្តសញ្ញាណរបស់អ្នក អ្នកនឹងទទួលបានការចូលប្រើឡើងវិញ។",
+      "startButton": "ចាប់ផ្តើមការស្តារគណនី",
+      "scanTitle": "សុំឱ្យមិត្តម្នាក់ស្កេន",
+      "scanDescription": "ឱ្យទំនាក់ទំនងដាំដុះដែលជឿទុកចិត្តស្កេនកូដ QR នេះដោយប្រើមុខងារ 'ជួយមិត្តម្នាក់ស្តារ' នៅក្នុងកម្មវិធីរបស់ពួកគេ។",
+      "scanNote": "កូដនេះគឺបណ្តោះអាសន្នហើយផុតកំណត់ក្នុងរយៈពេល 10 នាទី។",
+      "startOverButton": "ចាប់ផ្តើមឡើងវិញ",
+      "enterPhone": {
+        "title": "បញ្ចូលលេខទូរស័ព្ទរបស់អ្នក",
+        "description": "យើងនឹងប្រើលេខទូរស័ព្ទរបស់អ្នកដើម្បីស្វែងរកគណនីរបស់អ្នក ហើយចាប់ផ្តើមវគ្គសង្គ្រោះ។",
+        "phoneNumberLabel": "លេខទូរស័ព្ទ",
+        "phoneNumberPlaceholder": "បញ្ចូលលេខទូរស័ព្ទដែលបានចុះឈ្មោះរបស់អ្នក",
+        "phoneRequiredError": "ត្រូវតែមានលេខទូរស័ព្ទ។",
+        "verifyingButton": "កំពុងផ្ទៀងផ្ទាត់...",
+        "getRecoveryCodeButton": "ទទួលបានលេខកូដសង្គ្រោះ",
+        "genericError": "មិនអាចចាប់ផ្តើមវគ្គសង្គ្រោះបានទេ។ សូមពិនិត្យលេខ ហើយព្យាយាមម្តងទៀត។"
+      },
+      "helpFriend": {
+        "prompt": "កំពុងព្យាយាមជួយនរណាម្នាក់សង្គ្រោះគណនីរបស់ពួកគេមែនទេ?",
+        "button": "ជួយមិត្តម្នាក់សង្គ្រោះ",
+        "scanError": "លេខកូដ QR ដែលបានស្កេនមិនមែនជាលេខកូដសង្គ្រោះត្រឹមត្រូវទេ។",
+        "scanSuccess": "ការបញ្ជាក់បានជោគជ័យ!",
+        "scanFail": "មិនអាចអានលេខកូដ QR បានទេ។ សូមព្យាយាមម្តងទៀត។"
+      }
+    },
+    "forgotPassword": {
+      "emailSentTitle": "ពិនិត្យអ៊ីមែលរបស់អ្នក",
+      "emailSentDescription": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញត្រូវបានផ្ញើទៅ {email}។",
+      "emailSentDescriptionIfAccountExists": "ប្រសិនបើមានគណនីជាមួយ {email} តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញត្រូវបានផ្ញើ។",
+      "successTitle": "បានផ្ញើអ៊ីមែល!",
+      "successDescription": "សូមពិនិត្យប្រអប់សំបុត្ររបស់អ្នក (និងថតសារឥតបានការ) សម្រាប់តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញ។",
+      "errors": {
+        "unexpected": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង សូមព្យាយាមម្តងទៀត។",
+        "invalidEmail": "អាសយដ្ឋានអ៊ីមែលមិនត្រឹមត្រូវ។",
+        "tooManyRequests": "មានសំណើច្រើនពេក សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។",
+        "default": "បរាជ័យក្នុងការផ្ញើអ៊ីមែលកំណត់ឡើងវិញ"
+      }
+    },
+    "resetPassword": {
+      "successTitle": "បានកំណត់ពាក្យសម្ងាត់ឡើងវិញដោយជោគជ័យ!",
+      "successDescription": "ឥឡូវនេះអ្នកអាចចូលដោយប្រើពាក្យសម្ងាត់ថ្មីរបស់អ្នក។",
+      "successRedirect": "អ្នកនឹងត្រូវបានបញ្ជូនទៅទំព័រចូលក្នុងពេលឆាប់ៗនេះ។",
+      "errors": {
+        "missingCode": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញមិនត្រឹមត្រូវ សូមស្នើសុំតំណថ្មី។",
+        "missingCodeTitle": "តំណមិនត្រឹមត្រូវ",
+        "missingCodeDescription": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញបាត់ ឬមិនត្រឹមត្រូវ។ សូមត្រឡប់ទៅទំព័រ 'ភ្លេចពាក្យសម្ងាត់' ដើម្បីស្នើសុំតំណថ្មី។",
+        "unexpected": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង សូមព្យាយាមម្តងទៀត។",
+        "invalidOrExpiredCode": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញមិនត្រឹមត្រូវ ឬផុតកំណត់។ សូមស្នើសុំតំណថ្មី។",
+        "userDisabled": "គណនីអ្នកប្រើប្រាស់នេះត្រូវបានបិទ។",
+        "userNotFound": "រកមិនឃើញអ្នកប្រើប្រាស់ដែលត្រូវនឹងតំណកំណត់ឡើងវិញនេះ។",
+        "weakPassword": "ពាក្យសម្ងាត់ថ្មីមិនរឹងមាំគ្រប់គ្រាន់ទេ។",
+        "default": "បរាជ័យក្នុងការកំណត់ពាក្យសម្ងាត់ឡើងវិញ"
+      }
+    },
+    "errors": {
+      "emailInUse": "អ៊ីមែលនេះត្រូវបានប្រើប្រាស់រួចហើយ។",
+      "invalidEmail": "អាសយដ្ឋានអ៊ីមែលមិនត្រឹមត្រូវ។",
+      "weakPassword": "ពាក្យសម្ងាត់ត្រូវតែមានយ៉ាងតិច 6 តួអក្សរ។",
+      "default": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង។"
+    },
+    "signUpSuccess": {
+      "title": "បានបង្កើតគណនី និងបានចូល!",
+      "description": "សូមស្វាគមន៍មកកាន់ {appName}! អ្នកបានចូលដោយជោគជ័យ។"
+    },
+    "signUpFailed": "ការចុះឈ្មោះបានបរាជ័យ",
     "toast": {
-      "signInToConnect": "សូមចូលដើម្បីភ្ជាប់ទំនាក់ទំនងជាមួយអ្នកប្រើប្រាស់។",
-      "requestSent": "បានផ្ញើសំណើតភ្ជាប់!",
-      "requestSentDescription": "សំណើរបស់អ្នកត្រូវបានផ្ញើទៅអ្នកប្រើប្រាស់។ អ្នកនឹងត្រូវបានជូនដំណឹងនៅពេលពួកគេយល់ព្រម។",
-      "requestFailed": "មិនអាចផ្ញើសំណើបានទេ។"
+      "logOut": {
+        "title": "បានចេញពីគណនី",
+        "description": "អ្នកបានចេញពីគណនីដោយជោគជ័យ។"
+      },
+      "logoutFailed": {
+        "title": "ការចេញពីគណនីបានបរាជ័យ",
+        "description": "មិនអាចចេញពីគណនីបានទេ សូមព្យាយាមម្តងទៀត។"
+      },
+      "signInSuccess": {
+        "title": "បានចូលដោយជោគជ័យ!",
+        "description": "សូមស្វាគមន៍មកកាន់ {appName}។"
+      },
+      "signInFailed": {
+        "title": "ការចូលបានបរាជ័យ"
+      }
+    },
+    "passwordStrength": {
+      "label": "ความแข็งแกร่ง",
+      "weak": "อ่อน",
+      "medium": "ปานกลาง",
+      "strong": "แข็งแกร่ง",
+      "veryStrong": "แข็งแกร่งมาก"
+    }
+  },
+  "AppHeader": {
+    "home": "ទំព័រដើម",
+    "network": "បណ្តាញ",
+    "farmMgmt": "គ្រប់គ្រងកសិដ្ឋាន",
+    "marketplace": "ទីផ្សារ",
+    "talentExchange": "ទេពកោសល្យ",
+    "traceability": "ការតាមដាន",
+    "forums": "វេទិកា",
+    "sustainability": "និរន្តរភាព",
+    "notifications": "ការជូនដំណឹង",
+    "messages": "សារ",
+    "wallet": "កាបូបលុយ",
+    "searchPlaceholder": "ស្វែងរកមនុស្ស, ផលិតផល, សេវាកម្ម...",
+    "signIn": "ចូលគណនី",
+    "signUp": "ចុះឈ្មោះ",
+    "myProfile": "ប្រវត្តិរូបខ្ញុំ",
+    "settings": "ការកំណត់",
+    "helpCenter": "មជ្ឈមណ្ឌលជំនួយ",
+    "logOut": "ចេញពីគណនី",
+    "switchToLightAria": "ប្តូរទៅផ្ទៃភ្លឺ",
+    "switchToDarkAria": "ប្តូរទៅផ្ទៃងងឹត",
+    "mobileMenu": {
+      "title": "เมนู DamDoh",
+      "description": "เมนูนำทางหลักของแอปพลิเคชัน"
+    },
+    "myOrders": "การสั่งซื้อของฉัน",
+    "toast": {
+      "logOut": {
+        "title": "ออกจากระบบแล้ว",
+        "description": "คุณออกจากระบบเรียบร้อยแล้ว"
+      }
+    }
+  },
+  "MobileBottomNav": {
+    "home": "ទំព័រដើម",
+    "market": "ទីផ្សារ",
+    "search": "ស្វែងរក",
+    "forums": "វេទិកា",
+    "profile": "ប្រវត្តិរូប",
+    "messages": "សារ"
+  },
+  "DashboardLeftSidebar": {
+    "viewProfileLink": "មើលប្រវត្តិរូបរបស់ខ្ញុំ",
+    "profileViewers": "អ្នកមើលប្រវត្តិរូប",
+    "postEngagements": "การมีส่วนร่วมในโพสต์",
+    "pro": {
+      "unlock": "ปลดล็อกข้อมูลเชิงลึกเพิ่มเติมด้วย DamDoh Pro",
+      "try": "ลองใช้ Pro",
+      "title": "เร็ว ๆ นี้!",
+      "description": "ฟีเจอร์ DamDoh Pro กำลังอยู่ในระหว่างการพัฒนา"
+    },
+    "recent": {
+      "title": "ล่าสุด",
+      "myPinBoard": "Pin-Board ของฉัน",
+      "communityGroups": "กลุ่มชุมชน",
+      "industryNews": "ข่าวอุตสาหกรรม",
+      "agriEvents": "กิจกรรมการเกษตร",
+      "mySupplyChainNetwork": "เครือข่ายซัพพลายเชนของฉัน"
+    }
+  },
+  "MainDashboard": {
+    "feedError": {
+      "title": "ข้อผิดพลาดในการโหลดฟีด",
+      "description": "ไม่สามารถดึงกิจกรรมล่าสุดได้ โปรดตรวจสอบการเชื่อมต่อของคุณ"
+    },
+    "postError": {
+      "auth": "คุณต้องลงชื่อเข้าใช้เพื่อโพสต์",
+      "fail": "สร้างโพสต์ไม่สำเร็จ โปรดลองอีกครั้ง"
+    },
+    "uploadingMedia": "กำลังอัปโหลดสื่อ...",
+    "uploadComplete": "อัปโหลดสำเร็จ!",
+    "postSuccess": {
+      "title": "สร้างโพสต์แล้ว!",
+      "description": "การอัปเดตของคุณถูกแชร์กับเครือข่ายแล้ว"
+    },
+    "likeError": {
+      "auth": "คุณต้องลงชื่อเข้าใช้เพื่อกดไลค์โพสต์",
+      "fail": "ไม่สามารถกดไลค์โพสต์ได้ โปรดลองอีกครั้ง"
+    },
+    "commentError": {
+      "auth": "คุณต้องลงชื่อเข้าใช้เพื่อแสดงความคิดเห็น",
+      "fail": "โพสต์ความคิดเห็นไม่สำเร็จ"
+    },
+    "commentSuccess": "โพสต์ความคิดเห็นแล้ว!",
+    "deleteError": {
+      "auth": "คุณต้องลงชื่อเข้าใช้เพื่อลบโพสต์",
+      "fail": "ลบโพสต์ไม่สำเร็จ"
+    },
+    "deleteSuccess": {
+      "title": "ลบโพสต์แล้ว",
+      "description": "โพสต์ของคุณถูกลบเรียบร้อยแล้ว"
+    },
+    "noActivity": "ไม่มีกิจกรรมล่าสุดในเครือข่ายของคุณ เริ่มการสนทนาหรือสำรวจตลาด!"
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "A Quién Seguir",
+    "refreshSuggestions": "Actualizar sugerencias",
+    "infoTooltip": "Sugerencias impulsadas por IA basadas en tu perfil y actividad.",
+    "follow": "Seguir",
+    "following": "Solicitado",
+    "viewAllButton": "Ver todas las sugerencias",
+    "promotionsTitle": "Mis Promociones",
+    "promotionsDescription": "Crea y gestiona cupones para atraer más clientes.",
+    "managePromotionsButton": "Gestionar Cupones",
+    "ad": "Anuncio",
+    "adTitle": "Obtén Información del Mercado",
+    "adDescription": "Accede a precios y tendencias en tiempo real para tus productos.",
+    "adButton": "Ver Datos del Mercado",
+    "adAlt": "Gráfico de datos mostrando las tendencias del mercado",
+    "loadError": "No se pudieron cargar las sugerencias en este momento.",
+    "signInPrompt": "Inicia sesión para ver sugerencias personalizadas.",
+    "noSuggestions": "No hay nuevas sugerencias por ahora. ¡Intenta expandir tu perfil!",
+    "toast": {
+      "signInToConnect": "Por favor, inicia sesión para conectar con usuarios.",
+      "requestSent": "¡Solicitud de Conexión Enviada!",
+      "requestSentDescription": "Tu solicitud ha sido enviada al usuario. Se te notificará cuando la acepten.",
+      "requestFailed": "No se pudo enviar la solicitud."
     }
   }
 }
+
