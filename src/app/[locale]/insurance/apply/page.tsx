@@ -150,7 +150,7 @@ export default function ApplyForInsurancePage() {
                                 <FormItem>
                                     <FormLabel className="flex items-center gap-2"><DollarSign className="h-4 w-4"/>{t('form.coverageValueLabel')}</FormLabel>
                                     <FormControl>
-                                        <Input type="number" placeholder={t('form.coverageValuePlaceholder')} {...field} onChange={e => field.onChange(parseFloat(e.target.value))} />
+                                        <Input type="number" placeholder={t('form.coverageValuePlaceholder')} {...field} />
                                     </FormControl>
                                     <FormDescription>{t('form.coverageValueDescription')}</FormDescription>
                                     <FormMessage />
