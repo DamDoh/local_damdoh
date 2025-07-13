@@ -274,7 +274,7 @@ function ItemPageContent() {
                         <Badge variant="secondary">{item.category}</Badge>
                         <h1 className="text-3xl font-bold mt-2">{item.name}</h1>
                          <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
-                            <MapPin className="h-4 w-4"/> {item.location?.address}
+                            <MapPin className="h-4 w-4"/> {item.location.address}
                         </div>
                     </div>
 

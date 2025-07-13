@@ -64,7 +64,7 @@ const CheckInTab = ({ itemId, itemName }: { itemId: string, itemName: string }) 
             }
 
             const urlParams = new URLSearchParams(decodedText.split('?')[1]);
-            const scannedItemId = urlParams.get('itemId');
+            const scannedItemId = urlParams.get('itemId') || urlParams.get('eventId');
             const attendeeUid = urlParams.get('userId');
 
             if (scannedItemId !== itemId) {
