@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Skeleton } from "@/components/ui/skeleton";
 import { Rss, Feather } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from '@/navigation';
 import Image from "next/image";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
@@ -157,7 +157,9 @@ export default function BlogPage() {
               <Feather className="h-16 w-16 text-muted-foreground/50 mb-4" />
               <h3 className="text-xl font-semibold text-muted-foreground mb-2">{t('noPosts.title')}</h3>
               <p className="text-muted-foreground max-w-md">
-                {t('noPosts.description')}
+                {t.rich('noPosts.description', {
+                  link: (chunks) => <Link href="/admin/content" className="text-primary hover:underline">{chunks}</Link>
+                })}
               </p>
             </div>
           </CardContent>

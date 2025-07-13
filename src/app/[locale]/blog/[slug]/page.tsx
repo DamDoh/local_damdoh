@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowLeft, User, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from '@/navigation';
 import Image from "next/image";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
@@ -62,7 +62,7 @@ export default function BlogPostPage() {
   const { toast } = useToast();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const t = useTranslations('Blog');
+  const t = useTranslations('blogPage');
   const locale = useLocale();
   const format = useFormatter();
 
@@ -81,7 +81,7 @@ export default function BlogPostPage() {
         }
       } catch (error: any) {
         console.error("Error fetching post:", error);
-        toast({ title: t('errors.title'), description: error.message || t('errors.load'), variant: "destructive" });
+        toast({ title: t('error.title'), description: error.message || t('error.description'), variant: "destructive" });
         setPost(null);
       } finally {
         setIsLoading(false);
