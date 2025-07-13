@@ -13,6 +13,41 @@
     "back": "ត្រឡប់",
     "submit": "ដាក់ស្នើ"
   },
+  "ProfilePage": {
+    "editProfile": "កែសម្រួលប្រវត្តិរូប",
+    "showUniversalIdButton": "បង្ហាញអត្តសញ្ញាណប័ណ្ណសកល",
+    "universalIdModalTitle": "អត្តសញ្ញាណប័ណ្ណសកលរបស់អ្នក",
+    "universalIdModalDescription": "អ្នកប្រើប្រាស់ផ្សេងទៀតអាចស្កេនកូដនេះដើម្បីមើលប្រវត្តិរូបសាធារណៈរបស់អ្នក។",
+    "connect": "ភ្ជាប់",
+    "message": "សារ",
+    "aboutTitle": "អំពី {displayName}",
+    "interestsTitle": "ផ្នែកដែលចាប់អារម្មណ៍",
+    "needsTitle": "កំពុងស្វែងរក / ផ្តល់ជូន",
+    "contactTitle": "ព័ត៌មានទំនាក់ទំនង",
+    "engagementStats": "ស្ថិតិការចូលរួម",
+    "profileViews": "ចំនួនអ្នកមើលប្រវត្តិរូប",
+    "postLikes": "ការចូលចិត្តការបង្ហោះ",
+    "postComments": "មតិយោបល់លើការបង្ហោះ",
+    "recentActivityTitle": "សកម្មភាពថ្មីៗ",
+    "noRecentActivity": "មិនមានសកម្មភាពថ្មីៗដើម្បីបង្ហាញទេ។",
+    "tabs": {
+      "overview": "ទិដ្ឋភាពទូទៅ",
+      "activity": "សកម្មភាព"
+    },
+    "invite": {
+      "title": "ពង្រីកបណ្តាញរបស់អ្នក",
+      "description": "ស្គាល់នរណាម្នាក់ដែលគួរតែមាននៅលើ DamDoh? អញ្ជើញពួកគេឱ្យចូលរួមវេទិកា។",
+      "explanation": "វានឹងផ្ញើអ៊ីមែលអញ្ជើញស្ដង់ដារទៅកាន់អាសយដ្ឋានដែលអ្នកផ្តល់ให้។",
+      "button": "អញ្ជើញតាមអ៊ីមែល"
+    },
+    "invitePrompt": "សូមបញ្ចូលអាសយដ្ឋានអ៊ីមែលរបស់អ្នកដែលអ្នកចង់អញ្ជើញ៖",
+    "inviteSuccessTitle": "បានផ្ញើការអញ្ជើញ!",
+    "inviteSuccessDescription": "ការអញ្ជើញរបស់អ្នកត្រូវបានផ្ញើដោយជោគជ័យទៅកាន់ {email}។",
+    "inviteErrorTitle": "កំហុសក្នុងការផ្ញើការអញ្ជើញ",
+    "notFoundTitle": "រកមិនឃើញប្រវត្តិរូប",
+    "notFoundDescription": "ប្រវត្តិរូបដែលអ្នកកំពុងស្វែងរកមិនមាន ឬត្រូវបានដកចេញ។",
+    "backToNetwork": "ត្រឡប់ទៅបណ្តាញវិញ"
+  },
   "InsuranceProviderDashboard": {
     "title": "ផ្ទាំងគ្រប់គ្រងអ្នកផ្តល់សេវាធានារ៉ាប់រង",
     "manageProductsTitle": "ផលិតផលធានារ៉ាប់រងរបស់ខ្ញុំ",

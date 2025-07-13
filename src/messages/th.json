@@ -13,6 +13,41 @@
     "back": "กลับ",
     "submit": "ส่ง"
   },
+  "ProfilePage": {
+    "editProfile": "แก้ไขโปรไฟล์",
+    "showUniversalIdButton": "แสดง ID สากล",
+    "universalIdModalTitle": "ID สากลของคุณ",
+    "universalIdModalDescription": "ผู้ใช้อื่นสามารถสแกนรหัสนี้เพื่อดูโปรไฟล์สาธารณะของคุณ",
+    "connect": "เชื่อมต่อ",
+    "message": "ข้อความ",
+    "aboutTitle": "เกี่ยวกับ {displayName}",
+    "interestsTitle": "สิ่งที่น่าสนใจ",
+    "needsTitle": "กำลังมองหา / เสนอ",
+    "contactTitle": "ข้อมูลติดต่อ",
+    "engagementStats": "สถิติการมีส่วนร่วม",
+    "profileViews": "ยอดดูโปรไฟล์",
+    "postLikes": "ยอดไลค์โพสต์",
+    "postComments": "ความคิดเห็นในโพสต์",
+    "recentActivityTitle": "กิจกรรมล่าสุด",
+    "noRecentActivity": "ไม่มีกิจกรรมล่าสุดที่จะแสดง",
+    "tabs": {
+      "overview": "ภาพรวม",
+      "activity": "กิจกรรม"
+    },
+    "invite": {
+      "title": "ขยายเครือข่ายของคุณ",
+      "description": "รู้จักใครที่ควรอยู่บน DamDoh ไหม? เชิญพวกเขาเข้าร่วมแพลตฟอร์ม",
+      "explanation": "สิ่งนี้จะส่งอีเมลเชิญมาตรฐานไปยังที่อยู่ที่คุณให้ไว้",
+      "button": "เชิญทางอีเมล"
+    },
+    "invitePrompt": "กรุณาป้อนที่อยู่อีเมลของบุคคลที่คุณต้องการเชิญ:",
+    "inviteSuccessTitle": "ส่งคำเชิญแล้ว!",
+    "inviteSuccessDescription": "คำเชิญของคุณถูกส่งไปยัง {email} เรียบร้อยแล้ว",
+    "inviteErrorTitle": "เกิดข้อผิดพลาดในการส่งคำเชิญ",
+    "notFoundTitle": "ไม่พบโปรไฟล์",
+    "notFoundDescription": "โปรไฟล์ที่คุณกำลังมองหาไม่มีอยู่หรือถูกลบไปแล้ว",
+    "backToNetwork": "กลับไปที่เครือข่าย"
+  },
   "InsuranceProviderDashboard": {
     "title": "แดชบอร์ดผู้ให้บริการประกันภัย",
     "manageProductsTitle": "ผลิตภัณฑ์ประกันภัยของฉัน",

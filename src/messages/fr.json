@@ -13,6 +13,41 @@
     "back": "Retour",
     "submit": "Soumettre"
   },
+  "ProfilePage": {
+    "editProfile": "Modifier le profil",
+    "showUniversalIdButton": "Afficher l'ID Universel",
+    "universalIdModalTitle": "Votre ID Universel",
+    "universalIdModalDescription": "D'autres utilisateurs peuvent scanner ce code pour voir votre profil public.",
+    "connect": "Se connecter",
+    "message": "Message",
+    "aboutTitle": "À propos de {displayName}",
+    "interestsTitle": "Domaines d'intérêt",
+    "needsTitle": "Recherche / Offre",
+    "contactTitle": "Coordonnées",
+    "engagementStats": "Statistiques d'engagement",
+    "profileViews": "Vues du profil",
+    "postLikes": "J'aime sur les publications",
+    "postComments": "Commentaires sur les publications",
+    "recentActivityTitle": "Activité récente",
+    "noRecentActivity": "Aucune activité récente à afficher.",
+    "tabs": {
+      "overview": "Aperçu",
+      "activity": "Activité"
+    },
+    "invite": {
+      "title": "Développez votre réseau",
+      "description": "Vous connaissez quelqu'un qui devrait être sur DamDoh ? Invitez-le à rejoindre la plateforme.",
+      "explanation": "Cela enverra un e-mail d'invitation standard à l'adresse que vous fournissez.",
+      "button": "Inviter par e-mail"
+    },
+    "invitePrompt": "Veuillez saisir l'adresse e-mail de la personne que vous souhaitez inviter :",
+    "inviteSuccessTitle": "Invitation envoyée !",
+    "inviteSuccessDescription": "Votre invitation a été envoyée avec succès à {email}.",
+    "inviteErrorTitle": "Erreur lors de l'envoi de l'invitation",
+    "notFoundTitle": "Profil non trouvé",
+    "notFoundDescription": "Le profil que vous recherchez n'existe pas ou a été supprimé.",
+    "backToNetwork": "Retour au réseau"
+  },
   "OfflineIndicator": {
     "tooltip": {
       "syncing": "Synchronisation de {count} actions hors ligne...",

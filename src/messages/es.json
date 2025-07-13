@@ -13,6 +13,41 @@
     "back": "Volver",
     "submit": "Enviar"
   },
+  "ProfilePage": {
+    "editProfile": "Editar perfil",
+    "showUniversalIdButton": "Mostrar ID Universal",
+    "universalIdModalTitle": "Tu ID Universal",
+    "universalIdModalDescription": "Otros usuarios pueden escanear este código para ver tu perfil público.",
+    "connect": "Conectar",
+    "message": "Mensaje",
+    "aboutTitle": "Acerca de {displayName}",
+    "interestsTitle": "Áreas de interés",
+    "needsTitle": "Buscando / Ofreciendo",
+    "contactTitle": "Información de contacto",
+    "engagementStats": "Estadísticas de participación",
+    "profileViews": "Vistas del perfil",
+    "postLikes": "Me gusta en publicaciones",
+    "postComments": "Comentarios en publicaciones",
+    "recentActivityTitle": "Actividad reciente",
+    "noRecentActivity": "No hay actividad reciente para mostrar.",
+    "tabs": {
+      "overview": "Resumen",
+      "activity": "Actividad"
+    },
+    "invite": {
+      "title": "Haz crecer tu red",
+      "description": "¿Conoces a alguien que debería estar en DamDoh? Invítalos a unirse a la plataforma.",
+      "explanation": "Esto enviará un correo electrónico de invitación estándar a la dirección que proporciones.",
+      "button": "Invitar por correo electrónico"
+    },
+    "invitePrompt": "Por favor, introduce la dirección de correo electrónico de la persona que quieres invitar:",
+    "inviteSuccessTitle": "¡Invitación enviada!",
+    "inviteSuccessDescription": "Tu invitación ha sido enviada con éxito a {email}.",
+    "inviteErrorTitle": "Error al enviar la invitación",
+    "notFoundTitle": "Perfil no encontrado",
+    "notFoundDescription": "El perfil que estás buscando no existe o ha sido eliminado.",
+    "backToNetwork": "Volver a la red"
+  },
   "InsuranceProviderDashboard": {
     "title": "Panel del Proveedor de Seguros",
     "manageProductsTitle": "Mis Productos de Seguro",

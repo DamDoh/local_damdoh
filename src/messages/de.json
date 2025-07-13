@@ -13,6 +13,41 @@
     "back": "Zurück",
     "submit": "Einreichen"
   },
+  "ProfilePage": {
+    "editProfile": "Profil bearbeiten",
+    "showUniversalIdButton": "Universal-ID anzeigen",
+    "universalIdModalTitle": "Ihre Universal-ID",
+    "universalIdModalDescription": "Andere Benutzer können diesen Code scannen, um Ihr öffentliches Profil anzuzeigen.",
+    "connect": "Verbinden",
+    "message": "Nachricht",
+    "aboutTitle": "Über {displayName}",
+    "interestsTitle": "Interessengebiete",
+    "needsTitle": "Suche / Biete",
+    "contactTitle": "Kontaktinformationen",
+    "engagementStats": "Engagement-Statistiken",
+    "profileViews": "Profilaufrufe",
+    "postLikes": "Likes für Beiträge",
+    "postComments": "Kommentare zu Beiträgen",
+    "recentActivityTitle": "Letzte Aktivität",
+    "noRecentActivity": "Keine kürzlichen Aktivitäten zum Anzeigen.",
+    "tabs": {
+      "overview": "Übersicht",
+      "activity": "Aktivität"
+    },
+    "invite": {
+      "title": "Erweitern Sie Ihr Netzwerk",
+      "description": "Kennen Sie jemanden, der auf DamDoh sein sollte? Laden Sie ihn ein, der Plattform beizutreten.",
+      "explanation": "Dies sendet eine Standard-Einladungs-E-Mail an die von Ihnen angegebene Adresse.",
+      "button": "Per E-Mail einladen"
+    },
+    "invitePrompt": "Bitte geben Sie die E-Mail-Adresse der Person ein, die Sie einladen möchten:",
+    "inviteSuccessTitle": "Einladung gesendet!",
+    "inviteSuccessDescription": "Ihre Einladung wurde erfolgreich an {email} gesendet.",
+    "inviteErrorTitle": "Fehler beim Senden der Einladung",
+    "notFoundTitle": "Profil nicht gefunden",
+    "notFoundDescription": "Das gesuchte Profil existiert nicht oder wurde entfernt.",
+    "backToNetwork": "Zurück zum Netzwerk"
+  },
   "InsuranceProviderDashboard": {
     "title": "Versicherungsanbieter-Dashboard",
     "manageProductsTitle": "Meine Versicherungsprodukte",
