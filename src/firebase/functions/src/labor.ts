@@ -178,3 +178,5 @@ export const getWorkerDetails = functions.https.onCall(async (data, context) => 
         payments
     }
 });
+
+    

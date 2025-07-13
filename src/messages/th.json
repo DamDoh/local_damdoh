@@ -299,5 +299,120 @@
         }
       ]
     }
+  },
+  "error": {
+    "unauthenticated": "The function must be called while authenticated.",
+    "permissionDenied": "You do not have permission to perform this action.",
+    "form": {
+      "missingFields": "Missing required fields.",
+      "invalidData": "Invalid data provided."
+    },
+    "event": {
+      "notFound": "Event not found.",
+      "alreadyRegistered": "You are already registered for this event.",
+      "notRegistered": "This attendee is not registered for this event.",
+      "alreadyCheckedIn": "This attendee has already been checked in.",
+      "registrationClosed": "Registration for this event is closed.",
+      "full": "This event is full."
+    },
+    "eventId": {
+      "required": "An eventId must be provided."
+    },
+    "coupon": {
+      "notFound": "Coupon not found.",
+      "expired": "This coupon has expired.",
+      "limitReached": "This coupon has reached its usage limit.",
+      "invalid": "Invalid coupon code."
+    },
+    "user": {
+      "notFound": "User profile not found."
+    },
+    "farm": {
+        "missingFields": "Name, location, size, and farm type are required.",
+        "creationFailed": "Failed to create farm in the database.",
+        "fetchFailed": "Failed to fetch farms.",
+        "idRequired": "A farmId must be provided.",
+        "notFound": "Farm not found.",
+        "updateFailed": "Failed to update farm."
+    },
+    "crop": {
+        "missingFields": "Farm ID, crop type, and planting date are required.",
+        "creationFailed": "Failed to create crop in the database.",
+        "fetchFailed": "Failed to fetch crops.",
+        "idRequired": "A cropId must be provided.",
+        "notFound": "Crop not found."
+    },
+    "insights": {
+        "failed": "Failed to generate insights."
+    },
+    "knf": {
+        "missingFields": "Type, typeName, ingredients, and startDate are required.",
+        "creationFailed": "Failed to create KNF batch.",
+        "fetchFailed": "Failed to fetch KNF batches.",
+        "notFound": "KNF batch not found.",
+        "updateFailed": "Failed to update KNF batch status."
+    },
+    "worker": {
+        "nameRequired": "Worker name is required.",
+        "logHoursMissingFields": "Worker ID, hours, and date are required.",
+        "logPaymentMissingFields": "Worker ID, amount, currency, and date are required.",
+        "notFound": "Worker profile not found.",
+        "financialLogError": "Could not record the payment in your financial ledger.",
+        "idRequired": "A worker ID is required."
+    },
+    "orderId": {
+        "required": "A valid order ID is required."
+    },
+    "amount": {
+        "invalid": "A valid, positive amount is required."
+    },
+    "currency": {
+        "required": "A valid currency code is required."
+    },
+    "payment": {
+        "initiationFailed": "Payment initiation failed."
+    },
+    "internal": "An internal server error occurred.",
+    "projectId": {
+        "required": "A valid project ID is required."
+    },
+    "project": {
+        "notFound": "Project not found.",
+        "notOpen": "This project is not open for investment."
+    },
+    "type": {
+        "invalid": "A valid transaction type is required."
+    },
+    "description": {
+        "required": "A valid description is required."
+    },
+    "apiKey": {
+        "descriptionRequired": "An API key description is required.",
+        "invalidEnvironment": "Invalid environment specified.",
+        "idRequired": "An API key ID is required.",
+        "notFound": "API Key not found."
+    },
+    "universalId": {
+        "required": "A 'scannedUniversalId' must be provided.",
+        "notFound": "The scanned Universal ID does not correspond to any user."
+    },
+    "phone": {
+        "required": "A 'phoneNumber' must be provided."
+    },
+    "recovery": {
+        "invalidSession": "Invalid recovery session.",
+        "expired": "This recovery session has expired. Please start over.",
+        "sessionUsed": "This recovery session has already been used or is invalid.",
+        "invalidCode": "Invalid recovery code.",
+        "selfScan": "You cannot use your own recovery code."
+    },
+    "productId": {
+        "required": "A product ID is required."
+    },
+    "insurance": {
+        "productNotFound": "Insurance product not found."
+    }
   }
 }
+
+    

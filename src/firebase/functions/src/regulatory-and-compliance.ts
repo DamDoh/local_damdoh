@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {getRole} from "./profiles";
@@ -45,6 +44,8 @@ export const generateRegulatoryReport = functions.https.onCall(
       );
     }
     
+    // For this implementation, we allow Admins to generate reports.
+    // This could be expanded to include 'Regulator' or 'Auditor' roles.
     if (callerRole !== "Admin") {
       throw new functions.https.HttpsError(
         "permission-denied",
@@ -138,3 +139,5 @@ export const getGeneratedReports = functions.https.onCall(async (data, context) 
     
     return { reports };
 });
+
+    
