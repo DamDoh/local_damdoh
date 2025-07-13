@@ -21,9 +21,11 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ArrowLeft, Loader2, Save, Shield, FileText, CircleDollarSign, Banknote } from 'lucide-react';
+import { getInsuranceProductTypes } from '@/lib/i18n-constants';
 
 export default function CreateInsuranceProductPage() {
   const t = useTranslations('InsuranceProductCreatePage');
+  const tConstants = useTranslations('constants');
   const router = useRouter();
   const { user } = useAuth();
   const { toast } = useToast();
@@ -43,6 +45,8 @@ export default function CreateInsuranceProductPage() {
       currency: 'USD',
     },
   });
+  
+  const insuranceProductTypes = getInsuranceProductTypes(tConstants);
 
   const onSubmit = async (data: CreateInsuranceProductValues) => {
     if (!user) {
@@ -94,10 +98,9 @@ export default function CreateInsuranceProductPage() {
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl><SelectTrigger><SelectValue placeholder={t('form.typePlaceholder')} /></SelectTrigger></FormControl>
                         <SelectContent>
-                          <SelectItem value="Crop">{t('form.crop')}</SelectItem>
-                          <SelectItem value="Livestock">{t('form.livestock')}</SelectItem>
-                          <SelectItem value="Asset">{t('form.asset')}</SelectItem>
-                          <SelectItem value="Weather">{t('form.weather')}</SelectItem>
+                          {insuranceProductTypes.map(type => (
+                            <SelectItem key={type.value} value={type.value}>{type.label}</SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                       <FormMessage />
