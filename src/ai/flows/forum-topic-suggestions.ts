@@ -13,20 +13,26 @@ export const ForumTopicSuggestionsOutputSchema = z.object({
   suggestions: z.array(ForumTopicSuggestionSchema),
 });
 
-const existingTopicsSchema = z.array(z.object({
-    name: z.string(),
-    description: z.string(),
-}));
+const SuggestForumTopicsInputSchema = z.object({
+    existingTopics: z.array(z.object({
+        name: z.string(),
+        description: z.string(),
+    })),
+    language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English.'),
+});
+
 
 export const suggestForumTopics = ai.defineFlow(
   {
     name: 'suggestForumTopics',
-    inputSchema: z.object({ existingTopics: existingTopicsSchema }),
+    inputSchema: SuggestForumTopicsInputSchema,
     outputSchema: ForumTopicSuggestionsOutputSchema,
   },
   async (input) => {
     const llmResponse = await ai.generate({
       prompt: `Based on the following list of existing forum topics, generate 5 new, engaging, and relevant topic suggestions for an agricultural community platform. The suggestions should cover a range of categories and encourage discussion. Avoid creating duplicates of existing topics.
+      
+      CRITICAL: You MUST generate the response (titles and descriptions) in the specified language: '${input.language || 'en'}'.
 
       Existing Topics:
       ${input.existingTopics.map(t => `- ${t.name}`).join('

@@ -5,7 +5,7 @@
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import {z} from 'zod';
 import { getAdminDb } from '@/lib/firebase/admin';
 import type { UserProfile } from '@/lib/types';
 

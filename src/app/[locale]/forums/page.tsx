@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,9 +15,9 @@ import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { usePathname } from 'next/navigation';
-import { useHomepagePreference } from '@/hooks/useHomepagePreference';
+import { useHomepagePreference } from '@/hooks/useHomepageRedirect';
 import { formatDistanceToNow } from 'date-fns';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { suggestForumTopics } from '@/ai/flows/forum-topic-suggestions';
 import { ForumTopicSuggestionSchema } from '@/ai/flows/forum-topic-suggestions';
 import { z } from 'zod';
@@ -76,6 +76,7 @@ export default function ForumsPage() {
     const getTopicsCallable = useMemo(() => httpsCallable(functions, 'getTopics'), [functions]);
     const pathname = usePathname();
     const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
+    const locale = useLocale();
 
     useEffect(() => {
         const fetchTopics = async () => {
@@ -89,7 +90,10 @@ export default function ForumsPage() {
                 if (data?.topics && data.topics.length > 0) {
                     setIsLoadingSuggestions(true);
                     try {
-                        const suggestionsResult = await suggestForumTopics({ existingTopics: data.topics.map(t => ({ name: t.name, description: t.description })) });
+                        const suggestionsResult = await suggestForumTopics({ 
+                            existingTopics: data.topics.map(t => ({ name: t.name, description: t.description })),
+                            language: locale,
+                        });
                         setSuggestedTopics(suggestionsResult.suggestions);
                     } catch (e) {
                         console.error("Failed to fetch topic suggestions:", e);
@@ -112,7 +116,7 @@ export default function ForumsPage() {
         };
 
         fetchTopics();
-    }, [getTopicsCallable, toast, t]);
+    }, [getTopicsCallable, toast, t, locale]);
 
     const filteredTopics = useMemo(() => {
         if (!Array.isArray(topics)) return [];
@@ -126,22 +130,16 @@ export default function ForumsPage() {
 
     const isCurrentHomepage = homepagePreference === pathname;
 
-    const handleSetHomepage = () => {
+    const handleSetHomepage = useCallback(() => {
         if (isCurrentHomepage) {
         clearHomepagePreference();
-        toast({
-            title: t('pinning.unpinnedTitle'),
-            description: t('pinning.unpinnedDescription'),
-        });
+        toast({ title: t('pinning.unpinnedTitle'), description: t('pinning.unpinnedDescription') });
         } else {
         setHomepagePreference(pathname);
-        toast({
-            title: t('pinning.pinnedTitle'),
-            description: t('pinning.pinnedDescription'),
-        });
+        toast({ title: t('pinning.pinnedTitle'), description: t('pinning.pinnedDescription') });
         }
-    };
-
+    }, [isCurrentHomepage, clearHomepagePreference, setHomepagePreference, pathname, toast, t]);
+    
     const renderTopicList = () => {
         if (isLoading) {
             return (
