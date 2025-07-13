@@ -52,13 +52,13 @@ export const FiDashboard = () => {
                 setDashboardData(result.data as FiDashboardData);
             } catch (error) {
                 console.error("Error fetching FI dashboard data:", error);
-                setError("Could not load dashboard data. Please try again later.");
+                setError(t('errors.load'));
             } finally {
                 setIsLoading(false);
             }
         };
         fetchData();
-    }, [getFiData]);
+    }, [getFiData, t]);
     
     if (isLoading) {
         return <DashboardSkeleton />;
@@ -71,7 +71,7 @@ export const FiDashboard = () => {
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">No dashboard data available.</p>
+                <p className="text-muted-foreground">{t('noData')}</p>
             </div>
         );
     }
