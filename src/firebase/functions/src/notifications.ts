@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -335,9 +336,10 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
         if (bookingsSnapshot.empty) {
              console.log("No upcoming agro-tourism bookings in the next 24 hours.");
         } else {
+            console.log(`Found ${bookingsSnapshot.docs.length} upcoming agro-tourism bookings.`);
             for (const bookingDoc of bookingsSnapshot.docs) {
                 const bookingData = bookingDoc.data();
-                const serviceRef = bookingDoc.ref.parent.parent; // This gets the marketplaceItem doc
+                const serviceRef = bookingDoc.ref.parent.parent; 
                 if (serviceRef) {
                   const serviceDoc = await serviceRef.get();
                   if (serviceDoc.exists) {
