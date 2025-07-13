@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile, JoinRequest } from './types';
@@ -8,7 +7,7 @@ const db = admin.firestore();
 
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
   }
   return context.auth.uid;
 };
@@ -18,12 +17,12 @@ export const createGroup = functions.https.onCall(async (data, context) => {
     const { name, description, isPublic } = data;
 
     if (!name || !description) {
-        throw new functions.https.HttpsError('invalid-argument', 'Group name and description are required.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.group.missingFields');
     }
 
     const userProfileDoc = await db.collection('users').doc(uid).get();
     if (!userProfileDoc.exists) {
-        throw new functions.https.HttpsError('not-found', 'User profile not found.');
+        throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
     const userProfile = userProfileDoc.data() as UserProfile;
 
@@ -72,14 +71,14 @@ export const getGroups = functions.https.onCall(async (data, context) => {
 export const getGroupDetails = functions.https.onCall(async (data, context) => {
     const { groupId } = data;
     if (!groupId) {
-        throw new functions.https.HttpsError('invalid-argument', 'A groupId must be provided.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.groupId.required');
     }
     
     const groupRef = db.collection('groups').doc(groupId);
     const groupDoc = await groupRef.get();
 
     if (!groupDoc.exists) {
-        throw new functions.https.HttpsError('not-found', 'Group not found.');
+        throw new functions.https.HttpsError('not-found', 'error.group.notFound');
     }
 
     const groupData = groupDoc.data()!;
@@ -94,7 +93,7 @@ export const getGroupDetails = functions.https.onCall(async (data, context) => {
 export const getGroupMembers = functions.https.onCall(async (data, context) => {
     const { groupId } = data;
      if (!groupId) {
-        throw new functions.https.HttpsError('invalid-argument', 'A groupId must be provided.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.groupId.required');
     }
     
     const membersSnapshot = await db.collection(`groups/${groupId}/members`).limit(50).get();
@@ -118,19 +117,19 @@ const modifyMembership = async (groupId: string, userId: string, join: boolean) 
     await db.runTransaction(async (transaction) => {
         const groupDoc = await transaction.get(groupRef);
         if (!groupDoc.exists) {
-            throw new functions.https.HttpsError('not-found', 'Group not found.');
+            throw new functions.https.HttpsError('not-found', 'error.group.notFound');
         }
 
         const memberDoc = await transaction.get(memberRef);
 
         if (join) {
             if (memberDoc.exists) {
-                throw new functions.https.HttpsError('already-exists', 'You are already a member of this group.');
+                throw new functions.https.HttpsError('already-exists', 'error.group.alreadyMember');
             }
             
             const userProfileDoc = await db.collection('users').doc(userId).get();
              if (!userProfileDoc.exists) {
-                throw new functions.https.HttpsError('not-found', 'Your user profile could not be found.');
+                throw new functions.https.HttpsError('not-found', 'error.user.notFound');
             }
             const userProfile = userProfileDoc.data() as UserProfile;
 
@@ -143,7 +142,7 @@ const modifyMembership = async (groupId: string, userId: string, join: boolean) 
             transaction.update(groupRef, { memberCount: admin.firestore.FieldValue.increment(1) });
         } else {
              if (!memberDoc.exists) {
-                throw new functions.https.HttpsError('not-found', 'You are not a member of this group.');
+                throw new functions.https.HttpsError('not-found', 'error.group.notMember');
             }
             transaction.delete(memberRef);
             transaction.update(groupRef, { memberCount: admin.firestore.FieldValue.increment(-1) });
@@ -173,18 +172,18 @@ export const requestToJoinGroup = functions.https.onCall(async (data, context) =
     const groupRef = db.collection('groups').doc(groupId);
     const groupDoc = await groupRef.get();
     if (!groupDoc.exists || groupDoc.data()?.isPublic) {
-        throw new functions.https.HttpsError('failed-precondition', 'This group does not accept join requests.');
+        throw new functions.https.HttpsError('failed-precondition', 'error.group.notPrivate');
     }
     
     const requestRef = groupRef.collection('join_requests').doc(uid);
     const requestDoc = await requestRef.get();
     if (requestDoc.exists) {
-        throw new functions.https.HttpsError('already-exists', 'You have already requested to join this group.');
+        throw new functions.https.HttpsError('already-exists', 'error.group.requestExists');
     }
 
     const userProfile = await db.collection('users').doc(uid).get();
     if (!userProfile.exists) {
-        throw new functions.https.HttpsError('not-found', 'User profile not found.');
+        throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
 
     await requestRef.set({
@@ -202,14 +201,14 @@ export const getGroupJoinRequests = functions.https.onCall(async (data, context)
     const ownerId = checkAuth(context);
     const { groupId } = data;
     if (!groupId) {
-        throw new functions.https.HttpsError('invalid-argument', 'A groupId must be provided.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.groupId.required');
     }
 
     const groupRef = db.collection('groups').doc(groupId);
     const groupDoc = await groupRef.get();
 
     if (!groupDoc.exists || groupDoc.data()?.ownerId !== ownerId) {
-        throw new functions.https.HttpsError('permission-denied', 'You are not the owner of this group.');
+        throw new functions.https.HttpsError('permission-denied', 'error.permissionDenied');
     }
 
     const requestsSnapshot = await groupRef.collection('join_requests').where('status', '==', 'pending').get();
@@ -231,16 +230,16 @@ export const respondToJoinRequest = functions.https.onCall(async (data, context)
     const { groupId, requestId, requesterId, action } = data;
 
     if (!groupId || !requestId || !requesterId || !action) {
-        throw new functions.https.HttpsError('invalid-argument', 'Missing required parameters.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.form.missingFields');
     }
     if (action !== 'accept' && action !== 'decline') {
-        throw new functions.https.HttpsError('invalid-argument', 'Action must be "accept" or "decline".');
+        throw new functions.https.HttpsError('invalid-argument', 'error.group.invalidAction');
     }
 
     const groupRef = db.collection('groups').doc(groupId);
     const groupDoc = await groupRef.get();
     if (!groupDoc.exists || groupDoc.data()?.ownerId !== ownerId) {
-        throw new functions.https.HttpsError('permission-denied', 'You are not authorized to manage this group.');
+        throw new functions.https.HttpsError('permission-denied', 'error.permissionDenied');
     }
 
     const requestRef = groupRef.collection('join_requests').doc(requestId);
@@ -259,13 +258,13 @@ export const inviteUserToGroup = functions.https.onCall(async (data, context) =>
     const ownerId = checkAuth(context);
     const { groupId, email } = data;
     if (!groupId || !email) {
-        throw new functions.https.HttpsError('invalid-argument', 'Group ID and email are required.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.form.missingFields');
     }
 
     const groupRef = db.collection('groups').doc(groupId);
     const groupDoc = await groupRef.get();
     if (!groupDoc.exists || groupDoc.data()?.ownerId !== ownerId) {
-        throw new functions.https.HttpsError('permission-denied', 'You are not the owner of this group.');
+        throw new functions.https.HttpsError('permission-denied', 'error.permissionDenied');
     }
 
     // This is a placeholder for sending an email. In a real app, you would integrate
@@ -291,13 +290,13 @@ export const createGroupPost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { groupId, title, content } = data;
     if (!groupId || !title || !content) {
-        throw new functions.https.HttpsError('invalid-argument', 'Group ID, title, and content are required.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.group.postMissingFields');
     }
 
     const memberRef = db.collection(`groups/${groupId}/members`).doc(uid);
     const memberDoc = await memberRef.get();
     if (!memberDoc.exists) {
-        throw new functions.https.HttpsError('permission-denied', 'You must be a member of this group to post.');
+        throw new functions.https.HttpsError('permission-denied', 'error.group.notMember');
     }
 
     const postRef = db.collection(`groups/${groupId}/posts`).doc();
@@ -331,7 +330,7 @@ export const createGroupPost = functions.https.onCall(async (data, context) => {
 
 export const getGroupPosts = functions.https.onCall(async (data, context) => {
     const { groupId, lastVisible } = data;
-    if (!groupId) throw new functions.https.HttpsError('invalid-argument', 'Group ID is required.');
+    if (!groupId) throw new functions.https.HttpsError('invalid-argument', 'error.groupId.required');
 
     const POSTS_PER_PAGE = 10;
     let query = db.collection(`groups/${groupId}/posts`).orderBy('createdAt', 'desc').limit(POSTS_PER_PAGE);
@@ -360,13 +359,13 @@ export const addGroupPostReply = functions.https.onCall(async (data, context) =>
     const uid = checkAuth(context);
     const { groupId, postId, content } = data;
     if (!groupId || !postId || !content) {
-        throw new functions.https.HttpsError('invalid-argument', 'Group ID, post ID, and content are required.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.group.replyMissingFields');
     }
     
     const memberRef = db.collection(`groups/${groupId}/members`).doc(uid);
     const memberDoc = await memberRef.get();
     if (!memberDoc.exists) {
-        throw new functions.https.HttpsError('permission-denied', 'You must be a member of this group to reply.');
+        throw new functions.https.HttpsError('permission-denied', 'error.group.notMember');
     }
 
     const replyRef = db.collection(`groups/${groupId}/posts/${postId}/replies`).doc();
@@ -393,7 +392,7 @@ export const addGroupPostReply = functions.https.onCall(async (data, context) =>
 
 export const getGroupPostReplies = functions.https.onCall(async (data, context) => {
     const { groupId, postId, lastVisible } = data;
-    if (!groupId || !postId) throw new functions.https.HttpsError('invalid-argument', 'Group ID and Post ID are required.');
+    if (!groupId || !postId) throw new functions.https.HttpsError('invalid-argument', 'error.group.replyMissingFields');
 
     const REPLIES_PER_PAGE = 15;
     let query = db.collection(`groups/${groupId}/posts/${postId}/replies`).orderBy('createdAt', 'asc').limit(REPLIES_PER_PAGE);
