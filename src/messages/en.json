@@ -1,4 +1,3 @@
-
 {
   "common": {
     "error": "Error",
@@ -99,5 +98,100 @@
       "load": "Could not load dashboard data."
     },
     "noData": "No dashboard data available."
+  },
+  "QaDashboard": {
+    "title": "Quality Assurance Dashboard",
+    "inspectionsTitle": "Pending Inspections",
+    "inspectionsDescription": "Batches awaiting your quality review.",
+    "resultsTitle": "Recent Results",
+    "resultsDescription": "Summary of recent quality control issues.",
+    "metricsTitle": "Quality Metrics",
+    "metricsDescription": "Overview of quality performance.",
+    "performInspectionButton": "Inspect",
+    "noPendingInspections": "No batches are currently awaiting inspection.",
+    "noRecentIssues": "No quality issues have been flagged recently.",
+    "noMetrics": "Quality metrics will appear here once inspections are completed.",
+    "table": {
+      "batchId": "Batch ID",
+      "product": "Product",
+      "seller": "Seller",
+      "dueDate": "Due Date",
+      "action": "Action",
+      "result": "Result",
+      "reason": "Reason",
+      "inspectedAt": "Inspected At"
+    },
+    "passRate": "Pass Rate",
+    "averageScore": "Average Quality Score",
+    "errors": {
+      "load": "Could not load QA dashboard data."
+    },
+    "noData": "No QA data available."
+  },
+  "CertificationBodyDashboard": {
+    "title": "Certification Body Dashboard",
+    "auditsTitle": "Pending Audits",
+    "auditsDescription": "Entities scheduled for certification audits.",
+    "entitiesTitle": "Certified Entities",
+    "entitiesDescription": "Overview of entities you have certified.",
+    "monitoringTitle": "Standards Monitoring",
+    "monitoringDescription": "Adherence rates for your standards.",
+    "reviewAuditButton": "Review",
+    "viewDetailsButton": "View Details",
+    "noPendingAudits": "No audits are currently pending.",
+    "noCertifiedEntities": "No entities have been certified yet.",
+    "noMonitoringData": "No standards are currently being monitored.",
+    "table": {
+      "farmName": "Farm/Entity Name",
+      "standard": "Standard",
+      "dueDate": "Due Date",
+      "action": "Action"
+    },
+    "errors": {
+      "load": "Could not load certification dashboard data."
+    },
+    "noData": "No certification data available.",
+    "alerts": "Alerts",
+    "chart": {
+      "active": "Active",
+      "pending": "Pending Renewal",
+      "expired": "Expired",
+      "count": "Count"
+    }
+  },
+  "ResearcherDashboard": {
+    "title": "Researcher Dashboard",
+    "datasetsTitle": "Available Datasets",
+    "datasetsDescription": "Anonymized datasets available for research purposes.",
+    "projectsTitle": "Ongoing Projects",
+    "projectsDescription": "Your current research projects on the platform.",
+    "contributionsTitle": "Knowledge Hub Contributions",
+    "contributionsDescription": "Articles and papers you have published.",
+    "requestAccessButton": "Request Access",
+    "viewProjectButton": "View Project",
+    "viewButton": "View",
+    "noDatasets": "No datasets are available at this time.",
+    "noProjects": "You have no ongoing research projects.",
+    "noContributions": "You have not published any contributions yet.",
+    "table": {
+      "name": "Name",
+      "dataType": "Data Type",
+      "accessLevel": "Access Level",
+      "action": "Action",
+      "title": "Title",
+      "progress": "Progress",
+      "collaborators": "Collaborators",
+      "status": "Status"
+    },
+    "errors": {
+      "load": "Could not load researcher dashboard data."
+    },
+    "noData": "No researcher data available.",
+    "chart": {
+      "published": "Published",
+      "pending": "Pending",
+      "draft": "Draft",
+      "count": "Count"
+    }
   }
 }
