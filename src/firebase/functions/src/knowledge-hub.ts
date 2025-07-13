@@ -9,6 +9,7 @@ const db = admin.firestore();
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
+const SUPPORTED_LANGUAGES = ["en", "km", "es", "fr", "th", "de"];
 
 /**
  * A helper function to translate text using the Gemini API.
@@ -79,7 +80,6 @@ export const onArticleWriteTranslate = functions.firestore
     
     console.log(`Change detected in '${sourceLang}' for article ${articleId}. Triggering translations.`);
 
-    const SUPPORTED_LANGUAGES = ["en", "km", "es", "fr", "th", "de"];
     const updatePayload: {[key: string]: any} = {};
 
     for (const lang of SUPPORTED_LANGUAGES) {
