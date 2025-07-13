@@ -13,167 +13,31 @@
     "back": "Zurück",
     "submit": "Einreichen"
   },
-  "ProfilePage": {
-    "editProfile": "Profil bearbeiten",
-    "showUniversalIdButton": "Universal-ID anzeigen",
-    "universalIdModalTitle": "Ihre Universal-ID",
-    "universalIdModalDescription": "Andere Benutzer können diesen Code scannen, um Ihr öffentliches Profil anzuzeigen.",
-    "connect": "Verbinden",
-    "message": "Nachricht",
-    "aboutTitle": "Über {displayName}",
-    "interestsTitle": "Interessengebiete",
-    "needsTitle": "Suche / Biete",
-    "contactTitle": "Kontaktinformationen",
-    "engagementStats": "Engagement-Statistiken",
-    "profileViews": "Profilaufrufe",
-    "postLikes": "Likes für Beiträge",
-    "postComments": "Kommentare zu Beiträgen",
-    "recentActivityTitle": "Letzte Aktivität",
-    "noRecentActivity": "Keine kürzlichen Aktivitäten zum Anzeigen.",
-    "tabs": {
-      "overview": "Übersicht",
-      "activity": "Aktivität"
-    },
-    "invite": {
-      "title": "Erweitern Sie Ihr Netzwerk",
-      "description": "Kennen Sie jemanden, der auf DamDoh sein sollte? Laden Sie ihn ein, der Plattform beizutreten.",
-      "explanation": "Dies sendet eine Standard-Einladungs-E-Mail an die von Ihnen angegebene Adresse.",
-      "button": "Per E-Mail einladen"
-    },
-    "invitePrompt": "Bitte geben Sie die E-Mail-Adresse der Person ein, die Sie einladen möchten:",
-    "inviteSuccessTitle": "Einladung gesendet!",
-    "inviteSuccessDescription": "Ihre Einladung wurde erfolgreich an {email} gesendet.",
-    "inviteErrorTitle": "Fehler beim Senden der Einladung",
-    "notFoundTitle": "Profil nicht gefunden",
-    "notFoundDescription": "Das gesuchte Profil existiert nicht oder wurde entfernt.",
-    "backToNetwork": "Zurück zum Netzwerk"
-  },
-  "InsuranceProviderDashboard": {
-    "title": "Versicherungsanbieter-Dashboard",
-    "manageProductsTitle": "Meine Versicherungsprodukte",
-    "manageProductsDescription": "Erstellen und verwalten Sie Ihre Versicherungsprodukte, die den Landwirten auf der Plattform angeboten werden.",
-    "manageProductsButton": "Produkte verwalten",
-    "claimsTitle": "Ausstehende Schadensfälle",
-    "claimsDescription": "Überprüfen und bearbeiten Sie kürzlich eingereichte Schadensfälle.",
-    "noPendingClaims": "Keine ausstehenden Schadensfälle zur Überprüfung.",
-    "riskAlertsTitle": "Risikobewertungswarnungen",
-    "riskAlertsDescription": "Wichtige Warnungen aus Ihrem Portfolio basierend auf Echtzeitdaten.",
-    "noRiskAlerts": "Keine aktiven Risikowarnungen.",
-    "reviewClaimButton": "Schadensfall prüfen",
-    "investigateButton": "Untersuchen",
+  "PackagingSupplierDashboard": {
+    "title": "Dashboard für Verpackungslieferanten",
+    "ordersTitle": "Eingehende Bestellungen",
+    "inventoryTitle": "Lagerbestandsstatus",
+    "listProductButton": "Neues Verpackungsprodukt anbieten",
+    "noOrders": "Sie haben keine neuen eingehenden Bestellungen.",
+    "noInventory": "Sie haben keine Verpackungsprodukte zum Verkauf angeboten.",
     "table": {
-      "policyHolder": "Versicherungsnehmer",
-      "policyType": "Art der Police",
-      "claimDate": "Schadensdatum",
+      "customer": "Kunde",
+      "product": "Produkt",
+      "quantity": "Menge",
       "status": "Status",
-      "action": "Aktion",
-      "alert": "Warnung",
-      "severity": "Schweregrad"
+      "action": "Aktion"
+    },
+    "viewOrderButton": "Bestellung ansehen",
+    "reorderLevel": "Nachbestellen bei",
+    "lowStock": "Niedriger Lagerbestand!",
+    "status": {
+      "new": "Neu",
+      "processing": "In Bearbeitung",
+      "shipped": "Versandt"
     },
     "errors": {
       "load": "Dashboard-Daten konnten nicht geladen werden."
     },
-    "noData": "Keine Daten zum Anzeigen vorhanden."
-  },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "Synchronisiere {count} Offline-Aktionen...",
-      "onlinePending": "{count} Offline-Aktionen warten auf die Synchronisierung.",
-      "onlineSynced": "Sie sind online. Alle Änderungen gespeichert.",
-      "offline": "Sie sind offline. {count} Aktionen in der Warteschlange."
-    },
-    "toast": {
-      "online": {
-        "title": "Sie sind wieder online!",
-        "description": "Ihre Verbindung wurde wiederhergestellt."
-      },
-      "offline": {
-        "title": "Sie sind derzeit offline.",
-        "description": "Änderungen werden gespeichert und synchronisiert, wenn Sie wieder eine Verbindung herstellen."
-      },
-      "syncing": {
-        "title": "Synchronisiere Offline-Änderungen",
-        "description": "Lade {count, plural, one {# Aktion} other {# Aktionen}} hoch, die offline vorgenommen wurden."
-      },
-      "synced": {
-        "title": "Synchronisierung abgeschlossen",
-        "description": "Ihre Offline-Änderungen wurden erfolgreich gespeichert."
-      },
-      "syncFailed": {
-        "title": "Synchronisierung fehlgeschlagen",
-        "description": "Offline-Änderungen konnten nicht synchronisiert werden. Versuche es später erneut."
-      },
-      "queued": {
-        "title": "Aktion in Warteschlange",
-        "description": "Diese Aktion wurde gespeichert und wird synchronisiert, wenn Sie online sind."
-      }
-    }
-  },
-  "farmManagement": {
-    "logHarvest": {
-      "offlineToast": {
-        "description": "Diese Ernte wurde auf Ihrem Gerät gespeichert. Sie wird offiziell protokolliert und eine VTI wird generiert, sobald Sie wieder online sind."
-      }
-    }
-  },
-  "groupsPage": {
-    "createPost": {
-      "backLink": "Zurück zur Gruppendiskussion",
-      "title": "Neuen Beitrag erstellen",
-      "description": "Teilen Sie Ihre Gedanken, stellen Sie eine Frage oder starten Sie eine Diskussion mit der Gruppe.",
-      "form": {
-        "titleLabel": "Beitragstitel",
-        "titlePlaceholder": "z.B. Bewährte Verfahren für den Zwischenfruchtanbau von Mais?",
-        "contentLabel": "Inhalt",
-        "contentPlaceholder": "Geben Sie hier Ihren vollständigen Beitrag ein...",
-        "submittingButton": "Wird gepostet...",
-        "submitButton": "In der Gruppe posten"
-      },
-      "toast": {
-        "auth": {
-          "title": "Authentifizierung erforderlich",
-          "description": "Sie müssen angemeldet sein, um einen Beitrag zu erstellen."
-        },
-        "incomplete": {
-          "title": "Unvollständiger Beitrag",
-          "description": "Bitte geben Sie sowohl einen Titel als auch Inhalt für Ihren Beitrag an."
-        },
-        "success": {
-          "title": "Beitrag erstellt",
-          "description": "Ihr Beitrag wurde erfolgreich zur Gruppendiskussion hinzugefügt."
-        },
-        "error": {
-          "title": "Fehler beim Erstellen des Beitrags",
-          "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
-        }
-      }
-    },
-    "manage": {
-      "backLink": "Zurück zur Gruppe",
-      "title": "Gruppe verwalten",
-      "description": "Überprüfen Sie Beitrittsanfragen und verwalten Sie die Gruppeneinstellungen.",
-      "requestsTab": "Beitrittsanfragen",
-      "invitesTab": "Einladungen",
-      "requestedTimeAgo": "Angefragt vor {timeAgo}",
-      "noRequests": "Keine ausstehenden Beitrittsanfragen.",
-      "invitesTab.description": "Benutzer per E-Mail einladen, dieser privaten Gruppe beizutreten.",
-      "invitesTab.emailLabel": "Benutzer-E-Mail",
-      "invitesTab.emailPlaceholder": "E-Mail zur Einladung eingeben...",
-      "toast": {
-        "error": "Fehler",
-        "success": "Erfolg",
-        "loadError": "Beitrittsanfragen konnten nicht geladen werden.",
-        "acceptSuccess": "Benutzer wurde zur Gruppe hinzugefügt.",
-        "declineSuccess": "Anfrage wurde abgelehnt."
-      },
-      "invitesTab": {
-        "toast": {
-          "emailRequired": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
-          "inviteSent": "Einladung gesendet!",
-          "inviteSentDescription": "Eine Einladung wurde an {email} gesendet.",
-          "error": "Fehler beim Senden der Einladung"
-        }
-      }
-    }
+    "noData": "Keine Dashboard-Daten verfügbar."
   }
 }

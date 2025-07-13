@@ -13,79 +13,27 @@
     "back": "Back",
     "submit": "Submit"
   },
-  "FiProductsPage": {
-    "title": "My Financial Products",
-    "description": "View and manage the loan and grant products you offer on the platform.",
-    "createButton": "Create New Product",
-    "noProducts": "You have not created any financial products yet.",
+  "PackagingSupplierDashboard": {
+    "title": "Packaging Supplier Dashboard",
+    "ordersTitle": "Incoming Orders",
+    "inventoryTitle": "Inventory Status",
+    "listProductButton": "List New Packaging Product",
+    "noOrders": "You have no new incoming orders.",
+    "noInventory": "You have no packaging products listed for sale.",
     "table": {
-      "productName": "Product Name",
-      "type": "Type",
+      "customer": "Customer",
+      "product": "Product",
+      "quantity": "Quantity",
       "status": "Status",
-      "interestRate": "Interest Rate",
-      "maxAmount": "Max Amount (USD)"
-    },
-    "toast": {
-      "errorTitle": "Error Loading Products"
-    }
-  },
-  "FiProductCreatePage": {
-    "title": "Create Financial Product",
-    "description": "Design a new loan or grant product to offer to eligible stakeholders.",
-    "backLink": "Back to Products",
-    "toast": {
-      "notAuthenticated": "You must be logged in to create a financial product.",
-      "successTitle": "Product Created",
-      "successDescription": "Your new product '{name}' has been successfully created.",
-      "errorTitle": "Creation Failed"
-    },
-    "form": {
-      "nameLabel": "Product Name",
-      "namePlaceholder": "e.g., Smallholder Growth Loan, Women's Cooperative Grant",
-      "typeLabel": "Product Type",
-      "loan": "Loan",
-      "grant": "Grant",
-      "descriptionLabel": "Description",
-      "descriptionPlaceholder": "Briefly describe this product, its purpose, and benefits.",
-      "interestRateLabel": "Interest Rate (%)",
-      "interestRatePlaceholder": "e.g., 5.5",
-      "maxAmountLabel": "Max Amount (USD)",
-      "maxAmountPlaceholder": "e.g., 10000",
-      "targetRolesLabel": "Target Stakeholders",
-      "targetRolesDescription": "Select which stakeholder roles are eligible for this product.",
-      "submitButton": "Create Product"
-    }
-  },
-  "FiDashboard": {
-    "title": "Financial Institution Dashboard",
-    "pendingApplicationsTitle": "Pending Applications",
-    "pendingApplicationsDescription": "New loan and grant requests requiring your review.",
-    "manageApplicationsButton": "Manage Applications",
-    "activePortfolioTitle": "Active Portfolio Value",
-    "activePortfolioDescription": "{count, plural, one {# active loan} other {# active loans}} currently disbursed.",
-    "manageProductsTitle": "Financial Products",
-    "manageProductsDescription": "Your current offerings on the platform.",
-    "manageProductsButton": "Manage Products",
-    "pendingApplicationsTableDescription": "Top 5 most recent pending applications.",
-    "viewAllButton": "View All",
-    "noApplications": "No pending applications at this time.",
-    "reviewButton": "Review",
-    "yourProductsTitle": "Your Products",
-    "yourProductsDescription": "A quick overview of your current financial products.",
-    "createNewProductButton": "Create New Product",
-    "noProducts": "You haven't created any products yet. Get started by creating one!",
-    "table": {
-      "applicant": "Applicant",
-      "type": "Type",
-      "amount": "Amount",
-      "riskScore": "Risk Score",
       "action": "Action"
     },
-    "productsTable": {
-      "name": "Product Name",
-      "type": "Type",
-      "interestRate": "Interest Rate",
-      "maxAmount": "Max Amount"
+    "viewOrderButton": "View Order",
+    "reorderLevel": "Reorder at",
+    "lowStock": "Low Stock!",
+    "status": {
+      "new": "New",
+      "processing": "Processing",
+      "shipped": "Shipped"
     },
     "errors": {
       "load": "Could not load dashboard data."

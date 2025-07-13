@@ -13,79 +13,27 @@
     "back": "Volver",
     "submit": "Enviar"
   },
-  "FiProductsPage": {
-    "title": "Mis Productos Financieros",
-    "description": "Vea y gestione los productos de préstamos y subvenciones que ofrece en la plataforma.",
-    "createButton": "Crear Nuevo Producto",
-    "noProducts": "Aún no ha creado ningún producto financiero.",
+  "PackagingSupplierDashboard": {
+    "title": "Panel de Proveedor de Embalajes",
+    "ordersTitle": "Pedidos Entrantes",
+    "inventoryTitle": "Estado del Inventario",
+    "listProductButton": "Listar Nuevo Producto de Embalaje",
+    "noOrders": "No tiene nuevos pedidos entrantes.",
+    "noInventory": "No tiene productos de embalaje listados para la venta.",
     "table": {
-      "productName": "Nombre del Producto",
-      "type": "Tipo",
+      "customer": "Cliente",
+      "product": "Producto",
+      "quantity": "Cantidad",
       "status": "Estado",
-      "interestRate": "Tasa de Interés",
-      "maxAmount": "Monto Máximo (USD)"
-    },
-    "toast": {
-      "errorTitle": "Error al Cargar Productos"
-    }
-  },
-  "FiProductCreatePage": {
-    "title": "Crear Producto Financiero",
-    "description": "Diseñe un nuevo producto de préstamo o subvención para ofrecer a las partes interesadas elegibles.",
-    "backLink": "Volver a Productos",
-    "toast": {
-      "notAuthenticated": "Debe iniciar sesión para crear un producto financiero.",
-      "successTitle": "Producto Creado",
-      "successDescription": "Su nuevo producto '{name}' ha sido creado con éxito.",
-      "errorTitle": "Creación Fallida"
-    },
-    "form": {
-      "nameLabel": "Nombre del Producto",
-      "namePlaceholder": "Ej., Préstamo de Crecimiento para Pequeños Agricultores, Subvención para Cooperativas de Mujeres",
-      "typeLabel": "Tipo de Producto",
-      "loan": "Préstamo",
-      "grant": "Subvención",
-      "descriptionLabel": "Descripción",
-      "descriptionPlaceholder": "Describa brevemente este producto, su propósito y sus beneficios.",
-      "interestRateLabel": "Tasa de Interés (%)",
-      "interestRatePlaceholder": "Ej., 5.5",
-      "maxAmountLabel": "Monto Máximo (USD)",
-      "maxAmountPlaceholder": "Ej., 10000",
-      "targetRolesLabel": "Partes Interesadas Objetivo",
-      "targetRolesDescription": "Seleccione qué roles de partes interesadas son elegibles para este producto.",
-      "submitButton": "Crear Producto"
-    }
-  },
-  "FiDashboard": {
-    "title": "Panel de Institución Financiera",
-    "pendingApplicationsTitle": "Solicitudes Pendientes",
-    "pendingApplicationsDescription": "Nuevas solicitudes de préstamos y subvenciones que requieren su revisión.",
-    "manageApplicationsButton": "Gestionar Solicitudes",
-    "activePortfolioTitle": "Valor de Cartera Activa",
-    "activePortfolioDescription": "{count, plural, one {# préstamo activo} other {# préstamos activos}} actualmente desembolsados.",
-    "manageProductsTitle": "Productos Financieros",
-    "manageProductsDescription": "Sus ofertas actuales en la plataforma.",
-    "manageProductsButton": "Gestionar Productos",
-    "pendingApplicationsTableDescription": "Las 5 solicitudes pendientes más recientes.",
-    "viewAllButton": "Ver Todas",
-    "noApplications": "No hay solicitudes pendientes en este momento.",
-    "reviewButton": "Revisar",
-    "yourProductsTitle": "Sus Productos",
-    "yourProductsDescription": "Un resumen rápido de sus productos financieros actuales.",
-    "createNewProductButton": "Crear Nuevo Producto",
-    "noProducts": "Aún no ha creado ningún producto. ¡Comience creando uno!",
-    "table": {
-      "applicant": "Solicitante",
-      "type": "Tipo",
-      "amount": "Monto",
-      "riskScore": "Puntuación de Riesgo",
       "action": "Acción"
     },
-    "productsTable": {
-      "name": "Nombre del Producto",
-      "type": "Tipo",
-      "interestRate": "Tasa de Interés",
-      "maxAmount": "Monto Máximo"
+    "viewOrderButton": "Ver Pedido",
+    "reorderLevel": "Reordenar en",
+    "lowStock": "¡Stock bajo!",
+    "status": {
+      "new": "Nuevo",
+      "processing": "Procesando",
+      "shipped": "Enviado"
     },
     "errors": {
       "load": "No se pudieron cargar los datos del panel."

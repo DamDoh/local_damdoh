@@ -13,140 +13,31 @@
     "back": "Retour",
     "submit": "Soumettre"
   },
-  "ProfilePage": {
-    "editProfile": "Modifier le profil",
-    "showUniversalIdButton": "Afficher l'ID Universel",
-    "universalIdModalTitle": "Votre ID Universel",
-    "universalIdModalDescription": "D'autres utilisateurs peuvent scanner ce code pour voir votre profil public.",
-    "connect": "Se connecter",
-    "message": "Message",
-    "aboutTitle": "À propos de {displayName}",
-    "interestsTitle": "Domaines d'intérêt",
-    "needsTitle": "Recherche / Offre",
-    "contactTitle": "Coordonnées",
-    "engagementStats": "Statistiques d'engagement",
-    "profileViews": "Vues du profil",
-    "postLikes": "J'aime sur les publications",
-    "postComments": "Commentaires sur les publications",
-    "recentActivityTitle": "Activité récente",
-    "noRecentActivity": "Aucune activité récente à afficher.",
-    "tabs": {
-      "overview": "Aperçu",
-      "activity": "Activité"
+  "PackagingSupplierDashboard": {
+    "title": "Tableau de Bord Fournisseur d'Emballages",
+    "ordersTitle": "Commandes Entrantes",
+    "inventoryTitle": "État de l'Inventaire",
+    "listProductButton": "Lister un Nouveau Produit d'Emballage",
+    "noOrders": "Vous n'avez aucune nouvelle commande entrante.",
+    "noInventory": "Vous n'avez aucun produit d'emballage en vente.",
+    "table": {
+      "customer": "Client",
+      "product": "Produit",
+      "quantity": "Quantité",
+      "status": "Statut",
+      "action": "Action"
     },
-    "invite": {
-      "title": "Développez votre réseau",
-      "description": "Vous connaissez quelqu'un qui devrait être sur DamDoh ? Invitez-le à rejoindre la plateforme.",
-      "explanation": "Cela enverra un e-mail d'invitation standard à l'adresse que vous fournissez.",
-      "button": "Inviter par e-mail"
+    "viewOrderButton": "Voir la Commande",
+    "reorderLevel": "Réapprovisionner à",
+    "lowStock": "Stock faible !",
+    "status": {
+      "new": "Nouveau",
+      "processing": "En traitement",
+      "shipped": "Expédié"
     },
-    "invitePrompt": "Veuillez saisir l'adresse e-mail de la personne que vous souhaitez inviter :",
-    "inviteSuccessTitle": "Invitation envoyée !",
-    "inviteSuccessDescription": "Votre invitation a été envoyée avec succès à {email}.",
-    "inviteErrorTitle": "Erreur lors de l'envoi de l'invitation",
-    "notFoundTitle": "Profil non trouvé",
-    "notFoundDescription": "Le profil que vous recherchez n'existe pas ou a été supprimé.",
-    "backToNetwork": "Retour au réseau"
-  },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "Synchronisation de {count} actions hors ligne...",
-      "onlinePending": "{count} actions hors ligne en attente de synchronisation.",
-      "onlineSynced": "Vous êtes en ligne. Toutes les modifications sont enregistrées.",
-      "offline": "Vous êtes hors ligne. {count} actions en file d'attente."
+    "errors": {
+      "load": "Impossible de charger les données du tableau de bord."
     },
-    "toast": {
-      "online": {
-        "title": "Vous êtes de retour en ligne !",
-        "description": "Votre connexion a été restaurée."
-      },
-      "offline": {
-        "title": "Vous êtes actuellement hors ligne.",
-        "description": "Les modifications seront sauvegardées et synchronisées lorsque vous vous reconnecterez."
-      },
-      "syncing": {
-        "title": "Synchronisation des modifications hors ligne",
-        "description": "Téléchargement de {count, plural, one {# action} other {# actions}} effectuée hors ligne."
-      },
-      "synced": {
-        "title": "Synchronisation terminée",
-        "description": "Vos modifications hors ligne ont été enregistrées avec succès."
-      },
-      "syncFailed": {
-        "title": "La synchronisation a échoué",
-        "description": "Impossible de synchroniser les modifications hors ligne. Je réessayerai plus tard."
-      },
-      "queued": {
-        "title": "Action mise en file d'attente",
-        "description": "Cette action a été enregistrée et sera synchronisée lorsque vous serez en ligne."
-      }
-    }
-  },
-  "farmManagement": {
-    "logHarvest": {
-      "offlineToast": {
-        "description": "Cette récolte a été sauvegardée sur votre appareil. Elle sera officiellement enregistrée et un VTI sera généré une fois que vous serez de nouveau en ligne."
-      }
-    }
-  },
-  "groupsPage": {
-    "createPost": {
-      "backLink": "Retour à la discussion du groupe",
-      "title": "Créer un nouveau message",
-      "description": "Partagez vos pensées, posez une question ou lancez une discussion avec le groupe.",
-      "form": {
-        "titleLabel": "Titre du message",
-        "titlePlaceholder": "Ex: Meilleures pratiques pour la culture intercalaire du maïs ?",
-        "contentLabel": "Contenu",
-        "contentPlaceholder": "Saisissez votre message complet ici...",
-        "submittingButton": "Publication en cours...",
-        "submitButton": "Publier dans le groupe"
-      },
-      "toast": {
-        "auth": {
-          "title": "Authentification requise",
-          "description": "Vous devez être connecté pour créer un message."
-        },
-        "incomplete": {
-          "title": "Message incomplet",
-          "description": "Veuillez fournir un titre et un contenu pour votre message."
-        },
-        "success": {
-          "title": "Message créé",
-          "description": "Votre message a été ajouté avec succès à la discussion du groupe."
-        },
-        "error": {
-          "title": "Échec de la création du message",
-          "description": "Une erreur inattendue s'est produite. Veuillez réessayer."
-        }
-      }
-    },
-    "manage": {
-      "backLink": "Retour au groupe",
-      "title": "Gérer le groupe",
-      "description": "Examinez les demandes d'adhésion et gérez les paramètres du groupe.",
-      "requestsTab": "Demandes d'adhésion",
-      "invitesTab": "Invitations",
-      "requestedTimeAgo": "Demandé il y a {timeAgo}",
-      "noRequests": "Aucune demande d'adhésion en attente.",
-      "invitesTab.description": "Invitez des utilisateurs à rejoindre ce groupe privé par e-mail.",
-      "invitesTab.emailLabel": "E-mail de l'utilisateur",
-      "invitesTab.emailPlaceholder": "Saisir l'e-mail pour inviter...",
-      "toast": {
-        "error": "Erreur",
-        "success": "Succès",
-        "loadError": "Impossible de charger les demandes d'adhésion.",
-        "acceptSuccess": "L'utilisateur a été ajouté au groupe.",
-        "declineSuccess": "La demande a été refusée."
-      },
-      "invitesTab": {
-        "toast": {
-          "emailRequired": "Veuillez saisir une adresse e-mail valide.",
-          "inviteSent": "Invitation envoyée !",
-          "inviteSentDescription": "Une invitation a été envoyée à {email}.",
-          "error": "Erreur lors de l'envoi de l'invitation"
-        }
-      }
-    }
+    "noData": "Aucune donnée de tableau de bord disponible."
   }
 }
