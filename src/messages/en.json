@@ -13,6 +13,66 @@
     "back": "Back",
     "submit": "Submit"
   },
+  "LogisticsDashboard": {
+    "title": "Logistics Dashboard",
+    "performanceTitle": "Performance",
+    "onTimeDelivery": "% on-time delivery",
+    "viewReportButton": "View Report",
+    "activeShipmentsTitle": "Active Shipments",
+    "noActiveShipments": "No active shipments to track.",
+    "to": "To",
+    "trackButton": "Track",
+    "incomingJobsTitle": "Incoming Jobs",
+    "noIncomingJobs": "No new logistics jobs available.",
+    "from": "From",
+    "acceptJobButton": "Accept Job",
+    "errors": {
+      "load": "Could not load dashboard data."
+    },
+    "noData": "No dashboard data available."
+  },
+  "ProcessingUnitDashboard": {
+    "title": "Processing Unit Dashboard",
+    "yieldTitle": "Processing Yield",
+    "potential": "Potential",
+    "wasteTitle": "Waste Reduction",
+    "packagingInventoryTitle": "Packaging Inventory",
+    "noPackagingData": "No packaging inventory data.",
+    "sourcePackagingButton": "Source Packaging Materials",
+    "rawMaterialTitle": "Raw Material Inventory",
+    "noInventoryData": "No raw material data.",
+    "packagingOrdersTitle": "Packaging Orders",
+    "noPackagingOrders": "No active packaging orders.",
+    "viewButton": "View",
+    "table": {
+      "product": "Product",
+      "quality": "Quality",
+      "quantity": "Quantity (Tons)",
+      "supplier": "Supplier",
+      "deliveryDate": "Delivery Date",
+      "status": "Status",
+      "action": "Action"
+    },
+    "errors": {
+      "load": "Could not load dashboard data."
+    },
+    "noData": "No dashboard data available.",
+    "inStock": "In Stock",
+    "reorderLevel": "Reorder Level"
+  },
+  "WarehouseDashboard": {
+    "title": "Warehouse Dashboard",
+    "utilizationTitle": "Storage Utilization",
+    "inventoryTitle": "Inventory Levels",
+    "itemsNeedingAttention": "items needing attention",
+    "alertsTitle": "Predictive Alerts",
+    "investigateButton": "Investigate",
+    "noAlerts": "No active alerts.",
+    "errors": {
+      "load": "Could not load dashboard data."
+    },
+    "noData": "No dashboard data available."
+  },
   "PackagingSupplierDashboard": {
     "title": "Packaging Supplier Dashboard",
     "ordersTitle": "Incoming Orders",

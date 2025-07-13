@@ -13,6 +13,66 @@
     "back": "Retour",
     "submit": "Soumettre"
   },
+  "LogisticsDashboard": {
+    "title": "Tableau de Bord Logistique",
+    "performanceTitle": "Performance",
+    "onTimeDelivery": "% de livraisons à temps",
+    "viewReportButton": "Voir le Rapport",
+    "activeShipmentsTitle": "Expéditions Actives",
+    "noActiveShipments": "Aucune expédition active à suivre.",
+    "to": "Vers",
+    "trackButton": "Suivre",
+    "incomingJobsTitle": "Tâches Entrantes",
+    "noIncomingJobs": "Aucune nouvelle tâche logistique disponible.",
+    "from": "De",
+    "acceptJobButton": "Accepter la Tâche",
+    "errors": {
+      "load": "Impossible de charger les données du tableau de bord."
+    },
+    "noData": "Aucune donnée de tableau de bord disponible."
+  },
+  "ProcessingUnitDashboard": {
+    "title": "Tableau de Bord Unité de Traitement",
+    "yieldTitle": "Rendement de Traitement",
+    "potential": "Potentiel",
+    "wasteTitle": "Réduction des Déchets",
+    "packagingInventoryTitle": "Inventaire des Emballages",
+    "noPackagingData": "Aucune donnée d'inventaire d'emballage.",
+    "sourcePackagingButton": "S'approvisionner en Matériaux d'Emballage",
+    "rawMaterialTitle": "Inventaire des Matières Premières",
+    "noInventoryData": "Aucune donnée de matière première.",
+    "packagingOrdersTitle": "Commandes d'Emballages",
+    "noPackagingOrders": "Aucune commande d'emballage active.",
+    "viewButton": "Voir",
+    "table": {
+      "product": "Produit",
+      "quality": "Qualité",
+      "quantity": "Quantité (Tonnes)",
+      "supplier": "Fournisseur",
+      "deliveryDate": "Date de Livraison",
+      "status": "Statut",
+      "action": "Action"
+    },
+    "errors": {
+      "load": "Impossible de charger les données du tableau de bord."
+    },
+    "noData": "Aucune donnée de tableau de bord disponible.",
+    "inStock": "En stock",
+    "reorderLevel": "Niveau de réapprovisionnement"
+  },
+  "WarehouseDashboard": {
+    "title": "Tableau de Bord de l'Entrepôt",
+    "utilizationTitle": "Utilisation de l'Espace de Stockage",
+    "inventoryTitle": "Niveaux d'Inventaire",
+    "itemsNeedingAttention": "articles nécessitent une attention",
+    "alertsTitle": "Alertes Prédictives",
+    "investigateButton": "Enquêter",
+    "noAlerts": "Aucune alerte active.",
+    "errors": {
+      "load": "Impossible de charger les données du tableau de bord."
+    },
+    "noData": "Aucune donnée de tableau de bord disponible."
+  },
   "PackagingSupplierDashboard": {
     "title": "Tableau de Bord Fournisseur d'Emballages",
     "ordersTitle": "Commandes Entrantes",

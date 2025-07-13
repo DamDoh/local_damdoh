@@ -13,6 +13,66 @@
     "back": "ត្រឡប់",
     "submit": "ដាក់ស្នើ"
   },
+  "LogisticsDashboard": {
+    "title": "ផ្ទាំងគ្រប់គ្រងផ្នែកដឹកជញ្ជូន",
+    "performanceTitle": "ประสิทธิภาพ",
+    "onTimeDelivery": "% នៃការដឹកជញ្ជូនទាន់ពេល",
+    "viewReportButton": "មើលរបាយការណ៍",
+    "activeShipmentsTitle": "ការដឹកជញ្ជូនសកម្ម",
+    "noActiveShipments": "គ្មានការដឹកជញ្ជូនសកម្មដើម្បីតាមដានទេ។",
+    "to": "ទៅ",
+    "trackButton": "តាមដាន",
+    "incomingJobsTitle": "ការងារចូល",
+    "noIncomingJobs": "គ្មានការងារដឹកជញ្ជូនថ្មីទេ។",
+    "from": "ពី",
+    "acceptJobButton": "ទទួលយកការងារ",
+    "errors": {
+      "load": "មិនអាចផ្ទុកទិន្នន័យផ្ទាំងគ្រប់គ្រងបានទេ។"
+    },
+    "noData": "គ្មានទិន្នន័យផ្ទាំងគ្រប់គ្រងទេ។"
+  },
+  "ProcessingUnitDashboard": {
+    "title": "ផ្ទាំងគ្រប់គ្រងអង្គភាពកែច្នៃ",
+    "yieldTitle": "ទិន្នផលកែច្នៃ",
+    "potential": "សក្តានុពល",
+    "wasteTitle": "ការកាត់បន្ថយសំណល់",
+    "packagingInventoryTitle": "បញ្ជីសារពើភណ្ឌវេចខ្ចប់",
+    "noPackagingData": "គ្មានទិន្នន័យបញ្ជីសារពើភណ្ឌវេចខ្ចប់ទេ។",
+    "sourcePackagingButton": "ស្វែងរកសម្ភារៈវេចខ្ចប់",
+    "rawMaterialTitle": "បញ្ជីសារពើភណ្ឌវត្ថុធាតុដើម",
+    "noInventoryData": "គ្មានទិន្នន័យវត្ថុធាតុដើមទេ។",
+    "packagingOrdersTitle": "ការបញ្ជាទិញវេចខ្ចប់",
+    "noPackagingOrders": "គ្មានការបញ្ជាទិញវេចខ្ចប់សកម្មទេ។",
+    "viewButton": "មើល",
+    "table": {
+      "product": "ផលិតផល",
+      "quality": "គុណភាព",
+      "quantity": "បរិមាណ (តោន)",
+      "supplier": "អ្នកផ្គត់ផ្គង់",
+      "deliveryDate": "កាលបរិច្ឆេទដឹកជញ្ជូន",
+      "status": "ស្ថានភាព",
+      "action": "សកម្មភាព"
+    },
+    "errors": {
+      "load": "មិនអាចផ្ទុកទិន្នន័យផ្ទាំងគ្រប់គ្រងបានទេ។"
+    },
+    "noData": "គ្មានទិន្នន័យផ្ទាំងគ្រប់គ្រងទេ។",
+    "inStock": "ក្នុងស្តុក",
+    "reorderLevel": "កម្រិតបញ្ជាទិញឡើងវិញ"
+  },
+  "WarehouseDashboard": {
+    "title": "ផ្ទាំងគ្រប់គ្រងឃ្លាំង",
+    "utilizationTitle": "ការប្រើប្រាស់พื้นที่จัดเก็บ",
+    "inventoryTitle": "កម្រិតស្ដុក",
+    "itemsNeedingAttention": "รายการที่ต้องให้ความสนใจ",
+    "alertsTitle": "ការជូនដំណឹងព្យាករណ៍",
+    "investigateButton": "ตรวจสอบ",
+    "noAlerts": "ไม่มีการแจ้งเตือนที่ใช้งานอยู่",
+    "errors": {
+      "load": "មិនអាចផ្ទុកទិន្នន័យផ្ទាំងគ្រប់គ្រងបានទេ។"
+    },
+    "noData": "ไม่มีข้อมูลแดชบอร์ด"
+  },
   "PackagingSupplierDashboard": {
     "title": "ផ្ទាំងគ្រប់គ្រងអ្នកផ្គត់ផ្គង់ការវេចខ្ចប់",
     "ordersTitle": "ការបញ្ជាទិញចូល",

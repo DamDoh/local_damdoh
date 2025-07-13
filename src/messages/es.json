@@ -13,6 +13,66 @@
     "back": "Volver",
     "submit": "Enviar"
   },
+  "LogisticsDashboard": {
+    "title": "Panel de Logística",
+    "performanceTitle": "Rendimiento",
+    "onTimeDelivery": "% de entregas a tiempo",
+    "viewReportButton": "Ver Informe",
+    "activeShipmentsTitle": "Envíos Activos",
+    "noActiveShipments": "No hay envíos activos para rastrear.",
+    "to": "A",
+    "trackButton": "Rastrear",
+    "incomingJobsTitle": "Trabajos Entrantes",
+    "noIncomingJobs": "No hay nuevos trabajos de logística disponibles.",
+    "from": "Desde",
+    "acceptJobButton": "Aceptar Trabajo",
+    "errors": {
+      "load": "No se pudieron cargar los datos del panel."
+    },
+    "noData": "No hay datos de panel disponibles."
+  },
+  "ProcessingUnitDashboard": {
+    "title": "Panel de Unidad de Procesamiento",
+    "yieldTitle": "Rendimiento de Procesamiento",
+    "potential": "Potencial",
+    "wasteTitle": "Reducción de Residuos",
+    "packagingInventoryTitle": "Inventario de Embalaje",
+    "noPackagingData": "Sin datos de inventario de embalaje.",
+    "sourcePackagingButton": "Obtener Materiales de Embalaje",
+    "rawMaterialTitle": "Inventario de Materia Prima",
+    "noInventoryData": "Sin datos de materia prima.",
+    "packagingOrdersTitle": "Pedidos de Embalaje",
+    "noPackagingOrders": "Sin pedidos de embalaje activos.",
+    "viewButton": "Ver",
+    "table": {
+      "product": "Producto",
+      "quality": "Calidad",
+      "quantity": "Cantidad (Toneladas)",
+      "supplier": "Proveedor",
+      "deliveryDate": "Fecha de Entrega",
+      "status": "Estado",
+      "action": "Acción"
+    },
+    "errors": {
+      "load": "No se pudieron cargar los datos del panel."
+    },
+    "noData": "No hay datos de panel disponibles.",
+    "inStock": "En stock",
+    "reorderLevel": "Nivel de reorden"
+  },
+  "WarehouseDashboard": {
+    "title": "Panel de Almacén",
+    "utilizationTitle": "Utilización del Almacenamiento",
+    "inventoryTitle": "Niveles de Inventario",
+    "itemsNeedingAttention": "artículos requieren atención",
+    "alertsTitle": "Alertas Predictivas",
+    "investigateButton": "Investigar",
+    "noAlerts": "No hay alertas activas.",
+    "errors": {
+      "load": "No se pudieron cargar los datos del panel."
+    },
+    "noData": "No hay datos de panel disponibles."
+  },
   "PackagingSupplierDashboard": {
     "title": "Panel de Proveedor de Embalajes",
     "ordersTitle": "Pedidos Entrantes",

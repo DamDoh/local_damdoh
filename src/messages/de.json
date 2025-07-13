@@ -13,6 +13,66 @@
     "back": "Zurück",
     "submit": "Einreichen"
   },
+  "LogisticsDashboard": {
+    "title": "Logistik-Dashboard",
+    "performanceTitle": "Leistung",
+    "onTimeDelivery": "% pünktliche Lieferung",
+    "viewReportButton": "Bericht anzeigen",
+    "activeShipmentsTitle": "Aktive Lieferungen",
+    "noActiveShipments": "Keine aktiven Lieferungen zu verfolgen.",
+    "to": "Nach",
+    "trackButton": "Verfolgen",
+    "incomingJobsTitle": "Eingehende Aufträge",
+    "noIncomingJobs": "Keine neuen Logistikaufträge verfügbar.",
+    "from": "Von",
+    "acceptJobButton": "Auftrag annehmen",
+    "errors": {
+      "load": "Dashboard-Daten konnten nicht geladen werden."
+    },
+    "noData": "Keine Dashboard-Daten verfügbar."
+  },
+  "ProcessingUnitDashboard": {
+    "title": "Verarbeitungseinheit-Dashboard",
+    "yieldTitle": "Verarbeitungsausbeute",
+    "potential": "Potenzial",
+    "wasteTitle": "Abfallreduzierung",
+    "packagingInventoryTitle": "Verpackungsinventar",
+    "noPackagingData": "Keine Verpackungsinventardaten.",
+    "sourcePackagingButton": "Verpackungsmaterialien beschaffen",
+    "rawMaterialTitle": "Rohstoffinventar",
+    "noInventoryData": "Keine Rohstoffdaten.",
+    "packagingOrdersTitle": "Verpackungsbestellungen",
+    "noPackagingOrders": "Keine aktiven Verpackungsbestellungen.",
+    "viewButton": "Ansehen",
+    "table": {
+      "product": "Produkt",
+      "quality": "Qualität",
+      "quantity": "Menge (Tonnen)",
+      "supplier": "Lieferant",
+      "deliveryDate": "Lieferdatum",
+      "status": "Status",
+      "action": "Aktion"
+    },
+    "errors": {
+      "load": "Dashboard-Daten konnten nicht geladen werden."
+    },
+    "noData": "Keine Dashboard-Daten verfügbar.",
+    "inStock": "Auf Lager",
+    "reorderLevel": "Nachbestellgrenze"
+  },
+  "WarehouseDashboard": {
+    "title": "Lager-Dashboard",
+    "utilizationTitle": "Lagerauslastung",
+    "inventoryTitle": "Lagerbestände",
+    "itemsNeedingAttention": "Artikel benötigen Aufmerksamkeit",
+    "alertsTitle": "Vorausschauende Warnungen",
+    "investigateButton": "Untersuchen",
+    "noAlerts": "Keine aktiven Warnungen.",
+    "errors": {
+      "load": "Dashboard-Daten konnten nicht geladen werden."
+    },
+    "noData": "Keine Dashboard-Daten verfügbar."
+  },
   "PackagingSupplierDashboard": {
     "title": "Dashboard für Verpackungslieferanten",
     "ordersTitle": "Eingehende Bestellungen",

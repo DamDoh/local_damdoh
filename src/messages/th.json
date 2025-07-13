@@ -13,6 +13,66 @@
     "back": "กลับ",
     "submit": "ส่ง"
   },
+  "LogisticsDashboard": {
+    "title": "แดชบอร์ดโลจิสติกส์",
+    "performanceTitle": "ประสิทธิภาพ",
+    "onTimeDelivery": "% การจัดส่งตรงเวลา",
+    "viewReportButton": "ดูรายงาน",
+    "activeShipmentsTitle": "การจัดส่งที่ใช้งานอยู่",
+    "noActiveShipments": "ไม่มีการจัดส่งที่ใช้งานอยู่ให้ติดตาม",
+    "to": "ถึง",
+    "trackButton": "ติดตาม",
+    "incomingJobsTitle": "งานที่เข้ามา",
+    "noIncomingJobs": "ไม่มีงานโลจิสติกส์ใหม่",
+    "from": "จาก",
+    "acceptJobButton": "รับงาน",
+    "errors": {
+      "load": "ไม่สามารถโหลดข้อมูลแดชบอร์ดได้"
+    },
+    "noData": "ไม่มีข้อมูลแดชบอร์ด"
+  },
+  "ProcessingUnitDashboard": {
+    "title": "แดชบอร์ดหน่วยประมวลผล",
+    "yieldTitle": "ผลผลิตการประมวลผล",
+    "potential": "ศักยภาพ",
+    "wasteTitle": "การลดของเสีย",
+    "packagingInventoryTitle": "สินค้าคงคลังบรรจุภัณฑ์",
+    "noPackagingData": "ไม่มีข้อมูลสินค้าคงคลังบรรจุภัณฑ์",
+    "sourcePackagingButton": "หาแหล่งวัสดุบรรจุภัณฑ์",
+    "rawMaterialTitle": "สินค้าคงคลังวัตถุดิบ",
+    "noInventoryData": "ไม่มีข้อมูลวัตถุดิบ",
+    "packagingOrdersTitle": "คำสั่งซื้อบรรจุภัณฑ์",
+    "noPackagingOrders": "ไม่มีคำสั่งซื้อบรรจุภัณฑ์ที่ใช้งานอยู่",
+    "viewButton": "ดู",
+    "table": {
+      "product": "ผลิตภัณฑ์",
+      "quality": "คุณภาพ",
+      "quantity": "ปริมาณ (ตัน)",
+      "supplier": "ซัพพลายเออร์",
+      "deliveryDate": "วันที่จัดส่ง",
+      "status": "สถานะ",
+      "action": "การกระทำ"
+    },
+    "errors": {
+      "load": "ไม่สามารถโหลดข้อมูลแดชบอร์ดได้"
+    },
+    "noData": "ไม่มีข้อมูลแดชบอร์ด",
+    "inStock": "ในสต็อก",
+    "reorderLevel": "ระดับการสั่งซื้อใหม่"
+  },
+  "WarehouseDashboard": {
+    "title": "แดชบอร์ดคลังสินค้า",
+    "utilizationTitle": "การใช้พื้นที่จัดเก็บ",
+    "inventoryTitle": "ระดับสินค้าคงคลัง",
+    "itemsNeedingAttention": "รายการที่ต้องให้ความสนใจ",
+    "alertsTitle": "การแจ้งเตือนเชิงคาดการณ์",
+    "investigateButton": "ตรวจสอบ",
+    "noAlerts": "ไม่มีการแจ้งเตือนที่ใช้งานอยู่",
+    "errors": {
+      "load": "ไม่สามารถโหลดข้อมูลแดชบอร์ดได้"
+    },
+    "noData": "ไม่มีข้อมูลแดชบอร์ด"
+  },
   "PackagingSupplierDashboard": {
     "title": "แดชบอร์ดผู้จัดหาบรรจุภัณฑ์",
     "ordersTitle": "คำสั่งซื้อเข้า",

@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { Suspense } from 'react';
@@ -34,16 +35,17 @@ import { FieldAgentDashboard } from '@/components/dashboard/hubs/FieldAgentDashb
 import { FiDashboard } from '@/components/dashboard/hubs/FiDashboard';
 import { InputSupplierDashboard } from '@/components/dashboard/hubs/InputSupplierDashboard';
 import { InsuranceProviderDashboard } from '@/components/dashboard/hubs/InsuranceProviderDashboard';
-import { LogisticsDashboard } from '@/components/dashboard/hubs/LogisticsDashboard';
 import { PackagingSupplierDashboard } from '@/components/dashboard/hubs/PackagingSupplierDashboard';
-import { ProcessingUnitDashboard } from '@/components/dashboard/hubs/processing-logistics/ProcessingUnitDashboard';
 import { QaDashboard } from '@/components/dashboard/hubs/QaDashboard';
 import { RegulatorDashboard } from '@/components/dashboard/hubs/RegulatorDashboard';
 import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashboard';
-import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
 import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
 import { AgriTechInnovatorDashboard } from './hubs/AgriTechInnovatorDashboard';
 import { OperationsDashboard } from './hubs/OperationsDashboard';
+import { ProcessingUnitDashboard } from './hubs/processing-logistics/ProcessingUnitDashboard';
+import { WarehouseDashboard } from './hubs/processing-logistics/WarehouseDashboard';
+import { LogisticsDashboard } from './hubs/processing-logistics/LogisticsDashboard';
+
 
 const { useState, useEffect, useMemo } = React;
 const db = getFirestore(firebaseApp);
@@ -198,7 +200,7 @@ function MainContent() {
     // Use the stable key from the profile for logic
     const HubComponent = profile ? HubComponentMap[profile.primaryRole as keyof typeof HubComponentMap] : null;
     if (HubComponent) {
-      return <HubComponent />);
+      return <HubComponent />;
     }
 
     // Default feed view if no specific hub component
