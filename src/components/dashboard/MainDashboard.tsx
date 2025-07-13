@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { Suspense } from 'react';
@@ -199,7 +198,7 @@ function MainContent() {
     // Use the stable key from the profile for logic
     const HubComponent = profile ? HubComponentMap[profile.primaryRole as keyof typeof HubComponentMap] : null;
     if (HubComponent) {
-      return <HubComponent />;
+      return <HubComponent />);
     }
 
     // Default feed view if no specific hub component

@@ -5,7 +5,12 @@ import type {
     MarketplaceItemSchema,
     MarketplaceOrderSchema,
     ForumPostSchema,
-    AgriEventSchema
+    AgriEventSchema,
+    ShopSchema,
+    ApiKeySchema,
+    InsuranceProductSchema,
+    InsuranceApplicationSchema,
+    FinancialProductSchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 
@@ -26,6 +31,12 @@ export type AgriEvent = z.infer<typeof AgriEventSchema> & {
   registeredAttendeesCount: number;
 };
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
+export type Shop = z.infer<typeof ShopSchema>;
+export type ApiKey = z.infer<typeof ApiKeySchema>;
+export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
+export type InsuranceApplication = z.infer<typeof InsuranceApplicationSchema>;
+export type FinancialProduct = z.infer<typeof FinancialProductSchema>;
+
 export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";
 
 
@@ -44,24 +55,6 @@ export interface MarketplaceCoupon {
     createdAt: any;
 }
 
-export interface Shop {
-    id: string;
-    ownerId: string;
-    name: string;
-    description: string;
-    stakeholderType: string;
-    createdAt: any;
-    updatedAt: any;
-    logoUrl: string | null;
-    bannerUrl: string | null;
-    contactInfo: {
-        phone?: string;
-        website?: string;
-    };
-    itemCount: number;
-    rating: number;
-}
-
 export type ForumGroup = {
   id: string;
   name: string;
@@ -70,6 +63,14 @@ export type ForumGroup = {
   isPublic: boolean;
   ownerId: string;
   createdAt: string; // ISO String
+}
+
+export interface JoinRequest {
+    id: string; // Request ID
+    requesterId: string;
+    requesterName: string;
+    requesterAvatarUrl?: string;
+    createdAt: string;
 }
 
 export interface Connection {
@@ -150,6 +151,8 @@ export interface FarmerDashboardData {
     typeName: string;
     status: string;
     nextStepDate: string | null;
+    quantityProduced: number;
+    unit: string;
   }[];
   financialSummary?: FinancialSummary;
   alerts?: FarmerDashboardAlert[];
@@ -171,6 +174,7 @@ export interface CooperativeDashboardData {
         readyBy: string; // ISO Date string
     }[];
     pendingMemberApplications: number;
+    groupId?: string; // Add groupId to link to the group page
 }
 
 
@@ -249,20 +253,11 @@ export interface LogisticsDashboardData {
 
 export interface FiDashboardData {
     pendingApplications: FinancialApplication[];
-    portfolioAtRisk: {
-        count: number;
-        value: number;
-        highestRisk: {
-            name: string;
-            reason: string;
-        };
-        actionLink: string;
+    portfolioOverview?: {
+        loanCount: number;
+        totalValue: number;
     };
-    marketUpdates: {
-        id: string;
-        content: string;
-        actionLink: string;
-    }[];
+    financialProducts?: FinancialProduct[];
 }
 
 export interface FieldAgentDashboardData {
@@ -646,6 +641,8 @@ export interface KnfBatch {
     status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
     nextStep: string;
     createdAt?: any;
+    quantityProduced: number;
+    unit: string;
 }
 
 export interface ForumPost {
@@ -654,7 +651,7 @@ export interface ForumPost {
   content: string;
   topicId: string;
   topicName: string;
-  timestamp: string; // ISO String
+  createdAt: string; // ISO String
   author: {
     id: string;
     name: string;
