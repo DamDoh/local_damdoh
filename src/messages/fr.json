@@ -13,91 +13,96 @@
     "back": "Retour",
     "submit": "Soumettre"
   },
-  "LogisticsDashboard": {
-    "title": "Tableau de Bord Logistique",
-    "performanceTitle": "Performance",
-    "onTimeDelivery": "% de livraisons à temps",
-    "viewReportButton": "Voir le Rapport",
-    "activeShipmentsTitle": "Expéditions Actives",
-    "noActiveShipments": "Aucune expédition active à suivre.",
-    "to": "Vers",
-    "trackButton": "Suivre",
-    "incomingJobsTitle": "Tâches Entrantes",
-    "noIncomingJobs": "Aucune nouvelle tâche logistique disponible.",
-    "from": "De",
-    "acceptJobButton": "Accepter la Tâche",
-    "errors": {
-      "load": "Impossible de charger les données du tableau de bord."
-    },
-    "noData": "Aucune donnée de tableau de bord disponible."
+  "farmManagement": {
+    "laborPage": {
+      "workerDetailPage": {
+        "notFoundTitle": "Travailleur non trouvé",
+        "notFoundDescription": "Le profil du travailleur que vous recherchez n'a pas pu être trouvé.",
+        "goBackButton": "Retour à la gestion de la main-d'œuvre",
+        "backLink": "Retour à la gestion de la main-d'œuvre",
+        "workLogsTitle": "Journaux de travail",
+        "paymentHistoryTitle": "Historique des paiements",
+        "noWorkLogs": "Aucune heure de travail n'a été enregistrée pour ce travailleur.",
+        "noPayments": "Aucun paiement n'a été enregistré pour ce travailleur.",
+        "table": {
+          "date": "Date",
+          "hours": "Heures",
+          "task": "Tâche / Description",
+          "amount": "Montant"
+        },
+        "toasts": {
+          "errorTitle": "Erreur",
+          "loadError": "Impossible de charger les détails du travailleur."
+        }
+      },
+      "backLink": "Retour au hub de gestion agricole",
+      "title": "Gestion de la Main-d'œuvre",
+      "addWorker": "Ajouter un travailleur",
+      "workerName": "Nom du travailleur",
+      "saveWorker": "Enregistrer le travailleur",
+      "description": "Suivez les heures, les paiements et gérez vos ouvriers agricoles.",
+      "loading": "Chargement...",
+      "signInPrompt": {
+        "title": "Connexion requise",
+        "description": "Veuillez vous connecter pour gérer votre main-d'œuvre agricole.",
+        "button": "Se connecter"
+      },
+      "hoursLogged": "Heures enregistrées",
+      "totalPaid": "Total payé",
+      "logHours": "Enregistrer des heures",
+      "logPayment": "Enregistrer un paiement",
+      "viewDetails": "Voir les détails",
+      "noWorkers": "Vous n'avez pas encore ajouté de travailleurs.",
+      "logHoursFor": "Enregistrer des heures pour",
+      "hoursWorked": "Heures travaillées",
+      "date": "Date",
+      "pickDate": "Choisir une date",
+      "taskDescription": "Tâche / Description (Facultatif)",
+      "logPaymentFor": "Enregistrer un paiement pour",
+      "amountPaid": "Montant payé (USD)",
+      "toast": {
+        "errorTitle": "Erreur",
+        "fetchWorkersError": "Impossible de récupérer votre liste de travailleurs.",
+        "nameRequired": "Le nom du travailleur est requis.",
+        "workerAdded": "Nouveau travailleur ajouté avec succès.",
+        "hoursLogged": "Les heures ont été enregistrées avec succès.",
+        "paymentLoggedTitle": "Paiement enregistré",
+        "paymentLoggedDescription": "Le paiement a été enregistré et une dépense a été automatiquement ajoutée à votre registre financier."
+      }
+    }
   },
-  "ProcessingUnitDashboard": {
-    "title": "Tableau de Bord Unité de Traitement",
-    "yieldTitle": "Rendement de Traitement",
-    "potential": "Potentiel",
-    "wasteTitle": "Réduction des Déchets",
-    "packagingInventoryTitle": "Inventaire des Emballages",
-    "noPackagingData": "Aucune donnée d'inventaire d'emballage.",
-    "sourcePackagingButton": "S'approvisionner en Matériaux d'Emballage",
-    "rawMaterialTitle": "Inventaire des Matières Premières",
-    "noInventoryData": "Aucune donnée de matière première.",
-    "packagingOrdersTitle": "Commandes d'Emballages",
-    "noPackagingOrders": "Aucune commande d'emballage active.",
-    "viewButton": "Voir",
-    "table": {
-      "product": "Produit",
-      "quality": "Qualité",
-      "quantity": "Quantité (Tonnes)",
-      "supplier": "Fournisseur",
-      "deliveryDate": "Date de Livraison",
-      "status": "Statut",
-      "action": "Action"
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Synchronisation de {count} changements...",
+      "onlinePending": "{count} changements enregistrés hors ligne. Synchronisation prochaine.",
+      "onlineSynced": "Vous êtes en ligne. Tous les changements sont synchronisés.",
+      "offline": "Vous êtes hors ligne. {count} changements enregistrés localement."
     },
-    "errors": {
-      "load": "Impossible de charger les données du tableau de bord."
-    },
-    "noData": "Aucune donnée de tableau de bord disponible.",
-    "inStock": "En stock",
-    "reorderLevel": "Niveau de réapprovisionnement"
-  },
-  "WarehouseDashboard": {
-    "title": "Tableau de Bord de l'Entrepôt",
-    "utilizationTitle": "Utilisation de l'Espace de Stockage",
-    "inventoryTitle": "Niveaux d'Inventaire",
-    "itemsNeedingAttention": "articles nécessitent une attention",
-    "alertsTitle": "Alertes Prédictives",
-    "investigateButton": "Enquêter",
-    "noAlerts": "Aucune alerte active.",
-    "errors": {
-      "load": "Impossible de charger les données du tableau de bord."
-    },
-    "noData": "Aucune donnée de tableau de bord disponible."
-  },
-  "PackagingSupplierDashboard": {
-    "title": "Tableau de Bord Fournisseur d'Emballages",
-    "ordersTitle": "Commandes Entrantes",
-    "inventoryTitle": "État de l'Inventaire",
-    "listProductButton": "Lister un Nouveau Produit d'Emballage",
-    "noOrders": "Vous n'avez aucune nouvelle commande entrante.",
-    "noInventory": "Vous n'avez aucun produit d'emballage en vente.",
-    "table": {
-      "customer": "Client",
-      "product": "Produit",
-      "quantity": "Quantité",
-      "status": "Statut",
-      "action": "Action"
-    },
-    "viewOrderButton": "Voir la Commande",
-    "reorderLevel": "Réapprovisionner à",
-    "lowStock": "Stock faible !",
-    "status": {
-      "new": "Nouveau",
-      "processing": "En traitement",
-      "shipped": "Expédié"
-    },
-    "errors": {
-      "load": "Impossible de charger les données du tableau de bord."
-    },
-    "noData": "Aucune donnée de tableau de bord disponible."
+    "toast": {
+      "online": {
+        "title": "De retour en ligne !",
+        "description": "Votre connexion a été rétablie."
+      },
+      "offline": {
+        "title": "Vous êtes hors ligne",
+        "description": "Ne vous inquiétez pas, vos modifications seront enregistrées et synchronisées lorsque vous vous reconnecterez."
+      },
+      "syncing": {
+        "title": "Synchronisation des changements hors ligne",
+        "description": "Nous synchronisons {count, plural, one {# changement} other {# changements}} effectués lorsque vous étiez hors ligne."
+      },
+      "synced": {
+        "title": "Synchronisation terminée !",
+        "description": "Tous vos changements hors ligne ont été sauvegardés sur le serveur."
+      },
+      "syncFailed": {
+        "title": "Échec de la synchronisation",
+        "description": "Impossible de synchroniser les changements hors ligne. Nous essaierons à nouveau plus tard."
+      },
+      "queued": {
+        "title": "Action mise en file d'attente",
+        "description": "Vous êtes hors ligne. Cette action sera synchronisée lorsque vous vous reconnecterez."
+      }
+    }
   }
 }

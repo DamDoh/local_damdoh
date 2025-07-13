@@ -13,91 +13,96 @@
     "back": "Zurück",
     "submit": "Einreichen"
   },
-  "LogisticsDashboard": {
-    "title": "Logistik-Dashboard",
-    "performanceTitle": "Leistung",
-    "onTimeDelivery": "% pünktliche Lieferung",
-    "viewReportButton": "Bericht anzeigen",
-    "activeShipmentsTitle": "Aktive Lieferungen",
-    "noActiveShipments": "Keine aktiven Lieferungen zu verfolgen.",
-    "to": "Nach",
-    "trackButton": "Verfolgen",
-    "incomingJobsTitle": "Eingehende Aufträge",
-    "noIncomingJobs": "Keine neuen Logistikaufträge verfügbar.",
-    "from": "Von",
-    "acceptJobButton": "Auftrag annehmen",
-    "errors": {
-      "load": "Dashboard-Daten konnten nicht geladen werden."
-    },
-    "noData": "Keine Dashboard-Daten verfügbar."
+  "farmManagement": {
+    "laborPage": {
+      "workerDetailPage": {
+        "notFoundTitle": "Mitarbeiter nicht gefunden",
+        "notFoundDescription": "Das gesuchte Mitarbeiterprofil konnte nicht gefunden werden.",
+        "goBackButton": "Zurück zur Personalverwaltung",
+        "backLink": "Zurück zur Personalverwaltung",
+        "workLogsTitle": "Arbeitsstunden",
+        "paymentHistoryTitle": "Zahlungshistorie",
+        "noWorkLogs": "Für diesen Mitarbeiter wurden keine Arbeitsstunden erfasst.",
+        "noPayments": "Für diesen Mitarbeiter wurden keine Zahlungen erfasst.",
+        "table": {
+          "date": "Datum",
+          "hours": "Stunden",
+          "task": "Aufgabe / Beschreibung",
+          "amount": "Betrag"
+        },
+        "toasts": {
+          "errorTitle": "Fehler",
+          "loadError": "Mitarbeiterdetails konnten nicht geladen werden."
+        }
+      },
+      "backLink": "Zurück zum Farm-Management-Hub",
+      "title": "Personalverwaltung",
+      "addWorker": "Mitarbeiter hinzufügen",
+      "workerName": "Name des Mitarbeiters",
+      "saveWorker": "Mitarbeiter speichern",
+      "description": "Erfassen Sie Stunden, Zahlungen und verwalten Sie Ihre Landarbeiter.",
+      "loading": "Wird geladen...",
+      "signInPrompt": {
+        "title": "Anmeldung erforderlich",
+        "description": "Bitte melden Sie sich an, um Ihr Personal zu verwalten.",
+        "button": "Anmelden"
+      },
+      "hoursLogged": "Erfasste Stunden",
+      "totalPaid": "Gesamtzahlung",
+      "logHours": "Stunden erfassen",
+      "logPayment": "Zahlung erfassen",
+      "viewDetails": "Details anzeigen",
+      "noWorkers": "Sie haben noch keine Mitarbeiter hinzugefügt.",
+      "logHoursFor": "Stunden erfassen für",
+      "hoursWorked": "Gearbeitete Stunden",
+      "date": "Datum",
+      "pickDate": "Datum auswählen",
+      "taskDescription": "Aufgabe / Beschreibung (optional)",
+      "logPaymentFor": "Zahlung erfassen für",
+      "amountPaid": "Gezahlter Betrag (USD)",
+      "toast": {
+        "errorTitle": "Fehler",
+        "fetchWorkersError": "Ihre Mitarbeiterliste konnte nicht abgerufen werden.",
+        "nameRequired": "Der Name des Mitarbeiters ist erforderlich.",
+        "workerAdded": "Neuer Mitarbeiter erfolgreich hinzugefügt.",
+        "hoursLogged": "Die Stunden wurden erfolgreich erfasst.",
+        "paymentLoggedTitle": "Zahlung erfasst",
+        "paymentLoggedDescription": "Die Zahlung wurde erfasst und eine Ausgabe wurde automatisch zu Ihrer Finanzübersicht hinzugefügt."
+      }
+    }
   },
-  "ProcessingUnitDashboard": {
-    "title": "Verarbeitungseinheit-Dashboard",
-    "yieldTitle": "Verarbeitungsausbeute",
-    "potential": "Potenzial",
-    "wasteTitle": "Abfallreduzierung",
-    "packagingInventoryTitle": "Verpackungsinventar",
-    "noPackagingData": "Keine Verpackungsinventardaten.",
-    "sourcePackagingButton": "Verpackungsmaterialien beschaffen",
-    "rawMaterialTitle": "Rohstoffinventar",
-    "noInventoryData": "Keine Rohstoffdaten.",
-    "packagingOrdersTitle": "Verpackungsbestellungen",
-    "noPackagingOrders": "Keine aktiven Verpackungsbestellungen.",
-    "viewButton": "Ansehen",
-    "table": {
-      "product": "Produkt",
-      "quality": "Qualität",
-      "quantity": "Menge (Tonnen)",
-      "supplier": "Lieferant",
-      "deliveryDate": "Lieferdatum",
-      "status": "Status",
-      "action": "Aktion"
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "{count} Änderungen werden synchronisiert...",
+      "onlinePending": "{count} Änderungen offline gespeichert. Synchronisierung folgt in Kürze.",
+      "onlineSynced": "Sie sind online. Alle Änderungen sind synchronisiert.",
+      "offline": "Sie sind offline. {count} Änderungen lokal gespeichert."
     },
-    "errors": {
-      "load": "Dashboard-Daten konnten nicht geladen werden."
-    },
-    "noData": "Keine Dashboard-Daten verfügbar.",
-    "inStock": "Auf Lager",
-    "reorderLevel": "Nachbestellgrenze"
-  },
-  "WarehouseDashboard": {
-    "title": "Lager-Dashboard",
-    "utilizationTitle": "Lagerauslastung",
-    "inventoryTitle": "Lagerbestände",
-    "itemsNeedingAttention": "Artikel benötigen Aufmerksamkeit",
-    "alertsTitle": "Vorausschauende Warnungen",
-    "investigateButton": "Untersuchen",
-    "noAlerts": "Keine aktiven Warnungen.",
-    "errors": {
-      "load": "Dashboard-Daten konnten nicht geladen werden."
-    },
-    "noData": "Keine Dashboard-Daten verfügbar."
-  },
-  "PackagingSupplierDashboard": {
-    "title": "Dashboard für Verpackungslieferanten",
-    "ordersTitle": "Eingehende Bestellungen",
-    "inventoryTitle": "Lagerbestandsstatus",
-    "listProductButton": "Neues Verpackungsprodukt anbieten",
-    "noOrders": "Sie haben keine neuen eingehenden Bestellungen.",
-    "noInventory": "Sie haben keine Verpackungsprodukte zum Verkauf angeboten.",
-    "table": {
-      "customer": "Kunde",
-      "product": "Produkt",
-      "quantity": "Menge",
-      "status": "Status",
-      "action": "Aktion"
-    },
-    "viewOrderButton": "Bestellung ansehen",
-    "reorderLevel": "Nachbestellen bei",
-    "lowStock": "Niedriger Lagerbestand!",
-    "status": {
-      "new": "Neu",
-      "processing": "In Bearbeitung",
-      "shipped": "Versandt"
-    },
-    "errors": {
-      "load": "Dashboard-Daten konnten nicht geladen werden."
-    },
-    "noData": "Keine Dashboard-Daten verfügbar."
+    "toast": {
+      "online": {
+        "title": "Wieder online!",
+        "description": "Ihre Verbindung wurde wiederhergestellt."
+      },
+      "offline": {
+        "title": "Sie sind offline",
+        "description": "Keine Sorge, Ihre Änderungen werden gespeichert und synchronisiert, wenn Sie wieder online sind."
+      },
+      "syncing": {
+        "title": "Synchronisiere Offline-Änderungen",
+        "description": "Wir synchronisieren {count, plural, one {# Änderung} other {# Änderungen}}, die Sie offline vorgenommen haben."
+      },
+      "synced": {
+        "title": "Synchronisierung abgeschlossen!",
+        "description": "Alle Ihre Offline-Änderungen wurden auf dem Server gespeichert."
+      },
+      "syncFailed": {
+        "title": "Synchronisierung fehlgeschlagen",
+        "description": "Offline-Änderungen konnten nicht synchronisiert werden. Wir versuchen es später erneut."
+      },
+      "queued": {
+        "title": "Aktion in Warteschlange",
+        "description": "Sie sind offline. Diese Aktion wird synchronisiert, wenn Sie wieder online sind."
+      }
+    }
   }
 }

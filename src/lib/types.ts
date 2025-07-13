@@ -774,3 +774,21 @@ export type ServiceItem = MarketplaceItem & {
     compensation: string;
     experienceLevel: string;
 };
+
+// =================================================================
+// 3. AI FLOW TYPES (Inferred from schemas)
+// =================================================================
+
+import type { 
+    SmartSearchInterpretationSchema,
+    MarketplaceRecommendationOutputSchema,
+    MarketplaceRecommendationInputSchema,
+    CropRotationInputSchema,
+    CropRotationOutputSchema,
+ } from './schemas';
+
+export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;
+export type MarketplaceRecommendationInput = z.infer<typeof MarketplaceRecommendationInputSchema>;
+export type MarketplaceRecommendationOutput = z.infer<typeof MarketplaceRecommendationOutputSchema>;
+export type CropRotationInput = z.infer<typeof CropRotationInputSchema>;
+export type CropRotationOutput = z.infer<typeof CropRotationOutputSchema>;

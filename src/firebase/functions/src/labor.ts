@@ -1,8 +1,7 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { logFinancialTransaction } from "./financial-services"; 
+import { logFinancialTransaction } from "./financial-services"; // Assuming this function exists to log expenses
 
 const db = admin.firestore();
 
