@@ -1,6 +1,5 @@
 
 import { AGRICULTURAL_CATEGORIES } from './category-data';
-import { getStakeholderRoles, getListingTypes, getAgriEventTypes, getFinancialServiceTypes, getInsuranceServiceTypes } from './i18n-constants';
 import type { LucideIcon } from "lucide-react";
 import {
   Sprout, Tractor, Users, Briefcase, Truck, Warehouse, Award,
@@ -11,9 +10,6 @@ import {
 
 
 export const APP_NAME = "DamDoh";
-
-// These have been moved to the root i18n.ts file to be the single source of truth
-// and to avoid dependency issues with the middleware.
 
 export const STAKEHOLDER_ROLES = [
   'Farmer',
@@ -54,23 +50,9 @@ export type UnifiedMarketplaceCategoryType = typeof UNIFIED_MARKETPLACE_CATEGORY
 export const LISTING_TYPES = ['Product', 'Service'] as const;
 export type ListingType = typeof LISTING_TYPES[number];
 
-// Filter options for Marketplace page
-export const UNIFIED_MARKETPLACE_FILTER_OPTIONS: Array<{ value: UnifiedMarketplaceCategoryType | 'All', label: string }> = [
-  { value: 'All', label: 'All Categories' },
-  ...AGRICULTURAL_CATEGORIES.map(cat => ({ value: cat.id as UnifiedMarketplaceCategoryType, label: cat.name })),
-];
-
-export const getListingTypeFilterOptions = (t: any) => [
-  { value: 'All', label: t('listingTypes.All') },
-  ...getListingTypes(t).map(type => ({ value: type.value, label: `${type.label}s` })),
-];
-
 // Form options for Marketplace creation
 export const UNIFIED_MARKETPLACE_FORM_CATEGORIES: Array<{ value: UnifiedMarketplaceCategoryType, label: string }> =
   AGRICULTURAL_CATEGORIES.map(cat => ({ value: cat.id as UnifiedMarketplaceCategoryType, label: cat.name }));
-
-export const getListingTypeFormOptions = (t: any) =>
-    getListingTypes(t).map(type => ({ value: type.value, label: type.label }));
 
 
 export const HOMEPAGE_PREFERENCE_KEY = "damdohHomepagePreference";
@@ -78,13 +60,6 @@ export const HOMEPAGE_PREFERENCE_KEY = "damdohHomepagePreference";
 export const AGRI_EVENT_TYPES = ['Conference', 'Webinar', 'Workshop', 'Trade Show', 'Field Day', 'Networking Event', 'Online Course Launch', 'Policy Briefing'] as const;
 export type AgriEventTypeConstant = typeof AGRI_EVENT_TYPES[number];
 
-export const getAgriEventTypeFormOptions = (t: any) =>
-    getAgriEventTypes(t).map(type => ({value: type.value, label: type.label}));
-
-export const getAgriEventFilterOptions = (t: any) => [
-    {value: 'All', label: t('All')},
-    ...getAgriEventTypes(t).map(type => ({value: type.value, label: type.label}))
-];
 
 // Added for financial services module
 export const FINANCIAL_SERVICE_TYPES = [

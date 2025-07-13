@@ -37,10 +37,12 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { uploadFileAndGetURL } from "@/lib/storage-utils";
 import { askFarmingAssistant, type FarmingAssistantOutput } from "@/ai/flows/farming-assistant-flow";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { getObservationTypes } from "@/lib/i18n-constants";
 
 export default function LogObservationPage() {
   const t = useTranslations('farmManagement.logObservation');
+  const tConstants = useTranslations('constants');
   const router = useRouter();
   const params = useParams();
   const farmId = params.farmId as string;
@@ -50,6 +52,7 @@ export default function LogObservationPage() {
   const { user } = useAuth();
   const functions = getFunctions(firebaseApp);
   const handleObservationEvent = httpsCallable(functions, 'handleObservationEvent');
+  const locale = useLocale();
 
   const form = useForm<CreateObservationValues>({
     resolver: zodResolver(createObservationSchema),
@@ -61,10 +64,7 @@ export default function LogObservationPage() {
     },
   });
 
-  const observationTypes = Object.keys(t.raw('types')).map(key => ({
-    value: key,
-    label: t(`types.${key}`)
-  }));
+  const observationTypes = getObservationTypes(tConstants);
 
   async function onSubmit(data: CreateObservationValues) {
     if (!user) {
@@ -95,7 +95,7 @@ export default function LogObservationPage() {
         aiAnalysisResult = await askFarmingAssistant({
             query: data.details,
             photoDataUri: photoDataUri,
-            language: 'en'
+            language: locale,
         });
 
         toast({ title: t('toast.aiComplete'), description: t('toast.aiCompleteDescription') });

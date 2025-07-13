@@ -15,12 +15,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createMarketplaceItemSchema, type CreateMarketplaceItemValues } from '@/lib/form-schemas';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { UNIFIED_MARKETPLACE_FORM_CATEGORIES, getListingTypeFormOptions } from '@/lib/constants';
+import { UNIFIED_MARKETPLACE_FORM_CATEGORIES } from '@/lib/constants';
+import { getListingTypeFormOptions } from '@/lib/i18n-constants';
 import { useAuth } from '@/lib/auth-utils';
 import { Switch } from '@/components/ui/switch';
 import { suggestMarketPrice } from '@/ai/flows/suggest-market-price-flow';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
+import { useLocale } from 'next-intl';
 
 export default function CreateListingPage() {
     const router = useRouter();
@@ -29,6 +31,7 @@ export default function CreateListingPage() {
     const t = useTranslations('Marketplace.createListing');
     const tConstants = useTranslations('constants');
     const { user } = useAuth();
+    const locale = useLocale();
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuggestingPrice, setIsSuggestingPrice] = useState(false);
@@ -84,7 +87,7 @@ export default function CreateListingPage() {
       setIsSuggestingPrice(true);
       setSuggestedPrice(null);
       try {
-        const result = await suggestMarketPrice({ productName: name, description, category, location: location.address });
+        const result = await suggestMarketPrice({ productName: name, description, category, location: location.address, language: locale });
         const price = result.price;
         setSuggestedPrice(price.toFixed(2));
       } catch (error: any) {

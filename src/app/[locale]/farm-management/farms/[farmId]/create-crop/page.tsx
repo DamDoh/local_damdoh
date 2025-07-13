@@ -36,9 +36,11 @@ import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useTranslations } from "next-intl";
+import { getCropStages } from "@/lib/i18n-constants";
 
 export default function CreateCropPage() {
   const t = useTranslations('farmManagement.createCrop');
+  const tConstants = useTranslations('constants');
   const router = useRouter();
   const params = useParams();
   const farmId = params.farmId as string;
@@ -104,10 +106,7 @@ export default function CreateCropPage() {
     }
   }
 
-  const cropStages = Object.keys(t.raw('stages')).map(key => ({
-    value: key,
-    label: t(`stages.${key}`)
-  }));
+  const cropStages = getCropStages(tConstants);
 
 
   return (
@@ -287,5 +286,3 @@ export default function CreateCropPage() {
     </div>
   );
 }
-
-    

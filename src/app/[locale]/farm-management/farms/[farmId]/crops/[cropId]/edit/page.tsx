@@ -37,10 +37,12 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslations } from "next-intl";
+import { getCropStages } from "@/lib/i18n-constants";
 
 export default function EditCropPage() {
   const t = useTranslations('farmManagement.createCrop'); // Re-use create translations
   const tEdit = useTranslations('farmManagement.editCrop');
+  const tConstants = useTranslations('constants');
   const router = useRouter();
   const params = useParams();
   const farmId = params.farmId as string;
@@ -127,10 +129,7 @@ export default function EditCropPage() {
     }
   }
   
-  const cropStages = Object.keys(t.raw('stages')).map(key => ({
-    value: key,
-    label: t(`stages.${key}`)
-  }));
+  const cropStages = getCropStages(tConstants);
 
 
   if (isLoading) {
