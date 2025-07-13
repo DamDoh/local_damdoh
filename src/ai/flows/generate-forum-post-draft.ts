@@ -60,6 +60,9 @@ const generateForumPostDraftFlow = ai.defineFlow(
   },
   async ({ topicId, prompt, language }) => {
     const adminDb = getAdminDb();
+    if (!adminDb) {
+      throw new Error("Firestore Admin DB not initialized.");
+    }
     // Fetch topic details to provide more context to the AI
     const topicDoc = await adminDb.collection('forums').doc(topicId).get();
     if (!topicDoc.exists) {
