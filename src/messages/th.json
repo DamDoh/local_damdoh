@@ -13,6 +13,33 @@
     "back": "กลับ",
     "submit": "ส่ง"
   },
+  "InsuranceProviderDashboard": {
+    "title": "แดชบอร์ดผู้ให้บริการประกันภัย",
+    "manageProductsTitle": "ผลิตภัณฑ์ประกันภัยของฉัน",
+    "manageProductsDescription": "สร้างและจัดการผลิตภัณฑ์ประกันภัยของคุณที่เสนอให้กับเกษตรกรบนแพลตฟอร์ม",
+    "manageProductsButton": "จัดการผลิตภัณฑ์",
+    "claimsTitle": "การเคลมที่รอดำเนินการ",
+    "claimsDescription": "ตรวจสอบและดำเนินการเคลมที่ส่งเข้ามาล่าสุด",
+    "noPendingClaims": "ไม่มีการเคลมที่รอดำเนินการเพื่อตรวจสอบ",
+    "riskAlertsTitle": "การแจ้งเตือนการประเมินความเสี่ยง",
+    "riskAlertsDescription": "การแจ้งเตือนที่สำคัญจากพอร์ตโฟลิโอของคุณตามข้อมูลเรียลไทม์",
+    "noRiskAlerts": "ไม่มีการแจ้งเตือนความเสี่ยงที่ใช้งานอยู่",
+    "reviewClaimButton": "ตรวจสอบการเคลม",
+    "investigateButton": "ตรวจสอบ",
+    "table": {
+      "policyHolder": "ผู้ถือกรมธรรม์",
+      "policyType": "ประเภทกรมธรรม์",
+      "claimDate": "วันที่เคลม",
+      "status": "สถานะ",
+      "action": "การกระทำ",
+      "alert": "การแจ้งเตือน",
+      "severity": "ความรุนแรง"
+    },
+    "errors": {
+      "load": "ไม่สามารถโหลดข้อมูลแดชบอร์ดได้"
+    },
+    "noData": "ไม่มีข้อมูลที่จะแสดง"
+  },
   "OfflineIndicator": {
     "tooltip": {
       "syncing": "กำลังซิงค์ {count} การกระทำออฟไลน์...",

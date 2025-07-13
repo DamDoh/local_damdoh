@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -127,6 +128,25 @@ export const submitInsuranceApplication = functions.https.onCall(async (data, co
     
     return { success: true, applicationId: appRef.id };
 });
+
+export const getInsuranceProviderDashboardData = functions.https.onCall(
+  (data, context): InsuranceProviderDashboardData => {
+    checkAuth(context);
+    // This is mock data. In a real implementation, you would query Firestore.
+    return {
+        pendingClaims: [
+            { id: 'claim1', policyHolderName: 'Green Valley Farms', policyType: 'Crop', claimDate: new Date().toISOString(), status: 'Under Review', actionLink: '#' }
+        ],
+        riskAssessmentAlerts: [
+            { id: 'risk1', policyHolderName: 'Sunset Farms', alert: 'High flood risk predicted for next month.', severity: 'High', actionLink: '#' }
+        ],
+        activePolicies: [
+            { id: 'pol1', policyHolderName: 'Green Valley Farms', policyType: 'Multi-peril Crop', coverageAmount: 50000, expiryDate: new Date().toISOString() }
+        ]
+    };
+  }
+);
+
 
 export const assessRiskForPolicy = functions.firestore.document("insurance_policies/{policyId}").onWrite(async (change, context) => {
     // Implementation omitted for brevity

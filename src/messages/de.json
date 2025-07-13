@@ -13,6 +13,33 @@
     "back": "Zurück",
     "submit": "Einreichen"
   },
+  "InsuranceProviderDashboard": {
+    "title": "Versicherungsanbieter-Dashboard",
+    "manageProductsTitle": "Meine Versicherungsprodukte",
+    "manageProductsDescription": "Erstellen und verwalten Sie Ihre Versicherungsprodukte, die den Landwirten auf der Plattform angeboten werden.",
+    "manageProductsButton": "Produkte verwalten",
+    "claimsTitle": "Ausstehende Schadensfälle",
+    "claimsDescription": "Überprüfen und bearbeiten Sie kürzlich eingereichte Schadensfälle.",
+    "noPendingClaims": "Keine ausstehenden Schadensfälle zur Überprüfung.",
+    "riskAlertsTitle": "Risikobewertungswarnungen",
+    "riskAlertsDescription": "Wichtige Warnungen aus Ihrem Portfolio basierend auf Echtzeitdaten.",
+    "noRiskAlerts": "Keine aktiven Risikowarnungen.",
+    "reviewClaimButton": "Schadensfall prüfen",
+    "investigateButton": "Untersuchen",
+    "table": {
+      "policyHolder": "Versicherungsnehmer",
+      "policyType": "Art der Police",
+      "claimDate": "Schadensdatum",
+      "status": "Status",
+      "action": "Aktion",
+      "alert": "Warnung",
+      "severity": "Schweregrad"
+    },
+    "errors": {
+      "load": "Dashboard-Daten konnten nicht geladen werden."
+    },
+    "noData": "Keine Daten zum Anzeigen vorhanden."
+  },
   "OfflineIndicator": {
     "tooltip": {
       "syncing": "Synchronisiere {count} Offline-Aktionen...",

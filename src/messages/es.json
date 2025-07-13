@@ -13,6 +13,33 @@
     "back": "Volver",
     "submit": "Enviar"
   },
+  "InsuranceProviderDashboard": {
+    "title": "Panel del Proveedor de Seguros",
+    "manageProductsTitle": "Mis Productos de Seguro",
+    "manageProductsDescription": "Cree y gestione sus productos de seguros ofrecidos a los agricultores en la plataforma.",
+    "manageProductsButton": "Gestionar Productos",
+    "claimsTitle": "Reclamaciones Pendientes",
+    "claimsDescription": "Revise y procese las reclamaciones enviadas recientemente.",
+    "noPendingClaims": "No hay reclamaciones pendientes para revisar.",
+    "riskAlertsTitle": "Alertas de Evaluación de Riesgos",
+    "riskAlertsDescription": "Alertas importantes de su cartera basadas en datos en tiempo real.",
+    "noRiskAlerts": "No hay alertas de riesgo activas.",
+    "reviewClaimButton": "Revisar Reclamación",
+    "investigateButton": "Investigar",
+    "table": {
+      "policyHolder": "Tomador del seguro",
+      "policyType": "Tipo de Póliza",
+      "claimDate": "Fecha del Siniestro",
+      "status": "Estado",
+      "action": "Acción",
+      "alert": "Alerta",
+      "severity": "Gravedad"
+    },
+    "errors": {
+      "load": "No se pudieron cargar los datos del panel."
+    },
+    "noData": "No hay datos para mostrar."
+  },
   "OfflineIndicator": {
     "tooltip": {
       "syncing": "Sincronizando {count} acciones sin conexión...",
