@@ -78,7 +78,7 @@ export function useOfflineSync() {
     }
   }, [isOnline, pendingActionCount, isSyncing, toast, t]);
   
-  // Exposed function to add an action to the queue (for simulation or actual use)
+  // Exposed function to add an action to the queue
   const addActionToQueue = useCallback(async (actionPayload: any) => {
     const newAction: OfflineAction = {
       ...actionPayload, // This should contain collectionPath, documentId, operation, payload
