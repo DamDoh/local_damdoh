@@ -70,21 +70,21 @@
     },
     "financialServiceTypes": {},
     "cropStages": {
-        "Planting": "Planting",
-        "Vegetative": "Vegetative",
-        "Flowering": "Flowering",
-        "Fruiting": "Fruiting",
-        "Harvesting": "Harvesting",
-        "Post-Harvest": "Post-Harvest"
+      "Planting": "Planting",
+      "Vegetative": "Vegetative",
+      "Flowering": "Flowering",
+      "Fruiting": "Fruiting",
+      "Harvesting": "Harvesting",
+      "Post-Harvest": "Post-Harvest"
     },
     "observationTypes": {
-        "GeneralNote": "General Note",
-        "PestSighting": "Pest Sighting",
-        "DiseaseSighting": "Disease Sighting",
-        "SoilCondition": "Soil Condition",
-        "WeatherEvent": "Weather Event",
-        "GrowthStageChange": "Growth Stage Change",
-        "IrrigationEvent": "Irrigation Event"
+      "GeneralNote": "General Note",
+      "PestSighting": "Pest Sighting",
+      "DiseaseSighting": "Disease Sighting",
+      "SoilCondition": "Soil Condition",
+      "WeatherEvent": "Weather Event",
+      "GrowthStageChange": "Growth Stage Change",
+      "IrrigationEvent": "Irrigation Event"
     },
     "mobileHomeCategories": {
       "produceMarket": "Produce Market",
@@ -203,21 +203,21 @@
       "scanNote": "This code is temporary and expires in 10 minutes.",
       "startOverButton": "Start Over",
       "enterPhone": {
-          "title": "Enter Your Phone Number",
-          "description": "We will use your phone number to find your account and start a recovery session.",
-          "phoneNumberLabel": "Phone Number",
-          "phoneNumberPlaceholder": "Enter your registered phone number",
-          "phoneRequiredError": "Phone number is required.",
-          "verifyingButton": "Verifying...",
-          "getRecoveryCodeButton": "Get Recovery Code",
-          "genericError": "Could not start recovery session. Please check the number and try again."
+        "title": "Enter Your Phone Number",
+        "description": "We will use your phone number to find your account and start a recovery session.",
+        "phoneNumberLabel": "Phone Number",
+        "phoneNumberPlaceholder": "Enter your registered phone number",
+        "phoneRequiredError": "Phone number is required.",
+        "verifyingButton": "Verifying...",
+        "getRecoveryCodeButton": "Get Recovery Code",
+        "genericError": "Could not start recovery session. Please check the number and try again."
       },
       "helpFriend": {
-          "prompt": "Trying to help someone recover their account?",
-          "button": "Help a Friend Recover",
-          "scanError": "The scanned QR code is not a valid recovery code.",
-          "scanSuccess": "Verification Successful!",
-          "scanFail": "Could not read the QR code. Please try again."
+        "prompt": "Trying to help someone recover their account?",
+        "button": "Help a Friend Recover",
+        "scanError": "The scanned QR code is not a valid recovery code.",
+        "scanSuccess": "Verification Successful!",
+        "scanFail": "Could not read the QR code. Please try again."
       }
     },
     "forgotPassword": {
@@ -267,7 +267,7 @@
         "title": "Logged Out",
         "description": "You have been successfully logged out.",
         "failTitle": "Logout Failed",
-        "failDescription": "Could not log you out. Please try again."
+        "failDescription": "There was an error logging you out."
       },
       "signInSuccess": {
         "title": "Signed In Successfully!",
@@ -314,9 +314,7 @@
     "toast": {
       "logOut": {
         "title": "Logged Out",
-        "description": "You have been successfully signed out.",
-        "failTitle": "Logout Failed",
-        "failDescription": "There was an error logging you out."
+        "description": "You have been successfully signed out."
       }
     }
   },
@@ -1185,626 +1183,39 @@
       "tryAgain": "Try another query or broaden your search."
     }
   },
-  "AgriTechDashboard": {
-    "title": "Agri-Tech Innovator Dashboard",
-    "sandboxTitle": "Sandbox Environment",
-    "statusLabel": "Status",
-    "lastResetLabel": "Last Reset",
-    "accessDocsButton": "Access API Docs",
-    "integrationsTitle": "Active Integrations",
-    "activeProjects": "{count, plural, =0 {active projects} =1 {1 active project} other {{count} active projects}}",
-    "integrationsDescription": "Your active projects integrated with DamDoh.",
-    "proposeIntegrationButton": "Propose New Integration",
-    "apiKeysTitle": "API Keys",
-    "apiKeysDescription": "Manage your API keys for accessing DamDoh services.",
-    "generateNewKeyButton": "Generate New Key",
-    "table": {
-      "key": "Key / Description",
-      "status": "Status",
-      "environment": "Environment",
-      "created": "Created",
-      "actions": "Actions",
-      "hideKey": "Hide Key",
-      "showKey": "Show Key",
-      "copyKey": "Copy Key",
-      "revokeKey": "Revoke Key"
+  "ProfilePage": {
+    "editProfile": "Edit Profile",
+    "showUniversalIdButton": "Show Universal ID",
+    "universalIdModalTitle": "Your Universal ID",
+    "universalIdModalDescription": "Other users can scan this to quickly view your public profile.",
+    "connect": "Connect",
+    "message": "Message",
+    "invite": {
+      "title": "Invite a Colleague",
+      "description": "Help grow the network by inviting others to join DamDoh.",
+      "explanation": "Send an invitation to a colleague or partner to join the DamDoh platform. They will receive an email with instructions on how to sign up.",
+      "button": "Send Invite"
     },
-    "noApiKeys": "You haven't generated any API keys yet.",
-    "apiKeyCopied": "API Key copied to clipboard!",
-    "revokeDialog": {
-      "title": "Are you sure you want to revoke this API key?",
-      "description": "This action cannot be undone. Any applications using this key will immediately lose access.",
-      "cancel": "Cancel",
-      "confirm": "Yes, Revoke Key"
+    "invitePrompt": "Enter the email address of the person you want to invite:",
+    "inviteSuccessTitle": "Invite Sent!",
+    "inviteSuccessDescription": "An invitation has been sent to {email}.",
+    "inviteErrorTitle": "Failed to Send Invite",
+    "tabs": {
+      "overview": "Overview",
+      "activity": "Activity"
     },
-    "toast": {
-      "descriptionRequired": "A description is required for a new key.",
-      "keyGeneratedSuccess": "New API key generated successfully.",
-      "keyGeneratedError": "Could not generate API key.",
-      "keyRevokedSuccess": "API key revoked.",
-      "keyRevokedError": "Could not revoke API key.",
-      "keyNotAvailable": "Full key is not available to copy."
-    },
-    "generateButton": "Generate",
-    "newKeyModal": {
-        "title": "API Key Generated Successfully",
-        "description": "Copy this key now. You will not be able to see it again.",
-        "closeButton": "I have copied the key"
-    },
-    "generateDialog": {
-        "descriptionLabel": "Description",
-        "environmentLabel": "Environment",
-        "environmentPlaceholder": "Select an environment",
-        "sandbox": "Sandbox",
-        "production": "Production"
-    },
-    "errors": {
-        "load": "Could not load Agri-Tech dashboard data."
-    },
-    "noData": "No data available for the Agri-Tech dashboard."
-  },
-  "AgroExportDashboard": {
-    "title": "Agro-Export Dashboard",
-    "docsTitle": "Pending Customs Documents",
-    "shipmentsTitle": "Tracked Shipments",
-    "alertsTitle": "Compliance Alerts",
-    "table": {
-      "destination": "Destination"
-    },
-    "prepareDocsButton": "Prepare Documents",
-    "readMore": "Read More",
-    "noDocs": "No pending customs documents.",
-    "noShipments": "No active shipments to track.",
-    "noAlerts": "No new compliance alerts.",
-    "errors": {
-        "load": "Could not load Agro-Export dashboard data."
-    },
-    "noData": "No data available for the Agro-Export dashboard."
-  },
-  "AgroTourismDashboard": {
-    "title": "Agro-Tourism Dashboard",
-    "bookingsTitle": "Upcoming Bookings",
-    "bookingsDescription": "Your next guests and experiences.",
-    "experiencesTitle": "Your Listed Experiences",
-    "experiencesDescription": "Manage your agro-tourism offerings.",
-    "reviewsTitle": "Guest Reviews",
-    "reviewsDescription": "Recent feedback from your visitors.",
-    "table": {
-      "experience": "Experience",
-      "guest": "Guest",
-      "date": "Date",
-      "action": "Action",
-      "title": "Title",
-      "status": "Status",
-      "bookings": "Bookings"
-    },
-    "viewDetailsButton": "View Details",
-    "manageButton": "Manage",
-    "noBookings": "No upcoming bookings.",
-    "noExperiences": "You haven't listed any experiences yet.",
-    "noReviews": "No guest reviews yet.",
-    "viewReviewButton": "View",
-    "on": "on",
-    "errors": {
-        "load": "Could not load Agro-Tourism dashboard data."
-    },
-    "noData": "No data available for the Agro-Tourism dashboard."
-  },
-  "AgronomistDashboard": {
-    "title": "Agronomist Dashboard",
-    "stats": {
-      "assignedFarmers": "Assigned Farmers",
-      "farmersWithAlerts": "Farmers with Alerts",
-      "pendingConsultations": "Pending Consultations",
-      "knowledgeContributions": "Knowledge Contributions"
-    },
-    "activeAlerts": "Active Alerts",
-    "reportsToFile": "reports to file.",
-    "tasksPending": "tasks pending.",
-    "consultations": {
-      "title": "Consultation Requests",
-      "description": "Respond to incoming requests from farmers.",
-      "table": {
-        "farmer": "Farmer",
-        "issue": "Issue Summary",
-        "action": "Action"
-      },
-      "viewButton": "View",
-      "noRequests": "No pending consultation requests."
-    },
-    "portfolio": {
-      "title": "Farmer Portfolio",
-      "description": "An overview of the farmers you manage.",
-      "table": {
-        "farmer": "Farmer",
-        "location": "Location",
-        "alerts": "Alerts",
-        "action": "Action"
-      },
-      "alertsLabel": "Alerts",
-      "profileButton": "Profile",
-      "noFarmers": "No farmers have been assigned to your portfolio yet."
-    },
-    "contributions": {
-      "statusTitle": "Contribution Status",
-      "title": "Your Contributions to the Knowledge Hub",
-      "noData": "No contribution data available.",
-      "noContributions": "You have not made any contributions yet."
-    },
-    "noData": "No dashboard data available.",
-    "lastVisit": "Last Visit",
-    "issues": "Issues",
-    "chart": {
-      "count": "Count",
-      "published": "Published",
-      "pending": "Pending Review",
-      "draft": "Draft"
-    },
-    "errors": {
-        "load": "Could not load Agronomist dashboard data."
-    }
-  },
-  "BuyerDashboard": {
-    "title": "Buyer Dashboard",
-    "riskTitle": "Supply Chain Risks",
-    "diversifySourcing": "Diversify Sourcing",
-    "priceTitle": "Market Price Insights",
-    "secureContracts": "Secure Forward Contracts",
-    "sourcingTitle": "Sourcing Recommendations",
-    "reliabilityScore": "Reliability Score",
-    "findSuppliersButton": "Find More Suppliers",
-    "errors": {
-        "load": "Could not load Buyer dashboard data."
-    },
-    "noData": "No data available for the Buyer dashboard."
-  },
-  "CertificationBodyDashboard": {
-    "title": "Certification Body Dashboard",
-    "auditsTitle": "Pending Audits",
-    "auditsDescription": "Upcoming audits that require your attention.",
-    "table": {
-      "farmName": "Farm Name",
-      "standard": "Standard",
-      "dueDate": "Due Date",
-      "action": "Action"
-    },
-    "reviewAuditButton": "Review Audit",
-    "noPendingAudits": "No pending audits at this time.",
-    "entitiesTitle": "Status of Certified Entities",
-    "entitiesDescription": "An overview of your certified entities.",
-    "noCertifiedEntities": "No data for certified entities.",
-    "monitoringTitle": "Standards Monitoring",
-    "monitoringDescription": "Compliance rates for key standards.",
-    "alerts": "Alerts",
-    "viewDetailsButton": "View Details",
-    "noMonitoringData": "No monitoring data available.",
-     "chart": {
-      "active": "Active",
-      "pending": "Pending Renewal",
-      "expired": "Expired"
-    },
-    "errors": {
-        "load": "Could not load Certification Body dashboard data."
-    },
-    "noData": "No data available for the Certification Body dashboard."
-  },
-  "CooperativeDashboard": {
-    "title": "Cooperative Dashboard",
-    "membersTitle": "Total Members",
-    "membersDescription": "{count} active farmers in your cooperative.",
-    "landAreaTitle": "Total Land Area",
-    "landAreaDescription": "Hectares under cultivation.",
-    "pendingApplicationsTitle": "Pending Applications",
-    "pendingApplicationsDescription": "New farmers awaiting approval.",
-    "produceTitle": "Available Aggregated Produce",
-    "produceDescription": "A combined view of your members' ready-for-sale produce.",
-    "table": {
-      "product": "Product",
-      "quantity": "Quantity (Tons)",
-      "quality": "Quality",
-      "readyBy": "Ready By",
-      "action": "Action"
-    },
-    "createListingButton": "Create Listing",
-    "noProduce": "No aggregated produce to list.",
-    "aggregateButton": "Aggregate New Produce",
-    "manageButton": "Manage Members",
-    "errors": {
-        "load": "Could not load Cooperative dashboard data."
-    },
-    "noData": "No data available for the Cooperative dashboard."
-  },
-  "CrowdfunderDashboard": {
-    "title": "Crowdfunder Dashboard",
-    "totalInvested": "Total Invested",
-    "numberOfInvestments": "Number of Investments",
-    "estimatedReturns": "Estimated Returns",
-    "opportunitiesTitle": "Recommended Opportunities",
-    "viewButton": "View",
-    "raisedOf": "raised of",
-    "goal": "goal",
-    "noOpportunities": "No new investment opportunities match your profile.",
-    "transactionsTitle": "Recent Transactions",
-    "table": {
-      "project": "Project",
-      "amount": "Amount"
-    },
-    "investment": "Investment",
-    "payout": "Payout",
-    "on": "on",
-    "noTransactions": "No recent transactions.",
-     "errors": {
-        "load": "Could not load Crowdfunder dashboard data."
-    },
-    "noData": "No data available for the Crowdfunder dashboard."
-  },
-  "EnergyProviderDashboard": {
-    "title": "Energy Provider Dashboard",
-    "leadsTitle": "Project Leads",
-    "leadsCount": "{count, plural, =0 {leads} =1 {1 lead} other {{count} leads}}",
-    "newLeadsDescription": "new leads require attention.",
-    "projectsTitle": "Active Projects",
-    "activeProjectsCount": "{count, plural, =0 {projects} =1 {1 project} other {{count} projects}}",
-    "projectsCompleted": "projects completed.",
-    "impactTitle": "Cumulative Impact",
-    "impactDescription": "The total estimated impact of your projects.",
-    "carbonReduction": "tCO2e/year reduced from {count} installations.",
-    "accessDocsButton": "Access API Docs",
-    "proposeIntegrationButton": "Propose New Integration",
-    "leadsTableTitle": "Project Pipeline",
-    "leadsTableDescription": "Track your leads from initial contact to project completion.",
-    "table": {
-      "entity": "Entity",
-      "location": "Location",
-      "energyNeed": "Estimated Need",
-      "status": "Status",
-      "action": "Action"
-    },
-    "viewLeadButton": "View Lead",
-    "noLeads": "No active project leads.",
-    "statusLabels": {
-      "new": "New",
-      "contacted": "Contacted",
-      "proposal_sent": "Proposal Sent",
-      "closed": "Closed"
-    },
-    "errors": {
-        "load": "Could not load Energy Provider dashboard data."
-    },
-    "noData": "No data available for the Energy Provider dashboard."
-  },
-  "EquipmentSupplierDashboard": {
-    "title": "Equipment Supplier Dashboard",
-    "ordersTitle": "Rentals & Sales",
-    "ordersDescription": "{count} active orders",
-    "manageOrdersButton": "Manage Orders",
-    "listedEquipmentTitle": "Your Listed Equipment",
-    "table": {
-      "name": "Name",
-      "type": "Type",
-      "status": "Status",
-      "action": "Action"
-    },
-    "status": {
-      "available": "Available",
-      "rentedout": "Rented Out"
-    },
-    "manageButton": "Manage",
-    "noEquipment": "No equipment listed yet.",
-    "listEquipmentButton": "List New Equipment",
-    "maintenanceTitle": "Maintenance Requests",
-    "viewRequestButton": "View Request",
-    "noMaintenance": "No pending maintenance requests.",
-    "errors": {
-        "load": "Could not load Equipment Supplier dashboard data."
-    },
-    "noData": "No data available for the Equipment Supplier dashboard."
-  },
-  "FiDashboard": {
-    "title": "Financial Institution Dashboard",
-    "pendingApplicationsTitle": "Pending Applications",
-    "pendingApplicationsDescription": "applications require your review.",
-    "manageApplicationsButton": "Manage Applications",
-    "activePortfolioTitle": "Active Portfolio Value",
-    "activePortfolioDescription": "{count} active loans",
-    "reviewRiskButton": "Review Risk",
-    "manageProductsTitle": "Financial Products",
-    "manageProductsDescription": "Active loan and grant products.",
-    "manageProductsButton": "Manage Products",
-    "table": {
-      "applicant": "Applicant",
-      "type": "Type",
-      "amount": "Amount",
-      "riskScore": "Risk Score",
-      "action": "Action"
-    },
-    "reviewButton": "Review",
-    "noApplications": "No pending applications to review.",
-    "viewAllButton": "View All Applications",
-    "yourProductsTitle": "Your Financial Products",
-    "yourProductsDescription": "Products you currently offer on the platform.",
-    "createNewProductButton": "Create New Product",
-    "productsTable": {
-      "name": "Name",
-      "type": "Type",
-      "interestRate": "Interest Rate",
-      "maxAmount": "Max Amount"
-    },
-    "noProducts": "No financial products have been created yet.",
-    "errors": {
-        "load": "Could not load Financial Institution dashboard data."
-    },
-    "noData": "No data available for the Financial Institution dashboard."
-  },
-  "FieldAgentDashboard": {
-    "title": "Field Agent Dashboard",
-    "portfolioHealthTitle": "Portfolio Health",
-    "activeAlerts": "Active Alerts",
-    "pendingReportsTitle": "Pending Reports",
-    "reportsToFile": "reports to file.",
-    "dataVerificationTitle": "Data Verification",
-    "tasksPending": "tasks pending.",
-    "assignedFarmersTitle": "Assigned Farmers",
-    "farmersInPortfolio": "farmers in portfolio.",
-    "portfolioTitle": "Farmer Portfolio",
-    "lastVisit": "Last Visit",
-    "issues": "Issues",
-    "viewFarmerButton": "View Farmer",
-    "noFarmersAssigned": "No farmers have been assigned to your portfolio yet.",
-    "errors": {
-        "load": "Could not load Field Agent dashboard data."
-    },
-    "noData": "No data available for the Field Agent dashboard."
-  },
-  "InputSupplierDashboard": {
-    "title": "Input Supplier Dashboard",
-    "ordersTitle": "Active Orders",
-    "totalValue": "total value",
-    "manageOrdersButton": "Manage Orders",
-    "forecastTitle": "Demand Forecast",
-    "in": "in",
-    "noForecast": "No demand forecast data available.",
-    "performanceTitle": "Product Performance",
-    "viewReviewsButton": "View Reviews",
-    "noFeedback": "No product feedback yet.",
-    "promotionsTitle": "Marketing & Promotions",
-    "promotionsDescription": "Create and manage coupons to boost your sales.",
-    "manageCouponsButton": "Manage Coupons",
-     "errors": {
-        "load": "Could not load Input Supplier dashboard data."
-    },
-    "noData": "No data available for the Input Supplier dashboard."
-  },
-  "InsuranceProviderDashboard": {
-    "title": "Insurance Provider Dashboard",
-    "manageProductsTitle": "Manage Insurance Products",
-    "manageProductsDescription": "Create and view the insurance products you offer on the platform.",
-    "manageProductsButton": "Manage Products",
-    "claimsTitle": "Pending Claims",
-    "claimsDescription": "Review and process new claims from policyholders.",
-    "table": {
-      "policyHolder": "Policy Holder",
-      "policyType": "Policy Type",
-      "claimDate": "Claim Date",
-      "status": "Status",
-      "action": "Action"
-    },
-    "reviewClaimButton": "Review Claim",
-    "noPendingClaims": "No pending claims at this time.",
-    "riskAlertsTitle": "Risk Assessment Alerts",
-    "riskAlertsDescription": "Proactive alerts for high-risk policies based on real-time data.",
-    "alert": "Alert",
-    "severity": "Severity",
-    "investigateButton": "Investigate",
-    "noRiskAlerts": "No high-risk alerts at this time.",
-    "activePoliciesTitle": "Active Policies Overview",
-    "activePoliciesDescription": "An overview of your active insurance policies.",
-    "coverage": "Coverage",
-    "expires": "Expires",
-    "noActivePolicies": "No active policies found.",
-    "errors": {
-        "load": "Could not load Insurance Provider dashboard data."
-    },
-    "noData": "No data available for the Insurance Provider dashboard."
-  },
-  "LogisticsDashboard": {
-    "title": "Logistics Dashboard",
-    "performanceTitle": "Performance",
-    "onTimeDelivery": "On-time delivery rate",
-    "viewReportButton": "View Full Report",
-    "activeShipmentsTitle": "Active Shipments",
-    "to": "to",
-    "trackButton": "Track",
-    "noActiveShipments": "No active shipments.",
-    "incomingJobsTitle": "Incoming Jobs",
-    "from": "from",
-    "acceptJobButton": "Accept Job",
-    "noIncomingJobs": "No new jobs.",
-     "errors": {
-        "load": "Could not load Logistics dashboard data."
-    },
-    "noData": "No data available for the Logistics dashboard."
-  },
-  "OperationsDashboard": {
-    "title": "Platform Operations Dashboard",
-    "vtiRateTitle": "VTI Creation Rate",
-    "pipelineStatusTitle": "Data Pipeline Status",
-    "lastCheck": "Last checked",
-    "flaggedEventsTitle": "Flagged Traceability Events",
-    "viewVtiButton": "View VTI",
-    "noFlaggedEvents": "No flagged events to review.",
-    "errors": {
-        "load": "Could not load Operations dashboard data."
-    },
-    "noData": "No data available for the Operations dashboard."
-  },
-  "PackagingSupplierDashboard": {
-    "title": "Packaging Supplier Dashboard",
-    "ordersTitle": "Incoming Orders",
-    "table": {
-      "customer": "Customer",
-      "product": "Product",
-      "quantity": "Quantity",
-      "status": "Status",
-      "action": "Action"
-    },
-    "status": {
-      "new": "New",
-      "processing": "Processing",
-      "shipped": "Shipped"
-    },
-    "viewOrderButton": "View Order",
-    "noOrders": "No new orders.",
-    "inventoryTitle": "Inventory Status",
-    "inStock": "in stock",
-    "reorderLevel": "reorder level",
-    "lowStock": "Low Stock",
-    "noInventory": "No inventory data.",
-    "listProductButton": "List New Product",
-    "errors": {
-        "load": "Could not load Packaging Supplier dashboard data."
-    },
-    "noData": "No data available for the Packaging Supplier dashboard."
-  },
-  "ProcessingUnitDashboard": {
-    "title": "Processing Unit Dashboard",
-    "yieldTitle": "Yield Optimization",
-    "potential": "potential",
-    "wasteTitle": "Waste Reduction",
-    "rawMaterialTitle": "Raw Material Inventory",
-    "table": {
-      "product": "Product",
-      "quality": "Quality",
-      "quantity": "Quantity (Tons)",
-      "supplier": "Supplier",
-      "deliveryDate": "Delivery Date",
-      "status": "Status",
-      "action": "Action"
-    },
-    "noInventoryData": "No raw material inventory data.",
-    "packagingOrdersTitle": "Packaging Orders",
-    "noPackagingOrders": "No active packaging orders.",
-    "viewButton": "View",
-    "packagingInventoryTitle": "Packaging Inventory",
-    "inStock": "in stock",
-    "reorderLevel": "reorder level",
-    "noPackagingData": "No packaging inventory data.",
-    "sourcePackagingButton": "Source Packaging",
-     "errors": {
-        "load": "Could not load Processing Unit dashboard data."
-    },
-    "noData": "No data available for the Processing Unit dashboard."
-  },
-  "QaDashboard": {
-    "title": "Quality Assurance Dashboard",
-    "inspectionsTitle": "Pending Inspections",
-    "inspectionsDescription": "Batches awaiting quality inspection and verification.",
-    "table": {
-      "batchId": "Batch ID",
-      "product": "Product",
-      "seller": "Seller",
-      "dueDate": "Due Date",
-      "action": "Action",
-      "result": "Result",
-      "reason": "Reason",
-      "inspectedAt": "Inspected At"
-    },
-    "performInspectionButton": "Perform Inspection",
-    "noPendingInspections": "No pending inspections at this time.",
-    "resultsTitle": "Recent Quality Issues",
-    "resultsDescription": "The latest flagged quality issues that may require action.",
-    "noRecentIssues": "No recent quality issues logged.",
-    "metricsTitle": "Quality Metrics",
-    "metricsDescription": "Overall quality performance across the platform.",
-    "passRate": "Pass rate",
-    "averageScore": "Average score",
-    "noMetrics": "No quality metrics available yet.",
-     "errors": {
-        "load": "Could not load QA dashboard data."
-    },
-    "noData": "No data available for the QA dashboard."
-  },
-  "RegulatorDashboard": {
-    "title": "Regulator Dashboard",
-    "pendingCertificationsTitle": "Pending Certifications",
-    "reviewsOutstanding": "reviews outstanding.",
-    "reviewAllButton": "Review All",
-    "riskAlertsTitle": "Compliance Risk Alerts",
-    "investigateButton": "Investigate",
-    "noComplianceAlerts": "No active compliance alerts.",
-    "anomaliesTitle": "Supply Chain Anomalies",
-    "trackVtiButton": "Track VTI",
-    "noAnomalies": "No supply chain anomalies detected.",
-    "errors": {
-        "load": "Could not load Regulator dashboard data."
-    },
-    "noData": "No data available for the Regulator dashboard."
-  },
-  "ResearcherDashboard": {
-    "title": "Researcher Dashboard",
-    "datasetsTitle": "Available Datasets",
-    "datasetsDescription": "Anonymized datasets available for research purposes.",
-    "table": {
-      "name": "Name",
-      "dataType": "Data Type",
-      "accessLevel": "Access Level",
-      "action": "Action",
-      "title": "Title",
-      "progress": "Progress",
-      "collaborators": "Collaborators",
-      "status": "Status"
-    },
-    "requestAccessButton": "Request Access",
-    "noDatasets": "No datasets are currently available.",
-    "projectsTitle": "Ongoing Projects",
-    "projectsDescription": "Your active research projects on the platform.",
-    "viewProjectButton": "View Project",
-    "noProjects": "You are not involved in any ongoing projects.",
-    "contributionsTitle": "Contributions to Knowledge Hub",
-    "contributionsDescription": "Your submitted articles and research papers.",
-    "viewButton": "View",
-    "noContributions": "You have not submitted any contributions yet.",
-    "chart": {
-      "count": "Count",
-      "published": "Published",
-      "pending": "Pending Review",
-      "draft": "Draft"
-    },
-    "noData": "No dashboard data available.",
-     "errors": {
-        "load": "Could not load Researcher dashboard data."
-    }
-  },
-  "WasteManagementDashboard": {
-    "title": "Waste Management Dashboard",
-    "wasteStreamsTitle": "Incoming Waste Streams",
-    "from": "from",
-    "acceptButton": "Accept",
-    "noWasteStreams": "No new incoming waste streams.",
-    "compostBatchesTitle": "Compost Batches",
-    "batch": "Batch",
-    "estReady": "Est. Ready",
-    "noCompostBatches": "No active compost batches.",
-    "inventoryTitle": "Finished Product Inventory",
-    "inStock": "in stock",
-    "noFinishedProducts": "No finished products in stock.",
-    "sellButton": "Sell on Marketplace",
-    "errors": {
-        "load": "Could not load Waste Management dashboard data."
-    },
-    "noData": "No data available for the Waste Management dashboard."
-  },
-  "WarehouseDashboard": {
-    "title": "Warehouse Dashboard",
-    "utilizationTitle": "Storage Utilization",
-    "inventoryTitle": "Inventory Levels",
-    "itemsNeedingAttention": "items needing attention.",
-    "alertsTitle": "Predictive Alerts",
-    "investigateButton": "Investigate",
-    "noAlerts": "No active predictive alerts.",
-    "errors": {
-        "load": "Could not load Warehouse dashboard data."
-    },
-    "noData": "No data available for the Warehouse dashboard."
+    "aboutTitle": "About {displayName}",
+    "interestsTitle": "Areas of Interest",
+    "engagementStats": "Engagement Stats",
+    "profileViews": "Profile Views",
+    "postLikes": "Post Likes",
+    "postComments": "Post Comments",
+    "contactTitle": "Contact Information",
+    "needsTitle": "Needs & Offerings",
+    "recentActivityTitle": "Recent Activity",
+    "noRecentActivity": "This user has no recent public activity.",
+    "notFoundTitle": "Profile Not Found",
+    "notFoundDescription": "The user profile you are looking for does not exist or has been deleted.",
+    "backToNetwork": "Back to Network"
   }
 }
