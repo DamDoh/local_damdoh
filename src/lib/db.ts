@@ -1,4 +1,6 @@
 
+"use client";
+
 import Dexie, { type EntityTable } from 'dexie';
 
 // Define the structure of an action in the outbox

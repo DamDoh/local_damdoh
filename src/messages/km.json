@@ -13,124 +13,45 @@
     "back": "ត្រឡប់",
     "submit": "ដាក់ស្នើ"
   },
-  "constants": {
-    "stakeholderRoles": {
-      "Farmer": "កសិករ",
-      "AgriculturalCooperative": "សហគមន៍កសិកម្ម",
-      "FieldAgentAgronomistDamDohInternal": "ភ្នាក់ងារ​កសិកម្ម (បុគ្គលិកដាំដុះ)",
-      "OperationsLogisticsTeamDamDohInternal": "ក្រុមប្រតិបត្តិការ/ភស្តុភារ (បុគ្គលិកដាំដុះ)",
-      "QualityAssuranceTeamDamDohInternal": "ក្រុមធានាគុណភាព (បុគ្គលិកដាំដុះ)",
-      "ProcessingPackagingUnit": "សិប្បកម្មកែច្នៃ និងវេចខ្ចប់",
-      "BuyerRestaurantSupermarketExporter": "អ្នកទិញ (ភោជនីយដ្ឋាន, ផ្សារទំនើប, អ្នកនាំចេញ)",
-      "InputSupplierSeedFertilizerPesticide": "អ្នកផ្គត់ផ្គង់ធាតុចូលកសិកម្ម (គ្រាប់ពូជ, ជី, ថ្នាំសំលាប់សត្វល្អិត)",
-      "EquipmentSupplierSalesofMachineryIoT": "អ្នកផ្គត់ផ្គង់ឧបករណ៍ (លក់គ្រឿងចក្រ/IoT)",
-      "FinancialInstitutionMicrofinanceLoans": "គ្រឹះស្ថានហិរញ្ញវត្ថុ (មីក្រូហិរញ្ញវត្ថុ/កម្ចី)",
-      "GovernmentRegulatorAuditor": "និយតកររដ្ឋាភិបាល/សវនករ",
-      "CertificationBodyOrganicFairTradeetc": "អង្គភាពបញ្ជាក់ (សរីរាង្គ, ពាណិជ្ជកម្មដោយត្រឹមត្រូវ ។ល។)",
-      "Consumer": "អ្នកប្រើប្រាស់",
-      "ResearcherAcademic": "អ្នកស្រាវជ្រាវ/អ្នកសិក្សា",
-      "LogisticsPartnerThirdPartyTransporter": "ដៃគូដឹកជញ្ជូន (អ្នកដឹកជញ្ជូនឯករាជ្យ)",
-      "StorageWarehouseFacility": "ឃ្លាំងស្តុក",
-      "AgronomyExpertConsultantExternal": "អ្នកជំនាញ/ទីប្រឹក្សាកសិកម្ម (ខាងក្រៅ)",
-      "AgroTourismOperator": "ប្រតិបត្តិករទេសចរណ៍កសិកម្ម",
-      "EnergySolutionsProviderSolarBiogas": "អ្នកផ្តល់ដំណោះស្រាយថាមពល (ថាមពលព្រះអាទិត្យ, ឧស្ម័នជីវៈ)",
-      "AgroExportFacilitatorCustomsBroker": "អ្នកសម្របសម្រួលការនាំចេញកសិផល/ឈ្មួញកណ្តាលគយ",
-      "AgriTechInnovatorDeveloper": "អ្នកបង្កើតថ្មី/អ្នកអភិវឌ្ឍន៍បច្ចេកវិទ្យាកសិកម្ម",
-      "WasteManagementCompostFacility": "រោងចក្រគ្រប់គ្រងកាកសំណល់ និងជីកំប៉ុស",
-      "CrowdfunderImpactInvestorIndividual": "អ្នកផ្តល់មូលនិធិសហគមន៍ (អ្នកវិនិយោគមានឥទ្ធិពល, បុគ្គល)",
-      "InsuranceProvider": "អ្នកផ្តល់សេវាធានារ៉ាប់រង",
-      "PackagingSupplier": "អ្នកផ្គត់ផ្គង់ការវេចខ្ចប់"
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "កំពុងធ្វើសមកាលកម្មសកម្មភាពក្រៅបណ្តាញចំនួន {count}...",
+      "onlinePending": "សកម្មភាពក្រៅបណ្តាញចំនួន {count} កំពុងរង់ចាំការធ្វើសមកាលកម្ម។",
+      "onlineSynced": "អ្នកកំពុងស្ថិតនៅលើបណ្ដាញ។ រាល់ការផ្លាស់ប្តូរត្រូវបានរក្សាទុក។",
+      "offline": "អ្នកកំពុងនៅក្រៅបណ្ដាញ។ សកម្មភាពចំនួន {count} ត្រូវបានដាក់ក្នុងជួរ។"
     },
-    "listingTypes": {
-      "All": "គ្រប់ប្រភេទ",
-      "Product": "ផលិតផល",
-      "Service": "សេវាកម្ម"
-    },
-    "agriEventTypes": {
-      "All": "គ្រប់ប្រភេទ",
-      "Conference": "សន្និសីទ",
-      "Webinar": "វេប៊ីណា",
-      "Workshop": "សិក្ខាសាលា",
-      "TradeShow": "ពិព័រណ៍ពាណិជ្ជកម្ម",
-      "FieldDay": "ទិវាស្រែ",
-      "NetworkingEvent": "ព្រឹត្តិការណ៍បណ្តាញ",
-      "OnlineCourseLaunch": "ការចាប់ផ្តើមវគ្គសិក្សាអនឡាញ",
-      "PolicyBriefing": "ការសង្ខេបគោលនយោបាយ"
-    },
-    "insuranceProductTypes": {
-      "Crop": "ការធានារ៉ាប់រងដំណាំ",
-      "Livestock": "ការធានារ៉ាប់រងបសុសត្វ",
-      "Asset": "ការធានារ៉ាប់រងទ្រព្យសកម្ម",
-      "Weather": "ផ្អែកលើអាកាសធាតុ (ប៉ារ៉ាម៉ែត្រ)"
-    },
-    "mobileHomeCategories": {
-      "produceMarket": "ទីផ្សារកសិផល",
-      "farmInputs": "ធាតុចូលកសិកម្ម",
-      "talentExchange": "ផ្សារណាត់ជំនាញ",
-      "machinery": "គ្រឿងចក្រ",
-      "community": "សហគមន៍",
-      "aiAssistant": "ជំនួយការ AI",
-      "events": "ព្រឹត្តិការណ៍"
-    },
-    "cropStages": {
-      "Planting": "Planting",
-      "Vegetative": "Vegetative",
-      "Flowering": "Flowering",
-      "Fruiting": "Fruiting",
-      "Harvesting": "Harvesting",
-      "Post-Harvest": "Post-Harvest"
-    },
-    "observationTypes": {
-      "GeneralNote": "General Note",
-      "PestSighting": "Pest Sighting",
-      "DiseaseSighting": "Disease Sighting",
-      "SoilCondition": "Soil Condition",
-      "WeatherEvent": "Weather Event",
-      "GrowthStageChange": "Growth Stage Change",
-      "IrrigationEvent": "Irrigation Event"
+    "toast": {
+      "online": {
+        "title": "អ្នកបានត្រលប់មកលើបណ្ដាញវិញហើយ!",
+        "description": "ការតភ្ជាប់របស់អ្នកត្រូវបានស្តារឡើងវិញ។"
+      },
+      "offline": {
+        "title": "បច្ចុប្បន្នអ្នកនៅក្រៅបណ្តាញ។",
+        "description": "ការផ្លាស់ប្តូរនឹងត្រូវបានរក្សាទុក និងធ្វើសមកាលកម្មនៅពេលអ្នកភ្ជាប់ឡើងវិញ។"
+      },
+      "syncing": {
+        "title": "កំពុងធ្វើសមកាលកម្មការផ្លាស់ប្តូរក្រៅបណ្តាញ",
+        "description": "កំពុងផ្ទុកឡើង {count, plural, one {# សកម្មភាព} other {# សកម្មភាព}} ដែលបានធ្វើនៅពេលអ្នកនៅក្រៅបណ្តាញ។"
+      },
+      "synced": {
+        "title": "ការធ្វើសមកាលកម្មបានបញ្ចប់",
+        "description": "ការផ្លាស់ប្តូរក្រៅបណ្តាញរបស់អ្នកត្រូវបានរក្សាទុកដោយជោគជ័យ។"
+      },
+      "syncFailed": {
+        "title": "ការធ្វើសមកាលកម្មបានបរាជ័យ",
+        "description": "មិនអាចធ្វើសមកាលកម្មការផ្លាស់ប្តូរក្រៅបណ្តាញបានទេ។ នឹងព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
+      },
+      "queued": {
+        "title": "សកម្មភាពបានដាក់ក្នុងជួរ",
+        "description": "សកម្មភាពនេះត្រូវបានរក្សាទុកហើយនឹងត្រូវបានធ្វើសមកាលកម្មនៅពេលអ្នកនៅលើបណ្តាញ។"
+      }
     }
   },
-  "knowledgeHub": {
-    "title": "មជ្ឈមណ្ឌលចំណេះដឹង",
-    "description": "មជ្ឈមណ្ឌលកណ្តាលរបស់អ្នកសម្រាប់ចំណេះដឹងកសិកម្ម វគ្គសិក្សា និងព័ត៌មានឧស្សាហកម្មចុងក្រោយបង្អស់។",
-    "courses": {
-      "title": "វគ្គសិក្សាតាមអ៊ីនធឺណិត",
-      "description": "រៀនតាមល្បឿនផ្ទាល់ខ្លួនរបស់អ្នកជាមួយវគ្គសិក្សាដែលដឹកនាំដោយអ្នកជំនាញ។",
-      "body": "ចូលប្រើបណ្ណាល័យនៃវគ្គសិក្សាដែលគ្របដណ្តប់អ្វីៗគ្រប់យ៉ាងពីកសិកម្មប្រកបដោយនិរន្តរភាព រហូតដល់ធុរកិច្ចកសិកម្ម និងការគ្រប់គ្រងខ្សែសង្វាក់ផ្គត់ផ្គង់។ បង្កើនជំនាញរបស់អ្នក និងស្ថិតនៅជួរមុខនៃឧស្សាហកម្ម។",
-      "cta": "រុករកវគ្គសិក្សា"
-    },
-    "blog": {
-      "title": "ប្លុក និងព័ត៌មាន",
-      "description": "ទទួលបានព័ត៌មានថ្មីៗ និងនិន្នាការចុងក្រោយបំផុត។",
-      "body": "អានអត្ថបទពីអ្នកជំនាញក្នុងឧស្សាហកម្ម រឿងរ៉ាវជោគជ័យពីសហគមន៍ និងទទួលបានព័ត_មាន និងការវិភាគចុងក្រោយបំផុតដែលសំខាន់សម្រាប់វិស័យកសិកម្ម។",
-      "cta": "អានប្លុក"
-    },
-    "featured": {
-      "title": "អត្ថបទពិសេស",
-      "loading": "កំពុងផ្ទុកអត្ថបទពិសេស...",
-      "error": "មានបញ្ហាក្នុងការផ្ទុកអត្ថបទ",
-      "noArticles": "បច្ចុប្បន្នមិនមានអត្ថបទពិសេសទេ។"
+  "farmManagement": {
+    "logHarvest": {
+      "offlineToast": {
+        "description": "ការប្រមូលផលនេះត្រូវបានរក្សាទុកក្នុងឧបករណ៍របស់អ្នក។ វានឹងត្រូវបានកត់ត្រាជាផ្លូវការ ហើយ VTI នឹងត្រូវបានបង្កើតនៅពេលអ្នកត្រលប់មកលើបណ្ដាញវិញ។"
+      }
     }
-  },
-  "blogPage": {
-    "title": "ប្លុករបស់ដាំដុះ",
-    "description": "ការយល់ដឹង រឿងរ៉ាវ និងចំណេះដឹងពីទូទាំងខ្សែសង្វាក់តម្លៃកសិកម្ម។",
-    "readMore": "អានបន្ថែម",
-    "meta": "ដោយ {author} នៅថ្ងៃទី {date, date, long}",
-    "error": {
-      "title": "កំហុស",
-      "description": "មិនអាចផ្ទុកអត្ថបទបានទេ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
-    },
-    "noPosts": {
-      "title": "មិនទាន់មានការបង្ហោះទេ!",
-      "description": "មិនទាន់មានអត្ថបទណាមួយត្រូវបានផ្សព្វផ្សាយនៅឡើយទេ។ សូមពិនិត្យមើល lại ឆាប់ៗនេះ ឬ <link>បន្ថែមអត្ថបទដំបូង</link> ប្រសិនបើអ្នកជាអ្នកគ្រប់គ្រង។"
-    },
-    "backLink": "ត្រលប់ទៅប្លុក",
-    "notFound": {
-      "title": "រកមិនឃើញការផ្សព្វផ្សាយ",
-      "description": "អត្ថបទដែលអ្នកកំពុងស្វែងរកមិនត្រូវបានរកឃើញទេ។ វាអាចត្រូវបានដកចេញ ឬតំណមិនត្រឹមត្រូវ។",
-      "backButton": "ត្រលប់ទៅប្លុក"
-    },
-    "originalContentTitle": "មាតិកាដើមជា {lang}"
   }
 }

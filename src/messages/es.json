@@ -13,124 +13,45 @@
     "back": "Volver",
     "submit": "Enviar"
   },
-  "constants": {
-    "stakeholderRoles": {
-      "Farmer": "Agricultor",
-      "AgriculturalCooperative": "Cooperativa Agrícola",
-      "FieldAgentAgronomistDamDohInternal": "Agente de Campo/Agrónomo (Interno de DamDoh)",
-      "OperationsLogisticsTeamDamDohInternal": "Equipo de Operaciones/Logística (Interno de DamDoh)",
-      "QualityAssuranceTeamDamDohInternal": "Equipo de Garantía de Calidad (Interno de DamDoh)",
-      "ProcessingPackagingUnit": "Unidad de Procesamiento y Embalaje",
-      "BuyerRestaurantSupermarketExporter": "Comprador (Restaurante, Supermercado, Exportador)",
-      "InputSupplierSeedFertilizerPesticide": "Proveedor de Insumos (Semillas, Fertilizantes, Pesticidas)",
-      "EquipmentSupplierSalesofMachineryIoT": "Proveedor de Equipos (Venta de Maquinaria/IoT)",
-      "FinancialInstitutionMicrofinanceLoans": "Institución Financiera (Microfinanzas/Préstamos)",
-      "GovernmentRegulatorAuditor": "Regulador/Auditor Gubernamental",
-      "CertificationBodyOrganicFairTradeetc": "Organismo de Certificación (Orgánico, Comercio Justo, etc.)",
-      "Consumer": "Consumidor",
-      "ResearcherAcademic": "Investigador/Académico",
-      "LogisticsPartnerThirdPartyTransporter": "Socio Logístico (Transportista Externo)",
-      "StorageWarehouseFacility": "Instalación de Almacenamiento/Bodega",
-      "AgronomyExpertConsultantExternal": "Experto/Consultor en Agronomía (Externo)",
-      "AgroTourismOperator": "Operador de Agroturismo",
-      "EnergySolutionsProviderSolarBiogas": "Proveedor de Soluciones Energéticas (Solar, Biogás)",
-      "AgroExportFacilitatorCustomsBroker": "Facilitador de Agroexportación/Agente de Aduanas",
-      "AgriTechInnovatorDeveloper": "Innovador/Desarrollador de Agri-Tech",
-      "WasteManagementCompostFacility": "Instalación de Gestión de Residuos y Compostaje",
-      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Inversor de Impacto, Particular)",
-      "InsuranceProvider": "Proveedor de Seguros",
-      "PackagingSupplier": "Proveedor de Embalajes"
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "Sincronizando {count} acciones sin conexión...",
+      "onlinePending": "{count} acciones sin conexión pendientes de sincronización.",
+      "onlineSynced": "Estás en línea. Todos los cambios guardados.",
+      "offline": "Estás sin conexión. {count} acciones en cola."
     },
-    "listingTypes": {
-      "All": "Todos los tipos",
-      "Product": "Producto",
-      "Service": "Servicio"
-    },
-    "agriEventTypes": {
-      "All": "Todos los tipos",
-      "Conference": "Conferencia",
-      "Webinar": "Webinar",
-      "Workshop": "Taller",
-      "TradeShow": "Feria Comercial",
-      "FieldDay": "Día de Campo",
-      "NetworkingEvent": "Evento de Networking",
-      "OnlineCourseLaunch": "Lanzamiento de Curso en Línea",
-      "PolicyBriefing": "Sesión Informativa de Políticas"
-    },
-    "insuranceProductTypes": {
-      "Crop": "Seguro de Cosecha",
-      "Livestock": "Seguro de Ganado",
-      "Asset": "Seguro de Activos",
-      "Weather": "Basado en el Clima (Paramétrico)"
-    },
-    "mobileHomeCategories": {
-      "produceMarket": "Mercado de productos",
-      "farmInputs": "Insumos agrícolas",
-      "talentExchange": "Bolsa de talentos",
-      "machinery": "Maquinaria",
-      "community": "Comunidad",
-      "aiAssistant": "Asistente de IA",
-      "events": "Eventos"
-    },
-    "cropStages": {
-      "Planting": "Planting",
-      "Vegetative": "Vegetative",
-      "Flowering": "Flowering",
-      "Fruiting": "Fruiting",
-      "Harvesting": "Harvesting",
-      "Post-Harvest": "Post-Harvest"
-    },
-    "observationTypes": {
-      "GeneralNote": "General Note",
-      "PestSighting": "Pest Sighting",
-      "DiseaseSighting": "Disease Sighting",
-      "SoilCondition": "Soil Condition",
-      "WeatherEvent": "Weather Event",
-      "GrowthStageChange": "Growth Stage Change",
-      "IrrigationEvent": "Irrigation Event"
+    "toast": {
+      "online": {
+        "title": "¡Estás de vuelta en línea!",
+        "description": "Tu conexión ha sido restaurada."
+      },
+      "offline": {
+        "title": "Actualmente estás sin conexión.",
+        "description": "Los cambios se guardarán y sincronizarán cuando te vuelvas a conectar."
+      },
+      "syncing": {
+        "title": "Sincronizando cambios sin conexión",
+        "description": "Subiendo {count, plural, one {# acción} other {# acciones}} realizada(s) mientras estabas sin conexión."
+      },
+      "synced": {
+        "title": "Sincronización completa",
+        "description": "Tus cambios sin conexión se han guardado con éxito."
+      },
+      "syncFailed": {
+        "title": "Falló la sincronización",
+        "description": "No se pudieron sincronizar los cambios sin conexión. Se intentará de nuevo más tarde."
+      },
+      "queued": {
+        "title": "Acción en cola",
+        "description": "Esta acción se guardó y se sincronizará cuando estés en línea."
+      }
     }
   },
-  "knowledgeHub": {
-    "title": "Centro de conocimiento",
-    "description": "Su centro central para el conocimiento agrícola, los cursos y las últimas noticias de la industria.",
-    "courses": {
-      "title": "Cursos en línea",
-      "description": "Aprenda a su propio ritmo con cursos dirigidos por expertos.",
-      "body": "Acceda a una biblioteca de cursos que cubren todo, desde la agricultura sostenible hasta los agronegocios y la gestión de la cadena de suministro. Mejore sus habilidades y manténgase a la vanguardia de la industria.",
-      "cta": "Explorar cursos"
-    },
-    "blog": {
-      "title": "Blog y noticias",
-      "description": "Manténgase al día con las últimas ideas y tendencias.",
-      "body": "Lea artículos de expertos de la industria, historias de éxito de la comunidad y obtenga las últimas noticias y análisis importantes para el sector agrícola.",
-      "cta": "Leer el blog"
-    },
-    "featured": {
-      "title": "Artículos destacados",
-      "loading": "Cargando artículos destacados...",
-      "error": "Error al cargar los artículos",
-      "noArticles": "No hay artículos destacados disponibles en este momento."
+  "farmManagement": {
+    "logHarvest": {
+      "offlineToast": {
+        "description": "Esta cosecha se ha guardado en su dispositivo. Se registrará oficialmente y se generará un VTI una vez que vuelva a estar en línea."
+      }
     }
-  },
-  "blogPage": {
-    "title": "El Blog de DamDoh",
-    "description": "Ideas, historias y conocimientos de toda la cadena de valor agrícola.",
-    "readMore": "Leer más",
-    "meta": "Por {author} el {date, date, long}",
-    "error": {
-      "title": "Error",
-      "description": "No se pudieron cargar los artículos. Por favor, inténtelo de nuevo más tarde."
-    },
-    "noPosts": {
-      "title": "¡Aún no hay publicaciones!",
-      "description": "Todavía no se han publicado artículos. Vuelva pronto o <link>agregue el primer artículo</link> si es un administrador."
-    },
-    "backLink": "Volver al blog",
-    "notFound": {
-      "title": "Publicación no encontrada",
-      "description": "No se pudo encontrar el artículo que busca. Es posible que se haya eliminado o que el enlace sea incorrecto.",
-      "backButton": "Volver al blog"
-    },
-    "originalContentTitle": "Contenido original en {lang}"
   }
 }

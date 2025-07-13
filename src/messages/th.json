@@ -13,124 +13,45 @@
     "back": "กลับ",
     "submit": "ส่ง"
   },
-  "constants": {
-    "stakeholderRoles": {
-      "Farmer": "เกษตรกร",
-      "AgriculturalCooperative": "สหกรณ์การเกษตร",
-      "FieldAgentAgronomistDamDohInternal": "ตัวแทนภาคสนาม/นักปฐพีวิทยา (ภายใน DamDoh)",
-      "OperationsLogisticsTeamDamDohInternal": "ทีมปฏิบัติการ/โลจิสติกส์ (ภายใน DamDoh)",
-      "QualityAssuranceTeamDamDohInternal": "ทีมประกันคุณภาพ (ภายใน DamDoh)",
-      "ProcessingPackagingUnit": "หน่วยแปรรูปและบรรจุภัณฑ์",
-      "BuyerRestaurantSupermarketExporter": "ผู้ซื้อ (ร้านอาหาร, ซูเปอร์มาร์เก็ต, ผู้ส่งออก)",
-      "InputSupplierSeedFertilizerPesticide": "ซัพพลายเออร์ปัจจัยการผลิต (เมล็ดพันธุ์, ปุ๋ย, ยาฆ่าแมลง)",
-      "EquipmentSupplierSalesofMachineryIoT": "ซัพพลายเออร์อุปกรณ์ (ขายเครื่องจักร/IoT)",
-      "FinancialInstitutionMicrofinanceLoans": "สถาบันการเงิน (ไมโครไฟแนนซ์/สินเชื่อ)",
-      "GovernmentRegulatorAuditor": "หน่วยงานกำกับดูแลของรัฐ/ผู้ตรวจสอบบัญชี",
-      "CertificationBodyOrganicFairTradeetc": "หน่วยงานรับรอง (เกษตรอินทรีย์, การค้าที่เป็นธรรม ฯลฯ)",
-      "Consumer": "ผู้บริโภค",
-      "ResearcherAcademic": "นักวิจัย/นักวิชาการ",
-      "LogisticsPartnerThirdPartyTransporter": "พันธมิตรด้านโลจิสติกส์ (ผู้ขนส่งบุคคลที่สาม)",
-      "StorageWarehouseFacility": "สิ่งอำนวยความสะดวกในการจัดเก็บ/คลังสินค้า",
-      "AgronomyExpertConsultantExternal": "ผู้เชี่ยวชาญด้านปฐพีวิทยา/ที่ปรึกษา (ภายนอก)",
-      "AgroTourismOperator": "ผู้ประกอบการท่องเที่ยวเชิงเกษตร",
-      "EnergySolutionsProviderSolarBiogas": "ผู้ให้บริการโซลูชันพลังงาน (พลังงานแสงอาทิตย์, ก๊าซชีวภาพ)",
-      "AgroExportFacilitatorCustomsBroker": "ผู้อำนวยความสะดวกในการส่งออกสินค้าเกษตร/นายหน้าศุลกากร",
-      "AgriTechInnovatorDeveloper": "นักนวัตกรรม/นักพัฒนาเทคโนโลยีการเกษตร",
-      "WasteManagementCompostFacility": "โรงงานจัดการขยะและปุ๋ยหมัก",
-      "CrowdfunderImpactInvestorIndividual": "ผู้ระดมทุน (นักลงทุนเพื่อผลกระทบ, บุคคลทั่วไป)",
-      "InsuranceProvider": "ผู้ให้บริการประกันภัย",
-      "PackagingSupplier": "ซัพพลายเออร์บรรจุภัณฑ์"
+  "OfflineIndicator": {
+    "tooltip": {
+      "syncing": "กำลังซิงค์ {count} การกระทำออฟไลน์...",
+      "onlinePending": "{count} การกระทำออฟไลน์รอการซิงค์",
+      "onlineSynced": "คุณออนไลน์อยู่ การเปลี่ยนแปลงทั้งหมดถูกบันทึกแล้ว",
+      "offline": "คุณออฟไลน์อยู่ มี {count} การกระทำที่อยู่ในคิว"
     },
-    "listingTypes": {
-      "All": "ทุกประเภท",
-      "Product": "ผลิตภัณฑ์",
-      "Service": "บริการ"
-    },
-    "agriEventTypes": {
-      "All": "ทุกประเภท",
-      "Conference": "การประชุม",
-      "Webinar": "การสัมมนาผ่านเว็บ",
-      "Workshop": "การประชุมเชิงปฏิบัติการ",
-      "TradeShow": "งานแสดงสินค้า",
-      "FieldDay": "วันสาธิต",
-      "NetworkingEvent": "กิจกรรมสร้างเครือข่าย",
-      "OnlineCourseLaunch": "การเปิดตัวหลักสูตรออนไลน์",
-      "PolicyBriefing": "การบรรยายสรุปนโยบาย"
-    },
-    "insuranceProductTypes": {
-      "Crop": "ประกันภัยพืชผล",
-      "Livestock": "ประกันภัยปศุสัตว์",
-      "Asset": "ประกันภัยทรัพย์สิน",
-      "Weather": "อิงตามสภาพอากาศ (พาราเมตริก)"
-    },
-    "mobileHomeCategories": {
-      "produceMarket": "ตลาดสินค้าเกษตร",
-      "farmInputs": "ปัจจัยการผลิต",
-      "talentExchange": "ตลาดนัดความสามารถ",
-      "machinery": "เครื่องจักร",
-      "community": "ชุมชน",
-      "aiAssistant": "ผู้ช่วย AI",
-      "events": "กิจกรรม"
-    },
-    "cropStages": {
-      "Planting": "Planting",
-      "Vegetative": "Vegetative",
-      "Flowering": "Flowering",
-      "Fruiting": "Fruiting",
-      "Harvesting": "Harvesting",
-      "Post-Harvest": "Post-Harvest"
-    },
-    "observationTypes": {
-      "GeneralNote": "General Note",
-      "PestSighting": "Pest Sighting",
-      "DiseaseSighting": "Disease Sighting",
-      "SoilCondition": "Soil Condition",
-      "WeatherEvent": "Weather Event",
-      "GrowthStageChange": "Growth Stage Change",
-      "IrrigationEvent": "Irrigation Event"
+    "toast": {
+      "online": {
+        "title": "คุณกลับมาออนไลน์แล้ว!",
+        "description": "การเชื่อมต่อของคุณได้รับการกู้คืนแล้ว"
+      },
+      "offline": {
+        "title": "ขณะนี้คุณออฟไลน์อยู่",
+        "description": "การเปลี่ยนแปลงจะถูกบันทึกและซิงค์เมื่อคุณเชื่อมต่ออีกครั้ง"
+      },
+      "syncing": {
+        "title": "กำลังซิงค์การเปลี่ยนแปลงออฟไลน์",
+        "description": "กำลังอัปโหลด {count, plural, one {# การกระทำ} other {# การกระทำ}} ที่ทำขณะออฟไลน์"
+      },
+      "synced": {
+        "title": "การซิงค์เสร็จสมบูรณ์",
+        "description": "การเปลี่ยนแปลงออฟไลน์ของคุณถูกบันทึกเรียบร้อยแล้ว"
+      },
+      "syncFailed": {
+        "title": "การซิงค์ล้มเหลว",
+        "description": "ไม่สามารถซิงค์การเปลี่ยนแปลงออฟไลน์ได้ จะลองอีกครั้งในภายหลัง"
+      },
+      "queued": {
+        "title": "การกระทำถูกจัดคิวแล้ว",
+        "description": "การกระทำนี้ถูกบันทึกแล้วและจะถูกซิงค์เมื่อคุณออนไลน์"
+      }
     }
   },
-  "knowledgeHub": {
-    "title": "ศูนย์ความรู้",
-    "description": "ศูนย์กลางความรู้ทางการเกษตร หลักสูตร และข่าวสารล่าสุดในอุตสาหกรรม",
-    "courses": {
-      "title": "หลักสูตรออนไลน์",
-      "description": "เรียนรู้ตามจังหวะของคุณเองด้วยหลักสูตรที่นำโดยผู้เชี่ยวชาญ",
-      "body": "เข้าถึงคลังหลักสูตรที่ครอบคลุมทุกอย่างตั้งแต่เกษตรกรรมยั่งยืนไปจนถึงธุรกิจการเกษตรและการจัดการห่วงโซ่อุปทาน พัฒนาทักษะของคุณและก้าวล้ำหน้าในอุตสาหกรรม",
-      "cta": "สำรวจหลักสูตร"
-    },
-    "blog": {
-      "title": "บล็อกและข่าวสาร",
-      "description": "ติดตามข้อมูลเชิงลึกและแนวโน้มล่าสุด",
-      "body": "อ่านบทความจากผู้เชี่ยวชาญในอุตสาหกรรม เรื่องราวความสำเร็จจากชุมชน และรับข่าวสารและการวิเคราะห์ล่าสุดที่สำคัญต่อภาคเกษตรกรรม",
-      "cta": "อ่านบล็อก"
-    },
-    "featured": {
-      "title": "บทความแนะนำ",
-      "loading": "กำลังโหลดบทความแนะนำ...",
-      "error": "เกิดข้อผิดพลาดในการโหลดบทความ",
-      "noArticles": "ขณะนี้ไม่มีบทความแนะนำ"
+  "farmManagement": {
+    "logHarvest": {
+      "offlineToast": {
+        "description": "การเก็บเกี่ยวนี้ถูกบันทึกไว้ในอุปกรณ์ของคุณแล้ว จะมีการบันทึกอย่างเป็นทางการและสร้าง VTI เมื่อคุณกลับมาออนไลน์"
+      }
     }
-  },
-  "blogPage": {
-    "title": "บล็อกดัมโดะ",
-    "description": "ข้อมูลเชิงลึก เรื่องราว และความรู้จากทั่วทั้งห่วงโซ่มูลค่าทางการเกษตร",
-    "readMore": "อ่านต่อ",
-    "meta": "โดย {author} เมื่อ {date, date, long}",
-    "error": {
-      "title": "ข้อผิดพลาด",
-      "description": "ไม่สามารถโหลดบทความได้ โปรดลองอีกครั้งในภายหลัง"
-    },
-    "noPosts": {
-      "title": "ยังไม่มีโพสต์!",
-      "description": "ยังไม่มีบทความใด ๆ เผยแพร่ กลับมาตรวจสอบอีกครั้งในเร็ว ๆ นี้ หรือ <link>เพิ่มบทความแรก</link> หากคุณเป็นผู้ดูแลระบบ"
-    },
-    "backLink": "กลับไปที่บล็อก",
-    "notFound": {
-      "title": "ไม่พบโพสต์",
-      "description": "ไม่พบโพสต์ที่คุณกำลังมองหา อาจถูกลบไปแล้วหรือลิงก์ไม่ถูกต้อง",
-      "backButton": "กลับไปที่บล็อก"
-    },
-    "originalContentTitle": "เนื้อหาต้นฉบับในภาษา {lang}"
   }
 }
