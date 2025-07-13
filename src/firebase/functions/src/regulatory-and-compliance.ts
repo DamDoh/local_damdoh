@@ -129,15 +129,13 @@ export const getGeneratedReports = functions.https.onCall(async (data, context) 
         return {
             id: doc.id,
             ...data,
-            generatedAt: (data.generatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            generatedAt: (data.generatedAt as admin.firestore.Timestamp)?.toDate ? (data.generatedAt as admin.firestore.Timestamp).toDate() : null,
             reportPeriod: {
-                startDate: (data.reportPeriod.startDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
-                endDate: (data.reportPeriod.endDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+                startDate: (data.reportPeriod.startDate as admin.firestore.Timestamp)?.toDate() || null,
+                endDate: (data.reportPeriod.endDate as admin.firestore.Timestamp)?.toDate() || null,
             }
         }
     });
     
     return { reports };
 });
-
-    

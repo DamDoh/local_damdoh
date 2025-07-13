@@ -13,13 +13,14 @@ import { useToast } from '@/hooks/use-toast';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Skeleton } from '@/components/ui/skeleton';
 import { format } from 'date-fns';
-import { PlusCircle, FileArchive, FileText, Loader2, Search, Calendar as CalendarIcon } from 'lucide-react';
+import { FileText, Loader2, Search, Calendar as CalendarIcon } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
 import type { DateRange } from "react-day-picker";
 import { cn } from '@/lib/utils';
 import { useDebounce } from 'use-debounce';
+import { Badge } from '@/components/ui/badge';
 
 interface GeneratedReport {
   id: string;
@@ -27,6 +28,10 @@ interface GeneratedReport {
   generatedForRef: { path: string };
   generatedAt: { toDate: () => Date };
   status: string;
+  reportPeriod: {
+    startDate: string;
+    endDate: string;
+  }
 }
 
 interface UserSearchResult {
@@ -50,6 +55,7 @@ export default function ReportsManagementPage() {
   // Form State
   const [reportType, setReportType] = useState('VTI_EVENTS_SUMMARY');
   const [targetUserId, setTargetUserId] = useState('');
+  const [targetUserName, setTargetUserName] = useState('');
   const [dateRange, setDateRange] = useState<DateRange | undefined>();
   
   // User Search State
@@ -153,19 +159,20 @@ export default function ReportsManagementPage() {
                     value={userSearchQuery}
                     onChange={(e) => setUserSearchQuery(e.target.value)}
                     className="pl-8"
+                    autoComplete="off"
                   />
                   {isSearchingUsers && <Loader2 className="absolute right-2.5 top-2.5 h-4 w-4 animate-spin text-muted-foreground" />}
                 </div>
                 {userSearchResults.length > 0 && (
-                   <div className="p-2 border rounded-md max-h-40 overflow-y-auto">
+                   <div className="p-2 border rounded-md max-h-40 overflow-y-auto absolute bg-background z-10 w-full">
                      {userSearchResults.map(user => (
-                       <div key={user.id} className="p-2 hover:bg-accent rounded-md cursor-pointer" onClick={() => { setTargetUserId(user.id); setUserSearchQuery(user.displayName); setUserSearchResults([]); }}>
+                       <div key={user.id} className="p-2 hover:bg-accent rounded-md cursor-pointer" onClick={() => { setTargetUserId(user.id); setUserSearchQuery(user.displayName); setTargetUserName(user.displayName); setUserSearchResults([]); }}>
                          <p className="text-sm font-medium">{user.displayName}</p>
                        </div>
                      ))}
                    </div>
                 )}
-                {targetUserId && <p className="text-xs text-green-600">Selected: {userSearchQuery} ({targetUserId})</p>}
+                {targetUserId && <p className="text-xs text-green-600">Selected: {targetUserName}</p>}
               </div>
 
               <div className="space-y-1.5">
@@ -240,9 +247,9 @@ export default function ReportsManagementPage() {
                 {reports.length > 0 ? (
                   reports.map((report) => (
                     <TableRow key={report.id}>
-                      <TableCell className="font-medium">{t('generate.reportTypeVti')}</TableCell>
+                      <TableCell className="font-medium">{t(`generate.reportTypeVti`)}</TableCell>
                       <TableCell>{report.generatedForRef.path.split('/')[1]}</TableCell>
-                      <TableCell>{format(report.generatedAt.toDate(), 'PPP')}</TableCell>
+                      <TableCell>{report.generatedAt ? format(report.generatedAt.toDate(), 'PPP') : 'N/A'}</TableCell>
                       <TableCell><Badge>{report.status}</Badge></TableCell>
                       <TableCell className="text-right">
                         <Button variant="outline" size="sm">{t('list.viewButton')}</Button>
