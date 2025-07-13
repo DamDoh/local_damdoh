@@ -13,167 +13,83 @@
     "back": "Volver",
     "submit": "Enviar"
   },
-  "ProfilePage": {
-    "editProfile": "Editar perfil",
-    "showUniversalIdButton": "Mostrar ID Universal",
-    "universalIdModalTitle": "Tu ID Universal",
-    "universalIdModalDescription": "Otros usuarios pueden escanear este código para ver tu perfil público.",
-    "connect": "Conectar",
-    "message": "Mensaje",
-    "aboutTitle": "Acerca de {displayName}",
-    "interestsTitle": "Áreas de interés",
-    "needsTitle": "Buscando / Ofreciendo",
-    "contactTitle": "Información de contacto",
-    "engagementStats": "Estadísticas de participación",
-    "profileViews": "Vistas del perfil",
-    "postLikes": "Me gusta en publicaciones",
-    "postComments": "Comentarios en publicaciones",
-    "recentActivityTitle": "Actividad reciente",
-    "noRecentActivity": "No hay actividad reciente para mostrar.",
-    "tabs": {
-      "overview": "Resumen",
-      "activity": "Actividad"
-    },
-    "invite": {
-      "title": "Haz crecer tu red",
-      "description": "¿Conoces a alguien que debería estar en DamDoh? Invítalos a unirse a la plataforma.",
-      "explanation": "Esto enviará un correo electrónico de invitación estándar a la dirección que proporciones.",
-      "button": "Invitar por correo electrónico"
-    },
-    "invitePrompt": "Por favor, introduce la dirección de correo electrónico de la persona que quieres invitar:",
-    "inviteSuccessTitle": "¡Invitación enviada!",
-    "inviteSuccessDescription": "Tu invitación ha sido enviada con éxito a {email}.",
-    "inviteErrorTitle": "Error al enviar la invitación",
-    "notFoundTitle": "Perfil no encontrado",
-    "notFoundDescription": "El perfil que estás buscando no existe o ha sido eliminado.",
-    "backToNetwork": "Volver a la red"
-  },
-  "InsuranceProviderDashboard": {
-    "title": "Panel del Proveedor de Seguros",
-    "manageProductsTitle": "Mis Productos de Seguro",
-    "manageProductsDescription": "Cree y gestione sus productos de seguros ofrecidos a los agricultores en la plataforma.",
-    "manageProductsButton": "Gestionar Productos",
-    "claimsTitle": "Reclamaciones Pendientes",
-    "claimsDescription": "Revise y procese las reclamaciones enviadas recientemente.",
-    "noPendingClaims": "No hay reclamaciones pendientes para revisar.",
-    "riskAlertsTitle": "Alertas de Evaluación de Riesgos",
-    "riskAlertsDescription": "Alertas importantes de su cartera basadas en datos en tiempo real.",
-    "noRiskAlerts": "No hay alertas de riesgo activas.",
-    "reviewClaimButton": "Revisar Reclamación",
-    "investigateButton": "Investigar",
+  "FiProductsPage": {
+    "title": "Mis Productos Financieros",
+    "description": "Vea y gestione los productos de préstamos y subvenciones que ofrece en la plataforma.",
+    "createButton": "Crear Nuevo Producto",
+    "noProducts": "Aún no ha creado ningún producto financiero.",
     "table": {
-      "policyHolder": "Tomador del seguro",
-      "policyType": "Tipo de Póliza",
-      "claimDate": "Fecha del Siniestro",
+      "productName": "Nombre del Producto",
+      "type": "Tipo",
       "status": "Estado",
-      "action": "Acción",
-      "alert": "Alerta",
-      "severity": "Gravedad"
+      "interestRate": "Tasa de Interés",
+      "maxAmount": "Monto Máximo (USD)"
+    },
+    "toast": {
+      "errorTitle": "Error al Cargar Productos"
+    }
+  },
+  "FiProductCreatePage": {
+    "title": "Crear Producto Financiero",
+    "description": "Diseñe un nuevo producto de préstamo o subvención para ofrecer a las partes interesadas elegibles.",
+    "backLink": "Volver a Productos",
+    "toast": {
+      "notAuthenticated": "Debe iniciar sesión para crear un producto financiero.",
+      "successTitle": "Producto Creado",
+      "successDescription": "Su nuevo producto '{name}' ha sido creado con éxito.",
+      "errorTitle": "Creación Fallida"
+    },
+    "form": {
+      "nameLabel": "Nombre del Producto",
+      "namePlaceholder": "Ej., Préstamo de Crecimiento para Pequeños Agricultores, Subvención para Cooperativas de Mujeres",
+      "typeLabel": "Tipo de Producto",
+      "loan": "Préstamo",
+      "grant": "Subvención",
+      "descriptionLabel": "Descripción",
+      "descriptionPlaceholder": "Describa brevemente este producto, su propósito y sus beneficios.",
+      "interestRateLabel": "Tasa de Interés (%)",
+      "interestRatePlaceholder": "Ej., 5.5",
+      "maxAmountLabel": "Monto Máximo (USD)",
+      "maxAmountPlaceholder": "Ej., 10000",
+      "targetRolesLabel": "Partes Interesadas Objetivo",
+      "targetRolesDescription": "Seleccione qué roles de partes interesadas son elegibles para este producto.",
+      "submitButton": "Crear Producto"
+    }
+  },
+  "FiDashboard": {
+    "title": "Panel de Institución Financiera",
+    "pendingApplicationsTitle": "Solicitudes Pendientes",
+    "pendingApplicationsDescription": "Nuevas solicitudes de préstamos y subvenciones que requieren su revisión.",
+    "manageApplicationsButton": "Gestionar Solicitudes",
+    "activePortfolioTitle": "Valor de Cartera Activa",
+    "activePortfolioDescription": "{count, plural, one {# préstamo activo} other {# préstamos activos}} actualmente desembolsados.",
+    "manageProductsTitle": "Productos Financieros",
+    "manageProductsDescription": "Sus ofertas actuales en la plataforma.",
+    "manageProductsButton": "Gestionar Productos",
+    "pendingApplicationsTableDescription": "Las 5 solicitudes pendientes más recientes.",
+    "viewAllButton": "Ver Todas",
+    "noApplications": "No hay solicitudes pendientes en este momento.",
+    "reviewButton": "Revisar",
+    "yourProductsTitle": "Sus Productos",
+    "yourProductsDescription": "Un resumen rápido de sus productos financieros actuales.",
+    "createNewProductButton": "Crear Nuevo Producto",
+    "noProducts": "Aún no ha creado ningún producto. ¡Comience creando uno!",
+    "table": {
+      "applicant": "Solicitante",
+      "type": "Tipo",
+      "amount": "Monto",
+      "riskScore": "Puntuación de Riesgo",
+      "action": "Acción"
+    },
+    "productsTable": {
+      "name": "Nombre del Producto",
+      "type": "Tipo",
+      "interestRate": "Tasa de Interés",
+      "maxAmount": "Monto Máximo"
     },
     "errors": {
       "load": "No se pudieron cargar los datos del panel."
     },
-    "noData": "No hay datos para mostrar."
-  },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "Sincronizando {count} acciones sin conexión...",
-      "onlinePending": "{count} acciones sin conexión pendientes de sincronización.",
-      "onlineSynced": "Estás en línea. Todos los cambios guardados.",
-      "offline": "Estás sin conexión. {count} acciones en cola."
-    },
-    "toast": {
-      "online": {
-        "title": "¡Estás de vuelta en línea!",
-        "description": "Tu conexión ha sido restaurada."
-      },
-      "offline": {
-        "title": "Actualmente estás sin conexión.",
-        "description": "Los cambios se guardarán y sincronizarán cuando te vuelvas a conectar."
-      },
-      "syncing": {
-        "title": "Sincronizando cambios sin conexión",
-        "description": "Subiendo {count, plural, one {# acción} other {# acciones}} realizada(s) mientras estabas sin conexión."
-      },
-      "synced": {
-        "title": "Sincronización completa",
-        "description": "Tus cambios sin conexión se han guardado con éxito."
-      },
-      "syncFailed": {
-        "title": "Falló la sincronización",
-        "description": "No se pudieron sincronizar los cambios sin conexión. Se intentará de nuevo más tarde."
-      },
-      "queued": {
-        "title": "Acción en cola",
-        "description": "Esta acción se guardó y se sincronizará cuando estés en línea."
-      }
-    }
-  },
-  "farmManagement": {
-    "logHarvest": {
-      "offlineToast": {
-        "description": "Esta cosecha se ha guardado en su dispositivo. Se registrará oficialmente y se generará un VTI una vez que vuelva a estar en línea."
-      }
-    }
-  },
-  "groupsPage": {
-    "createPost": {
-      "backLink": "Volver a la discusión del grupo",
-      "title": "Crear nueva publicación",
-      "description": "Comparta sus pensamientos, haga una pregunta o inicie una discusión con el grupo.",
-      "form": {
-        "titleLabel": "Título de la publicación",
-        "titlePlaceholder": "Ej: ¿Mejores prácticas para el cultivo intercalado de maíz?",
-        "contentLabel": "Contenido",
-        "contentPlaceholder": "Escriba su publicación completa aquí...",
-        "submittingButton": "Publicando...",
-        "submitButton": "Publicar en el grupo"
-      },
-      "toast": {
-        "auth": {
-          "title": "Autenticación requerida",
-          "description": "Debe iniciar sesión para crear una publicación."
-        },
-        "incomplete": {
-          "title": "Publicación incompleta",
-          "description": "Por favor, proporcione un título y contenido para su publicación."
-        },
-        "success": {
-          "title": "Publicación creada",
-          "description": "Su publicación ha sido añadida con éxito a la discusión del grupo."
-        },
-        "error": {
-          "title": "Error al crear la publicación",
-          "description": "Se ha producido un error inesperado. Por favor, inténtelo de nuevo."
-        }
-      }
-    },
-    "manage": {
-      "backLink": "Volver al grupo",
-      "title": "Administrar grupo",
-      "description": "Revise las solicitudes de unión y administre la configuración del grupo.",
-      "requestsTab": "Solicitudes de unión",
-      "invitesTab": "Invitaciones",
-      "requestedTimeAgo": "Solicitado hace {timeAgo}",
-      "noRequests": "No hay solicitudes de unión pendientes.",
-      "invitesTab.description": "Invitar a usuarios a unirse a este grupo privado por correo electrónico.",
-      "invitesTab.emailLabel": "Correo electrónico del usuario",
-      "invitesTab.emailPlaceholder": "Introduzca el correo electrónico para invitar...",
-      "toast": {
-        "error": "Error",
-        "success": "Éxito",
-        "loadError": "No se pudieron cargar las solicitudes de unión.",
-        "acceptSuccess": "El usuario ha sido añadido al grupo.",
-        "declineSuccess": "La solicitud ha sido rechazada."
-      },
-      "invitesTab": {
-        "toast": {
-          "emailRequired": "Por favor, introduzca una dirección de correo electrónico válida.",
-          "inviteSent": "¡Invitación enviada!",
-          "inviteSentDescription": "Se ha enviado una invitación a {email}.",
-          "error": "Error al enviar la invitación"
-        }
-      }
-    }
+    "noData": "No hay datos de panel disponibles."
   }
 }
