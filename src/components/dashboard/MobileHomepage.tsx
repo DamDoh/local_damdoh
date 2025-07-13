@@ -4,7 +4,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-import { mobileHomeCategories } from '@/lib/dummy-data';
+import { getMobileHomeCategories } from '@/lib/i18n-constants';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import Image from "next/image";
 import { ArrowRight, Loader2 } from "lucide-react";
@@ -67,9 +67,12 @@ export function MobileHomepageSkeleton() {
 export function MobileHomepage() {
   const { profile, loading } = useUserProfile();
   const t = useTranslations('MobileHomepage');
+  const tCat = useTranslations('constants.mobileHomeCategories');
   const { user } = useAuth();
   const [recommendations, setRecommendations] = useState<RecommendedItem[]>([]);
   const [isLoadingRecs, setIsLoadingRecs] = useState(true);
+
+  const mobileHomeCategories = getMobileHomeCategories(tCat);
 
   useEffect(() => {
     if (user?.uid) {

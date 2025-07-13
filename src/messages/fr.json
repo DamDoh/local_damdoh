@@ -62,6 +62,15 @@
       "Livestock": "Assurance bétail",
       "Asset": "Assurance des actifs",
       "Weather": "Basée sur la météo (Paramétrique)"
+    },
+    "mobileHomeCategories": {
+        "produceMarket": "Marché des produits",
+        "farmInputs": "Intrants agricoles",
+        "talentExchange": "Bourse de talents",
+        "machinery": "Machinerie",
+        "community": "Communauté",
+        "aiAssistant": "Assistant IA",
+        "events": "Événements"
     }
   },
   "LandingPage": {

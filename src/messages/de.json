@@ -62,6 +62,15 @@
       "Livestock": "Tierversicherung",
       "Asset": "Vermögensversicherung",
       "Weather": "Wetterbasiert (Parametrisch)"
+    },
+    "mobileHomeCategories": {
+        "produceMarket": "Produktmarkt",
+        "farmInputs": "Betriebsmittel",
+        "talentExchange": "Talentbörse",
+        "machinery": "Maschinen",
+        "community": "Gemeinschaft",
+        "aiAssistant": "KI-Assistent",
+        "events": "Veranstaltungen"
     }
   },
   "LandingPage": {

@@ -62,6 +62,15 @@
       "Livestock": "ประกันภัยปศุสัตว์",
       "Asset": "ประกันภัยทรัพย์สิน",
       "Weather": "อิงตามสภาพอากาศ (พาราเมตริก)"
+    },
+    "mobileHomeCategories": {
+        "produceMarket": "ตลาดสินค้าเกษตร",
+        "farmInputs": "ปัจจัยการผลิต",
+        "talentExchange": "ตลาดนัดความสามารถ",
+        "machinery": "เครื่องจักร",
+        "community": "ชุมชน",
+        "aiAssistant": "ผู้ช่วย AI",
+        "events": "กิจกรรม"
     }
   },
   "LandingPage": {
@@ -637,5 +646,3 @@
     "couldNotSendMessage": "ไม่สามารถส่งข้อความได้ โปรดลองอีกครั้ง"
   }
 }
-
-  

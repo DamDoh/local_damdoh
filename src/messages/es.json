@@ -62,6 +62,15 @@
       "Livestock": "Seguro de Ganado",
       "Asset": "Seguro de Activos",
       "Weather": "Basado en el Clima (Paramétrico)"
+    },
+    "mobileHomeCategories": {
+        "produceMarket": "Mercado de productos",
+        "farmInputs": "Insumos agrícolas",
+        "talentExchange": "Bolsa de talentos",
+        "machinery": "Maquinaria",
+        "community": "Comunidad",
+        "aiAssistant": "Asistente de IA",
+        "events": "Eventos"
     }
   },
   "LandingPage": {
@@ -291,7 +300,7 @@
   "DashboardRightSidebar": {
     "networkTitle": "Añadir a tu feed",
     "refreshSuggestions": "Actualizar sugerencias",
-    "infoTooltip": "Las sugerencias se basan en tus intereses y necesidades de perfil.",
+    "infoTooltip": "Las sugerencias se basan en tus intereses y las necesidades de tu perfil.",
     "signInPrompt": "Inicia sesión para obtener sugerencias personalizadas.",
     "loadError": "No se pudieron cargar las sugerencias.",
     "noSuggestions": "No hay sugerencias nuevas en este momento. ¡Vuelve a consultar más tarde!",

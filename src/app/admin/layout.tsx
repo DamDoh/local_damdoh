@@ -11,8 +11,8 @@ import { useTranslations } from "next-intl";
 
 
 const adminNavItems = [
-  { href: "/admin/content", label: "contentManagement", icon: BookOpen },
-  { href: "/admin/reports", label: "reports", icon: FileArchive },
+  { href: "/admin/content", labelKey: "contentManagement", icon: BookOpen },
+  { href: "/admin/reports", labelKey: "reports", icon: FileArchive },
   // { href: "/admin/categories", label: "Marketplace Categories", icon: LayoutGrid }, // This page doesn't exist yet
 ];
 
@@ -41,7 +41,7 @@ export default function AdminLayout({
                     >
                         <Link href={item.href}>
                             <item.icon className="mr-2 h-4 w-4" />
-                            {t(item.label as any)}
+                            {t(item.labelKey as any)}
                         </Link>
                     </Button>
                     );
