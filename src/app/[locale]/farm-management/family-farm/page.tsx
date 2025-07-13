@@ -13,7 +13,7 @@ import React from "react";
 interface FarmZone {
   id: string;
   title: string;
-  icon: React.ReactElement;
+  icon: string;
   imageSrc: string;
   imageAlt: string;
   dataAiHint: string;

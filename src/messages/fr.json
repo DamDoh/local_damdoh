@@ -64,913 +64,201 @@
       "Weather": "Basée sur la météo (Paramétrique)"
     },
     "mobileHomeCategories": {
-        "produceMarket": "Marché des produits",
-        "farmInputs": "Intrants agricoles",
-        "talentExchange": "Bourse de talents",
-        "machinery": "Machinerie",
-        "community": "Communauté",
-        "aiAssistant": "Assistant IA",
-        "events": "Événements"
+      "produceMarket": "Marché des produits",
+      "farmInputs": "Intrants agricoles",
+      "talentExchange": "Bourse de talents",
+      "machinery": "Machinerie",
+      "community": "Communauté",
+      "aiAssistant": "Assistant IA",
+      "events": "Événements"
+    },
+    "cropStages": {
+      "Planting": "Planting",
+      "Vegetative": "Vegetative",
+      "Flowering": "Flowering",
+      "Fruiting": "Fruiting",
+      "Harvesting": "Harvesting",
+      "Post-Harvest": "Post-Harvest"
+    },
+    "observationTypes": {
+      "GeneralNote": "General Note",
+      "PestSighting": "Pest Sighting",
+      "DiseaseSighting": "Disease Sighting",
+      "SoilCondition": "Soil Condition",
+      "WeatherEvent": "Weather Event",
+      "GrowthStageChange": "Growth Stage Change",
+      "IrrigationEvent": "Irrigation Event"
     }
   },
-  "LandingPage": {
-    "hero": {
-      "title": "Autonomiser l'agriculture du sol à la vente sur {appName}",
-      "subtitle": "La seule plateforme qui relie chaque partie prenante de la chaîne de valeur agricole pour un avenir plus transparent, efficace et durable.",
-      "getStartedButton": "Commencer gratuitement",
-      "learnMoreButton": "En savoir plus"
-    },
-    "features": {
-      "title": "Principales caractéristiques de DamDoh",
-      "subtitle": "Tout ce dont vous avez besoin pour cultiver, vous connecter et commercer, au même endroit.",
-      "networking": {
-        "title": "Réseautage intelligent",
-        "description": "Suggestions de connexion basées sur l'IA pour vous mettre en relation avec les bons partenaires, des fournisseurs aux acheteurs internationaux."
+  "farmManagement": {
+    "familyFarmPage": {
+      "backLink": "Back to Farm Management Hub",
+      "title": "The 200sqm Integrated Family Farm Model",
+      "description": "A holistic approach to small-scale farming for food security, income generation, and sustainability.",
+      "intro": "This model is designed to maximize productivity on a small plot of land (e.g., 200 square meters) by integrating various components that work together synergistically. It's a closed-loop system where waste from one component becomes an input for another, reducing external costs and environmental impact.",
+      "diagramCaption": "Diagram illustrating the integrated components of the 200sqm farm model.",
+      "detailsTitle": "Key Components",
+      "principlesTitle": "Core Principles",
+      "conclusion": {
+        "title": "A Model of Resilience and Abundance",
+        "content": [
+          "The 200sqm Integrated Family Farm is more than just a method of farming; it's a philosophy of working in harmony with nature.",
+          "It empowers families to achieve food sovereignty, generate diverse income streams, and build a resilient livelihood in the face of climate change.",
+          "By adopting these principles, even the smallest plot of land can become a source of abundance."
+        ]
       },
-      "marketplace": {
-        "title": "Marché direct",
-        "description": "Achetez et vendez des produits et services directement, augmentant la transparence et la rentabilité pour toutes les parties prenantes."
-      },
-      "forums": {
-        "title": "Forums thématiques",
-        "description": "Partagez des connaissances, discutez des défis et collaborez sur des solutions dans des forums spécifiques à un sujet."
-      },
-      "talent": {
-        "title": "Bourse de talents",
-        "description": "Proposez ou trouvez des services agricoles spécialisés, de la récolte à la demande aux levés par drone."
-      }
-    },
-    "forWho": {
-      "badge": "Pour tous dans l'agriculture",
-      "title": "Une plateforme pour toute la chaîne de valeur",
-      "description": "DamDoh est conçu de manière unique pour servir l'ensemble de l'écosystème agricole, créant un point unique de vérité et d'opportunité pour tous.",
-      "farmers": {
-        "title": "Agriculteurs",
-        "description": "Accédez à de meilleurs marchés, trouvez des intrants de qualité et obtenez des conseils d'experts pour augmenter le rendement et la rentabilité."
-      },
-      "buyers": {
-        "title": "Acheteurs & Transformateurs",
-        "description": "Approvisionnez-vous en produits traçables de haute qualité directement auprès des producteurs et des coopératives, garantissant la fiabilité de la chaîne d'approvisionnement."
-      },
-      "experts": {
-        "title": "Experts & Fournisseurs de services",
-        "description": "Offrez vos compétences et services spécialisés à un large public agricole à la recherche de votre expertise."
-      },
-      "fis": {
-        "title": "Institutions financières",
-        "description": "Proposez des prêts, des subventions et des produits d'assurance ciblés à un réseau vérifié d'entreprises agricoles."
-      },
-      "imageAlt": "Un groupe diversifié d'acteurs agricoles collaborant"
-    },
-    "cta": {
-      "title": "Rejoignez la révolution agricole",
-      "subtitle": "Inscrivez-vous aujourd'hui et faites partie d'un réseau mondial en pleine croissance dédié à la transformation de l'avenir de l'alimentation.",
-      "button": "Créez votre compte gratuit"
-    }
-  },
-  "Auth": {
-    "createAccount": "Créer un compte",
-    "signInWelcome": "Bienvenue à nouveau sur {appName}",
-    "signUpWelcome": "Rejoignez le réseau agricole DamDoh",
-    "forgotPasswordResetPrompt": "Réinitialisez votre mot de passe pour {appName}",
-    "resetPasswordPrompt": "Créez un nouveau mot de passe pour {appName}",
-    "signInTitle": "Se connecter à votre compte",
-    "signInDescription": "Entrez vos identifiants pour accéder à votre tableau de bord.",
-    "emailLabel": "E-mail",
-    "emailPlaceholder": "vous@exemple.com",
-    "passwordLabel": "Mot de passe",
-    "forgotPasswordLink": "Mot de passe oublié ?",
-    "signingInButton": "Connexion en cours...",
-    "signInButton": "Se connecter",
-    "noAccountPrompt": "Vous n'avez pas de compte ?",
-    "signUpLink": "S'inscrire",
-    "signInLink": "Se connecter",
-    "recoverWithUniversalIdPrompt": "Ou récupérer l'accès avec votre ID universel",
-    "signUpTitle": "Créer un nouveau compte",
-    "signUpDescription": "Parlez-nous un peu de vous pour commencer.",
-    "nameLabel": "Votre nom ou nom de l'entreprise",
-    "namePlaceholder": "ex: Jean Dupont ou Fermes de la Vallée Verte",
-    "roleLabel": "Votre rôle principal",
-    "rolePlaceholder": "Sélectionnez votre rôle dans la chaîne d'approvisionnement...",
-    "confirmPasswordLabel": "Confirmez le mot de passe",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Création du compte...",
-    "signUpButton": "Créer un compte",
-    "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
-    "forgotPasswordTitle": "Mot de passe oublié ?",
-    "forgotPasswordDescription": "Pas de problème. Entrez votre adresse e-mail ci-dessous et nous vous enverrons un lien pour le réinitialiser.",
-    "sendResetLinkButton": "Envoyer le lien de réinitialisation",
-    "sendingEmailButton": "Envoi de l'e-mail...",
-    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
-    "resetPasswordTitle": "Réinitialiser votre mot de passe",
-    "resetPasswordDescription": "Entrez et confirmez votre nouveau mot de passe ci-dessous.",
-    "newPasswordLabel": "Nouveau mot de passe",
-    "newPasswordPlaceholder": "Entrez un mot de passe fort",
-    "resetPasswordButton": "Réinitialiser le mot de passe",
-    "resettingPasswordButton": "Réinitialisation...",
-    "recoverPage": {
-      "title": "Récupérer votre compte",
-      "description": "Utilisez votre réseau pour retrouver l'accès.",
-      "howItWorksTitle": "Comment ça marche",
-      "step1": "Entrez votre numéro de téléphone pour démarrer une session de récupération.",
-      "step2": "Montrez le code QR temporaire à un ami de confiance sur DamDoh.",
-      "step3": "Une fois que votre ami aura scanné le code pour vérifier votre identité, vous retrouverez l'accès.",
-      "startButton": "Démarrer la récupération de compte",
-      "scanTitle": "Demandez à un ami de scanner",
-      "scanDescription": "Demandez à un contact DamDoh de confiance de scanner ce code QR à l'aide de la fonction 'Aider un ami à récupérer' dans son application.",
-      "scanNote": "Ce code est temporaire et expire dans 10 minutes.",
-      "startOverButton": "Recommencer",
-      "enterPhone": {
-        "title": "Entrez votre numéro de téléphone",
-        "description": "Fournissez le numéro de téléphone associé au compte que vous souhaitez récupérer.",
-        "phoneNumberLabel": "Numéro de téléphone",
-        "phoneNumberPlaceholder": "ex: +33612345678",
-        "verifyingButton": "Vérification en cours...",
-        "getRecoveryCodeButton": "Obtenir le code de récupération",
-        "phoneRequiredError": "Veuillez entrer un numéro de téléphone valide.",
-        "genericError": "Impossible de démarrer la récupération. Veuillez vérifier le numéro de téléphone et réessayer."
-      },
-      "helpFriend": {
-        "button": "Aider un ami à récupérer",
-        "scanError": "Ce n'est pas un code de récupération DamDoh valide.",
-        "scanSuccess": "Confirmation réussie !",
-        "scanFail": "Impossible de lire le code QR. Veuillez réessayer."
-      }
-    },
-    "forgotPassword": {
-      "emailSentTitle": "Vérifiez votre e-mail",
-      "emailSentDescription": "Un lien de réinitialisation de mot de passe a été envoyé à {email}.",
-      "emailSentDescriptionIfAccountExists": "Si un compte avec {email} existe, un lien de réinitialisation de mot de passe a été envoyé.",
-      "successTitle": "E-mail envoyé !",
-      "successDescription": "Veuillez vérifier votre boîte de réception (et le dossier spam) pour le lien de réinitialisation du mot de passe.",
-      "errors": {
-        "unexpected": "Une erreur inattendue s'est produite. Veuillez réessayer.",
-        "invalidEmail": "L'adresse e-mail n'est pas valide.",
-        "tooManyRequests": "Trop de demandes. Veuillez réessayer plus tard.",
-        "default": "Échec de l'envoi de l'e-mail de réinitialisation",
-        "missingCode": "Lien de réinitialisation de mot de passe invalide. Veuillez en demander un nouveau.",
-        "missingCodeTitle": "Lien invalide",
-        "missingCodeDescription": "Le lien de réinitialisation du mot de passe est manquant ou invalide. Veuillez retourner à la page 'Mot de passe oublié' pour en demander un nouveau."
-      }
-    },
-    "resetPassword": {
-      "successTitle": "Mot de passe réinitialisé avec succès !",
-      "successDescription": "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
-      "successRedirect": "Vous allez être redirigé vers la page de connexion sous peu.",
-      "errors": {
-        "missingCode": "Lien de réinitialisation de mot de passe invalide. Veuillez en demander un nouveau.",
-        "missingCodeTitle": "Lien invalide",
-        "missingCodeDescription": "Le lien de réinitialisation du mot de passe est manquant ou invalide. Veuillez retourner à la page 'Mot de passe oublié' pour en demander un nouveau.",
-        "unexpected": "Une erreur inattendue s'est produite. Veuillez réessayer.",
-        "invalidOrExpiredCode": "Le lien de réinitialisation du mot de passe est invalide ou a expiré. Veuillez en demander un nouveau.",
-        "userDisabled": "Ce compte utilisateur a été désactivé.",
-        "userNotFound": "Aucun utilisateur trouvé correspondant à ce lien de réinitialisation.",
-        "weakPassword": "Le nouveau mot de passe n'est pas assez fort.",
-        "default": "Échec de la réinitialisation du mot de passe"
-      }
-    },
-    "errors": {
-      "emailInUse": "Cet e-mail est déjà utilisé.",
-      "invalidEmail": "Adresse e-mail invalide.",
-      "weakPassword": "Le mot de passe doit comporter au moins 6 caractères.",
-      "default": "Une erreur inattendue s'est produite."
-    },
-    "signUpSuccess": {
-      "title": "Compte créé et connecté !",
-      "description": "Bienvenue sur {appName} ! Vous avez été connecté avec succès."
-    },
-    "signUpFailed": "Échec de l'inscription",
-    "toast": {
-      "loggedOut": {
-        "title": "Déconnecté",
-        "description": "Vous avez été déconnecté avec succès."
-      },
-      "logoutFailed": {
-        "title": "Échec de la déconnexion",
-        "description": "Impossible de vous déconnecter. Veuillez réessayer."
-      },
-      "signInSuccess": {
-        "title": "Connexion réussie !",
-        "description": "Bienvenue à nouveau sur {appName}."
-      },
-      "signInFailed": {
-        "title": "Échec de la connexion"
-      }
-    },
-    "passwordStrength": {
-      "label": "Force",
-      "weak": "Faible",
-      "medium": "Moyen",
-      "strong": "Fort",
-      "veryStrong": "Très fort"
-    },
-    "invalidEmail": "L'adresse e-mail n'est pas valide.",
-    "weakPassword": "Le mot de passe doit comporter au moins 6 caractères."
-  },
-  "AppHeader": {
-    "home": "Accueil",
-    "network": "Réseau",
-    "farmMgmt": "Gestion de la ferme",
-    "marketplace": "Marché",
-    "talentExchange": "Bourse de talents",
-    "traceability": "Traçabilité",
-    "forums": "Forums",
-    "sustainability": "Durabilité",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Portefeuille",
-    "searchPlaceholder": "Rechercher des personnes, des produits, des services...",
-    "signIn": "Se connecter",
-    "signUp": "S'inscrire",
-    "myProfile": "Mon profil",
-    "myOrders": "Mes commandes",
-    "settings": "Paramètres",
-    "helpCenter": "Centre d'aide",
-    "logOut": "Se déconnecter",
-    "switchToLightAria": "Passer au thème clair",
-    "switchToDarkAria": "Passer au thème sombre"
-  },
-  "MobileBottomNav": {
-    "home": "Accueil",
-    "market": "Marché",
-    "search": "Recherche",
-    "forums": "Forums",
-    "profile": "Profil"
-  },
-  "DashboardRightSidebar": {
-    "networkTitle": "Ajouter à votre fil",
-    "refreshSuggestions": "Actualiser les suggestions",
-    "infoTooltip": "Les suggestions sont basées sur vos intérêts et les besoins de votre profil.",
-    "signInPrompt": "Connectez-vous pour obtenir des suggestions personnalisées.",
-    "loadError": "Impossible de charger les suggestions.",
-    "noSuggestions": "Pas de nouvelles suggestions pour le moment. Revenez plus tard !",
-    "following": "Abonné",
-    "follow": "Suivre",
-    "promotionsTitle": "Promotions",
-    "promotionsDescription": "Consultez les offres spéciales et les promotions des partenaires de l'écosystème.",
-    "managePromotionsButton": "Gérer les promotions",
-    "ad": "Annonce",
-    "adTitle": "Débloquez les informations du marché",
-    "adDescription": "Obtenez des données et des analyses en temps réel avec DamDoh Pro.",
-    "adButton": "En savoir plus"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Changer de langue"
-  },
-  "AppFooter": {
-    "tagline": "La plateforme mondiale pour la chaîne d'approvisionnement agricole.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "À propos de nous",
-    "contactLabel": "Contact",
-    "careersLabel": "Carrières",
-    "blogLabel": "Blog & Actualités",
-    "resourcesTitle": "Ressources",
-    "helpCenterLabel": "Centre d'aide",
-    "communityGuidelinesLabel": "Règles de la communauté",
-    "industryNewsLabel": "Actualités du secteur",
-    "eventsLabel": "Événements",
-    "talentExchangeLabel": "Bourse de talents",
-    "legalTitle": "Légal",
-    "privacyPolicyLabel": "Politique de confidentialité",
-    "termsOfServiceLabel": "Conditions d'utilisation",
-    "copyright": "© {year} {appName} Tous droits réservés.",
-    "getMobileApp": "Obtenez l'application mobile",
-    "googlePlayAlt": "Obtenez-le sur Google Play",
-    "appStoreAlt": "Télécharger sur l'App Store"
-  },
-  "aboutPage": {
-    "hero": {
-      "title": "À propos de DamDoh",
-      "subtitle": "Connecter la chaîne d'approvisionnement agricole mondiale, un acteur à la fois."
-    },
-    "vision": {
-      "title": "Notre vision",
-      "p1": "Nous envisageons un monde où chaque acteur agricole, du plus petit agriculteur au plus grand détaillant, est doté des données, des connexions et des outils nécessaires pour prospérer.",
-      "p2": "DamDoh a été fondé sur la conviction que la technologie peut combler les lacunes, instaurer la confiance et créer un système alimentaire mondial plus équitable et durable.",
-      "foundersTitle": "Les fondateurs"
-    },
-    "challenge": {
-      "title": "Le défi que nous relevons",
-      "description": "La chaîne d'approvisionnement agricole est fragmentée, inefficace et manque souvent de la transparence nécessaire à une croissance durable. Les principaux défis comprennent :",
-      "details": {
-        "marketAccess": "Accès limité au marché pour les petits exploitants agricoles.",
-        "inefficiency": "Une logistique inefficace entraînant des pertes après récolte.",
-        "financialExclusion": "Difficulté d'accès au financement et à l'assurance pour les petits producteurs.",
-        "informationGaps": "Connaissances fragmentées et manque d'accès aux meilleures pratiques.",
-        "qualityTrust": "Contrôle de qualité incohérent et manque de données de produits vérifiables.",
-        "climatePressure": "Pression croissante du changement climatique sur les méthodes agricoles traditionnelles.",
-        "foodLoss": "Pertes et gaspillages alimentaires importants à plusieurs étapes de la chaîne d'approvisionnement.",
-        "dataFragmentation": "Fragmentation des données sur divers systèmes non connectés."
-      },
-      "list": {
-        "marketAccess": "Accès limité au marché",
-        "inefficiency": "Inefficacité de la chaîne d'approvisionnement",
-        "financialExclusion": "Exclusion financière",
-        "informationGaps": "Lacunes d'information",
-        "qualityTrust": "Déficit de qualité et de confiance",
-        "climatePressure": "Pression climatique",
-        "foodLoss": "Pertes et gaspillage alimentaires",
-        "dataFragmentation": "Fragmentation des données"
-      }
-    },
-    "solution": {
-      "title": "La solution DamDoh",
-      "description": "Nous construisons une 'super-application' complète qui numérise et connecte l'ensemble de l'écosystème agricole à travers plusieurs piliers clés :",
-      "list": {
-        "education": "Éducation et partage des connaissances",
-        "ai": "Assistance et informations basées sur l'IA",
-        "logistics": "Logistique et traçabilité intégrées",
-        "marketplace": "Un marché direct et transparent",
-        "financial": "Accès aux services financiers"
-      }
-    },
-    "beyondTechnology": {
-      "title": "Au-delà de la technologie : il s'agit des gens",
-      "list": {
-        "p2p": {
-          "title": "De personne à personne",
-          "content": "Connecter les agriculteurs à d'autres agriculteurs pour partager les connaissances et construire une communauté."
+      "zones": [
+        {
+          "id": "overall-layout",
+          "title": "Overall Layout & Water Management",
+          "icon": "LayoutGrid",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "Diagram of a farm layout with a central pond.",
+          "dataAiHint": "farm layout pond",
+          "description": [
+            "The design prioritizes efficient water use and nutrient cycling. A central pond or water reservoir acts as the heart of the farm, collecting rainwater and runoff.",
+            "Water from the pond is used to irrigate crops and provide water for livestock. Wastewater from livestock pens is then channeled back, often through a simple filter, to fertilize the pond, which in turn can be used for aquaculture."
+          ],
+          "details": [
+            {
+              "title": "Pond",
+              "content": [
+                "Acts as a heat sink, moderates microclimate, and is a source for irrigation and aquaculture."
+              ]
+            },
+            {
+              "title": "High Beds",
+              "content": [
+                "Raised beds prevent waterlogging during heavy rains and improve soil aeration."
+              ]
+            },
+            {
+              "title": "Paths",
+              "content": [
+                "Paths are covered with mulch to suppress weeds and retain soil moisture."
+              ]
+            }
+          ]
         },
-        "p2b": {
-          "title": "De personne à entreprise",
-          "content": "Favoriser des relations directes et de confiance entre les producteurs et les acheteurs."
+        {
+          "id": "vegetable-production",
+          "title": "Vegetable Production",
+          "icon": "Sprout",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "Lush vegetable beds with a variety of crops.",
+          "dataAiHint": "vegetable garden raised beds",
+          "description": [
+            "Intensive vegetable cultivation is the primary income generator. This zone focuses on high-value, fast-growing crops suitable for the local market.",
+            "Techniques like intercropping (planting different crops together) and succession planting (replanting a new crop immediately after one is harvested) are used to maximize space and time."
+          ],
+          "details": [
+            {
+              "title": "Trellising",
+              "content": [
+                "Vining plants like beans and cucumbers are grown vertically on trellises to save space."
+              ]
+            },
+            {
+              "title": "Crop Rotation",
+              "content": [
+                "Crops are rotated to prevent soil nutrient depletion and break pest cycles."
+              ]
+            },
+            {
+              "title": "Compost Application",
+              "content": [
+                "On-farm compost is regularly applied to maintain soil fertility."
+              ]
+            }
+          ]
         },
-        "p2e": {
-          "title": "De personne à écosystème",
-          "content": "Donner aux individus l'accès à tout un écosystème de services – finance, logistique, assurance, et plus encore."
+        {
+          "id": "fruit-trees",
+          "title": "Fruit Trees & Perennials",
+          "icon": "ShoppingBasket",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A banana tree and a papaya tree laden with fruit.",
+          "dataAiHint": "fruit trees farm",
+          "description": [
+            "Fruit trees like papaya, banana, and moringa are planted along the borders or integrated within the vegetable plots. They provide long-term food security, shade, and additional income.",
+            "These perennials require less maintenance than annual vegetables and contribute to the farm's overall biodiversity."
+          ]
         },
-        "p2w": {
-          "title": "De personne au monde",
-          "content": "Ouvrir les marchés mondiaux et les opportunités même pour les producteurs les plus reculés grâce à l'accès numérique et à la traçabilité."
+        {
+          "id": "aquaculture",
+          "title": "Aquaculture",
+          "icon": "Fish",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "Tilapia fish swimming in a small farm pond.",
+          "dataAiHint": "fish farm pond",
+          "description": [
+            "The central pond is stocked with fast-growing fish species like tilapia. The fish provide a valuable source of protein for the family and can be sold in the market.",
+            "Fish waste naturally fertilizes the pond water, which can then be used as nutrient-rich irrigation for the crops, closing the nutrient loop."
+          ]
+        },
+        {
+          "id": "animal-husbandry",
+          "title": "Animal Husbandry",
+          "icon": "Bird",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "Chickens scratching in a designated coop area.",
+          "dataAiHint": "farm chickens coop",
+          "description": [
+            "A small number of livestock, such as chickens or ducks, are raised in a designated area. They consume kitchen scraps and pests, and provide eggs and meat.",
+            "Their manure is a key ingredient for the compost pile, turning waste into valuable fertilizer for the vegetable beds."
+          ]
+        },
+        {
+          "id": "waste-management",
+          "title": "Waste Management & Composting",
+          "icon": "Recycle",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A well-managed compost pile with layers of green and brown material.",
+          "dataAiHint": "compost pile farm",
+          "description": [
+            "Nothing is wasted. A dedicated composting area processes all farm and kitchen waste, including crop residues, animal manure, and food scraps.",
+            "This creates rich, organic compost that nourishes the soil, eliminates the need for chemical fertilizers, and improves the soil's ability to hold water."
+          ]
+        },
+        {
+          "id": "integrated-pest-management",
+          "title": "Integrated Pest Management (IPM)",
+          "icon": "ShieldCheck",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "Marigold flowers planted next to tomato plants to repel pests.",
+          "dataAiHint": "marigold flowers tomatoes",
+          "description": [
+            "Instead of relying on chemical pesticides, the farm uses a combination of natural methods to manage pests.",
+            "This includes planting companion plants (like marigolds) that repel pests, encouraging beneficial insects (like ladybugs), and using physical barriers. This protects both the environment and the health of the consumers."
+          ]
+        },
+        {
+          "id": "soil-health",
+          "title": "Soil Health Management",
+          "icon": "Heart",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A farmer holding rich, dark, loamy soil in their hands.",
+          "dataAiHint": "healthy soil hands",
+          "description": [
+            "The foundation of the entire system is healthy soil. All practices are geared towards building and maintaining soil fertility.",
+            "This includes constant mulching (God's Blanket), regular application of compost, minimizing soil disturbance (no-till methods), and promoting a vibrant community of soil microorganisms."
+          ],
+          "subSections": [
+            {
+              "title": "No-Till/Minimum Tillage",
+              "content": [
+                "Reduces soil erosion, protects soil structure, and preserves microbial life."
+              ]
+            },
+            {
+              "title": "Constant Mulching",
+              "content": [
+                "Protects soil from the sun, retains moisture, suppresses weeds, and provides organic matter as it decomposes."
+              ]
+            }
+          ]
         }
-      }
-    },
-    "commitment": {
-      "title": "Notre engagement pour l'avenir",
-      "p1": "Nous nous engageons à utiliser la technologie pour le bien, en créant une plateforme qui n'est pas seulement profitable, mais aussi régénératrice pour notre planète et responsabilisante pour ses habitants.",
-      "p2": "Chaque connexion établie, chaque connaissance partagée et chaque transaction rationalisée sur DamDoh est un pas vers un avenir alimentaire plus résilient et équitable.",
-      "p3": "Rejoignez-nous dans ce voyage.",
-      "button": "Devenir membre"
-    }
-  },
-  "contactPage": {
-    "title": "Contactez-nous",
-    "subtitle": "Nous sommes là pour vous aider. Contactez-nous via l'un des canaux ci-dessous.",
-    "emailUs": {
-      "title": "Envoyez-nous un e-mail",
-      "general": "Demandes générales",
-      "support": "Support",
-      "partnerships": "Partenariats"
-    },
-    "callUs": {
-      "title": "Appelez-nous",
-      "hours": "Lun - Ven, 9h00 - 17h00 (EAT)",
-      "phone": "+254 20 123 4567"
-    },
-    "ourOffice": {
-      "title": "Notre bureau",
-      "org": "La Fondation DamDoh",
-      "address": "123 Avenue Agri-Tech, Nairobi, Kenya"
-    },
-    "sendMessage": {
-      "title": "Envoyez-nous un message",
-      "nameLabel": "Votre nom",
-      "namePlaceholder": "Jean Dupont",
-      "emailLabel": "Votre e-mail",
-      "emailPlaceholder": "jean.dupont@exemple.com",
-      "subjectLabel": "Sujet",
-      "subjectPlaceholder": "ex: Demande de partenariat",
-      "messageLabel": "Votre message",
-      "messagePlaceholder": "Tapez votre message ici...",
-      "buttonText": "Envoyer le message",
-      "note": "Nous nous efforçons de répondre dans les 24 heures ouvrables."
-    }
-  },
-  "careers": {
-    "title": "Carrières chez DamDoh",
-    "subtitle": "Rejoignez notre mission de révolutionner la chaîne d'approvisionnement agricole.",
-    "whyWorkWithUs": {
-      "title": "Pourquoi travailler avec nous ?",
-      "intro": "Chez DamDoh, nous sommes une équipe d'innovateurs, de technologues et d'experts agricoles passionnés par la création d'un impact tangible et mondial. Nous offrons :",
-      "point1": "Un environnement de travail dynamique et axé sur la mission.",
-      "point2": "Des opportunités de croissance professionnelle et d'apprentissage.",
-      "point3": "Une culture de collaboration et de transparence.",
-      "point4": "La chance de travailler avec des technologies de pointe comme l'IA et la blockchain.",
-      "point5": "Un engagement envers la durabilité et l'impact social."
-    },
-    "currentOpenings": {
-      "title": "Postes à pourvoir",
-      "job1": {
-        "title": "Ingénieur Full-Stack Senior (Next.js, Firebase)",
-        "location": "Télétravail",
-        "type": "Temps plein",
-        "description": "Nous recherchons un ingénieur full-stack expérimenté pour diriger le développement des fonctionnalités principales de notre plateforme."
-      },
-      "job2": {
-        "title": "Spécialiste du contenu agronomique",
-        "location": "Nairobi, Kenya",
-        "type": "Contrat",
-        "description": "Aidez-nous à construire la base de connaissances la plus complète au monde sur les pratiques agricoles durables."
-      },
-      "job3": {
-        "title": "Designer UX/UI",
-        "location": "Télétravail",
-        "type": "Temps plein",
-        "description": "Concevez des expériences utilisateur intuitives et accessibles pour une base d'utilisateurs diversifiée et mondiale."
-      }
-    },
-    "noOpenings": {
-      "title": "Aucun poste à pourvoir actuellement",
-      "content1": "Nous sommes toujours à la recherche de personnes talentueuses passionnées par notre mission. Si vous pensez être un bon candidat pour notre équipe, veuillez envoyer votre CV et votre lettre de motivation à {emailLink}.",
-      "emailLinkText": "careers@damdoh.org"
-    },
-    "applyNowButton": "Postuler maintenant"
-  },
-  "communityGuidelines": {
-    "title": "Règles de la communauté",
-    "subtitle": "Favoriser un environnement professionnel, digne de confiance et collaboratif.",
-    "intro": "Bienvenue dans la communauté DamDoh ! Pour garantir que notre plateforme reste un espace productif et sûr pour tous les acteurs agricoles, nous vous demandons de respecter les directives suivantes :",
-    "respectful": {
-      "title": "Soyez respectueux et professionnel",
-      "description": "Engagez-vous dans des discussions civiles et constructives. Les désaccords sont normaux, mais les attaques personnelles, le harcèlement et les discours de haine sont inacceptables."
-    },
-    "authentic": {
-      "title": "Soyez honnête et authentique",
-      "description": "Représentez-vous et votre entreprise avec précision. Ne vous faites pas passer pour d'autres et ne fournissez pas de fausses informations sur vos produits, services ou certifications."
-    },
-    "relevant": {
-      "title": "Restez pertinent",
-      "description": "Contribuez aux discussions et aux listes d'une manière pertinente pour la chaîne d'approvisionnement agricole. Le spam, les escroqueries et le contenu promotionnel non pertinent seront supprimés."
-    },
-    "fairTrade": {
-      "title": "Honorez vos engagements",
-      "description": "Lorsque vous concluez un accord sur la plateforme, respectez-le. Bâtir la confiance est essentiel au succès de notre communauté."
-    },
-    "sustainable": {
-      "title": "Promouvoir la durabilité",
-      "description": "Bien que ce ne soit pas une exigence stricte pour tous les membres, nous encourageons le partage des connaissances et des pratiques qui favorisent la durabilité environnementale, économique et sociale."
-    },
-    "reporting": {
-      "title": "Signaler les violations",
-      "content": "Si vous voyez du contenu ou un comportement qui enfreint ces directives, please report it to our team at {emailLink}. We will review all reports and take appropriate action.",
-      "emailLinkText": "support@damdoh.org"
-    },
-    "conclusion": "By using DamDoh, you agree to these guidelines. We reserve the right to remove content and suspend accounts that violate these principles. Thanks for helping us build a great community!"
-  },
-  "helpCenterPage": {
-    "title": "Centre d'aide",
-    "subtitle": "Votre guide pour tirer le meilleur parti de la plateforme DamDoh.",
-    "howCanWeHelp": "Comment pouvons-nous vous aider ?",
-    "searchPlaceholder": "Recherchez des sujets, des fonctionnalités ou des questions...",
-    "browseTopics": "Parcourir les sujets d'aide",
-    "gettingStarted": {
-      "title": "Premiers pas",
-      "description": "Apprenez à configurer votre profil et à commencer à vous connecter.",
-      "placeholder": "Le contenu de 'Premiers pas' sera bientôt disponible."
-    },
-    "marketplaceGuide": {
-      "title": "Guide du marché",
-      "description": "Conseils pour créer des annonces efficaces et trouver ce dont vous avez besoin.",
-      "placeholder": "Le contenu du 'Guide du marché' sera bientôt disponible."
-    },
-    "accountManagement": {
-      "title": "Gestion du compte",
-      "description": "Gérez vos paramètres, votre confidentialité et vos notifications.",
-      "placeholder": "Le contenu de 'Gestion du compte' sera bientôt disponible."
-    },
-    "troubleshooting": {
-      "title": "Dépannage",
-      "description": "Trouvez des solutions aux problèmes courants et aux problèmes techniques.",
-      "placeholder": "Le contenu de 'Dépannage' sera bientôt disponible."
-    },
-    "stillNeedHelp": {
-      "title": "Besoin d'aide supplémentaire ?",
-      "description": "Notre équipe d'assistance est prête à vous aider pour toutes vos questions.",
-      "button": "Contacter le support"
-    }
-  },
-  "privacyPolicy": {
-    "title": "Politique de confidentialité",
-    "lastUpdated": "Dernière mise à jour : 29 octobre 2023",
-    "introduction": "Cet avis de confidentialité pour DamDoh explique comment et pourquoi nous pouvons collecter, stocker, utiliser et/ou partager ('traiter') vos informations lorsque vous utilisez nos services ('Services'), par exemple lorsque vous visitez notre site Web ou notre application mobile.",
-    "whatInfoWeCollect": {
-      "heading": "1. QUELLES INFORMATIONS COLLECTONS-NOUS ?",
-      "content": "Nous collectons les informations personnelles que vous nous fournissez volontairement lorsque vous vous inscrivez aux Services, que vous manifestez un intérêt pour obtenir des informations sur nous ou nos produits et Services, que vous participez à des activités sur les Services, ou autrement lorsque vous nous contactez."
-    },
-    "howWeUseInfo": {
-      "heading": "2. COMMENT TRAITONS-NOUS VOS INFORMATIONS ?",
-      "content": "Nous traitons vos informations à des fins basées sur des intérêts commerciaux légitimes, l'exécution de notre contrat avec vous, le respect de nos obligations légales et/ou votre consentement. Cela inclut la facilitation de la création de compte, la communication entre utilisateurs et la fourniture de nos services de base."
-    },
-    "willInfoBeShared": {
-      "heading": "3. VOS INFORMATIONS SERONT-ELLES PARTAGÉES AVEC QUELQU'UN ?",
-      "content": "Nous ne partageons des informations qu'avec votre consentement, pour nous conformer aux lois, pour vous fournir des services, pour protéger vos droits ou pour remplir des obligations commerciales. Par exemple, nous partageons les informations de votre profil public avec d'autres utilisateurs pour faciliter les connexions."
-    },
-    "cookiesAndTracking": {
-      "heading": "4. UTILISONS-NOUS DES COOKIES ET D'AUTRES TECHNOLOGIES DE SUIVI ?",
-      "content": "Nous pouvons utiliser des cookies et des technologies de suivi similaires (comme les balises web et les pixels) pour accéder ou stocker des informations. Des informations spécifiques sur la manière dont nous utilisons ces technologies et comment vous pouvez refuser certains cookies sont exposées dans notre Avis sur les cookies."
-    },
-    "howLongWeKeepInfo": {
-      "heading": "5. COMBIEN DE TEMPS CONSERVONS-NOUS VOS INFORMATIONS ?",
-      "content": "Nous conservons vos informations aussi longtemps que nécessaire pour atteindre les objectifs décrits dans cet avis de confidentialité, sauf si la loi l'exige autrement. Lorsque nous n'avons plus de besoin commercial légitime de traiter vos informations personnelles, nous les supprimerons ou les anonymiserons."
-    },
-    "howWeKeepInfoSafe": {
-      "heading": "6. COMMENT PROTÉGEONS-NOUS VOS INFORMATIONS ?",
-      "content": "Nous avons mis en œuvre des mesures de sécurité techniques et organisationnelles appropriées conçues pour protéger la sécurité de toutes les informations personnelles que nous traitons. Cependant, malgré nos garanties et nos efforts, aucune transmission électronique sur Internet ne peut être garantie comme étant 100 % sécurisée."
-    },
-    "minors": {
-      "heading": "7. COLLECTONS-NOUS DES INFORMATIONS AUPRÈS DES MINEURS ?",
-      "content": "Nous ne sollicitons pas sciemment de données auprès d'enfants de moins de 18 ans et ne commercialisons pas auprès d'eux. En utilisant les Services, vous déclarez que vous avez au moins 18 ans ou que vous êtes le parent ou le tuteur d'un tel mineur et que vous consentez à l'utilisation des Services par ce mineur dépendant."
-    },
-    "privacyRights": {
-      "heading": "8. QUELS SONT VOS DROITS EN MATIÈRE DE CONFIDENTIALITÉ ?",
-      "content": "Dans certaines régions, vous disposez de certains droits en vertu des lois applicables sur la protection des données. Ceux-ci peuvent inclure le droit (i) de demander l'accès et d'obtenir une copie de vos données personnelles, (ii) de demander la rectification ou l'effacement, (iii) de restreindre le traitement de vos informations personnelles, et (iv) le cas échéant, à la portabilité des données."
-    },
-    "controlsForDoNotTrack": {
-      "heading": "9. CONTRÔLES POUR LES FONCTIONNALITÉS DO-NOT-TRACK",
-      "content": "La plupart des navigateurs web et certains systèmes d'exploitation mobiles et applications mobiles incluent une fonctionnalité ou un paramètre Do-Not-Track ('DNT') que vous pouvez activer pour signaler votre préférence en matière de confidentialité afin que les données sur vos activités de navigation en ligne ne soient pas surveillées et collectées. À ce stade, aucune norme technologique uniforme pour la reconnaissance et la mise en œuvre des signaux DNT n'a été finalisée. En tant que tel, nous ne répondons actuellement pas aux signaux de navigateur DNT."
-    },
-    "updatesToNotice": {
-      "heading": "10. METTONS-NOUS À JOUR CET AVIS ?",
-      "content": "Nous pouvons mettre à jour cet avis de confidentialité de temps à autre. La version mise à jour sera indiquée par une date de 'Révision' mise à jour et la version mise à jour sera effective dès qu'elle sera accessible. Nous vous encourageons à consulter fréquemment cet avis de confidentialité pour être informé de la manière dont nous protégeons vos informations."
-    },
-    "contactUs": {
-      "heading": "11. CONTACTEZ-NOUS",
-      "content": "Pour résoudre une plainte concernant le Site ou pour recevoir de plus amples informations sur l'utilisation du Site, veuillez nous contacter."
-    },
-    "conclusion": "Pour résoudre une plainte ou recevoir de plus amples informations, {contactLink}."
-  },
-  "termsOfService": {
-    "title": "Conditions d'utilisation",
-    "lastUpdated": "Dernière mise à jour : 29 octobre 2023",
-    "introduction": "Ces Conditions d'utilisation constituent un accord légalement contraignant entre vous et DamDoh, concernant votre accès et votre utilisation du site Web de DamDoh, ainsi que toute autre forme de média, canal médiatique, site Web mobile ou application mobile connexe, lié ou autrement connecté à celui-ci.",
-    "agreementToTerms": {
-      "heading": "1. ACCORD SUR LES CONDITIONS",
-      "content": "En utilisant la plateforme, vous acceptez d'être lié par ces Conditions d'utilisation. Si vous n'êtes pas d'accord, vous n'êtes pas autorisé à utiliser la plateforme. Nous nous réservons le droit d'apporter des modifications à ces Conditions à tout moment."
-    },
-    "intellectualProperty": {
-      "heading": "2. DROITS DE PROPRIÉTÉ INTELLECTUELLE",
-      "content": "Sauf indication contraire, la Plateforme est notre propriété exclusive et tout le code source, les bases de données, les fonctionnalités, les logiciels, les conceptions de sites Web, l'audio, la vidéo, le texte, les photographies et les graphiques sur le Site (collectivement, le « Contenu ») et les marques de commerce, marques de service et logos qu'ils contiennent sont notre propriété ou sous notre contrôle ou nous sont concédés sous licence."
-    },
-    "userRepresentations": {
-      "heading": "3. DÉCLARATIONS DE L'UTILISATEUR",
-      "content": "En utilisant le Site, vous déclarez et garantissez que : (1) toutes les informations d'inscription que vous soumettez seront vraies, exactes, à jour et complètes ; (2) vous maintiendrez l'exactitude de ces informations et mettrez à jour rapidement ces informations d'inscription si nécessaire ; (3) vous avez la capacité juridique et vous acceptez de vous conformer à ces Conditions d'utilisation ; (4) vous n'utiliserez pas le Site à des fins illégales ou non autorisées ; et (5) votre utilisation du Site ne violera aucune loi ou réglementation applicable."
-    },
-    "prohibitedActivities": {
-      "heading": "4. ACTIVITÉS INTERDITES",
-      "content": "Vous ne pouvez pas accéder ou utiliser le Site à d'autres fins que celles pour lesquelles nous le mettons à votre disposition. Les activités interdites incluent, sans s'y limiter : la récupération systématique de données, la tromperie ou la fraude envers nous ou d'autres utilisateurs, la tentative de vous faire passer pour un autre utilisateur, le harcèlement ou la menace de nos employés ou d'autres utilisateurs, et le téléchargement ou la transmission de virus ou d'autres types de code malveillant."
-    },
-    "platformManagement": {
-      "heading": "5. GESTION DE LA PLATEFORME",
-      "content": "Nous nous réservons le droit, mais non l'obligation, de : (1) surveiller le Site pour détecter les violations de ces Conditions d'utilisation ; (2) prendre les mesures juridiques appropriées contre toute personne qui, à notre seule discrétion, enfreint la loi ou ces Conditions d'utilisation ; (3) à notre seule discrétion et sans limitation, refuser, restreindre l'accès, limiter la disponibilité ou désactiver l'une de vos Contributions ou toute partie de celles-ci."
-    },
-    "termAndTermination": {
-      "heading": "6. DURÉE ET RÉSILIATION",
-      "content": "Ces Conditions d'utilisation resteront en vigueur tant que vous utiliserez le Site. SANS LIMITER AUCUNE AUTRE DISPOSITION DE CES CONDITIONS D'UTILISATION, NOUS NOUS RÉSERVONS LE DROIT DE, À NOTRE SEULE DISCRÉTION ET SANS PRÉAVIS NI RESPONSABILITÉ, REFUSER L'ACCÈS ET L'UTILISATION DU SITE (Y COMPRIS LE BLOCAGE DE CERTAINES ADRESSES IP), À TOUTE PERSONNE POUR QUELQUE RAISON QUE CE SOIT OU SANS RAISON."
-    },
-    "modificationsAndInterruptions": {
-      "heading": "7. MODIFICATIONS ET INTERRUPTIONS",
-      "content": "Nous nous réservons le droit de changer, modifier ou supprimer le contenu du Site à tout moment ou pour quelque raison que ce soit à notre seule discrétion sans préavis. Nous nous réservons également le droit de modifier ou d'interrompre tout ou partie du Site sans préavis à tout moment. Nous ne serons pas responsables envers vous ou un tiers pour toute modification, changement de prix, suspension ou interruption du Site."
-    },
-    "governingLaw": {
-      "heading": "8. LOI APPLICABLE",
-      "content": "Ces Conditions d'utilisation et votre utilisation du Site sont régies et interprétées conformément aux lois de la juridiction où DamDoh est enregistré, sans égard à ses principes de conflit de lois."
-    },
-    "disputeResolution": {
-      "heading": "9. RÉSOLUTION DES LITIGES",
-      "content": "Toute action en justice de quelque nature que ce soit, intentée par vous ou par nous, sera engagée ou poursuivie devant les tribunaux d'État et fédéraux situés dans la juridiction où nous sommes enregistrés, et les parties consentent par la présente et renoncent à toutes les défenses de défaut de compétence personnelle et de forum non conveniens en ce qui concerne le lieu et la compétence de ces tribunaux."
-    },
-    "contactUs": {
-      "heading": "10. CONTACTEZ-NOUS",
-      "content": "Pour résoudre une plainte concernant le Site ou pour recevoir de plus amples informations sur l'utilisation du Site, veuillez nous contacter."
-    },
-    "conclusion": "Pour résoudre une plainte ou recevoir de plus amples informations, {contactLink}."
-  },
-  "blogPage": {
-    "title": "Blog & Actualités DamDoh",
-    "description": "Perspectives, histoires et mises à jour du monde agricole.",
-    "meta": "Par {author} le {date}",
-    "readMore": "Lire la suite",
-    "noPosts": {
-      "title": "Aucune publication pour l'instant",
-      "description": "Revenez bientôt pour des articles sur l'agriculture durable, les tendances du marché et les histoires de la communauté."
-    },
-    "error": {
-      "title": "Erreur de chargement des publications",
-      "description": "Impossible de récupérer les derniers articles. Veuillez réessayer plus tard."
-    }
-  },
-  "Blog": {
-    "backLink": "Retour au blog",
-    "meta": "Par {author} le {date}",
-    "readMore": "Lire la suite",
-    "originalContentTitle": "Contenu original en {lang}",
-    "notFound": {
-      "title": "Publication non trouvée",
-      "description": "L'article de blog que vous recherchez n'existe pas ou a été déplacé.",
-      "backButton": "Aller au blog"
-    },
-    "errors": {
-      "title": "Erreur",
-      "load": "Impossible de charger la publication."
-    }
-  },
-  "editProfilePage": {
-    "title": "Modifier le profil de {name}",
-    "description": "Gardez votre profil à jour pour établir les meilleures connexions.",
-    "nameLabel": "Nom d'affichage",
-    "namePlaceholder": "ex: Fermes de la Vallée Verte",
-    "roleLabel": "Rôle principal",
-    "rolePlaceholder": "Sélectionnez votre rôle principal",
-    "summaryLabel": "Résumé de profil / Titre",
-    "summaryPlaceholder": "ex: Producteur de café bio certifié, spécialisé dans l'exportation.",
-    "summaryDescription": "Un résumé bref d'une ligne pour votre carte de profil.",
-    "generateWithAI": "Générer avec l'IA",
-    "bioLabel": "À propos / Biographie",
-    "bioPlaceholder": "Parlez à la communauté de vous, de votre entreprise, de votre mission...",
-    "bioDescription": "Une description détaillée de votre parcours, de votre expertise et de ce que vous faites.",
-    "profileTab": "Profil",
-    "detailsTab": "Détails",
-    "contactTab": "Contact",
-    "locationLabel": "Emplacement",
-    "locationPlaceholder": "ex: Vallée du Rift, Kenya",
-    "interestsLabel": "Domaines d'intérêt",
-    "interestsPlaceholder": "ex: Agriculture durable, Marchés d'exportation, Agri-Tech",
-    "commaSeparated": "Séparez plusieurs éléments par une virgule.",
-    "needsLabel": "Je cherche / J'offre...",
-    "needsPlaceholder": "ex: Acheteurs de commerce équitable, Partenaires logistiques, Services d'analyse de sol",
-    "emailLabel": "E-mail du compte",
-    "emailDescription": "Votre e-mail de connexion ne peut pas être modifié.",
-    "phoneLabel": "Numéro de téléphone public",
-    "websiteLabel": "Site web",
-    "saveButton": "Enregistrer les modifications",
-    "savingButton": "Enregistrement...",
-    "cancelButton": "Annuler",
-    "toast": {
-      "profileNotFound": "Le profil que vous essayez de modifier n'a pas pu être trouvé.",
-      "fetchError": "Impossible de charger les données de votre profil. Veuillez réessayer.",
-      "notAuthenticatedTitle": "Non connecté",
-      "notAuthenticatedDescription": "Vous devez être connecté pour modifier un profil.",
-      "unauthorizedTitle": "Non autorisé",
-      "unauthorizedDescription": "Vous n'avez pas la permission de modifier ce profil.",
-      "missingInfoTitle": "Informations manquantes",
-      "missingInfoDescription": "Veuillez renseigner votre rôle, votre emplacement, vos intérêts et vos besoins pour générer un résumé.",
-      "summaryGeneratedTitle": "Résumé généré !",
-      "summaryGeneratedDescription": "L'IA a suggéré un nouveau résumé de profil pour vous.",
-      "generationFailedTitle": "Échec de la génération",
-      "generationFailedDescription": "Impossible de générer un résumé par l'IA. Veuillez réessayer.",
-      "missingIdError": "L'ID du profil est manquant. Impossible d'enregistrer les modifications.",
-      "profileUpdatedTitle": "Profil mis à jour",
-      "profileUpdatedDescription": "Vos modifications ont été enregistrées avec succès.",
-      "updateFailedTitle": "Échec de la mise à jour",
-      "updateFailedDescription": "Votre profil n'a pas pu être enregistré. Veuillez réessayer."
-    },
-    "notFound": {
-      "title": "Profil non trouvé",
-      "description": "Impossible de charger le profil pour modification.",
-      "backButton": "Retour"
-    }
-  },
-  "myNetworkPage": {
-    "backLink": "Retour au réseau",
-    "myConnectionsTab": "Mes connexions ({count})",
-    "pendingRequestsTab": "Demandes en attente",
-    "connectionsTitle": "Vos connexions",
-    "connectionsDescription": "Votre réseau établi de partenaires et de contacts.",
-    "noConnections": {
-      "title": "Votre réseau est vide",
-      "description": "Commencez par explorer le réseau et envoyer des demandes de connexion.",
-      "inviteButton": "Inviter un collègue"
-    },
-    "requestsTitle": "Demandes de connexion",
-    "requestsDescription": "Acceptez ou refusez les demandes de connexion entrantes.",
-    "noRequests": "Vous n'avez aucune demande de connexion en attente.",
-    "sentTimeAgo": "Envoyé il y a {timeAgo}",
-    "toast": {
-      "error": "Erreur",
-      "loadError": "Impossible de récupérer les données de votre réseau.",
-      "requestAccepted": "Demande de connexion acceptée.",
-      "requestDeclined": "Demande de connexion refusée.",
-      "respondError": "Impossible de répondre à la demande.",
-      "connectionRemoved": "Connexion supprimée.",
-      "removeError": "Impossible de supprimer la connexion."
-    },
-    "invitePrompt": "Entrez l'adresse e-mail de la personne que vous souhaitez inviter :",
-    "inviteSuccessTitle": "Invitation envoyée !",
-    "inviteSuccessDescription": "Une invitation a été envoyée à {email}.",
-    "inviteErrorTitle": "Échec de l'envoi de l'invitation"
-  },
-  "ProfilePage": {
-    "backToNetwork": "Retour au réseau",
-    "engagementStats": "Statistiques d'engagement",
-    "invite": {
-      "button": "Inviter un collègue",
-      "description": "Connaissez-vous quelqu'un qui devrait être sur DamDoh ?",
-      "explanation": "Envoyez-leur une invitation à rejoindre la plateforme.",
-      "title": "Développez votre réseau"
-    },
-    "inviteErrorTitle": "Échec de l'envoi de l'invitation",
-    "invitePrompt": "Entrez l'adresse e-mail de la personne que vous souhaitez inviter :",
-    "inviteSuccessDescription": "Une invitation a été envoyée à {email}.",
-    "inviteSuccessTitle": "Invitation envoyée !",
-    "notFoundDescription": "Le profil utilisateur que vous recherchez n'a pas pu être trouvé.",
-    "notFoundTitle": "Profil non trouvé",
-    "postComments": "Commentaires sur les publications",
-    "postLikes": "J'aime sur les publications",
-    "profileViews": "Visites du profil",
-    "tabs": {
-      "activity": "Activité",
-      "overview": "Aperçu"
-    },
-    "editProfile": "Modifier le profil",
-    "showUniversalIdButton": "Afficher l'ID universel",
-    "universalIdModalTitle": "Votre ID universel",
-    "universalIdModalDescription": "Les autres utilisateurs peuvent scanner ce code pour voir rapidement votre profil public.",
-    "connect": "Connecter",
-    "message": "Message",
-    "aboutTitle": "À propos de {displayName}",
-    "interestsTitle": "Domaines d'intérêt",
-    "needsTitle": "Besoins et offres",
-    "contactTitle": "Informations de contact",
-    "recentActivityTitle": "Activité récente",
-    "noRecentActivity": "Cet utilisateur n'a pas encore d'activité publique."
-  },
-  "NotFoundPage": {
-    "title": "404 - Page non trouvée",
-    "description": "Désolé, mais la page que vous recherchez n'existe pas ou a été déplacée.",
-    "goHomeButton": "Aller à la page d'accueil"
-  },
-  "MobileHomepage": {
-    "welcome": {
-      "morning": "Bonjour, {name}",
-      "afternoon": "Bonjour, {name}",
-      "evening": "Bonsoir, {name}"
-    },
-    "discoverTitle": "Découvrir",
-    "seeAllButton": "Voir tout",
-    "noRecommendations": "Aucune recommandation disponible pour le moment.",
-    "communityFeedTitle": "Fil d'actualité de la communauté",
-    "communityFeedDescription": "Tenez-vous au courant des dernières publications et discussions de votre réseau.",
-    "goToFeedButton": "Aller au fil d'actualité"
-  },
-  "DashboardLeftSidebar": {
-    "viewProfileLink": "Voir mon profil",
-    "profileViewers": "Visites du profil",
-    "postEngagements": "Interactions sur les publications",
-    "pro": {
-      "unlock": "Débloquez des analyses et des informations avancées.",
-      "try": "Essayer Pro gratuitement"
-    },
-    "recent": {
-      "title": "Récent",
-      "myPinBoard": "Mon tableau d'épingles",
-      "communityGroups": "Groupes communautaires",
-      "industryNews": "Actualités du secteur",
-      "agriEvents": "Événements agricoles",
-      "mySupplyChainNetwork": "Mon réseau de chaîne d'approvisionnement"
-    }
-  },
-  "CreatePostModal": {
-    "title": "Créer une nouvelle publication",
-    "description": "Partagez une mise à jour, posez une question ou lancez une conversation avec la communauté.",
-    "yourName": "Votre nom",
-    "shareUpdate": "Partager une mise à jour",
-    "placeholder": "Qu'avez-vous en tête ?",
-    "selectedFile": "Fichier sélectionné :",
-    "pollOptionsLabel": "Options du sondage",
-    "pollOptionPlaceholder": "Option {index}",
-    "addOptionButton": "Ajouter une option",
-    "pollNote": "Un maximum de {maxOptions} options est autorisé.",
-    "photoVideo": "Photo/Vidéo",
-    "agriEvent": "Événement agricole",
-    "shareDocumentButton": "Partager un document",
-    "createPollButton": "Créer un sondage",
-    "postButton": "Publier",
-    "pollOptionsError": "Un sondage doit avoir au moins 2 options non vides.",
-    "emptyPostError": "Votre publication ne peut pas être vide."
-  },
-  "FeedItemCard": {
-    "signInToLikeToast": "Vous devez être connecté pour aimer une publication.",
-    "repostPlaceholderToast": "La fonctionnalité de republication sera bientôt disponible !",
-    "signInToVoteToast": "Vous devez être connecté pour voter.",
-    "voteSuccessToast": "Votre vote a été compté !",
-    "voteErrorToast": "Impossible d'enregistrer le vote.",
-    "editPost": "Modifier la publication",
-    "deletePost": "Supprimer la publication",
-    "like": "J'aime",
-    "comment": "Commenter",
-    "repost": "Republier",
-    "likes": "{count, plural, =0 {j'aime} =1 {j'aime} other {{count} j'aime}}",
-    "comments": "{count, plural, =0 {commentaires} =1 {commentaire} other {{count} commentaires}}",
-    "loadCommentsErrorToast": "Impossible de charger les commentaires.",
-    "noComments": "Soyez le premier à commenter !",
-    "loadingComments": "Chargement des commentaires...",
-    "loadMoreComments": "Charger plus de commentaires",
-    "writeCommentPlaceholder": "Ajouter un commentaire...",
-    "postButton": "Publier",
-    "votes": "{count, plural, =0 {votes} =1 {vote} other {{count} votes}}"
-  },
-  "MainDashboard": {
-    "feedError": {
-      "title": "Erreur de fil d'actualité",
-      "description": "Impossible de charger les dernières publications. Veuillez essayer de rafraîchir la page."
-    },
-    "uploadingMedia": "Téléchargement du média...",
-    "uploadComplete": "Téléchargement terminé !",
-    "postSuccess": {
-      "title": "Publication créée",
-      "description": "Votre publication a été partagée avec succès."
-    },
-    "postError": {
-      "auth": "Vous devez être connecté pour créer une publication.",
-      "fail": "Impossible de créer la publication."
-    },
-    "likeError": {
-      "auth": "Vous devez être connecté pour aimer une publication.",
-      "fail": "Échec de la mise à jour du statut 'J'aime'."
-    },
-    "commentError": {
-      "auth": "Vous devez être connecté pour commenter.",
-      "fail": "Échec de l'ajout du commentaire."
-    },
-    "commentSuccess": "Commentaire publié avec succès.",
-    "deleteError": {
-      "auth": "Vous devez être connecté pour supprimer une publication.",
-      "fail": "Échec de la suppression de la publication."
-    },
-    "deleteSuccess": {
-      "title": "Publication supprimée",
-      "description": "La publication a été supprimée avec succès."
-    },
-    "noActivity": "Il n'y a pas encore d'activité dans votre réseau. Commencez par vous connecter avec d'autres !"
-  },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "Synchronisation de {count} actions en attente...",
-      "onlinePending": "{count, plural, =0 {Vous êtes en ligne et toutes les modifications sont synchronisées.} =1 {# action en attente. Sera synchronisée bientôt.} other {{count} actions en attente. Seront synchronisées bientôt.}}",
-      "onlineSynced": "Vous êtes en ligne et toutes les modifications sont synchronisées.",
-      "offline": "Vous êtes hors ligne. {count, plural, =0 {Aucune modification en attente.} =1 {1 modification en file d'attente.} other {{count} modifications en file d'attente.}}"
-    },
-    "toast": {
-      "online": {
-        "title": "Vous êtes de retour en ligne !",
-        "description": "Votre connexion a été restaurée."
-      },
-      "offline": {
-        "title": "Vous êtes hors ligne.",
-        "description": "Vos modifications seront enregistrées et synchronisées lorsque vous vous reconnecterez."
-      },
-      "syncing": {
-        "title": "Synchronisation des modifications hors ligne",
-        "description": "Téléchargement de {count} actions sur le serveur."
-      },
-      "synced": {
-        "title": "Synchronisation terminée",
-        "description": "Toutes vos modifications hors ligne ont été enregistrées."
-      },
-      "syncFailed": {
-        "title": "Échec de la synchronisation",
-        "description": "Nous n'avons pas pu synchroniser vos modifications hors ligne. Nous essaierons à nouveau plus tard."
-      },
-      "queued": {
-        "title": "Action mise en file d'attente",
-        "description": "Cette action sera effectuée lorsque vous serez de nouveau en ligne."
-      }
-    }
-  },
-  "searchPage": {
-    "title": "Recherche universelle",
-    "description": "Trouvez n'importe quoi sur toute la plateforme DamDoh.",
-    "placeholder": "Que recherchez-vous ?",
-    "searchButton": "Rechercher",
-    "popularSearches": "Recherches populaires",
-    "popularSearch1": "Café biologique",
-    "popularSearch2": "Location de tracteur au Kenya",
-    "popularSearch3": "Expert en santé des sols",
-    "popularSearch4": "Financement des exportations",
-    "popularSearch5": "Forum sur les pertes après récolte",
-    "modal": {
-      "title": "Recherche universelle",
-      "placeholder": "Rechercher des produits, services, personnes, publications de forum...",
-      "searchButton": "Rechercher",
-      "searchError": "Erreur de recherche",
-      "searchErrorDescription": "Impossible d'effectuer la recherche pour le moment. Veuillez réessayer.",
-      "scanFailed": "Échec du scan",
-      "scanError": "Erreur de scan",
-      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
-      "invalidCodeError": "Ce n'est pas un code de récupération ou de profil DamDoh valide.",
-      "interpretationTitle": "Interprétation de l'IA",
-      "interpretationNotesDefault": "Recherche par mots-clés.",
-      "filtersTitle": "Filtres",
-      "results": {
-        "users": "Profils",
-        "marketplaceItems": "Marché",
-        "forums": "Forums",
-        "agri_events": "Événements",
-        "knowledge_articles": "Centre de connaissances",
-        "vti_registry": "Rapports de traçabilité"
-      },
-      "noResults": "Aucun résultat trouvé",
-      "tryAgain": "Essayez une autre requête ou élargissez votre recherche."
+      ]
     }
   }
 }

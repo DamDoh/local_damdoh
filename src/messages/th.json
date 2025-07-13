@@ -64,585 +64,201 @@
       "Weather": "อิงตามสภาพอากาศ (พาราเมตริก)"
     },
     "mobileHomeCategories": {
-        "produceMarket": "ตลาดสินค้าเกษตร",
-        "farmInputs": "ปัจจัยการผลิต",
-        "talentExchange": "ตลาดนัดความสามารถ",
-        "machinery": "เครื่องจักร",
-        "community": "ชุมชน",
-        "aiAssistant": "ผู้ช่วย AI",
-        "events": "กิจกรรม"
+      "produceMarket": "ตลาดสินค้าเกษตร",
+      "farmInputs": "ปัจจัยการผลิต",
+      "talentExchange": "ตลาดนัดความสามารถ",
+      "machinery": "เครื่องจักร",
+      "community": "ชุมชน",
+      "aiAssistant": "ผู้ช่วย AI",
+      "events": "กิจกรรม"
+    },
+    "cropStages": {
+      "Planting": "Planting",
+      "Vegetative": "Vegetative",
+      "Flowering": "Flowering",
+      "Fruiting": "Fruiting",
+      "Harvesting": "Harvesting",
+      "Post-Harvest": "Post-Harvest"
+    },
+    "observationTypes": {
+      "GeneralNote": "General Note",
+      "PestSighting": "Pest Sighting",
+      "DiseaseSighting": "Disease Sighting",
+      "SoilCondition": "Soil Condition",
+      "WeatherEvent": "Weather Event",
+      "GrowthStageChange": "Growth Stage Change",
+      "IrrigationEvent": "Irrigation Event"
     }
   },
-  "LandingPage": {
-    "hero": {
-      "title": "เสริมสร้างศักยภาพการเกษตรตั้งแต่ดินสู่การขายบน {appName}",
-      "subtitle": "แพลตฟอร์มเดียวที่เชื่อมโยงผู้มีส่วนได้ส่วนเสียทุกคนในห่วงโซ่คุณค่าทางการเกษตรเพื่ออนาคตที่โปร่งใส มีประสิทธิภาพ และยั่งยืนยิ่งขึ้น",
-      "getStartedButton": "เริ่มต้นฟรี",
-      "learnMoreButton": "เรียนรู้เพิ่มเติม"
-    },
-    "features": {
-      "title": "คุณสมบัติหลักของ DamDoh",
-      "subtitle": "ทุกสิ่งที่คุณต้องการเพื่อการเติบโต เชื่อมต่อ และค้าขาย ทั้งหมดในที่เดียว",
-      "networking": {
-        "title": "เครือข่ายอัจฉริยะ",
-        "description": "คำแนะนำการเชื่อมต่อที่ขับเคลื่อนด้วย AI เพื่อเชื่อมโยงคุณกับพันธมิตรที่เหมาะสม ตั้งแต่ซัพพลายเออร์ไปจนถึงผู้ซื้อต่างประเทศ"
+  "farmManagement": {
+    "familyFarmPage": {
+      "backLink": "Back to Farm Management Hub",
+      "title": "The 200sqm Integrated Family Farm Model",
+      "description": "A holistic approach to small-scale farming for food security, income generation, and sustainability.",
+      "intro": "This model is designed to maximize productivity on a small plot of land (e.g., 200 square meters) by integrating various components that work together synergistically. It's a closed-loop system where waste from one component becomes an input for another, reducing external costs and environmental impact.",
+      "diagramCaption": "Diagram illustrating the integrated components of the 200sqm farm model.",
+      "detailsTitle": "Key Components",
+      "principlesTitle": "Core Principles",
+      "conclusion": {
+        "title": "A Model of Resilience and Abundance",
+        "content": [
+          "The 200sqm Integrated Family Farm is more than just a method of farming; it's a philosophy of working in harmony with nature.",
+          "It empowers families to achieve food sovereignty, generate diverse income streams, and build a resilient livelihood in the face of climate change.",
+          "By adopting these principles, even the smallest plot of land can become a source of abundance."
+        ]
       },
-      "marketplace": {
-        "title": "ตลาดโดยตรง",
-        "description": "ซื้อและขายสินค้าและบริการโดยตรง เพิ่มความโปร่งใสและผลกำไรให้กับผู้มีส่วนได้ส่วนเสียทุกคน"
-      },
-      "forums": {
-        "title": "ฟอรัมเฉพาะเรื่อง",
-        "description": "แบ่งปันความรู้ อภิปรายความท้าทาย และร่วมมือกันหาแนวทางแก้ไขในฟอรัมเฉพาะเรื่อง"
-      },
-      "talent": {
-        "title": "ตลาดนัดความสามารถ",
-        "description": "เสนอหรือค้นหาบริการทางการเกษตรเฉพาะทาง ตั้งแต่การเก็บเกี่ยวตามความต้องการไปจนถึงการสำรวจด้วยโดรน"
-      }
-    },
-    "forWho": {
-      "badge": "สำหรับทุกคนในภาคเกษตรกรรม",
-      "title": "แพลตฟอร์มเดียวสำหรับทั้งห่วงโซ่คุณค่า",
-      "description": "DamDoh ได้รับการออกแบบมาโดยเฉพาะเพื่อให้บริการระบบนิเวศทางการเกษตรทั้งหมด สร้างจุดศูนย์กลางแห่งความจริงและโอกาสสำหรับทุกคน",
-      "farmers": {
-        "title": "เกษตรกร",
-        "description": "เข้าถึงตลาดที่ดีขึ้น ค้นหาปัจจัยการผลิตที่มีคุณภาพ และรับคำแนะนำจากผู้เชี่ยวชาญเพื่อเพิ่มผลผลิตและผลกำไร"
-      },
-      "buyers": {
-        "title": "ผู้ซื้อและผู้แปรรูป",
-        "description": "จัดหาผลผลิตคุณภาพสูงที่ตรวจสอบย้อนกลับได้โดยตรงจากเกษตรกรและสหกรณ์ รับประกันความน่าเชื่อถือของห่วงโซ่อุปทาน"
-      },
-      "experts": {
-        "title": "ผู้เชี่ยวชาญและผู้ให้บริการ",
-        "description": "เสนอทักษะและบริการเฉพาะทางของคุณแก่ผู้ชมทางการเกษตรในวงกว้างที่กำลังมองหาความเชี่ยวชาญของคุณ"
-      },
-      "fis": {
-        "title": "สถาบันการเงิน",
-        "description": "เสนอสินเชื่อ เงินช่วยเหลือ และผลิตภัณฑ์ประกันภัยที่ตรงเป้าหมายให้กับเครือข่ายธุรกิจการเกษตรที่ผ่านการตรวจสอบแล้ว"
-      },
-      "imageAlt": "กลุ่มผู้มีส่วนได้ส่วนเสียทางการเกษตรที่หลากหลายกำลังทำงานร่วมกัน"
-    },
-    "cta": {
-      "title": "เข้าร่วมการปฏิวัติทางการเกษตร",
-      "subtitle": "ลงทะเบียนวันนี้และเป็นส่วนหนึ่งของเครือข่ายระดับโลกที่กำลังเติบโตซึ่งอุทิศตนเพื่อเปลี่ยนแปลงอนาคตของอาหาร",
-      "button": "สร้างบัญชีฟรีของคุณ"
-    }
-  },
-  "Auth": {
-    "createAccount": "สร้างบัญชี",
-    "signInWelcome": "ยินดีต้อนรับกลับสู่ {appName}",
-    "signUpWelcome": "เข้าร่วมเครือข่ายการเกษตร DamDoh",
-    "forgotPasswordResetPrompt": "รีเซ็ตรหัสผ่านของคุณสำหรับ {appName}",
-    "resetPasswordPrompt": "สร้างรหัสผ่านใหม่สำหรับ {appName}",
-    "signInTitle": "ลงชื่อเข้าใช้บัญชีของคุณ",
-    "signInDescription": "ป้อนข้อมูลประจำตัวของคุณเพื่อเข้าถึงแดชบอร์ดของคุณ",
-    "emailLabel": "อีเมล",
-    "emailPlaceholder": "you@example.com",
-    "passwordLabel": "รหัสผ่าน",
-    "forgotPasswordLink": "ลืมรหัสผ่าน?",
-    "signingInButton": "กำลังลงชื่อเข้าใช้...",
-    "signInButton": "ลงชื่อเข้าใช้",
-    "noAccountPrompt": "ยังไม่มีบัญชี?",
-    "signUpLink": "ลงทะเบียน",
-    "signInLink": "ลงชื่อเข้าใช้",
-    "recoverWithUniversalIdPrompt": "หรือกู้คืนการเข้าถึงด้วย Universal ID ของคุณ",
-    "signUpTitle": "สร้างบัญชีใหม่",
-    "signUpDescription": "บอกเราเล็กน้อยเกี่ยวกับตัวคุณเพื่อเริ่มต้น",
-    "nameLabel": "ชื่อของคุณหรือชื่อธุรกิจ",
-    "namePlaceholder": "เช่น สมชาย ใจดี หรือ ฟาร์ม Green Valley",
-    "roleLabel": "บทบาทหลักของคุณ",
-    "rolePlaceholder": "เลือกบทบาทของคุณในห่วงโซ่อุปทาน...",
-    "confirmPasswordLabel": "ยืนยันรหัสผ่าน",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "กำลังสร้างบัญชี...",
-    "signUpButton": "สร้างบัญชี",
-    "alreadyHaveAccountPrompt": "มีบัญชีอยู่แล้ว?",
-    "forgotPasswordTitle": "ลืมรหัสผ่าน?",
-    "forgotPasswordDescription": "ไม่มีปัญหา ป้อนที่อยู่อีเมลของคุณด้านล่าง แล้วเราจะส่งลิงก์เพื่อรีเซ็ตให้คุณ",
-    "sendResetLinkButton": "ส่งลิงก์รีเซ็ต",
-    "sendingEmailButton": "กำลังส่งอีเมล...",
-    "rememberPasswordPrompt": "จำรหัสผ่านของคุณได้แล้วใช่ไหม?",
-    "resetPasswordTitle": "รีเซ็ตรหัสผ่านของคุณ",
-    "resetPasswordDescription": "ป้อนและยืนยันรหัสผ่านใหม่ของคุณด้านล่าง",
-    "newPasswordLabel": "รหัสผ่านใหม่",
-    "newPasswordPlaceholder": "ป้อนรหัสผ่านใหม่ที่คาดเดายาก",
-    "resetPasswordButton": "รีเซ็ตรหัสผ่าน",
-    "resettingPasswordButton": "กำลังรีเซ็ต...",
-    "recoverPage": {
-      "title": "กู้คืนบัญชีของคุณ",
-      "description": "ใช้เครือข่ายของคุณเพื่อเข้าถึงอีกครั้ง",
-      "howItWorksTitle": "วิธีการทำงาน",
-      "step1": "ป้อนหมายเลขโทรศัพท์ของคุณเพื่อเริ่มเซสชันการกู้คืน",
-      "step2": "แสดงรหัส QR ชั่วคราวให้เพื่อนที่เชื่อถือได้บน DamDoh",
-      "step3": "เมื่อเพื่อนของคุณสแกนรหัสเพื่อยืนยันตัวตนของคุณ คุณจะสามารถเข้าถึงได้อีกครั้ง",
-      "startButton": "เริ่มการกู้คืนบัญชี",
-      "scanTitle": "ขอให้เพื่อนสแกน",
-      "scanDescription": "ให้ผู้ติดต่อ DamDoh ที่เชื่อถือได้สแกนรหัส QR นี้โดยใช้คุณสมบัติ 'ช่วยเพื่อนกู้คืน' ในแอปของพวกเขา",
-      "scanNote": "รหัสนี้เป็นรหัสชั่วคราวและจะหมดอายุใน 10 นาที",
-      "startOverButton": "เริ่มใหม่",
-      "enterPhone": {
-        "title": "ป้อนหมายเลขโทรศัพท์ของคุณ",
-        "description": "ระบุหมายเลขโทรศัพท์ที่เชื่อมโยงกับบัญชีที่คุณต้องการกู้คืน",
-        "phoneNumberLabel": "หมายเลขโทรศัพท์",
-        "phoneNumberPlaceholder": "เช่น +66812345678",
-        "verifyingButton": "กำลังตรวจสอบ...",
-        "getRecoveryCodeButton": "รับรหัสกู้คืน",
-        "phoneRequiredError": "โปรดป้อนหมายเลขโทรศัพท์ที่ถูกต้อง",
-        "genericError": "ไม่สามารถเริ่มการกู้คืนได้ โปรดตรวจสอบหมายเลขโทรศัพท์แล้วลองอีกครั้ง"
-      },
-      "helpFriend": {
-        "button": "ช่วยเพื่อนกู้คืน",
-        "scanError": "นี่ไม่ใช่รหัสกู้คืน DamDoh ที่ถูกต้อง",
-        "scanSuccess": "ยืนยันสำเร็จ!",
-        "scanFail": "ไม่สามารถอ่านรหัส QR ได้ โปรดลองอีกครั้ง"
-      }
-    },
-    "forgotPassword": {
-      "emailSentTitle": "ตรวจสอบอีเมลของคุณ",
-      "emailSentDescription": "ลิงก์รีเซ็ตรหัสผ่านได้ถูกส่งไปยัง {email} แล้ว",
-      "emailSentDescriptionIfAccountExists": "หากมีบัญชีที่เชื่อมโยงกับ {email} ลิงก์รีเซ็ตรหัสผ่านได้ถูกส่งไปแล้ว",
-      "successTitle": "ส่งอีเมลแล้ว!",
-      "successDescription": "โปรดตรวจสอบกล่องจดหมายของคุณ (และโฟลเดอร์สแปม) เพื่อหาริงก์รีเซ็ตรหัสผ่าน",
-      "errors": {
-        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
-        "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
-        "tooManyRequests": "มีคำขอมากเกินไป โปรดลองอีกครั้งในภายหลัง",
-        "default": "ไม่สามารถส่งอีเมลรีเซ็ตได้",
-        "missingCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้อง โปรดขอลิงก์ใหม่",
-        "missingCodeTitle": "ลิงก์ไม่ถูกต้อง",
-        "missingCodeDescription": "ลิงก์รีเซ็ตรหัสผ่านหายไปหรือไม่ถูกต้อง โปรดกลับไปที่หน้า 'ลืมรหัสผ่าน' เพื่อขอลิงก์ใหม่"
-      }
-    },
-    "resetPassword": {
-      "successTitle": "รีเซ็ตรหัสผ่านสำเร็จ!",
-      "successDescription": "ตอนนี้คุณสามารถลงชื่อเข้าใช้ด้วยรหัสผ่านใหม่ของคุณได้แล้ว",
-      "successRedirect": "คุณจะถูกนำไปยังหน้าลงชื่อเข้าใช้ในไม่ช้า...",
-      "errors": {
-        "missingCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้อง โปรดขอลิงก์ใหม่",
-        "missingCodeTitle": "ลิงก์ไม่ถูกต้อง",
-        "missingCodeDescription": "ลิงก์รีเซ็ตรหัสผ่านหายไปหรือไม่ถูกต้อง โปรดกลับไปที่หน้า 'ลืมรหัสผ่าน' เพื่อขอลิงก์ใหม่",
-        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
-        "invalidOrExpiredCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้องหรือหมดอายุแล้ว โปรดขอลิงก์ใหม่",
-        "userDisabled": "บัญชีผู้ใช้นี้ถูกปิดใช้งานแล้ว",
-        "userNotFound": "ไม่พบผู้ใช้ที่ตรงกับลิงก์รีเซ็ตนี้",
-        "weakPassword": "รหัสผ่านใหม่ไม่คาดเดายากพอ",
-        "default": "ไม่สามารถรีเซ็ตรหัสผ่านได้"
-      }
-    },
-    "errors": {
-      "emailInUse": "อีเมลนี้ถูกใช้งานแล้ว",
-      "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
-      "weakPassword": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
-      "default": "เกิดข้อผิดพลาดที่ไม่คาดคิด"
-    },
-    "signUpSuccess": {
-      "title": "สร้างบัญชีและลงชื่อเข้าใช้แล้ว!",
-      "description": "ยินดีต้อนรับสู่ {appName}! คุณได้ลงชื่อเข้าใช้เรียบร้อยแล้ว"
-    },
-    "signUpFailed": "การลงทะเบียนล้มเหลว",
-    "toast": {
-      "loggedOut": {
-        "title": "ออกจากระบบแล้ว",
-        "description": "คุณได้ออกจากระบบเรียบร้อยแล้ว"
-      },
-      "logoutFailed": {
-        "title": "การออกจากระบบล้มเหลว",
-        "description": "ไม่สามารถออกจากระบบได้ โปรดลองอีกครั้ง"
-      },
-      "signInSuccess": {
-        "title": "ลงชื่อเข้าใช้สำเร็จ!",
-        "description": "ยินดีต้อนรับกลับสู่ {appName}"
-      },
-      "signInFailed": {
-        "title": "การลงชื่อเข้าใช้ล้มเหลว"
-      }
-    },
-    "passwordStrength": {
-      "label": "ความคาดเดายาก",
-      "weak": "คาดเดาง่าย",
-      "medium": "ปานกลาง",
-      "strong": "คาดเดายาก",
-      "veryStrong": "คาดเดายากมาก"
-    },
-    "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
-    "weakPassword": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"
-  },
-  "AppHeader": {
-    "home": "หน้าแรก",
-    "network": "เครือข่าย",
-    "farmMgmt": "จัดการฟาร์ม",
-    "marketplace": "ตลาด",
-    "talentExchange": "แลกเปลี่ยนความสามารถ",
-    "traceability": "การตรวจสอบย้อนกลับ",
-    "forums": "ฟอรัม",
-    "sustainability": "ความยั่งยืน",
-    "notifications": "การแจ้งเตือน",
-    "messages": "ข้อความ",
-    "wallet": "กระเป๋าเงิน",
-    "searchPlaceholder": "ค้นหาบุคคล, สินค้า, บริการ...",
-    "signIn": "ลงชื่อเข้าใช้",
-    "signUp": "ลงทะเบียน",
-    "myProfile": "โปรไฟล์ของฉัน",
-    "myOrders": "คำสั่งซื้อของฉัน",
-    "settings": "การตั้งค่า",
-    "helpCenter": "ศูนย์ช่วยเหลือ",
-    "logOut": "ออกจากระบบ",
-    "switchToLightAria": "เปลี่ยนเป็นธีมสว่าง",
-    "switchToDarkAria": "เปลี่ยนเป็นธีมมืด"
-  },
-  "LanguageSwitcher": {
-    "toggle": "เปลี่ยนภาษา"
-  },
-  "AppFooter": {
-    "tagline": "แพลตฟอร์มระดับโลกสำหรับห่วงโซ่อุปทานทางการเกษตร",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "เกี่ยวกับเรา",
-    "contactLabel": "ติดต่อ",
-    "careersLabel": "ร่วมงานกับเรา",
-    "blogLabel": "บล็อกและข่าวสาร",
-    "resourcesTitle": "ทรัพยากร",
-    "helpCenterLabel": "ศูนย์ช่วยเหลือ",
-    "communityGuidelinesLabel": "แนวทางปฏิบัติของชุมชน",
-    "industryNewsLabel": "ข่าวอุตสาหกรรม",
-    "eventsLabel": "กิจกรรม",
-    "talentExchangeLabel": "ตลาดนัดความสามารถ",
-    "legalTitle": "กฎหมาย",
-    "privacyPolicyLabel": "นโยบายความเป็นส่วนตัว",
-    "termsOfServiceLabel": "ข้อกำหนดในการให้บริการ",
-    "copyright": "© {year} {appName} สงวนลิขสิทธิ์",
-    "getMobileApp": "รับแอปพลิเคชันมือถือ",
-    "googlePlayAlt": "รับบน Google Play",
-    "appStoreAlt": "ดาวน์โหลดบน App Store"
-  },
-  "aboutPage": {
-    "hero": {
-      "title": "เกี่ยวกับ DamDoh",
-      "subtitle": "เชื่อมโยงห่วงโซ่อุปทานทางการเกษตรระดับโลก ทีละผู้มีส่วนได้ส่วนเสีย"
-    },
-    "vision": {
-      "title": "วิสัยทัศน์ของเรา",
-      "p1": "เรามองเห็นโลกที่ผู้มีส่วนได้ส่วนเสียทางการเกษตรทุกคน ตั้งแต่เกษตรกรรายย่อยที่สุดไปจนถึงผู้ค้าปลีกรายใหญ่ที่สุด ได้รับอำนาจด้วยข้อมูล การเชื่อมต่อ และเครื่องมือที่จำเป็นต่อการเติบโต",
-      "p2": "DamDoh ก่อตั้งขึ้นจากความเชื่อที่ว่าเทคโนโลยีสามารถเชื่อมช่องว่าง สร้างความไว้วางใจ และสร้างระบบอาหารระดับโลกที่เท่าเทียมและยั่งยืนยิ่งขึ้น",
-      "foundersTitle": "ผู้ก่อตั้ง"
-    },
-    "challenge": {
-      "title": "ความท้าทายที่เรากำลังแก้ไข",
-      "description": "ห่วงโซ่อุปทานทางการเกษตรมีความกระจัดกระจาย ไม่มีประสิทธิภาพ และมักขาดความโปร่งใสที่จำเป็นต่อการเติบโตอย่างยั่งยืน ความท้าทายที่สำคัญ ได้แก่:",
-      "details": {
-        "marketAccess": "การเข้าถึงตลาดที่จำกัดสำหรับเกษตรกรรายย่อย",
-        "inefficiency": "โลจิสติกส์ที่ไม่มีประสิทธิภาพนำไปสู่การสูญเสียหลังการเก็บเกี่ยว",
-        "financialExclusion": "ความยากลำบากในการเข้าถึงแหล่งเงินทุนและประกันภัยสำหรับผู้ผลิตรายย่อย",
-        "informationGaps": "ความรู้ที่กระจัดกระจายและการขาดการเข้าถึงแนวปฏิบัติที่ดีที่สุด",
-        "qualityTrust": "การควบคุมคุณภาพที่ไม่สม่ำเสมอและการขาดข้อมูลผลิตภัณฑ์ที่ตรวจสอบได้",
-        "climatePressure": "แรงกดดันที่เพิ่มขึ้นจากการเปลี่ยนแปลงสภาพภูมิอากาศต่อวิธีการทำฟาร์มแบบดั้งเดิม",
-        "foodLoss": "การสูญเสียและการสิ้นเปลืองอาหารอย่างมีนัยสำคัญในหลายขั้นตอนของห่วงโซ่อุปทาน",
-        "dataFragmentation": "การกระจัดกระจายของข้อมูลในระบบต่างๆ ที่ไม่เชื่อมต่อกัน"
-      },
-      "list": {
-        "marketAccess": "การเข้าถึงตลาดที่จำกัด",
-        "inefficiency": "ความไม่มีประสิทธิภาพของห่วงโซ่อุปทาน",
-        "financialExclusion": "การกีดกันทางการเงิน",
-        "informationGaps": "ช่องว่างทางข้อมูล",
-        "qualityTrust": "การขาดดุลด้านคุณภาพและความน่าเชื่อถือ",
-        "climatePressure": "แรงกดดันจากสภาพภูมิอากาศ",
-        "foodLoss": "การสูญเสียและการสิ้นเปลืองอาหาร",
-        "dataFragmentation": "การกระจัดกระจายของข้อมูล"
-      }
-    },
-    "solution": {
-      "title": "โซลูชันของ DamDoh",
-      "description": "เรากำลังสร้าง 'ซูเปอร์แอป' ที่ครอบคลุมซึ่งแปลงเป็นดิจิทัลและเชื่อมโยงระบบนิเวศทางการเกษตรทั้งหมดผ่านเสาหลักหลายประการ:",
-      "list": {
-        "education": "การศึกษาและการแบ่งปันความรู้",
-        "ai": "ความช่วยเหลือและข้อมูลเชิงลึกที่ขับเคลื่อนด้วย AI",
-        "marketplace": "ตลาดที่โปร่งใสและตรงไปตรงมา",
-        "logistics": "โลจิสติกส์และการตรวจสอบย้อนกลับแบบบูรณาการ",
-        "financial": "การเข้าถึงบริการทางการเงิน"
-      }
-    },
-    "beyondTechnology": {
-      "title": "นอกเหนือจากเทคโนโลยี: มันเกี่ยวกับผู้คน",
-      "list": {
-        "p2p": {
-          "title": "คนสู่คน",
-          "content": "เชื่อมโยงเกษตรกรกับเกษตรกรคนอื่น ๆ เพื่อแบ่งปันความรู้และสร้างชุมชน"
+      "zones": [
+        {
+          "id": "overall-layout",
+          "title": "Overall Layout & Water Management",
+          "icon": "LayoutGrid",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "Diagram of a farm layout with a central pond.",
+          "dataAiHint": "farm layout pond",
+          "description": [
+            "The design prioritizes efficient water use and nutrient cycling. A central pond or water reservoir acts as the heart of the farm, collecting rainwater and runoff.",
+            "Water from the pond is used to irrigate crops and provide water for livestock. Wastewater from livestock pens is then channeled back, often through a simple filter, to fertilize the pond, which in turn can be used for aquaculture."
+          ],
+          "details": [
+            {
+              "title": "Pond",
+              "content": [
+                "Acts as a heat sink, moderates microclimate, and is a source for irrigation and aquaculture."
+              ]
+            },
+            {
+              "title": "High Beds",
+              "content": [
+                "Raised beds prevent waterlogging during heavy rains and improve soil aeration."
+              ]
+            },
+            {
+              "title": "Paths",
+              "content": [
+                "Paths are covered with mulch to suppress weeds and retain soil moisture."
+              ]
+            }
+          ]
         },
-        "p2b": {
-          "title": "คนสู่ธุรกิจ",
-          "content": "ส่งเสริมความสัมพันธ์ที่น่าเชื่อถือและตรงไปตรงมาระหว่างผู้ผลิตและผู้ซื้อ"
+        {
+          "id": "vegetable-production",
+          "title": "Vegetable Production",
+          "icon": "Sprout",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "Lush vegetable beds with a variety of crops.",
+          "dataAiHint": "vegetable garden raised beds",
+          "description": [
+            "Intensive vegetable cultivation is the primary income generator. This zone focuses on high-value, fast-growing crops suitable for the local market.",
+            "Techniques like intercropping (planting different crops together) and succession planting (replanting a new crop immediately after one is harvested) are used to maximize space and time."
+          ],
+          "details": [
+            {
+              "title": "Trellising",
+              "content": [
+                "Vining plants like beans and cucumbers are grown vertically on trellises to save space."
+              ]
+            },
+            {
+              "title": "Crop Rotation",
+              "content": [
+                "Crops are rotated to prevent soil nutrient depletion and break pest cycles."
+              ]
+            },
+            {
+              "title": "Compost Application",
+              "content": [
+                "On-farm compost is regularly applied to maintain soil fertility."
+              ]
+            }
+          ]
         },
-        "p2e": {
-          "title": "คนสู่ระบบนิเวศ",
-          "content": "ให้บุคคลเข้าถึงระบบนิเวศของบริการทั้งหมด – การเงิน โลจิสติกส์ การประกันภัย และอื่น ๆ"
+        {
+          "id": "fruit-trees",
+          "title": "Fruit Trees & Perennials",
+          "icon": "ShoppingBasket",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A banana tree and a papaya tree laden with fruit.",
+          "dataAiHint": "fruit trees farm",
+          "description": [
+            "Fruit trees like papaya, banana, and moringa are planted along the borders or integrated within the vegetable plots. They provide long-term food security, shade, and additional income.",
+            "These perennials require less maintenance than annual vegetables and contribute to the farm's overall biodiversity."
+          ]
         },
-        "p2w": {
-          "title": "คนสู่โลก",
-          "content": "เปิดตลาดและโอกาสระดับโลกสำหรับผู้ผลิตที่ห่างไกลที่สุดผ่านการเข้าถึงดิจิทัลและการตรวจสอบย้อนกลับ"
+        {
+          "id": "aquaculture",
+          "title": "Aquaculture",
+          "icon": "Fish",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "Tilapia fish swimming in a small farm pond.",
+          "dataAiHint": "fish farm pond",
+          "description": [
+            "The central pond is stocked with fast-growing fish species like tilapia. The fish provide a valuable source of protein for the family and can be sold in the market.",
+            "Fish waste naturally fertilizes the pond water, which can then be used as nutrient-rich irrigation for the crops, closing the nutrient loop."
+          ]
+        },
+        {
+          "id": "animal-husbandry",
+          "title": "Animal Husbandry",
+          "icon": "Bird",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "Chickens scratching in a designated coop area.",
+          "dataAiHint": "farm chickens coop",
+          "description": [
+            "A small number of livestock, such as chickens or ducks, are raised in a designated area. They consume kitchen scraps and pests, and provide eggs and meat.",
+            "Their manure is a key ingredient for the compost pile, turning waste into valuable fertilizer for the vegetable beds."
+          ]
+        },
+        {
+          "id": "waste-management",
+          "title": "Waste Management & Composting",
+          "icon": "Recycle",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A well-managed compost pile with layers of green and brown material.",
+          "dataAiHint": "compost pile farm",
+          "description": [
+            "Nothing is wasted. A dedicated composting area processes all farm and kitchen waste, including crop residues, animal manure, and food scraps.",
+            "This creates rich, organic compost that nourishes the soil, eliminates the need for chemical fertilizers, and improves the soil's ability to hold water."
+          ]
+        },
+        {
+          "id": "integrated-pest-management",
+          "title": "Integrated Pest Management (IPM)",
+          "icon": "ShieldCheck",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "Marigold flowers planted next to tomato plants to repel pests.",
+          "dataAiHint": "marigold flowers tomatoes",
+          "description": [
+            "Instead of relying on chemical pesticides, the farm uses a combination of natural methods to manage pests.",
+            "This includes planting companion plants (like marigolds) that repel pests, encouraging beneficial insects (like ladybugs), and using physical barriers. This protects both the environment and the health of the consumers."
+          ]
+        },
+        {
+          "id": "soil-health",
+          "title": "Soil Health Management",
+          "icon": "Heart",
+          "imageSrc": "https://placehold.co/400x400.png",
+          "imageAlt": "A farmer holding rich, dark, loamy soil in their hands.",
+          "dataAiHint": "healthy soil hands",
+          "description": [
+            "The foundation of the entire system is healthy soil. All practices are geared towards building and maintaining soil fertility.",
+            "This includes constant mulching (God's Blanket), regular application of compost, minimizing soil disturbance (no-till methods), and promoting a vibrant community of soil microorganisms."
+          ],
+          "subSections": [
+            {
+              "title": "No-Till/Minimum Tillage",
+              "content": [
+                "Reduces soil erosion, protects soil structure, and preserves microbial life."
+              ]
+            },
+            {
+              "title": "Constant Mulching",
+              "content": [
+                "Protects soil from the sun, retains moisture, suppresses weeds, and provides organic matter as it decomposes."
+              ]
+            }
+          ]
         }
-      }
-    },
-    "commitment": {
-      "title": "ความมุ่งมั่นของเราต่ออนาคต",
-      "p1": "เรามุ่งมั่นที่จะใช้เทคโนโลยีเพื่อสิ่งที่ดี สร้างแพลตฟอร์มที่ไม่เพียงแต่ทำกำไรได้ แต่ยังสร้างใหม่สำหรับโลกของเราและให้อำนาจแก่ประชาชน",
-      "p2": "ทุกการเชื่อมต่อที่เกิดขึ้น ทุกความรู้ที่แบ่งปัน และทุกธุรกรรมที่คล่องตัวบน DamDoh คือก้าวไปสู่อนาคตอาหารที่ยืดหยุ่นและเท่าเทียมกันมากขึ้น",
-      "p3": "เข้าร่วมการเดินทางนี้กับเรา",
-      "button": "เป็นสมาชิก"
+      ]
     }
-  },
-  "contactPage": {
-    "title": "ติดต่อเรา",
-    "subtitle": "เราพร้อมให้ความช่วยเหลือ ติดต่อเราผ่านช่องทางใดก็ได้ด้านล่าง",
-    "emailUs": {
-      "title": "ส่งอีเมลถึงเรา",
-      "general": "สอบถามข้อมูลทั่วไป",
-      "support": "ฝ่ายสนับสนุน",
-      "partnerships": "ความร่วมมือ"
-    },
-    "callUs": {
-      "title": "โทรหาเรา",
-      "hours": "จันทร์ - ศุกร์, 9:00 - 17:00 น. (EAT)",
-      "phone": "+254 20 123 4567"
-    },
-    "ourOffice": {
-      "title": "สำนักงานของเรา",
-      "org": "มูลนิธิ DamDoh",
-      "address": "123 Agri-Tech Avenue, ไนโรบี, เคนยา"
-    },
-    "sendMessage": {
-      "title": "ส่งข้อความถึงเรา",
-      "nameLabel": "ชื่อของคุณ",
-      "namePlaceholder": "สมชาย ใจดี",
-      "emailLabel": "อีเมลของคุณ",
-      "emailPlaceholder": "somchai.jaidee@example.com",
-      "subjectLabel": "หัวข้อ",
-      "subjectPlaceholder": "เช่น สอบถามความร่วมมือ",
-      "messageLabel": "ข้อความของคุณ",
-      "messagePlaceholder": "พิมพ์ข้อความของคุณที่นี่...",
-      "buttonText": "ส่งข้อความ",
-      "note": "เราพยายามตอบกลับภายใน 24 ชั่วโมงทำการ"
-    }
-  },
-  "careers": {
-    "title": "ร่วมงานกับ DamDoh",
-    "subtitle": "เข้าร่วมภารกิจของเราในการปฏิวัติห่วงโซ่อุปทานทางการเกษตร",
-    "whyWorkWithUs": {
-      "title": "ทำไมต้องทำงานกับเรา?",
-      "intro": "ที่ DamDoh เราคือทีมของนักนวัตกรรม นักเทคโนโลยี และผู้เชี่ยวชาญด้านการเกษตรที่กระตือรือร้นที่จะสร้างผลกระทบที่จับต้องได้และเป็นสากล เราเสนอ:",
-      "point1": "สภาพแวดล้อมการทำงานที่ขับเคลื่อนด้วยภารกิจและมีชีวิตชีวา",
-      "point2": "โอกาสในการเติบโตและการเรียนรู้ทางวิชาชีพ",
-      "point3": "วัฒนธรรมแห่งความร่วมมือและความโปร่งใส",
-      "point4": "โอกาสในการทำงานกับเทคโนโลยีล้ำสมัย เช่น AI และบล็อกเชน",
-      "point5": "ความมุ่งมั่นต่อความยั่งยืนและผลกระทบทางสังคม"
-    },
-    "currentOpenings": {
-      "title": "ตำแหน่งงานว่างปัจจุบัน",
-      "job1": {
-        "title": "วิศวกร Full-Stack อาวุโส (Next.js, Firebase)",
-        "location": "ทางไกล",
-        "type": "เต็มเวลา",
-        "description": "เรากำลังมองหาวิศวกร full-stack ที่มีประสบการณ์เพื่อเป็นผู้นำในการพัฒนาคุณสมบัติหลักของแพลตฟอร์มของเรา"
-      },
-      "job2": {
-        "title": "ผู้เชี่ยวชาญด้านเนื้อหาทางการเกษตร",
-        "location": "ไนโรบี, เคนยา",
-        "type": "สัญญาจ้าง",
-        "description": "ช่วยเราสร้างฐานความรู้ที่ครอบคลุมที่สุดในโลกสำหรับแนวปฏิบัติทางการเกษตรที่ยั่งยืน"
-      },
-      "job3": {
-        "title": "นักออกแบบ UX/UI",
-        "location": "ทางไกล",
-        "type": "เต็มเวลา",
-        "description": "ออกแบบประสบการณ์ผู้ใช้ที่ใช้งานง่ายและเข้าถึงได้สำหรับฐานผู้ใช้ที่หลากหลายและทั่วโลก"
-      }
-    },
-    "noOpenings": {
-      "title": "ไม่มีตำแหน่งงานว่างในปัจจุบัน",
-      "content1": "เรามองหาผู้มีความสามารถที่หลงใหลในภารกิจของเราอยู่เสมอ หากคุณคิดว่าคุณจะเหมาะสมกับทีมของเรา โปรดส่งประวัติย่อและจดหมายสมัครงานของคุณมาที่ {emailLink}",
-      "emailLinkText": "careers@damdoh.org"
-    },
-    "applyNowButton": "สมัครตอนนี้"
-  },
-  "communityGuidelines": {
-    "title": "แนวทางปฏิบัติของชุมชน",
-    "subtitle": "การส่งเสริมสภาพแวดล้อมที่เป็นมืออาชีพ น่าเชื่อถือ และทำงานร่วมกัน",
-    "intro": "ยินดีต้อนรับสู่ชุมชน DamDoh! เพื่อให้แน่ใจว่าแพลตฟอร์มของเรายังคงเป็นพื้นที่ที่มีประสิทธิผลและปลอดภัยสำหรับผู้มีส่วนได้ส่วนเสียทางการเกษตรทุกคน เราขอให้คุณปฏิบัติตามแนวทางต่อไปนี้:",
-    "respectful": {
-      "title": "จงสุภาพและเป็นมืออาชีพ",
-      "description": "มีส่วนร่วมในการอภิปรายที่เป็นกลางและสร้างสรรค์ ความไม่เห็นด้วยเป็นเรื่องปกติ แต่การโจมตีส่วนตัว การล่วงละเมิด และคำพูดแสดงความเกลียดชังเป็นสิ่งที่ยอมรับไม่ได้"
-    },
-    "authentic": {
-      "title": "จงซื่อสัตย์และเป็นจริง",
-      "description": "แสดงตัวตนและธุรกิจของคุณอย่างถูกต้อง อย่าปลอมเป็นผู้อื่นหรือให้ข้อมูลเท็จเกี่ยวกับผลิตภัณฑ์ บริการ หรือการรับรองของคุณ"
-    },
-    "relevant": {
-      "title": "จงมีความเกี่ยวข้อง",
-      "description": "มีส่วนร่วมในการอภิปรายและรายชื่อในลักษณะที่เกี่ยวข้องกับห่วงโซ่อุปทานการเกษตร สแปม การหลอกลวง และเนื้อหาส่งเสริมการขายที่ไม่เกี่ยวข้องจะถูกลบออก"
-    },
-    "fairTrade": {
-      "title": "គោរពការប្តេជ្ញាចិត្តរបស់អ្នក",
-      "description": "เมื่อคุณทำข้อตกลงบนแพลตฟอร์ม ให้ปฏิบัติตาม การสร้างความไว้วางใจเป็นสิ่งจำเป็นสำหรับความสำเร็จของชุมชนของเรา"
-    },
-    "sustainable": {
-      "title": "ส่งเสริมความยั่งยืน",
-      "description": "แม้ว่าจะไม่ใช่ข้อกำหนดที่เข้มงวดสำหรับสมาชิกทุกคน แต่เราสนับสนุนให้มีการแบ่งปันความรู้และการปฏิบัติที่ส่งเสริมความยั่งยืนด้านสิ่งแวดล้อม เศรษฐกิจ และสังคม"
-    },
-    "reporting": {
-      "title": "การรายงานการละเมิด",
-      "content": "ប្រសិនបើคุณเห็นเนื้อหาหรือพฤติกรรมที่ละเมิดแนวทางเหล่านี้ โปรดรายงานให้ทีมงานของเราทราบที่ {emailLink} เราจะตรวจสอบรายงานทั้งหมดและดำเนินการตามความเหมาะสม",
-      "emailLinkText": "support@damdoh.org"
-    },
-    "conclusion": "ដោយการใช้ DamDoh คุณยอมรับแนวทางเหล่านี้ เราขอสงวนสิทธิ์ในการลบเนื้อหาและระงับบัญชีที่ละเมิดหลักการเหล่านี้ ขอบคุณที่ช่วยเราสร้างชุมชนที่ยอดเยี่ยม!"
-  },
-  "helpCenterPage": {
-    "title": "ศูนย์ช่วยเหลือ",
-    "subtitle": "คำแนะนำของคุณเพื่อใช้ประโยชน์สูงสุดจากแพลตฟอร์ม DamDoh",
-    "howCanWeHelp": "เราจะช่วยคุณได้อย่างไร?",
-    "searchPlaceholder": "ค้นหาหัวข้อ คุณสมบัติ หรือคำถาม...",
-    "browseTopics": "เรียกดูหัวข้อความช่วยเหลือ",
-    "gettingStarted": {
-      "title": "การเริ่มต้น",
-      "description": "เรียนรู้วิธีตั้งค่าโปรไฟล์ของคุณและเริ่มเชื่อมต่อ",
-      "placeholder": "เนื้อหาสำหรับ 'การเริ่มต้น' จะพร้อมใช้งานเร็วๆ นี้"
-    },
-    "marketplaceGuide": {
-      "title": "คู่มือตลาด",
-      "description": "เคล็ดลับในการสร้างรายชื่อที่มีประสิทธิภาพและค้นหาสิ่งที่คุณต้องการ",
-      "placeholder": "เนื้อหาสำหรับ 'คู่มือตลาด' จะพร้อมใช้งานเร็วๆ นี้"
-    },
-    "accountManagement": {
-      "title": "การจัดการบัญชี",
-      "description": "จัดการการตั้งค่า ความเป็นส่วนตัว และการแจ้งเตือนของคุณ",
-      "placeholder": "เนื้อหาสำหรับ 'การจัดการบัญชี' จะพร้อมใช้งานเร็วๆ นี้"
-    },
-    "troubleshooting": {
-      "title": "การแก้ไขปัญหา",
-      "description": "ค้นหาแนวทางแก้ไขสำหรับปัญหาทั่วไปและปัญหาทางเทคนิค",
-      "placeholder": "เนื้อหาสำหรับ 'การแก้ไขปัญหา' จะพร้อมใช้งานเร็วๆ นี้"
-    },
-    "stillNeedHelp": {
-      "title": "ยังต้องการความช่วยเหลืออยู่ไหม?",
-      "description": "ทีมสนับสนุนของเราพร้อมที่จะช่วยเหลือคุณในทุกคำถามที่คุณอาจมี",
-      "button": "ติดต่อฝ่ายสนับสนุน"
-    }
-  },
-  "privacyPolicy": {
-    "title": "นโยบายความเป็นส่วนตัว",
-    "lastUpdated": "ปรับปรุงล่าสุด: 29 ตุลาคม 2023",
-    "introduction": "ประกาศความเป็นส่วนตัวนี้สำหรับ DamDoh อธิบายว่าเราอาจรวบรวม จัดเก็บ ใช้ และ/หรือแบ่งปัน ('ประมวลผล') ข้อมูลของคุณอย่างไรและทำไมเมื่อคุณใช้บริการของเรา ('บริการ') เช่น เมื่อคุณเยี่ยมชมเว็บไซต์หรือแอปพลิเคชันมือถือของเรา",
-    "whatInfoWeCollect": {
-      "heading": "1. เราเก็บรวบรวมข้อมูลอะไรบ้าง?",
-      "content": "เราเก็บรวบรวมข้อมูลส่วนบุคคลที่คุณให้มาโดยสมัครใจเมื่อคุณลงทะเบียนในบริการ แสดงความสนใจในการรับข้อมูลเกี่ยวกับเราหรือผลิตภัณฑ์และบริการของเรา เมื่อคุณเข้าร่วมกิจกรรมในบริการ หรือเมื่อคุณติดต่อเรา"
-    },
-    "howWeUseInfo": {
-      "heading": "2. เราประมวลผลข้อมูลของคุณอย่างไร?",
-      "content": "เราประมวลผลข้อมูลของคุณเพื่อวัตถุประสงค์ตามผลประโยชน์ทางธุรกิจที่ชอบด้วยกฎหมาย การปฏิบัติตามสัญญาของเรากับคุณ การปฏิบัติตามภาระผูกพันทางกฎหมายของเรา และ/หรือความยินยอมของคุณ ซึ่งรวมถึงการอำนวยความสะดวกในการสร้างบัญชี การเปิดใช้งานการสื่อสารระหว่างผู้ใช้ และการให้บริการหลักของเรา"
-    },
-    "willInfoBeShared": {
-      "heading": "3. ข้อมูลของคุณจะถูกแบ่งปันกับใครหรือไม่?",
-      "content": "เราแบ่งปันข้อมูลเฉพาะเมื่อได้รับความยินยอมจากคุณ เพื่อปฏิบัติตามกฎหมาย เพื่อให้บริการแก่คุณ เพื่อปกป้องสิทธิ์ของคุณ หรือเพื่อปฏิบัติตามภาระผูกพันทางธุรกิจ ตัวอย่างเช่น เราแบ่งปันข้อมูลโปรไฟล์สาธารณะของคุณกับผู้ใช้รายอื่นเพื่ออำนวยความสะดวกในการเชื่อมต่อ"
-    },
-    "cookiesAndTracking": {
-      "heading": "4. เราใช้คุกกี้และเทคโนโลยีการติดตามอื่น ๆ หรือไม่?",
-      "content": "เราอาจใช้คุกกี้และเทคโนโลยีการติดตามที่คล้ายคลึงกัน (เช่น เว็บบีคอนและพิกเซล) เพื่อเข้าถึงหรือจัดเก็บข้อมูล ข้อมูลเฉพาะเกี่ยวกับวิธีที่เราใช้เทคโนโลยีดังกล่าวและวิธีที่คุณสามารถปฏิเสธคุกกี้บางอย่างได้ระบุไว้ในประกาศเกี่ยวกับคุกกี้ของเรา"
-    },
-    "howLongWeKeepInfo": {
-      "heading": "5. เราเก็บข้อมูลของคุณนานแค่ไหน?",
-      "content": "เราเก็บข้อมูลของคุณไว้นานเท่าที่จำเป็นเพื่อบรรลุวัตถุประสงค์ที่ระบุไว้ในประกาศความเป็นส่วนตัวนี้ เว้นแต่กฎหมายจะกำหนดไว้เป็นอย่างอื่น เมื่อเราไม่มีความจำเป็นทางธุรกิจที่ชอบด้วยกฎหมายในการประมวลผลข้อมูลส่วนบุคคลของคุณ เราจะลบหรือทำให้เป็นนิรนาม"
-    },
-    "howWeKeepInfoSafe": {
-      "heading": "6. เราเก็บรักษาข้อมูลของคุณให้ปลอดภัยได้อย่างไร?",
-      "content": "เราได้ใช้มาตรการรักษาความปลอดภัยทางเทคนิคและองค์กรที่เหมาะสมซึ่งออกแบบมาเพื่อปกป้องความปลอดภัยของข้อมูลส่วนบุคคลใดๆ ที่เราประมวลผล อย่างไรก็ตาม แม้จะมีมาตรการป้องกันและความพยายามของเรา ก็ไม่สามารถรับประกันการส่งข้อมูลทางอิเล็กทรอนิกส์ผ่านอินเทอร์เน็ตได้ 100%"
-    },
-    "minors": {
-      "heading": "7. เราเก็บข้อมูลจากผู้เยาว์หรือไม่?",
-      "content": "เราไม่ได้จงใจร้องขอข้อมูลจากหรือทำการตลาดกับเด็กอายุต่ำกว่า 18 ปี การใช้บริการแสดงว่าคุณรับรองว่าคุณมีอายุอย่างน้อย 18 ปี หรือเป็นผู้ปกครองหรือผู้ดูแลของผู้เยาว์ดังกล่าวและยินยอมให้ผู้เยาว์ดังกล่าวใช้บริการ"
-    },
-    "privacyRights": {
-      "heading": "8. สิทธิ์ความเป็นส่วนตัวของคุณคืออะไร?",
-      "content": "ในบางภูมิภาค คุณมีสิทธิ์บางประการภายใต้กฎหมายคุ้มครองข้อมูลที่บังคับใช้ ซึ่งอาจรวมถึงสิทธิ์ (i) ในการขอเข้าถึงและรับสำเนาข้อมูลส่วนบุคคลของคุณ (ii) ในการขอแก้ไขหรือลบ (iii) ในการจำกัดการประมวลผลข้อมูลส่วนบุคคลของคุณ และ (iv) หากมีผลบังคับใช้ ในการโอนย้ายข้อมูล"
-    },
-    "controlsForDoNotTrack": {
-      "heading": "9. การควบคุมสำหรับคุณสมบัติ DO-NOT-TRACK",
-      "content": "เว็บเบราว์เซอร์ส่วนใหญ่และระบบปฏิบัติการมือถือและแอปพลิเคชันมือถือบางรุ่นมีคุณสมบัติหรือการตั้งค่า Do-Not-Track ('DNT') ที่คุณสามารถเปิดใช้งานเพื่อส่งสัญญาณความต้องการความเป็นส่วนตัวของคุณไม่ให้มีการตรวจสอบและรวบรวมข้อมูลเกี่ยวกับกิจกรรมการท่องเว็บออนไลน์ของคุณ ในขั้นตอนนี้ยังไม่มีมาตรฐานเทคโนโลยีที่เป็นเอกภาพสำหรับการรับรู้และนำสัญญาณ DNT ไปใช้ ดังนั้นขณะนี้เราจึงไม่ตอบสนองต่อสัญญาณ DNT ของเบราว์เซอร์"
-    },
-    "updatesToNotice": {
-      "heading": "10. เราอัปเดตประกาศนี้หรือไม่?",
-      "content": "เราอาจอัปเดตประกาศความเป็นส่วนตัวนี้เป็นครั้งคราว เวอร์ชันที่อัปเดตจะถูกระบุด้วยวันที่ 'แก้ไข' ที่อัปเดตแล้ว และเวอร์ชันที่อัปเดตจะมีผลทันทีที่สามารถเข้าถึงได้ เราขอแนะนำให้คุณตรวจสอบประกาศความเป็นส่วนตัวนี้บ่อยครั้งเพื่อรับทราบข้อมูลเกี่ยวกับวิธีที่เราปกป้องข้อมูลของคุณ"
-    },
-    "contactUs": {
-      "heading": "11. ติดต่อเรา",
-      "content": "เพื่อแก้ไขข้อร้องเรียนเกี่ยวกับเว็บไซต์หรือเพื่อรับข้อมูลเพิ่มเติมเกี่ยวกับการใช้งานเว็บไซต์ โปรดติดต่อเรา"
-    },
-    "conclusion": "เพื่อแก้ไขข้อร้องเรียนหรือรับข้อมูลเพิ่มเติม {contactLink}"
-  },
-  "pinboardPage": {
-    "title": "กระดานปักหมุด",
-    "description": "พื้นที่ส่วนตัวของคุณสำหรับบันทึกรายการสำคัญจากทั่วทั้ง DamDoh",
-    "comingSoonTitle": "Pin-Board กำลังจะมาเร็วๆ นี้!",
-    "comingSoonDescription": "ฟีเจอร์นี้จะช่วยให้คุณสามารถ 'ปักหมุด' รายการในตลาด โพสต์ในฟอรัม โปรไฟล์ และอื่นๆ ไปยังบอร์ดส่วนตัวเพื่อให้เข้าถึงได้ง่าย",
-    "stayTuned": "คอยติดตามการอัปเดต!"
-  },
-  "walletPage": {
-    "title": "กระเป๋าเงินของฉัน",
-    "description": "จัดการการเงินของคุณ ดูธุรกรรม และเข้าถึงบริการทางการเงิน",
-    "underDevelopmentTitle": "ศูนย์กลางการเงินอยู่ระหว่างการพัฒนา",
-    "underDevelopmentDescription": "เรากำลังสร้างกระเป๋าเงินดิจิทัลที่แข็งแกร่งและปลอดภัยเพื่อจัดการธุรกรรมทั้งหมดของคุณบนแพลตฟอร์ม คุณสมบัติจะรวมถึง:",
-    "feature1": "การเก็บยอดคงเหลือที่ปลอดภัย",
-    "feature2": "ประวัติธุรกรรมสำหรับการขายในตลาดและการชำระค่าบริการ",
-    "feature3": "การจ่ายเงินที่ง่ายดายไปยังบัญชีเงินมือถือในพื้นที่หรือบัญชีธนาคารของคุณ",
-    "feature4": "การเข้าถึงเพื่อขอสินเชื่อและเงินช่วยเหลือโดยตรงจากกระเป๋าเงินของคุณ"
-  },
-  "industryNewsPage": {
-    "title": "ข่าวอุตสาหกรรม",
-    "description": "ติดตามข่าวสารล่าสุด แนวโน้ม การวิจัย และการเปลี่ยนแปลงนโยบายในภาคเกษตรกรรม",
-    "searchPlaceholder": "ค้นหาบทความข่าว...",
-    "categoryPlaceholder": "กรองตามหมวดหมู่",
-    "allCategories": "ทุกหมวดหมู่",
-    "sourceLabel": "แหล่งที่มา",
-    "publishedLabel": "เผยแพร่",
-    "categoryLabel": "หมวดหมู่",
-    "readButton": "อ่านเรื่องราวทั้งหมด",
-    "news1": {
-      "title": "ราคากาแฟทั่วโลกพุ่งสูงขึ้นท่ามกลางภาวะน้ำค้างแข็งในบราซิลและความล่าช้าในการขนส่ง",
-      "excerpt": "การผสมผสานระหว่างสภาพอากาศที่ไม่เอื้ออำนวยในภูมิภาคการเพาะปลูกที่สำคัญและความท้าทายด้านโลจิสติกส์ทั่วโลกอย่างต่อเนื่องได้ผลักดันให้กาแฟอาราบิก้าฟิวเจอร์สแตะระดับสูงสุดในรอบ 7 ปี..."
-    },
-    "news2": {
-      "title": "สหภาพยุโรปบังคับใช้กฎระเบียบใหม่ของยุทธศาสตร์ 'Farm to Fork' เกี่ยวกับบรรจุภัณฑ์",
-      "excerpt": "กฎระเบียบใหม่จะกำหนดให้ผู้ส่งออกอาหารไปยังสหภาพยุโรปต้องปฏิบัติตามมาตรฐานที่เข้มงวดมากขึ้นสำหรับบรรจุภัณฑ์ที่สามารถรีไซเคิลและย่อยสลายได้ ซึ่งส่งผลกระทบต่อห่วงโซ่อุปทานทั้งหมด"
-    },
-    "news3": {
-      "title": "การศึกษาแสดงให้เห็นว่าแนวทางปฏิบัติด้านการฟื้นฟูสามารถเพิ่มคาร์บอนในดินได้ 15% ใน 5 ปี",
-      "excerpt": "การศึกษาระยะยาวที่ตีพิมพ์ในวารสาร Nature แสดงให้เห็นถึงศักยภาพที่สำคัญของแนวปฏิบัติการไม่ไถพรวนและการปลูกพืชคลุมดินสำหรับการกักเก็บคาร์บอนและสุขภาพของดิน"
-    },
-    "noNews": {
-      "title": "ไม่พบข่าว",
-      "description": "ขณะนี้ไม่มีบทความข่าวที่ตรงกับเกณฑ์ของคุณ"
-    }
-  },
-  "notificationsPage": {
-    "title": "การแจ้งเตือน",
-    "description": "ติดตามกิจกรรมล่าสุดจากเครือข่ายของคุณ",
-    "noNotifications": "คุณไม่มีการแจ้งเตือนใหม่",
-    "likedYourPost": "{name} ชอบโพสต์ของคุณ",
-    "commentedOnYourPost": "{name} แสดงความคิดเห็นในโพสต์ของคุณ",
-    "viewedYourProfile": "{name} ดูโปรไฟล์ของคุณ",
-    "placedNewOrder": "{name} สั่งซื้อสินค้าของคุณ",
-    "sentConnectionRequest": "{name} ส่งคำขอเชื่อมต่อถึงคุณ",
-    "error": "ข้อผิดพลาด"
-  },
-  "messagingPage": {
-    "title": "ข้อความ",
-    "searchPlaceholder": "ค้นหาการสนทนา...",
-    "noConversations": "คุณยังไม่มีการสนทนา เริ่มต้นด้วยการเชื่อมต่อกับใครสักคนในหน้าเครือข่าย",
-    "selectConversation": "เลือกการสนทนาเพื่อเริ่มแชท",
-    "noMessages": "ยังไม่มีข้อความในการสนทนานี้ เป็นคนแรกที่พูดอะไรบางอย่าง!",
-    "typeMessagePlaceholder": "พิมพ์ข้อความ...",
-    "signInToView": "โปรดลงชื่อเข้าใช้เพื่อดูข้อความของคุณ",
-    "signIn": "ลงชื่อเข้าใช้",
-    "error": "ข้อผิดพลาด",
-    "couldNotLoadConversations": "ไม่สามารถโหลดการสนทนาของคุณได้",
-    "couldNotStartConversation": "ไม่สามารถเริ่มการสนทนาใหม่ได้",
-    "sendFailed": "การส่งล้มเหลว",
-    "couldNotSendMessage": "ไม่สามารถส่งข้อความได้ โปรดลองอีกครั้ง"
   }
 }
