@@ -8,9 +8,8 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import type { AgriEvent, UserProfile } from '@/lib/types';
 import QRCode from 'qrcode.react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useFormatter } from 'next-intl';
 import { useRouter, Link } from '@/navigation';
-import { format } from 'date-fns';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
@@ -56,6 +55,7 @@ function EventPageContent() {
     const eventId = params.id as string;
     const { user } = useAuth();
     const { toast } = useToast();
+    const format = useFormatter();
   
     const [event, setEvent] = useState<AgriEvent | null>(null);
     const [organizer, setOrganizer] = useState<UserProfile | null>(null);
@@ -91,7 +91,7 @@ function EventPageContent() {
         };
 
         fetchData();
-    }, [eventId, getEventDetailsCallable, t]);
+    }, [eventId, getEventDetailsCallable, t, functions]);
     
     const handleRegistration = async () => {
         if (!user || !event) return;
@@ -159,7 +159,7 @@ function EventPageContent() {
                     </div>
                     
                     <div className="text-sm space-y-2 text-muted-foreground">
-                        <div className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-primary"/><span>{format(new Date(event.eventDate), 'PPP')}</span></div>
+                        <div className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-primary"/><span>{format.dateTime(new Date(event.eventDate), { dateStyle: 'long' })}</span></div>
                         <div className="flex items-center gap-2"><Clock className="h-4 w-4 text-primary"/><span>{event.eventTime || t('timeTba')}</span></div>
                         <div className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary"/><span>{event.location}</span></div>
                     </div>
@@ -195,7 +195,7 @@ function EventPageContent() {
                          <>
                             <div className="flex justify-between items-center text-sm">
                                 <span>{t('registration.price')}</span>
-                                <span className="font-bold text-lg">{event.price ? `$${event.price.toFixed(2)}` : t('registration.free')}</span>
+                                <span className="font-bold text-lg">{event.price ? format.number(event.price, {style: 'currency', currency: 'USD'}) : t('registration.free')}</span>
                             </div>
                              <div className="flex justify-between items-center text-sm">
                                 <span>{t('registration.attendees')}</span>

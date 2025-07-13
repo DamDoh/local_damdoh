@@ -14,7 +14,7 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale, useTranslations, useFormatter } from 'next-intl';
 
 interface BlogPost {
   id: string;
@@ -64,6 +64,7 @@ export default function BlogPostPage() {
   const [isLoading, setIsLoading] = useState(true);
   const t = useTranslations('Blog');
   const locale = useLocale();
+  const format = useFormatter();
 
   useEffect(() => {
     if (!slug) return;
@@ -131,7 +132,7 @@ export default function BlogPostPage() {
                 </div>
                 <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4"/>
-                    <time dateTime={post.createdAt}>{new Date(post.createdAt).toLocaleDateString()}</time>
+                    <time dateTime={post.createdAt}>{format.dateTime(new Date(post.createdAt), {dateStyle: 'long'})}</time>
                 </div>
             </div>
         </div>

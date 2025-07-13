@@ -21,7 +21,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 
 const QrScanner = dynamic(() => import('@/components/QrScanner').then(mod => mod.QrScanner), {
     ssr: false,
@@ -139,6 +139,7 @@ const CheckInTab = ({ eventId, eventName }: { eventId: string, eventName: string
 
 const AttendeesTab = ({ eventId }: { eventId: string }) => {
     const t = useTranslations('AgriEvents.manage.attendees');
+    const format = useFormatter();
     const { toast } = useToast();
     const [attendees, setAttendees] = useState<Attendee[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -211,13 +212,13 @@ const AttendeesTab = ({ eventId }: { eventId: string }) => {
                                 <TableRow key={attendee.id}>
                                     <TableCell className="font-medium">{attendee.displayName}</TableCell>
                                     <TableCell>{attendee.email}</TableCell>
-                                    <TableCell>{new Date(attendee.registeredAt).toLocaleDateString()}</TableCell>
+                                    <TableCell>{format.dateTime(new Date(attendee.registeredAt), {dateStyle: 'medium'})}</TableCell>
                                     <TableCell>
                                         <Badge variant={attendee.checkedIn ? "default" : "secondary"}>
                                             {attendee.checkedIn ? t('status.checkedIn') : t('status.registered')}
                                         </Badge>
                                     </TableCell>
-                                    <TableCell>{attendee.checkedInAt ? new Date(attendee.checkedInAt).toLocaleString() : 'N/A'}</TableCell>
+                                    <TableCell>{attendee.checkedInAt ? format.dateTime(new Date(attendee.checkedInAt), {dateStyle: 'medium', timeStyle: 'short'}) : 'N/A'}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

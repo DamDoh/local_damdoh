@@ -22,7 +22,7 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { Loader2 } from 'lucide-react';
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { useAuth } from "@/lib/auth-utils";
-import { useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 
 interface FeedItemCardProps {
   item: FeedItem;
@@ -35,6 +35,7 @@ const functions = getFunctions(firebaseApp);
 
 export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItemCardProps) {
   const t = useTranslations('FeedItemCard');
+  const format = useFormatter();
   const { user } = useAuth();
   const [isLiked, setIsLiked] = useState(false);
   
@@ -171,7 +172,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
               <div>
                 <Link href={`/profiles/${item.userId}`} className="font-semibold text-sm hover:underline">{item.userName}</Link>
                 {item.userHeadline && <p className="text-xs text-muted-foreground">{item.userHeadline}</p>}
-                <p className="text-xs text-muted-foreground">{new Date(item.timestamp).toLocaleDateString()}</p>
+                <p className="text-xs text-muted-foreground">{format.dateTime(new Date(item.timestamp), {dateStyle: 'medium'})}</p>
               </div>
                {isPostAuthor && (
                 <DropdownMenu>
@@ -240,7 +241,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
           <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleCommentButtonClick}>
             <MessageSquare className="mr-2 h-5 w-5" /> {t('comment')}
           </Button>
-          <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleRepost}>
+          <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex-1 sm:flex-none">
             <Share2 className="mr-2 h-5 w-5" /> {t('repost')}
           </Button>
         </div>

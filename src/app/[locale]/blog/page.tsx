@@ -12,7 +12,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale, useTranslations, useFormatter } from 'next-intl';
 
 interface BlogPost {
   id: string;
@@ -57,6 +57,7 @@ export default function BlogPage() {
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
   const locale = useLocale();
+  const format = useFormatter();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -128,7 +129,7 @@ export default function BlogPage() {
                     <Link href={`/blog/${post.id}`}>{displayTitle}</Link>
                   </CardTitle>
                   <CardDescription className="text-xs">
-                    {t('meta', { author: post.author, date: new Date(post.createdAt).toLocaleDateString() })}
+                    {t('meta', { author: post.author, date: format.dateTime(new Date(post.createdAt), {dateStyle: 'long'}) })}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="flex-grow">
