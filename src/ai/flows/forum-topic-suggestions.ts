@@ -1,7 +1,7 @@
 
 'use server';
 import { ai } from '@/ai/genkit';
-import { z } from 'zod';
+import { z } from 'genkit';
 
 export const ForumTopicSuggestionSchema = z.object({
   title: z.string().describe('A compelling and engaging title for a new forum topic. Should be a question or a statement that encourages discussion.'),

@@ -793,7 +793,7 @@
   "messagingPage": {
     "title": "Nachrichten",
     "searchPlaceholder": "Unterhaltungen suchen...",
-    "noConversations": "Sie haben noch keine Unterhaltungen. Beginnen Sie eine, indem Sie sich mit jemandem auf der Netzwerkseite verbinden.",
+    "noConversations": "Sie haben noch keine Unterhaltungen. Starten Sie eine, indem Sie sich mit jemandem auf der Netzwerkseite verbinden.",
     "selectConversation": "Wählen Sie eine Unterhaltung aus, um mit dem Chatten zu beginnen.",
     "noMessages": "Noch keine Nachrichten in dieser Unterhaltung. Seien Sie der Erste, der etwas sagt!",
     "typeMessagePlaceholder": "Nachricht eingeben...",
@@ -1217,7 +1217,150 @@
     "notFoundTitle": "Profil nicht gefunden",
     "notFoundDescription": "Das gesuchte Benutzerprofil existiert nicht oder wurde gelöscht.",
     "backToNetwork": "Zurück zum Netzwerk"
+  },
+  "Forums": {
+    "create": {
+      "backLink": "Zurück zu den Foren",
+      "title": "Neues Forum-Thema erstellen",
+      "description": "Starten Sie eine neue Konversation, an der die Community teilnehmen kann.",
+      "form": {
+        "nameLabel": "Themenname",
+        "namePlaceholder": "z.B. Beste Praktiken für die Wassereinsparung",
+        "descriptionLabel": "Beschreibung",
+        "descriptionPlaceholder": "Eine kurze Beschreibung, worum es in diesem Thema geht.",
+        "submitButton": "Thema erstellen",
+        "submittingButton": "Erstellen..."
+      },
+      "success": {
+        "title": "Thema erstellt!",
+        "description": "Ihr neues Thema ist jetzt zur Diskussion online."
+      },
+      "errors": {
+        "auth": {
+          "title": "Authentifizierung erforderlich",
+          "description": "Sie müssen angemeldet sein, um ein neues Thema zu erstellen."
+        },
+        "incomplete": {
+          "title": "Unvollständiges Formular",
+          "description": "Bitte geben Sie sowohl einen Namen als auch eine Beschreibung für Ihr Thema an."
+        },
+        "general": {
+          "title": "Fehler beim Erstellen des Themas",
+          "description": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+        }
+      }
+    },
+    "topic": {
+      "backLink": "Zurück zu allen Foren",
+      "buttons": {
+        "createPost": "Neuen Beitrag starten",
+        "loadingMore": "Wird geladen...",
+        "loadMore": "Weitere Beiträge laden"
+      },
+      "postMeta": "Von {author} am {date}",
+      "noPosts": {
+        "title": "Noch keine Beiträge",
+        "description": "Seien Sie der Erste, der eine Unterhaltung in diesem Thema beginnt.",
+        "button": "Ersten Beitrag erstellen"
+      },
+      "notFound": {
+        "title": "Thema nicht gefunden",
+        "description": "Entschuldigung, das gesuchte Thema existiert nicht.",
+        "backButton": "Zurück zu den Foren"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Fehler beim Laden der Beiträge",
+          "description": "Beiträge für dieses Thema konnten nicht abgerufen werden."
+        },
+        "loadTopic": {
+          "title": "Fehler beim Laden des Themas",
+          "description": "Details für dieses Thema konnten nicht abgerufen werden."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Zurück zum Thema",
+      "title": "Neuen Beitrag erstellen",
+      "description": "Teilen Sie Ihre Gedanken, stellen Sie eine Frage oder starten Sie eine Diskussion.",
+      "form": {
+        "titleLabel": "Beitragstitel",
+        "titlePlaceholder": "Geben Sie einen klaren und prägnanten Titel ein",
+        "contentLabel": "Inhalt",
+        "contentPlaceholder": "Schreiben Sie hier den Inhalt Ihres Beitrags. Sie können Markdown zur Formatierung verwenden.",
+        "submitButton": "Beitrag einreichen",
+        "submittingButton": "Wird eingereicht..."
+      },
+      "aiHelper": {
+        "title": "KI-Beitragshelfer",
+        "description": "Benötigen Sie etwas Hilfe beim Einstieg? Geben Sie unserer KI einen Anreiz, und sie wird einen Entwurf für Sie erstellen.",
+        "promptLabel": "Ihre Idee oder Frage",
+        "promptPlaceholder": "z.B. 'Was sind die besten organischen Alternativen zu synthetischen Stickstoffdüngern?' oder 'Meine Erfolgsgeschichte mit KNF für Mangobäume teilen.'",
+        "generateButton": "Entwurf generieren",
+        "generatingButton": "Wird generiert..."
+      },
+      "success": {
+        "title": "Beitrag erstellt!",
+        "description": "Ihr Beitrag wurde erfolgreich zum Forum hinzugefügt.",
+        "aiDraft": {
+          "title": "Entwurf generiert",
+          "description": "Die KI hat einen Entwurf für Sie erstellt. Fühlen Sie sich frei, ihn vor dem Posten zu bearbeiten."
+        }
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Anreiz erforderlich",
+          "description": "Bitte geben Sie eine Idee oder Frage an, damit die KI einen Entwurf generieren kann."
+        },
+        "aiDraft": {
+          "title": "Generierung fehlgeschlagen",
+          "description": "Die KI konnte im Moment keinen Entwurf generieren. Bitte versuchen Sie es später erneut."
+        },
+        "incomplete": {
+          "title": "Unvollständiger Beitrag",
+          "description": "Bitte geben Sie sowohl einen Titel als auch Inhalt für Ihren Beitrag an."
+        },
+        "general": {
+          "title": "Fehler beim Erstellen des Beitrags",
+          "description": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Zurück zu {topicName}",
+      "repliesTitle": "{count, plural, =0 {Keine Antworten} =1 {1 Antwort} other {{count} Antworten}}",
+      "noReplies": "Noch niemand hat geantwortet. Seien Sie der Erste!",
+      "buttons": {
+        "loadingMore": "Wird geladen...",
+        "loadMore": "Weitere Antworten laden"
+      },
+      "reply": {
+        "title": "Ihre Antwort",
+        "placeholder": "Schreiben Sie hier Ihre Antwort...",
+        "submitButton": "Antwort posten",
+        "submittingButton": "Wird gepostet...",
+        "success": "Antwort gepostet!"
+      },
+      "notFound": {
+        "title": "Beitrag nicht gefunden",
+        "description": "Der gesuchte Beitrag existiert nicht oder wurde verschoben.",
+        "backButton": "Zurück zum Thema"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Fehler beim Laden des Beitrags",
+          "description": "Details des Beitrags konnten nicht abgerufen werden."
+        },
+        "loadReplies": {
+          "title": "Fehler beim Laden der Antworten",
+          "description": "Antworten für diesen Beitrag konnten nicht abgerufen werden."
+        },
+        "submitReply": {
+          "title": "Fehler beim Posten der Antwort",
+          "description": "Ihre Antwort konnte nicht gespeichert werden. Bitte versuchen Sie es erneut."
+        },
+        "emptyReply": "Antwort darf nicht leer sein."
+      }
+    }
   }
 }
-
-    

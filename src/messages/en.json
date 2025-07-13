@@ -252,7 +252,7 @@
     "errors": {
       "emailInUse": "This email is already in use.",
       "invalidEmail": "Invalid email address.",
-      "weakPassword": "Password must be at least 6 characters.",
+      "weakPassword": "Password must be at least 6 characters long.",
       "default": "An unexpected error occurred.",
       "invalidCredential": "The email or password you entered is incorrect.",
       "userDisabled": "This account has been disabled."
@@ -385,7 +385,7 @@
     "follow": "Follow",
     "following": "Requested",
     "viewAllButton": "View all suggestions",
-    "promotionsTitle": "Marketing & Promotions",
+    "promotionsTitle": "My Promotions",
     "promotionsDescription": "Create and manage coupons to attract more customers.",
     "managePromotionsButton": "Manage Coupons",
     "ad": "Ad",
@@ -1107,7 +1107,7 @@
       "details": "Details",
       "aiDiagnosis": "AI Diagnosis",
       "noEventsFound": "No traceability events have been logged for this batch yet.",
-      "geoLocationLabel": "Geo-location",
+      "geoLocationLabel": "Geo-Location",
       "sustainablyGrownTitle": "Sustainably Grown",
       "sustainablyGrownDescription": "This product's traceability log indicates the use of sustainable and/or organic farming practices.",
       "harvestDateLabel": "Harvest Date"
@@ -1139,7 +1139,7 @@
       },
       "syncFailed": {
         "title": "Sync failed",
-        "description": "We could not sync your offline changes. We will try again later."
+        "description": "We could not sync your offline changes. We'll try again later."
       },
       "queued": {
         "title": "Action queued",
@@ -1193,7 +1193,7 @@
     "invite": {
       "title": "Invite a Colleague",
       "description": "Help grow the network by inviting others to join DamDoh.",
-      "explanation": "Send an invitation to a colleague or partner to join the DamDoh platform. They will receive an email with instructions on how to sign up.",
+      "explanation": "Send an invitation to a colleague or business partner to join the DamDoh platform. They will receive an email with instructions on how to sign up.",
       "button": "Send Invite"
     },
     "invitePrompt": "Enter the email address of the person you want to invite:",
@@ -1217,5 +1217,150 @@
     "notFoundTitle": "Profile Not Found",
     "notFoundDescription": "The user profile you are looking for does not exist or has been deleted.",
     "backToNetwork": "Back to Network"
+  },
+  "Forums": {
+    "create": {
+      "backLink": "Back to Forums",
+      "title": "Create New Forum Topic",
+      "description": "Start a new conversation for the community to engage with.",
+      "form": {
+        "nameLabel": "Topic Name",
+        "namePlaceholder": "e.g., Best Practices for Water Conservation",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "A short description of what this topic is about.",
+        "submitButton": "Create Topic",
+        "submittingButton": "Creating..."
+      },
+      "success": {
+        "title": "Topic Created!",
+        "description": "Your new topic is now live for discussion."
+      },
+      "errors": {
+        "auth": {
+          "title": "Authentication Required",
+          "description": "You must be signed in to create a new topic."
+        },
+        "incomplete": {
+          "title": "Incomplete Form",
+          "description": "Please provide both a name and a description for your topic."
+        },
+        "general": {
+          "title": "Error Creating Topic",
+          "description": "Something went wrong. Please try again."
+        }
+      }
+    },
+    "topic": {
+      "backLink": "Back to All Forums",
+      "buttons": {
+        "createPost": "Start a New Post",
+        "loadingMore": "Loading More...",
+        "loadMore": "Load More Posts"
+      },
+      "postMeta": "By {author} on {date}",
+      "noPosts": {
+        "title": "No Posts Yet",
+        "description": "Be the first to start a conversation in this topic.",
+        "button": "Create the First Post"
+      },
+      "notFound": {
+        "title": "Topic Not Found",
+        "description": "Sorry, the topic you are looking for does not exist.",
+        "backButton": "Return to Forums"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Error Loading Posts",
+          "description": "Could not retrieve posts for this topic."
+        },
+        "loadTopic": {
+          "title": "Error Loading Topic",
+          "description": "Could not retrieve the details for this topic."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Back to Topic",
+      "title": "Create a New Post",
+      "description": "Share your thoughts, ask a question, or start a discussion.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "Enter a clear and concise title",
+        "contentLabel": "Content",
+        "contentPlaceholder": "Write your post content here. You can use markdown for formatting.",
+        "submitButton": "Submit Post",
+        "submittingButton": "Submitting..."
+      },
+      "aiHelper": {
+        "title": "AI Post Helper",
+        "description": "Need a little help getting started? Give our AI a prompt, and it will draft a post for you.",
+        "promptLabel": "Your idea or question",
+        "promptPlaceholder": "e.g., 'What are the best organic alternatives to synthetic nitrogen fertilizers?' or 'Share my success story about using KNF for mango trees.'",
+        "generateButton": "Generate Draft",
+        "generatingButton": "Generating..."
+      },
+      "success": {
+        "title": "Post Created!",
+        "description": "Your post has been successfully added to the forum.",
+        "aiDraft": {
+          "title": "Draft Generated",
+          "description": "The AI has created a draft for you. Feel free to edit it before posting."
+        }
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Prompt Required",
+          "description": "Please provide an idea or question for the AI to generate a draft."
+        },
+        "aiDraft": {
+          "title": "Generation Failed",
+          "description": "The AI could not generate a draft at this time. Please try again later."
+        },
+        "incomplete": {
+          "title": "Incomplete Post",
+          "description": "Please provide both a title and content for your post."
+        },
+        "general": {
+          "title": "Error Creating Post",
+          "description": "Something went wrong. Please try again."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Back to {topicName}",
+      "repliesTitle": "{count, plural, =0 {No Replies} =1 {1 Reply} other {{count} Replies}}",
+      "noReplies": "No one has replied yet. Be the first!",
+      "buttons": {
+        "loadingMore": "Loading...",
+        "loadMore": "Load More Replies"
+      },
+      "reply": {
+        "title": "Your Reply",
+        "placeholder": "Write your reply here...",
+        "submitButton": "Post Reply",
+        "submittingButton": "Posting...",
+        "success": "Reply posted!"
+      },
+      "notFound": {
+        "title": "Post Not Found",
+        "description": "The post you are looking for does not exist or has been moved.",
+        "backButton": "Return to Topic"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error Loading Post",
+          "description": "Could not retrieve the post details."
+        },
+        "loadReplies": {
+          "title": "Error Loading Replies",
+          "description": "Could not retrieve replies for this post."
+        },
+        "submitReply": {
+          "title": "Error Posting Reply",
+          "description": "Your reply could not be saved. Please try again."
+        },
+        "emptyReply": "Reply cannot be empty."
+      }
+    }
   }
 }

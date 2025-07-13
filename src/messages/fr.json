@@ -395,7 +395,7 @@
     "adAlt": "Graphique de données montrant les tendances du marché",
     "loadError": "Impossible de charger les suggestions pour le moment.",
     "signInPrompt": "Connectez-vous pour voir des suggestions personnalisées.",
-    "noSuggestions": "Aucune nouvelle suggestion pour le moment. Essayez d'élargir votre profil !",
+    "noSuggestions": "Aucune nouvelle suggestion pour le moment. Revenez plus tard !",
     "toast": {
       "signInToConnect": "Veuillez vous connecter pour vous connecter avec les utilisateurs.",
       "requestSent": "Demande de connexion envoyée !",
@@ -1217,7 +1217,150 @@
     "notFoundTitle": "Profil introuvable",
     "notFoundDescription": "Le profil utilisateur que vous recherchez n'existe pas ou a été supprimé.",
     "backToNetwork": "Retour au réseau"
+  },
+  "Forums": {
+    "create": {
+      "backLink": "Retour aux forums",
+      "title": "Créer un nouveau sujet de forum",
+      "description": "Lancez une nouvelle conversation pour que la communauté puisse s'engager.",
+      "form": {
+        "nameLabel": "Nom du sujet",
+        "namePlaceholder": "ex: Meilleures pratiques pour la conservation de l'eau",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Une courte description de ce dont il s'agit.",
+        "submitButton": "Créer le sujet",
+        "submittingButton": "Création en cours..."
+      },
+      "success": {
+        "title": "Sujet créé !",
+        "description": "Votre nouveau sujet est maintenant en ligne pour la discussion."
+      },
+      "errors": {
+        "auth": {
+          "title": "Authentification requise",
+          "description": "Vous devez être connecté pour créer un nouveau sujet."
+        },
+        "incomplete": {
+          "title": "Formulaire incomplet",
+          "description": "Veuillez fournir un nom et une description pour votre sujet."
+        },
+        "general": {
+          "title": "Erreur lors de la création du sujet",
+          "description": "Quelque chose s'est mal passé. Veuillez réessayer."
+        }
+      }
+    },
+    "topic": {
+      "backLink": "Retour à tous les forums",
+      "buttons": {
+        "createPost": "Créer une nouvelle publication",
+        "loadingMore": "Chargement...",
+        "loadMore": "Charger plus de publications"
+      },
+      "postMeta": "Par {author} le {date}",
+      "noPosts": {
+        "title": "Aucune publication pour l'instant",
+        "description": "Soyez le premier à lancer une conversation sur ce sujet.",
+        "button": "Créer la première publication"
+      },
+      "notFound": {
+        "title": "Sujet introuvable",
+        "description": "Désolé, le sujet que vous recherchez n'existe pas.",
+        "backButton": "Retourner aux forums"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Erreur de chargement des publications",
+          "description": "Impossible de récupérer les publications pour ce sujet."
+        },
+        "loadTopic": {
+          "title": "Erreur de chargement du sujet",
+          "description": "Impossible de récupérer les détails de ce sujet."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Retour au sujet",
+      "title": "Créer une nouvelle publication",
+      "description": "Partagez vos pensées, posez une question ou lancez une discussion.",
+      "form": {
+        "titleLabel": "Titre de la publication",
+        "titlePlaceholder": "Entrez un titre clair et concis",
+        "contentLabel": "Contenu",
+        "contentPlaceholder": "Écrivez le contenu de votre publication ici. Vous pouvez utiliser le markdown pour la mise en forme.",
+        "submitButton": "Soumettre la publication",
+        "submittingButton": "Soumission en cours..."
+      },
+      "aiHelper": {
+        "title": "Aide à la publication par IA",
+        "description": "Besoin d'un petit coup de pouce pour commencer ? Donnez à notre IA une idée, et elle rédigera une ébauche pour vous.",
+        "promptLabel": "Votre idée ou question",
+        "promptPlaceholder": "ex : 'Quelles sont les meilleures alternatives biologiques aux engrais azotés de synthèse ?' ou 'Partagez mon histoire de réussite en utilisant le KNF pour les manguiers.'",
+        "generateButton": "Générer une ébauche",
+        "generatingButton": "Génération en cours..."
+      },
+      "success": {
+        "title": "Publication créée !",
+        "description": "Votre publication a été ajoutée avec succès au forum.",
+        "aiDraft": {
+          "title": "Ébauche générée",
+          "description": "L'IA a créé une ébauche pour vous. N'hésitez pas à la modifier avant de la publier."
+        }
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Idée requise",
+          "description": "Veuillez fournir une idée ou une question pour que l'IA puisse générer une ébauche."
+        },
+        "aiDraft": {
+          "title": "Échec de la génération",
+          "description": "L'IA n'a pas pu générer d'ébauche pour le moment. Veuillez réessayer plus tard."
+        },
+        "incomplete": {
+          "title": "Publication incomplète",
+          "description": "Veuillez fournir un titre et un contenu pour votre publication."
+        },
+        "general": {
+          "title": "Erreur lors de la création de la publication",
+          "description": "Quelque chose s'est mal passé. Veuillez réessayer."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Retour à {topicName}",
+      "repliesTitle": "{count, plural, =0 {Aucune réponse} =1 {1 réponse} other {{count} réponses}}",
+      "noReplies": "Personne n'a encore répondu. Soyez le premier !",
+      "buttons": {
+        "loadingMore": "Chargement...",
+        "loadMore": "Charger plus de réponses"
+      },
+      "reply": {
+        "title": "Votre réponse",
+        "placeholder": "Écrivez votre réponse ici...",
+        "submitButton": "Publier la réponse",
+        "submittingButton": "Publication...",
+        "success": "Réponse publiée !"
+      },
+      "notFound": {
+        "title": "Publication introuvable",
+        "description": "La publication que vous recherchez n'existe pas ou a été déplacée.",
+        "backButton": "Retourner au sujet"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Erreur de chargement de la publication",
+          "description": "Impossible de récupérer les détails de la publication."
+        },
+        "loadReplies": {
+          "title": "Erreur de chargement des réponses",
+          "description": "Impossible de récupérer les réponses pour cette publication."
+        },
+        "submitReply": {
+          "title": "Erreur lors de la publication de la réponse",
+          "description": "Votre réponse n'a pas pu être enregistrée. Veuillez réessayer."
+        },
+        "emptyReply": "La réponse ne peut pas être vide."
+      }
+    }
   }
 }
-
-    

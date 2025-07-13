@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -10,7 +10,7 @@ import { ArrowLeft, Loader2, Send } from "lucide-react";
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import type { ForumPost, UserProfile, PostReply } from '@/lib/types';
+import type { ForumPost, PostReply } from '@/lib/types';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
@@ -27,14 +27,6 @@ const getPostDetails = async (topicId: string, postId: string): Promise<ForumPos
     if (postSnap.exists()) {
         const data = postSnap.data();
         
-        // Fetch author details
-        const userRef = doc(db, "users", data.authorRef);
-        const userSnap = await getDoc(userRef);
-        
-        const authorProfile = userSnap.exists() 
-            ? userSnap.data()
-            : { displayName: "Unknown User", avatarUrl: "" };
-        
         // Fetch topic details for breadcrumb
         const topicRef = doc(db, "forums", topicId);
         const topicSnap = await getDoc(topicRef);
@@ -49,8 +41,8 @@ const getPostDetails = async (topicId: string, postId: string): Promise<ForumPos
             createdAt: data.createdAt ? new Date(data.createdAt.seconds * 1000).toISOString() : new Date().toISOString(),
             author: {
                 id: data.authorRef,
-                name: authorProfile.displayName,
-                avatarUrl: authorProfile.avatarUrl,
+                name: data.authorName,
+                avatarUrl: data.authorAvatarUrl,
             },
             replyCount: data.replyCount || 0,
         } as ForumPost;
