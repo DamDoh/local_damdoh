@@ -53,5 +53,65 @@
         "description": "Cette récolte a été sauvegardée sur votre appareil. Elle sera officiellement enregistrée et un VTI sera généré une fois que vous serez de nouveau en ligne."
       }
     }
+  },
+  "groupsPage": {
+    "createPost": {
+      "backLink": "Retour à la discussion du groupe",
+      "title": "Créer un nouveau message",
+      "description": "Partagez vos pensées, posez une question ou lancez une discussion avec le groupe.",
+      "form": {
+        "titleLabel": "Titre du message",
+        "titlePlaceholder": "Ex: Meilleures pratiques pour la culture intercalaire du maïs ?",
+        "contentLabel": "Contenu",
+        "contentPlaceholder": "Saisissez votre message complet ici...",
+        "submittingButton": "Publication en cours...",
+        "submitButton": "Publier dans le groupe"
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentification requise",
+          "description": "Vous devez être connecté pour créer un message."
+        },
+        "incomplete": {
+          "title": "Message incomplet",
+          "description": "Veuillez fournir un titre et un contenu pour votre message."
+        },
+        "success": {
+          "title": "Message créé",
+          "description": "Votre message a été ajouté avec succès à la discussion du groupe."
+        },
+        "error": {
+          "title": "Échec de la création du message",
+          "description": "Une erreur inattendue s'est produite. Veuillez réessayer."
+        }
+      }
+    },
+    "manage": {
+      "backLink": "Retour au groupe",
+      "title": "Gérer le groupe",
+      "description": "Examinez les demandes d'adhésion et gérez les paramètres du groupe.",
+      "requestsTab": "Demandes d'adhésion",
+      "invitesTab": "Invitations",
+      "requestedTimeAgo": "Demandé il y a {timeAgo}",
+      "noRequests": "Aucune demande d'adhésion en attente.",
+      "invitesTab.description": "Invitez des utilisateurs à rejoindre ce groupe privé par e-mail.",
+      "invitesTab.emailLabel": "E-mail de l'utilisateur",
+      "invitesTab.emailPlaceholder": "Saisir l'e-mail pour inviter...",
+      "toast": {
+        "error": "Erreur",
+        "success": "Succès",
+        "loadError": "Impossible de charger les demandes d'adhésion.",
+        "acceptSuccess": "L'utilisateur a été ajouté au groupe.",
+        "declineSuccess": "La demande a été refusée."
+      },
+      "invitesTab": {
+        "toast": {
+          "emailRequired": "Veuillez saisir une adresse e-mail valide.",
+          "inviteSent": "Invitation envoyée !",
+          "inviteSentDescription": "Une invitation a été envoyée à {email}.",
+          "error": "Erreur lors de l'envoi de l'invitation"
+        }
+      }
+    }
   }
 }

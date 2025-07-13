@@ -53,5 +53,65 @@
         "description": "Diese Ernte wurde auf Ihrem Gerät gespeichert. Sie wird offiziell protokolliert und eine VTI wird generiert, sobald Sie wieder online sind."
       }
     }
+  },
+  "groupsPage": {
+    "createPost": {
+      "backLink": "Zurück zur Gruppendiskussion",
+      "title": "Neuen Beitrag erstellen",
+      "description": "Teilen Sie Ihre Gedanken, stellen Sie eine Frage oder starten Sie eine Diskussion mit der Gruppe.",
+      "form": {
+        "titleLabel": "Beitragstitel",
+        "titlePlaceholder": "z.B. Bewährte Verfahren für den Zwischenfruchtanbau von Mais?",
+        "contentLabel": "Inhalt",
+        "contentPlaceholder": "Geben Sie hier Ihren vollständigen Beitrag ein...",
+        "submittingButton": "Wird gepostet...",
+        "submitButton": "In der Gruppe posten"
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentifizierung erforderlich",
+          "description": "Sie müssen angemeldet sein, um einen Beitrag zu erstellen."
+        },
+        "incomplete": {
+          "title": "Unvollständiger Beitrag",
+          "description": "Bitte geben Sie sowohl einen Titel als auch Inhalt für Ihren Beitrag an."
+        },
+        "success": {
+          "title": "Beitrag erstellt",
+          "description": "Ihr Beitrag wurde erfolgreich zur Gruppendiskussion hinzugefügt."
+        },
+        "error": {
+          "title": "Fehler beim Erstellen des Beitrags",
+          "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+        }
+      }
+    },
+    "manage": {
+      "backLink": "Zurück zur Gruppe",
+      "title": "Gruppe verwalten",
+      "description": "Überprüfen Sie Beitrittsanfragen und verwalten Sie die Gruppeneinstellungen.",
+      "requestsTab": "Beitrittsanfragen",
+      "invitesTab": "Einladungen",
+      "requestedTimeAgo": "Angefragt vor {timeAgo}",
+      "noRequests": "Keine ausstehenden Beitrittsanfragen.",
+      "invitesTab.description": "Benutzer per E-Mail einladen, dieser privaten Gruppe beizutreten.",
+      "invitesTab.emailLabel": "Benutzer-E-Mail",
+      "invitesTab.emailPlaceholder": "E-Mail zur Einladung eingeben...",
+      "toast": {
+        "error": "Fehler",
+        "success": "Erfolg",
+        "loadError": "Beitrittsanfragen konnten nicht geladen werden.",
+        "acceptSuccess": "Benutzer wurde zur Gruppe hinzugefügt.",
+        "declineSuccess": "Anfrage wurde abgelehnt."
+      },
+      "invitesTab": {
+        "toast": {
+          "emailRequired": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+          "inviteSent": "Einladung gesendet!",
+          "inviteSentDescription": "Eine Einladung wurde an {email} gesendet.",
+          "error": "Fehler beim Senden der Einladung"
+        }
+      }
+    }
   }
 }

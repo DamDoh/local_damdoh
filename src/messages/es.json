@@ -53,5 +53,65 @@
         "description": "Esta cosecha se ha guardado en su dispositivo. Se registrará oficialmente y se generará un VTI una vez que vuelva a estar en línea."
       }
     }
+  },
+  "groupsPage": {
+    "createPost": {
+      "backLink": "Volver a la discusión del grupo",
+      "title": "Crear nueva publicación",
+      "description": "Comparta sus pensamientos, haga una pregunta o inicie una discusión con el grupo.",
+      "form": {
+        "titleLabel": "Título de la publicación",
+        "titlePlaceholder": "Ej: ¿Mejores prácticas para el cultivo intercalado de maíz?",
+        "contentLabel": "Contenido",
+        "contentPlaceholder": "Escriba su publicación completa aquí...",
+        "submittingButton": "Publicando...",
+        "submitButton": "Publicar en el grupo"
+      },
+      "toast": {
+        "auth": {
+          "title": "Autenticación requerida",
+          "description": "Debe iniciar sesión para crear una publicación."
+        },
+        "incomplete": {
+          "title": "Publicación incompleta",
+          "description": "Por favor, proporcione un título y contenido para su publicación."
+        },
+        "success": {
+          "title": "Publicación creada",
+          "description": "Su publicación ha sido añadida con éxito a la discusión del grupo."
+        },
+        "error": {
+          "title": "Error al crear la publicación",
+          "description": "Se ha producido un error inesperado. Por favor, inténtelo de nuevo."
+        }
+      }
+    },
+    "manage": {
+      "backLink": "Volver al grupo",
+      "title": "Administrar grupo",
+      "description": "Revise las solicitudes de unión y administre la configuración del grupo.",
+      "requestsTab": "Solicitudes de unión",
+      "invitesTab": "Invitaciones",
+      "requestedTimeAgo": "Solicitado hace {timeAgo}",
+      "noRequests": "No hay solicitudes de unión pendientes.",
+      "invitesTab.description": "Invitar a usuarios a unirse a este grupo privado por correo electrónico.",
+      "invitesTab.emailLabel": "Correo electrónico del usuario",
+      "invitesTab.emailPlaceholder": "Introduzca el correo electrónico para invitar...",
+      "toast": {
+        "error": "Error",
+        "success": "Éxito",
+        "loadError": "No se pudieron cargar las solicitudes de unión.",
+        "acceptSuccess": "El usuario ha sido añadido al grupo.",
+        "declineSuccess": "La solicitud ha sido rechazada."
+      },
+      "invitesTab": {
+        "toast": {
+          "emailRequired": "Por favor, introduzca una dirección de correo electrónico válida.",
+          "inviteSent": "¡Invitación enviada!",
+          "inviteSentDescription": "Se ha enviado una invitación a {email}.",
+          "error": "Error al enviar la invitación"
+        }
+      }
+    }
   }
 }

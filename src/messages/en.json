@@ -53,5 +53,68 @@
         "description": "This harvest has been saved to your device. It will be officially logged and a VTI will be generated once you are back online."
       }
     }
+  },
+  "groupsPage": {
+    "createPost": {
+      "backLink": "Back to Group Discussion",
+      "title": "Create New Post",
+      "description": "Share your thoughts, ask a question, or start a discussion with the group.",
+      "form": {
+        "titleLabel": "Post Title",
+        "titlePlaceholder": "e.g., Best practices for intercropping maize?",
+        "contentLabel": "Content",
+        "contentPlaceholder": "Type your full post here...",
+        "submittingButton": "Posting...",
+        "submitButton": "Post to Group"
+      },
+      "toast": {
+        "auth": {
+          "title": "Authentication Required",
+          "description": "You must be signed in to create a post."
+        },
+        "incomplete": {
+          "title": "Incomplete Post",
+          "description": "Please provide both a title and content for your post."
+        },
+        "success": {
+          "title": "Post Created",
+          "description": "Your post has been successfully added to the group discussion."
+        },
+        "error": {
+          "title": "Post Creation Failed",
+          "description": "An unexpected error occurred. Please try again."
+        }
+      }
+    },
+    "manage": {
+      "backLink": "Back to Group",
+      "title": "Manage Group",
+      "description": "Review join requests and manage group settings.",
+      "requestsTab": "Join Requests",
+      "invitesTab": "Invites",
+      "requestedTimeAgo": "Requested {timeAgo}",
+      "noRequests": "No pending join requests.",
+      "invitesTab.description": "Invite users to join this private group via email.",
+      "invitesTab.emailLabel": "User's Email",
+      "invitesTab.emailPlaceholder": "Enter email to invite...",
+      "toast": {
+        "error": "Error",
+        "success": "Success",
+        "loadError": "Could not load join requests.",
+        "acceptSuccess": "User has been added to the group.",
+        "declineSuccess": "Request has been declined."
+      },
+      "invitesTab": {
+        "description": "Invite users to join this private group via email.",
+        "emailLabel": "User's Email",
+        "emailPlaceholder": "Enter email to invite...",
+        "toast": {
+          "emailRequired": "Please enter a valid email address.",
+          "inviteSent": "Invitation Sent!",
+          "inviteSentDescription": "An invitation has been sent to {email}.",
+          "error": "Error Sending Invite"
+        }
+      }
+    }
   }
 }

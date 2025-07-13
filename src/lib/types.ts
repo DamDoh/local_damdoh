@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -184,6 +185,7 @@ export interface FarmerDashboardData {
 }
 
 export interface CooperativeDashboardData {
+    groupId: string | null;
     memberCount: number;
     totalLandArea: number; // in Hectares
     aggregatedProduce: {
@@ -194,7 +196,6 @@ export interface CooperativeDashboardData {
         readyBy: string; // ISO Date string
     }[];
     pendingMemberApplications: number;
-    groupId: string | null;
 }
 
 
