@@ -1,9 +1,10 @@
 
+
 "use client"; 
 
 import { Link } from '@/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bookmark, Users, Newspaper, CalendarDays, BarChart2, Link2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -49,8 +50,8 @@ export function DashboardLeftSidebar() {
 
   const handleTryProClick = () => {
     toast({
-      title: "DamDoh Pro",
-      description: "Premium features and analytics are coming soon!",
+      title: t('pro.title'),
+      description: t('pro.description'),
     });
   };
 
@@ -89,8 +90,8 @@ export function DashboardLeftSidebar() {
             <h3 className="text-lg font-semibold hover:underline">{profile?.displayName || 'Your Name'}</h3>
           </Link>
           <p className="text-xs text-muted-foreground px-2">{profile?.profileSummary || 'Your Headline'}</p>
-          <p className="text-xs text-muted-foreground mt-1">{profile?.location || 'Your Location'}</p>
-          <Link href="/profiles/me" className="text-xs text-primary hover:underline block mt-1">
+          <p className="text-xs text-muted-foreground mt-1">{profile?.location?.address || 'Your Location'}</p>
+          <Link href="/profiles/me/edit" className="text-xs text-primary hover:underline block mt-1">
             {t('viewProfileLink')}
           </Link>
         </CardContent>

@@ -6,26 +6,26 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { PlusCircle, Shield } from 'lucide-react';
+import { PlusCircle, FileSpreadsheet } from 'lucide-react';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import type { InsuranceProduct } from '@/lib/types';
+import type { FinancialProduct } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Badge } from '@/components/ui/badge';
+import { Badge } from "@/components/ui/badge';
 import { useTranslations } from 'next-intl';
 
-export default function InsuranceProductsPage() {
-    const t = useTranslations('InsuranceProductsPage');
+export default function FinancialProductsPage() {
+    const t = useTranslations('FiProductsPage');
     const { user } = useAuth();
     const { toast } = useToast();
-    const [products, setProducts] = useState<InsuranceProduct[]>([]);
+    const [products, setProducts] = useState<FinancialProduct[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const functions = getFunctions(firebaseApp);
-    const getProductsCallable = useMemo(() => httpsCallable(functions, 'getInsuranceProducts'), [functions]);
+    const getProductsCallable = useMemo(() => httpsCallable(functions, 'getFinancialProducts'), [functions]);
     
     const fetchProducts = useCallback(async () => {
         setIsLoading(true);
@@ -48,7 +48,7 @@ export default function InsuranceProductsPage() {
     }, [user, fetchProducts]);
 
     if (!user && !isLoading) {
-        return <p>Please log in to manage insurance products.</p>;
+        return <p>Please log in to manage financial products.</p>;
     }
 
     return (
@@ -60,7 +60,7 @@ export default function InsuranceProductsPage() {
                         <CardDescription>{t('description')}</CardDescription>
                     </div>
                     <Button asChild>
-                        <Link href="/insurance/products/create"><PlusCircle className="mr-2 h-4 w-4" />{t('createButton')}</Link>
+                        <Link href="/fi/products/create"><PlusCircle className="mr-2 h-4 w-4" />{t('createButton')}</Link>
                     </Button>
                 </CardHeader>
                 <CardContent>
@@ -73,7 +73,8 @@ export default function InsuranceProductsPage() {
                                     <TableHead>{t('table.productName')}</TableHead>
                                     <TableHead>{t('table.type')}</TableHead>
                                     <TableHead>{t('table.status')}</TableHead>
-                                    <TableHead className="text-right">{t('table.premium')}</TableHead>
+                                    <TableHead>{t('table.interestRate')}</TableHead>
+                                    <TableHead className="text-right">{t('table.maxAmount')}</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -82,7 +83,8 @@ export default function InsuranceProductsPage() {
                                         <TableCell className="font-medium">{product.name}</TableCell>
                                         <TableCell><Badge variant="secondary">{product.type}</Badge></TableCell>
                                         <TableCell><Badge>{product.status}</Badge></TableCell>
-                                        <TableCell className="text-right">${product.premium.toFixed(2)}</TableCell>
+                                        <TableCell>{product.interestRate ? `${product.interestRate}%` : 'N/A'}</TableCell>
+                                        <TableCell className="text-right">{product.maxAmount ? `$${product.maxAmount.toLocaleString()}` : 'N/A'}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>

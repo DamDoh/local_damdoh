@@ -266,5 +266,3 @@ export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
     
     return { success: true, message: "Friend confirmation successful! The user can now proceed with their recovery.", recoveryComplete: true };
 });
-
-    

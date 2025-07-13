@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -46,7 +47,7 @@ export const createInsuranceProduct = functions.https.onCall(async (data, contex
     const providerId = await checkInsuranceProviderAuth(context);
     const { name, type, description, coverageDetails, premium, currency } = data;
 
-    if (!name || !type || !description || !coverageDetails || !premium || !currency) {
+    if (!name || !type || !description || !coverageDetails || premium === undefined || !currency) {
         throw new functions.https.HttpsError("invalid-argument", "error.form.missingFields");
     }
     

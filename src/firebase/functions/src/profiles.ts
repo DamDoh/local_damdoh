@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
@@ -104,7 +103,7 @@ export const upsertStakeholderProfile = functions.https.onCall(
     if (!primaryRole) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "A primary role must be provided.",
+        "error.profile.roleRequired",
       );
     }
 
@@ -155,7 +154,7 @@ export const upsertStakeholderProfile = functions.https.onCall(
       }
       throw new functions.https.HttpsError(
         "internal",
-        "Failed to write to the database. This might be because Firestore is not enabled in your Firebase project.",
+        "error.profile.updateFailed",
         {originalError: error.message},
       );
     }
@@ -328,7 +327,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
 
     } catch (error) {
         console.error(`Error fetching activity for user ${userId}:`, error);
-        throw new functions.https.HttpsError('internal', 'Could not fetch user activity.');
+        throw new functions.https.HttpsError('internal', 'error.activity.fetchFailed');
     }
 });
 
@@ -360,7 +359,7 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
         };
     } catch (error) {
         console.error(`Error fetching engagement stats for user ${userId}:`, error);
-        throw new functions.https.HttpsError('internal', 'Could not fetch engagement statistics.');
+        throw new functions.https.HttpsError('internal', 'error.stats.fetchFailed');
     }
 });
 
@@ -424,5 +423,7 @@ async function deleteQueryBatch(query: FirebaseFirestore.Query) {
   });
   await batch.commit();
 
-  return snapshot.size;
+  // Recurse on the same query to delete more documents.
+  // This is safe because the query is limited and we check for size === 0.
+  return snapshot.size + await deleteQueryBatch(query);
 }

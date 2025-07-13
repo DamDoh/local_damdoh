@@ -21,7 +21,7 @@ import { signInSchema, type SignInValues } from "@/lib/form-schemas";
 import { logIn } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertTriangle, CheckCircle, Loader2, Mail, Lock } from "lucide-react";
+import { AlertTriangle, Loader2, Mail, Lock } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME } from "@/lib/constants";
 import { useTranslations } from "next-intl";
@@ -48,33 +48,33 @@ export default function SignInPage() {
     try {
       await logIn(data.email, data.password);
       toast({
-        title: "Signed In Successfully!",
-        description: `Welcome back to ${APP_NAME}.`,
+        title: t('signInSuccess.title'),
+        description: t('signInSuccess.description', { appName: APP_NAME }),
         variant: "default", 
       });
       router.push("/"); 
     } catch (error: any) {
-      let errorMessage = "An unexpected error occurred. Please try again.";
+      let errorMessage = t('errors.unexpected');
       if (error.code) {
         switch (error.code) {
           case "auth/user-not-found":
           case "auth/wrong-password":
           case "auth/invalid-credential":
-            errorMessage = "Invalid email or password. Please try again.";
+            errorMessage = t('errors.invalidCredential');
             break;
           case "auth/invalid-email":
-            errorMessage = "The email address is not valid.";
+            errorMessage = t('errors.invalidEmail');
             break;
           case "auth/user-disabled":
-            errorMessage = "This user account has been disabled.";
+            errorMessage = t('errors.userDisabled');
             break;
           default:
-            errorMessage = `Login failed: ${error.message}`;
+            errorMessage = `${t('errors.default')}: ${error.message}`;
         }
       }
       setAuthError(errorMessage);
       toast({
-        title: "Sign In Failed",
+        title: t('signInFailed'),
         description: errorMessage,
         variant: "destructive",
       });
@@ -98,7 +98,7 @@ export default function SignInPage() {
           {authError && (
             <Alert variant="destructive" className="mb-4">
               <AlertTriangle className="h-4 w-4" />
-              <AlertTitle>Authentication Error</AlertTitle>
+              <AlertTitle>{t('error')}</AlertTitle>
               <AlertDescription>{authError}</AlertDescription>
             </Alert>
           )}

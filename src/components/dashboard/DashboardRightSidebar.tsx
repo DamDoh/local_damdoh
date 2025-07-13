@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import Link from "next/link";
@@ -12,7 +13,6 @@ import { httpsCallable } from "firebase/functions";
 import { functions } from "@/lib/firebase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/lib/auth-utils";
-import type { StakeholderRole } from "@/lib/constants";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { useTranslations } from "next-intl";
 import { useToast } from "@/hooks/use-toast";
@@ -89,15 +89,15 @@ export function DashboardRightSidebar() {
 
   const handleFollow = async (suggestionId: string) => {
     if (!user) {
-        toast({ title: "Please sign in to connect.", variant: "destructive" });
+        toast({ title: t('toast.signInToConnect'), variant: "destructive" });
         return;
     }
     setFollowedSuggestions(prev => new Set(prev).add(suggestionId));
     try {
         await sendConnectionRequestCallable({ recipientId: suggestionId });
-        toast({ title: "Connection Request Sent!", description: "Your request has been sent to the user."});
+        toast({ title: t('toast.requestSent'), description: t('toast.requestSentDescription')});
     } catch (error: any) {
-        toast({ title: "Could Not Send Request", description: error.message, variant: "destructive" });
+        toast({ title: t('toast.requestFailed'), description: error.message, variant: "destructive" });
         setFollowedSuggestions(prev => {
             const newSet = new Set(prev);
             newSet.delete(suggestionId);
@@ -232,7 +232,7 @@ export function DashboardRightSidebar() {
           <p className="text-xs text-muted-foreground text-center px-4">{t('adTitle')}</p>
           <div className="flex justify-center items-center gap-2 my-2 px-4">
             <Avatar className="h-12 w-12">
-                <AvatarImage src="https://placehold.co/50x50.png" alt="DamDoh Market Trends Ad" data-ai-hint="market chart agriculture"/>
+                <AvatarImage src="https://placehold.co/50x50.png" alt={t('adAlt')} data-ai-hint="market chart agriculture"/>
                 <AvatarFallback>DT</AvatarFallback>
             </Avatar>
              <TrendingUp className="h-10 w-10 text-primary" />

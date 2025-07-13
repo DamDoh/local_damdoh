@@ -12,9 +12,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { LogOut, Settings, User } from "lucide-react";
 import Link from "next/link";
-import { logOut } from "@/lib/auth-utils"; // Import the logOut function
-import { useToast } from "@/hooks/use-toast"; // For user feedback
+import { logOut } from "@/lib/auth-utils"; 
+import { useToast } from "@/hooks/use-toast"; 
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface UserAvatarProps {
   name?: string | null;
@@ -23,6 +24,7 @@ interface UserAvatarProps {
 }
 
 export function UserAvatar({ name, email, imageUrl }: UserAvatarProps) {
+  const t = useTranslations('AppHeader');
   const { toast } = useToast();
   const router = useRouter();
 
@@ -37,8 +39,8 @@ export function UserAvatar({ name, email, imageUrl }: UserAvatarProps) {
     try {
       await logOut();
       toast({
-        title: "Logged Out",
-        description: "You have been successfully logged out.",
+        title: t('toast.logOut.title'),
+        description: t('toast.logOut.description'),
       });
       // Redirect to home page after logout to refresh state
       router.push('/');
@@ -46,8 +48,8 @@ export function UserAvatar({ name, email, imageUrl }: UserAvatarProps) {
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Logout Failed",
-        description: "Could not log you out. Please try again.",
+        title: t('toast.logOut.failTitle'),
+        description: t('toast.logOut.failDescription'),
       });
     }
   };
@@ -79,19 +81,19 @@ export function UserAvatar({ name, email, imageUrl }: UserAvatarProps) {
         <DropdownMenuItem asChild>
           <Link href="/profiles/me" className="flex items-center gap-2 cursor-pointer">
             <User className="h-4 w-4" />
-            <span>My Profile</span>
+            <span>{t('myProfile')}</span>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href="/settings" className="flex items-center gap-2 cursor-pointer">
             <Settings className="h-4 w-4" />
-            <span>Settings</span>
+            <span>{t('settings')}</span>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout} className="cursor-pointer"> 
           <LogOut className="h-4 w-4 mr-2" />
-          <span>Log out</span>
+          <span>{t('logOut')}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

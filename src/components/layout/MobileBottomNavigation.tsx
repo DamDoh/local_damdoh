@@ -15,11 +15,11 @@ interface NavItem {
 
 export function MobileBottomNavigation() {
   const pathname = usePathname();
-  const t = useTranslations('MobileBottomNav');
+  const t = useTranslations('AppHeader');
 
   const navItems: NavItem[] = [
     { href: "/", label: t('home'), icon: Home },
-    { href: "/marketplace", label: t('market'), icon: ShoppingCart },
+    { href: "/marketplace", label: t('marketplace'), icon: ShoppingCart },
     { href: "/search", label: t('search'), icon: Search },
     { href: "/messages", label: t('messages'), icon: MessageSquare },
     { href: "/profiles/me", label: t('profile'), icon: User },

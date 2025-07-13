@@ -8,7 +8,7 @@ const db = admin.firestore();
 
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
   }
   return context.auth.uid;
 };
@@ -20,21 +20,21 @@ export const sendConnectionRequest = functions.https.onCall(async (data, context
     const { recipientId } = data;
 
     if (!recipientId) {
-        throw new functions.https.HttpsError('invalid-argument', 'A recipientId must be provided.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.network.recipientRequired');
     }
     if (requesterId === recipientId) {
-        throw new functions.https.HttpsError('invalid-argument', 'You cannot send a connection request to yourself.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.network.selfConnection');
     }
     
     const recipientDoc = await db.collection('users').doc(recipientId).get();
     if (!recipientDoc.exists) {
-        throw new functions.https.HttpsError('not-found', 'The user you are trying to connect with does not exist.');
+        throw new functions.https.HttpsError('not-found', 'error.network.userNotFound');
     }
 
     // Check if users are already connected
     const connections = recipientDoc.data()?.connections || [];
     if (connections.includes(requesterId)) {
-        throw new functions.https.HttpsError('already-exists', 'You are already connected with this user.');
+        throw new functions.https.HttpsError('already-exists', 'error.network.alreadyConnected');
     }
 
     // Check if a request already exists in either direction
@@ -49,7 +49,7 @@ export const sendConnectionRequest = functions.https.onCall(async (data, context
     const [reqSnap1, reqSnap2] = await Promise.all([requestQuery1, requestQuery2]);
 
     if (!reqSnap1.empty || !reqSnap2.empty) {
-        throw new functions.https.HttpsError('already-exists', 'A connection request already exists between you and this user.');
+        throw new functions.https.HttpsError('already-exists', 'error.network.requestExists');
     }
 
     const requestRef = db.collection('connection_requests').doc();
@@ -106,25 +106,25 @@ export const respondToConnectionRequest = functions.https.onCall(async (data, co
     const { requestId, response } = data; // response can be 'accepted' or 'declined'
 
     if (!requestId || !response) {
-        throw new functions.https.HttpsError('invalid-argument', 'requestId and response are required.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.form.missingFields');
     }
     if (!['accepted', 'declined'].includes(response)) {
-        throw new functions.https.HttpsError('invalid-argument', 'Response must be "accepted" or "declined".');
+        throw new functions.https.HttpsError('invalid-argument', 'error.network.invalidResponse');
     }
 
     const requestRef = db.collection('connection_requests').doc(requestId);
     const requestSnap = await requestRef.get();
 
     if (!requestSnap.exists) {
-        throw new functions.https.HttpsError('not-found', 'Connection request not found.');
+        throw new functions.https.HttpsError('not-found', 'error.network.requestNotFound');
     }
     const requestData = requestSnap.data()!;
 
     if (requestData.recipientId !== userId) {
-        throw new functions.https.HttpsError('permission-denied', 'You are not the recipient of this request.');
+        throw new functions.https.HttpsError('permission-denied', 'error.permissionDenied');
     }
     if (requestData.status !== 'pending') {
-        throw new functions.https.HttpsError('failed-precondition', 'This request has already been responded to.');
+        throw new functions.https.HttpsError('failed-precondition', 'error.network.requestAlreadyHandled');
     }
 
     const batch = db.batch();
@@ -152,7 +152,7 @@ export const getConnections = functions.https.onCall(async (data, context) => {
     
     const userDoc = await db.collection('users').doc(userId).get();
     if (!userDoc.exists) {
-         throw new functions.https.HttpsError('not-found', 'User profile not found.');
+         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
     
     const connectionIds = userDoc.data()?.connections || [];
@@ -183,7 +183,7 @@ export const removeConnection = functions.https.onCall(async (data, context) => 
     const { connectionId } = data;
     
     if (!connectionId) {
-        throw new functions.https.HttpsError('invalid-argument', 'A connectionId must be provided.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.network.connectionIdRequired');
     }
 
     const userRef = db.collection('users').doc(userId);
@@ -209,21 +209,14 @@ export const sendInvite = functions.https.onCall(async (data, context) => {
   const { inviteeEmail } = data;
 
   if (!inviteeEmail || typeof inviteeEmail !== 'string') {
-    throw new functions.https.HttpsError('invalid-argument', 'A valid email address is required.');
+    throw new functions.https.HttpsError('invalid-argument', 'error.email.invalid');
   }
 
-  // Placeholder logic: In a real app, you would generate a unique token,
-  // store it with the invite details, and use a service like SendGrid
-  // to send an email with a special sign-up link containing the token.
   const inviterProfile = await db.collection('users').doc(inviterId).get();
   const inviterName = inviterProfile.data()?.displayName || 'A DamDoh user';
 
   console.log(`Simulating sending invite from ${inviterName} (${inviterId}) to ${inviteeEmail}`);
   
-  // Here you would add logic to determine the language for the email template
-  // const inviterLang = inviterProfile.data()?.preferredLanguage || 'en';
-  // Then use inviterLang to select the correct email template.
-
   return { success: true, message: `An invitation has been sent to ${inviteeEmail}.` };
 });
 
@@ -270,4 +263,3 @@ export const getProfileConnectionStatuses = functions.https.onCall(async (data, 
     
     return statuses;
 });
-

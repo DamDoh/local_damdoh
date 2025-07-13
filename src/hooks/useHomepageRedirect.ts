@@ -20,7 +20,7 @@ export function useHomepageRedirect() {
         
         // Redirect from root ('/') to the preference if it exists and is not the root itself.
         if (homepagePreference && homepagePreference !== '/' && effectivePath === '/') {
-            router.replace(homepagePreference, { locale: router.locale });
+            router.replace(homepagePreference);
         }
     }, [homepagePreference, isPreferenceLoading, pathname, router]);
 

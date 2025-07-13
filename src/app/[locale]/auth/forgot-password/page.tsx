@@ -21,7 +21,7 @@ import { forgotPasswordSchema, type ForgotPasswordValues } from "@/lib/form-sche
 import { sendPasswordReset } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertTriangle, CheckCircle, Loader2, Mail, ArrowLeft } from "lucide-react";
+import { AlertTriangle, CheckCircle, Loader2, Mail } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME } from "@/lib/constants";
 import { useTranslations } from "next-intl";
@@ -162,4 +162,8 @@ export default function ForgotPasswordPage() {
               {t('signInLink')}
             </Link>
           </p>
-        </CardFooter
+        </CardFooter>
+      </Card>
+    </div>
+  );
+}
