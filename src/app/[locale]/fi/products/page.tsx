@@ -24,7 +24,7 @@ export default function FinancialProductsPage() {
     const [isLoading, setIsLoading] = useState(true);
 
     const functions = getFunctions(firebaseApp);
-    const getProductsCallable = useMemo(() => httpsCallable(functions, 'getFinancialProducts'), []);
+    const getProductsCallable = useMemo(() => httpsCallable(functions, 'getFinancialProducts'), [functions]);
     
     const fetchProducts = useCallback(async () => {
         setIsLoading(true);
