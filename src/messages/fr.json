@@ -13,96 +13,55 @@
     "back": "Retour",
     "submit": "Soumettre"
   },
-  "farmManagement": {
-    "laborPage": {
-      "workerDetailPage": {
-        "notFoundTitle": "Travailleur non trouvé",
-        "notFoundDescription": "Le profil du travailleur que vous recherchez n'a pas pu être trouvé.",
-        "goBackButton": "Retour à la gestion de la main-d'œuvre",
-        "backLink": "Retour à la gestion de la main-d'œuvre",
-        "workLogsTitle": "Journaux de travail",
-        "paymentHistoryTitle": "Historique des paiements",
-        "noWorkLogs": "Aucune heure de travail n'a été enregistrée pour ce travailleur.",
-        "noPayments": "Aucun paiement n'a été enregistré pour ce travailleur.",
-        "table": {
-          "date": "Date",
-          "hours": "Heures",
-          "task": "Tâche / Description",
-          "amount": "Montant"
-        },
-        "toasts": {
-          "errorTitle": "Erreur",
-          "loadError": "Impossible de charger les détails du travailleur."
-        }
-      },
-      "backLink": "Retour au hub de gestion agricole",
-      "title": "Gestion de la Main-d'œuvre",
-      "addWorker": "Ajouter un travailleur",
-      "workerName": "Nom du travailleur",
-      "saveWorker": "Enregistrer le travailleur",
-      "description": "Suivez les heures, les paiements et gérez vos ouvriers agricoles.",
-      "loading": "Chargement...",
-      "signInPrompt": {
-        "title": "Connexion requise",
-        "description": "Veuillez vous connecter pour gérer votre main-d'œuvre agricole.",
-        "button": "Se connecter"
-      },
-      "hoursLogged": "Heures enregistrées",
-      "totalPaid": "Total payé",
-      "logHours": "Enregistrer des heures",
-      "logPayment": "Enregistrer un paiement",
-      "viewDetails": "Voir les détails",
-      "noWorkers": "Vous n'avez pas encore ajouté de travailleurs.",
-      "logHoursFor": "Enregistrer des heures pour",
-      "hoursWorked": "Heures travaillées",
-      "date": "Date",
-      "pickDate": "Choisir une date",
-      "taskDescription": "Tâche / Description (Facultatif)",
-      "logPaymentFor": "Enregistrer un paiement pour",
-      "amountPaid": "Montant payé (USD)",
-      "toast": {
-        "errorTitle": "Erreur",
-        "fetchWorkersError": "Impossible de récupérer votre liste de travailleurs.",
-        "nameRequired": "Le nom du travailleur est requis.",
-        "workerAdded": "Nouveau travailleur ajouté avec succès.",
-        "hoursLogged": "Les heures ont été enregistrées avec succès.",
-        "paymentLoggedTitle": "Paiement enregistré",
-        "paymentLoggedDescription": "Le paiement a été enregistré et une dépense a été automatiquement ajoutée à votre registre financier."
-      }
+  "myNetworkPage": {
+    "backLink": "Retour au Hub Réseau",
+    "myConnectionsTab": "Mes Connexions ({count})",
+    "pendingRequestsTab": "Demandes en Attente",
+    "connectionsTitle": "Mes Connexions",
+    "connectionsDescription": "Ceci est votre réseau professionnel sur DamDoh. Ce sont les personnes avec qui vous pouvez échanger des messages directs et collaborer.",
+    "requestsTitle": "Demandes de Connexion",
+    "requestsDescription": "Acceptez ou refusez les demandes d'autres utilisateurs pour les ajouter à votre réseau.",
+    "noConnections": {
+      "title": "Construisez Votre Réseau",
+      "description": "Vous n'avez encore établi aucune connexion. Commencez par explorer le réseau ou inviter des personnes que vous connaissez.",
+      "inviteButton": "Inviter des Collègues"
+    },
+    "noRequests": "Vous n'avez aucune demande de connexion en attente.",
+    "sentTimeAgo": "Envoyé il y a {timeAgo}",
+    "toast": {
+      "error": "Erreur",
+      "success": "Succès",
+      "loadError": "Impossible de charger les données de votre réseau. Veuillez réessayer.",
+      "respondError": "Échec de la réponse à la demande.",
+      "requestAccepted": "Demande de connexion acceptée.",
+      "requestDeclined": "Demande de connexion refusée.",
+      "connectionRemoved": "La connexion a été supprimée.",
+      "removeError": "Impossible de supprimer la connexion."
     }
   },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "Synchronisation de {count} changements...",
-      "onlinePending": "{count} changements enregistrés hors ligne. Synchronisation prochaine.",
-      "onlineSynced": "Vous êtes en ligne. Tous les changements sont synchronisés.",
-      "offline": "Vous êtes hors ligne. {count} changements enregistrés localement."
-    },
+  "DashboardRightSidebar": {
+    "networkTitle": "Qui Suivre",
+    "refreshSuggestions": "Actualiser les suggestions",
+    "infoTooltip": "Suggestions basées sur l'IA, fondées sur votre profil et votre activité.",
+    "follow": "Suivre",
+    "following": "Demandé",
+    "viewAllButton": "Voir toutes les suggestions",
+    "promotionsTitle": "Mes Promotions",
+    "promotionsDescription": "Créez et gérez des coupons pour attirer plus de clients.",
+    "managePromotionsButton": "Gérer les Coupons",
+    "ad": "Publicité",
+    "adTitle": "Obtenez des Aperçus du Marché",
+    "adDescription": "Accédez aux prix et aux tendances en temps réel pour vos produits.",
+    "adButton": "Voir les Données du Marché",
+    "adAlt": "Graphique de données montrant les tendances du marché",
+    "loadError": "Impossible de charger les suggestions pour le moment.",
+    "signInPrompt": "Connectez-vous pour voir des suggestions personnalisées.",
+    "noSuggestions": "Pas de nouvelles suggestions pour l'instant. Essayez d'étoffer votre profil !",
     "toast": {
-      "online": {
-        "title": "De retour en ligne !",
-        "description": "Votre connexion a été rétablie."
-      },
-      "offline": {
-        "title": "Vous êtes hors ligne",
-        "description": "Ne vous inquiétez pas, vos modifications seront enregistrées et synchronisées lorsque vous vous reconnecterez."
-      },
-      "syncing": {
-        "title": "Synchronisation des changements hors ligne",
-        "description": "Nous synchronisons {count, plural, one {# changement} other {# changements}} effectués lorsque vous étiez hors ligne."
-      },
-      "synced": {
-        "title": "Synchronisation terminée !",
-        "description": "Tous vos changements hors ligne ont été sauvegardés sur le serveur."
-      },
-      "syncFailed": {
-        "title": "Échec de la synchronisation",
-        "description": "Impossible de synchroniser les changements hors ligne. Nous essaierons à nouveau plus tard."
-      },
-      "queued": {
-        "title": "Action mise en file d'attente",
-        "description": "Vous êtes hors ligne. Cette action sera synchronisée lorsque vous vous reconnecterez."
-      }
+      "signInToConnect": "Veuillez vous connecter pour établir une connexion avec les utilisateurs.",
+      "requestSent": "Demande de Connexion Envoyée !",
+      "requestSentDescription": "Votre demande a été envoyée à l'utilisateur. Vous serez averti lorsqu'il l'acceptera.",
+      "requestFailed": "Impossible d'envoyer la demande."
     }
   }
 }

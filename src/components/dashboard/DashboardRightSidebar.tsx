@@ -204,7 +204,7 @@ export function DashboardRightSidebar() {
           </ul>
           {!isLoadingSuggestions && aiSuggestions.length > 0 && (
              <Button variant="link" className="px-0 text-xs text-muted-foreground hover:text-primary mt-2" asChild>
-                <Link href="/network">
+                <Link href="/network/my-network">
                 {t('viewAllButton')} <ArrowRight className="ml-1 h-3 w-3" />
                 </Link>
             </Button>

@@ -13,96 +13,55 @@
     "back": "Zurück",
     "submit": "Einreichen"
   },
-  "farmManagement": {
-    "laborPage": {
-      "workerDetailPage": {
-        "notFoundTitle": "Mitarbeiter nicht gefunden",
-        "notFoundDescription": "Das gesuchte Mitarbeiterprofil konnte nicht gefunden werden.",
-        "goBackButton": "Zurück zur Personalverwaltung",
-        "backLink": "Zurück zur Personalverwaltung",
-        "workLogsTitle": "Arbeitsstunden",
-        "paymentHistoryTitle": "Zahlungshistorie",
-        "noWorkLogs": "Für diesen Mitarbeiter wurden keine Arbeitsstunden erfasst.",
-        "noPayments": "Für diesen Mitarbeiter wurden keine Zahlungen erfasst.",
-        "table": {
-          "date": "Datum",
-          "hours": "Stunden",
-          "task": "Aufgabe / Beschreibung",
-          "amount": "Betrag"
-        },
-        "toasts": {
-          "errorTitle": "Fehler",
-          "loadError": "Mitarbeiterdetails konnten nicht geladen werden."
-        }
-      },
-      "backLink": "Zurück zum Farm-Management-Hub",
-      "title": "Personalverwaltung",
-      "addWorker": "Mitarbeiter hinzufügen",
-      "workerName": "Name des Mitarbeiters",
-      "saveWorker": "Mitarbeiter speichern",
-      "description": "Erfassen Sie Stunden, Zahlungen und verwalten Sie Ihre Landarbeiter.",
-      "loading": "Wird geladen...",
-      "signInPrompt": {
-        "title": "Anmeldung erforderlich",
-        "description": "Bitte melden Sie sich an, um Ihr Personal zu verwalten.",
-        "button": "Anmelden"
-      },
-      "hoursLogged": "Erfasste Stunden",
-      "totalPaid": "Gesamtzahlung",
-      "logHours": "Stunden erfassen",
-      "logPayment": "Zahlung erfassen",
-      "viewDetails": "Details anzeigen",
-      "noWorkers": "Sie haben noch keine Mitarbeiter hinzugefügt.",
-      "logHoursFor": "Stunden erfassen für",
-      "hoursWorked": "Gearbeitete Stunden",
-      "date": "Datum",
-      "pickDate": "Datum auswählen",
-      "taskDescription": "Aufgabe / Beschreibung (optional)",
-      "logPaymentFor": "Zahlung erfassen für",
-      "amountPaid": "Gezahlter Betrag (USD)",
-      "toast": {
-        "errorTitle": "Fehler",
-        "fetchWorkersError": "Ihre Mitarbeiterliste konnte nicht abgerufen werden.",
-        "nameRequired": "Der Name des Mitarbeiters ist erforderlich.",
-        "workerAdded": "Neuer Mitarbeiter erfolgreich hinzugefügt.",
-        "hoursLogged": "Die Stunden wurden erfolgreich erfasst.",
-        "paymentLoggedTitle": "Zahlung erfasst",
-        "paymentLoggedDescription": "Die Zahlung wurde erfasst und eine Ausgabe wurde automatisch zu Ihrer Finanzübersicht hinzugefügt."
-      }
+  "myNetworkPage": {
+    "backLink": "Zurück zum Netzwerk-Hub",
+    "myConnectionsTab": "Meine Verbindungen ({count})",
+    "pendingRequestsTab": "Ausstehende Anfragen",
+    "connectionsTitle": "Meine Verbindungen",
+    "connectionsDescription": "Dies ist Ihr professionelles Netzwerk auf DamDoh. Dies sind die Personen, mit denen Sie direkt Nachrichten austauschen und zusammenarbeiten können.",
+    "requestsTitle": "Verbindungsanfragen",
+    "requestsDescription": "Akzeptieren oder lehnen Sie Anfragen von anderen Benutzern ab, um sie Ihrem Netzwerk hinzuzufügen.",
+    "noConnections": {
+      "title": "Bauen Sie Ihr Netzwerk auf",
+      "description": "Sie haben noch keine Verbindungen hergestellt. Beginnen Sie, indem Sie das Netzwerk erkunden oder Personen einladen, die Sie kennen.",
+      "inviteButton": "Kollegen einladen"
+    },
+    "noRequests": "Sie haben keine ausstehenden Verbindungsanfragen.",
+    "sentTimeAgo": "Gesendet vor {timeAgo}",
+    "toast": {
+      "error": "Fehler",
+      "success": "Erfolg",
+      "loadError": "Ihre Netzwerkdaten konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
+      "respondError": "Fehler beim Beantworten der Anfrage.",
+      "requestAccepted": "Verbindungsanfrage akzeptiert.",
+      "requestDeclined": "Verbindungsanfrage abgelehnt.",
+      "connectionRemoved": "Verbindung wurde entfernt.",
+      "removeError": "Verbindung konnte nicht entfernt werden."
     }
   },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "{count} Änderungen werden synchronisiert...",
-      "onlinePending": "{count} Änderungen offline gespeichert. Synchronisierung folgt in Kürze.",
-      "onlineSynced": "Sie sind online. Alle Änderungen sind synchronisiert.",
-      "offline": "Sie sind offline. {count} Änderungen lokal gespeichert."
-    },
+  "DashboardRightSidebar": {
+    "networkTitle": "Wem folgen",
+    "refreshSuggestions": "Vorschläge aktualisieren",
+    "infoTooltip": "KI-gestützte Vorschläge basierend auf Ihrem Profil und Ihrer Aktivität.",
+    "follow": "Folgen",
+    "following": "Angefragt",
+    "viewAllButton": "Alle Vorschläge anzeigen",
+    "promotionsTitle": "Meine Werbeaktionen",
+    "promotionsDescription": "Erstellen und verwalten Sie Gutscheine, um mehr Kunden zu gewinnen.",
+    "managePromotionsButton": "Gutscheine verwalten",
+    "ad": "Anzeige",
+    "adTitle": "Markteinblicke erhalten",
+    "adDescription": "Greifen Sie auf Echtzeit-Preise und Trends für Ihre Produkte zu.",
+    "adButton": "Marktdaten anzeigen",
+    "adAlt": "Datendiagramm mit Markttrends",
+    "loadError": "Vorschläge konnten im Moment nicht geladen werden.",
+    "signInPrompt": "Melden Sie sich an, um personalisierte Vorschläge zu sehen.",
+    "noSuggestions": "Im Moment keine neuen Vorschläge. Versuchen Sie, Ihr Profil zu erweitern!",
     "toast": {
-      "online": {
-        "title": "Wieder online!",
-        "description": "Ihre Verbindung wurde wiederhergestellt."
-      },
-      "offline": {
-        "title": "Sie sind offline",
-        "description": "Keine Sorge, Ihre Änderungen werden gespeichert und synchronisiert, wenn Sie wieder online sind."
-      },
-      "syncing": {
-        "title": "Synchronisiere Offline-Änderungen",
-        "description": "Wir synchronisieren {count, plural, one {# Änderung} other {# Änderungen}}, die Sie offline vorgenommen haben."
-      },
-      "synced": {
-        "title": "Synchronisierung abgeschlossen!",
-        "description": "Alle Ihre Offline-Änderungen wurden auf dem Server gespeichert."
-      },
-      "syncFailed": {
-        "title": "Synchronisierung fehlgeschlagen",
-        "description": "Offline-Änderungen konnten nicht synchronisiert werden. Wir versuchen es später erneut."
-      },
-      "queued": {
-        "title": "Aktion in Warteschlange",
-        "description": "Sie sind offline. Diese Aktion wird synchronisiert, wenn Sie wieder online sind."
-      }
+      "signInToConnect": "Bitte melden Sie sich an, um sich mit Benutzern zu verbinden.",
+      "requestSent": "Verbindungsanfrage gesendet!",
+      "requestSentDescription": "Ihre Anfrage wurde an den Benutzer gesendet. Sie werden benachrichtigt, wenn sie akzeptiert wird.",
+      "requestFailed": "Anfrage konnte nicht gesendet werden."
     }
   }
 }

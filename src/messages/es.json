@@ -13,96 +13,55 @@
     "back": "Volver",
     "submit": "Enviar"
   },
-  "farmManagement": {
-    "laborPage": {
-      "workerDetailPage": {
-        "notFoundTitle": "Trabajador no encontrado",
-        "notFoundDescription": "No se pudo encontrar el perfil del trabajador que está buscando.",
-        "goBackButton": "Volver a Gestión de Mano de Obra",
-        "backLink": "Volver a Gestión de Mano de Obra",
-        "workLogsTitle": "Registros de Trabajo",
-        "paymentHistoryTitle": "Historial de Pagos",
-        "noWorkLogs": "No se han registrado horas de trabajo para este trabajador.",
-        "noPayments": "No se han registrado pagos para este trabajador.",
-        "table": {
-          "date": "Fecha",
-          "hours": "Horas",
-          "task": "Tarea / Descripción",
-          "amount": "Monto"
-        },
-        "toasts": {
-          "errorTitle": "Error",
-          "loadError": "No se pudieron cargar los detalles del trabajador."
-        }
-      },
-      "backLink": "Volver al Centro de Gestión Agrícola",
-      "title": "Gestión de Mano de Obra",
-      "addWorker": "Añadir Trabajador",
-      "workerName": "Nombre del Trabajador",
-      "saveWorker": "Guardar Trabajador",
-      "description": "Realice un seguimiento de las horas, los pagos y gestione a los trabajadores de su granja.",
-      "loading": "Cargando...",
-      "signInPrompt": {
-        "title": "Se requiere iniciar sesión",
-        "description": "Inicie sesión para gestionar la mano de obra de su granja.",
-        "button": "Iniciar sesión"
-      },
-      "hoursLogged": "Horas Registradas",
-      "totalPaid": "Total Pagado",
-      "logHours": "Registrar Horas",
-      "logPayment": "Registrar Pago",
-      "viewDetails": "Ver Detalles",
-      "noWorkers": "Aún no ha añadido ningún trabajador.",
-      "logHoursFor": "Registrar Horas para",
-      "hoursWorked": "Horas Trabajadas",
-      "date": "Fecha",
-      "pickDate": "Seleccionar una fecha",
-      "taskDescription": "Tarea / Descripción (Opcional)",
-      "logPaymentFor": "Registrar Pago para",
-      "amountPaid": "Monto Pagado (USD)",
-      "toast": {
-        "errorTitle": "Error",
-        "fetchWorkersError": "No se pudo obtener su lista de trabajadores.",
-        "nameRequired": "El nombre del trabajador es obligatorio.",
-        "workerAdded": "Nuevo trabajador añadido con éxito.",
-        "hoursLogged": "Las horas se han registrado correctamente.",
-        "paymentLoggedTitle": "Pago Registrado",
-        "paymentLoggedDescription": "El pago ha sido registrado y se ha añadido automáticamente un gasto a su libro de contabilidad."
-      }
+  "myNetworkPage": {
+    "backLink": "Volver al Centro de Redes",
+    "myConnectionsTab": "Mis Conexiones ({count})",
+    "pendingRequestsTab": "Solicitudes Pendientes",
+    "connectionsTitle": "Mis Conexiones",
+    "connectionsDescription": "Esta es tu red profesional en DamDoh. Estas son las personas con las que puedes enviar mensajes directos y colaborar.",
+    "requestsTitle": "Solicitudes de Conexión",
+    "requestsDescription": "Acepta o rechaza solicitudes de otros usuarios para agregarlos a tu red.",
+    "noConnections": {
+      "title": "Construye tu Red",
+      "description": "Aún no has hecho ninguna conexión. Comienza explorando la red o invitando a personas que conoces.",
+      "inviteButton": "Invitar Colegas"
+    },
+    "noRequests": "No tienes solicitudes de conexión pendientes.",
+    "sentTimeAgo": "Enviado hace {timeAgo}",
+    "toast": {
+      "error": "Error",
+      "success": "Éxito",
+      "loadError": "No se pudieron cargar los datos de tu red. Por favor, inténtalo de nuevo.",
+      "respondError": "Error al responder a la solicitud.",
+      "requestAccepted": "Solicitud de conexión aceptada.",
+      "requestDeclined": "Solicitud de conexión rechazada.",
+      "connectionRemoved": "La conexión ha sido eliminada.",
+      "removeError": "No se pudo eliminar la conexión."
     }
   },
-  "OfflineIndicator": {
-    "tooltip": {
-      "syncing": "Sincronizando {count} cambios...",
-      "onlinePending": "{count} cambios guardados sin conexión. Sincronizando pronto.",
-      "onlineSynced": "Estás en línea. Todos los cambios están sincronizados.",
-      "offline": "Estás desconectado. {count} cambios guardados localmente."
-    },
+  "DashboardRightSidebar": {
+    "networkTitle": "A Quién Seguir",
+    "refreshSuggestions": "Actualizar sugerencias",
+    "infoTooltip": "Sugerencias impulsadas por IA basadas en tu perfil y actividad.",
+    "follow": "Seguir",
+    "following": "Solicitado",
+    "viewAllButton": "Ver todas las sugerencias",
+    "promotionsTitle": "Mis Promociones",
+    "promotionsDescription": "Crea y gestiona cupones para atraer más clientes.",
+    "managePromotionsButton": "Gestionar Cupones",
+    "ad": "Anuncio",
+    "adTitle": "Obtén Información del Mercado",
+    "adDescription": "Accede a precios y tendencias en tiempo real para tus productos.",
+    "adButton": "Ver Datos del Mercado",
+    "adAlt": "Gráfico de datos mostrando tendencias del mercado",
+    "loadError": "No se pudieron cargar las sugerencias en este momento.",
+    "signInPrompt": "Inicia sesión para ver sugerencias personalizadas.",
+    "noSuggestions": "No hay nuevas sugerencias por ahora. ¡Intenta expandir tu perfil!",
     "toast": {
-      "online": {
-        "title": "¡De vuelta en línea!",
-        "description": "Tu conexión ha sido restablecida."
-      },
-      "offline": {
-        "title": "Estás desconectado",
-        "description": "No te preocupes, tus cambios se guardarán y sincronizarán cuando te vuelvas a conectar."
-      },
-      "syncing": {
-        "title": "Sincronizando cambios sin conexión",
-        "description": "Estamos sincronizando {count, plural, one {# cambio} other {# cambios}} realizados mientras estabas desconectado."
-      },
-      "synced": {
-        "title": "¡Sincronización completa!",
-        "description": "Todos tus cambios sin conexión han sido guardados en el servidor."
-      },
-      "syncFailed": {
-        "title": "Falló la sincronización",
-        "description": "No se pudieron sincronizar los cambios sin conexión. Se intentará de nuevo más tarde."
-      },
-      "queued": {
-        "title": "Acción en cola",
-        "description": "Estás desconectado. Esta acción se sincronizará cuando te vuelvas a conectar."
-      }
+      "signInToConnect": "Por favor, inicia sesión para conectar con usuarios.",
+      "requestSent": "¡Solicitud de Conexión Enviada!",
+      "requestSentDescription": "Tu solicitud ha sido enviada al usuario. Se te notificará cuando la acepten.",
+      "requestFailed": "No se pudo enviar la solicitud."
     }
   }
 }
