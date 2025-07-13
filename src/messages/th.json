@@ -529,5 +529,192 @@
       "emailLinkText": "careers@damdoh.org"
     },
     "applyNowButton": "Apply Now"
+  },
+  "communityGuidelines": {
+    "title": "Community Guidelines",
+    "subtitle": "Our principles for a healthy and productive community.",
+    "intro": "Welcome to the DamDoh community! We're building a network based on trust, respect, and collaboration. To ensure a positive experience for everyone, we ask that you adhere to the following guidelines:",
+    "respectful": {
+      "title": "Be Respectful",
+      "description": "Treat all members with courtesy. Healthy debates are encouraged, but personal attacks, harassment, and hate speech will not be tolerated. We are a diverse global community; please be mindful of cultural differences."
+    },
+    "authentic": {
+      "title": "Be Authentic & Honest",
+      "description": "Represent yourself and your products truthfully. Do not post misleading information, create fake profiles, or engage in deceptive practices. Transparency is the foundation of trust in our marketplace."
+    },
+    "relevant": {
+      "title": "Stay On-Topic",
+      "description": "Contribute to discussions in a meaningful way. Post content that is relevant to agriculture, supply chains, sustainability, and the DamDoh ecosystem. Spam, scams, and irrelevant promotions are not allowed."
+    },
+    "fairTrade": {
+      "title": "Uphold Fair Trade",
+      "description": "Conduct business honorably. Fulfill your orders, pay agreed-upon prices, and communicate clearly. Do not engage in price-gouging or attempts to defraud other members."
+    },
+    "sustainable": {
+      "title": "Promote Sustainability",
+      "description": "We are a community dedicated to better agricultural practices. We encourage sharing knowledge about sustainable, regenerative, and ethical farming methods. Posts that promote environmentally harmful practices may be removed."
+    },
+    "reporting": {
+      "title": "Reporting Violations",
+      "content": "If you see something that you believe violates our guidelines, please report it to our moderation team. You can do this by using the 'Report' button on posts or profiles, or by contacting us directly at {emailLink}.",
+      "emailLinkText": "support@damdoh.org"
+    },
+    "conclusion": "By participating in the DamDoh community, you agree to these guidelines. Violations may result in content removal, account suspension, or a permanent ban. Thank you for helping us build a great community!"
+  },
+  "contactPage": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you. Here's how you can reach us.",
+    "emailUs": {
+      "title": "Email Us",
+      "general": "General Inquiries",
+      "support": "Support",
+      "partnerships": "Partnerships"
+    },
+    "callUs": {
+      "title": "Call Us",
+      "hours": "Mon - Fri, 9am - 5pm ICT",
+      "phone": "+855 23 456 789"
+    },
+    "ourOffice": {
+      "title": "Our Office",
+      "org": "DamDoh Inc.",
+      "address": "123 Agri St, Phnom Penh, Cambodia"
+    },
+    "sendMessage": {
+      "title": "Send a Message",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Your Email",
+      "emailPlaceholder": "you@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Regarding a partnership...",
+      "messageLabel": "Your Message",
+      "messagePlaceholder": "Type your message here...",
+      "buttonText": "Send Message",
+      "note": "We'll do our best to respond within 2 business days."
+    }
+  },
+  "helpCenterPage": {
+    "title": "Help Center",
+    "subtitle": "Find answers to your questions and learn how to get the most out of DamDoh.",
+    "howCanWeHelp": "How can we help you?",
+    "searchPlaceholder": "Search for articles...",
+    "browseTopics": "Or browse by topic",
+    "gettingStarted": {
+      "title": "Getting Started",
+      "description": "Learn the basics of setting up your profile and navigating the platform.",
+      "placeholder": "Content for Getting Started will be added here..."
+    },
+    "marketplaceGuide": {
+      "title": "Marketplace Guide",
+      "description": "How to buy, sell, and manage your listings effectively.",
+      "placeholder": "Content for Marketplace Guide will be added here..."
+    },
+    "accountManagement": {
+      "title": "Account Management",
+      "description": "Manage your password, notifications, and privacy settings.",
+      "placeholder": "Content for Account Management will be added here..."
+    },
+    "troubleshooting": {
+      "title": "Troubleshooting",
+      "description": "Find solutions to common issues and technical problems.",
+      "placeholder": "Content for Troubleshooting will be added here..."
+    },
+    "stillNeedHelp": {
+      "title": "Still need help?",
+      "description": "If you can't find what you're looking for, our support team is happy to assist.",
+      "button": "Contact Support"
+    }
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: October 30, 2023",
+    "introduction": "This privacy notice for DamDoh Inc. ('we', 'us', or 'our'), describes how and why we might collect, store, use, and/or share ('process') your information when you use our services ('Services'), such as when you visit our website or our mobile application.",
+    "whatInfoWeCollect": {
+      "heading": "1. WHAT INFORMATION DO WE COLLECT?",
+      "content": "We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and services, when you participate in activities on the Services, or otherwise when you contact us. This includes profile data, user-generated content, and transaction information."
+    },
+    "howWeUseInfo": {
+      "heading": "2. HOW DO WE PROCESS YOUR INFORMATION?",
+      "content": "We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent."
+    },
+    "willInfoBeShared": {
+      "heading": "3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?",
+      "content": "We may share information in specific situations and with specific categories of third parties, such as vendors, consultants, and other service providers who need access to such information to carry out work on our behalf. We require all third parties to respect the security of your personal data and to treat it in accordance with the law."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?",
+      "content": "We may use cookies and similar tracking technologies to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Policy."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. HOW LONG DO WE KEEP YOUR INFORMATION?",
+      "content": "We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law. When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize it."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. HOW DO WE KEEP YOUR INFORMATION SAFE?",
+      "content": "We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure."
+    },
+    "minors": {
+      "heading": "7. DO WE COLLECT INFORMATION FROM MINORS?",
+      "content": "We do not knowingly solicit data from or market to children under 18 years of age. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the Services."
+    },
+    "privacyRights": {
+      "heading": "8. WHAT ARE YOUR PRIVACY RIGHTS?",
+      "content": "In some regions, such as the European Economic Area (EEA), United Kingdom (UK), and Canada, you have rights that allow you greater access to and control over your personal information. You may review, change, or terminate your account at any time."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. CONTROLS FOR DO-NOT-TRACK FEATURES",
+      "content": "Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. We do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online."
+    },
+    "updatesToNotice": {
+      "heading": "10. DO WE MAKE UPDATES TO THIS NOTICE?",
+      "content": "We may update this privacy notice from time to time. The updated version will be indicated by an updated 'Revised' date and the updated version will be effective as soon as it is accessible. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information."
+    }
+  },
+  "termsOfService": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: October 30, 2023",
+    "introduction": "Welcome to DamDoh! These Terms of Service ('Terms') govern your use of the DamDoh website and mobile application (collectively, the 'Platform'), operated by DamDoh Inc. Please read these Terms carefully before using our Platform.",
+    "agreementToTerms": {
+      "heading": "1. Agreement to Terms",
+      "content": "By using our Platform, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the Platform. We may modify the Terms at any time, and such modifications will be effective immediately upon posting."
+    },
+    "intellectualProperty": {
+      "heading": "2. Intellectual Property Rights",
+      "content": "The Platform and its original content, features, and functionality are and will remain the exclusive property of DamDoh Inc. and its licensors. Our trademarks may not be used in connection with any product or service without the prior written consent of DamDoh Inc."
+    },
+    "userRepresentations": {
+      "heading": "3. User Representations",
+      "content": "By using the Platform, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Service."
+    },
+    "prohibitedActivities": {
+      "heading": "4. Prohibited Activities",
+      "content": "You may not access or use the Platform for any purpose other than that for which we make the Platform available. Prohibited activity includes, but is not limited to: systematic retrieval of data, tricking or defrauding us or other users, interfering with security-related features, and using the Platform to compete with us."
+    },
+    "platformManagement": {
+      "heading": "5. Platform Management",
+      "content": "We reserve the right, but not the obligation, to: (1) monitor the Platform for violations of these Terms; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable any of your Contributions or any portion thereof."
+    },
+    "termAndTermination": {
+      "heading": "6. Term and Termination",
+      "content": "These Terms of Service shall remain in full force and effect while you use the Platform. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE PLATFORM (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. Modifications and Interruptions",
+      "content": "We reserve the right to change, modify, or remove the contents of the Platform at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Platform without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Platform."
+    },
+    "governingLaw": {
+      "heading": "8. Governing Law",
+      "content": "These Terms and your use of the Platform are governed by and construed in accordance with the laws of the jurisdiction in which DamDoh Inc. is registered, without regard to its conflict of law principles."
+    },
+    "disputeResolution": {
+      "heading": "9. Dispute Resolution",
+      "content": "Any legal action of whatever nature brought by either you or us shall be commenced or prosecuted in the courts located in our jurisdiction of registration, and the parties hereby consent to, and waive all defenses of lack of personal jurisdiction and forum non conveniens with respect to venue and jurisdiction in such courts."
+    },
+    "contactUs": {
+      "heading": "10. Contact Us",
+      "content": "In order to resolve a complaint regarding the Platform or to receive further information regarding use of the Platform, please contact us."
+    },
+    "conclusion": "To contact us, please visit our {contactLink} page."
   }
 }
