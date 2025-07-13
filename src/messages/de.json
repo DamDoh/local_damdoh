@@ -412,7 +412,122 @@
     "insurance": {
         "productNotFound": "Insurance product not found."
     }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Stärkung der landwirtschaftlichen Gemeinschaften weltweit",
+      "subtitle": "DamDoh ist eine Super-App, die entwickelt wurde, um jeden Beteiligten in der landwirtschaftlichen Wertschöpfungskette, von Landwirten bis zu Verbrauchern, zu verbinden und ein transparentes, effizientes und nachhaltiges globales Ökosystem zu fördern."
+    },
+    "vision": {
+      "title": "Unsere Vision",
+      "p1": "Wir glauben an eine Welt, in der Technologie selbst den kleinsten Landwirt befähigt, in der Lieferketten transparent und fair sind und in der Gemeinschaften zusammenarbeiten, um eine nachhaltigere Zukunft für die Landwirtschaft zu schaffen. DamDoh wurde aus dieser Vision geboren, von einem Team, das tief in der Agrarlandschaft verwurzelt ist.",
+      "p2": "Unsere Mission ist es, die digitalen Werkzeuge und das Netzwerk bereitzustellen, die notwendig sind, um die systemischen Herausforderungen zu überwinden, die das Wachstum und den Wohlstand landwirtschaftlicher Gemeinschaften lange behindert haben.",
+      "foundersTitle": "Von unseren Gründern"
+    },
+    "challenge": {
+      "title": "Die Herausforderung, der wir uns stellen",
+      "description": "Die globale landwirtschaftliche Lieferkette ist komplex und fragmentiert, was für ihre Akteure zahlreiche Hindernisse darstellt.",
+      "list": {
+        "marketAccess": "Begrenzter Marktzugang",
+        "inefficiency": "Ineffizienz der Lieferkette",
+        "financialExclusion": "Finanzielle Ausgrenzung",
+        "informationGaps": "Informationslücken",
+        "qualityTrust": "Mangel an Qualität & Vertrauen",
+        "climatePressure": "Klima- & Umweltdruck",
+        "foodLoss": "Nachernteverluste",
+        "dataFragmentation": "Datenfragmentierung"
+      },
+      "details": {
+        "marketAccess": "Kleinbauern haben Schwierigkeiten, sich mit größeren Märkten zu verbinden und sind oft auf Zwischenhändler angewiesen.",
+        "inefficiency": "Schlechte Logistik und Kommunikation führen zu Verzögerungen und Verderb.",
+        "financialExclusion": "Fehlende Finanzhistorie verhindert den Zugang zu Krediten und Versicherungen.",
+        "informationGaps": "Der Zugang zu modernen Best Practices und Marktdaten ist oft begrenzt.",
+        "qualityTrust": "Käufer haben Schwierigkeiten, die Herkunft und Qualität der Produkte zu überprüfen.",
+        "climatePressure": "Landwirte stehen vor zunehmenden Herausforderungen durch unvorhersehbare Wetterbedingungen.",
+        "foodLoss": "Ein erheblicher Teil der Ernte geht zwischen Farm und Verbraucher verloren.",
+        "dataFragmentation": "Wertvolle Daten sind isoliert, was ganzheitliche Einblicke in die Lieferkette verhindert."
+      }
+    },
+    "solution": {
+      "title": "Unsere Lösung: Ein einheitliches Ökosystem",
+      "description": "DamDoh begegnet diesen Herausforderungen durch die Integration wichtiger Dienste in eine einzige, benutzerfreundliche Super-App.",
+      "list": {
+        "education": "Bildung und KI-gestützte Ratschläge zu nachhaltigen Praktiken wie FGW & KNF.",
+        "ai": "KI-gesteuerte Erkenntnisse für bessere Entscheidungen, von der Diagnose von Ernteproblemen bis zur Preisgestaltung am Markt.",
+        "marketplace": "Ein lebendiger digitaler Marktplatz, um Landwirte direkt mit Käufern und Dienstleistern zu verbinden.",
+        "logistics": "Integrierte Logistik und Rückverfolgbarkeit zur Gewährleistung einer effizienten und transparenten Lieferung.",
+        "financial": "Ein Hub für Finanzdienstleistungen mit Kreditbewertung, der den Zugang zu Krediten und Versicherungen ermöglicht."
+      }
+    },
+    "beyondTechnology": {
+      "title": "Mehr als nur Technologie: Es geht um Verbindungen",
+      "list": {
+        "p2p": {
+          "title": "Peer-to-Peer",
+          "content": "Landwirte verbinden sich mit anderen Landwirten, um Wissen in Gemeinschaftsforen und privaten Gruppen auszutauschen und so ein Netzwerk der Unterstützung und Innovation zu fördern."
+        },
+        "p2b": {
+          "title": "Peer-to-Business",
+          "content": "Produzenten und Kooperativen verbinden sich direkt mit Käufern, Einzelhändlern und Exporteuren auf dem Marktplatz, was fairere Preise und eine zuverlässige Beschaffung gewährleistet."
+        },
+        "p2e": {
+          "title": "Peer-to-Ecosystem",
+          "content": "Das gesamte Netzwerk verbindet sich mit wesentlichen Dienstleistern wie Logistikpartnern, Finanzinstituten und Agrarexperten."
+        },
+        "p2w": {
+          "title": "Peer-to-World",
+          "content": "Durch Rückverfolgbarkeit und ein globales Netzwerk verbinden wir lokale Landwirte mit dem Weltmarkt und bewusste Verbraucher mit der Quelle ihrer Lebensmittel."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Unser Engagement für die Gemeinschaft",
+      "p1": "DamDoh ist mehr als eine App; es ist ein Bekenntnis zum Aufbau einer gerechteren und nachhaltigeren landwirtschaftlichen Zukunft.",
+      "p2": "Wir sind bestrebt, jeden Benutzer mit den Werkzeugen, dem Wissen und den Verbindungen auszustatten, die sie zum Gedeihen benötigen.",
+      "p3": "Begleiten Sie uns beim Kultivieren einer besseren Welt, eine Verbindung nach der anderen.",
+      "button": "Der DamDoh-Gemeinschaft beitreten"
+    }
+  },
+  "careers": {
+    "title": "Karriere bei DamDoh",
+    "subtitle": "Werden Sie Teil unserer Mission, die landwirtschaftliche Lieferkette zu revolutionieren.",
+    "whyWorkWithUs": {
+      "title": "Warum bei uns arbeiten?",
+      "intro": "Bei DamDoh sind wir ein leidenschaftliches, missionsgetriebenes Team, das sich der Erzielung einer spürbaren Wirkung verschrieben hat. Wir glauben daran, Technologie zur Lösung realer Probleme einzusetzen. Wenn Sie zu uns kommen, nehmen Sie nicht nur einen Job an; Sie werden Teil einer Bewegung zum Aufbau einer nachhaltigeren und gerechteren Zukunft für die globale Landwirtschaft. Wir schätzen:",
+      "point1": "Innovation und einen Ansatz zur Problemlösung nach den ersten Prinzipien.",
+      "point2": "Eine kollaborative Umgebung, in der jede Stimme gehört wird.",
+      "point3": "Ein tiefes Engagement für die Gemeinschaften, denen wir dienen.",
+      "point4": "Kontinuierliches Lernen und berufliches Wachstum.",
+      "point5": "Arbeit, die einen direkten, positiven Einfluss auf das Leben der Menschen und den Planeten hat."
+    },
+    "currentOpenings": {
+      "title": "Aktuelle Stellenangebote"
+    },
+    "openings": {
+      "job1": {
+        "title": "Senior Backend-Ingenieur (Firebase & Node.js)",
+        "location": "Remote / Nairobi, Kenia",
+        "type": "Vollzeit",
+        "description": "Leiten Sie die Entwicklung unserer skalierbaren Backend-Dienste und arbeiten Sie mit Firestore, Cloud Functions und unserer KI/ML-Infrastruktur."
+      },
+      "job2": {
+        "title": "Mobiler Produktmanager (Agri-Tech)",
+        "location": "Phnom Penh, Kambodscha",
+        "type": "Vollzeit",
+        "description": "Treiben Sie die Produkt-Roadmap für unsere mobile Super-App voran und arbeiten Sie eng mit Landwirten und Interessenvertretern zusammen, um Funktionen zu definieren, die ihre größten Herausforderungen lösen."
+      },
+      "job3": {
+        "title": "UI/UX-Designer",
+        "location": "Remote",
+        "type": "Vertrag",
+        "description": "Entwerfen Sie intuitive und zugängliche Benutzeroberflächen für unser vielfältiges Spektrum an Interessenvertretern, von ländlichen Landwirten bis hin zu internationalen Käufern."
+      }
+    },
+    "noOpenings": {
+      "title": "Derzeit keine offenen Stellen",
+      "content1": "Wir sind immer auf der Suche nach leidenschaftlichen und talentierten Personen, die sich unserer Mission anschließen möchten. Wenn Sie glauben, dass Sie das Zeug dazu haben, senden Sie Ihren Lebenslauf und ein Anschreiben an {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Jetzt bewerben"
   }
 }
-
-    

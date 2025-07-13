@@ -299,5 +299,235 @@
         }
       ]
     }
+  },
+  "error": {
+    "unauthenticated": "The function must be called while authenticated.",
+    "permissionDenied": "You do not have permission to perform this action.",
+    "form": {
+      "missingFields": "Missing required fields.",
+      "invalidData": "Invalid data provided."
+    },
+    "event": {
+      "notFound": "Event not found.",
+      "alreadyRegistered": "You are already registered for this event.",
+      "notRegistered": "This attendee is not registered for this event.",
+      "alreadyCheckedIn": "This attendee has already been checked in.",
+      "registrationClosed": "Registration for this event is closed.",
+      "full": "This event is full."
+    },
+    "eventId": {
+      "required": "An eventId must be provided."
+    },
+    "coupon": {
+      "notFound": "Coupon not found.",
+      "expired": "This coupon has expired.",
+      "limitReached": "This coupon has reached its usage limit.",
+      "invalid": "Invalid coupon code."
+    },
+    "user": {
+      "notFound": "User profile not found."
+    },
+    "farm": {
+        "missingFields": "Name, location, size, and farm type are required.",
+        "creationFailed": "Failed to create farm in the database.",
+        "fetchFailed": "Failed to fetch farms.",
+        "idRequired": "A farmId must be provided.",
+        "notFound": "Farm not found.",
+        "updateFailed": "Failed to update farm."
+    },
+    "crop": {
+        "missingFields": "Farm ID, crop type, and planting date are required.",
+        "creationFailed": "Failed to create crop in the database.",
+        "fetchFailed": "Failed to fetch crops.",
+        "idRequired": "A cropId must be provided.",
+        "notFound": "Crop not found."
+    },
+    "insights": {
+        "failed": "Failed to generate insights."
+    },
+    "knf": {
+        "missingFields": "Type, typeName, ingredients, and startDate are required.",
+        "creationFailed": "Failed to create KNF batch.",
+        "fetchFailed": "Failed to fetch KNF batches.",
+        "notFound": "KNF batch not found.",
+        "updateFailed": "Failed to update KNF batch status."
+    },
+    "worker": {
+        "nameRequired": "Worker name is required.",
+        "logHoursMissingFields": "Worker ID, hours, and date are required.",
+        "logPaymentMissingFields": "Worker ID, amount, currency, and date are required.",
+        "notFound": "Worker profile not found.",
+        "financialLogError": "Could not record the payment in your financial ledger.",
+        "idRequired": "A worker ID is required."
+    },
+    "orderId": {
+        "required": "A valid order ID is required."
+    },
+    "amount": {
+        "invalid": "A valid, positive amount is required."
+    },
+    "currency": {
+        "required": "A valid currency code is required."
+    },
+    "payment": {
+        "initiationFailed": "Payment initiation failed."
+    },
+    "internal": "An internal server error occurred.",
+    "projectId": {
+        "required": "A valid project ID is required."
+    },
+    "project": {
+        "notFound": "Project not found.",
+        "notOpen": "This project is not open for investment."
+    },
+    "type": {
+        "invalid": "A valid transaction type is required."
+    },
+    "description": {
+        "required": "A valid description is required."
+    },
+    "apiKey": {
+        "descriptionRequired": "An API key description is required.",
+        "invalidEnvironment": "Invalid environment specified.",
+        "idRequired": "An API key ID is required.",
+        "notFound": "API Key not found."
+    },
+    "universalId": {
+        "required": "A 'scannedUniversalId' must be provided.",
+        "notFound": "The scanned Universal ID does not correspond to any user."
+    },
+    "phone": {
+        "required": "A 'phoneNumber' must be provided."
+    },
+    "recovery": {
+        "invalidSession": "Invalid recovery session.",
+        "expired": "This recovery session has expired. Please start over.",
+        "sessionUsed": "This recovery session has already been used or is invalid.",
+        "invalidCode": "Invalid recovery code.",
+        "selfScan": "You cannot use your own recovery code."
+    },
+    "productId": {
+        "required": "A product ID is required."
+    },
+    "insurance": {
+        "productNotFound": "Insurance product not found."
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Empoderando a las Comunidades Agrícolas en todo el Mundo",
+      "subtitle": "DamDoh es una super-app diseñada para conectar a todos los actores de la cadena de valor agrícola, desde los agricultores hasta los consumidores, fomentando un ecosistema global transparente, eficiente y sostenible."
+    },
+    "vision": {
+      "title": "Nuestra Visión",
+      "p1": "Creemos en un mundo donde la tecnología empodera incluso al agricultor más pequeño, donde las cadenas de suministro son transparentes y justas, y donde las comunidades colaboran para construir un futuro más sostenible para la agricultura. DamDoh nació de esta visión, creada por un equipo profundamente arraigado en el paisaje agrícola.",
+      "p2": "Nuestra misión es proporcionar las herramientas digitales y la red necesarias para superar los desafíos sistémicos que han obstaculizado durante mucho tiempo el crecimiento y la prosperidad de las comunidades agrícolas.",
+      "foundersTitle": "De nuestros fundadores"
+    },
+    "challenge": {
+      "title": "El Desafío que Abordamos",
+      "description": "La cadena de suministro agrícola global es compleja y fragmentada, presentando numerosos obstáculos para sus partes interesadas.",
+      "list": {
+        "marketAccess": "Acceso limitado al mercado",
+        "inefficiency": "Ineficiencia de la cadena de suministro",
+        "financialExclusion": "Exclusión financiera",
+        "informationGaps": "Brechas de información",
+        "qualityTrust": "Falta de calidad y confianza",
+        "climatePressure": "Presión climática y ambiental",
+        "foodLoss": "Pérdida de alimentos post-cosecha",
+        "dataFragmentation": "Fragmentación de datos"
+      },
+      "details": {
+        "marketAccess": "Los pequeños agricultores luchan por conectarse con mercados más grandes, a menudo dependiendo de intermediarios.",
+        "inefficiency": "La mala logística y comunicación provocan retrasos y deterioro.",
+        "financialExclusion": "La falta de historial financiero impide el acceso a préstamos y seguros.",
+        "informationGaps": "El acceso a las mejores prácticas modernas y a los datos de mercado suele ser limitado.",
+        "qualityTrust": "Los compradores tienen dificultades para verificar el origen y la calidad de los productos.",
+        "climatePressure": "Los agricultores enfrentan desafíos crecientes debido a patrones climáticos impredecibles.",
+        "foodLoss": "Una parte significativa de los productos se pierde entre la granja y el consumidor.",
+        "dataFragmentation": "Los datos valiosos están aislados, lo que impide una visión holística de la cadena de suministro."
+      }
+    },
+    "solution": {
+      "title": "Nuestra Solución: Un Ecosistema Unificado",
+      "description": "DamDoh aborda estos desafíos integrando servicios críticos en una sola super-app fácil de usar.",
+      "list": {
+        "education": "Educación y asesoramiento impulsado por IA sobre prácticas sostenibles como FGW y KNF.",
+        "ai": "Perspectivas impulsadas por IA para una mejor toma de decisiones, desde el diagnóstico de cultivos hasta la fijación de precios de mercado.",
+        "marketplace": "Un mercado digital vibrante para conectar a los agricultores directamente con compradores y proveedores de servicios.",
+        "logistics": "Logística y trazabilidad integradas para garantizar una entrega eficiente y transparente.",
+        "financial": "Centro de servicios financieros con calificación crediticia, que brinda acceso a préstamos y seguros."
+      }
+    },
+    "beyondTechnology": {
+      "title": "Más allá de la tecnología: se trata de conexiones",
+      "list": {
+        "p2p": {
+          "title": "De igual a igual",
+          "content": "Los agricultores se conectan con otros agricultores para compartir conocimientos en foros comunitarios y grupos privados, fomentando una red de apoyo e innovación."
+        },
+        "p2b": {
+          "title": "De igual a empresa",
+          "content": "Los productores y las cooperativas se conectan directamente con compradores, minoristas y exportadores en el mercado, asegurando precios más justos y un abastecimiento confiable."
+        },
+        "p2e": {
+          "title": "De igual a ecosistema",
+          "content": "Toda la red se conecta con proveedores de servicios esenciales como socios logísticos, instituciones financieras y expertos agrícolas."
+        },
+        "p2w": {
+          "title": "De igual a mundo",
+          "content": "A través de la trazabilidad y una red global, conectamos a los agricultores locales con el mercado mundial y a los consumidores conscientes con la fuente de sus alimentos."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Nuestro compromiso con la comunidad",
+      "p1": "DamDoh es más que una aplicación; es un compromiso para construir un futuro agrícola más equitativo y sostenible.",
+      "p2": "Estamos dedicados a empoderar a cada usuario con las herramientas, el conocimiento y las conexiones que necesitan para prosperar.",
+      "p3": "Únase a nosotros para cultivar un mundo mejor, una conexión a la vez.",
+      "button": "Únete a la comunidad de DamDoh"
+    }
+  },
+  "careers": {
+    "title": "Carreras en DamDoh",
+    "subtitle": "Únase a nuestra misión de revolucionar la cadena de suministro agrícola.",
+    "whyWorkWithUs": {
+      "title": "¿Por qué trabajar con nosotros?",
+      "intro": "En DamDoh, somos un equipo apasionado e impulsado por una misión, dedicado a lograr un impacto tangible. Creemos en el uso de la tecnología para resolver problemas del mundo real. Cuando te unes a nosotros, no solo estás aceptando un trabajo; te estás convirtiendo en parte de un movimiento para construir un futuro más sostenible y equitativo para la agricultura global. Valoramos:",
+      "point1": "La innovación y un enfoque de primeros principios para la resolución de problemas.",
+      "point2": "Un entorno colaborativo donde se escucha cada voz.",
+      "point3": "Un profundo compromiso con las comunidades a las que servimos.",
+      "point4": "Aprendizaje continuo y crecimiento profesional.",
+      "point5": "Trabajo que tiene un impacto directo y positivo en la vida de las personas y el planeta."
+    },
+    "currentOpenings": {
+      "title": "Ofertas de empleo actuales"
+    },
+    "openings": {
+      "job1": {
+        "title": "Ingeniero Backend Senior (Firebase & Node.js)",
+        "location": "Remoto / Nairobi, Kenia",
+        "type": "Tiempo completo",
+        "description": "Liderar el desarrollo de nuestros servicios de backend escalables, trabajando con Firestore, Cloud Functions y nuestra infraestructura de IA/ML."
+      },
+      "job2": {
+        "title": "Gerente de Producto Móvil (Agri-Tech)",
+        "location": "Phnom Penh, Camboya",
+        "type": "Tiempo completo",
+        "description": "Impulsar la hoja de ruta del producto para nuestra super-app móvil, trabajando en estrecha colaboración con agricultores y partes interesadas para definir características que resuelvan sus mayores desafíos."
+      },
+      "job3": {
+        "title": "Diseñador UI/UX",
+        "location": "Remoto",
+        "type": "Contrato",
+        "description": "Diseñar interfaces de usuario intuitivas y accesibles para nuestra diversa gama de partes interesadas, desde agricultores rurales hasta compradores internacionales."
+      }
+    },
+    "noOpenings": {
+      "title": "No hay vacantes en este momento",
+      "content1": "Siempre estamos buscando personas apasionadas y talentosas para unirse a nuestra misión. Si cree que tiene lo que se necesita, envíe su currículum y una carta de presentación a {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Aplicar ahora"
   }
 }

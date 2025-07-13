@@ -412,7 +412,122 @@
     "insurance": {
         "productNotFound": "Insurance product not found."
     }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Renforcer les communautés agricoles du monde entier",
+      "subtitle": "DamDoh est une super-application conçue pour connecter toutes les parties prenantes de la chaîne de valeur agricole, des agriculteurs aux consommateurs, favorisant un écosystème mondial transparent, efficace et durable."
+    },
+    "vision": {
+      "title": "Notre vision",
+      "p1": "Nous croyons en un monde où la technologie donne du pouvoir même au plus petit agriculteur, où les chaînes d'approvisionnement sont transparentes et équitables, et où les communautés collaborent pour construire un avenir plus durable pour l'agriculture. DamDoh est né de cette vision, conçu par une équipe profondément enracinée dans le paysage agricole.",
+      "p2": "Notre mission est de fournir les outils numériques et le réseau nécessaires pour surmonter les défis systémiques qui ont longtemps entravé la croissance et la prospérité des communautés agricoles.",
+      "foundersTitle": "De nos fondateurs"
+    },
+    "challenge": {
+      "title": "Le défi que nous relevons",
+      "description": "La chaîne d'approvisionnement agricole mondiale est complexe et fragmentée, présentant de nombreux obstacles pour ses parties prenantes.",
+      "list": {
+        "marketAccess": "Accès limité au marché",
+        "inefficiency": "Inefficacité de la chaîne d'approvisionnement",
+        "financialExclusion": "Exclusion financière",
+        "informationGaps": "Manque d'informations",
+        "qualityTrust": "Manque de qualité et de confiance",
+        "climatePressure": "Pression climatique et environnementale",
+        "foodLoss": "Perte de nourriture après récolte",
+        "dataFragmentation": "Fragmentation des données"
+      },
+      "details": {
+        "marketAccess": "Les petits exploitants ont du mal à se connecter aux grands marchés, dépendant souvent d'intermédiaires.",
+        "inefficiency": "Une mauvaise logistique et communication entraînent des retards et des détériorations.",
+        "financialExclusion": "Le manque d'historique financier empêche l'accès aux prêts et aux assurances.",
+        "informationGaps": "L'accès aux meilleures pratiques modernes et aux données de marché est souvent limité.",
+        "qualityTrust": "Les acheteurs ont des difficultés à vérifier l'origine et la qualité des produits.",
+        "climatePressure": "Les agriculteurs sont confrontés à des défis croissants dus à des conditions météorologiques imprévisibles.",
+        "foodLoss": "Une part importante des produits est perdue entre la ferme et le consommateur.",
+        "dataFragmentation": "Les données précieuses sont cloisonnées, ce qui empêche d'avoir une vision globale de la chaîne d'approvisionnement."
+      }
+    },
+    "solution": {
+      "title": "Notre solution : Un écosystème unifié",
+      "description": "DamDoh relève ces défis en intégrant des services essentiels dans une seule super-application conviviale.",
+      "list": {
+        "education": "Éducation et conseils basés sur l'IA sur les pratiques durables comme FGW et KNF.",
+        "ai": "Des informations basées sur l'IA pour une meilleure prise de décision, du diagnostic des cultures à la tarification du marché.",
+        "marketplace": "Un marché numérique dynamique pour connecter directement les agriculteurs avec les acheteurs et les prestataires de services.",
+        "logistics": "Logistique et traçabilité intégrées pour assurer une livraison efficace et transparente.",
+        "financial": "Un centre de services financiers avec notation de crédit, donnant accès à des prêts et des assurances."
+      }
+    },
+    "beyondTechnology": {
+      "title": "Au-delà de la technologie : il s'agit de connexions",
+      "list": {
+        "p2p": {
+          "title": "Peer-to-Peer",
+          "content": "Les agriculteurs se connectent avec d'autres agriculteurs pour partager leurs connaissances dans des forums communautaires et des groupes privés, favorisant un réseau de soutien et d'innovation."
+        },
+        "p2b": {
+          "title": "Peer-to-Business",
+          "content": "Les producteurs et les coopératives se connectent directement avec les acheteurs, les détaillants et les exportateurs sur le marché, garantissant des prix plus justes et un approvisionnement fiable."
+        },
+        "p2e": {
+          "title": "Peer-to-Ecosystem",
+          "content": "L'ensemble du réseau se connecte avec des prestataires de services essentiels tels que des partenaires logistiques, des institutions financières et des experts agricoles."
+        },
+        "p2w": {
+          "title": "Peer-to-World",
+          "content": "Grâce à la traçabilité et à un réseau mondial, nous connectons les agriculteurs locaux au marché mondial et les consommateurs conscients à la source de leur nourriture."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Notre engagement envers la communauté",
+      "p1": "DamDoh est plus qu'une application ; c'est un engagement à construire un avenir agricole plus équitable et durable.",
+      "p2": "Nous nous engageons à donner à chaque utilisateur les outils, les connaissances et les connexions dont il a besoin pour prospérer.",
+      "p3": "Rejoignez-nous pour cultiver un monde meilleur, une connexion à la fois.",
+      "button": "Rejoignez la communauté DamDoh"
+    }
+  },
+  "careers": {
+    "title": "Carrières chez DamDoh",
+    "subtitle": "Rejoignez notre mission pour révolutionner la chaîne d'approvisionnement agricole.",
+    "whyWorkWithUs": {
+      "title": "Pourquoi travailler avec nous ?",
+      "intro": "Chez DamDoh, nous sommes une équipe passionnée et animée par une mission, dédiée à avoir un impact tangible. Nous croyons en l'utilisation de la technologie pour résoudre des problèmes du monde réel. Lorsque vous nous rejoignez, vous ne prenez pas seulement un emploi ; vous faites partie d'un mouvement visant à construire un avenir plus durable et équitable pour l'agriculture mondiale. Nous valorisons :",
+      "point1": "L'innovation et une approche de résolution de problèmes basée sur les premiers principes.",
+      "point2": "Un environnement collaboratif où chaque voix est entendue.",
+      "point3": "Un engagement profond envers les communautés que nous servons.",
+      "point4": "L'apprentissage continu et la croissance professionnelle.",
+      "point5": "Un travail qui a un impact direct et positif sur la vie des gens et sur la planète."
+    },
+    "currentOpenings": {
+      "title": "Offres d'emploi actuelles"
+    },
+    "openings": {
+      "job1": {
+        "title": "Ingénieur Backend Senior (Firebase & Node.js)",
+        "location": "À distance / Nairobi, Kenya",
+        "type": "Temps plein",
+        "description": "Diriger le développement de nos services backend évolutifs, en travaillant avec Firestore, Cloud Functions et notre infrastructure IA/ML."
+      },
+      "job2": {
+        "title": "Chef de Produit Mobile (Agri-Tech)",
+        "location": "Phnom Penh, Cambodge",
+        "type": "Temps plein",
+        "description": "Piloter la feuille de route du produit pour notre super-application mobile, en travaillant en étroite collaboration avec les agriculteurs et les parties prenantes pour définir les fonctionnalités qui résolvent leurs plus grands défis."
+      },
+      "job3": {
+        "title": "Designer UI/UX",
+        "location": "À distance",
+        "type": "Contrat",
+        "description": "Concevoir des interfaces utilisateur intuitives et accessibles pour notre gamme diversifiée de parties prenantes, des agriculteurs ruraux aux acheteurs internationaux."
+      }
+    },
+    "noOpenings": {
+      "title": "Aucune offre d'emploi pour le moment",
+      "content1": "Nous sommes toujours à la recherche de personnes passionnées et talentueuses pour rejoindre notre mission. Si vous pensez avoir ce qu'il faut, envoyez votre CV et une lettre de motivation à {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Postuler maintenant"
   }
 }
-
-    

@@ -412,7 +412,122 @@
     "insurance": {
         "productNotFound": "Insurance product not found."
     }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Empowering Agricultural Communities Worldwide",
+      "subtitle": "DamDoh is a super app designed to connect every stakeholder in the agricultural value chain, from farmers to consumers, fostering a transparent, efficient, and sustainable global ecosystem."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "p1": "We believe in a world where technology empowers even the smallest farmer, where supply chains are transparent and fair, and where communities collaborate to build a more sustainable future for agriculture. DamDoh was born from this vision, crafted by a team deeply rooted in the agricultural landscape.",
+      "p2": "Our mission is to provide the digital tools and network necessary to overcome the systemic challenges that have long hindered the growth and prosperity of agricultural communities.",
+      "foundersTitle": "From Our Founders"
+    },
+    "challenge": {
+      "title": "The Challenge We Address",
+      "description": "The global agricultural supply chain is complex and fragmented, presenting numerous obstacles for its stakeholders.",
+      "list": {
+        "marketAccess": "Limited Market Access",
+        "inefficiency": "Supply Chain Inefficiency",
+        "financialExclusion": "Financial Exclusion",
+        "informationGaps": "Information Gaps",
+        "qualityTrust": "Lack of Quality & Trust",
+        "climatePressure": "Climate & Environmental Pressure",
+        "foodLoss": "Post-Harvest Food Loss",
+        "dataFragmentation": "Data Fragmentation"
+      },
+      "details": {
+        "marketAccess": "Smallholders struggle to connect with larger markets, often relying on middlemen.",
+        "inefficiency": "Poor logistics and communication lead to delays and spoilage.",
+        "financialExclusion": "Lack of financial history prevents access to loans and insurance.",
+        "informationGaps": "Access to modern best practices and market data is often limited.",
+        "qualityTrust": "Buyers have difficulty verifying the origin and quality of products.",
+        "climatePressure": "Farmers face increasing challenges from unpredictable weather patterns.",
+        "foodLoss": "A significant portion of produce is lost between the farm and the consumer.",
+        "dataFragmentation": "Valuable data is siloed, preventing holistic supply chain insights."
+      }
+    },
+    "solution": {
+      "title": "Our Solution: A Unified Ecosystem",
+      "description": "DamDoh addresses these challenges by integrating critical services into a single, user-friendly super app.",
+      "list": {
+        "education": "Education and AI-powered advice on sustainable practices like FGW & KNF.",
+        "ai": "AI-driven insights for better decision-making, from crop diagnosis to market pricing.",
+        "marketplace": "A vibrant digital marketplace to connect farmers directly with buyers and service providers.",
+        "logistics": "Integrated logistics and traceability to ensure efficient and transparent delivery.",
+        "financial": "Financial services hub with credit scoring, providing access to loans and insurance."
+      }
+    },
+    "beyondTechnology": {
+      "title": "Beyond Technology: It's About Connections",
+      "list": {
+        "p2p": {
+          "title": "Peer-to-Peer",
+          "content": "Farmers connect with other farmers to share knowledge in community forums and private groups, fostering a network of support and innovation."
+        },
+        "p2b": {
+          "title": "Peer-to-Business",
+          "content": "Producers and cooperatives connect directly with buyers, retailers, and exporters in the marketplace, ensuring fairer prices and reliable sourcing."
+        },
+        "p2e": {
+          "title": "Peer-to-Ecosystem",
+          "content": "The entire network connects with essential service providers like logistics partners, financial institutions, and agricultural experts."
+        },
+        "p2w": {
+          "title": "Peer-to-World",
+          "content": "Through traceability and a global network, we connect local farmers to the world market and conscious consumers to the source of their food."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Our Commitment to the Community",
+      "p1": "DamDoh is more than an app; it's a commitment to building a more equitable and sustainable agricultural future.",
+      "p2": "We are dedicated to empowering every user with the tools, knowledge, and connections they need to thrive.",
+      "p3": "Join us in cultivating a better world, one connection at a time.",
+      "button": "Join the DamDoh Community"
+    }
+  },
+  "careers": {
+    "title": "Careers at DamDoh",
+    "subtitle": "Join our mission to revolutionize the agricultural supply chain.",
+    "whyWorkWithUs": {
+      "title": "Why Work With Us?",
+      "intro": "At DamDoh, we're a passionate, mission-driven team dedicated to making a tangible impact. We believe in harnessing technology to solve real-world problems. When you join us, you're not just taking a job; you're becoming part of a movement to build a more sustainable and equitable future for global agriculture. We value:",
+      "point1": "Innovation and a first-principles approach to problem-solving.",
+      "point2": "A collaborative environment where every voice is heard.",
+      "point3": "A deep commitment to the communities we serve.",
+      "point4": "Continuous learning and professional growth.",
+      "point5": "Work that has a direct, positive impact on people's lives and the planet."
+    },
+    "currentOpenings": {
+      "title": "Current Openings"
+    },
+    "openings": {
+      "job1": {
+        "title": "Senior Backend Engineer (Firebase & Node.js)",
+        "location": "Remote / Nairobi, Kenya",
+        "type": "Full-time",
+        "description": "Lead the development of our scalable backend services, working with Firestore, Cloud Functions, and our AI/ML infrastructure."
+      },
+      "job2": {
+        "title": "Mobile Product Manager (Agri-Tech)",
+        "location": "Phnom Penh, Cambodia",
+        "type": "Full-time",
+        "description": "Drive the product roadmap for our mobile super app, working closely with farmers and stakeholders to define features that solve their biggest challenges."
+      },
+      "job3": {
+        "title": "UI/UX Designer",
+        "location": "Remote",
+        "type": "Contract",
+        "description": "Design intuitive and accessible user interfaces for our diverse range of stakeholders, from rural farmers to international buyers."
+      }
+    },
+    "noOpenings": {
+      "title": "No Openings at the Moment",
+      "content1": "We are always looking for passionate and talented individuals to join our mission. If you believe you have what it takes, send your resume and a cover letter to {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "applyNowButton": "Apply Now"
   }
 }
-
-    
