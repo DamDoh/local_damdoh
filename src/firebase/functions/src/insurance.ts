@@ -139,5 +139,3 @@ export const processInsuranceClaim = functions.firestore.document("claims/{claim
 export const triggerParametricPayout = functions.firestore.document("weather_readings/{readingId}").onCreate(async (snapshot, context) => {
     // Implementation omitted for brevity
 });
-
-    
