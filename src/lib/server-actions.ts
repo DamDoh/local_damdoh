@@ -12,6 +12,7 @@ import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
 import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRotationOutput } from '@/lib/types';
 import { functions } from './firebase/client';
 import { httpsCallable } from 'firebase/functions';
+import { getLocale } from 'next-intl/server';
 
 /**
  * Server Action to fetch a single user profile by ID.
@@ -60,7 +61,8 @@ export async function performSearch(interpretation: Partial<SmartSearchInterpret
  */
 export async function getMarketplaceRecommendationsAction(userId: string, count: number = 5) {
     try {
-        const result = await getMarketplaceRecommendations({ userId, count });
+        const locale = await getLocale();
+        const result = await getMarketplaceRecommendations({ userId, count, language: locale });
         return result.recommendations;
     } catch(error) {
         console.error("[Server Action] getMarketplaceRecommendationsAction failed:", error);
@@ -76,7 +78,8 @@ export async function getMarketplaceRecommendationsAction(userId: string, count:
  */
 export async function suggestCropRotationAction(input: CropRotationInput): Promise<CropRotationOutput> {
     try {
-        return await suggestCropRotation(input);
+        const locale = await getLocale();
+        return await suggestCropRotation({ ...input, language: locale });
     } catch (error) {
         console.error("[Server Action] suggestCropRotationAction failed:", error);
         return { suggestions: [] };

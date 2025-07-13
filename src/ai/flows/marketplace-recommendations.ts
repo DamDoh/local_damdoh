@@ -20,10 +20,12 @@ export type MarketplaceRecommendationOutput = z.infer<typeof MarketplaceRecommen
 
 const recommendationPrompt = ai.definePrompt({
     name: 'marketplaceRecommendationPrompt',
-    input: { schema: z.object({ userProfile: z.any(), items: z.any(), count: z.number() }) },
+    input: { schema: z.object({ userProfile: z.any(), items: z.any(), count: z.number(), language: z.string().optional() }) },
     output: { schema: MarketplaceRecommendationOutputSchema },
     prompt: `You are an AI recommendation engine for DamDoh, an agricultural marketplace.
 Your goal is to suggest relevant products and services to a user based on their profile and a list of available items.
+
+**CRITICAL INSTRUCTION: You MUST generate the 'reason' text for each suggestion in the specified language: '{{{language}}}'.**
 
 Analyze the following user profile:
 - Role: {{{userProfile.primaryRole}}}
@@ -48,7 +50,7 @@ Return the results as a JSON object with a 'recommendations' array. Each object 
 
 
 export async function getMarketplaceRecommendations(input: MarketplaceRecommendationInput): Promise<MarketplaceRecommendationOutput> {
-    const { userId, count = 5 } = input;
+    const { userId, count = 5, language = 'en' } = input;
     
     if (!userId) {
         return { recommendations: [] };
@@ -72,6 +74,7 @@ export async function getMarketplaceRecommendations(input: MarketplaceRecommenda
             userProfile,
             items: JSON.stringify(candidateItems),
             count,
+            language,
         });
         
         return {

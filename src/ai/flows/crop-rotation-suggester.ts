@@ -16,6 +16,8 @@ const prompt = ai.definePrompt(
     output: { schema: CropRotationOutputSchema },
     prompt: `You are an expert agronomist specializing in sustainable agriculture and crop rotation. Your task is to suggest suitable next crops for a farmer based on their field's history and location.
 
+    **CRITICAL INSTRUCTION: You MUST respond in the language specified by the 'language' parameter. The language code is '{{{language}}}'. If no language is specified, default to English.**
+
     **Context:**
     - **Location:** {{{location}}}
     - **Previous Crops Planted (most recent last):** {{#each cropHistory}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}
@@ -50,7 +52,7 @@ const suggestCropRotationFlow = ai.defineFlow(
     outputSchema: CropRotationOutputSchema,
   },
   async (input) => {
-    const { output } = await prompt(input);
+    const { output } = await prompt({ ...input, language: input.language || 'en' });
     return output!;
   }
 );

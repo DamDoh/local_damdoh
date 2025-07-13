@@ -219,6 +219,7 @@ export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretation
 export const MarketplaceRecommendationInputSchema = z.object({
   userId: z.string().optional().describe("The ID of the user to generate recommendations for."),
   count: z.number().optional().default(5).describe('The number of suggestions to generate.'),
+  language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English.'),
 });
 
 const RecommendedItemSchema = z.object({
@@ -236,6 +237,7 @@ export const CropRotationInputSchema = z.object({
   cropHistory: z.array(z.string()).describe('An array of crop names that have been previously planted in the field, in chronological order.'),
   location: z.string().describe('The geographical location of the farm (e.g., "Rift Valley, Kenya").'),
   soilType: z.string().optional().describe('The type of soil in the field (e.g., "Clay", "Sandy Loam").'),
+  language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English.'),
 });
 export type CropRotationInput = z.infer<typeof CropRotationInputSchema>;
 
