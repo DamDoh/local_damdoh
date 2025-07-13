@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -906,8 +905,12 @@ export const getFinancialProducts = functions.https.onCall(async (data, context)
     
 
 export const getFinancialInstitutions = functions.https.onCall(async (data, context) => {
+    // This function can be called by any authenticated user looking for FIs
     checkAuth(context);
-    const fiSnapshot = await db.collection("users").where("primaryRole", "==", "Financial Institution (Micro-finance/Loans)").get();
+    
+    const fiSnapshot = await db.collection("users")
+        .where("primaryRole", "==", "Financial Institution (Micro-finance/Loans)")
+        .get();
     
     const fis = fiSnapshot.docs.map(doc => ({
         id: doc.id,

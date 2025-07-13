@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowLeft, PlusCircle, Banknote } from 'lucide-react';
+import { PlusCircle, Shield } from 'lucide-react';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
@@ -52,9 +52,6 @@ export default function FinancialProductsPage() {
 
     return (
         <div className="space-y-6">
-            <Button asChild variant="outline">
-                <Link href="/"><ArrowLeft className="h-4 w-4 mr-2" />{t('backLink')}</Link>
-            </Button>
              <Card>
                 <CardHeader className="flex flex-row items-center justify-between">
                     <div>

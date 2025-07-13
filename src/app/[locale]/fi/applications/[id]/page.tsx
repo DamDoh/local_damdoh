@@ -170,7 +170,7 @@ export default function FinancialApplicationDetailPage() {
                                             </p>
                                         </div>
                                     </div>
-                                    <p className="text-sm text-muted-foreground">{application.applicantProfile.location}</p>
+                                    <p className="text-sm text-muted-foreground">{application.applicantProfile.location?.address}</p>
                                     <Button asChild size="sm" variant="secondary" className="w-full"><Link href={`/profiles/${application.applicantProfile.id}`}>{t('viewProfileButton')}</Link></Button>
                                 </>
                             ) : <p className="text-sm text-muted-foreground">{t('profileNotFound')}</p>}
