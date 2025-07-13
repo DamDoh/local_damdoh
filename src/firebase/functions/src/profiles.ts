@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
@@ -32,6 +33,8 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
             location: null,
             geohash: null,
+            // Initialize engagement counters
+            viewCount: 0,
         });
         console.log(`Successfully created Firestore profile for user ${user.uid}.`);
         return null;
@@ -244,9 +247,12 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
         return { success: true, message: "Self-view, not logged." };
     }
     
-    // To prevent spamming notifications, we could add a check here.
-    // e.g., only log a view from the same viewer for the same profile once per day.
-    // For now, we'll keep it simple and log every view.
+    const viewedUserRef = db.collection('users').doc(viewedId);
+    
+    // Atomically increment the view count on the user's profile.
+    await viewedUserRef.update({
+        viewCount: admin.firestore.FieldValue.increment(1)
+    });
 
     const logRef = db.collection('profile_views').doc();
     await logRef.set({
@@ -338,12 +344,13 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
     }
 
     try {
-        const viewsQuery = db.collection('profile_views').where('viewedId', '==', userId).get();
+        // Fetch the user document to get the pre-aggregated view count.
+        const userDoc = await db.collection('users').doc(userId).get();
+        const profileViews = userDoc.data()?.viewCount || 0;
+
+        // The logic for likes and comments remains the same, as it's already performant.
         const postsQuery = db.collection('posts').where('userId', '==', userId).get();
-
-        const [viewsSnapshot, postsSnapshot] = await Promise.all([viewsQuery, postsQuery]);
-
-        const profileViews = viewsSnapshot.size;
+        const postsSnapshot = await postsQuery;
 
         let postLikes = 0;
         let postComments = 0;
@@ -384,14 +391,15 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
         crops: 'ownerId',
         knf_batches: 'userId',
         traceability_events: 'actorRef',
-        connection_requests: ['requesterId', 'recipientId'], // Special handling for multiple fields
+        // Special handling for multiple fields on the same document
+        connection_requests: ['requesterId', 'recipientId'], 
     };
 
     const promises = [];
 
     for (const [collection, field] of Object.entries(collectionsToDeleteFrom)) {
         if (Array.isArray(field)) {
-            // Handle collections with multiple user ID fields
+            // Handle collections where the user's UID could be in one of several fields
             for (const f of field) {
                 const query = db.collection(collection).where(f, '==', uid).limit(batchSize);
                 promises.push(deleteQueryBatch(query));

@@ -1,7 +1,7 @@
 
+
 import * as functions from "firebase-functions";
 import {
-  _internalAssessCreditRisk,
   _internalMatchFundingOpportunities,
 } from "./financial-services";
 
@@ -16,21 +16,11 @@ const checkAuth = (context: functions.https.CallableContext) => {
  * =================================================================
  * Module 6: AI & Analytics Engine (The Brain of DamDoh)
  * =================================================================
- * NOTE: The assessCreditRiskWithAI function is now deprecated here and has been
- * migrated to the new Express server in `server.ts` for deployment on Cloud Run.
- * This ensures better performance by avoiding cold starts.
- * The function is kept here as a placeholder to avoid breaking potential old references
- * but should not be used for new development. New client calls should be directed
- * to the Cloud Run endpoint.
+ * NOTE: The assessCreditRiskWithAI function has been officially removed.
+ * It has been migrated to the Express server in `server.ts` for deployment on Cloud Run.
+ * This ensures better performance by avoiding cold starts. New client calls must be
+ * directed to the Cloud Run endpoint: `/ai/assess-risk`.
  */
-
-export const assessCreditRiskWithAI = functions.https.onCall(
-    async (data, context) => {
-      console.warn("DEPRECATED: The 'assessCreditRiskWithAI' callable function is deprecated. Use the Cloud Run endpoint '/ai/assess-risk' instead.");
-      checkAuth(context);
-      return await _internalAssessCreditRisk(data);
-    },
-);
 
 export const matchFundingOpportunitiesWithAI = functions.https.onCall(
     async (data, context) => {
