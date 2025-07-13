@@ -102,7 +102,7 @@ export default function InsuranceProductDetailPage() {
                             <h3 className="font-semibold text-base mb-2">{t('providerTitle')}</h3>
                              <div className="flex items-center gap-3 p-3 border rounded-lg bg-muted/50">
                                 <Avatar>
-                                    <AvatarImage src={product.provider.avatarUrl} alt={product.provider.displayName} />
+                                    <AvatarImage src={product.provider.avatarUrl || undefined} alt={product.provider.displayName} />
                                     <AvatarFallback>{product.provider.displayName?.substring(0,1)}</AvatarFallback>
                                 </Avatar>
                                 <div>
@@ -121,5 +121,3 @@ export default function InsuranceProductDetailPage() {
         </div>
     );
 }
-
-      
