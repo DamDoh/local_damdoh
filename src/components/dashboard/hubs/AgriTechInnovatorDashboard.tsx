@@ -88,7 +88,7 @@ const ApiKeyRow = ({ apiKey, onRevoke }: { apiKey: ApiKey, onRevoke: (keyId: str
 export const AgriTechInnovatorDashboard = () => {
   const t = useTranslations('AgriTechDashboard');
   const { toast } = useToast();
-  const [dashboardData, setDashboardData] = useState<AgriTechInnovatorDashboardData | null>(null);
+  const [dashboardData, setDashboardData] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isGenerateModalOpen, setIsGenerateModalOpen] = useState(false);
@@ -108,7 +108,7 @@ export const AgriTechInnovatorDashboard = () => {
       setError(null);
       try {
         const result = await getAgriTechInnovatorDashboardDataCallable();
-        setDashboardData(result.data as AgriTechInnovatorDashboardData);
+        setDashboardData(result.data as any);
       } catch (err: any) {
         console.error("Error fetching Agri-Tech dashboard data:", err);
         setError(t('errors.load'));
@@ -311,7 +311,7 @@ export const AgriTechInnovatorDashboard = () => {
 
 const DashboardSkeleton = () => (
     <div className="space-y-6">
-        <Skeleton className="h-9 w-72 mb-6" />
+        <Skeleton className="h-9 w-64 mb-6" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Skeleton className="h-32 rounded-lg" />
           <Skeleton className="h-32 rounded-lg" />

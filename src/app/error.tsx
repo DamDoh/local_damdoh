@@ -6,6 +6,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { AlertCircle } from "lucide-react";
 import { Link } from "@/navigation";
+import { useTranslations } from "next-intl";
 
 export default function Error({
   error,
@@ -14,6 +15,8 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const t = useTranslations('ErrorPage');
+
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
@@ -25,9 +28,9 @@ export default function Error({
          <div className="flex justify-center mb-4">
             <AlertCircle className="h-12 w-12" />
         </div>
-        <AlertTitle className="text-2xl font-bold">Something went wrong!</AlertTitle>
+        <AlertTitle className="text-2xl font-bold">{t('title')}</AlertTitle>
         <AlertDescription className="mt-2">
-          <p>We're sorry, but an unexpected error occurred. Please try the action again.</p>
+          <p>{t('description')}</p>
           <pre className="mt-2 whitespace-pre-wrap text-xs bg-destructive/10 p-2 rounded-md">
             <code>{error.message}</code>
           </pre>
@@ -39,10 +42,10 @@ export default function Error({
               () => reset()
             }
           >
-            Try again
+            {t('tryAgainButton')}
           </Button>
           <Button asChild variant="outline">
-            <Link href="/">Go to Homepage</Link>
+            <Link href="/">{t('goHomeButton')}</Link>
           </Button>
         </div>
       </Alert>
