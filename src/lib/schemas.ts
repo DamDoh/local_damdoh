@@ -139,33 +139,14 @@ export const FinancialProductSchema = z.object({
   name: z.string(),
   type: z.enum(['Loan', 'Grant']),
   description: z.string(),
-  interestRate: z.number().optional().nullable(),
-  maxAmount: z.number().optional().nullable(),
+  interestRate: z.coerce.number().optional().nullable(),
+  maxAmount: z.coerce.number().optional().nullable(),
   targetRoles: z.array(z.string()),
   status: z.enum(['Active', 'Inactive']),
   createdAt: z.any(),
   updatedAt: z.any(),
 });
 export type FinancialProduct = z.infer<typeof FinancialProductSchema>;
-
-export const InsuranceProductSchema = z.object({
-    id: z.string(),
-    providerId: z.string(),
-    name: z.string(),
-    type: z.enum(['Crop', 'Livestock', 'Asset', 'Weather']),
-    description: z.string(),
-    coverageDetails: z.string(),
-    premium: z.number(),
-    currency: z.string(),
-    status: z.enum(['Active', 'Inactive']),
-    createdAt: z.any(),
-    updatedAt: z.any(),
-    provider: z.object({
-        displayName: z.string(),
-        avatarUrl: z.string().url().optional().nullable()
-    }).optional()
-});
-export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
 
 export const InsuranceApplicationSchema = z.object({
     id: z.string(),

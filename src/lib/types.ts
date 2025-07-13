@@ -7,7 +7,6 @@ import type {
     ForumPostSchema,
     AgriEventSchema,
     FinancialProductSchema,
-    InsuranceProductSchema,
     InsuranceApplicationSchema,
     ApiKeySchema,
 } from './schemas';
@@ -29,7 +28,6 @@ export type AgriEvent = z.infer<typeof AgriEventSchema> & {
 };
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
 export type FinancialProduct = z.infer<typeof FinancialProductSchema>;
-export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
 export type InsuranceApplication = z.infer<typeof InsuranceApplicationSchema>;
 export type ApiKey = z.infer<typeof ApiKeySchema>;
 
