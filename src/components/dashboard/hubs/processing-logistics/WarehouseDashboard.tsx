@@ -30,13 +30,13 @@ export const WarehouseDashboard = () => {
                 setDashboardData(result.data as WarehouseDashboardData);
             } catch (error) {
                 console.error("Error fetching warehouse dashboard data:", error);
-                setError("Could not load dashboard data. Please try again later.");
+                setError(t('errors.load'));
             } finally {
                 setIsLoading(false);
             }
         };
         fetchData();
-    }, [getWarehouseData]);
+    }, [getWarehouseData, t]);
 
     if (isLoading) {
         return <DashboardSkeleton />;

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -13,11 +14,9 @@ import { FlaskConical, Database, Lightbulb } from 'lucide-react';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import type { ResearcherDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Cell } from 'recharts';
 
 const functions = getFunctions(firebaseApp);
-
-// Import necessary chart components (assuming they exist in your project)
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Cell } from 'recharts';
 
 export const ResearcherDashboard = () => {
   const t = useTranslations('ResearcherDashboard');
@@ -36,14 +35,14 @@ export const ResearcherDashboard = () => {
         setDashboardData(result.data);
       } catch (err) {
         console.error("Error fetching Researcher dashboard data:", err);
-        setError("Failed to load Researcher dashboard data.");
+        setError(t('errors.load'));
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, [getResearcherDashboardDataCallable]);
+  }, [getResearcherDashboardDataCallable, t]);
 
     const contributionStatusCounts = useMemo(() => {
         if (!dashboardData?.knowledgeHubContributions) return [];

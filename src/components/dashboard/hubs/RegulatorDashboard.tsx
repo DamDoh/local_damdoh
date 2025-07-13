@@ -12,11 +12,6 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { RegulatorDashboardData } from "@/lib/types";
 import { useTranslations } from 'next-intl';
-import { PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
-import { Chart as ChartComponent, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
-
-// Mock Chart component as it is not part of the base project
-const Chart = ({ data, children, className }: { data: any[], children: React.ReactNode, className: string }) => <div className="w-full h-full bg-muted/50 rounded-lg flex items-center justify-center"><p className="text-xs text-muted-foreground">Chart Placeholder</p></div>;
 
 export const RegulatorDashboard = () => {
     const t = useTranslations('RegulatorDashboard');
@@ -36,13 +31,13 @@ export const RegulatorDashboard = () => {
                 setDashboardData(result.data as RegulatorDashboardData);
             } catch (error) {
                 console.error("Error fetching regulator dashboard data:", error);
-                setError("Could not load dashboard data. Please try again later.");
+                setError(t('errors.load'));
             } finally {
                 setIsLoading(false);
             }
         };
         fetchData();
-    }, [getRegulatorData]);
+    }, [getRegulatorData, t]);
     
     if (isLoading) {
         return <DashboardSkeleton />;
@@ -55,7 +50,7 @@ export const RegulatorDashboard = () => {
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">No dashboard data available.</p>
+                <p className="text-muted-foreground">{t('noData')}</p>
             </div>
         );
     }

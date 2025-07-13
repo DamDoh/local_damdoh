@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -31,13 +32,13 @@ export const WasteManagementDashboard = () => {
                 setDashboardData(result.data as WasteManagementDashboardData);
             } catch (error) {
                 console.error("Error fetching waste management dashboard data:", error);
-                setError("Could not load dashboard data. Please try again later.");
+                setError(t('errors.load'));
             } finally {
                 setIsLoading(false);
             }
         };
         fetchData();
-    }, [getWasteData]);
+    }, [getWasteData, t]);
     
     if (isLoading) {
         return <DashboardSkeleton />;

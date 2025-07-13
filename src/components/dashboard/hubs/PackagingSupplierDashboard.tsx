@@ -12,8 +12,10 @@ import Link from 'next/link';
 import type { PackagingSupplierDashboardData } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from '@/components/ui/badge';
+import { useTranslations } from 'next-intl';
 
 export const PackagingSupplierDashboard = () => {
+    const t = useTranslations('PackagingSupplierDashboard');
     const [dashboardData, setDashboardData] = useState<PackagingSupplierDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -30,13 +32,13 @@ export const PackagingSupplierDashboard = () => {
                 setDashboardData(result.data as PackagingSupplierDashboardData);
             } catch (error) {
                 console.error("Error fetching packaging supplier dashboard data:", error);
-                setError("Could not load dashboard data. Please try again later.");
+                setError(t('errors.load'));
             } finally {
                 setIsLoading(false);
             }
         };
         fetchData();
-    }, [getPackagingData]);
+    }, [getPackagingData, t]);
     
     if (isLoading) {
         return <DashboardSkeleton />;
@@ -49,7 +51,7 @@ export const PackagingSupplierDashboard = () => {
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">No dashboard data available.</p>
+                <p className="text-muted-foreground">{t('noData')}</p>
             </div>
         );
     }
@@ -68,14 +70,14 @@ export const PackagingSupplierDashboard = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mb-6">Packaging Supplier Dashboard</h1>
+            <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 
                 <Card className="lg:col-span-2">
                      <CardHeader className="pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                            <Package className="h-4 w-4" />
-                           Incoming Orders
+                           {t('ordersTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
@@ -83,11 +85,11 @@ export const PackagingSupplierDashboard = () => {
                            <Table>
                                <TableHeader>
                                    <TableRow>
-                                       <TableHead>Customer</TableHead>
-                                       <TableHead>Product</TableHead>
-                                       <TableHead>Quantity</TableHead>
-                                       <TableHead>Status</TableHead>
-                                       <TableHead className="text-right">Action</TableHead>
+                                       <TableHead>{t('table.customer')}</TableHead>
+                                       <TableHead>{t('table.product')}</TableHead>
+                                       <TableHead>{t('table.quantity')}</TableHead>
+                                       <TableHead>{t('table.status')}</TableHead>
+                                       <TableHead className="text-right">{t('table.action')}</TableHead>
                                    </TableRow>
                                </TableHeader>
                                <TableBody>
@@ -96,10 +98,10 @@ export const PackagingSupplierDashboard = () => {
                                            <TableCell className="font-medium">{order.customerName}</TableCell>
                                            <TableCell>{order.product}</TableCell>
                                            <TableCell>{order.quantity.toLocaleString()}</TableCell>
-                                           <TableCell><Badge variant={getStatusBadgeVariant(order.status)}>{order.status}</Badge></TableCell>
+                                           <TableCell><Badge variant={getStatusBadgeVariant(order.status)}>{t(`status.${order.status.toLowerCase()}`)}</Badge></TableCell>
                                            <TableCell className="text-right">
                                                <Button asChild variant="outline" size="sm">
-                                                   <Link href={order.actionLink}>View Order</Link>
+                                                   <Link href={order.actionLink}>{t('viewOrderButton')}</Link>
                                                </Button>
                                            </TableCell>
                                        </TableRow>
@@ -107,7 +109,7 @@ export const PackagingSupplierDashboard = () => {
                                </TableBody>
                            </Table>
                         ) : (
-                           <p className="text-sm text-center text-muted-foreground py-4">No new orders.</p>
+                           <p className="text-sm text-center text-muted-foreground py-4">{t('noOrders')}</p>
                        )}
                     </CardContent>
                 </Card>
@@ -116,7 +118,7 @@ export const PackagingSupplierDashboard = () => {
                      <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
                            <Box className="h-4 w-4" />
-                           Inventory Status
+                           {t('inventoryTitle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
@@ -129,18 +131,18 @@ export const PackagingSupplierDashboard = () => {
                                         <p className="font-medium">{item.item}</p>
                                         <p className={needsRestock ? 'font-bold text-amber-600' : ''}>{item.stock.toLocaleString()}</p>
                                     </div>
-                                    <p className="text-xs text-muted-foreground">Reorder Level: {item.reorderLevel.toLocaleString()}</p>
-                                    {needsRestock && <p className="text-xs text-amber-700 dark:text-amber-300 font-semibold flex items-center gap-1 mt-1"><AlertTriangle className="h-3 w-3" />Low Stock</p>}
+                                    <p className="text-xs text-muted-foreground">{t('reorderLevel')}: {item.reorderLevel.toLocaleString()}</p>
+                                    {needsRestock && <p className="text-xs text-amber-700 dark:text-amber-300 font-semibold flex items-center gap-1 mt-1"><AlertTriangle className="h-3 w-3" />{t('lowStock')}</p>}
                                 </div>
                                 )
                             })
                        ) : (
-                           <p className="text-sm text-muted-foreground text-center py-4">No inventory data.</p>
+                           <p className="text-sm text-muted-foreground text-center py-4">{t('noInventory')}</p>
                        )}
                     </CardContent>
                      <CardFooter>
                          <Button asChild className="w-full">
-                           <Link href="/marketplace/create?category=packaging-solutions">List New Product</Link>
+                           <Link href="/marketplace/create?category=packaging-solutions">{t('listProductButton')}</Link>
                          </Button>
                      </CardFooter>
                 </Card>

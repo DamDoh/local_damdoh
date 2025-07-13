@@ -13,7 +13,7 @@ import Link from "next/link";
 import { Award, FileText, CheckCircle, AlertTriangle } from 'lucide-react';
 import type { CertificationBodyDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
-import { Chart as ChartComponent, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
 
 
@@ -36,14 +36,14 @@ export const CertificationBodyDashboard = () => {
         setDashboardData(result.data);
       } catch (err) {
         console.error("Error fetching Certification Body dashboard data:", err);
-        setError("Failed to load Certification Body dashboard data.");
+        setError(t('errors.load'));
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, [getCertificationBodyDashboardDataCallable]);
+  }, [getCertificationBodyDashboardDataCallable, t]);
 
   if (isLoading) {
     return <DashboardSkeleton />;
@@ -63,7 +63,7 @@ export const CertificationBodyDashboard = () => {
       return (
            <Card>
                 <CardContent className="pt-6 text-center text-muted-foreground">
-                    <p>No dashboard data available.</p>
+                    <p>{t('noData')}</p>
                 </CardContent>
            </Card>
       );
@@ -90,9 +90,9 @@ export const CertificationBodyDashboard = () => {
 
 
     const chartConfig = {
-        Active: { label: "Active", color: "hsl(var(--chart-1))" },
-        "Pending Renewal": { label: "Pending", color: "hsl(var(--chart-2))" },
-        Expired: { label: "Expired", color: "hsl(var(--chart-3))" },
+        Active: { label: t('chart.active'), color: "hsl(var(--chart-1))" },
+        "Pending Renewal": { label: t('chart.pending'), color: "hsl(var(--chart-2))" },
+        Expired: { label: t('chart.expired'), color: "hsl(var(--chart-3))" },
     };
 
 
@@ -204,7 +204,6 @@ export const CertificationBodyDashboard = () => {
                 )}
             </CardContent>
          </Card>
-
       </div>
     </div>
   );

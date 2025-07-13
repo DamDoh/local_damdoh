@@ -31,13 +31,13 @@ export const BuyerDashboard = () => {
                 setDashboardData(result.data as BuyerDashboardData);
             } catch (error) {
                 console.error("Error fetching buyer dashboard data:", error);
-                setError("Could not load dashboard data. Please try again later.");
+                setError(t('errors.load'));
             } finally {
                 setIsLoading(false);
             }
         };
         fetchData();
-    }, [getBuyerData]);
+    }, [getBuyerData, t]);
 
     if (isLoading) {
         return <DashboardSkeleton />;
@@ -50,7 +50,7 @@ export const BuyerDashboard = () => {
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">No dashboard data available.</p>
+                <p className="text-muted-foreground">{t('noData')}</p>
             </div>
         );
     }
@@ -128,7 +128,7 @@ export const BuyerDashboard = () => {
                                 </div>
                             ))
                         ) : (
-                            <p className="text-sm text-muted-foreground text-center py-4">No recommendations available.</p>
+                            <p className="text-sm text-muted-foreground text-center py-4">{t('noRecommendations')}</p>
                         )}
                     </CardContent>
                      <CardFooter>

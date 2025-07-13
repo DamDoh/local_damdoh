@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -32,14 +33,14 @@ export const EnergyProviderDashboard = () => {
         setDashboardData(result.data as EnergyProviderDashboardData);
       } catch (err) {
         console.error("Error fetching Energy Provider dashboard data:", err);
-        setError("Failed to load Energy Provider dashboard data.");
+        setError(t('errors.load'));
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, [getEnergyProviderData]);
+  }, [getEnergyProviderData, t]);
 
   if (isLoading) {
     return <DashboardSkeleton />;

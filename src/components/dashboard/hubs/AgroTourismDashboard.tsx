@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -34,14 +35,14 @@ export const AgroTourismDashboard = () => {
         setDashboardData(result.data);
       } catch (err) {
         console.error("Error fetching Agro-Tourism dashboard data:", err);
-        setError("Failed to load Agro-Tourism dashboard data.");
+        setError(t('errors.load'));
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, [getAgroTourismDashboardDataCallable]);
+  }, [getAgroTourismDashboardDataCallable, t]);
 
   if (isLoading) {
     return <DashboardSkeleton />;

@@ -4,7 +4,6 @@
 import {
   getProfileByIdFromDB as getProfileByIdFromDB_internal,
   getAllProfilesFromDB as getAllProfilesFromDB_internal,
-  performSearch as performSearch_internal,
 } from './db-utils';
 
 import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";

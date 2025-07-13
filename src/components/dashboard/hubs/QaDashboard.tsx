@@ -33,14 +33,14 @@ export const QaDashboard = () => {
         setDashboardData(result.data);
       } catch (err) {
         console.error("Error fetching QA dashboard data:", err);
-        setError("Failed to load QA dashboard data.");
+        setError(t('errors.load'));
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, [getQaDashboardDataCallable]);
+  }, [getQaDashboardDataCallable, t]);
 
   if (isLoading) {
     return <DashboardSkeleton />;
@@ -60,7 +60,7 @@ export const QaDashboard = () => {
       return (
            <Card>
                 <CardContent className="pt-6 text-center text-muted-foreground">
-                    <p>No dashboard data available.</p>
+                    <p>{t('noData')}</p>
                 </CardContent>
            </Card>
       );

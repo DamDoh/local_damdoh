@@ -47,14 +47,14 @@ export const AgronomistDashboard = () => {
         setDashboardData(result.data);
       } catch (err) {
         console.error("Error fetching Agronomist dashboard data:", err);
-        setError("Failed to load Agronomist dashboard data.");
+        setError(t('errors.load'));
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, [getAgronomistDashboardDataCallable]);
+  }, [getAgronomistDashboardDataCallable, t]);
 
   const {
     pendingConsultationRequests = [],
@@ -277,4 +277,3 @@ const DashboardSkeleton = () => (
         </div>
     </div>
 );
-

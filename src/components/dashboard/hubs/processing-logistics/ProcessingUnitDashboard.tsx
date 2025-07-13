@@ -32,13 +32,13 @@ export const ProcessingUnitDashboard = () => {
                 setDashboardData(result.data as ProcessingUnitDashboardData);
             } catch (error) {
                 console.error("Error fetching processing unit dashboard data:", error);
-                setError("Could not load dashboard data. Please try again later.");
+                setError(t('errors.load'));
             } finally {
                 setIsLoading(false);
             }
         };
         fetchData();
-    }, [getProcessingUnitData]);
+    }, [getProcessingUnitData, t]);
 
     if (isLoading) {
         return <DashboardSkeleton />;

@@ -34,14 +34,14 @@ export const CrowdfunderDashboard = () => {
         setDashboardData(result.data);
       } catch (err) {
         console.error("Error fetching Crowdfunder dashboard data:", err);
-        setError("Failed to load Crowdfunder dashboard data.");
+        setError(t('errors.load'));
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, [getCrowdfunderDashboardDataCallable]);
+  }, [getCrowdfunderDashboardDataCallable, t]);
 
   if (isLoading) {
     return <DashboardSkeleton />;
@@ -61,7 +61,7 @@ export const CrowdfunderDashboard = () => {
       return (
            <Card>
                 <CardContent className="pt-6 text-center text-muted-foreground">
-                    <p>No dashboard data available.</p>
+                    <p>{t('noData')}</p>
                 </CardContent>
            </Card>
       );
@@ -184,4 +184,3 @@ const DashboardSkeleton = () => (
         </div>
     </div>
 );
-

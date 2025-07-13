@@ -32,13 +32,13 @@ export const OperationsDashboard = () => {
                 setDashboardData(result.data as OperationsDashboardData);
             } catch (error) {
                 console.error("Error fetching operations dashboard data:", error);
-                setError("Could not load dashboard data. Please try again later.");
+                setError(t('errors.load'));
             } finally {
                 setIsLoading(false);
             }
         };
         fetchData();
-    }, [getOperationsData]);
+    }, [getOperationsData, t]);
     
     if (isLoading) {
         return <DashboardSkeleton />;
@@ -51,7 +51,7 @@ export const OperationsDashboard = () => {
     if (!dashboardData) {
         return (
              <div className="flex items-center justify-center h-64">
-                <p className="text-muted-foreground">No dashboard data available.</p>
+                <p className="text-muted-foreground">{t('noData')}</p>
             </div>
         );
     }
