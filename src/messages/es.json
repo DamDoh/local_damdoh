@@ -706,7 +706,7 @@
     },
     "prohibitedActivities": {
       "heading": "4. ACTIVIDADES PROHIBIDAS",
-      "content": "No puede acceder ni usar el Sitio para ningún otro propósito que no sea para el que lo ponemos a disposición. Las actividades prohibidas incluyen, entre otras: la recuperación sistemática de datos, engañar o defraudar a nosotros u otros usuarios, intentar hacerse pasar por otro usuario, acosar o amenazar a nuestros empleados u otros usuarios, y cargar o transmitir virus u otro tipo de código malicioso."
+      "content": "No puede acceder ni usar el Sitio para ningún otro propósito que no sea para el que lo ponemos a disposición. Las actividades prohibidas incluyen, entre otras: la recuperación sistemática de datos, engañar o defraudar a nosotros u otros usuarios, intentar hacerse pasar por otro usuario, acosar o amenazar a nuestros empleados u otros usuarios, y cargar o transmitir viruses u otro tipo de código malicioso."
     },
     "platformManagement": {
       "heading": "5. GESTIÓN DE LA PLATAFORMA",
@@ -738,7 +738,7 @@
     "title": "Tablero de Pines",
     "description": "Tu espacio personal para guardar elementos importantes de todo DamDoh.",
     "comingSoonTitle": "¡El Tablero de Pines llegará pronto!",
-    "comingSoonDescription": "Esta función te permitirá 'fijar' artículos del mercado, publicaciones del foro, perfiles y más en un tablero personal para un fácil acceso.",
+    "comingSoonDescription": "Esta función te permitirá 'fijar' artículos del mercado, publicaciones del foro, perfiles, y más en un tablero personal para un fácil acceso.",
     "stayTuned": "¡Mantente atento a las actualizaciones!"
   },
   "walletPage": {
@@ -831,9 +831,9 @@
     "noStakeholdersFound": "No se encontraron actores.",
     "noStakeholdersHint": "Intenta ajustar tus filtros de búsqueda.",
     "invitePrompt": "Introduce la dirección de correo electrónico de la persona que quieres invitar:",
-    "inviteSuccessTitle": "¡Invitación enviada!",
+    "inviteSuccessTitle": "¡Invitación Enviada!",
     "inviteSuccessDescription": "Se ha enviado una invitación a {email}.",
-    "inviteErrorTitle": "Error al enviar la invitación",
+    "inviteErrorTitle": "Error al Enviar la Invitación",
     "invite": {
       "button": "Invitar"
     }
@@ -1217,7 +1217,150 @@
     "notFoundTitle": "Perfil no Encontrado",
     "notFoundDescription": "El perfil de usuario que buscas no existe o ha sido eliminado.",
     "backToNetwork": "Volver a la Red"
+  },
+  "Forums": {
+    "create": {
+      "backLink": "Volver a los Foros",
+      "title": "Crear Nuevo Tema de Foro",
+      "description": "Inicia una nueva conversación para que la comunidad participe.",
+      "form": {
+        "nameLabel": "Nombre del Tema",
+        "namePlaceholder": "Ej: Mejores Prácticas para la Conservación del Agua",
+        "descriptionLabel": "Descripción",
+        "descriptionPlaceholder": "Una breve descripción de qué trata este tema.",
+        "submitButton": "Crear Tema",
+        "submittingButton": "Creando..."
+      },
+      "success": {
+        "title": "¡Tema Creado!",
+        "description": "Tu nuevo tema ya está en línea para discusión."
+      },
+      "errors": {
+        "auth": {
+          "title": "Autenticación Requerida",
+          "description": "Debes iniciar sesión para crear un nuevo tema."
+        },
+        "incomplete": {
+          "title": "Formulario Incompleto",
+          "description": "Por favor, proporciona tanto un nombre como una descripción para tu tema."
+        },
+        "general": {
+          "title": "Error al Crear Tema",
+          "description": "Algo salió mal. Por favor, inténtalo de nuevo."
+        }
+      }
+    },
+    "topic": {
+      "backLink": "Volver a todos los Foros",
+      "buttons": {
+        "createPost": "Iniciar una Nueva Publicación",
+        "loadingMore": "Cargando Más...",
+        "loadMore": "Cargar Más Publicaciones"
+      },
+      "postMeta": "Por {author} el {date}",
+      "noPosts": {
+        "title": "Aún no hay Publicaciones",
+        "description": "Sé el primero en iniciar una conversación en este tema.",
+        "button": "Crear la Primera Publicación"
+      },
+      "notFound": {
+        "title": "Tema no Encontrado",
+        "description": "Lo sentimos, el tema que buscas no existe.",
+        "backButton": "Regresar a los Foros"
+      },
+      "errors": {
+        "loadPosts": {
+          "title": "Error al Cargar Publicaciones",
+          "description": "No se pudieron recuperar las publicaciones de este tema."
+        },
+        "loadTopic": {
+          "title": "Error al Cargar Tema",
+          "description": "No se pudieron recuperar los detalles de este tema."
+        }
+      }
+    },
+    "createPost": {
+      "backLink": "Volver al Tema",
+      "title": "Crear una Nueva Publicación",
+      "description": "Comparte tus pensamientos, haz una pregunta o inicia una discusión.",
+      "form": {
+        "titleLabel": "Título de la Publicación",
+        "titlePlaceholder": "Ingresa un título claro y conciso",
+        "contentLabel": "Contenido",
+        "contentPlaceholder": "Escribe el contenido de tu publicación aquí. Puedes usar markdown para formatear.",
+        "submitButton": "Enviar Publicación",
+        "submittingButton": "Enviando..."
+      },
+      "aiHelper": {
+        "title": "Ayudante de Publicaciones con IA",
+        "description": "¿Necesitas un poco de ayuda para empezar? Dale a nuestra IA una idea y redactará un borrador para ti.",
+        "promptLabel": "Tu idea o pregunta",
+        "promptPlaceholder": "Ej: '¿Cuáles son las mejores alternativas orgánicas a los fertilizantes nitrogenados sintéticos?' o 'Compartir mi historia de éxito usando KNF para árboles de mango.'",
+        "generateButton": "Generar Borrador",
+        "generatingButton": "Generando..."
+      },
+      "success": {
+        "title": "¡Publicación Creada!",
+        "description": "Tu publicación ha sido añadida exitosamente al foro.",
+        "aiDraft": {
+          "title": "Borrador Generado",
+          "description": "La IA ha creado un borrador para ti. Siéntete libre de editarlo antes de publicar."
+        }
+      },
+      "errors": {
+        "aiPromptMissing": {
+          "title": "Se Requiere una Idea",
+          "description": "Por favor, proporciona una idea o pregunta para que la IA genere un borrador."
+        },
+        "aiDraft": {
+          "title": "Generación Fallida",
+          "description": "La IA no pudo generar un borrador en este momento. Por favor, inténtalo de nuevo más tarde."
+        },
+        "incomplete": {
+          "title": "Publicación Incompleta",
+          "description": "Por favor, proporciona tanto un título como contenido para tu publicación."
+        },
+        "general": {
+          "title": "Error al Crear la Publicación",
+          "description": "Algo salió mal. Por favor, inténtalo de nuevo."
+        }
+      }
+    },
+    "postView": {
+      "backLink": "Volver a {topicName}",
+      "repliesTitle": "{count, plural, =0 {Sin Respuestas} =1 {1 Respuesta} other {{count} Respuestas}}",
+      "noReplies": "Nadie ha respondido aún. ¡Sé el primero!",
+      "buttons": {
+        "loadingMore": "Cargando...",
+        "loadMore": "Cargar Más Respuestas"
+      },
+      "reply": {
+        "title": "Tu Respuesta",
+        "placeholder": "Escribe tu respuesta aquí...",
+        "submitButton": "Publicar Respuesta",
+        "submittingButton": "Publicando...",
+        "success": "¡Respuesta publicada!"
+      },
+      "notFound": {
+        "title": "Publicación no Encontrada",
+        "description": "La publicación que buscas no existe o ha sido movida.",
+        "backButton": "Volver al Tema"
+      },
+      "errors": {
+        "loadPost": {
+          "title": "Error al Cargar la Publicación",
+          "description": "No se pudieron recuperar los detalles de la publicación."
+        },
+        "loadReplies": {
+          "title": "Error al Cargar Respuestas",
+          "description": "No se pudieron recuperar las respuestas para esta publicación."
+        },
+        "submitReply": {
+          "title": "Error al Publicar la Respuesta",
+          "description": "No se pudo guardar tu respuesta. Por favor, inténtalo de nuevo."
+        },
+        "emptyReply": "La respuesta no puede estar vacía."
+      }
+    }
   }
 }
-
-    
