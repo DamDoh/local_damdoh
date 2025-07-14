@@ -59,6 +59,7 @@ export default function EditCropPage() {
   const form = useForm<CreateCropValues>({
     resolver: zodResolver(createCropSchema),
     defaultValues: {
+      farmId: farmId,
       cropType: "",
       plantingDate: undefined,
       harvestDate: undefined,

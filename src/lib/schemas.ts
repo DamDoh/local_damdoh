@@ -193,7 +193,7 @@ export const createFarmSchema = z.object({
 });
 
 export const createCropSchema = z.object({
-  farmId: z.string().min(1, "A farm ID is required."), // Added for validation
+  farmId: z.string().min(1, "A farm ID is required."),
   cropType: z.string().min(2, "Crop type must be at least 2 characters.").max(100, "Crop type cannot exceed 100 characters."),
   plantingDate: z.date({
     required_error: "A planting date is required.",

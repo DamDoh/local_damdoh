@@ -290,6 +290,54 @@ export const createCrop = functions.https.onCall(async (data, context) => {
   }
 });
 
+export const updateCrop = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
+    }
+    const { cropId, ...updateData } = data;
+    if (!cropId) {
+        throw new functions.https.HttpsError("invalid-argument", "error.crop.idRequired");
+    }
+    
+    // Use a partial schema for validation, as not all fields are required for an update
+    const validation = createCropSchema.partial().safeParse(updateData);
+    if (!validation.success) {
+        throw new functions.https.HttpsError(
+            "invalid-argument",
+            "Invalid crop data provided for update.",
+            validation.error.format()
+        );
+    }
+
+    const cropRef = db.collection('crops').doc(cropId);
+    
+    try {
+        const cropDoc = await cropRef.get();
+        if (!cropDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "error.crop.notFound");
+        }
+        if (cropDoc.data()?.ownerId !== context.auth.uid) {
+            throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
+        }
+        
+        // Prepare the payload, converting date strings back to Timestamps
+        const payload: { [key: string]: any } = { ...validation.data, updatedAt: admin.firestore.FieldValue.serverTimestamp() };
+        if (validation.data.plantingDate) payload.plantingDate = admin.firestore.Timestamp.fromDate(new Date(validation.data.plantingDate));
+        if (validation.data.harvestDate) payload.harvestDate = admin.firestore.Timestamp.fromDate(new Date(validation.data.harvestDate));
+
+        await cropRef.update(payload);
+        return { success: true, message: "Crop updated successfully." };
+
+    } catch(error: any) {
+        console.error(`Error updating crop ${cropId}:`, error);
+        if (error instanceof functions.https.HttpsError) {
+            throw error;
+        }
+        throw new functions.https.HttpsError("internal", "error.crop.updateFailed");
+    }
+});
+
+
 /**
  * Fetches all crops associated with a specific farm.
  * @param {any} data The data for the function call.
@@ -539,40 +587,3 @@ export const updateKnfBatchStatus = functions.https.onCall(
     }
   },
 );
-
-export const updateCrop = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
-    }
-    const { cropId, ...updatePayload } = data;
-    if (!cropId) {
-        throw new functions.https.HttpsError("invalid-argument", "error.crop.idRequired");
-    }
-    
-    const cropRef = db.collection('crops').doc(cropId);
-    
-    try {
-        const cropDoc = await cropRef.get();
-        if (!cropDoc.exists) {
-            throw new functions.https.HttpsError("not-found", "error.crop.notFound");
-        }
-        if (cropDoc.data()?.ownerId !== context.auth.uid) {
-            throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
-        }
-        
-        const payload: { [key: string]: any } = { ...updatePayload, updatedAt: admin.firestore.FieldValue.serverTimestamp() };
-        
-        if (updateData.plantingDate) payload.plantingDate = admin.firestore.Timestamp.fromDate(new Date(updateData.plantingDate));
-        if (updateData.harvestDate) payload.harvestDate = admin.firestore.Timestamp.fromDate(new Date(updateData.harvestDate));
-
-        await cropRef.update(payload);
-        return { success: true, message: "Crop updated successfully." };
-
-    } catch(error: any) {
-        console.error(`Error updating crop ${cropId}:`, error);
-        if (error instanceof functions.https.HttpsError) {
-            throw error;
-        }
-        throw new functions.https.HttpsError("internal", "error.crop.updateFailed");
-    }
-});
