@@ -157,14 +157,7 @@ export type FarmerDashboardData = {
       farmId: string;
       plantingDate: string | null;
   }[];
-  knfBatches: {
-    id: string;
-    typeName: string;
-    status: string;
-    nextStepDate: string | null;
-    quantityProduced?: number;
-    unit?: string;
-  }[];
+  knfBatches: KnfBatch[];
   financialSummary?: FinancialSummary;
   alerts?: FarmerDashboardAlert[];
   certifications?: {
