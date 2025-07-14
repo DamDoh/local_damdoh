@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -43,7 +44,7 @@ interface StaffMember {
 // --- Check-in Tab ---
 
 const CheckInTab = ({ itemId, itemName }: { itemId: string, itemName: string }) => {
-    const t = useTranslations('AgriEvents.manage.checkin'); // Re-use event translations
+    const t = useTranslations('Marketplace.manageService.checkin');
     const [isScanning, setIsScanning] = useState(false);
     const [checkInResult, setCheckInResult] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
     const [isProcessing, setIsProcessing] = useState(false);
@@ -128,7 +129,7 @@ const CheckInTab = ({ itemId, itemName }: { itemId: string, itemName: string }) 
 // --- Staff Management Tab ---
 
 const StaffManagementTab = ({ itemId }: { itemId: string }) => {
-    const t = useTranslations('AgriEvents.manage.staff'); // Re-use event translations
+    const t = useTranslations('Marketplace.manageService.staff');
     const { toast } = useToast();
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState<UserProfile[]>([]);
@@ -147,7 +148,7 @@ const StaffManagementTab = ({ itemId }: { itemId: string }) => {
             const result = await getStaffCallable({ itemId });
             setCurrentStaff((result.data as any)?.staff || []);
         } catch (error: any) {
-            toast({ variant: 'destructive', title: t('toast.error'), description: t('toast.fetchStaffError') });
+             toast({ variant: 'destructive', title: t('toast.error'), description: t('toast.fetchStaffError') });
         } finally {
             setIsLoadingStaff(false);
         }
@@ -331,7 +332,7 @@ const BookingsTab = ({ itemId }: { itemId: string }) => {
                         </TableBody>
                     </Table>
                 ) : (
-                    <p className="text-sm text-center text-muted-foreground py-8">{t('noBookings')}</p>
+                    <p className="text-sm text-muted-foreground text-center py-8">{t('noBookings')}</p>
                 )}
             </CardContent>
         </Card>
