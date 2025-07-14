@@ -34,6 +34,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { SidebarTrigger } from '../ui/sidebar';
 import { AppSidebarNav } from './AppSidebarNav';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+import { APP_NAME } from '@/lib/constants';
 
 
 function HeaderSkeleton() {
