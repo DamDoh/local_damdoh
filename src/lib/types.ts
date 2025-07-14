@@ -15,7 +15,8 @@ import type {
     MarketplaceRecommendationInputSchema,
     MarketplaceRecommendationOutputSchema,
     CropRotationInputSchema,
-    CropRotationOutputSchema
+    CropRotationOutputSchema,
+    DiagnoseCropOutputSchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 
@@ -157,8 +158,6 @@ export interface FarmerDashboardData {
     typeName: string;
     status: string;
     nextStepDate: string | null;
-    quantityProduced: number;
-    unit: string;
   }[];
   financialSummary?: FinancialSummary;
   alerts?: FarmerDashboardAlert[];
@@ -180,7 +179,6 @@ export interface CooperativeDashboardData {
         readyBy: string; // ISO Date string
     }[];
     pendingMemberApplications: number;
-    groupId?: string; // Add groupId to link to the group page
 }
 
 
@@ -259,11 +257,20 @@ export interface LogisticsDashboardData {
 
 export interface FiDashboardData {
     pendingApplications: FinancialApplication[];
-    portfolioOverview?: {
-        loanCount: number;
-        totalValue: number;
+    portfolioAtRisk: {
+        count: number;
+        value: number;
+        highestRisk: {
+            name: string;
+            reason: string;
+        };
+        actionLink: string;
     };
-    financialProducts?: FinancialProduct[];
+    marketUpdates: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
 }
 
 export interface FieldAgentDashboardData {
@@ -456,7 +463,6 @@ export interface AgronomistDashboardData {
     farmerName: string;
     issueSummary: string;
     requestDate: string; // ISO String
-    farmerId: string;
   }[];
   knowledgeHubContributions: {
     id: string;
@@ -648,8 +654,6 @@ export interface KnfBatch {
     status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
     nextStep: string;
     createdAt?: any;
-    quantityProduced: number;
-    unit: string;
 }
 
 export interface ForumPost {
@@ -790,6 +794,4 @@ export type MarketplaceRecommendationInput = z.infer<typeof MarketplaceRecommend
 export type MarketplaceRecommendationOutput = z.infer<typeof MarketplaceRecommendationOutputSchema>;
 export type CropRotationInput = z.infer<typeof CropRotationInputSchema>;
 export type CropRotationOutput = z.infer<typeof CropRotationOutputSchema>;
-
-import { DiagnoseCropOutputSchema } from './schemas';
 export type FarmingAssistantOutput = z.infer<typeof DiagnoseCropOutputSchema>;
