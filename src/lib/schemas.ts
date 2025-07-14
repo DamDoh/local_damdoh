@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from '@/lib/constants';
+import type { LucideIcon } from 'lucide-react';
 
 // =================================================================
 // 1. CORE DATA SCHEMAS
@@ -96,9 +97,21 @@ export const MarketplaceOrderSchema = z.object({
 
 
 export const ShopSchema = z.object({
+  id: z.string(),
+  ownerId: z.string(),
   name: z.string(),
   description: z.string(),
   stakeholderType: z.string(),
+  createdAt: z.any(), // Firestore Timestamp
+  updatedAt: z.any(), // Firestore Timestamp
+  logoUrl: z.string().url().nullable(),
+  bannerUrl: z.string().url().nullable(),
+  contactInfo: z.object({
+      phone: z.string().optional(),
+      website: z.string().optional(),
+  }),
+  itemCount: z.number(),
+  rating: z.number(),
 });
 
 export const AgriEventSchema = z.object({
@@ -207,10 +220,710 @@ export const createCropSchema = z.object({
   notes: z.string().max(1000, "Notes are too long.").optional(),
 });
 
+// Other Schemas to be moved from `types.ts`
+export const MarketplaceCouponSchema = z.object({
+    id: z.string(),
+    sellerId: z.string(),
+    code: z.string(),
+    discountType: z.enum(['percentage', 'fixed']),
+    discountValue: z.number(),
+    expiresAt: z.any(), // Timestamp
+    usageLimit: z.number().nullable(),
+    usageCount: z.number(),
+    isActive: z.boolean(),
+    applicableToListingIds: z.array(z.string()),
+    applicableToCategories: z.array(z.string()),
+    createdAt: z.any(), // Timestamp
+});
+
+export const ForumGroupSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  description: z.string(),
+  memberCount: z.number(),
+  isPublic: z.boolean(),
+  ownerId: z.string(),
+  createdAt: z.string(), // ISO String
+});
+
+export const JoinRequestSchema = z.object({
+    id: z.string(), // Request ID
+    requesterId: z.string(),
+    requesterName: z.string(),
+    requesterAvatarUrl: z.string().optional(),
+    createdAt: z.string(),
+});
+
+export const ConnectionSchema = z.object({
+    id: z.string(), // User ID of the connection
+    displayName: z.string(),
+    avatarUrl: z.string().optional(),
+    primaryRole: z.string(),
+    profileSummary: z.string(),
+});
+
+export const ConnectionRequestSchema = z.object({
+    id: z.string(), // The request document ID
+    requester: z.object({
+        id: z.string(),
+        displayName: z.string(),
+        avatarUrl: z.string().optional(),
+        primaryRole: z.string(),
+    }),
+    createdAt: z.string(), // ISO string
+});
+
+export const NotificationSchema = z.object({
+  id: z.string(),
+  userId: z.string(),
+  actorId: z.string(),
+  type: z.enum(['like', 'comment', 'new_order', 'new_connection_request', 'event_reminder', 'service_reminder', 'profile_view']),
+  title_en: z.string(),
+  body_en: z.string(),
+  linkedEntity: z.object({
+    collection: z.string(),
+    documentId: z.string(),
+  }).nullable(),
+  isRead: z.boolean(),
+  createdAt: z.any(), // Firestore Timestamp
+});
+
+export const FarmerDashboardAlertSchema = z.object({
+    id: z.string(),
+    icon: z.enum(['FlaskConical', 'Sprout']),
+    type: z.enum(['info', 'warning']),
+    message: z.string(),
+    link: z.string(),
+});
+
+export const FinancialTransactionSchema = z.object({
+    id: z.string(),
+    type: z.enum(['income', 'expense']),
+    amount: z.number(),
+    currency: z.string(),
+    description: z.string(),
+    category: z.string().optional(),
+    timestamp: z.any(), // Allow for firestore timestamp
+});
+
+export const FinancialSummarySchema = z.object({
+    totalIncome: z.number(),
+    totalExpense: z.number(),
+    netFlow: z.number(),
+});
+
+export const KnfBatchSchema = z.object({
+    id: z.string(),
+    userId: z.string(),
+    type: z.string(), // 'fpj', 'faa', etc.
+    typeName: z.string(), // "Fermented Plant Juice"
+    ingredients: z.string(),
+    startDate: z.any(), // Firestore Timestamp
+    nextStepDate: z.any(), // Firestore Timestamp
+    status: z.enum(['Fermenting', 'Ready', 'Used', 'Archived']),
+    nextStep: z.string(),
+    createdAt: z.any().optional(),
+    quantityProduced: z.number().optional(),
+    unit: z.string().optional(),
+});
+
+export const PollOptionSchema = z.object({
+  text: z.string(),
+  votes: z.number().optional(),
+});
+
+export const FeedItemSchema = z.object({
+  id: z.string(),
+  type: z.enum(['forum_post', 'marketplace_listing', 'success_story', 'poll']),
+  timestamp: z.string(),
+  userId: z.string(),
+  userName: z.string(),
+  userAvatar: z.string().optional(),
+  userHeadline: z.string().optional(),
+  content: z.string(),
+  link: z.string(),
+  imageUrl: z.string().optional(),
+  dataAiHint: z.string().optional(),
+  likesCount: z.number(),
+  commentsCount: z.number(),
+  pollOptions: z.array(PollOptionSchema).optional(),
+});
+
+export const ConversationSchema = z.object({
+  id: z.string(),
+  participant: z.object({
+    id: z.string(),
+    name: z.string(),
+    avatarUrl: z.string().optional(),
+  }),
+  lastMessage: z.string(),
+  lastMessageTimestamp: z.string(),
+  unreadCount: z.number(),
+});
+
+export const MessageSchema = z.object({
+  id: z.string(),
+  conversationId: z.string(),
+  senderId: z.string(),
+  content: z.string(),
+  timestamp: z.string(), // ISO string
+});
+
+export const MobileHomeCategorySchema = z.object({
+    id: z.string(),
+    name: z.string(),
+    icon: z.custom<LucideIcon>(), // Not for validation, just for type inference
+    href: z.string(),
+    dataAiHint: z.string().optional(),
+});
+
+export const MobileDiscoverItemSchema = z.object({
+    id: z.string(),
+    title: z.string(),
+    imageUrl: z.string(),
+    type: z.enum(['Marketplace', 'Forum', 'Profile', 'Service']),
+    link: z.string(),
+    dataAiHint: z.string().optional(),
+});
+
+export const WorkerSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  contactInfo: z.string().optional(),
+  payRate: z.number().optional(),
+  payRateUnit: z.string().optional(),
+  totalHoursLogged: z.number().optional(),
+  totalPaid: z.number().optional(),
+});
+
+export const WorkLogSchema = z.object({
+    id: z.string(),
+    hours: z.number(),
+    date: z.string(), // ISO string
+    taskDescription: z.string(),
+    isPaid: z.boolean(),
+});
+
+export const PaymentLogSchema = z.object({
+    id: z.string(),
+    amount: z.number(),
+    currency: z.string(),
+    date: z.string(), // ISO string
+    notes: z.string(),
+});
+
+export const ServiceItemSchema = MarketplaceItemSchema.extend({
+    listingType: z.literal('Service'),
+    skillsRequired: z.array(z.string()),
+    compensation: z.string(),
+    experienceLevel: z.string(),
+});
+
+
+export const FarmerDashboardDataSchema = z.object({
+  farmCount: z.number(),
+  cropCount: z.number(),
+  recentCrops: z.array(z.object({
+      id: z.string(),
+      name: z.string(),
+      stage: z.string(),
+      farmName: z.string(),
+      farmId: z.string(),
+      plantingDate: z.string().nullable(),
+  })),
+  knfBatches: z.array(KnfBatchSchema),
+  financialSummary: FinancialSummarySchema.optional(),
+  alerts: z.array(FarmerDashboardAlertSchema).optional(),
+  certifications: z.array(z.object({
+    id: z.string(),
+    name: z.string(),
+    issuingBody: z.string(),
+  })).optional(),
+});
+
+export const CooperativeDashboardDataSchema = z.object({
+    memberCount: z.number(),
+    totalLandArea: z.number(),
+    aggregatedProduce: z.array(z.object({
+        id: z.string(),
+        productName: z.string(),
+        quantity: z.number(),
+        quality: z.string(),
+        readyBy: z.string(),
+    })),
+    pendingMemberApplications: z.number(),
+    groupId: z.string().nullable(),
+});
+
+export const BuyerDashboardDataSchema = z.object({
+  supplyChainRisk: z.object({
+    region: z.string(),
+    level: z.string(),
+    factor: z.string(),
+    action: z.object({
+      label: z.string(),
+      link: z.string(),
+    }),
+  }),
+  sourcingRecommendations: z.array(z.object({
+    id: z.string(),
+    name: z.string(),
+    product: z.string(),
+    reliability: z.number(),
+    vtiVerified: z.boolean(),
+  })),
+  marketPriceIntelligence: z.object({
+    product: z.string(),
+    trend: z.enum(['up', 'down', 'stable']),
+    forecast: z.string(),
+    action: z.object({
+      label: z.string(),
+      link: z.string(),
+    }),
+  }),
+});
+
+export const RegulatorDashboardDataSchema = z.object({
+  complianceRiskAlerts: z.array(z.object({
+    id: z.string(),
+    issue: z.string(),
+    region: z.string(),
+    severity: z.enum(['High', 'Medium', 'Low']),
+    actionLink: z.string(),
+  })),
+  pendingCertifications: z.object({
+    count: z.number(),
+    actionLink: z.string(),
+  }),
+  supplyChainAnomalies: z.array(z.object({
+    id: z.string(),
+    description: z.string(),
+    level: z.enum(['Critical', 'Warning']),
+    vtiLink: z.string(),
+  })),
+});
+
+export const LogisticsDashboardDataSchema = z.object({
+    activeShipments: z.array(z.object({
+        id: z.string(),
+        to: z.string(),
+        status: z.string(),
+        eta: z.string(),
+        vtiLink: z.string(),
+    })),
+    incomingJobs: z.array(z.object({
+        id: z.string(),
+        from: z.string(),
+        to: z.string(),
+        product: z.string(),
+        requirements: z.string(),
+        actionLink: z.string(),
+    })),
+    performanceMetrics: z.object({
+        onTimePercentage: z.number(),
+        fuelEfficiency: z.string(),
+        actionLink: z.string(),
+    }),
+});
+
+export const FiDashboardDataSchema = z.object({
+    pendingApplications: z.array(z.any()), // Would be FinancialApplicationSchema
+    portfolioOverview: z.object({
+        loanCount: z.number(),
+        totalValue: z.number(),
+    }),
+    financialProducts: z.array(FinancialProductSchema),
+});
+
+
+export const FieldAgentDashboardDataSchema = z.object({
+    assignedFarmers: z.array(z.object({
+        id: z.string(),
+        name: z.string(),
+        lastVisit: z.string(), // ISO string
+        issues: z.number(),
+        actionLink: z.string(),
+    })),
+    portfolioHealth: z.object({
+        overallScore: z.number(),
+        alerts: z.array(z.string()),
+        actionLink: z.string(),
+    }),
+    pendingReports: z.number(),
+    dataVerificationTasks: z.object({
+        count: z.number(),
+        description: z.string(),
+        actionLink: z.string(),
+    }),
+});
+
+export const InputSupplierDashboardDataSchema = z.object({
+    demandForecast: z.array(z.object({
+        id: z.string(),
+        region: z.string(),
+        product: z.string(),
+        trend: z.enum(['High', 'Steady', 'Low']),
+        reason: z.string(),
+    })),
+    productPerformance: z.array(z.object({
+        id: z.string(),
+        productName: z.string(),
+        rating: z.number(),
+        feedback: z.string(),
+        link: z.string(),
+    })),
+    activeOrders: z.object({
+        count: z.number(),
+        value: z.number(),
+        link: z.string(),
+    }),
+});
+
+
+export const AgroExportDashboardDataSchema = z.object({
+    pendingCustomsDocs: z.array(z.object({
+        id: z.string(),
+        vtiLink: z.string(),
+        destination: z.string(),
+        status: z.string(),
+    })),
+    trackedShipments: z.array(z.object({
+        id: z.string(),
+        status: z.string(),
+        location: z.string(),
+        carrier: z.string(),
+    })),
+    complianceAlerts: z.array(z.object({
+        id: z.string(),
+        content: z.string(),
+        actionLink: z.string(),
+    })),
+});
+
+export const ProcessingUnitDashboardDataSchema = z.object({
+  yieldOptimization: z.object({
+    currentYield: z.number(),
+    potentialYield: z.number(),
+    suggestion: z.string(),
+  }),
+  inventory: z.array(z.object({
+    product: z.string(),
+    quality: z.string(),
+    tons: z.number(),
+  })),
+  wasteReduction: z.object({
+    currentRate: z.number(),
+    insight: z.string(),
+  }),
+  packagingOrders: z.array(z.object({
+    id: z.string(),
+    supplierName: z.string(),
+    deliveryDate: z.string(),
+    status: z.string(),
+    actionLink: z.string(),
+  })),
+  packagingInventory: z.array(z.object({
+    id: z.string(),
+    packagingType: z.string(),
+    unitsInStock: z.number(),
+    reorderLevel: z.number(),
+  })),
+});
+
+export const WarehouseDashboardDataSchema = z.object({
+  storageOptimization: z.object({
+    utilization: z.number(),
+    suggestion: z.string(),
+  }),
+  inventoryLevels: z.object({
+    totalItems: z.number(),
+    itemsNeedingAttention: z.number(),
+  }),
+  predictiveAlerts: z.array(z.object({
+    alert: z.string(),
+    actionLink: z.string(),
+  })),
+});
+
+export const QaDashboardDataSchema = z.object({
+  pendingInspections: z.array(z.object({
+    id: z.string(),
+    batchId: z.string(),
+    productName: z.string(),
+    sellerName: z.string(),
+    dueDate: z.string(), // ISO String
+    actionLink: z.string(),
+  })),
+  recentResults: z.array(z.object({
+    id: z.string(),
+    productName: z.string(),
+    result: z.enum(['Pass', 'Fail']),
+    reason: z.string().optional(),
+    inspectedAt: z.string(), // ISO String
+  })),
+  qualityMetrics: z.object({
+    passRate: z.number(),
+    averageScore: z.number(),
+  }),
+});
+
+export const CertificationBodyDashboardDataSchema = z.object({
+  pendingAudits: z.array(z.object({
+    id: z.string(),
+    farmName: z.string(),
+    standard: z.string(),
+    dueDate: z.string(), // ISO String
+    actionLink: z.string(),
+  })),
+  certifiedEntities: z.array(z.object({
+    id: z.string(),
+    name: z.string(),
+    type: z.string(),
+    certificationStatus: z.enum(['Active', 'Pending Renewal', 'Expired']),
+    actionLink: z.string(),
+  })),
+  standardsMonitoring: z.array(z.object({
+    standard: z.string(),
+    adherenceRate: z.number(),
+    alerts: z.number(),
+    actionLink: z.string(),
+  })),
+});
+
+export const ResearcherDashboardDataSchema = z.object({
+  availableDatasets: z.array(z.object({
+    id: z.string(),
+    name: z.string(),
+    dataType: z.string(),
+    accessLevel: z.enum(['Public', 'Requires Request']),
+    actionLink: z.string(),
+  })),
+  ongoingProjects: z.array(z.object({
+    id: z.string(),
+    title: z.string(),
+    progress: z.number(),
+    collaborators: z.array(z.string()),
+    actionLink: z.string(),
+  })),
+  knowledgeHubContributions: z.array(z.object({
+    id: z.string(),
+    title: z.string(),
+    status: z.enum(['Published', 'Pending Review', 'Draft']),
+  })),
+});
+
+export const AgronomistDashboardDataSchema = z.object({
+  assignedFarmersOverview: z.array(z.object({
+    id: z.string(),
+    name: z.string(),
+    farmLocation: z.string(),
+    lastConsultation: z.string(), // ISO String
+    alerts: z.number(),
+  })),
+  pendingConsultationRequests: z.array(z.object({
+    id: z.string(),
+    farmerName: z.string(),
+    issueSummary: z.string(),
+    requestDate: z.string(), // ISO String
+    farmerId: z.string(),
+  })),
+  knowledgeHubContributions: z.array(z.object({
+    id: z.string(),
+    title: z.string(),
+    status: z.enum(['Published', 'Pending Review']),
+  })),
+});
+
+export const EnergyProviderDashboardDataSchema = z.object({
+  projectLeads: z.array(z.object({
+    id: z.string(),
+    entityName: z.string(),
+    location: z.string(),
+    estimatedEnergyNeed: z.string(),
+    status: z.enum(['New', 'Contacted', 'Proposal Sent', 'Closed']),
+    actionLink: z.string(),
+  })),
+  activeProjects: z.array(z.object({
+    id: z.string(),
+    projectName: z.string(),
+    solutionType: z.string(),
+    status: z.enum(['In Progress', 'Completed']),
+    completionDate: z.string(), // ISO String
+  })),
+  impactMetrics: z.object({
+    totalInstallations: z.number(),
+    totalEstimatedCarbonReduction: z.string(),
+  }),
+});
+
+export const CrowdfunderDashboardDataSchema = z.object({
+  portfolioOverview: z.object({
+    totalInvested: z.number(),
+    numberOfInvestments: z.number(),
+    estimatedReturns: z.number(),
+  }),
+  suggestedOpportunities: z.array(z.object({
+    id: z.string(),
+    projectName: z.string(),
+    category: z.string(),
+    fundingGoal: z.number(),
+    amountRaised: z.number(),
+    actionLink: z.string(),
+  })),
+  recentTransactions: z.array(z.object({
+    id: z.string(),
+    projectName: z.string(),
+    type: z.enum(['Investment', 'Payout']),
+    amount: z.number(),
+    date: z.string(), // ISO String
+  })),
+});
+
+export const EquipmentSupplierDashboardDataSchema = z.object({
+  listedEquipment: z.array(z.object({
+    id: z.string(),
+    name: z.string(),
+    type: z.enum(['Sale', 'Rental']),
+    status: z.enum(['Available', 'Rented Out']),
+    actionLink: z.string(),
+  })),
+  rentalActivity: z.object({
+    totalRentals: z.number(),
+  }),
+  pendingMaintenanceRequests: z.array(z.object({
+    id: z.string(),
+    equipmentName: z.string(),
+    issue: z.string(),
+    farmerName: z.string(),
+    actionLink: z.string(),
+  })),
+});
+
+export const WasteManagementDashboardDataSchema = z.object({
+  incomingWasteStreams: z.array(z.object({
+    id: z.string(),
+    type: z.string(), // e.g., 'Crop Residue', 'Animal Manure'
+    source: z.string(), // e.g., 'Green Valley Farms'
+    quantity: z.string(), // e.g., '5 tons'
+  })),
+  compostBatches: z.array(z.object({
+    id: z.string(),
+    status: z.enum(['Active', 'Curing', 'Ready']),
+    estimatedCompletion: z.string(), // ISO date
+  })),
+  finishedProductInventory: z.array(z.object({
+    product: z.string(),
+    quantity: z.string(), // e.g., '20 tons'
+    actionLink: z.string(),
+  })),
+});
+
+export const PackagingSupplierDashboardDataSchema = z.object({
+  incomingOrders: z.array(z.object({
+    id: z.string(),
+    customerName: z.string(),
+    product: z.string(),
+    quantity: z.number(),
+    status: z.enum(['New', 'Processing', 'Shipped']),
+    actionLink: z.string(),
+  })),
+  inventory: z.array(z.object({
+    id: z.string(),
+    item: z.string(),
+    stock: z.number(),
+    reorderLevel: z.number(),
+  })),
+});
+
+export const SustainabilityDashboardDataSchema = z.object({
+    carbonFootprint: z.object({ total: z.number(), unit: z.string(), trend: z.number() }),
+    waterUsage: z.object({ efficiency: z.number(), unit: z.string(), trend: z.number() }),
+    biodiversityScore: z.object({ score: z.number(), unit: z.string(), trend: z.number() }),
+    sustainablePractices: z.array(z.object({ id: z.string(), practice: z.string(), lastLogged: z.string() })),
+    certifications: z.array(z.object({ id:z.string(), name: z.string(), status: z.string(), expiry: z.string() })),
+});
+
+export const OperationsDashboardDataSchema = z.object({
+  vtiGenerationRate: z.object({
+    rate: z.number(),
+    unit: z.literal('VTIs/hour'),
+    trend: z.number(),
+  }),
+  dataPipelineStatus: z.object({
+    status: z.enum(['Operational', 'Degraded', 'Offline']),
+    lastChecked: z.string(), // ISO string
+  }),
+  flaggedEvents: z.array(z.object({
+    id: z.string(),
+    type: z.enum(['Anomalous Geolocation', 'Unusual Time Lag', 'Data Mismatch']),
+    description: z.string(),
+    vtiLink: z.string(),
+  })),
+});
+
+export const AdminDashboardDataSchema = z.object({
+    totalUsers: z.number(),
+    totalFarms: z.number(),
+    totalListings: z.number(),
+    pendingApprovals: z.number(),
+    newUsersLastWeek: z.number(),
+});
+
+export const AdminActivitySchema = z.object({
+    id: z.string(),
+    type: z.enum(['New User', 'New Listing']),
+    primaryInfo: z.string(),
+    secondaryInfo: z.string().optional(),
+    timestamp: z.string(),
+    link: z.string(),
+    avatarUrl: z.string().optional(),
+});
+
+export const AgriTechInnovatorDashboardDataSchema = z.object({
+  apiKeys: z.array(ApiKeySchema),
+  sandboxStatus: z.object({
+    status: z.enum(['Operational', 'Degraded', 'Offline']),
+    lastReset: z.string(), // ISO String
+  }),
+  integrationProjects: z.array(z.object({
+    id: z.string(),
+    title: z.string(),
+    status: z.enum(['In Development', 'Live', 'Archived']),
+    partner: z.string(),
+    actionLink: z.string(),
+  })),
+});
+
+export const FinancialApplicationSchema = z.object({
+  id: z.string(),
+  applicantId: z.string(),
+  applicantName: z.string(),
+  fiId: z.string(),
+  type: z.string(),
+  amount: z.number(),
+  currency: z.string(),
+  status: z.string(),
+  riskScore: z.number().optional(),
+  purpose: z.string(),
+  submittedAt: z.string().nullable(),
+  actionLink: z.string().optional(),
+  applicantProfile: StakeholderProfileSchema.optional(),
+});
+
+export const GroupPostReplySchema = z.object({
+  id: z.string(),
+  content: z.string(),
+  timestamp: z.string(), // ISO string
+  author: z.object({
+      id: z.string(),
+      name: z.string(),
+      avatarUrl: z.string().optional(),
+  }),
+});
+
 
 // =================================================================
-// 2. AI FLOW SCHEMAS
-// These schemas are used for input and output validation in Genkit flows.
+// 3. AI FLOW SCHEMAS
 // =================================================================
 
 export const SuggestedFilterSchema = z.object({

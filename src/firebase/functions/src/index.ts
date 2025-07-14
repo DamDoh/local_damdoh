@@ -1,5 +1,4 @@
 
-
 /**
  * @fileoverview This is the main entry point for all Firebase Cloud Functions.
  * It initializes the Firebase Admin SDK and exports all the functions from other
@@ -49,4 +48,3 @@ export * from "./geospatial";
 
 // Export the Express app as a Cloud Function
 export const api = functions.https.onRequest(expressApp);
-
