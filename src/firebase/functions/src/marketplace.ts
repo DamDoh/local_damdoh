@@ -1,10 +1,10 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { MarketplaceCoupon, MarketplaceItem, Shop, MarketplaceOrder } from "@/lib/types";
 import { _internalInitiatePayment } from "./financial-services";
 import { MarketplaceItemSchema, ShopSchema, MarketplaceOrderSchema } from "@/lib/schemas";
-import { geohashForLocation } from 'geofire-common';
 
 const db = admin.firestore();
 

@@ -4,6 +4,7 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
 import { UserRole } from "@/lib/types";
+import { geohashForLocation } from 'geofire-common';
 
 const db = admin.firestore();
 
@@ -100,8 +101,6 @@ export const upsertStakeholderProfile = functions.https.onCall(
       profileData,
     } = data;
 
-    // During initial sign-up, only role and display name are required.
-    // The onUserCreate trigger handles the base document. This function just merges the initial role info.
     if (!primaryRole) {
       throw new functions.https.HttpsError(
         "invalid-argument",
@@ -124,9 +123,14 @@ export const upsertStakeholderProfile = functions.https.onCall(
       if (profileSummary !== undefined) updatePayload.profileSummary = profileSummary;
       if (bio !== undefined) updatePayload.bio = bio;
       
-      // Geohash is handled by a separate trigger now.
+      // Handle Geohash generation for location
       if (location !== undefined) {
         updatePayload.location = location;
+        if (location && typeof location.lat === 'number' && typeof location.lng === 'number') {
+            updatePayload.geohash = geohashForLocation([location.lat, location.lng]);
+        } else {
+            updatePayload.geohash = null;
+        }
       }
 
       if (Array.isArray(areasOfInterest)) updatePayload.areasOfInterest = areasOfInterest;
@@ -229,9 +233,9 @@ export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
 
 /**
  * Logs a profile view event and increments the view count on the user's profile.
- * @param {object} data The data for the function call.
+ * @param {any} data The data for the function call.
  * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{success: boolean, logId: string}>} A promise that resolves with the new log ID.
+ * @return {Promise<{success: boolean, logId?: string, message?: string}>} A promise that resolves with the operation status.
  */
 export const logProfileView = functions.https.onCall(async (data, context) => {
     const viewerId = checkAuth(context);
@@ -267,7 +271,7 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
 
 /**
  * Fetches recent activity for a given user.
- * @param {object} data The data for the function call.
+ * @param {any} data The data for the function call.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{activities: any[]}>} A promise that resolves with the user's recent activities.
  */
@@ -489,9 +493,9 @@ async function deleteQueryBatch(query: FirebaseFirestore.Query): Promise<number>
  * Recursively deletes a collection in batches.
  * @param {string} collectionPath The path to the collection to delete.
  * @param {number} batchSize The number of documents to delete in each batch.
- * @return {Promise<void>}
+ * @return {Promise<void>} A promise that resolves when the deletion is complete.
  */
-async function deleteCollectionByPath(collectionPath: string, batchSize: number) {
+async function deleteCollectionByPath(collectionPath: string, batchSize: number): Promise<void> {
     const collectionRef = db.collection(collectionPath);
     const query = collectionRef.orderBy('__name__').limit(batchSize);
 
@@ -504,9 +508,9 @@ async function deleteCollectionByPath(collectionPath: string, batchSize: number)
  * Helper for deleting subcollections.
  * @param {FirebaseFirestore.Query} query The query to delete documents from.
  * @param {Function} resolve The promise resolve function.
- * @return {Promise<void>}
+ * @return {Promise<void>} A promise that resolves when the batch is deleted.
  */
-async function deleteQueryBatchForSubcollection(query: admin.firestore.Query, resolve: (value?: unknown) => void) {
+async function deleteQueryBatchForSubcollection(query: admin.firestore.Query, resolve: (value?: unknown) => void): Promise<void> {
     const snapshot = await query.get();
 
     if (snapshot.size === 0) {
