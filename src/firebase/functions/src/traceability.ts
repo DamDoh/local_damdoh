@@ -1,9 +1,11 @@
 
+
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
 import { getRole } from './profiles';
 import { detectTraceabilityAnomalyFlow } from '@/ai/flows/detect-traceability-anomaly-flow';
+import { diagnoseCrop } from '@/ai/flows/diagnose-crop-flow';
 
 const db = admin.firestore();
 
@@ -16,7 +18,7 @@ const checkAuth = (context: functions.https.CallableContext) => {
 
 /**
  * Internal function to generate a new Verifiable Traceability Identifier (VTI).
- * @param {any} data The data for the new VTI.
+ * @param {object} data The data for the new VTI.
  * @param {functions.https.CallableContext} [context] The context of the function call.
  * @return {Promise<{vtiId: string, status: string}>} A promise that resolves with the new VTI ID.
  */
@@ -71,7 +73,7 @@ export const generateVTI = functions.https.onCall(async (data, context) => {
 
 /**
  * Internal function to log a new traceability event.
- * @param {any} data The data for the new event.
+ * @param {object} data The data for the new event.
  * @param {functions.https.CallableContext} [context] The context of the function call.
  * @return {Promise<{status: string, message: string}>} A promise that resolves when the event is logged.
  */
@@ -304,7 +306,6 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
     details,
     mediaUrls,
     geoLocation,
-    aiAnalysis,
   } = data;
 
   if (
@@ -320,11 +321,22 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
   }
 
     try {
+        let aiAnalysisResult = null;
+        // If an image was provided, run the AI diagnosis flow
+        if (mediaUrls && mediaUrls.length > 0) {
+            console.log(`Running AI diagnosis for observation on field ${farmFieldId}`);
+            aiAnalysisResult = await diagnoseCrop({
+                photoDataUri: mediaUrls[0], // Use the first image for diagnosis
+                description: details,
+                language: 'en', // TODO: Pass locale from client
+            });
+        }
+    
         const eventPayload: any = { 
             observationType, 
             details, 
             mediaUrls: mediaUrls || [], 
-            aiAnalysis: aiAnalysis || null,
+            aiAnalysis: aiAnalysisResult || null,
         };
 
         await _internalLogTraceEvent({
@@ -346,7 +358,7 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
 
 /**
  * Fetches all traceability events for a given farmFieldId.
- * @param {any} data The data for the function call.
+ * @param {object} data The data for the function call.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{events: any[]}>} A promise that resolves with the traceability events.
  */
@@ -419,7 +431,7 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
  * Fetches the complete traceability history for a given VTI.
  * This includes pre-harvest and post-harvest events.
  *
- * @param {any} data The data for the function call, containing the vtiId.
+ * @param {object} data The data for the function call, containing the vtiId.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{vti: any, events: any[]}>} A promise that resolves with the full history.
  */

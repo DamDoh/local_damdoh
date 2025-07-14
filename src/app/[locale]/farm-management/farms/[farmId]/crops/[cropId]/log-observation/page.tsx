@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import Link from "next/link";
@@ -33,10 +34,9 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { app as firebaseApp } from "@/lib/firebase/client";
-import { uploadFileAndGetURL } from "@/lib/storage-utils";
-import { askFarmingAssistant, type FarmingAssistantOutput } from "@/ai/flows/farming-assistant-flow";
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
+import { uploadFileAndGetURL } from '@/lib/storage-utils';
 import { useTranslations, useLocale } from "next-intl";
 import { getObservationTypes } from "@/lib/i18n-constants";
 
@@ -52,7 +52,6 @@ export default function LogObservationPage() {
   const { user } = useAuth();
   const functions = getFunctions(firebaseApp);
   const handleObservationEvent = httpsCallable(functions, 'handleObservationEvent');
-  const locale = useLocale();
 
   const form = useForm<CreateObservationValues>({
     resolver: zodResolver(createObservationSchema),
@@ -78,39 +77,13 @@ export default function LogObservationPage() {
 
     setIsSubmitting(true);
     let mediaUrls: string[] = [];
-    let aiAnalysisResult: FarmingAssistantOutput | null = null;
-
-    if (data.imageFile) {
-      toast({ title: t('toast.aiAnalyzing'), description: t('toast.aiDescription') });
-      try {
-        const getFileDataUri = (file: File): Promise<string> => new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result as string);
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
-        });
-        
-        const photoDataUri = await getFileDataUri(data.imageFile);
-        
-        aiAnalysisResult = await askFarmingAssistant({
-            query: data.details,
-            photoDataUri: photoDataUri,
-            language: locale,
-        });
-
-        toast({ title: t('toast.aiComplete'), description: t('toast.aiCompleteDescription') });
-      } catch (aiError: any) {
-        console.error("Error during AI analysis:", aiError);
-        toast({ variant: "destructive", title: t('toast.aiFailTitle'), description: aiError.message || t('toast.aiFailDescription')});
-      }
-    }
 
     try {
       if (data.imageFile) {
         toast({ title: t('toast.uploading'), description: t('toast.uploadingDescription') });
         const imageUrl = await uploadFileAndGetURL(data.imageFile, `observations/${cropId}`);
         mediaUrls.push(imageUrl);
-        toast({ title: t('toast.uploadComplete'), variant: "default" });
+        toast({ title: t('toast.aiAnalyzing'), description: t('toast.aiDescription') });
       }
 
       const payload = {
@@ -118,10 +91,8 @@ export default function LogObservationPage() {
         observationType: data.observationType,
         observationDate: data.observationDate.toISOString(),
         details: data.details,
-        mediaUrls: mediaUrls,
-        actorVtiId: user.uid,
+        mediaUrls: mediaUrls, // Pass the URL to the backend
         geoLocation: null, 
-        aiAnalysis: aiAnalysisResult,
       };
 
       await handleObservationEvent(payload);
@@ -131,13 +102,13 @@ export default function LogObservationPage() {
         description: t('toast.successDescription'),
       });
 
-      router.push(`/farm-management/farms/${farmId}`);
+      router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);
     } catch (error: any) {
       console.error("Error logging observation:", error);
       toast({
         variant: "destructive",
         title: t('toast.fail'),
-        description: error.message || "An error occurred. Please try again.",
+        description: error.message || t('toast.failDescription'),
       });
     } finally {
       setIsSubmitting(false);
@@ -147,7 +118,7 @@ export default function LogObservationPage() {
   return (
     <div className="space-y-6">
       <Button asChild variant="outline" className="mb-4">
-        <Link href={`/farm-management/farms/${farmId}`}>
+        <Link href={`/farm-management/farms/${farmId}/crops/${cropId}`}>
           <ArrowLeft className="mr-2 h-4 w-4" /> {t('backLink')}
         </Link>
       </Button>
@@ -265,7 +236,8 @@ export default function LogObservationPage() {
                           />
                         </div>
                       </FormControl>
-                       <FormDescription>
+                       <FormDescription className="flex items-center gap-1.5 text-xs">
+                        <Sparkles className="h-3 w-3 text-amber-500"/>
                         {t('uploadDescription')}
                       </FormDescription>
                       <FormMessage />
