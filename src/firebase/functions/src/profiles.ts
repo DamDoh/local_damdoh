@@ -4,7 +4,6 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
 import { UserRole } from "@/lib/types";
-import { geohashForLocation } from 'geofire-common';
 
 const db = admin.firestore();
 
@@ -123,14 +122,8 @@ export const upsertStakeholderProfile = functions.https.onCall(
       if (profileSummary !== undefined) updatePayload.profileSummary = profileSummary;
       if (bio !== undefined) updatePayload.bio = bio;
       
-      // Handle Geohash generation for location
       if (location !== undefined) {
         updatePayload.location = location;
-        if (location && typeof location.lat === 'number' && typeof location.lng === 'number') {
-            updatePayload.geohash = geohashForLocation([location.lat, location.lng]);
-        } else {
-            updatePayload.geohash = null;
-        }
       }
 
       if (Array.isArray(areasOfInterest)) updatePayload.areasOfInterest = areasOfInterest;

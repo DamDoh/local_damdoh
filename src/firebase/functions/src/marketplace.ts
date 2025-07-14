@@ -1,19 +1,23 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import type { MarketplaceCoupon, MarketplaceItem, Shop, MarketplaceOrder } from "@/lib/types"; // Import from new location
+import type { MarketplaceCoupon, MarketplaceItem, Shop, MarketplaceOrder } from "@/lib/types";
 import { _internalInitiatePayment } from "./financial-services";
-import { MarketplaceItemSchema, ShopSchema, MarketplaceOrderSchema } from "@/lib/schemas"; // Import from new location
+import { MarketplaceItemSchema, ShopSchema, MarketplaceOrderSchema } from "@/lib/schemas";
 import { geohashForLocation } from 'geofire-common';
 
 const db = admin.firestore();
 
-// Helper to check for authentication
+/**
+ * Checks for user authentication.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {string} The user's UID.
+ */
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
     throw new functions.https.HttpsError(
       "unauthenticated",
-      "User must be authenticated.",
+      "error.unauthenticated",
     );
   }
   return context.auth.uid;
@@ -21,6 +25,9 @@ const checkAuth = (context: functions.https.CallableContext) => {
 
 /**
  * Creates a new Digital Shopfront for an authenticated user.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, shopId: string, message: string}>} A promise that resolves with the new shop ID.
  */
 export const createShop = functions.https.onCall(async (data, context) => {
   const userId = checkAuth(context);
@@ -30,7 +37,7 @@ export const createShop = functions.https.onCall(async (data, context) => {
   if (!validation.success) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "Invalid shop data provided.",
+      "error.form.invalidData",
       validation.error.format(),
     );
   }
@@ -72,7 +79,7 @@ export const createShop = functions.https.onCall(async (data, context) => {
     console.error("Error creating shop:", error);
     throw new functions.https.HttpsError(
       "internal",
-      "Failed to create Digital Shopfront.",
+      "error.shop.creationFailed",
       { originalError: error.message },
     );
   }
@@ -80,6 +87,9 @@ export const createShop = functions.https.onCall(async (data, context) => {
 
 /**
  * Creates a new marketplace listing.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{id: string, name: string}>} A promise that resolves with the new listing ID and name.
  */
 export const createMarketplaceListing = functions.https.onCall(
   async (data, context) => {
@@ -98,7 +108,7 @@ export const createMarketplaceListing = functions.https.onCall(
     if (!validation.success) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "Invalid listing data.",
+        "error.form.invalidData",
         validation.error.format()
       );
     }
@@ -114,13 +124,6 @@ export const createMarketplaceListing = functions.https.onCall(
         status: 'pending_approval', // Default status for new listings
       };
       
-      // Handle Geohash generation for location
-      if (validatedData.location && typeof validatedData.location.lat === 'number' && typeof validatedData.location.lng === 'number') {
-        listingData.geohash = geohashForLocation([validatedData.location.lat, validatedData.location.lng]);
-      } else {
-        listingData.geohash = null;
-      }
-
       const docRef = await db.collection("marketplaceItems").add(listingData);
 
       return {id: docRef.id, name: listingData.name};
@@ -128,7 +131,7 @@ export const createMarketplaceListing = functions.https.onCall(
       console.error("Error creating marketplace listing:", error);
       throw new functions.https.HttpsError(
         "internal",
-        "Failed to create marketplace listing.",
+        "error.listing.creationFailed",
         { originalError: error.message },
       );
     }
@@ -137,17 +140,13 @@ export const createMarketplaceListing = functions.https.onCall(
 
 /**
  * Creates a new marketplace coupon for the authenticated seller.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{couponId: string, code: string, message: string}>} A promise that resolves with the new coupon details.
  */
 export const createMarketplaceCoupon = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "You must be logged in to create a coupon.",
-      );
-    }
-
-    const sellerId = context.auth.uid;
+    const sellerId = checkAuth(context);
     const {
       code,
       discountType,
@@ -161,7 +160,7 @@ export const createMarketplaceCoupon = functions.https.onCall(
     if (!code || !discountType || discountValue === undefined) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "Missing required coupon fields.",
+        "error.form.missingFields",
       );
     }
 
@@ -192,7 +191,7 @@ export const createMarketplaceCoupon = functions.https.onCall(
       console.error("Error creating marketplace coupon:", error);
       throw new functions.https.HttpsError(
         "internal",
-        "Could not create coupon.",
+        "error.coupon.creationFailed",
         { originalError: error.message },
       );
     }
@@ -201,6 +200,9 @@ export const createMarketplaceCoupon = functions.https.onCall(
 
 /**
  * Fetches all marketplace coupons for the authenticated seller.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{coupons: MarketplaceCoupon[]}>} A promise that resolves with the seller's coupons.
  */
 export const getSellerCoupons = functions.https.onCall(async (data, context) => {
   const sellerId = checkAuth(context);
@@ -224,12 +226,15 @@ export const getSellerCoupons = functions.https.onCall(async (data, context) => 
     return {coupons};
   } catch (error) {
     console.error("Error fetching seller coupons:", error);
-    throw new functions.https.HttpsError("internal", "Could not fetch coupons.");
+    throw new functions.https.HttpsError("internal", "error.coupon.fetchFailed");
   }
 });
 
 /**
  * Validates a marketplace coupon for a specific seller.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{valid: boolean, message?: string, discountType?: string, discountValue?: number, code?: string}>} A promise that resolves with the validation result.
  */
 export const validateMarketplaceCoupon = functions.https.onCall(
   async (data, context) => {
@@ -239,7 +244,7 @@ export const validateMarketplaceCoupon = functions.https.onCall(
     if (!couponCode || !sellerId) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "couponCode and sellerId are required.",
+        "error.form.missingFields",
       );
     }
 
@@ -284,7 +289,7 @@ export const validateMarketplaceCoupon = functions.https.onCall(
       };
     } catch (error) {
       console.error("Error validating coupon:", error);
-      throw new functions.https.HttpsError("internal", "Could not validate coupon.");
+      throw new functions.https.HttpsError("internal", "error.coupon.validationFailed");
     }
   },
 );
@@ -292,17 +297,20 @@ export const validateMarketplaceCoupon = functions.https.onCall(
 
 /**
  * Fetches the details of a specific shop.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<Shop>} A promise that resolves with the shop's details.
  */
 export const getShopDetails = functions.https.onCall(async (data, context) => {
   const { shopId } = data;
   if (!shopId) {
-    throw new functions.https.HttpsError("invalid-argument", "A shopId must be provided.");
+    throw new functions.https.HttpsError("invalid-argument", "error.shop.idRequired");
   }
   
   try {
     const shopDoc = await db.collection("shops").doc(shopId).get();
     if (!shopDoc.exists) {
-      throw new functions.https.HttpsError("not-found", "Shop not found.");
+      throw new functions.https.HttpsError("not-found", "error.shop.notFound");
     }
 
     const shopData = shopDoc.data()!;
@@ -315,18 +323,21 @@ export const getShopDetails = functions.https.onCall(async (data, context) => {
   } catch (error) {
     console.error(`Error fetching shop details for ${shopId}:`, error);
     if (error instanceof functions.https.HttpsError) throw error;
-    throw new functions.https.HttpsError("internal", "Could not fetch shop details.");
+    throw new functions.https.HttpsError("internal", "error.shop.fetchFailed");
   }
 });
 
 
 /**
  * Fetches all marketplace listings for a specific seller.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{items: MarketplaceItem[]}>} A promise that resolves with the seller's listings.
  */
 export const getListingsBySeller = functions.https.onCall(async (data, context) => {
   const { sellerId } = data;
   if (!sellerId) {
-    throw new functions.https.HttpsError("invalid-argument", "A sellerId must be provided.");
+    throw new functions.https.HttpsError("invalid-argument", "error.seller.idRequired");
   }
 
   try {
@@ -346,23 +357,26 @@ export const getListingsBySeller = functions.https.onCall(async (data, context) 
     return { items };
   } catch (error) {
     console.error(`Error fetching listings for seller ${sellerId}:`, error);
-    throw new functions.https.HttpsError("internal", "Could not fetch seller's listings.");
+    throw new functions.https.HttpsError("internal", "error.listing.fetchFailed");
   }
 });
 
 /**
  * Fetches the details of a specific marketplace item.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<MarketplaceItem>} A promise that resolves with the item details.
  */
 export const getMarketplaceItemById = functions.https.onCall(async (data, context) => {
   const { itemId } = data;
   if (!itemId) {
-    throw new functions.https.HttpsError("invalid-argument", "An itemId must be provided.");
+    throw new functions.https.HttpsError("invalid-argument", "error.itemId.required");
   }
   
   try {
     const itemDoc = await db.collection("marketplaceItems").doc(itemId).get();
     if (!itemDoc.exists) {
-      throw new functions.https.HttpsError("not-found", "Marketplace item not found.");
+      throw new functions.https.HttpsError("not-found", "error.item.notFound");
     }
 
     const itemData = itemDoc.data()!;
@@ -375,13 +389,16 @@ export const getMarketplaceItemById = functions.https.onCall(async (data, contex
   } catch (error) {
     console.error(`Error fetching marketplace item details for ${itemId}:`, error);
     if (error instanceof functions.https.HttpsError) throw error;
-    throw new functions.https.HttpsError("internal", "Could not fetch item details.");
+    throw new functions.https.HttpsError("internal", "error.item.fetchFailed");
   }
 });
 
 
 /**
  * Creates a new marketplace order.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, orderId: string}>} A promise that resolves with the new order ID.
  */
 export const createMarketplaceOrder = functions.https.onCall(async (data, context) => {
     const buyerId = checkAuth(context);
@@ -389,7 +406,7 @@ export const createMarketplaceOrder = functions.https.onCall(async (data, contex
     // Validate incoming data
     const validation = MarketplaceOrderSchema.omit({id: true, buyerId: true, sellerId: true, createdAt: true, updatedAt: true, totalPrice: true, currency: true, orderId: true}).safeParse(data);
     if (!validation.success) {
-      throw new functions.https.HttpsError('invalid-argument', 'Invalid order data.', validation.error.format());
+      throw new functions.https.HttpsError('invalid-argument', 'error.form.invalidData', validation.error.format());
     }
 
     const { itemId, quantity, buyerNotes } = validation.data;
@@ -399,7 +416,7 @@ export const createMarketplaceOrder = functions.https.onCall(async (data, contex
         const itemDoc = await itemRef.get();
 
         if (!itemDoc.exists) {
-            throw new functions.https.HttpsError("not-found", "The item you are trying to order does not exist.");
+            throw new functions.https.HttpsError("not-found", "error.item.notFound");
         }
 
         const itemData = itemDoc.data() as MarketplaceItem;
@@ -428,10 +445,16 @@ export const createMarketplaceOrder = functions.https.onCall(async (data, contex
     } catch (error: any) {
         console.error("Error creating marketplace order:", error);
         if (error instanceof functions.https.HttpsError) throw error;
-        throw new functions.https.HttpsError("internal", "Failed to create order.", { originalError: error.message });
+        throw new functions.https.HttpsError("internal", "error.order.creationFailed", { originalError: error.message });
     }
 });
 
+/**
+ * Fetches all orders for the authenticated seller.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{orders: MarketplaceOrder[]}>} A promise that resolves with the seller's orders.
+ */
 export const getSellerOrders = functions.https.onCall(async (data, context) => {
     const sellerId = checkAuth(context);
     
@@ -475,21 +498,27 @@ export const getSellerOrders = functions.https.onCall(async (data, context) => {
         return { orders };
     } catch (error) {
         console.error("Error fetching seller orders:", error);
-        throw new functions.https.HttpsError("internal", "Could not fetch orders.");
+        throw new functions.https.HttpsError("internal", "error.order.fetchFailed");
     }
 });
 
+/**
+ * Updates the status of a marketplace order.
+ * @param {object} data The data for the function call, containing `orderId` and `newStatus`.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, message: string}>} A promise that resolves with the operation status.
+ */
 export const updateOrderStatus = functions.https.onCall(async (data, context) => {
     const sellerId = checkAuth(context);
     const { orderId, newStatus } = data;
 
     if (!orderId || !newStatus) {
-        throw new functions.https.HttpsError("invalid-argument", "Order ID and new status are required.");
+        throw new functions.https.HttpsError("invalid-argument", "error.form.missingFields");
     }
     
     const validStatuses = ["new", "confirmed", "shipped", "completed", "cancelled"];
     if (!validStatuses.includes(newStatus)) {
-        throw new functions.https.HttpsError("invalid-argument", "Invalid status provided.");
+        throw new functions.https.HttpsError("invalid-argument", "error.order.invalidStatus");
     }
     
     const orderRef = db.collection("marketplace_orders").doc(orderId);
@@ -497,11 +526,11 @@ export const updateOrderStatus = functions.https.onCall(async (data, context) =>
     try {
         const orderDoc = await orderRef.get();
         if (!orderDoc.exists) {
-            throw new functions.https.HttpsError("not-found", "Order not found.");
+            throw new functions.https.HttpsError("not-found", "error.order.notFound");
         }
 
         if (orderDoc.data()?.sellerId !== sellerId) {
-            throw new functions.https.HttpsError("permission-denied", "You are not authorized to update this order.");
+            throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
         }
         
         await orderRef.update({
@@ -514,6 +543,6 @@ export const updateOrderStatus = functions.https.onCall(async (data, context) =>
     } catch (error: any) {
          if (error instanceof functions.https.HttpsError) throw error;
          console.error("Error updating order status:", error);
-         throw new functions.https.HttpsError("internal", "Could not update the order status.");
+         throw new functions.https.HttpsError("internal", "error.order.updateFailed");
     }
 });
