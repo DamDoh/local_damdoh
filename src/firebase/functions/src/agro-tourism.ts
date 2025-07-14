@@ -202,15 +202,15 @@ export const getAgroTourismBookings = functions.https.onCall(async (data, contex
     
     const bookingsSnapshot = await itemRef.collection('bookings').orderBy('bookedAt', 'desc').get();
     const bookingsList = bookingsSnapshot.docs.map(doc => {
-         const data = doc.data();
+         const bookingData = doc.data();
         return {
             id: doc.id,
-            ...data,
-            bookedAt: (data.bookedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
-            checkedInAt: (data.checkedInAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            ...bookingData,
+            bookedAt: (bookingData.bookedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            checkedInAt: (bookingData.checkedInAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            startDate: (bookingData.startDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
         }
     });
 
     return { bookings: bookingsList };
 });
-

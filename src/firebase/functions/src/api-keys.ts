@@ -2,7 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { randomBytes } from 'crypto';
-import type { ApiKey } from "./types";
+import type { ApiKey } from "@/lib/types";
 
 const db = admin.firestore();
 
@@ -34,10 +34,8 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
     const secret = randomBytes(24).toString('hex');
     const fullKey = `${keyPrefix}_${secret}`;
     const keyRef = db.collection('users').doc(innovatorId).collection('api_keys').doc();
-
-    // In a real high-security scenario, you'd store a hash of the key (e.g., using bcrypt)
-    // instead of the lastFour, but this is a good starting point.
-    const newKeyDataToStore: Omit<ApiKey, 'id'|'key'|'createdAt'> = {
+    
+    const keyDataToStore: Omit<ApiKey, 'id' | 'key' | 'createdAt'> = {
         description,
         environment,
         status: 'Active',
@@ -45,8 +43,9 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
         lastFour: secret.slice(-4),
     };
 
+
     await keyRef.set({
-        ...newKeyDataToStore,
+        ...keyDataToStore,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
@@ -55,8 +54,8 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
         message: 'API Key generated successfully. Please copy it now, you will not be able to see it again.',
         key: fullKey,
         id: keyRef.id,
-        ...newKeyDataToStore,
-        createdAt: new Date().toISOString(), // Return ISO string for client
+        ...keyDataToStore, 
+        createdAt: new Date().toISOString(),
     };
 });
 
