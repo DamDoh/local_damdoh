@@ -305,19 +305,54 @@ export const getCooperativeDashboardData = functions.https.onCall(
         const coopData = coopDoc.data();
         const groupId = coopData?.profileData?.groupId;
         let memberCount = 0;
+        let memberIds: string[] = [];
+
         if (groupId) {
              const groupDoc = await db.collection('groups').doc(groupId).get();
              if (groupDoc.exists) {
                  memberCount = groupDoc.data()?.memberCount || 0;
+                 const membersSnapshot = await db.collection(`groups/${groupId}/members`).get();
+                 memberIds = membersSnapshot.docs.map(doc => doc.id);
              }
         }
+        
+        let totalLandArea = 0;
+        let aggregatedProduce: CooperativeDashboardData['aggregatedProduce'] = [];
+        
+        if (memberIds.length > 0) {
+            const farmsSnapshot = await db.collection('farms').where('ownerId', 'in', memberIds).get();
+            farmsSnapshot.forEach(doc => {
+                 const sizeString = doc.data().size || '0';
+                 const sizeValue = parseFloat(sizeString.split(' ')[0]) || 0;
+                 totalLandArea += sizeValue;
+            });
+            
+             const cropsSnapshot = await db.collection('crops')
+                .where('ownerId', 'in', memberIds)
+                .where('currentStage', 'in', ['Harvesting', 'Post-Harvest'])
+                .orderBy('harvestDate', 'desc')
+                .limit(10)
+                .get();
 
-        const pendingMemberApplications = 3;
+            cropsSnapshot.forEach(doc => {
+                const cropData = doc.data();
+                aggregatedProduce.push({
+                    id: doc.id,
+                    productName: cropData.cropType || 'Unknown Produce',
+                    quantity: parseFloat(cropData.expectedYield?.split(' ')[0] || '0'), 
+                    quality: 'Grade A', // Placeholder as it's not on the crop model
+                    readyBy: (cropData.harvestDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
+                });
+            });
+        }
+
+
+        const pendingMemberApplications = 3; // This remains mocked
 
         return {
             memberCount,
-            totalLandArea: 1250, // Mock data
-            aggregatedProduce: [], // Mock data
+            totalLandArea,
+            aggregatedProduce,
             pendingMemberApplications,
             groupId: groupId || null,
         };
@@ -685,7 +720,7 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
                 supplierName: sellerProfiles[order.sellerId] || 'Unknown Supplier',
                 deliveryDate: order.expectedDeliveryDate?.toDate().toISOString() || new Date(Date.now() + 86400000 * 5).toISOString(),
                 status: order.status,
-                actionLink: `/marketplace/my-orders/${doc.id}`,
+                actionLink: `/marketplace/my-orders/${order.id}`,
             };
         });
         
@@ -1152,3 +1187,5 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch admin recent activity.");
     }
 });
+
+    
