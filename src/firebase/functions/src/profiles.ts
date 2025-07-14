@@ -392,7 +392,11 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
         knf_batches: 'userId',
         traceability_events: 'actorRef',
         connection_requests: ['requesterId', 'recipientId'], // Special case for multiple fields
-        // Add other collections as needed, e.g., 'comments', 'likes', subcollections
+        agri_events: 'organizerId',
+        financial_applications: 'applicantId',
+        insurance_applications: 'applicantId',
+        groups: 'ownerId',
+        // Note: Subcollections like comments, likes, etc., must be handled separately or with a recursive delete helper.
     };
 
     const promises: Promise<any>[] = [];
@@ -400,20 +404,25 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
     // Loop through each collection and delete documents related to the user.
     for (const [collection, field] of Object.entries(collectionsToDeleteFrom)) {
         if (Array.isArray(field)) {
-            // Handle collections where the user's UID could be in one of several fields
             for (const f of field) {
                 const query = db.collection(collection).where(f, '==', uid).limit(batchSize);
                 promises.push(deleteQueryBatch(query));
             }
         } else {
-            // Handle collections with a single user ID field
             const query = db.collection(collection).where(field, '==', uid).limit(batchSize);
             promises.push(deleteQueryBatch(query));
         }
     }
     
+    // Remove user from any groups they are a member of
+    const memberOfQuery = db.collectionGroup('members').where(admin.firestore.FieldPath.documentId(), '==', uid);
+    promises.push(deleteQueryBatch(memberOfQuery));
+
     // Also delete the main user profile document
     promises.push(db.collection('users').doc(uid).delete());
+    
+    // Delete any credit scores associated with the user
+    promises.push(db.collection('credit_scores').doc(uid).delete());
 
     await Promise.all(promises);
     console.log(`Cleanup finished for user ${uid}.`);
@@ -433,16 +442,23 @@ async function deleteQueryBatch(query: FirebaseFirestore.Query) {
 
   const batch = query.firestore.batch();
   snapshot.docs.forEach((doc) => {
+    // If it's a member document, we also need to decrement the group's memberCount
+    if (doc.ref.parent.parent?.path.startsWith('groups/')) {
+        const groupRef = doc.ref.parent.parent;
+        if(groupRef) {
+            batch.update(groupRef, { memberCount: admin.firestore.FieldValue.increment(-1) });
+        }
+    }
     batch.delete(doc.ref);
   });
   await batch.commit();
-  console.log(`Deleted ${snapshot.size} documents from collection.`);
+  console.log(`Deleted ${snapshot.size} documents.`);
 
   // Recurse on the same query to delete more documents if the batch was full.
-  // This is a safe way to handle collections larger than the batch size limit.
   if (snapshot.size > 0) {
     return snapshot.size + await deleteQueryBatch(query);
   } else {
     return snapshot.size;
   }
 }
+
