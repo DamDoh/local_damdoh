@@ -1,5 +1,4 @@
 
-
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
@@ -30,7 +29,7 @@ async function _internalGenerateVTI(
   if (!type || typeof type !== "string") {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "The 'type' parameter is required and must be a string.",
+      "error.vti.typeRequired",
     );
   }
 
@@ -64,7 +63,7 @@ export const generateVTI = functions.https.onCall(async (data, context) => {
     }
     throw new functions.https.HttpsError(
       "internal",
-      "Failed to generate VTI.",
+      "error.vti.generationFailed",
       error.message,
     );
   }
@@ -85,26 +84,26 @@ export async function _internalLogTraceEvent(
   if (!farmFieldId && !vtiId) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "Either a 'farmFieldId' (for pre-harvest) or a 'vtiId' (for post-harvest) must be provided.",
+      "error.traceability.idRequired",
     );
   }
 
   // Common validation for required fields
   if (!eventType || typeof eventType !== "string") {
-    throw new functions.https.HttpsError("invalid-argument", "The 'eventType' parameter is required.");
+    throw new functions.https.HttpsError("invalid-argument", "error.traceability.eventTypeRequired");
   }
   if (!actorRef || typeof actorRef !== "string") {
-    throw new functions.https.HttpsError("invalid-argument", "The 'actorRef' parameter is required.");
+    throw new functions.https.HttpsError("invalid-argument", "error.traceability.actorRefRequired");
   }
   if (geoLocation && (typeof geoLocation.lat !== "number" || typeof geoLocation.lng !== "number")) {
-    throw new functions.https.HttpsError("invalid-argument", "The 'geoLocation' parameter must be an object with lat and lng.");
+    throw new functions.https.HttpsError("invalid-argument", "error.traceability.invalidGeoLocation");
   }
 
   // If a vtiId is provided for post-harvest events, ensure it exists.
   if (vtiId) {
     const vtiDoc = await db.collection("vti_registry").doc(vtiId).get();
     if (!vtiDoc.exists) {
-      throw new functions.https.HttpsError("not-found", `VTI with ID ${vtiId} not found.`);
+      throw new functions.https.HttpsError("not-found", `error.vti.notFound`);
     }
   }
 
@@ -125,12 +124,7 @@ export async function _internalLogTraceEvent(
 }
 
 export const logTraceEvent = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError(
-      "unauthenticated",
-      "User must be authenticated to log a trace event.",
-    );
-  }
+  checkAuth(context);
 
   try {
     return await _internalLogTraceEvent(data, context);
@@ -141,7 +135,7 @@ export const logTraceEvent = functions.https.onCall(async (data, context) => {
     }
     throw new functions.https.HttpsError(
       "internal",
-      "Failed to log trace event.",
+      "error.traceability.logFailed",
       error.message,
     );
   }
@@ -149,20 +143,13 @@ export const logTraceEvent = functions.https.onCall(async (data, context) => {
 
 export const handleHarvestEvent = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "User must be authenticated.",
-      );
-    }
-
-    const callerUid = context.auth.uid;
+    const callerUid = checkAuth(context);
     const role = await getRole(callerUid);
 
     if (role !== "Farmer" && role !== "System") {
       throw new functions.https.HttpsError(
         "permission-denied",
-        "Only farmers or system processes can log harvest events.",
+        "error.permissionDenied",
       );
     }
 
@@ -170,19 +157,19 @@ export const handleHarvestEvent = functions.https.onCall(
       data;
 
     if (!farmFieldId || typeof farmFieldId !== "string") {
-      throw new functions.https.HttpsError("invalid-argument", "'farmFieldId' is required.");
+      throw new functions.https.HttpsError("invalid-argument", "error.harvest.farmFieldIdRequired");
     }
     if (!cropType || typeof cropType !== "string") {
-      throw new functions.https.HttpsError("invalid-argument", "'cropType' is required.");
+      throw new functions.https.HttpsError("invalid-argument", "error.harvest.cropTypeRequired");
     }
     if (yieldKg !== undefined && typeof yieldKg !== "number") {
-      throw new functions.https.HttpsError("invalid-argument", "'yieldKg' must be a number.");
+      throw new functions.https.HttpsError("invalid-argument", "error.harvest.yieldInvalid");
     }
     if (qualityGrade !== undefined && typeof qualityGrade !== "string") {
-      throw new functions.https.HttpsError("invalid-argument", "'qualityGrade' must be a string.");
+      throw new functions.https.HttpsError("invalid-argument", "error.harvest.qualityGradeInvalid");
     }
     if (!actorVtiId || typeof actorVtiId !== "string") {
-      throw new functions.https.HttpsError("invalid-argument", "'actorVtiId' is required.");
+      throw new functions.https.HttpsError("invalid-argument", "error.harvest.actorVtiIdRequired");
     }
 
     try {
@@ -225,7 +212,7 @@ export const handleHarvestEvent = functions.https.onCall(
       }
       throw new functions.https.HttpsError(
         "internal",
-        "Failed to handle harvest event.",
+        "error.harvest.failed",
         error.message,
       );
     }
@@ -234,20 +221,13 @@ export const handleHarvestEvent = functions.https.onCall(
 
 export const handleInputApplicationEvent = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "User must be authenticated.",
-      );
-    }
-
-    const callerUid = context.auth.uid;
+    const callerUid = checkAuth(context);
     const role = await getRole(callerUid);
 
     if (role !== "Farmer" && role !== "System") {
       throw new functions.https.HttpsError(
         "permission-denied",
-        "Only farmers or system processes can log input application events.",
+        "error.permissionDenied",
       );
     }
 
@@ -262,57 +242,19 @@ export const handleInputApplicationEvent = functions.https.onCall(
       geoLocation,
     } = data;
 
-    if (!farmFieldId || typeof farmFieldId !== "string") {
-      throw new functions.https.HttpsError(
-        "invalid-argument",
-        "The 'farmFieldId' parameter is required and must be a string.",
-      );
-    }
-    if (!inputId || typeof inputId !== "string") {
-      throw new functions.https.HttpsError(
-        "invalid-argument",
-        "The 'inputId' parameter is required and must be a string (e.g., KNF Batch Name, Fertilizer Name).",
-      );
-    }
-    if (!applicationDate) {
-      throw new functions.https.HttpsError(
-        "invalid-argument",
-        "The 'applicationDate' parameter is required.",
-      );
-    }
-    if (quantity === undefined || typeof quantity !== "number" || quantity < 0) {
-      throw new functions.https.HttpsError(
-        "invalid-argument",
-        "The 'quantity' parameter is required and must be a non-negative number.",
-      );
-    }
-    if (!unit || typeof unit !== "string") {
-      throw new functions.https.HttpsError(
-        "invalid-argument",
-        "The 'unit' parameter is required and must be a string.",
-      );
-    }
-    if (method !== undefined && typeof method !== "string") {
-      throw new functions.https.HttpsError(
-        "invalid-argument",
-        "The 'method' parameter must be a string if provided.",
-      );
-    }
-    if (!actorVtiId || typeof actorVtiId !== "string") {
-      throw new functions.https.HttpsError(
-        "invalid-argument",
-        "The 'actorVtiId' parameter is required and must be a string (User or Organization VTI ID).",
-      );
+    if (!farmFieldId || typeof farmFieldId !== "string" || !inputId || typeof inputId !== "string" || !applicationDate || quantity === undefined || typeof quantity !== "number" || quantity < 0 || !unit || typeof unit !== "string" || !actorVtiId || typeof actorVtiId !== "string") {
+        throw new functions.https.HttpsError(
+            "invalid-argument",
+            "error.form.missingFields"
+        );
     }
 
-    if (
-      geoLocation &&
-      (typeof geoLocation.lat !== "number" || typeof geoLocation.lng !== "number")
-    ) {
-      throw new functions.https.HttpsError(
-        "invalid-argument",
-        "The 'geoLocation' parameter must be an object with lat and lng if provided.",
-      );
+    if (method !== undefined && typeof method !== "string") {
+      throw new functions.https.HttpsError("invalid-argument", "The 'method' parameter must be a string if provided.");
+    }
+    
+    if (geoLocation && (typeof geoLocation.lat !== "number" || typeof geoLocation.lng !== "number")) {
+      throw new functions.https.HttpsError("invalid-argument", "The 'geoLocation' parameter must be an object with lat and lng if provided.");
     }
 
     try {
@@ -345,7 +287,7 @@ export const handleInputApplicationEvent = functions.https.onCall(
       }
       throw new functions.https.HttpsError(
         "internal",
-        "Failed to handle input application event.",
+        "error.inputApplication.failed",
         error.message,
       );
     }
@@ -353,12 +295,7 @@ export const handleInputApplicationEvent = functions.https.onCall(
 );
 
 export const handleObservationEvent = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError(
-      "unauthenticated",
-      "User must be authenticated.",
-    );
-  }
+  const callerUid = checkAuth(context);
 
   const {
     farmFieldId,
@@ -366,7 +303,6 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
     observationDate,
     details,
     mediaUrls,
-    actorVtiId,
     geoLocation,
     aiAnalysis,
   } = data;
@@ -375,12 +311,11 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
     !farmFieldId ||
     !observationType ||
     !observationDate ||
-    !details ||
-    !actorVtiId
+    !details
   ) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "Missing required fields for observation event.",
+      "error.form.missingFields",
     );
   }
 
@@ -389,13 +324,12 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
             observationType, 
             details, 
             mediaUrls: mediaUrls || [], 
-            farmFieldId,
-            aiAnalysis: aiAnalysis || "No AI analysis was performed for this observation.",
+            aiAnalysis: aiAnalysis || null,
         };
 
         await _internalLogTraceEvent({
             eventType: 'OBSERVED',
-            actorRef: actorVtiId,
+            actorRef: callerUid,
             geoLocation: geoLocation || null,
             payload: eventPayload,
             farmFieldId: farmFieldId,
@@ -405,7 +339,7 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
 
     } catch (error: any) {
         console.error('Error handling observation event:', error);
-        throw new functions.https.HttpsError('internal', 'Failed to handle observation event.', error.message);
+        throw new functions.https.HttpsError('internal', 'error.observation.failed', error.message);
     }
 });
 
@@ -424,7 +358,7 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
     if (!farmFieldId) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "A farmFieldId must be provided.",
+        "error.farmFieldId.required"
       );
     }
 
@@ -475,7 +409,7 @@ export const getTraceabilityEventsByFarmField = functions.https.onCall(
       );
       throw new functions.https.HttpsError(
         "internal",
-        "Failed to fetch traceability events.",
+        "error.traceability.fetchFailed",
       );
     }
   },
@@ -493,13 +427,13 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
     // No auth check here to allow public traceability lookup
     const { vtiId } = data;
     if (!vtiId) {
-        throw new functions.https.HttpsError("invalid-argument", "A vtiId must be provided.");
+        throw new functions.https.HttpsError("invalid-argument", "error.vti.idRequired");
     }
 
     try {
         const vtiDoc = await db.collection("vti_registry").doc(vtiId).get();
         if (!vtiDoc.exists) {
-            throw new functions.https.HttpsError("not-found", `VTI batch with ID ${vtiId} not found.`);
+            throw new functions.https.HttpsError("not-found", `error.vti.notFound`);
         }
         const vtiData = vtiDoc.data()!;
 
@@ -582,7 +516,7 @@ export const getVtiTraceabilityHistory = functions.https.onCall(async (data, con
     } catch (error) {
         console.error(`Error fetching traceability history for VTI ${vtiId}:`, error);
         if (error instanceof functions.https.HttpsError) throw error;
-        throw new functions.https.HttpsError("internal", "Failed to fetch traceability history.");
+        throw new functions.https.HttpsError("internal", "error.traceability.fetchHistoryFailed");
     }
 });
 
@@ -639,7 +573,7 @@ export const getRecentVtiBatches = functions.https.onCall(async (data, context) 
         return { batches: batches.filter(Boolean) }; // Filter out nulls
     } catch (error) {
         console.error("Error fetching recent VTI batches:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch recent batches.");
+        throw new functions.https.HttpsError("internal", "error.vti.fetchRecentFailed");
     }
 });
 

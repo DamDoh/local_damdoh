@@ -61,9 +61,14 @@ export const onArticleWriteTranslate = functions.firestore
                 translateText({ text: sourceExcerpt, targetLanguage: lang })
             ]);
             
-            updatePayload[`title_${lang}`] = translatedTitle;
-            updatePayload[`content_markdown_${lang}`] = translatedContent;
-            updatePayload[`excerpt_${lang}`] = translatedExcerpt;
+            // Check for translation errors before adding to payload
+            if (translatedTitle && !translatedTitle.startsWith('[Translation Error')) {
+              updatePayload[`title_${lang}`] = translatedTitle;
+              updatePayload[`content_markdown_${lang}`] = translatedContent;
+              updatePayload[`excerpt_${lang}`] = translatedExcerpt;
+            } else {
+              console.warn(`Translation to ${lang} for article ${articleId} resulted in an error or empty string.`);
+            }
           } catch (error) {
              console.error(`Translation to ${lang} for article ${articleId} failed:`, error);
           }
@@ -431,5 +436,3 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
     );
   }
 });
-
-    
