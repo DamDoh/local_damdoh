@@ -66,7 +66,7 @@ export const InsuranceProviderDashboard = () => {
       );
   }
 
-  const { pendingClaims, riskAssessmentAlerts, activePolicies } = dashboardData;
+  const { pendingClaims, riskAssessmentAlerts } = dashboardData;
 
   const getStatusBadgeVariant = (status: string) => {
       switch (status.toLowerCase()) {

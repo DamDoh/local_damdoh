@@ -4,6 +4,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
 import { getRole } from './profiles';
+import { detectTraceabilityAnomalyFlow } from '@/ai/flows/detect-traceability-anomaly-flow';
 
 const db = admin.firestore();
 
@@ -641,3 +642,42 @@ export const getRecentVtiBatches = functions.https.onCall(async (data, context) 
         throw new functions.https.HttpsError("internal", "Failed to fetch recent batches.");
     }
 });
+
+// New trigger function for AI anomaly detection
+export const onTraceabilityEventCreated = functions.firestore
+  .document("traceability_events/{eventId}")
+  .onCreate(async (snap, context) => {
+    const eventData = snap.data();
+    const vtiId = eventData?.vtiId;
+
+    // Only run for events that have a VTI ID (i.e., post-harvest)
+    if (!vtiId) {
+      console.log(`Event ${context.params.eventId} has no vtiId. Skipping anomaly detection.`);
+      return null;
+    }
+
+    try {
+      console.log(`Running anomaly detection for VTI: ${vtiId}`);
+      // It's often better to wait a moment before running analysis in case other related events are logged in quick succession.
+      // For this example, we'll run it immediately. A production system might use a Cloud Task to delay this.
+      const result = await detectTraceabilityAnomalyFlow({ vtiId });
+      
+      if (result.isAnomaly) {
+        console.warn(`Anomaly detected for VTI ${vtiId}: ${result.reason}`);
+        // Update the event that triggered this check with the anomaly info.
+        await snap.ref.update({
+          payload: {
+            ...eventData.payload,
+            isAnomaly: true,
+            anomalyDescription: result.reason,
+          }
+        });
+      } else {
+        console.log(`No anomalies found for VTI: ${vtiId}`);
+      }
+    } catch (error) {
+      console.error(`Error running anomaly detection for VTI ${vtiId}:`, error);
+    }
+    
+    return null;
+  });

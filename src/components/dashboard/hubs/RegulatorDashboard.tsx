@@ -63,6 +63,7 @@ export const RegulatorDashboard = () => {
             case 'critical':
                 return 'destructive';
             case 'medium':
+            case 'warning':
                 return 'secondary';
             default:
                 return 'outline';
@@ -78,7 +79,6 @@ export const RegulatorDashboard = () => {
                     <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium flex items-center gap-2">
                             {t('pendingCertificationsTitle')}
-                            <Badge>{pendingCertifications?.count || 0}</Badge>
                         </CardTitle>
                         <BadgeCheck className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
@@ -101,7 +101,8 @@ export const RegulatorDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {(complianceRiskAlerts || []).map(alert => (
+                       {(complianceRiskAlerts || []).length > 0 ? (
+                           (complianceRiskAlerts || []).map(alert => (
                            <div key={alert.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                <div>
                                    <Badge variant={getSeverityBadge(alert.severity)}>{alert.severity}</Badge>
@@ -112,8 +113,10 @@ export const RegulatorDashboard = () => {
                                     <Link href={alert.actionLink}>{t('investigateButton')}</Link>
                                 </Button>
                            </div>
-                       ))}
-                       {(complianceRiskAlerts || []).length === 0 && <p className="text-sm text-muted-foreground text-center py-4">{t('noComplianceAlerts')}</p>}
+                       ))
+                       ) : (
+                       <p className="text-sm text-muted-foreground text-center py-4">{t('noComplianceAlerts')}</p>
+                       )}
                     </CardContent>
                 </Card>
                 
@@ -126,21 +129,24 @@ export const RegulatorDashboard = () => {
                     </CardHeader>
 
                     <CardContent className="space-y-2">
-                       {(supplyChainAnomalies || []).map(anomaly => (
-                            <div key={anomaly.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
-                               <div>
-                                   <Badge variant={getSeverityBadge(anomaly.level)}>{anomaly.level}</Badge>
-                                   <p className="mt-1">{anomaly.description}</p>
-                               </div>
-                               <Button asChild variant="secondary" size="sm">
-                                   <Link href={anomaly.vtiLink}>
-                                       <ExternalLink className="h-3 w-3 mr-1.5" />
-                                       {t('trackVtiButton')}
-                                    </Link>
-                               </Button>
-                           </div>
-                       ))}
-                       {(supplyChainAnomalies || []).length === 0 && <p className="text-sm text-muted-foreground text-center py-4">{t('noAnomalies')}</p>}
+                       {(supplyChainAnomalies || []).length > 0 ? (
+                           (supplyChainAnomalies || []).map(anomaly => (
+                                <div key={anomaly.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
+                                <div>
+                                    <Badge variant={getSeverityBadge(anomaly.level)}>{anomaly.level}</Badge>
+                                    <p className="mt-1">{anomaly.description}</p>
+                                </div>
+                                <Button asChild variant="secondary" size="sm">
+                                    <Link href={anomaly.vtiLink}>
+                                        <ExternalLink className="h-3 w-3 mr-1.5" />
+                                        {t('trackVtiButton')}
+                                        </Link>
+                                </Button>
+                            </div>
+                           ))
+                        ) : (
+                            <p className="text-sm text-muted-foreground text-center py-4">{t('noAnomalies')}</p>
+                        )}
                     </CardContent>
                 </Card>
             </div>
