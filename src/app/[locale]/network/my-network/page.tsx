@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -34,7 +33,7 @@ export default function MyNetworkPage() {
     const getConnectionsCallable = useMemo(() => httpsCallable(functions, 'getConnections'), []);
     const respondToRequest = useMemo(() => httpsCallable(functions, 'respondToConnectionRequest'), []);
     const removeConnection = useMemo(() => httpsCallable(functions, 'removeConnection'), []);
-    const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), [functions]);
+    const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), []);
 
     const fetchData = useCallback(async () => {
         setIsLoading(true);
@@ -88,17 +87,17 @@ export default function MyNetworkPage() {
     };
 
     const handleInvite = async () => {
-      const inviteeEmail = prompt(t('invitePrompt'));
+      const inviteeEmail = prompt(t('noConnections.invitePrompt'));
       if (inviteeEmail) {
         try {
           await sendInviteCallable({ inviteeEmail });
           toast({
-            title: t('inviteSuccessTitle'),
-            description: t('inviteSuccessDescription', { email: inviteeEmail }),
+            title: t('noConnections.inviteSuccessTitle'),
+            description: t('noConnections.inviteSuccessDescription', { email: inviteeEmail }),
           });
         } catch (error: any) {
           toast({
-            title: t('inviteErrorTitle'),
+            title: t('noConnections.inviteErrorTitle'),
             description: error.message,
             variant: 'destructive',
           });

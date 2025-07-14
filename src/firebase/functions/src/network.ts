@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile } from "./types";
@@ -220,6 +219,9 @@ export const sendInvite = functions.https.onCall(async (data, context) => {
   const inviterName = inviterProfile.data()?.displayName || 'A DamDoh user';
 
   console.log(`Simulating sending invite from ${inviterName} (${inviterId}) to ${inviteeEmail}`);
+  
+  // Placeholder: In a real app, this would use an email service like SendGrid
+  // to send a formatted invitation email with a unique sign-up link.
   
   return { success: true, message: `An invitation has been sent to ${inviteeEmail}.` };
 });
