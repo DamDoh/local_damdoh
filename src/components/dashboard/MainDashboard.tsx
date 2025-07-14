@@ -42,39 +42,39 @@ import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashb
 import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
 import { AgriTechInnovatorDashboard } from './hubs/AgriTechInnovatorDashboard';
 import { OperationsDashboard } from './hubs/OperationsDashboard';
+import { LogisticsDashboard } from './hubs/processing-logistics/LogisticsDashboard';
 import { ProcessingUnitDashboard } from './hubs/processing-logistics/ProcessingUnitDashboard';
 import { WarehouseDashboard } from './hubs/processing-logistics/WarehouseDashboard';
-import { LogisticsDashboard } from './hubs/processing-logistics/LogisticsDashboard';
 
 
 const { useState, useEffect, useMemo } = React;
 const db = getFirestore(firebaseApp);
 
 const HubComponentMap: { [key in typeof STAKEHOLDER_ROLES[number]]?: React.ComponentType } = {
-    'Agricultural Cooperative': CooperativeDashboard,
-    'Agro-Export Facilitator/Customs Broker': AgroExportDashboard,
-    'Agri-Tech Innovator/Developer': AgriTechInnovatorDashboard,
-    'Agronomy Expert/Consultant (External)': AgronomistDashboard,
-    'Agro-Tourism Operator': AgroTourismDashboard,
-    'Buyer (Restaurant, Supermarket, Exporter)': BuyerDashboard,
-    'Certification Body (Organic, Fair Trade etc.)': CertificationBodyDashboard,
-    'Crowdfunder (Impact Investor, Individual)': CrowdfunderDashboard,
-    'Energy Solutions Provider (Solar, Biogas)': EnergyProviderDashboard,
-    'Equipment Supplier (Sales of Machinery/IoT)': EquipmentSupplierDashboard,
     'Farmer': FarmerDashboard,
+    'Agricultural Cooperative': CooperativeDashboard,
     'Field Agent/Agronomist (DamDoh Internal)': FieldAgentDashboard,
+    'Operations/Logistics Team (DamDoh Internal)': OperationsDashboard,
+    'Quality Assurance Team (DamDoh Internal)': QaDashboard,
+    'Processing & Packaging Unit': ProcessingUnitDashboard,
+    'Buyer (Restaurant, Supermarket, Exporter)': BuyerDashboard,
+    'Input Supplier (Seed, Fertilizer, Pesticide)': InputSupplierDashboard,
+    'Equipment Supplier (Sales of Machinery/IoT)': EquipmentSupplierDashboard,
     'Financial Institution (Micro-finance/Loans)': FiDashboard,
     'Government Regulator/Auditor': RegulatorDashboard,
-    'Input Supplier (Seed, Fertilizer, Pesticide)': InputSupplierDashboard,
-    'Insurance Provider': InsuranceProviderDashboard,
-    'Logistics Partner (Third-Party Transporter)': LogisticsDashboard,
-    'Packaging Supplier': PackagingSupplierDashboard,
-    'Processing & Packaging Unit': ProcessingUnitDashboard,
-    'Quality Assurance Team (DamDoh Internal)': QaDashboard,
+    'Certification Body (Organic, Fair Trade etc.)': CertificationBodyDashboard,
     'Researcher/Academic': ResearcherDashboard,
+    'Logistics Partner (Third-Party Transporter)': LogisticsDashboard,
     'Storage/Warehouse Facility': WarehouseDashboard,
+    'Agronomy Expert/Consultant (External)': AgronomistDashboard,
+    'Agro-Tourism Operator': AgroTourismDashboard,
+    'Energy Solutions Provider (Solar, Biogas)': EnergyProviderDashboard,
+    'Agro-Export Facilitator/Customs Broker': AgroExportDashboard,
+    'Agri-Tech Innovator/Developer': AgriTechInnovatorDashboard,
     'Waste Management & Compost Facility': WasteManagementDashboard,
-    'Operations/Logistics Team (DamDoh Internal)': OperationsDashboard,
+    'Crowdfunder (Impact Investor, Individual)': CrowdfunderDashboard,
+    'Insurance Provider': InsuranceProviderDashboard,
+    'Packaging Supplier': PackagingSupplierDashboard
 };
 
 
