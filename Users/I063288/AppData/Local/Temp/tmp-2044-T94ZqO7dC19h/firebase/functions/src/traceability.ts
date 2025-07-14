@@ -368,7 +368,7 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
     mediaUrls,
     actorVtiId,
     geoLocation,
-    aiAnalysis,
+    aiAnalysis, // Now accepts the full AI analysis object
   } = data;
 
   if (
@@ -390,7 +390,7 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
             details, 
             mediaUrls: mediaUrls || [], 
             farmFieldId,
-            aiAnalysis: aiAnalysis || "No AI analysis was performed for this observation.",
+            aiAnalysis: aiAnalysis || null, // Store the full analysis object or null
         };
 
         await _internalLogTraceEvent({
