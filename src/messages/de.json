@@ -311,12 +311,6 @@
     "mobileMenu": {
       "title": "DamDoh Menü",
       "description": "Hauptnavigationsmenü der Anwendung"
-    },
-    "toast": {
-      "logOut": {
-        "title": "Abgemeldet",
-        "description": "Sie wurden erfolgreich abgemeldet"
-      }
     }
   },
   "MobileBottomNav": {
@@ -883,7 +877,7 @@
     "courses": {
       "title": "Kurse",
       "description": "Strukturierte Lernpfade zur Verbesserung Ihrer Fähigkeiten.",
-      "body": "Durchsuchen Sie unseren Katalog von Kursen, die von Branchenexperten entwickelt wurden und alles von nachhaltigen Anbautechniken bis hin zur Agrarbetriebsführung abdecken.",
+      "body": "Durchsuchen Sie unseren Katalog von Kursen, die von Branchenexperten entwickelt wurden und alles von nachhaltigen Anbautechniken bis zur Agrarbetriebsführung abdecken.",
       "cta": "Kurse erkunden"
     },
     "blog": {
@@ -1109,8 +1103,7 @@
       "noEventsFound": "Für diese Charge wurden noch keine Rückverfolgbarkeitsereignisse protokolliert.",
       "geoLocationLabel": "Geostandort",
       "sustainablyGrownTitle": "Nachhaltig angebaut",
-      "sustainablyGrownDescription": "Das Rückverfolgbarkeitsprotokoll dieses Produkts weist auf die Anwendung nachhaltiger und/oder biologischer Anbaumethoden hin.",
-      "harvestDateLabel": "Erntedatum"
+      "sustainablyGrownDescription": "Das Rückverfolgbarkeitsprotokoll dieses Produkts weist auf die Anwendung nachhaltiger und/oder biologischer Anbaumethoden hin."
     }
   },
   "OfflineIndicator": {
@@ -1246,7 +1239,7 @@
         },
         "general": {
           "title": "Fehler beim Erstellen des Themas",
-          "description": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+          "description": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
         }
       }
     },
@@ -1322,7 +1315,7 @@
         },
         "general": {
           "title": "Fehler beim Erstellen des Beitrags",
-          "description": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+          "description": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
         }
       }
     },
@@ -1373,6 +1366,25 @@
     "title": "404 - Seite nicht gefunden",
     "description": "Entschuldigung, wir konnten die gesuchte Seite nicht finden.",
     "goHomeButton": "Zur Startseite"
+  },
+  "formErrors": {
+    "createMarketplaceCoupon": {
+      "code": {
+        "min": "Code muss mindestens 4 Zeichen lang sein.",
+        "max": "Code darf 20 Zeichen nicht überschreiten.",
+        "regex": "Code darf nur Buchstaben und Zahlen enthalten."
+      },
+      "discountType": {
+        "required": "Bitte wählen Sie einen Rabatt-Typ."
+      },
+      "discountValue": {
+        "invalid": "Bitte geben Sie eine gültige Zahl ein.",
+        "positive": "Rabattwert muss positiv sein.",
+        "percentageMax": "Prozentualer Rabatt darf 100 nicht überschreiten."
+      },
+      "usageLimit": {
+        "positive": "Nutzungslimit muss eine positive ganze Zahl sein."
+      }
+    }
   }
 }
-

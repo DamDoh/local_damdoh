@@ -311,12 +311,6 @@
     "mobileMenu": {
       "title": "Menú de DamDoh",
       "description": "Menú de navegación principal de la aplicación"
-    },
-    "toast": {
-      "logOut": {
-        "title": "Sesión cerrada",
-        "description": "Has cerrado sesión correctamente."
-      }
     }
   },
   "MobileBottomNav": {
@@ -719,7 +713,7 @@
     },
     "modificationsAndInterruptions": {
       "heading": "7. MODIFICACIONES E INTERRUPCIONES",
-      "content": "Nos reservamos el derecho de cambiar, modificar o eliminar el contenido del Sitio en cualquier momento o por cualquier motivo a nuestra entera discreción sin previo aviso. También nos reservamos el derecho de modificar o descontinuar todo o parte del Sitio sin previo aviso en cualquier momento. No seremos responsables ante usted ni ante terceros por ninguna modificación, cambio de precio, suspensión o descontinuación del Sitio."
+      "content": "Nos reservamos el derecho de cambiar, modificar o eliminar el contenido del Sitio en cualquier momento o por cualquier motivo a nuestra entera discreción sin previo aviso. También nos reservamos el derecho de modificar o descontinuar todo o parte del Sitio sin previo aviso en cualquier momento. No seremos responsables ante usted ni ante terceros por ninguna modificación, cambio de precio, suspensión o discontinuación del Sitio."
     },
     "governingLaw": {
       "heading": "8. LEY APLICABLE",
@@ -736,9 +730,9 @@
     "conclusion": "Para resolver una queja o recibir más información, por favor {contactLink}."
   },
   "pinboardPage": {
-    "title": "Tablero de Pines",
+    "title": "Pin-Board",
     "description": "Tu espacio personal para guardar elementos importantes de todo DamDoh.",
-    "comingSoonTitle": "¡El Tablero de Pines llegará pronto!",
+    "comingSoonTitle": "¡El Pin-Board llegará pronto!",
     "comingSoonDescription": "Esta función te permitirá 'fijar' artículos del mercado, publicaciones del foro, perfiles, y más en un tablero personal para un fácil acceso.",
     "stayTuned": "¡Mantente atento a las actualizaciones!"
   },
@@ -822,7 +816,7 @@
     "follow": "Seguir",
     "connect": "Conectar",
     "profile": "Perfil",
-    "noSuggestions": "No hay nuevas sugerencias en este momento. ¡Vuelve a consultar más tarde!",
+    "noSuggestions": "No hay nuevas sugerencias por ahora. ¡Intenta expandir tu perfil!",
     "browseAllTitle": "Explorar todos los Actores",
     "browseAllDescription": "Encuentra y conéctate con nuevos socios en la cadena de suministro.",
     "searchPlaceholder": "Buscar por nombre o resumen...",
@@ -941,10 +935,7 @@
     "coverageTitle": "Detalles de la Cobertura",
     "premiumTitle": "Prima",
     "providerTitle": "Ofrecido por",
-    "applyButton": "Solicitar esta Póliza",
-    "toast": {
-      "errorTitle": "Error al Cargar"
-    }
+    "applyButton": "Solicitar esta Póliza"
   },
   "InsuranceProductCreatePage": {
     "backLink": "Volver a Productos",
@@ -1109,8 +1100,7 @@
       "noEventsFound": "Aún no se han registrado eventos de trazabilidad para este lote.",
       "geoLocationLabel": "Geolocalización",
       "sustainablyGrownTitle": "Cultivado de Forma Sostenible",
-      "sustainablyGrownDescription": "El registro de trazabilidad de este producto indica el uso de prácticas agrícolas sostenibles y/u orgánicas.",
-      "harvestDateLabel": "Fecha de Cosecha"
+      "sustainablyGrownDescription": "El registro de trazabilidad de este producto indica el uso de prácticas agrícolas sostenibles y/u orgánicas."
     }
   },
   "OfflineIndicator": {
@@ -1207,7 +1197,7 @@
     "aboutTitle": "Acerca de {displayName}",
     "interestsTitle": "Áreas de Interés",
     "engagementStats": "Estadísticas de Interacción",
-    "profileViewers": "Vistas del Perfil",
+    "profileViews": "Vistas del Perfil",
     "postLikes": "'Me gusta' en Publicaciones",
     "postComments": "Comentarios en Publicaciones",
     "contactTitle": "Información de Contacto",
@@ -1227,7 +1217,7 @@
         "nameLabel": "Nombre del Tema",
         "namePlaceholder": "Ej: Mejores Prácticas para la Conservación del Agua",
         "descriptionLabel": "Descripción",
-        "descriptionPlaceholder": "Una breve descripción de qué trata este tema.",
+        "descriptionPlaceholder": "Una corta descripción de qué trata este tema.",
         "submitButton": "Crear Tema",
         "submittingButton": "Creando..."
       },
@@ -1373,6 +1363,25 @@
     "title": "404 - Página no encontrada",
     "description": "Lo sentimos, no pudimos encontrar la página que estás buscando.",
     "goHomeButton": "Ir a la página de inicio"
+  },
+  "formErrors": {
+    "createMarketplaceCoupon": {
+      "code": {
+        "min": "El código debe tener al menos 4 caracteres.",
+        "max": "El código no puede exceder los 20 caracteres.",
+        "regex": "El código solo puede contener letras y números."
+      },
+      "discountType": {
+        "required": "Por favor, seleccione un tipo de descuento."
+      },
+      "discountValue": {
+        "invalid": "Por favor, ingrese un número válido.",
+        "positive": "El valor del descuento debe ser positivo.",
+        "percentageMax": "El descuento porcentual no puede exceder el 100."
+      },
+      "usageLimit": {
+        "positive": "El límite de uso debe ser un número entero positivo."
+      }
+    }
   }
 }
-

@@ -283,7 +283,8 @@
       "medium": "Moyen",
       "strong": "Fort",
       "veryStrong": "Très fort"
-    }
+    },
+    "error": "Erreur"
   },
   "AppHeader": {
     "home": "Accueil",
@@ -310,12 +311,6 @@
     "mobileMenu": {
       "title": "Menu DamDoh",
       "description": "Menu de navigation principal de l'application"
-    },
-    "toast": {
-      "logOut": {
-        "title": "Déconnecté",
-        "description": "Vous avez été déconnecté avec succès"
-      }
     }
   },
   "MobileBottomNav": {
@@ -939,7 +934,6 @@
     "notFound": "Produit d'assurance introuvable.",
     "coverageTitle": "Détails de la couverture",
     "premiumTitle": "Prime",
-    "perTerm": "par trimestre",
     "providerTitle": "Fourni par",
     "applyButton": "Postuler à cette police",
     "toast": {
@@ -1109,8 +1103,7 @@
       "noEventsFound": "Aucun événement de traçabilité n'a encore été enregistré pour ce lot.",
       "geoLocationLabel": "Géolocalisation",
       "sustainablyGrownTitle": "Cultivé de manière durable",
-      "sustainablyGrownDescription": "Le journal de traçabilité de ce produit indique l'utilisation de pratiques agricoles durables et/ou biologiques.",
-      "harvestDateLabel": "Date de récolte"
+      "sustainablyGrownDescription": "Le journal de traçabilité de ce produit indique l'utilisation de pratiques agricoles durables et/ou biologiques."
     }
   },
   "OfflineIndicator": {
@@ -1360,6 +1353,37 @@
           "description": "Votre réponse n'a pas pu être enregistrée. Veuillez réessayer."
         },
         "emptyReply": "La réponse ne peut pas être vide."
+      }
+    }
+  },
+  "ErrorPage": {
+    "title": "Quelque chose s'est mal passé",
+    "description": "Désolé, mais une erreur inattendue s'est produite. Notre équipe a été notifiée.",
+    "tryAgainButton": "Réessayer",
+    "goHomeButton": "Aller à la page d'accueil"
+  },
+  "NotFoundPage": {
+    "title": "404 - Page non trouvée",
+    "description": "Désolé, nous n'avons pas pu trouver la page que vous recherchez.",
+    "goHomeButton": "Aller à la page d'accueil"
+  },
+  "formErrors": {
+    "createMarketplaceCoupon": {
+      "code": {
+        "min": "Le code doit comporter au moins 4 caractères.",
+        "max": "Le code ne peut pas dépasser 20 caractères.",
+        "regex": "Le code ne peut contenir que des lettres et des chiffres."
+      },
+      "discountType": {
+        "required": "Veuillez sélectionner un type de réduction."
+      },
+      "discountValue": {
+        "invalid": "Veuillez entrer un nombre valide.",
+        "positive": "La valeur de la réduction doit être positive.",
+        "percentageMax": "La réduction en pourcentage ne peut pas dépasser 100."
+      },
+      "usageLimit": {
+        "positive": "La limite d'utilisation doit être un entier positif."
       }
     }
   }

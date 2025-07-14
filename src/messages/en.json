@@ -141,7 +141,7 @@
       },
       "fis": {
         "title": "Financial Institutions",
-        "description": "Offer targeted loans, grants, and insurance products to a verified network of agricultural businesses."
+        "description": "Offer targeted loans, grants, and insurance products to a verified network of agribusinesses."
       },
       "imageAlt": "A diverse group of agricultural stakeholders collaborating"
     },
@@ -311,12 +311,6 @@
     "mobileMenu": {
       "title": "DamDoh Menu",
       "description": "Main application navigation menu"
-    },
-    "toast": {
-      "logOut": {
-        "title": "Logged Out",
-        "description": "You have been successfully signed out."
-      }
     }
   },
   "MobileBottomNav": {
@@ -687,7 +681,7 @@
       "heading": "11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?",
       "content": "If you have questions or comments about this notice, you may email us at support@damdoh.org or by post to our office address."
     },
-    "conclusion": "To resolve a complaint or receive further information, please {contactLink}."
+    "conclusion": "To resolve a complaint or to receive further information, please {contactLink}."
   },
   "termsOfService": {
     "title": "Terms of Service",
@@ -733,7 +727,7 @@
       "heading": "10. CONTACT US",
       "content": "To resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us."
     },
-    "conclusion": "To resolve a complaint or receive further information, please {contactLink}."
+    "conclusion": "To resolve a complaint or to receive further information, please {contactLink}."
   },
   "pinboardPage": {
     "title": "Pin-Board",
@@ -916,7 +910,7 @@
     "form": {
       "farmLabel": "Select Farm to Insure",
       "farmPlaceholder": "Choose one of your farms",
-      "noFarms": "No farms found. Please create one first.",
+      "noFarms": "No farms found. Please create a farm first.",
       "coverageValueLabel": "Desired Coverage Value (in USD)",
       "coverageValuePlaceholder": "e.g., 10000",
       "coverageValueDescription": "The total value you wish to insure.",
@@ -930,7 +924,7 @@
     },
     "success": {
       "title": "Application Received",
-      "description": "Thank you! Your application is now under review. The insurance provider will contact you with the next steps.",
+      "description": "Thank you! Your application is under review. The insurance provider will contact you with the next steps.",
       "backToDashboardButton": "Back to Dashboard",
       "applyForAnotherButton": "Apply for Another Policy"
     }
@@ -941,10 +935,7 @@
     "coverageTitle": "Coverage Details",
     "premiumTitle": "Premium",
     "providerTitle": "Provided by",
-    "applyButton": "Apply for this Policy",
-    "toast": {
-      "errorTitle": "Error Loading"
-    }
+    "applyButton": "Apply for this Policy"
   },
   "InsuranceProductCreatePage": {
     "backLink": "Back to Products",
@@ -985,10 +976,7 @@
       "status": "Status",
       "premium": "Premium"
     },
-    "noProducts": "You have not created any insurance products yet.",
-    "toast": {
-      "errorTitle": "Error"
-    }
+    "noProducts": "You have not created any insurance products yet."
   },
   "FiApplicationListPage": {
     "backLink": "Back to Dashboard",
@@ -1045,10 +1033,7 @@
       "interestRate": "Interest Rate",
       "maxAmount": "Max Amount"
     },
-    "noProducts": "You have not created any financial products yet.",
-    "toast": {
-      "errorTitle": "Error"
-    }
+    "noProducts": "You have not created any financial products yet."
   },
   "FiProductCreatePage": {
     "backLink": "Back to Products",
@@ -1067,7 +1052,7 @@
       "maxAmountLabel": "Max Amount (USD)",
       "maxAmountPlaceholder": "e.g., 10000",
       "targetRolesLabel": "Target Audience",
-      "targetRolesDescription": "Select the stakeholder roles this product is for.",
+      "targetRolesDescription": "Select the stakeholder roles this product is intended for.",
       "submitButton": "Create Product"
     },
     "toast": {
@@ -1109,8 +1094,7 @@
       "noEventsFound": "No traceability events have been logged for this batch yet.",
       "geoLocationLabel": "Geo-Location",
       "sustainablyGrownTitle": "Sustainably Grown",
-      "sustainablyGrownDescription": "This product's traceability record indicates the use of sustainable and/or organic farming practices.",
-      "harvestDateLabel": "Harvest Date"
+      "sustainablyGrownDescription": "This product's traceability record indicates the use of sustainable and/or organic farming practices."
     }
   },
   "OfflineIndicator": {
@@ -1207,7 +1191,7 @@
     "aboutTitle": "About {displayName}",
     "interestsTitle": "Areas of Interest",
     "engagementStats": "Engagement Stats",
-    "profileViewers": "Profile Views",
+    "profileViews": "Profile Views",
     "postLikes": "Post Likes",
     "postComments": "Post Comments",
     "contactTitle": "Contact Information",
@@ -1373,6 +1357,25 @@
     "title": "404 - Page Not Found",
     "description": "Sorry, we couldn't find the page you're looking for.",
     "goHomeButton": "Go to Homepage"
+  },
+  "formErrors": {
+    "createMarketplaceCoupon": {
+      "code": {
+        "min": "Code must be at least 4 characters.",
+        "max": "Code cannot exceed 20 characters.",
+        "regex": "Code can only contain letters and numbers."
+      },
+      "discountType": {
+        "required": "Please select a discount type."
+      },
+      "discountValue": {
+        "invalid": "Please enter a valid number.",
+        "positive": "Discount value must be positive.",
+        "percentageMax": "Percentage discount cannot exceed 100."
+      },
+      "usageLimit": {
+        "positive": "Usage limit must be a positive integer."
+      }
+    }
   }
 }
-
