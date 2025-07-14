@@ -6,7 +6,7 @@ import {
 
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
   }
   return context.auth.uid;
 };

@@ -9,6 +9,7 @@ const db = admin.firestore();
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
+const SUPPORTED_LANGUAGES = ["en", "km", "es", "fr", "de"];
 
 /**
  * A helper function to translate text using the Gemini API.
@@ -29,14 +30,15 @@ Return only the translated text, without any introductory phrases or quotation m
         return response.text().trim();
     } catch (error: any) {
         console.error(`Error translating text to ${targetLanguage}:`, error.message);
-        return `[Translation Error]`; // Return a noticeable error string
+        // Return a noticeable error string but don't cause the entire function to fail
+        return `[Translation Error: ${error.message}]`;
     }
 }
 
 
 /**
- * Firestore trigger that automatically translates new or updated knowledge articles.
- * Checks for English or Khmer content and translates to other languages if missing.
+ * Firestore trigger that automatically translates new or updated knowledge articles
+ * into all supported languages. This function now treats English as the source of truth.
  */
 export const onArticleWriteTranslate = functions.firestore
   .document("knowledge_articles/{articleId}")
@@ -51,66 +53,64 @@ export const onArticleWriteTranslate = functions.firestore
 
     const beforeData = change.before.data() || {};
     
-    // Determine the source language of the change.
-    let sourceLang = null;
-    let sourceTitle = null;
-    let sourceContent = null;
-    let sourceExcerpt = null;
-    
-    // Prioritize English as the source if it was changed
-    if (afterData.title_en && (afterData.title_en !== beforeData.title_en || afterData.content_markdown_en !== beforeData.content_markdown_en)) {
-        sourceLang = 'en';
-        sourceTitle = afterData.title_en;
-        sourceContent = afterData.content_markdown_en;
-        sourceExcerpt = afterData.excerpt_en;
-    } 
-    // Otherwise, check if Khmer was the source of the change
-    else if (afterData.title_km && (afterData.title_km !== beforeData.title_km || afterData.content_markdown_km !== beforeData.content_markdown_km)) {
-        sourceLang = 'km';
-        sourceTitle = afterData.title_km;
-        sourceContent = afterData.content_markdown_km;
-        sourceExcerpt = afterData.excerpt_km;
-    }
+    // Check if the English content has changed. We will treat English as the source of truth.
+    const englishContentChanged = (
+        afterData.title_en !== beforeData.title_en ||
+        afterData.content_markdown_en !== beforeData.content_markdown_en ||
+        afterData.excerpt_en !== beforeData.excerpt_en
+    );
 
-    if (!sourceLang || !sourceTitle || !sourceContent || !sourceExcerpt) {
-        console.log(`No significant content change detected in a source language for article ${articleId}. No translation needed.`);
+    if (!englishContentChanged) {
+        console.log(`No change in English source content for article ${articleId}. No translation action needed.`);
         return null;
     }
     
-    console.log(`Change detected in '${sourceLang}' for article ${articleId}. Triggering translations.`);
+    console.log(`English content for article ${articleId} changed. Triggering re-translation for all other languages.`);
 
-    const SUPPORTED_LANGUAGES = ["en", "km", "es", "fr", "th", "de"];
+    const sourceTitle = afterData.title_en;
+    const sourceContent = afterData.content_markdown_en;
+    const sourceExcerpt = afterData.excerpt_en;
+
+    if (!sourceTitle || !sourceContent || !sourceExcerpt) {
+        console.log("English source content is incomplete. Skipping translation.");
+        return null;
+    }
+
+    const translationPromises: Promise<void>[] = [];
     const updatePayload: {[key: string]: any} = {};
 
+    // Re-translate for all supported languages except English itself.
     for (const lang of SUPPORTED_LANGUAGES) {
-        // Don't translate to the source language, and don't overwrite existing, unchanged translations
-        if (lang === sourceLang || afterData[`title_${lang}`] === beforeData[`title_${lang}`]) {
-            continue;
-        }
+        if (lang === 'en') continue;
 
         console.log(`Queueing translation to '${lang}' for article ${articleId}.`);
-        const [translatedTitle, translatedExcerpt, translatedContent] = await Promise.all([
-            translateText(sourceTitle, lang),
-            translateText(sourceExcerpt, lang),
-            translateText(sourceContent, lang),
-        ]);
-        
-        if (!translatedTitle.startsWith('[Translation Error')) {
-            updatePayload[`title_${lang}`] = translatedTitle;
-            updatePayload[`excerpt_${lang}`] = translatedExcerpt;
-            updatePayload[`content_markdown_${lang}`] = translatedContent;
-        }
+        const p = (async () => {
+            const [translatedTitle, translatedContent, translatedExcerpt] = await Promise.all([
+                translateText(sourceTitle, lang),
+                translateText(sourceContent, lang),
+                translateText(sourceExcerpt, lang)
+            ]);
+            
+            // Add to payload only if translation was successful
+            if (!translatedTitle.startsWith('[Translation Error')) {
+                updatePayload[`title_${lang}`] = translatedTitle;
+                updatePayload[`content_markdown_${lang}`] = translatedContent;
+                updatePayload[`excerpt_${lang}`] = translatedExcerpt;
+            }
+        })();
+        translationPromises.push(p);
     }
     
+    await Promise.all(translationPromises);
+
     if (Object.keys(updatePayload).length > 0) {
-        console.log(`Updating article ${articleId} with new translations for languages: ${Object.keys(updatePayload).map(k => k.split('_')[1]).join(', ')}`);
+        console.log(`Updating article ${articleId} with new translations.`);
         return change.after.ref.update(updatePayload);
     } else {
         console.log(`No new translations to update for article ${articleId}.`);
         return null;
     }
   });
-
 
 
 /**
@@ -262,15 +262,15 @@ export const createKnowledgeArticle = functions.https.onCall(
     const callerUid = context.auth.uid; // Get the UID of the user calling the function
 
     const { title_en, content_markdown_en, tags, category, excerpt_en, imageUrl, dataAiHint, author, title_km, content_markdown_km, excerpt_km, status } = data;
-    if (!title_en && !title_km) {
-        throw new functions.https.HttpsError("invalid-argument", "At least one title (English or Khmer) is required.");
+    
+    // A post is valid if it has content in at least one primary language.
+    const hasEnglishContent = title_en && content_markdown_en && excerpt_en;
+    const hasKhmerContent = title_km && content_markdown_km && excerpt_km;
+    
+    if (!hasEnglishContent && !hasKhmerContent) {
+        throw new functions.https.HttpsError("invalid-argument", "error.article.contentRequired");
     }
-     if (!content_markdown_en && !content_markdown_km) {
-        throw new functions.https.HttpsError("invalid-argument", "At least one content block (English or Khmer) is required.");
-    }
-     if (!excerpt_en && !excerpt_km) {
-        throw new functions.https.HttpsError("invalid-argument", "At least one excerpt (English or Khmer) is required.");
-    }
+
 
     try {
         const newArticleRef = await db.collection('knowledge_articles').add({

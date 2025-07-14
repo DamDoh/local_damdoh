@@ -21,6 +21,7 @@ export const bookAgroTourismService = functions.https.onCall(async (data, contex
     const uid = checkAuth(context);
     const { itemId, bookingDetails } = data; // bookingDetails could contain dates, number of people, etc.
     if (!itemId) throw new functions.https.HttpsError('invalid-argument', 'error.itemId.required');
+    if (!bookingDetails?.startDate) throw new functions.https.HttpsError('invalid-argument', 'error.booking.startDateRequired');
 
     const itemRef = db.collection('marketplaceItems').doc(itemId);
     const bookingRef = itemRef.collection('bookings').doc(uid);

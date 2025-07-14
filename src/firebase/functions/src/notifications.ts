@@ -329,8 +329,8 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
     // 2. Handle Agro-Tourism Bookings
     try {
         const upcomingBookingsQuery = db.collectionGroup("bookings")
-            .where("startDate", ">=", now) 
-            .where("startDate", "<=", aDayFromNow);
+            .where("startDate", ">=", admin.firestore.Timestamp.fromDate(now)) 
+            .where("startDate", "<=", admin.firestore.Timestamp.fromDate(aDayFromNow));
         
         const bookingsSnapshot = await upcomingBookingsQuery.get();
         if (bookingsSnapshot.empty) {
