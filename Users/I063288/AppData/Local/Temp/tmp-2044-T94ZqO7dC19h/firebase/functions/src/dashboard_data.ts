@@ -31,7 +31,8 @@ import type {
     FarmerDashboardAlert,
     OperationsDashboardData,
     FinancialProduct,
-} from "./types";
+    KnfBatch
+} from "@/lib/types";
 
 const db = admin.firestore();
 
@@ -113,16 +114,21 @@ export const getFarmerDashboardData = functions.https.onCall(
             };
         });
 
-        const activeKnfBatches = knfBatchesSnapshot.docs
+        const activeKnfBatches: KnfBatch[] = knfBatchesSnapshot.docs
             .filter(doc => ['Fermenting', 'Ready'].includes(doc.data().status))
             .slice(0, 5)
             .map(doc => {
                 const batchData = doc.data();
                 return {
                     id: doc.id,
+                    userId: batchData.userId,
+                    type: batchData.type,
                     typeName: batchData.typeName,
+                    ingredients: batchData.ingredients,
+                    startDate: (batchData.startDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                    nextStepDate: (batchData.nextStepDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
                     status: batchData.status,
-                    nextStepDate: (batchData.nextStepDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+                    nextStep: batchData.nextStep,
                     quantityProduced: batchData.quantityProduced,
                     unit: batchData.unit,
                 };
@@ -687,7 +693,7 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
   async (data, context): Promise<ProcessingUnitDashboardData> => {
     const unitId = checkAuth(context);
     try {
-        const packagingOrdersPromise = await db.collection('marketplace_orders')
+        const packagingOrdersPromise = db.collection('marketplace_orders')
             .where('buyerId', '==', unitId)
             .orderBy('createdAt', 'desc')
             .limit(5)
@@ -784,7 +790,7 @@ export const getQaDashboardData = functions.https.onCall(
 
 
 export const getCertificationBodyDashboardData = functions.https.onCall(
-  (data, context): CertificationBodyDashboardData => {
+  async (data, context): Promise<CertificationBodyDashboardData> => {
     checkAuth(context);
     return {
         pendingAudits: [

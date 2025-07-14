@@ -2,7 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { randomBytes } from 'crypto';
-import type { ApiKey } from "./types";
+import type { ApiKey } from "@/lib/types";
 
 const db = admin.firestore();
 
@@ -35,27 +35,28 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
     const fullKey = `${keyPrefix}_${secret}`;
     const keyRef = db.collection('users').doc(innovatorId).collection('api_keys').doc();
 
-    // In a real high-security scenario, you'd store a hash of the key (e.g., using bcrypt)
-    // instead of the lastFour, but this is a good starting point.
-    const newKeyDataToStore: Omit<ApiKey, 'id'|'key'|'createdAt'> = {
+    const newKeyDataToStore: Omit<ApiKey, 'id'|'key'|'createdAt'| 'keyPrefix' | 'lastFour'> = {
         description,
         environment,
         status: 'Active',
-        keyPrefix: `${keyPrefix}_...`,
-        lastFour: secret.slice(-4),
+    };
+    
+    const keyDataWithSecret = {
+      ...newKeyDataToStore,
+      keyPrefix: `${keyPrefix}_...`,
+      lastFour: secret.slice(-4),
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
     };
 
-    await keyRef.set({
-        ...newKeyDataToStore,
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    });
+
+    await keyRef.set(keyDataWithSecret);
 
     return { 
         success: true, 
         message: 'API Key generated successfully. Please copy it now, you will not be able to see it again.',
         key: fullKey,
         id: keyRef.id,
-        ...newKeyDataToStore,
+        ...newKeyDataToStore, // Return without secret info
         createdAt: new Date().toISOString(), // Return ISO string for client
     };
 });
@@ -105,3 +106,4 @@ export const revokeApiKey = functions.https.onCall(async (data, context) => {
 
     return { success: true, message: 'API Key has been revoked.' };
 });
+
