@@ -14,27 +14,10 @@ import {ai} from '@/ai/genkit';
 import {z} from 'zod';
 import {fgw_knf_tool} from '@/ai/tools/fgw-knf-knowledge-tool';
 import {getStakeholderInfo} from '@/ai/tools/stakeholder-info-tool';
-import { diagnoseCrop, DiagnoseCropInputSchema, DiagnoseCropOutputSchema } from './diagnose-crop-flow';
+import { diagnoseCrop } from './diagnose-crop-flow';
+import { DiagnoseCropInputSchema, DiagnoseCropOutputSchema, FarmingAssistantInputSchema, FarmingAssistantOutputSchema } from '@/lib/schemas';
+import type { FarmingAssistantInput, FarmingAssistantOutput } from '@/lib/types';
 
-
-const FarmingAssistantInputSchema = z.object({
-  query: z.string().describe('The user\'s question about farming, agriculture, supply chain, farming business, app guidance, crop issues, or stakeholders in the agricultural ecosystem.'),
-  photoDataUri: z.string().optional().describe("A photo of a plant or crop issue, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'. This is used for diagnosis."),
-  language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code (e.g., "en", "km", "fr", "de", "th"). Defaults to English if not provided.'),
-});
-export type FarmingAssistantInput = z.infer<typeof FarmingAssistantInputSchema>;
-
-const DetailedPointSchema = z.object({
-  title: z.string().describe('A concise title for a specific aspect, key practice, or detailed point related to the answer/diagnosis/explanation. Max 5-7 words.'),
-  content: z.string().describe('The detailed explanation, advice, or information for this point. Should be a paragraph or two.'),
-});
-
-const FarmingAssistantOutputSchema = z.object({
-  summary: z.string().describe("A concise overall answer, summary, primary diagnosis, or explanation to the user's query. This should be a few sentences long and directly address the main question or image content."),
-  detailedPoints: z.array(DetailedPointSchema).optional().describe("An array of 3-5 detailed points or sections, each with a title and content, expanding on the summary/diagnosis/explanation or providing scannable key information. Only provide this if the query/image warrants a detailed breakdown."),
-  suggestedQueries: z.array(z.string()).optional().describe("A list of 2-3 short, relevant follow-up questions or related topics the user might be interested in based on their initial query. For example, if they ask about one KNF input, suggest another."),
-});
-export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema>;
 
 export async function askFarmingAssistant(input: FarmingAssistantInput): Promise<FarmingAssistantOutput> {
   return farmingAssistantFlow(input);

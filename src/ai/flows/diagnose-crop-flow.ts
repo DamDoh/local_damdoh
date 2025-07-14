@@ -9,37 +9,8 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
 import { fileWriterTool } from '@/ai/tools/file-writer-tool';
-
-export const DiagnoseCropInputSchema = z.object({
-  photoDataUri: z
-    .string()
-    .describe(
-      "A photo of a plant, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'."
-    ),
-  description: z.string().describe('The user\'s description of the problem or question about the plant.'),
-  language: z.string().optional().describe('The language for the AI to respond in (e.g., "en", "km"). Defaults to English.'),
-});
-export type DiagnoseCropInput = z.infer<typeof DiagnoseCropInputSchema>;
-
-export const DiagnoseCropOutputSchema = z.object({
-  isPlant: z.boolean().describe('Whether the image appears to contain a plant.'),
-  isHealthy: z.boolean().describe('Whether the plant appears to be healthy.'),
-  potentialProblems: z
-    .array(z.string())
-    .describe('A list of potential diseases, pests, or nutrient deficiencies identified.'),
-  suggestedActions: z
-    .array(
-      z.object({
-        title: z.string().describe('A short, actionable title for a suggested treatment or action.'),
-        details: z.string().describe('A detailed description of the suggested action, preferably using sustainable or organic methods.'),
-        type: z.enum(['treatment', 'prevention', 'further-investigation']).describe('The category of the suggested action.'),
-      })
-    )
-    .describe('A list of structured, actionable suggestions for the user.'),
-});
-export type DiagnoseCropOutput = z.infer<typeof DiagnoseCropOutputSchema>;
+import { DiagnoseCropInputSchema, DiagnoseCropOutputSchema, type DiagnoseCropInput, type DiagnoseCropOutput } from '@/lib/schemas';
 
 export async function diagnoseCrop(input: DiagnoseCropInput): Promise<DiagnoseCropOutput> {
   return diagnoseCropFlow(input);

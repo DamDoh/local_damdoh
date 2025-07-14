@@ -17,7 +17,10 @@ import type {
     MarketplaceRecommendationOutputSchema,
     CropRotationInputSchema,
     CropRotationOutputSchema,
-    DiagnoseCropOutputSchema
+    DiagnoseCropInputSchema,
+    DiagnoseCropOutputSchema,
+    FarmingAssistantInputSchema,
+    FarmingAssistantOutputSchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 
@@ -119,7 +122,7 @@ export interface Notification {
 // =================================================================
 // 2. DASHBOARD & UI-SPECIFIC TYPES
 // =================================================================
-export interface FarmerDashboardAlert {
+export type FarmerDashboardAlert = {
     id: string;
     icon: 'FlaskConical' | 'Sprout';
     type: 'info' | 'warning';
@@ -127,7 +130,7 @@ export interface FarmerDashboardAlert {
     link: string;
 }
 
-export interface FinancialTransaction {
+export type FinancialTransaction = {
     id: string;
     type: 'income' | 'expense';
     amount: number;
@@ -137,13 +140,13 @@ export interface FinancialTransaction {
     timestamp: any; // Allow for firestore timestamp
 }
 
-export interface FinancialSummary {
+export type FinancialSummary = {
     totalIncome: number;
     totalExpense: number;
     netFlow: number;
 }
 
-export interface FarmerDashboardData {
+export type FarmerDashboardData = {
   farmCount: number;
   cropCount: number;
   recentCrops: {
@@ -171,7 +174,7 @@ export interface FarmerDashboardData {
   }[];
 }
 
-export interface CooperativeDashboardData {
+export type CooperativeDashboardData = {
     memberCount: number;
     totalLandArea: number; // in Hectares
     aggregatedProduce: {
@@ -186,7 +189,7 @@ export interface CooperativeDashboardData {
 }
 
 
-export interface BuyerDashboardData {
+export type BuyerDashboardData = {
   supplyChainRisk: {
     region: string;
     level: string;
@@ -215,7 +218,7 @@ export interface BuyerDashboardData {
 }
 
 
-export interface RegulatorDashboardData {
+export type RegulatorDashboardData = {
   complianceRiskAlerts: {
     id: string;
     issue: string;
@@ -236,7 +239,7 @@ export interface RegulatorDashboardData {
 }
 
 
-export interface LogisticsDashboardData {
+export type LogisticsDashboardData = {
     activeShipments: {
         id: string;
         to: string;
@@ -259,7 +262,7 @@ export interface LogisticsDashboardData {
     };
 }
 
-export interface FiDashboardData {
+export type FiDashboardData = {
     pendingApplications: FinancialApplication[];
     portfolioOverview: {
         loanCount: number;
@@ -268,7 +271,7 @@ export interface FiDashboardData {
     financialProducts: FinancialProduct[];
 }
 
-export interface FieldAgentDashboardData {
+export type FieldAgentDashboardData = {
     assignedFarmers: {
         id: string;
         name: string;
@@ -289,7 +292,7 @@ export interface FieldAgentDashboardData {
     };
 }
 
-export interface InputSupplierDashboardData {
+export type InputSupplierDashboardData = {
     demandForecast: {
         id: string;
         region: string;
@@ -311,7 +314,7 @@ export interface InputSupplierDashboardData {
     };
 }
 
-export interface AgroExportDashboardData {
+export type AgroExportDashboardData = {
     pendingCustomsDocs: {
         id: string;
         vtiLink: string;
@@ -331,7 +334,7 @@ export interface AgroExportDashboardData {
     }[];
 }
 
-export interface ProcessingUnitDashboardData {
+export type ProcessingUnitDashboardData = {
   yieldOptimization: {
     currentYield: number;
     potentialYield: number;
@@ -361,7 +364,7 @@ export interface ProcessingUnitDashboardData {
 }
 
 
-export interface WarehouseDashboardData {
+export type WarehouseDashboardData = {
   storageOptimization: {
     utilization: number;
     suggestion: string;
@@ -377,7 +380,7 @@ export interface WarehouseDashboardData {
 }
 
 
-export interface QaDashboardData {
+export type QaDashboardData = {
   pendingInspections: {
     id: string;
     batchId: string;
@@ -400,7 +403,7 @@ export interface QaDashboardData {
 }
 
 
-export interface CertificationBodyDashboardData {
+export type CertificationBodyDashboardData = {
   pendingAudits: {
     id: string;
     farmName: string;
@@ -423,7 +426,7 @@ export interface CertificationBodyDashboardData {
   }[];
 }
 
-export interface ResearcherDashboardData {
+export type ResearcherDashboardData = {
   availableDatasets: {
     id: string;
     name: string;
@@ -445,7 +448,7 @@ export interface ResearcherDashboardData {
   }[];
 }
 
-export interface AgronomistDashboardData {
+export type AgronomistDashboardData = {
   assignedFarmersOverview: {
     id: string;
     name: string;
@@ -468,7 +471,7 @@ export interface AgronomistDashboardData {
 }
 
 
-export interface EnergyProviderDashboardData {
+export type EnergyProviderDashboardData = {
   projectLeads: {
     id: string;
     entityName: string;
@@ -491,7 +494,7 @@ export interface EnergyProviderDashboardData {
 }
 
 
-export interface CrowdfunderDashboardData {
+export type CrowdfunderDashboardData = {
   portfolioOverview: {
     totalInvested: number;
     numberOfInvestments: number;
@@ -514,7 +517,7 @@ export interface CrowdfunderDashboardData {
   }[];
 }
 
-export interface EquipmentSupplierDashboardData {
+export type EquipmentSupplierDashboardData = {
   listedEquipment: {
     id: string;
     name: string;
@@ -534,7 +537,7 @@ export interface EquipmentSupplierDashboardData {
   }[];
 }
 
-export interface WasteManagementDashboardData {
+export type WasteManagementDashboardData = {
   incomingWasteStreams: {
     id: string;
     type: string; // e.g., 'Crop Residue', 'Animal Manure'
@@ -554,7 +557,7 @@ export interface WasteManagementDashboardData {
 }
     
 
-export interface PackagingSupplierDashboardData {
+export type PackagingSupplierDashboardData = {
   incomingOrders: {
     id: string;
     customerName: string;
@@ -571,7 +574,7 @@ export interface PackagingSupplierDashboardData {
   }[];
 }
 
-export interface SustainabilityDashboardData {
+export type SustainabilityDashboardData = {
     carbonFootprint: { total: number; unit: string; trend: number; };
     waterUsage: { efficiency: number; unit: string; trend: number; };
     biodiversityScore: { score: number; unit: string; trend: number; };
@@ -579,7 +582,7 @@ export interface SustainabilityDashboardData {
     certifications: { id:string; name: string; status: string; expiry: string; }[];
 }
 
-export interface InsuranceProviderDashboardData {
+export type InsuranceProviderDashboardData = {
   pendingClaims: {
     id: string;
     policyHolderName: string;
@@ -604,7 +607,7 @@ export interface InsuranceProviderDashboardData {
   }[];
 }
 
-export interface OperationsDashboardData {
+export type OperationsDashboardData = {
   vtiGenerationRate: {
     rate: number;
     unit: 'VTIs/hour';
@@ -622,14 +625,14 @@ export interface OperationsDashboardData {
   }[];
 }
 
-export interface AdminDashboardData {
+export type AdminDashboardData = {
     totalUsers: number;
     totalFarms: number;
     totalListings: number;
     pendingApprovals: number;
     newUsersLastWeek: number;
 }
-export interface AdminActivity {
+export type AdminActivity = {
     id: string;
     type: 'New User' | 'New Listing';
     primaryInfo: string;
@@ -639,7 +642,7 @@ export interface AdminActivity {
     avatarUrl?: string;
 }
 
-export interface FinancialApplication {
+export type FinancialApplication = {
   id: string;
   applicantId: string;
   applicantName: string;
@@ -656,7 +659,7 @@ export interface FinancialApplication {
 }
 
 
-export interface KnfBatch {
+export type KnfBatch = {
     id: string;
     userId: string;
     type: string; // 'fpj', 'faa', etc.
@@ -671,7 +674,7 @@ export interface KnfBatch {
     unit?: string;
 }
 
-export interface ForumPost {
+export type ForumPost = {
   id: string;
   title: string;
   content: string;
@@ -686,7 +689,7 @@ export interface ForumPost {
   replyCount: number;
 }
 
-export interface GroupPost {
+export type GroupPost = {
   id: string;
   title: string;
   content: string;
@@ -697,7 +700,7 @@ export interface GroupPost {
   createdAt: string; // ISO
 }
 
-export interface PostReply {
+export type PostReply = {
     id: string;
     content: string;
     timestamp: string; // ISO string
@@ -708,12 +711,12 @@ export interface PostReply {
     };
 }
 
-export interface PollOption {
+export type PollOption = {
   text: string;
   votes?: number;
 }
 
-export interface FeedItem {
+export type FeedItem = {
   id: string;
   type: 'forum_post' | 'marketplace_listing' | 'success_story' | 'poll';
   timestamp: string;
@@ -730,7 +733,7 @@ export interface FeedItem {
   pollOptions?: PollOption[];
 }
 
-export interface Conversation {
+export type Conversation = {
   id: string;
   participant: {
     id: string;
@@ -742,7 +745,7 @@ export interface Conversation {
   unreadCount: number;
 }
 
-export interface Message {
+export type Message = {
   id: string;
   conversationId: string;
   senderId: string;
@@ -750,7 +753,7 @@ export interface Message {
   timestamp: string; // ISO string
 }
 
-export interface MobileHomeCategory {
+export type MobileHomeCategory = {
     id: string;
     name: string;
     icon: LucideIcon;
@@ -758,7 +761,7 @@ export interface MobileHomeCategory {
     dataAiHint?: string;
 }
 
-export interface MobileDiscoverItem {
+export type MobileDiscoverItem = {
     id: string;
     title: string;
     imageUrl: string;
@@ -767,7 +770,7 @@ export interface MobileDiscoverItem {
     dataAiHint?: string;
 }
 
-export interface Worker {
+export type Worker = {
   id: string;
   name: string;
   contactInfo?: string;
@@ -777,7 +780,7 @@ export interface Worker {
   totalPaid?: number;
 }
 
-export interface WorkLog {
+export type WorkLog = {
     id: string;
     hours: number;
     date: string; // ISO string
@@ -785,7 +788,7 @@ export interface WorkLog {
     isPaid: boolean;
 }
 
-export interface PaymentLog {
+export type PaymentLog = {
     id: string;
     amount: number;
     currency: string;
@@ -809,4 +812,7 @@ export type MarketplaceRecommendationInput = z.infer<typeof MarketplaceRecommend
 export type MarketplaceRecommendationOutput = z.infer<typeof MarketplaceRecommendationOutputSchema>;
 export type CropRotationInput = z.infer<typeof CropRotationInputSchema>;
 export type CropRotationOutput = z.infer<typeof CropRotationOutputSchema>;
-export type FarmingAssistantOutput = z.infer<typeof DiagnoseCropOutputSchema>;
+export type DiagnoseCropInput = z.infer<typeof DiagnoseCropInputSchema>;
+export type DiagnoseCropOutput = z.infer<typeof DiagnoseCropOutputSchema>;
+export type FarmingAssistantInput = z.infer<typeof FarmingAssistantInputSchema>;
+export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema>;
