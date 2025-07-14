@@ -34,28 +34,30 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
     const secret = randomBytes(24).toString('hex');
     const fullKey = `${keyPrefix}_${secret}`;
     const keyRef = db.collection('users').doc(innovatorId).collection('api_keys').doc();
-    
-    const keyDataToStore: Omit<ApiKey, 'id' | 'key' | 'createdAt'> = {
+
+    const newKeyDataToStore: Omit<ApiKey, 'id'|'key'|'createdAt'| 'keyPrefix' | 'lastFour'> = {
         description,
         environment,
         status: 'Active',
-        keyPrefix: `${keyPrefix}_...`,
-        lastFour: secret.slice(-4),
+    };
+    
+    const keyDataWithSecret = {
+      ...newKeyDataToStore,
+      keyPrefix: `${keyPrefix}_...`,
+      lastFour: secret.slice(-4),
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
     };
 
 
-    await keyRef.set({
-        ...keyDataToStore,
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    });
+    await keyRef.set(keyDataWithSecret);
 
     return { 
         success: true, 
         message: 'API Key generated successfully. Please copy it now, you will not be able to see it again.',
         key: fullKey,
         id: keyRef.id,
-        ...keyDataToStore, 
-        createdAt: new Date().toISOString(),
+        ...newKeyDataToStore, // Return without secret info
+        createdAt: new Date().toISOString(), // Return ISO string for client
     };
 });
 

@@ -2,7 +2,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import type {KnfBatch} from "./types";
+import type {KnfBatch} from "@/lib/types";
 import {_internalLogTraceEvent} from "./traceability";
 import { createFarmSchema, createCropSchema } from "@/lib/schemas";
 
@@ -27,7 +27,7 @@ export const createFarm = functions.https.onCall(async (data, context) => {
   if (!validation.success) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "Invalid farm data provided.",
+      "error.farm.invalidData",
       validation.error.format()
     );
   }
@@ -159,7 +159,7 @@ export const updateFarm = functions.https.onCall(async (data, context) => {
   if (!validation.success) {
     throw new functions.https.HttpsError(
         "invalid-argument",
-        "Invalid farm data provided for update.",
+        "error.farm.invalidData",
         validation.error.format()
     );
   }
@@ -215,7 +215,7 @@ export const createCrop = functions.https.onCall(async (data, context) => {
   if (!validation.success) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "Invalid crop data provided.",
+      "error.crop.invalidData",
       validation.error.format()
     );
   }
@@ -304,7 +304,7 @@ export const updateCrop = functions.https.onCall(async (data, context) => {
     if (!validation.success) {
         throw new functions.https.HttpsError(
             "invalid-argument",
-            "Invalid crop data provided for update.",
+            "error.crop.invalidData",
             validation.error.format()
         );
     }
@@ -543,7 +543,7 @@ export const getUserKnfBatches = functions.https.onCall(
         .get();
 
       const batches = batchesSnapshot.docs.map((doc) => {
-        const docData = doc.data() as KnfBatch;
+        const docData = doc.data() as Omit<KnfBatch, 'id'>;
         return {
           ...docData,
           id: doc.id,
