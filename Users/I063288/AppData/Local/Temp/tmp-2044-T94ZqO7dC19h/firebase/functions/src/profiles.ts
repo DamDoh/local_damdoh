@@ -454,5 +454,3 @@ async function deleteQueryBatch(query: FirebaseFirestore.Query) {
     return snapshot.size;
   }
 }
-
-    
