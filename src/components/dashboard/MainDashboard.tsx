@@ -42,7 +42,7 @@ import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashb
 import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
 import { AgriTechInnovatorDashboard } from './hubs/AgriTechInnovatorDashboard';
 import { OperationsDashboard } from './hubs/OperationsDashboard';
-import { LogisticsDashboard } from './hubs/processing-logistics/LogisticsDashboard';
+import { LogisticsDashboard } from './hubs/LogisticsDashboard';
 import { ProcessingUnitDashboard } from './hubs/processing-logistics/ProcessingUnitDashboard';
 import { WarehouseDashboard } from './hubs/processing-logistics/WarehouseDashboard';
 import { Button } from '../ui/button';
@@ -201,7 +201,7 @@ function MainContent() {
     }
     
     // Check if the profile is incomplete (using a simple heuristic for now)
-    const isProfileIncomplete = profile && (!profile.profileSummary || !profile.location);
+    const isProfileIncomplete = profile && (!profile.profileSummary || profile.profileSummary.includes("New User") || !profile.location);
 
     if (isProfileIncomplete) {
         return (

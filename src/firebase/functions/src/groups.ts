@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile, JoinRequest } from './types';
@@ -270,7 +269,7 @@ export const inviteUserToGroup = functions.https.onCall(async (data, context) =>
 
     // This is a placeholder for sending an email. In a real app, you would integrate
     // with an email service (e.g., SendGrid, Firebase Trigger Email extension).
-    console.log(`Simulating sending an invite to ${email} for group ${groupId} by owner ${ownerId}.`);
+    console.log(`Simulating sending invite to ${email} for group ${groupId} by owner ${ownerId}.`);
 
     // Optionally, you could store the invite in Firestore to track its status
     const inviteRef = groupRef.collection('invites').doc(email);

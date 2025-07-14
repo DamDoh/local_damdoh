@@ -1,241 +1,168 @@
 
-"use server";
+'use server';
 
-import { collection, query, where, getDocs, doc, getDoc, updateDoc, deleteDoc, orderBy, limit } from "firebase/firestore";
 import { getAdminDb } from './firebase/admin';
-import type { UserProfile, MarketplaceItem, SmartSearchInterpretation } from '@/lib/types';
-import * as admin from 'firebase/admin';
+import type { UserProfile, MarketplaceItem } from './types';
 
-const PROFILES_COLLECTION = 'users';
-const MARKETPLACE_COLLECTION = 'marketplaceItems';
+// This file contains server-side utility functions for direct database interactions.
+// These are wrapped by Server Actions in `server-actions.ts` for client consumption.
 
-// --- Profile Functions ---
-
-export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
-  const adminDb = getAdminDb();
-  if (!adminDb) return [];
-  try {
-    const profilesCol = collection(adminDb, PROFILES_COLLECTION);
-    const profileSnapshot = await getDocs(profilesCol);
-    if (profileSnapshot.empty) {
-      console.warn("No profiles found in Firestore.");
-      return [];
-    }
-    const profileList = profileSnapshot.docs.map(docSnap => {
-      const data = docSnap.data();
-      return { 
-        id: docSnap.id, 
-        ...data,
-        createdAt: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
-        updatedAt: (data.updatedAt as any)?.toDate ? (data.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
-      } as UserProfile;
-    });
-    return profileList;
-  } catch (error) {
-    console.error("Error fetching all profiles from Firestore: ", error);
-    return []; // Return empty array on error to prevent client crash
-  }
-}
-
-export async function getProfileByIdFromDB(id: string): Promise<UserProfile | null> {
-  const adminDb = getAdminDb();
-  if (!adminDb) return null;
-  try {
-    if (!id) return null;
-    const profileDocRef = doc(adminDb, PROFILES_COLLECTION, id);
-    const profileSnap = await getDoc(profileDocRef);
-    if (profileSnap.exists()) {
-      const data = profileSnap.data();
-      return { 
-        id: profileSnap.id, 
-        ...data,
-        createdAt: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
-        updatedAt: (data.updatedAt as any)?.toDate ? (data.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
-      } as UserProfile;
-    }
+/**
+ * Fetches a single user profile from Firestore by ID.
+ * @param uid The user ID to fetch.
+ * @returns A promise that resolves to the UserProfile or null.
+ */
+export async function getProfileByIdFromDB(uid: string): Promise<UserProfile | null> {
+  const db = getAdminDb();
+  if (!db) {
+    console.error("DB not available in getProfileByIdFromDB");
     return null;
-  } catch (error) {
-    console.error(`Error fetching profile with ID ${id} from Firestore: `, error);
-    return null; // Return null on error to prevent client crash
   }
-}
-
-export async function updateProfileInDB(id: string, data: Partial<UserProfile>): Promise<UserProfile | null> {
-  const adminDb = getAdminDb();
-  if (!adminDb) return null;
-  if (!id) return null;
-  const profileDocRef = doc(adminDb, PROFILES_COLLECTION, id);
-  await updateDoc(profileDocRef, data);
-  const updatedDoc = await getDoc(profileDocRef);
-  if (updatedDoc.exists()) {
-    const data = updatedDoc.data();
-    return { id: updatedDoc.id, ...data } as UserProfile;
+  
+  if (!uid) {
+    console.log("getProfileByIdFromDB called with null or undefined uid.");
+    return null;
   }
-  return null;
-}
-
-export async function deleteProfileFromDB(id: string): Promise<boolean> {
-  const adminDb = getAdminDb();
-  if (!adminDb) return false;
-  if (!id) return false;
-  const profileDocRef = doc(adminDb, PROFILES_COLLECTION, id);
-  await deleteDoc(profileDocRef);
-  return true;
-}
-
-
-// --- Marketplace Functions ---
-
-export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]> {
-  const adminDb = getAdminDb();
-  if (!adminDb) return [];
+  
   try {
-    const itemsCol = collection(adminDb, MARKETPLACE_COLLECTION);
-    const itemSnapshot = await getDocs(itemsCol);
-    if (itemSnapshot.empty) {
-      console.warn("No marketplace items found in Firestore.");
-      return [];
+    const userDoc = await db.collection("users").doc(uid).get();
+    if (!userDoc.exists) {
+      console.log(`No profile found for UID: ${uid}`);
+      return null;
     }
-    const itemList = itemSnapshot.docs.map(docSnap => {
-      const data = docSnap.data();
-      return { 
-        id: docSnap.id, 
-        ...data,
-        createdAt: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
-        updatedAt: (data.updatedAt as any)?.toDate ? (data.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
-      } as MarketplaceItem;
-    });
-    return itemList;
-  } catch (error) {
-    console.error("Error fetching all marketplace items from Firestore: ", error);
-    return []; // Return empty array on error to prevent client crash
-  }
-}
-
-export async function getMarketplaceItemByIdFromDB(id: string): Promise<MarketplaceItem | null> {
-  const adminDb = getAdminDb();
-  if (!adminDb) return null;
-  if (!id) return null;
-  const itemDocRef = doc(adminDb, MARKETPLACE_COLLECTION, id);
-  const itemSnap = await getDoc(itemDocRef);
-  if (itemSnap.exists()) {
-    const data = itemSnap.data();
-    return {
-      id: itemSnap.id,
-      ...data,
-      createdAt: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
-      updatedAt: (data.updatedAt as any)?.toDate ? (data.updatedAt as any).toDate().toISOString() : new Date().toISOString(),
-    } as MarketplaceItem;
-  }
-  return null;
-}
-
-export async function updateMarketplaceItemInDB(id: string, data: Partial<MarketplaceItem>): Promise<MarketplaceItem | null> {
-  const adminDb = getAdminDb();
-  if (!adminDb) return null;
-  if (!id) return null;
-  const itemDocRef = doc(adminDb, MARKETPLACE_COLLECTION, id);
-  await updateDoc(itemDocRef, data);
-  const updatedDoc = await getDoc(itemDocRef);
-  if (updatedDoc.exists()) {
-    const data = updatedDoc.data();
-    return { id: updatedDoc.id, ...data } as MarketplaceItem;
-  }
-  return null;
-}
-
-export async function deleteMarketplaceItemFromDB(id: string): Promise<boolean> {
-  const adminDb = getAdminDb();
-  if (!adminDb) return false;
-  if (!id) return false;
-  const itemDocRef = doc(adminDb, MARKETPLACE_COLLECTION, id);
-  await deleteDoc(itemDocRef);
-  return true;
-}
-
-// --- Universal Search Action ---
-export async function performSearch(interpretation: Partial<SmartSearchInterpretation>): Promise<any[]> {
-    const adminDb = getAdminDb();
-    if (!adminDb) return [];
+    const data = userDoc.data();
+    if (!data) return null;
     
-    const { mainKeywords = [], identifiedLocation, suggestedFilters, minPrice, maxPrice, perUnit, limit: queryLimit = 50 } = interpretation;
-
-    try {
-        let q: admin.firestore.Query = adminDb.collection("search_index");
-        
-        const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category')?.value;
-        const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType')?.value;
-        
-        if (listingTypeFilter) {
-            q = q.where('listingType', '==', listingTypeFilter);
-        }
-        if (categoryFilter) {
-            q = q.where('tags', 'array-contains', categoryFilter);
-        }
-        if (identifiedLocation) {
-            q = q.where("location.address", ">=", identifiedLocation);
-            q = q.where("location.address", "<=", identifiedLocation + '\uf8ff');
-        }
-        if (perUnit) {
-            q = q.where("perUnit", "==", perUnit);
-        }
-
-        let hasPriceFilter = false;
-        if (typeof minPrice === 'number' && minPrice > 0) {
-            q = q.where('price', '>=', minPrice);
-            hasPriceFilter = true;
-        }
-        if (typeof maxPrice === 'number' && maxPrice > 0) {
-            q = q.where('price', '<=', maxPrice);
-            hasPriceFilter = true;
-        }
-        
-        if (hasPriceFilter) {
-            q = q.orderBy('price', 'asc');
-        } else {
-            q = q.orderBy("updatedAt", "desc");
-        }
-
-        q = q.limit(queryLimit);
-
-        const snapshot = await q.get();
-        
-        let results = snapshot.docs.map(docSnap => ({ id: docSnap.id, ...docSnap.data() }));
-
-        const searchTerms = mainKeywords.flatMap((k: any) => (k || '').toLowerCase().split(/\s+/)).filter(Boolean);
-
-        if (searchTerms.length > 0) {
-            results = results.filter(r => {
-                const searchableText = (r.searchable_terms || []).join(' ');
-                return searchTerms.some(term => searchableText.includes(term));
-            });
-        }
-        
-        return results;
-
-    } catch (error: any) {
-        console.error(`Error performing search in db-utils for query "${mainKeywords.join(' ')}":`, error);
-         if (error.code === 'FAILED_PRECONDITION') {
-             throw new Error("The database is not configured for this type of search. A specific index is required. Please check the Firebase console logs for an index creation link.");
-        }
-        throw new Error("Unable to perform search.");
-    }
+    // Ensure timestamps are serialized
+    return {
+        id: userDoc.id,
+        ...data,
+        createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
+        updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
+    } as UserProfile;
+  } catch (error) {
+    console.error("Error fetching user profile by ID:", error);
+    return null;
+  }
 }
 
-// --- Financials Actions ---
-export async function getFinancialInstitutions(): Promise<UserProfile[]> {
+/**
+ * Fetches all user profiles from Firestore.
+ * @returns A promise that resolves to an array of UserProfile objects.
+ */
+export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
+  const db = getAdminDb();
+  if (!db) return [];
+  
   try {
-    const adminDb = getAdminDb();
-    if (!adminDb) return [];
-    const fiCol = query(collection(adminDb, 'users'), where('primaryRole', '==', 'Financial Institution (Micro-finance/Loans)'));
-    const fiSnapshot = await getDocs(fiCol);
-    if (fiSnapshot.empty) {
-      console.log("No financial institutions found.");
-      return [];
-    }
-    return fiSnapshot.docs.map(docSnap => ({ id: docSnap.id, ...docSnap.data() } as UserProfile));
+    const usersSnapshot = await db.collection('users').get();
+    const profiles: UserProfile[] = [];
+    usersSnapshot.forEach(doc => {
+      const data = doc.data();
+      profiles.push({
+        id: doc.id,
+        ...data,
+        createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
+        updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
+      } as UserProfile);
+    });
+    return profiles;
   } catch (error) {
-    console.error("Error fetching FIs from Firestore: ", error);
+    console.error("Error fetching all profiles:", error);
+    return [];
+  }
+}
+
+/**
+ * Fetches a single marketplace item from Firestore by its ID.
+ * @param itemId The ID of the marketplace item.
+ * @returns A promise that resolves to the MarketplaceItem or null.
+ */
+export async function getMarketplaceItemByIdFromDB(itemId: string): Promise<MarketplaceItem | null> {
+  const db = getAdminDb();
+  if (!db) return null;
+
+  try {
+    const itemDoc = await db.collection('marketplaceItems').doc(itemId).get();
+    if (!itemDoc.exists) {
+      return null;
+    }
+    const data = itemDoc.data();
+    if (!data) return null;
+
+    return {
+      id: itemDoc.id,
+      ...data,
+       createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+       updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+    } as MarketplaceItem;
+  } catch (error) {
+    console.error(`Error fetching marketplace item ${itemId}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Updates a marketplace item in Firestore.
+ * @param itemId The ID of the item to update.
+ * @param data The data to update.
+ * @returns A promise that resolves to the updated item or null.
+ */
+export async function updateMarketplaceItemInDB(itemId: string, data: Partial<MarketplaceItem>): Promise<MarketplaceItem | null> {
+  const db = getAdminDb();
+  if (!db) return null;
+
+  try {
+    const itemRef = db.collection('marketplaceItems').doc(itemId);
+    await itemRef.update({ ...data, updatedAt: new Date() });
+    return getMarketplaceItemByIdFromDB(itemId);
+  } catch (error) {
+    console.error(`Error updating marketplace item ${itemId}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Deletes a marketplace item from Firestore.
+ * @param itemId The ID of the item to delete.
+ * @returns A promise that resolves to true if successful, false otherwise.
+ */
+export async function deleteMarketplaceItemFromDB(itemId: string): Promise<boolean> {
+  const db = getAdminDb();
+  if (!db) return false;
+
+  try {
+    await db.collection('marketplaceItems').doc(itemId).delete();
+    return true;
+  } catch (error) {
+    console.error(`Error deleting marketplace item ${itemId}:`, error);
+    return false;
+  }
+}
+
+/**
+ * Fetches all marketplace items from Firestore.
+ * @returns A promise that resolves to an array of MarketplaceItem objects.
+ */
+export async function getAllMarketplaceItemsFromDB(): Promise<MarketplaceItem[]> {
+  const db = getAdminDb();
+  if (!db) return [];
+
+  try {
+    const snapshot = await db.collection('marketplaceItems').get();
+    const items: MarketplaceItem[] = [];
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      items.push({
+        id: doc.id,
+        ...data,
+         createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+         updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+      } as MarketplaceItem);
+    });
+    return items;
+  } catch (error) {
+    console.error("Error fetching all marketplace items:", error);
     return [];
   }
 }

@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -271,7 +270,7 @@ export default function GroupPage() {
                                 <Button asChild variant="secondary" className="w-full">
                                     <Link href={`/groups/${groupId}/manage`}>
                                         <Settings className="mr-2 h-4 w-4" />
-                                        Manage Group
+                                        {t('manageButton')}
                                     </Link>
                                 </Button>
                             )}

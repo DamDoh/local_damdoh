@@ -22,7 +22,7 @@ import { editProfileSchema, type EditProfileValues } from "@/lib/form-schemas";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
 import { getProfileByIdFromDB } from "@/lib/server-actions";
 import type { UserProfile } from "@/lib/types";
-import { ArrowLeft, Save, User, Mail, Briefcase, FileText, MapPin, Sparkles, TrendingUp, Phone, Globe, Loader2, Info, Settings as SettingsIconLucide } from "lucide-react";
+import { ArrowLeft, Save, User, Mail, Briefcase, FileText, MapPin, Sparkles, TrendingUp, Phone, Globe, Loader2, Info, Settings } from "lucide-react";
 import React from "react"; 
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState, useCallback, useMemo } from "react";
