@@ -32,7 +32,8 @@ import type {
     FarmerDashboardAlert,
     OperationsDashboardData,
     FinancialProduct,
-} from "./types";
+    KnfBatch
+} from "@/lib/types";
 
 const db = admin.firestore();
 
@@ -114,16 +115,21 @@ export const getFarmerDashboardData = functions.https.onCall(
             };
         });
 
-        const activeKnfBatches = knfBatchesSnapshot.docs
+        const activeKnfBatches: KnfBatch[] = knfBatchesSnapshot.docs
             .filter(doc => ['Fermenting', 'Ready'].includes(doc.data().status))
             .slice(0, 5)
             .map(doc => {
                 const batchData = doc.data();
                 return {
                     id: doc.id,
+                    userId: batchData.userId,
+                    type: batchData.type,
                     typeName: batchData.typeName,
+                    ingredients: batchData.ingredients,
+                    startDate: (batchData.startDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                    nextStepDate: (batchData.nextStepDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
                     status: batchData.status,
-                    nextStepDate: (batchData.nextStepDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+                    nextStep: batchData.nextStep,
                     quantityProduced: batchData.quantityProduced,
                     unit: batchData.unit,
                 };
@@ -755,14 +761,32 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
 
 
 export const getWarehouseDashboardData = functions.https.onCall(
-  (data, context): WarehouseDashboardData => {
+  async (data, context): Promise<WarehouseDashboardData> => {
     checkAuth(context);
-    return {
-        storageOptimization: { utilization: 78, suggestion: 'Consolidate pallets in Zone C.' },
-        inventoryLevels: { totalItems: 120, itemsNeedingAttention: 5 },
-        predictiveAlerts: [
+    
+    // In a real app, this would perform aggregations on inventory data linked to this warehouse.
+    const inventorySnapshot = await db.collection('marketplaceItems').limit(100).get();
+    
+    const inventoryLevels = {
+        totalItems: inventorySnapshot.size,
+        itemsNeedingAttention: inventorySnapshot.docs.filter(doc => (doc.data().stock || 0) < (doc.data().reorderLevel || 20)).length,
+    };
+    
+    // This would be a more complex calculation based on capacity vs. stored volume.
+    const storageOptimization = { 
+        utilization: 78, 
+        suggestion: 'Consolidate pallets in Zone C.' 
+    };
+    
+    // This would come from an AI model or rule-based system analyzing data streams.
+    const predictiveAlerts = [
             { alert: 'High humidity detected in Cold Storage 2. Risk of mold.', actionLink: '#' }
-        ]
+    ];
+
+    return {
+        storageOptimization,
+        inventoryLevels,
+        predictiveAlerts
     };
   }
 );
@@ -785,7 +809,7 @@ export const getQaDashboardData = functions.https.onCall(
 
 
 export const getCertificationBodyDashboardData = functions.https.onCall(
-  (data, context): CertificationBodyDashboardData => {
+  async (data, context): Promise<CertificationBodyDashboardData> => {
     checkAuth(context);
     return {
         pendingAudits: [
@@ -1102,3 +1126,82 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
     };
   }
 );
+
+
+export const getAdminDashboardData = functions.https.onCall(async (data, context): Promise<AdminDashboardData> => {
+    // Ideally, you'd add an admin role check here.
+    checkAuth(context);
+    
+    try {
+        const usersPromise = db.collection('users').get();
+        const farmsPromise = db.collection('farms').get();
+        const listingsPromise = db.collection('marketplaceItems').get();
+
+        const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+        const newUsersQuery = db.collection('users').where('createdAt', '>=', sevenDaysAgo).get();
+
+        const [usersSnap, farmsSnap, listingsSnap, newUsersSnap] = await Promise.all([
+            usersPromise,
+            farmsPromise,
+            listingsPromise,
+            newUsersQuery
+        ]);
+
+        return {
+            totalUsers: usersSnap.size,
+            totalFarms: farmsSnap.size,
+            totalListings: listingsSnap.size,
+            pendingApprovals: 15, // This remains mocked
+            newUsersLastWeek: newUsersSnap.size,
+        };
+    } catch (error) {
+        console.error("Error fetching admin dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch admin dashboard data.");
+    }
+});
+
+
+export const getAdminRecentActivity = functions.https.onCall(async (data, context): Promise<{ activity: AdminActivity[] }> => {
+    checkAuth(context);
+    try {
+        const newUsersPromise = db.collection('users').orderBy('createdAt', 'desc').limit(5).get();
+        const newListingsPromise = db.collection('marketplaceItems').orderBy('createdAt', 'desc').limit(5).get();
+
+        const [usersSnap, listingsSnap] = await Promise.all([newUsersPromise, newListingsPromise]);
+        
+        const activities: AdminActivity[] = [];
+
+        usersSnap.forEach(doc => {
+            const user = doc.data();
+            activities.push({
+                id: doc.id,
+                type: 'New User',
+                primaryInfo: user.displayName,
+                secondaryInfo: user.primaryRole,
+                timestamp: (user.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+                link: `/profiles/${doc.id}`,
+                avatarUrl: user.avatarUrl,
+            });
+        });
+
+        listingsSnap.forEach(doc => {
+            const listing = doc.data();
+            activities.push({
+                id: doc.id,
+                type: 'New Listing',
+                primaryInfo: listing.name,
+                secondaryInfo: listing.category,
+                timestamp: (listing.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+                link: `/marketplace/${doc.id}`,
+                avatarUrl: listing.imageUrl,
+            });
+        });
+        
+        activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
+        return { activity: activities.slice(0, 10) };
+    } catch (error) {
+         console.error("Error fetching admin recent activity:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
+    }
+});
