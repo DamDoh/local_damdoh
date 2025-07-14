@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -63,6 +62,7 @@ export const RegulatorDashboard = () => {
             case 'critical':
                 return 'destructive';
             case 'medium':
+            case 'warning':
                 return 'secondary';
             default:
                 return 'outline';
@@ -100,7 +100,8 @@ export const RegulatorDashboard = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                       {(complianceRiskAlerts || []).map(alert => (
+                       {(complianceRiskAlerts || []).length > 0 ? (
+                           (complianceRiskAlerts || []).map(alert => (
                            <div key={alert.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
                                <div>
                                    <Badge variant={getSeverityBadge(alert.severity)}>{alert.severity}</Badge>
@@ -111,8 +112,10 @@ export const RegulatorDashboard = () => {
                                     <Link href={alert.actionLink}>{t('investigateButton')}</Link>
                                 </Button>
                            </div>
-                       ))}
-                       {(complianceRiskAlerts || []).length === 0 && <p className="text-sm text-muted-foreground text-center py-4">{t('noComplianceAlerts')}</p>}
+                       ))
+                       ) : (
+                       <p className="text-sm text-muted-foreground text-center py-4">{t('noComplianceAlerts')}</p>
+                       )}
                     </CardContent>
                 </Card>
                 

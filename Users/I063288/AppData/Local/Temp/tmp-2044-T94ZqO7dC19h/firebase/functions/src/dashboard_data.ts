@@ -1103,89 +1103,173 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
   }
 );
 
-export const getAdminDashboardData = functions.https.onCall(async (data, context) => {
-    // TODO: Add admin role check
-    checkAuth(context);
-    
-    try {
-        const usersPromise = db.collection('users').get();
-        const farmsPromise = db.collection('farms').get();
-        const listingsPromise = db.collection('marketplaceItems').get();
-        const pendingApplicationsPromise = db.collection('financial_applications').where('status', 'in', ['Pending', 'Under Review']).get();
+```
+  </change>
+  <change>
+    <file>/Users/I063288/AppData/Local/Temp/tmp-2044-T94ZqO7dC19h/src/components/dashboard/hubs/RegulatorDashboard.tsx</file>
+    <content><![CDATA[
+"use client";
 
-        const aWeekAgo = new Date();
-        aWeekAgo.setDate(aWeekAgo.getDate() - 7);
-        const newUsersQuery = db.collection('users').where('createdAt', '>=', aWeekAgo).get();
+import { useState, useEffect, useMemo } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Skeleton } from '@/components/ui/skeleton';
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
+import { AlertTriangle, BadgeCheck, Zap, ExternalLink } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
+import { RegulatorDashboardData } from "@/lib/types";
+import { useTranslations } from 'next-intl';
 
-        const [usersSnapshot, farmsSnapshot, listingsSnapshot, pendingApplicationsSnapshot, newUsersSnapshot] = await Promise.all([
-            usersPromise,
-            farmsPromise,
-            listingsPromise,
-            pendingApplicationsPromise,
-            newUsersQuery
-        ]);
+export const RegulatorDashboard = () => {
+    const t = useTranslations('RegulatorDashboard');
+    const [dashboardData, setDashboardData] = useState<RegulatorDashboardData | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-        const dashboardData: AdminDashboardData = {
-            totalUsers: usersSnapshot.size,
-            totalFarms: farmsSnapshot.size,
-            totalListings: listingsSnapshot.size,
-            pendingApprovals: pendingApplicationsSnapshot.size,
-            newUsersLastWeek: newUsersSnapshot.size
+    const functions = getFunctions(firebaseApp);
+    const getRegulatorData = useMemo(() => httpsCallable(functions, 'getRegulatorDashboardData'), [functions]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            setError(null);
+            try {
+                const result = await getRegulatorData();
+                setDashboardData(result.data as RegulatorDashboardData);
+            } catch (error) {
+                console.error("Error fetching regulator dashboard data:", error);
+                setError(t('errors.load'));
+            } finally {
+                setIsLoading(false);
+            }
         };
-
-        return dashboardData;
-
-    } catch (error) {
-         console.error("Error fetching admin dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch admin dashboard data.");
-    }
-});
-
-export const getAdminRecentActivity = functions.https.onCall(async (data, context) => {
-    checkAuth(context);
+        fetchData();
+    }, [getRegulatorData, t]);
     
-    try {
-        const usersPromise = db.collection('users').orderBy('createdAt', 'desc').limit(5).get();
-        const listingsPromise = db.collection('marketplaceItems').orderBy('createdAt', 'desc').limit(5).get();
-
-        const [usersSnap, listingsSnap] = await Promise.all([usersPromise, listingsPromise]);
-        
-        const activities: AdminActivity[] = [];
-
-        usersSnap.forEach(doc => {
-            const user = doc.data();
-            activities.push({
-                id: doc.id,
-                type: 'New User',
-                primaryInfo: user.displayName,
-                secondaryInfo: user.primaryRole,
-                timestamp: (user.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
-                link: `/profiles/${doc.id}`,
-                avatarUrl: user.avatarUrl
-            });
-        });
-
-         listingsSnap.forEach(doc => {
-            const item = doc.data();
-            activities.push({
-                id: doc.id,
-                type: 'New Listing',
-                primaryInfo: item.name,
-                secondaryInfo: `$${item.price?.toFixed(2)}`,
-                timestamp: (item.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
-                link: `/marketplace/${doc.id}`,
-                avatarUrl: item.imageUrl
-            });
-        });
-
-        activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-
-        return { activity: activities.slice(0, 10) };
-
-    } catch (error) {
-        console.error("Error fetching admin recent activity:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch admin recent activity.");
+    if (isLoading) {
+        return <DashboardSkeleton />;
     }
-});
 
-    
+    if (error) {
+        return <Card><CardContent className="pt-6 text-center text-destructive"><p>{error}</p></CardContent></Card>;
+    }
+
+    if (!dashboardData) {
+        return (
+             <div className="flex items-center justify-center h-64">
+                <p className="text-muted-foreground">{t('noData')}</p>
+            </div>
+        );
+    }
+
+    const { complianceRiskAlerts, pendingCertifications, supplyChainAnomalies } = dashboardData;
+
+    const getSeverityBadge = (severity: string) => {
+        switch (severity.toLowerCase()) {
+            case 'high':
+            case 'critical':
+                return 'destructive';
+            case 'medium':
+            case 'warning':
+                return 'secondary';
+            default:
+                return 'outline';
+        }
+    };
+
+    return (
+        <div>
+            <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <Card className="flex flex-col">
+                    <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium flex items-center gap-2">
+                            {t('pendingCertificationsTitle')}
+                        </CardTitle>
+                        <BadgeCheck className="h-4 w-4 text-muted-foreground" />
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                        <div className="text-2xl font-bold">{pendingCertifications?.count || 0}</div>
+                        <p className="text-xs text-muted-foreground">{t('reviewsOutstanding')}</p>
+                    </CardContent>
+                    <CardFooter>
+                        <Button asChild variant="secondary" size="sm" className="w-full">
+                            <Link href={pendingCertifications?.actionLink || '#'}>{t('reviewAllButton')}</Link>
+                        </Button>
+                    </CardFooter>
+                </Card>
+
+                <Card className="col-span-1 md:col-span-2 flex flex-col">
+                     <CardHeader className="pb-2">
+                        <CardTitle className="text-base flex items-center gap-2">
+                           <AlertTriangle className="h-4 w-4 text-red-500" />
+                           {t('riskAlertsTitle')}
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-grow space-y-2">
+                       {(complianceRiskAlerts || []).length > 0 ? (
+                           (complianceRiskAlerts || []).map(alert => (
+                           <div key={alert.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
+                               <div>
+                                   <Badge variant={getSeverityBadge(alert.severity)}>{alert.severity}</Badge>
+                                   <p className="font-medium mt-1">{alert.issue}</p>
+                                   <p className="text-xs text-muted-foreground">{alert.region}</p>
+                               </div>
+                                <Button asChild variant="ghost" size="sm">
+                                    <Link href={alert.actionLink}>{t('investigateButton')}</Link>
+                                </Button>
+                           </div>
+                       ))
+                       ) : (
+                       <p className="text-sm text-muted-foreground text-center py-4">{t('noComplianceAlerts')}</p>
+                       )}
+                    </CardContent>
+                </Card>
+                
+                <Card className="col-span-1 md:col-span-3">
+                     <CardHeader>
+                        <CardTitle className="text-base flex items-center gap-2">
+                            <Zap className="h-4 w-4 text-amber-500" />
+                            {t('anomaliesTitle')}
+                        </CardTitle>
+                    </CardHeader>
+
+                    <CardContent className="space-y-2">
+                       {(supplyChainAnomalies || []).length > 0 ? (
+                           (supplyChainAnomalies || []).map(anomaly => (
+                                <div key={anomaly.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
+                                <div>
+                                    <Badge variant={getSeverityBadge(anomaly.level)}>{anomaly.level}</Badge>
+                                    <p className="mt-1">{anomaly.description}</p>
+                                </div>
+                                <Button asChild variant="secondary" size="sm">
+                                    <Link href={anomaly.vtiLink}>
+                                        <ExternalLink className="h-3 w-3 mr-1.5" />
+                                        {t('trackVtiButton')}
+                                        </Link>
+                                </Button>
+                            </div>
+                           ))
+                        ) : (
+                            <p className="text-sm text-muted-foreground text-center py-4">{t('noAnomalies')}</p>
+                        )}
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+    );
+};
+
+const DashboardSkeleton = () => (
+    <div>
+        <Skeleton className="h-9 w-64 mb-6" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Skeleton className="h-40 rounded-lg" />
+            <Skeleton className="h-40 rounded-lg md:col-span-2" />
+            <Skeleton className="h-48 rounded-lg md:col-span-3" />
+        </div>
+    </div>
+);
