@@ -32,11 +32,12 @@ const StatCard = ({ title, value, icon, description }: { title: string; value: s
 );
 
 const ActivityIcon = ({ type }: { type: string }) => {
-    switch (type) {
-        case 'New User': return <UserPlus className="h-4 w-4" />;
-        case 'New Listing': return <ShoppingCart className="h-4 w-4" />;
-        default: return <FileText className="h-4 w-4" />;
-    }
+    const iconMap: Record<string, React.ElementType> = {
+        'New User': UserPlus,
+        'New Listing': ShoppingCart
+    };
+    const IconComponent = iconMap[type] || FileText;
+    return <IconComponent className="h-4 w-4" />;
 }
 
 export default function AdminDashboardPage() {
