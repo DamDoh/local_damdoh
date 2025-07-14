@@ -67,9 +67,16 @@ export async function logIn(email: string, password: string): Promise<FirebaseUs
  * @param email The user's email.
  * @param password The user's password.
  * @param role The user's selected stakeholder role.
+ * @param profileData Optional object with initial role-specific data.
  * @returns The created Firebase User object.
  */
-export async function registerUser(name: string, email: string, password: string, role: StakeholderRole): Promise<FirebaseUser> {
+export async function registerUser(
+  name: string, 
+  email: string, 
+  password: string, 
+  role: StakeholderRole,
+  profileData?: any 
+): Promise<FirebaseUser> {
   try {
     // Step 1: Create the user in Firebase Authentication.
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -80,13 +87,12 @@ export async function registerUser(name: string, email: string, password: string
     console.log("Firebase Auth profile updated with display name.");
 
     // Step 2: Call a secure Cloud Function to create the initial profile.
-    // The onUserCreate trigger will handle the actual Firestore document creation.
-    // We still call this function to pass along the initial display name and role.
     const upsertStakeholderProfile = httpsCallable(functions, 'upsertStakeholderProfile');
     await upsertStakeholderProfile({
         displayName: name,
         primaryRole: role,
-        email: email, // Pass email to be stored in Firestore document
+        email: email, 
+        profileData: profileData || {}, // Pass along profile data if it exists
     });
 
     console.log("Profile creation request sent for user:", userCredential.user.uid);

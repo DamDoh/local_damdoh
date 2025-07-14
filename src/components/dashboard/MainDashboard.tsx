@@ -2,14 +2,14 @@
 "use client";
 
 import React, { Suspense } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import type { FeedItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
 import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSidebar";
 import { StartPost } from "@/components/dashboard/StartPost";
 import { PageSkeleton } from '@/components/Skeletons';
 import { Skeleton } from "@/components/ui/skeleton";
-import { useAuth } from '@/lib/auth-utils';
+import { useAuth } from "@/lib/auth-utils";
 import { httpsCallable } from 'firebase/functions';
 import { functions, app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -45,6 +45,9 @@ import { OperationsDashboard } from './hubs/OperationsDashboard';
 import { LogisticsDashboard } from './hubs/processing-logistics/LogisticsDashboard';
 import { ProcessingUnitDashboard } from './hubs/processing-logistics/ProcessingUnitDashboard';
 import { WarehouseDashboard } from './hubs/processing-logistics/WarehouseDashboard';
+import { Button } from '../ui/button';
+import { Link } from '@/navigation';
+import { Edit } from 'lucide-react';
 
 
 const { useState, useEffect, useMemo } = React;
@@ -195,6 +198,28 @@ function MainContent() {
           <Skeleton className="h-64 w-full rounded-lg" />
         </div>
       );
+    }
+    
+    // Check if the profile is incomplete (using a simple heuristic for now)
+    const isProfileIncomplete = profile && (!profile.profileSummary || !profile.location);
+
+    if (isProfileIncomplete) {
+        return (
+            <Card className="text-center">
+                <CardHeader>
+                    <CardTitle>{t('profileCompletion.title')}</CardTitle>
+                    <CardDescription>{t('profileCompletion.description')}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <Button asChild>
+                        <Link href="/profiles/me/edit">
+                            <Edit className="mr-2 h-4 w-4" />
+                            {t('profileCompletion.button')}
+                        </Link>
+                    </Button>
+                </CardContent>
+            </Card>
+        );
     }
   
     // Use the stable key from the profile for logic
