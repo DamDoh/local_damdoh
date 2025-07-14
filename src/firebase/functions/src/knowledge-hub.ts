@@ -10,6 +10,9 @@ const SUPPORTED_LANGUAGES = ["en", "km", "es", "fr", "de", "th"];
 /**
  * Firestore trigger that automatically translates new or updated knowledge articles
  * into all supported languages. This function now treats English as the source of truth.
+ * @param {functions.Change<functions.firestore.DocumentSnapshot>} change The change event.
+ * @param {functions.EventContext} context The event context.
+ * @return {Promise<null>} A promise that resolves when the function is complete.
  */
 export const onArticleWriteTranslate = functions.firestore
   .document("knowledge_articles/{articleId}")
@@ -182,6 +185,9 @@ export const createModule = functions.https.onCall(async (data, context) => {
 
 /**
  * Fetches the 3 most recent knowledge articles to be featured.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, articles: any[]}>} A promise that resolves with the articles.
  */
 export const getFeaturedKnowledge = functions.https.onCall(async (data, context) => {
   try {
@@ -198,12 +204,12 @@ export const getFeaturedKnowledge = functions.https.onCall(async (data, context)
       .get();
       
     const articles = articlesSnapshot.docs.map(doc => {
-      const data = doc.data();
+      const articleData = doc.data();
       return {
         id: doc.id,
-        ...data,
-        createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate ? (data.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
-        updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate ? (data.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+        ...articleData,
+        createdAt: (articleData.createdAt as admin.firestore.Timestamp)?.toDate ? (articleData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+        updatedAt: (articleData.updatedAt as admin.firestore.Timestamp)?.toDate ? (articleData.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
       };
     });
 
@@ -281,17 +287,23 @@ export const createKnowledgeArticle = functions.https.onCall(
 
 /**
  * Fetches all knowledge articles, ordered by creation date.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, articles: any[]}>} A promise that resolves with the articles.
  */
 export const getKnowledgeArticles = functions.https.onCall(async (data, context) => {
     try {
         const articlesSnapshot = await db.collection('knowledge_articles').orderBy('createdAt', 'desc').get();
-        const articles = articlesSnapshot.docs.map(doc => ({ 
-            id: doc.id, 
-            ...doc.data(),
-            // Ensure timestamps are ISO strings for the client
-            createdAt: (doc.data().createdAt as admin.firestore.Timestamp)?.toDate ? (doc.data().createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
-            updatedAt: (doc.data().updatedAt as admin.firestore.Timestamp)?.toDate ? (doc.data().updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
-        }));
+        const articles = articlesSnapshot.docs.map(doc => {
+            const articleData = doc.data();
+            return { 
+                id: doc.id, 
+                ...articleData,
+                // Ensure timestamps are ISO strings for the client
+                createdAt: (articleData.createdAt as admin.firestore.Timestamp)?.toDate ? (articleData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+                updatedAt: (articleData.updatedAt as admin.firestore.Timestamp)?.toDate ? (articleData.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+            };
+        });
         return { success: true, articles };
     } catch (error) {
         console.error("Error fetching articles:", error);
@@ -302,6 +314,9 @@ export const getKnowledgeArticles = functions.https.onCall(async (data, context)
 
 /**
  * Fetches a single knowledge article by its ID.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, article: any}>} A promise that resolves with the article.
  */
 export const getKnowledgeArticleById = functions.https.onCall(async (data, context) => {
     const { articleId } = data;

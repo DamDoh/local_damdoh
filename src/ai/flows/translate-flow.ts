@@ -4,7 +4,7 @@
  * @fileOverview A reusable Genkit flow for translating text.
  */
 import { ai } from '@/ai/genkit';
-import { z } from 'zod';
+import { z } from 'genkit';
 
 const TranslateInputSchema = z.object({
   text: z.string().describe('The text to be translated.'),
