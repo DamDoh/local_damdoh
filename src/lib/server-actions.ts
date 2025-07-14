@@ -6,6 +6,7 @@ import {
   getAllProfilesFromDB as getAllProfilesFromDB_internal,
 } from './db-utils';
 
+import { generateProfileSummary } from "@/ai/flows/profile-summary-generator";
 import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";
 import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
 import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRotationOutput } from '@/lib/types';

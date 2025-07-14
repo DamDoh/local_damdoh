@@ -1,4 +1,5 @@
 
+
 import { NextResponse } from 'next/server';
 
 // This function checks if the code is running on the server.
