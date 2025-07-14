@@ -2,6 +2,34 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import {
+    AdminDashboardDataSchema,
+    AdminActivitySchema,
+    FarmerDashboardDataSchema,
+    CooperativeDashboardDataSchema,
+    BuyerDashboardDataSchema,
+    RegulatorDashboardDataSchema,
+    LogisticsDashboardDataSchema,
+    FiDashboardDataSchema,
+    FieldAgentDashboardDataSchema,
+    InputSupplierDashboardDataSchema,
+    AgroExportDashboardDataSchema,
+    ProcessingUnitDashboardDataSchema,
+    WarehouseDashboardDataSchema,
+    QaDashboardDataSchema,
+    CertificationBodyDashboardDataSchema,
+    ResearcherDashboardDataSchema,
+    AgronomistDashboardDataSchema,
+    AgroTourismDashboardDataSchema,
+    InsuranceProviderDashboardDataSchema,
+    EnergyProviderDashboardDataSchema,
+    CrowdfunderDashboardDataSchema,
+    EquipmentSupplierDashboardDataSchema,
+    WasteManagementDashboardDataSchema,
+    PackagingSupplierDashboardDataSchema,
+    AgriTechInnovatorDashboardDataSchema,
+    OperationsDashboardDataSchema
+} from "@/lib/schemas";
 import type { 
     AdminDashboardData,
     AdminActivity,
@@ -156,7 +184,7 @@ export const getFarmerDashboardData = functions.https.onCall(
         const certifications = certsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as FarmerDashboardData['certifications'];
 
 
-        return {
+        const result: FarmerDashboardData = {
             farmCount: farmsSnapshot.size,
             cropCount: cropsSnapshot.size,
             recentCrops: recentCrops, 
@@ -165,6 +193,9 @@ export const getFarmerDashboardData = functions.https.onCall(
             alerts: alerts,
             certifications: certifications,
         };
+
+        // Validate the final data structure before returning
+        return FarmerDashboardDataSchema.parse(result);
 
     } catch (error) {
         console.error("Error fetching farmer dashboard data:", error);
@@ -178,7 +209,6 @@ export const getPackagingSupplierDashboardData = functions.https.onCall(
   async (data, context): Promise<PackagingSupplierDashboardData> => {
     const supplierId = checkAuth(context);
     try {
-        // Fetch real inventory data
         const inventorySnapshot = await db.collection('marketplaceItems')
             .where('sellerId', '==', supplierId)
             .where('category', '==', 'packaging-solutions')
@@ -189,12 +219,11 @@ export const getPackagingSupplierDashboardData = functions.https.onCall(
             return {
                 id: doc.id,
                 item: item.name,
-                stock: item.stock || 0, // Assuming a stock field exists
-                reorderLevel: item.reorderLevel || 100, // Assuming a reorderLevel field
+                stock: item.stock || 0, 
+                reorderLevel: item.reorderLevel || 100,
             };
         });
         
-        // Fetch real orders
          const ordersSnapshot = await db.collection('marketplace_orders')
             .where('sellerId', '==', supplierId)
             .orderBy('createdAt', 'desc')
@@ -221,9 +250,9 @@ export const getPackagingSupplierDashboardData = functions.https.onCall(
                 actionLink: `/marketplace/my-orders/${doc.id}`,
             };
         });
-
-
-        return { incomingOrders, inventory };
+        
+        const result: PackagingSupplierDashboardData = { incomingOrders, inventory };
+        return PackagingSupplierDashboardDataSchema.parse(result);
 
     } catch (error) {
         console.error("Error fetching packaging supplier dashboard data:", error);
@@ -262,7 +291,6 @@ export const getFiDashboardData = functions.https.onCall(
             };
         });
         
-        // Live data for portfolio
         const loansSnapshot = await db.collection('financial_applications')
             .where('fiId', '==', fiId)
             .where('status', '==', 'Approved')
@@ -279,12 +307,12 @@ export const getFiDashboardData = functions.https.onCall(
 
         const financialProducts = productsSnapshot.docs.map(doc => ({id: doc.id, ...doc.data()})) as FinancialProduct[];
 
-
-        return {
+        const result: FiDashboardData = {
             pendingApplications,
             portfolioOverview,
             financialProducts,
         };
+        return FiDashboardDataSchema.parse(result);
     } catch (error) {
         console.error("Error fetching Financial Institution dashboard data:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch FI dashboard data.");
@@ -326,42 +354,60 @@ export const getCooperativeDashboardData = functions.https.onCall(
         let aggregatedProduce: CooperativeDashboardData['aggregatedProduce'] = [];
         
         if (memberIds.length > 0) {
-            const farmsSnapshot = await db.collection('farms').where('ownerId', 'in', memberIds).get();
-            farmsSnapshot.forEach(doc => {
-                 const sizeString = doc.data().size || '0';
-                 const sizeValue = parseFloat(sizeString.split(' ')[0]) || 0;
-                 totalLandArea += sizeValue;
-            });
+            const memberChunks: string[][] = [];
+            for (let i = 0; i < memberIds.length; i += 30) {
+                memberChunks.push(memberIds.slice(i, i + 30));
+            }
             
-             const cropsSnapshot = await db.collection('crops')
-                .where('ownerId', 'in', memberIds)
-                .where('currentStage', 'in', ['Harvesting', 'Post-Harvest'])
-                .orderBy('harvestDate', 'desc')
-                .limit(10)
-                .get();
+            const farmPromises = memberChunks.map(chunk => 
+                db.collection('farms').where('ownerId', 'in', chunk).get()
+            );
 
-            cropsSnapshot.forEach(doc => {
-                const cropData = doc.data();
-                aggregatedProduce.push({
-                    id: doc.id,
-                    productName: cropData.cropType || 'Unknown Produce',
-                    quantity: parseFloat(cropData.expectedYield?.split(' ')[0] || '0'), 
-                    quality: 'Grade A', // Placeholder as it's not on the crop model
-                    readyBy: (cropData.harvestDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
+            const cropPromises = memberChunks.map(chunk =>
+                db.collection('crops')
+                  .where('ownerId', 'in', chunk)
+                  .where('currentStage', 'in', ['Harvesting', 'Post-Harvest'])
+                  .orderBy('harvestDate', 'desc')
+                  .limit(10) // Limit per chunk for performance
+                  .get()
+            );
+
+            const farmSnapshots = await Promise.all(farmPromises);
+            farmSnapshots.forEach(snapshot => {
+                snapshot.forEach(doc => {
+                    const sizeString = doc.data().size || '0';
+                    const sizeValue = parseFloat(sizeString.split(' ')[0]) || 0;
+                    totalLandArea += sizeValue;
                 });
             });
-        }
 
+            const cropSnapshots = await Promise.all(cropPromises);
+            cropSnapshots.forEach(snapshot => {
+                snapshot.forEach(doc => {
+                    const cropData = doc.data();
+                    aggregatedProduce.push({
+                        id: doc.id,
+                        productName: cropData.cropType || 'Unknown Produce',
+                        quantity: parseFloat(cropData.expectedYield?.split(' ')[0] || '0'), 
+                        quality: 'Grade A', // Placeholder as it's not on the crop model
+                        readyBy: (cropData.harvestDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
+                    });
+                });
+            });
+            // Sort and limit final aggregated produce
+            aggregatedProduce.sort((a, b) => new Date(b.readyBy).getTime() - new Date(a.readyBy).getTime()).slice(0, 10);
+        }
 
         const pendingMemberApplications = 3; // This remains mocked
 
-        return {
+        const result: CooperativeDashboardData = {
             memberCount,
             totalLandArea,
             aggregatedProduce,
             pendingMemberApplications,
             groupId: groupId || null,
         };
+        return CooperativeDashboardDataSchema.parse(result);
 
     } catch (error) {
         console.error("Error fetching cooperative dashboard data:", error);
@@ -375,11 +421,9 @@ export const getBuyerDashboardData = functions.https.onCall(
     checkAuth(context);
     
     try {
-        // --- Sourcing Recommendations ---
-        // Fetch a few highly-rated, verified product listings.
         const recommendationsSnapshot = await db.collection('marketplaceItems')
             .where('listingType', '==', 'Product')
-            .where('isSustainable', '==', true) // Example filter for "good" products
+            .where('isSustainable', '==', true) 
             .orderBy('createdAt', 'desc')
             .limit(5)
             .get();
@@ -399,13 +443,11 @@ export const getBuyerDashboardData = functions.https.onCall(
                 id: doc.id,
                 name: sellerProfiles[item.sellerId] || 'Verified Supplier',
                 product: item.name,
-                reliability: 85 + Math.floor(Math.random() * 15), // Mock reliability
+                reliability: 85 + Math.floor(Math.random() * 15),
                 vtiVerified: !!item.relatedTraceabilityId,
             };
         });
 
-        // --- Mock Data for other sections ---
-        // These sections would require more complex AI/data analysis in a real app.
         const supplyChainRisk = { 
             region: 'East Africa', 
             level: 'Medium', 
@@ -416,14 +458,15 @@ export const getBuyerDashboardData = functions.https.onCall(
             product: 'Coffee Beans', 
             trend: 'up' as 'up' | 'down' | 'stable', 
             forecast: 'Prices expected to rise 5% next month due to weather.', 
-            action: { label: 'Secure Forward Contracts', link: '/marketplace?category=fresh-produce-fruits' } // updated link to match a category
+            action: { label: 'Secure Forward Contracts', link: '/marketplace?category=fresh-produce-fruits' }
         };
 
-        return {
+        const result: BuyerDashboardData = {
             supplyChainRisk,
             sourcingRecommendations,
             marketPriceIntelligence
         };
+        return BuyerDashboardDataSchema.parse(result);
 
     } catch (error) {
         console.error("Error fetching buyer dashboard data:", error);
@@ -455,14 +498,14 @@ export const getRegulatorDashboardData = functions.https.onCall(
             }
         });
 
-        return {
-            // These remain mocked as their data sources are complex
+        const result: RegulatorDashboardData = {
             complianceRiskAlerts: [
                 { id: 'alert1', issue: 'Unverified organic inputs detected in VTI log', region: 'Rift Valley', severity: 'High', actionLink: '#' },
             ],
             pendingCertifications: { count: 12, actionLink: '#' },
             supplyChainAnomalies,
         };
+        return RegulatorDashboardDataSchema.parse(result);
     } catch (error) {
         console.error("Error fetching regulator dashboard data:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
@@ -478,7 +521,6 @@ export const getLogisticsDashboardData = functions.https.onCall(
     try {
         const shipmentsSnapshot = await db.collection('marketplace_orders')
             .where('status', '==', 'shipped')
-            // In a real app, we'd also filter by logisticsProviderId if that field existed on the order
             .orderBy('updatedAt', 'desc')
             .limit(5)
             .get();
@@ -506,8 +548,6 @@ export const getLogisticsDashboardData = functions.https.onCall(
 
         const jobsSnapshot = await db.collection('marketplace_orders')
             .where('status', '==', 'confirmed')
-            // Filter where no logistics provider is assigned yet
-            //.where('logisticsProviderId', '==', null) 
             .orderBy('createdAt', 'desc')
             .limit(5)
             .get();
@@ -539,11 +579,12 @@ export const getLogisticsDashboardData = functions.https.onCall(
             actionLink: '#' 
         };
 
-        return {
+        const result: LogisticsDashboardData = {
             activeShipments,
             incomingJobs,
             performanceMetrics,
         };
+        return LogisticsDashboardDataSchema.parse(result);
     } catch (error) {
         console.error("Error fetching logistics dashboard data:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data for logistics.");
@@ -563,30 +604,25 @@ export const getFieldAgentDashboardData = functions.https.onCall(
         }
         
         const agentData = agentDoc.data();
-        // Assuming assigned farmers are stored in profileData.assignedFarmers
         const assignedFarmerIds = agentData?.profileData?.assignedFarmers || [];
         
         let assignedFarmers: FieldAgentDashboardData['assignedFarmers'] = [];
 
         if (assignedFarmerIds.length > 0) {
-            // Firestore 'in' query is limited to 30 items per query.
-            // For a production app, this would need chunking if an agent has > 30 farmers.
             const farmersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', assignedFarmerIds.slice(0, 30)).get();
             
             assignedFarmers = farmersSnapshot.docs.map(doc => {
                 const farmerData = doc.data();
-                // Mocking lastVisit and issues for now
                 return {
                     id: doc.id,
                     name: farmerData.displayName || 'Unknown Farmer',
                     lastVisit: new Date(Date.now() - Math.random() * 30 * 86400000).toISOString(),
-                    issues: Math.floor(Math.random() * 3), // Random number of issues
+                    issues: Math.floor(Math.random() * 3),
                     actionLink: `/profiles/${doc.id}`
                 };
             });
         }
         
-        // Keep other parts mocked for this iteration
         const portfolioHealth = {
             overallScore: 85,
             alerts: ['Pest alert in North region'],
@@ -599,12 +635,13 @@ export const getFieldAgentDashboardData = functions.https.onCall(
             actionLink: '#'
         };
 
-        return {
+        const result: FieldAgentDashboardData = {
             assignedFarmers,
             portfolioHealth,
             pendingReports,
             dataVerificationTasks
         };
+        return FieldAgentDashboardDataSchema.parse(result);
         
     } catch (error) {
         console.error("Error fetching field agent dashboard data:", error);
@@ -619,7 +656,6 @@ export const getInputSupplierDashboardData = functions.https.onCall(
     const supplierId = checkAuth(context);
 
     try {
-      // 1. Fetch active orders
       const ordersSnapshot = await db.collection('marketplace_orders')
         .where('sellerId', '==', supplierId)
         .get();
@@ -633,19 +669,19 @@ export const getInputSupplierDashboardData = functions.https.onCall(
         link: '/marketplace/my-orders'
       };
 
-      // 2. Keep other sections as mock data for now
       const demandForecast = [
-        { id: 'df1', region: 'Rift Valley', product: 'DAP Fertilizer', trend: 'High', reason: 'Planting season approaching' }
+        { id: 'df1', region: 'Rift Valley', product: 'DAP Fertilizer', trend: 'High' as const, reason: 'Planting season approaching' }
       ];
       const productPerformance = [
         { id: 'pp1', productName: 'Eco-Fertilizer Plus', rating: 4.5, feedback: 'Great results on maize crops.', link: '#' }
       ];
 
-      return {
+      const result: InputSupplierDashboardData = {
         demandForecast,
         productPerformance,
         activeOrders,
       };
+      return InputSupplierDashboardDataSchema.parse(result);
 
     } catch (error) {
         console.error("Error fetching Input Supplier dashboard data:", error);
@@ -660,7 +696,6 @@ export const getAgroExportDashboardData = functions.https.onCall(
      try {
         const vtisForExportPromise = db.collection('vti_registry')
             .where('metadata.forExport', '==', true)
-            // Ideally, we'd have a `documentationStatus` field to query
             .limit(5)
             .get();
 
@@ -672,10 +707,9 @@ export const getAgroExportDashboardData = functions.https.onCall(
             destination: doc.data().metadata.destinationCountry || 'Unknown',
             status: 'Awaiting Phytosanitary Certificate' // Mock status
         }));
-
-        return {
+        
+        const result: AgroExportDashboardData = {
             pendingCustomsDocs,
-            // These remain mocked
             trackedShipments: [
                 { id: 'ship1', status: 'In Transit', location: 'Indian Ocean', carrier: 'Maersk' }
             ],
@@ -683,6 +717,7 @@ export const getAgroExportDashboardData = functions.https.onCall(
                 { id: 'ca1', content: 'New packaging regulations for EU effective Aug 1.', actionLink: '#' }
             ]
         };
+        return AgroExportDashboardDataSchema.parse(result);
      } catch (error) {
         console.error("Error fetching agro-export dashboard data:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
@@ -740,18 +775,18 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
             };
         });
 
-        // Mock data for other sections for now
         const yieldOptimization = { currentYield: 88, potentialYield: 92, suggestion: 'Adjust blade speed for softer fruits.' };
         const inventory = [ { product: 'Mango Pulp', quality: 'Grade A', tons: 15 }, { product: 'Pineapple Rings', quality: 'Grade A', tons: 10 } ];
         const wasteReduction = { currentRate: 12, insight: 'High waste detected from peeling station.' };
 
-        return {
+        const result: ProcessingUnitDashboardData = {
             yieldOptimization,
             inventory,
             wasteReduction,
             packagingOrders,
             packagingInventory,
         };
+        return ProcessingUnitDashboardDataSchema.parse(result);
     } catch (error) {
         console.error("Error fetching Processing Unit dashboard data:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
@@ -763,9 +798,7 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
 export const getWarehouseDashboardData = functions.https.onCall(
   async (data, context): Promise<WarehouseDashboardData> => {
     checkAuth(context);
-
     try {
-        // More efficient queries
         const inventoryQuery = db.collection('marketplaceItems').select('stock', 'reorderLevel');
         const totalItemsCount = await db.collection('marketplaceItems').count().get();
         const inventorySnapshot = await inventoryQuery.get();
@@ -777,22 +810,21 @@ export const getWarehouseDashboardData = functions.https.onCall(
             itemsNeedingAttention: itemsNeedingAttention,
         };
 
-        // This would be a more complex calculation based on capacity vs. stored volume.
         const storageOptimization = { 
             utilization: 78, 
             suggestion: 'Consolidate pallets in Zone C.' 
         };
         
-        // This would come from an AI model or rule-based system analyzing data streams.
         const predictiveAlerts = [
             { alert: 'High humidity detected in Cold Storage 2. Risk of mold.', actionLink: '#' }
         ];
 
-        return {
+        const result: WarehouseDashboardData = {
             storageOptimization,
             inventoryLevels,
             predictiveAlerts
         };
+        return WarehouseDashboardDataSchema.parse(result);
     } catch (error) {
         console.error("Error fetching Warehouse dashboard data:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
@@ -804,7 +836,7 @@ export const getWarehouseDashboardData = functions.https.onCall(
 export const getQaDashboardData = functions.https.onCall(
   (data, context): QaDashboardData => {
     checkAuth(context);
-    return {
+    const result: QaDashboardData = {
         pendingInspections: [
             { id: 'insp1', batchId: 'vti-xyz-123', productName: 'Avocado Batch', sellerName: 'Green Valley Farms', dueDate: new Date().toISOString(), actionLink: '#'}
         ],
@@ -813,6 +845,7 @@ export const getQaDashboardData = functions.https.onCall(
         ],
         qualityMetrics: { passRate: 98, averageScore: 9.2 }
     };
+    return QaDashboardDataSchema.parse(result);
   }
 );
 
@@ -820,7 +853,7 @@ export const getQaDashboardData = functions.https.onCall(
 export const getCertificationBodyDashboardData = functions.https.onCall(
   async (data, context): Promise<CertificationBodyDashboardData> => {
     checkAuth(context);
-    return {
+     const result: CertificationBodyDashboardData = {
         pendingAudits: [
             { id: 'aud1', farmName: 'Green Valley Farms', standard: 'EU Organic', dueDate: new Date().toISOString(), actionLink: '#' }
         ],
@@ -831,6 +864,7 @@ export const getCertificationBodyDashboardData = functions.https.onCall(
             { standard: 'Fair Trade', adherenceRate: 95, alerts: 2, actionLink: '#' }
         ]
     };
+    return CertificationBodyDashboardDataSchema.parse(result);
   }
 );
 
@@ -838,9 +872,8 @@ export const getResearcherDashboardData = functions.https.onCall(
     async (data, context): Promise<ResearcherDashboardData> => {
       const userId = checkAuth(context);
       try {
-          // Fetch knowledge hub contributions made by this user
           const articlesSnapshot = await db.collection('knowledge_articles')
-              .where('authorId', '==', userId) // Query by UID
+              .where('authorId', '==', userId) 
               .orderBy('createdAt', 'desc')
               .limit(10)
               .get();
@@ -850,11 +883,10 @@ export const getResearcherDashboardData = functions.https.onCall(
               return {
                   id: doc.id,
                   title: article.title_en || article.title_km || "Untitled Article",
-                  status: 'Published' as const // Placeholder status
+                  status: article.status || 'Draft'
               };
           });
 
-          // Mock data for datasets and projects, as these collections don't exist yet
           const availableDatasets = [
               { id: 'set1', name: 'Rift Valley Maize Yields (2020-2023)', dataType: 'CSV', accessLevel: 'Requires Request' as const, actionLink: '#' },
               { id: 'set2', name: 'Regional Soil Health Data (Anonymized)', dataType: 'JSON', accessLevel: 'Public' as const, actionLink: '#' },
@@ -865,11 +897,12 @@ export const getResearcherDashboardData = functions.https.onCall(
               { id: 'proj2', title: 'AI-driven Pest Identification Accuracy Study', progress: 30, collaborators: ['DamDoh AI Team'], actionLink: '#' }
           ];
 
-          return {
+          const result: ResearcherDashboardData = {
               availableDatasets,
               ongoingProjects,
               knowledgeHubContributions,
           };
+          return ResearcherDashboardDataSchema.parse(result);
 
       } catch (error) {
           console.error("Error fetching researcher dashboard data:", error);
@@ -883,7 +916,6 @@ export const getAgronomistDashboardData = functions.https.onCall(
   async (data, context): Promise<AgronomistDashboardData> => {
     const userId = checkAuth(context);
     try {
-        // Fetch knowledge hub contributions made by this user
         const articlesSnapshot = await db.collection('knowledge_articles')
             .where('authorId', '==', userId)
             .orderBy('createdAt', 'desc')
@@ -895,23 +927,23 @@ export const getAgronomistDashboardData = functions.https.onCall(
             return {
                 id: doc.id,
                 title: article.title_en || article.title_km || "Untitled Article",
-                status: 'Published' as const,
+                status: article.status || 'Draft',
             };
         });
 
-        // Mock data for other sections
         const assignedFarmersOverview = [
             { id: 'farmer1', name: 'John Doe', farmLocation: 'Nakuru', lastConsultation: new Date(Date.now() - 86400000 * 7).toISOString(), alerts: 1 }
         ];
         const pendingConsultationRequests = [
             { id: 'req1', farmerName: 'Jane Smith', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString(), farmerId: 'farmer1' }
         ];
-
-        return {
+        
+        const result: AgronomistDashboardData = {
             assignedFarmersOverview,
             pendingConsultationRequests,
             knowledgeHubContributions,
         };
+        return AgronomistDashboardDataSchema.parse(result);
     } catch (error) {
         console.error("Error fetching agronomist dashboard data:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
@@ -924,7 +956,6 @@ export const getAgroTourismDashboardData = functions.https.onCall(
   async (data, context): Promise<AgroTourismDashboardData> => {
     const operatorId = checkAuth(context);
     try {
-        // --- Fetch Live Data for Listed Experiences ---
         const experiencesSnapshot = await db.collection('marketplaceItems')
             .where('sellerId', '==', operatorId)
             .where('category', '==', 'agri-tourism-services')
@@ -937,13 +968,12 @@ export const getAgroTourismDashboardData = functions.https.onCall(
                 id: doc.id,
                 title: item.name,
                 location: item.location.address,
-                status: 'Published' as 'Published' | 'Draft', // Assuming all listed items are published for now
-                bookingsCount: item.bookingsCount || 0, // A field we can increment
+                status: 'Published' as 'Published' | 'Draft',
+                bookingsCount: item.bookingsCount || 0, 
                 actionLink: `/marketplace/${item.id}/manage-service`
             };
         });
 
-        // --- Keep Mock Data for other sections for now ---
         const upcomingBookings = [
             { id: 'book1', experienceTitle: 'Coffee Farm Tour & Tasting', guestName: 'Alice Johnson', date: new Date().toISOString(), actionLink: '#' }
         ];
@@ -951,12 +981,12 @@ export const getAgroTourismDashboardData = functions.https.onCall(
             { id: 'rev1', guestName: 'Bob Williams', experienceTitle: 'Coffee Farm Tour & Tasting', rating: 5, comment: 'Amazing experience, learned so much!', actionLink: '#' }
         ];
 
-        return {
+        const result: AgroTourismDashboardData = {
             listedExperiences,
             upcomingBookings,
             guestReviews,
         };
-
+        return AgroTourismDashboardDataSchema.parse(result);
     } catch (error) {
         console.error("Error fetching Agro-Tourism dashboard data:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
@@ -971,7 +1001,6 @@ export const getInsuranceProviderDashboardData = functions.https.onCall(
     try {
         const claimsSnapshot = await db.collection('insurance_applications')
             .where('status', 'in', ['Submitted', 'Under Review'])
-            // Ideally, we'd also filter by providerId if that field existed
             .limit(10)
             .get();
         
@@ -979,17 +1008,16 @@ export const getInsuranceProviderDashboardData = functions.https.onCall(
             const claim = doc.data();
             return {
                 id: doc.id,
-                policyHolderName: claim.applicantName || 'Unknown Farmer', // Placeholder
-                policyType: 'Crop', // Placeholder
+                policyHolderName: claim.applicantName || 'Unknown Farmer',
+                policyType: 'Crop' as const,
                 claimDate: (claim.submittedAt as admin.firestore.Timestamp).toDate().toISOString(),
                 status: claim.status,
                 actionLink: '#'
             }
         });
-
-        return {
+        
+        const result: InsuranceProviderDashboardData = {
             pendingClaims,
-            // These remain mocked as their data sources are complex
             riskAssessmentAlerts: [
                 { id: 'risk1', policyHolderName: 'Sunset Farms', alert: 'High flood risk predicted for next month.', severity: 'High', actionLink: '#' }
             ],
@@ -997,6 +1025,7 @@ export const getInsuranceProviderDashboardData = functions.https.onCall(
                 { id: 'pol1', policyHolderName: 'Green Valley Farms', policyType: 'Multi-peril Crop', coverageAmount: 50000, expiryDate: new Date().toISOString() }
             ]
         };
+        return InsuranceProviderDashboardDataSchema.parse(result);
     } catch (error) {
         console.error("Error fetching insurance provider dashboard data:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
@@ -1007,7 +1036,7 @@ export const getInsuranceProviderDashboardData = functions.https.onCall(
 export const getEnergyProviderDashboardData = functions.https.onCall(
   (data, context): EnergyProviderDashboardData => {
     checkAuth(context);
-    return {
+    const result: EnergyProviderDashboardData = {
         projectLeads: [
             { id: 'lead1', entityName: 'Rift Valley Growers Co-op', location: 'Naivasha', estimatedEnergyNeed: '150kW Solar for Irrigation', status: 'Proposal Sent', actionLink: '#' }
         ],
@@ -1016,6 +1045,7 @@ export const getEnergyProviderDashboardData = functions.https.onCall(
         ],
         impactMetrics: { totalInstallations: 45, totalEstimatedCarbonReduction: '1,200 tCO2e/year' }
     };
+    return EnergyProviderDashboardDataSchema.parse(result);
   }
 );
 
@@ -1023,7 +1053,7 @@ export const getEnergyProviderDashboardData = functions.https.onCall(
 export const getCrowdfunderDashboardData = functions.https.onCall(
   (data, context): CrowdfunderDashboardData => {
     checkAuth(context);
-    return {
+    const result: CrowdfunderDashboardData = {
         portfolioOverview: { totalInvested: 75000, numberOfInvestments: 8, estimatedReturns: 95000 },
         suggestedOpportunities: [
             { id: 'opp1', projectName: 'Women-Led Shea Butter Processing Unit', category: 'Value Addition', fundingGoal: 50000, amountRaised: 35000, actionLink: '#' }
@@ -1032,6 +1062,7 @@ export const getCrowdfunderDashboardData = functions.https.onCall(
             { id: 'tx1', projectName: 'Rift Valley Growers Co-op', type: 'Investment', amount: 5000, date: new Date().toISOString() }
         ]
     };
+    return CrowdfunderDashboardDataSchema.parse(result);
   }
 );
 
@@ -1039,7 +1070,6 @@ export const getEquipmentSupplierDashboardData = functions.https.onCall(
   async (data, context): Promise<EquipmentSupplierDashboardData> => {
     const supplierId = checkAuth(context);
     try {
-        // 1. Fetch listed equipment
         const equipmentSnapshot = await db.collection('marketplaceItems')
             .where('sellerId', '==', supplierId)
             .where('category', 'in', ['heavy-machinery-sale', 'equipment-rental-operation', 'farm-tools-small-equip'])
@@ -1050,31 +1080,28 @@ export const getEquipmentSupplierDashboardData = functions.https.onCall(
             return {
                 id: doc.id,
                 name: item.name,
-                type: item.category === 'heavy-machinery-sale' ? 'Sale' : 'Rental', // simplified logic
+                type: item.category === 'heavy-machinery-sale' ? 'Sale' : 'Rental',
                 status: item.availabilityStatus || 'Available',
                 actionLink: `/marketplace/${doc.id}`,
             };
         });
 
-        // 2. Fetch rental activity
         const rentalOrdersSnapshot = await db.collection('marketplace_orders')
             .where('sellerId', '==', supplierId)
-            // Ideally, we'd also filter by item category being a rental, but that requires a join.
-            // We'll count all orders for simplicity in this step.
             .get();
         
         const rentalActivity = {
             totalRentals: rentalOrdersSnapshot.size,
         };
 
-        // 3. Fetch maintenance requests (mocked for now)
-        const pendingMaintenanceRequests: any[] = []; // No data source for this yet
-
-        return {
+        const pendingMaintenanceRequests: any[] = [];
+        
+        const result: EquipmentSupplierDashboardData = {
             listedEquipment,
             rentalActivity,
             pendingMaintenanceRequests,
         };
+        return EquipmentSupplierDashboardDataSchema.parse(result);
     } catch (error) {
         console.error("Error fetching equipment supplier dashboard data:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
@@ -1085,7 +1112,7 @@ export const getEquipmentSupplierDashboardData = functions.https.onCall(
 export const getWasteManagementDashboardData = functions.https.onCall(
   (data, context): WasteManagementDashboardData => {
     checkAuth(context);
-    return {
+    const result: WasteManagementDashboardData = {
       incomingWasteStreams: [
         { id: 'waste1', type: 'Maize Stover', source: 'Green Valley Farms', quantity: '10 tons' }
       ],
@@ -1097,6 +1124,7 @@ export const getWasteManagementDashboardData = functions.https.onCall(
         { product: 'Grade A Compost', quantity: '25 tons', actionLink: '#' }
       ]
     };
+    return WasteManagementDashboardDataSchema.parse(result);
   }
 );
 
@@ -1121,8 +1149,7 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
         }
     });
 
-    // In a real app, this data would be pulled from system monitoring tools.
-    return {
+    const result: AgriTechInnovatorDashboardData = {
       apiKeys: apiKeys,
       sandboxStatus: {
         status: 'Operational',
@@ -1133,12 +1160,12 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
         { id: 'proj2', title: 'Drone-based Crop Scouting API Integration', status: 'In Development', partner: 'SkyAgroScout', actionLink: '#' },
       ],
     };
+    return AgriTechInnovatorDashboardDataSchema.parse(result);
   }
 );
 
 
 export const getAdminDashboardData = functions.https.onCall(async (data, context): Promise<AdminDashboardData> => {
-    // Ideally, you'd add an admin role check here.
     checkAuth(context);
     
     try {
@@ -1158,13 +1185,14 @@ export const getAdminDashboardData = functions.https.onCall(async (data, context
             pendingApprovalsPromise,
         ]);
 
-        return {
+        const result: AdminDashboardData = {
             totalUsers: usersSnap.size,
             totalFarms: farmsSnap.size,
             totalListings: listingsSnap.size,
             pendingApprovals: pendingApprovalsSnap.size,
             newUsersLastWeek: newUsersSnap.size,
         };
+        return AdminDashboardDataSchema.parse(result);
     } catch (error) {
         console.error("Error fetching admin dashboard data:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch admin dashboard data.");
@@ -1180,7 +1208,7 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
 
         const [usersSnap, listingsSnap] = await Promise.all([newUsersPromise, newListingsPromise]);
         
-        const activities: AdminActivity[] = [];
+        let activities: AdminActivity[] = [];
 
         usersSnap.forEach(doc => {
             const user = doc.data();
@@ -1209,12 +1237,13 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         });
         
         activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+        
+        activities = activities.slice(0,10);
+        activities.forEach(activity => AdminActivitySchema.parse(activity));
 
-        return { activity: activities.slice(0, 10) };
+        return { activity: activities };
     } catch (error) {
          console.error("Error fetching admin recent activity:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
-
-    

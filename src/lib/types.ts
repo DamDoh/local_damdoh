@@ -71,7 +71,6 @@ import type {
     WasteManagementDashboardDataSchema,
     FinancialApplicationSchema
 } from './schemas';
-import type { LucideIcon } from 'lucide-react';
 
 
 // =================================================================
@@ -155,7 +154,6 @@ export type AdminDashboardData = z.infer<typeof AdminDashboardDataSchema>;
 export type AdminActivity = z.infer<typeof AdminActivitySchema>;
 export type AgriTechInnovatorDashboardData = z.infer<typeof AgriTechInnovatorDashboardDataSchema>;
 
-
 // =================================================================
 // 3. AI FLOW TYPES (Inferred from schemas)
 // =================================================================
@@ -169,3 +167,15 @@ export type DiagnoseCropInput = z.infer<typeof DiagnoseCropInputSchema>;
 export type DiagnoseCropOutput = z.infer<typeof DiagnoseCropOutputSchema>;
 export type FarmingAssistantInput = z.infer<typeof FarmingAssistantInputSchema>;
 export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema>;
+export interface TraceabilityEvent {
+  id: string;
+  eventType: string;
+  timestamp: string;
+  payload: any;
+  actor: {
+    name: string;
+    role: string;
+    avatarUrl?: string;
+  };
+  geoLocation?: { lat: number; lng: number } | null;
+}

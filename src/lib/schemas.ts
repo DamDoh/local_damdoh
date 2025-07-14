@@ -2,7 +2,6 @@
 
 import { z } from "zod";
 import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from '@/lib/constants';
-import type { LucideIcon } from 'lucide-react';
 
 // =================================================================
 // 1. CORE DATA SCHEMAS
@@ -36,7 +35,6 @@ export const StakeholderProfileSchema = z.object({
   profileData: z.any().optional(), // For role-specific data
   createdAt: z.any(), // Firestore Timestamp
   updatedAt: z.any(), // Firestore Timestamp
-  // Added for shopfront feature
   shops: z.array(z.string()).optional(),
   universalId: z.string().optional(),
 });
@@ -53,8 +51,8 @@ export const MarketplaceItemSchema = z.object({
   perUnit: z.string().optional().nullable(),
   category: z.string(), // Should map to a valid category ID
   location: z.object({
-    lat: z.number(),
-    lng: z.number(),
+    lat: z.number().optional(),
+    lng: z.number().optional(),
     address: z.string(),
   }),
   imageUrl: z.string().url().optional().nullable(),
@@ -67,14 +65,13 @@ export const MarketplaceItemSchema = z.object({
   createdAt: z.any(), // Firestore Timestamp
   updatedAt: z.any(), // Firestore Timestamp
   // Service-specific fields
-  skillsRequired: z.array(z.string()).optional(),
+  skillsRequired: z.union([z.array(z.string()), z.string()]).optional(),
   compensation: z.string().optional(),
   experienceLevel: z.string().optional(),
   brand: z.string().optional(),
   condition: z.string().optional(),
   availabilityStatus: z.string().optional(),
   contactInfo: z.string().optional(),
-  // New field for moderation
   status: z.enum(['pending_approval', 'active', 'rejected']).optional().default('pending_approval'),
 });
 
@@ -372,7 +369,7 @@ export const MessageSchema = z.object({
 export const MobileHomeCategorySchema = z.object({
     id: z.string(),
     name: z.string(),
-    icon: z.custom<LucideIcon>(), // Not for validation, just for type inference
+    icon: z.any(), // Cannot serialize LucideIcon, use any for Zod
     href: z.string(),
     dataAiHint: z.string().optional(),
 });
@@ -419,6 +416,9 @@ export const ServiceItemSchema = MarketplaceItemSchema.extend({
     experienceLevel: z.string(),
 });
 
+// =================================================================
+// 2. DASHBOARD DATA SCHEMAS
+// =================================================================
 
 export const FarmerDashboardDataSchema = z.object({
   farmCount: z.number(),
@@ -431,7 +431,7 @@ export const FarmerDashboardDataSchema = z.object({
       farmId: z.string(),
       plantingDate: z.string().nullable(),
   })),
-  knfBatches: z.array(KnfBatchSchema),
+  knfBatches: z.array(KnfBatchSchema.omit({ createdAt: true})), // Omit createdAt as it's not on the frontend type
   financialSummary: FinancialSummarySchema.optional(),
   alerts: z.array(FarmerDashboardAlertSchema).optional(),
   certifications: z.array(z.object({
@@ -730,7 +730,7 @@ export const AgronomistDashboardDataSchema = z.object({
   knowledgeHubContributions: z.array(z.object({
     id: z.string(),
     title: z.string(),
-    status: z.enum(['Published', 'Pending Review']),
+    status: z.enum(['Published', 'Pending Review', 'Draft']),
   })),
 });
 
@@ -880,7 +880,16 @@ export const AdminActivitySchema = z.object({
 });
 
 export const AgriTechInnovatorDashboardDataSchema = z.object({
-  apiKeys: z.array(ApiKeySchema),
+  apiKeys: z.array(z.object({
+    id: z.string(),
+    key: z.string(),
+    status: z.enum(['Active', 'Revoked']),
+    environment: z.enum(['Sandbox', 'Production']),
+    createdAt: z.string(), // ISO String
+    description: z.string().optional(),
+    keyPrefix: z.string().optional(),
+    lastFour: z.string().optional(),
+  })),
   sandboxStatus: z.object({
     status: z.enum(['Operational', 'Degraded', 'Offline']),
     lastReset: z.string(), // ISO String
@@ -1018,4 +1027,15 @@ export const FarmingAssistantOutputSchema = z.object({
   summary: z.string().describe("A concise overall answer, summary, primary diagnosis, or explanation to the user's query. This should be a few sentences long and directly address the main question or image content."),
   detailedPoints: z.array(DetailedPointSchema).optional().describe("An array of 3-5 detailed points or sections, each with a title and content, expanding on the summary/diagnosis/explanation or providing scannable key information. Only provide this if the query/image warrants a detailed breakdown."),
   suggestedQueries: z.array(z.string()).optional().describe("A list of 2-3 short, relevant follow-up questions or related topics the user might be interested in based on their initial query. For example, if they ask about one KNF input, suggest another."),
+});
+
+export const GroupPostSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  content: z.string(),
+  authorRef: z.string(),
+  authorName: z.string(),
+  authorAvatarUrl: z.string(),
+  replyCount: z.number(),
+  createdAt: z.string(), // ISO
 });
