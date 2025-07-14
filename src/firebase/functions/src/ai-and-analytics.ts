@@ -1,9 +1,16 @@
 
+
 import * as functions from "firebase-functions";
 import {
   _internalMatchFundingOpportunities,
 } from "./financial-services";
 
+/**
+ * Checks if the user is authenticated.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {string} The user's UID.
+ * @throws {functions.https.HttpsError} Throws an error if the user is not authenticated.
+ */
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
     throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
@@ -77,3 +84,4 @@ export async function _internalProcessReportData(data: { reportType: string; dat
     ],
   };
 }
+

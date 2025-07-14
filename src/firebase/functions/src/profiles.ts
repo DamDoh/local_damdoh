@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
@@ -438,6 +439,9 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
     
     // Delete any credit scores associated with the user
     promises.push(db.collection('credit_scores').doc(uid).delete());
+    
+    // Delete any API Keys associated with the user
+    promises.push(deleteCollectionByPath(`users/${uid}/api_keys`, batchSize));
 
     // Remove from search index
     promises.push(db.collection('search_index').doc(`users_${uid}`).delete());
@@ -478,4 +482,45 @@ async function deleteQueryBatch(query: FirebaseFirestore.Query): Promise<number>
   } else {
     return snapshot.size;
   }
+}
+
+
+/**
+ * Recursively deletes a collection in batches.
+ * @param {string} collectionPath The path to the collection to delete.
+ * @param {number} batchSize The number of documents to delete in each batch.
+ * @return {Promise<void>}
+ */
+async function deleteCollectionByPath(collectionPath: string, batchSize: number) {
+    const collectionRef = db.collection(collectionPath);
+    const query = collectionRef.orderBy('__name__').limit(batchSize);
+
+    return new Promise((resolve, reject) => {
+        deleteQueryBatchForSubcollection(query, resolve).catch(reject);
+    });
+}
+
+/**
+ * Helper for deleting subcollections.
+ * @param {FirebaseFirestore.Query} query The query to delete documents from.
+ * @param {Function} resolve The promise resolve function.
+ * @return {Promise<void>}
+ */
+async function deleteQueryBatchForSubcollection(query: admin.firestore.Query, resolve: (value?: unknown) => void) {
+    const snapshot = await query.get();
+
+    if (snapshot.size === 0) {
+        resolve();
+        return;
+    }
+
+    const batch = db.batch();
+    snapshot.docs.forEach((doc) => {
+        batch.delete(doc.ref);
+    });
+    await batch.commit();
+
+    process.nextTick(() => {
+        deleteQueryBatchForSubcollection(query, resolve);
+    });
 }
