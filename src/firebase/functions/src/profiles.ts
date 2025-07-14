@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
@@ -11,6 +10,8 @@ const db = admin.firestore();
  * Triggered on new Firebase Authentication user creation.
  * Creates a corresponding user document in Firestore with default values.
  * This is the secure, server-side way to create user profiles.
+ * @param {admin.auth.UserRecord} user The user record of the new user.
+ * @return {Promise<null>} A promise that resolves when the function is complete.
  */
 export const onUserCreate = functions.auth.user().onCreate(async (user) => {
     console.log(`New user signed up: ${user.uid}, email: ${user.email}`);
@@ -38,6 +39,11 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
 });
 
 
+/**
+ * Checks for user authentication in a callable function context.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {string} The user's UID.
+ */
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
     throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
@@ -50,6 +56,7 @@ const checkAuth = (context: functions.https.CallableContext) => {
  * @param {string} role The primary role of the stakeholder.
  * @param {any} data The profileData object to validate.
  * @throws {functions.https.HttpsError} Throws an error if validation fails.
+ * @return {object} The validated data.
  */
 const validateProfileData = (role: string, data: any) => {
   const schemaKey = role as keyof typeof stakeholderProfileSchemas;
@@ -219,6 +226,12 @@ export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
     }
 }
 
+/**
+ * Logs a profile view event and increments the view count on the user's profile.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, logId: string}>} A promise that resolves with the new log ID.
+ */
 export const logProfileView = functions.https.onCall(async (data, context) => {
     const viewerId = checkAuth(context);
     const { viewedId } = data;
@@ -251,6 +264,12 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
 });
 
 
+/**
+ * Fetches recent activity for a given user.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{activities: any[]}>} A promise that resolves with the user's recent activities.
+ */
 export const getUserActivity = functions.https.onCall(async (data, context) => {
     checkAuth(context);
     const { userId } = data;
@@ -326,6 +345,12 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
     }
 });
 
+/**
+ * Fetches engagement statistics for a given user.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<object>} A promise that resolves with the user's engagement stats.
+ */
 export const getUserEngagementStats = functions.https.onCall(async (data, context) => {
     checkAuth(context);
     const { userId } = data;
@@ -366,6 +391,7 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
  * This is a critical function for GDPR "Right to be Forgotten" compliance.
  * It performs a "cascade delete" of all content created by the user.
  * @param {functions.auth.UserRecord} user The user record of the deleted user.
+ * @return {Promise<void>} A promise that resolves when cleanup is complete.
  */
 export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) => {
     console.log(`User deletion triggered for UID: ${user.uid}. Cleaning up Firestore data.`);
@@ -412,7 +438,7 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
     
     // Delete any credit scores associated with the user
     promises.push(db.collection('credit_scores').doc(uid).delete());
-    
+
     // Remove from search index
     promises.push(db.collection('search_index').doc(`users_${uid}`).delete());
 
@@ -453,5 +479,3 @@ async function deleteQueryBatch(query: FirebaseFirestore.Query): Promise<number>
     return snapshot.size;
   }
 }
-
-    
