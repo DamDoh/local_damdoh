@@ -68,6 +68,14 @@ export const onSourceDocumentWriteIndex = functions.firestore
       console.log(`Removed ${collectionId}/${documentId} from search index.`);
       return;
     }
+    
+    // For marketplace items, only index if they are 'active'
+    if (collectionId === "marketplaceItems" && documentData.status !== 'active') {
+        await indexRef.delete();
+        console.log(`Item ${documentId} is not active. Removed from search index.`);
+        return;
+    }
+
 
     // Standardize common fields
     const title = documentData.name || documentData.title || documentData.displayName || documentData.metadata?.cropType || "Untitled";

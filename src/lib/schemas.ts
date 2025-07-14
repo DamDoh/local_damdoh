@@ -73,6 +73,8 @@ export const MarketplaceItemSchema = z.object({
   condition: z.string().optional(),
   availabilityStatus: z.string().optional(),
   contactInfo: z.string().optional(),
+  // New field for moderation
+  status: z.enum(['pending_approval', 'active', 'rejected']).optional().default('pending_approval'),
 });
 
 

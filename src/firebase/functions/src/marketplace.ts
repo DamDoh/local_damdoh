@@ -111,6 +111,7 @@ export const createMarketplaceListing = functions.https.onCall(
         sellerId: sellerId,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        status: 'pending_approval', // Default status for new listings
       };
       
       // Handle Geohash generation for location

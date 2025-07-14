@@ -1129,29 +1129,30 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
 
 
 export const getAdminDashboardData = functions.https.onCall(async (data, context): Promise<AdminDashboardData> => {
-    // Ideally, you'd add an admin role check here.
     checkAuth(context);
     
     try {
         const usersPromise = db.collection('users').get();
         const farmsPromise = db.collection('farms').get();
         const listingsPromise = db.collection('marketplaceItems').get();
+        const pendingApprovalsPromise = db.collection('marketplaceItems').where('status', '==', 'pending_approval').get();
 
         const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
         const newUsersQuery = db.collection('users').where('createdAt', '>=', sevenDaysAgo).get();
 
-        const [usersSnap, farmsSnap, listingsSnap, newUsersSnap] = await Promise.all([
+        const [usersSnap, farmsSnap, listingsSnap, newUsersSnap, pendingApprovalsSnap] = await Promise.all([
             usersPromise,
             farmsPromise,
             listingsPromise,
-            newUsersQuery
+            newUsersQuery,
+            pendingApprovalsPromise,
         ]);
 
         return {
             totalUsers: usersSnap.size,
             totalFarms: farmsSnap.size,
             totalListings: listingsSnap.size,
-            pendingApprovals: 15, // This remains mocked
+            pendingApprovals: pendingApprovalsSnap.size,
             newUsersLastWeek: newUsersSnap.size,
         };
     } catch (error) {
