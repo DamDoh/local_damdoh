@@ -250,3 +250,20 @@ export const CropRotationOutputSchema = z.object({
   suggestions: z.array(CropSuggestionSchema).describe('A list of 2-4 recommended crops for the next planting season, along with their benefits.'),
 });
 export type CropRotationOutput = z.infer<typeof CropRotationOutputSchema>;
+
+export const DiagnoseCropOutputSchema = z.object({
+  isPlant: z.boolean().describe('Whether the image appears to contain a plant.'),
+  isHealthy: z.boolean().describe('Whether the plant appears to be healthy.'),
+  potentialProblems: z
+    .array(z.string())
+    .describe('A list of potential diseases, pests, or nutrient deficiencies identified.'),
+  suggestedActions: z
+    .array(
+      z.object({
+        title: z.string().describe('A short, actionable title for a suggested treatment or action.'),
+        details: z.string().describe('A detailed description of the suggested action, preferably using sustainable or organic methods.'),
+        type: z.enum(['treatment', 'prevention', 'further-investigation']).describe('The category of the suggested action.'),
+      })
+    )
+    .describe('A list of structured, actionable suggestions for the user.'),
+});

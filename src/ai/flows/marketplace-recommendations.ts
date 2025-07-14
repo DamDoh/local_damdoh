@@ -8,7 +8,7 @@
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import {z} from 'zod';
 import { MarketplaceRecommendationInputSchema, MarketplaceRecommendationOutputSchema } from '@/lib/schemas'; // Import from schemas
 import { performSearch } from '@/lib/server-actions';
 import { getProfileByIdFromDB } from '@/lib/server-actions';

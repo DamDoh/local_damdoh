@@ -11,7 +11,7 @@
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import {z} from 'zod';
 import {fgw_knf_tool} from '@/ai/tools/fgw-knf-knowledge-tool';
 import {getStakeholderInfo} from '@/ai/tools/stakeholder-info-tool';
 import { diagnoseCrop, DiagnoseCropInputSchema, DiagnoseCropOutputSchema } from './diagnose-crop-flow';

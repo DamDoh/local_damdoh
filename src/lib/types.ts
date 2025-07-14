@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -11,7 +10,12 @@ import type {
     ApiKeySchema,
     InsuranceProductSchema,
     InsuranceApplicationSchema,
-    FinancialProductSchema
+    FinancialProductSchema,
+    SmartSearchInterpretationSchema,
+    MarketplaceRecommendationInputSchema,
+    MarketplaceRecommendationOutputSchema,
+    CropRotationInputSchema,
+    CropRotationOutputSchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 
@@ -781,16 +785,11 @@ export type ServiceItem = MarketplaceItem & {
 // 3. AI FLOW TYPES (Inferred from schemas)
 // =================================================================
 
-import type { 
-    SmartSearchInterpretationSchema,
-    MarketplaceRecommendationOutputSchema,
-    MarketplaceRecommendationInputSchema,
-    CropRotationInputSchema,
-    CropRotationOutputSchema,
- } from './schemas';
-
 export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;
 export type MarketplaceRecommendationInput = z.infer<typeof MarketplaceRecommendationInputSchema>;
 export type MarketplaceRecommendationOutput = z.infer<typeof MarketplaceRecommendationOutputSchema>;
 export type CropRotationInput = z.infer<typeof CropRotationInputSchema>;
 export type CropRotationOutput = z.infer<typeof CropRotationOutputSchema>;
+
+import { DiagnoseCropOutputSchema } from './schemas';
+export type FarmingAssistantOutput = z.infer<typeof DiagnoseCropOutputSchema>;
