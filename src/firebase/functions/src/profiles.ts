@@ -381,22 +381,23 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
     console.log(`User deletion triggered for UID: ${user.uid}. Cleaning up Firestore data.`);
 
     const uid = user.uid;
-    const batchSize = 100;
-    const db = admin.firestore();
+    const batchSize = 200; // Firestore batch limit is 500 writes
 
-    const collectionsToDeleteFrom = {
+    // Mapping of collections to the field that stores the user's UID.
+    const collectionsToDeleteFrom: { [key: string]: string | string[] } = {
         posts: 'userId',
         marketplaceItems: 'sellerId',
         farms: 'ownerId',
         crops: 'ownerId',
         knf_batches: 'userId',
         traceability_events: 'actorRef',
-        // Special handling for multiple fields on the same document
-        connection_requests: ['requesterId', 'recipientId'], 
+        connection_requests: ['requesterId', 'recipientId'], // Special case for multiple fields
+        // Add other collections as needed, e.g., 'comments', 'likes', subcollections
     };
 
-    const promises = [];
+    const promises: Promise<any>[] = [];
 
+    // Loop through each collection and delete documents related to the user.
     for (const [collection, field] of Object.entries(collectionsToDeleteFrom)) {
         if (Array.isArray(field)) {
             // Handle collections where the user's UID could be in one of several fields
@@ -418,6 +419,11 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
     console.log(`Cleanup finished for user ${uid}.`);
 });
 
+/**
+ * Recursively deletes documents from a query in batches.
+ * @param {FirebaseFirestore.Query} query The query to delete documents from.
+ * @return {Promise<number>} A promise that resolves with the number of documents deleted.
+ */
 async function deleteQueryBatch(query: FirebaseFirestore.Query) {
   const snapshot = await query.get();
 
@@ -430,8 +436,13 @@ async function deleteQueryBatch(query: FirebaseFirestore.Query) {
     batch.delete(doc.ref);
   });
   await batch.commit();
+  console.log(`Deleted ${snapshot.size} documents from collection.`);
 
-  // Recurse on the same query to delete more documents.
-  // This is safe because the query is limited and we check for size === 0.
-  return snapshot.size + await deleteQueryBatch(query);
+  // Recurse on the same query to delete more documents if the batch was full.
+  // This is a safe way to handle collections larger than the batch size limit.
+  if (snapshot.size > 0) {
+    return snapshot.size + await deleteQueryBatch(query);
+  } else {
+    return snapshot.size;
+  }
 }

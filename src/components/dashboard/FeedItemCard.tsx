@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
@@ -158,6 +159,8 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   };
   
   const isPostAuthor = item.userId === user?.uid;
+  const isAdmin = currentUserProfile?.primaryRole === 'Admin';
+
 
   return (
     <Card className="overflow-hidden">
@@ -174,7 +177,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
                 {item.userHeadline && <p className="text-xs text-muted-foreground">{item.userHeadline}</p>}
                 <p className="text-xs text-muted-foreground">{format.dateTime(new Date(item.timestamp), {dateStyle: 'medium'})}</p>
               </div>
-               {isPostAuthor && (
+               {(isPostAuthor || isAdmin) && (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className="h-7 w-7">
@@ -182,10 +185,12 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
                     </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                    <DropdownMenuItem>
-                        <Edit className="mr-2 h-4 w-4" />
-                        {t('editPost')}
-                    </DropdownMenuItem>
+                    {isPostAuthor && (
+                        <DropdownMenuItem>
+                            <Edit className="mr-2 h-4 w-4" />
+                            {t('editPost')}
+                        </DropdownMenuItem>
+                    )}
                     <DropdownMenuSeparator />
                     <DropdownMenuItem className="text-destructive" onClick={() => onDeletePost(item.id)}>
                         <Trash2 className="mr-2 h-4 w-4" />
@@ -224,7 +229,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
                 </Button>
               )
             })}
-             <p className="text-xs text-muted-foreground text-right">{totalVotes} {t('votes', {count: totalVotes})}</p>
+             <p className="text-xs text-muted-foreground text-right">{t('votes', {count: totalVotes})}</p>
           </div>
         )}
       </CardContent>

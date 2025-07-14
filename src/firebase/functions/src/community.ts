@@ -5,7 +5,7 @@
 // This file should only contain functions related to community and social engagement.
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getProfileByIdFromDB } from './profiles';
+import { getProfileByIdFromDB, getRole } from './profiles';
 
 const db = admin.firestore();
 
@@ -14,7 +14,7 @@ const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
     throw new functions.https.HttpsError(
       "unauthenticated",
-      "The function must be called while authenticated.",
+      "error.unauthenticated",
     );
   }
   return context.auth.uid;
@@ -25,16 +25,16 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
     const { content, pollOptions, imageUrl, dataAiHint } = data; // pollOptions is an array of objects with a 'text' property
 
     if (!content && !imageUrl && !pollOptions) {
-        throw new functions.https.HttpsError('invalid-argument', 'Post must have content, an image, or a poll.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.post.contentRequired');
     }
 
     if (pollOptions && (!Array.isArray(pollOptions) || pollOptions.length < 2)) {
-        throw new functions.https.HttpsError('invalid-argument', 'A poll must have at least two options.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionsInvalid');
     }
 
     const userProfile = await getProfileByIdFromDB(uid);
     if (!userProfile) {
-        throw new functions.https.HttpsError('not-found', 'User profile not found.');
+        throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
     
     const newPostRef = db.collection('posts').doc();
@@ -60,23 +60,25 @@ export const deletePost = functions.https.onCall(async (data, context) => {
     const { postId } = data;
 
     if (!postId) {
-        throw new functions.https.HttpsError('invalid-argument', 'Post ID is required.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.postId.required');
     }
 
     const postRef = db.collection('posts').doc(postId);
     const postDoc = await postRef.get();
 
     if (!postDoc.exists) {
-        throw new functions.https.HttpsError('not-found', 'Post not found.');
+        throw new functions.https.HttpsError('not-found', 'error.post.notFound');
     }
 
     const postData = postDoc.data()!;
-    if (postData.userId !== uid) {
-        // In a real app, you might want an admin role to be able to delete posts too.
-        throw new functions.https.HttpsError('permission-denied', 'You do not have permission to delete this post.');
+    const callerRole = await getRole(uid);
+
+    // Allow deletion if the user is the author OR if the user is an Admin
+    if (postData.userId !== uid && callerRole !== 'Admin') {
+        throw new functions.https.HttpsError('permission-denied', 'error.permissionDenied');
     }
 
-    // Delete the post document
+    // Perform the deletion
     await postRef.delete();
 
     // TODO: In a production app, you would also delete all subcollections (likes, comments)
@@ -84,6 +86,7 @@ export const deletePost = functions.https.onCall(async (data, context) => {
 
     return { success: true, message: 'Post deleted successfully.' };
 });
+
 
 export const likePost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
@@ -113,7 +116,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
     const { postId, content } = data;
 
     if (!content || !postId) {
-         throw new functions.https.HttpsError('invalid-argument', 'Post ID and content are required.');
+         throw new functions.https.HttpsError('invalid-argument', 'error.form.missingFields');
     }
 
     const postRef = db.collection('posts').doc(postId);
@@ -121,7 +124,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
 
     const userProfile = await getProfileByIdFromDB(uid);
      if (!userProfile) {
-        throw new functions.https.HttpsError('not-found', 'User profile not found.');
+        throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
 
     const batch = db.batch();
@@ -144,7 +147,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
 export const getCommentsForPost = functions.https.onCall(async (data, context) => {
     const { postId, lastVisible } = data;
     if (!postId) {
-        throw new functions.https.HttpsError("invalid-argument", "Post ID is required.");
+        throw new functions.https.HttpsError("invalid-argument", "error.postId.required");
     }
     
     const COMMENTS_PER_PAGE = 5;
@@ -186,7 +189,7 @@ export const voteOnPoll = functions.https.onCall(async (data, context) => {
     const { postId, optionIndex } = data;
 
     if (!postId || typeof optionIndex !== 'number') {
-        throw new functions.https.HttpsError('invalid-argument', 'Post ID and a valid option index are required.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.post.pollVoteInvalid');
     }
 
     const postRef = db.collection('posts').doc(postId);
@@ -195,17 +198,17 @@ export const voteOnPoll = functions.https.onCall(async (data, context) => {
     return db.runTransaction(async (transaction) => {
         const postDoc = await transaction.get(postRef);
         if (!postDoc.exists) {
-            throw new functions.https.HttpsError('not-found', 'Post not found.');
+            throw new functions.https.HttpsError('not-found', 'error.post.notFound');
         }
 
         const voteDoc = await transaction.get(voteRef);
         if (voteDoc.exists) {
-            throw new functions.https.HttpsError('already-exists', 'You have already voted on this poll.');
+            throw new functions.https.HttpsError('already-exists', 'error.post.alreadyVoted');
         }
 
         const postData = postDoc.data()!;
         if (!postData.pollOptions || optionIndex < 0 || optionIndex >= postData.pollOptions.length) {
-            throw new functions.https.HttpsError('invalid-argument', 'Invalid poll option.');
+            throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionInvalid');
         }
 
         // Atomically update the vote count for the specific option
