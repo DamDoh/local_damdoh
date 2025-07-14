@@ -11,14 +11,12 @@ const db = admin.firestore();
  * Triggered on new Firebase Authentication user creation.
  * Creates a corresponding user document in Firestore with default values.
  * This is the secure, server-side way to create user profiles.
- * @param {functions.auth.UserRecord} user The user record of the new user.
- * @return {Promise<null>} A promise that resolves when the function is complete.
  */
 export const onUserCreate = functions.auth.user().onCreate(async (user) => {
     console.log(`New user signed up: ${user.uid}, email: ${user.email}`);
 
     const userRef = db.collection("users").doc(user.uid);
-
+    
     try {
         // Only set the most basic, non-user-provided information here.
         // Role and display name will be handled by the client call to upsertStakeholderProfile.
@@ -40,11 +38,6 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
 });
 
 
-/**
- * Checks for user authentication.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {string} The user's UID.
- */
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
     throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
@@ -55,9 +48,8 @@ const checkAuth = (context: functions.https.CallableContext) => {
 /**
  * Validates the structure of profileData based on the stakeholder's role.
  * @param {string} role The primary role of the stakeholder.
- * @param {object} data The profileData object to validate.
+ * @param {any} data The profileData object to validate.
  * @throws {functions.https.HttpsError} Throws an error if validation fails.
- * @return {any} The validated data.
  */
 const validateProfileData = (role: string, data: any) => {
   const schemaKey = role as keyof typeof stakeholderProfileSchemas;
@@ -78,8 +70,8 @@ const validateProfileData = (role: string, data: any) => {
 
 
 /**
- * Creates or updates a detailed stakeholder profile.
- * @param {object} data The data for the function call.
+ * Creates or updates a detailed stakeholder profile. This is the single, secure entry point for all profile modifications.
+ * @param {any} data The data for the function call. Must include a primaryRole.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{status: string, message: string}>} A promise that resolves with the status.
  */
@@ -100,6 +92,8 @@ export const upsertStakeholderProfile = functions.https.onCall(
       profileData,
     } = data;
 
+    // During initial sign-up, only role and display name are required.
+    // The onUserCreate trigger handles the base document. This function just merges the initial role info.
     if (!primaryRole) {
       throw new functions.https.HttpsError(
         "invalid-argument",
@@ -122,6 +116,7 @@ export const upsertStakeholderProfile = functions.https.onCall(
       if (profileSummary !== undefined) updatePayload.profileSummary = profileSummary;
       if (bio !== undefined) updatePayload.bio = bio;
       
+      // Geohash is handled by a separate trigger now.
       if (location !== undefined) {
         updatePayload.location = location;
       }
@@ -137,6 +132,7 @@ export const upsertStakeholderProfile = functions.https.onCall(
       // Add the validated data to the payload
       if (validatedProfileData) updatePayload.profileData = validatedProfileData;
 
+      // Use { merge: true } to create or update the document without overwriting existing fields.
       await userRef.set(updatePayload, {merge: true});
 
       return {status: "success", message: "Profile updated successfully."};
@@ -223,12 +219,6 @@ export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
     }
 }
 
-/**
- * Logs a view of a user's profile and increments their view count.
- * @param {object} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{success: boolean, logId: string, message?: string}>} A promise that resolves with the log ID.
- */
 export const logProfileView = functions.https.onCall(async (data, context) => {
     const viewerId = checkAuth(context);
     const { viewedId } = data;
@@ -237,6 +227,7 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("invalid-argument", "A 'viewedId' must be provided.");
     }
 
+    // Don't log self-views
     if (viewerId === viewedId) {
         console.log("User viewed their own profile. No log created.");
         return { success: true, message: "Self-view, not logged." };
@@ -244,6 +235,7 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
     
     const viewedUserRef = db.collection('users').doc(viewedId);
     
+    // Atomically increment the view count on the user's profile.
     await viewedUserRef.update({
         viewCount: admin.firestore.FieldValue.increment(1)
     });
@@ -259,12 +251,6 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
 });
 
 
-/**
- * Fetches recent activity for a given user.
- * @param {object} data The data for the function call, containing `userId`.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{activities: any[]}>} A promise that resolves with the user's activities.
- */
 export const getUserActivity = functions.https.onCall(async (data, context) => {
     checkAuth(context);
     const { userId } = data;
@@ -281,7 +267,6 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
         const [postsSnap, ordersSnap, salesSnap, eventsSnap] = await Promise.all([postsPromise, ordersPromise, salesPromise, eventsSnap]);
         
         const activities: any[] = [];
-        
         const toISODate = (timestamp: admin.firestore.Timestamp | undefined) => {
             return timestamp && timestamp.toDate ? timestamp.toDate().toISOString() : new Date().toISOString();
         };
@@ -341,12 +326,6 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
     }
 });
 
-/**
- * Fetches engagement statistics for a user.
- * @param {object} data The data for the function call, containing `userId`.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<object>} A promise that resolves with the user's engagement stats.
- */
 export const getUserEngagementStats = functions.https.onCall(async (data, context) => {
     checkAuth(context);
     const { userId } = data;
@@ -384,8 +363,9 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
 
 /**
  * Deletes a user's data from across the entire Firestore database upon their Auth deletion.
+ * This is a critical function for GDPR "Right to be Forgotten" compliance.
+ * It performs a "cascade delete" of all content created by the user.
  * @param {functions.auth.UserRecord} user The user record of the deleted user.
- * @return {Promise<void>} A promise that resolves when cleanup is complete.
  */
 export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) => {
     console.log(`User deletion triggered for UID: ${user.uid}. Cleaning up Firestore data.`);
@@ -473,3 +453,5 @@ async function deleteQueryBatch(query: FirebaseFirestore.Query): Promise<number>
     return snapshot.size;
   }
 }
+
+    

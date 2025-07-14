@@ -76,7 +76,7 @@ export const getFarmerDashboardData = functions.https.onCall(
 
         knfBatchesSnapshot.docs.forEach(doc => {
             const batch = doc.data();
-            if (batch.status === 'Fermenting' && batch.nextStepDate.toDate() <= now) {
+            if (batch.status === 'Fermenting' && batch.nextStepDate && batch.nextStepDate.toDate() <= now) {
                 alerts.push({
                     id: `knf-${doc.id}`,
                     icon: 'FlaskConical',
@@ -763,31 +763,40 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
 export const getWarehouseDashboardData = functions.https.onCall(
   async (data, context): Promise<WarehouseDashboardData> => {
     checkAuth(context);
-    
-    // In a real app, this would perform aggregations on inventory data linked to this warehouse.
-    const inventorySnapshot = await db.collection('marketplaceItems').limit(100).get();
-    
-    const inventoryLevels = {
-        totalItems: inventorySnapshot.size,
-        itemsNeedingAttention: inventorySnapshot.docs.filter(doc => (doc.data().stock || 0) < (doc.data().reorderLevel || 20)).length,
-    };
-    
-    // This would be a more complex calculation based on capacity vs. stored volume.
-    const storageOptimization = { 
-        utilization: 78, 
-        suggestion: 'Consolidate pallets in Zone C.' 
-    };
-    
-    // This would come from an AI model or rule-based system analyzing data streams.
-    const predictiveAlerts = [
-            { alert: 'High humidity detected in Cold Storage 2. Risk of mold.', actionLink: '#' }
-    ];
 
-    return {
-        storageOptimization,
-        inventoryLevels,
-        predictiveAlerts
-    };
+    try {
+        // More efficient queries
+        const inventoryQuery = db.collection('marketplaceItems').select('stock', 'reorderLevel');
+        const totalItemsCount = await db.collection('marketplaceItems').count().get();
+        const inventorySnapshot = await inventoryQuery.get();
+
+        const itemsNeedingAttention = inventorySnapshot.docs.filter(doc => (doc.data().stock || 0) < (doc.data().reorderLevel || 20)).length;
+
+        const inventoryLevels = {
+            totalItems: totalItemsCount.data().count,
+            itemsNeedingAttention: itemsNeedingAttention,
+        };
+
+        // This would be a more complex calculation based on capacity vs. stored volume.
+        const storageOptimization = { 
+            utilization: 78, 
+            suggestion: 'Consolidate pallets in Zone C.' 
+        };
+        
+        // This would come from an AI model or rule-based system analyzing data streams.
+        const predictiveAlerts = [
+            { alert: 'High humidity detected in Cold Storage 2. Risk of mold.', actionLink: '#' }
+        ];
+
+        return {
+            storageOptimization,
+            inventoryLevels,
+            predictiveAlerts
+        };
+    } catch (error) {
+        console.error("Error fetching Warehouse dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
   }
 );
 
@@ -1129,6 +1138,7 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
 
 
 export const getAdminDashboardData = functions.https.onCall(async (data, context): Promise<AdminDashboardData> => {
+    // Ideally, you'd add an admin role check here.
     checkAuth(context);
     
     try {
@@ -1206,3 +1216,5 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
+
+    
