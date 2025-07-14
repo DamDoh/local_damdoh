@@ -2,7 +2,7 @@
 "use client";
 
 import { useTranslations } from 'next-intl';
-import { usePathname } from '@/navigation';
+import { usePathname, Link } from '@/navigation';
 import { Home, Users, Bell, MessageSquare, Briefcase, Fingerprint, ShoppingCart, Leaf, Sprout, Wallet, Settings, HelpCircle, LogOut } from "lucide-react";
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '../ui/sidebar';
 import { useAuth, logOut } from '@/lib/auth-utils';
