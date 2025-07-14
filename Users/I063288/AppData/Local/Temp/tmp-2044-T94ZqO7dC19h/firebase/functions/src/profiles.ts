@@ -2,7 +2,6 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { v4 as uuidv4 } from "uuid";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
 import { UserRole } from "./types";
 import { geohashForLocation } from 'geofire-common';
@@ -18,7 +17,6 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
     console.log(`New user signed up: ${user.uid}, email: ${user.email}`);
 
     const userRef = db.collection("users").doc(user.uid);
-    const universalId = uuidv4();
 
     try {
         // Only set the most basic, non-user-provided information here.
@@ -27,7 +25,6 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
             uid: user.uid,
             email: user.email,
             avatarUrl: user.photoURL || null,
-            universalId: universalId,
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
             viewCount: 0,
@@ -409,7 +406,7 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
     
     // Remove user from any groups they are a member of
     const memberOfQuery = db.collectionGroup('members').where(admin.firestore.FieldPath.documentId(), '==', uid);
-    promises.push(deleteQueryBatch(memberOfQuery));
+    promises.push(deleteQueryBatch(query));
 
     // Also delete the main user profile document
     promises.push(db.collection('users').doc(uid).delete());
