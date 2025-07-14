@@ -159,6 +159,8 @@ export interface FarmerDashboardData {
     typeName: string;
     status: string;
     nextStepDate: string | null;
+    quantityProduced?: number;
+    unit?: string;
   }[];
   financialSummary?: FinancialSummary;
   alerts?: FarmerDashboardAlert[];
@@ -620,6 +622,23 @@ export interface OperationsDashboardData {
   }[];
 }
 
+export interface AdminDashboardData {
+    totalUsers: number;
+    totalFarms: number;
+    totalListings: number;
+    pendingApprovals: number;
+    newUsersLastWeek: number;
+}
+export interface AdminActivity {
+    id: string;
+    type: 'New User' | 'New Listing';
+    primaryInfo: string;
+    secondaryInfo?: string;
+    timestamp: string;
+    link: string;
+    avatarUrl?: string;
+}
+
 export interface FinancialApplication {
   id: string;
   applicantId: string;
@@ -791,21 +810,3 @@ export type MarketplaceRecommendationOutput = z.infer<typeof MarketplaceRecommen
 export type CropRotationInput = z.infer<typeof CropRotationInputSchema>;
 export type CropRotationOutput = z.infer<typeof CropRotationOutputSchema>;
 export type FarmingAssistantOutput = z.infer<typeof DiagnoseCropOutputSchema>;
-
-// Admin Types
-export interface AdminDashboardData {
-  totalUsers: number;
-  totalFarms: number;
-  totalListings: number;
-  pendingApprovals: number;
-  newUsersLastWeek: number;
-}
-export interface AdminActivity {
-  id: string;
-  type: 'New User' | 'New Listing';
-  primaryInfo: string;
-  secondaryInfo?: string;
-  timestamp: string;
-  link: string;
-  avatarUrl?: string;
-}

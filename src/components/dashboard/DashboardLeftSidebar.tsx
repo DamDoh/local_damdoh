@@ -57,7 +57,7 @@ export function DashboardLeftSidebar() {
 
   if (loading) {
     return (
-      <div className="space-y-4 sticky top-20">
+      <div className="space-y-4">
         <Card>
           <CardContent className="pt-6 text-center">
             <Skeleton className="h-20 w-20 rounded-full mx-auto mb-2" />
@@ -77,7 +77,7 @@ export function DashboardLeftSidebar() {
   const totalEngagements = (stats?.postLikes || 0) + (stats?.postComments || 0);
 
   return (
-    <div className="space-y-4 sticky top-20">
+    <div className="space-y-4">
       <Card>
         <CardContent className="pt-6 text-center">
           <Link href="/profiles/me">
@@ -124,28 +124,6 @@ export function DashboardLeftSidebar() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader className="pb-2 pt-4">
-          <CardTitle className="text-md font-semibold">{t('recent.title')}</CardTitle>
-        </CardHeader>
-        <CardContent className="pt-0 space-y-1 text-sm">
-          <Link href="/pinboard" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <Bookmark className="h-4 w-4" /> {t('recent.myPinBoard')}
-          </Link>
-          <Link href="/groups" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <Users className="h-4 w-4" /> {t('recent.communityGroups')}
-          </Link>
-          <Link href="/industry-news" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <Newspaper className="h-4 w-4" /> {t('recent.industryNews')}
-          </Link>
-          <Link href="/agri-events" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <CalendarDays className="h-4 w-4" /> {t('recent.agriEvents')}
-          </Link>
-           <Link href="/network" className="flex items-center gap-2 p-2 hover:bg-accent/50 rounded-md text-muted-foreground hover:text-foreground">
-            <Link2 className="h-4 w-4" /> {t('recent.mySupplyChainNetwork')}
-          </Link>
-        </CardContent>
-      </Card>
     </div>
   );
 }

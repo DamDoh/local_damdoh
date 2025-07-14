@@ -26,7 +26,7 @@ export function OfflineIndicator() {
   const Icon = isOnline ? (isSyncing ? Loader2 : Wifi) : WifiOff;
 
   return (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={0}>
       <Tooltip>
         <TooltipTrigger asChild>
           <div className="fixed bottom-20 right-4 z-50 md:bottom-4 print:hidden">

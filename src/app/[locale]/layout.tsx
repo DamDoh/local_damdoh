@@ -12,6 +12,8 @@ import { getMessages } from 'next-intl/server';
 import { locales } from '@/i18n-config';
 import { notFound } from "next/navigation";
 import { OfflineIndicator } from "@/components/layout/OfflineIndicator";
+import { Sidebar, SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebarNav } from "@/components/layout/AppSidebarNav";
  
 export const metadata: Metadata = {
   title: {
@@ -51,17 +53,24 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
-            <div className="flex flex-col min-h-screen">
-              <AppHeader />
-              <main className="flex-grow container mx-auto max-w-screen-2xl px-4 py-6 md:px-6 lg:px-8 print:p-0">
-                {children}
-              </main>
-              <div className="md:hidden h-16" />
-              <MobileBottomNavigation />
-              <OfflineIndicator />
-              <AppFooter />
-              <Toaster />
-            </div>
+            <SidebarProvider>
+                <Sidebar>
+                    <AppSidebarNav />
+                </Sidebar>
+                <SidebarInset>
+                    <div className="flex flex-col min-h-screen">
+                        <AppHeader />
+                        <main className="flex-grow container mx-auto max-w-screen-2xl px-4 py-6 md:px-6 lg:px-8 print:p-0">
+                            {children}
+                        </main>
+                        <div className="md:hidden h-16" />
+                        <MobileBottomNavigation />
+                        <OfflineIndicator />
+                        <AppFooter />
+                        <Toaster />
+                    </div>
+                </SidebarInset>
+            </SidebarProvider>
           </Providers>
         </NextIntlClientProvider>
       </body>
