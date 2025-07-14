@@ -809,3 +809,17 @@ export type DiagnoseCropInput = z.infer<typeof DiagnoseCropInputSchema>;
 export type DiagnoseCropOutput = z.infer<typeof DiagnoseCropOutputSchema>;
 export type FarmingAssistantInput = z.infer<typeof FarmingAssistantInputSchema>;
 export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema>;
+export type AgriTechInnovatorDashboardData = {
+  apiKeys: ApiKey[];
+  sandboxStatus: {
+    status: 'Operational' | 'Degraded' | 'Offline';
+    lastReset: string; // ISO String
+  };
+  integrationProjects: {
+    id: string;
+    title: string;
+    status: 'In Development' | 'Live' | 'Archived';
+    partner: string;
+    actionLink: string;
+  }[];
+}
