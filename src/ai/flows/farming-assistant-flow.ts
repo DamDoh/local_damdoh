@@ -15,7 +15,7 @@ import {z} from 'zod';
 import {fgw_knf_tool} from '@/ai/tools/fgw-knf-knowledge-tool';
 import {getStakeholderInfo} from '@/ai/tools/stakeholder-info-tool';
 import { diagnoseCrop } from './diagnose-crop-flow';
-import { DiagnoseCropInputSchema, DiagnoseCropOutputSchema, FarmingAssistantInputSchema, FarmingAssistantOutputSchema } from '@/lib/schemas';
+import { FarmingAssistantInputSchema, FarmingAssistantOutputSchema } from '@/lib/schemas';
 import type { FarmingAssistantInput, FarmingAssistantOutput } from '@/lib/types';
 
 

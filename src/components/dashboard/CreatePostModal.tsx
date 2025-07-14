@@ -123,7 +123,7 @@ export function CreatePostModal({ isOpen, onClose, onCreatePost }: CreatePostMod
           </VisuallyHidden>
           <div className="flex items-center gap-2">
             <Avatar className="h-9 w-9">
-              <AvatarImage src={profile?.avatarUrl} alt={profile?.displayName} data-ai-hint="profile person" />
+              <AvatarImage src={profile?.avatarUrl || undefined} alt={profile?.displayName} data-ai-hint="profile person" />
               <AvatarFallback>{profile?.displayName?.substring(0, 1) ?? 'U'}</AvatarFallback>
             </Avatar>
             <div>

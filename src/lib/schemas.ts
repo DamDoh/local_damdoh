@@ -3,7 +3,7 @@ import { z } from "zod";
 import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from '@/lib/constants';
 
 // =================================================================
-// SINGLE SOURCE OF TRUTH FOR CORE DATA SCHEMAS
+// 1. CORE DATA SCHEMAS
 // These schemas define the shape of data in Firestore and are used for
 // validation on both the frontend (forms) and backend (Cloud Functions).
 // =================================================================
@@ -38,7 +38,6 @@ export const StakeholderProfileSchema = z.object({
   shops: z.array(z.string()).optional(),
   universalId: z.string().optional(),
 });
-export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 
 
 export const MarketplaceItemSchema = z.object({
@@ -74,7 +73,6 @@ export const MarketplaceItemSchema = z.object({
   availabilityStatus: z.string().optional(),
   contactInfo: z.string().optional(),
 });
-export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
 
 
 export const MarketplaceOrderSchema = z.object({
@@ -92,7 +90,6 @@ export const MarketplaceOrderSchema = z.object({
   createdAt: z.any(), // Firestore Timestamp
   updatedAt: z.any(), // Firestore Timestamp
 });
-export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema>;
 
 
 export const ShopSchema = z.object({
@@ -100,7 +97,6 @@ export const ShopSchema = z.object({
   description: z.string(),
   stakeholderType: z.string(),
 });
-export type Shop = z.infer<typeof ShopSchema>;
 
 export const AgriEventSchema = z.object({
   title: z.string(),
@@ -118,7 +114,6 @@ export const AgriEventSchema = z.object({
   price: z.number().optional().nullable(),
   currency: z.string().optional(),
 });
-export type AgriEvent = z.infer<typeof AgriEventSchema>;
 
 export const ForumPostSchema = z.object({
     id: z.string(),
@@ -131,7 +126,6 @@ export const ForumPostSchema = z.object({
     icon: z.string().optional(), // For display purposes
     updatedAt: z.any(),
 });
-export type ForumTopic = z.infer<typeof ForumPostSchema>;
 
 export const FinancialProductSchema = z.object({
   id: z.string(),
@@ -146,7 +140,6 @@ export const FinancialProductSchema = z.object({
   createdAt: z.any(),
   updatedAt: z.any(),
 });
-export type FinancialProduct = z.infer<typeof FinancialProductSchema>;
 
 export const InsuranceProductSchema = z.object({
   id: z.string(),
@@ -165,7 +158,6 @@ export const InsuranceProductSchema = z.object({
       avatarUrl: z.string().optional().nullable(),
   }).optional(),
 });
-export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
 
 export const InsuranceApplicationSchema = z.object({
     id: z.string(),
@@ -176,7 +168,6 @@ export const InsuranceApplicationSchema = z.object({
     status: z.string(), // e.g., 'Submitted', 'Under Review', 'Approved', 'Rejected'
     submittedAt: z.any(),
 });
-export type InsuranceApplication = z.infer<typeof InsuranceApplicationSchema>;
 
 export const ApiKeySchema = z.object({
   id: z.string(),
@@ -188,8 +179,6 @@ export const ApiKeySchema = z.object({
   lastFour: z.string(),
   createdAt: z.string(),
 });
-export type ApiKey = z.infer<typeof ApiKeySchema>;
-
 
 
 // =================================================================
@@ -213,7 +202,6 @@ export const SmartSearchInterpretationSchema = z.object({
   maxPrice: z.number().optional().describe("The maximum price if specified by the user (e.g., from 'under $100')."),
   perUnit: z.string().optional().describe("The unit for the price if specified (e.g., '/kg', '/ton').")
 });
-export type SmartSearchInterpretation = z.infer<typeof SmartSearchInterpretationSchema>;
 
 
 export const MarketplaceRecommendationInputSchema = z.object({
@@ -230,16 +218,13 @@ const RecommendedItemSchema = z.object({
 export const MarketplaceRecommendationOutputSchema = z.object({
   recommendations: z.array(RecommendedItemSchema).describe("A list of suggested marketplace items (products or services) with accompanying reasons."),
 });
-export type MarketplaceRecommendation = any;
 
-// Crop Rotation Suggester Schemas
 export const CropRotationInputSchema = z.object({
   cropHistory: z.array(z.string()).describe('An array of crop names that have been previously planted in the field, in chronological order.'),
   location: z.string().describe('The geographical location of the farm (e.g., "Rift Valley, Kenya").'),
   soilType: z.string().optional().describe('The type of soil in the field (e.g., "Clay", "Sandy Loam").'),
   language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English.'),
 });
-export type CropRotationInput = z.infer<typeof CropRotationInputSchema>;
 
 const CropSuggestionSchema = z.object({
   cropName: z.string().describe('The name of the suggested crop to plant next.'),
@@ -249,7 +234,6 @@ const CropSuggestionSchema = z.object({
 export const CropRotationOutputSchema = z.object({
   suggestions: z.array(CropSuggestionSchema).describe('A list of 2-4 recommended crops for the next planting season, along with their benefits.'),
 });
-export type CropRotationOutput = z.infer<typeof CropRotationOutputSchema>;
 
 
 export const DiagnoseCropInputSchema = z.object({
@@ -261,7 +245,6 @@ export const DiagnoseCropInputSchema = z.object({
   description: z.string().describe('The user\'s description of the problem or question about the plant.'),
   language: z.string().optional().describe('The language for the AI to respond in (e.g., "en", "km"). Defaults to English.'),
 });
-export type DiagnoseCropInput = z.infer<typeof DiagnoseCropInputSchema>;
 
 export const DiagnoseCropOutputSchema = z.object({
   isPlant: z.boolean().describe('Whether the image appears to contain a plant.'),
@@ -279,7 +262,6 @@ export const DiagnoseCropOutputSchema = z.object({
     )
     .describe('A list of structured, actionable suggestions for the user.'),
 });
-export type DiagnoseCropOutput = z.infer<typeof DiagnoseCropOutputSchema>;
 
 const DetailedPointSchema = z.object({
   title: z.string().describe('A concise title for a specific aspect, key practice, or detailed point related to the answer/diagnosis/explanation. Max 5-7 words.'),
@@ -291,11 +273,9 @@ export const FarmingAssistantInputSchema = z.object({
   photoDataUri: z.string().optional().describe("A photo of a plant or crop issue, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'. This is used for diagnosis."),
   language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code (e.g., "en", "km", "fr", "de", "th"). Defaults to English if not provided.'),
 });
-export type FarmingAssistantInput = z.infer<typeof FarmingAssistantInputSchema>;
 
 export const FarmingAssistantOutputSchema = z.object({
   summary: z.string().describe("A concise overall answer, summary, primary diagnosis, or explanation to the user's query. This should be a few sentences long and directly address the main question or image content."),
   detailedPoints: z.array(DetailedPointSchema).optional().describe("An array of 3-5 detailed points or sections, each with a title and content, expanding on the summary/diagnosis/explanation or providing scannable key information. Only provide this if the query/image warrants a detailed breakdown."),
   suggestedQueries: z.array(z.string()).optional().describe("A list of 2-3 short, relevant follow-up questions or related topics the user might be interested in based on their initial query. For example, if they ask about one KNF input, suggest another."),
 });
-export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema>;

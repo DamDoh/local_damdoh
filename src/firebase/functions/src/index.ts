@@ -42,9 +42,7 @@ export * from "./universal-id";
 export * from "./agro-tourism";
 export * from "./network";
 export * from "./labor";
-export * from "./ai-services";
 export * from "./api-keys";
 
 // Export the Express app as a Cloud Function
 export const api = functions.https.onRequest(expressApp);
-
