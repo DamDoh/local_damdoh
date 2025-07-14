@@ -2,9 +2,8 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { v4 as uuidv4 } from "uuid";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
-import { UserRole } from "./types";
+import { UserRole } from "@/lib/types";
 import { geohashForLocation } from 'geofire-common';
 
 const db = admin.firestore();
@@ -18,30 +17,22 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
     console.log(`New user signed up: ${user.uid}, email: ${user.email}`);
 
     const userRef = db.collection("users").doc(user.uid);
-    const universalId = uuidv4();
 
     try {
+        // Only set the most basic, non-user-provided information here.
+        // Role and display name will be handled by the client call to upsertStakeholderProfile.
         await userRef.set({
             uid: user.uid,
             email: user.email,
-            displayName: user.displayName || user.email?.split('@')[0] || "New User",
             avatarUrl: user.photoURL || null,
-            primaryRole: 'Consumer', // Default role
-            profileSummary: "Just joined the DamDoh community!",
-            universalId: universalId,
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-            location: null,
-            geohash: null,
-            // Initialize engagement counters
             viewCount: 0,
         });
-        console.log(`Successfully created Firestore profile for user ${user.uid}.`);
+        console.log(`Successfully created Firestore base profile for user ${user.uid}.`);
         return null;
     } catch (error) {
         console.error(`Error creating Firestore profile for user ${user.uid}:`, error);
-        // Optional: you could add logic to delete the auth user if the profile creation fails,
-        // but this could also be problematic if the function fails for transient reasons.
         return null;
     }
 });
@@ -396,7 +387,6 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
         financial_applications: 'applicantId',
         insurance_applications: 'applicantId',
         groups: 'ownerId',
-        // Note: Subcollections like comments, likes, etc., must be handled separately or with a recursive delete helper.
     };
 
     const promises: Promise<any>[] = [];
@@ -423,6 +413,9 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
     
     // Delete any credit scores associated with the user
     promises.push(db.collection('credit_scores').doc(uid).delete());
+    
+    // Remove from search index
+    promises.push(db.collection('search_index').doc(`users_${uid}`).delete());
 
     await Promise.all(promises);
     console.log(`Cleanup finished for user ${uid}.`);
@@ -461,4 +454,3 @@ async function deleteQueryBatch(query: FirebaseFirestore.Query) {
     return snapshot.size;
   }
 }
-
