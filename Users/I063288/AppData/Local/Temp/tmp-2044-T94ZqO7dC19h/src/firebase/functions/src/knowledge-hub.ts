@@ -461,5 +461,3 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
     );
   }
 });
-
-    
