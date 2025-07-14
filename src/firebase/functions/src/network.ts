@@ -78,6 +78,8 @@ export const getPendingRequests = functions.https.onCall(async (data, context) =
     }
 
     const requesterIds = snapshot.docs.map(doc => doc.data().requesterId);
+    if (requesterIds.length === 0) return { requests: [] }; // Handle case where all requesters might be null/undefined
+
     const userProfiles = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', requesterIds).get();
     
     const profilesMap = new Map(userProfiles.docs.map(doc => [doc.id, doc.data() as UserProfile]));
@@ -85,6 +87,8 @@ export const getPendingRequests = functions.https.onCall(async (data, context) =
     const requests = snapshot.docs.map(doc => {
         const reqData = doc.data();
         const profile = profilesMap.get(reqData.requesterId);
+        if (!profile) return null; // Skip if profile not found for some reason
+
         return {
             id: doc.id,
             requester: {
@@ -95,7 +99,7 @@ export const getPendingRequests = functions.https.onCall(async (data, context) =
             },
             createdAt: (reqData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         };
-    });
+    }).filter(Boolean); // Filter out nulls
 
     return { requests };
 });

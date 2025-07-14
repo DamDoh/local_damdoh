@@ -121,6 +121,8 @@ export const getFarmerDashboardData = functions.https.onCall(
                     typeName: batchData.typeName,
                     status: batchData.status,
                     nextStepDate: (batchData.nextStepDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+                    quantityProduced: batchData.quantityProduced,
+                    unit: batchData.unit,
                 };
             });
 
@@ -251,7 +253,6 @@ export const getFiDashboardData = functions.https.onCall(
             };
         });
 
-        // Mock data for other sections
         const portfolioOverview = {
             loanCount: 15,
             totalValue: 750000,
@@ -813,7 +814,7 @@ export const getAgronomistDashboardData = functions.https.onCall(
             { id: 'farmer1', name: 'John Doe', farmLocation: 'Nakuru', lastConsultation: new Date(Date.now() - 86400000 * 7).toISOString(), alerts: 1 }
         ];
         const pendingConsultationRequests = [
-            { id: 'req1', farmerName: 'Jane Smith', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString() }
+            { id: 'req1', farmerName: 'Jane Smith', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString(), farmerId: 'farmer1' }
         ];
 
         return {
@@ -845,7 +846,7 @@ export const getAgroTourismDashboardData = functions.https.onCall(
             return {
                 id: doc.id,
                 title: item.name,
-                location: item.location,
+                location: item.location.address,
                 status: 'Published' as 'Published' | 'Draft', // Assuming all listed items are published for now
                 bookingsCount: item.bookingsCount || 0, // A field we can increment
                 actionLink: `/marketplace/${doc.id}/manage-service`
@@ -1009,15 +1010,29 @@ export const getOperationsDashboardData = functions.https.onCall(
 );
 
 export const getAgriTechInnovatorDashboardData = functions.https.onCall(
-  (data, context): AgriTechInnovatorDashboardData => {
-    checkAuth(context);
-    // In a real app, this data would be pulled from a secure datastore.
+  async (data, context): Promise<AgriTechInnovatorDashboardData> => {
+    const innovatorId = checkAuth(context);
+    
+    const keysSnapshot = await db.collection('users').doc(innovatorId).collection('api_keys')
+        .orderBy('createdAt', 'desc')
+        .get();
+
+    const apiKeys = keysSnapshot.docs.map(doc => {
+        const keyData = doc.data();
+        return {
+            id: doc.id,
+            description: keyData.description,
+            environment: keyData.environment,
+            status: keyData.status,
+            keyPrefix: keyData.keyPrefix, 
+            createdAt: (keyData.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+            key: `${keyData.keyPrefix}...${keyData.lastFour}` 
+        }
+    });
+
+    // In a real app, this data would be pulled from system monitoring tools.
     return {
-      apiKeys: [
-        { id: 'key1', key: 'sk_test_..._xyz1', status: 'Active', environment: 'Sandbox', createdAt: new Date(Date.now() - 86400000 * 30).toISOString() },
-        { id: 'key2', key: 'sk_prod_..._abc2', status: 'Active', environment: 'Production', createdAt: new Date(Date.now() - 86400000 * 90).toISOString() },
-        { id: 'key3', key: 'sk_test_..._pqr3', status: 'Revoked', environment: 'Sandbox', createdAt: new Date(Date.now() - 86400000 * 120).toISOString() },
-      ],
+      apiKeys: apiKeys,
       sandboxStatus: {
         status: 'Operational',
         lastReset: new Date(Date.now() - 86400000 * 3).toISOString(),

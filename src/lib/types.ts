@@ -30,6 +30,7 @@ export type AgriEvent = z.infer<typeof AgriEventSchema> & {
   id: string; // Add id to the type for frontend use
   organizerId: string;
   registeredAttendeesCount: number;
+  isRegistered?: boolean;
 };
 export type ForumTopic = z.infer<typeof ForumPostSchema>;
 export type Shop = z.infer<typeof ShopSchema>;
@@ -451,6 +452,7 @@ export interface AgronomistDashboardData {
     farmerName: string;
     issueSummary: string;
     requestDate: string; // ISO String
+    farmerId: string;
   }[];
   knowledgeHubContributions: {
     id: string;

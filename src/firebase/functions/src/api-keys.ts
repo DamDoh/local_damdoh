@@ -35,16 +35,18 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
     const fullKey = `${keyPrefix}_${secret}`;
     const keyRef = db.collection('users').doc(innovatorId).collection('api_keys').doc();
 
-    const newKeyDataToStore = {
+    const newKeyDataToStore: Omit<ApiKey, 'id'|'key'|'createdAt'> = {
         description,
         environment,
         status: 'Active',
         keyPrefix: `${keyPrefix}_...`,
         lastFour: secret.slice(-4),
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
     };
 
-    await keyRef.set(newKeyDataToStore);
+    await keyRef.set({
+        ...newKeyDataToStore,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
 
     return { 
         success: true, 
