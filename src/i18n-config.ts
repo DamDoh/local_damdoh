@@ -8,5 +8,3 @@ export const localeNames: Record<typeof locales[number], string> = {
   km: "ភាសាខ្មែរ",
   th: "ไทย",
 };
-
-    
