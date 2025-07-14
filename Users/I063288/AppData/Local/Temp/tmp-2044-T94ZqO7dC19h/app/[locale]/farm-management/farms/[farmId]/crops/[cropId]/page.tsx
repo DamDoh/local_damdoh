@@ -2,10 +2,10 @@
 "use client";
 
 import { useEffect, useState, useMemo, useCallback } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { ArrowLeft, MapPin, Sprout, ClipboardList, PlusCircle, Droplets, Weight, NotebookPen, TrendingUp, Lightbulb, Edit, Eye, HardHat, Package, CheckCircle, GitBranch, Truck, CalendarDays, Award } from 'lucide-react';
+import { ArrowLeft, Edit, Weight, Droplets, NotebookPen } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,9 +15,10 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
-import { doc, getDoc, getFirestore } from 'firebase/firestore';
-import type { FarmingAssistantOutput } from '@/ai/flows/farming-assistant-flow';
+import { TraceabilityEventCard } from '@/components/farm-management/TraceabilityEventCard';
 import { CropRotationSuggester } from '@/components/farm-management/CropRotationSuggester';
+import type { TraceabilityEvent } from '@/lib/types';
+
 
 interface CropDetails {
     id: string;
@@ -26,74 +27,16 @@ interface CropDetails {
     harvestDate?: string;
     currentStage?: string;
     notes?: string;
-    farmId: string; // Add farmId
+    farmId: string;
 }
 
 interface FarmDetails {
     location?: string;
 }
 
-interface TraceabilityEvent {
-  id: string;
-  eventType: string;
-  timestamp: string;
-  payload: any;
-  actor: {
-    name: string;
-    role: string;
-    avatarUrl?: string;
-  };
-  geoLocation?: { lat: number; lng: number } | null;
-}
-
-const getEventIcon = (eventType: string) => {
-    const iconProps = { className: "h-5 w-5" };
-    switch (eventType) {
-        case 'PLANTED': return <Sprout {...iconProps} />;
-        case 'OBSERVED': return <Eye {...iconProps} />;
-        case 'INPUT_APPLIED': return <Droplets {...iconProps} />;
-        case 'HARVESTED': return <Weight {...iconProps} />;
-        case 'PACKAGED': return <Package {...iconProps} />;
-        case 'VERIFIED': return <CheckCircle {...iconProps} />;
-        case 'TRANSPORTED': return <Truck {...iconProps} />;
-        default: return <HardHat {...iconProps} />;
-    }
-};
-
-const EventPayload = ({ payload, t }: { payload: any, t:any }) => {
-    if (!payload || typeof payload !== 'object' || Object.keys(payload).length === 0) {
-        return <p className="text-xs text-muted-foreground italic">{t('eventPayload.noDetails')}</p>;
-    }
-    
-    if (payload.aiAnalysis && typeof payload.aiAnalysis === 'object') {
-        const analysis = payload.aiAnalysis as FarmingAssistantOutput;
-        return (
-            <div className="text-sm text-muted-foreground space-y-2 mt-2 p-2 bg-background rounded-md">
-                <p><strong>{t('eventPayload.observationType')}:</strong> {payload.observationType}</p>
-                <p><strong>{t('eventPayload.details')}:</strong> {payload.details}</p>
-                <div className="mt-2 pt-2 border-t border-dashed">
-                    <h5 className="font-semibold text-foreground text-sm">{t('eventPayload.aiDiagnosis')}</h5>
-                    <p className="text-sm">{analysis.summary}</p>
-                </div>
-            </div>
-        )
-    }
-
-    return (
-        <ul className="space-y-1 text-muted-foreground text-xs list-disc list-inside">
-            {Object.entries(payload).map(([key, value]) => {
-                if (typeof value === 'object' && value !== null) return null;
-                const formattedKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
-                return <li key={key} className="truncate"><strong>{formattedKey}:</strong> {String(value)}</li>
-            })}
-        </ul>
-    );
-};
-
 export default function CropDetailPage() {
   const t = useTranslations('farmManagement.cropDetailPage');
   const params = useParams();
-  const router = useRouter();
   const farmId = params.farmId as string;
   const cropId = params.cropId as string;
   const { user } = useAuth();
@@ -106,6 +49,7 @@ export default function CropDetailPage() {
 
   const functions = getFunctions(firebaseApp);
   const getCropCallable = useMemo(() => httpsCallable(functions, 'getCrop'), [functions]);
+  const getFarmCallable = useMemo(() => httpsCallable(functions, 'getFarm'), [functions]);
   const getTraceabilityEventsCallable = useMemo(() => httpsCallable(functions, 'getTraceabilityEventsByFarmField'), [functions]);
 
   const fetchDetails = useCallback(async () => {
@@ -113,9 +57,10 @@ export default function CropDetailPage() {
     setIsLoading(true);
     
     try {
-        const [cropResult, eventsResult] = await Promise.all([
+        const [cropResult, eventsResult, farmResult] = await Promise.all([
             getCropCallable({ cropId }),
-            getTraceabilityEventsCallable({ farmFieldId: cropId })
+            getTraceabilityEventsCallable({ farmFieldId: cropId }),
+            getFarmCallable({ farmId })
         ]);
         
         const cropData = cropResult.data as CropDetails;
@@ -124,6 +69,9 @@ export default function CropDetailPage() {
         } else {
              toast({ variant: 'destructive', title: t('toast.notFound') });
         }
+        
+        const farmData = farmResult.data as FarmDetails;
+        setFarm(farmData);
 
         setEvents((eventsResult.data as { events: TraceabilityEvent[] })?.events || []);
 
@@ -133,14 +81,14 @@ export default function CropDetailPage() {
     } finally {
         setIsLoading(false);
     }
-  }, [cropId, farmId, user, getCropCallable, getTraceabilityEventsCallable, toast, t]);
+  }, [cropId, farmId, user, getCropCallable, getFarmCallable, getTraceabilityEventsCallable, toast, t]);
 
   useEffect(() => {
     fetchDetails();
   }, [fetchDetails]);
 
   if (isLoading) {
-    return <div>{t('loading')}</div>;
+    return <Skeleton className="h-screen w-full" />;
   }
 
   if (!crop) {
@@ -202,25 +150,8 @@ export default function CropDetailPage() {
                     <div className="relative pl-6">
                         <div className="absolute left-8 top-0 h-full w-0.5 bg-border -z-10"></div>
                         {events.length > 0 ? (
-                            events.map((event, index) => (
-                                <div key={event.id} className="relative flex items-start gap-4 pb-8">
-                                     <div className="absolute left-0 top-0 h-full flex flex-col items-center">
-                                        <span className="bg-background p-1.5 rounded-full border-2 border-primary flex items-center justify-center text-primary z-10">
-                                            {getEventIcon(event.eventType)}
-                                        </span>
-                                    </div>
-                                    <div className="pl-14 w-full">
-                                        <Card className="shadow-sm">
-                                            <CardHeader className="p-3">
-                                                <CardTitle className="text-base">{event.eventType.replace(/_/g, ' ')}</CardTitle>
-                                                <CardDescription className="text-xs">{format(new Date(event.timestamp), 'PPpp')}</CardDescription>
-                                            </CardHeader>
-                                            <CardContent className="p-3 pt-0">
-                                                <EventPayload payload={event.payload} t={t}/>
-                                            </CardContent>
-                                        </Card>
-                                    </div>
-                                </div>
+                            events.map((event) => (
+                                <TraceabilityEventCard key={event.id} event={event} />
                             ))
                         ) : (
                             <p className="text-sm text-muted-foreground">{t('noActivities')}</p>
