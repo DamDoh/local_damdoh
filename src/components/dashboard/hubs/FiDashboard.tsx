@@ -37,6 +37,7 @@ const StatCard = ({ title, value, description, icon, ctaLink, ctaText }: { title
 
 export const FiDashboard = () => {
     const t = useTranslations('FiDashboard');
+    const tStatus = useTranslations('FiApplicationListPage');
     const [dashboardData, setDashboardData] = useState<FiDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -78,6 +79,18 @@ export const FiDashboard = () => {
     }
     
     const { pendingApplications, portfolioOverview, financialProducts } = dashboardData;
+    
+    const getStatusBadgeVariant = (status: string) => {
+        switch (status) {
+            case 'Approved': return 'default';
+            case 'Rejected': return 'destructive';
+            case 'Under Review':
+            case 'More Info Required':
+            case 'Pending':
+                return 'secondary';
+            default: return 'outline';
+        }
+    };
 
     return (
         <div>

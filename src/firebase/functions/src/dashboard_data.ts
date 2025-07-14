@@ -849,7 +849,7 @@ export const getAgroTourismDashboardData = functions.https.onCall(
                 location: item.location.address,
                 status: 'Published' as 'Published' | 'Draft', // Assuming all listed items are published for now
                 bookingsCount: item.bookingsCount || 0, // A field we can increment
-                actionLink: `/marketplace/${doc.id}/manage-service`
+                actionLink: `/marketplace/${item.id}/manage-service`
             };
         });
 

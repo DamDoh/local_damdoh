@@ -128,7 +128,7 @@ export default function ApplicationListPage() {
                                                 <TableCell><Badge variant="outline">{app.type}</Badge></TableCell>
                                                 <TableCell>${app.amount.toLocaleString()}</TableCell>
                                                 <TableCell>{app.submittedAt ? format(new Date(app.submittedAt), 'PPP') : 'N/A'}</TableCell>
-                                                <TableCell><Badge variant={getStatusBadgeVariant(app.status)}>{app.status}</Badge></TableCell>
+                                                <TableCell><Badge variant={getStatusBadgeVariant(app.status)}>{t(`status.${app.status.toLowerCase().replace(/\s/g, '_')}` as any, app.status)}</Badge></TableCell>
                                                 <TableCell className="text-right">
                                                     <Button asChild size="sm" variant="secondary">
                                                         <Link href={`/fi/applications/${app.id}`}>{t('reviewButton')}</Link>
