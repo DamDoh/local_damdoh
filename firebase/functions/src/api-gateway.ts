@@ -4,9 +4,15 @@ import * as admin from "firebase-admin";
 
 const db = admin.firestore();
 
+/**
+ * Checks if the user is authenticated.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {string} The user's UID.
+ * @throws {functions.https.HttpsError} Throws an error if the user is not authenticated.
+ */
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
   }
   return context.auth.uid;
 };
@@ -27,7 +33,7 @@ const checkAuth = (context: functions.https.CallableContext) => {
 /**
  * Fetches external market data for a commodity.
  * Conceptually called by Module 8 (AI) for market price prediction.
- * @param {any} data The data for the function call.
+ * @param {object} data The data for the function call.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{status: string, data: any}>} A promise that resolves with the market data.
  */
@@ -37,7 +43,7 @@ export const fetchExternalMarketData = functions.https.onCall(async (data, conte
     if (!commodity || !region) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "Commodity and region are required.",
+        "error.api.missingFields",
       );
     }
 
@@ -54,7 +60,7 @@ export const fetchExternalMarketData = functions.https.onCall(async (data, conte
       console.error("Error fetching external market data:", error);
       throw new functions.https.HttpsError(
         "internal",
-        "Unable to fetch external market data.",
+        "error.api.fetchFailed",
         error.message,
       );
     }
@@ -63,7 +69,7 @@ export const fetchExternalMarketData = functions.https.onCall(async (data, conte
 /**
  * Sends an SMS notification via an external gateway.
  * Conceptually called by the Notification System.
- * @param {any} data The data for the function call.
+ * @param {object} data The data for the function call.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{status: string, messageId: string}>} A promise that resolves with the message ID.
  */
@@ -73,7 +79,7 @@ export const sendSmsNotification = functions.https.onCall(async (data, context) 
     if (!toPhoneNumber || !messageBody) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "toPhoneNumber and messageBody are required.",
+        "error.api.missingSmsFields",
       );
     }
 
@@ -86,7 +92,7 @@ export const sendSmsNotification = functions.https.onCall(async (data, context) 
       console.error("Error sending SMS:", error);
       throw new functions.https.HttpsError(
         "internal",
-        "Unable to send SMS notification.",
+        "error.api.smsFailed",
         error.message,
       );
     }
@@ -109,7 +115,7 @@ async function authorizeApiRequest(context: functions.https.CallableContext): Pr
   if (!context.auth) {
     throw new functions.https.HttpsError(
       "unauthenticated",
-      "Authentication via API Key required.",
+      "error.unauthenticated",
     );
   }
   console.log(`Authorizing API request for partner ${context.auth.uid}...`);
@@ -123,7 +129,7 @@ async function authorizeApiRequest(context: functions.https.CallableContext): Pr
 
 /**
  * API Endpoint for partners to get public details of a VTI batch.
- * @param {any} data The data for the function call.
+ * @param {object} data The data for the function call.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{status: string, data: any}>} A promise that resolves with the VTI details.
  */
@@ -132,7 +138,7 @@ export const apiGetVtiDetails = functions.https.onCall(async (data, context) => 
   if (!permissions.includes("read:vti_details_public")) {
     throw new functions.https.HttpsError(
       "permission-denied",
-      "Partner does not have permission to read VTI details.",
+      "error.permissionDenied",
     );
   }
 
@@ -140,7 +146,7 @@ export const apiGetVtiDetails = functions.https.onCall(async (data, context) => 
   if (!vtiId) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "vtiId is required.",
+      "error.api.vtiIdRequired",
     );
   }
 
@@ -149,7 +155,7 @@ export const apiGetVtiDetails = functions.https.onCall(async (data, context) => 
     if (!vtiDoc.exists || !vtiDoc.data()?.isPublicTraceable) {
       throw new functions.https.HttpsError(
         "not-found",
-        `Public VTI with ID ${vtiId} not found.`,
+        "error.api.vtiNotFound",
       );
     }
 
@@ -158,13 +164,13 @@ export const apiGetVtiDetails = functions.https.onCall(async (data, context) => 
     const apiResponseData = {
       id: vtiData?.vtiId,
       type: vtiData?.type,
-      creationTime: vtiData?.creationTime?.toDate().toISOString(),
+      creationTime: (vtiData?.creationTime as admin.firestore.Timestamp)?.toDate?.().toISOString(),
       metadata: vtiData?.metadata, // Expose only public metadata
     };
     return {status: "success", data: apiResponseData};
   } catch (error: any) {
     console.error(`API Error getting VTI details for ${vtiId}:`, error);
     if (error instanceof functions.https.HttpsError) throw error;
-    throw new functions.https.HttpsError("internal", "An internal error occurred.");
+    throw new functions.https.HttpsError("internal", "error.internal");
   }
 });

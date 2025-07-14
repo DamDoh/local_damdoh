@@ -1,13 +1,12 @@
 
 import * as functions from "firebase-functions";
 import {
-  _internalAssessCreditRisk,
   _internalMatchFundingOpportunities,
 } from "./financial-services";
 
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
   }
   return context.auth.uid;
 };
@@ -16,22 +15,18 @@ const checkAuth = (context: functions.https.CallableContext) => {
  * =================================================================
  * Module 6: AI & Analytics Engine (The Brain of DamDoh)
  * =================================================================
- * NOTE: The assessCreditRiskWithAI function is now deprecated here and has been
- * migrated to the new Express server in `server.ts` for deployment on Cloud Run.
- * This ensures better performance by avoiding cold starts.
- * The function is kept here as a placeholder to avoid breaking potential old references
- * but should not be used for new development. New client calls should be directed
- * to the Cloud Run endpoint.
+ * NOTE: The assessCreditRiskWithAI function has been officially removed.
+ * It has been migrated to the Express server in `server.ts` for deployment on Cloud Run.
+ * This ensures better performance by avoiding cold starts. New client calls must be
+ * directed to the Cloud Run endpoint: `/ai/assess-risk`.
  */
 
-export const assessCreditRiskWithAI = functions.https.onCall(
-    async (data, context) => {
-      console.warn("DEPRECATED: The 'assessCreditRiskWithAI' callable function is deprecated. Use the Cloud Run endpoint '/ai/assess-risk' instead.");
-      checkAuth(context);
-      return await _internalAssessCreditRisk(data);
-    },
-);
-
+/**
+ * Matches a user with funding opportunities using an AI model.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<any>} A promise that resolves with the matched opportunities.
+ */
 export const matchFundingOpportunitiesWithAI = functions.https.onCall(
     async (data, context) => {
       checkAuth(context);
@@ -42,8 +37,7 @@ export const matchFundingOpportunitiesWithAI = functions.https.onCall(
 /**
  * Processes raw data (like a list of traceability events) and generates
  * an AI-powered summary and key findings.
- *
- * @param {any} data The report data to be processed.
+ * @param {{ reportType: string; data: any[] }} data The report data to be processed.
  * @return {Promise<any>} A promise that resolves with the processed content.
  */
 export async function _internalProcessReportData(data: { reportType: string; data: any[] }): Promise<any> {
