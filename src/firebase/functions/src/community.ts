@@ -20,6 +20,49 @@ const checkAuth = (context: functions.https.CallableContext) => {
   return context.auth.uid;
 };
 
+/**
+ * Recursively deletes a collection in batches.
+ * @param {string} collectionPath The path to the collection to delete.
+ * @param {number} batchSize The number of documents to delete in each batch.
+ */
+async function deleteCollectionByPath(collectionPath: string, batchSize: number) {
+    const collectionRef = db.collection(collectionPath);
+    const query = collectionRef.orderBy('__name__').limit(batchSize);
+
+    return new Promise((resolve, reject) => {
+        deleteQueryBatch(query, resolve, reject);
+    });
+}
+
+/**
+ * Helper function for deleteCollectionByPath to delete documents from a query in batches.
+ * @param {FirebaseFirestore.Query} query The query to delete documents from.
+ * @param {Function} resolve The promise resolve function.
+ * @param {Function} reject The promise reject function.
+ */
+async function deleteQueryBatch(query: admin.firestore.Query, resolve: (value?: unknown) => void, reject: (reason?: any) => void) {
+    const snapshot = await query.get();
+
+    if (snapshot.size === 0) {
+        // When there are no documents left, we are done
+        resolve();
+        return;
+    }
+
+    // Delete documents in a batch
+    const batch = db.batch();
+    snapshot.docs.forEach((doc) => {
+        batch.delete(doc.ref);
+    });
+    await batch.commit();
+
+    // Recurse on the same query to delete more documents
+    process.nextTick(() => {
+        deleteQueryBatch(query, resolve, reject);
+    });
+}
+
+
 export const createFeedPost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { content, pollOptions, imageUrl, dataAiHint } = data; // pollOptions is an array of objects with a 'text' property
@@ -77,16 +120,30 @@ export const deletePost = functions.https.onCall(async (data, context) => {
     if (postData.userId !== uid && callerRole !== 'Admin') {
         throw new functions.https.HttpsError('permission-denied', 'error.permissionDenied');
     }
+    
+    // Perform a cascade delete of subcollections before deleting the post itself.
+    const likesPath = `posts/${postId}/likes`;
+    const commentsPath = `posts/${postId}/comments`;
+    const votesPath = `posts/${postId}/votes`;
 
-    // Perform the deletion
+    console.log(`Deleting subcollections for post ${postId}...`);
+    
+    await Promise.all([
+        deleteCollectionByPath(likesPath, 200),
+        deleteCollectionByPath(commentsPath, 200),
+        deleteCollectionByPath(votesPath, 200)
+    ]);
+    
+    console.log(`Subcollections deleted. Deleting main post document ${postId}.`);
+
+    // Finally, delete the post document itself
     await postRef.delete();
 
-    // TODO: In a production app, you would also delete all subcollections (likes, comments)
-    // and any associated media from Cloud Storage. This is a more complex operation.
+    // Note: Deleting associated media from Cloud Storage would require another step,
+    // often handled by a separate onFinalize trigger or by storing the full GCS path.
 
-    return { success: true, message: 'Post deleted successfully.' };
+    return { success: true, message: 'Post and all associated data deleted successfully.' };
 });
-
 
 export const likePost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
