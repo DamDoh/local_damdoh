@@ -1,40 +1,11 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { translateText } from "@/ai/flows/translate-flow";
 
 const db = admin.firestore();
 
-// Initialize the Gemini AI model for translation
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
-
-const SUPPORTED_LANGUAGES = ["en", "km", "es", "fr", "de"];
-
-/**
- * A helper function to translate text using the Gemini API.
- * @param {string} text The text to translate.
- * @param {string} targetLanguage The target language code (e.g., 'km' for Khmer).
- * @return {Promise<string>} The translated text.
- */
-async function translateText(text: string, targetLanguage: string): Promise<string> {
-    if (!text) return "";
-    try {
-        const prompt = `Translate the following text to the language with the ISO 639-1 code "${targetLanguage}":
-
-"${text}"
-
-Return only the translated text, without any introductory phrases or quotation marks.`;
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        return response.text().trim();
-    } catch (error: any) {
-        console.error(`Error translating text to ${targetLanguage}:`, error.message);
-        // Return a noticeable error string but don't cause the entire function to fail
-        return `[Translation Error: ${error.message}]`;
-    }
-}
-
+const SUPPORTED_LANGUAGES = ["en", "km", "es", "fr", "de", "th"];
 
 /**
  * Firestore trigger that automatically translates new or updated knowledge articles
@@ -53,7 +24,6 @@ export const onArticleWriteTranslate = functions.firestore
 
     const beforeData = change.before.data() || {};
     
-    // Check if the English content has changed. We will treat English as the source of truth.
     const englishContentChanged = (
         afterData.title_en !== beforeData.title_en ||
         afterData.content_markdown_en !== beforeData.content_markdown_en ||
@@ -79,24 +49,24 @@ export const onArticleWriteTranslate = functions.firestore
     const translationPromises: Promise<void>[] = [];
     const updatePayload: {[key: string]: any} = {};
 
-    // Re-translate for all supported languages except English itself.
     for (const lang of SUPPORTED_LANGUAGES) {
         if (lang === 'en') continue;
 
         console.log(`Queueing translation to '${lang}' for article ${articleId}.`);
         const p = (async () => {
+          try {
             const [translatedTitle, translatedContent, translatedExcerpt] = await Promise.all([
-                translateText(sourceTitle, lang),
-                translateText(sourceContent, lang),
-                translateText(sourceExcerpt, lang)
+                translateText({ text: sourceTitle, targetLanguage: lang }),
+                translateText({ text: sourceContent, targetLanguage: lang }),
+                translateText({ text: sourceExcerpt, targetLanguage: lang })
             ]);
             
-            // Add to payload only if translation was successful
-            if (!translatedTitle.startsWith('[Translation Error')) {
-                updatePayload[`title_${lang}`] = translatedTitle;
-                updatePayload[`content_markdown_${lang}`] = translatedContent;
-                updatePayload[`excerpt_${lang}`] = translatedExcerpt;
-            }
+            updatePayload[`title_${lang}`] = translatedTitle;
+            updatePayload[`content_markdown_${lang}`] = translatedContent;
+            updatePayload[`excerpt_${lang}`] = translatedExcerpt;
+          } catch (error) {
+             console.error(`Translation to ${lang} for article ${articleId} failed:`, error);
+          }
         })();
         translationPromises.push(p);
     }
@@ -107,7 +77,7 @@ export const onArticleWriteTranslate = functions.firestore
         console.log(`Updating article ${articleId} with new translations.`);
         return change.after.ref.update(updatePayload);
     } else {
-        console.log(`No new translations to update for article ${articleId}.`);
+        console.log(`No new successful translations to update for article ${articleId}.`);
         return null;
     }
   });
@@ -461,3 +431,5 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
     );
   }
 });
+
+    
