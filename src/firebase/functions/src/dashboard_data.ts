@@ -3,6 +3,8 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
+    AdminDashboardData,
+    AdminActivity,
     FarmerDashboardData,
     CooperativeDashboardData,
     BuyerDashboardData,
@@ -29,6 +31,7 @@ import type {
     AgriTechInnovatorDashboardData,
     FarmerDashboardAlert,
     OperationsDashboardData,
+    FinancialProduct,
 } from "./types";
 
 const db = admin.firestore();
@@ -43,6 +46,96 @@ const checkAuth = (context: functions.https.CallableContext) => {
   }
   return context.auth.uid;
 };
+
+// =================================================================
+// ADMIN DASHBOARD
+// =================================================================
+
+export const getAdminDashboardData = functions.https.onCall(async (data, context) => {
+    // TODO: Add admin role check
+    checkAuth(context);
+    
+    try {
+        const usersPromise = db.collection('users').get();
+        const farmsPromise = db.collection('farms').get();
+        const listingsPromise = db.collection('marketplaceItems').get();
+        const pendingApplicationsPromise = db.collection('financial_applications').where('status', 'in', ['Pending', 'Under Review']).get();
+
+        const aWeekAgo = new Date();
+        aWeekAgo.setDate(aWeekAgo.getDate() - 7);
+        const newUsersQuery = db.collection('users').where('createdAt', '>=', aWeekAgo).get();
+
+        const [usersSnapshot, farmsSnapshot, listingsSnapshot, pendingApplicationsSnapshot, newUsersSnapshot] = await Promise.all([
+            usersPromise,
+            farmsPromise,
+            listingsPromise,
+            pendingApplicationsPromise,
+            newUsersQuery
+        ]);
+
+        const dashboardData: AdminDashboardData = {
+            totalUsers: usersSnapshot.size,
+            totalFarms: farmsSnapshot.size,
+            totalListings: listingsSnapshot.size,
+            pendingApprovals: pendingApplicationsSnapshot.size,
+            newUsersLastWeek: newUsersSnapshot.size
+        };
+
+        return dashboardData;
+
+    } catch (error) {
+         console.error("Error fetching admin dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch admin dashboard data.");
+    }
+});
+
+export const getAdminRecentActivity = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
+    
+    try {
+        const usersPromise = db.collection('users').orderBy('createdAt', 'desc').limit(5).get();
+        const listingsPromise = db.collection('marketplaceItems').orderBy('createdAt', 'desc').limit(5).get();
+
+        const [usersSnap, listingsSnap] = await Promise.all([usersPromise, listingsPromise]);
+        
+        const activities: AdminActivity[] = [];
+
+        usersSnap.forEach(doc => {
+            const user = doc.data();
+            activities.push({
+                id: doc.id,
+                type: 'New User',
+                primaryInfo: user.displayName,
+                secondaryInfo: user.primaryRole,
+                timestamp: (user.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+                link: `/profiles/${doc.id}`,
+                avatarUrl: user.avatarUrl
+            });
+        });
+
+         listingsSnap.forEach(doc => {
+            const item = doc.data();
+            activities.push({
+                id: doc.id,
+                type: 'New Listing',
+                primaryInfo: item.name,
+                secondaryInfo: `$${item.price?.toFixed(2)}`,
+                timestamp: (item.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+                link: `/marketplace/${doc.id}`,
+                avatarUrl: item.imageUrl
+            });
+        });
+
+        activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
+        return { activity: activities.slice(0, 10) };
+
+    } catch (error) {
+        console.error("Error fetching admin recent activity:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch admin recent activity.");
+    }
+});
+
 
 // =================================================================
 // LIVE DATA DASHBOARDS
@@ -209,7 +302,7 @@ export const getPackagingSupplierDashboardData = functions.https.onCall(
                 product: order.listingName,
                 quantity: order.quantity,
                 status: order.status,
-                actionLink: `/orders/${order.id}`,
+                actionLink: `/marketplace/my-orders/${doc.id}`,
             };
         });
 
@@ -252,7 +345,8 @@ export const getFiDashboardData = functions.https.onCall(
                 actionLink: `/fi/applications/${doc.id}`,
             };
         });
-
+        
+        // Mock data for this iteration
         const portfolioOverview = {
             loanCount: 15,
             totalValue: 750000,
@@ -262,7 +356,7 @@ export const getFiDashboardData = functions.https.onCall(
             .where('fiId', '==', fiId)
             .get();
 
-        const financialProducts = productsSnapshot.docs.map(doc => ({id: doc.id, ...doc.data()})) as FiDashboardData['financialProducts'];
+        const financialProducts = productsSnapshot.docs.map(doc => ({id: doc.id, ...doc.data()})) as FinancialProduct[];
 
 
         return {
@@ -288,57 +382,29 @@ export const getCooperativeDashboardData = functions.https.onCall(
     const cooperativeId = checkAuth(context);
     
     try {
-        // --- Member Data ---
-        // In a real app, you'd fetch members from a subcollection on the cooperative's document.
-        // For this demo, we'll simulate by finding a few farmers.
-        const membersSnapshot = await db.collection('users').where('primaryRole', '==', 'Farmer').limit(5).get();
-        const memberIds = membersSnapshot.docs.map(doc => doc.id);
-        const memberCount = membersSnapshot.size;
-        
-        // --- Aggregated Land Area ---
-        let totalLandArea = 0;
-        if (memberIds.length > 0) {
-            const farmsSnapshot = await db.collection('farms').where('ownerId', 'in', memberIds).get();
-            farmsSnapshot.forEach(doc => {
-                // Assuming 'size' is a string like "50 Hectares", we parse the number.
-                const sizeString = doc.data().size || '0';
-                const sizeValue = parseFloat(sizeString.split(' ')[0]) || 0;
-                totalLandArea += sizeValue;
-            });
+        const coopDoc = await db.collection('users').doc(cooperativeId).get();
+        if (!coopDoc.exists) {
+            throw new functions.https.HttpsError('not-found', 'Cooperative profile not found.');
         }
 
-        // --- Aggregated Produce ---
-        const aggregatedProduce: CooperativeDashboardData['aggregatedProduce'] = [];
-        if (memberIds.length > 0) {
-            const cropsSnapshot = await db.collection('crops')
-                .where('ownerId', 'in', memberIds)
-                .where('currentStage', 'in', ['Harvesting', 'Post-Harvest'])
-                .orderBy('harvestDate', 'desc')
-                .limit(5)
-                .get();
-
-            cropsSnapshot.forEach(doc => {
-                const cropData = doc.data();
-                aggregatedProduce.push({
-                    id: doc.id,
-                    productName: cropData.cropType || 'Unknown Produce',
-                    // Assuming yield is stored on the crop document, or would be on the harvest event
-                    quantity: parseFloat(cropData.expectedYield?.split(' ')[0] || '0'), 
-                    quality: 'Grade A', // Placeholder as it's not on the crop model
-                    readyBy: (cropData.harvestDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
-                });
-            });
+        const coopData = coopDoc.data();
+        const groupId = coopData?.profileData?.groupId;
+        let memberCount = 0;
+        if (groupId) {
+             const groupDoc = await db.collection('groups').doc(groupId).get();
+             if (groupDoc.exists) {
+                 memberCount = groupDoc.data()?.memberCount || 0;
+             }
         }
 
-        // --- Pending Applications ---
-        // This remains mocked as the application system is not built yet.
         const pendingMemberApplications = 3;
 
         return {
             memberCount,
-            totalLandArea,
-            aggregatedProduce,
+            totalLandArea: 1250, // Mock data
+            aggregatedProduce: [], // Mock data
             pendingMemberApplications,
+            groupId: groupId || null,
         };
 
     } catch (error) {
@@ -587,7 +653,7 @@ export const getInputSupplierDashboardData = functions.https.onCall(
       const activeOrders = {
         count: ordersSnapshot.size,
         value: totalValue,
-        link: '/orders/manage' // A conceptual link for now
+        link: '/marketplace/my-orders'
       };
 
       // 2. Keep other sections as mock data for now
@@ -983,28 +1049,6 @@ export const getWasteManagementDashboardData = functions.https.onCall(
       finishedProductInventory: [
         { product: 'Grade A Compost', quantity: '25 tons', actionLink: '#' }
       ]
-    };
-  }
-);
-
-export const getOperationsDashboardData = functions.https.onCall(
-  (data, context): OperationsDashboardData => {
-    checkAuth(context);
-    // In a real app, this data would be pulled from system monitoring tools and data analysis queries.
-    return {
-      vtiGenerationRate: {
-        rate: 150,
-        unit: 'VTIs/hour',
-        trend: 5,
-      },
-      dataPipelineStatus: {
-        status: 'Operational',
-        lastChecked: new Date().toISOString(),
-      },
-      flaggedEvents: [
-        { id: 'flag1', type: 'Unusual Time Lag', description: 'Harvest to Transport delay > 48h for perishable goods.', vtiLink: '#' },
-        { id: 'flag2', type: 'Anomalous Geolocation', description: 'Processing event logged 500km from previous event location.', vtiLink: '#' },
-      ],
     };
   }
 );

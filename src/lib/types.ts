@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -179,6 +180,7 @@ export interface CooperativeDashboardData {
         readyBy: string; // ISO Date string
     }[];
     pendingMemberApplications: number;
+    groupId: string | null;
 }
 
 
@@ -257,20 +259,11 @@ export interface LogisticsDashboardData {
 
 export interface FiDashboardData {
     pendingApplications: FinancialApplication[];
-    portfolioAtRisk: {
-        count: number;
-        value: number;
-        highestRisk: {
-            name: string;
-            reason: string;
-        };
-        actionLink: string;
+    portfolioOverview: {
+        loanCount: number;
+        totalValue: number;
     };
-    marketUpdates: {
-        id: string;
-        content: string;
-        actionLink: string;
-    }[];
+    financialProducts: FinancialProduct[];
 }
 
 export interface FieldAgentDashboardData {
@@ -463,6 +456,7 @@ export interface AgronomistDashboardData {
     farmerName: string;
     issueSummary: string;
     requestDate: string; // ISO String
+    farmerId: string;
   }[];
   knowledgeHubContributions: {
     id: string;
@@ -654,6 +648,8 @@ export interface KnfBatch {
     status: 'Fermenting' | 'Ready' | 'Used' | 'Archived';
     nextStep: string;
     createdAt?: any;
+    quantityProduced?: number;
+    unit?: string;
 }
 
 export interface ForumPost {
@@ -795,3 +791,21 @@ export type MarketplaceRecommendationOutput = z.infer<typeof MarketplaceRecommen
 export type CropRotationInput = z.infer<typeof CropRotationInputSchema>;
 export type CropRotationOutput = z.infer<typeof CropRotationOutputSchema>;
 export type FarmingAssistantOutput = z.infer<typeof DiagnoseCropOutputSchema>;
+
+// Admin Types
+export interface AdminDashboardData {
+  totalUsers: number;
+  totalFarms: number;
+  totalListings: number;
+  pendingApprovals: number;
+  newUsersLastWeek: number;
+}
+export interface AdminActivity {
+  id: string;
+  type: 'New User' | 'New Listing';
+  primaryInfo: string;
+  secondaryInfo?: string;
+  timestamp: string;
+  link: string;
+  avatarUrl?: string;
+}
