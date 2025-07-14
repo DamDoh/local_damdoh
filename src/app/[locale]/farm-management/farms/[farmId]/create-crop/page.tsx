@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import Link from "next/link";
@@ -53,6 +54,7 @@ export default function CreateCropPage() {
   const form = useForm<CreateCropValues>({
     resolver: zodResolver(createCropSchema),
     defaultValues: {
+      farmId: farmId,
       cropType: "",
       plantingDate: new Date(),
       harvestDate: undefined,
@@ -75,14 +77,11 @@ export default function CreateCropPage() {
     setIsSubmitting(true);
 
     try {
+      // The Zod schema already includes farmId, so it's in `data`.
       const payload = {
-        farmId: farmId,
-        cropType: data.cropType,
+        ...data,
         plantingDate: data.plantingDate?.toISOString(),
         harvestDate: data.harvestDate?.toISOString(),
-        expectedYield: data.expectedYield,
-        currentStage: data.currentStage,
-        notes: data.notes,
       };
 
       await createCropCallable(payload);

@@ -1,4 +1,5 @@
 
+
 import { z } from "zod";
 import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from "@/lib/constants";
 
@@ -86,10 +87,10 @@ export const createAgriEventSchema = z.object({
 export type CreateAgriEventValues = z.infer<typeof createAgriEventSchema>;
 
 export const createFarmSchema = z.object({
-  name: z.string().min(3, "Farm name must be at least 3 characters.").max(100),
-  description: z.string().max(500, "Description is too long.").optional(),
-  location: z.string().min(3, "Please provide a location.").max(200),
-  size: z.string().min(1, "Please provide the farm size.").max(100),
+  name: z.string().min(3, "Farm name must be at least 3 characters.").max(100, "Name cannot exceed 100 characters."),
+  description: z.string().max(500, "Description cannot exceed 500 characters.").optional(),
+  location: z.string().min(3, "Please provide a location.").max(200, "Location cannot exceed 200 characters."),
+  size: z.string().min(1, "Please provide the farm size.").max(100, "Size description cannot exceed 100 characters."),
   farmType: z.enum(['crop', 'livestock', 'mixed', 'aquaculture', 'other'], {
     errorMap: () => ({ message: "Please select a farm type." }),
   }),
@@ -98,7 +99,8 @@ export const createFarmSchema = z.object({
 export type CreateFarmValues = z.infer<typeof createFarmSchema>;
 
 export const createCropSchema = z.object({
-  cropType: z.string().min(2, "Crop type must be at least 2 characters.").max(100),
+  farmId: z.string().min(1, "A farm ID is required."), // Added farmId for validation
+  cropType: z.string().min(2, "Crop type must be at least 2 characters.").max(100, "Crop type cannot exceed 100 characters."),
   plantingDate: z.date({
     required_error: "A planting date is required.",
     invalid_type_error: "That's not a valid date!",

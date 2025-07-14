@@ -4,6 +4,7 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type {KnfBatch} from "./types";
 import {_internalLogTraceEvent} from "./traceability";
+import { createFarmSchema, createCropSchema } from "@/lib/schemas";
 
 const db = admin.firestore();
 
@@ -21,14 +22,18 @@ export const createFarm = functions.https.onCall(async (data, context) => {
     );
   }
 
-  const {name, location, size, farmType, irrigationMethods, description} = data;
-  if (!name || !location || !size || !farmType) {
+  // Validate incoming data using the Zod schema
+  const validation = createFarmSchema.safeParse(data);
+  if (!validation.success) {
     throw new functions.https.HttpsError(
       "invalid-argument",
-      "error.farm.missingFields",
+      "Invalid farm data provided.",
+      validation.error.format()
     );
   }
 
+  const {name, location, size, farmType, irrigationMethods, description} = validation.data;
+  
   try {
     const newFarmRef = db.collection("farms").doc();
     await newFarmRef.set({
@@ -36,7 +41,7 @@ export const createFarm = functions.https.onCall(async (data, context) => {
       name,
       location,
       size,
-      farmType: farmType,
+      farmType,
       irrigationMethods: irrigationMethods || "",
       description: description || "",
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
@@ -148,11 +153,14 @@ export const updateFarm = functions.https.onCall(async (data, context) => {
     );
   }
 
-  const { farmId, name, location, size, farmType, irrigationMethods, description } = data;
-  if (!farmId || !name || !location || !size || !farmType) {
+  const { farmId, ...updatePayload } = data;
+  
+  const validation = createFarmSchema.partial().safeParse(updatePayload);
+  if (!validation.success) {
     throw new functions.https.HttpsError(
-      "invalid-argument",
-      "error.farm.missingFields",
+        "invalid-argument",
+        "Invalid farm data provided for update.",
+        validation.error.format()
     );
   }
 
@@ -169,12 +177,7 @@ export const updateFarm = functions.https.onCall(async (data, context) => {
     }
 
     await farmRef.update({
-      name,
-      location,
-      size,
-      farmType,
-      irrigationMethods: irrigationMethods || "",
-      description: description || "",
+      ...validation.data,
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
@@ -206,6 +209,16 @@ export const createCrop = functions.https.onCall(async (data, context) => {
       "error.unauthenticated",
     );
   }
+  
+  // Validate incoming data
+  const validation = createCropSchema.safeParse(data);
+  if (!validation.success) {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "Invalid crop data provided.",
+      validation.error.format()
+    );
+  }
 
   const {
     farmId,
@@ -215,13 +228,7 @@ export const createCrop = functions.https.onCall(async (data, context) => {
     expectedYield,
     currentStage,
     notes,
-  } = data;
-  if (!farmId || !cropType || !plantingDate) {
-    throw new functions.https.HttpsError(
-      "invalid-argument",
-      "error.crop.missingFields",
-    );
-  }
+  } = validation.data;
 
   // Security Check: Verify owner
   const farmRef = db.collection("farms").doc(farmId);
@@ -537,7 +544,7 @@ export const updateCrop = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
     }
-    const { cropId, ...updateData } = data;
+    const { cropId, ...updatePayload } = data;
     if (!cropId) {
         throw new functions.https.HttpsError("invalid-argument", "error.crop.idRequired");
     }
@@ -553,7 +560,7 @@ export const updateCrop = functions.https.onCall(async (data, context) => {
             throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
         }
         
-        const payload: { [key: string]: any } = { ...updateData, updatedAt: admin.firestore.FieldValue.serverTimestamp() };
+        const payload: { [key: string]: any } = { ...updatePayload, updatedAt: admin.firestore.FieldValue.serverTimestamp() };
         
         if (updateData.plantingDate) payload.plantingDate = admin.firestore.Timestamp.fromDate(new Date(updateData.plantingDate));
         if (updateData.harvestDate) payload.harvestDate = admin.firestore.Timestamp.fromDate(new Date(updateData.harvestDate));
