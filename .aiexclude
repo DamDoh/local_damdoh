@@ -1,0 +1,8 @@
+.next/
+node_modules/
+firebase/functions/dist/
+src/messages/de.json
+src/messages/fr.json
+src/messages/km.json
+src/messages/th.json
+src/app/[^e][^n]/

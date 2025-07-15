@@ -47,8 +47,19 @@ export const UNIFIED_MARKETPLACE_CATEGORY_IDS = AGRICULTURAL_CATEGORIES.map(cat 
 export type UnifiedMarketplaceCategoryType = typeof UNIFIED_MARKETPLACE_CATEGORY_IDS[number];
 
 
-export const LISTING_TYPES = ['Product', 'Service'] as const;
+export const LISTING_TYPES = ['Product', 'Service', 'AgroTourism'] as const;
 export type ListingType = typeof LISTING_TYPES[number];
+
+export const getListingTypeFilterOptions = (t: (key: string) => string) => {
+  const types: Array<{ value: ListingType | 'All', label: string }> = [
+    { value: 'All', label: t('listingTypes.All') },
+    { value: 'Product', label: t('listingTypes.Product') },
+    { value: 'Service', label: t('listingTypes.Service') },
+    { value: 'AgroTourism', label: t('listingTypes.AgroTourism') }
+  ];
+  return types;
+};
+
 
 // Form options for Marketplace creation
 export const UNIFIED_MARKETPLACE_FORM_CATEGORIES: Array<{ value: UnifiedMarketplaceCategoryType, label: string }> =

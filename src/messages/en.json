@@ -56,6 +56,10 @@
         "title": "Experts & Service Providers",
         "description": "Offer your specialized skills and services to a wide agricultural audience seeking your expertise."
       },
+      "fis": {
+        "title": "Financial Institutions",
+        "description": "Offer loans, insurance, and financial products to a verified agricultural community."
+      },
       "imageAlt": "A diverse group of agricultural stakeholders collaborating"
     },
     "cta": {
@@ -167,13 +171,17 @@
     "helpCenter": "Help Center",
     "logOut": "Log Out",
     "switchToLightAria": "Switch to light theme",
-    "switchToDarkAria": "Switch to dark theme"
+    "switchToDarkAria": "Switch to dark theme",
+    "mobileMenu": {
+      "description": "A mobile menu with navigation links."
+    }
   },
   "MobileBottomNav": {
     "home": "Home",
     "market": "Market",
     "search": "Search",
     "forums": "Forums",
+    "messages": "Messages",
     "profile": "Profile"
   },
   "DashboardRightSidebar": {
@@ -1957,6 +1965,9 @@
     "description": "Discover and connect with stakeholders across the agricultural supply chain.",
     "myNetworkButton": "My Network",
     "agentToolsButton": "Agent Tools",
+    "invite": {
+      "button": "Invite"
+    },
     "aiSuggestionsTitle": "AI Suggestions",
     "aiSuggestionsDescription": "Connect with people you may know based on your profile and activity.",
     "toast": {
@@ -1977,5 +1988,19 @@
     "allRoles": "All Roles",
     "noStakeholdersFound": "No stakeholders found.",
     "noStakeholdersHint": "Try adjusting your search filters."
+  },
+  "constants": {
+    "listingTypes": {
+      "All": "All Types",
+      "Product": "Product",
+      "Service": "Service",
+      "AgroTourism": "Agro-Tourism"
+    }
+  },
+  "ErrorPage": {
+    "title": "Something Went Wrong",
+    "description": "We apologize, but an unexpected error has occurred. Please try again or return to the homepage.",
+    "retryButton": "Try Again",
+    "homeButton": "Go to Homepage"
   }
 }

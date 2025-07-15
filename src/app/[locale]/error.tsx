@@ -41,10 +41,10 @@ export default function Error({
               () => reset()
             }
           >
-            {t('tryAgainButton')}
+            {t('retryButton')}
           </Button>
           <Button asChild variant="outline">
-            <Link href="/">{t('goHomeButton')}</Link>
+            <Link href="/">{t('homeButton')}</Link>
           </Button>
         </div>
       </Alert>
