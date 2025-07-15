@@ -1,1381 +1,1980 @@
-
 {
-  "common": {
-    "error": "កំហុស",
-    "success": "ជោគជ័យ",
-    "loading": "កំពុងផ្ទុក...",
-    "noData": "គ្មានទិន្នន័យ",
-    "save": "រក្សាទុក",
-    "cancel": "បោះបង់",
-    "viewDetails": "មើលលម្អិត",
-    "edit": "កែសម្រួល",
-    "delete": "លុប",
-    "back": "ត្រឡប់",
-    "submit": "ដាក់ស្នើ",
-    "yes": "បាទ/ចាស",
-    "no": "ទេ",
-    "confirm": "បញ្ជាក់",
-    "close": "បិទ",
-    "optional": "ស្រេចចិត្ត"
-  },
-  "constants": {
-    "stakeholderRoles": {
-      "Farmer": "កសិករ",
-      "AgriculturalCooperative": "សហគមន៍កសិកម្ម",
-      "FieldAgentAgronomistDamDohInternal": "ភ្នាក់ងារ/អ្នកជំនាញកសិកម្ម (បុគ្គលិកដាំដុះ)",
-      "OperationsLogisticsTeamDamDohInternal": "ក្រុមប្រតិបត្តិការ/ភស្តុភារ (បុគ្គលិកដាំដុះ)",
-      "QualityAssuranceTeamDamDohInternal": "ក្រុមធានាគុណភាព (បុគ្គលិកដាំដុះ)",
-      "ProcessingPackagingUnit": "អង្គភាពកែច្នៃនិងវេចខ្ចប់",
-      "BuyerRestaurantSupermarketExporter": "អ្នកទិញ (ភោជនីយដ្ឋាន, ផ្សារទំនើប, អ្នកនាំចេញ)",
-      "InputSupplierSeedFertilizerPesticide": "អ្នកផ្គត់ផ្គង់ធាតុចូល (គ្រាប់ពូជ, ជី, ថ្នាំសំលាប់សត្វល្អិត)",
-      "EquipmentSupplierSalesofMachineryIoT": "អ្នកផ្គត់ផ្គង់គ្រឿងចក្រ (លក់គ្រឿងចក្រ/IoT)",
-      "FinancialInstitutionMicrofinanceLoans": "គ្រឹះស្ថានហិរញ្ញវត្ថុ (មីក្រូហិរញ្ញវត្ថុ/កម្ចី)",
-      "GovernmentRegulatorAuditor": "និយតករ/សវនកររដ្ឋាភិបាល",
-      "CertificationBodyOrganicFairTradeetc": "ស្ថាប័នបញ្ជាក់ (សរីរាង្គ, ពាណិជ្ជកម្មដោយត្រឹមត្រូវ ។ល។)",
-      "Consumer": "អ្នកប្រើប្រាស់",
-      "ResearcherAcademic": "អ្នកស្រាវជ្រាវ/អ្នកសិក្សា",
-      "LogisticsPartnerThirdPartyTransporter": "ដៃគូដឹកជញ្ជូន (ភាគីទីបី)",
-      "StorageWarehouseFacility": "កន្លែងផ្ទុក/ឃ្លាំង",
-      "AgronomyExpertConsultantExternal": "អ្នកជំនាញ/ទីប្រឹក្សាកសិកម្ម (ខាងក្រៅ)",
-      "AgroTourismOperator": "ប្រតិបត្តិករទេសចរណ៍កសិកម្ម",
-      "EnergySolutionsProviderSolarBiogas": "អ្នកផ្តល់ដំណោះស្រាយថាមពល (ថាមពលព្រះអាទិត្យ, ឧស្ម័នជីវៈ)",
-      "AgroExportFacilitatorCustomsBroker": "អ្នកសម្របសម្រួលការនាំចេញកសិផល/ឈ្មួញកណ្តាលគយ",
-      "AgriTechInnovatorDeveloper": "អ្នកបង្កើតថ្មី/អ្នកអភិវឌ្ឍន៍បច្ចេកវិទ្យាកសិកម្ម",
-      "WasteManagementCompostFacility": "កន្លែងគ្រប់គ្រងកាកសំណល់ និងជីកំប៉ុស",
-      "CrowdfunderImpactInvestorIndividual": "អ្នកផ្តល់មូលនិធិសហគមន៍ (អ្នកវិនិយោគមានឥទ្ធិពល, បុគ្គល)",
-      "InsuranceProvider": "អ្នកផ្តល់សេវាធានារ៉ាប់រង",
-      "PackagingSupplier": "អ្នកផ្គត់ផ្គង់ការវេចខ្ចប់"
+  "MobileHomepage": {
+    "welcome": {
+      "morning": "KM: Good Morning, {name}",
+      "afternoon": "KM: Good Afternoon, {name}",
+      "evening": "KM: Good Evening, {name}"
     },
-    "listingTypes": {
-      "All": "គ្រប់ប្រភេទ",
-      "Product": "ផលិតផល",
-      "Service": "សេវាកម្ម"
-    },
-    "agriEventTypes": {
-      "All": "គ្រប់ប្រភេទ",
-      "Conference": "សន្និសីទ",
-      "Webinar": "សិក្ខាសាលាអនឡាញ",
-      "Workshop": "សិក្ខាសាលា",
-      "TradeShow": "ពិព័រណ៍ពាណិជ្ជកម្ម",
-      "FieldDay": "ទិវាស្រែ",
-      "NetworkingEvent": "ព្រឹត្តិការណ៍បណ្តាញ",
-      "OnlineCourseLaunch": "ការចាប់ផ្តើមវគ្គសិក្សាអនឡាញ",
-      "PolicyBriefing": "សង្ខេបគោលនយោបាយ"
-    },
-    "insuranceProductTypes": {
-      "Crop": "ការធានារ៉ាប់រងដំណាំ",
-      "Livestock": "ការធានារ៉ាប់រងបសុសត្វ",
-      "Asset": "ការធានារ៉ាប់រងទ្រព្យសកម្ម",
-      "Weather": "ផ្អែកលើអាកាសធាតុ (ប៉ារ៉ាម៉ែត្រ)"
-    },
-    "financialServiceTypes": {},
-    "cropStages": {
-      "Planting": "ការដាំដុះ",
-      "Vegetative": "ការលូតលាស់",
-      "Flowering": "ការចេញផ្កា",
-      "Fruiting": "ការចេញផ្លែ",
-      "Harvesting": "ការប្រមូលផល",
-      "Post-Harvest": "ក្រោយការប្រមូលផល"
-    },
-    "observationTypes": {
-      "GeneralNote": "កំណត់ចំណាំទូទៅ",
-      "PestSighting": "ការមើលឃើញសត្វល្អិត",
-      "DiseaseSighting": "ការមើលឃើញជំងឺ",
-      "SoilCondition": "លក្ខខណ្ឌដី",
-      "WeatherEvent": "ព្រឹត្តិការណ៍អាកាសធាតុ",
-      "GrowthStageChange": "ការផ្លាស់ប្តូរដំណាក់កាលលូតលាស់",
-      "IrrigationEvent": "ព្រឹត្តិការណ៍ប្រព័ន្ធធារាសាស្រ្ត"
-    },
-    "mobileHomeCategories": {
-      "produceMarket": "ទីផ្សារកសិផល",
-      "farmInputs": "ធាតុចូលកសិកម្ម",
-      "talentExchange": "ការផ្លាស់ប្តូរទេពកោសល្យ",
-      "machinery": "គ្រឿងចក្រ",
-      "community": "សហគមន៍",
-      "aiAssistant": "ជំនួយការ AI",
-      "events": "ព្រឹត្តិការណ៍"
-    }
+    "discoverTitle": "KM: Discover",
+    "seeAllButton": "KM: See All",
+    "communityFeedTitle": "KM: Community Feed",
+    "communityFeedDescription": "KM: Connect with others, share your knowledge, and stay up-to-date with the latest conversations.",
+    "goToFeedButton": "KM: Go to Feed",
+    "noRecommendations": "KM: No recommendations available right now. Explore the marketplace to get started!"
   },
   "LandingPage": {
     "hero": {
-      "title": "ពង្រឹងវិស័យកសិកម្មពីដីដល់ការលក់នៅលើ {appName}",
-      "subtitle": "វេទិកាតែមួយដែលភ្ជាប់គ្រប់តួអង្គក្នុងខ្សែសង្វាក់តម្លៃកសិកម្មសម្រាប់អនាគតមួយដែលកាន់តែមានតម្លាភាព ប្រសិទ្ធភាព និងនិរន្តរភាព។",
-      "getStartedButton": "ចាប់ផ្តើមដោយឥតគិតថ្លៃ",
-      "learnMoreButton": "ស្វែងយល់បន្ថែម"
+      "title": "KM: Empowering Agriculture from Soil to Sale on DamDoh",
+      "subtitle": "KM: The single platform connecting every stakeholder in the agricultural value chain for a more transparent, efficient, and sustainable future.",
+      "getStartedButton": "KM: Get Started for Free",
+      "learnMoreButton": "KM: Learn More"
     },
     "features": {
-      "title": "លក្ខណៈពិសេសចម្បងរបស់ដាំដុះ",
-      "subtitle": "អ្វីគ្រប់យ៉ាងដែលអ្នកត្រូវការដើម្បីរីកចម្រើន ភ្ជាប់ទំនាក់ទំនង និងធ្វើពាណិជ្ជកម្ម, នៅកន្លែងតែមួយ។",
+      "title": "DamDoh's Main Features",
+      "subtitle": "KM: Everything you need to grow, connect, and trade, all in one place.",
       "networking": {
-        "title": "បណ្តាញឆ្លាតវៃ",
-        "description": "ការណែនាំអំពីការតភ្ជាប់ដោយបញ្ញាសិប្បនិម្មិត ដើម្បីភ្ជាប់អ្នកជាមួយដៃគូត្រឹមត្រូវ ចាប់ពីអ្នកផ្គត់ផ្គង់រហូតដល់អ្នកទិញអន្តរជាតិ។"
+        "title": "KM: Intelligent Networking",
+        "description": "KM: AI-powered connection suggestions to link you with the right partners, from suppliers to international buyers."
       },
       "marketplace": {
-        "title": "ទីផ្សារផ្ទាល់",
-        "description": "ទិញនិងលក់ផលិតផលនិងសេវាកម្មដោយផ្ទាល់ បង្កើនតម្លាភាពនិងប្រាក់ចំណេញសម្រាប់គ្រប់តួអង្គ។"
+        "title": "KM: Direct Marketplace",
+        "description": "KM: Buy and sell products and services directly, increasing transparency and profitability for all stakeholders."
       },
       "forums": {
-        "title": "វេទិកាប្រធានបទ",
-        "description": "ចែករំលែកចំណេះដឹង ពិភាក្សាអំពីបញ្ហាប្រឈម និងសហការលើដំណោះស្រាយនៅក្នុងវេទិកាប្រធានបទជាក់លាក់។"
+        "title": "KM: Topical Forums",
+        "description": "KM: Share knowledge, discuss challenges, and collaborate on solutions in topic-specific forums."
       },
       "talent": {
-        "title": "ការផ្លាស់ប្តូរទេពកោសល្យ",
-        "description": "ផ្តល់ជូនឬស្វែងរកសេវាកម្មកសិកម្មឯកទេស ចាប់ពីការប្រមូលផលតាមតម្រូវការរហូតដល់ការស្ទង់មតិដោយដ្រូន។"
+        "title": "KM: Talent Exchange",
+        "description": "KM: Offer or find specialized agricultural services, from on-demand harvesting to drone surveys."
       }
     },
     "forWho": {
-      "badge": "សម្រាប់អ្នករាល់គ្នាក្នុងវិស័យកសិកម្ម",
-      "title": "វេទិកាមួយសម្រាប់ខ្សែសង្វាក់តម្លៃទាំងមូល",
-      "description": "ដាំដុះត្រូវបានរចនាឡើងដោយឡែកដើម្បីបម្រើប្រព័ន្ធអេកូឡូស៊ីកសិកម្មទាំងមូល បង្កើតចំណុចតែមួយនៃការពិត និងឱកាសសម្រាប់ទាំងអស់គ្នា។",
+      "badge": "KM: For Everyone in Agriculture",
+      "title": "KM: One Platform for the Entire Value Chain",
+      "description": "DamDoh is uniquely designed to serve the entire agricultural ecosystem, creating a single point of truth and opportunity for all.",
       "farmers": {
-        "title": "កសិករ",
-        "description": "ចូលទៅកាន់ទីផ្សារល្អប្រសើរ ស្វែងរកធាតុចូលដែលមានគុណភាព និងទទួលបានការណែនាំពីអ្នកជំនាញដើម្បីបង្កើនទិន្នផលនិងប្រាក់ចំណេញ។"
+        "title": "KM: Farmers",
+        "description": "KM: Access better markets, find quality inputs, and get expert advice to increase yield and profitability."
       },
       "buyers": {
-        "title": "អ្នកទិញនិងអ្នកកែច្នៃ",
-        "description": "ស្វែងរកផលិតផលដែលមានគុណភាពខ្ពស់ និងអាចតាមដានបានដោយផ្ទាល់ពីអ្នកដាំនិងសហគមន៍កសិកម្ម ធានានូវភាពជឿជាក់នៃខ្សែសង្វាក់ផ្គត់ផ្គង់។"
+        "title": "KM: Buyers & Processors",
+        "description": "KM: Source high-quality, traceable produce directly from growers and co-ops, ensuring supply chain reliability."
       },
       "experts": {
-        "title": "អ្នកជំនាញនិងអ្នកផ្តល់សេវា",
-        "description": "ផ្តល់ជំនាញ និងសេវាកម្មពិសេសរបស់អ្នកទៅកាន់ទស្សនិកជនកសិកម្មដ៏ធំទូលាយដែលកំពុងស្វែងរកជំនាញរបស់អ្នក។"
+        "title": "KM: Experts & Service Providers",
+        "description": "KM: Offer your specialized skills and services to a wide agricultural audience seeking your expertise."
       },
-      "fis": {
-        "title": "ស្ថាប័នហិរញ្ញវត្ថុ",
-        "description": "ផ្តល់ជូនឥណទាន ជំនួយ និងផលិតផលធានារ៉ាប់រងដែលមានគោលដៅដល់បណ្តាញអាជីវកម្មកសិកម្មដែលបានផ្ទៀងផ្ទាត់"
-      },
-      "imageAlt": "ក្រុមចម្រុះនៃតួអង្គកសិកម្មកំពុងសហការគ្នា"
+      "imageAlt": "KM: A diverse group of agricultural stakeholders collaborating"
     },
     "cta": {
-      "title": "ចូលរួមបដិវត្តន៍កសិកម្ម",
-      "subtitle": "ចុះឈ្មោះថ្ងៃនេះ ហើយក្លាយជាផ្នែកមួយនៃបណ្តាញសកលដែលកំពុងរីកចម្រើន ឧទ្ទិសដល់ការផ្លាស់ប្តូរអនាគតនៃម្ហូបអាហារ។",
-      "button": "បង្កើតគណនីឥតគិតថ្លៃរបស់អ្នក"
+      "title": "KM: Join the Agricultural Revolution",
+      "subtitle": "KM: Sign up today and become part of a growing global network dedicated to transforming the future of food.",
+      "button": "KM: Create Your Free Account"
     }
   },
   "Auth": {
-    "signInWelcome": "សូមស្វាគមន៍មកកាន់ {appName} ជាថ្មី",
-    "signUpWelcome": "ចូលរួមបណ្តាញកសិកម្មដាំដុះ",
-    "forgotPasswordResetPrompt": "កំណត់ពាក្យសម្ងាត់របស់អ្នកសម្រាប់ {appName} ឡើងវិញ",
-    "resetPasswordPrompt": "បង្កើតពាក្យសម្ងាត់ថ្មីសម្រាប់ {appName}",
-    "signInTitle": "ចូលគណនីរបស់អ្នក",
-    "signInDescription": "បញ្ចូលព័ត៌មានសម្គាល់របស់អ្នកដើម្បីចូលប្រើផ្ទាំងគ្រប់គ្រងរបស់អ្នក។",
-    "emailLabel": "អ៊ីមែល",
-    "emailPlaceholder": "you@example.com",
-    "passwordLabel": "ពាក្យសម្ងាត់",
-    "forgotPasswordLink": "ភ្លេចពាក្យសម្ងាត់?",
-    "signingInButton": "កំពុងចូល...",
-    "signInButton": "ចូលគណនី",
-    "noAccountPrompt": "មិនទាន់មានគណនី?",
-    "signUpLink": "ចុះឈ្មោះ",
-    "signInLink": "ចូលគណនី",
-    "recoverWithUniversalIdPrompt": "ឬស្តារការចូលប្រើដោយប្រើ ID សកលរបស់អ្នក",
-    "signUpTitle": "បង្កើតគណនីថ្មី",
-    "signUpDescription": "ប្រាប់យើងបន្តិចអំពីខ្លួនអ្នកដើម្បីចាប់ផ្តើម។",
-    "nameLabel": "ឈ្មោះរបស់អ្នក ឬឈ្មោះអាជីវកម្ម",
-    "namePlaceholder": "ឧ: ចាន់ ណារី ឬ កសិដ្ឋានជ្រលងបៃតង",
-    "roleLabel": "តួនាទីចម្បងរបស់អ្នក",
-    "rolePlaceholder": "ជ្រើសរើសតួនាទីរបស់អ្នកក្នុងខ្សែសង្វាក់ផ្គត់ផ្គង់...",
-    "confirmPasswordLabel": "បញ្ជាក់ពាក្យសម្ងាត់",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "កំពុងបង្កើតគណនី...",
-    "signUpButton": "បង្កើតគណនី",
-    "alreadyHaveAccountPrompt": "មានគណនីហើយ?",
-    "forgotPasswordTitle": "ភ្លេចពាក្យសម្ងាត់?",
-    "forgotPasswordDescription": "គ្មានបញ្ហាទេ។ បញ្ចូលអាសយដ្ឋានអ៊ីមែលរបស់អ្នកខាងក្រោម ហើយយើងនឹងផ្ញើតំណដើម្បីកំណត់វាឡើងវិញ។",
-    "sendResetLinkButton": "ផ្ញើតំណកំណត់ឡើងវិញ",
-    "sendingEmailButton": "កំពុងផ្ញើអ៊ីមែល...",
-    "rememberPasswordPrompt": "ចាំពាក្យសម្ងាត់របស់អ្នកវិញហើយ?",
-    "resetPasswordTitle": "កំណត់ពាក្យសម្ងាត់របស់អ្នកឡើងវិញ",
-    "resetPasswordDescription": "បញ្ចូល និងបញ្ជាក់ពាក្យសម្ងាត់ថ្មីរបស់អ្នកខាងក្រោម។",
-    "newPasswordLabel": "ពាក្យសម្ងាត់ថ្មី",
-    "newPasswordPlaceholder": "បញ្ចូលពាក្យសម្ងាត់ថ្មីដែលរឹងមាំ",
-    "resetPasswordButton": "កំណត់ពាក្យសម្ងាត់ឡើងវិញ",
-    "resettingPasswordButton": "កំពុងកំណត់ឡើងវិញ...",
+    "signInWelcome": "KM: Welcome back to DamDoh",
+    "signUpWelcome": "Join the DamDoh Agricultural Network",
+    "forgotPasswordResetPrompt": "KM: Reset your password for DamDoh",
+    "resetPasswordPrompt": "KM: Create a new password for DamDoh",
+    "signInTitle": "KM: Sign in to your account",
+    "signInDescription": "KM: Enter your credentials to access your dashboard.",
+    "emailLabel": "KM: Email",
+    "emailPlaceholder": "KM: you@example.com",
+    "passwordLabel": "KM: Password",
+    "forgotPasswordLink": "KM: Forgot password?",
+    "signingInButton": "KM: Signing in...",
+    "signInButton": "KM: Sign In",
+    "noAccountPrompt": "KM: Don't have an account?",
+    "signUpLink": "KM: Sign Up",
+    "signInLink": "KM: Sign In",
+    "recoverWithUniversalIdPrompt": "KM: Or recover access with your Universal ID",
+    "signUpTitle": "KM: Create a new account",
+    "signUpDescription": "KM: Tell us a bit about yourself to get started.",
+    "nameLabel": "KM: Your Name or Business Name",
+    "namePlaceholder": "KM: e.g., Chan Nary or Green Valley Farms",
+    "roleLabel": "KM: Your Primary Role",
+    "rolePlaceholder": "KM: Select your role in the supply chain...",
+    "confirmPasswordLabel": "KM: Confirm Password",
+    "confirmPasswordPlaceholder": "KM: ••••••••",
+    "creatingAccountButton": "KM: Creating account...",
+    "signUpButton": "KM: Create Account",
+    "alreadyHaveAccountPrompt": "KM: Already have an account?",
+    "forgotPasswordTitle": "KM: Forgot Password?",
+    "forgotPasswordDescription": "KM: No problem. Enter your email address below, and we'll send you a link to reset it.",
+    "sendResetLinkButton": "KM: Send Reset Link",
+    "sendingEmailButton": "KM: Sending email...",
+    "rememberPasswordPrompt": "KM: Remember your password?",
+    "resetPasswordTitle": "KM: Reset Your Password",
+    "resetPasswordDescription": "KM: Enter and confirm your new password below.",
+    "newPasswordLabel": "KM: New Password",
+    "newPasswordPlaceholder": "KM: Enter a strong new password",
+    "resetPasswordButton": "KM: Reset Password",
+    "resettingPasswordButton": "KM: Resetting...",
     "recoverPage": {
-      "title": "ស្តារគណនីរបស់អ្នក",
-      "description": "ប្រើបណ្តាញរបស់អ្នកដើម្បីទទួលបានការចូលប្រើឡើងវិញ។",
-      "howItWorksTitle": "របៀបដែលវាដំណើរការ",
-      "step1": "បញ្ចូលលេខទូរស័ព្ទរបស់អ្នកដើម្បីចាប់ផ្តើមវគ្គស្តារ។",
-      "step2": "បង្ហាញកូដ QR បណ្តោះអាសន្នទៅមិត្តភក្តិដែលជឿទុកចិត្តនៅលើដាំដុះ។",
-      "step3": "នៅពេលដែលមិត្តរបស់អ្នកស្កេនកូដដើម្បីបញ្ជាក់អត្តសញ្ញាណរបស់អ្នក, អ្នកនឹងទទួលបានការចូលប្រើឡើងវិញ។",
-      "startButton": "ចាប់ផ្តើមការស្តារគណនី",
-      "scanTitle": "សុំឱ្យមិត្តម្នាក់ស្កេន",
-      "scanDescription": "ឱ្យទំនាក់ទំនងដាំដុះដែលជឿទុកចិត្តស្កេនកូដ QR នេះដោយប្រើមុខងារ 'ជួយមិត្តម្នាក់ស្តារ' នៅក្នុងកម្មវិធីរបស់ពួកគេ។",
-      "scanNote": "កូដនេះគឺបណ្តោះអាសន្នហើយផុតកំណត់ក្នុងរយៈពេល 10 នាទី។",
-      "startOverButton": "ចាប់ផ្តើមឡើងវិញ",
-      "enterPhone": {
-        "title": "បញ្ចូលលេខទូរស័ព្ទរបស់អ្នក",
-        "description": "យើងនឹងប្រើលេខទូរស័ព្ទរបស់អ្នកដើម្បីស្វែងរកគណនីរបស់អ្នក ហើយចាប់ផ្តើមវគ្គសង្គ្រោះ។",
-        "phoneNumberLabel": "លេខទូរស័ព្ទ",
-        "phoneNumberPlaceholder": "បញ្ចូលលេខទូរស័ព្ទដែលបានចុះឈ្មោះរបស់អ្នក",
-        "phoneRequiredError": "ត្រូវតែមានលេខទូរស័ព្ទ។",
-        "verifyingButton": "កំពុងផ្ទៀងផ្ទាត់...",
-        "getRecoveryCodeButton": "ទទួលបានលេខកូដសង្គ្រោះ",
-        "genericError": "មិនអាចចាប់ផ្តើមវគ្គសង្គ្រោះបានទេ។ សូមពិនិត្យលេខ ហើយព្យាយាមម្តងទៀត។"
-      },
-      "helpFriend": {
-        "prompt": "កំពុងព្យាយាមជួយនរណាម្នាក់សង្គ្រោះគណនីរបស់ពួកគេមែនទេ?",
-        "button": "ជួយមិត្តម្នាក់សង្គ្រោះ",
-        "scanError": "លេខកូដ QR ដែលបានស្កេនមិនមែនជាលេខកូដសង្គ្រោះត្រឹមត្រូវទេ។",
-        "scanSuccess": "ការបញ្ជាក់បានជោគជ័យ!",
-        "scanFail": "មិនអាចអានលេខកូដ QR បានទេ។ សូមព្យាយាមម្តងទៀត។"
-      }
+      "title": "KM: Recover Your Account",
+      "description": "KM: Use your network to regain access.",
+      "howItWorksTitle": "KM: How it Works",
+      "step1": "KM: Enter your phone number to start a recovery session.",
+      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
+      "step3": "KM: Once your friend scans the code to verify your identity, you'll regain access.",
+      "startButton": "KM: Start Account Recovery",
+      "scanTitle": "KM: Ask a Friend to Scan",
+      "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
+      "scanNote": "KM: This code is temporary and expires in 10 minutes.",
+      "startOverButton": "KM: Start Over"
     },
     "forgotPassword": {
-      "emailSentTitle": "ពិនិត្យអ៊ីមែលរបស់អ្នក",
-      "emailSentDescription": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញត្រូវបានផ្ញើទៅ {email}។",
-      "emailSentDescriptionIfAccountExists": "ប្រសិនបើមានគណនីជាមួយ {email}, តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញត្រូវបានផ្ញើ។",
-      "successTitle": "បានផ្ញើអ៊ីមែល!",
-      "successDescription": "សូមពិនិត្យប្រអប់សំបុត្ររបស់អ្នក (និងថតសារឥតបានការ) សម្រាប់តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញ។",
+      "emailSentTitle": "KM: Check Your Email",
+      "emailSentDescription": "KM: A password reset link has been sent to {email}.",
+      "emailSentDescriptionIfAccountExists": "KM: If an account with {email} exists, a password reset link has been sent.",
+      "successTitle": "KM: Email Sent!",
+      "successDescription": "KM: Please check your inbox (and spam folder) for the password reset link.",
       "errors": {
-        "unexpected": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង សូមព្យាយាមម្តងទៀត។",
-        "invalidEmail": "អាសយដ្ឋានអ៊ីមែលមិនត្រឹមត្រូវ។",
-        "tooManyRequests": "មានសំណើច្រើនពេក សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។",
-        "default": "បរាជ័យក្នុងការផ្ញើអ៊ីមែលកំណត់ឡើងវិញ"
+        "unexpected": "KM: An unexpected error occurred. Please try again.",
+        "invalidEmail": "KM: The email address is not valid.",
+        "tooManyRequests": "KM: Too many requests. Please try again later.",
+        "default": "KM: Failed to send reset email"
       }
     },
     "resetPassword": {
-      "successTitle": "បានកំណត់ពាក្យសម្ងាត់ឡើងវិញដោយជោគជ័យ!",
-      "successDescription": "ឥឡូវនេះអ្នកអាចចូលដោយប្រើពាក្យសម្ងាត់ថ្មីរបស់អ្នក។",
-      "successRedirect": "អ្នកនឹងត្រូវបានបញ្ជូនទៅទំព័រចូលក្នុងពេលឆាប់ៗនេះ។",
+      "successTitle": "KM: Password Reset Successfully!",
+      "successDescription": "KM: You can now sign in with your new password.",
+      "successRedirect": "KM: You will be redirected to the sign-in page shortly.",
       "errors": {
-        "missingCode": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញមិនត្រឹមត្រូវ។ សូមស្នើសុំតំណថ្មី។",
-        "missingCodeTitle": "តំណមិនត្រឹមត្រូវ",
-        "missingCodeDescription": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញបាត់ ឬមិនត្រឹមត្រូវ។ សូមត្រឡប់ទៅទំព័រ 'ភ្លេចពាក្យសម្ងាត់' ដើម្បីស្នើសុំតំណថ្មី។",
-        "unexpected": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង សូមព្យាយាមម្តងទៀត។",
-        "invalidOrExpiredCode": "តំណកំណត់ពាក្យសម្ងាត់ឡើងវិញមិនត្រឹមត្រូវ ឬផុតកំណត់។ សូមស្នើសុំតំណថ្មី។",
-        "userDisabled": "គណនីអ្នកប្រើប្រាស់នេះត្រូវបានបិទ។",
-        "userNotFound": "រកមិនឃើញអ្នកប្រើប្រាស់ដែលត្រូវនឹងតំណកំណត់ឡើងវិញនេះ។",
-        "weakPassword": "ពាក្យសម្ងាត់ថ្មីមិនរឹងមាំគ្រប់គ្រាន់ទេ។",
-        "default": "បរាជ័យក្នុងការកំណត់ពាក្យសម្ងាត់ឡើងវិញ"
+        "missingCode": "KM: Invalid password reset link. Please request a new one.",
+        "missingCodeTitle": "KM: Invalid Link",
+        "missingCodeDescription": "KM: The password reset link is missing or invalid. Please return to the 'Forgot Password' page to request a new one.",
+        "unexpected": "KM: An unexpected error occurred. Please try again.",
+        "invalidOrExpiredCode": "KM: The password reset link is invalid or has expired. Please request a new one.",
+        "userDisabled": "KM: This user account has been disabled.",
+        "userNotFound": "KM: No user found corresponding to this reset link.",
+        "weakPassword": "KM: The new password is not strong enough.",
+        "default": "KM: Failed to reset password"
       }
-    },
-    "errors": {
-      "emailInUse": "អ៊ីមែលនេះត្រូវបានប្រើប្រាស់រួចហើយ។",
-      "invalidEmail": "អាសយដ្ឋានអ៊ីមែលមិនត្រឹមត្រូវ។",
-      "weakPassword": "ពាក្យសម្ងាត់ត្រូវតែមានយ៉ាងតិច 6 តួអក្សរ។",
-      "default": "មានកំហុសដែលមិនបានរំពឹងទុកបានកើតឡើង។",
-      "invalidCredential": "អ៊ីមែល ឬពាក្យសម្ងាត់ដែលអ្នកបានបញ្ចូលមិនត្រឹមត្រូវ។",
-      "userDisabled": "គណនីនេះត្រូវបានបិទ។"
-    },
-    "signUpSuccess": {
-      "title": "បានបង្កើតគណនី និងបានចូល!",
-      "description": "សូមស្វាគមន៍មកកាន់ {appName}! អ្នកបានចូលដោយជោគជ័យ។"
-    },
-    "signUpFailed": "ការចុះឈ្មោះបានបរាជ័យ",
-    "toast": {
-      "logOut": {
-        "title": "បានចេញពីគណនី",
-        "description": "អ្នកបានចេញពីគណនីដោយជោគជ័យ។",
-        "failTitle": "ការចេញពីគណនីបានបរាជ័យ",
-        "failDescription": "មិនអាចចេញពីគណនីបានទេ សូមព្យាយាមម្តងទៀត។"
-      },
-      "signInSuccess": {
-        "title": "បានចូលដោយជោគជ័យ!",
-        "description": "សូមស្វាគមន៍មកកាន់ {appName}។"
-      },
-      "signInFailed": {
-        "title": "ការចូលបានបរាជ័យ"
-      }
-    },
-    "passwordStrength": {
-      "label": "កម្រិតខ្លាំង",
-      "weak": "ខ្សោយ",
-      "medium": "មធ្យម",
-      "strong": "ខ្លាំង",
-      "veryStrong": "ខ្លាំងបំផុត"
-    },
-    "error": "កំហុស"
+    }
   },
   "AppHeader": {
-    "home": "ទំព័រដើម",
-    "network": "បណ្តាញ",
-    "farmMgmt": "គ្រប់គ្រងកសិដ្ឋាន",
-    "marketplace": "ទីផ្សារ",
-    "talentExchange": "ទេពកោសល្យ",
-    "traceability": "ការតាមដាន",
-    "forums": "វេទិកា",
-    "sustainability": "និរន្តរភាព",
-    "notifications": "ការជូនដំណឹង",
-    "messages": "សារ",
-    "wallet": "កាបូបលុយ",
-    "searchPlaceholder": "ស្វែងរកមនុស្ស, ផលិតផល, សេវាកម្ម...",
-    "signIn": "ចូលគណនី",
-    "signUp": "ចុះឈ្មោះ",
-    "myProfile": "ប្រវត្តិរូបខ្ញុំ",
-    "myOrders": "ការបញ្ជាទិញរបស់ខ្ញុំ",
-    "settings": "ការកំណត់",
-    "helpCenter": "មជ្ឈមណ្ឌលជំនួយ",
-    "logOut": "ចេញពីគណនី",
-    "switchToLightAria": "ប្តូរទៅផ្ទៃភ្លឺ",
-    "switchToDarkAria": "ប្តូរទៅផ្ទៃងងឹត",
-    "mobileMenu": {
-      "title": "ម៉ឺនុយដាំដុះ",
-      "description": "ម៉ឺនុយរុករកសំខាន់របស់កម្មវិធី"
-    }
+    "home": "KM: Home",
+    "network": "KM: Network",
+    "farmMgmt": "KM: Farm Mgmt",
+    "marketplace": "KM: Marketplace",
+    "talentExchange": "KM: Talent",
+    "traceability": "KM: Traceability",
+    "forums": "KM: Forums",
+    "sustainability": "KM: Sustainability",
+    "notifications": "KM: Notifications",
+    "messages": "KM: Messages",
+    "wallet": "KM: Wallet",
+    "searchPlaceholder": "KM: Search people, products, services...",
+    "signIn": "KM: Sign In",
+    "signUp": "KM: Sign Up",
+    "myProfile": "KM: My Profile",
+    "myOrders": "KM: My Orders",
+    "settings": "KM: Settings",
+    "helpCenter": "KM: Help Center",
+    "logOut": "KM: Log Out",
+    "switchToLightAria": "KM: Switch to light theme",
+    "switchToDarkAria": "KM: Switch to dark theme"
   },
   "MobileBottomNav": {
-    "home": "ទំព័រដើម",
-    "market": "ទីផ្សារ",
-    "search": "ស្វែងរក",
-    "messages": "សារ",
-    "profile": "ប្រវត្តិរូប"
-  },
-  "DashboardLeftSidebar": {
-    "viewProfileLink": "មើលប្រវត្តិរូបរបស់ខ្ញុំ",
-    "profileViewers": "អ្នកមើលប្រវត្តិរូប",
-    "postEngagements": "ការចូលរួមជាមួយការបង្ហោះ",
-    "pro": {
-      "unlock": "ដោះសោទិន្នន័យស៊ីជម្រៅបន្ថែមជាមួយដាំដុះប្រូ",
-      "try": "សាកល្បង Pro",
-      "title": "មកដល់ឆាប់ៗនេះ!",
-      "description": "លក្ខណៈពិសេសរបស់ដាំដុះប្រូកំពុងស្ថិតក្នុងការអភិវឌ្ឍ"
-    },
-    "recent": {
-      "title": "ថ្មីៗនេះ",
-      "myPinBoard": "Pin-Board របស់ខ្ញុំ",
-      "communityGroups": "ក្រុមសហគមន៍",
-      "industryNews": "ព័ត៌មានឧស្សាហកម្ម",
-      "agriEvents": "ព្រឹត្តិការណ៍កសិកម្ម",
-      "mySupplyChainNetwork": "បណ្តាញខ្សែសង្វាក់ផ្គត់ផ្គង់របស់ខ្ញុំ"
-    }
-  },
-  "MainDashboard": {
-    "feedError": {
-      "title": "មានបញ្ហាក្នុងការផ្ទុកព័ត៌មាន",
-      "description": "មិនអាចទាញយកសកម្មភាពថ្មីៗបានទេ។ សូមពិនិត្យមើលការតភ្ជាប់របស់អ្នក។"
-    },
-    "postError": {
-      "auth": "អ្នកត្រូវចូលគណនីដើម្បីโพสต์",
-      "fail": "បរាជ័យក្នុងការបង្កើតការបង្ហោះ។ សូមព្យាយាមម្តងទៀត។"
-    },
-    "uploadingMedia": "កំពុងផ្ទុកមេឌៀ...",
-    "uploadComplete": "ផ្ទុកឡើងបានជោគជ័យ!",
-    "postSuccess": {
-      "title": "បានបង្កើតការបង្ហោះហើយ!",
-      "description": "ការអាប់ដេតរបស់អ្នកត្រូវបានចែករំលែកជាមួយបណ្តាញហើយ។"
-    },
-    "likeError": {
-      "auth": "អ្នកត្រូវចូលគណនីដើម្បីกดไลค์โพสต์",
-      "fail": "មិនអាចចូលចិត្តការបង្ហោះបានទេ។ សូមព្យាយាមម្តងទៀត។"
-    },
-    "commentError": {
-      "auth": "អ្នកត្រូវចូលគណនីเพื่อคอมเมนต์",
-      "fail": "បរាជ័យក្នុងការបង្ហោះមតិ។"
-    },
-    "commentSuccess": "បានបង្ហោះមតិហើយ!",
-    "deleteError": {
-      "auth": "អ្នកត្រូវចូលគណនីเพื่อลบโพสต์",
-      "fail": "បរាជ័យក្នុងការលុបការបង្ហោះ។"
-    },
-    "deleteSuccess": {
-      "title": "បានលុបការបង្ហោះហើយ",
-      "description": "ការបង្ហោះរបស់អ្នកត្រូវបានលុបដោយជោគជ័យហើយ។"
-    },
-    "noActivity": "មិនមានសកម្មភាពថ្មីៗនៅក្នុងបណ្តាញរបស់អ្នកទេ។ ចាប់ផ្តើមការសន្ទនា ឬស្វែងរកទីផ្សារ!"
+    "home": "KM: Home",
+    "market": "KM: Market",
+    "search": "KM: Search",
+    "forums": "KM: Forums",
+    "profile": "KM: Profile"
   },
   "DashboardRightSidebar": {
-    "networkTitle": "បន្ថែមទៅក្នុងហ្វីតរបស់អ្នក",
-    "refreshSuggestions": "ធ្វើឱ្យការណែនាំស្រស់ស្រាយ",
-    "infoTooltip": "ការណែនាំគឺផ្អែកលើចំណាប់អារម្មណ៍และតម្រូវការនៃប្រវត្តិរូបរបស់អ្នក។",
-    "follow": "តាមដាន",
-    "following": "បានស្នើសុំ",
-    "viewAllButton": "មើលការណែនាំទាំងអស់",
-    "promotionsTitle": "ការផ្សព្វផ្សាយរបស់ខ្ញុំ",
-    "promotionsDescription": "បង្កើតនិងគ្រប់គ្រងប័ណ្ណបញ្ចុះតម្លៃដើម្បីទាក់ទាញអតិថិជនបន្ថែមទៀត។",
-    "managePromotionsButton": "គ្រប់គ្រងប័ណ្ណបញ្ចុះតម្លៃ",
-    "ad": "ពាណិជ្ជកម្ម",
-    "adTitle": "ទទួលបានការយល់ដឹងពីទីផ្សារ",
-    "adDescription": "ចូលប្រើតម្លៃនិងនិន្នាការតាមពេលវេលាជាក់ស្តែងសម្រាប់ផលិតផលរបស់អ្នក។",
-    "adButton": "មើលទិន្នន័យទីផ្សារ",
-    "adAlt": "แผนภูมิข้อมูลแสดงแนวโน้มตลาด",
-    "loadError": "ไม่สามารถโหลดคำแนะนำได้ในขณะนี้",
-    "signInPrompt": "ลงชื่อเข้าใช้เพื่อดูคำแนะนำส่วนตัว",
-    "noSuggestions": "ไม่มีคำแนะนำใหม่ในขณะนี้ ลองขยายโปรไฟล์ของคุณ!",
-    "toast": {
-      "signInToConnect": "โปรดลงชื่อเข้าใช้เพื่อเชื่อมต่อกับผู้ใช้",
-      "requestSent": "បានផ្ញើសំណើភ្ជាប់ហើយ!",
-      "requestSentDescription": "คำขอของคุณถูกส่งไปยังผู้ใช้แล้ว คุณจะได้รับการแจ้งเตือนเมื่อพวกเขายอมรับ",
-      "requestFailed": "ไม่สามารถส่งคำขอได้"
-    }
+    "networkTitle": "KM: Add to your feed",
+    "refreshSuggestions": "KM: Refresh suggestions",
+    "infoTooltip": "KM: Suggestions are based on your profile interests and needs.",
+    "signInPrompt": "KM: Sign in for personalized recommendations.",
+    "loadError": "KM: Could not load suggestions.",
+    "noSuggestions": "KM: No new suggestions right now. Check back later!",
+    "following": "KM: Following",
+    "follow": "KM: Follow",
+    "promotionsTitle": "KM: Promotions",
+    "promotionsDescription": "KM: See special offers and deals from partners in the ecosystem.",
+    "managePromotionsButton": "KM: Manage Promotions",
+    "ad": "KM: Ad",
+    "adTitle": "KM: Unlock Market Insights",
+    "adDescription": "Get real-time data and analytics with DamDoh Pro.",
+    "adButton": "KM: Learn More"
   },
   "LanguageSwitcher": {
-    "toggle": "ផ្លាស់ប្តូរភាសា"
+    "toggle": "KM: Change language"
   },
   "AppFooter": {
-    "tagline": "វេទិកាសកលសម្រាប់ខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្ម។",
-    "damdohTitle": "ដាំដុះ",
-    "aboutLabel": "អំពី​ពួក​យើង",
-    "contactLabel": "ទំនាក់ទំនង",
-    "careersLabel": "អាជីព",
-    "blogLabel": "ប្លុក និងព័ត៌មាន",
-    "resourcesTitle": "ធនធាន",
-    "helpCenterLabel": "មជ្ឈមណ្ឌលជំនួយ",
-    "communityGuidelinesLabel": "គោលការណ៍ណែនាំសហគមន៍",
-    "industryNewsLabel": "ព័ត៌មានឧស្សាហកម្ម",
-    "eventsLabel": "ព្រឹត្តិការណ៍",
-    "talentExchangeLabel": "ការផ្លាស់ប្តូរទេពកោសល្យ",
-    "legalTitle": "ផ្នែកច្បាប់",
-    "privacyPolicyLabel": "គោលការណ៍ឯកជនភាព",
-    "termsOfServiceLabel": "លក្ខខណ្ឌ​នៃ​សេវាកម្ម",
-    "copyright": "© {year} {appName} រក្សា​រ​សិទ្ធ​គ្រប់យ៉ាង។",
-    "getMobileApp": "ទាញយកកម្មវិធីទូរស័ព្ទ",
-    "googlePlayAlt": "ទាញយកពី Google Play",
-    "appStoreAlt": "ទាញយកពី App Store"
+    "tagline": "KM: The global platform for the agricultural supply chain.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "KM: About Us",
+    "contactLabel": "KM: Contact",
+    "careersLabel": "KM: Careers",
+    "blogLabel": "KM: Blog & News",
+    "resourcesTitle": "KM: Resources",
+    "helpCenterLabel": "KM: Help Center",
+    "communityGuidelinesLabel": "KM: Community Guidelines",
+    "industryNewsLabel": "KM: Industry News",
+    "eventsLabel": "KM: Events",
+    "talentExchangeLabel": "KM: Talent Exchange",
+    "legalTitle": "KM: Legal",
+    "privacyPolicyLabel": "KM: Privacy Policy",
+    "termsOfServiceLabel": "KM: Terms of Service",
+    "copyright": "KM: © {year} DamDoh All rights reserved.",
+    "getMobileApp": "KM: Get the Mobile App",
+    "googlePlayAlt": "KM: Get it on Google Play",
+    "appStoreAlt": "KM: Download on the App Store"
   },
   "aboutPage": {
     "hero": {
-      "title": "អំពីដាំដុះ",
-      "subtitle": "ការភ្ជាប់ខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្មសកល ម្តងមួយតួអង្គ។"
+      "title": "About DamDoh",
+      "subtitle": "KM: Connecting the global agricultural supply chain, one stakeholder at a time."
     },
     "vision": {
-      "title": "ចក្ខុវិស័យរបស់យើង",
-      "p1": "យើងមានចក្ខុវិស័យលើពិភពលោកមួយដែលគ្រប់តួអង្គកសិកម្ម ចាប់ពីកសិករតូចបំផុតរហូតដល់អ្នកលក់រាយធំបំផុត ត្រូវបានពង្រឹងដោយទិន្នន័យ ការតភ្ជាប់ និងឧបករណ៍ដែលពួកគេត្រូវការដើម្បីរីកចម្រើន។",
-      "p2": "ដាំដុះត្រូវបានបង្កើតឡើងដោយផ្អែកលើជំនឿថាបច្ចេកវិទ្យាអាចជួយបង្រួមគម្លាត ពង្រឹងទំនុកចិត្ត និងបង្កើតប្រព័ន្ធស្បៀងអាហារសកលមួយដែលកាន់តែមានសមធម៌និងនិរន្តរភាព។",
-      "foundersTitle": "ស្ថាបនិក"
+      "title": "KM: Our Vision",
+      "p1": "KM: We envision a world where every agricultural stakeholder, from the smallest farmer to the largest retailer, is empowered with the data, connections, and tools they need to thrive.",
+      "p2": "DamDoh was founded on the belief that technology can bridge gaps, build trust, and create a more equitable and sustainable global food system.",
+      "foundersTitle": "KM: The Founders"
     },
     "challenge": {
-      "title": "បញ្ហាប្រឈមដែលយើងដោះស្រាយ",
-      "description": "ខ្សែសង្វាក់ផ្គត់ផ្គង់កសិកម្មមានភាពបែកខ្ញែក គ្មានប្រសិទ្ធភាព និងជារឿយៗខ្វះតម្លាភាពដែលចាំបាច់សម្រាប់ការរីកចម្រើនប្រកបដោយនិរន្តរភាព។ បញ្ហាប្រឈមសំខាន់ៗរួមមាន៖",
-      "details": {
-        "marketAccess": "ការចូលទៅកាន់ទីផ្សារមានកម្រិតសម្រាប់កសិករខ្នាតតូច។",
-        "inefficiency": "ការដឹកជញ្ជូនគ្មានប្រសិទ្ធភាពដែលនាំឱ្យមានការខាតបង់ក្រោយការប្រមូលផល។",
-        "financialExclusion": "ការលំបាកក្នុងការទទួលបានហិរញ្ញវត្ថុនិងការធានារ៉ាប់រងសម្រាប់អ្នកផលិតខ្នាតតូច។",
-        "informationGaps": "ចំណេះដឹងដែលបែកខ្ញែក និងកង្វះការចូលទៅកាន់ការអនុវត្តល្អបំផុត។",
-        "qualityTrust": "ការត្រួតពិនិត្យគុណភាពមិនទៀងទាត់ និងការខ្វះទិន្នន័យផលិតផលដែលអាចផ្ទៀងផ្ទាត់បាន។",
-        "climatePressure": "សម្ពាធកើនឡើងពីការប្រែប្រួលអាកាសធាតុលើវិធីសាស្រ្តធ្វើកសិកម្មប្រពៃណី។",
-        "foodLoss": "ការបាត់បង់និងការខ្ជះខ្ជាយស្បៀងអាហារយ៉ាងច្រើននៅដំណាក់កាលជាច្រើននៃខ្សែសង្វាក់ផ្គត់ផ្គង់។",
-        "dataFragmentation": "ការបែកខ្ញែកទិន្នន័យនៅទូទាំងប្រព័ន្ធដែលមិនបានតភ្ជាប់ផ្សេងៗ។"
-      },
+      "title": "KM: The Challenge We're Solving",
+      "description": "KM: The agricultural supply chain is fragmented, inefficient, and often lacks the transparency needed for sustainable growth. Key challenges include:",
       "list": {
-        "marketAccess": "ការចូលទៅកាន់ទីផ្សារមានកម្រិត",
-        "inefficiency": "អប្រសិទ្ធភាពនៃខ្សែសង្វាក់ផ្គត់ផ្គង់",
-        "financialExclusion": "ការដកចេញផ្នែកហិរញ្ញវត្ថុ",
-        "informationGaps": "គម្លាតព័ត៌មាន",
-        "qualityTrust": "ឱនភាពគុណភាពនិងទំនុកចិត្ត",
-        "climatePressure": "សម្ពាធអាកាសធាតុ",
-        "foodLoss": "ការបាត់បង់និងការខ្ជះខ្ជាយស្បៀងអាហារ",
-        "dataFragmentation": "ការបែកខ្ញែកទិន្នន័យ"
+        "knowledge": "KM: Fragmented knowledge and lack of access to best practices.",
+        "market": "KM: Limited market access for smallholder farmers.",
+        "quality": "KM: Inconsistent quality control and a lack of verifiable product data.",
+        "logistics": "KM: Inefficient logistics leading to post-harvest losses.",
+        "financial": "KM: Difficulty accessing finance and insurance for small-scale producers.",
+        "climate": "KM: Increasing pressure from climate change on traditional farming methods.",
+        "informal": "KM: Informal and relationship-based systems that can exclude new entrants."
       }
     },
     "solution": {
-      "title": "ដំណោះស្រាយរបស់ដាំដុះ",
-      "description": "យើងកំពុងកសាង 'កម្មវិធីទំនើប' មួយដែលគ្រប់ជ្រុងជ្រោយដែលធ្វើឌីជីថលនូបនីយកម្មและភ្ជាប់ប្រព័ន្ធអេកូឡូស៊ីកសិកម្មទាំងមូលតាមរយៈសសរស្តម្ភសំខាន់ៗជាច្រើន៖",
+      "title": "The DamDoh Solution",
+      "description": "KM: We are building a comprehensive 'super app' that digitizes and connects the entire agricultural ecosystem through several key pillars:",
       "list": {
-        "education": "ការអប់រំនិងការចែករំលែកចំណេះដឹង",
-        "ai": "ជំនួយและការយល់ដឹងដោយបញ្ញាសិប្បនិម្មិត",
-        "logistics": "ការដឹកជញ្ជូននិងការតាមដានរួមបញ្ចូលគ្នា",
-        "marketplace": "ទីផ្សារផ្ទាល់และតម្លាភាព",
-        "financial": "ការចូលទៅកាន់សេវាកម្មហិរញ្ញវត្ថុ"
+        "education": "KM: Education and Knowledge Sharing",
+        "ai": "KM: AI-Powered Assistance and Insights",
+        "logistics": "KM: Integrated Logistics and Traceability"
       }
     },
     "beyondTechnology": {
-      "title": "លើសពីបច្ចេកវិទ្យា៖ គឺអំពីមនុស្ស",
+      "title": "KM: Beyond Technology: It's About People",
       "list": {
         "p2p": {
-          "title": "មនុស្សទៅមនុស្ស",
-          "content": "ការភ្ជាប់កសិករទៅកសិករផ្សេងទៀតเพื่อចែករំលែកចំណេះដឹងและកសាងសហគមន៍។"
+          "title": "KM: People to People",
+          "content": "KM: Connecting farmers to other farmers to share knowledge and build community."
         },
         "p2b": {
-          "title": "មនុស្សទៅអាជីវកម្ម",
-          "content": "ការส่งเสริมความสัมพันธ์โดยตรงและเชื่อถือได้ระหว่างผู้ผลิตและผู้ซื้อ"
+          "title": "KM: People to Business",
+          "content": "KM: Fostering direct, trusted relationships between producers and buyers."
         },
         "p2e": {
-          "title": "មនុស្សទៅប្រព័ន្ធអេកូឡូស៊ី",
-          "content": "ការផ្តល់ឱ្យបុគ្គលម្នាក់ៗនូវការចូលទៅកាន់ប្រព័ន្ធអេកូឡូស៊ីទាំងមូលនៃសេវាកម្ម - ហិរញ្ញវត្ថុ ការដឹកជញ្ជូន ការធានារ៉ាប់រង និងច្រើនទៀត។"
+          "title": "KM: People to Ecosystem",
+          "content": "KM: Giving individuals access to a whole ecosystem of services – finance, logistics, insurance, and more."
         },
         "p2w": {
-          "title": "មនុស្សទៅកាន់ពិភពលោក",
-          "content": "ការបើកទីផ្សារและឱកាសសកលสำหรับผู้ผลิตที่ห่างไกลที่สุดผ่านการเข้าถึงดิจิทัลและการตรวจสอบย้อนกลับ"
+          "title": "KM: People to World",
+          "content": "KM: Opening global markets and opportunities for even the most remote producers through digital access and traceability."
         }
       }
     },
     "commitment": {
-      "title": "ការប្តេជ្ញាចិត្តរបស់យើងចំពោះអនាគត",
-      "p1": "เรามุ่งมั่นที่จะใช้เทคโนโลยีเพื่อสิ่งที่ดี สร้างแพลตฟอร์มที่ไม่เพียงแต่ทำกำไรได้ แต่ยังช่วยฟื้นฟูโลกของเราและเสริมสร้างศักยภาพให้กับผู้คน",
-      "p2": "រាល់ការតភ្ជាប់ដែលបានធ្វើ រាល់ចំណេះដឹងដែលបានចែករំលែក និងរាល់ប្រតិបត្តិការដែលបានសម្រួលនៅលើដាំដុះ គឺជាជំហានមួយឆ្ពោះទៅរកអនាគតអាហារដែលមានភាពធន់และសមធម៌ជាងមុន។",
-      "p3": "ចូលរួមជាមួយយើងក្នុងការធ្វើដំណើរនេះ។",
-      "button": "ក្លាយជាសមាជិក"
+      "title": "KM: Our Commitment to the Future",
+      "p1": "KM: We are committed to using technology for good, creating a platform that is not only profitable but also regenerative for our planet and empowering for its people.",
+      "p2": "Every connection made, every piece of knowledge shared, and every transaction streamlined on DamDoh is a step toward a more resilient and equitable food future.",
+      "p3": "KM: Join us on this journey.",
+      "button": "KM: Become a Member"
     }
   },
   "contactPage": {
-    "title": "ទំនាក់ទំនងមកយើង",
-    "subtitle": "យើងនៅទីនេះដើម្បីជួយ។ ទាក់ទងមកយើងតាមរយៈបណ្តាញណាមួយខាងក្រោម។",
+    "title": "KM: Contact Us",
+    "subtitle": "KM: We're here to help. Reach out to us through any of the channels below.",
     "emailUs": {
-      "title": "ផ្ញើអ៊ីមែលមកយើង",
-      "general": "ការសាកសួរទូទៅ",
-      "support": "ផ្នែកជំនួយ",
-      "partnerships": "ភាពជាដៃគូ"
+      "title": "KM: Email Us",
+      "general": "KM: General Inquiries",
+      "support": "KM: Support",
+      "partnerships": "KM: Partnerships"
     },
     "callUs": {
-      "title": "ទូរស័ព្ទមកយើង",
-      "hours": "ច័ន្ទ - សុក្រ, 9:00 - 17:00 (EAT)",
-      "phone": "+254 20 123 4567"
+      "title": "KM: Call Us",
+      "hours": "KM: Mon - Fri, 9:00 AM - 5:00 PM (EAT)",
+      "phone": "KM: +254 20 123 4567"
     },
     "ourOffice": {
-      "title": "ការិយាល័យរបស់យើង",
-      "org": "มูลนิธิ DamDoh",
-      "address": "123 វិថីកសិ-បច្ចេកវិទ្យា, ណៃរ៉ូប៊ី, កេនយ៉ា"
+      "title": "KM: Our Office",
+      "org": "The DamDoh Foundation",
+      "address": "KM: 123 Agri-Tech Avenue, Nairobi, Kenya"
     },
     "sendMessage": {
-      "title": "ផ្ញើសារមកយើង",
-      "nameLabel": "ឈ្មោះ​របស់​អ្នក",
-      "namePlaceholder": "ចាន់ ណារី",
-      "emailLabel": "អ៊ីមែល​របស់​អ្នក",
-      "emailPlaceholder": "chan.nary@example.com",
-      "subjectLabel": "ប្រធានបទ",
-      "subjectPlaceholder": "ឧ: ការសាកសួរអំពីភាពជាដៃគូ",
-      "messageLabel": "សារ​របស់​អ្នក",
-      "messagePlaceholder": "វាយសាររបស់អ្នកនៅទីនេះ...",
-      "buttonText": "ផ្ញើសារ",
-      "note": "เราพยายามตอบกลับภายใน 24 ชั่วโมงทำการ"
+      "title": "KM: Send us a message",
+      "nameLabel": "KM: Your Name",
+      "namePlaceholder": "KM: Chan Nary",
+      "emailLabel": "KM: Your Email",
+      "emailPlaceholder": "KM: chan.nary@example.com",
+      "subjectLabel": "KM: Subject",
+      "subjectPlaceholder": "KM: e.g., Partnership Inquiry",
+      "messageLabel": "KM: Your Message",
+      "messagePlaceholder": "KM: Type your message here...",
+      "buttonText": "KM: Send Message",
+      "note": "KM: We strive to respond within 24 business hours."
     }
   },
   "careers": {
-    "title": "អាជីពនៅដាំដុះ",
-    "subtitle": "เข้าร่วมภารกิจของเราในการปฏิวัติห่วงโซ่อุปทานทางการเกษตร",
+    "title": "Careers at DamDoh",
+    "subtitle": "KM: Join our mission to revolutionize the agricultural supply chain.",
     "whyWorkWithUs": {
-      "title": "ហេតុអ្វីធ្វើការជាមួយយើង?",
-      "intro": "នៅដាំដុះ เราเป็นทีมของนักนวัตกรรม นักเทคโนโลยี และผู้เชี่ยวชาญด้านการเกษตรที่มุ่งมั่นสร้างผลกระทบระดับโลกที่จับต้องได้ เราเสนอ:",
-      "point1": "បរិយាកាសការងារដែលជំរុញដោយបេសកកម្មและมีชีวิตชีวา",
-      "point2": "ឱកាសสำหรับการរីកចម្រើនและការរៀនសូត្រវិជ្ជាជីវៈ",
-      "point3": "វប្បធម៌នៃកិច្ចសហប្រតិបត្តិការและតម្លាភាព",
-      "point4": "ឱកាសក្នុងការធ្វើការជាមួយបច្ចេកវិទ្យាទំនើបដូចជា AI และบล็อกเชน",
-      "point5": "ការប្តេជ្ញាចិត្តចំពោះនិរន្តរភាពและឥទ្ធិពលសង្គម"
+      "title": "KM: Why Work With Us?",
+      "intro": "At DamDoh, we are a team of innovators, technologists, and agricultural experts passionate about making a tangible, global impact. We offer:",
+      "point1": "KM: A mission-driven and dynamic work environment.",
+      "point2": "KM: Opportunities for professional growth and learning.",
+      "point3": "KM: A culture of collaboration and transparency.",
+      "point4": "KM: The chance to work with cutting-edge tech like AI and blockchain.",
+      "point5": "KM: A commitment to sustainability and social impact."
     },
     "currentOpenings": {
-      "title": "ការងារបច្ចុប្បន្ន",
+      "title": "KM: Current Openings",
       "job1": {
-        "title": "វិស្វករ Full-Stack ជាន់ខ្ពស់ (Next.js, Firebase)",
-        "location": "ពីចម្ងាយ",
-        "type": "ពេញ​ម៉ោង",
-        "description": "เรากำลังมองหาวิศวกร full-stack ที่มีประสบการณ์เพื่อนำการพัฒนาคุณสมบัติหลักของแพลตฟอร์มของเรา"
+        "title": "KM: Senior Full-Stack Engineer (Next.js, Firebase)",
+        "location": "KM: Remote",
+        "type": "KM: Full-time",
+        "description": "KM: We are looking for an experienced full-stack engineer to lead the development of core features of our platform."
       },
       "job2": {
-        "title": "អ្នកឯកទេសមាតិកាក្សេត្រសាស្ត្រ",
-        "location": "ណៃរ៉ូប៊ី, កេនយ៉ា",
-        "type": "កិច្ចសន្យា",
-        "description": "ជួយយើងបង្កើតមូលដ្ឋានចំណេះដឹងដ៏ទូលំទូលាយបំផុតរបស់ពិភពលោកសម្រាប់ការអនុវត្តកសិកម្មប្រកបដោយនិរន្តរភាព។"
+        "title": "KM: Agronomy Content Specialist",
+        "location": "KM: Nairobi, Kenya",
+        "type": "KM: Contract",
+        "description": "KM: Help us build the world's most comprehensive knowledge base for sustainable farming practices."
       },
       "job3": {
-        "title": "អ្នករចនា UX/UI",
-        "location": "ពីចម្ងាយ",
-        "type": "ពេញ​ម៉ោង",
-        "description": "រចនាបទពិសោធន៍អ្នកប្រើប្រាស់ដែលងាយស្រួលและអាចចូលប្រើបានសម្រាប់មូលដ្ឋានผู้ใช้ที่หลากหลายและทั่วโลก"
+        "title": "KM: UX/UI Designer",
+        "location": "KM: Remote",
+        "type": "KM: Full-time",
+        "description": "KM: Design intuitive and accessible user experiences for a diverse and global user base."
       }
     },
     "noOpenings": {
-      "title": "បច្ចុប្បន្នមិនមានការងារទំនេរទេ",
-      "content1": "เรามองหาผู้มีความสามารถที่กระตือรือร้นในภารกิจของเราอยู่เสมอ หากคุณคิดว่าคุณเหมาะกับทีมของเรา โปรดส่งประวัติย่อและจดหมายแนะนำตัวมาที่ {emailLink}",
-      "emailLinkText": "careers@damdoh.org"
+      "title": "KM: No Current Openings",
+      "content1": "KM: We are always looking for talented individuals who are passionate about our mission. If you think you'd be a great fit for our team, please send your resume and cover letter to {emailLink}.",
+      "emailLinkText": "KM: careers@damdoh.org"
     },
-    "applyNowButton": "ដាក់ពាក្យឥឡូវនេះ"
+    "applyNowButton": "KM: Apply Now"
   },
   "communityGuidelines": {
-    "title": "គោលការណ៍ណែនាំសហគមន៍",
-    "subtitle": "ការលើកកម្ពស់បរិយាកាសវិជ្ជាជីវៈ គួរឱ្យទុកចិត្ត และសហការ។",
-    "intro": "សូមស្វាគមន៍មកកាន់សហគមន៍ដាំដុះ! ដើម្បីធានាថាវេទិការបស់เรายังคงเป็นพื้นที่ที่มีประสิทธิผลและปลอดภัยสำหรับผู้มีส่วนได้ส่วนเสียทางการเกษตรทุกคน เราขอให้คุณปฏิบัติตามแนวทางต่อไปนี้:",
+    "title": "KM: Community Guidelines",
+    "subtitle": "KM: Fostering a professional, trustworthy, and collaborative environment.",
+    "intro": "Welcome to the DamDoh community! To ensure our platform remains a productive and safe space for all agricultural stakeholders, we ask that you adhere to the following guidelines:",
     "respectful": {
-      "title": "គោរពและมีវិជ្ជាជីវៈ",
-      "description": "ចូលរួមក្នុងការពិភាក្សាប្រកបដោយសុជីវធម៌และស្ថាបនា។ ការខ្វែងគំនិតគ្នាជារឿងធម្មតា ប៉ុន្តែការវាយប្រហារផ្ទាល់ខ្លួន การបៀតបៀន และการพูดស្អប់ខ្ពើមគឺមិនអាចទទួលយកបានទេ។"
+      "title": "KM: Be Respectful and Professional",
+      "description": "KM: Engage in civil and constructive discussions. Disagreements are normal, but personal attacks, harassment, and hate speech are unacceptable."
     },
     "authentic": {
-      "title": "មានភាពស្មោះត្រង់និងពិតប្រាកដ",
-      "description": "แสดงตัวตนและธุรกิจของคุณอย่างถูกต้อง อย่าแอบอ้างเป็นผู้อื่นหรือให้ข้อมูลเท็จเกี่ยวกับผลิตภัณฑ์ บริการ หรือการรับรองของคุณ"
+      "title": "KM: Be Honest and Authentic",
+      "description": "KM: Represent yourself and your business accurately. Do not impersonate others or provide false information about your products, services, or certifications."
     },
     "relevant": {
-      "title": "រក្សាភាពពាក់ព័ន្ធ",
-      "description": "มีส่วนร่วมในการอภิปรายและการลงประกาศในลักษณะที่เกี่ยวข้องกับห่วงโซ่อุปทานทางการเกษตร สแปม การหลอกลวง และเนื้อหาส่งเสริมการขายที่ไม่เกี่ยวข้องจะถูกลบออก"
+      "title": "KM: Stay Relevant",
+      "description": "KM: Contribute to discussions and listings in a manner that is relevant to the agricultural supply chain. Spam, scams, and irrelevant promotional content will be removed."
     },
     "fairTrade": {
-      "title": "គោរពការប្តេជ្ញាចិត្តរបស់អ្នក",
-      "description": "เมื่อคุณทำข้อตกลงบนแพลตฟอร์ม ให้ปฏิบัติตาม การสร้างความไว้วางใจเป็นสิ่งจำเป็นสำหรับความสำเร็จของชุมชนของเรา"
+      "title": "KM: Honor Your Commitments",
+      "description": "KM: When you make an agreement on the platform, follow through. Building trust is essential to the success of our community."
     },
     "sustainable": {
-      "title": "លើកកម្ពស់និរន្តរភាព",
-      "description": "แม้ว่าจะไม่ใช่ข้อกำหนดที่เข้มงวดสำหรับสมาชิกทุกคน แต่เราสนับสนุนให้มีการแบ่งปันความรู้และแนวปฏิบัติที่ส่งเสริมความยั่งยืนด้านสิ่งแวดล้อม เศรษฐกิจ และสังคม"
+      "title": "KM: Promote Sustainability",
+      "description": "KM: While not a strict requirement for all members, we encourage the sharing of knowledge and practices that promote environmental, economic, and social sustainability."
     },
     "reporting": {
-      "title": "ការរាយការណ៍ការរំលោភបំពាន",
-      "content": "หากคุณพบเห็นเนื้อหาหรือพฤติกรรมที่ละเมิดแนวทางเหล่านี้ โปรดรายงานให้ทีมงานของเราทราบที่ {emailLink} เราจะตรวจสอบรายงานทั้งหมดและดำเนินการตามความเหมาะสม",
-      "emailLinkText": "support@damdoh.org"
+      "title": "KM: Reporting Violations",
+      "content": "KM: If you see content or behavior that violates these guidelines, please report it to our team at {emailLink}. We will review all reports and take appropriate action.",
+      "emailLinkText": "KM: support@damdoh.org"
     },
-    "conclusion": "โดยการใช้ DamDoh คุณยอมรับแนวทางเหล่านี้ เราขอสงวนสิทธิ์ในการลบเนื้อหาและระงับบัญชีที่ละเมิดหลักการเหล่านี้ ขอบคุณที่ช่วยเราสร้างชุมชนที่ยอดเยี่ยม!"
+    "conclusion": "By using DamDoh, you agree to these guidelines. We reserve the right to remove content and suspend accounts that violate these principles. Thanks for helping us build a great community!"
   },
   "helpCenterPage": {
-    "title": "មជ្ឈមណ្ឌលជំនួយ",
-    "subtitle": "មគ្គុទ្ទេសก៍របស់អ្នកเพื่อใช้ประโยชน์สูงสุดจากแพลตฟอร์ม DamDoh",
-    "howCanWeHelp": "เราจะช่วยคุณได้อย่างไร?",
-    "searchPlaceholder": "ស្វែងរកប្រធានបទ លក្ខណៈពិសេស ឬคำถาม...",
-    "browseTopics": "រកមើលប្រធានបទជំនួយ",
+    "title": "KM: Help Center",
+    "subtitle": "Your guide to getting the most out of the DamDoh platform.",
+    "howCanWeHelp": "KM: How can we help you?",
+    "searchPlaceholder": "KM: Search for topics, features, or questions...",
+    "browseTopics": "KM: Browse Help Topics",
     "gettingStarted": {
-      "title": "ចាប់ផ្តើម",
-      "description": "เรียนรู้วิธีตั้งค่าโปรไฟล์ของคุณและเริ่มเชื่อมต่อ",
-      "placeholder": "เนื้อหาสำหรับ 'การเริ่มต้นใช้งาน' จะพร้อมใช้งานเร็วๆ นี้"
+      "title": "KM: Getting Started",
+      "description": "KM: Learn how to set up your profile and start connecting.",
+      "placeholder": "KM: Content for 'Getting Started' will be available soon."
     },
     "marketplaceGuide": {
-      "title": "មគ្គុទ្ទេសก์ទីផ្សារ",
-      "description": "เคล็ดลับในการสร้างรายการที่มีประสิทธิภาพและค้นหาสิ่งที่คุณต้องการ",
-      "placeholder": "เนื้อหาสำหรับ 'មគ្គុទ្เทศก์ទីផ្សារ' จะพร้อมใช้งานเร็วๆ นี้"
+      "title": "KM: Marketplace Guide",
+      "description": "KM: Tips on creating effective listings and finding what you need.",
+      "placeholder": "KM: Content for 'Marketplace Guide' will be available soon."
     },
     "accountManagement": {
-      "title": "ការគ្រប់គ្រងគណនី",
-      "description": "จัดการการตั้งค่า ความเป็นส่วนตัว และการแจ้งเตือนของคุณ",
-      "placeholder": "เนื้อหาสำหรับ 'การจัดการบัญชี' จะพร้อมใช้งานเร็วๆ นี้"
+      "title": "KM: Account Management",
+      "description": "KM: Manage your settings, privacy, and notifications.",
+      "placeholder": "KM: Content for 'Account Management' will be available soon."
     },
     "troubleshooting": {
-      "title": "ការ​ដោះស្រាយ​បញ្ហា",
-      "description": "ค้นหาแนวทางแก้ไขปัญหาทั่วไปและปัญหาทางเทคนิค",
-      "placeholder": "เนื้อหาสำหรับ 'การแก้ไขปัญหา' จะพร้อมใช้งานเร็วๆ นี้"
+      "title": "KM: Troubleshooting",
+      "description": "KM: Find solutions to common issues and technical problems.",
+      "placeholder": "KM: Content for 'Troubleshooting' will be available soon."
     },
     "stillNeedHelp": {
-      "title": "នៅតែត្រូវការជំនួយមែនទេ?",
-      "description": "ทีมสนับสนุนของเราพร้อมที่จะช่วยเหลือคุณในทุกคำถามที่คุณอาจมี",
-      "button": "ទំនាក់ទំនងផ្នែកគាំទ្រ"
+      "title": "KM: Still need help?",
+      "description": "KM: Our support team is ready to assist you with any questions you may have.",
+      "button": "KM: Contact Support"
     }
   },
   "privacyPolicy": {
-    "title": "គោលការណ៍ឯកជនភាព",
-    "lastUpdated": "កែសម្រួលចុងក្រោយ: 29 តុលា 2023",
-    "introduction": "សេចក្តីជូនដំណឹងអំពីឯកជនភាពនេះសម្រាប់ DamDoh ពន្យល់ពីរបៀប และមូលហេតុដែលเราอาจรวบรวม จัดเก็บ ใช้ และ/หรือแบ่งปัน ('ประมวลผล') ข้อมูลของคุณเมื่อคุณใช้บริการของเรา ('บริการ') เช่น เมื่อคุณเยี่ยมชมเว็บไซต์หรือแอปพลิเคชันมือถือของเรา",
+    "title": "KM: Privacy Policy",
+    "lastUpdated": "KM: Last updated: October 29, 2023",
+    "introduction": "This privacy notice for DamDoh explains how and why we might collect, store, use, and/or share ('process') your information when you use our services ('Services'), such as when you visit our website or our mobile application.",
     "whatInfoWeCollect": {
-      "heading": "១. តើយើងប្រមូលព័ត៌មានអ្វីខ្លះ?",
-      "content": "យើងប្រមូលព័ត៌មានផ្ទាល់ខ្លួនដែលអ្នកផ្តល់ให้เราโดยสมัครใจเมื่อคุณลงทะเบียนใช้บริการ แสดงความสนใจในการรับข้อมูลเกี่ยวกับเราหรือผลิตภัณฑ์และบริการของเรา เมื่อคุณเข้าร่วมกิจกรรมในบริการ หรือเมื่อคุณติดต่อเรา"
+      "heading": "KM: 1. WHAT INFORMATION DO WE COLLECT?",
+      "content": "KM: We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us."
     },
     "howWeUseInfo": {
-      "heading": "២. តើយើងដំណើរការព័ត៌មានរបស់អ្នកដោយរបៀបណា?",
-      "content": "เราประมวลผลข้อมูลของคุณเพื่อวัตถุประสงค์ตามผลประโยชน์ทางธุรกิจที่ชอบด้วยกฎหมาย การปฏิบัติตามสัญญาของเรากับคุณ การปฏิบัติตามภาระผูกพันทางกฎหมายของเรา และ/หรือความยินยอมของคุณ ซึ่งรวมถึงการอำนวยความสะดวกในการสร้างบัญชี การเปิดใช้งานการสื่อสารระหว่างผู้ใช้ และการให้บริการหลักของเรา"
+      "heading": "KM: 2. HOW DO WE PROCESS YOUR INFORMATION?",
+      "content": "KM: We process your information for purposes based on legitimate business interests, the fulfillment of our contract with you, compliance with our legal obligations, and/or your consent. This includes facilitating account creation, enabling user-to-user communications, and providing our core services."
     },
     "willInfoBeShared": {
-      "heading": "៣. តើព័ត៌មានរបស់អ្នកនឹងត្រូវបានចែករំលែកជាមួយនរណាម្នាក់ដែរឬទេ?",
-      "content": "เราแบ่งปันข้อมูลเฉพาะเมื่อได้รับความยินยอมจากคุณ เพื่อปฏิบัติตามกฎหมาย เพื่อให้บริการแก่คุณ เพื่อปกป้องสิทธิ์ของคุณ หรือเพื่อปฏิบัติตามภาระผูกพันทางธุรกิจ ตัวอย่างเช่น เราแบ่งปันข้อมูลโปรไฟล์สาธารณะของคุณกับผู้ใช้รายอื่นเพื่ออำนวยความสะดวกในการเชื่อมต่อ"
+      "heading": "KM: 3. WILL YOUR INFORMATION BE SHARED WITH ANYONE?",
+      "content": "KM: We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations. For example, we share your public profile information with other users to facilitate connections."
     },
     "cookiesAndTracking": {
-      "heading": "៤. តើយើងប្រើឃុកឃីและបច្ចេកវិទ្យាតាមដានផ្សេងទៀតដែរឬទេ?",
-      "content": "เราอาจใช้คุกกี้และเทคโนโลยีการติดตามที่คล้ายกัน (เช่น เว็บบีคอนและพิกเซล) เพื่อเข้าถึงหรือจัดเก็บข้อมูล ข้อมูลเฉพาะเกี่ยวกับวิธีที่เราใช้เทคโนโลยีดังกล่าวและวิธีที่คุณสามารถปฏิเสธคุกกี้บางประเภทได้ระบุไว้ในประกาศเกี่ยวกับคุกกี้ของเรา"
+      "heading": "KM: 4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?",
+      "content": "KM: We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice."
     },
     "howLongWeKeepInfo": {
-      "heading": "៥. តើយើងរក្សាទុកព័ត៌មានរបស់អ្នករយៈពេលប៉ុន្មាន?",
-      "content": "เราเก็บข้อมูลของคุณตราบเท่าที่จำเป็นเพื่อให้บรรลุวัตถุประสงค์ที่ระบุไว้ในประกาศความเป็นส่วนตัวนี้ เว้นแต่กฎหมายจะกำหนดไว้เป็นอย่างอื่น เมื่อเราไม่มีความจำเป็นทางธุรกิจที่ชอบด้วยกฎหมายในการประมวลผลข้อมูลส่วนบุคคลของคุณ เราจะลบหรือทำให้เป็นนิรนาม"
+      "heading": "KM: 5. HOW LONG DO WE KEEP YOUR INFORMATION?",
+      "content": "KM: We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law. When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize it."
     },
     "howWeKeepInfoSafe": {
-      "heading": "៦. តើយើងរក្សាព័ត៌មានរបស់អ្នកឱ្យមានសុវត្ថិភាពដោយរបៀបណា?",
-      "content": "เราได้ใช้มาตรการรักษาความปลอดภัยทางเทคนิคและองค์กรที่เหมาะสมซึ่งออกแบบมาเพื่อปกป้องความปลอดภัยของข้อมูลส่วนบุคคลใดๆ ที่เราประมวลผล อย่างไรก็ตาม แม้จะมีมาตรการป้องกันและความพยายามของเรา แต่ก็ไม่มีการส่งข้อมูลทางอิเล็กทรอนิกส์ใดๆ ผ่านอินเทอร์เน็ตที่สามารถรับประกันความปลอดภัยได้ 100%"
+      "heading": "KM: 6. HOW DO WE KEEP YOUR INFORMATION SAFE?",
+      "content": "KM: We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts, no electronic transmission over the Internet can be guaranteed to be 100% secure."
     },
     "minors": {
-      "heading": "៧. តើយើងប្រមូលព័ត៌មានពីអនីតិជនដែរឬទេ?",
-      "content": "เราไม่ได้จงใจร้องขอข้อมูลจากหรือทำการตลาดกับเด็กอายุต่ำกว่า 18 ปี โดยการใช้บริการ คุณรับรองว่าคุณมีอายุอย่างน้อย 18 ปี หรือคุณเป็นผู้ปกครองหรือผู้ดูแลของผู้เยาว์ดังกล่าวและยินยอมให้ผู้เยาว์ที่อยู่ในความดูแลของคุณใช้บริการ"
+      "heading": "KM: 7. DO WE COLLECT INFORMATION FROM MINORS?",
+      "content": "KM: We do not knowingly solicit data from or market to children under 18 years of age. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the Services."
     },
     "privacyRights": {
-      "heading": "៨. តើសិទ្ធិឯកជនភាពរបស់អ្នកមានអ្វីខ្លះ?",
-      "content": "ในบางภูมิภาค คุณมีสิทธิบางประการภายใต้กฎหมายคุ้มครองข้อมูลที่บังคับใช้ ซึ่งอาจรวมถึงสิทธิ (i) ในการขอเข้าถึงและรับสำเนาข้อมูลส่วนบุคคลของคุณ (ii) ในการขอแก้ไขหรือลบ (iii) ในการจำกัดการประมวลผลข้อมูลส่วนบุคคลของคุณ และ (iv) หากมีผลบังคับใช้ สิทธิในการเคลื่อนย้ายข้อมูล"
+      "heading": "KM: 8. WHAT ARE YOUR PRIVACY RIGHTS?",
+      "content": "KM: In some regions, you have certain rights under applicable data protection laws. These may include the right (i) to request access and obtain a copy of your personal data, (ii) to request rectification or erasure, (iii) to restrict the processing of your personal information, and (iv) if applicable, to data portability."
     },
     "controlsForDoNotTrack": {
-      "heading": "៩. ការควบคุมสำหรับคุณสมบัติ DO-NOT-TRACK",
-      "content": "เว็บเบราว์เซอร์ส่วนใหญ่และระบบปฏิบัติการมือถือและแอปพลิเคชันมือถือบางประเภทมีคุณลักษณะหรือการตั้งค่า Do-Not-Track ('DNT') ที่คุณสามารถเปิดใช้งานเพื่อส่งสัญญาณความต้องการความเป็นส่วนตัวของคุณไม่ให้มีการตรวจสอบและรวบรวมข้อมูลเกี่ยวกับกิจกรรมการท่องเว็บออนไลน์ของคุณ ในขั้นตอนนี้ยังไม่มีมาตรฐานเทคโนโลยีที่เป็นเอกภาพสำหรับการรับรู้และนำสัญญาณ DNT ไปใช้ ด้วยเหตุนี้ เราจึงไม่ตอบสนองต่อสัญญาณ DNT ของเบราว์เซอร์ในขณะนี้"
+      "heading": "KM: 9. CONTROLS FOR DO-NOT-TRACK FEATURES",
+      "content": "KM: Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals."
     },
     "updatesToNotice": {
-      "heading": "១០. តើយើងធ្វើបច្ចុប្បន្នភាពសេចក្តីជូនដំណឹងនេះដែរឬទេ?",
-      "content": "เราอาจปรับปรุงประกาศความเป็นส่วนตัวนี้เป็นครั้งคราว เวอร์ชันที่ปรับปรุงแล้วจะถูกระบุด้วยวันที่ 'แก้ไข' ที่อัปเดตและเวอร์ชันที่ปรับปรุงแล้วจะมีผลบังคับใช้ทันทีที่สามารถเข้าถึงได้ เราขอแนะนำให้คุณตรวจสอบประกาศความเป็นส่วนตัวนี้บ่อยๆ เพื่อรับทราบข้อมูลเกี่ยวกับวิธีที่เราปกป้องข้อมูลของคุณ"
-    },
-    "contactUs": {
-      "heading": "១១. តើអ្នកអាចទាក់ទងយើងអំពីសេចក្តីជូនដំណឹងនេះដោយរបៀបណា?",
-      "content": "ប្រសិនបើអ្នកមានសំណួរ ឬមតិយោបល់ទាក់ទងនឹងសេចក្តីជូនដំណឹងនេះ អ្នកអាចផ្ញើអ៊ីមែលមកយើងតាមរយៈ support@damdoh.org ឬតាមរយៈប្រៃសណីយ៍តាមអាសយដ្ឋានការិយាល័យរបស់យើង"
-    },
-    "conclusion": "ដើម្បីដោះស្រាយពាក្យបណ្តឹង ឬទទួលព័ត៌មានបន្ថែម សូម {contactLink}"
+      "heading": "KM: 10. DO WE MAKE UPDATES TO THIS NOTICE?",
+      "content": "KM: We may update this privacy notice from time to time. The updated version will be indicated by an updated 'Revised' date and the updated version will be effective as soon as it is accessible. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information."
+    }
   },
   "termsOfService": {
-    "title": "លក្ខខណ្ឌប្រើប្រាស់",
-    "lastUpdated": "កែសម្រួលចុងក្រោយ: 29 តុលា 2023",
-    "introduction": "លក្ខខណ្ឌប្រើប្រាស់ទាំងនេះបង្កើតបានជាកិច្ចព្រមព្រៀងដែលមានកាតព្វកិច្ចផ្លូវច្បាប់រវាងអ្នក និង DamDoh, ទាក់ទងនឹងការចូលប្រើ และการใช้งานเว็บไซต์ DamDoh ของคุณ ตลอดจนรูปแบบสื่อ ช่องทางสื่อ เว็บไซต์มือถือ หรือแอปพลิเคชันมือถืออื่นใดที่เกี่ยวข้อง เชื่อมโยง หรือเชื่อมต่อกับสิ่งนั้น",
+    "title": "KM: Terms of Service",
+    "lastUpdated": "KM: Last updated: October 29, 2023",
+    "introduction": "These Terms of Use constitute a legally binding agreement made between you and DamDoh, concerning your access to and use of the DamDoh website as well as any other media form, media channel, mobile website, or mobile application related, linked, or otherwise connected thereto.",
     "agreementToTerms": {
-      "heading": "1. ការយល់ព្រមតាមលក្ខខណ្ឌ",
-      "content": "តាមរយៈការប្រើប្រាស់វេទិកា, អ្នកយល់ព្រមអនុវត្តตามលក្ខខណ្ឌប្រើប្រាស់ទាំងនេះ។ ប្រសិនបើអ្នកមិនយល់ព្រម, คุณไม่ได้รับอนุญาตให้ใช้แพลตฟอร์ม เราขอสงวนสิทธิ์ในการเปลี่ยนแปลงข้อกำหนดเหล่านี้ได้ตลอดเวลา"
+      "heading": "KM: 1. AGREEMENT TO TERMS",
+      "content": "KM: By using the platform, you agree to be bound by these Terms of Use. If you do not agree, you are not permitted to use the platform. We reserve the right to make changes to these Terms at any time."
     },
     "intellectualProperty": {
-      "heading": "2. សិទ្ធិកម្មសិទ្ធិបញ្ញា",
-      "content": "លុះត្រាតែមានការបញ្ជាក់ផ្សេងពីនេះ, វេទិកាគឺជាកម្មសិទ្ធិផ្តាច់មុខរបស់យើង และซอร์สโค้ด ฐานข้อมูล ฟังก์ชันการทำงาน ซอฟต์แวร์ การออกแบบเว็บไซต์ เสียง วิดีโอ ข้อความ ภาพถ่าย และกราฟิกทั้งหมดบนไซต์ (เรียกรวมกันว่า 'เนื้อหา') และเครื่องหมายการค้า เครื่องหมายบริการ และโลโก้ที่อยู่ในนั้นเป็นของเราหรือควบคุมโดยเราหรือได้รับอนุญาตให้เรา"
+      "heading": "KM: 2. INTELLECTUAL PROPERTY RIGHTS",
+      "content": "KM: Unless otherwise indicated, the Platform is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the 'Content') and the trademarks, service marks, and logos contained therein are owned or controlled by us or licensed to us."
     },
     "userRepresentations": {
-      "heading": "3. ការតំណាងអ្នកប្រើប្រាស់",
-      "content": "តាមរយៈការប្រើប្រាស់គេហទំព័រ, អ្នកតំណាង และធានាថា៖ (1) ព័ត៌មានចុះឈ្មោះទាំងអស់ដែលអ្នកបានដាក់ស្នើនឹងពិតត្រឹមត្រូវ, បច្ចុប្បន្នភាព, และสมบูรณ์; (2) คุณจะรักษาความถูกต้องของข้อมูลดังกล่าวและปรับปรุงข้อมูลการลงทะเบียนดังกล่าวโดยทันทีตามความจำเป็น; (3) คุณมีความสามารถทางกฎหมายและคุณตกลงที่จะปฏิบัติตามข้อกำหนดการใช้งานเหล่านี้; (4) คุณจะไม่ใช้ไซต์เพื่อวัตถุประสงค์ที่ผิดกฎหมายหรือไม่ได้รับอนุญาต; และ (5) การใช้ไซต์ของคุณจะไม่ละเมิดกฎหมายหรือข้อบังคับใดๆ ที่บังคับใช้"
+      "heading": "KM: 3. USER REPRESENTATIONS",
+      "content": "KM: By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Use; (4) you will not use the Site for any illegal or unauthorized purpose; and (5) your use of the Site will not violate any applicable law or regulation."
     },
     "prohibitedActivities": {
-      "heading": "4. សកម្មភាពហាមឃាត់",
-      "content": "អ្នកមិនអាចចូលប្រើ ឬប្រើប្រាស់គេហទំព័រសម្រាប់គោលបំណងផ្សេងទៀតក្រៅពីអ្វីដែលเราផ្តល់គេហទំព័រឱ្យនោះទេ។ សកម្មភាពហាមឃាត់រួមមាន, ប៉ុន្តែមិនកំណត់ចំពោះ៖ การดึงข้อมูลอย่างเป็นระบบ, การหลอกลวงหรือฉ้อโกงเราหรือผู้ใช้รายอื่น, การพยายามแอบอ้างเป็นผู้ใช้รายอื่น, การล่วงละเมิดหรือข่มขู่พนักงานของเราหรือผู้ใช้รายอื่น, และการอัปโหลดหรือส่งไวรัสหรือโค้ดที่เป็นอันตรายประเภทอื่นๆ"
+      "heading": "KM: 4. PROHIBITED ACTIVITIES",
+      "content": "KM: You may not access or use the Site for any purpose other than that for which we make the Site available. Prohibited activities include, but are not limited to: systematic retrieval of data, tricking or defrauding us or other users, attempting to impersonate another user, harassing or threatening our employees or other users, and uploading or transmitting viruses or other types of malicious code."
     },
     "platformManagement": {
-      "heading": "5. ការគ្រប់គ្រងវេទិកា",
-      "content": "យើងរក្សាសិទ្ធិ, ប៉ុន្តែไม่มีภาระผูกพัน, ក្នុងការ៖ (1) ត្រួតពិនិត្យគេហទំព័រสำหรับการរំលោភលើលក្ខខណ្ឌប្រើប្រាស់ទាំងនេះ; (2) ចាត់វិធានការផ្លូវច្បាប់សមស្របប្រឆាំងនឹងនរណាម្នាក់ដែល, តាមការសម្រេចចិត្តតែមួយគត់របស់យើង, បំពានច្បាប់ หรือលក្ខខណ្ឌប្រើប្រាស់ទាំងនេះ; (3) តាមការសម្រេចចិត្តតែមួយគត់របស់យើង และโดยไม่มีដែนកំណត់, បដិសେធ, កំណត់ការចូលប្រើប្រាស់, កំណត់ភាពអាចរកបាន, หรือปิดใช้งานការมีส่วนร่วมของคุณหรือส่วนใดส่วนหนึ่งของมัน"
+      "heading": "KM: 5. PLATFORM MANAGEMENT",
+      "content": "KM: We reserve the right, but not the obligation, to: (1) monitor the Site for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable any of your Contributions or any portion thereof."
     },
     "termAndTermination": {
-      "heading": "6. រយៈពេលនិងការបញ្ចប់",
-      "content": "លក្ខខណ្ឌប្រើប្រាស់ទាំងនេះនឹងនៅតែមានប្រសិទ្ធភាពពេញលេញដរាបណាអ្នកប្រើប្រាស់គេហទំព័រ។ โดยไม่จำกัดข้อกำหนดอื่นใดของข้อกำหนดการใช้งานเหล่านี้, เราขอสงวนสิทธิ์ในการปฏิเสธการเข้าถึงและการใช้งานไซต์ (รวมถึงการบล็อกที่อยู่ IP บางรายการ), แก่บุคคลใดๆ ด้วยเหตุผลใดๆ หรือไม่มีเหตุผลใดๆ ตามดุลยพินิจของเราแต่เพียงผู้เดียวและโดยไม่มีการแจ้งเตือนหรือความรับผิด"
+      "heading": "KM: 6. TERM AND TERMINATION",
+      "content": "KM: These Terms of Use shall remain in full force and effect while you use the Site. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS OF USE, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SITE (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON."
     },
     "modificationsAndInterruptions": {
-      "heading": "7. ការកែប្រែและរំខាន",
-      "content": "เราขอสงวนสิทธิ์ในการเปลี่ยนแปลง, แก้ไข, หรือลบเนื้อหาของไซต์ได้ตลอดเวลาหรือด้วยเหตุผลใดๆ ตามดุลยพินิจของเราแต่เพียงผู้เดียวโดยไม่ต้องแจ้งให้ทราบล่วงหน้า นอกจากนี้ เราขอสงวนสิทธิ์ในการแก้ไขหรือยุติการให้บริการทั้งหมดหรือบางส่วนของไซต์โดยไม่ต้องแจ้งให้ทราบล่วงหน้าได้ตลอดเวลา เราจะไม่รับผิดต่อคุณหรือบุคคลที่สามใดๆ สำหรับการแก้ไข, การเปลี่ยนแปลงราคา, การระงับ, หรือการยุติการให้บริการของไซต์"
+      "heading": "KM: 7. MODIFICATIONS AND INTERRUPTIONS",
+      "content": "KM: We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Site without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Site."
     },
     "governingLaw": {
-      "heading": "8. ច្បាប់គ្រប់គ្រង",
-      "content": "លក្ខខណ្ឌប្រើប្រាស់ទាំងនេះ และការប្រើប្រាស់គេហទំព័ររបស់អ្នកត្រូវបានគ្រប់គ្រង និងបកស្រាយស្របតាមច្បាប់នៃដែនសមត្ថកិច្ចដែល DamDoh ត្រូវបានចុះបញ្ជី, โดยไม่คำนึงถึงหลักการขัดกันแห่งกฎหมาย"
+      "heading": "KM: 8. GOVERNING LAW",
+      "content": "These Terms of Use and your use of the Site are governed by and construed in accordance with the laws of the jurisdiction where DamDoh is registered, without regard to its conflict of law principles."
     },
     "disputeResolution": {
-      "heading": "9. ការដោះស្រាយវិវាទ",
-      "content": "បណ្តឹងផ្លូវច្បាប់ណាមួយ មិនថាមានលក្ខណៈបែបណានោះទេ ដែលផ្តួចផ្តើមដោយអ្នក ឬយើង ត្រូវតែចាប់ផ្តើម ឬดำเนินคดีในศาลនៃរដ្ឋ និងសហព័ន្ធដែលស្ថិតនៅក្នុងដែនសមត្ថកិច្ចដែលយើងត្រូវបានចុះបញ្ជី ហើយភាគីទាំងពីរយល់ព្រម និងលះបង់ការការពារទាំងអស់នៃការខ្វះខាតដែនសមត្ថកិច្ចផ្ទាល់ខ្លួន និង forum non conveniens ទាក់ទងនឹងទីកន្លែង និងដែនសមត្ថកិច្ចនៅក្នុងតុលាការបែបនោះ។"
+      "heading": "KM: 9. DISPUTE RESOLUTION",
+      "content": "KM: Any legal action of whatever nature brought by either you or us shall be commenced or prosecuted in the state and federal courts located in the jurisdiction where we are registered, and the parties hereby consent to, and waive all defenses of lack of personal jurisdiction and forum non conveniens with respect to venue and jurisdiction in such courts."
     },
     "contactUs": {
-      "heading": "១០. ទំនាក់ទំនងមកយើង",
-      "content": "ដើម្បីដោះស្រាយពាក្យបណ្តឹងទាក់ទងនឹងគេហទំព័រ ឬដើម្បីទទួលបានព័ត៌មានបន្ថែមទាក់ទងនឹងការប្រើប្រាស់គេហទំព័រ សូមទំនាក់ទំនងមកយើង។"
+      "heading": "KM: 10. CONTACT US",
+      "content": "KM: To resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us."
     },
-    "conclusion": "ដើម្បីដោះស្រាយពាក្យបណ្តឹង ឬទទួលព័ត៌មានបន្ថែម សូម {contactLink}"
+    "conclusion": "KM: To resolve a complaint or receive further information, please {contactLink}."
   },
-  "pinboardPage": {
-    "title": "Pin-Board",
-    "description": "កន្លែងផ្ទាល់ខ្លួនរបស់អ្នកដើម្បីរក្សាទុកធាតុសំខាន់ៗពីទូទាំង DamDoh។",
-    "comingSoonTitle": "Pin-Board នឹងមកដល់ឆាប់ៗនេះ!",
-    "comingSoonDescription": "មុខងារនេះនឹងអនុញ្ញាតឱ្យអ្នក 'ដាក់ម្ជុល' ធាតុទីផ្សារ ការបង្ហោះក្នុងវេទិកា ប្រវត្តិរូប และច្រើនទៀតទៅកាន់បอร์ดផ្ទាល់ខ្លួនរបស់អ្នកសម្រាប់ការចូលប្រើងាយស្រួល។",
-    "stayTuned": "រង់ចាំមើលបច្ចុប្បន្នភាព!"
-  },
-  "walletPage": {
-    "title": "កាបូបលុយរបស់ខ្ញុំ",
-    "description": "គ្រប់គ្រងហិរញ្ញវត្ថុរបស់អ្នក មើលប្រតិបត្តិការ และចូលប្រើសេវាកម្មហិរញ្ញវត្ថុ។",
-    "underDevelopmentTitle": "មជ្ឈមណ្ឌលហិរញ្ញវត្ថុកំពុងអភិវឌ្ឍ",
-    "underDevelopmentDescription": "เรากำลังสร้างกระเป๋าเงินดิจิทัลที่แข็งแกร่งและปลอดภัยเพื่อจัดการธุรกรรมทั้งหมดของคุณบนแพลตฟอร์ม คุณสมบัติจะรวมถึง:",
-    "feature1": "ការផ្ទុកសមតុល្យដែលមានសុវត្ថិភាព។",
-    "feature2": "ประวัติธุรกรรมสำหรับการขายในตลาดและการชำระค่าบริการ",
-    "feature3": "การจ่ายเงินที่ง่ายดายไปยังบัญชีเงินมือถือหรือบัญชีธนาคารในพื้นที่ของคุณ",
-    "feature4": "ការចូលប្រើដើម្បីដាក់ពាក្យស្នើសុំកម្ចី และជំនួយឥតសំណងដោយផ្ទាល់ពីកាបូបលុយរបស់អ្នក។",
-    "stayTuned": "រង់ចាំមើលមុខងារដ៏គួរឱ្យរំភើបនេះ!"
-  },
-  "industryNewsPage": {
-    "title": "ព័ត៌មានឧស្សាហកម្ម",
-    "description": "ទទួលបានព័ត៌មានថ្មីៗអំពីនិន្នាការ ការស្រាវជ្រាវ និងការផ្លាស់ប្តូរនយោបាយក្នុងវិស័យកសិកម្ម",
-    "searchPlaceholder": "ស្វែងរកអត្ថបទព័ត៌មាន...",
-    "categoryPlaceholder": "តម្រងតាមប្រភេទ",
-    "allCategories": "គ្រប់ប្រភេទទាំងអស់",
-    "sourceLabel": "ប្រភព",
-    "publishedLabel": "បានចេញផ្សាយ",
-    "categoryLabel": "ប្រភេទ",
-    "readButton": "អានរឿងពេញ",
-    "news1": {
-      "title": "ราคากาแฟทั่วโลกพุ่งสูงขึ้นท่ามกลางภาวะน้ำค้างแข็งในบราซิลและความล่าช้าในการขนส่ง",
-      "excerpt": "การผสมผสานระหว่างสภาพอากาศที่ไม่เอื้ออำนวยในภูมิภาคการเพาะปลูกที่สำคัญและความท้าทายด้านโลจิสติกส์ระดับโลกที่ดำเนินอยู่อย่างต่อเนื่องได้ผลักดันให้สัญญาซื้อขายล่วงหน้ากาแฟอาราบิก้าแตะระดับสูงสุดในรอบเจ็ดปี..."
+  "Marketplace": {
+    "title": "KM: Marketplace",
+    "description": "KM: Discover, buy, and sell agricultural products and services.",
+    "createShopButton": "KM: Create Shop",
+    "myOrdersButton": "KM: My Orders",
+    "createListingButton": "KM: Create Listing",
+    "pinButton": "KM: Pin as Homepage",
+    "unpinButton": "KM: Unpin Homepage",
+    "searchPlaceholder": "KM: Search products & services...",
+    "locationPlaceholder": "KM: Filter by location...",
+    "typePlaceholder": "KM: Filter by type...",
+    "recommendedForYou": "KM: Recommended For You",
+    "discoverMore": "KM: Discover More",
+    "viewDetails": "KM: View Details",
+    "viewServiceButton": "KM: View Service",
+    "pinning": {
+      "pinnedTitle": "KM: Marketplace Pinned",
+      "pinnedDescription": "KM: The marketplace is now your default homepage.",
+      "unpinnedTitle": "KM: Marketplace Unpinned",
+      "unpinnedDescription": "KM: Your homepage has been reset to the default."
     },
-    "news2": {
-      "title": "สหภาพยุโรปบังคับใช้กฎระเบียบใหม่ของยุทธศาสตร์ 'จากฟาร์มสู่ส้อม' เกี่ยวกับบรรจุภัณฑ์",
-      "excerpt": "กฎระเบียบใหม่จะกำหนดให้ผู้ส่งออกอาหารไปยังสหภาพยุโรปต้องปฏิบัติตามมาตรฐานที่เข้มงวดมากขึ้นสำหรับบรรจุภัณฑ์ที่สามารถรีไซเคิลและย่อยสลายได้ ซึ่งส่งผลกระทบต่อห่วงโซ่อุปทานทั้งหมด"
+    "noItemsFound": {
+      "title": "KM: No Items Found",
+      "hint": "KM: Try adjusting your search filters or check back later."
     },
-    "news3": {
-      "title": "ผลการศึกษาชี้ว่าแนวปฏิบัติแบบฟื้นฟูสามารถเพิ่มคาร์บอนในดินได้ 15% ใน 5 ปี",
-      "excerpt": "ការសិក្សារយៈពេលវែងមួយដែលត្រូវបានបោះពុម្ពផ្សាយនៅក្នុង Nature បង្ហាញពីសក្តានុពលដ៏សំខាន់នៃแนวปฏิบัติการไม่ไถพรวนและการปลูกพืชคลุมดินสำหรับการกักเก็บคาร์บอนและสุขภาพของดิน"
+    "errors": {
+      "search": {
+        "title": "KM: Search Failed",
+        "description": "KM: Could not retrieve marketplace listings at this time."
+      },
+      "aiRecommendations": {
+        "title": "KM: Could not find recommendations at this time."
+      }
     },
-    "noNews": {
-      "title": "រកមិនឃើញព័ត៌មាន",
-      "description": "ไม่มีบทความข่าวที่ตรงกับเกณฑ์ของคุณในขณะนี้"
+    "categories": {
+      "allCategories": "KM: All Categories",
+      "viewAllItems": "KM: View All Items",
+      "viewAllCategory": "KM: All in {categoryName}"
+    },
+    "createListing": {
+      "backLink": "KM: Back to Marketplace",
+      "title": "KM: Create a New Marketplace Listing",
+      "description": "KM: Fill in the details below to list your product or service.",
+      "form": {
+        "nameLabel": "KM: Listing Title",
+        "namePlaceholder": "KM: e.g., Organic Hass Avocados, Tractor Repair Service",
+        "typeLabel": "KM: Listing Type",
+        "typePlaceholder": "KM: Select a listing type",
+        "descriptionLabel": "KM: Description",
+        "descriptionPlaceholder": "KM: Describe your product or service in detail...",
+        "locationLabel": "KM: Location",
+        "locationPlaceholder": "KM: e.g., Nakuru, Kenya",
+        "relatedVtiLabel": "KM: Related Traceability ID (Optional)",
+        "relatedVtiPlaceholder": "KM: Enter VTI if available",
+        "relatedVtiDescription": "KM: Link this item to a specific harvest batch for full transparency.",
+        "categoryLabel": "KM: Category",
+        "categoryPlaceholder": "KM: Select a category",
+        "priceLabel": "KM: Price",
+        "pricePlaceholder": "KM: e.g., 25.50",
+        "unitLabel": "KM: per",
+        "unitPlaceholder": "KM: e.g., kg, Ton, Hour",
+        "compensationLabel": "KM: Compensation / Rate",
+        "compensationPlaceholder": "KM: e.g., $50/hour, Per Project",
+        "experienceLabel": "KM: Experience Level",
+        "experiencePlaceholder": "KM: e.g., Intermediate, Expert (10+ years)",
+        "skillsLabel": "KM: Skills Required (for services)",
+        "skillsPlaceholder": "KM: e.g., Crop Spraying, Soil Analysis, Organic Certification",
+        "skillsDescription": "KM: Separate skills with a comma.",
+        "imageUrlLabel": "KM: Image URL",
+        "sustainableLabel": "KM: Sustainably Produced",
+        "sustainableDescription": "KM: Check this box if your product or service follows recognized sustainable practices.",
+        "submitButton": "KM: Create Listing",
+        "submittingButton": "KM: Creating..."
+      },
+      "aiPriceSuggestion": {
+        "button": "KM: Suggest Price with AI",
+        "generatingButton": "KM: Suggesting...",
+        "suggestionLabel": "KM: AI Suggestion:",
+        "usePriceButton": "KM: Use this price"
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "KM: Incomplete Information",
+            "description": "KM: Please fill out the name and description before suggesting a price."
+          },
+          "failed": {
+            "title": "KM: AI Suggestion Failed",
+            "description": "KM: Could not get a price suggestion at this time."
+          }
+        },
+        "authentication": {
+          "title": "KM: Not Authenticated",
+          "description": "KM: You must be signed in to create a listing."
+        },
+        "creation": {
+          "title": "KM: Creation Failed",
+          "description": "KM: An unexpected error occurred while creating the listing."
+        }
+      },
+      "success": {
+        "title": "KM: Listing Created!",
+        "description": "KM: Your listing is now live on the marketplace."
+      }
+    },
+    "itemView": {
+      "backLink": "KM: Back to Marketplace",
+      "notFound": {
+        "description": "KM: Item not found."
+      },
+      "errors": {
+        "loadItem": {
+          "description": "KM: Could not load item."
+        },
+        "unexpected": "KM: An unexpected error occurred."
+      },
+      "coupon": {
+        "successTitle": "KM: Coupon Applied!",
+        "successDescription": "KM: You've received a {type} discount!",
+        "failTitle": "KM: Invalid Coupon",
+        "failDescription": "KM: The coupon code you entered is invalid or has expired.",
+        "label": "KM: Coupon Code",
+        "placeholder": "KM: Enter coupon",
+        "applyButton": "KM: Apply",
+        "appliedText": "KM: Coupon '{code}' applied."
+      },
+      "booking": {
+        "authTitle": "KM: Sign In Required",
+        "authDescription": "KM: You must be signed in to book a service.",
+        "failTitle": "KM: Booking Failed",
+        "dateError": "KM: Please select both a start and end date for your booking.",
+        "successTitle": "KM: Booking Successful!",
+        "successDescription": "KM: Your booking is confirmed. You will receive more details via email.",
+        "bookedTitle": "KM: You've already booked this experience!",
+        "bookedDescription": "KM: Show your ticket upon arrival.",
+        "ticketButton": "KM: View Ticket",
+        "modalTitle": "KM: Your Ticket",
+        "modalDescription": "KM: Show this QR code at check-in for {itemName}.",
+        "modalScan": "KM: Scan this code at check-in.",
+        "perNight": "KM: per night",
+        "checkIn": "KM: Check-in",
+        "checkOut": "KM: Check-out",
+        "addDate": "KM: Add dates",
+        "guests": "KM: Guests",
+        "reserveButton": "KM: Reserve",
+        "reservingButton": "KM: Reserving...",
+        "notCharged": "KM: You won't be charged yet.",
+        "nights": "KM: {count, plural, =1 {night} other {nights}}",
+        "serviceFee": "KM: Service fee",
+        "total": "KM: Total"
+      },
+      "order": {
+        "authTitle": "KM: Sign In Required",
+        "authDescription": "KM: You must be signed in to place an order.",
+        "quantityErrorTitle": "KM: Invalid Quantity",
+        "quantityErrorDescription": "KM: Please enter a quantity greater than zero.",
+        "successTitle": "KM: Order Placed!",
+        "successDescription": "KM: Your order has been successfully sent to the seller.",
+        "failTitle": "KM: Order Failed",
+        "failDescription": "KM: Could not place your order. Please try again.",
+        "title": "KM: Order {itemName}",
+        "description": "KM: Confirm the quantity and add a note for the seller if needed.",
+        "quantityLabel": "KM: Quantity",
+        "notesLabel": "KM: Note for seller (optional)",
+        "notesPlaceholder": "KM: e.g., delivery instructions, special requests...",
+        "cancelButton": "KM: Cancel",
+        "confirmButton": "KM: Confirm Order",
+        "placingButton": "KM: Placing order..."
+      },
+      "skillsLabel": "KM: Skills Required",
+      "experienceLabel": "KM: Experience Level",
+      "compensationLabel": "KM: Compensation",
+      "contactForRates": "KM: Contact for rates",
+      "aboutSeller": "KM: About the Seller",
+      "viewShopfront": "KM: View Shopfront",
+      "editListing": "KM: Edit Listing",
+      "manageService": "KM: Manage Service",
+      "buyNowButton": "KM: Buy Now",
+      "contactForService": "KM: Contact for Service",
+      "contactSeller": "KM: Contact Seller",
+      "traceabilityButton": "KM: View Traceability Report"
+    },
+    "myOrders": {
+      "backLink": "KM: Back to Marketplace",
+      "title": "KM: My Orders",
+      "description": "KM: Manage your incoming sales orders.",
+      "table": {
+        "date": "KM: Date",
+        "buyer": "KM: Buyer",
+        "product": "KM: Product",
+        "total": "KM: Total",
+        "status": "KM: Status",
+        "actions": "KM: Actions"
+      },
+      "actions": {
+        "confirm": "KM: Confirm",
+        "ship": "KM: Ship",
+        "complete": "KM: Complete",
+        "cancel": "KM: Cancel"
+      },
+      "status": {
+        "new": "KM: New",
+        "confirmed": "KM: Confirmed",
+        "shipped": "KM: Shipped",
+        "completed": "KM: Completed",
+        "cancelled": "KM: Cancelled"
+      },
+      "noOrders": "KM: You haven't received any orders yet.",
+      "toast": {
+        "errorTitle": "KM: Error",
+        "fetchError": "KM: Could not fetch your orders.",
+        "successTitle": "KM: Order Updated",
+        "updateSuccess": "KM: Order status successfully updated to '{status}'.",
+        "failTitle": "KM: Update Failed"
+      },
+      "auth": {
+        "title": "KM: Please Sign In",
+        "description": "KM: You must be signed in to view your orders.",
+        "button": "KM: Sign In"
+      }
+    },
+    "createShop": {
+      "backLink": "KM: Back to Marketplace",
+      "title": "KM: Create a Digital Shopfront",
+      "description": "KM: Set up your personal marketplace to showcase your products or services.",
+      "form": {
+        "nameLabel": "KM: Shop Name",
+        "namePlaceholder": "KM: e.g., Green Valley Organics",
+        "typeLabel": "KM: Business Type",
+        "typePlaceholder": "KM: Select your primary stakeholder type",
+        "descriptionLabel": "KM: Shop Description",
+        "descriptionPlaceholder": "KM: Briefly describe your shop and what you offer...",
+        "submitButton": "KM: Create Shop",
+        "submittingButton": "KM: Creating..."
+      },
+      "authErrorTitle": "KM: Not Authenticated",
+      "authErrorDescription": "KM: You must be signed in to create a shop.",
+      "toast": {
+        "successTitle": "KM: Shop Created!",
+        "successDescription": "KM: Your shop '{shopName}' is now live.",
+        "failTitle": "KM: Creation Failed",
+        "failDescription": "KM: Could not create your shop. Please try again."
+      }
+    },
+    "shopView": {
+      "backLink": "KM: Back to Marketplace",
+      "ownedBy": "KM: Owned by",
+      "loadingOwner": "KM: Loading owner...",
+      "contactButton": "KM: Contact",
+      "editShopButton": "KM: Edit Shop",
+      "listingsTitle": "KM: Listings from {shopName}",
+      "noListings": "KM: This shop does not have any active listings at the moment.",
+      "errors": {
+        "notFound": "KM: Shop not found",
+        "loadError": "KM: Could not load shop information.",
+        "title": "KM: Error"
+      }
+    },
+    "promotions": {
+      "title": "KM: My Promotions",
+      "description": "KM: Create and manage coupon codes to attract more buyers.",
+      "backToDashboard": "KM: Back to Dashboard",
+      "signInPrompt": "KM: Please sign in to manage your promotions.",
+      "create": {
+        "title": "KM: Create New Coupon",
+        "description": "KM: Define the details for your new promotional coupon.",
+        "form": {
+          "code": "KM: Coupon Code",
+          "codePlaceholder": "KM: e.g., SALE20",
+          "usageLimit": "KM: Usage Limit",
+          "usageLimitPlaceholder": "KM: e.g., 100",
+          "discountType": "KM: Discount Type",
+          "discountTypePlaceholder": "KM: Select type",
+          "percentage": "KM: Percentage",
+          "fixed": "KM: Fixed Amount",
+          "discountValue": "KM: Discount Value",
+          "expiryDate": "KM: Expiry Date (Optional)",
+          "pickDate": "KM: Pick a date",
+          "submitButton": "KM: Create Coupon"
+        },
+        "toast": {
+          "successTitle": "KM: Coupon Created!",
+          "successDescription": "KM: Coupon '{code}' is now available.",
+          "failTitle": "KM: Creation Failed"
+        }
+      },
+      "list": {
+        "title": "KM: Existing Coupons",
+        "description": "KM: View and manage your active promotional codes.",
+        "usage": "KM: Usage",
+        "expires": "KM: Expires",
+        "never": "KM: Never",
+        "share": "KM: Share",
+        "noCoupons": "KM: You haven't created any coupons yet.",
+        "toastTitle": "KM: Link Copied!",
+        "toastDescription": "KM: A shareable link for coupon '{link}' has been copied to your clipboard.",
+        "shareModal": {
+          "title": "KM: Share Coupon Code",
+          "description": "KM: Share this link with your customers to automatically apply the coupon.",
+          "link": "KM: Link",
+          "copy": "KM: Copy",
+          "close": "KM: Close"
+        }
+      },
+      "toast": {
+        "error": "KM: Error",
+        "fetchError": "KM: Could not fetch your coupons.",
+        "createSuccess": "KM: Coupon '{code}' created successfully.",
+        "createFail": "KM: Could not create coupon.",
+        "createError": "KM: An unexpected error occurred.",
+        "linkCopied": "KM: Link Copied!",
+        "shareDescription": "KM: Shareable link for coupon '{code}' copied."
+      }
+    },
+    "manageService": {
+      "title": "KM: Manage Service",
+      "backLink": "KM: Back to Service Page",
+      "loading": "KM: Loading...",
+      "tabs": {
+        "checkin": "KM: Check-in",
+        "bookings": "KM: Bookings",
+        "staff": "KM: Staff"
+      },
+      "bookingsTab": {
+        "title": "KM: Bookings",
+        "description": "KM: View a list of all users who have booked this service.",
+        "downloadCsv": "KM: Download CSV",
+        "table": {
+          "guest": "KM: Guest",
+          "bookedOn": "KM: Booked On",
+          "status": "KM: Status",
+          "checkedInAt": "KM: Checked-in At"
+        },
+        "status": {
+          "booked": "KM: Booked",
+          "checkedIn": "KM: Checked-in"
+        },
+        "noBookings": "KM: No one has booked this service yet.",
+        "error": "KM: Error",
+        "fetchError": "KM: Could not load bookings.",
+        "toast": {
+          "noBookings": "KM: No bookings to download."
+        }
+      }
     }
   },
-  "notificationsPage": {
-    "title": "ការជូនដំណឹង",
-    "description": "ติดตามกิจกรรมล่าสุดจากเครือข่ายของคุณ",
-    "noNotifications": "អ្នកមិនមានការជូនដំណឹងថ្មីទេ។",
-    "likedYourPost": "{name} បានចូលចិត្តការបង្ហោះរបស់អ្នក។",
-    "commentedOnYourPost": "{name} បានបញ្ចេញមតិលើការបង្ហោះរបស់អ្នក។",
-    "viewedYourProfile": "{name} បានមើលប្រវត្តិរូបរបស់អ្នក។",
-    "placedNewOrder": "{name} បានដាក់ការបញ្ជាទិញសម្រាប់ការចុះបញ្ជីរបស់អ្នក។",
-    "sentConnectionRequest": "{name} បានផ្ញើសំណើភ្ជាប់មកអ្នក។",
-    "error": "កំហុស"
-  },
-  "messagingPage": {
-    "title": "សារ",
-    "searchPlaceholder": "ស្វែងរកការសន្ទនា...",
-    "noConversations": "អ្នកមិនទាន់មានការសន្ទនានៅឡើយទេ។ ចាប់ផ្តើមមួយโดยการเชื่อมต่อกับใครสักคนในหน้าเครือข่าย",
-    "selectConversation": "ជ្រើសរើសការសន្ទនាเพื่อเริ่มแชท",
-    "noMessages": "ยังไม่มีข้อความในบทสนทนานี้ เป็นคนแรกที่พูดอะไรบางอย่าง!",
-    "typeMessagePlaceholder": "พิมพ์ข้อความ...",
-    "signInToView": "โปรดลงชื่อเข้าใช้เพื่อดูข้อความของคุณ",
-    "signIn": "ลงชื่อเข้าใช้",
-    "error": "ข้อผิดพลาด",
-    "couldNotLoadConversations": "ไม่สามารถโหลดบทสนทนาของคุณได้",
-    "couldNotStartConversation": "ไม่สามารถเริ่มบทสนทนาใหม่ได้",
-    "sendFailed": "ส่งไม่สำเร็จ",
-    "couldNotSendMessage": "ไม่สามารถส่งข้อความได้ โปรดลองอีกครั้ง"
-  },
-  "networkPage": {
-    "title": "បណ្តាញ",
-    "description": "ស្វែងរកและเชื่อมต่อกับผู้มีส่วนได้ส่วนเสียทั่วทั้งห่วงโซ่อุปทานทางการเกษตร",
-    "myNetworkButton": "បណ្តាញរបស់ខ្ញុំ",
-    "agentToolsButton": "เครื่องมือตัวแทน",
-    "aiSuggestionsTitle": "ការណែនាំពី AI",
-    "aiSuggestionsDescription": "เชื่อมต่อกับคนที่คุณอาจรู้จักตามโปรไฟล์และกิจกรรมของคุณ",
-    "toast": {
-      "errorTitle": "កំហុស",
-      "loadError": "ไม่สามารถโหลดข้อมูลเครือข่ายได้",
-      "connectError": "ไม่สามารถส่งคำขอเชื่อมต่อได้"
+  "farmManagement": {
+    "hub": {
+      "title": "KM: Farm Management Hub",
+      "description": "KM: Your central place to track and optimize all your farming activities, from planting to harvest.",
+      "myFarms": {
+        "title": "KM: My Farms & Crops",
+        "description": "KM: Manage your farms, fields, and track individual crop cycles.",
+        "button": "KM: Manage Farms"
+      },
+      "labor": {
+        "title": "KM: Labor Management",
+        "description": "KM: Keep track of hours and payments for your workforce.",
+        "button": "KM: Manage Labor"
+      },
+      "knf": {
+        "title": "KM: KNF Inputs Assistant",
+        "description": "KM: Track your farmer-made Korean Natural Farming inputs.",
+        "button": "KM: Manage Inputs"
+      },
+      "fgw": {
+        "title": "KM: Farming God's Way Guide",
+        "description": "KM: Learn the principles and practices of FGW for sustainable, no-till agriculture.",
+        "button": "KM: View FGW Guide"
+      },
+      "financials": {
+        "title": "KM: Financials & Analytics",
+        "description": "KM: Track income, expenses, and gain insights into profitability.",
+        "button": "KM: View Financials"
+      },
+      "seedStarting": {
+        "title": "KM: Seed Starting Guide",
+        "description": "KM: Learn best practices for starting seeds for a successful season.",
+        "button": "KM: View Seed Guide"
+      },
+      "familyFarm": {
+        "title": "KM: Diversified Family Farm Model",
+        "description": "KM: Explore a sustainable 200 sq meter model for small family farms.",
+        "button": "KM: View Model"
+      },
+      "assetManagement": {
+        "title": "KM: Asset Management",
+        "description": "KM: Keep track of your machinery, tools, and other farm assets.",
+        "button": "KM: Manage Assets"
+      }
     },
-    "following": "ส่งคำขอแล้ว",
-    "follow": "ติดตาม",
-    "connect": "เชื่อมต่อ",
-    "profile": "โปรไฟล์",
-    "noSuggestions": "ไม่มีคำแนะนำใหม่ในขณะนี้ ลองขยายโปรไฟล์ของคุณ!",
-    "browseAllTitle": "เรียกดูผู้มีส่วนได้ส่วนเสียทั้งหมด",
-    "browseAllDescription": "ค้นหาและเชื่อมต่อกับพันธมิตรใหม่ในห่วงโซ่อุปทาน",
-    "searchPlaceholder": "ស្វែងរកដោយឈ្មោះ ឬសេចក្ដីសង្ខេប...",
-    "locationPlaceholder": "ค้นหาด้วยตำแหน่งที่ตั้ง...",
-    "rolePlaceholder": "กรองตามบทบาท",
-    "allRoles": "ทุกบทบาท",
-    "noStakeholdersFound": "ไม่พบผู้มีส่วนได้ส่วนเสีย",
-    "noStakeholdersHint": "ลองปรับตัวกรองการค้นหาของคุณ",
-    "invitePrompt": "ป้อนที่อยู่อีเมลของบุคคลที่คุณต้องการเชิญ:",
-    "inviteSuccessTitle": "បានផ្ញើការអញ្ជើញហើយ!",
-    "inviteSuccessDescription": "ได้ส่งคำเชิญไปยัง {email} แล้ว",
-    "inviteErrorTitle": "បរាជ័យក្នុងការផ្ញើការអញ្ជើញ",
-    "invite": {
-      "button": "เชิญ"
-    }
-  },
-  "myNetworkPage": {
-    "backLink": "ត្រឡប់ទៅមជ្ឈមណ្ឌលបណ្តាញ",
-    "myConnectionsTab": "ការតភ្ជាប់របស់ខ្ញុំ ({count})",
-    "pendingRequestsTab": "សំណើកំពុងរង់ចាំ",
-    "connectionsTitle": "ការតភ្ជាប់របស់ខ្ញុំ",
-    "connectionsDescription": "នេះគឺជាបណ្តាញវិជ្ជាជីវៈរបស់អ្នកនៅលើ DamDoh ។ ទាំងនេះគឺជាមនុស្សដែលអ្នកអាចផ្ញើសារโดยตรงและทำงานร่วมกันได้",
-    "requestsTitle": "សំណើភ្ជាប់",
-    "requestsDescription": "ទទួលយក ឬបដិសេធសំណើពីអ្នកប្រើប្រាស់ផ្សេងទៀត ដើម្បីเพิ่มพวกเขาเข้าสู่เครือข่ายของคุณ",
-    "noConnections": {
-      "title": "បង្កើតបណ្តាញរបស់អ្នក",
-      "description": "អ្នកមិនទាន់បានភ្ជាប់ទំនាក់ទំនងណាមួយទេ។ ចាប់ផ្តើមដោយស្វែងយល់បណ្តាញ ឬអញ្ជើញអ្នកដែលអ្នកស្គាល់។",
-      "inviteButton": "អញ្ជើញមិត្តរួមការងារ"
+    "myFarms": {
+      "backToDashboard": "KM: Back to Farm Hub",
+      "title": "KM: My Farms",
+      "addNewFarmButton": "KM: Add New Farm",
+      "size": "KM: Size",
+      "viewFarmButton": "KM: View Farm Dashboard",
+      "noFarmsTitle": "KM: You haven't added any farms yet.",
+      "noFarmsDescription": "KM: Get started by creating your first farm profile to track crops and activities.",
+      "auth": {
+        "title": "KM: Please Sign In",
+        "description": "KM: You must be signed in to view your farms.",
+        "button": "KM: Sign In"
+      },
+      "toast": {
+        "errorTitle": "KM: Error",
+        "fetchError": "KM: Could not fetch your farm data."
+      }
     },
-    "noRequests": "អ្នកមិនមានសំណើភ្ជាប់ដែលមិនទាន់ដំណើរការទេ។",
-    "sentTimeAgo": "បានផ្ញើ {timeAgo} មុន",
-    "toast": {
-      "error": "កំហុស",
-      "success": "ជោគជ័យ",
-      "loadError": "ไม่สามารถโหลดข้อมูลเครือข่ายของคุณได้ โปรดลองอีกครั้ง",
-      "respondError": "การตอบกลับคำขอล้มเหลว",
-      "requestAccepted": "បានទទួលយកសំណើភ្ជាប់។",
-      "requestDeclined": "បានបដិសេធសំណើភ្ជាប់។",
-      "connectionRemoved": "បានលុបការតភ្ជាប់។",
-      "removeError": "ไม่สามารถลบการเชื่อมต่อได้"
-    }
-  },
-  "agentToolsPage": {
-    "backLink": "ត្រឡប់ទៅបណ្តាញ",
-    "title": "ឧបករណ៍ភ្នាក់ងារ",
-    "description": "ស្វែងរកព័ត៌មានអ្នកប្រើប្រាស់សម្រាប់ការផ្ទៀងផ្ទាត់ និងការគាំទ្រប្រកបដោយសុវត្ថិភាព",
-    "findUserLabel": "ស្វែងរកអ្នកប្រើប្រាស់ដោយលេខទូរស័ព្ទ",
-    "findButton": "ស្វែងរក",
-    "resultsTitle": "លទ្ធផល",
-    "resultsPlaceholder": "ព័ត៌មានលម្អិតអ្នកប្រើប្រាស់នឹងបង្ហាញនៅទីនេះ",
-    "phoneRequiredError": "តម្រូវឱ្យមានលេខទូរស័ព្ទដើម្បីស្វែងរក",
-    "accessDeniedTitle": "ការចូលប្រើត្រូវបានបដិសេធ",
-    "accessDeniedDescription": "អ្នកមិនមានសិទ្ធិចាំបាច់ដើម្បីចូលប្រើឧបករណ៍ទាំងនេះទេ។"
-  },
-  "knowledgeHub": {
-    "title": "មជ្ឈមណ្ឌលចំណេះដឹង",
-    "description": "ศูนย์กลางของคุณสำหรับการเรียนรู้ การเติบโต และความเชี่ยวชาญด้านการเกษตร",
-    "courses": {
-      "title": "หลักสูตร",
-      "description": "เส้นทางการเรียนรู้ที่มีโครงสร้างเพื่อเพิ่มพูนทักษะของคุณ",
-      "body": "เรียกดูแคตตาล็อกหลักสูตรของเราที่ออกแบบโดยผู้เชี่ยวชาญในอุตสาหกรรม ครอบคลุมทุกอย่างตั้งแต่เทคนิคการทำฟาร์มที่ยั่งยืนไปจนถึงการจัดการธุรกิจการเกษตร",
-      "cta": "สำรวจหลักสูตร"
+    "createFarm": {
+      "backToFarms": "KM: Back to My Farms",
+      "title": "KM: Create New Farm",
+      "description": "KM: Add a new farm to your profile to start tracking crops, inputs, and activities.",
+      "form": {
+        "farmNameLabel": "KM: Farm Name",
+        "farmNamePlaceholder": "KM: e.g., Green Valley Organics",
+        "locationLabel": "KM: Location",
+        "locationPlaceholder": "KM: e.g., Rift Valley, Kenya",
+        "locationDescription": "KM: Provide a general location (City, Region).",
+        "sizeLabel": "KM: Farm Size",
+        "sizePlaceholder": "KM: e.g., 5 Hectares, 12 Acres",
+        "sizeDescription": "KM: Specify the units (e.g., Hectares, Acres).",
+        "typeLabel": "KM: Farm Type",
+        "typePlaceholder": "KM: Select the primary type",
+        "types": {
+          "crop": "KM: Crop Production",
+          "livestock": "KM: Livestock",
+          "mixed": "KM: Mixed (Crops & Livestock)",
+          "aquaculture": "KM: Aquaculture",
+          "other": "KM: Other"
+        },
+        "descriptionLabel": "KM: Description (Optional)",
+        "descriptionPlaceholder": "KM: Briefly describe your farm...",
+        "irrigationLabel": "KM: Irrigation Method (Optional)",
+        "irrigationPlaceholder": "KM: e.g., Drip irrigation, Rain-fed",
+        "irrigationDescription": "KM: Specify the main irrigation method used.",
+        "submitButton": "KM: Save Farm"
+      },
+      "toast": {
+        "authErrorTitle": "KM: Authentication Error",
+        "authErrorDescription": "KM: You must be signed in to create a farm.",
+        "successTitle": "KM: Farm Created!",
+        "successDescription": "KM: '{farmName}' has been added to your profile.",
+        "errorTitle": "KM: Creation Failed",
+        "errorDescription": "KM: Could not create the farm. Please try again."
+      }
     },
-    "blog": {
-      "title": "บล็อกและข่าวอุตสาหกรรม",
-      "description": "ติดตามข้อมูลเชิงลึกและแนวโน้มล่าสุด",
-      "body": "อ่านบทความจากทีมงานและผู้เชี่ยวชาญในชุมชนของเราเกี่ยวกับแนวโน้มตลาด เทคโนโลยีใหม่ เรื่องราวความสำเร็จ และการเปลี่ยนแปลงนโยบายที่สำคัญ",
-      "cta": "อ่านบล็อก"
+    "farmDetail": {
+      "backToFarms": "KM: Back to My Farms",
+      "registeredOn": "KM: Registered on {date}",
+      "editFarmButton": "KM: Edit Farm",
+      "crops": {
+        "title": "KM: Crops",
+        "description": "KM: Manage all active crops on this farm.",
+        "addNewButton": "KM: Add New Crop",
+        "plantedLabel": "KM: Planted",
+        "stageLabel": "KM: Stage",
+        "viewJourneyButton": "KM: View Journey",
+        "noCrops": "KM: No crops have been added to this farm yet.",
+        "addFirstButton": "KM: Add Your First Crop"
+      },
+      "insights": {
+        "title": "KM: Profitability Insights",
+        "description": "KM: AI-driven analysis of your farm's activities.",
+        "noInsights": "KM: Not enough data to generate insights. Start logging activities!"
+      },
+      "toast": {
+        "notFoundTitle": "KM: Farm Not Found",
+        "loadErrorTitle": "KM: Loading Error",
+        "insightsErrorTitle": "KM: Insights Error"
+      },
+      "notFound": {
+        "title": "KM: Farm Not Found",
+        "description": "KM: The farm you are looking for does not exist, or you do not have permission to view it.",
+        "backButton": "KM: Back to My Farms"
+      }
     },
-    "featured": {
-      "title": "เนื้อหาเด่น",
-      "loading": "กำลังโหลดเนื้อหาเด่น...",
-      "error": "ไม่สามารถโหลดเนื้อหาเด่นได้",
-      "noArticles": "ไม่มีบทความเด่นในขณะนี้"
-    }
-  },
-  "InsurancePage": {
-    "title": "ศูนย์กลางประกันภัยการเกษตร",
-    "description": "ปกป้องฟาร์มและการลงทุนของคุณจากความเสี่ยงที่ไม่คาดฝัน",
-    "toast": {
-      "errorTitle": "ข้อผิดพลาด"
+    "createCrop": {
+      "backLink": "KM: Back to Farm Detail",
+      "title": "KM: Add New Crop",
+      "description": "KM: Log a new crop or planting to start tracking its journey.",
+      "cropTypeLabel": "KM: Crop Name / Type",
+      "cropTypePlaceholder": "KM: e.g., Hass Avocado, Roma Tomato",
+      "cropTypeDescription": "KM: Be as specific as possible.",
+      "plantingDateLabel": "KM: Planting Date",
+      "harvestDateLabel": "KM: Estimated Harvest Date (Optional)",
+      "datePlaceholder": "KM: Select a date",
+      "yieldLabel": "KM: Expected Yield (Optional)",
+      "yieldPlaceholder": "KM: e.g., 5 Tons/Hectare",
+      "stageLabel": "KM: Current Stage (Optional)",
+      "stagePlaceholder": "KM: Select a stage",
+      "stages": {
+        "Planting": "KM: Planting",
+        "Vegetative": "KM: Vegetative",
+        "Flowering": "KM: Flowering",
+        "Fruiting": "KM: Fruiting",
+        "Harvesting": "KM: Harvesting",
+        "Post-Harvest": "KM: Post-Harvest"
+      },
+      "notesLabel": "KM: Notes (Optional)",
+      "notesPlaceholder": "KM: Add any relevant notes about this batch...",
+      "saveButton": "KM: Save Crop",
+      "savingButton": "KM: Saving...",
+      "toast": {
+        "authErrorTitle": "KM: Not Authenticated",
+        "authErrorDescription": "KM: You must be signed in to add a crop.",
+        "successTitle": "KM: Crop Added!",
+        "successDescription": "KM: {cropType} was successfully added to your farm.",
+        "failTitle": "KM: Could not add crop.",
+        "failDescription": "KM: An unexpected error occurred. Please try again."
+      }
     },
-    "perTerm": "ต่อเทอม",
-    "viewDetailsButton": "ดูรายละเอียดและสมัคร",
-    "noProducts": "ไม่มีผลิตภัณฑ์ประกันภัยในขณะนี้ โปรดกลับมาตรวจสอบอีกครั้งในภายหลัง"
-  },
-  "InsuranceApplyPage": {
-    "backLink": "ត្រឡប់ទៅមជ្ឈមណ្ឌលធានារ៉ាប់រង",
-    "title": "ពាក្យសុំធានារ៉ាប់រង",
-    "description": "ដាក់ពាក្យសុំគោលនយោបាយ {productName}។",
-    "form": {
-      "farmLabel": "ជ្រើសរើសកសិដ្ឋានដើម្បីធានា",
-      "farmPlaceholder": "ជ្រើសរើសកសិដ្ឋានមួយក្នុងចំណោមកសិដ្ឋានរបស់អ្នក",
-      "noFarms": "មិនមានកសិដ្ឋានទេ។ សូមបង្កើតកសិដ្ឋានជាមុនសិន។",
-      "coverageValueLabel": "តម្លៃការគ្របដណ្តប់ដែលត្រូវការ (គិតជាដុល្លារអាមេរិក)",
-      "coverageValuePlaceholder": "ឧទាហរណ៍ ១០០០០",
-      "coverageValueDescription": "តម្លៃសរុបដែលអ្នកចង់ធានា",
-      "submitButton": "ដាក់ពាក្យសុំ"
+    "logInput": {
+      "backLink": "KM: Back to Farm",
+      "title": "KM: Log Input Application",
+      "description": "KM: Record the application of fertilizers, pesticides, or other inputs to your crop.",
+      "useKNFLabel": "KM: Use KNF Batch",
+      "useKNFPlaceholder": "KM: Select a ready batch",
+      "manualInputLabel": "KM: Or Enter Manually",
+      "manualInputPlaceholder": "KM: e.g., NPK 10-10-10 Fertilizer",
+      "dateLabel": "KM: Application Date",
+      "quantityLabel": "KM: Quantity",
+      "quantityPlaceholder": "KM: e.g., 50",
+      "unitLabel": "KM: Unit",
+      "unitPlaceholder": "KM: e.g., kg, Liters, ml/L",
+      "methodLabel": "KM: Application Method (Optional)",
+      "methodPlaceholder": "KM: e.g., Foliar spray, Soil drench",
+      "saveButton": "KM: Log Application",
+      "savingButton": "KM: Logging...",
+      "toast": {
+        "authErrorTitle": "KM: Not Authenticated",
+        "authErrorDescription": "KM: You must be signed in to log an application.",
+        "success": "KM: Application Logged",
+        "description": "KM: The input application has been successfully logged to your crop's journey.",
+        "fail": "KM: Logging failed."
+      }
     },
-    "toast": {
-      "error": "កំហុស",
-      "successTitle": "បានដាក់ពាក្យសុំហើយ!",
-      "successDescription": "ពាក្យសុំធានារ៉ាប់រងរបស់អ្នកត្រូវបានបញ្ជូនទៅពិនិត្យហើយ",
-      "notAuthenticated": "អ្នកត្រូវតែចូលគណនីដើម្បីដាក់ពាក្យសុំ"
+    "cropDetailPage": {
+      "backLink": "KM: Back to Farm",
+      "plantedOn": "KM: Planted on {date}",
+      "editButton": "KM: Edit",
+      "quickActionsTitle": "KM: Quick Actions",
+      "logInputButton": "KM: Log Input",
+      "logObservationButton": "KM: Log Observation",
+      "logHarvestButton": "KM: Log Harvest",
+      "journeyTitle": "KM: Crop Journey",
+      "noActivities": "KM: No activities have been logged for this crop yet.",
+      "loading": "KM: Loading crop details...",
+      "notFound": "KM: Crop not found.",
+      "toast": {
+        "notFound": "KM: Crop not found.",
+        "loadError": "KM: Could not load crop data."
+      },
+      "eventPayload": {
+        "noDetails": "KM: No additional details for this event.",
+        "observationType": "KM: Observation Type",
+        "details": "KM: Details",
+        "aiDiagnosis": "KM: AI Diagnosis"
+      }
     },
-    "success": {
-      "title": "បានទទួលពាក្យសុំហើយ",
-      "description": "សូមអរគុណ! ពាក្យសុំរបស់អ្នកកំពុងស្ថិតក្រោមការពិនិត្យ។ អ្នកផ្តល់សេវាធានារ៉ាប់រងនឹងទាក់ទងអ្នកអំពីជំហានបន្ទាប់។",
-      "backToDashboardButton": "ត្រឡប់ទៅផ្ទាំងគ្រប់គ្រង",
-      "applyForAnotherButton": "ដាក់ពាក្យសុំគោលនយោបាយផ្សេងទៀត"
-    }
-  },
-  "InsuranceDetailPage": {
-    "backLink": "ត្រឡប់ទៅមជ្ឈមណ្ឌលធានារ៉ាប់រង",
-    "notFound": "មិនមានផលិតផលធានារ៉ាប់រងទេ",
-    "coverageTitle": "ព័ត៌មានលម្អិតការគ្របដណ្តប់",
-    "premiumTitle": "បុព្វលាភ",
-    "providerTitle": "ផ្តល់ដោយ",
-    "applyButton": "ដាក់ពាក្យសុំគោលនយោបាយនេះ"
-  },
-  "InsuranceProductCreatePage": {
-    "backLink": "ត្រឡប់ទៅផលិតផល",
-    "title": "បង្កើតផលិតផលធានារ៉ាប់រងថ្មី",
-    "description": "កំណត់ផលិតផលធានារ៉ាប់រងថ្មីដើម្បីផ្តល់ជូននៅលើវេទិកា",
-    "form": {
-      "nameLabel": "ឈ្មោះផលិតផល",
-      "namePlaceholder": "ឧទាហរណ៍ ប្រភេទដំណាំច្រើន",
-      "typeLabel": "ប្រភេទផលិតផល",
-      "typePlaceholder": "ជ្រើសរើសប្រភេទ",
-      "crop": "ដំណាំ",
-      "livestock": "បសុសត្វ",
-      "asset": "ទ្រព្យសកម្ម",
-      "weather": "អាកាសធាតុ",
-      "descriptionLabel": "ការពិពណ៌នាសង្ខេប",
-      "descriptionPlaceholder": "សេចក្តីសង្ខេបនៃផលិតផល",
-      "coverageLabel": "ព័ត៌មានលម្អិតការគ្របដណ្តប់",
-      "coveragePlaceholder": "ពិពណ៌នាឱ្យបានលម្អិតអំពីអ្វីដែលគោលនយោបាយនេះគ្របដណ្តប់...",
-      "premiumLabel": "បុព្វលាភ ($)",
-      "premiumPlaceholder": "ឧទាហរណ៍ 500",
-      "currencyLabel": "រូបិយប័ណ្ណ",
-      "submitButton": "បង្កើតផលិតផល"
+    "fgwGuidePage": {
+      "backLink": "KM: Back to Farm Hub",
+      "title": "KM: Farming God's Way Guide",
+      "description": "KM: A sustainable, no-till, faith-based agricultural solution for the poor.",
+      "intro": "KM: Farming God's Way (FGW) is not just a technology, but a biblically-based, management, and technological solution for the agricultural needs of the poor. It's about being faithful stewards of the land God has given us. Below are the core principles.",
+      "howToTitle": "KM: How To",
+      "whyItWorksTitle": "KM: Why It Works",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "No-Tillage",
+          "icon": "Shield",
+          "summary": "Protect the soil by not plowing it. This preserves the God-given soil structure.",
+          "howTo": [
+            "Create permanent planting stations (holes) instead of ridges.",
+            "Only dig where you will plant the seed.",
+            "Walk on permanent pathways to avoid compacting your planting soil."
+          ],
+          "whyItWorks": [
+            "Prevents soil erosion by wind and water.",
+            "Protects soil life and fungal networks.",
+            "Dramatically increases water infiltration and retention.",
+            "Reduces labor and fuel costs associated with plowing."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field with no-tillage planting stations",
+          "dataAiHint": "no-till farming holes"
+        },
+        {
+          "id": "gods-blanket",
+          "title": "God's Blanket",
+          "icon": "Leaf",
+          "summary": "Keep the soil 100% covered with a thick layer of organic matter, just like in a forest.",
+          "howTo": [
+            "Gather dry organic matter like grass, straw, leaves, or maize stover.",
+            "Apply a thick mulch (at least 10-15 cm) across the entire plot.",
+            "Never burn your crop residues; use them for mulch.",
+            "When planting, make a small opening in the mulch for your seed."
+          ],
+          "whyItWorks": [
+            "Prevents weeds from growing.",
+            "Saves significant soil moisture, reducing water needs.",
+            "Feeds soil life as it decomposes, building rich topsoil.",
+            "Protects the soil from the direct heat of the sun."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field covered in a thick blanket of mulch",
+          "dataAiHint": "mulch farming"
+        },
+        {
+          "id": "high-standards",
+          "title": "High Standards",
+          "icon": "CheckCircle",
+          "summary": "Do everything on time, to a high standard, with no waste, and with joy.",
+          "howTo": [
+            "Prepare the land well before the first rains.",
+            "Plant at the optimal time for your region and crop.",
+            "Follow precise measurements for planting depth and spacing.",
+            "Manage your resources (seed, inputs, time) wisely to avoid wastage."
+          ],
+          "whyItWorks": [
+            "Maximizes the genetic potential of the seed.",
+            "Ensures the crop gets the full benefit of the early rains.",
+            "Leads to higher yields and greater profitability.",
+            "Honors God through excellent work."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A farmer carefully planting seeds in a well-prepared field",
+          "dataAiHint": "planting seeds precisely"
+        }
+      ]
     },
-    "toast": {
-      "notAuthenticated": "អ្នកត្រូវតែជាអ្នកផ្តល់សេវាធានារ៉ាប់រងដើម្បីបង្កើតផលិតផល",
-      "successTitle": "បានបង្កើតផលិតផលហើយ",
-      "successDescription": "'{name}' ត្រូវបានបង្កើតឡើងដោយជោគជ័យแล้ว",
-      "errorTitle": "ការបង្កើតបរាជ័យ"
-    }
-  },
-  "InsuranceProductsPage": {
-    "title": "គ្រប់គ្រងផលិតផលធានារ៉ាប់រងរបស់អ្នក",
-    "description": "មើល បង្កើត និងគ្រប់គ្រងការផ្តល់ជូនធានារ៉ាប់រងរបស់អ្នក",
-    "createButton": "បង្កើតផលិតផលថ្មី",
-    "table": {
-      "productName": "ឈ្មោះផលិតផល",
-      "type": "ប្រភេទ",
-      "status": "ស្ថានភាព",
-      "premium": "បុព្វលាភ"
+    "logObservation": {
+      "backLink": "KM: Back to Farm",
+      "title": "KM: Log Observation",
+      "description": "KM: Record an observation about your crop, such as pest outbreaks, diseases, growth, or weather events.",
+      "typeLabel": "KM: Observation Type",
+      "typePlaceholder": "KM: Select a type",
+      "types": {
+        "Pest": "KM: Pest",
+        "Disease": "KM: Disease",
+        "Growth": "KM: Growth",
+        "Weather": "KM: Weather",
+        "Soil": "KM: Soil",
+        "Weed": "KM: Weed",
+        "Other": "KM: Other",
+        "FGW_Stations": "KM: Land Prep (FGW Stations)",
+        "FGW_Mulch": "KM: Mulching (God's Blanket)"
+      },
+      "dateLabel": "KM: Observation Date",
+      "detailsLabel": "KM: Details & Notes",
+      "detailsPlaceholder": "KM: Describe what you observed...",
+      "uploadLabel": "KM: Upload Photo (Optional)",
+      "uploadDescription": "KM: A photo can help with diagnosis. It will be analyzed by AI if provided.",
+      "saveButton": "KM: Log Observation",
+      "processingButton": "KM: Processing...",
+      "toast": {
+        "authErrorTitle": "KM: Not Authenticated",
+        "authErrorDescription": "KM: You must be signed in to log an observation.",
+        "aiAnalyzing": "KM: AI Analyzing",
+        "aiDescription": "KM: Your image data is being sent to the AI for diagnosis.",
+        "aiComplete": "KM: AI Analysis Complete!",
+        "aiCompleteDescription": "KM: The diagnosis has been included in your observation log.",
+        "aiFailTitle": "KM: AI Analysis Failed",
+        "aiFailDescription": "KM: We couldn't analyze the image. The observation will be saved without an AI diagnosis.",
+        "uploading": "KM: Uploading image...",
+        "uploadingDescription": "KM: Please wait a moment.",
+        "uploadComplete": "KM: Upload Complete!",
+        "success": "KM: Observation Logged",
+        "successDescription": "KM: Your observation has been successfully logged.",
+        "fail": "KM: Logging failed."
+      }
     },
-    "noProducts": "អ្នកមិនទាន់បានបង្កើតផលិតផលធានារ៉ាប់រងណាមួយនៅឡើយទេ"
-  },
-  "FiApplicationListPage": {
-    "backLink": "ត្រឡប់ទៅផ្ទាំងគ្រប់គ្រង",
-    "title": "ពាក្យសុំហិរញ្ញវត្ថុ",
-    "description": "ពិនិត្យ និងគ្រប់គ្រងពាក្យសុំឥណទាន និងជំនួយដែលចូលមក",
-    "tabs": {
-      "all": "ទាំងអស់",
-      "pending": "មិនទាន់ដំណើរការ",
-      "approved": "បានអនុម័ត",
-      "rejected": "បានច្រានចោល"
+    "logHarvest": {
+      "backLink": "KM: Back to Farm",
+      "title": "KM: Log Harvest for {cropType}",
+      "description": "KM: Record your harvest to create a new traceable batch.",
+      "harvestDateLabel": "KM: Harvest Date",
+      "yieldLabel": "KM: Total Yield (kg)",
+      "yieldPlaceholder": "KM: e.g., 1500",
+      "qualityLabel": "KM: Quality Grade",
+      "qualityPlaceholder": "KM: e.g., Grade A, Export Quality",
+      "notesLabel": "KM: Harvest Notes (Optional)",
+      "notesPlaceholder": "KM: Specific details about this harvest...",
+      "saveButton": "KM: Log Harvest & Create Batch",
+      "savingButton": "KM: Saving...",
+      "offlineToast": {
+        "title": "KM: Action added to offline queue.",
+        "description": "KM: Your harvest will be logged and a VTI created when you're back online."
+      },
+      "success": {
+        "title": "KM: Harvest Logged!",
+        "description": "KM: The harvest for {cropType} has been successfully logged. A new traceable batch has been created with ID '{vtiId}'.",
+        "successCardTitle": "KM: Harvest Logged!",
+        "successCardDescription": "KM: A new traceable batch has been created for {cropType} with ID: {vtiId}",
+        "viewReportButton": "KM: View Traceability Report",
+        "sellButton": "KM: Sell on Marketplace",
+        "logAnotherButton": "KM: Log Another Harvest",
+        "backToFarmButton": "KM: Back to Farm"
+      },
+      "fail": {
+        "title": "KM: Logging Failed"
+      }
     },
-    "table": {
-      "applicant": "អ្នកដាក់ពាក្យ",
-      "type": "ប្រភេទ",
-      "amount": "ចំនួនទឹកប្រាក់ (USD)",
-      "date": "កាលបរិច្ឆេទដាក់ស្នើ",
-      "status": "ស្ថានភាព",
-      "action": "សកម្មភាព"
+    "knfInputsPage": {
+      "backLink": "KM: Back to Farm Hub",
+      "title": "KM: KNF Inputs Assistant",
+      "description": "KM: Create, track, and manage your Korean Natural Farming inputs.",
+      "guidesTitle": "KM: KNF Guides",
+      "ingredients": "KM: Ingredients",
+      "steps": "KM: Steps",
+      "usage": "KM: Usage",
+      "fermentingBatchesTitle": "KM: Fermenting Batches",
+      "started": "KM: Started",
+      "nextStepOn": "KM: Next Step On",
+      "markReady": "KM: Mark as Ready",
+      "noFermentingBatches": "KM: No fermenting batches.",
+      "readyBatchesTitle": "KM: Ready Batches",
+      "readySince": "KM: Ready since",
+      "logUsage": "KM: Log Usage",
+      "archive": "KM: Archive",
+      "noReadyBatches": "KM: No ready batches available.",
+      "startNewBatch": "KM: Start a New Batch",
+      "createNewBatchTitle": "KM: Create a New KNF Batch",
+      "cancel": "KM: Cancel",
+      "quantity": "KM: Quantity",
+      "quantityPlaceholder": "KM: e.g., 5 or 20",
+      "unit": "KM: Unit",
+      "unitPlaceholder": "KM: e.g., Liters, kg",
+      "sellSurplus": "KM: Sell Surplus",
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Fermented Plant Juice (FPJ)",
+          "description": "A fermented extract of a plant's sap and chlorophyll. Rich in enzymes and microorganisms, it's a potent growth enhancer for plants.",
+          "ingredients": [
+            "1kg of fast-growing plant parts (e.g., sweet potato tips, bamboo shoots)",
+            "1kg of brown sugar (or molasses)"
+          ],
+          "yield": "approx. 0.8 L",
+          "steps": [
+            "Collect plant material before sunrise when it is most potent. Do not wash.",
+            "Roughly chop the plant material.",
+            "Add an equal weight of brown sugar and mix well.",
+            "Pack tightly into a clay pot or glass jar, filling to about 2/3 capacity.",
+            "Cover with a breathable cloth and store in a cool, dark place.",
+            "Allow to ferment for about 7 days."
+          ],
+          "usage": "Dilution rate: 1:500 to 1:1000 with water. Applied as a foliar spray or soil drench."
+        },
+        {
+          "id": "faa",
+          "name": "Fish Amino Acid (FAA)",
+          "description": "A potent liquid fertilizer made from fish waste, rich in nitrogen and amino acids. Excellent for boosting plant growth, especially during the vegetative stage.",
+          "ingredients": [
+            "1kg of fish waste (heads, bones, entrails)",
+            "1kg of brown sugar (or molasses)"
+          ],
+          "yield": "approx. 1.5 L",
+          "steps": [
+            "Chop the fish parts into small pieces.",
+            "In a container, layer the fish parts and brown sugar, starting and ending with sugar.",
+            "Fill the container to about 2/3 capacity and cover with a breathable cloth.",
+            "Store in a cool, dark place and allow to ferment for at least 3-6 months."
+          ],
+          "usage": "Dilution rate: 1:1000 with water. Primarily used as a soil drench."
+        }
+      ],
+      "form": {
+        "typeLabel": "KM: Input Type",
+        "typePlaceholder": "KM: Select a KNF input",
+        "ingredientsLabel": "KM: Ingredients Used",
+        "quantityLabel": "KM: Quantity Produced",
+        "unitLabel": "KM: Unit",
+        "startDateLabel": "KM: Start Date",
+        "startButton": "KM: Start Batch",
+        "startingButton": "KM: Starting..."
+      },
+      "toasts": {
+        "loadErrorTitle": "KM: Error",
+        "loadErrorDescription": "KM: Could not fetch your KNF batches.",
+        "validationError": "KM: Please fill out all fields to start a batch.",
+        "batchStartedTitle": "KM: Batch Started!",
+        "batchStartedDescription": "KM: Your new KNF batch is now fermenting.",
+        "batchStartFailed": "KM: Batch start failed.",
+        "unexpectedError": "KM: An unexpected error occurred.",
+        "batchUpdatedTitle": "KM: Status Updated",
+        "batchUpdatedDescription": "KM: Batch status successfully updated to {status}.",
+        "updateFailed": "KM: Update failed.",
+        "couldNotUpdate": "KM: Could not update the batch status."
+      }
     },
-    "reviewButton": "ពិនិត្យ",
-    "noApplications": "មិនមានពាក្យសុំក្នុងប្រភេទនេះទេ"
-  },
-  "FiApplicationPage": {
-    "backLink": "ត្រឡប់ទៅពាក្យសុំ",
-    "title": "ព័ត៌មានលម្អិតពាក្យសុំ",
-    "applicationTitle": "ពាក្យសុំ",
-    "submittedOn": "បានដាក់ស្នើនៅ",
-    "amountRequested": "ចំនួនទឹកប្រាក់ដែលបានស្នើសុំ",
-    "purpose": "គោលបំណងនៃមូលនិធិ",
-    "approveButton": "អនុម័ត",
-    "rejectButton": "ច្រានចោល",
-    "requestInfoButton": "ស្នើសុំព័ត៌មានបន្ថែម",
-    "applicantDetails": "ព័ត៌មានលម្អិតអ្នកដាក់ពាក្យ",
-    "viewProfileButton": "មើលប្រវត្តិរូបពេញលេញ",
-    "profileNotFound": "មិនមានប្រវត្តិរូបអ្នកដាក់ពាក្យទេ",
-    "riskAssessment": "ការវាយតម្លៃហានិភ័យដោយ AI",
-    "creditScore": "ពិន្ទុឥណទាន",
-    "notFound": "មិនមានពាក្យសុំ ឬអ្នកមិនមានសិទ្ធិមើល",
-    "toast": {
-      "errorTitle": "កំហុស",
-      "updateSuccessTitle": "បានធ្វើបច្ចុប្បន្នភាពស្ថានភាពហើយ",
-      "updateSuccessDescription": "ស្ថានភាពពាក្យសុំត្រូវបានកំណត់ទៅ '{status}' ហើយ",
-      "updateFailTitle": "ការធ្វើបច្ចុប្បន្នភាពបរាជ័យ"
-    }
-  },
-  "FiProductsPage": {
-    "title": "ផលិតផលហិរញ្ញវត្ថុ",
-    "description": "បង្កើត និងគ្រប់គ្រងផលិតផលឥណទាន និងជំនួយរបស់អ្នក",
-    "createButton": "បង្កើតផលិតផលថ្មី",
-    "table": {
-      "productName": "ឈ្មោះផលិតផល",
-      "type": "ប្រភេទ",
-      "status": "ស្ថានភាព",
-      "interestRate": "អត្រាការប្រាក់",
-      "maxAmount": "ចំនួនទឹកប្រាក់អតិបរមា"
+    "editCrop": {
+      "backLink": "KM: Back to Crop Detail",
+      "title": "KM: Edit Crop",
+      "description": "KM: Update the details for your crop.",
+      "savingButton": "KM: Saving...",
+      "saveButton": "KM: Save Changes",
+      "toast": {
+        "notFound": "KM: Crop not found.",
+        "loadError": "KM: Could not load crop data to edit.",
+        "error": "KM: Error",
+        "loadFail": "KM: Could not load crop data: {message}",
+        "success": "KM: Crop Updated!",
+        "description": "KM: {cropType} was updated successfully.",
+        "fail": "KM: Update failed."
+      }
     },
-    "noProducts": "អ្នកមិនទាន់បានបង្កើតផលិតផលហិរញ្ញវត្ថុណាមួយនៅឡើយទេ"
-  },
-  "FiProductCreatePage": {
-    "backLink": "ត្រឡប់ទៅផលិតផល",
-    "title": "បង្កើតផលិតផលហិរញ្ញវត្ថុថ្មី",
-    "description": "កំណត់ផលិតផលហិរញ្ញវត្ថុថ្មីដើម្បីផ្តល់ជូនអ្នកប្រើប្រាស់នៅលើវេទិកា",
-    "form": {
-      "nameLabel": "ឈ្មោះផលិតផល",
-      "namePlaceholder": "ឧទាហរណ៍ ឥណទានកំណើនសម្រាប់សហគ្រិនខ្នាតតូច",
-      "typeLabel": "ប្រភេទផលិតផល",
-      "loan": "ឥណទាន",
-      "grant": "ជំនួយ",
-      "descriptionLabel": "ការពិពណ៌នា",
-      "descriptionPlaceholder": "ពិពណ៌នាផលិតផល គោលបំណង និងលក្ខណៈវិនិច្ឆ័យសិទ្ធិទទួលបាន",
-      "interestRateLabel": "អត្រាការប្រាក់ (%)",
-      "interestRatePlaceholder": "ឧទាហរណ៍ 12.5",
-      "maxAmountLabel": "ចំនួនទឹកប្រាក់អតិបរមា (USD)",
-      "maxAmountPlaceholder": "ឧទាហរណ៍ 10000",
-      "targetRolesLabel": "ក្រុមគោលដៅ",
-      "targetRolesDescription": "ជ្រើសរើសតួនាទីភាគីពាក់ព័ន្ធដែលផលិតផលនេះមានបំណងសម្រាប់",
-      "submitButton": "បង្កើតផលិតផល"
-    },
-    "toast": {
-      "notAuthenticated": "អ្នកត្រូវតែជាស្ថាប័នហិរញ្ញវត្ថុដើម្បីបង្កើតផលិតផល",
-      "successTitle": "បានបង្កើតផលិតផលហើយ",
-      "successDescription": "'{name}' ត្រូវបានបង្កើតឡើងដោយជោគជ័យแล้ว និងត្រូវបានធ្វើឱ្យសកម្ម",
-      "errorTitle": "ការបង្កើតបរាជ័យ"
-    }
-  },
-  "traceabilityPage": {
-    "title": "ការតាមដានផលិតផល",
-    "description": "តាមដានការធ្វើដំណើរនៃអាហាររបស់អ្នកពីកសិដ្ឋានទៅចានជាមួយនឹងប្រព័ន្ធ Verifiable Traceability ID (VTI) របស់យើង",
-    "inputPlaceholder": "បញ្ចូលលេខបាច់ VTI...",
-    "trackButton": "តាមដាន",
-    "vtiDescription": "VTI គឺជាលេខសម្គាល់តែមួយគត់ដែលមាននៅលើការវេចខ្ចប់ផលិតផល",
-    "recentTitle": "បាច់ដែលបានតាមដានថ្មីៗ",
-    "recentDescription": "ស្វែងយល់ពីផលិតផលថ្មីៗមួយចំនួនជាមួយនឹងរបាយការណ៍តាមដានជាសាធារណៈ",
-    "producerLabel": "អ្នកផលិត",
-    "harvestDateLabel": "កាលបរិច្ឆេទប្រមូលផល",
-    "viewReportButton": "មើលរបាយការណ៍",
-    "noRecentBatches": "មិនមានបាច់ដែលបានតាមដានថ្មីៗជាមួយនឹងទិន្នន័យជាសាធារណៈទេ",
-    "detailPage": {
-      "invalidIdError": "បានបញ្ជាក់លេខសម្គាល់បាច់មិនត្រឹមត្រូវ",
-      "loadError": "មិនអាចផ្ទុកប្រវត្តិការតាមដានបានទេ",
-      "backLink": "ត្រឡប់ទៅមជ្ឈមណ្ឌលតាមដាន",
-      "notFoundTitle": "មិនមានបាច់ទេ",
-      "notFoundDescription": "VTI ដែលអ្នកបានបញ្ចូលមិនត្រូវគ្នានឹងបាច់ណាមួយនៅក្នុងកំណត់ត្រារបស់យើងទេ",
-      "traceableProduct": "ផលិតផលដែលអាចតាមដានបាន",
-      "batchIdLabel": "លេខសម្គាល់បាច់",
-      "producerLabel": "អ្នកផលិត",
-      "qualityLabel": "គុណភាពដំបូង",
-      "notSpecified": "មិនបានបញ្ជាក់",
-      "journeyTitle": "ការធ្វើដំណើរនៃបាច់នេះ",
-      "journeyDescription": "កំណត់ត្រានៃព្រឹត្តិការណ៍ទាំងអស់នៅក្នុងវដ្តជីវិតនៃផលិតផលនេះជាមួយនឹងការបោះត្រាពេលវេលាពេញលេញ",
-      "noEventDetails": "គ្មានព័ត៌មានលម្អិតបន្ថែមសម្រាប់ព្រឹត្តិការណ៍នេះទេ",
-      "observationType": "ប្រភេទការសង្កេត",
-      "details": "ព័ត៌មានលម្អិត",
-      "aiDiagnosis": "ការវិនិច្ឆ័យដោយ AI",
-      "noEventsFound": "មិនទាន់មានព្រឹត្តិការណ៍តាមដានណាមួយត្រូវបានកត់ត្រាសម្រាប់បាច់នេះទេ",
-      "geoLocationLabel": "ទីតាំងភូមិសាស្ត្រ",
-      "sustainablyGrownTitle": "ដាំដុះប្រកបដោយនិរន្តរភាព",
-      "sustainablyGrownDescription": "កំណត់ត្រាការតាមដាននៃផលិតផលនេះបង្ហាញពីការប្រើប្រាស់ការអនុវត្តកសិកម្មប្រកបដោយនិរន្តរភាព និង/ឬកសិកម្មសរីរាង្គ"
+    "editFarm": {
+      "backToFarm": "KM: Back to Farm Detail",
+      "title": "KM: Edit Farm",
+      "description": "KM: Update the details of your farm.",
+      "form": {
+        "submitButton": "KM: Save Changes"
+      },
+      "toast": {
+        "notFoundTitle": "KM: Not Found",
+        "loadError": "KM: Could not load the farm you wish to edit.",
+        "loadFail": "KM: Could not load farm data: {message}",
+        "successTitle": "KM: Farm Updated!",
+        "successDescription": "KM: '{farmName}' was updated successfully.",
+        "errorTitle": "KM: Update Failed"
+      }
     }
   },
   "OfflineIndicator": {
     "tooltip": {
-      "syncing": "កំពុងធ្វើសមកាលកម្ម {count} ប្រតិបត្តិការដែលមិនទាន់សម្រេច...",
-      "onlinePending": "{count} ប្រតិបត្តិការដែលមិនទាន់សម្រេច នឹងធ្វើសមកាលកម្មក្នុងពេលឆាប់ៗនេះ",
-      "onlineSynced": "អ្នកបានភ្ជាប់អ៊ីនធឺណិតហើយ ការផ្លាស់ប្តូរទាំងអស់ត្រូវបានធ្វើសមកាលកម្ម",
-      "offline": "អ្នកគ្មានអ៊ីនធឺណិត {count, plural, =0 {គ្មានការផ្លាស់ប្តូរដែលមិនទាន់សម្រេច} =1 {១ ការផ្លាស់ប្តូរនៅក្នុងជួររង់ចាំ} other {{count} ការផ្លាស់ប្តូរនៅក្នុងជួររង់ចាំ}}"
+      "syncing": "KM: Syncing {count} pending actions...",
+      "onlinePending": "KM: {count} pending actions. Will sync soon.",
+      "onlineSynced": "KM: You are online and all changes are synced.",
+      "offline": "KM: You are offline. {count, plural, =0 {No pending changes.} =1 {1 change is queued.} other {{count} changes are queued.}}"
     },
     "toast": {
       "online": {
-        "title": "អ្នកបានភ្ជាប់អ៊ីនធឺណិតឡើងវិញហើយ!",
-        "description": "ការតភ្ជាប់របស់អ្នកត្រូវបានស្ដារឡើងវិញហើយ"
+        "title": "KM: You are back online!",
+        "description": "KM: Your connection has been restored."
       },
       "offline": {
-        "title": "អ្នកគ្មានអ៊ីនធឺណិត",
-        "description": "ការផ្លាស់ប្តូររបស់អ្នកនឹងត្រូវបានរក្សាទុក និងធ្វើសមកាលកម្មនៅពេលអ្នកភ្ជាប់អ៊ីនធឺណិតឡើងវិញ"
+        "title": "KM: You are offline.",
+        "description": "KM: Your changes will be saved and synced when you reconnect."
       },
       "syncing": {
-        "title": "កំពុងធ្វើសមកាលកម្មការផ្លាស់ប្តូរក្រៅបណ្តាញ",
-        "description": "កំពុងផ្ទុក {count} ប្រតិបត្តិការទៅម៉ាស៊ីនមេ"
+        "title": "KM: Syncing offline changes",
+        "description": "KM: Uploading {count} actions to the server."
       },
       "synced": {
-        "title": "ការធ្វើសមកាលកម្មបានបញ្ចប់",
-        "description": "រាល់ការផ្លាស់ប្តូរក្រៅបណ្តាញរបស់អ្នកត្រូវបានរក្សាទុកហើយ"
+        "title": "KM: Sync complete",
+        "description": "KM: All your offline changes have been saved."
       },
       "syncFailed": {
-        "title": "ការធ្វើសមកាលកម្មបរាជ័យ",
-        "description": "យើងមិនអាចធ្វើសមកាលកម្មការផ្លាស់ប្តូរក្រៅបណ្តាញរបស់អ្នកបានទេ។ យើងនឹងព្យាយាមម្ដងទៀតនៅពេលក្រោយ"
+        "title": "KM: Sync failed",
+        "description": "KM: We could not sync your offline changes. We will try again later."
       },
       "queued": {
-        "title": "បានបន្ថែមប្រតិបត្តិការទៅក្នុងជួររង់ចាំហើយ",
-        "description": "ប្រតិបត្តិការនេះនឹងត្រូវបានដំណើរការនៅពេលអ្នកភ្ជាប់អ៊ីនធឺណិតឡើងវិញ"
+        "title": "KM: Action queued",
+        "description": "KM: This action will be performed when you are back online."
       }
     }
   },
   "searchPage": {
-    "title": "ស្វែងរកសកល",
-    "description": "ស្វែងរកអ្វីមួយនៅលើវេទិកាដាំដុះទាំងមូល",
-    "placeholder": "តើអ្នកកំពុងស្វែងរកអ្វី?",
-    "searchButton": "ស្វែងរក",
-    "popularSearches": "ការស្វែងរកពេញនិយម",
-    "popularSearch1": "កាហ្វេសរីរាង្គ",
-    "popularSearch2": "ជួលត្រាក់ទ័រនៅកេនយ៉ា",
-    "popularSearch3": "អ្នកជំនាញសុខភាពដី",
-    "popularSearch4": "ហិរញ្ញប្បទានសម្រាប់ការនាំចេញ",
-    "popularSearch5": "វេទិកាការបាត់បង់ក្រោយការប្រមូលផល",
+    "title": "KM: Universal Search",
+    "description": "Find anything across the entire DamDoh platform.",
+    "placeholder": "KM: What are you looking for?",
+    "searchButton": "KM: Search",
+    "popularSearches": "KM: Popular Searches",
+    "popularSearch1": "KM: Organic Coffee",
+    "popularSearch2": "KM: Tractor rental in Kenya",
+    "popularSearch3": "KM: Soil health expert",
+    "popularSearch4": "KM: Export financing",
+    "popularSearch5": "KM: Post-harvest loss forum",
     "modal": {
-      "title": "ស្វែងរកសកល",
-      "placeholder": "ស្វែងរកផលិតផល សេវាកម្ម មនុស្ស ការបង្ហោះវេទិកា...",
-      "searchButton": "ស្វែងរក",
-      "searchError": "កំហុសក្នុងការស្វែងរក",
-      "searchErrorDescription": "មិនអាចធ្វើការស្វែងរកបានទេនៅពេលនេះ។ សូមព្យាយាមម្តងទៀត។",
-      "scanFailed": "ស្កេនបរាជ័យ",
-      "scanError": "កំហុសក្នុងការស្កេន",
-      "scanErrorDescription": "មិនអាចអានកូដ QR បានទេ។ សូមព្យាយាមម្តងទៀត",
-      "invalidCodeError": "នេះមិនមែនជាលេខកូដសង្គ្រោះ ឬប្រវត្តិរូប DamDoh ត្រឹមត្រូវទេ",
-      "interpretationTitle": "ការបកស្រាយដោយ AI",
-      "interpretationNotesDefault": "កំពុងស្វែងរកដោយពាក្យគន្លឹះ។",
-      "filtersTitle": "តម្រង",
+      "title": "KM: Universal Search",
+      "placeholder": "KM: Search products, services, people, forum posts...",
+      "searchButton": "KM: Search",
+      "searchError": "KM: Search Error",
+      "searchErrorDescription": "KM: Could not perform search at this time. Please try again.",
+      "scanFailed": "KM: Scan Failed",
+      "scanError": "KM: Scan Error",
+      "scanErrorDescription": "KM: Could not read the QR code. Please try again.",
+      "invalidCodeError": "This is not a valid DamDoh recovery or profile code.",
+      "interpretationTitle": "KM: AI Interpretation",
+      "interpretationNotesDefault": "KM: Searching by keywords.",
+      "filtersTitle": "KM: Filters",
       "results": {
-        "users": "ប្រវត្តិរូប",
-        "marketplaceItems": "ទីផ្សារ",
-        "forums": "វេទិកា",
-        "agri_events": "ព្រឹត្តិការណ៍",
-        "knowledge_articles": "មជ្ឈមណ្ឌលចំណេះដឹង",
-        "vti_registry": "របាយការណ៍តាមដាន"
+        "users": "KM: Profiles",
+        "marketplaceItems": "KM: Marketplace",
+        "forums": "KM: Forums",
+        "agri_events": "KM: Events",
+        "knowledge_articles": "KM: Knowledge Hub",
+        "vti_registry": "KM: Traceability Reports"
       },
-      "noResults": "រកមិនឃើញលទ្ធផល",
-      "tryAgain": "ព្យាយាមប្រើពាក្យស្វែងរកផ្សេងទៀត ឬពង្រីកការស្វែងរករបស់អ្នក"
+      "noResults": "KM: No results found",
+      "tryAgain": "KM: Try another query or broaden your search."
     }
   },
-  "ProfilePage": {
-    "editProfile": "កែសម្រួលប្រវត្តិរូប",
-    "showUniversalIdButton": "បង្ហាញលេខសម្គាល់សកល",
-    "universalIdModalTitle": "លេខសម្គាល់សកលរបស់អ្នក",
-    "universalIdModalDescription": "អ្នកប្រើប្រាស់ផ្សេងទៀតអាចស្កេននេះเพื่อមើលប្រវត្តិរូបសាធារណៈរបស់អ្នកយ៉ាងរហ័ស",
-    "connect": "ភ្ជាប់",
-    "message": "សារ",
-    "invite": {
-      "title": "អញ្ជើញមិត្តរួមការងារ",
-      "description": "ជួយពង្រីកបណ្តាញដោយអញ្ជើញអ្នកដទៃឱ្យចូលរួមដាំដុះ",
-      "explanation": "ផ្ញើការអញ្ជើញទៅមិត្តរួមការងារ ឬដៃគូអាជីវកម្មដើម្បីចូលរួមវេទិកាដាំដុះ។ ពួកគេនឹងទទួលបានអ៊ីមែលที่มีคำแนะนำในการลงทะเบียน",
-      "button": "ផ្ញើការអញ្ជើញ"
+  "AgriTechDashboard": {
+    "title": "KM: Agri-Tech Innovator Dashboard",
+    "sandboxTitle": "KM: Sandbox Environment",
+    "statusLabel": "KM: Status",
+    "lastResetLabel": "KM: Last Reset",
+    "accessDocsButton": "KM: Access API Docs",
+    "integrationsTitle": "KM: Active Integrations",
+    "activeProjects": "KM: {count, plural, =0 {active projects} =1 {1 active project} other {{count} active projects}}",
+    "integrationsDescription": "Your active projects integrated with DamDoh.",
+    "proposeIntegrationButton": "KM: Propose New Integration",
+    "apiKeysTitle": "KM: API Keys",
+    "apiKeysDescription": "Manage your API keys for accessing DamDoh services.",
+    "generateNewKeyButton": "KM: Generate New Key",
+    "table": {
+      "key": "KM: Key / Description",
+      "status": "KM: Status",
+      "environment": "KM: Environment",
+      "created": "KM: Created",
+      "actions": "KM: Actions"
     },
-    "invitePrompt": "បញ្ចូលអាសយដ្ឋានអ៊ីមែលរបស់បុគ្គលដែលអ្នកចង់អញ្ជើញ៖",
-    "inviteSuccessTitle": "បានផ្ញើការអញ្ជើញហើយ!",
-    "inviteSuccessDescription": "បានផ្ញើការអញ្ជើញទៅ {email} ហើយ",
-    "inviteErrorTitle": "បរាជ័យក្នុងការផ្ញើការអញ្ជើញ",
-    "tabs": {
-      "overview": "ទិដ្ឋភាពទូទៅ",
-      "activity": "សកម្មភាព"
+    "noApiKeys": "KM: You haven't generated any API keys yet.",
+    "apiKeyCopied": "KM: API Key copied to clipboard!",
+    "revokeDialog": {
+      "title": "KM: Are you sure you want to revoke this API key?",
+      "description": "KM: This action cannot be undone. Any applications using this key will immediately lose access.",
+      "cancel": "KM: Cancel",
+      "confirm": "KM: Yes, Revoke Key"
     },
-    "aboutTitle": "អំពី {displayName}",
-    "interestsTitle": "ផ្នែកដែលចាប់អារម្មណ៍",
-    "engagementStats": "ស្ថិតិការចូលរួម",
-    "profileViews": "ការមើលប្រវត្តិរូប",
-    "postLikes": "ការចូលចិត្តការបង្ហោះ",
-    "postComments": "មតិយោបល់ការបង្ហោះ",
-    "contactTitle": "ព័ត៌មានទំនាក់ទំនង",
-    "needsTitle": "តម្រូវការ និងការផ្តល់ជូន",
-    "recentActivityTitle": "សកម្មភាពថ្មីៗ",
-    "noRecentActivity": "អ្នកប្រើប្រាស់នេះមិនមានសកម្មភាពសាធារណៈថ្មីៗទេ",
-    "notFoundTitle": "មិនមានប្រវត្តិរូបទេ",
-    "notFoundDescription": "ប្រវត្តិរូបអ្នកប្រើប្រាស់ដែលអ្នកកំពុងស្វែងរកមិនមាន ឬត្រូវបានលុបแล้ว",
-    "backToNetwork": "ត្រឡប់ទៅបណ្តាញ"
+    "toast": {
+      "descriptionRequired": "KM: A description is required for a new key.",
+      "keyGeneratedSuccess": "KM: New API key generated successfully.",
+      "keyGeneratedError": "KM: Could not generate API key.",
+      "keyRevokedSuccess": "KM: API key revoked.",
+      "keyRevokedError": "KM: Could not revoke API key."
+    },
+    "generateButton": "KM: Generate"
   },
-  "Forums": {
-    "create": {
-      "backLink": "ត្រឡប់ទៅវេទិកា",
-      "title": "បង្កើតប្រធានបទវេទិកាថ្មី",
-      "description": "ចាប់ផ្តើមការសន្ទនាថ្មីเพื่อให้ชุมชนมีส่วนร่วม។",
-      "form": {
-        "nameLabel": "ឈ្មោះប្រធានបទ",
-        "namePlaceholder": "ឧ: ការអនុវត្តល្អបំផុតសម្រាប់ការអភិរក្សទឹក",
-        "descriptionLabel": "ការពិពណ៌នា",
-        "descriptionPlaceholder": "ការពិពណ៌នាសង្ខេបអំពីប្រធានបទនេះ",
-        "submitButton": "បង្កើតប្រធានបទ",
-        "submittingButton": "កំពុងបង្កើត..."
-      },
-      "success": {
-        "title": "បានបង្កើតប្រធានបទហើយ!",
-        "description": "ប្រធានបទថ្មីរបស់អ្នកឥឡូវនេះអាចពិភាក្សាបានแล้ว"
-      },
-      "errors": {
-        "auth": {
-          "title": "តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់",
-          "description": "អ្នកត្រូវតែចូលដើម្បីสร้างหัวข้อใหม่"
-        },
-        "incomplete": {
-          "title": "ទម្រង់មិនពេញលេញ",
-          "description": "โปรดระบุทั้งชื่อและคำอธิบายสำหรับหัวข้อของคุณ"
-        },
-        "general": {
-          "title": "កំហុសក្នុងការបង្កើតប្រធានបទ",
-          "description": "เกิดข้อผิดพลาดบางอย่าง โปรดลองอีกครั้ง"
-        }
-      }
+  "AgroExportDashboard": {
+    "title": "KM: Agro-Export Dashboard",
+    "docsTitle": "KM: Pending Customs Documents",
+    "shipmentsTitle": "KM: Tracked Shipments",
+    "alertsTitle": "KM: Compliance Alerts",
+    "table": {
+      "destination": "KM: Destination"
     },
-    "topic": {
-      "backLink": "ត្រឡប់ទៅវេទិកាទាំងអស់",
-      "buttons": {
-        "createPost": "ចាប់ផ្តើមការបង្ហោះថ្មី",
-        "loadingMore": "កំពុងផ្ទុកបន្ថែម...",
-        "loadMore": "ផ្ទុកការបង្ហោះបន្ថែម"
-      },
-      "postMeta": "ដោយ {author} នៅថ្ងៃទី {date}",
-      "noPosts": {
-        "title": "មិនទាន់មានការបង្ហោះទេ",
-        "description": "เป็นคนแรกที่เริ่มการสนทนาในหัวข้อนี้",
-        "button": "បង្កើតការបង្ហោះដំបូង"
-      },
-      "notFound": {
-        "title": "រកមិនឃើញប្រធានបទ",
-        "description": "ขออภัย หัวข้อที่คุณกำลังมองหาไม่มีอยู่",
-        "backButton": "ត្រឡប់ទៅវេទិកា"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "កំហុសក្នុងការផ្ទុកការបង្ហោះ",
-          "description": "ไม่สามารถดึงโพสต์สำหรับหัวข้อนี้ได้"
-        },
-        "loadTopic": {
-          "title": "កំហុសក្នុងការផ្ទុកប្រធានបទ",
-          "description": "ไม่สามารถดึงรายละเอียดสำหรับหัวข้อนี้ได้"
-        }
-      }
+    "prepareDocsButton": "KM: Prepare Documents",
+    "readMore": "KM: Read More",
+    "noDocs": "KM: No pending customs documents.",
+    "noShipments": "KM: No active shipments to track.",
+    "noAlerts": "KM: No new compliance alerts."
+  },
+  "AgroTourismDashboard": {
+    "title": "KM: Agro-Tourism Dashboard",
+    "bookingsTitle": "KM: Upcoming Bookings",
+    "bookingsDescription": "KM: Your next guests and experiences.",
+    "experiencesTitle": "KM: Your Listed Experiences",
+    "experiencesDescription": "KM: Manage your agro-tourism offerings.",
+    "reviewsTitle": "KM: Guest Reviews",
+    "reviewsDescription": "KM: Recent feedback from your visitors.",
+    "table": {
+      "experience": "KM: Experience",
+      "guest": "KM: Guest",
+      "date": "KM: Date",
+      "action": "KM: Action",
+      "title": "KM: Title",
+      "status": "KM: Status",
+      "bookings": "KM: Bookings"
     },
-    "createPost": {
-      "backLink": "ត្រឡប់ទៅប្រធានបទ",
-      "title": "បង្កើតការបង្ហោះថ្មី",
-      "description": "ចែករំលែកគំនិតរបស់អ្នក សួរសំណួរ ឬចាប់ផ្តើមការពិភាក្សា",
-      "form": {
-        "titleLabel": "ចំណងជើងការបង្ហោះ",
-        "titlePlaceholder": "បញ្ចូលចំណងជើងที่ชัดเจนและกระชับ",
-        "contentLabel": "មាតិកា",
-        "contentPlaceholder": "เขียนเนื้อหาโพสต์ของคุณที่นี่ คุณสามารถใช้มาร์กดาวน์สำหรับการจัดรูปแบบ",
-        "submitButton": "ដាក់ស្នើការបង្ហោះ",
-        "submittingButton": "កំពុងដាក់ស្នើ..."
-      },
-      "aiHelper": {
-        "title": "ជំនួយការបង្ហោះ AI",
-        "description": "ต้องการความช่วยเหลือเล็กน้อยในการเริ่มต้นหรือไม่? ให้ AI ของเราនូវข้อความแจ้งเตือน และมันจะร่างโพสต์ให้คุณ",
-        "promptLabel": "គំនិត ឬសំណួររបស់អ្នក",
-        "promptPlaceholder": "ឧ: 'តើអ្វីជាជម្រើសសរីរាង្គល្អបំផុតចំពោះជីអាសូតសំយោគ?' หรือ 'ចែករំលែករឿងរ៉ាវความสำเร็จของฉันเกี่ยวกับการใช้ KNF สำหรับต้นมะม่วง'",
-        "generateButton": "បង្កើតសេចក្តីព្រាង",
-        "generatingButton": "កំពុងបង្កើត..."
-      },
-      "success": {
-        "title": "បានបង្កើតការបង្ហោះហើយ!",
-        "description": "โพสต์ของคุณถูกเพิ่มในฟอรัมเรียบร้อยแล้ว",
-        "aiDraft": {
-          "title": "បានបង្កើតសេចក្តីព្រាងហើយ",
-          "description": "AI ได้สร้างร่างให้คุณแล้ว คุณสามารถแก้ไขก่อนโพสต์ได้"
-        }
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "តម្រូវឱ្យមានការជំរុញ",
-          "description": "โปรดระบุความคิดหรือคำถามเพื่อให้ AI สร้างร่าง"
-        },
-        "aiDraft": {
-          "title": "ការបង្កើតបានបរាជ័យ",
-          "description": "AI ไม่สามารถสร้างร่างได้ในขณะนี้ โปรดลองอีกครั้งในภายหลัง"
-        },
-        "incomplete": {
-          "title": "ការបង្ហោះមិនពេញលេញ",
-          "description": "โปรดระบุทั้งหัวข้อและเนื้อหาสำหรับโพสต์ของคุณ"
-        },
-        "general": {
-          "title": "កំហុសក្នុងការបង្កើតការបង្ហោះ",
-          "description": "เกิดข้อผิดพลาดบางอย่าง โปรดลองอีกครั้ง"
-        }
-      }
+    "viewDetailsButton": "KM: View Details",
+    "manageButton": "KM: Manage",
+    "noBookings": "KM: No upcoming bookings.",
+    "noExperiences": "KM: You haven't listed any experiences yet.",
+    "noReviews": "KM: No guest reviews yet.",
+    "viewReviewButton": "KM: View",
+    "on": "KM: on"
+  },
+  "AgronomistDashboard": {
+    "title": "KM: Agronomist Dashboard",
+    "stats": {
+      "assignedFarmers": "KM: Assigned Farmers",
+      "farmersWithAlerts": "KM: Farmers with Alerts",
+      "pendingConsultations": "KM: Pending Consultations",
+      "knowledgeContributions": "KM: Knowledge Contributions"
     },
-    "postView": {
-      "backLink": "ត្រឡប់ទៅ {topicName}",
-      "repliesTitle": "{count, plural, =0 {ไม่มีการตอบกลับ} =1 {1 ការឆ្លើយតប} other {{count} ការឆ្លើយតប}}",
-      "noReplies": "ไม่มีใครตอบกลับเลย เป็นคนแรก!",
-      "buttons": {
-        "loadingMore": "កំពុងផ្ទុក...",
-        "loadMore": "ផ្ទុកការឆ្លើយតបបន្ថែម"
+    "activeAlerts": "KM: Active Alerts",
+    "reportsToFile": "KM: Reports to File",
+    "tasksPending": "KM: Tasks Pending",
+    "consultations": {
+      "title": "KM: Consultation Requests",
+      "description": "KM: Respond to incoming requests from farmers.",
+      "table": {
+        "farmer": "KM: Farmer",
+        "issue": "KM: Issue Summary",
+        "action": "KM: Action"
       },
-      "reply": {
-        "title": "ការឆ្លើយតបរបស់អ្នក",
-        "placeholder": "เขียนคำตอบของคุณที่นี่...",
-        "submitButton": "โพสต์คำตอบ",
-        "submittingButton": "កំពុងបង្ហោះ...",
-        "success": "បានបង្ហោះការឆ្លើយតបแล้ว!"
+      "viewButton": "KM: View",
+      "noRequests": "KM: No pending consultation requests."
+    },
+    "portfolio": {
+      "title": "KM: Farmer Portfolio",
+      "description": "KM: An overview of the farmers you manage.",
+      "table": {
+        "farmer": "KM: Farmer",
+        "location": "KM: Location",
+        "alerts": "KM: Alerts",
+        "action": "KM: Action"
       },
-      "notFound": {
-        "title": "រកមិនឃើញការបង្ហោះ",
-        "description": "โพสต์ที่คุณกำลังมองหาไม่มีอยู่หรือถูกย้ายไปแล้ว",
-        "backButton": "ត្រឡប់ទៅប្រធានបទ"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "កំហុសក្នុងការផ្ទុកការបង្ហោះ",
-          "description": "ไม่สามารถดึงรายละเอียดโพสต์ได้"
-        },
-        "loadReplies": {
-          "title": "កំហុសក្នុងការផ្ទុកការឆ្លើយតប",
-          "description": "ไม่สามารถดึงการตอบกลับสำหรับโพสต์นี้ได้"
-        },
-        "submitReply": {
-          "title": "កំហុសក្នុងការបង្ហោះការឆ្លើយតប",
-          "description": "ไม่สามารถบันทึกการตอบกลับของคุณได้ โปรดลองอีกครั้ง"
-        },
-        "emptyReply": "ការឆ្លើយតបមិនអាចទទេបានទេ"
-      }
+      "alertsLabel": "KM: Alerts",
+      "profileButton": "KM: Profile",
+      "noFarmers": "KM: No farmers have been assigned to your portfolio yet."
+    },
+    "contributions": {
+      "statusTitle": "KM: Contribution Status",
+      "title": "KM: Your Contributions to the Knowledge Hub",
+      "noData": "KM: No contribution data available.",
+      "noContributions": "KM: You have not made any contributions yet."
+    },
+    "noData": "KM: No dashboard data available.",
+    "lastVisit": "KM: Last Visit",
+    "issues": "KM: Issues",
+    "chart": {
+      "count": "KM: Count",
+      "published": "KM: Published",
+      "pending": "KM: Pending Review",
+      "draft": "KM: Draft"
     }
   },
-  "ErrorPage": {
-    "title": "មានអ្វីមួយผิดพลาด",
-    "description": "ขออภัย แต่ดูเหมือนว่ามีข้อผิดพลาดที่ไม่คาดคิดเกิดขึ้น ทีมงานของเราได้รับการแจ้งเตือนแล้ว",
-    "tryAgainButton": "ลองอีกครั้ง",
-    "goHomeButton": "ไปที่หน้าแรก"
+  "BuyerDashboard": {
+    "title": "KM: Buyer Dashboard",
+    "riskTitle": "KM: Supply Chain Risks",
+    "diversifySourcing": "KM: Diversify Sourcing",
+    "priceTitle": "KM: Market Price Insights",
+    "secureContracts": "KM: Secure Forward Contracts",
+    "sourcingTitle": "KM: Sourcing Recommendations",
+    "reliabilityScore": "KM: Reliability Score",
+    "findSuppliersButton": "KM: Find More Suppliers"
   },
-  "NotFoundPage": {
-    "title": "404 - រកមិនឃើញទំព័រ",
-    "description": "ขออภัย เราไม่พบหน้าที่คุณกำลังมองหา",
-    "goHomeButton": "ไปที่หน้าแรก"
+  "CertificationBodyDashboard": {
+    "title": "KM: Certification Body Dashboard",
+    "auditsTitle": "KM: Pending Audits",
+    "auditsDescription": "KM: Upcoming audits that require your attention.",
+    "table": {
+      "farmName": "KM: Farm Name",
+      "standard": "KM: Standard",
+      "dueDate": "KM: Due Date",
+      "action": "KM: Action"
+    },
+    "reviewAuditButton": "KM: Review Audit",
+    "noPendingAudits": "KM: No pending audits at this time.",
+    "entitiesTitle": "KM: Status of Certified Entities",
+    "entitiesDescription": "KM: An overview of your certified entities.",
+    "noCertifiedEntities": "KM: No data for certified entities.",
+    "monitoringTitle": "KM: Standards Monitoring",
+    "monitoringDescription": "KM: Compliance rates for key standards.",
+    "alerts": "KM: Alerts",
+    "viewDetailsButton": "KM: View Details",
+    "noMonitoringData": "KM: No monitoring data available."
+  },
+  "CooperativeDashboard": {
+    "title": "KM: Cooperative Dashboard",
+    "membersTitle": "KM: Total Members",
+    "membersDescription": "KM: {count} active farmers in your cooperative.",
+    "landAreaTitle": "KM: Total Land Area",
+    "landAreaDescription": "KM: Hectares under cultivation.",
+    "pendingApplicationsTitle": "KM: Pending Applications",
+    "pendingApplicationsDescription": "KM: New farmers awaiting approval.",
+    "produceTitle": "KM: Available Aggregated Produce",
+    "produceDescription": "KM: A combined view of your members' ready-for-sale produce.",
+    "table": {
+      "product": "KM: Product",
+      "quantity": "KM: Quantity (Tons)",
+      "quality": "KM: Quality",
+      "readyBy": "KM: Ready By",
+      "action": "KM: Action"
+    },
+    "createListingButton": "KM: Create Listing",
+    "noProduce": "KM: No aggregated produce to list.",
+    "aggregateButton": "KM: Aggregate New Produce"
+  },
+  "CrowdfunderDashboard": {
+    "title": "KM: Crowdfunder Dashboard",
+    "totalInvested": "KM: Total Invested",
+    "numberOfInvestments": "KM: Number of Investments",
+    "estimatedReturns": "KM: Estimated Returns",
+    "opportunitiesTitle": "KM: Recommended Opportunities",
+    "viewButton": "KM: View",
+    "raisedOf": "KM: raised of",
+    "goal": "KM: goal",
+    "noOpportunities": "KM: No new investment opportunities match your profile.",
+    "transactionsTitle": "KM: Recent Transactions",
+    "table": {
+      "project": "KM: Project",
+      "amount": "KM: Amount"
+    },
+    "investment": "KM: Investment",
+    "payout": "KM: Payout",
+    "on": "KM: on",
+    "noTransactions": "KM: No recent transactions."
+  },
+  "EnergyProviderDashboard": {
+    "title": "KM: Energy Provider Dashboard",
+    "leadsTitle": "KM: Project Leads",
+    "leadsCount": "KM: {count, plural, =0 {leads} =1 {1 lead} other {{count} leads}}",
+    "newLeadsDescription": "KM: new leads require attention.",
+    "projectsTitle": "KM: Active Projects",
+    "activeProjectsCount": "KM: {count, plural, =0 {projects} =1 {1 project} other {{count} projects}}",
+    "projectsCompleted": "KM: projects completed.",
+    "impactTitle": "KM: Cumulative Impact",
+    "impactDescription": "KM: The total estimated impact of your projects.",
+    "carbonReduction": "KM: tCO2e/year reduced from {count} installations.",
+    "accessDocsButton": "KM: Access API Docs",
+    "proposeIntegrationButton": "KM: Propose New Integration",
+    "leadsTableTitle": "KM: Project Pipeline",
+    "leadsTableDescription": "KM: Track your leads from initial contact to project completion.",
+    "table": {
+      "entity": "KM: Entity",
+      "location": "KM: Location",
+      "energyNeed": "KM: Estimated Need",
+      "status": "KM: Status",
+      "action": "KM: Action"
+    },
+    "viewLeadButton": "KM: View Lead",
+    "noLeads": "KM: No active project leads.",
+    "statusLabels": {
+      "new": "KM: New",
+      "contacted": "KM: Contacted",
+      "proposal_sent": "KM: Proposal Sent",
+      "closed": "KM: Closed"
+    }
+  },
+  "EquipmentSupplierDashboard": {
+    "title": "KM: Equipment Supplier Dashboard",
+    "ordersTitle": "KM: Rentals & Sales",
+    "ordersDescription": "KM: {count} active orders",
+    "manageOrdersButton": "KM: Manage Orders",
+    "listedEquipmentTitle": "KM: Your Listed Equipment",
+    "table": {
+      "name": "KM: Name",
+      "type": "KM: Type",
+      "status": "KM: Status",
+      "action": "KM: Action"
+    },
+    "status": {
+      "available": "KM: Available",
+      "rentedout": "KM: Rented Out"
+    },
+    "manageButton": "KM: Manage",
+    "noEquipment": "KM: No equipment listed yet.",
+    "listEquipmentButton": "KM: List New Equipment",
+    "maintenanceTitle": "KM: Maintenance Requests",
+    "viewRequestButton": "KM: View Request",
+    "noMaintenance": "KM: No pending maintenance requests."
+  },
+  "FiDashboard": {
+    "title": "KM: Financial Institution Dashboard",
+    "pendingApplicationsTitle": "KM: Pending Applications",
+    "pendingApplicationsDescription": "KM: applications require your review.",
+    "manageApplicationsButton": "KM: Manage Applications",
+    "portfolioAtRiskTitle": "KM: Portfolio at Risk",
+    "portfolioAtRiskDescription": "KM: {count} loans with high-risk alerts.",
+    "reviewRiskButton": "KM: Review Risk",
+    "manageProductsTitle": "KM: Financial Products",
+    "manageProductsDescription": "KM: Active loan and grant products.",
+    "manageProductsButton": "KM: Manage Products",
+    "table": {
+      "applicant": "KM: Applicant",
+      "type": "KM: Type",
+      "amount": "KM: Amount",
+      "riskScore": "KM: Risk Score",
+      "action": "KM: Action"
+    },
+    "reviewButton": "KM: Review",
+    "noApplications": "KM: No pending applications to review.",
+    "viewAllButton": "KM: View All Applications"
+  },
+  "FieldAgentDashboard": {
+    "title": "KM: Field Agent Dashboard",
+    "portfolioHealthTitle": "KM: Portfolio Health",
+    "activeAlerts": "KM: Active Alerts",
+    "pendingReportsTitle": "KM: Pending Reports",
+    "reportsToFile": "KM: reports to file.",
+    "dataVerificationTitle": "KM: Data Verification",
+    "tasksPending": "KM: tasks pending.",
+    "assignedFarmersTitle": "KM: Assigned Farmers",
+    "farmersInPortfolio": "KM: farmers in portfolio.",
+    "portfolioTitle": "KM: Farmer Portfolio",
+    "lastVisit": "KM: Last Visit",
+    "issues": "KM: Issues",
+    "viewFarmerButton": "KM: View Farmer",
+    "noFarmersAssigned": "KM: No farmers have been assigned to your portfolio yet."
+  },
+  "InputSupplierDashboard": {
+    "title": "KM: Input Supplier Dashboard",
+    "ordersTitle": "KM: Active Orders",
+    "totalValue": "KM: total value",
+    "manageOrdersButton": "KM: Manage Orders",
+    "forecastTitle": "KM: Demand Forecast",
+    "in": "KM: in",
+    "noForecast": "KM: No demand forecast data available.",
+    "performanceTitle": "KM: Product Performance",
+    "viewReviewsButton": "KM: View Reviews",
+    "noFeedback": "KM: No product feedback yet.",
+    "promotionsTitle": "KM: Marketing & Promotions",
+    "promotionsDescription": "KM: Create and manage coupons to boost your sales.",
+    "manageCouponsButton": "KM: Manage Coupons"
+  },
+  "InsuranceProviderDashboard": {
+    "title": "KM: Insurance Provider Dashboard",
+    "claimsTitle": "KM: Pending Claims",
+    "claimsDescription": "KM: Review and process new claims from policyholders.",
+    "table": {
+      "policyHolder": "KM: Policy Holder",
+      "policyType": "KM: Policy Type",
+      "claimDate": "KM: Claim Date",
+      "status": "KM: Status",
+      "action": "KM: Action"
+    },
+    "reviewClaimButton": "KM: Review Claim",
+    "noPendingClaims": "KM: No pending claims at this time.",
+    "riskAlertsTitle": "KM: Risk Assessment Alerts",
+    "riskAlertsDescription": "KM: Proactive alerts for high-risk policies based on real-time data.",
+    "alert": "KM: Alert",
+    "severity": "KM: Severity",
+    "investigateButton": "KM: Investigate",
+    "noRiskAlerts": "KM: No high-risk alerts at this time.",
+    "activePoliciesTitle": "KM: Active Policies Overview",
+    "activePoliciesDescription": "KM: An overview of your active insurance policies.",
+    "coverage": "KM: Coverage",
+    "expires": "KM: Expires",
+    "noActivePolicies": "KM: No active policies found."
+  },
+  "LogisticsDashboard": {
+    "title": "KM: Logistics Dashboard",
+    "performanceTitle": "KM: Performance",
+    "onTimeDelivery": "KM: On-time delivery rate",
+    "viewReportButton": "KM: View Full Report",
+    "activeShipmentsTitle": "KM: Active Shipments",
+    "to": "KM: to",
+    "trackButton": "KM: Track",
+    "noActiveShipments": "KM: No active shipments.",
+    "incomingJobsTitle": "KM: Incoming Jobs",
+    "from": "KM: from",
+    "acceptJobButton": "KM: Accept Job",
+    "noIncomingJobs": "KM: No new jobs."
+  },
+  "OperationsDashboard": {
+    "title": "KM: Platform Operations Dashboard",
+    "vtiRateTitle": "KM: VTI Creation Rate",
+    "pipelineStatusTitle": "KM: Data Pipeline Status",
+    "lastCheck": "KM: Last checked",
+    "flaggedEventsTitle": "KM: Flagged Traceability Events",
+    "viewVtiButton": "KM: View VTI",
+    "noFlaggedEvents": "KM: No flagged events to review."
+  },
+  "PackagingSupplierDashboard": {
+    "title": "KM: Packaging Supplier Dashboard",
+    "ordersTitle": "KM: Incoming Orders",
+    "table": {
+      "customer": "KM: Customer",
+      "product": "KM: Product",
+      "quantity": "KM: Quantity",
+      "status": "KM: Status",
+      "action": "KM: Action"
+    },
+    "viewOrderButton": "KM: View Order",
+    "noOrders": "KM: No new orders.",
+    "inventoryTitle": "KM: Inventory Status",
+    "inStock": "KM: in stock",
+    "reorderLevel": "KM: reorder level",
+    "lowStock": "KM: Low Stock",
+    "noInventory": "KM: No inventory data.",
+    "listProductButton": "KM: List New Product"
+  },
+  "ProcessingUnitDashboard": {
+    "title": "KM: Processing Unit Dashboard",
+    "yieldTitle": "KM: Yield Optimization",
+    "potential": "KM: potential",
+    "wasteTitle": "KM: Waste Reduction",
+    "rawMaterialTitle": "KM: Raw Material Inventory",
+    "table": {
+      "product": "KM: Product",
+      "quality": "KM: Quality",
+      "quantity": "KM: Quantity (Tons)",
+      "supplier": "KM: Supplier",
+      "deliveryDate": "KM: Delivery Date",
+      "status": "KM: Status",
+      "action": "KM: Action"
+    },
+    "noInventoryData": "KM: No raw material inventory data.",
+    "packagingOrdersTitle": "KM: Packaging Orders",
+    "noPackagingOrders": "KM: No active packaging orders.",
+    "viewButton": "KM: View",
+    "packagingInventoryTitle": "KM: Packaging Inventory",
+    "inStock": "KM: in stock",
+    "reorderLevel": "KM: reorder level",
+    "noPackagingData": "KM: No packaging inventory data.",
+    "sourcePackagingButton": "KM: Source Packaging"
+  },
+  "QaDashboard": {
+    "title": "KM: Quality Assurance Dashboard",
+    "inspectionsTitle": "KM: Pending Inspections",
+    "inspectionsDescription": "KM: Batches awaiting quality inspection and verification.",
+    "table": {
+      "batchId": "KM: Batch ID",
+      "product": "KM: Product",
+      "seller": "KM: Seller",
+      "dueDate": "KM: Due Date",
+      "action": "KM: Action",
+      "result": "KM: Result",
+      "reason": "KM: Reason",
+      "inspectedAt": "KM: Inspected At"
+    },
+    "performInspectionButton": "KM: Perform Inspection",
+    "noPendingInspections": "KM: No pending inspections at this time.",
+    "resultsTitle": "KM: Recent Quality Issues",
+    "resultsDescription": "KM: The latest flagged quality issues that may require action.",
+    "noRecentIssues": "KM: No recent quality issues logged.",
+    "metricsTitle": "KM: Quality Metrics",
+    "metricsDescription": "KM: Overall quality performance across the platform.",
+    "passRate": "KM: Pass rate",
+    "averageScore": "KM: Average score",
+    "noMetrics": "KM: No quality metrics available yet."
+  },
+  "RegulatorDashboard": {
+    "title": "KM: Regulator Dashboard",
+    "pendingCertificationsTitle": "KM: Pending Certifications",
+    "reviewsOutstanding": "KM: reviews outstanding.",
+    "reviewAllButton": "KM: Review All",
+    "riskAlertsTitle": "KM: Compliance Risk Alerts",
+    "investigateButton": "KM: Investigate",
+    "noComplianceAlerts": "KM: No active compliance alerts.",
+    "anomaliesTitle": "KM: Supply Chain Anomalies",
+    "trackVtiButton": "KM: Track VTI",
+    "noAnomalies": "KM: No supply chain anomalies detected."
+  },
+  "ResearcherDashboard": {
+    "title": "KM: Researcher Dashboard",
+    "datasetsTitle": "KM: Available Datasets",
+    "datasetsDescription": "KM: Anonymized datasets available for research purposes.",
+    "table": {
+      "name": "KM: Name",
+      "dataType": "KM: Data Type",
+      "accessLevel": "KM: Access Level",
+      "action": "KM: Action",
+      "title": "KM: Title",
+      "progress": "KM: Progress",
+      "collaborators": "KM: Collaborators",
+      "status": "KM: Status"
+    },
+    "requestAccessButton": "KM: Request Access",
+    "noDatasets": "KM: No datasets are currently available.",
+    "projectsTitle": "KM: Ongoing Projects",
+    "projectsDescription": "KM: Your active research projects on the platform.",
+    "viewProjectButton": "KM: View Project",
+    "noProjects": "KM: You are not involved in any ongoing projects.",
+    "contributionsTitle": "KM: Contributions to Knowledge Hub",
+    "contributionsDescription": "KM: Your submitted articles and research papers.",
+    "viewButton": "KM: View",
+    "noContributions": "KM: You have not submitted any contributions yet.",
+    "chart": {
+      "count": "KM: Count",
+      "published": "KM: Published",
+      "pending": "KM: Pending Review",
+      "draft": "KM: Draft"
+    },
+    "noData": "KM: No dashboard data available."
+  },
+  "WasteManagementDashboard": {
+    "title": "KM: Waste Management Dashboard",
+    "wasteStreamsTitle": "KM: Incoming Waste Streams",
+    "from": "KM: from",
+    "acceptButton": "KM: Accept",
+    "noWasteStreams": "KM: No new incoming waste streams.",
+    "compostBatchesTitle": "KM: Compost Batches",
+    "batch": "KM: Batch",
+    "estReady": "KM: Est. Ready",
+    "noCompostBatches": "KM: No active compost batches.",
+    "inventoryTitle": "KM: Finished Product Inventory",
+    "inStock": "KM: in stock",
+    "noFinishedProducts": "KM: No finished products in stock.",
+    "sellButton": "KM: Sell on Marketplace"
+  },
+  "FeedItemCard": {
+    "signInToLikeToast": "KM: You must be signed in to like a post.",
+    "repostPlaceholderToast": "KM: Repost feature coming soon!",
+    "signInToVoteToast": "KM: You must be signed in to vote.",
+    "voteSuccessToast": "KM: Your vote has been counted!",
+    "voteErrorToast": "KM: Could not save vote.",
+    "editPost": "KM: Edit Post",
+    "deletePost": "KM: Delete Post",
+    "like": "KM: Like",
+    "comment": "KM: Comment",
+    "repost": "KM: Repost",
+    "likes": "KM: {count, plural, =0 {likes} =1 {like} other {{count} likes}}",
+    "comments": "KM: {count, plural, =0 {comments} =1 {comment} other {{count} comments}}",
+    "loadCommentsErrorToast": "KM: Could not load comments.",
+    "noComments": "KM: Be the first to comment!",
+    "loadingComments": "KM: Loading comments...",
+    "loadMoreComments": "KM: Load more comments",
+    "writeCommentPlaceholder": "KM: Add a comment...",
+    "postButton": "KM: Post",
+    "votes": "KM: {count, plural, =0 {votes} =1 {vote} other {{count} votes}}"
+  },
+  "CreatePostModal": {
+    "title": "KM: Create a new post",
+    "description": "KM: Share an update, ask a question, or start a conversation with the community.",
+    "yourName": "KM: Your Name",
+    "shareUpdate": "KM: Share an update",
+    "placeholder": "KM: What's on your mind?",
+    "selectedFile": "KM: Selected file:",
+    "pollOptionsLabel": "KM: Poll Options",
+    "pollOptionPlaceholder": "KM: Option {index}",
+    "addOptionButton": "KM: Add Option",
+    "pollNote": "KM: A maximum of {maxOptions} options are allowed.",
+    "photoVideo": "KM: Photo/Video",
+    "agriEvent": "KM: Agri-Event",
+    "shareDocumentButton": "KM: Share Document",
+    "createPollButton": "KM: Create Poll",
+    "postButton": "KM: Post",
+    "pollOptionsError": "KM: A poll must have at least 2 non-empty options.",
+    "emptyPostError": "KM: Your post cannot be empty."
   },
   "formErrors": {
     "createMarketplaceCoupon": {
       "code": {
-        "min": "លេខកូដត្រូវតែមានយ៉ាងតិច 4 តួអក្សរ។",
-        "max": "លេខកូដមិនអាចលើសពី 20 តួអក្សរបានទេ។",
-        "regex": "លេខកូដអាចមានតែអក្សរ និងលេខប៉ុណ្ណោះ។"
+        "min": "KM: Code must be at least 4 characters.",
+        "max": "KM: Code must be no more than 20 characters.",
+        "regex": "KM: Code must be alphanumeric."
       },
       "discountType": {
-        "required": "សូមជ្រើសរើសប្រភេទបញ្ចុះតម្លៃ។"
+        "required": "KM: Please select a discount type."
       },
       "discountValue": {
-        "invalid": "សូមបញ្ចូលលេខដែលត្រឹមត្រូវ។",
-        "positive": "តម្លៃបញ្ចុះតម្លៃត្រូវតែជាលេខវិជ្ជមាន។",
-        "percentageMax": "ការបញ្ចុះតម្លៃជាភាគរយមិនអាចលើសពី 100 បានទេ។"
+        "invalid": "KM: Discount value must be a number.",
+        "positive": "KM: Discount value must be positive.",
+        "percentageMax": "KM: Percentage discount cannot exceed 100."
       },
       "usageLimit": {
-        "positive": "ដែនកំណត់ការប្រើប្រាស់ត្រូវតែជាចំនួនគត់វិជ្ជមាន។"
+        "positive": "KM: Usage limit must be a positive integer."
       }
     }
+  },
+  "CropRotationSuggester": {
+    "title": "KM: AI Crop Rotation Suggester",
+    "description": "KM: Get AI-powered suggestions for your next crop to improve soil health and break pest cycles.",
+    "buttonText": "KM: Get Rotation Suggestion",
+    "loadingText": "KM: Analyzing field history...",
+    "error": "KM: Could not get a suggestion at this time. Please try again.",
+    "noSuggestions": "KM: The AI could not generate a specific suggestion based on the history provided.",
+    "regenerateButton": "KM: Regenerate Suggestion"
+  },
+  "networkPage": {
+    "title": "KM: Network",
+    "description": "KM: Discover and connect with stakeholders across the agricultural supply chain.",
+    "myNetworkButton": "KM: My Network",
+    "agentToolsButton": "KM: Agent Tools",
+    "aiSuggestionsTitle": "KM: AI Suggestions",
+    "aiSuggestionsDescription": "KM: Connect with people you may know based on your profile and activity.",
+    "toast": {
+      "errorTitle": "KM: Error",
+      "loadError": "KM: Could not load network data.",
+      "connectError": "KM: Could not send connection request."
+    },
+    "following": "KM: Following",
+    "follow": "KM: Follow",
+    "connect": "KM: Connect",
+    "profile": "KM: Profile",
+    "noSuggestions": "KM: No new suggestions right now. Check back later!",
+    "browseAllTitle": "KM: Browse All Stakeholders",
+    "browseAllDescription": "KM: Find and connect with new partners in the supply chain.",
+    "searchPlaceholder": "KM: Search by name or summary...",
+    "locationPlaceholder": "KM: Search by location...",
+    "rolePlaceholder": "KM: Filter by role",
+    "allRoles": "KM: All Roles",
+    "noStakeholdersFound": "KM: No stakeholders found.",
+    "noStakeholdersHint": "KM: Try adjusting your search filters."
   }
 }

@@ -1,1390 +1,1980 @@
-
 {
-  "common": {
-    "error": "Erreur",
-    "success": "Succès",
-    "loading": "Chargement...",
-    "noData": "Aucune donnée disponible.",
-    "save": "Enregistrer",
-    "cancel": "Annuler",
-    "viewDetails": "Voir les détails",
-    "edit": "Modifier",
-    "delete": "Supprimer",
-    "back": "Retour",
-    "submit": "Soumettre",
-    "yes": "Oui",
-    "no": "Non",
-    "confirm": "Confirmer",
-    "close": "Fermer",
-    "optional": "Optionnel"
-  },
-  "constants": {
-    "stakeholderRoles": {
-      "Farmer": "Agriculteur",
-      "AgriculturalCooperative": "Coopérative agricole",
-      "FieldAgentAgronomistDamDohInternal": "Agent de terrain/Agronome (Interne DamDoh)",
-      "OperationsLogisticsTeamDamDohInternal": "Équipe Opérations/Logistique (Interne DamDoh)",
-      "QualityAssuranceTeamDamDohInternal": "Équipe d'Assurance Qualité (Interne DamDoh)",
-      "ProcessingPackagingUnit": "Unité de Traitement & Emballage",
-      "BuyerRestaurantSupermarketExporter": "Acheteur (Restaurant, Supermarché, Exportateur)",
-      "InputSupplierSeedFertilizerPesticide": "Fournisseur d'intrants (Semences, Engrais, Pesticides)",
-      "EquipmentSupplierSalesofMachineryIoT": "Fournisseur d'équipement (Vente de Machinerie/IoT)",
-      "FinancialInstitutionMicrofinanceLoans": "Institution Financière (Micro-finance/Prêts)",
-      "GovernmentRegulatorAuditor": "Régulateur/Auditeur Gouvernemental",
-      "CertificationBodyOrganicFairTradeetc": "Organisme de Certification (Bio, Commerce Équitable, etc.)",
-      "Consumer": "Consommateur",
-      "ResearcherAcademic": "Chercheur/Académique",
-      "LogisticsPartnerThirdPartyTransporter": "Partenaire Logistique (Transporteur Tiers)",
-      "StorageWarehouseFacility": "Installation de Stockage/Entrepôt",
-      "AgronomyExpertConsultantExternal": "Expert/Consultant en Agronomie (Externe)",
-      "AgroTourismOperator": "Opérateur d'Agrotourisme",
-      "EnergySolutionsProviderSolarBiogas": "Fournisseur de Solutions Énergétiques (Solaire, Biogaz)",
-      "AgroExportFacilitatorCustomsBroker": "Facilitateur d'Exportation Agricole/Courtier en Douane",
-      "AgriTechInnovatorDeveloper": "Innovateur/Développeur Agri-Tech",
-      "WasteManagementCompostFacility": "Installation de Gestion des Déchets & Compostage",
-      "CrowdfunderImpactInvestorIndividual": "Financeur Participatif (Investisseur à Impact, Particulier)",
-      "InsuranceProvider": "Fournisseur d'Assurance",
-      "PackagingSupplier": "Fournisseur d'Emballages"
+  "MobileHomepage": {
+    "welcome": {
+      "morning": "FR: Good Morning, {name}",
+      "afternoon": "FR: Good Afternoon, {name}",
+      "evening": "FR: Good Evening, {name}"
     },
-    "listingTypes": {
-      "All": "Tous les types",
-      "Product": "Produit",
-      "Service": "Service"
-    },
-    "agriEventTypes": {
-      "All": "Tous les types",
-      "Conference": "Conférence",
-      "Webinar": "Webinaire",
-      "Workshop": "Atelier",
-      "TradeShow": "Salon professionnel",
-      "FieldDay": "Journée sur le terrain",
-      "NetworkingEvent": "Événement de réseautage",
-      "OnlineCourseLaunch": "Lancement de cours en ligne",
-      "PolicyBriefing": "Briefing sur les politiques"
-    },
-    "insuranceProductTypes": {
-      "Crop": "Assurance récolte",
-      "Livestock": "Assurance bétail",
-      "Asset": "Assurance des actifs",
-      "Weather": "Basée sur la météo (Paramétrique)"
-    },
-    "financialServiceTypes": {},
-    "cropStages": {
-      "Planting": "Plantation",
-      "Vegetative": "Végétatif",
-      "Flowering": "Floraison",
-      "Fruiting": "Fructification",
-      "Harvesting": "Récolte",
-      "Post-Harvest": "Après récolte"
-    },
-    "observationTypes": {
-      "GeneralNote": "Note générale",
-      "PestSighting": "Observation de ravageurs",
-      "DiseaseSighting": "Observation de maladies",
-      "SoilCondition": "État du sol",
-      "WeatherEvent": "Événement météorologique",
-      "GrowthStageChange": "Changement de stade de croissance",
-      "IrrigationEvent": "Événement d'irrigation"
-    },
-    "mobileHomeCategories": {
-      "produceMarket": "Marché des produits",
-      "farmInputs": "Intrants agricoles",
-      "talentExchange": "Bourse de talents",
-      "machinery": "Machinerie",
-      "community": "Communauté",
-      "aiAssistant": "Assistant IA",
-      "events": "Événements"
-    }
+    "discoverTitle": "FR: Discover",
+    "seeAllButton": "FR: See All",
+    "communityFeedTitle": "FR: Community Feed",
+    "communityFeedDescription": "FR: Connect with others, share your knowledge, and stay up-to-date with the latest conversations.",
+    "goToFeedButton": "FR: Go to Feed",
+    "noRecommendations": "FR: No recommendations available right now. Explore the marketplace to get started!"
   },
   "LandingPage": {
     "hero": {
-      "title": "Renforcer l'agriculture du sol à la vente sur {appName}",
-      "subtitle": "La plateforme unique qui connecte chaque acteur de la chaîne de valeur agricole pour un avenir plus transparent, efficace et durable.",
-      "getStartedButton": "Commencer gratuitement",
-      "learnMoreButton": "En savoir plus"
+      "title": "FR: Empowering Agriculture from Soil to Sale on DamDoh",
+      "subtitle": "FR: The single platform connecting every stakeholder in the agricultural value chain for a more transparent, efficient, and sustainable future.",
+      "getStartedButton": "FR: Get Started for Free",
+      "learnMoreButton": "FR: Learn More"
     },
     "features": {
-      "title": "Fonctionnalités principales de DamDoh",
-      "subtitle": "Tout ce dont vous avez besoin pour cultiver, vous connecter et commercer, le tout en un seul endroit.",
+      "title": "DamDoh's Main Features",
+      "subtitle": "FR: Everything you need to grow, connect, and trade, all in one place.",
       "networking": {
-        "title": "Réseautage intelligent",
-        "description": "Suggestions de connexions alimentées par l'IA pour vous mettre en relation avec les bons partenaires, des fournisseurs aux acheteurs internationaux."
+        "title": "FR: Intelligent Networking",
+        "description": "FR: AI-powered connection suggestions to link you with the right partners, from suppliers to international buyers."
       },
       "marketplace": {
-        "title": "Marché direct",
-        "description": "Achetez et vendez des produits et services directement, augmentant la transparence et la rentabilité pour toutes les parties prenantes."
+        "title": "FR: Direct Marketplace",
+        "description": "FR: Buy and sell products and services directly, increasing transparency and profitability for all stakeholders."
       },
       "forums": {
-        "title": "Forums thématiques",
-        "description": "Partagez vos connaissances, discutez des défis et collaborez à des solutions dans des forums thématiques."
+        "title": "FR: Topical Forums",
+        "description": "FR: Share knowledge, discuss challenges, and collaborate on solutions in topic-specific forums."
       },
       "talent": {
-        "title": "Bourse de talents",
-        "description": "Proposez ou trouvez des services agricoles spécialisés, de la récolte à la demande aux enquêtes par drone."
+        "title": "FR: Talent Exchange",
+        "description": "FR: Offer or find specialized agricultural services, from on-demand harvesting to drone surveys."
       }
     },
     "forWho": {
-      "badge": "Pour tous les acteurs de l'agriculture",
-      "title": "Une seule plateforme pour toute la chaîne de valeur",
-      "description": "DamDoh est conçu de manière unique pour servir l'ensemble de l'écosystème agricole, créant un point de vérité et d'opportunité unique pour tous.",
+      "badge": "FR: For Everyone in Agriculture",
+      "title": "FR: One Platform for the Entire Value Chain",
+      "description": "DamDoh is uniquely designed to serve the entire agricultural ecosystem, creating a single point of truth and opportunity for all.",
       "farmers": {
-        "title": "Agriculteurs",
-        "description": "Accédez à de meilleurs marchés, trouvez des intrants de qualité et obtenez des conseils d'experts pour augmenter le rendement et la rentabilité."
+        "title": "FR: Farmers",
+        "description": "FR: Access better markets, find quality inputs, and get expert advice to increase yield and profitability."
       },
       "buyers": {
-        "title": "Acheteurs & Transformateurs",
-        "description": "Sourcez des produits traçables de haute qualité directement auprès des producteurs et des coopératives, garantissant la fiabilité de la chaîne d'approvisionnement."
+        "title": "FR: Buyers & Processors",
+        "description": "FR: Source high-quality, traceable produce directly from growers and co-ops, ensuring supply chain reliability."
       },
       "experts": {
-        "title": "Experts & Fournisseurs de services",
-        "description": "Proposez vos compétences et services spécialisés à un large public agricole à la recherche de votre expertise."
+        "title": "FR: Experts & Service Providers",
+        "description": "FR: Offer your specialized skills and services to a wide agricultural audience seeking your expertise."
       },
-      "fis": {
-        "title": "Institutions Financières",
-        "description": "Proposez des prêts, des subventions et des produits d'assurance ciblés à un réseau vérifié d'entreprises agricoles."
-      },
-      "imageAlt": "Un groupe diversifié d'acteurs agricoles collaborant"
+      "imageAlt": "FR: A diverse group of agricultural stakeholders collaborating"
     },
     "cta": {
-      "title": "Rejoignez la Révolution Agricole",
-      "subtitle": "Inscrivez-vous aujourd'hui et faites partie d'un réseau mondial en pleine croissance dédié à la transformation de l'avenir de l'alimentation.",
-      "button": "Créez votre compte gratuit"
+      "title": "FR: Join the Agricultural Revolution",
+      "subtitle": "FR: Sign up today and become part of a growing global network dedicated to transforming the future of food.",
+      "button": "FR: Create Your Free Account"
     }
   },
   "Auth": {
-    "signInWelcome": "Bienvenue à nouveau sur {appName}",
-    "signUpWelcome": "Rejoignez le réseau agricole DamDoh",
-    "forgotPasswordResetPrompt": "Réinitialisez votre mot de passe pour {appName}",
-    "resetPasswordPrompt": "Créez un nouveau mot de passe pour {appName}",
-    "signInTitle": "Connectez-vous à votre compte",
-    "signInDescription": "Entrez vos identifiants pour accéder à votre tableau de bord.",
-    "emailLabel": "E-mail",
-    "emailPlaceholder": "vous@exemple.com",
-    "passwordLabel": "Mot de passe",
-    "forgotPasswordLink": "Mot de passe oublié?",
-    "signingInButton": "Connexion en cours...",
-    "signInButton": "Se connecter",
-    "noAccountPrompt": "Vous n'avez pas de compte?",
-    "signUpLink": "S'inscrire",
-    "signInLink": "Se connecter",
-    "recoverWithUniversalIdPrompt": "Ou récupérer l'accès avec votre ID Universel",
-    "signUpTitle": "Créer un nouveau compte",
-    "signUpDescription": "Parlez-nous un peu de vous pour commencer.",
-    "nameLabel": "Votre nom ou nom d'entreprise",
-    "namePlaceholder": "Ex: Chan Nary ou Fermes de la Vallée Verte",
-    "roleLabel": "Votre rôle principal",
-    "rolePlaceholder": "Sélectionnez votre rôle dans la chaîne d'approvisionnement...",
-    "confirmPasswordLabel": "Confirmer le mot de passe",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Création du compte...",
-    "signUpButton": "Créer un compte",
-    "alreadyHaveAccountPrompt": "Vous avez déjà un compte?",
-    "forgotPasswordTitle": "Mot de passe oublié?",
-    "forgotPasswordDescription": "Pas de problème. Entrez votre adresse e-mail ci-dessous, et nous vous enverrons un lien pour le réinitialiser.",
-    "sendResetLinkButton": "Envoyer le lien de réinitialisation",
-    "sendingEmailButton": "Envoi de l'e-mail...",
-    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe?",
-    "resetPasswordTitle": "Réinitialisez votre mot de passe",
-    "resetPasswordDescription": "Entrez et confirmez votre nouveau mot de passe ci-dessous.",
-    "newPasswordLabel": "Nouveau mot de passe",
-    "newPasswordPlaceholder": "Entrez un nouveau mot de passe fort",
-    "resetPasswordButton": "Réinitialiser le mot de passe",
-    "resettingPasswordButton": "Réinitialisation en cours...",
+    "signInWelcome": "FR: Welcome back to DamDoh",
+    "signUpWelcome": "Join the DamDoh Agricultural Network",
+    "forgotPasswordResetPrompt": "FR: Reset your password for DamDoh",
+    "resetPasswordPrompt": "FR: Create a new password for DamDoh",
+    "signInTitle": "FR: Sign in to your account",
+    "signInDescription": "FR: Enter your credentials to access your dashboard.",
+    "emailLabel": "FR: Email",
+    "emailPlaceholder": "FR: you@example.com",
+    "passwordLabel": "FR: Password",
+    "forgotPasswordLink": "FR: Forgot password?",
+    "signingInButton": "FR: Signing in...",
+    "signInButton": "FR: Sign In",
+    "noAccountPrompt": "FR: Don't have an account?",
+    "signUpLink": "FR: Sign Up",
+    "signInLink": "FR: Sign In",
+    "recoverWithUniversalIdPrompt": "FR: Or recover access with your Universal ID",
+    "signUpTitle": "FR: Create a new account",
+    "signUpDescription": "FR: Tell us a bit about yourself to get started.",
+    "nameLabel": "FR: Your Name or Business Name",
+    "namePlaceholder": "FR: e.g., Chan Nary or Green Valley Farms",
+    "roleLabel": "FR: Your Primary Role",
+    "rolePlaceholder": "FR: Select your role in the supply chain...",
+    "confirmPasswordLabel": "FR: Confirm Password",
+    "confirmPasswordPlaceholder": "FR: ••••••••",
+    "creatingAccountButton": "FR: Creating account...",
+    "signUpButton": "FR: Create Account",
+    "alreadyHaveAccountPrompt": "FR: Already have an account?",
+    "forgotPasswordTitle": "FR: Forgot Password?",
+    "forgotPasswordDescription": "FR: No problem. Enter your email address below, and we'll send you a link to reset it.",
+    "sendResetLinkButton": "FR: Send Reset Link",
+    "sendingEmailButton": "FR: Sending email...",
+    "rememberPasswordPrompt": "FR: Remember your password?",
+    "resetPasswordTitle": "FR: Reset Your Password",
+    "resetPasswordDescription": "FR: Enter and confirm your new password below.",
+    "newPasswordLabel": "FR: New Password",
+    "newPasswordPlaceholder": "FR: Enter a strong new password",
+    "resetPasswordButton": "FR: Reset Password",
+    "resettingPasswordButton": "FR: Resetting...",
     "recoverPage": {
-      "title": "Récupérer votre compte",
-      "description": "Utilisez votre réseau pour retrouver l'accès.",
-      "howItWorksTitle": "Comment ça marche",
-      "step1": "Entrez votre numéro de téléphone pour démarrer une session de récupération.",
-      "step2": "Montrez le code QR temporaire à un ami de confiance sur DamDoh.",
-      "step3": "Une fois que votre ami aura scanné le code pour vérifier votre identité, vous retrouverez l'accès.",
-      "startButton": "Démarrer la récupération de compte",
-      "scanTitle": "Demandez à un ami de scanner",
-      "scanDescription": "Demandez à un contact de confiance sur DamDoh de scanner ce code QR en utilisant la fonction 'Aider un ami à récupérer' dans son application.",
-      "scanNote": "Ce code est temporaire et expire dans 10 minutes.",
-      "startOverButton": "Recommencer",
-      "enterPhone": {
-        "title": "Entrez votre numéro de téléphone",
-        "description": "Nous utiliserons votre numéro de téléphone pour trouver votre compte et démarrer une session de récupération.",
-        "phoneNumberLabel": "Numéro de téléphone",
-        "phoneNumberPlaceholder": "Entrez votre numéro de téléphone enregistré",
-        "phoneRequiredError": "Le numéro de téléphone est requis.",
-        "verifyingButton": "Vérification en cours...",
-        "getRecoveryCodeButton": "Obtenir le code de récupération",
-        "genericError": "Impossible de démarrer la session de récupération. Veuillez vérifier le numéro et réessayer."
-      },
-      "helpFriend": {
-        "prompt": "Vous essayez d'aider quelqu'un à récupérer son compte?",
-        "button": "Aider un ami à récupérer",
-        "scanError": "Le code QR scanné n'est pas un code de récupération valide.",
-        "scanSuccess": "Vérification réussie !",
-        "scanFail": "Impossible de lire le code QR. Veuillez réessayer."
-      }
+      "title": "FR: Recover Your Account",
+      "description": "FR: Use your network to regain access.",
+      "howItWorksTitle": "FR: How it Works",
+      "step1": "FR: Enter your phone number to start a recovery session.",
+      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
+      "step3": "FR: Once your friend scans the code to verify your identity, you'll regain access.",
+      "startButton": "FR: Start Account Recovery",
+      "scanTitle": "FR: Ask a Friend to Scan",
+      "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
+      "scanNote": "FR: This code is temporary and expires in 10 minutes.",
+      "startOverButton": "FR: Start Over"
     },
     "forgotPassword": {
-      "emailSentTitle": "Vérifiez votre e-mail",
-      "emailSentDescription": "Un lien de réinitialisation de mot de passe a été envoyé à {email}.",
-      "emailSentDescriptionIfAccountExists": "Si un compte avec {email} existe, un lien de réinitialisation de mot de passe a été envoyé.",
-      "successTitle": "E-mail envoyé !",
-      "successDescription": "Veuillez vérifier votre boîte de réception (et votre dossier spam) pour le lien de réinitialisation du mot de passe.",
+      "emailSentTitle": "FR: Check Your Email",
+      "emailSentDescription": "FR: A password reset link has been sent to {email}.",
+      "emailSentDescriptionIfAccountExists": "FR: If an account with {email} exists, a password reset link has been sent.",
+      "successTitle": "FR: Email Sent!",
+      "successDescription": "FR: Please check your inbox (and spam folder) for the password reset link.",
       "errors": {
-        "unexpected": "Une erreur inattendue est survenue. Veuillez réessayer.",
-        "invalidEmail": "L'adresse e-mail n'est pas valide.",
-        "tooManyRequests": "Trop de demandes. Veuillez réessayer plus tard.",
-        "default": "Échec de l'envoi de l'e-mail de réinitialisation"
+        "unexpected": "FR: An unexpected error occurred. Please try again.",
+        "invalidEmail": "FR: The email address is not valid.",
+        "tooManyRequests": "FR: Too many requests. Please try again later.",
+        "default": "FR: Failed to send reset email"
       }
     },
     "resetPassword": {
-      "successTitle": "Mot de passe réinitialisé avec succès !",
-      "successDescription": "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
-      "successRedirect": "Vous serez redirigé vers la page de connexion sous peu.",
+      "successTitle": "FR: Password Reset Successfully!",
+      "successDescription": "FR: You can now sign in with your new password.",
+      "successRedirect": "FR: You will be redirected to the sign-in page shortly.",
       "errors": {
-        "missingCode": "Lien de réinitialisation de mot de passe invalide. Veuillez en demander un nouveau.",
-        "missingCodeTitle": "Lien invalide",
-        "missingCodeDescription": "Le lien de réinitialisation du mot de passe est manquant ou invalide. Veuillez retourner à la page 'Mot de passe oublié' pour en demander un nouveau.",
-        "unexpected": "Une erreur inattendue est survenue. Veuillez réessayer.",
-        "invalidOrExpiredCode": "Le lien de réinitialisation du mot de passe est invalide ou a expiré. Veuillez en demander un nouveau.",
-        "userDisabled": "Ce compte utilisateur a été désactivé.",
-        "userNotFound": "Aucun utilisateur trouvé correspondant à ce lien de réinitialisation.",
-        "weakPassword": "Le nouveau mot de passe n'est pas assez fort.",
-        "default": "Échec de la réinitialisation du mot de passe"
+        "missingCode": "FR: Invalid password reset link. Please request a new one.",
+        "missingCodeTitle": "FR: Invalid Link",
+        "missingCodeDescription": "FR: The password reset link is missing or invalid. Please return to the 'Forgot Password' page to request a new one.",
+        "unexpected": "FR: An unexpected error occurred. Please try again.",
+        "invalidOrExpiredCode": "FR: The password reset link is invalid or has expired. Please request a new one.",
+        "userDisabled": "FR: This user account has been disabled.",
+        "userNotFound": "FR: No user found corresponding to this reset link.",
+        "weakPassword": "FR: The new password is not strong enough.",
+        "default": "FR: Failed to reset password"
       }
-    },
-    "errors": {
-      "emailInUse": "Cet e-mail est déjà utilisé.",
-      "invalidEmail": "Adresse e-mail invalide.",
-      "weakPassword": "Le mot de passe doit comporter au moins 6 caractères.",
-      "default": "Une erreur inattendue est survenue.",
-      "invalidCredential": "L'e-mail ou le mot de passe que vous avez entré est incorrect.",
-      "userDisabled": "Ce compte a été désactivé."
-    },
-    "signUpSuccess": {
-      "title": "Compte créé et connecté !",
-      "description": "Bienvenue sur {appName} ! Vous avez été connecté avec succès."
-    },
-    "signUpFailed": "Échec de l'inscription",
-    "toast": {
-      "logOut": {
-        "title": "Déconnecté",
-        "description": "Vous avez été déconnecté avec succès.",
-        "failTitle": "Échec de la déconnexion",
-        "failDescription": "Une erreur est survenue lors de la déconnexion."
-      },
-      "signInSuccess": {
-        "title": "Connecté avec succès !",
-        "description": "Bienvenue à nouveau sur {appName}."
-      },
-      "signInFailed": {
-        "title": "Échec de la connexion"
-      }
-    },
-    "passwordStrength": {
-      "label": "Force",
-      "weak": "Faible",
-      "medium": "Moyen",
-      "strong": "Fort",
-      "veryStrong": "Très fort"
-    },
-    "error": "Erreur"
+    }
   },
   "AppHeader": {
-    "home": "Accueil",
-    "network": "Réseau",
-    "farmMgmt": "Gestion Exploitation",
-    "marketplace": "Marché",
-    "talentExchange": "Talents",
-    "traceability": "Traçabilité",
-    "forums": "Forums",
-    "sustainability": "Durabilité",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Portefeuille",
-    "searchPlaceholder": "Rechercher des personnes, produits, services...",
-    "signIn": "Se connecter",
-    "signUp": "S'inscrire",
-    "myProfile": "Mon Profil",
-    "myOrders": "Mes Commandes",
-    "settings": "Paramètres",
-    "helpCenter": "Centre d'aide",
-    "logOut": "Se déconnecter",
-    "switchToLightAria": "Passer au thème clair",
-    "switchToDarkAria": "Passer au thème sombre",
-    "mobileMenu": {
-      "title": "Menu DamDoh",
-      "description": "Menu de navigation principal de l'application"
-    }
+    "home": "FR: Home",
+    "network": "FR: Network",
+    "farmMgmt": "FR: Farm Mgmt",
+    "marketplace": "FR: Marketplace",
+    "talentExchange": "FR: Talent",
+    "traceability": "FR: Traceability",
+    "forums": "FR: Forums",
+    "sustainability": "FR: Sustainability",
+    "notifications": "FR: Notifications",
+    "messages": "FR: Messages",
+    "wallet": "FR: Wallet",
+    "searchPlaceholder": "FR: Search people, products, services...",
+    "signIn": "FR: Sign In",
+    "signUp": "FR: Sign Up",
+    "myProfile": "FR: My Profile",
+    "myOrders": "FR: My Orders",
+    "settings": "FR: Settings",
+    "helpCenter": "FR: Help Center",
+    "logOut": "FR: Log Out",
+    "switchToLightAria": "FR: Switch to light theme",
+    "switchToDarkAria": "FR: Switch to dark theme"
   },
   "MobileBottomNav": {
-    "home": "Accueil",
-    "market": "Marché",
-    "search": "Recherche",
-    "messages": "Messages",
-    "profile": "Profil"
-  },
-  "DashboardLeftSidebar": {
-    "viewProfileLink": "Voir mon profil",
-    "profileViewers": "Visiteurs du profil",
-    "postEngagements": "Engagements sur les posts",
-    "pro": {
-      "unlock": "Débloquez plus d'informations avec DamDoh Pro.",
-      "try": "Essayer Pro",
-      "title": "Bientôt disponible!",
-      "description": "Les fonctionnalités de DamDoh Pro sont en cours de développement."
-    },
-    "recent": {
-      "title": "Récents",
-      "myPinBoard": "Mon Pin-Board",
-      "communityGroups": "Groupes communautaires",
-      "industryNews": "Actualités du secteur",
-      "agriEvents": "Événements agricoles",
-      "mySupplyChainNetwork": "Mon réseau de chaîne d'approvisionnement"
-    }
-  },
-  "MainDashboard": {
-    "feedError": {
-      "title": "Erreur de chargement du fil d'actualité",
-      "description": "Impossible de récupérer les dernières activités. Veuillez vérifier votre connexion."
-    },
-    "postError": {
-      "auth": "Vous devez être connecté pour publier.",
-      "fail": "Échec de la création de la publication. Veuillez réessayer."
-    },
-    "uploadingMedia": "Téléchargement du média...",
-    "uploadComplete": "Téléchargement terminé !",
-    "postSuccess": {
-      "title": "Publication créée !",
-      "description": "Votre mise à jour a été partagée avec le réseau."
-    },
-    "likeError": {
-      "auth": "Vous devez vous connecter pour aimer une publication.",
-      "fail": "Impossible d'aimer la publication. Veuillez réessayer."
-    },
-    "commentError": {
-      "auth": "Vous devez être connecté pour commenter.",
-      "fail": "Échec de la publication du commentaire."
-    },
-    "commentSuccess": "Commentaire publié !",
-    "deleteError": {
-      "auth": "Vous devez être connecté pour supprimer une publication.",
-      "fail": "Échec de la suppression de la publication."
-    },
-    "deleteSuccess": {
-      "title": "Publication supprimée",
-      "description": "Votre publication a été supprimée avec succès."
-    },
-    "noActivity": "Aucune activité récente dans votre réseau. Lancez une conversation ou explorez le marché !"
+    "home": "FR: Home",
+    "market": "FR: Market",
+    "search": "FR: Search",
+    "forums": "FR: Forums",
+    "profile": "FR: Profile"
   },
   "DashboardRightSidebar": {
-    "networkTitle": "À qui s'abonner",
-    "refreshSuggestions": "Actualiser les suggestions",
-    "infoTooltip": "Suggestions alimentées par l'IA basées sur votre profil et votre activité.",
-    "follow": "Suivre",
-    "following": "Demandé",
-    "viewAllButton": "Voir toutes les suggestions",
-    "promotionsTitle": "Mes promotions",
-    "promotionsDescription": "Créez et gérez des coupons pour attirer plus de clients.",
-    "managePromotionsButton": "Gérer les coupons",
-    "ad": "Publicité",
-    "adTitle": "Obtenez des informations sur le marché",
-    "adDescription": "Accédez aux prix et aux tendances en temps réel pour vos produits.",
-    "adButton": "Voir les données du marché",
-    "adAlt": "Graphique de données montrant les tendances du marché",
-    "loadError": "Impossible de charger les suggestions pour le moment.",
-    "signInPrompt": "Connectez-vous pour voir des suggestions personnalisées.",
-    "noSuggestions": "Aucune nouvelle suggestion pour le moment. Revenez plus tard !",
-    "toast": {
-      "signInToConnect": "Veuillez vous connecter pour vous connecter avec les utilisateurs.",
-      "requestSent": "Demande de connexion envoyée !",
-      "requestSentDescription": "Votre demande a été envoyée à l'utilisateur. Vous serez averti lorsqu'ils l'accepteront.",
-      "requestFailed": "Impossible d'envoyer la demande."
-    }
+    "networkTitle": "FR: Add to your feed",
+    "refreshSuggestions": "FR: Refresh suggestions",
+    "infoTooltip": "FR: Suggestions are based on your profile interests and needs.",
+    "signInPrompt": "FR: Sign in for personalized recommendations.",
+    "loadError": "FR: Could not load suggestions.",
+    "noSuggestions": "FR: No new suggestions right now. Check back later!",
+    "following": "FR: Following",
+    "follow": "FR: Follow",
+    "promotionsTitle": "FR: Promotions",
+    "promotionsDescription": "FR: See special offers and deals from partners in the ecosystem.",
+    "managePromotionsButton": "FR: Manage Promotions",
+    "ad": "FR: Ad",
+    "adTitle": "FR: Unlock Market Insights",
+    "adDescription": "Get real-time data and analytics with DamDoh Pro.",
+    "adButton": "FR: Learn More"
   },
   "LanguageSwitcher": {
-    "toggle": "Changer de langue"
+    "toggle": "FR: Change language"
   },
   "AppFooter": {
-    "tagline": "La plateforme mondiale pour la chaîne d'approvisionnement agricole.",
+    "tagline": "FR: The global platform for the agricultural supply chain.",
     "damdohTitle": "DamDoh",
-    "aboutLabel": "À propos de nous",
-    "contactLabel": "Contact",
-    "careersLabel": "Carrières",
-    "blogLabel": "Blog & Actualités",
-    "resourcesTitle": "Ressources",
-    "helpCenterLabel": "Centre d'aide",
-    "communityGuidelinesLabel": "Règles de la communauté",
-    "industryNewsLabel": "Actualités du secteur",
-    "eventsLabel": "Événements",
-    "talentExchangeLabel": "Bourse de talents",
-    "legalTitle": "Légal",
-    "privacyPolicyLabel": "Politique de confidentialité",
-    "termsOfServiceLabel": "Conditions d'utilisation",
-    "copyright": "© {year} {appName} Tous droits réservés.",
-    "getMobileApp": "Obtenez l'application mobile",
-    "googlePlayAlt": "Obtenez-le sur Google Play",
-    "appStoreAlt": "Télécharger sur l'App Store"
+    "aboutLabel": "FR: About Us",
+    "contactLabel": "FR: Contact",
+    "careersLabel": "FR: Careers",
+    "blogLabel": "FR: Blog & News",
+    "resourcesTitle": "FR: Resources",
+    "helpCenterLabel": "FR: Help Center",
+    "communityGuidelinesLabel": "FR: Community Guidelines",
+    "industryNewsLabel": "FR: Industry News",
+    "eventsLabel": "FR: Events",
+    "talentExchangeLabel": "FR: Talent Exchange",
+    "legalTitle": "FR: Legal",
+    "privacyPolicyLabel": "FR: Privacy Policy",
+    "termsOfServiceLabel": "FR: Terms of Service",
+    "copyright": "FR: © {year} DamDoh All rights reserved.",
+    "getMobileApp": "FR: Get the Mobile App",
+    "googlePlayAlt": "FR: Get it on Google Play",
+    "appStoreAlt": "FR: Download on the App Store"
   },
   "aboutPage": {
     "hero": {
-      "title": "À propos de DamDoh",
-      "subtitle": "Connecter la chaîne d'approvisionnement agricole mondiale, un acteur à la fois."
+      "title": "About DamDoh",
+      "subtitle": "FR: Connecting the global agricultural supply chain, one stakeholder at a time."
     },
     "vision": {
-      "title": "Notre vision",
-      "p1": "Nous envisageons un monde où chaque acteur agricole, du plus petit agriculteur au plus grand détaillant, est doté des données, des connexions et des outils nécessaires pour prospérer.",
-      "p2": "DamDoh a été fondé sur la conviction que la technologie peut combler les lacunes, instaurer la confiance et créer un système alimentaire mondial plus équitable et durable.",
-      "foundersTitle": "Les fondateurs"
+      "title": "FR: Our Vision",
+      "p1": "FR: We envision a world where every agricultural stakeholder, from the smallest farmer to the largest retailer, is empowered with the data, connections, and tools they need to thrive.",
+      "p2": "DamDoh was founded on the belief that technology can bridge gaps, build trust, and create a more equitable and sustainable global food system.",
+      "foundersTitle": "FR: The Founders"
     },
     "challenge": {
-      "title": "Le défi que nous relevons",
-      "description": "La chaîne d'approvisionnement agricole est fragmentée, inefficace et manque souvent de la transparence nécessaire à une croissance durable. Les principaux défis incluent :",
-      "details": {
-        "marketAccess": "Accès limité au marché pour les petits exploitants.",
-        "inefficiency": "Logistique inefficace entraînant des pertes après récolte.",
-        "financialExclusion": "Difficulté d'accès au financement et à l'assurance pour les petits producteurs.",
-        "informationGaps": "Connaissances fragmentées et manque d'accès aux meilleures pratiques.",
-        "qualityTrust": "Contrôle de qualité incohérent et manque de données vérifiables sur les produits.",
-        "climatePressure": "Pression croissante du changement climatique sur les méthodes agricoles traditionnelles.",
-        "foodLoss": "Pertes et gaspillages alimentaires importants à plusieurs étapes de la chaîne d'approvisionnement.",
-        "dataFragmentation": "Fragmentation des données entre divers systèmes non connectés."
-      },
+      "title": "FR: The Challenge We're Solving",
+      "description": "FR: The agricultural supply chain is fragmented, inefficient, and often lacks the transparency needed for sustainable growth. Key challenges include:",
       "list": {
-        "marketAccess": "Accès limité au marché",
-        "inefficiency": "Inefficacité de la chaîne d'approvisionnement",
-        "financialExclusion": "Exclusion financière",
-        "informationGaps": "Lacunes d'information",
-        "qualityTrust": "Déficit de qualité et de confiance",
-        "climatePressure": "Pression climatique",
-        "foodLoss": "Pertes et gaspillage alimentaires",
-        "dataFragmentation": "Fragmentation des données"
+        "knowledge": "FR: Fragmented knowledge and lack of access to best practices.",
+        "market": "FR: Limited market access for smallholder farmers.",
+        "quality": "FR: Inconsistent quality control and a lack of verifiable product data.",
+        "logistics": "FR: Inefficient logistics leading to post-harvest losses.",
+        "financial": "FR: Difficulty accessing finance and insurance for small-scale producers.",
+        "climate": "FR: Increasing pressure from climate change on traditional farming methods.",
+        "informal": "FR: Informal and relationship-based systems that can exclude new entrants."
       }
     },
     "solution": {
-      "title": "La solution DamDoh",
-      "description": "Nous construisons une 'super application' complète qui numérise et connecte l'ensemble de l'écosystème agricole à travers plusieurs piliers clés :",
+      "title": "The DamDoh Solution",
+      "description": "FR: We are building a comprehensive 'super app' that digitizes and connects the entire agricultural ecosystem through several key pillars:",
       "list": {
-        "education": "Éducation et partage des connaissances",
-        "ai": "Assistance et informations basées sur l'IA",
-        "logistics": "Logistique et traçabilité intégrées",
-        "marketplace": "Un marché direct et transparent",
-        "financial": "Accès aux services financiers"
+        "education": "FR: Education and Knowledge Sharing",
+        "ai": "FR: AI-Powered Assistance and Insights",
+        "logistics": "FR: Integrated Logistics and Traceability"
       }
     },
     "beyondTechnology": {
-      "title": "Au-delà de la technologie : il s'agit de personnes",
+      "title": "FR: Beyond Technology: It's About People",
       "list": {
         "p2p": {
-          "title": "Personne à Personne",
-          "content": "Connecter les agriculteurs à d'autres agriculteurs pour partager les connaissances et construire une communauté."
+          "title": "FR: People to People",
+          "content": "FR: Connecting farmers to other farmers to share knowledge and build community."
         },
         "p2b": {
-          "title": "Personne à Entreprise",
-          "content": "Favoriser des relations directes et de confiance entre les producteurs et les acheteurs."
+          "title": "FR: People to Business",
+          "content": "FR: Fostering direct, trusted relationships between producers and buyers."
         },
         "p2e": {
-          "title": "Personne à Écosystème",
-          "content": "Donner aux individus l'accès à tout un écosystème de services - finance, logistique, assurance, et plus encore."
+          "title": "FR: People to Ecosystem",
+          "content": "FR: Giving individuals access to a whole ecosystem of services – finance, logistics, insurance, and more."
         },
         "p2w": {
-          "title": "Personne au Monde",
-          "content": "Ouvrir les marchés et les opportunités mondiaux aux producteurs les plus éloignés grâce à l'accès numérique et à la traçabilité."
+          "title": "FR: People to World",
+          "content": "FR: Opening global markets and opportunities for even the most remote producers through digital access and traceability."
         }
       }
     },
     "commitment": {
-      "title": "Notre engagement pour l'avenir",
-      "p1": "Nous nous engageons à utiliser la technologie pour le bien, en créant une plateforme qui n'est pas seulement rentable mais aussi régénératrice pour notre planète et responsabilisante pour ses habitants.",
-      "p2": "Chaque connexion établie, chaque connaissance partagée et chaque transaction simplifiée sur DamDoh est un pas vers un avenir alimentaire plus résilient et équitable.",
-      "p3": "Rejoignez-nous dans cette aventure.",
-      "button": "Devenez membre"
+      "title": "FR: Our Commitment to the Future",
+      "p1": "FR: We are committed to using technology for good, creating a platform that is not only profitable but also regenerative for our planet and empowering for its people.",
+      "p2": "Every connection made, every piece of knowledge shared, and every transaction streamlined on DamDoh is a step toward a more resilient and equitable food future.",
+      "p3": "FR: Join us on this journey.",
+      "button": "FR: Become a Member"
     }
   },
   "contactPage": {
-    "title": "Contactez-nous",
-    "subtitle": "Nous sommes là pour vous aider. Contactez-nous via l'un des canaux ci-dessous.",
+    "title": "FR: Contact Us",
+    "subtitle": "FR: We're here to help. Reach out to us through any of the channels below.",
     "emailUs": {
-      "title": "Envoyez-nous un e-mail",
-      "general": "Demandes générales",
-      "support": "Support",
-      "partnerships": "Partenariats"
+      "title": "FR: Email Us",
+      "general": "FR: General Inquiries",
+      "support": "FR: Support",
+      "partnerships": "FR: Partnerships"
     },
     "callUs": {
-      "title": "Appelez-nous",
-      "hours": "Lun - Ven, 9:00 - 17:00 (EAT)",
-      "phone": "+254 20 123 4567"
+      "title": "FR: Call Us",
+      "hours": "FR: Mon - Fri, 9:00 AM - 5:00 PM (EAT)",
+      "phone": "FR: +254 20 123 4567"
     },
     "ourOffice": {
-      "title": "Notre bureau",
-      "org": "La Fondation DamDoh",
-      "address": "123 Avenue Agri-Tech, Nairobi, Kenya"
+      "title": "FR: Our Office",
+      "org": "The DamDoh Foundation",
+      "address": "FR: 123 Agri-Tech Avenue, Nairobi, Kenya"
     },
     "sendMessage": {
-      "title": "Envoyez-nous un message",
-      "nameLabel": "Votre nom",
-      "namePlaceholder": "Chan Nary",
-      "emailLabel": "Votre e-mail",
-      "emailPlaceholder": "chan.nary@example.com",
-      "subjectLabel": "Sujet",
-      "subjectPlaceholder": "Ex: Demande de partenariat",
-      "messageLabel": "Votre message",
-      "messagePlaceholder": "Tapez votre message ici...",
-      "buttonText": "Envoyer le message",
-      "note": "Nous nous efforçons de répondre dans les 24 heures ouvrables."
+      "title": "FR: Send us a message",
+      "nameLabel": "FR: Your Name",
+      "namePlaceholder": "FR: Chan Nary",
+      "emailLabel": "FR: Your Email",
+      "emailPlaceholder": "FR: chan.nary@example.com",
+      "subjectLabel": "FR: Subject",
+      "subjectPlaceholder": "FR: e.g., Partnership Inquiry",
+      "messageLabel": "FR: Your Message",
+      "messagePlaceholder": "FR: Type your message here...",
+      "buttonText": "FR: Send Message",
+      "note": "FR: We strive to respond within 24 business hours."
     }
   },
   "careers": {
-    "title": "Carrières chez DamDoh",
-    "subtitle": "Rejoignez notre mission pour révolutionner la chaîne d'approvisionnement agricole.",
+    "title": "Careers at DamDoh",
+    "subtitle": "FR: Join our mission to revolutionize the agricultural supply chain.",
     "whyWorkWithUs": {
-      "title": "Pourquoi travailler avec nous?",
-      "intro": "Chez DamDoh, nous sommes une équipe d'innovateurs, de technologues et d'experts agricoles passionnés par la création d'un impact mondial tangible. Nous offrons:",
-      "point1": "Un environnement de travail axé sur la mission et dynamique.",
-      "point2": "Des opportunités de croissance et d'apprentissage professionnel.",
-      "point3": "Une culture de collaboration et de transparence.",
-      "point4": "La chance de travailler avec des technologies de pointe comme l'IA et la blockchain.",
-      "point5": "Un engagement envers la durabilité et l'impact social."
+      "title": "FR: Why Work With Us?",
+      "intro": "At DamDoh, we are a team of innovators, technologists, and agricultural experts passionate about making a tangible, global impact. We offer:",
+      "point1": "FR: A mission-driven and dynamic work environment.",
+      "point2": "FR: Opportunities for professional growth and learning.",
+      "point3": "FR: A culture of collaboration and transparency.",
+      "point4": "FR: The chance to work with cutting-edge tech like AI and blockchain.",
+      "point5": "FR: A commitment to sustainability and social impact."
     },
     "currentOpenings": {
-      "title": "Postes à pourvoir",
+      "title": "FR: Current Openings",
       "job1": {
-        "title": "Ingénieur Full-Stack Senior (Next.js, Firebase)",
-        "location": "Télétravail",
-        "type": "Temps plein",
-        "description": "Nous recherchons un ingénieur full-stack expérimenté pour diriger le développement des fonctionnalités principales de notre plateforme."
+        "title": "FR: Senior Full-Stack Engineer (Next.js, Firebase)",
+        "location": "FR: Remote",
+        "type": "FR: Full-time",
+        "description": "FR: We are looking for an experienced full-stack engineer to lead the development of core features of our platform."
       },
       "job2": {
-        "title": "Spécialiste du contenu agronomique",
-        "location": "Nairobi, Kenya",
-        "type": "Contrat",
-        "description": "Aidez-nous à construire la base de connaissances la plus complète au monde pour les pratiques agricoles durables."
+        "title": "FR: Agronomy Content Specialist",
+        "location": "FR: Nairobi, Kenya",
+        "type": "FR: Contract",
+        "description": "FR: Help us build the world's most comprehensive knowledge base for sustainable farming practices."
       },
       "job3": {
-        "title": "Designer UX/UI",
-        "location": "Télétravail",
-        "type": "Temps plein",
-        "description": "Concevez des expériences utilisateur intuitives et accessibles pour une base d'utilisateurs diversifiée et mondiale."
+        "title": "FR: UX/UI Designer",
+        "location": "FR: Remote",
+        "type": "FR: Full-time",
+        "description": "FR: Design intuitive and accessible user experiences for a diverse and global user base."
       }
     },
     "noOpenings": {
-      "title": "Aucun poste à pourvoir actuellement",
-      "content1": "Nous sommes toujours à la recherche de personnes talentueuses passionnées par notre mission. Si vous pensez être un bon candidat pour notre équipe, veuillez envoyer votre CV et votre lettre de motivation à {emailLink}.",
-      "emailLinkText": "careers@damdoh.org"
+      "title": "FR: No Current Openings",
+      "content1": "FR: We are always looking for talented individuals who are passionate about our mission. If you think you'd be a great fit for our team, please send your resume and cover letter to {emailLink}.",
+      "emailLinkText": "FR: careers@damdoh.org"
     },
-    "applyNowButton": "Postuler maintenant"
+    "applyNowButton": "FR: Apply Now"
   },
   "communityGuidelines": {
-    "title": "Règles de la communauté",
-    "subtitle": "Favoriser un environnement professionnel, digne de confiance et collaboratif.",
-    "intro": "Bienvenue dans la communauté DamDoh ! Pour garantir que notre plateforme reste un espace productif et sûr pour tous les acteurs agricoles, nous vous demandons de respecter les directives suivantes :",
+    "title": "FR: Community Guidelines",
+    "subtitle": "FR: Fostering a professional, trustworthy, and collaborative environment.",
+    "intro": "Welcome to the DamDoh community! To ensure our platform remains a productive and safe space for all agricultural stakeholders, we ask that you adhere to the following guidelines:",
     "respectful": {
-      "title": "Soyez respectueux et professionnel",
-      "description": "Participez à des discussions civiles et constructives. Les désaccords sont normaux, mais les attaques personnelles, le harcèlement et les discours de haine sont inacceptables."
+      "title": "FR: Be Respectful and Professional",
+      "description": "FR: Engage in civil and constructive discussions. Disagreements are normal, but personal attacks, harassment, and hate speech are unacceptable."
     },
     "authentic": {
-      "title": "Soyez honnête et authentique",
-      "description": "Présentez-vous et votre entreprise avec précision. N'usurpez pas l'identité d'autrui et ne fournissez pas d'informations fausses sur vos produits, services ou certifications."
+      "title": "FR: Be Honest and Authentic",
+      "description": "FR: Represent yourself and your business accurately. Do not impersonate others or provide false information about your products, services, or certifications."
     },
     "relevant": {
-      "title": "Restez pertinent",
-      "description": "Contribuez aux discussions et aux annonces d'une manière pertinente pour la chaîne d'approvisionnement agricole. Le spam, les escroqueries et le contenu promotionnel non pertinent seront supprimés."
+      "title": "FR: Stay Relevant",
+      "description": "FR: Contribute to discussions and listings in a manner that is relevant to the agricultural supply chain. Spam, scams, and irrelevant promotional content will be removed."
     },
     "fairTrade": {
-      "title": "Honorez vos engagements",
-      "description": "Lorsque vous concluez un accord sur la plateforme, respectez-le. Bâtir la confiance est essentiel au succès de notre communauté."
+      "title": "FR: Honor Your Commitments",
+      "description": "FR: When you make an agreement on the platform, follow through. Building trust is essential to the success of our community."
     },
     "sustainable": {
-      "title": "Promouvoir la durabilité",
-      "description": "Bien que ce ne soit pas une exigence stricte pour tous les membres, nous encourageons le partage de connaissances et de pratiques qui favorisent la durabilité environnementale, économique et sociale."
+      "title": "FR: Promote Sustainability",
+      "description": "FR: While not a strict requirement for all members, we encourage the sharing of knowledge and practices that promote environmental, economic, and social sustainability."
     },
     "reporting": {
-      "title": "Signaler les violations",
-      "content": "Si vous voyez du contenu ou un comportement qui enfreint ces directives, veuillez le signaler à notre équipe à {emailLink}. Nous examinerons tous les signalements et prendrons les mesures appropriées.",
-      "emailLinkText": "support@damdoh.org"
+      "title": "FR: Reporting Violations",
+      "content": "FR: If you see content or behavior that violates these guidelines, please report it to our team at {emailLink}. We will review all reports and take appropriate action.",
+      "emailLinkText": "FR: support@damdoh.org"
     },
-    "conclusion": "En utilisant DamDoh, vous acceptez ces directives. Nous nous réservons le droit de supprimer du contenu et de suspendre les comptes qui violent ces principes. Merci de nous aider à construire une communauté formidable !"
+    "conclusion": "By using DamDoh, you agree to these guidelines. We reserve the right to remove content and suspend accounts that violate these principles. Thanks for helping us build a great community!"
   },
   "helpCenterPage": {
-    "title": "Centre d'aide",
-    "subtitle": "Votre guide pour tirer le meilleur parti de la plateforme DamDoh.",
-    "howCanWeHelp": "Comment pouvons-nous vous aider ?",
-    "searchPlaceholder": "Recherchez des sujets, des fonctionnalités ou des questions...",
-    "browseTopics": "Parcourir les rubriques d'aide",
+    "title": "FR: Help Center",
+    "subtitle": "Your guide to getting the most out of the DamDoh platform.",
+    "howCanWeHelp": "FR: How can we help you?",
+    "searchPlaceholder": "FR: Search for topics, features, or questions...",
+    "browseTopics": "FR: Browse Help Topics",
     "gettingStarted": {
-      "title": "Pour commencer",
-      "description": "Apprenez à configurer votre profil et à commencer à vous connecter.",
-      "placeholder": "Le contenu de 'Pour commencer' sera bientôt disponible."
+      "title": "FR: Getting Started",
+      "description": "FR: Learn how to set up your profile and start connecting.",
+      "placeholder": "FR: Content for 'Getting Started' will be available soon."
     },
     "marketplaceGuide": {
-      "title": "Guide du marché",
-      "description": "Conseils pour créer des annonces efficaces et trouver ce dont vous avez besoin.",
-      "placeholder": "Le contenu du 'Guide du marché' sera bientôt disponible."
+      "title": "FR: Marketplace Guide",
+      "description": "FR: Tips on creating effective listings and finding what you need.",
+      "placeholder": "FR: Content for 'Marketplace Guide' will be available soon."
     },
     "accountManagement": {
-      "title": "Gestion de compte",
-      "description": "Gérez vos paramètres, votre confidentialité et vos notifications.",
-      "placeholder": "Le contenu de 'Gestion de compte' sera bientôt disponible."
+      "title": "FR: Account Management",
+      "description": "FR: Manage your settings, privacy, and notifications.",
+      "placeholder": "FR: Content for 'Account Management' will be available soon."
     },
     "troubleshooting": {
-      "title": "Dépannage",
-      "description": "Trouvez des solutions aux problèmes courants et techniques.",
-      "placeholder": "Le contenu de 'Dépannage' sera bientôt disponible."
+      "title": "FR: Troubleshooting",
+      "description": "FR: Find solutions to common issues and technical problems.",
+      "placeholder": "FR: Content for 'Troubleshooting' will be available soon."
     },
     "stillNeedHelp": {
-      "title": "Vous avez encore besoin d'aide ?",
-      "description": "Notre équipe d'assistance est prête à vous aider pour toutes les questions que vous pourriez avoir.",
-      "button": "Contacter le support"
+      "title": "FR: Still need help?",
+      "description": "FR: Our support team is ready to assist you with any questions you may have.",
+      "button": "FR: Contact Support"
     }
   },
   "privacyPolicy": {
-    "title": "Politique de confidentialité",
-    "lastUpdated": "Dernière mise à jour : 29 octobre 2023",
-    "introduction": "Cette notice de confidentialité pour DamDoh explique comment et pourquoi nous pouvons collecter, stocker, utiliser et/ou partager ('traiter') vos informations lorsque vous utilisez nos services ('Services'), par exemple lorsque vous visitez notre site web ou notre application mobile.",
+    "title": "FR: Privacy Policy",
+    "lastUpdated": "FR: Last updated: October 29, 2023",
+    "introduction": "This privacy notice for DamDoh explains how and why we might collect, store, use, and/or share ('process') your information when you use our services ('Services'), such as when you visit our website or our mobile application.",
     "whatInfoWeCollect": {
-      "heading": "1. QUELLES INFORMATIONS COLLECTONS-NOUS ?",
-      "content": "Nous collectons les informations personnelles que vous nous fournissez volontairement lorsque vous vous inscrivez aux Services, lorsque vous manifestez votre intérêt pour obtenir des informations sur nous ou nos produits et Services, lorsque vous participez à des activités sur les Services, ou autrement lorsque vous nous contactez."
+      "heading": "FR: 1. WHAT INFORMATION DO WE COLLECT?",
+      "content": "FR: We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us."
     },
     "howWeUseInfo": {
-      "heading": "2. COMMENT TRAITONS-NOUS VOS INFORMATIONS ?",
-      "content": "Nous traitons vos informations à des fins basées sur des intérêts commerciaux légitimes, l'exécution de notre contrat avec vous, le respect de nos obligations légales et/ou votre consentement. Cela inclut la facilitation de la création de compte, la permission des communications entre utilisateurs et la fourniture de nos services principaux."
+      "heading": "FR: 2. HOW DO WE PROCESS YOUR INFORMATION?",
+      "content": "FR: We process your information for purposes based on legitimate business interests, the fulfillment of our contract with you, compliance with our legal obligations, and/or your consent. This includes facilitating account creation, enabling user-to-user communications, and providing our core services."
     },
     "willInfoBeShared": {
-      "heading": "3. VOS INFORMATIONS SERONT-ELLES PARTAGÉES AVEC QUELQU'UN ?",
-      "content": "Nous ne partageons des informations qu'avec votre consentement, pour nous conformer aux lois, pour vous fournir des services, pour protéger vos droits ou pour remplir des obligations commerciales. Par exemple, nous partageons vos informations de profil public avec d'autres utilisateurs pour faciliter les connexions."
+      "heading": "FR: 3. WILL YOUR INFORMATION BE SHARED WITH ANYONE?",
+      "content": "FR: We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations. For example, we share your public profile information with other users to facilitate connections."
     },
     "cookiesAndTracking": {
-      "heading": "4. UTILISONS-NOUS DES COOKIES ET D'AUTRES TECHNOLOGIES DE SUIVI ?",
-      "content": "Nous pouvons utiliser des cookies et des technologies de suivi similaires (comme les balises web et les pixels) pour accéder ou stocker des informations. Des informations spécifiques sur la manière dont nous utilisons ces technologies et sur la manière dont vous pouvez refuser certains cookies sont définies dans notre Avis sur les cookies."
+      "heading": "FR: 4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?",
+      "content": "FR: We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice."
     },
     "howLongWeKeepInfo": {
-      "heading": "5. COMBIEN DE TEMPS CONSERVONS-NOUS VOS INFORMATIONS ?",
-      "content": "Nous conservons vos informations aussi longtemps que nécessaire pour atteindre les objectifs décrits dans cette notice de confidentialité, sauf si la loi l'exige autrement. Lorsque nous n'avons plus de besoin commercial légitime de traiter vos informations personnelles, nous les supprimerons ou les anonymiserons."
+      "heading": "FR: 5. HOW LONG DO WE KEEP YOUR INFORMATION?",
+      "content": "FR: We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law. When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize it."
     },
     "howWeKeepInfoSafe": {
-      "heading": "6. COMMENT PROTÉGEONS-NOUS VOS INFORMATIONS ?",
-      "content": "Nous avons mis en œuvre des mesures de sécurité techniques et organisationnelles appropriées conçues pour protéger la sécurité de toutes les informations personnelles que nous traitons. Cependant, malgré nos garanties et nos efforts, aucune transmission électronique sur Internet ne peut être garantie à 100 %."
+      "heading": "FR: 6. HOW DO WE KEEP YOUR INFORMATION SAFE?",
+      "content": "FR: We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts, no electronic transmission over the Internet can be guaranteed to be 100% secure."
     },
     "minors": {
-      "heading": "7. COLLECTONS-NOUS DES INFORMATIONS AUPRÈS DES MINEURS ?",
-      "content": "Nous ne sollicitons pas sciemment de données auprès d'enfants de moins de 18 ans et ne leur faisons pas de marketing. En utilisant les Services, vous déclarez que vous avez au moins 18 ans ou que vous êtes le parent ou le tuteur d'un tel mineur et que vous consentez à l'utilisation des Services par ce mineur à charge."
+      "heading": "FR: 7. DO WE COLLECT INFORMATION FROM MINORS?",
+      "content": "FR: We do not knowingly solicit data from or market to children under 18 years of age. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the Services."
     },
     "privacyRights": {
-      "heading": "8. QUELS SONT VOS DROITS EN MATIÈRE DE CONFIDENTIALITÉ ?",
-      "content": "Dans certaines régions, vous disposez de certains droits en vertu des lois applicables sur la protection des données. Ceux-ci peuvent inclure le droit (i) de demander l'accès et d'obtenir une copie de vos données personnelles, (ii) de demander la rectification ou l'effacement, (iii) de restreindre le traitement de vos informations personnelles et (iv) le cas échéant, à la portabilité des données."
+      "heading": "FR: 8. WHAT ARE YOUR PRIVACY RIGHTS?",
+      "content": "FR: In some regions, you have certain rights under applicable data protection laws. These may include the right (i) to request access and obtain a copy of your personal data, (ii) to request rectification or erasure, (iii) to restrict the processing of your personal information, and (iv) if applicable, to data portability."
     },
     "controlsForDoNotTrack": {
-      "heading": "9. CONTRÔLES POUR LES FONCTIONNALITÉS 'DO-NOT-TRACK'",
-      "content": "La plupart des navigateurs web et certains systèmes d'exploitation et applications mobiles incluent une fonctionnalité ou un paramètre 'Do-Not-Track' ('DNT') que vous pouvez activer pour signaler votre préférence en matière de confidentialité de ne pas faire suivre et collecter de données sur vos activités de navigation en ligne. À ce stade, aucune norme technologique uniforme pour la reconnaissance et la mise en œuvre des signaux DNT n'a été finalisée. En tant que tel, nous ne répondons pas actuellement aux signaux DNT des navigateurs."
+      "heading": "FR: 9. CONTROLS FOR DO-NOT-TRACK FEATURES",
+      "content": "FR: Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals."
     },
     "updatesToNotice": {
-      "heading": "10. FAISONS-NOUS DES MISES À JOUR DE CETTE NOTICE ?",
-      "content": "Nous pouvons mettre à jour cette notice de confidentialité de temps à autre. La version mise à jour sera indiquée par une date 'Révisée' mise à jour et la version mise à jour sera effective dès qu'elle sera accessible. Nous vous encourageons à consulter fréquemment cette notice de confidentialité pour être informé de la manière dont nous protégeons vos informations."
-    },
-    "contactUs": {
-      "heading": "11. COMMENT POUVEZ-VOUS NOUS CONTACTER AU SUJET DE CETTE NOTICE ?",
-      "content": "Si vous avez des questions ou des commentaires sur cette notice, vous pouvez nous envoyer un e-mail à support@damdoh.org ou par courrier à l'adresse de notre bureau."
-    },
-    "conclusion": "Pour résoudre une plainte ou recevoir de plus amples informations, veuillez {contactLink}."
+      "heading": "FR: 10. DO WE MAKE UPDATES TO THIS NOTICE?",
+      "content": "FR: We may update this privacy notice from time to time. The updated version will be indicated by an updated 'Revised' date and the updated version will be effective as soon as it is accessible. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information."
+    }
   },
   "termsOfService": {
-    "title": "Conditions d'utilisation",
-    "lastUpdated": "Dernière mise à jour : 29 octobre 2023",
-    "introduction": "Ces conditions d'utilisation constituent un accord juridiquement contraignant entre vous et DamDoh, concernant votre accès et votre utilisation du site web de DamDoh ainsi que de toute autre forme de média, canal médiatique, site web mobile ou application mobile connexe, lié ou autrement connecté à celui-ci.",
+    "title": "FR: Terms of Service",
+    "lastUpdated": "FR: Last updated: October 29, 2023",
+    "introduction": "These Terms of Use constitute a legally binding agreement made between you and DamDoh, concerning your access to and use of the DamDoh website as well as any other media form, media channel, mobile website, or mobile application related, linked, or otherwise connected thereto.",
     "agreementToTerms": {
-      "heading": "1. ACCORD SUR LES CONDITIONS",
-      "content": "En utilisant la plateforme, vous acceptez d'être lié par ces Conditions d'utilisation. Si vous n'êtes pas d'accord, vous n'êtes pas autorisé à utiliser la plateforme. Nous nous réservons le droit d'apporter des modifications à ces Conditions à tout moment."
+      "heading": "FR: 1. AGREEMENT TO TERMS",
+      "content": "FR: By using the platform, you agree to be bound by these Terms of Use. If you do not agree, you are not permitted to use the platform. We reserve the right to make changes to these Terms at any time."
     },
     "intellectualProperty": {
-      "heading": "2. DROITS DE PROPRIÉTÉ INTELLECTUELLE",
-      "content": "Sauf indication contraire, la Plateforme est notre propriété exclusive et tout le code source, les bases de données, les fonctionnalités, les logiciels, les conceptions de sites web, l'audio, la vidéo, le texte, les photographies et les graphiques sur le Site (collectivement, le 'Contenu') ainsi que les marques de commerce, les marques de service et les logos qu'ils contiennent sont détenus ou contrôlés par nous ou nous sont concédés sous licence."
+      "heading": "FR: 2. INTELLECTUAL PROPERTY RIGHTS",
+      "content": "FR: Unless otherwise indicated, the Platform is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the 'Content') and the trademarks, service marks, and logos contained therein are owned or controlled by us or licensed to us."
     },
     "userRepresentations": {
-      "heading": "3. DÉCLARATIONS DE L'UTILISATEUR",
-      "content": "En utilisant le Site, vous déclarez et garantissez que : (1) toutes les informations d'inscription que vous soumettez seront vraies, exactes, actuelles et complètes ; (2) vous maintiendrez l'exactitude de ces informations et mettrez à jour rapidement ces informations d'inscription si nécessaire ; (3) vous avez la capacité juridique et vous acceptez de vous conformer à ces Conditions d'utilisation ; (4) vous n'utiliserez pas le Site à des fins illégales ou non autorisées ; et (5) votre utilisation du Site ne violera aucune loi ou réglementation applicable."
+      "heading": "FR: 3. USER REPRESENTATIONS",
+      "content": "FR: By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Use; (4) you will not use the Site for any illegal or unauthorized purpose; and (5) your use of the Site will not violate any applicable law or regulation."
     },
     "prohibitedActivities": {
-      "heading": "4. ACTIVITÉS INTERDITES",
-      "content": "Vous ne pouvez pas accéder ou utiliser le Site à d'autres fins que celles pour lesquelles nous le mettons à disposition. Les activités interdites incluent, sans s'y limiter : l'extraction systématique de données, la tromperie ou la fraude envers nous ou d'autres utilisateurs, la tentative d'usurper l'identité d'un autre utilisateur, le harcèlement ou la menace de nos employés ou d'autres utilisateurs, et le téléchargement ou la transmission de virus ou d'autres types de code malveillant."
+      "heading": "FR: 4. PROHIBITED ACTIVITIES",
+      "content": "FR: You may not access or use the Site for any purpose other than that for which we make the Site available. Prohibited activities include, but are not limited to: systematic retrieval of data, tricking or defrauding us or other users, attempting to impersonate another user, harassing or threatening our employees or other users, and uploading or transmitting viruses or other types of malicious code."
     },
     "platformManagement": {
-      "heading": "5. GESTION DE LA PLATEFORME",
-      "content": "Nous nous réservons le droit, mais non l'obligation, de : (1) surveiller le Site pour détecter les violations de ces Conditions d'utilisation ; (2) prendre les mesures juridiques appropriées contre quiconque, à notre seule discrétion, viole la loi ou ces Conditions d'utilisation ; (3) à notre seule discrétion et sans limitation, refuser, restreindre l'accès, limiter la disponibilité ou désactiver l'une de vos Contributions ou toute partie de celles-ci."
+      "heading": "FR: 5. PLATFORM MANAGEMENT",
+      "content": "FR: We reserve the right, but not the obligation, to: (1) monitor the Site for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable any of your Contributions or any portion thereof."
     },
     "termAndTermination": {
-      "heading": "6. DURÉE ET RÉSILIATION",
-      "content": "Ces Conditions d'utilisation resteront en vigueur et de plein effet tant que vous utiliserez le Site. SANS LIMITER AUCUNE AUTRE DISPOSITION DE CES CONDITIONS D'UTILISATION, NOUS NOUS RÉSERVONS LE DROIT, À NOTRE SEULE DISCRÉTION ET SANS PRÉAVIS NI RESPONSABILITÉ, DE REFUSER L'ACCÈS ET L'UTILISATION DU SITE (Y COMPRIS LE BLOCAGE DE CERTAINES ADRESSES IP), À TOUTE PERSONNE POUR QUELQUE RAISON QUE CE SOIT OU SANS RAISON."
+      "heading": "FR: 6. TERM AND TERMINATION",
+      "content": "FR: These Terms of Use shall remain in full force and effect while you use the Site. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS OF USE, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SITE (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON."
     },
     "modificationsAndInterruptions": {
-      "heading": "7. MODIFICATIONS ET INTERRUPTIONS",
-      "content": "Nous nous réservons le droit de changer, modifier ou supprimer le contenu du Site à tout moment ou pour quelque raison que ce soit, à notre seule discrétion et sans préavis. Nous nous réservons également le droit de modifier ou d'interrompre tout ou partie du Site sans préavis à tout moment. Nous ne serons pas responsables envers vous ou un tiers pour toute modification, changement de prix, suspension ou interruption du Site."
+      "heading": "FR: 7. MODIFICATIONS AND INTERRUPTIONS",
+      "content": "FR: We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Site without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Site."
     },
     "governingLaw": {
-      "heading": "8. LOI APPLICABLE",
-      "content": "Ces Conditions d'utilisation et votre utilisation du Site sont régies et interprétées conformément aux lois de la juridiction où DamDoh est enregistré, sans égard à ses principes de conflit de lois."
+      "heading": "FR: 8. GOVERNING LAW",
+      "content": "These Terms of Use and your use of the Site are governed by and construed in accordance with the laws of the jurisdiction where DamDoh is registered, without regard to its conflict of law principles."
     },
     "disputeResolution": {
-      "heading": "9. RÉSOLUTION DES LITIGES",
-      "content": "Toute action en justice de quelque nature que ce soit, intentée par vous ou par nous, sera engagée ou poursuivie devant les tribunaux d'État et fédéraux situés dans la juridiction où nous sommes enregistrés, et les parties consentent par la présente, et renoncent à toutes les défenses de défaut de compétence personnelle et de forum non conveniens en ce qui concerne le lieu et la compétence de ces tribunaux."
+      "heading": "FR: 9. DISPUTE RESOLUTION",
+      "content": "FR: Any legal action of whatever nature brought by either you or us shall be commenced or prosecuted in the state and federal courts located in the jurisdiction where we are registered, and the parties hereby consent to, and waive all defenses of lack of personal jurisdiction and forum non conveniens with respect to venue and jurisdiction in such courts."
     },
     "contactUs": {
-      "heading": "10. NOUS CONTACTER",
-      "content": "Pour résoudre une plainte concernant le Site ou pour recevoir de plus amples informations sur l'utilisation du Site, veuillez nous contacter."
+      "heading": "FR: 10. CONTACT US",
+      "content": "FR: To resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us."
     },
-    "conclusion": "Pour résoudre une plainte ou recevoir de plus amples informations, veuillez {contactLink}."
+    "conclusion": "FR: To resolve a complaint or receive further information, please {contactLink}."
   },
-  "pinboardPage": {
-    "title": "Pin-Board",
-    "description": "Votre espace personnel pour enregistrer les éléments importants de tout DamDoh.",
-    "comingSoonTitle": "Le Pin-Board arrive bientôt !",
-    "comingSoonDescription": "Cette fonctionnalité vous permettra d'épingler des articles du marché, des publications de forum, des profils, et plus encore sur un tableau personnel pour un accès facile.",
-    "stayTuned": "Restez à l'écoute pour les mises à jour !"
-  },
-  "walletPage": {
-    "title": "Mon Portefeuille",
-    "description": "Gérez vos finances, consultez vos transactions et accédez aux services financiers.",
-    "underDevelopmentTitle": "Centre Financier en Développement",
-    "underDevelopmentDescription": "Nous construisons un portefeuille numérique robuste et sécurisé pour gérer toutes vos transactions sur la plateforme. Les fonctionnalités incluront :",
-    "feature1": "Stockage sécurisé du solde.",
-    "feature2": "Historique des transactions pour les ventes sur le marché et les paiements de services.",
-    "feature3": "Paiements faciles vers votre compte mobile money local ou votre compte bancaire.",
-    "feature4": "Accès pour demander des prêts et des subventions directement depuis votre portefeuille.",
-    "stayTuned": "Restez à l'écoute pour cette fonctionnalité passionnante !"
-  },
-  "industryNewsPage": {
-    "title": "Actualités du Secteur",
-    "description": "Restez informé des dernières tendances, recherches et changements de politique dans l'agriculture.",
-    "searchPlaceholder": "Rechercher des articles d'actualité...",
-    "categoryPlaceholder": "Filtrer par catégorie",
-    "allCategories": "Toutes les catégories",
-    "sourceLabel": "Source",
-    "publishedLabel": "Publié",
-    "categoryLabel": "Catégorie",
-    "readButton": "Lire l'article complet",
-    "news1": {
-      "title": "Les prix mondiaux du café montent en flèche en raison des gelées au Brésil et des retards d'expédition",
-      "excerpt": "Une combinaison de conditions météorologiques défavorables dans les principales régions de culture et de défis logistiques mondiaux persistants a poussé les contrats à terme sur le café Arabica à leur plus haut niveau depuis sept ans..."
+  "Marketplace": {
+    "title": "FR: Marketplace",
+    "description": "FR: Discover, buy, and sell agricultural products and services.",
+    "createShopButton": "FR: Create Shop",
+    "myOrdersButton": "FR: My Orders",
+    "createListingButton": "FR: Create Listing",
+    "pinButton": "FR: Pin as Homepage",
+    "unpinButton": "FR: Unpin Homepage",
+    "searchPlaceholder": "FR: Search products & services...",
+    "locationPlaceholder": "FR: Filter by location...",
+    "typePlaceholder": "FR: Filter by type...",
+    "recommendedForYou": "FR: Recommended For You",
+    "discoverMore": "FR: Discover More",
+    "viewDetails": "FR: View Details",
+    "viewServiceButton": "FR: View Service",
+    "pinning": {
+      "pinnedTitle": "FR: Marketplace Pinned",
+      "pinnedDescription": "FR: The marketplace is now your default homepage.",
+      "unpinnedTitle": "FR: Marketplace Unpinned",
+      "unpinnedDescription": "FR: Your homepage has been reset to the default."
     },
-    "news2": {
-      "title": "L'UE met en œuvre les nouvelles réglementations de la stratégie 'De la ferme à la table' sur les emballages",
-      "excerpt": "Les nouvelles réglementations exigeront que les exportateurs de denrées alimentaires vers l'UE respectent des normes plus strictes pour les emballages recyclables et compostables, affectant l'ensemble de la chaîne d'approvisionnement."
+    "noItemsFound": {
+      "title": "FR: No Items Found",
+      "hint": "FR: Try adjusting your search filters or check back later."
     },
-    "news3": {
-      "title": "Une étude montre que les pratiques régénératrices peuvent augmenter le carbone du sol de 15 % en 5 ans",
-      "excerpt": "Une étude à long terme publiée dans Nature démontre le potentiel significatif des pratiques de non-labour et de cultures de couverture pour la séquestration du carbone et la santé des sols."
+    "errors": {
+      "search": {
+        "title": "FR: Search Failed",
+        "description": "FR: Could not retrieve marketplace listings at this time."
+      },
+      "aiRecommendations": {
+        "title": "FR: Could not find recommendations at this time."
+      }
     },
-    "noNews": {
-      "title": "Aucune nouvelle trouvée",
-      "description": "Il n'y a aucun article d'actualité correspondant à vos critères pour le moment."
+    "categories": {
+      "allCategories": "FR: All Categories",
+      "viewAllItems": "FR: View All Items",
+      "viewAllCategory": "FR: All in {categoryName}"
+    },
+    "createListing": {
+      "backLink": "FR: Back to Marketplace",
+      "title": "FR: Create a New Marketplace Listing",
+      "description": "FR: Fill in the details below to list your product or service.",
+      "form": {
+        "nameLabel": "FR: Listing Title",
+        "namePlaceholder": "FR: e.g., Organic Hass Avocados, Tractor Repair Service",
+        "typeLabel": "FR: Listing Type",
+        "typePlaceholder": "FR: Select a listing type",
+        "descriptionLabel": "FR: Description",
+        "descriptionPlaceholder": "FR: Describe your product or service in detail...",
+        "locationLabel": "FR: Location",
+        "locationPlaceholder": "FR: e.g., Nakuru, Kenya",
+        "relatedVtiLabel": "FR: Related Traceability ID (Optional)",
+        "relatedVtiPlaceholder": "FR: Enter VTI if available",
+        "relatedVtiDescription": "FR: Link this item to a specific harvest batch for full transparency.",
+        "categoryLabel": "FR: Category",
+        "categoryPlaceholder": "FR: Select a category",
+        "priceLabel": "FR: Price",
+        "pricePlaceholder": "FR: e.g., 25.50",
+        "unitLabel": "FR: per",
+        "unitPlaceholder": "FR: e.g., kg, Ton, Hour",
+        "compensationLabel": "FR: Compensation / Rate",
+        "compensationPlaceholder": "FR: e.g., $50/hour, Per Project",
+        "experienceLabel": "FR: Experience Level",
+        "experiencePlaceholder": "FR: e.g., Intermediate, Expert (10+ years)",
+        "skillsLabel": "FR: Skills Required (for services)",
+        "skillsPlaceholder": "FR: e.g., Crop Spraying, Soil Analysis, Organic Certification",
+        "skillsDescription": "FR: Separate skills with a comma.",
+        "imageUrlLabel": "FR: Image URL",
+        "sustainableLabel": "FR: Sustainably Produced",
+        "sustainableDescription": "FR: Check this box if your product or service follows recognized sustainable practices.",
+        "submitButton": "FR: Create Listing",
+        "submittingButton": "FR: Creating..."
+      },
+      "aiPriceSuggestion": {
+        "button": "FR: Suggest Price with AI",
+        "generatingButton": "FR: Suggesting...",
+        "suggestionLabel": "FR: AI Suggestion:",
+        "usePriceButton": "FR: Use this price"
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "FR: Incomplete Information",
+            "description": "FR: Please fill out the name and description before suggesting a price."
+          },
+          "failed": {
+            "title": "FR: AI Suggestion Failed",
+            "description": "FR: Could not get a price suggestion at this time."
+          }
+        },
+        "authentication": {
+          "title": "FR: Not Authenticated",
+          "description": "FR: You must be signed in to create a listing."
+        },
+        "creation": {
+          "title": "FR: Creation Failed",
+          "description": "FR: An unexpected error occurred while creating the listing."
+        }
+      },
+      "success": {
+        "title": "FR: Listing Created!",
+        "description": "FR: Your listing is now live on the marketplace."
+      }
+    },
+    "itemView": {
+      "backLink": "FR: Back to Marketplace",
+      "notFound": {
+        "description": "FR: Item not found."
+      },
+      "errors": {
+        "loadItem": {
+          "description": "FR: Could not load item."
+        },
+        "unexpected": "FR: An unexpected error occurred."
+      },
+      "coupon": {
+        "successTitle": "FR: Coupon Applied!",
+        "successDescription": "FR: You've received a {type} discount!",
+        "failTitle": "FR: Invalid Coupon",
+        "failDescription": "FR: The coupon code you entered is invalid or has expired.",
+        "label": "FR: Coupon Code",
+        "placeholder": "FR: Enter coupon",
+        "applyButton": "FR: Apply",
+        "appliedText": "FR: Coupon '{code}' applied."
+      },
+      "booking": {
+        "authTitle": "FR: Sign In Required",
+        "authDescription": "FR: You must be signed in to book a service.",
+        "failTitle": "FR: Booking Failed",
+        "dateError": "FR: Please select both a start and end date for your booking.",
+        "successTitle": "FR: Booking Successful!",
+        "successDescription": "FR: Your booking is confirmed. You will receive more details via email.",
+        "bookedTitle": "FR: You've already booked this experience!",
+        "bookedDescription": "FR: Show your ticket upon arrival.",
+        "ticketButton": "FR: View Ticket",
+        "modalTitle": "FR: Your Ticket",
+        "modalDescription": "FR: Show this QR code at check-in for {itemName}.",
+        "modalScan": "FR: Scan this code at check-in.",
+        "perNight": "FR: per night",
+        "checkIn": "FR: Check-in",
+        "checkOut": "FR: Check-out",
+        "addDate": "FR: Add dates",
+        "guests": "FR: Guests",
+        "reserveButton": "FR: Reserve",
+        "reservingButton": "FR: Reserving...",
+        "notCharged": "FR: You won't be charged yet.",
+        "nights": "FR: {count, plural, =1 {night} other {nights}}",
+        "serviceFee": "FR: Service fee",
+        "total": "FR: Total"
+      },
+      "order": {
+        "authTitle": "FR: Sign In Required",
+        "authDescription": "FR: You must be signed in to place an order.",
+        "quantityErrorTitle": "FR: Invalid Quantity",
+        "quantityErrorDescription": "FR: Please enter a quantity greater than zero.",
+        "successTitle": "FR: Order Placed!",
+        "successDescription": "FR: Your order has been successfully sent to the seller.",
+        "failTitle": "FR: Order Failed",
+        "failDescription": "FR: Could not place your order. Please try again.",
+        "title": "FR: Order {itemName}",
+        "description": "FR: Confirm the quantity and add a note for the seller if needed.",
+        "quantityLabel": "FR: Quantity",
+        "notesLabel": "FR: Note for seller (optional)",
+        "notesPlaceholder": "FR: e.g., delivery instructions, special requests...",
+        "cancelButton": "FR: Cancel",
+        "confirmButton": "FR: Confirm Order",
+        "placingButton": "FR: Placing order..."
+      },
+      "skillsLabel": "FR: Skills Required",
+      "experienceLabel": "FR: Experience Level",
+      "compensationLabel": "FR: Compensation",
+      "contactForRates": "FR: Contact for rates",
+      "aboutSeller": "FR: About the Seller",
+      "viewShopfront": "FR: View Shopfront",
+      "editListing": "FR: Edit Listing",
+      "manageService": "FR: Manage Service",
+      "buyNowButton": "FR: Buy Now",
+      "contactForService": "FR: Contact for Service",
+      "contactSeller": "FR: Contact Seller",
+      "traceabilityButton": "FR: View Traceability Report"
+    },
+    "myOrders": {
+      "backLink": "FR: Back to Marketplace",
+      "title": "FR: My Orders",
+      "description": "FR: Manage your incoming sales orders.",
+      "table": {
+        "date": "FR: Date",
+        "buyer": "FR: Buyer",
+        "product": "FR: Product",
+        "total": "FR: Total",
+        "status": "FR: Status",
+        "actions": "FR: Actions"
+      },
+      "actions": {
+        "confirm": "FR: Confirm",
+        "ship": "FR: Ship",
+        "complete": "FR: Complete",
+        "cancel": "FR: Cancel"
+      },
+      "status": {
+        "new": "FR: New",
+        "confirmed": "FR: Confirmed",
+        "shipped": "FR: Shipped",
+        "completed": "FR: Completed",
+        "cancelled": "FR: Cancelled"
+      },
+      "noOrders": "FR: You haven't received any orders yet.",
+      "toast": {
+        "errorTitle": "FR: Error",
+        "fetchError": "FR: Could not fetch your orders.",
+        "successTitle": "FR: Order Updated",
+        "updateSuccess": "FR: Order status successfully updated to '{status}'.",
+        "failTitle": "FR: Update Failed"
+      },
+      "auth": {
+        "title": "FR: Please Sign In",
+        "description": "FR: You must be signed in to view your orders.",
+        "button": "FR: Sign In"
+      }
+    },
+    "createShop": {
+      "backLink": "FR: Back to Marketplace",
+      "title": "FR: Create a Digital Shopfront",
+      "description": "FR: Set up your personal marketplace to showcase your products or services.",
+      "form": {
+        "nameLabel": "FR: Shop Name",
+        "namePlaceholder": "FR: e.g., Green Valley Organics",
+        "typeLabel": "FR: Business Type",
+        "typePlaceholder": "FR: Select your primary stakeholder type",
+        "descriptionLabel": "FR: Shop Description",
+        "descriptionPlaceholder": "FR: Briefly describe your shop and what you offer...",
+        "submitButton": "FR: Create Shop",
+        "submittingButton": "FR: Creating..."
+      },
+      "authErrorTitle": "FR: Not Authenticated",
+      "authErrorDescription": "FR: You must be signed in to create a shop.",
+      "toast": {
+        "successTitle": "FR: Shop Created!",
+        "successDescription": "FR: Your shop '{shopName}' is now live.",
+        "failTitle": "FR: Creation Failed",
+        "failDescription": "FR: Could not create your shop. Please try again."
+      }
+    },
+    "shopView": {
+      "backLink": "FR: Back to Marketplace",
+      "ownedBy": "FR: Owned by",
+      "loadingOwner": "FR: Loading owner...",
+      "contactButton": "FR: Contact",
+      "editShopButton": "FR: Edit Shop",
+      "listingsTitle": "FR: Listings from {shopName}",
+      "noListings": "FR: This shop does not have any active listings at the moment.",
+      "errors": {
+        "notFound": "FR: Shop not found",
+        "loadError": "FR: Could not load shop information.",
+        "title": "FR: Error"
+      }
+    },
+    "promotions": {
+      "title": "FR: My Promotions",
+      "description": "FR: Create and manage coupon codes to attract more buyers.",
+      "backToDashboard": "FR: Back to Dashboard",
+      "signInPrompt": "FR: Please sign in to manage your promotions.",
+      "create": {
+        "title": "FR: Create New Coupon",
+        "description": "FR: Define the details for your new promotional coupon.",
+        "form": {
+          "code": "FR: Coupon Code",
+          "codePlaceholder": "FR: e.g., SALE20",
+          "usageLimit": "FR: Usage Limit",
+          "usageLimitPlaceholder": "FR: e.g., 100",
+          "discountType": "FR: Discount Type",
+          "discountTypePlaceholder": "FR: Select type",
+          "percentage": "FR: Percentage",
+          "fixed": "FR: Fixed Amount",
+          "discountValue": "FR: Discount Value",
+          "expiryDate": "FR: Expiry Date (Optional)",
+          "pickDate": "FR: Pick a date",
+          "submitButton": "FR: Create Coupon"
+        },
+        "toast": {
+          "successTitle": "FR: Coupon Created!",
+          "successDescription": "FR: Coupon '{code}' is now available.",
+          "failTitle": "FR: Creation Failed"
+        }
+      },
+      "list": {
+        "title": "FR: Existing Coupons",
+        "description": "FR: View and manage your active promotional codes.",
+        "usage": "FR: Usage",
+        "expires": "FR: Expires",
+        "never": "FR: Never",
+        "share": "FR: Share",
+        "noCoupons": "FR: You haven't created any coupons yet.",
+        "toastTitle": "FR: Link Copied!",
+        "toastDescription": "FR: A shareable link for coupon '{link}' has been copied to your clipboard.",
+        "shareModal": {
+          "title": "FR: Share Coupon Code",
+          "description": "FR: Share this link with your customers to automatically apply the coupon.",
+          "link": "FR: Link",
+          "copy": "FR: Copy",
+          "close": "FR: Close"
+        }
+      },
+      "toast": {
+        "error": "FR: Error",
+        "fetchError": "FR: Could not fetch your coupons.",
+        "createSuccess": "FR: Coupon '{code}' created successfully.",
+        "createFail": "FR: Could not create coupon.",
+        "createError": "FR: An unexpected error occurred.",
+        "linkCopied": "FR: Link Copied!",
+        "shareDescription": "FR: Shareable link for coupon '{code}' copied."
+      }
+    },
+    "manageService": {
+      "title": "FR: Manage Service",
+      "backLink": "FR: Back to Service Page",
+      "loading": "FR: Loading...",
+      "tabs": {
+        "checkin": "FR: Check-in",
+        "bookings": "FR: Bookings",
+        "staff": "FR: Staff"
+      },
+      "bookingsTab": {
+        "title": "FR: Bookings",
+        "description": "FR: View a list of all users who have booked this service.",
+        "downloadCsv": "FR: Download CSV",
+        "table": {
+          "guest": "FR: Guest",
+          "bookedOn": "FR: Booked On",
+          "status": "FR: Status",
+          "checkedInAt": "FR: Checked-in At"
+        },
+        "status": {
+          "booked": "FR: Booked",
+          "checkedIn": "FR: Checked-in"
+        },
+        "noBookings": "FR: No one has booked this service yet.",
+        "error": "FR: Error",
+        "fetchError": "FR: Could not load bookings.",
+        "toast": {
+          "noBookings": "FR: No bookings to download."
+        }
+      }
     }
   },
-  "notificationsPage": {
-    "title": "Notifications",
-    "description": "Restez à jour avec les dernières activités de votre réseau.",
-    "noNotifications": "Vous n'avez aucune nouvelle notification.",
-    "likedYourPost": "{name} a aimé votre publication.",
-    "commentedOnYourPost": "{name} a commenté votre publication.",
-    "viewedYourProfile": "{name} a consulté votre profil.",
-    "placedNewOrder": "{name} a passé une commande pour votre annonce.",
-    "sentConnectionRequest": "{name} vous a envoyé une demande de connexion.",
-    "error": "Erreur"
-  },
-  "messagingPage": {
-    "title": "Messages",
-    "searchPlaceholder": "Rechercher des conversations...",
-    "noConversations": "Vous n'avez pas encore de conversations. Lancez-en une en vous connectant avec quelqu'un sur la page Réseau.",
-    "selectConversation": "Sélectionnez une conversation pour commencer à discuter.",
-    "noMessages": "Pas encore de messages dans cette conversation. Soyez le premier à dire quelque chose !",
-    "typeMessagePlaceholder": "Écrire un message...",
-    "signInToView": "Veuillez vous connecter pour voir vos messages.",
-    "signIn": "Se connecter",
-    "error": "Erreur",
-    "couldNotLoadConversations": "Impossible de charger vos conversations.",
-    "couldNotStartConversation": "Impossible de démarrer une nouvelle conversation.",
-    "sendFailed": "Échec de l'envoi",
-    "couldNotSendMessage": "Impossible d'envoyer le message. Veuillez réessayer."
-  },
-  "networkPage": {
-    "title": "Réseau",
-    "description": "Découvrez et connectez-vous avec les acteurs de la chaîne d'approvisionnement agricole.",
-    "myNetworkButton": "Mon réseau",
-    "agentToolsButton": "Outils d'agent",
-    "aiSuggestionsTitle": "Suggestions de l'IA",
-    "aiSuggestionsDescription": "Connectez-vous avec des personnes que vous connaissez peut-être en fonction de votre profil et de votre activité.",
-    "toast": {
-      "errorTitle": "Erreur",
-      "loadError": "Impossible de charger les données du réseau.",
-      "connectError": "Impossible d'envoyer la demande de connexion."
+  "farmManagement": {
+    "hub": {
+      "title": "FR: Farm Management Hub",
+      "description": "FR: Your central place to track and optimize all your farming activities, from planting to harvest.",
+      "myFarms": {
+        "title": "FR: My Farms & Crops",
+        "description": "FR: Manage your farms, fields, and track individual crop cycles.",
+        "button": "FR: Manage Farms"
+      },
+      "labor": {
+        "title": "FR: Labor Management",
+        "description": "FR: Keep track of hours and payments for your workforce.",
+        "button": "FR: Manage Labor"
+      },
+      "knf": {
+        "title": "FR: KNF Inputs Assistant",
+        "description": "FR: Track your farmer-made Korean Natural Farming inputs.",
+        "button": "FR: Manage Inputs"
+      },
+      "fgw": {
+        "title": "FR: Farming God's Way Guide",
+        "description": "FR: Learn the principles and practices of FGW for sustainable, no-till agriculture.",
+        "button": "FR: View FGW Guide"
+      },
+      "financials": {
+        "title": "FR: Financials & Analytics",
+        "description": "FR: Track income, expenses, and gain insights into profitability.",
+        "button": "FR: View Financials"
+      },
+      "seedStarting": {
+        "title": "FR: Seed Starting Guide",
+        "description": "FR: Learn best practices for starting seeds for a successful season.",
+        "button": "FR: View Seed Guide"
+      },
+      "familyFarm": {
+        "title": "FR: Diversified Family Farm Model",
+        "description": "FR: Explore a sustainable 200 sq meter model for small family farms.",
+        "button": "FR: View Model"
+      },
+      "assetManagement": {
+        "title": "FR: Asset Management",
+        "description": "FR: Keep track of your machinery, tools, and other farm assets.",
+        "button": "FR: Manage Assets"
+      }
     },
-    "following": "Demandé",
-    "follow": "Suivre",
-    "connect": "Connecter",
-    "profile": "Profil",
-    "noSuggestions": "Aucune nouvelle suggestion pour le moment. Revenez plus tard !",
-    "browseAllTitle": "Parcourir tous les acteurs",
-    "browseAllDescription": "Trouvez et connectez-vous avec de nouveaux partenaires dans la chaîne d'approvisionnement.",
-    "searchPlaceholder": "Rechercher par nom ou résumé...",
-    "locationPlaceholder": "Rechercher par lieu...",
-    "rolePlaceholder": "Filtrer par rôle",
-    "allRoles": "Tous les rôles",
-    "noStakeholdersFound": "Aucun acteur trouvé.",
-    "noStakeholdersHint": "Essayez d'ajuster vos filtres de recherche.",
-    "invitePrompt": "Entrez l'adresse e-mail de la personne que vous souhaitez inviter :",
-    "inviteSuccessTitle": "Invitation envoyée !",
-    "inviteSuccessDescription": "Une invitation a été envoyée à {email}.",
-    "inviteErrorTitle": "Échec de l'envoi de l'invitation",
-    "invite": {
-      "button": "Inviter"
-    }
-  },
-  "myNetworkPage": {
-    "backLink": "Retour au hub réseau",
-    "myConnectionsTab": "Mes connexions ({count})",
-    "pendingRequestsTab": "Demandes en attente",
-    "connectionsTitle": "Mes connexions",
-    "connectionsDescription": "Ceci est votre réseau professionnel sur DamDoh. Ce sont les personnes avec qui vous pouvez échanger des messages directs et collaborer.",
-    "requestsTitle": "Demandes de connexion",
-    "requestsDescription": "Acceptez ou refusez les demandes d'autres utilisateurs pour les ajouter à votre réseau.",
-    "noConnections": {
-      "title": "Construisez votre réseau",
-      "description": "Vous n'avez encore établi aucune connexion. Commencez par explorer le réseau ou inviter des personnes que vous connaissez.",
-      "inviteButton": "Inviter des collègues"
+    "myFarms": {
+      "backToDashboard": "FR: Back to Farm Hub",
+      "title": "FR: My Farms",
+      "addNewFarmButton": "FR: Add New Farm",
+      "size": "FR: Size",
+      "viewFarmButton": "FR: View Farm Dashboard",
+      "noFarmsTitle": "FR: You haven't added any farms yet.",
+      "noFarmsDescription": "FR: Get started by creating your first farm profile to track crops and activities.",
+      "auth": {
+        "title": "FR: Please Sign In",
+        "description": "FR: You must be signed in to view your farms.",
+        "button": "FR: Sign In"
+      },
+      "toast": {
+        "errorTitle": "FR: Error",
+        "fetchError": "FR: Could not fetch your farm data."
+      }
     },
-    "noRequests": "Vous n'avez aucune demande de connexion en attente.",
-    "sentTimeAgo": "Envoyé il y a {timeAgo}",
-    "toast": {
-      "error": "Erreur",
-      "success": "Succès",
-      "loadError": "Impossible de charger les données de votre réseau. Veuillez réessayer.",
-      "respondError": "Échec de la réponse à la demande.",
-      "requestAccepted": "Demande de connexion acceptée.",
-      "requestDeclined": "Demande de connexion refusée.",
-      "connectionRemoved": "La connexion a été supprimée.",
-      "removeError": "Impossible de supprimer la connexion."
-    }
-  },
-  "agentToolsPage": {
-    "backLink": "Retour au réseau",
-    "title": "Outils de l'agent",
-    "description": "Recherchez en toute sécurité les informations des utilisateurs pour vérification et assistance.",
-    "findUserLabel": "Trouver un utilisateur par numéro de téléphone",
-    "findButton": "Trouver",
-    "resultsTitle": "Résultat",
-    "resultsPlaceholder": "Les détails de l'utilisateur apparaîtront ici.",
-    "phoneRequiredError": "Un numéro de téléphone est requis pour effectuer une recherche.",
-    "accessDeniedTitle": "Accès refusé",
-    "accessDeniedDescription": "Vous n'avez pas les autorisations requises pour accéder à ces outils."
-  },
-  "knowledgeHub": {
-    "title": "Centre de connaissances",
-    "description": "Votre centre d'apprentissage, de croissance et d'expertise agricole.",
-    "courses": {
-      "title": "Cours",
-      "description": "Parcours d'apprentissage structurés pour améliorer vos compétences.",
-      "body": "Parcourez notre catalogue de cours conçus par des experts du secteur, couvrant tout, des techniques agricoles durables à la gestion des entreprises agroalimentaires.",
-      "cta": "Explorer les cours"
+    "createFarm": {
+      "backToFarms": "FR: Back to My Farms",
+      "title": "FR: Create New Farm",
+      "description": "FR: Add a new farm to your profile to start tracking crops, inputs, and activities.",
+      "form": {
+        "farmNameLabel": "FR: Farm Name",
+        "farmNamePlaceholder": "FR: e.g., Green Valley Organics",
+        "locationLabel": "FR: Location",
+        "locationPlaceholder": "FR: e.g., Rift Valley, Kenya",
+        "locationDescription": "FR: Provide a general location (City, Region).",
+        "sizeLabel": "FR: Farm Size",
+        "sizePlaceholder": "FR: e.g., 5 Hectares, 12 Acres",
+        "sizeDescription": "FR: Specify the units (e.g., Hectares, Acres).",
+        "typeLabel": "FR: Farm Type",
+        "typePlaceholder": "FR: Select the primary type",
+        "types": {
+          "crop": "FR: Crop Production",
+          "livestock": "FR: Livestock",
+          "mixed": "FR: Mixed (Crops & Livestock)",
+          "aquaculture": "FR: Aquaculture",
+          "other": "FR: Other"
+        },
+        "descriptionLabel": "FR: Description (Optional)",
+        "descriptionPlaceholder": "FR: Briefly describe your farm...",
+        "irrigationLabel": "FR: Irrigation Method (Optional)",
+        "irrigationPlaceholder": "FR: e.g., Drip irrigation, Rain-fed",
+        "irrigationDescription": "FR: Specify the main irrigation method used.",
+        "submitButton": "FR: Save Farm"
+      },
+      "toast": {
+        "authErrorTitle": "FR: Authentication Error",
+        "authErrorDescription": "FR: You must be signed in to create a farm.",
+        "successTitle": "FR: Farm Created!",
+        "successDescription": "FR: '{farmName}' has been added to your profile.",
+        "errorTitle": "FR: Creation Failed",
+        "errorDescription": "FR: Could not create the farm. Please try again."
+      }
     },
-    "blog": {
-      "title": "Blog et actualités du secteur",
-      "description": "Restez informé des dernières informations et tendances.",
-      "body": "Lisez les articles de notre équipe et des experts de la communauté sur les tendances du marché, les nouvelles technologies, les réussites et les changements de politique importants.",
-      "cta": "Lire le blog"
+    "farmDetail": {
+      "backToFarms": "FR: Back to My Farms",
+      "registeredOn": "FR: Registered on {date}",
+      "editFarmButton": "FR: Edit Farm",
+      "crops": {
+        "title": "FR: Crops",
+        "description": "FR: Manage all active crops on this farm.",
+        "addNewButton": "FR: Add New Crop",
+        "plantedLabel": "FR: Planted",
+        "stageLabel": "FR: Stage",
+        "viewJourneyButton": "FR: View Journey",
+        "noCrops": "FR: No crops have been added to this farm yet.",
+        "addFirstButton": "FR: Add Your First Crop"
+      },
+      "insights": {
+        "title": "FR: Profitability Insights",
+        "description": "FR: AI-driven analysis of your farm's activities.",
+        "noInsights": "FR: Not enough data to generate insights. Start logging activities!"
+      },
+      "toast": {
+        "notFoundTitle": "FR: Farm Not Found",
+        "loadErrorTitle": "FR: Loading Error",
+        "insightsErrorTitle": "FR: Insights Error"
+      },
+      "notFound": {
+        "title": "FR: Farm Not Found",
+        "description": "FR: The farm you are looking for does not exist, or you do not have permission to view it.",
+        "backButton": "FR: Back to My Farms"
+      }
     },
-    "featured": {
-      "title": "Contenu à la une",
-      "loading": "Chargement du contenu à la une...",
-      "error": "Impossible de charger le contenu à la une",
-      "noArticles": "Aucun article à la une disponible pour le moment."
-    }
-  },
-  "InsurancePage": {
-    "title": "Centre d'assurance agricole",
-    "description": "Protégez votre exploitation et vos investissements contre les risques imprévus.",
-    "toast": {
-      "errorTitle": "Erreur"
+    "createCrop": {
+      "backLink": "FR: Back to Farm Detail",
+      "title": "FR: Add New Crop",
+      "description": "FR: Log a new crop or planting to start tracking its journey.",
+      "cropTypeLabel": "FR: Crop Name / Type",
+      "cropTypePlaceholder": "FR: e.g., Hass Avocado, Roma Tomato",
+      "cropTypeDescription": "FR: Be as specific as possible.",
+      "plantingDateLabel": "FR: Planting Date",
+      "harvestDateLabel": "FR: Estimated Harvest Date (Optional)",
+      "datePlaceholder": "FR: Select a date",
+      "yieldLabel": "FR: Expected Yield (Optional)",
+      "yieldPlaceholder": "FR: e.g., 5 Tons/Hectare",
+      "stageLabel": "FR: Current Stage (Optional)",
+      "stagePlaceholder": "FR: Select a stage",
+      "stages": {
+        "Planting": "FR: Planting",
+        "Vegetative": "FR: Vegetative",
+        "Flowering": "FR: Flowering",
+        "Fruiting": "FR: Fruiting",
+        "Harvesting": "FR: Harvesting",
+        "Post-Harvest": "FR: Post-Harvest"
+      },
+      "notesLabel": "FR: Notes (Optional)",
+      "notesPlaceholder": "FR: Add any relevant notes about this batch...",
+      "saveButton": "FR: Save Crop",
+      "savingButton": "FR: Saving...",
+      "toast": {
+        "authErrorTitle": "FR: Not Authenticated",
+        "authErrorDescription": "FR: You must be signed in to add a crop.",
+        "successTitle": "FR: Crop Added!",
+        "successDescription": "FR: {cropType} was successfully added to your farm.",
+        "failTitle": "FR: Could not add crop.",
+        "failDescription": "FR: An unexpected error occurred. Please try again."
+      }
     },
-    "perTerm": "par trimestre",
-    "viewDetailsButton": "Voir les détails et postuler",
-    "noProducts": "Aucun produit d'assurance n'est actuellement disponible. Veuillez revenir plus tard."
-  },
-  "InsuranceApplyPage": {
-    "backLink": "Retour au centre d'assurance",
-    "title": "Demande d'assurance",
-    "description": "Postulez pour la police {productName}.",
-    "form": {
-      "farmLabel": "Sélectionnez la ferme à assurer",
-      "farmPlaceholder": "Choisissez une de vos fermes",
-      "noFarms": "Aucune ferme trouvée. Veuillez d'abord en créer une.",
-      "coverageValueLabel": "Valeur de couverture souhaitée (en USD)",
-      "coverageValuePlaceholder": "par exemple, 10000",
-      "coverageValueDescription": "La valeur totale que vous souhaitez assurer.",
-      "submitButton": "Soumettre la demande"
+    "logInput": {
+      "backLink": "FR: Back to Farm",
+      "title": "FR: Log Input Application",
+      "description": "FR: Record the application of fertilizers, pesticides, or other inputs to your crop.",
+      "useKNFLabel": "FR: Use KNF Batch",
+      "useKNFPlaceholder": "FR: Select a ready batch",
+      "manualInputLabel": "FR: Or Enter Manually",
+      "manualInputPlaceholder": "FR: e.g., NPK 10-10-10 Fertilizer",
+      "dateLabel": "FR: Application Date",
+      "quantityLabel": "FR: Quantity",
+      "quantityPlaceholder": "FR: e.g., 50",
+      "unitLabel": "FR: Unit",
+      "unitPlaceholder": "FR: e.g., kg, Liters, ml/L",
+      "methodLabel": "FR: Application Method (Optional)",
+      "methodPlaceholder": "FR: e.g., Foliar spray, Soil drench",
+      "saveButton": "FR: Log Application",
+      "savingButton": "FR: Logging...",
+      "toast": {
+        "authErrorTitle": "FR: Not Authenticated",
+        "authErrorDescription": "FR: You must be signed in to log an application.",
+        "success": "FR: Application Logged",
+        "description": "FR: The input application has been successfully logged to your crop's journey.",
+        "fail": "FR: Logging failed."
+      }
     },
-    "toast": {
-      "error": "Erreur",
-      "successTitle": "Demande soumise !",
-      "successDescription": "Votre demande d'assurance a été envoyée pour examen.",
-      "notAuthenticated": "Vous devez être connecté pour postuler."
+    "cropDetailPage": {
+      "backLink": "FR: Back to Farm",
+      "plantedOn": "FR: Planted on {date}",
+      "editButton": "FR: Edit",
+      "quickActionsTitle": "FR: Quick Actions",
+      "logInputButton": "FR: Log Input",
+      "logObservationButton": "FR: Log Observation",
+      "logHarvestButton": "FR: Log Harvest",
+      "journeyTitle": "FR: Crop Journey",
+      "noActivities": "FR: No activities have been logged for this crop yet.",
+      "loading": "FR: Loading crop details...",
+      "notFound": "FR: Crop not found.",
+      "toast": {
+        "notFound": "FR: Crop not found.",
+        "loadError": "FR: Could not load crop data."
+      },
+      "eventPayload": {
+        "noDetails": "FR: No additional details for this event.",
+        "observationType": "FR: Observation Type",
+        "details": "FR: Details",
+        "aiDiagnosis": "FR: AI Diagnosis"
+      }
     },
-    "success": {
-      "title": "Demande reçue",
-      "description": "Merci ! Votre demande est en cours d'examen. Le fournisseur d'assurance vous contactera pour les prochaines étapes.",
-      "backToDashboardButton": "Retour au tableau de bord",
-      "applyForAnotherButton": "Postuler pour une autre police"
-    }
-  },
-  "InsuranceDetailPage": {
-    "backLink": "Retour au hub d'assurance",
-    "notFound": "Produit d'assurance introuvable.",
-    "coverageTitle": "Détails de la couverture",
-    "premiumTitle": "Prime",
-    "providerTitle": "Fourni par",
-    "applyButton": "Postuler à cette police",
-    "toast": {
-      "errorTitle": "Erreur de chargement"
-    }
-  },
-  "InsuranceProductCreatePage": {
-    "backLink": "Retour aux produits",
-    "title": "Créer un nouveau produit d'assurance",
-    "description": "Définir un nouveau produit d'assurance à proposer sur la plateforme.",
-    "form": {
-      "nameLabel": "Nom du produit",
-      "namePlaceholder": "ex: Assurance récolte multirisque",
-      "typeLabel": "Type de produit",
-      "typePlaceholder": "Sélectionner un type",
-      "crop": "Récolte",
-      "livestock": "Bétail",
-      "asset": "Actif",
-      "weather": "Météo",
-      "descriptionLabel": "Courte description",
-      "descriptionPlaceholder": "Un bref résumé du produit.",
-      "coverageLabel": "Détails de la couverture",
-      "coveragePlaceholder": "Décrivez en détail ce que cette police couvre...",
-      "premiumLabel": "Prime ($)",
-      "premiumPlaceholder": "ex: 500",
-      "currencyLabel": "Devise",
-      "submitButton": "Créer le produit"
+    "fgwGuidePage": {
+      "backLink": "FR: Back to Farm Hub",
+      "title": "FR: Farming God's Way Guide",
+      "description": "FR: A sustainable, no-till, faith-based agricultural solution for the poor.",
+      "intro": "FR: Farming God's Way (FGW) is not just a technology, but a biblically-based, management, and technological solution for the agricultural needs of the poor. It's about being faithful stewards of the land God has given us. Below are the core principles.",
+      "howToTitle": "FR: How To",
+      "whyItWorksTitle": "FR: Why It Works",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "No-Tillage",
+          "icon": "Shield",
+          "summary": "Protect the soil by not plowing it. This preserves the God-given soil structure.",
+          "howTo": [
+            "Create permanent planting stations (holes) instead of ridges.",
+            "Only dig where you will plant the seed.",
+            "Walk on permanent pathways to avoid compacting your planting soil."
+          ],
+          "whyItWorks": [
+            "Prevents soil erosion by wind and water.",
+            "Protects soil life and fungal networks.",
+            "Dramatically increases water infiltration and retention.",
+            "Reduces labor and fuel costs associated with plowing."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field with no-tillage planting stations",
+          "dataAiHint": "no-till farming holes"
+        },
+        {
+          "id": "gods-blanket",
+          "title": "God's Blanket",
+          "icon": "Leaf",
+          "summary": "Keep the soil 100% covered with a thick layer of organic matter, just like in a forest.",
+          "howTo": [
+            "Gather dry organic matter like grass, straw, leaves, or maize stover.",
+            "Apply a thick mulch (at least 10-15 cm) across the entire plot.",
+            "Never burn your crop residues; use them for mulch.",
+            "When planting, make a small opening in the mulch for your seed."
+          ],
+          "whyItWorks": [
+            "Prevents weeds from growing.",
+            "Saves significant soil moisture, reducing water needs.",
+            "Feeds soil life as it decomposes, building rich topsoil.",
+            "Protects the soil from the direct heat of the sun."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field covered in a thick blanket of mulch",
+          "dataAiHint": "mulch farming"
+        },
+        {
+          "id": "high-standards",
+          "title": "High Standards",
+          "icon": "CheckCircle",
+          "summary": "Do everything on time, to a high standard, with no waste, and with joy.",
+          "howTo": [
+            "Prepare the land well before the first rains.",
+            "Plant at the optimal time for your region and crop.",
+            "Follow precise measurements for planting depth and spacing.",
+            "Manage your resources (seed, inputs, time) wisely to avoid wastage."
+          ],
+          "whyItWorks": [
+            "Maximizes the genetic potential of the seed.",
+            "Ensures the crop gets the full benefit of the early rains.",
+            "Leads to higher yields and greater profitability.",
+            "Honors God through excellent work."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A farmer carefully planting seeds in a well-prepared field",
+          "dataAiHint": "planting seeds precisely"
+        }
+      ]
     },
-    "toast": {
-      "notAuthenticated": "Vous devez être un fournisseur d'assurance pour créer des produits.",
-      "successTitle": "Produit créé",
-      "successDescription": "'{name}' a été créé avec succès.",
-      "errorTitle": "Échec de la création"
-    }
-  },
-  "InsuranceProductsPage": {
-    "title": "Gérez vos produits d'assurance",
-    "description": "Visualisez, créez et gérez vos offres d'assurance.",
-    "createButton": "Créer un nouveau produit",
-    "table": {
-      "productName": "Nom du produit",
-      "type": "Type",
-      "status": "Statut",
-      "premium": "Prime"
+    "logObservation": {
+      "backLink": "FR: Back to Farm",
+      "title": "FR: Log Observation",
+      "description": "FR: Record an observation about your crop, such as pest outbreaks, diseases, growth, or weather events.",
+      "typeLabel": "FR: Observation Type",
+      "typePlaceholder": "FR: Select a type",
+      "types": {
+        "Pest": "FR: Pest",
+        "Disease": "FR: Disease",
+        "Growth": "FR: Growth",
+        "Weather": "FR: Weather",
+        "Soil": "FR: Soil",
+        "Weed": "FR: Weed",
+        "Other": "FR: Other",
+        "FGW_Stations": "FR: Land Prep (FGW Stations)",
+        "FGW_Mulch": "FR: Mulching (God's Blanket)"
+      },
+      "dateLabel": "FR: Observation Date",
+      "detailsLabel": "FR: Details & Notes",
+      "detailsPlaceholder": "FR: Describe what you observed...",
+      "uploadLabel": "FR: Upload Photo (Optional)",
+      "uploadDescription": "FR: A photo can help with diagnosis. It will be analyzed by AI if provided.",
+      "saveButton": "FR: Log Observation",
+      "processingButton": "FR: Processing...",
+      "toast": {
+        "authErrorTitle": "FR: Not Authenticated",
+        "authErrorDescription": "FR: You must be signed in to log an observation.",
+        "aiAnalyzing": "FR: AI Analyzing",
+        "aiDescription": "FR: Your image data is being sent to the AI for diagnosis.",
+        "aiComplete": "FR: AI Analysis Complete!",
+        "aiCompleteDescription": "FR: The diagnosis has been included in your observation log.",
+        "aiFailTitle": "FR: AI Analysis Failed",
+        "aiFailDescription": "FR: We couldn't analyze the image. The observation will be saved without an AI diagnosis.",
+        "uploading": "FR: Uploading image...",
+        "uploadingDescription": "FR: Please wait a moment.",
+        "uploadComplete": "FR: Upload Complete!",
+        "success": "FR: Observation Logged",
+        "successDescription": "FR: Your observation has been successfully logged.",
+        "fail": "FR: Logging failed."
+      }
     },
-    "noProducts": "Vous n'avez encore créé aucun produit d'assurance.",
-    "toast": {
-      "errorTitle": "Erreur"
-    }
-  },
-  "FiApplicationListPage": {
-    "backLink": "Retour au tableau de bord",
-    "title": "Demandes de financement",
-    "description": "Examinez et gérez les demandes de prêt et de subvention entrantes.",
-    "tabs": {
-      "all": "Toutes",
-      "pending": "En attente",
-      "approved": "Approuvées",
-      "rejected": "Rejetées"
+    "logHarvest": {
+      "backLink": "FR: Back to Farm",
+      "title": "FR: Log Harvest for {cropType}",
+      "description": "FR: Record your harvest to create a new traceable batch.",
+      "harvestDateLabel": "FR: Harvest Date",
+      "yieldLabel": "FR: Total Yield (kg)",
+      "yieldPlaceholder": "FR: e.g., 1500",
+      "qualityLabel": "FR: Quality Grade",
+      "qualityPlaceholder": "FR: e.g., Grade A, Export Quality",
+      "notesLabel": "FR: Harvest Notes (Optional)",
+      "notesPlaceholder": "FR: Specific details about this harvest...",
+      "saveButton": "FR: Log Harvest & Create Batch",
+      "savingButton": "FR: Saving...",
+      "offlineToast": {
+        "title": "FR: Action added to offline queue.",
+        "description": "FR: Your harvest will be logged and a VTI created when you're back online."
+      },
+      "success": {
+        "title": "FR: Harvest Logged!",
+        "description": "FR: The harvest for {cropType} has been successfully logged. A new traceable batch has been created with ID '{vtiId}'.",
+        "successCardTitle": "FR: Harvest Logged!",
+        "successCardDescription": "FR: A new traceable batch has been created for {cropType} with ID: {vtiId}",
+        "viewReportButton": "FR: View Traceability Report",
+        "sellButton": "FR: Sell on Marketplace",
+        "logAnotherButton": "FR: Log Another Harvest",
+        "backToFarmButton": "FR: Back to Farm"
+      },
+      "fail": {
+        "title": "FR: Logging Failed"
+      }
     },
-    "table": {
-      "applicant": "Demandeur",
-      "type": "Type",
-      "amount": "Montant (USD)",
-      "date": "Soumis le",
-      "status": "Statut",
-      "action": "Action"
+    "knfInputsPage": {
+      "backLink": "FR: Back to Farm Hub",
+      "title": "FR: KNF Inputs Assistant",
+      "description": "FR: Create, track, and manage your Korean Natural Farming inputs.",
+      "guidesTitle": "FR: KNF Guides",
+      "ingredients": "FR: Ingredients",
+      "steps": "FR: Steps",
+      "usage": "FR: Usage",
+      "fermentingBatchesTitle": "FR: Fermenting Batches",
+      "started": "FR: Started",
+      "nextStepOn": "FR: Next Step On",
+      "markReady": "FR: Mark as Ready",
+      "noFermentingBatches": "FR: No fermenting batches.",
+      "readyBatchesTitle": "FR: Ready Batches",
+      "readySince": "FR: Ready since",
+      "logUsage": "FR: Log Usage",
+      "archive": "FR: Archive",
+      "noReadyBatches": "FR: No ready batches available.",
+      "startNewBatch": "FR: Start a New Batch",
+      "createNewBatchTitle": "FR: Create a New KNF Batch",
+      "cancel": "FR: Cancel",
+      "quantity": "FR: Quantity",
+      "quantityPlaceholder": "FR: e.g., 5 or 20",
+      "unit": "FR: Unit",
+      "unitPlaceholder": "FR: e.g., Liters, kg",
+      "sellSurplus": "FR: Sell Surplus",
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Fermented Plant Juice (FPJ)",
+          "description": "A fermented extract of a plant's sap and chlorophyll. Rich in enzymes and microorganisms, it's a potent growth enhancer for plants.",
+          "ingredients": [
+            "1kg of fast-growing plant parts (e.g., sweet potato tips, bamboo shoots)",
+            "1kg of brown sugar (or molasses)"
+          ],
+          "yield": "approx. 0.8 L",
+          "steps": [
+            "Collect plant material before sunrise when it is most potent. Do not wash.",
+            "Roughly chop the plant material.",
+            "Add an equal weight of brown sugar and mix well.",
+            "Pack tightly into a clay pot or glass jar, filling to about 2/3 capacity.",
+            "Cover with a breathable cloth and store in a cool, dark place.",
+            "Allow to ferment for about 7 days."
+          ],
+          "usage": "Dilution rate: 1:500 to 1:1000 with water. Applied as a foliar spray or soil drench."
+        },
+        {
+          "id": "faa",
+          "name": "Fish Amino Acid (FAA)",
+          "description": "A potent liquid fertilizer made from fish waste, rich in nitrogen and amino acids. Excellent for boosting plant growth, especially during the vegetative stage.",
+          "ingredients": [
+            "1kg of fish waste (heads, bones, entrails)",
+            "1kg of brown sugar (or molasses)"
+          ],
+          "yield": "approx. 1.5 L",
+          "steps": [
+            "Chop the fish parts into small pieces.",
+            "In a container, layer the fish parts and brown sugar, starting and ending with sugar.",
+            "Fill the container to about 2/3 capacity and cover with a breathable cloth.",
+            "Store in a cool, dark place and allow to ferment for at least 3-6 months."
+          ],
+          "usage": "Dilution rate: 1:1000 with water. Primarily used as a soil drench."
+        }
+      ],
+      "form": {
+        "typeLabel": "FR: Input Type",
+        "typePlaceholder": "FR: Select a KNF input",
+        "ingredientsLabel": "FR: Ingredients Used",
+        "quantityLabel": "FR: Quantity Produced",
+        "unitLabel": "FR: Unit",
+        "startDateLabel": "FR: Start Date",
+        "startButton": "FR: Start Batch",
+        "startingButton": "FR: Starting..."
+      },
+      "toasts": {
+        "loadErrorTitle": "FR: Error",
+        "loadErrorDescription": "FR: Could not fetch your KNF batches.",
+        "validationError": "FR: Please fill out all fields to start a batch.",
+        "batchStartedTitle": "FR: Batch Started!",
+        "batchStartedDescription": "FR: Your new KNF batch is now fermenting.",
+        "batchStartFailed": "FR: Batch start failed.",
+        "unexpectedError": "FR: An unexpected error occurred.",
+        "batchUpdatedTitle": "FR: Status Updated",
+        "batchUpdatedDescription": "FR: Batch status successfully updated to {status}.",
+        "updateFailed": "FR: Update failed.",
+        "couldNotUpdate": "FR: Could not update the batch status."
+      }
     },
-    "reviewButton": "Examiner",
-    "noApplications": "Aucune demande dans cette catégorie."
-  },
-  "FiApplicationPage": {
-    "backLink": "Retour aux demandes",
-    "title": "Détails de la demande",
-    "applicationTitle": "Demande",
-    "submittedOn": "Soumis le",
-    "amountRequested": "Montant demandé",
-    "purpose": "Objet du financement",
-    "approveButton": "Approuver",
-    "rejectButton": "Rejeter",
-    "requestInfoButton": "Demander plus d'informations",
-    "applicantDetails": "Détails du demandeur",
-    "viewProfileButton": "Voir le profil complet",
-    "profileNotFound": "Profil du demandeur introuvable.",
-    "riskAssessment": "Évaluation des risques par l'IA",
-    "creditScore": "Score de crédit",
-    "notFound": "Demande introuvable ou vous n'avez pas la permission de la voir.",
-    "toast": {
-      "errorTitle": "Erreur",
-      "updateSuccessTitle": "Statut mis à jour",
-      "updateSuccessDescription": "Le statut de la demande a été défini sur '{status}'.",
-      "updateFailTitle": "Échec de la mise à jour"
-    }
-  },
-  "FiProductsPage": {
-    "title": "Produits Financiers",
-    "description": "Créez et gérez vos produits de prêt et de subvention.",
-    "createButton": "Créer un nouveau produit",
-    "table": {
-      "productName": "Nom du produit",
-      "type": "Type",
-      "status": "Statut",
-      "interestRate": "Taux d'intérêt",
-      "maxAmount": "Montant maximum"
+    "editCrop": {
+      "backLink": "FR: Back to Crop Detail",
+      "title": "FR: Edit Crop",
+      "description": "FR: Update the details for your crop.",
+      "savingButton": "FR: Saving...",
+      "saveButton": "FR: Save Changes",
+      "toast": {
+        "notFound": "FR: Crop not found.",
+        "loadError": "FR: Could not load crop data to edit.",
+        "error": "FR: Error",
+        "loadFail": "FR: Could not load crop data: {message}",
+        "success": "FR: Crop Updated!",
+        "description": "FR: {cropType} was updated successfully.",
+        "fail": "FR: Update failed."
+      }
     },
-    "noProducts": "Vous n'avez encore créé aucun produit financier.",
-    "toast": {
-      "errorTitle": "Erreur"
-    }
-  },
-  "FiProductCreatePage": {
-    "backLink": "Retour aux produits",
-    "title": "Créer un nouveau produit financier",
-    "description": "Définissez un nouveau produit financier à proposer aux utilisateurs de la plateforme.",
-    "form": {
-      "nameLabel": "Nom du produit",
-      "namePlaceholder": "par exemple, Prêt de croissance pour les petits exploitants",
-      "typeLabel": "Type de produit",
-      "loan": "Prêt",
-      "grant": "Subvention",
-      "descriptionLabel": "Description",
-      "descriptionPlaceholder": "Décrivez le produit, son objectif et les critères d'éligibilité.",
-      "interestRateLabel": "Taux d'intérêt (%)",
-      "interestRatePlaceholder": "par exemple, 12,5",
-      "maxAmountLabel": "Montant maximum (USD)",
-      "maxAmountPlaceholder": "par exemple, 10000",
-      "targetRolesLabel": "Public cible",
-      "targetRolesDescription": "Sélectionnez les rôles des parties prenantes auxquels ce produit est destiné.",
-      "submitButton": "Créer le produit"
-    },
-    "toast": {
-      "notAuthenticated": "Vous devez être une institution financière pour créer des produits.",
-      "successTitle": "Produit créé",
-      "successDescription": "'{name}' a été créé avec succès et est maintenant actif.",
-      "errorTitle": "Échec de la création"
-    }
-  },
-  "traceabilityPage": {
-    "title": "Traçabilité des produits",
-    "description": "Suivez le parcours de vos aliments de la ferme à la fourchette avec notre système d'identification de traçabilité vérifiable (VTI).",
-    "inputPlaceholder": "Entrez l'ID du lot VTI...",
-    "trackButton": "Suivre",
-    "vtiDescription": "Le VTI est un identifiant unique que l'on trouve sur l'emballage du produit.",
-    "recentTitle": "Lots récemment suivis",
-    "recentDescription": "Explorez certains des derniers produits avec des rapports de traçabilité publics.",
-    "producerLabel": "Producteur",
-    "harvestDateLabel": "Date de récolte",
-    "viewReportButton": "Voir le rapport",
-    "noRecentBatches": "Aucun lot récemment suivi avec des données publiques.",
-    "detailPage": {
-      "invalidIdError": "ID de lot fourni invalide.",
-      "loadError": "Échec du chargement de l'historique de traçabilité.",
-      "backLink": "Retour au hub de traçabilité",
-      "notFoundTitle": "Lot introuvable",
-      "notFoundDescription": "Le VTI que vous avez entré ne correspond à aucun lot dans nos registres.",
-      "traceableProduct": "Produit traçable",
-      "batchIdLabel": "ID du lot",
-      "producerLabel": "Producteur",
-      "qualityLabel": "Qualité initiale",
-      "notSpecified": "Non spécifié",
-      "journeyTitle": "Le parcours de ce lot",
-      "journeyDescription": "Un journal complet et horodaté de chaque événement du cycle de vie de ce produit.",
-      "noEventDetails": "Aucun détail supplémentaire pour cet événement.",
-      "observationType": "Type d'observation",
-      "details": "Détails",
-      "aiDiagnosis": "Diagnostic IA",
-      "noEventsFound": "Aucun événement de traçabilité n'a encore été enregistré pour ce lot.",
-      "geoLocationLabel": "Géolocalisation",
-      "sustainablyGrownTitle": "Cultivé de manière durable",
-      "sustainablyGrownDescription": "Le journal de traçabilité de ce produit indique l'utilisation de pratiques agricoles durables et/ou biologiques."
+    "editFarm": {
+      "backToFarm": "FR: Back to Farm Detail",
+      "title": "FR: Edit Farm",
+      "description": "FR: Update the details of your farm.",
+      "form": {
+        "submitButton": "FR: Save Changes"
+      },
+      "toast": {
+        "notFoundTitle": "FR: Not Found",
+        "loadError": "FR: Could not load the farm you wish to edit.",
+        "loadFail": "FR: Could not load farm data: {message}",
+        "successTitle": "FR: Farm Updated!",
+        "successDescription": "FR: '{farmName}' was updated successfully.",
+        "errorTitle": "FR: Update Failed"
+      }
     }
   },
   "OfflineIndicator": {
     "tooltip": {
-      "syncing": "Synchronisation de {count} actions en attente...",
-      "onlinePending": "{count} actions en attente. Synchronisation prochaine.",
-      "onlineSynced": "Vous êtes en ligne et toutes les modifications sont synchronisées.",
-      "offline": "Vous êtes hors ligne. {count, plural, =0 {Aucune modification en attente.} =1 {1 modification est en file d'attente.} other {{count} modifications sont en file d'attente.}}"
+      "syncing": "FR: Syncing {count} pending actions...",
+      "onlinePending": "FR: {count} pending actions. Will sync soon.",
+      "onlineSynced": "FR: You are online and all changes are synced.",
+      "offline": "FR: You are offline. {count, plural, =0 {No pending changes.} =1 {1 change is queued.} other {{count} changes are queued.}}"
     },
     "toast": {
       "online": {
-        "title": "Vous êtes de retour en ligne !",
-        "description": "Votre connexion a été restaurée."
+        "title": "FR: You are back online!",
+        "description": "FR: Your connection has been restored."
       },
       "offline": {
-        "title": "Vous êtes hors ligne.",
-        "description": "Vos modifications seront enregistrées et synchronisées lorsque vous vous reconnecterez."
+        "title": "FR: You are offline.",
+        "description": "FR: Your changes will be saved and synced when you reconnect."
       },
       "syncing": {
-        "title": "Synchronisation des modifications hors ligne",
-        "description": "Téléchargement de {count} actions sur le serveur."
+        "title": "FR: Syncing offline changes",
+        "description": "FR: Uploading {count} actions to the server."
       },
       "synced": {
-        "title": "Synchronisation terminée",
-        "description": "Toutes vos modifications hors ligne ont été enregistrées."
+        "title": "FR: Sync complete",
+        "description": "FR: All your offline changes have been saved."
       },
       "syncFailed": {
-        "title": "Échec de la synchronisation",
-        "description": "Nous n'avons pas pu synchroniser vos modifications hors ligne. Nous essaierons à nouveau plus tard."
+        "title": "FR: Sync failed",
+        "description": "FR: We could not sync your offline changes. We will try again later."
       },
       "queued": {
-        "title": "Action mise en file d'attente",
-        "description": "Cette action sera effectuée lorsque vous serez de nouveau en ligne."
+        "title": "FR: Action queued",
+        "description": "FR: This action will be performed when you are back online."
       }
     }
   },
   "searchPage": {
-    "title": "Recherche Universelle",
-    "description": "Trouvez tout sur l'ensemble de la plateforme DamDoh.",
-    "placeholder": "Que recherchez-vous ?",
-    "searchButton": "Rechercher",
-    "popularSearches": "Recherches populaires",
-    "popularSearch1": "Café biologique",
-    "popularSearch2": "Location de tracteur au Kenya",
-    "popularSearch3": "Expert en santé des sols",
-    "popularSearch4": "Financement à l'exportation",
-    "popularSearch5": "Forum sur les pertes après récolte",
+    "title": "FR: Universal Search",
+    "description": "Find anything across the entire DamDoh platform.",
+    "placeholder": "FR: What are you looking for?",
+    "searchButton": "FR: Search",
+    "popularSearches": "FR: Popular Searches",
+    "popularSearch1": "FR: Organic Coffee",
+    "popularSearch2": "FR: Tractor rental in Kenya",
+    "popularSearch3": "FR: Soil health expert",
+    "popularSearch4": "FR: Export financing",
+    "popularSearch5": "FR: Post-harvest loss forum",
     "modal": {
-      "title": "Recherche universelle",
-      "placeholder": "Rechercher des produits, des services, des personnes, des publications sur le forum...",
-      "searchButton": "Rechercher",
-      "searchError": "Erreur de recherche",
-      "searchErrorDescription": "Impossible d'effectuer la recherche pour le moment. Veuillez réessayer.",
-      "scanFailed": "Échec du scan",
-      "scanError": "Erreur de numérisation",
-      "scanErrorDescription": "Impossible de lire le code QR. Veuillez réessayer.",
-      "invalidCodeError": "Ceci n'est pas un code de récupération ou de profil DamDoh valide.",
-      "interpretationTitle": "Interprétation de l'IA",
-      "interpretationNotesDefault": "Recherche par mots-clés.",
-      "filtersTitle": "Filtres",
+      "title": "FR: Universal Search",
+      "placeholder": "FR: Search products, services, people, forum posts...",
+      "searchButton": "FR: Search",
+      "searchError": "FR: Search Error",
+      "searchErrorDescription": "FR: Could not perform search at this time. Please try again.",
+      "scanFailed": "FR: Scan Failed",
+      "scanError": "FR: Scan Error",
+      "scanErrorDescription": "FR: Could not read the QR code. Please try again.",
+      "invalidCodeError": "This is not a valid DamDoh recovery or profile code.",
+      "interpretationTitle": "FR: AI Interpretation",
+      "interpretationNotesDefault": "FR: Searching by keywords.",
+      "filtersTitle": "FR: Filters",
       "results": {
-        "users": "Profils",
-        "marketplaceItems": "Marché",
-        "forums": "Forums",
-        "agri_events": "Événements",
-        "knowledge_articles": "Centre de connaissances",
-        "vti_registry": "Rapports de traçabilité"
+        "users": "FR: Profiles",
+        "marketplaceItems": "FR: Marketplace",
+        "forums": "FR: Forums",
+        "agri_events": "FR: Events",
+        "knowledge_articles": "FR: Knowledge Hub",
+        "vti_registry": "FR: Traceability Reports"
       },
-      "noResults": "Aucun résultat trouvé",
-      "tryAgain": "Essayez une autre requête ou élargissez votre recherche."
+      "noResults": "FR: No results found",
+      "tryAgain": "FR: Try another query or broaden your search."
     }
   },
-  "ProfilePage": {
-    "editProfile": "Modifier le profil",
-    "showUniversalIdButton": "Afficher l'ID universel",
-    "universalIdModalTitle": "Votre ID universel",
-    "universalIdModalDescription": "Les autres utilisateurs peuvent scanner ce code pour voir rapidement votre profil public.",
-    "connect": "Connecter",
-    "message": "Message",
-    "invite": {
-      "title": "Inviter un collègue",
-      "description": "Aidez à développer le réseau en invitant d'autres personnes à rejoindre DamDoh.",
-      "explanation": "Envoyez une invitation à un collègue ou un partenaire pour rejoindre la plateforme DamDoh. Ils recevront un e-mail avec les instructions pour s'inscrire.",
-      "button": "Envoyer une invitation"
+  "AgriTechDashboard": {
+    "title": "FR: Agri-Tech Innovator Dashboard",
+    "sandboxTitle": "FR: Sandbox Environment",
+    "statusLabel": "FR: Status",
+    "lastResetLabel": "FR: Last Reset",
+    "accessDocsButton": "FR: Access API Docs",
+    "integrationsTitle": "FR: Active Integrations",
+    "activeProjects": "FR: {count, plural, =0 {active projects} =1 {1 active project} other {{count} active projects}}",
+    "integrationsDescription": "Your active projects integrated with DamDoh.",
+    "proposeIntegrationButton": "FR: Propose New Integration",
+    "apiKeysTitle": "FR: API Keys",
+    "apiKeysDescription": "Manage your API keys for accessing DamDoh services.",
+    "generateNewKeyButton": "FR: Generate New Key",
+    "table": {
+      "key": "FR: Key / Description",
+      "status": "FR: Status",
+      "environment": "FR: Environment",
+      "created": "FR: Created",
+      "actions": "FR: Actions"
     },
-    "invitePrompt": "Entrez l'adresse e-mail de la personne que vous souhaitez inviter :",
-    "inviteSuccessTitle": "Invitation envoyée !",
-    "inviteSuccessDescription": "Une invitation a été envoyée à {email}.",
-    "inviteErrorTitle": "Échec de l'envoi de l'invitation",
-    "tabs": {
-      "overview": "Aperçu",
-      "activity": "Activité"
+    "noApiKeys": "FR: You haven't generated any API keys yet.",
+    "apiKeyCopied": "FR: API Key copied to clipboard!",
+    "revokeDialog": {
+      "title": "FR: Are you sure you want to revoke this API key?",
+      "description": "FR: This action cannot be undone. Any applications using this key will immediately lose access.",
+      "cancel": "FR: Cancel",
+      "confirm": "FR: Yes, Revoke Key"
     },
-    "aboutTitle": "À propos de {displayName}",
-    "interestsTitle": "Domaines d'intérêt",
-    "engagementStats": "Statistiques d'engagement",
-    "profileViews": "Vues du profil",
-    "postLikes": "J'aime sur les publications",
-    "postComments": "Commentaires sur les publications",
-    "contactTitle": "Informations de contact",
-    "needsTitle": "Besoins et offres",
-    "recentActivityTitle": "Activité récente",
-    "noRecentActivity": "Cet utilisateur n'a aucune activité publique récente.",
-    "notFoundTitle": "Profil introuvable",
-    "notFoundDescription": "Le profil utilisateur que vous recherchez n'existe pas ou a été supprimé.",
-    "backToNetwork": "Retour au réseau"
+    "toast": {
+      "descriptionRequired": "FR: A description is required for a new key.",
+      "keyGeneratedSuccess": "FR: New API key generated successfully.",
+      "keyGeneratedError": "FR: Could not generate API key.",
+      "keyRevokedSuccess": "FR: API key revoked.",
+      "keyRevokedError": "FR: Could not revoke API key."
+    },
+    "generateButton": "FR: Generate"
   },
-  "Forums": {
-    "create": {
-      "backLink": "Retour aux forums",
-      "title": "Créer un nouveau sujet de forum",
-      "description": "Lancez une nouvelle conversation pour que la communauté puisse s'engager.",
-      "form": {
-        "nameLabel": "Nom du sujet",
-        "namePlaceholder": "ex: Meilleures pratiques pour la conservation de l'eau",
-        "descriptionLabel": "Description",
-        "descriptionPlaceholder": "Une courte description de ce dont il s'agit.",
-        "submitButton": "Créer le sujet",
-        "submittingButton": "Création en cours..."
-      },
-      "success": {
-        "title": "Sujet créé !",
-        "description": "Votre nouveau sujet est maintenant en ligne pour la discussion."
-      },
-      "errors": {
-        "auth": {
-          "title": "Authentification requise",
-          "description": "Vous devez être connecté pour créer un nouveau sujet."
-        },
-        "incomplete": {
-          "title": "Formulaire incomplet",
-          "description": "Veuillez fournir un nom et une description pour votre sujet."
-        },
-        "general": {
-          "title": "Erreur lors de la création du sujet",
-          "description": "Quelque chose s'est mal passé. Veuillez réessayer."
-        }
-      }
+  "AgroExportDashboard": {
+    "title": "FR: Agro-Export Dashboard",
+    "docsTitle": "FR: Pending Customs Documents",
+    "shipmentsTitle": "FR: Tracked Shipments",
+    "alertsTitle": "FR: Compliance Alerts",
+    "table": {
+      "destination": "FR: Destination"
     },
-    "topic": {
-      "backLink": "Retour à tous les forums",
-      "buttons": {
-        "createPost": "Créer une nouvelle publication",
-        "loadingMore": "Chargement...",
-        "loadMore": "Charger plus de publications"
-      },
-      "postMeta": "Par {author} le {date}",
-      "noPosts": {
-        "title": "Aucune publication pour l'instant",
-        "description": "Soyez le premier à lancer une conversation sur ce sujet.",
-        "button": "Créer la première publication"
-      },
-      "notFound": {
-        "title": "Sujet introuvable",
-        "description": "Désolé, le sujet que vous recherchez n'existe pas.",
-        "backButton": "Retourner aux forums"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "Erreur de chargement des publications",
-          "description": "Impossible de récupérer les publications pour ce sujet."
-        },
-        "loadTopic": {
-          "title": "Erreur de chargement du sujet",
-          "description": "Impossible de récupérer les détails de ce sujet."
-        }
-      }
+    "prepareDocsButton": "FR: Prepare Documents",
+    "readMore": "FR: Read More",
+    "noDocs": "FR: No pending customs documents.",
+    "noShipments": "FR: No active shipments to track.",
+    "noAlerts": "FR: No new compliance alerts."
+  },
+  "AgroTourismDashboard": {
+    "title": "FR: Agro-Tourism Dashboard",
+    "bookingsTitle": "FR: Upcoming Bookings",
+    "bookingsDescription": "FR: Your next guests and experiences.",
+    "experiencesTitle": "FR: Your Listed Experiences",
+    "experiencesDescription": "FR: Manage your agro-tourism offerings.",
+    "reviewsTitle": "FR: Guest Reviews",
+    "reviewsDescription": "FR: Recent feedback from your visitors.",
+    "table": {
+      "experience": "FR: Experience",
+      "guest": "FR: Guest",
+      "date": "FR: Date",
+      "action": "FR: Action",
+      "title": "FR: Title",
+      "status": "FR: Status",
+      "bookings": "FR: Bookings"
     },
-    "createPost": {
-      "backLink": "Retour au sujet",
-      "title": "Créer une nouvelle publication",
-      "description": "Partagez vos pensées, posez une question ou lancez une discussion.",
-      "form": {
-        "titleLabel": "Titre de la publication",
-        "titlePlaceholder": "Entrez un titre clair et concis",
-        "contentLabel": "Contenu",
-        "contentPlaceholder": "Écrivez le contenu de votre publication ici. Vous pouvez utiliser le markdown pour la mise en forme.",
-        "submitButton": "Soumettre la publication",
-        "submittingButton": "Soumission en cours..."
-      },
-      "aiHelper": {
-        "title": "Aide à la publication par IA",
-        "description": "Besoin d'un petit coup de pouce pour commencer ? Donnez à notre IA une idée, et elle rédigera une ébauche pour vous.",
-        "promptLabel": "Votre idée ou question",
-        "promptPlaceholder": "ex : 'Quelles sont les meilleures alternatives biologiques aux engrais azotés de synthèse ?' ou 'Partagez mon histoire de réussite en utilisant le KNF pour les manguiers.'",
-        "generateButton": "Générer une ébauche",
-        "generatingButton": "Génération en cours..."
-      },
-      "success": {
-        "title": "Publication créée !",
-        "description": "Votre publication a été ajoutée avec succès au forum.",
-        "aiDraft": {
-          "title": "Ébauche générée",
-          "description": "L'IA a créé une ébauche pour vous. N'hésitez pas à la modifier avant de la publier."
-        }
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "Idée requise",
-          "description": "Veuillez fournir une idée ou une question pour que l'IA puisse générer une ébauche."
-        },
-        "aiDraft": {
-          "title": "Échec de la génération",
-          "description": "L'IA n'a pas pu générer d'ébauche pour le moment. Veuillez réessayer plus tard."
-        },
-        "incomplete": {
-          "title": "Publication incomplète",
-          "description": "Veuillez fournir un titre et un contenu pour votre publication."
-        },
-        "general": {
-          "title": "Erreur lors de la création de la publication",
-          "description": "Quelque chose s'est mal passé. Veuillez réessayer."
-        }
-      }
+    "viewDetailsButton": "FR: View Details",
+    "manageButton": "FR: Manage",
+    "noBookings": "FR: No upcoming bookings.",
+    "noExperiences": "FR: You haven't listed any experiences yet.",
+    "noReviews": "FR: No guest reviews yet.",
+    "viewReviewButton": "FR: View",
+    "on": "FR: on"
+  },
+  "AgronomistDashboard": {
+    "title": "FR: Agronomist Dashboard",
+    "stats": {
+      "assignedFarmers": "FR: Assigned Farmers",
+      "farmersWithAlerts": "FR: Farmers with Alerts",
+      "pendingConsultations": "FR: Pending Consultations",
+      "knowledgeContributions": "FR: Knowledge Contributions"
     },
-    "postView": {
-      "backLink": "Retour à {topicName}",
-      "repliesTitle": "{count, plural, =0 {Aucune réponse} =1 {1 réponse} other {{count} réponses}}",
-      "noReplies": "Personne n'a encore répondu. Soyez le premier !",
-      "buttons": {
-        "loadingMore": "Chargement...",
-        "loadMore": "Charger plus de réponses"
+    "activeAlerts": "FR: Active Alerts",
+    "reportsToFile": "FR: Reports to File",
+    "tasksPending": "FR: Tasks Pending",
+    "consultations": {
+      "title": "FR: Consultation Requests",
+      "description": "FR: Respond to incoming requests from farmers.",
+      "table": {
+        "farmer": "FR: Farmer",
+        "issue": "FR: Issue Summary",
+        "action": "FR: Action"
       },
-      "reply": {
-        "title": "Votre réponse",
-        "placeholder": "Écrivez votre réponse ici...",
-        "submitButton": "Publier la réponse",
-        "submittingButton": "Publication...",
-        "success": "Réponse publiée !"
+      "viewButton": "FR: View",
+      "noRequests": "FR: No pending consultation requests."
+    },
+    "portfolio": {
+      "title": "FR: Farmer Portfolio",
+      "description": "FR: An overview of the farmers you manage.",
+      "table": {
+        "farmer": "FR: Farmer",
+        "location": "FR: Location",
+        "alerts": "FR: Alerts",
+        "action": "FR: Action"
       },
-      "notFound": {
-        "title": "Publication introuvable",
-        "description": "La publication que vous recherchez n'existe pas ou a été déplacée.",
-        "backButton": "Retourner au sujet"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "Erreur de chargement de la publication",
-          "description": "Impossible de récupérer les détails de la publication."
-        },
-        "loadReplies": {
-          "title": "Erreur de chargement des réponses",
-          "description": "Impossible de récupérer les réponses pour cette publication."
-        },
-        "submitReply": {
-          "title": "Erreur lors de la publication de la réponse",
-          "description": "Votre réponse n'a pas pu être enregistrée. Veuillez réessayer."
-        },
-        "emptyReply": "La réponse ne peut pas être vide."
-      }
+      "alertsLabel": "FR: Alerts",
+      "profileButton": "FR: Profile",
+      "noFarmers": "FR: No farmers have been assigned to your portfolio yet."
+    },
+    "contributions": {
+      "statusTitle": "FR: Contribution Status",
+      "title": "FR: Your Contributions to the Knowledge Hub",
+      "noData": "FR: No contribution data available.",
+      "noContributions": "FR: You have not made any contributions yet."
+    },
+    "noData": "FR: No dashboard data available.",
+    "lastVisit": "FR: Last Visit",
+    "issues": "FR: Issues",
+    "chart": {
+      "count": "FR: Count",
+      "published": "FR: Published",
+      "pending": "FR: Pending Review",
+      "draft": "FR: Draft"
     }
   },
-  "ErrorPage": {
-    "title": "Quelque chose s'est mal passé",
-    "description": "Désolé, mais une erreur inattendue s'est produite. Notre équipe a été notifiée.",
-    "tryAgainButton": "Réessayer",
-    "goHomeButton": "Aller à la page d'accueil"
+  "BuyerDashboard": {
+    "title": "FR: Buyer Dashboard",
+    "riskTitle": "FR: Supply Chain Risks",
+    "diversifySourcing": "FR: Diversify Sourcing",
+    "priceTitle": "FR: Market Price Insights",
+    "secureContracts": "FR: Secure Forward Contracts",
+    "sourcingTitle": "FR: Sourcing Recommendations",
+    "reliabilityScore": "FR: Reliability Score",
+    "findSuppliersButton": "FR: Find More Suppliers"
   },
-  "NotFoundPage": {
-    "title": "404 - Page non trouvée",
-    "description": "Désolé, nous n'avons pas pu trouver la page que vous recherchez.",
-    "goHomeButton": "Aller à la page d'accueil"
+  "CertificationBodyDashboard": {
+    "title": "FR: Certification Body Dashboard",
+    "auditsTitle": "FR: Pending Audits",
+    "auditsDescription": "FR: Upcoming audits that require your attention.",
+    "table": {
+      "farmName": "FR: Farm Name",
+      "standard": "FR: Standard",
+      "dueDate": "FR: Due Date",
+      "action": "FR: Action"
+    },
+    "reviewAuditButton": "FR: Review Audit",
+    "noPendingAudits": "FR: No pending audits at this time.",
+    "entitiesTitle": "FR: Status of Certified Entities",
+    "entitiesDescription": "FR: An overview of your certified entities.",
+    "noCertifiedEntities": "FR: No data for certified entities.",
+    "monitoringTitle": "FR: Standards Monitoring",
+    "monitoringDescription": "FR: Compliance rates for key standards.",
+    "alerts": "FR: Alerts",
+    "viewDetailsButton": "FR: View Details",
+    "noMonitoringData": "FR: No monitoring data available."
+  },
+  "CooperativeDashboard": {
+    "title": "FR: Cooperative Dashboard",
+    "membersTitle": "FR: Total Members",
+    "membersDescription": "FR: {count} active farmers in your cooperative.",
+    "landAreaTitle": "FR: Total Land Area",
+    "landAreaDescription": "FR: Hectares under cultivation.",
+    "pendingApplicationsTitle": "FR: Pending Applications",
+    "pendingApplicationsDescription": "FR: New farmers awaiting approval.",
+    "produceTitle": "FR: Available Aggregated Produce",
+    "produceDescription": "FR: A combined view of your members' ready-for-sale produce.",
+    "table": {
+      "product": "FR: Product",
+      "quantity": "FR: Quantity (Tons)",
+      "quality": "FR: Quality",
+      "readyBy": "FR: Ready By",
+      "action": "FR: Action"
+    },
+    "createListingButton": "FR: Create Listing",
+    "noProduce": "FR: No aggregated produce to list.",
+    "aggregateButton": "FR: Aggregate New Produce"
+  },
+  "CrowdfunderDashboard": {
+    "title": "FR: Crowdfunder Dashboard",
+    "totalInvested": "FR: Total Invested",
+    "numberOfInvestments": "FR: Number of Investments",
+    "estimatedReturns": "FR: Estimated Returns",
+    "opportunitiesTitle": "FR: Recommended Opportunities",
+    "viewButton": "FR: View",
+    "raisedOf": "FR: raised of",
+    "goal": "FR: goal",
+    "noOpportunities": "FR: No new investment opportunities match your profile.",
+    "transactionsTitle": "FR: Recent Transactions",
+    "table": {
+      "project": "FR: Project",
+      "amount": "FR: Amount"
+    },
+    "investment": "FR: Investment",
+    "payout": "FR: Payout",
+    "on": "FR: on",
+    "noTransactions": "FR: No recent transactions."
+  },
+  "EnergyProviderDashboard": {
+    "title": "FR: Energy Provider Dashboard",
+    "leadsTitle": "FR: Project Leads",
+    "leadsCount": "FR: {count, plural, =0 {leads} =1 {1 lead} other {{count} leads}}",
+    "newLeadsDescription": "FR: new leads require attention.",
+    "projectsTitle": "FR: Active Projects",
+    "activeProjectsCount": "FR: {count, plural, =0 {projects} =1 {1 project} other {{count} projects}}",
+    "projectsCompleted": "FR: projects completed.",
+    "impactTitle": "FR: Cumulative Impact",
+    "impactDescription": "FR: The total estimated impact of your projects.",
+    "carbonReduction": "FR: tCO2e/year reduced from {count} installations.",
+    "accessDocsButton": "FR: Access API Docs",
+    "proposeIntegrationButton": "FR: Propose New Integration",
+    "leadsTableTitle": "FR: Project Pipeline",
+    "leadsTableDescription": "FR: Track your leads from initial contact to project completion.",
+    "table": {
+      "entity": "FR: Entity",
+      "location": "FR: Location",
+      "energyNeed": "FR: Estimated Need",
+      "status": "FR: Status",
+      "action": "FR: Action"
+    },
+    "viewLeadButton": "FR: View Lead",
+    "noLeads": "FR: No active project leads.",
+    "statusLabels": {
+      "new": "FR: New",
+      "contacted": "FR: Contacted",
+      "proposal_sent": "FR: Proposal Sent",
+      "closed": "FR: Closed"
+    }
+  },
+  "EquipmentSupplierDashboard": {
+    "title": "FR: Equipment Supplier Dashboard",
+    "ordersTitle": "FR: Rentals & Sales",
+    "ordersDescription": "FR: {count} active orders",
+    "manageOrdersButton": "FR: Manage Orders",
+    "listedEquipmentTitle": "FR: Your Listed Equipment",
+    "table": {
+      "name": "FR: Name",
+      "type": "FR: Type",
+      "status": "FR: Status",
+      "action": "FR: Action"
+    },
+    "status": {
+      "available": "FR: Available",
+      "rentedout": "FR: Rented Out"
+    },
+    "manageButton": "FR: Manage",
+    "noEquipment": "FR: No equipment listed yet.",
+    "listEquipmentButton": "FR: List New Equipment",
+    "maintenanceTitle": "FR: Maintenance Requests",
+    "viewRequestButton": "FR: View Request",
+    "noMaintenance": "FR: No pending maintenance requests."
+  },
+  "FiDashboard": {
+    "title": "FR: Financial Institution Dashboard",
+    "pendingApplicationsTitle": "FR: Pending Applications",
+    "pendingApplicationsDescription": "FR: applications require your review.",
+    "manageApplicationsButton": "FR: Manage Applications",
+    "portfolioAtRiskTitle": "FR: Portfolio at Risk",
+    "portfolioAtRiskDescription": "FR: {count} loans with high-risk alerts.",
+    "reviewRiskButton": "FR: Review Risk",
+    "manageProductsTitle": "FR: Financial Products",
+    "manageProductsDescription": "FR: Active loan and grant products.",
+    "manageProductsButton": "FR: Manage Products",
+    "table": {
+      "applicant": "FR: Applicant",
+      "type": "FR: Type",
+      "amount": "FR: Amount",
+      "riskScore": "FR: Risk Score",
+      "action": "FR: Action"
+    },
+    "reviewButton": "FR: Review",
+    "noApplications": "FR: No pending applications to review.",
+    "viewAllButton": "FR: View All Applications"
+  },
+  "FieldAgentDashboard": {
+    "title": "FR: Field Agent Dashboard",
+    "portfolioHealthTitle": "FR: Portfolio Health",
+    "activeAlerts": "FR: Active Alerts",
+    "pendingReportsTitle": "FR: Pending Reports",
+    "reportsToFile": "FR: reports to file.",
+    "dataVerificationTitle": "FR: Data Verification",
+    "tasksPending": "FR: tasks pending.",
+    "assignedFarmersTitle": "FR: Assigned Farmers",
+    "farmersInPortfolio": "FR: farmers in portfolio.",
+    "portfolioTitle": "FR: Farmer Portfolio",
+    "lastVisit": "FR: Last Visit",
+    "issues": "FR: Issues",
+    "viewFarmerButton": "FR: View Farmer",
+    "noFarmersAssigned": "FR: No farmers have been assigned to your portfolio yet."
+  },
+  "InputSupplierDashboard": {
+    "title": "FR: Input Supplier Dashboard",
+    "ordersTitle": "FR: Active Orders",
+    "totalValue": "FR: total value",
+    "manageOrdersButton": "FR: Manage Orders",
+    "forecastTitle": "FR: Demand Forecast",
+    "in": "FR: in",
+    "noForecast": "FR: No demand forecast data available.",
+    "performanceTitle": "FR: Product Performance",
+    "viewReviewsButton": "FR: View Reviews",
+    "noFeedback": "FR: No product feedback yet.",
+    "promotionsTitle": "FR: Marketing & Promotions",
+    "promotionsDescription": "FR: Create and manage coupons to boost your sales.",
+    "manageCouponsButton": "FR: Manage Coupons"
+  },
+  "InsuranceProviderDashboard": {
+    "title": "FR: Insurance Provider Dashboard",
+    "claimsTitle": "FR: Pending Claims",
+    "claimsDescription": "FR: Review and process new claims from policyholders.",
+    "table": {
+      "policyHolder": "FR: Policy Holder",
+      "policyType": "FR: Policy Type",
+      "claimDate": "FR: Claim Date",
+      "status": "FR: Status",
+      "action": "FR: Action"
+    },
+    "reviewClaimButton": "FR: Review Claim",
+    "noPendingClaims": "FR: No pending claims at this time.",
+    "riskAlertsTitle": "FR: Risk Assessment Alerts",
+    "riskAlertsDescription": "FR: Proactive alerts for high-risk policies based on real-time data.",
+    "alert": "FR: Alert",
+    "severity": "FR: Severity",
+    "investigateButton": "FR: Investigate",
+    "noRiskAlerts": "FR: No high-risk alerts at this time.",
+    "activePoliciesTitle": "FR: Active Policies Overview",
+    "activePoliciesDescription": "FR: An overview of your active insurance policies.",
+    "coverage": "FR: Coverage",
+    "expires": "FR: Expires",
+    "noActivePolicies": "FR: No active policies found."
+  },
+  "LogisticsDashboard": {
+    "title": "FR: Logistics Dashboard",
+    "performanceTitle": "FR: Performance",
+    "onTimeDelivery": "FR: On-time delivery rate",
+    "viewReportButton": "FR: View Full Report",
+    "activeShipmentsTitle": "FR: Active Shipments",
+    "to": "FR: to",
+    "trackButton": "FR: Track",
+    "noActiveShipments": "FR: No active shipments.",
+    "incomingJobsTitle": "FR: Incoming Jobs",
+    "from": "FR: from",
+    "acceptJobButton": "FR: Accept Job",
+    "noIncomingJobs": "FR: No new jobs."
+  },
+  "OperationsDashboard": {
+    "title": "FR: Platform Operations Dashboard",
+    "vtiRateTitle": "FR: VTI Creation Rate",
+    "pipelineStatusTitle": "FR: Data Pipeline Status",
+    "lastCheck": "FR: Last checked",
+    "flaggedEventsTitle": "FR: Flagged Traceability Events",
+    "viewVtiButton": "FR: View VTI",
+    "noFlaggedEvents": "FR: No flagged events to review."
+  },
+  "PackagingSupplierDashboard": {
+    "title": "FR: Packaging Supplier Dashboard",
+    "ordersTitle": "FR: Incoming Orders",
+    "table": {
+      "customer": "FR: Customer",
+      "product": "FR: Product",
+      "quantity": "FR: Quantity",
+      "status": "FR: Status",
+      "action": "FR: Action"
+    },
+    "viewOrderButton": "FR: View Order",
+    "noOrders": "FR: No new orders.",
+    "inventoryTitle": "FR: Inventory Status",
+    "inStock": "FR: in stock",
+    "reorderLevel": "FR: reorder level",
+    "lowStock": "FR: Low Stock",
+    "noInventory": "FR: No inventory data.",
+    "listProductButton": "FR: List New Product"
+  },
+  "ProcessingUnitDashboard": {
+    "title": "FR: Processing Unit Dashboard",
+    "yieldTitle": "FR: Yield Optimization",
+    "potential": "FR: potential",
+    "wasteTitle": "FR: Waste Reduction",
+    "rawMaterialTitle": "FR: Raw Material Inventory",
+    "table": {
+      "product": "FR: Product",
+      "quality": "FR: Quality",
+      "quantity": "FR: Quantity (Tons)",
+      "supplier": "FR: Supplier",
+      "deliveryDate": "FR: Delivery Date",
+      "status": "FR: Status",
+      "action": "FR: Action"
+    },
+    "noInventoryData": "FR: No raw material inventory data.",
+    "packagingOrdersTitle": "FR: Packaging Orders",
+    "noPackagingOrders": "FR: No active packaging orders.",
+    "viewButton": "FR: View",
+    "packagingInventoryTitle": "FR: Packaging Inventory",
+    "inStock": "FR: in stock",
+    "reorderLevel": "FR: reorder level",
+    "noPackagingData": "FR: No packaging inventory data.",
+    "sourcePackagingButton": "FR: Source Packaging"
+  },
+  "QaDashboard": {
+    "title": "FR: Quality Assurance Dashboard",
+    "inspectionsTitle": "FR: Pending Inspections",
+    "inspectionsDescription": "FR: Batches awaiting quality inspection and verification.",
+    "table": {
+      "batchId": "FR: Batch ID",
+      "product": "FR: Product",
+      "seller": "FR: Seller",
+      "dueDate": "FR: Due Date",
+      "action": "FR: Action",
+      "result": "FR: Result",
+      "reason": "FR: Reason",
+      "inspectedAt": "FR: Inspected At"
+    },
+    "performInspectionButton": "FR: Perform Inspection",
+    "noPendingInspections": "FR: No pending inspections at this time.",
+    "resultsTitle": "FR: Recent Quality Issues",
+    "resultsDescription": "FR: The latest flagged quality issues that may require action.",
+    "noRecentIssues": "FR: No recent quality issues logged.",
+    "metricsTitle": "FR: Quality Metrics",
+    "metricsDescription": "FR: Overall quality performance across the platform.",
+    "passRate": "FR: Pass rate",
+    "averageScore": "FR: Average score",
+    "noMetrics": "FR: No quality metrics available yet."
+  },
+  "RegulatorDashboard": {
+    "title": "FR: Regulator Dashboard",
+    "pendingCertificationsTitle": "FR: Pending Certifications",
+    "reviewsOutstanding": "FR: reviews outstanding.",
+    "reviewAllButton": "FR: Review All",
+    "riskAlertsTitle": "FR: Compliance Risk Alerts",
+    "investigateButton": "FR: Investigate",
+    "noComplianceAlerts": "FR: No active compliance alerts.",
+    "anomaliesTitle": "FR: Supply Chain Anomalies",
+    "trackVtiButton": "FR: Track VTI",
+    "noAnomalies": "FR: No supply chain anomalies detected."
+  },
+  "ResearcherDashboard": {
+    "title": "FR: Researcher Dashboard",
+    "datasetsTitle": "FR: Available Datasets",
+    "datasetsDescription": "FR: Anonymized datasets available for research purposes.",
+    "table": {
+      "name": "FR: Name",
+      "dataType": "FR: Data Type",
+      "accessLevel": "FR: Access Level",
+      "action": "FR: Action",
+      "title": "FR: Title",
+      "progress": "FR: Progress",
+      "collaborators": "FR: Collaborators",
+      "status": "FR: Status"
+    },
+    "requestAccessButton": "FR: Request Access",
+    "noDatasets": "FR: No datasets are currently available.",
+    "projectsTitle": "FR: Ongoing Projects",
+    "projectsDescription": "FR: Your active research projects on the platform.",
+    "viewProjectButton": "FR: View Project",
+    "noProjects": "FR: You are not involved in any ongoing projects.",
+    "contributionsTitle": "FR: Contributions to Knowledge Hub",
+    "contributionsDescription": "FR: Your submitted articles and research papers.",
+    "viewButton": "FR: View",
+    "noContributions": "FR: You have not submitted any contributions yet.",
+    "chart": {
+      "count": "FR: Count",
+      "published": "FR: Published",
+      "pending": "FR: Pending Review",
+      "draft": "FR: Draft"
+    },
+    "noData": "FR: No dashboard data available."
+  },
+  "WasteManagementDashboard": {
+    "title": "FR: Waste Management Dashboard",
+    "wasteStreamsTitle": "FR: Incoming Waste Streams",
+    "from": "FR: from",
+    "acceptButton": "FR: Accept",
+    "noWasteStreams": "FR: No new incoming waste streams.",
+    "compostBatchesTitle": "FR: Compost Batches",
+    "batch": "FR: Batch",
+    "estReady": "FR: Est. Ready",
+    "noCompostBatches": "FR: No active compost batches.",
+    "inventoryTitle": "FR: Finished Product Inventory",
+    "inStock": "FR: in stock",
+    "noFinishedProducts": "FR: No finished products in stock.",
+    "sellButton": "FR: Sell on Marketplace"
+  },
+  "FeedItemCard": {
+    "signInToLikeToast": "FR: You must be signed in to like a post.",
+    "repostPlaceholderToast": "FR: Repost feature coming soon!",
+    "signInToVoteToast": "FR: You must be signed in to vote.",
+    "voteSuccessToast": "FR: Your vote has been counted!",
+    "voteErrorToast": "FR: Could not save vote.",
+    "editPost": "FR: Edit Post",
+    "deletePost": "FR: Delete Post",
+    "like": "FR: Like",
+    "comment": "FR: Comment",
+    "repost": "FR: Repost",
+    "likes": "FR: {count, plural, =0 {likes} =1 {like} other {{count} likes}}",
+    "comments": "FR: {count, plural, =0 {comments} =1 {comment} other {{count} comments}}",
+    "loadCommentsErrorToast": "FR: Could not load comments.",
+    "noComments": "FR: Be the first to comment!",
+    "loadingComments": "FR: Loading comments...",
+    "loadMoreComments": "FR: Load more comments",
+    "writeCommentPlaceholder": "FR: Add a comment...",
+    "postButton": "FR: Post",
+    "votes": "FR: {count, plural, =0 {votes} =1 {vote} other {{count} votes}}"
+  },
+  "CreatePostModal": {
+    "title": "FR: Create a new post",
+    "description": "FR: Share an update, ask a question, or start a conversation with the community.",
+    "yourName": "FR: Your Name",
+    "shareUpdate": "FR: Share an update",
+    "placeholder": "FR: What's on your mind?",
+    "selectedFile": "FR: Selected file:",
+    "pollOptionsLabel": "FR: Poll Options",
+    "pollOptionPlaceholder": "FR: Option {index}",
+    "addOptionButton": "FR: Add Option",
+    "pollNote": "FR: A maximum of {maxOptions} options are allowed.",
+    "photoVideo": "FR: Photo/Video",
+    "agriEvent": "FR: Agri-Event",
+    "shareDocumentButton": "FR: Share Document",
+    "createPollButton": "FR: Create Poll",
+    "postButton": "FR: Post",
+    "pollOptionsError": "FR: A poll must have at least 2 non-empty options.",
+    "emptyPostError": "FR: Your post cannot be empty."
   },
   "formErrors": {
     "createMarketplaceCoupon": {
       "code": {
-        "min": "Le code doit comporter au moins 4 caractères.",
-        "max": "Le code ne peut pas dépasser 20 caractères.",
-        "regex": "Le code ne peut contenir que des lettres et des chiffres."
+        "min": "FR: Code must be at least 4 characters.",
+        "max": "FR: Code must be no more than 20 characters.",
+        "regex": "FR: Code must be alphanumeric."
       },
       "discountType": {
-        "required": "Veuillez sélectionner un type de réduction."
+        "required": "FR: Please select a discount type."
       },
       "discountValue": {
-        "invalid": "Veuillez entrer un nombre valide.",
-        "positive": "La valeur de la réduction doit être positive.",
-        "percentageMax": "La réduction en pourcentage ne peut pas dépasser 100."
+        "invalid": "FR: Discount value must be a number.",
+        "positive": "FR: Discount value must be positive.",
+        "percentageMax": "FR: Percentage discount cannot exceed 100."
       },
       "usageLimit": {
-        "positive": "La limite d'utilisation doit être un entier positif."
+        "positive": "FR: Usage limit must be a positive integer."
       }
     }
+  },
+  "CropRotationSuggester": {
+    "title": "FR: AI Crop Rotation Suggester",
+    "description": "FR: Get AI-powered suggestions for your next crop to improve soil health and break pest cycles.",
+    "buttonText": "FR: Get Rotation Suggestion",
+    "loadingText": "FR: Analyzing field history...",
+    "error": "FR: Could not get a suggestion at this time. Please try again.",
+    "noSuggestions": "FR: The AI could not generate a specific suggestion based on the history provided.",
+    "regenerateButton": "FR: Regenerate Suggestion"
+  },
+  "networkPage": {
+    "title": "FR: Network",
+    "description": "FR: Discover and connect with stakeholders across the agricultural supply chain.",
+    "myNetworkButton": "FR: My Network",
+    "agentToolsButton": "FR: Agent Tools",
+    "aiSuggestionsTitle": "FR: AI Suggestions",
+    "aiSuggestionsDescription": "FR: Connect with people you may know based on your profile and activity.",
+    "toast": {
+      "errorTitle": "FR: Error",
+      "loadError": "FR: Could not load network data.",
+      "connectError": "FR: Could not send connection request."
+    },
+    "following": "FR: Following",
+    "follow": "FR: Follow",
+    "connect": "FR: Connect",
+    "profile": "FR: Profile",
+    "noSuggestions": "FR: No new suggestions right now. Check back later!",
+    "browseAllTitle": "FR: Browse All Stakeholders",
+    "browseAllDescription": "FR: Find and connect with new partners in the supply chain.",
+    "searchPlaceholder": "FR: Search by name or summary...",
+    "locationPlaceholder": "FR: Search by location...",
+    "rolePlaceholder": "FR: Filter by role",
+    "allRoles": "FR: All Roles",
+    "noStakeholdersFound": "FR: No stakeholders found.",
+    "noStakeholdersHint": "FR: Try adjusting your search filters."
   }
 }

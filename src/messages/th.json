@@ -1,1375 +1,1980 @@
-
 {
-  "common": {
-    "error": "ข้อผิดพลาด",
-    "success": "สำเร็จ",
-    "loading": "กำลังโหลด...",
-    "noData": "ไม่มีข้อมูล",
-    "save": "บันทึก",
-    "cancel": "ยกเลิก",
-    "viewDetails": "ดูรายละเอียด",
-    "edit": "แก้ไข",
-    "delete": "ลบ",
-    "back": "กลับ",
-    "submit": "ส่ง",
-    "yes": "ใช่",
-    "no": "ไม่",
-    "confirm": "ยืนยัน",
-    "close": "ปิด",
-    "optional": "ไม่บังคับ"
-  },
-  "constants": {
-    "stakeholderRoles": {
-      "Farmer": "เกษตรกร",
-      "AgriculturalCooperative": "สหกรณ์การเกษตร",
-      "FieldAgentAgronomistDamDohInternal": "เจ้าหน้าที่ภาคสนาม/นักปฐพีวิทยา (ภายใน DamDoh)",
-      "OperationsLogisticsTeamDamDohInternal": "ทีมปฏิบัติการ/โลจิสติกส์ (ภายใน DamDoh)",
-      "QualityAssuranceTeamDamDohInternal": "ทีมประกันคุณภาพ (ภายใน DamDoh)",
-      "ProcessingPackagingUnit": "หน่วยแปรรูปและบรรจุภัณฑ์",
-      "BuyerRestaurantSupermarketExporter": "ผู้ซื้อ (ร้านอาหาร, ซูเปอร์มาร์เก็ต, ผู้ส่งออก)",
-      "InputSupplierSeedFertilizerPesticide": "ผู้จัดหาปัจจัยการผลิต (เมล็ดพันธุ์, ปุ๋ย, ยาฆ่าแมลง)",
-      "EquipmentSupplierSalesofMachineryIoT": "ผู้จัดหาอุปกรณ์ (ขายเครื่องจักร/IoT)",
-      "FinancialInstitutionMicrofinanceLoans": "สถาบันการเงิน (ไมโครไฟแนนซ์/สินเชื่อ)",
-      "GovernmentRegulatorAuditor": "หน่วยงานกำกับดูแล/ผู้ตรวจสอบภาครัฐ",
-      "CertificationBodyOrganicFairTradeetc": "หน่วยงานรับรอง (เกษตรอินทรีย์, การค้าที่เป็นธรรม ฯลฯ)",
-      "Consumer": "ผู้บริโภค",
-      "ResearcherAcademic": "นักวิจัย/นักวิชาการ",
-      "LogisticsPartnerThirdPartyTransporter": "พันธมิตรด้านโลจิสติกส์ (ผู้ขนส่งบุคคลที่สาม)",
-      "StorageWarehouseFacility": "สถานที่จัดเก็บ/คลังสินค้า",
-      "AgronomyExpertConsultantExternal": "ผู้เชี่ยวชาญ/ที่ปรึกษาด้านปฐพีวิทยา (ภายนอก)",
-      "AgroTourismOperator": "ผู้ประกอบการท่องเที่ยวเชิงเกษตร",
-      "EnergySolutionsProviderSolarBiogas": "ผู้ให้บริการโซลูชั่นพลังงาน (โซลาร์, ก๊าซชีวภาพ)",
-      "AgroExportFacilitatorCustomsBroker": "ผู้ส่งเสริมการส่งออกสินค้าเกษตร/นายหน้าศุลกากร",
-      "AgriTechInnovatorDeveloper": "นักนวัตกรรม/นักพัฒนาเทคโนโลยีการเกษตร",
-      "WasteManagementCompostFacility": "สถานที่จัดการของเสียและปุ๋ยหมัก",
-      "CrowdfunderImpactInvestorIndividual": "ผู้ระดมทุน (นักลงทุนเพื่อผลกระทบ, บุคคลทั่วไป)",
-      "InsuranceProvider": "ผู้ให้บริการประกันภัย",
-      "PackagingSupplier": "ผู้จัดหาบรรจุภัณฑ์"
+  "MobileHomepage": {
+    "welcome": {
+      "morning": "TH: Good Morning, {name}",
+      "afternoon": "TH: Good Afternoon, {name}",
+      "evening": "TH: Good Evening, {name}"
     },
-    "listingTypes": {
-      "All": "ทุกประเภท",
-      "Product": "สินค้า",
-      "Service": "บริการ"
-    },
-    "agriEventTypes": {
-      "All": "ทุกประเภท",
-      "Conference": "การประชุม",
-      "Webinar": "สัมมนาออนไลน์",
-      "Workshop": "เวิร์คช็อป",
-      "TradeShow": "งานแสดงสินค้า",
-      "FieldDay": "วันสาธิต",
-      "NetworkingEvent": "กิจกรรมสร้างเครือข่าย",
-      "OnlineCourseLaunch": "เปิดตัวคอร์สออนไลน์",
-      "PolicyBriefing": "บรรยายสรุปนโยบาย"
-    },
-    "insuranceProductTypes": {
-      "Crop": "ประกันภัยพืชผล",
-      "Livestock": "ประกันภัยปศุสัตว์",
-      "Asset": "ประกันภัยทรัพย์สิน",
-      "Weather": "อิงตามสภาพอากาศ (พาราเมตริก)"
-    },
-    "financialServiceTypes": {},
-    "cropStages": {
-      "Planting": "การเพาะปลูก",
-      "Vegetative": "ระยะเจริญเติบโต",
-      "Flowering": "ระยะออกดอก",
-      "Fruiting": "ระยะติดผล",
-      "Harvesting": "การเก็บเกี่ยว",
-      "Post-Harvest": "หลังการเก็บเกี่ยว"
-    },
-    "observationTypes": {
-      "GeneralNote": "บันทึกทั่วไป",
-      "PestSighting": "การพบเห็นศัตรูพืช",
-      "DiseaseSighting": "การพบเห็นโรค",
-      "SoilCondition": "สภาพดิน",
-      "WeatherEvent": "เหตุการณ์สภาพอากาศ",
-      "GrowthStageChange": "การเปลี่ยนแปลงระยะการเจริญเติบโต",
-      "IrrigationEvent": "กิจกรรมการให้น้ำ"
-    },
-    "mobileHomeCategories": {
-      "produceMarket": "ตลาดผลผลิต",
-      "farmInputs": "ปัจจัยการผลิต",
-      "talentExchange": "ตลาดนัดแรงงาน",
-      "machinery": "เครื่องจักร",
-      "community": "ชุมชน",
-      "aiAssistant": "ผู้ช่วย AI",
-      "events": "กิจกรรม"
-    }
+    "discoverTitle": "TH: Discover",
+    "seeAllButton": "TH: See All",
+    "communityFeedTitle": "TH: Community Feed",
+    "communityFeedDescription": "TH: Connect with others, share your knowledge, and stay up-to-date with the latest conversations.",
+    "goToFeedButton": "TH: Go to Feed",
+    "noRecommendations": "TH: No recommendations available right now. Explore the marketplace to get started!"
   },
   "LandingPage": {
     "hero": {
-      "title": "เสริมสร้างศักยภาพการเกษตรตั้งแต่ดินถึงการขายบน {appName}",
-      "subtitle": "แพลตฟอร์มเดียวที่เชื่อมโยงผู้มีส่วนได้ส่วนเสียทุกคนในห่วงโซ่คุณค่าทางการเกษตรเพื่ออนาคตที่โปร่งใส มีประสิทธิภาพ และยั่งยืนมากขึ้น",
-      "getStartedButton": "เริ่มต้นฟรี",
-      "learnMoreButton": "เรียนรู้เพิ่มเติม"
+      "title": "TH: Empowering Agriculture from Soil to Sale on DamDoh",
+      "subtitle": "TH: The single platform connecting every stakeholder in the agricultural value chain for a more transparent, efficient, and sustainable future.",
+      "getStartedButton": "TH: Get Started for Free",
+      "learnMoreButton": "TH: Learn More"
     },
     "features": {
-      "title": "คุณสมบัติหลักของ DamDoh",
-      "subtitle": "ทุกสิ่งที่คุณต้องการเพื่อการเติบโต เชื่อมต่อ และค้าขาย ทั้งหมดในที่เดียว",
+      "title": "DamDoh's Main Features",
+      "subtitle": "TH: Everything you need to grow, connect, and trade, all in one place.",
       "networking": {
-        "title": "เครือข่ายอัจฉริยะ",
-        "description": "คำแนะนำการเชื่อมต่อที่ขับเคลื่อนด้วย AI เพื่อเชื่อมโยงคุณกับพันธมิตรที่เหมาะสม ตั้งแต่ซัพพลายเออร์ไปจนถึงผู้ซื้อจากต่างประเทศ"
+        "title": "TH: Intelligent Networking",
+        "description": "TH: AI-powered connection suggestions to link you with the right partners, from suppliers to international buyers."
       },
       "marketplace": {
-        "title": "ตลาดโดยตรง",
-        "description": "ซื้อและขายสินค้าและบริการโดยตรง เพิ่มความโปร่งใสและผลกำไรให้กับผู้มีส่วนได้ส่วนเสียทุกคน"
+        "title": "TH: Direct Marketplace",
+        "description": "TH: Buy and sell products and services directly, increasing transparency and profitability for all stakeholders."
       },
       "forums": {
-        "title": "ฟอรัมตามหัวข้อ",
-        "description": "แบ่งปันความรู้ อภิปรายเกี่ยวกับความท้าทาย และร่วมมือกันหาแนวทางแก้ไขในฟอรัมเฉพาะเรื่อง"
+        "title": "TH: Topical Forums",
+        "description": "TH: Share knowledge, discuss challenges, and collaborate on solutions in topic-specific forums."
       },
       "talent": {
-        "title": "ตลาดนัดแรงงาน",
-        "description": "เสนอหรือค้นหาบริการทางการเกษตรเฉพาะทาง ตั้งแต่การเก็บเกี่ยวตามความต้องการไปจนถึงการสำรวจด้วยโดรน"
+        "title": "TH: Talent Exchange",
+        "description": "TH: Offer or find specialized agricultural services, from on-demand harvesting to drone surveys."
       }
     },
     "forWho": {
-      "badge": "สำหรับทุกคนในภาคเกษตรกรรม",
-      "title": "แพลตฟอร์มเดียวสำหรับห่วงโซ่คุณค่าทั้งหมด",
-      "description": "DamDoh ได้รับการออกแบบมาโดยเฉพาะเพื่อให้บริการระบบนิเวศทางการเกษตรทั้งหมด สร้างจุดศูนย์กลางของความจริงและโอกาสสำหรับทุกคน",
+      "badge": "TH: For Everyone in Agriculture",
+      "title": "TH: One Platform for the Entire Value Chain",
+      "description": "DamDoh is uniquely designed to serve the entire agricultural ecosystem, creating a single point of truth and opportunity for all.",
       "farmers": {
-        "title": "เกษตรกร",
-        "description": "เข้าถึงตลาดที่ดีขึ้น ค้นหาปัจจัยการผลิตที่มีคุณภาพ และรับคำแนะนำจากผู้เชี่ยวชาญเพื่อเพิ่มผลผลิตและผลกำไร"
+        "title": "TH: Farmers",
+        "description": "TH: Access better markets, find quality inputs, and get expert advice to increase yield and profitability."
       },
       "buyers": {
-        "title": "ผู้ซื้อและผู้แปรรูป",
-        "description": "จัดหาผลผลิตคุณภาพสูงที่ตรวจสอบย้อนกลับได้โดยตรงจากผู้ปลูกและสหกรณ์ เพื่อให้มั่นใจในความน่าเชื่อถือของห่วงโซ่คุณค่า"
+        "title": "TH: Buyers & Processors",
+        "description": "TH: Source high-quality, traceable produce directly from growers and co-ops, ensuring supply chain reliability."
       },
       "experts": {
-        "title": "ผู้เชี่ยวชาญและผู้ให้บริการ",
-        "description": "เสนอทักษะและบริการเฉพาะทางของคุณแก่ผู้ชมทางการเกษตรในวงกว้างที่กำลังมองหาความเชี่ยวชาญของคุณ"
+        "title": "TH: Experts & Service Providers",
+        "description": "TH: Offer your specialized skills and services to a wide agricultural audience seeking your expertise."
       },
-      "fis": {
-        "title": "สถาบันการเงิน",
-        "description": "ให้สินเชื่อ เงินช่วยเหลือ และผลิตภัณฑ์ประกันภัยที่ตรงเป้าหมายแก่เครือข่ายธุรกิจการเกษตรที่ได้รับการยืนยันแล้ว"
-      },
-      "imageAlt": "กลุ่มผู้มีส่วนได้ส่วนเสียทางการเกษตรที่หลากหลายกำลังทำงานร่วมกัน"
+      "imageAlt": "TH: A diverse group of agricultural stakeholders collaborating"
     },
     "cta": {
-      "title": "เข้าร่วมการปฏิวัติทางการเกษตร",
-      "subtitle": "ลงทะเบียนวันนี้และเป็นส่วนหนึ่งของเครือข่ายระดับโลกที่กำลังเติบโตซึ่งอุทิศตนเพื่อเปลี่ยนแปลงอนาคตของอาหาร",
-      "button": "สร้างบัญชีฟรีของคุณ"
+      "title": "TH: Join the Agricultural Revolution",
+      "subtitle": "TH: Sign up today and become part of a growing global network dedicated to transforming the future of food.",
+      "button": "TH: Create Your Free Account"
     }
   },
   "Auth": {
-    "signInWelcome": "ยินดีต้อนรับกลับสู่ {appName}",
-    "signUpWelcome": "เข้าร่วมเครือข่ายเกษตรกรรม DamDoh",
-    "forgotPasswordResetPrompt": "รีเซ็ตรหัสผ่านของคุณสำหรับ {appName}",
-    "resetPasswordPrompt": "สร้างรหัสผ่านใหม่สำหรับ {appName}",
-    "signInTitle": "ลงชื่อเข้าใช้บัญชีของคุณ",
-    "signInDescription": "ป้อนข้อมูลประจำตัวของคุณเพื่อเข้าสู่แดชบอร์ด",
-    "emailLabel": "อีเมล",
-    "emailPlaceholder": "you@example.com",
-    "passwordLabel": "รหัสผ่าน",
-    "forgotPasswordLink": "ลืมรหัสผ่าน?",
-    "signingInButton": "กำลังลงชื่อเข้าใช้...",
-    "signInButton": "ลงชื่อเข้าใช้",
-    "noAccountPrompt": "ยังไม่มีบัญชี?",
-    "signUpLink": "ลงทะเบียน",
-    "signInLink": "ลงชื่อเข้าใช้",
-    "recoverWithUniversalIdPrompt": "หรือกู้คืนการเข้าถึงด้วย ID สากลของคุณ",
-    "signUpTitle": "สร้างบัญชีใหม่",
-    "signUpDescription": "บอกเราเกี่ยวกับตัวคุณสักเล็กน้อยเพื่อเริ่มต้น",
-    "nameLabel": "ชื่อของคุณหรือชื่อธุรกิจ",
-    "namePlaceholder": "เช่น สมชาย ใจดี หรือ ฟาร์มรุ่งเรือง",
-    "roleLabel": "บทบาทหลักของคุณ",
-    "rolePlaceholder": "เลือกบทบาทของคุณในห่วงโซ่คุณค่า...",
-    "confirmPasswordLabel": "ยืนยันรหัสผ่าน",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "กำลังสร้างบัญชี...",
-    "signUpButton": "สร้างบัญชี",
-    "alreadyHaveAccountPrompt": "มีบัญชีอยู่แล้ว?",
-    "forgotPasswordTitle": "ลืมรหัสผ่าน?",
-    "forgotPasswordDescription": "ไม่มีปัญหา ป้อนที่อยู่อีเมลของคุณด้านล่าง แล้วเราจะส่งลิงก์เพื่อรีเซ็ตให้คุณ",
-    "sendResetLinkButton": "ส่งลิงก์รีเซ็ต",
-    "sendingEmailButton": "กำลังส่งอีเมล...",
-    "rememberPasswordPrompt": "จำรหัสผ่านของคุณได้แล้ว?",
-    "resetPasswordTitle": "รีเซ็ตรหัสผ่านของคุณ",
-    "resetPasswordDescription": "ป้อนและยืนยันรหัสผ่านใหม่ของคุณด้านล่าง",
-    "newPasswordLabel": "รหัสผ่านใหม่",
-    "newPasswordPlaceholder": "ป้อนรหัสผ่านใหม่ที่คาดเดายาก",
-    "resetPasswordButton": "รีเซ็ตรหัสผ่าน",
-    "resettingPasswordButton": "กำลังรีเซ็ต...",
+    "signInWelcome": "TH: Welcome back to DamDoh",
+    "signUpWelcome": "Join the DamDoh Agricultural Network",
+    "forgotPasswordResetPrompt": "TH: Reset your password for DamDoh",
+    "resetPasswordPrompt": "TH: Create a new password for DamDoh",
+    "signInTitle": "TH: Sign in to your account",
+    "signInDescription": "TH: Enter your credentials to access your dashboard.",
+    "emailLabel": "TH: Email",
+    "emailPlaceholder": "TH: you@example.com",
+    "passwordLabel": "TH: Password",
+    "forgotPasswordLink": "TH: Forgot password?",
+    "signingInButton": "TH: Signing in...",
+    "signInButton": "TH: Sign In",
+    "noAccountPrompt": "TH: Don't have an account?",
+    "signUpLink": "TH: Sign Up",
+    "signInLink": "TH: Sign In",
+    "recoverWithUniversalIdPrompt": "TH: Or recover access with your Universal ID",
+    "signUpTitle": "TH: Create a new account",
+    "signUpDescription": "TH: Tell us a bit about yourself to get started.",
+    "nameLabel": "TH: Your Name or Business Name",
+    "namePlaceholder": "TH: e.g., Chan Nary or Green Valley Farms",
+    "roleLabel": "TH: Your Primary Role",
+    "rolePlaceholder": "TH: Select your role in the supply chain...",
+    "confirmPasswordLabel": "TH: Confirm Password",
+    "confirmPasswordPlaceholder": "TH: ••••••••",
+    "creatingAccountButton": "TH: Creating account...",
+    "signUpButton": "TH: Create Account",
+    "alreadyHaveAccountPrompt": "TH: Already have an account?",
+    "forgotPasswordTitle": "TH: Forgot Password?",
+    "forgotPasswordDescription": "TH: No problem. Enter your email address below, and we'll send you a link to reset it.",
+    "sendResetLinkButton": "TH: Send Reset Link",
+    "sendingEmailButton": "TH: Sending email...",
+    "rememberPasswordPrompt": "TH: Remember your password?",
+    "resetPasswordTitle": "TH: Reset Your Password",
+    "resetPasswordDescription": "TH: Enter and confirm your new password below.",
+    "newPasswordLabel": "TH: New Password",
+    "newPasswordPlaceholder": "TH: Enter a strong new password",
+    "resetPasswordButton": "TH: Reset Password",
+    "resettingPasswordButton": "TH: Resetting...",
     "recoverPage": {
-      "title": "กู้คืนบัญชีของคุณ",
-      "description": "ใช้เครือข่ายของคุณเพื่อกู้คืนการเข้าถึง",
-      "howItWorksTitle": "วิธีการทำงาน",
-      "step1": "ป้อนหมายเลขโทรศัพท์ของคุณเพื่อเริ่มเซสชันการกู้คืน",
-      "step2": "แสดงรหัส QR ชั่วคราวให้เพื่อนที่เชื่อถือได้บน DamDoh",
-      "step3": "เมื่อเพื่อนของคุณสแกนรหัสเพื่อยืนยันตัวตนของคุณ คุณจะสามารถเข้าถึงได้อีกครั้ง",
-      "startButton": "เริ่มการกู้คืนบัญชี",
-      "scanTitle": "ขอให้เพื่อนสแกน",
-      "scanDescription": "ให้ผู้ติดต่อที่เชื่อถือได้ของ DamDoh สแกนรหัส QR นี้โดยใช้คุณสมบัติ 'ช่วยเพื่อนกู้คืน' ในแอปของพวกเขา",
-      "scanNote": "รหัสนี้เป็นรหัสชั่วคราวและจะหมดอายุใน 10 นาที",
-      "startOverButton": "เริ่มใหม่",
-      "enterPhone": {
-        "title": "ป้อนหมายเลขโทรศัพท์ของคุณ",
-        "description": "เราจะใช้หมายเลขโทรศัพท์ของคุณเพื่อค้นหาบัญชีของคุณและเริ่มเซสชันการกู้คืน",
-        "phoneNumberLabel": "หมายเลขโทรศัพท์",
-        "phoneNumberPlaceholder": "ป้อนหมายเลขโทรศัพท์ที่ลงทะเบียนของคุณ",
-        "phoneRequiredError": "ต้องระบุหมายเลขโทรศัพท์",
-        "verifyingButton": "กำลังตรวจสอบ...",
-        "getRecoveryCodeButton": "รับรหัสกู้คืน",
-        "genericError": "ไม่สามารถเริ่มเซสชันการกู้คืนได้ โปรดตรวจสอบหมายเลขและลองอีกครั้ง"
-      },
-      "helpFriend": {
-        "prompt": "กำลังพยายามช่วยใครสักคนกู้คืนบัญชีของพวกเขาหรือไม่?",
-        "button": "ช่วยเพื่อนกู้คืน",
-        "scanError": "รหัส QR ที่สแกนไม่ใช่รหัสกู้คืนที่ถูกต้อง",
-        "scanSuccess": "การยืนยันสำเร็จ!",
-        "scanFail": "ไม่สามารถอ่านรหัส QR ได้ โปรดลองอีกครั้ง"
-      }
+      "title": "TH: Recover Your Account",
+      "description": "TH: Use your network to regain access.",
+      "howItWorksTitle": "TH: How it Works",
+      "step1": "TH: Enter your phone number to start a recovery session.",
+      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
+      "step3": "TH: Once your friend scans the code to verify your identity, you'll regain access.",
+      "startButton": "TH: Start Account Recovery",
+      "scanTitle": "TH: Ask a Friend to Scan",
+      "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
+      "scanNote": "TH: This code is temporary and expires in 10 minutes.",
+      "startOverButton": "TH: Start Over"
     },
     "forgotPassword": {
-      "emailSentTitle": "ตรวจสอบอีเมลของคุณ",
-      "emailSentDescription": "ลิงก์รีเซ็ตรหัสผ่านถูกส่งไปยัง {email} แล้ว",
-      "emailSentDescriptionIfAccountExists": "หากมีบัญชีที่ใช้ {email} อยู่ ลิงก์รีเซ็ตรหัสผ่านได้ถูกส่งไปแล้ว",
-      "successTitle": "ส่งอีเมลแล้ว!",
-      "successDescription": "โปรดตรวจสอบกล่องจดหมายของคุณ (และโฟลเดอร์สแปม) สำหรับลิงก์รีเซ็ตรหัสผ่าน",
+      "emailSentTitle": "TH: Check Your Email",
+      "emailSentDescription": "TH: A password reset link has been sent to {email}.",
+      "emailSentDescriptionIfAccountExists": "TH: If an account with {email} exists, a password reset link has been sent.",
+      "successTitle": "TH: Email Sent!",
+      "successDescription": "TH: Please check your inbox (and spam folder) for the password reset link.",
       "errors": {
-        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
-        "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
-        "tooManyRequests": "มีการร้องขอมากเกินไป โปรดลองอีกครั้งในภายหลัง",
-        "default": "ส่งอีเมลรีเซ็ตล้มเหลว"
+        "unexpected": "TH: An unexpected error occurred. Please try again.",
+        "invalidEmail": "TH: The email address is not valid.",
+        "tooManyRequests": "TH: Too many requests. Please try again later.",
+        "default": "TH: Failed to send reset email"
       }
     },
     "resetPassword": {
-      "successTitle": "รีเซ็ตรหัสผ่านสำเร็จ!",
-      "successDescription": "ตอนนี้คุณสามารถลงชื่อเข้าใช้ด้วยรหัสผ่านใหม่ของคุณได้แล้ว",
-      "successRedirect": "คุณจะถูกนำไปยังหน้าลงชื่อเข้าใช้ในไม่ช้า",
+      "successTitle": "TH: Password Reset Successfully!",
+      "successDescription": "TH: You can now sign in with your new password.",
+      "successRedirect": "TH: You will be redirected to the sign-in page shortly.",
       "errors": {
-        "missingCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้อง โปรดขอลิงก์ใหม่",
-        "missingCodeTitle": "ลิงก์ไม่ถูกต้อง",
-        "missingCodeDescription": "ลิงก์รีเซ็ตรหัสผ่านหายไปหรือไม่ถูกต้อง โปรดกลับไปที่หน้า 'ลืมรหัสผ่าน' เพื่อขอลิงก์ใหม่",
-        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
-        "invalidOrExpiredCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้องหรือหมดอายุแล้ว โปรดขอลิงก์ใหม่",
-        "userDisabled": "บัญชีผู้ใช้นี้ถูกปิดใช้งานแล้ว",
-        "userNotFound": "ไม่พบผู้ใช้ที่ตรงกับลิงก์รีเซ็ตนี้",
-        "weakPassword": "รหัสผ่านใหม่ไม่คาดเดายากพอ",
-        "default": "รีเซ็ตรหัสผ่านล้มเหลว"
+        "missingCode": "TH: Invalid password reset link. Please request a new one.",
+        "missingCodeTitle": "TH: Invalid Link",
+        "missingCodeDescription": "TH: The password reset link is missing or invalid. Please return to the 'Forgot Password' page to request a new one.",
+        "unexpected": "TH: An unexpected error occurred. Please try again.",
+        "invalidOrExpiredCode": "TH: The password reset link is invalid or has expired. Please request a new one.",
+        "userDisabled": "TH: This user account has been disabled.",
+        "userNotFound": "TH: No user found corresponding to this reset link.",
+        "weakPassword": "TH: The new password is not strong enough.",
+        "default": "TH: Failed to reset password"
       }
-    },
-    "errors": {
-      "emailInUse": "อีเมลนี้ถูกใช้งานแล้ว",
-      "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
-      "weakPassword": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
-      "default": "เกิดข้อผิดพลาดที่ไม่คาดคิด",
-      "invalidCredential": "อีเมลหรือรหัสผ่านที่คุณป้อนไม่ถูกต้อง",
-      "userDisabled": "บัญชีนี้ถูกปิดใช้งานแล้ว"
-    },
-    "signUpSuccess": {
-      "title": "สร้างบัญชีและลงชื่อเข้าใช้แล้ว!",
-      "description": "ยินดีต้อนรับสู่ {appName}! คุณได้ลงชื่อเข้าใช้สำเร็จแล้ว"
-    },
-    "signUpFailed": "การลงทะเบียนล้มเหลว",
-    "toast": {
-      "logOut": {
-        "title": "ออกจากระบบแล้ว",
-        "description": "คุณได้ออกจากระบบสำเร็จแล้ว",
-        "failTitle": "การออกจากระบบล้มเหลว",
-        "failDescription": "เกิดข้อผิดพลาดขณะออกจากระบบ"
-      },
-      "signInSuccess": {
-        "title": "ลงชื่อเข้าใช้สำเร็จ!",
-        "description": "ยินดีต้อนรับกลับสู่ {appName}"
-      },
-      "signInFailed": {
-        "title": "การลงชื่อเข้าใช้ล้มเหลว"
-      }
-    },
-    "passwordStrength": {
-      "label": "ความแรง",
-      "weak": "อ่อน",
-      "medium": "ปานกลาง",
-      "strong": "แข็งแกร่ง",
-      "veryStrong": "แข็งแกร่งมาก"
-    },
-    "error": "ข้อผิดพลาด"
+    }
   },
   "AppHeader": {
-    "home": "หน้าแรก",
-    "network": "เครือข่าย",
-    "farmMgmt": "จัดการฟาร์ม",
-    "marketplace": "ตลาด",
-    "talentExchange": "ผู้มีความสามารถ",
-    "traceability": "การตรวจสอบย้อนกลับ",
-    "forums": "ฟอรัม",
-    "sustainability": "ความยั่งยืน",
-    "notifications": "การแจ้งเตือน",
-    "messages": "ข้อความ",
-    "wallet": "กระเป๋าเงิน",
-    "searchPlaceholder": "ค้นหาคน สินค้า บริการ...",
-    "signIn": "ลงชื่อเข้าใช้",
-    "signUp": "ลงทะเบียน",
-    "myProfile": "โปรไฟล์ของฉัน",
-    "myOrders": "คำสั่งซื้อของฉัน",
-    "settings": "การตั้งค่า",
-    "helpCenter": "ศูนย์ช่วยเหลือ",
-    "logOut": "ออกจากระบบ",
-    "switchToLightAria": "เปลี่ยนเป็นธีมสว่าง",
-    "switchToDarkAria": "เปลี่ยนเป็นธีมมืด",
-    "mobileMenu": {
-      "title": "เมนู DamDoh",
-      "description": "เมนูนำทางหลักของแอปพลิเคชัน"
-    }
+    "home": "TH: Home",
+    "network": "TH: Network",
+    "farmMgmt": "TH: Farm Mgmt",
+    "marketplace": "TH: Marketplace",
+    "talentExchange": "TH: Talent",
+    "traceability": "TH: Traceability",
+    "forums": "TH: Forums",
+    "sustainability": "TH: Sustainability",
+    "notifications": "TH: Notifications",
+    "messages": "TH: Messages",
+    "wallet": "TH: Wallet",
+    "searchPlaceholder": "TH: Search people, products, services...",
+    "signIn": "TH: Sign In",
+    "signUp": "TH: Sign Up",
+    "myProfile": "TH: My Profile",
+    "myOrders": "TH: My Orders",
+    "settings": "TH: Settings",
+    "helpCenter": "TH: Help Center",
+    "logOut": "TH: Log Out",
+    "switchToLightAria": "TH: Switch to light theme",
+    "switchToDarkAria": "TH: Switch to dark theme"
   },
   "MobileBottomNav": {
-    "home": "หน้าแรก",
-    "market": "ตลาด",
-    "search": "ค้นหา",
-    "messages": "ข้อความ",
-    "profile": "โปรไฟล์"
-  },
-  "DashboardLeftSidebar": {
-    "viewProfileLink": "ดูโปรไฟล์ของฉัน",
-    "profileViewers": "ผู้เข้าชมโปรไฟล์",
-    "postEngagements": "การมีส่วนร่วมในโพสต์",
-    "pro": {
-      "unlock": "ปลดล็อกข้อมูลเชิงลึกเพิ่มเติมด้วย DamDoh Pro",
-      "try": "ลองใช้ Pro",
-      "title": "เร็วๆ นี้!",
-      "description": "คุณสมบัติ DamDoh Pro กำลังอยู่ในระหว่างการพัฒนา"
-    },
-    "recent": {
-      "title": "ล่าสุด",
-      "myPinBoard": "Pin-Board ของฉัน",
-      "communityGroups": "กลุ่มชุมชน",
-      "industryNews": "ข่าวอุตสาหกรรม",
-      "agriEvents": "กิจกรรมทางการเกษตร",
-      "mySupplyChainNetwork": "เครือข่ายห่วงโซ่อุปทานของฉัน"
-    }
-  },
-  "MainDashboard": {
-    "feedError": {
-      "title": "ข้อผิดพลาดในการโหลดฟีด",
-      "description": "ไม่สามารถดึงกิจกรรมล่าสุดได้ โปรดตรวจสอบการเชื่อมต่อของคุณ"
-    },
-    "postError": {
-      "auth": "คุณต้องลงชื่อเข้าใช้เพื่อโพสต์",
-      "fail": "สร้างโพสต์ไม่สำเร็จ โปรดลองอีกครั้ง"
-    },
-    "uploadingMedia": "กำลังอัปโหลดสื่อ...",
-    "uploadComplete": "อัปโหลดเสร็จสมบูรณ์!",
-    "postSuccess": {
-      "title": "สร้างโพสต์แล้ว!",
-      "description": "การอัปเดตของคุณได้ถูกแชร์กับเครือข่ายแล้ว"
-    },
-    "likeError": {
-      "auth": "คุณต้องลงชื่อเข้าใช้เพื่อกดไลค์โพสต์",
-      "fail": "ไม่สามารถกดไลค์โพสต์ได้ โปรดลองอีกครั้ง"
-    },
-    "commentError": {
-      "auth": "คุณต้องลงชื่อเข้าใช้เพื่อแสดงความคิดเห็น",
-      "fail": "โพสต์ความคิดเห็นไม่สำเร็จ"
-    },
-    "commentSuccess": "โพสต์ความคิดเห็นแล้ว!",
-    "deleteError": {
-      "auth": "คุณต้องลงชื่อเข้าใช้เพื่อลบโพสต์",
-      "fail": "ลบโพสต์ไม่สำเร็จ"
-    },
-    "deleteSuccess": {
-      "title": "ลบโพสต์แล้ว",
-      "description": "โพสต์ของคุณถูกลบเรียบร้อยแล้ว"
-    },
-    "noActivity": "ไม่มีกิจกรรมล่าสุดในเครือข่ายของคุณ เริ่มการสนทนาหรือสำรวจตลาด!"
+    "home": "TH: Home",
+    "market": "TH: Market",
+    "search": "TH: Search",
+    "forums": "TH: Forums",
+    "profile": "TH: Profile"
   },
   "DashboardRightSidebar": {
-    "networkTitle": "เพิ่มในฟีดของคุณ",
-    "refreshSuggestions": "รีเฟรชคำแนะนำ",
-    "infoTooltip": "คำแนะนำที่ขับเคลื่อนด้วย AI ตามโปรไฟล์และกิจกรรมของคุณ",
-    "follow": "ติดตาม",
-    "following": "ส่งคำขอแล้ว",
-    "viewAllButton": "ดูคำแนะนำทั้งหมด",
-    "promotionsTitle": "โปรโมชั่นของฉัน",
-    "promotionsDescription": "สร้างและจัดการคูปองเพื่อดึงดูดลูกค้ามากขึ้น",
-    "managePromotionsButton": "จัดการคูปอง",
-    "ad": "โฆษณา",
-    "adTitle": "รับข้อมูลเชิงลึกเกี่ยวกับตลาด",
-    "adDescription": "เข้าถึงราคาและแนวโน้มแบบเรียลไทม์สำหรับผลิตภัณฑ์ของคุณ",
-    "adButton": "ดูข้อมูลตลาด",
-    "adAlt": "แผนภูมิข้อมูลแสดงแนวโน้มตลาด",
-    "loadError": "ไม่สามารถโหลดคำแนะนำได้ในขณะนี้",
-    "signInPrompt": "ลงชื่อเข้าใช้เพื่อดูคำแนะนำส่วนตัว",
-    "noSuggestions": "ไม่มีคำแนะนำใหม่ในขณะนี้ ลองขยายโปรไฟล์ของคุณ!",
-    "toast": {
-      "signInToConnect": "โปรดลงชื่อเข้าใช้เพื่อเชื่อมต่อกับผู้ใช้",
-      "requestSent": "ส่งคำขอเชื่อมต่อแล้ว!",
-      "requestSentDescription": "คำขอของคุณถูกส่งไปยังผู้ใช้แล้ว คุณจะได้รับการแจ้งเตือนเมื่อพวกเขายอมรับ",
-      "requestFailed": "ไม่สามารถส่งคำขอได้"
-    }
+    "networkTitle": "TH: Add to your feed",
+    "refreshSuggestions": "TH: Refresh suggestions",
+    "infoTooltip": "TH: Suggestions are based on your profile interests and needs.",
+    "signInPrompt": "TH: Sign in for personalized recommendations.",
+    "loadError": "TH: Could not load suggestions.",
+    "noSuggestions": "TH: No new suggestions right now. Check back later!",
+    "following": "TH: Following",
+    "follow": "TH: Follow",
+    "promotionsTitle": "TH: Promotions",
+    "promotionsDescription": "TH: See special offers and deals from partners in the ecosystem.",
+    "managePromotionsButton": "TH: Manage Promotions",
+    "ad": "TH: Ad",
+    "adTitle": "TH: Unlock Market Insights",
+    "adDescription": "Get real-time data and analytics with DamDoh Pro.",
+    "adButton": "TH: Learn More"
   },
   "LanguageSwitcher": {
-    "toggle": "เปลี่ยนภาษา"
+    "toggle": "TH: Change language"
   },
   "AppFooter": {
-    "tagline": "แพลตฟอร์มระดับโลกสำหรับห่วงโซ่อุปทานทางการเกษตร",
+    "tagline": "TH: The global platform for the agricultural supply chain.",
     "damdohTitle": "DamDoh",
-    "aboutLabel": "เกี่ยวกับเรา",
-    "contactLabel": "ติดต่อ",
-    "careersLabel": "ร่วมงานกับเรา",
-    "blogLabel": "บล็อกและข่าวสาร",
-    "resourcesTitle": "แหล่งข้อมูล",
-    "helpCenterLabel": "ศูนย์ช่วยเหลือ",
-    "communityGuidelinesLabel": "แนวทางปฏิบัติของชุมชน",
-    "industryNewsLabel": "ข่าวอุตสาหกรรม",
-    "eventsLabel": "กิจกรรม",
-    "talentExchangeLabel": "ตลาดนัดแรงงาน",
-    "legalTitle": "กฎหมาย",
-    "privacyPolicyLabel": "นโยบายความเป็นส่วนตัว",
-    "termsOfServiceLabel": "ข้อกำหนดในการให้บริการ",
-    "copyright": "© {year} {appName} สงวนลิขสิทธิ์",
-    "getMobileApp": "ดาวน์โหลดแอปมือถือ",
-    "googlePlayAlt": "ดาวน์โหลดบน Google Play",
-    "appStoreAlt": "ดาวน์โหลดบน App Store"
+    "aboutLabel": "TH: About Us",
+    "contactLabel": "TH: Contact",
+    "careersLabel": "TH: Careers",
+    "blogLabel": "TH: Blog & News",
+    "resourcesTitle": "TH: Resources",
+    "helpCenterLabel": "TH: Help Center",
+    "communityGuidelinesLabel": "TH: Community Guidelines",
+    "industryNewsLabel": "TH: Industry News",
+    "eventsLabel": "TH: Events",
+    "talentExchangeLabel": "TH: Talent Exchange",
+    "legalTitle": "TH: Legal",
+    "privacyPolicyLabel": "TH: Privacy Policy",
+    "termsOfServiceLabel": "TH: Terms of Service",
+    "copyright": "TH: © {year} DamDoh All rights reserved.",
+    "getMobileApp": "TH: Get the Mobile App",
+    "googlePlayAlt": "TH: Get it on Google Play",
+    "appStoreAlt": "TH: Download on the App Store"
   },
   "aboutPage": {
     "hero": {
-      "title": "เกี่ยวกับ DamDoh",
-      "subtitle": "เชื่อมโยงห่วงโซ่อุปทานทางการเกษตรระดับโลก ทีละผู้มีส่วนได้ส่วนเสีย"
+      "title": "About DamDoh",
+      "subtitle": "TH: Connecting the global agricultural supply chain, one stakeholder at a time."
     },
     "vision": {
-      "title": "วิสัยทัศน์ของเรา",
-      "p1": "เราจินตนาการถึงโลกที่ผู้มีส่วนได้ส่วนเสียทางการเกษตรทุกคน ตั้งแต่เกษตรกรรายย่อยที่สุดไปจนถึงผู้ค้าปลีกรายใหญ่ที่สุด ได้รับการเสริมศักยภาพด้วยข้อมูล การเชื่อมต่อ และเครื่องมือที่จำเป็นต่อการเติบโต",
-      "p2": "DamDoh ก่อตั้งขึ้นบนความเชื่อที่ว่าเทคโนโลยีสามารถเชื่อมช่องว่าง สร้างความไว้วางใจ และสร้างระบบอาหารระดับโลกที่เท่าเทียมและยั่งยืนมากขึ้น",
-      "foundersTitle": "ผู้ก่อตั้ง"
+      "title": "TH: Our Vision",
+      "p1": "TH: We envision a world where every agricultural stakeholder, from the smallest farmer to the largest retailer, is empowered with the data, connections, and tools they need to thrive.",
+      "p2": "DamDoh was founded on the belief that technology can bridge gaps, build trust, and create a more equitable and sustainable global food system.",
+      "foundersTitle": "TH: The Founders"
     },
     "challenge": {
-      "title": "ความท้าทายที่เรากำลังแก้ไข",
-      "description": "ห่วงโซ่อุปทานทางการเกษตรมีความกระจัดกระจาย ขาดประสิทธิภาพ และมักขาดความโปร่งใสที่จำเป็นต่อการเติบโตอย่างยั่งยืน ความท้าทายที่สำคัญ ได้แก่ :",
-      "details": {
-        "marketAccess": "การเข้าถึงตลาดที่จำกัดสำหรับเกษตรกรรายย่อย",
-        "inefficiency": "โลจิสติกส์ที่ไม่มีประสิทธิภาพนำไปสู่การสูญเสียหลังการเก็บเกี่ยว",
-        "financialExclusion": "ความยากลำบากในการเข้าถึงแหล่งเงินทุนและประกันภัยสำหรับผู้ผลิตรายย่อย",
-        "informationGaps": "ความรู้ที่กระจัดกระจายและการขาดการเข้าถึงแนวทางปฏิบัติที่ดีที่สุด",
-        "qualityTrust": "การควบคุมคุณภาพที่ไม่สอดคล้องกันและการขาดข้อมูลผลิตภัณฑ์ที่สามารถตรวจสอบได้",
-        "climatePressure": "แรงกดดันที่เพิ่มขึ้นจากการเปลี่ยนแปลงสภาพภูมิอากาศต่อวิธีการทำฟาร์มแบบดั้งเดิม",
-        "foodLoss": "การสูญเสียและการสิ้นเปลืองอาหารอย่างมีนัยสำคัญในหลายขั้นตอนของห่วงโซ่อุปทาน",
-        "dataFragmentation": "การกระจัดกระจายของข้อมูลในระบบต่างๆ ที่ไม่เชื่อมต่อกัน"
-      },
+      "title": "TH: The Challenge We're Solving",
+      "description": "TH: The agricultural supply chain is fragmented, inefficient, and often lacks the transparency needed for sustainable growth. Key challenges include:",
       "list": {
-        "marketAccess": "การเข้าถึงตลาดที่จำกัด",
-        "inefficiency": "ความไม่มีประสิทธิภาพของห่วงโซ่อุปทาน",
-        "financialExclusion": "การกีดกันทางการเงิน",
-        "informationGaps": "ช่องว่างทางข้อมูล",
-        "qualityTrust": "การขาดแคลนคุณภาพและความไว้วางใจ",
-        "climatePressure": "แรงกดดันจากสภาพภูมิอากาศ",
-        "foodLoss": "การสูญเสียและการสิ้นเปลืองอาหาร",
-        "dataFragmentation": "การกระจัดกระจายของข้อมูล"
+        "knowledge": "TH: Fragmented knowledge and lack of access to best practices.",
+        "market": "TH: Limited market access for smallholder farmers.",
+        "quality": "TH: Inconsistent quality control and a lack of verifiable product data.",
+        "logistics": "TH: Inefficient logistics leading to post-harvest losses.",
+        "financial": "TH: Difficulty accessing finance and insurance for small-scale producers.",
+        "climate": "TH: Increasing pressure from climate change on traditional farming methods.",
+        "informal": "TH: Informal and relationship-based systems that can exclude new entrants."
       }
     },
     "solution": {
-      "title": "โซลูชันของ DamDoh",
-      "description": "เรากำลังสร้าง 'ซูเปอร์แอป' ที่ครอบคลุมซึ่งแปลงเป็นดิจิทัลและเชื่อมโยงระบบนิเวศทางการเกษตรทั้งหมดผ่านเสาหลักหลายประการ:",
+      "title": "The DamDoh Solution",
+      "description": "TH: We are building a comprehensive 'super app' that digitizes and connects the entire agricultural ecosystem through several key pillars:",
       "list": {
-        "education": "การศึกษาและการแบ่งปันความรู้",
-        "ai": "ความช่วยเหลือและข้อมูลเชิงลึกที่ขับเคลื่อนด้วย AI",
-        "logistics": "โลจิสติกส์และการตรวจสอบย้อนกลับแบบบูรณาการ",
-        "marketplace": "ตลาดโดยตรงและโปร่งใส",
-        "financial": "การเข้าถึงบริการทางการเงิน"
+        "education": "TH: Education and Knowledge Sharing",
+        "ai": "TH: AI-Powered Assistance and Insights",
+        "logistics": "TH: Integrated Logistics and Traceability"
       }
     },
     "beyondTechnology": {
-      "title": "นอกเหนือจากเทคโนโลยี: มันเกี่ยวกับผู้คน",
+      "title": "TH: Beyond Technology: It's About People",
       "list": {
         "p2p": {
-          "title": "คนสู่คน",
-          "content": "เชื่อมโยงเกษตรกรกับเกษตรกรรายอื่นเพื่อแบ่งปันความรู้และสร้างชุมชน"
+          "title": "TH: People to People",
+          "content": "TH: Connecting farmers to other farmers to share knowledge and build community."
         },
         "p2b": {
-          "title": "คนสู่ธุรกิจ",
-          "content": "ส่งเสริมความสัมพันธ์ที่ไว้วางใจได้โดยตรงระหว่างผู้ผลิตและผู้ซื้อ"
+          "title": "TH: People to Business",
+          "content": "TH: Fostering direct, trusted relationships between producers and buyers."
         },
         "p2e": {
-          "title": "คนสู่ระบบนิเวศ",
-          "content": "ให้บุคคลเข้าถึงระบบนิเวศทั้งหมดของบริการ - การเงิน โลจิสติกส์ ประกันภัย และอื่นๆ"
+          "title": "TH: People to Ecosystem",
+          "content": "TH: Giving individuals access to a whole ecosystem of services – finance, logistics, insurance, and more."
         },
         "p2w": {
-          "title": "คนสู่โลก",
-          "content": "เปิดตลาดและโอกาสระดับโลกแม้กระทั่งสำหรับผู้ผลิตที่ห่างไกลที่สุดผ่านการเข้าถึงดิจิทัลและการตรวจสอบย้อนกลับ"
+          "title": "TH: People to World",
+          "content": "TH: Opening global markets and opportunities for even the most remote producers through digital access and traceability."
         }
       }
     },
     "commitment": {
-      "title": "ความมุ่งมั่นของเราต่ออนาคต",
-      "p1": "เรามุ่งมั่นที่จะใช้เทคโนโลยีเพื่อสิ่งที่ดี สร้างแพลตฟอร์มที่ไม่เพียงแต่ทำกำไรได้ แต่ยังช่วยฟื้นฟูโลกของเราและเสริมสร้างศักยภาพให้กับผู้คน",
-      "p2": "ทุกการเชื่อมต่อที่สร้างขึ้น ทุกชิ้นส่วนของความรู้ที่แบ่งปัน และทุกธุรกรรมที่คล่องตัวบน DamDoh คือก้าวสู่อนาคตของอาหารที่ยืดหยุ่นและเท่าเทียมกันมากขึ้น",
-      "p3": "เข้าร่วมการเดินทางนี้กับเรา",
-      "button": "เป็นสมาชิก"
+      "title": "TH: Our Commitment to the Future",
+      "p1": "TH: We are committed to using technology for good, creating a platform that is not only profitable but also regenerative for our planet and empowering for its people.",
+      "p2": "Every connection made, every piece of knowledge shared, and every transaction streamlined on DamDoh is a step toward a more resilient and equitable food future.",
+      "p3": "TH: Join us on this journey.",
+      "button": "TH: Become a Member"
     }
   },
   "contactPage": {
-    "title": "ติดต่อเรา",
-    "subtitle": "เราพร้อมให้ความช่วยเหลือ ติดต่อเราผ่านช่องทางใดก็ได้ด้านล่าง",
+    "title": "TH: Contact Us",
+    "subtitle": "TH: We're here to help. Reach out to us through any of the channels below.",
     "emailUs": {
-      "title": "ส่งอีเมลถึงเรา",
-      "general": "สอบถามข้อมูลทั่วไป",
-      "support": "ฝ่ายสนับสนุน",
-      "partnerships": "ความร่วมมือทางธุรกิจ"
+      "title": "TH: Email Us",
+      "general": "TH: General Inquiries",
+      "support": "TH: Support",
+      "partnerships": "TH: Partnerships"
     },
     "callUs": {
-      "title": "โทรหาเรา",
-      "hours": "จันทร์ - ศุกร์, 9:00 - 17:00 (EAT)",
-      "phone": "+254 20 123 4567"
+      "title": "TH: Call Us",
+      "hours": "TH: Mon - Fri, 9:00 AM - 5:00 PM (EAT)",
+      "phone": "TH: +254 20 123 4567"
     },
     "ourOffice": {
-      "title": "สำนักงานของเรา",
-      "org": "มูลนิธิ DamDoh",
-      "address": "123 Agri-Tech Avenue, Nairobi, Kenya"
+      "title": "TH: Our Office",
+      "org": "The DamDoh Foundation",
+      "address": "TH: 123 Agri-Tech Avenue, Nairobi, Kenya"
     },
     "sendMessage": {
-      "title": "ส่งข้อความถึงเรา",
-      "nameLabel": "ชื่อของคุณ",
-      "namePlaceholder": "สมชาย ใจดี",
-      "emailLabel": "อีเมลของคุณ",
-      "emailPlaceholder": "somchai.jaidee@example.com",
-      "subjectLabel": "หัวข้อ",
-      "subjectPlaceholder": "เช่น สอบถามเรื่องความร่วมมือ",
-      "messageLabel": "ข้อความของคุณ",
-      "messagePlaceholder": "พิมพ์ข้อความของคุณที่นี่...",
-      "buttonText": "ส่งข้อความ",
-      "note": "เราพยายามตอบกลับภายใน 24 ชั่วโมงทำการ"
+      "title": "TH: Send us a message",
+      "nameLabel": "TH: Your Name",
+      "namePlaceholder": "TH: Chan Nary",
+      "emailLabel": "TH: Your Email",
+      "emailPlaceholder": "TH: chan.nary@example.com",
+      "subjectLabel": "TH: Subject",
+      "subjectPlaceholder": "TH: e.g., Partnership Inquiry",
+      "messageLabel": "TH: Your Message",
+      "messagePlaceholder": "TH: Type your message here...",
+      "buttonText": "TH: Send Message",
+      "note": "TH: We strive to respond within 24 business hours."
     }
   },
   "careers": {
-    "title": "ร่วมงานกับ DamDoh",
-    "subtitle": "เข้าร่วมภารกิจของเราในการปฏิวัติห่วงโซ่อุปทานทางการเกษตร",
+    "title": "Careers at DamDoh",
+    "subtitle": "TH: Join our mission to revolutionize the agricultural supply chain.",
     "whyWorkWithUs": {
-      "title": "ทำไมต้องทำงานกับเรา?",
-      "intro": "ที่ DamDoh เราคือทีมนักนวัตกรรม นักเทคโนโลยี และผู้เชี่ยวชาญด้านการเกษตรที่มุ่งมั่นสร้างผลกระทบระดับโลกที่จับต้องได้ เราเสนอ:",
-      "point1": "สภาพแวดล้อมการทำงานที่ขับเคลื่อนด้วยภารกิจและมีชีวิตชีวา",
-      "point2": "โอกาสในการเติบโตและการเรียนรู้ทางวิชาชีพ",
-      "point3": "วัฒนธรรมแห่งความร่วมมือและความโปร่งใส",
-      "point4": "โอกาสในการทำงานกับเทคโนโลยีที่ล้ำสมัย เช่น AI และบล็อกเชน",
-      "point5": "ความมุ่งมั่นต่อความยั่งยืนและผลกระทบทางสังคม"
+      "title": "TH: Why Work With Us?",
+      "intro": "At DamDoh, we are a team of innovators, technologists, and agricultural experts passionate about making a tangible, global impact. We offer:",
+      "point1": "TH: A mission-driven and dynamic work environment.",
+      "point2": "TH: Opportunities for professional growth and learning.",
+      "point3": "TH: A culture of collaboration and transparency.",
+      "point4": "TH: The chance to work with cutting-edge tech like AI and blockchain.",
+      "point5": "TH: A commitment to sustainability and social impact."
     },
     "currentOpenings": {
-      "title": "ตำแหน่งงานที่เปิดรับ",
+      "title": "TH: Current Openings",
       "job1": {
-        "title": "วิศวกร Full-Stack อาวุโส (Next.js, Firebase)",
-        "location": "ทางไกล",
-        "type": "เต็มเวลา",
-        "description": "เรากำลังมองหาวิศวกร full-stack ที่มีประสบการณ์เพื่อนำการพัฒนาคุณสมบัติหลักของแพลตฟอร์มของเรา"
+        "title": "TH: Senior Full-Stack Engineer (Next.js, Firebase)",
+        "location": "TH: Remote",
+        "type": "TH: Full-time",
+        "description": "TH: We are looking for an experienced full-stack engineer to lead the development of core features of our platform."
       },
       "job2": {
-        "title": "ผู้เชี่ยวชาญด้านเนื้อหาพืชไร่",
-        "location": "ไนโรบี เคนยา",
-        "type": "สัญญาจ้าง",
-        "description": "ช่วยเราสร้างฐานความรู้ที่ครอบคลุมที่สุดในโลกสำหรับแนวปฏิบัติทางการเกษตรที่ยั่งยืน"
+        "title": "TH: Agronomy Content Specialist",
+        "location": "TH: Nairobi, Kenya",
+        "type": "TH: Contract",
+        "description": "TH: Help us build the world's most comprehensive knowledge base for sustainable farming practices."
       },
       "job3": {
-        "title": "นักออกแบบ UX/UI",
-        "location": "ทางไกล",
-        "type": "เต็มเวลา",
-        "description": "ออกแบบประสบการณ์ผู้ใช้ที่ใช้งานง่ายและเข้าถึงได้สำหรับฐานผู้ใช้ที่หลากหลายและทั่วโลก"
+        "title": "TH: UX/UI Designer",
+        "location": "TH: Remote",
+        "type": "TH: Full-time",
+        "description": "TH: Design intuitive and accessible user experiences for a diverse and global user base."
       }
     },
     "noOpenings": {
-      "title": "ขณะนี้ยังไม่มีตำแหน่งงานว่าง",
-      "content1": "เรามองหาผู้มีความสามารถที่กระตือรือร้นในภารกิจของเราอยู่เสมอ หากคุณคิดว่าคุณเหมาะกับทีมของเรา โปรดส่งประวัติย่อและจดหมายแนะนำตัวมาที่ {emailLink}",
-      "emailLinkText": "careers@damdoh.org"
+      "title": "TH: No Current Openings",
+      "content1": "TH: We are always looking for talented individuals who are passionate about our mission. If you think you'd be a great fit for our team, please send your resume and cover letter to {emailLink}.",
+      "emailLinkText": "TH: careers@damdoh.org"
     },
-    "applyNowButton": "สมัครตอนนี้"
+    "applyNowButton": "TH: Apply Now"
   },
   "communityGuidelines": {
-    "title": "แนวทางปฏิบัติของชุมชน",
-    "subtitle": "ส่งเสริมสภาพแวดล้อมที่เป็นมืออาชีพ น่าเชื่อถือ และทำงานร่วมกัน",
-    "intro": "ยินดีต้อนรับสู่ชุมชน DamDoh! เพื่อให้แน่ใจว่าแพลตฟอร์มของเรายังคงเป็นพื้นที่ที่มีประสิทธิผลและปลอดภัยสำหรับผู้มีส่วนได้ส่วนเสียทางการเกษตรทุกคน เราขอให้คุณปฏิบัติตามแนวทางต่อไปนี้:",
+    "title": "TH: Community Guidelines",
+    "subtitle": "TH: Fostering a professional, trustworthy, and collaborative environment.",
+    "intro": "Welcome to the DamDoh community! To ensure our platform remains a productive and safe space for all agricultural stakeholders, we ask that you adhere to the following guidelines:",
     "respectful": {
-      "title": "ให้เกียรติและเป็นมืออาชีพ",
-      "description": "มีส่วนร่วมในการอภิปรายอย่างสุภาพและสร้างสรรค์ ความขัดแย้งเป็นเรื่องปกติ แต่การโจมตีส่วนตัว การล่วงละเมิด และคำพูดแสดงความเกลียดชังเป็นสิ่งที่ยอมรับไม่ได้"
+      "title": "TH: Be Respectful and Professional",
+      "description": "TH: Engage in civil and constructive discussions. Disagreements are normal, but personal attacks, harassment, and hate speech are unacceptable."
     },
     "authentic": {
-      "title": "ซื่อสัตย์และเป็นตัวของตัวเอง",
-      "description": "นำเสนอตัวคุณและธุรกิจของคุณอย่างถูกต้อง อย่าแอบอ้างเป็นผู้อื่นหรือให้ข้อมูลเท็จเกี่ยวกับผลิตภัณฑ์ บริการ หรือการรับรองของคุณ"
+      "title": "TH: Be Honest and Authentic",
+      "description": "TH: Represent yourself and your business accurately. Do not impersonate others or provide false information about your products, services, or certifications."
     },
     "relevant": {
-      "title": "รักษาความเกี่ยวข้อง",
-      "description": "มีส่วนร่วมในการอภิปรายและการลงประกาศในลักษณะที่เกี่ยวข้องกับห่วงโซ่อุปทานทางการเกษตร สแปม การหลอกลวง และเนื้อหาส่งเสริมการขายที่ไม่เกี่ยวข้องจะถูกลบออก"
+      "title": "TH: Stay Relevant",
+      "description": "TH: Contribute to discussions and listings in a manner that is relevant to the agricultural supply chain. Spam, scams, and irrelevant promotional content will be removed."
     },
     "fairTrade": {
-      "title": "เคารพข้อผูกพันของคุณ",
-      "description": "เมื่อคุณทำข้อตกลงบนแพลตฟอร์ม ให้ปฏิบัติตาม การสร้างความไว้วางใจเป็นสิ่งจำเป็นสำหรับความสำเร็จของชุมชนของเรา"
+      "title": "TH: Honor Your Commitments",
+      "description": "TH: When you make an agreement on the platform, follow through. Building trust is essential to the success of our community."
     },
     "sustainable": {
-      "title": "ส่งเสริมความยั่งยืน",
-      "description": "แม้ว่าจะไม่ใช่ข้อกำหนดที่เข้มงวดสำหรับสมาชิกทุกคน แต่เราสนับสนุนให้มีการแบ่งปันความรู้และแนวปฏิบัติที่ส่งเสริมความยั่งยืนด้านสิ่งแวดล้อม เศรษฐกิจ และสังคม"
+      "title": "TH: Promote Sustainability",
+      "description": "TH: While not a strict requirement for all members, we encourage the sharing of knowledge and practices that promote environmental, economic, and social sustainability."
     },
     "reporting": {
-      "title": "การรายงานการละเมิด",
-      "content": "หากคุณพบเห็นเนื้อหาหรือพฤติกรรมที่ละเมิดแนวทางเหล่านี้ โปรดรายงานให้ทีมงานของเราทราบที่ {emailLink} เราจะตรวจสอบรายงานทั้งหมดและดำเนินการตามความเหมาะสม",
-      "emailLinkText": "support@damdoh.org"
+      "title": "TH: Reporting Violations",
+      "content": "TH: If you see content or behavior that violates these guidelines, please report it to our team at {emailLink}. We will review all reports and take appropriate action.",
+      "emailLinkText": "TH: support@damdoh.org"
     },
-    "conclusion": "โดยการใช้ DamDoh คุณยอมรับแนวทางเหล่านี้ เราขอสงวนสิทธิ์ในการลบเนื้อหาและระงับบัญชีที่ละเมิดหลักการเหล่านี้ ขอบคุณที่ช่วยเราสร้างชุมชนที่ยอดเยี่ยม!"
+    "conclusion": "By using DamDoh, you agree to these guidelines. We reserve the right to remove content and suspend accounts that violate these principles. Thanks for helping us build a great community!"
   },
   "helpCenterPage": {
-    "title": "ศูนย์ช่วยเหลือ",
-    "subtitle": "คู่มือของคุณเพื่อใช้ประโยชน์สูงสุดจากแพลตฟอร์ม DamDoh",
-    "howCanWeHelp": "เราจะช่วยคุณได้อย่างไร?",
-    "searchPlaceholder": "ค้นหาหัวข้อ คุณสมบัติ หรือคำถาม...",
-    "browseTopics": "เรียกดูหัวข้อความช่วยเหลือ",
+    "title": "TH: Help Center",
+    "subtitle": "Your guide to getting the most out of the DamDoh platform.",
+    "howCanWeHelp": "TH: How can we help you?",
+    "searchPlaceholder": "TH: Search for topics, features, or questions...",
+    "browseTopics": "TH: Browse Help Topics",
     "gettingStarted": {
-      "title": "การเริ่มต้นใช้งาน",
-      "description": "เรียนรู้วิธีตั้งค่าโปรไฟล์ของคุณและเริ่มเชื่อมต่อ",
-      "placeholder": "เนื้อหาสำหรับ 'การเริ่มต้นใช้งาน' จะพร้อมใช้งานเร็วๆ นี้"
+      "title": "TH: Getting Started",
+      "description": "TH: Learn how to set up your profile and start connecting.",
+      "placeholder": "TH: Content for 'Getting Started' will be available soon."
     },
     "marketplaceGuide": {
-      "title": "คู่มือตลาด",
-      "description": "เคล็ดลับในการสร้างรายการที่มีประสิทธิภาพและค้นหาสิ่งที่คุณต้องการ",
-      "placeholder": "เนื้อหาสำหรับ 'คู่มือตลาด' จะพร้อมใช้งานเร็วๆ นี้"
+      "title": "TH: Marketplace Guide",
+      "description": "TH: Tips on creating effective listings and finding what you need.",
+      "placeholder": "TH: Content for 'Marketplace Guide' will be available soon."
     },
     "accountManagement": {
-      "title": "การจัดการบัญชี",
-      "description": "จัดการการตั้งค่า ความเป็นส่วนตัว และการแจ้งเตือนของคุณ",
-      "placeholder": "เนื้อหาสำหรับ 'การจัดการบัญชี' จะพร้อมใช้งานเร็วๆ นี้"
+      "title": "TH: Account Management",
+      "description": "TH: Manage your settings, privacy, and notifications.",
+      "placeholder": "TH: Content for 'Account Management' will be available soon."
     },
     "troubleshooting": {
-      "title": "การแก้ไขปัญหา",
-      "description": "ค้นหาแนวทางแก้ไขปัญหาทั่วไปและปัญหาทางเทคนิค",
-      "placeholder": "เนื้อหาสำหรับ 'การแก้ไขปัญหา' จะพร้อมใช้งานเร็วๆ นี้"
+      "title": "TH: Troubleshooting",
+      "description": "TH: Find solutions to common issues and technical problems.",
+      "placeholder": "TH: Content for 'Troubleshooting' will be available soon."
     },
     "stillNeedHelp": {
-      "title": "ยังต้องการความช่วยเหลืออยู่หรือไม่?",
-      "description": "ทีมสนับสนุนของเราพร้อมที่จะช่วยเหลือคุณในทุกคำถามที่คุณอาจมี",
-      "button": "ติดต่อฝ่ายสนับสนุน"
+      "title": "TH: Still need help?",
+      "description": "TH: Our support team is ready to assist you with any questions you may have.",
+      "button": "TH: Contact Support"
     }
   },
   "privacyPolicy": {
-    "title": "นโยบายความเป็นส่วนตัว",
-    "lastUpdated": "ปรับปรุงล่าสุด: 29 ตุลาคม 2023",
-    "introduction": "ประกาศความเป็นส่วนตัวสำหรับ DamDoh นี้อธิบายว่าเราอาจรวบรวม จัดเก็บ ใช้ และ/หรือแบ่งปัน ('ประมวลผล') ข้อมูลของคุณอย่างไรและเพราะเหตุใดเมื่อคุณใช้บริการของเรา ('บริการ') เช่น เมื่อคุณเยี่ยมชมเว็บไซต์หรือแอปพลิเคชันมือถือของเรา",
+    "title": "TH: Privacy Policy",
+    "lastUpdated": "TH: Last updated: October 29, 2023",
+    "introduction": "This privacy notice for DamDoh explains how and why we might collect, store, use, and/or share ('process') your information when you use our services ('Services'), such as when you visit our website or our mobile application.",
     "whatInfoWeCollect": {
-      "heading": "1. เราเก็บข้อมูลอะไรบ้าง?",
-      "content": "เราเก็บข้อมูลส่วนบุคคลที่คุณให้แก่เราโดยสมัครใจเมื่อคุณลงทะเบียนใช้บริการ แสดงความสนใจในการรับข้อมูลเกี่ยวกับเราหรือผลิตภัณฑ์และบริการของเรา เมื่อคุณเข้าร่วมกิจกรรมในบริการ หรือเมื่อคุณติดต่อเรา"
+      "heading": "TH: 1. WHAT INFORMATION DO WE COLLECT?",
+      "content": "TH: We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us."
     },
     "howWeUseInfo": {
-      "heading": "2. เราประมวลผลข้อมูลของคุณอย่างไร?",
-      "content": "เราประมวลผลข้อมูลของคุณเพื่อวัตถุประสงค์ตามผลประโยชน์ทางธุรกิจที่ชอบด้วยกฎหมาย การปฏิบัติตามสัญญาของเรากับคุณ การปฏิบัติตามภาระผูกพันทางกฎหมายของเรา และ/หรือความยินยอมของคุณ ซึ่งรวมถึงการอำนวยความสะดวกในการสร้างบัญชี การเปิดใช้งานการสื่อสารระหว่างผู้ใช้ และการให้บริการหลักของเรา"
+      "heading": "TH: 2. HOW DO WE PROCESS YOUR INFORMATION?",
+      "content": "TH: We process your information for purposes based on legitimate business interests, the fulfillment of our contract with you, compliance with our legal obligations, and/or your consent. This includes facilitating account creation, enabling user-to-user communications, and providing our core services."
     },
     "willInfoBeShared": {
-      "heading": "3. ข้อมูลของคุณจะถูกแบ่งปันกับใครหรือไม่?",
-      "content": "เราแบ่งปันข้อมูลเฉพาะเมื่อได้รับความยินยอมจากคุณ เพื่อปฏิบัติตามกฎหมาย เพื่อให้บริการแก่คุณ เพื่อปกป้องสิทธิ์ของคุณ หรือเพื่อปฏิบัติตามภาระผูกพันทางธุรกิจ ตัวอย่างเช่น เราแบ่งปันข้อมูลโปรไฟล์สาธารณะของคุณกับผู้ใช้รายอื่นเพื่ออำนวยความสะดวกในการเชื่อมต่อ"
+      "heading": "TH: 3. WILL YOUR INFORMATION BE SHARED WITH ANYONE?",
+      "content": "TH: We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations. For example, we share your public profile information with other users to facilitate connections."
     },
     "cookiesAndTracking": {
-      "heading": "4. เราใช้คุกกี้และเทคโนโลยีการติดตามอื่น ๆ หรือไม่?",
-      "content": "เราอาจใช้คุกกี้และเทคโนโลยีการติดตามที่คล้ายกัน (เช่น เว็บบีคอนและพิกเซล) เพื่อเข้าถึงหรือจัดเก็บข้อมูล ข้อมูลเฉพาะเกี่ยวกับวิธีที่เราใช้เทคโนโลยีดังกล่าวและวิธีที่คุณสามารถปฏิเสธคุกกี้บางประเภทได้ระบุไว้ในประกาศเกี่ยวกับคุกกี้ของเรา"
+      "heading": "TH: 4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?",
+      "content": "TH: We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice."
     },
     "howLongWeKeepInfo": {
-      "heading": "5. เราเก็บข้อมูลของคุณนานแค่ไหน?",
-      "content": "เราเก็บข้อมูลของคุณตราบเท่าที่จำเป็นเพื่อให้บรรลุวัตถุประสงค์ที่ระบุไว้ในประกาศความเป็นส่วนตัวนี้ เว้นแต่กฎหมายจะกำหนดไว้เป็นอย่างอื่น เมื่อเราไม่มีความจำเป็นทางธุรกิจที่ชอบด้วยกฎหมายในการประมวลผลข้อมูลส่วนบุคคลของคุณ เราจะลบหรือทำให้เป็นนิรนาม"
+      "heading": "TH: 5. HOW LONG DO WE KEEP YOUR INFORMATION?",
+      "content": "TH: We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law. When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize it."
     },
     "howWeKeepInfoSafe": {
-      "heading": "6. เราเก็บข้อมูลของคุณให้ปลอดภัยได้อย่างไร?",
-      "content": "เราได้ใช้มาตรการรักษาความปลอดภัยทางเทคนิคและองค์กรที่เหมาะสมซึ่งออกแบบมาเพื่อปกป้องความปลอดภัยของข้อมูลส่วนบุคคลใดๆ ที่เราประมวลผล อย่างไรก็ตาม แม้จะมีมาตรการป้องกันและความพยายามของเรา แต่ก็ไม่มีการส่งข้อมูลทางอิเล็กทรอนิกส์ใดๆ ผ่านอินเทอร์เน็ตที่สามารถรับประกันความปลอดภัยได้ 100%"
+      "heading": "TH: 6. HOW DO WE KEEP YOUR INFORMATION SAFE?",
+      "content": "TH: We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts, no electronic transmission over the Internet can be guaranteed to be 100% secure."
     },
     "minors": {
-      "heading": "7. เราเก็บข้อมูลจากผู้เยาว์หรือไม่?",
-      "content": "เราไม่ได้จงใจร้องขอข้อมูลจากหรือทำการตลาดกับเด็กอายุต่ำกว่า 18 ปี โดยการใช้บริการ คุณรับรองว่าคุณมีอายุอย่างน้อย 18 ปี หรือคุณเป็นผู้ปกครองหรือผู้ดูแลของผู้เยาว์ดังกล่าวและยินยอมให้ผู้เยาว์ที่อยู่ในความดูแลของคุณใช้บริการ"
+      "heading": "TH: 7. DO WE COLLECT INFORMATION FROM MINORS?",
+      "content": "TH: We do not knowingly solicit data from or market to children under 18 years of age. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the Services."
     },
     "privacyRights": {
-      "heading": "8. สิทธิความเป็นส่วนตัวของคุณคืออะไร?",
-      "content": "ในบางภูมิภาค คุณมีสิทธิบางประการภายใต้กฎหมายคุ้มครองข้อมูลที่บังคับใช้ ซึ่งอาจรวมถึงสิทธิ (i) ในการขอเข้าถึงและรับสำเนาข้อมูลส่วนบุคคลของคุณ (ii) ในการขอแก้ไขหรือลบ (iii) ในการจำกัดการประมวลผลข้อมูลส่วนบุคคลของคุณ และ (iv) หากมีผลบังคับใช้ สิทธิในการเคลื่อนย้ายข้อมูล"
+      "heading": "TH: 8. WHAT ARE YOUR PRIVACY RIGHTS?",
+      "content": "TH: In some regions, you have certain rights under applicable data protection laws. These may include the right (i) to request access and obtain a copy of your personal data, (ii) to request rectification or erasure, (iii) to restrict the processing of your personal information, and (iv) if applicable, to data portability."
     },
     "controlsForDoNotTrack": {
-      "heading": "9. การควบคุมสำหรับคุณสมบัติ DO-NOT-TRACK",
-      "content": "เว็บเบราว์เซอร์ส่วนใหญ่และระบบปฏิบัติการมือถือและแอปพลิเคชันมือถือบางประเภทมีคุณลักษณะหรือการตั้งค่า Do-Not-Track ('DNT') ที่คุณสามารถเปิดใช้งานเพื่อส่งสัญญาณความต้องการความเป็นส่วนตัวของคุณไม่ให้มีการตรวจสอบและรวบรวมข้อมูลเกี่ยวกับกิจกรรมการท่องเว็บออนไลน์ของคุณ ในขั้นตอนนี้ยังไม่มีมาตรฐานเทคโนโลยีที่เป็นเอกภาพสำหรับการรับรู้และนำสัญญาณ DNT ไปใช้ ด้วยเหตุนี้ เราจึงไม่ตอบสนองต่อสัญญาณ DNT ของเบราว์เซอร์ในขณะนี้"
+      "heading": "TH: 9. CONTROLS FOR DO-NOT-TRACK FEATURES",
+      "content": "TH: Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals."
     },
     "updatesToNotice": {
-      "heading": "10. เราจะปรับปรุงประกาศนี้หรือไม่?",
-      "content": "เราอาจปรับปรุงประกาศความเป็นส่วนตัวนี้เป็นครั้งคราว เวอร์ชันที่ปรับปรุงแล้วจะถูกระบุด้วยวันที่ 'แก้ไข' ที่อัปเดตและเวอร์ชันที่ปรับปรุงแล้วจะมีผลบังคับใช้ทันทีที่สามารถเข้าถึงได้ เราขอแนะนำให้คุณตรวจสอบประกาศความเป็นส่วนตัวนี้บ่อยๆ เพื่อรับทราบข้อมูลเกี่ยวกับวิธีที่เราปกป้องข้อมูลของคุณ"
-    },
-    "contactUs": {
-      "heading": "11. คุณจะติดต่อเราเกี่ยวกับประกาศนี้ได้อย่างไร?",
-      "content": "หากคุณมีคำถามหรือความคิดเห็นเกี่ยวกับประกาศนี้ คุณสามารถส่งอีเมลถึงเราได้ที่ support@damdoh.org หรือทางไปรษณีย์ตามที่อยู่สำนักงานของเรา"
-    },
-    "conclusion": "หากต้องการแก้ไขข้อร้องเรียนหรือรับข้อมูลเพิ่มเติม โปรด {contactLink}"
+      "heading": "TH: 10. DO WE MAKE UPDATES TO THIS NOTICE?",
+      "content": "TH: We may update this privacy notice from time to time. The updated version will be indicated by an updated 'Revised' date and the updated version will be effective as soon as it is accessible. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information."
+    }
   },
   "termsOfService": {
-    "title": "ข้อกำหนดในการให้บริการ",
-    "lastUpdated": "ปรับปรุงล่าสุด: 29 ตุลาคม 2023",
-    "introduction": "ข้อกำหนดการใช้งานเหล่านี้ถือเป็นข้อตกลงที่มีผลผูกพันทางกฎหมายระหว่างคุณกับ DamDoh เกี่ยวกับการเข้าถึงและการใช้งานเว็บไซต์ DamDoh ของคุณ ตลอดจนรูปแบบสื่อ ช่องทางสื่อ เว็บไซต์มือถือ หรือแอปพลิเคชันมือถืออื่นใดที่เกี่ยวข้อง เชื่อมโยง หรือเชื่อมต่อกับเว็บไซต์ดังกล่าว",
+    "title": "TH: Terms of Service",
+    "lastUpdated": "TH: Last updated: October 29, 2023",
+    "introduction": "These Terms of Use constitute a legally binding agreement made between you and DamDoh, concerning your access to and use of the DamDoh website as well as any other media form, media channel, mobile website, or mobile application related, linked, or otherwise connected thereto.",
     "agreementToTerms": {
-      "heading": "1. การยอมรับข้อกำหนด",
-      "content": "โดยการใช้แพลตฟอร์ม คุณตกลงที่จะผูกพันตามข้อกำหนดการใช้งานเหล่านี้ หากคุณไม่เห็นด้วย คุณไม่ได้รับอนุญาตให้ใช้แพลตฟอร์ม เราขอสงวนสิทธิ์ในการเปลี่ยนแปลงข้อกำหนดเหล่านี้ได้ตลอดเวลา"
+      "heading": "TH: 1. AGREEMENT TO TERMS",
+      "content": "TH: By using the platform, you agree to be bound by these Terms of Use. If you do not agree, you are not permitted to use the platform. We reserve the right to make changes to these Terms at any time."
     },
     "intellectualProperty": {
-      "heading": "2. สิทธิ์ในทรัพย์สินทางปัญญา",
-      "content": "เว้นแต่จะระบุไว้เป็นอย่างอื่น แพลตฟอร์มเป็นทรัพย์สินที่เป็นกรรมสิทธิ์ของเรา และซอร์สโค้ด ฐานข้อมูล ฟังก์ชันการทำงาน ซอฟต์แวร์ การออกแบบเว็บไซต์ เสียง วิดีโอ ข้อความ ภาพถ่าย และกราฟิกทั้งหมดบนไซต์ (เรียกรวมกันว่า 'เนื้อหา') และเครื่องหมายการค้า เครื่องหมายบริการ และโลโก้ที่อยู่ในนั้นเป็นของเราหรือควบคุมโดยเราหรือได้รับอนุญาตให้เรา"
+      "heading": "TH: 2. INTELLECTUAL PROPERTY RIGHTS",
+      "content": "TH: Unless otherwise indicated, the Platform is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the 'Content') and the trademarks, service marks, and logos contained therein are owned or controlled by us or licensed to us."
     },
     "userRepresentations": {
-      "heading": "3. การรับรองของผู้ใช้",
-      "content": "โดยการใช้ไซต์ คุณรับรองและรับประกันว่า: (1) ข้อมูลการลงทะเบียนทั้งหมดที่คุณส่งจะเป็นความจริง ถูกต้อง เป็นปัจจุบัน และสมบูรณ์ (2) คุณจะรักษาความถูกต้องของข้อมูลดังกล่าวและปรับปรุงข้อมูลการลงทะเบียนดังกล่าวโดยทันทีตามความจำเป็น (3) คุณมีความสามารถทางกฎหมายและคุณตกลงที่จะปฏิบัติตามข้อกำหนดการใช้งานเหล่านี้ (4) คุณจะไม่ใช้ไซต์เพื่อวัตถุประสงค์ที่ผิดกฎหมายหรือไม่ได้รับอนุญาต และ (5) การใช้ไซต์ของคุณจะไม่ละเมิดกฎหมายหรือข้อบังคับใดๆ ที่บังคับใช้"
+      "heading": "TH: 3. USER REPRESENTATIONS",
+      "content": "TH: By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Use; (4) you will not use the Site for any illegal or unauthorized purpose; and (5) your use of the Site will not violate any applicable law or regulation."
     },
     "prohibitedActivities": {
-      "heading": "4. กิจกรรมที่ต้องห้าม",
-      "content": "คุณไม่สามารถเข้าถึงหรือใช้ไซต์เพื่อวัตถุประสงค์อื่นใดนอกเหนือจากที่เราทำให้ไซต์พร้อมใช้งาน กิจกรรมที่ต้องห้ามรวมถึงแต่ไม่จำกัดเพียง: การดึงข้อมูลอย่างเป็นระบบ การหลอกลวงหรือฉ้อโกงเราหรือผู้ใช้รายอื่น การพยายามแอบอ้างเป็นผู้ใช้รายอื่น การล่วงละเมิดหรือข่มขู่พนักงานของเราหรือผู้ใช้รายอื่น และการอัปโหลดหรือส่งไวรัสหรือโค้ดที่เป็นอันตรายประเภทอื่นๆ"
+      "heading": "TH: 4. PROHIBITED ACTIVITIES",
+      "content": "TH: You may not access or use the Site for any purpose other than that for which we make the Site available. Prohibited activities include, but are not limited to: systematic retrieval of data, tricking or defrauding us or other users, attempting to impersonate another user, harassing or threatening our employees or other users, and uploading or transmitting viruses or other types of malicious code."
     },
     "platformManagement": {
-      "heading": "5. การจัดการแพลตฟอร์ม",
-      "content": "เราขอสงวนสิทธิ์แต่ไม่มีภาระผูกพันในการ: (1) ตรวจสอบไซต์เพื่อหาการละเมิดข้อกำหนดการใช้งานเหล่านี้ (2) ดำเนินการทางกฎหมายที่เหมาะสมกับใครก็ตามที่ละเมิดกฎหมายหรือข้อกำหนดการใช้งานเหล่านี้ตามดุลยพินิจของเราแต่เพียงผู้เดียว (3) ตามดุลยพินิจของเราแต่เพียงผู้เดียวและโดยไม่มีข้อจำกัด ปฏิเสธ จำกัดการเข้าถึง จำกัดความพร้อมใช้งาน หรือปิดใช้งานการมีส่วนร่วมใดๆ ของคุณหรือส่วนใดส่วนหนึ่งของมัน"
+      "heading": "TH: 5. PLATFORM MANAGEMENT",
+      "content": "TH: We reserve the right, but not the obligation, to: (1) monitor the Site for violations of these Terms of Use; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms of Use; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable any of your Contributions or any portion thereof."
     },
     "termAndTermination": {
-      "heading": "6. ระยะเวลาและการสิ้นสุด",
-      "content": "ข้อกำหนดการใช้งานเหล่านี้จะยังคงมีผลบังคับใช้อย่างสมบูรณ์ในขณะที่คุณใช้ไซต์ โดยไม่จำกัดข้อกำหนดอื่นใดของข้อกำหนดการใช้งานเหล่านี้ เราขอสงวนสิทธิ์ในการปฏิเสธการเข้าถึงและการใช้งานไซต์ (รวมถึงการบล็อกที่อยู่ IP บางรายการ) แก่บุคคลใดๆ ด้วยเหตุผลใดๆ หรือไม่มีเหตุผลใดๆ ตามดุลยพินิจของเราแต่เพียงผู้เดียวและโดยไม่มีการแจ้งเตือนหรือความรับผิด"
+      "heading": "TH: 6. TERM AND TERMINATION",
+      "content": "TH: These Terms of Use shall remain in full force and effect while you use the Site. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS OF USE, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SITE (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON."
     },
     "modificationsAndInterruptions": {
-      "heading": "7. การแก้ไขและการหยุดชะงัก",
-      "content": "เราขอสงวนสิทธิ์ในการเปลี่ยนแปลง แก้ไข หรือลบเนื้อหาของไซต์ได้ตลอดเวลาหรือด้วยเหตุผลใดๆ ตามดุลยพินิจของเราแต่เพียงผู้เดียวโดยไม่ต้องแจ้งให้ทราบล่วงหน้า นอกจากนี้ เราขอสงวนสิทธิ์ในการแก้ไขหรือยุติการให้บริการทั้งหมดหรือบางส่วนของไซต์โดยไม่ต้องแจ้งให้ทราบล่วงหน้าได้ตลอดเวลา เราจะไม่รับผิดต่อคุณหรือบุคคลที่สามใดๆ สำหรับการแก้ไข การเปลี่ยนแปลงราคา การระงับ หรือการยุติการให้บริการของไซต์"
+      "heading": "TH: 7. MODIFICATIONS AND INTERRUPTIONS",
+      "content": "TH: We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Site without notice at any time. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Site."
     },
     "governingLaw": {
-      "heading": "8. กฎหมายที่ใช้บังคับ",
-      "content": "ข้อกำหนดการใช้งานเหล่านี้และการใช้ไซต์ของคุณอยู่ภายใต้และตีความตามกฎหมายของเขตอำนาจศาลที่ DamDoh จดทะเบียน โดยไม่คำนึงถึงหลักการขัดกันแห่งกฎหมาย"
+      "heading": "TH: 8. GOVERNING LAW",
+      "content": "These Terms of Use and your use of the Site are governed by and construed in accordance with the laws of the jurisdiction where DamDoh is registered, without regard to its conflict of law principles."
     },
     "disputeResolution": {
-      "heading": "9. การระงับข้อพิพาท",
-      "content": "การดำเนินการทางกฎหมายใดๆ ไม่ว่าจะในลักษณะใดก็ตามที่ริเริ่มโดยคุณหรือเราจะต้องเริ่มต้นหรือดำเนินคดีในศาลของรัฐและรัฐบาลกลางที่ตั้งอยู่ในเขตอำนาจศาลที่เราจดทะเบียน และคู่สัญญาตกลงและสละการป้องกันทั้งหมดเกี่ยวกับการขาดเขตอำนาจศาลส่วนบุคคลและ forum non conveniens ที่เกี่ยวกับสถานที่และเขตอำนาจศาลในศาลดังกล่าว"
+      "heading": "TH: 9. DISPUTE RESOLUTION",
+      "content": "TH: Any legal action of whatever nature brought by either you or us shall be commenced or prosecuted in the state and federal courts located in the jurisdiction where we are registered, and the parties hereby consent to, and waive all defenses of lack of personal jurisdiction and forum non conveniens with respect to venue and jurisdiction in such courts."
     },
     "contactUs": {
-      "heading": "10. ติดต่อเรา",
-      "content": "หากต้องการแก้ไขข้อร้องเรียนเกี่ยวกับไซต์หรือรับข้อมูลเพิ่มเติมเกี่ยวกับการใช้ไซต์ โปรดติดต่อเรา"
+      "heading": "TH: 10. CONTACT US",
+      "content": "TH: To resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us."
     },
-    "conclusion": "หากต้องการแก้ไขข้อร้องเรียนหรือรับข้อมูลเพิ่มเติม โปรด {contactLink}"
+    "conclusion": "TH: To resolve a complaint or receive further information, please {contactLink}."
   },
-  "pinboardPage": {
-    "title": "พินบอร์ด",
-    "description": "พื้นที่ส่วนตัวของคุณสำหรับบันทึกรายการสำคัญจากทั่วทั้ง DamDoh",
-    "comingSoonTitle": "พินบอร์ดเร็วๆ นี้!",
-    "comingSoonDescription": "คุณลักษณะนี้จะช่วยให้คุณสามารถ 'ปักหมุด' รายการในตลาด โพสต์ในฟอรัม โปรไฟล์ และอื่นๆ ลงบนบอร์ดส่วนตัวเพื่อให้เข้าถึงได้ง่าย",
-    "stayTuned": "คอยติดตามการอัปเดต!"
-  },
-  "walletPage": {
-    "title": "กระเป๋าเงินของฉัน",
-    "description": "จัดการการเงินของคุณ ดูธุรกรรม และเข้าถึงบริการทางการเงิน",
-    "underDevelopmentTitle": "ศูนย์กลางทางการเงินอยู่ระหว่างการพัฒนา",
-    "underDevelopmentDescription": "เรากำลังสร้างกระเป๋าเงินดิจิทัลที่แข็งแกร่งและปลอดภัยเพื่อจัดการธุรกรรมบนแพลตฟอร์มทั้งหมดของคุณ คุณสมบัติจะรวมถึง:",
-    "feature1": "การจัดเก็บยอดคงเหลือที่ปลอดภัย",
-    "feature2": "ประวัติธุรกรรมสำหรับการขายในตลาดและการชำระค่าบริการ",
-    "feature3": "การจ่ายเงินที่ง่ายดายไปยังบัญชีเงินมือถือหรือบัญชีธนาคารในพื้นที่ของคุณ",
-    "feature4": "การเข้าถึงเพื่อสมัครขอสินเชื่อและเงินช่วยเหลือโดยตรงจากกระเป๋าเงินของคุณ",
-    "stayTuned": "คอยติดตามคุณสมบัติที่น่าตื่นเต้นนี้!"
-  },
-  "industryNewsPage": {
-    "title": "ข่าวอุตสาหกรรม",
-    "description": "ติดตามแนวโน้มล่าสุด การวิจัย และการเปลี่ยนแปลงนโยบายในภาคเกษตรกรรม",
-    "searchPlaceholder": "ค้นหาบทความข่าว...",
-    "categoryPlaceholder": "กรองตามหมวดหมู่",
-    "allCategories": "ทุกหมวดหมู่",
-    "sourceLabel": "แหล่งที่มา",
-    "publishedLabel": "เผยแพร่เมื่อ",
-    "categoryLabel": "หมวดหมู่",
-    "readButton": "อ่านเรื่องราวทั้งหมด",
-    "news1": {
-      "title": "ราคากาแฟทั่วโลกพุ่งสูงขึ้นท่ามกลางภาวะน้ำค้างแข็งในบราซิลและความล่าช้าในการขนส่ง",
-      "excerpt": "การผสมผสานระหว่างสภาพอากาศที่ไม่เอื้ออำนวยในภูมิภาคการเพาะปลูกที่สำคัญและความท้าทายด้านโลจิสติกส์ระดับโลกที่ดำเนินอยู่อย่างต่อเนื่องได้ผลักดันให้สัญญาซื้อขายล่วงหน้ากาแฟอาราบิก้าแตะระดับสูงสุดในรอบเจ็ดปี..."
+  "Marketplace": {
+    "title": "TH: Marketplace",
+    "description": "TH: Discover, buy, and sell agricultural products and services.",
+    "createShopButton": "TH: Create Shop",
+    "myOrdersButton": "TH: My Orders",
+    "createListingButton": "TH: Create Listing",
+    "pinButton": "TH: Pin as Homepage",
+    "unpinButton": "TH: Unpin Homepage",
+    "searchPlaceholder": "TH: Search products & services...",
+    "locationPlaceholder": "TH: Filter by location...",
+    "typePlaceholder": "TH: Filter by type...",
+    "recommendedForYou": "TH: Recommended For You",
+    "discoverMore": "TH: Discover More",
+    "viewDetails": "TH: View Details",
+    "viewServiceButton": "TH: View Service",
+    "pinning": {
+      "pinnedTitle": "TH: Marketplace Pinned",
+      "pinnedDescription": "TH: The marketplace is now your default homepage.",
+      "unpinnedTitle": "TH: Marketplace Unpinned",
+      "unpinnedDescription": "TH: Your homepage has been reset to the default."
     },
-    "news2": {
-      "title": "สหภาพยุโรปบังคับใช้กฎระเบียบใหม่ของยุทธศาสตร์ 'จากฟาร์มสู่ส้อม' เกี่ยวกับบรรจุภัณฑ์",
-      "excerpt": "กฎระเบียบใหม่จะกำหนดให้ผู้ส่งออกอาหารไปยังสหภาพยุโรปต้องปฏิบัติตามมาตรฐานที่เข้มงวดมากขึ้นสำหรับบรรจุภัณฑ์ที่สามารถรีไซเคิลและย่อยสลายได้ ซึ่งส่งผลกระทบต่อห่วงโซ่อุปทานทั้งหมด"
+    "noItemsFound": {
+      "title": "TH: No Items Found",
+      "hint": "TH: Try adjusting your search filters or check back later."
     },
-    "news3": {
-      "title": "ผลการศึกษาชี้ว่าแนวปฏิบัติแบบฟื้นฟูสามารถเพิ่มคาร์บอนในดินได้ 15% ใน 5 ปี",
-      "excerpt": "การศึกษาระยะยาวที่ตีพิมพ์ในวารสาร Nature แสดงให้เห็นถึงศักยภาพที่สำคัญของแนวปฏิบัติการไม่ไถพรวนและการปลูกพืชคลุมดินสำหรับการกักเก็บคาร์บอนและสุขภาพของดิน"
+    "errors": {
+      "search": {
+        "title": "TH: Search Failed",
+        "description": "TH: Could not retrieve marketplace listings at this time."
+      },
+      "aiRecommendations": {
+        "title": "TH: Could not find recommendations at this time."
+      }
     },
-    "noNews": {
-      "title": "ไม่พบข่าว",
-      "description": "ไม่มีบทความข่าวที่ตรงกับเกณฑ์ของคุณในขณะนี้"
+    "categories": {
+      "allCategories": "TH: All Categories",
+      "viewAllItems": "TH: View All Items",
+      "viewAllCategory": "TH: All in {categoryName}"
+    },
+    "createListing": {
+      "backLink": "TH: Back to Marketplace",
+      "title": "TH: Create a New Marketplace Listing",
+      "description": "TH: Fill in the details below to list your product or service.",
+      "form": {
+        "nameLabel": "TH: Listing Title",
+        "namePlaceholder": "TH: e.g., Organic Hass Avocados, Tractor Repair Service",
+        "typeLabel": "TH: Listing Type",
+        "typePlaceholder": "TH: Select a listing type",
+        "descriptionLabel": "TH: Description",
+        "descriptionPlaceholder": "TH: Describe your product or service in detail...",
+        "locationLabel": "TH: Location",
+        "locationPlaceholder": "TH: e.g., Nakuru, Kenya",
+        "relatedVtiLabel": "TH: Related Traceability ID (Optional)",
+        "relatedVtiPlaceholder": "TH: Enter VTI if available",
+        "relatedVtiDescription": "TH: Link this item to a specific harvest batch for full transparency.",
+        "categoryLabel": "TH: Category",
+        "categoryPlaceholder": "TH: Select a category",
+        "priceLabel": "TH: Price",
+        "pricePlaceholder": "TH: e.g., 25.50",
+        "unitLabel": "TH: per",
+        "unitPlaceholder": "TH: e.g., kg, Ton, Hour",
+        "compensationLabel": "TH: Compensation / Rate",
+        "compensationPlaceholder": "TH: e.g., $50/hour, Per Project",
+        "experienceLabel": "TH: Experience Level",
+        "experiencePlaceholder": "TH: e.g., Intermediate, Expert (10+ years)",
+        "skillsLabel": "TH: Skills Required (for services)",
+        "skillsPlaceholder": "TH: e.g., Crop Spraying, Soil Analysis, Organic Certification",
+        "skillsDescription": "TH: Separate skills with a comma.",
+        "imageUrlLabel": "TH: Image URL",
+        "sustainableLabel": "TH: Sustainably Produced",
+        "sustainableDescription": "TH: Check this box if your product or service follows recognized sustainable practices.",
+        "submitButton": "TH: Create Listing",
+        "submittingButton": "TH: Creating..."
+      },
+      "aiPriceSuggestion": {
+        "button": "TH: Suggest Price with AI",
+        "generatingButton": "TH: Suggesting...",
+        "suggestionLabel": "TH: AI Suggestion:",
+        "usePriceButton": "TH: Use this price"
+      },
+      "errors": {
+        "priceSuggestion": {
+          "missingInfo": {
+            "title": "TH: Incomplete Information",
+            "description": "TH: Please fill out the name and description before suggesting a price."
+          },
+          "failed": {
+            "title": "TH: AI Suggestion Failed",
+            "description": "TH: Could not get a price suggestion at this time."
+          }
+        },
+        "authentication": {
+          "title": "TH: Not Authenticated",
+          "description": "TH: You must be signed in to create a listing."
+        },
+        "creation": {
+          "title": "TH: Creation Failed",
+          "description": "TH: An unexpected error occurred while creating the listing."
+        }
+      },
+      "success": {
+        "title": "TH: Listing Created!",
+        "description": "TH: Your listing is now live on the marketplace."
+      }
+    },
+    "itemView": {
+      "backLink": "TH: Back to Marketplace",
+      "notFound": {
+        "description": "TH: Item not found."
+      },
+      "errors": {
+        "loadItem": {
+          "description": "TH: Could not load item."
+        },
+        "unexpected": "TH: An unexpected error occurred."
+      },
+      "coupon": {
+        "successTitle": "TH: Coupon Applied!",
+        "successDescription": "TH: You've received a {type} discount!",
+        "failTitle": "TH: Invalid Coupon",
+        "failDescription": "TH: The coupon code you entered is invalid or has expired.",
+        "label": "TH: Coupon Code",
+        "placeholder": "TH: Enter coupon",
+        "applyButton": "TH: Apply",
+        "appliedText": "TH: Coupon '{code}' applied."
+      },
+      "booking": {
+        "authTitle": "TH: Sign In Required",
+        "authDescription": "TH: You must be signed in to book a service.",
+        "failTitle": "TH: Booking Failed",
+        "dateError": "TH: Please select both a start and end date for your booking.",
+        "successTitle": "TH: Booking Successful!",
+        "successDescription": "TH: Your booking is confirmed. You will receive more details via email.",
+        "bookedTitle": "TH: You've already booked this experience!",
+        "bookedDescription": "TH: Show your ticket upon arrival.",
+        "ticketButton": "TH: View Ticket",
+        "modalTitle": "TH: Your Ticket",
+        "modalDescription": "TH: Show this QR code at check-in for {itemName}.",
+        "modalScan": "TH: Scan this code at check-in.",
+        "perNight": "TH: per night",
+        "checkIn": "TH: Check-in",
+        "checkOut": "TH: Check-out",
+        "addDate": "TH: Add dates",
+        "guests": "TH: Guests",
+        "reserveButton": "TH: Reserve",
+        "reservingButton": "TH: Reserving...",
+        "notCharged": "TH: You won't be charged yet.",
+        "nights": "TH: {count, plural, =1 {night} other {nights}}",
+        "serviceFee": "TH: Service fee",
+        "total": "TH: Total"
+      },
+      "order": {
+        "authTitle": "TH: Sign In Required",
+        "authDescription": "TH: You must be signed in to place an order.",
+        "quantityErrorTitle": "TH: Invalid Quantity",
+        "quantityErrorDescription": "TH: Please enter a quantity greater than zero.",
+        "successTitle": "TH: Order Placed!",
+        "successDescription": "TH: Your order has been successfully sent to the seller.",
+        "failTitle": "TH: Order Failed",
+        "failDescription": "TH: Could not place your order. Please try again.",
+        "title": "TH: Order {itemName}",
+        "description": "TH: Confirm the quantity and add a note for the seller if needed.",
+        "quantityLabel": "TH: Quantity",
+        "notesLabel": "TH: Note for seller (optional)",
+        "notesPlaceholder": "TH: e.g., delivery instructions, special requests...",
+        "cancelButton": "TH: Cancel",
+        "confirmButton": "TH: Confirm Order",
+        "placingButton": "TH: Placing order..."
+      },
+      "skillsLabel": "TH: Skills Required",
+      "experienceLabel": "TH: Experience Level",
+      "compensationLabel": "TH: Compensation",
+      "contactForRates": "TH: Contact for rates",
+      "aboutSeller": "TH: About the Seller",
+      "viewShopfront": "TH: View Shopfront",
+      "editListing": "TH: Edit Listing",
+      "manageService": "TH: Manage Service",
+      "buyNowButton": "TH: Buy Now",
+      "contactForService": "TH: Contact for Service",
+      "contactSeller": "TH: Contact Seller",
+      "traceabilityButton": "TH: View Traceability Report"
+    },
+    "myOrders": {
+      "backLink": "TH: Back to Marketplace",
+      "title": "TH: My Orders",
+      "description": "TH: Manage your incoming sales orders.",
+      "table": {
+        "date": "TH: Date",
+        "buyer": "TH: Buyer",
+        "product": "TH: Product",
+        "total": "TH: Total",
+        "status": "TH: Status",
+        "actions": "TH: Actions"
+      },
+      "actions": {
+        "confirm": "TH: Confirm",
+        "ship": "TH: Ship",
+        "complete": "TH: Complete",
+        "cancel": "TH: Cancel"
+      },
+      "status": {
+        "new": "TH: New",
+        "confirmed": "TH: Confirmed",
+        "shipped": "TH: Shipped",
+        "completed": "TH: Completed",
+        "cancelled": "TH: Cancelled"
+      },
+      "noOrders": "TH: You haven't received any orders yet.",
+      "toast": {
+        "errorTitle": "TH: Error",
+        "fetchError": "TH: Could not fetch your orders.",
+        "successTitle": "TH: Order Updated",
+        "updateSuccess": "TH: Order status successfully updated to '{status}'.",
+        "failTitle": "TH: Update Failed"
+      },
+      "auth": {
+        "title": "TH: Please Sign In",
+        "description": "TH: You must be signed in to view your orders.",
+        "button": "TH: Sign In"
+      }
+    },
+    "createShop": {
+      "backLink": "TH: Back to Marketplace",
+      "title": "TH: Create a Digital Shopfront",
+      "description": "TH: Set up your personal marketplace to showcase your products or services.",
+      "form": {
+        "nameLabel": "TH: Shop Name",
+        "namePlaceholder": "TH: e.g., Green Valley Organics",
+        "typeLabel": "TH: Business Type",
+        "typePlaceholder": "TH: Select your primary stakeholder type",
+        "descriptionLabel": "TH: Shop Description",
+        "descriptionPlaceholder": "TH: Briefly describe your shop and what you offer...",
+        "submitButton": "TH: Create Shop",
+        "submittingButton": "TH: Creating..."
+      },
+      "authErrorTitle": "TH: Not Authenticated",
+      "authErrorDescription": "TH: You must be signed in to create a shop.",
+      "toast": {
+        "successTitle": "TH: Shop Created!",
+        "successDescription": "TH: Your shop '{shopName}' is now live.",
+        "failTitle": "TH: Creation Failed",
+        "failDescription": "TH: Could not create your shop. Please try again."
+      }
+    },
+    "shopView": {
+      "backLink": "TH: Back to Marketplace",
+      "ownedBy": "TH: Owned by",
+      "loadingOwner": "TH: Loading owner...",
+      "contactButton": "TH: Contact",
+      "editShopButton": "TH: Edit Shop",
+      "listingsTitle": "TH: Listings from {shopName}",
+      "noListings": "TH: This shop does not have any active listings at the moment.",
+      "errors": {
+        "notFound": "TH: Shop not found",
+        "loadError": "TH: Could not load shop information.",
+        "title": "TH: Error"
+      }
+    },
+    "promotions": {
+      "title": "TH: My Promotions",
+      "description": "TH: Create and manage coupon codes to attract more buyers.",
+      "backToDashboard": "TH: Back to Dashboard",
+      "signInPrompt": "TH: Please sign in to manage your promotions.",
+      "create": {
+        "title": "TH: Create New Coupon",
+        "description": "TH: Define the details for your new promotional coupon.",
+        "form": {
+          "code": "TH: Coupon Code",
+          "codePlaceholder": "TH: e.g., SALE20",
+          "usageLimit": "TH: Usage Limit",
+          "usageLimitPlaceholder": "TH: e.g., 100",
+          "discountType": "TH: Discount Type",
+          "discountTypePlaceholder": "TH: Select type",
+          "percentage": "TH: Percentage",
+          "fixed": "TH: Fixed Amount",
+          "discountValue": "TH: Discount Value",
+          "expiryDate": "TH: Expiry Date (Optional)",
+          "pickDate": "TH: Pick a date",
+          "submitButton": "TH: Create Coupon"
+        },
+        "toast": {
+          "successTitle": "TH: Coupon Created!",
+          "successDescription": "TH: Coupon '{code}' is now available.",
+          "failTitle": "TH: Creation Failed"
+        }
+      },
+      "list": {
+        "title": "TH: Existing Coupons",
+        "description": "TH: View and manage your active promotional codes.",
+        "usage": "TH: Usage",
+        "expires": "TH: Expires",
+        "never": "TH: Never",
+        "share": "TH: Share",
+        "noCoupons": "TH: You haven't created any coupons yet.",
+        "toastTitle": "TH: Link Copied!",
+        "toastDescription": "TH: A shareable link for coupon '{link}' has been copied to your clipboard.",
+        "shareModal": {
+          "title": "TH: Share Coupon Code",
+          "description": "TH: Share this link with your customers to automatically apply the coupon.",
+          "link": "TH: Link",
+          "copy": "TH: Copy",
+          "close": "TH: Close"
+        }
+      },
+      "toast": {
+        "error": "TH: Error",
+        "fetchError": "TH: Could not fetch your coupons.",
+        "createSuccess": "TH: Coupon '{code}' created successfully.",
+        "createFail": "TH: Could not create coupon.",
+        "createError": "TH: An unexpected error occurred.",
+        "linkCopied": "TH: Link Copied!",
+        "shareDescription": "TH: Shareable link for coupon '{code}' copied."
+      }
+    },
+    "manageService": {
+      "title": "TH: Manage Service",
+      "backLink": "TH: Back to Service Page",
+      "loading": "TH: Loading...",
+      "tabs": {
+        "checkin": "TH: Check-in",
+        "bookings": "TH: Bookings",
+        "staff": "TH: Staff"
+      },
+      "bookingsTab": {
+        "title": "TH: Bookings",
+        "description": "TH: View a list of all users who have booked this service.",
+        "downloadCsv": "TH: Download CSV",
+        "table": {
+          "guest": "TH: Guest",
+          "bookedOn": "TH: Booked On",
+          "status": "TH: Status",
+          "checkedInAt": "TH: Checked-in At"
+        },
+        "status": {
+          "booked": "TH: Booked",
+          "checkedIn": "TH: Checked-in"
+        },
+        "noBookings": "TH: No one has booked this service yet.",
+        "error": "TH: Error",
+        "fetchError": "TH: Could not load bookings.",
+        "toast": {
+          "noBookings": "TH: No bookings to download."
+        }
+      }
     }
   },
-  "notificationsPage": {
-    "title": "การแจ้งเตือน",
-    "description": "ติดตามกิจกรรมล่าสุดจากเครือข่ายของคุณ",
-    "noNotifications": "คุณไม่มีการแจ้งเตือนใหม่",
-    "likedYourPost": "{name} ชอบโพสต์ของคุณ",
-    "commentedOnYourPost": "{name} แสดงความคิดเห็นในโพสต์ของคุณ",
-    "viewedYourProfile": "{name} ดูโปรไฟล์ของคุณ",
-    "placedNewOrder": "{name} สั่งซื้อรายการของคุณ",
-    "sentConnectionRequest": "{name} ส่งคำขอเชื่อมต่อถึงคุณ",
-    "error": "ข้อผิดพลาด"
-  },
-  "messagingPage": {
-    "title": "ข้อความ",
-    "searchPlaceholder": "ค้นหาบทสนทนา...",
-    "noConversations": "คุณยังไม่มีบทสนทนา เริ่มต้นโดยการเชื่อมต่อกับใครสักคนในหน้าเครือข่าย",
-    "selectConversation": "เลือกบทสนทนาเพื่อเริ่มแชท",
-    "noMessages": "ยังไม่มีข้อความในบทสนทนานี้ เป็นคนแรกที่พูดอะไรบางอย่าง!",
-    "typeMessagePlaceholder": "พิมพ์ข้อความ...",
-    "signInToView": "โปรดลงชื่อเข้าใช้เพื่อดูข้อความของคุณ",
-    "signIn": "ลงชื่อเข้าใช้",
-    "error": "ข้อผิดพลาด",
-    "couldNotLoadConversations": "ไม่สามารถโหลดบทสนทนาของคุณได้",
-    "couldNotStartConversation": "ไม่สามารถเริ่มบทสนทนาใหม่ได้",
-    "sendFailed": "ส่งไม่สำเร็จ",
-    "couldNotSendMessage": "ไม่สามารถส่งข้อความได้ โปรดลองอีกครั้ง"
-  },
-  "networkPage": {
-    "title": "เครือข่าย",
-    "description": "ค้นพบและเชื่อมต่อกับผู้มีส่วนได้ส่วนเสียทั่วทั้งห่วงโซ่อุปทานทางการเกษตร",
-    "myNetworkButton": "เครือข่ายของฉัน",
-    "agentToolsButton": "เครื่องมือตัวแทน",
-    "aiSuggestionsTitle": "คำแนะนำจาก AI",
-    "aiSuggestionsDescription": "เชื่อมต่อกับคนที่คุณอาจรู้จักตามโปรไฟล์และกิจกรรมของคุณ",
-    "toast": {
-      "errorTitle": "ข้อผิดพลาด",
-      "loadError": "ไม่สามารถโหลดข้อมูลเครือข่ายได้",
-      "connectError": "ไม่สามารถส่งคำขอเชื่อมต่อได้"
+  "farmManagement": {
+    "hub": {
+      "title": "TH: Farm Management Hub",
+      "description": "TH: Your central place to track and optimize all your farming activities, from planting to harvest.",
+      "myFarms": {
+        "title": "TH: My Farms & Crops",
+        "description": "TH: Manage your farms, fields, and track individual crop cycles.",
+        "button": "TH: Manage Farms"
+      },
+      "labor": {
+        "title": "TH: Labor Management",
+        "description": "TH: Keep track of hours and payments for your workforce.",
+        "button": "TH: Manage Labor"
+      },
+      "knf": {
+        "title": "TH: KNF Inputs Assistant",
+        "description": "TH: Track your farmer-made Korean Natural Farming inputs.",
+        "button": "TH: Manage Inputs"
+      },
+      "fgw": {
+        "title": "TH: Farming God's Way Guide",
+        "description": "TH: Learn the principles and practices of FGW for sustainable, no-till agriculture.",
+        "button": "TH: View FGW Guide"
+      },
+      "financials": {
+        "title": "TH: Financials & Analytics",
+        "description": "TH: Track income, expenses, and gain insights into profitability.",
+        "button": "TH: View Financials"
+      },
+      "seedStarting": {
+        "title": "TH: Seed Starting Guide",
+        "description": "TH: Learn best practices for starting seeds for a successful season.",
+        "button": "TH: View Seed Guide"
+      },
+      "familyFarm": {
+        "title": "TH: Diversified Family Farm Model",
+        "description": "TH: Explore a sustainable 200 sq meter model for small family farms.",
+        "button": "TH: View Model"
+      },
+      "assetManagement": {
+        "title": "TH: Asset Management",
+        "description": "TH: Keep track of your machinery, tools, and other farm assets.",
+        "button": "TH: Manage Assets"
+      }
     },
-    "following": "ส่งคำขอแล้ว",
-    "follow": "ติดตาม",
-    "connect": "เชื่อมต่อ",
-    "profile": "โปรไฟล์",
-    "noSuggestions": "ไม่มีคำแนะนำใหม่ในขณะนี้ ลองขยายโปรไฟล์ของคุณ!",
-    "browseAllTitle": "เรียกดูผู้มีส่วนได้ส่วนเสียทั้งหมด",
-    "browseAllDescription": "ค้นหาและเชื่อมต่อกับพันธมิตรใหม่ในห่วงโซ่อุปทาน",
-    "searchPlaceholder": "ค้นหาด้วยชื่อหรือบทสรุป...",
-    "locationPlaceholder": "ค้นหาด้วยตำแหน่งที่ตั้ง...",
-    "rolePlaceholder": "กรองตามบทบาท",
-    "allRoles": "ทุกบทบาท",
-    "noStakeholdersFound": "ไม่พบผู้มีส่วนได้ส่วนเสีย",
-    "noStakeholdersHint": "ลองปรับตัวกรองการค้นหาของคุณ",
-    "invitePrompt": "ป้อนที่อยู่อีเมลของบุคคลที่คุณต้องการเชิญ:",
-    "inviteSuccessTitle": "ส่งคำเชิญแล้ว!",
-    "inviteSuccessDescription": "ส่งคำเชิญไปยัง {email} แล้ว",
-    "inviteErrorTitle": "ส่งคำเชิญไม่สำเร็จ",
-    "invite": {
-      "button": "เชิญ"
-    }
-  },
-  "myNetworkPage": {
-    "backLink": "กลับไปที่ศูนย์กลางเครือข่าย",
-    "myConnectionsTab": "การเชื่อมต่อของฉัน ({count})",
-    "pendingRequestsTab": "คำขอที่รอดำเนินการ",
-    "connectionsTitle": "การเชื่อมต่อของฉัน",
-    "connectionsDescription": "นี่คือเครือข่ายมืออาชีพของคุณบน DamDoh นี่คือคนที่คุณสามารถส่งข้อความโดยตรงและทำงานร่วมกันได้",
-    "requestsTitle": "คำขอเชื่อมต่อ",
-    "requestsDescription": "ยอมรับหรือปฏิเสธคำขอจากผู้ใช้รายอื่นเพื่อเพิ่มพวกเขาเข้าสู่เครือข่ายของคุณ",
-    "noConnections": {
-      "title": "สร้างเครือข่ายของคุณ",
-      "description": "คุณยังไม่ได้ทำการเชื่อมต่อใดๆ เริ่มต้นด้วยการสำรวจเครือข่ายหรือเชิญคนที่คุณรู้จัก",
-      "inviteButton": "เชิญเพื่อนร่วมงาน"
+    "myFarms": {
+      "backToDashboard": "TH: Back to Farm Hub",
+      "title": "TH: My Farms",
+      "addNewFarmButton": "TH: Add New Farm",
+      "size": "TH: Size",
+      "viewFarmButton": "TH: View Farm Dashboard",
+      "noFarmsTitle": "TH: You haven't added any farms yet.",
+      "noFarmsDescription": "TH: Get started by creating your first farm profile to track crops and activities.",
+      "auth": {
+        "title": "TH: Please Sign In",
+        "description": "TH: You must be signed in to view your farms.",
+        "button": "TH: Sign In"
+      },
+      "toast": {
+        "errorTitle": "TH: Error",
+        "fetchError": "TH: Could not fetch your farm data."
+      }
     },
-    "noRequests": "คุณไม่มีคำขอเชื่อมต่อที่รอดำเนินการ",
-    "sentTimeAgo": "ส่งเมื่อ {timeAgo} ที่แล้ว",
-    "toast": {
-      "error": "ข้อผิดพลาด",
-      "success": "สำเร็จ",
-      "loadError": "ไม่สามารถโหลดข้อมูลเครือข่ายของคุณได้ โปรดลองอีกครั้ง",
-      "respondError": "การตอบกลับคำขอล้มเหลว",
-      "requestAccepted": "ยอมรับคำขอเชื่อมต่อแล้ว",
-      "requestDeclined": "ปฏิเสธคำขอเชื่อมต่อแล้ว",
-      "connectionRemoved": "ลบการเชื่อมต่อแล้ว",
-      "removeError": "ไม่สามารถลบการเชื่อมต่อได้"
-    }
-  },
-  "agentToolsPage": {
-    "backLink": "กลับไปที่เครือข่าย",
-    "title": "เครื่องมือตัวแทน",
-    "description": "ค้นหาข้อมูลผู้ใช้เพื่อการยืนยันและสนับสนุนอย่างปลอดภัย",
-    "findUserLabel": "ค้นหาผู้ใช้ด้วยหมายเลขโทรศัพท์",
-    "findButton": "ค้นหา",
-    "resultsTitle": "ผลลัพธ์",
-    "resultsPlaceholder": "รายละเอียดผู้ใช้จะปรากฏที่นี่",
-    "phoneRequiredError": "ต้องระบุหมายเลขโทรศัพท์เพื่อทำการค้นหา",
-    "accessDeniedTitle": "การเข้าถึงถูกปฏิเสธ",
-    "accessDeniedDescription": "คุณไม่มีสิทธิ์ที่จำเป็นในการเข้าถึงเครื่องมือเหล่านี้"
-  },
-  "knowledgeHub": {
-    "title": "ศูนย์ความรู้",
-    "description": "ศูนย์กลางของคุณสำหรับการเรียนรู้ การเติบโต และความเชี่ยวชาญด้านการเกษตร",
-    "courses": {
-      "title": "หลักสูตร",
-      "description": "เส้นทางการเรียนรู้ที่มีโครงสร้างเพื่อเพิ่มพูนทักษะของคุณ",
-      "body": "เรียกดูแคตตาล็อกหลักสูตรของเราที่ออกแบบโดยผู้เชี่ยวชาญในอุตสาหกรรม ครอบคลุมทุกอย่างตั้งแต่เทคนิคการทำฟาร์มที่ยั่งยืนไปจนถึงการจัดการธุรกิจการเกษตร",
-      "cta": "สำรวจหลักสูตร"
+    "createFarm": {
+      "backToFarms": "TH: Back to My Farms",
+      "title": "TH: Create New Farm",
+      "description": "TH: Add a new farm to your profile to start tracking crops, inputs, and activities.",
+      "form": {
+        "farmNameLabel": "TH: Farm Name",
+        "farmNamePlaceholder": "TH: e.g., Green Valley Organics",
+        "locationLabel": "TH: Location",
+        "locationPlaceholder": "TH: e.g., Rift Valley, Kenya",
+        "locationDescription": "TH: Provide a general location (City, Region).",
+        "sizeLabel": "TH: Farm Size",
+        "sizePlaceholder": "TH: e.g., 5 Hectares, 12 Acres",
+        "sizeDescription": "TH: Specify the units (e.g., Hectares, Acres).",
+        "typeLabel": "TH: Farm Type",
+        "typePlaceholder": "TH: Select the primary type",
+        "types": {
+          "crop": "TH: Crop Production",
+          "livestock": "TH: Livestock",
+          "mixed": "TH: Mixed (Crops & Livestock)",
+          "aquaculture": "TH: Aquaculture",
+          "other": "TH: Other"
+        },
+        "descriptionLabel": "TH: Description (Optional)",
+        "descriptionPlaceholder": "TH: Briefly describe your farm...",
+        "irrigationLabel": "TH: Irrigation Method (Optional)",
+        "irrigationPlaceholder": "TH: e.g., Drip irrigation, Rain-fed",
+        "irrigationDescription": "TH: Specify the main irrigation method used.",
+        "submitButton": "TH: Save Farm"
+      },
+      "toast": {
+        "authErrorTitle": "TH: Authentication Error",
+        "authErrorDescription": "TH: You must be signed in to create a farm.",
+        "successTitle": "TH: Farm Created!",
+        "successDescription": "TH: '{farmName}' has been added to your profile.",
+        "errorTitle": "TH: Creation Failed",
+        "errorDescription": "TH: Could not create the farm. Please try again."
+      }
     },
-    "blog": {
-      "title": "บล็อกและข่าวอุตสาหกรรม",
-      "description": "ติดตามข้อมูลเชิงลึกและแนวโน้มล่าสุด",
-      "body": "อ่านบทความจากทีมงานและผู้เชี่ยวชาญในชุมชนของเราเกี่ยวกับแนวโน้มตลาด เทคโนโลยีใหม่ เรื่องราวความสำเร็จ และการเปลี่ยนแปลงนโยบายที่สำคัญ",
-      "cta": "อ่านบล็อก"
+    "farmDetail": {
+      "backToFarms": "TH: Back to My Farms",
+      "registeredOn": "TH: Registered on {date}",
+      "editFarmButton": "TH: Edit Farm",
+      "crops": {
+        "title": "TH: Crops",
+        "description": "TH: Manage all active crops on this farm.",
+        "addNewButton": "TH: Add New Crop",
+        "plantedLabel": "TH: Planted",
+        "stageLabel": "TH: Stage",
+        "viewJourneyButton": "TH: View Journey",
+        "noCrops": "TH: No crops have been added to this farm yet.",
+        "addFirstButton": "TH: Add Your First Crop"
+      },
+      "insights": {
+        "title": "TH: Profitability Insights",
+        "description": "TH: AI-driven analysis of your farm's activities.",
+        "noInsights": "TH: Not enough data to generate insights. Start logging activities!"
+      },
+      "toast": {
+        "notFoundTitle": "TH: Farm Not Found",
+        "loadErrorTitle": "TH: Loading Error",
+        "insightsErrorTitle": "TH: Insights Error"
+      },
+      "notFound": {
+        "title": "TH: Farm Not Found",
+        "description": "TH: The farm you are looking for does not exist, or you do not have permission to view it.",
+        "backButton": "TH: Back to My Farms"
+      }
     },
-    "featured": {
-      "title": "เนื้อหาเด่น",
-      "loading": "กำลังโหลดเนื้อหาเด่น...",
-      "error": "ไม่สามารถโหลดเนื้อหาเด่นได้",
-      "noArticles": "ไม่มีบทความเด่นในขณะนี้"
-    }
-  },
-  "InsurancePage": {
-    "title": "ศูนย์กลางประกันภัยการเกษตร",
-    "description": "ปกป้องฟาร์มและการลงทุนของคุณจากความเสี่ยงที่ไม่คาดฝัน",
-    "toast": {
-      "errorTitle": "ข้อผิดพลาด"
+    "createCrop": {
+      "backLink": "TH: Back to Farm Detail",
+      "title": "TH: Add New Crop",
+      "description": "TH: Log a new crop or planting to start tracking its journey.",
+      "cropTypeLabel": "TH: Crop Name / Type",
+      "cropTypePlaceholder": "TH: e.g., Hass Avocado, Roma Tomato",
+      "cropTypeDescription": "TH: Be as specific as possible.",
+      "plantingDateLabel": "TH: Planting Date",
+      "harvestDateLabel": "TH: Estimated Harvest Date (Optional)",
+      "datePlaceholder": "TH: Select a date",
+      "yieldLabel": "TH: Expected Yield (Optional)",
+      "yieldPlaceholder": "TH: e.g., 5 Tons/Hectare",
+      "stageLabel": "TH: Current Stage (Optional)",
+      "stagePlaceholder": "TH: Select a stage",
+      "stages": {
+        "Planting": "TH: Planting",
+        "Vegetative": "TH: Vegetative",
+        "Flowering": "TH: Flowering",
+        "Fruiting": "TH: Fruiting",
+        "Harvesting": "TH: Harvesting",
+        "Post-Harvest": "TH: Post-Harvest"
+      },
+      "notesLabel": "TH: Notes (Optional)",
+      "notesPlaceholder": "TH: Add any relevant notes about this batch...",
+      "saveButton": "TH: Save Crop",
+      "savingButton": "TH: Saving...",
+      "toast": {
+        "authErrorTitle": "TH: Not Authenticated",
+        "authErrorDescription": "TH: You must be signed in to add a crop.",
+        "successTitle": "TH: Crop Added!",
+        "successDescription": "TH: {cropType} was successfully added to your farm.",
+        "failTitle": "TH: Could not add crop.",
+        "failDescription": "TH: An unexpected error occurred. Please try again."
+      }
     },
-    "perTerm": "ต่อเทอม",
-    "viewDetailsButton": "ดูรายละเอียดและสมัคร",
-    "noProducts": "ไม่มีผลิตภัณฑ์ประกันภัยในขณะนี้ โปรดกลับมาตรวจสอบอีกครั้งในภายหลัง"
-  },
-  "InsuranceApplyPage": {
-    "backLink": "กลับไปที่ศูนย์กลางประกันภัย",
-    "title": "ใบสมัครประกันภัย",
-    "description": "สมัครกรมธรรม์ {productName}",
-    "form": {
-      "farmLabel": "เลือกฟาร์มที่จะประกัน",
-      "farmPlaceholder": "เลือกหนึ่งในฟาร์มของคุณ",
-      "noFarms": "ไม่พบฟาร์ม โปรดสร้างฟาร์มก่อน",
-      "coverageValueLabel": "มูลค่าความคุ้มครองที่ต้องการ (เป็นดอลลาร์สหรัฐ)",
-      "coverageValuePlaceholder": "เช่น 10000",
-      "coverageValueDescription": "มูลค่าทั้งหมดที่คุณต้องการประกัน",
-      "submitButton": "ส่งใบสมัคร"
+    "logInput": {
+      "backLink": "TH: Back to Farm",
+      "title": "TH: Log Input Application",
+      "description": "TH: Record the application of fertilizers, pesticides, or other inputs to your crop.",
+      "useKNFLabel": "TH: Use KNF Batch",
+      "useKNFPlaceholder": "TH: Select a ready batch",
+      "manualInputLabel": "TH: Or Enter Manually",
+      "manualInputPlaceholder": "TH: e.g., NPK 10-10-10 Fertilizer",
+      "dateLabel": "TH: Application Date",
+      "quantityLabel": "TH: Quantity",
+      "quantityPlaceholder": "TH: e.g., 50",
+      "unitLabel": "TH: Unit",
+      "unitPlaceholder": "TH: e.g., kg, Liters, ml/L",
+      "methodLabel": "TH: Application Method (Optional)",
+      "methodPlaceholder": "TH: e.g., Foliar spray, Soil drench",
+      "saveButton": "TH: Log Application",
+      "savingButton": "TH: Logging...",
+      "toast": {
+        "authErrorTitle": "TH: Not Authenticated",
+        "authErrorDescription": "TH: You must be signed in to log an application.",
+        "success": "TH: Application Logged",
+        "description": "TH: The input application has been successfully logged to your crop's journey.",
+        "fail": "TH: Logging failed."
+      }
     },
-    "toast": {
-      "error": "ข้อผิดพลาด",
-      "successTitle": "ส่งใบสมัครแล้ว!",
-      "successDescription": "ใบสมัครประกันของคุณถูกส่งเพื่อตรวจสอบแล้ว",
-      "notAuthenticated": "คุณต้องเข้าสู่ระบบเพื่อสมัคร"
+    "cropDetailPage": {
+      "backLink": "TH: Back to Farm",
+      "plantedOn": "TH: Planted on {date}",
+      "editButton": "TH: Edit",
+      "quickActionsTitle": "TH: Quick Actions",
+      "logInputButton": "TH: Log Input",
+      "logObservationButton": "TH: Log Observation",
+      "logHarvestButton": "TH: Log Harvest",
+      "journeyTitle": "TH: Crop Journey",
+      "noActivities": "TH: No activities have been logged for this crop yet.",
+      "loading": "TH: Loading crop details...",
+      "notFound": "TH: Crop not found.",
+      "toast": {
+        "notFound": "TH: Crop not found.",
+        "loadError": "TH: Could not load crop data."
+      },
+      "eventPayload": {
+        "noDetails": "TH: No additional details for this event.",
+        "observationType": "TH: Observation Type",
+        "details": "TH: Details",
+        "aiDiagnosis": "TH: AI Diagnosis"
+      }
     },
-    "success": {
-      "title": "ได้รับใบสมัครแล้ว",
-      "description": "ขอบคุณ! ใบสมัครของคุณอยู่ระหว่างการตรวจสอบ ผู้ให้บริการประกันจะติดต่อคุณเกี่ยวกับขั้นตอนต่อไป",
-      "backToDashboardButton": "กลับไปที่แดชบอร์ด",
-      "applyForAnotherButton": "สมัครกรมธรรม์อื่น"
-    }
-  },
-  "InsuranceDetailPage": {
-    "backLink": "กลับไปที่ศูนย์กลางประกันภัย",
-    "notFound": "ไม่พบผลิตภัณฑ์ประกันภัย",
-    "coverageTitle": "รายละเอียดความคุ้มครอง",
-    "premiumTitle": "เบี้ยประกัน",
-    "providerTitle": "ให้บริการโดย",
-    "applyButton": "สมัครกรมธรรม์นี้"
-  },
-  "InsuranceProductCreatePage": {
-    "backLink": "กลับไปที่ผลิตภัณฑ์",
-    "title": "สร้างผลิตภัณฑ์ประกันภัยใหม่",
-    "description": "กำหนดผลิตภัณฑ์ประกันภัยใหม่เพื่อเสนอขายบนแพลตฟอร์ม",
-    "form": {
-      "nameLabel": "ชื่อผลิตภัณฑ์",
-      "namePlaceholder": "เช่น ประกันภัยพืชผลหลายชนิด",
-      "typeLabel": "ประเภทผลิตภัณฑ์",
-      "typePlaceholder": "เลือกประเภท",
-      "crop": "พืชผล",
-      "livestock": "ปศุสัตว์",
-      "asset": "สินทรัพย์",
-      "weather": "สภาพอากาศ",
-      "descriptionLabel": "คำอธิบายสั้นๆ",
-      "descriptionPlaceholder": "สรุปย่อของผลิตภัณฑ์",
-      "coverageLabel": "รายละเอียดความคุ้มครอง",
-      "coveragePlaceholder": "อธิบายรายละเอียดว่ากรมธรรม์นี้คุ้มครองอะไรบ้าง...",
-      "premiumLabel": "เบี้ยประกัน ($)",
-      "premiumPlaceholder": "เช่น 500",
-      "currencyLabel": "สกุลเงิน",
-      "submitButton": "สร้างผลิตภัณฑ์"
+    "fgwGuidePage": {
+      "backLink": "TH: Back to Farm Hub",
+      "title": "TH: Farming God's Way Guide",
+      "description": "TH: A sustainable, no-till, faith-based agricultural solution for the poor.",
+      "intro": "TH: Farming God's Way (FGW) is not just a technology, but a biblically-based, management, and technological solution for the agricultural needs of the poor. It's about being faithful stewards of the land God has given us. Below are the core principles.",
+      "howToTitle": "TH: How To",
+      "whyItWorksTitle": "TH: Why It Works",
+      "principles": [
+        {
+          "id": "no-tillage",
+          "title": "No-Tillage",
+          "icon": "Shield",
+          "summary": "Protect the soil by not plowing it. This preserves the God-given soil structure.",
+          "howTo": [
+            "Create permanent planting stations (holes) instead of ridges.",
+            "Only dig where you will plant the seed.",
+            "Walk on permanent pathways to avoid compacting your planting soil."
+          ],
+          "whyItWorks": [
+            "Prevents soil erosion by wind and water.",
+            "Protects soil life and fungal networks.",
+            "Dramatically increases water infiltration and retention.",
+            "Reduces labor and fuel costs associated with plowing."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field with no-tillage planting stations",
+          "dataAiHint": "no-till farming holes"
+        },
+        {
+          "id": "gods-blanket",
+          "title": "God's Blanket",
+          "icon": "Leaf",
+          "summary": "Keep the soil 100% covered with a thick layer of organic matter, just like in a forest.",
+          "howTo": [
+            "Gather dry organic matter like grass, straw, leaves, or maize stover.",
+            "Apply a thick mulch (at least 10-15 cm) across the entire plot.",
+            "Never burn your crop residues; use them for mulch.",
+            "When planting, make a small opening in the mulch for your seed."
+          ],
+          "whyItWorks": [
+            "Prevents weeds from growing.",
+            "Saves significant soil moisture, reducing water needs.",
+            "Feeds soil life as it decomposes, building rich topsoil.",
+            "Protects the soil from the direct heat of the sun."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A field covered in a thick blanket of mulch",
+          "dataAiHint": "mulch farming"
+        },
+        {
+          "id": "high-standards",
+          "title": "High Standards",
+          "icon": "CheckCircle",
+          "summary": "Do everything on time, to a high standard, with no waste, and with joy.",
+          "howTo": [
+            "Prepare the land well before the first rains.",
+            "Plant at the optimal time for your region and crop.",
+            "Follow precise measurements for planting depth and spacing.",
+            "Manage your resources (seed, inputs, time) wisely to avoid wastage."
+          ],
+          "whyItWorks": [
+            "Maximizes the genetic potential of the seed.",
+            "Ensures the crop gets the full benefit of the early rains.",
+            "Leads to higher yields and greater profitability.",
+            "Honors God through excellent work."
+          ],
+          "imageSrc": "https://placehold.co/600x400.png",
+          "imageAlt": "A farmer carefully planting seeds in a well-prepared field",
+          "dataAiHint": "planting seeds precisely"
+        }
+      ]
     },
-    "toast": {
-      "notAuthenticated": "คุณต้องเป็นผู้ให้บริการประกันภัยเพื่อสร้างผลิตภัณฑ์",
-      "successTitle": "สร้างผลิตภัณฑ์แล้ว",
-      "successDescription": "'{name}' ถูกสร้างขึ้นเรียบร้อยแล้ว",
-      "errorTitle": "การสร้างล้มเหลว"
-    }
-  },
-  "InsuranceProductsPage": {
-    "title": "จัดการผลิตภัณฑ์ประกันภัยของคุณ",
-    "description": "ดู สร้าง และจัดการข้อเสนอประกันภัยของคุณ",
-    "createButton": "สร้างผลิตภัณฑ์ใหม่",
-    "table": {
-      "productName": "ชื่อผลิตภัณฑ์",
-      "type": "ประเภท",
-      "status": "สถานะ",
-      "premium": "เบี้ยประกัน"
+    "logObservation": {
+      "backLink": "TH: Back to Farm",
+      "title": "TH: Log Observation",
+      "description": "TH: Record an observation about your crop, such as pest outbreaks, diseases, growth, or weather events.",
+      "typeLabel": "TH: Observation Type",
+      "typePlaceholder": "TH: Select a type",
+      "types": {
+        "Pest": "TH: Pest",
+        "Disease": "TH: Disease",
+        "Growth": "TH: Growth",
+        "Weather": "TH: Weather",
+        "Soil": "TH: Soil",
+        "Weed": "TH: Weed",
+        "Other": "TH: Other",
+        "FGW_Stations": "TH: Land Prep (FGW Stations)",
+        "FGW_Mulch": "TH: Mulching (God's Blanket)"
+      },
+      "dateLabel": "TH: Observation Date",
+      "detailsLabel": "TH: Details & Notes",
+      "detailsPlaceholder": "TH: Describe what you observed...",
+      "uploadLabel": "TH: Upload Photo (Optional)",
+      "uploadDescription": "TH: A photo can help with diagnosis. It will be analyzed by AI if provided.",
+      "saveButton": "TH: Log Observation",
+      "processingButton": "TH: Processing...",
+      "toast": {
+        "authErrorTitle": "TH: Not Authenticated",
+        "authErrorDescription": "TH: You must be signed in to log an observation.",
+        "aiAnalyzing": "TH: AI Analyzing",
+        "aiDescription": "TH: Your image data is being sent to the AI for diagnosis.",
+        "aiComplete": "TH: AI Analysis Complete!",
+        "aiCompleteDescription": "TH: The diagnosis has been included in your observation log.",
+        "aiFailTitle": "TH: AI Analysis Failed",
+        "aiFailDescription": "TH: We couldn't analyze the image. The observation will be saved without an AI diagnosis.",
+        "uploading": "TH: Uploading image...",
+        "uploadingDescription": "TH: Please wait a moment.",
+        "uploadComplete": "TH: Upload Complete!",
+        "success": "TH: Observation Logged",
+        "successDescription": "TH: Your observation has been successfully logged.",
+        "fail": "TH: Logging failed."
+      }
     },
-    "noProducts": "คุณยังไม่ได้สร้างผลิตภัณฑ์ประกันภัยใดๆ"
-  },
-  "FiApplicationListPage": {
-    "backLink": "กลับไปที่แดชบอร์ด",
-    "title": "ใบสมัครทางการเงิน",
-    "description": "ตรวจสอบและจัดการใบสมัครสินเชื่อและเงินช่วยเหลือที่เข้ามา",
-    "tabs": {
-      "all": "ทั้งหมด",
-      "pending": "รอดำเนินการ",
-      "approved": "อนุมัติแล้ว",
-      "rejected": "ปฏิเสธแล้ว"
+    "logHarvest": {
+      "backLink": "TH: Back to Farm",
+      "title": "TH: Log Harvest for {cropType}",
+      "description": "TH: Record your harvest to create a new traceable batch.",
+      "harvestDateLabel": "TH: Harvest Date",
+      "yieldLabel": "TH: Total Yield (kg)",
+      "yieldPlaceholder": "TH: e.g., 1500",
+      "qualityLabel": "TH: Quality Grade",
+      "qualityPlaceholder": "TH: e.g., Grade A, Export Quality",
+      "notesLabel": "TH: Harvest Notes (Optional)",
+      "notesPlaceholder": "TH: Specific details about this harvest...",
+      "saveButton": "TH: Log Harvest & Create Batch",
+      "savingButton": "TH: Saving...",
+      "offlineToast": {
+        "title": "TH: Action added to offline queue.",
+        "description": "TH: Your harvest will be logged and a VTI created when you're back online."
+      },
+      "success": {
+        "title": "TH: Harvest Logged!",
+        "description": "TH: The harvest for {cropType} has been successfully logged. A new traceable batch has been created with ID '{vtiId}'.",
+        "successCardTitle": "TH: Harvest Logged!",
+        "successCardDescription": "TH: A new traceable batch has been created for {cropType} with ID: {vtiId}",
+        "viewReportButton": "TH: View Traceability Report",
+        "sellButton": "TH: Sell on Marketplace",
+        "logAnotherButton": "TH: Log Another Harvest",
+        "backToFarmButton": "TH: Back to Farm"
+      },
+      "fail": {
+        "title": "TH: Logging Failed"
+      }
     },
-    "table": {
-      "applicant": "ผู้สมัคร",
-      "type": "ประเภท",
-      "amount": "จำนวนเงิน (USD)",
-      "date": "วันที่ส่ง",
-      "status": "สถานะ",
-      "action": "การดำเนินการ"
+    "knfInputsPage": {
+      "backLink": "TH: Back to Farm Hub",
+      "title": "TH: KNF Inputs Assistant",
+      "description": "TH: Create, track, and manage your Korean Natural Farming inputs.",
+      "guidesTitle": "TH: KNF Guides",
+      "ingredients": "TH: Ingredients",
+      "steps": "TH: Steps",
+      "usage": "TH: Usage",
+      "fermentingBatchesTitle": "TH: Fermenting Batches",
+      "started": "TH: Started",
+      "nextStepOn": "TH: Next Step On",
+      "markReady": "TH: Mark as Ready",
+      "noFermentingBatches": "TH: No fermenting batches.",
+      "readyBatchesTitle": "TH: Ready Batches",
+      "readySince": "TH: Ready since",
+      "logUsage": "TH: Log Usage",
+      "archive": "TH: Archive",
+      "noReadyBatches": "TH: No ready batches available.",
+      "startNewBatch": "TH: Start a New Batch",
+      "createNewBatchTitle": "TH: Create a New KNF Batch",
+      "cancel": "TH: Cancel",
+      "quantity": "TH: Quantity",
+      "quantityPlaceholder": "TH: e.g., 5 or 20",
+      "unit": "TH: Unit",
+      "unitPlaceholder": "TH: e.g., Liters, kg",
+      "sellSurplus": "TH: Sell Surplus",
+      "recipeData": [
+        {
+          "id": "fpj",
+          "name": "Fermented Plant Juice (FPJ)",
+          "description": "A fermented extract of a plant's sap and chlorophyll. Rich in enzymes and microorganisms, it's a potent growth enhancer for plants.",
+          "ingredients": [
+            "1kg of fast-growing plant parts (e.g., sweet potato tips, bamboo shoots)",
+            "1kg of brown sugar (or molasses)"
+          ],
+          "yield": "approx. 0.8 L",
+          "steps": [
+            "Collect plant material before sunrise when it is most potent. Do not wash.",
+            "Roughly chop the plant material.",
+            "Add an equal weight of brown sugar and mix well.",
+            "Pack tightly into a clay pot or glass jar, filling to about 2/3 capacity.",
+            "Cover with a breathable cloth and store in a cool, dark place.",
+            "Allow to ferment for about 7 days."
+          ],
+          "usage": "Dilution rate: 1:500 to 1:1000 with water. Applied as a foliar spray or soil drench."
+        },
+        {
+          "id": "faa",
+          "name": "Fish Amino Acid (FAA)",
+          "description": "A potent liquid fertilizer made from fish waste, rich in nitrogen and amino acids. Excellent for boosting plant growth, especially during the vegetative stage.",
+          "ingredients": [
+            "1kg of fish waste (heads, bones, entrails)",
+            "1kg of brown sugar (or molasses)"
+          ],
+          "yield": "approx. 1.5 L",
+          "steps": [
+            "Chop the fish parts into small pieces.",
+            "In a container, layer the fish parts and brown sugar, starting and ending with sugar.",
+            "Fill the container to about 2/3 capacity and cover with a breathable cloth.",
+            "Store in a cool, dark place and allow to ferment for at least 3-6 months."
+          ],
+          "usage": "Dilution rate: 1:1000 with water. Primarily used as a soil drench."
+        }
+      ],
+      "form": {
+        "typeLabel": "TH: Input Type",
+        "typePlaceholder": "TH: Select a KNF input",
+        "ingredientsLabel": "TH: Ingredients Used",
+        "quantityLabel": "TH: Quantity Produced",
+        "unitLabel": "TH: Unit",
+        "startDateLabel": "TH: Start Date",
+        "startButton": "TH: Start Batch",
+        "startingButton": "TH: Starting..."
+      },
+      "toasts": {
+        "loadErrorTitle": "TH: Error",
+        "loadErrorDescription": "TH: Could not fetch your KNF batches.",
+        "validationError": "TH: Please fill out all fields to start a batch.",
+        "batchStartedTitle": "TH: Batch Started!",
+        "batchStartedDescription": "TH: Your new KNF batch is now fermenting.",
+        "batchStartFailed": "TH: Batch start failed.",
+        "unexpectedError": "TH: An unexpected error occurred.",
+        "batchUpdatedTitle": "TH: Status Updated",
+        "batchUpdatedDescription": "TH: Batch status successfully updated to {status}.",
+        "updateFailed": "TH: Update failed.",
+        "couldNotUpdate": "TH: Could not update the batch status."
+      }
     },
-    "reviewButton": "ตรวจสอบ",
-    "noApplications": "ไม่มีใบสมัครในหมวดหมู่นี้"
-  },
-  "FiApplicationPage": {
-    "backLink": "กลับไปที่ใบสมัคร",
-    "title": "รายละเอียดใบสมัคร",
-    "applicationTitle": "ใบสมัคร",
-    "submittedOn": "ส่งเมื่อ",
-    "amountRequested": "จำนวนเงินที่ขอ",
-    "purpose": "วัตถุประสงค์ของเงินทุน",
-    "approveButton": "อนุมัติ",
-    "rejectButton": "ปฏิเสธ",
-    "requestInfoButton": "ขอข้อมูลเพิ่มเติม",
-    "applicantDetails": "รายละเอียดผู้สมัคร",
-    "viewProfileButton": "ดูโปรไฟล์เต็ม",
-    "profileNotFound": "ไม่พบโปรไฟล์ผู้สมัคร",
-    "riskAssessment": "การประเมินความเสี่ยงด้วย AI",
-    "creditScore": "คะแนนเครดิต",
-    "notFound": "ไม่พบใบสมัครหรือคุณไม่มีสิทธิ์ดู"
-  },
-  "FiProductsPage": {
-    "title": "ผลิตภัณฑ์ทางการเงิน",
-    "description": "สร้างและจัดการผลิตภัณฑ์สินเชื่อและเงินช่วยเหลือของคุณ",
-    "createButton": "สร้างผลิตภัณฑ์ใหม่",
-    "table": {
-      "productName": "ชื่อผลิตภัณฑ์",
-      "type": "ประเภท",
-      "status": "สถานะ",
-      "interestRate": "อัตราดอกเบี้ย",
-      "maxAmount": "จำนวนเงินสูงสุด"
+    "editCrop": {
+      "backLink": "TH: Back to Crop Detail",
+      "title": "TH: Edit Crop",
+      "description": "TH: Update the details for your crop.",
+      "savingButton": "TH: Saving...",
+      "saveButton": "TH: Save Changes",
+      "toast": {
+        "notFound": "TH: Crop not found.",
+        "loadError": "TH: Could not load crop data to edit.",
+        "error": "TH: Error",
+        "loadFail": "TH: Could not load crop data: {message}",
+        "success": "TH: Crop Updated!",
+        "description": "TH: {cropType} was updated successfully.",
+        "fail": "TH: Update failed."
+      }
     },
-    "noProducts": "คุณยังไม่ได้สร้างผลิตภัณฑ์ทางการเงินใดๆ"
-  },
-  "FiProductCreatePage": {
-    "backLink": "กลับไปที่ผลิตภัณฑ์",
-    "title": "สร้างผลิตภัณฑ์ทางการเงินใหม่",
-    "description": "กำหนดผลิตภัณฑ์ทางการเงินใหม่เพื่อเสนอให้กับผู้ใช้บนแพลตฟอร์ม",
-    "form": {
-      "nameLabel": "ชื่อผลิตภัณฑ์",
-      "namePlaceholder": "เช่น สินเชื่อเพื่อการเติบโตสำหรับผู้ประกอบการรายย่อย",
-      "typeLabel": "ประเภทผลิตภัณฑ์",
-      "loan": "สินเชื่อ",
-      "grant": "เงินช่วยเหลือ",
-      "descriptionLabel": "คำอธิบาย",
-      "descriptionPlaceholder": "อธิบายผลิตภัณฑ์ วัตถุประสงค์ และเกณฑ์คุณสมบัติ",
-      "interestRateLabel": "อัตราดอกเบี้ย (%)",
-      "interestRatePlaceholder": "เช่น 12.5",
-      "maxAmountLabel": "จำนวนเงินสูงสุด (USD)",
-      "maxAmountPlaceholder": "เช่น 10000",
-      "targetRolesLabel": "กลุ่มเป้าหมาย",
-      "targetRolesDescription": "เลือกบทบาทของผู้มีส่วนได้ส่วนเสียที่ผลิตภัณฑ์นี้มีไว้สำหรับ",
-      "submitButton": "สร้างผลิตภัณฑ์"
-    },
-    "toast": {
-      "notAuthenticated": "คุณต้องเป็นสถาบันการเงินเพื่อสร้างผลิตภัณฑ์",
-      "successTitle": "สร้างผลิตภัณฑ์แล้ว",
-      "successDescription": "'{name}' ถูกสร้างขึ้นเรียบร้อยแล้วและเปิดใช้งานแล้ว",
-      "errorTitle": "การสร้างล้มเหลว"
-    }
-  },
-  "traceabilityPage": {
-    "title": "การตรวจสอบย้อนกลับผลิตภัณฑ์",
-    "description": "ติดตามการเดินทางของอาหารของคุณจากฟาร์มสู่ส้อมด้วยระบบ Verifiable Traceability ID (VTI) ของเรา",
-    "inputPlaceholder": "ป้อนรหัสแบทช์ VTI...",
-    "trackButton": "ติดตาม",
-    "vtiDescription": "VTI เป็นตัวระบุที่ไม่ซ้ำกันซึ่งพบบนบรรจุภัณฑ์ของผลิตภัณฑ์",
-    "recentTitle": "แบทช์ที่ติดตามล่าสุด",
-    "recentDescription": "สำรวจผลิตภัณฑ์ล่าสุดบางส่วนพร้อมรายงานการตรวจสอบย้อนกลับสาธารณะ",
-    "producerLabel": "ผู้ผลิต",
-    "harvestDateLabel": "วันที่เก็บเกี่ยว",
-    "viewReportButton": "ดูรายงาน",
-    "noRecentBatches": "ไม่มีแบทช์ที่ติดตามล่าสุดพร้อมข้อมูลสาธารณะ",
-    "detailPage": {
-      "invalidIdError": "ระบุรหัสแบทช์ไม่ถูกต้อง",
-      "loadError": "ไม่สามารถโหลดประวัติการตรวจสอบย้อนกลับได้",
-      "backLink": "กลับไปที่ศูนย์กลางการตรวจสอบย้อนกลับ",
-      "notFoundTitle": "ไม่พบแบทช์",
-      "notFoundDescription": "VTI ที่คุณป้อนไม่ตรงกับแบทช์ใด ๆ ในบันทึกของเรา",
-      "traceableProduct": "ผลิตภัณฑ์ที่ตรวจสอบย้อนกลับได้",
-      "batchIdLabel": "รหัสแบทช์",
-      "producerLabel": "ผู้ผลิต",
-      "qualityLabel": "คุณภาพเริ่มต้น",
-      "notSpecified": "ไม่ระบุ",
-      "journeyTitle": "การเดินทางของแบทช์นี้",
-      "journeyDescription": "บันทึกเหตุการณ์ทุกอย่างในวงจรชีวิตของผลิตภัณฑ์นี้พร้อมการประทับเวลาที่สมบูรณ์",
-      "noEventDetails": "ไม่มีรายละเอียดเพิ่มเติมสำหรับเหตุการณ์นี้",
-      "observationType": "ประเภทการสังเกต",
-      "details": "รายละเอียด",
-      "aiDiagnosis": "การวินิจฉัยโดย AI",
-      "noEventsFound": "ยังไม่มีการบันทึกเหตุการณ์การตรวจสอบย้อนกลับสำหรับแบทช์นี้",
-      "geoLocationLabel": "ตำแหน่งทางภูมิศาสตร์",
-      "sustainablyGrownTitle": "ปลูกอย่างยั่งยืน",
-      "sustainablyGrownDescription": "บันทึกการตรวจสอบย้อนกลับของผลิตภัณฑ์นี้บ่งชี้ถึงการใช้แนวทางการทำฟาร์มแบบยั่งยืนและ/หรือเกษตรอินทรีย์"
+    "editFarm": {
+      "backToFarm": "TH: Back to Farm Detail",
+      "title": "TH: Edit Farm",
+      "description": "TH: Update the details of your farm.",
+      "form": {
+        "submitButton": "TH: Save Changes"
+      },
+      "toast": {
+        "notFoundTitle": "TH: Not Found",
+        "loadError": "TH: Could not load the farm you wish to edit.",
+        "loadFail": "TH: Could not load farm data: {message}",
+        "successTitle": "TH: Farm Updated!",
+        "successDescription": "TH: '{farmName}' was updated successfully.",
+        "errorTitle": "TH: Update Failed"
+      }
     }
   },
   "OfflineIndicator": {
     "tooltip": {
-      "syncing": "กำลังซิงค์ {count} การกระทำที่รอดำเนินการ...",
-      "onlinePending": "{count} การกระทำที่รอดำเนินการ จะซิงค์เร็วๆ นี้",
-      "onlineSynced": "คุณออนไลน์อยู่และการเปลี่ยนแปลงทั้งหมดถูกซิงค์แล้ว",
-      "offline": "คุณออฟไลน์อยู่ {count, plural, =0 {ไม่มีการเปลี่ยนแปลงที่รอดำเนินการ} =1 {1 การเปลี่ยนแปลงอยู่ในคิว} other {{count} การเปลี่ยนแปลงอยู่ในคิว}}"
+      "syncing": "TH: Syncing {count} pending actions...",
+      "onlinePending": "TH: {count} pending actions. Will sync soon.",
+      "onlineSynced": "TH: You are online and all changes are synced.",
+      "offline": "TH: You are offline. {count, plural, =0 {No pending changes.} =1 {1 change is queued.} other {{count} changes are queued.}}"
     },
     "toast": {
       "online": {
-        "title": "คุณกลับมาออนไลน์แล้ว!",
-        "description": "การเชื่อมต่อของคุณได้รับการฟื้นฟูแล้ว"
+        "title": "TH: You are back online!",
+        "description": "TH: Your connection has been restored."
       },
       "offline": {
-        "title": "คุณออฟไลน์อยู่",
-        "description": "การเปลี่ยนแปลงของคุณจะถูกบันทึกและซิงค์เมื่อคุณเชื่อมต่ออีกครั้ง"
+        "title": "TH: You are offline.",
+        "description": "TH: Your changes will be saved and synced when you reconnect."
       },
       "syncing": {
-        "title": "กำลังซิงค์การเปลี่ยนแปลงออฟไลน์",
-        "description": "กำลังอัปโหลด {count} การกระทำไปยังเซิร์ฟเวอร์"
+        "title": "TH: Syncing offline changes",
+        "description": "TH: Uploading {count} actions to the server."
       },
       "synced": {
-        "title": "ซิงค์เสร็จสมบูรณ์",
-        "description": "การเปลี่ยนแปลงออฟไลน์ทั้งหมดของคุณถูกบันทึกแล้ว"
+        "title": "TH: Sync complete",
+        "description": "TH: All your offline changes have been saved."
       },
       "syncFailed": {
-        "title": "การซิงค์ล้มเหลว",
-        "description": "เราไม่สามารถซิงค์การเปลี่ยนแปลงออฟไลน์ของคุณได้ เราจะลองอีกครั้งในภายหลัง"
+        "title": "TH: Sync failed",
+        "description": "TH: We could not sync your offline changes. We will try again later."
       },
       "queued": {
-        "title": "การกระทำอยู่ในคิว",
-        "description": "การกระทำนี้จะดำเนินการเมื่อคุณกลับมาออนไลน์"
+        "title": "TH: Action queued",
+        "description": "TH: This action will be performed when you are back online."
       }
     }
   },
   "searchPage": {
-    "title": "การค้นหาสากล",
-    "description": "ค้นหาทุกสิ่งในแพลตฟอร์ม DamDoh ทั้งหมด",
-    "placeholder": "คุณกำลังมองหาอะไร?",
-    "searchButton": "ค้นหา",
-    "popularSearches": "การค้นหายอดนิยม",
-    "popularSearch1": "กาแฟออร์แกนิก",
-    "popularSearch2": "เช่ารถแทรกเตอร์ในเคนยา",
-    "popularSearch3": "ผู้เชี่ยวชาญด้านสุขภาพดิน",
-    "popularSearch4": "การเงินเพื่อการส่งออก",
-    "popularSearch5": "ฟอรัมการสูญเสียหลังการเก็บเกี่ยว",
+    "title": "TH: Universal Search",
+    "description": "Find anything across the entire DamDoh platform.",
+    "placeholder": "TH: What are you looking for?",
+    "searchButton": "TH: Search",
+    "popularSearches": "TH: Popular Searches",
+    "popularSearch1": "TH: Organic Coffee",
+    "popularSearch2": "TH: Tractor rental in Kenya",
+    "popularSearch3": "TH: Soil health expert",
+    "popularSearch4": "TH: Export financing",
+    "popularSearch5": "TH: Post-harvest loss forum",
     "modal": {
-      "title": "การค้นหาสากล",
-      "placeholder": "ค้นหาผลิตภัณฑ์, บริการ, ผู้คน, โพสต์ในฟอรัม...",
-      "searchButton": "ค้นหา",
-      "searchError": "เกิดข้อผิดพลาดในการค้นหา",
-      "searchErrorDescription": "ไม่สามารถทำการค้นหาได้ในขณะนี้ โปรดลองอีกครั้ง",
-      "scanFailed": "สแกนล้มเหลว",
-      "scanError": "ข้อผิดพลาดในการสแกน",
-      "scanErrorDescription": "ไม่สามารถอ่านรหัส QR ได้ โปรดลองอีกครั้ง",
-      "invalidCodeError": "นี่ไม่ใช่รหัสการกู้คืนหรือโปรไฟล์ DamDoh ที่ถูกต้อง",
-      "interpretationTitle": "การตีความโดย AI",
-      "interpretationNotesDefault": "กำลังค้นหาด้วยคำสำคัญ",
-      "filtersTitle": "ตัวกรอง",
+      "title": "TH: Universal Search",
+      "placeholder": "TH: Search products, services, people, forum posts...",
+      "searchButton": "TH: Search",
+      "searchError": "TH: Search Error",
+      "searchErrorDescription": "TH: Could not perform search at this time. Please try again.",
+      "scanFailed": "TH: Scan Failed",
+      "scanError": "TH: Scan Error",
+      "scanErrorDescription": "TH: Could not read the QR code. Please try again.",
+      "invalidCodeError": "This is not a valid DamDoh recovery or profile code.",
+      "interpretationTitle": "TH: AI Interpretation",
+      "interpretationNotesDefault": "TH: Searching by keywords.",
+      "filtersTitle": "TH: Filters",
       "results": {
-        "users": "โปรไฟล์",
-        "marketplaceItems": "ตลาด",
-        "forums": "ฟอรัม",
-        "agri_events": "กิจกรรม",
-        "knowledge_articles": "ศูนย์ความรู้",
-        "vti_registry": "รายงานการตรวจสอบย้อนกลับ"
+        "users": "TH: Profiles",
+        "marketplaceItems": "TH: Marketplace",
+        "forums": "TH: Forums",
+        "agri_events": "TH: Events",
+        "knowledge_articles": "TH: Knowledge Hub",
+        "vti_registry": "TH: Traceability Reports"
       },
-      "noResults": "ไม่พบผลลัพธ์",
-      "tryAgain": "ลองใช้คำค้นหาอื่นหรือขยายการค้นหาของคุณ"
+      "noResults": "TH: No results found",
+      "tryAgain": "TH: Try another query or broaden your search."
     }
   },
-  "ProfilePage": {
-    "editProfile": "แก้ไขโปรไฟล์",
-    "showUniversalIdButton": "แสดง ID สากล",
-    "universalIdModalTitle": "ID สากลของคุณ",
-    "universalIdModalDescription": "ผู้ใช้อื่นสามารถสแกนสิ่งนี้เพื่อดูโปรไฟล์สาธารณะของคุณได้อย่างรวดเร็ว",
-    "connect": "เชื่อมต่อ",
-    "message": "ข้อความ",
-    "invite": {
-      "title": "เชิญเพื่อนร่วมงาน",
-      "description": "ช่วยขยายเครือข่ายโดยการเชิญผู้อื่นเข้าร่วม DamDoh",
-      "explanation": "ส่งคำเชิญไปยังเพื่อนร่วมงานหรือคู่ค้าเพื่อเข้าร่วมแพลตฟอร์ม DamDoh พวกเขาจะได้รับอีเมลพร้อมคำแนะนำในการสมัคร",
-      "button": "ส่งคำเชิญ"
+  "AgriTechDashboard": {
+    "title": "TH: Agri-Tech Innovator Dashboard",
+    "sandboxTitle": "TH: Sandbox Environment",
+    "statusLabel": "TH: Status",
+    "lastResetLabel": "TH: Last Reset",
+    "accessDocsButton": "TH: Access API Docs",
+    "integrationsTitle": "TH: Active Integrations",
+    "activeProjects": "TH: {count, plural, =0 {active projects} =1 {1 active project} other {{count} active projects}}",
+    "integrationsDescription": "Your active projects integrated with DamDoh.",
+    "proposeIntegrationButton": "TH: Propose New Integration",
+    "apiKeysTitle": "TH: API Keys",
+    "apiKeysDescription": "Manage your API keys for accessing DamDoh services.",
+    "generateNewKeyButton": "TH: Generate New Key",
+    "table": {
+      "key": "TH: Key / Description",
+      "status": "TH: Status",
+      "environment": "TH: Environment",
+      "created": "TH: Created",
+      "actions": "TH: Actions"
     },
-    "invitePrompt": "ป้อนที่อยู่อีเมลของบุคคลที่คุณต้องการเชิญ:",
-    "inviteSuccessTitle": "ส่งคำเชิญแล้ว!",
-    "inviteSuccessDescription": "ส่งคำเชิญไปยัง {email} แล้ว",
-    "inviteErrorTitle": "ส่งคำเชิญไม่สำเร็จ",
-    "tabs": {
-      "overview": "ภาพรวม",
-      "activity": "กิจกรรม"
+    "noApiKeys": "TH: You haven't generated any API keys yet.",
+    "apiKeyCopied": "TH: API Key copied to clipboard!",
+    "revokeDialog": {
+      "title": "TH: Are you sure you want to revoke this API key?",
+      "description": "TH: This action cannot be undone. Any applications using this key will immediately lose access.",
+      "cancel": "TH: Cancel",
+      "confirm": "TH: Yes, Revoke Key"
     },
-    "aboutTitle": "เกี่ยวกับ {displayName}",
-    "interestsTitle": "พื้นที่ที่น่าสนใจ",
-    "engagementStats": "สถิติการมีส่วนร่วม",
-    "profileViews": "ยอดดูโปรไฟล์",
-    "postLikes": "ยอดไลค์โพสต์",
-    "postComments": "ความคิดเห็นโพสต์",
-    "contactTitle": "ข้อมูลติดต่อ",
-    "needsTitle": "ความต้องการและข้อเสนอ",
-    "recentActivityTitle": "กิจกรรมล่าสุด",
-    "noRecentActivity": "ผู้ใช้รายนี้ไม่มีกิจกรรมสาธารณะล่าสุด",
-    "notFoundTitle": "ไม่พบโปรไฟล์",
-    "notFoundDescription": "โปรไฟล์ผู้ใช้ที่คุณกำลังมองหาไม่มีอยู่หรือถูกลบไปแล้ว",
-    "backToNetwork": "กลับไปที่เครือข่าย"
+    "toast": {
+      "descriptionRequired": "TH: A description is required for a new key.",
+      "keyGeneratedSuccess": "TH: New API key generated successfully.",
+      "keyGeneratedError": "TH: Could not generate API key.",
+      "keyRevokedSuccess": "TH: API key revoked.",
+      "keyRevokedError": "TH: Could not revoke API key."
+    },
+    "generateButton": "TH: Generate"
   },
-  "Forums": {
-    "create": {
-      "backLink": "กลับไปที่ฟอรัม",
-      "title": "สร้างหัวข้อฟอรัมใหม่",
-      "description": "เริ่มการสนทนาใหม่เพื่อให้ชุมชนมีส่วนร่วม",
-      "form": {
-        "nameLabel": "ชื่อหัวข้อ",
-        "namePlaceholder": "เช่น แนวทางปฏิบัติที่ดีที่สุดในการอนุรักษ์น้ำ",
-        "descriptionLabel": "คำอธิบาย",
-        "descriptionPlaceholder": "คำอธิบายสั้นๆ เกี่ยวกับหัวข้อนี้",
-        "submitButton": "สร้างหัวข้อ",
-        "submittingButton": "กำลังสร้าง..."
-      },
-      "success": {
-        "title": "สร้างหัวข้อแล้ว!",
-        "description": "หัวข้อใหม่ของคุณพร้อมสำหรับการสนทนาแล้ว"
-      },
-      "errors": {
-        "auth": {
-          "title": "จำเป็นต้องมีการรับรองความถูกต้อง",
-          "description": "คุณต้องลงชื่อเข้าใช้เพื่อสร้างหัวข้อใหม่"
-        },
-        "incomplete": {
-          "title": "แบบฟอร์มไม่สมบูรณ์",
-          "description": "โปรดระบุทั้งชื่อและคำอธิบายสำหรับหัวข้อของคุณ"
-        },
-        "general": {
-          "title": "เกิดข้อผิดพลาดในการสร้างหัวข้อ",
-          "description": "เกิดข้อผิดพลาดบางอย่าง โปรดลองอีกครั้ง"
-        }
-      }
+  "AgroExportDashboard": {
+    "title": "TH: Agro-Export Dashboard",
+    "docsTitle": "TH: Pending Customs Documents",
+    "shipmentsTitle": "TH: Tracked Shipments",
+    "alertsTitle": "TH: Compliance Alerts",
+    "table": {
+      "destination": "TH: Destination"
     },
-    "topic": {
-      "backLink": "กลับไปที่ฟอรัมทั้งหมด",
-      "buttons": {
-        "createPost": "เริ่มโพสต์ใหม่",
-        "loadingMore": "กำลังโหลดเพิ่มเติม...",
-        "loadMore": "โหลดโพสต์เพิ่มเติม"
-      },
-      "postMeta": "โดย {author} เมื่อ {date}",
-      "noPosts": {
-        "title": "ยังไม่มีโพสต์",
-        "description": "เป็นคนแรกที่เริ่มการสนทนาในหัวข้อนี้",
-        "button": "สร้างโพสต์แรก"
-      },
-      "notFound": {
-        "title": "ไม่พบหัวข้อ",
-        "description": "ขออภัย หัวข้อที่คุณกำลังมองหาไม่มีอยู่",
-        "backButton": "กลับไปที่ฟอรัม"
-      },
-      "errors": {
-        "loadPosts": {
-          "title": "เกิดข้อผิดพลาดในการโหลดโพสต์",
-          "description": "ไม่สามารถดึงโพสต์สำหรับหัวข้อนี้ได้"
-        },
-        "loadTopic": {
-          "title": "เกิดข้อผิดพลาดในการโหลดหัวข้อ",
-          "description": "ไม่สามารถดึงรายละเอียดสำหรับหัวข้อนี้ได้"
-        }
-      }
+    "prepareDocsButton": "TH: Prepare Documents",
+    "readMore": "TH: Read More",
+    "noDocs": "TH: No pending customs documents.",
+    "noShipments": "TH: No active shipments to track.",
+    "noAlerts": "TH: No new compliance alerts."
+  },
+  "AgroTourismDashboard": {
+    "title": "TH: Agro-Tourism Dashboard",
+    "bookingsTitle": "TH: Upcoming Bookings",
+    "bookingsDescription": "TH: Your next guests and experiences.",
+    "experiencesTitle": "TH: Your Listed Experiences",
+    "experiencesDescription": "TH: Manage your agro-tourism offerings.",
+    "reviewsTitle": "TH: Guest Reviews",
+    "reviewsDescription": "TH: Recent feedback from your visitors.",
+    "table": {
+      "experience": "TH: Experience",
+      "guest": "TH: Guest",
+      "date": "TH: Date",
+      "action": "TH: Action",
+      "title": "TH: Title",
+      "status": "TH: Status",
+      "bookings": "TH: Bookings"
     },
-    "createPost": {
-      "backLink": "กลับไปที่หัวข้อ",
-      "title": "สร้างโพสต์ใหม่",
-      "description": "แบ่งปันความคิดของคุณ ถามคำถาม หรือเริ่มการสนทนา",
-      "form": {
-        "titleLabel": "หัวข้อโพสต์",
-        "titlePlaceholder": "ป้อนหัวข้อที่ชัดเจนและกระชับ",
-        "contentLabel": "เนื้อหา",
-        "contentPlaceholder": "เขียนเนื้อหาโพสต์ของคุณที่นี่ คุณสามารถใช้มาร์กดาวน์สำหรับการจัดรูปแบบ",
-        "submitButton": "ส่งโพสต์",
-        "submittingButton": "กำลังส่ง..."
-      },
-      "aiHelper": {
-        "title": "ผู้ช่วยโพสต์ AI",
-        "description": "ต้องการความช่วยเหลือเล็กน้อยในการเริ่มต้นหรือไม่? ให้ AI ของเราช่วยร่างโพสต์ให้คุณ",
-        "promptLabel": "ความคิดหรือคำถามของคุณ",
-        "promptPlaceholder": "เช่น 'ทางเลือกอินทรีย์ที่ดีที่สุดสำหรับปุ๋ยไนโตรเจนสังเคราะห์คืออะไร?' หรือ 'แบ่งปันเรื่องราวความสำเร็จของฉันเกี่ยวกับการใช้ KNF สำหรับต้นมะม่วง'",
-        "generateButton": "สร้างร่าง",
-        "generatingButton": "กำลังสร้าง..."
-      },
-      "success": {
-        "title": "สร้างโพสต์แล้ว!",
-        "description": "โพสต์ของคุณถูกเพิ่มในฟอรัมเรียบร้อยแล้ว",
-        "aiDraft": {
-          "title": "สร้างร่างแล้ว",
-          "description": "AI ได้สร้างร่างให้คุณแล้ว คุณสามารถแก้ไขก่อนโพสต์ได้"
-        }
-      },
-      "errors": {
-        "aiPromptMissing": {
-          "title": "จำเป็นต้องมีข้อความแจ้ง",
-          "description": "โปรดระบุความคิดหรือคำถามเพื่อให้ AI สร้างร่าง"
-        },
-        "aiDraft": {
-          "title": "การสร้างล้มเหลว",
-          "description": "AI ไม่สามารถสร้างร่างได้ในขณะนี้ โปรดลองอีกครั้งในภายหลัง"
-        },
-        "incomplete": {
-          "title": "โพสต์ไม่สมบูรณ์",
-          "description": "โปรดระบุทั้งหัวข้อและเนื้อหาสำหรับโพสต์ของคุณ"
-        },
-        "general": {
-          "title": "เกิดข้อผิดพลาดในการสร้างโพสต์",
-          "description": "เกิดข้อผิดพลาดบางอย่าง โปรดลองอีกครั้ง"
-        }
-      }
+    "viewDetailsButton": "TH: View Details",
+    "manageButton": "TH: Manage",
+    "noBookings": "TH: No upcoming bookings.",
+    "noExperiences": "TH: You haven't listed any experiences yet.",
+    "noReviews": "TH: No guest reviews yet.",
+    "viewReviewButton": "TH: View",
+    "on": "TH: on"
+  },
+  "AgronomistDashboard": {
+    "title": "TH: Agronomist Dashboard",
+    "stats": {
+      "assignedFarmers": "TH: Assigned Farmers",
+      "farmersWithAlerts": "TH: Farmers with Alerts",
+      "pendingConsultations": "TH: Pending Consultations",
+      "knowledgeContributions": "TH: Knowledge Contributions"
     },
-    "postView": {
-      "backLink": "กลับไปที่ {topicName}",
-      "repliesTitle": "{count, plural, =0 {ไม่มีการตอบกลับ} =1 {1 การตอบกลับ} other {{count} การตอบกลับ}}",
-      "noReplies": "ยังไม่มีใครตอบกลับ เป็นคนแรก!",
-      "buttons": {
-        "loadingMore": "กำลังโหลด...",
-        "loadMore": "โหลดการตอบกลับเพิ่มเติม"
+    "activeAlerts": "TH: Active Alerts",
+    "reportsToFile": "TH: Reports to File",
+    "tasksPending": "TH: Tasks Pending",
+    "consultations": {
+      "title": "TH: Consultation Requests",
+      "description": "TH: Respond to incoming requests from farmers.",
+      "table": {
+        "farmer": "TH: Farmer",
+        "issue": "TH: Issue Summary",
+        "action": "TH: Action"
       },
-      "reply": {
-        "title": "การตอบกลับของคุณ",
-        "placeholder": "เขียนการตอบกลับของคุณที่นี่...",
-        "submitButton": "โพสต์การตอบกลับ",
-        "submittingButton": "กำลังโพสต์...",
-        "success": "โพสต์การตอบกลับแล้ว!"
+      "viewButton": "TH: View",
+      "noRequests": "TH: No pending consultation requests."
+    },
+    "portfolio": {
+      "title": "TH: Farmer Portfolio",
+      "description": "TH: An overview of the farmers you manage.",
+      "table": {
+        "farmer": "TH: Farmer",
+        "location": "TH: Location",
+        "alerts": "TH: Alerts",
+        "action": "TH: Action"
       },
-      "notFound": {
-        "title": "ไม่พบโพสต์",
-        "description": "โพสต์ที่คุณกำลังมองหาไม่มีอยู่หรือถูกย้ายไปแล้ว",
-        "backButton": "กลับไปที่หัวข้อ"
-      },
-      "errors": {
-        "loadPost": {
-          "title": "เกิดข้อผิดพลาดในการโหลดโพสต์",
-          "description": "ไม่สามารถดึงรายละเอียดโพสต์ได้"
-        },
-        "loadReplies": {
-          "title": "เกิดข้อผิดพลาดในการโหลดการตอบกลับ",
-          "description": "ไม่สามารถดึงการตอบกลับสำหรับโพสต์นี้ได้"
-        },
-        "submitReply": {
-          "title": "เกิดข้อผิดพลาดในการโพสต์การตอบกลับ",
-          "description": "ไม่สามารถบันทึกการตอบกลับของคุณได้ โปรดลองอีกครั้ง"
-        },
-        "emptyReply": "การตอบกลับต้องไม่ว่างเปล่า"
-      }
+      "alertsLabel": "TH: Alerts",
+      "profileButton": "TH: Profile",
+      "noFarmers": "TH: No farmers have been assigned to your portfolio yet."
+    },
+    "contributions": {
+      "statusTitle": "TH: Contribution Status",
+      "title": "TH: Your Contributions to the Knowledge Hub",
+      "noData": "TH: No contribution data available.",
+      "noContributions": "TH: You have not made any contributions yet."
+    },
+    "noData": "TH: No dashboard data available.",
+    "lastVisit": "TH: Last Visit",
+    "issues": "TH: Issues",
+    "chart": {
+      "count": "TH: Count",
+      "published": "TH: Published",
+      "pending": "TH: Pending Review",
+      "draft": "TH: Draft"
     }
   },
-  "ErrorPage": {
-    "title": "มีบางอย่างผิดพลาด",
-    "description": "ขออภัย แต่ดูเหมือนว่ามีข้อผิดพลาดที่ไม่คาดคิดเกิดขึ้น ทีมงานของเราได้รับการแจ้งเตือนแล้ว",
-    "tryAgainButton": "ลองอีกครั้ง",
-    "goHomeButton": "ไปที่หน้าแรก"
+  "BuyerDashboard": {
+    "title": "TH: Buyer Dashboard",
+    "riskTitle": "TH: Supply Chain Risks",
+    "diversifySourcing": "TH: Diversify Sourcing",
+    "priceTitle": "TH: Market Price Insights",
+    "secureContracts": "TH: Secure Forward Contracts",
+    "sourcingTitle": "TH: Sourcing Recommendations",
+    "reliabilityScore": "TH: Reliability Score",
+    "findSuppliersButton": "TH: Find More Suppliers"
   },
-  "NotFoundPage": {
-    "title": "404 - ไม่พบหน้า",
-    "description": "ขออภัย เราไม่พบหน้าที่คุณกำลังมองหา",
-    "goHomeButton": "ไปที่หน้าแรก"
+  "CertificationBodyDashboard": {
+    "title": "TH: Certification Body Dashboard",
+    "auditsTitle": "TH: Pending Audits",
+    "auditsDescription": "TH: Upcoming audits that require your attention.",
+    "table": {
+      "farmName": "TH: Farm Name",
+      "standard": "TH: Standard",
+      "dueDate": "TH: Due Date",
+      "action": "TH: Action"
+    },
+    "reviewAuditButton": "TH: Review Audit",
+    "noPendingAudits": "TH: No pending audits at this time.",
+    "entitiesTitle": "TH: Status of Certified Entities",
+    "entitiesDescription": "TH: An overview of your certified entities.",
+    "noCertifiedEntities": "TH: No data for certified entities.",
+    "monitoringTitle": "TH: Standards Monitoring",
+    "monitoringDescription": "TH: Compliance rates for key standards.",
+    "alerts": "TH: Alerts",
+    "viewDetailsButton": "TH: View Details",
+    "noMonitoringData": "TH: No monitoring data available."
+  },
+  "CooperativeDashboard": {
+    "title": "TH: Cooperative Dashboard",
+    "membersTitle": "TH: Total Members",
+    "membersDescription": "TH: {count} active farmers in your cooperative.",
+    "landAreaTitle": "TH: Total Land Area",
+    "landAreaDescription": "TH: Hectares under cultivation.",
+    "pendingApplicationsTitle": "TH: Pending Applications",
+    "pendingApplicationsDescription": "TH: New farmers awaiting approval.",
+    "produceTitle": "TH: Available Aggregated Produce",
+    "produceDescription": "TH: A combined view of your members' ready-for-sale produce.",
+    "table": {
+      "product": "TH: Product",
+      "quantity": "TH: Quantity (Tons)",
+      "quality": "TH: Quality",
+      "readyBy": "TH: Ready By",
+      "action": "TH: Action"
+    },
+    "createListingButton": "TH: Create Listing",
+    "noProduce": "TH: No aggregated produce to list.",
+    "aggregateButton": "TH: Aggregate New Produce"
+  },
+  "CrowdfunderDashboard": {
+    "title": "TH: Crowdfunder Dashboard",
+    "totalInvested": "TH: Total Invested",
+    "numberOfInvestments": "TH: Number of Investments",
+    "estimatedReturns": "TH: Estimated Returns",
+    "opportunitiesTitle": "TH: Recommended Opportunities",
+    "viewButton": "TH: View",
+    "raisedOf": "TH: raised of",
+    "goal": "TH: goal",
+    "noOpportunities": "TH: No new investment opportunities match your profile.",
+    "transactionsTitle": "TH: Recent Transactions",
+    "table": {
+      "project": "TH: Project",
+      "amount": "TH: Amount"
+    },
+    "investment": "TH: Investment",
+    "payout": "TH: Payout",
+    "on": "TH: on",
+    "noTransactions": "TH: No recent transactions."
+  },
+  "EnergyProviderDashboard": {
+    "title": "TH: Energy Provider Dashboard",
+    "leadsTitle": "TH: Project Leads",
+    "leadsCount": "TH: {count, plural, =0 {leads} =1 {1 lead} other {{count} leads}}",
+    "newLeadsDescription": "TH: new leads require attention.",
+    "projectsTitle": "TH: Active Projects",
+    "activeProjectsCount": "TH: {count, plural, =0 {projects} =1 {1 project} other {{count} projects}}",
+    "projectsCompleted": "TH: projects completed.",
+    "impactTitle": "TH: Cumulative Impact",
+    "impactDescription": "TH: The total estimated impact of your projects.",
+    "carbonReduction": "TH: tCO2e/year reduced from {count} installations.",
+    "accessDocsButton": "TH: Access API Docs",
+    "proposeIntegrationButton": "TH: Propose New Integration",
+    "leadsTableTitle": "TH: Project Pipeline",
+    "leadsTableDescription": "TH: Track your leads from initial contact to project completion.",
+    "table": {
+      "entity": "TH: Entity",
+      "location": "TH: Location",
+      "energyNeed": "TH: Estimated Need",
+      "status": "TH: Status",
+      "action": "TH: Action"
+    },
+    "viewLeadButton": "TH: View Lead",
+    "noLeads": "TH: No active project leads.",
+    "statusLabels": {
+      "new": "TH: New",
+      "contacted": "TH: Contacted",
+      "proposal_sent": "TH: Proposal Sent",
+      "closed": "TH: Closed"
+    }
+  },
+  "EquipmentSupplierDashboard": {
+    "title": "TH: Equipment Supplier Dashboard",
+    "ordersTitle": "TH: Rentals & Sales",
+    "ordersDescription": "TH: {count} active orders",
+    "manageOrdersButton": "TH: Manage Orders",
+    "listedEquipmentTitle": "TH: Your Listed Equipment",
+    "table": {
+      "name": "TH: Name",
+      "type": "TH: Type",
+      "status": "TH: Status",
+      "action": "TH: Action"
+    },
+    "status": {
+      "available": "TH: Available",
+      "rentedout": "TH: Rented Out"
+    },
+    "manageButton": "TH: Manage",
+    "noEquipment": "TH: No equipment listed yet.",
+    "listEquipmentButton": "TH: List New Equipment",
+    "maintenanceTitle": "TH: Maintenance Requests",
+    "viewRequestButton": "TH: View Request",
+    "noMaintenance": "TH: No pending maintenance requests."
+  },
+  "FiDashboard": {
+    "title": "TH: Financial Institution Dashboard",
+    "pendingApplicationsTitle": "TH: Pending Applications",
+    "pendingApplicationsDescription": "TH: applications require your review.",
+    "manageApplicationsButton": "TH: Manage Applications",
+    "portfolioAtRiskTitle": "TH: Portfolio at Risk",
+    "portfolioAtRiskDescription": "TH: {count} loans with high-risk alerts.",
+    "reviewRiskButton": "TH: Review Risk",
+    "manageProductsTitle": "TH: Financial Products",
+    "manageProductsDescription": "TH: Active loan and grant products.",
+    "manageProductsButton": "TH: Manage Products",
+    "table": {
+      "applicant": "TH: Applicant",
+      "type": "TH: Type",
+      "amount": "TH: Amount",
+      "riskScore": "TH: Risk Score",
+      "action": "TH: Action"
+    },
+    "reviewButton": "TH: Review",
+    "noApplications": "TH: No pending applications to review.",
+    "viewAllButton": "TH: View All Applications"
+  },
+  "FieldAgentDashboard": {
+    "title": "TH: Field Agent Dashboard",
+    "portfolioHealthTitle": "TH: Portfolio Health",
+    "activeAlerts": "TH: Active Alerts",
+    "pendingReportsTitle": "TH: Pending Reports",
+    "reportsToFile": "TH: reports to file.",
+    "dataVerificationTitle": "TH: Data Verification",
+    "tasksPending": "TH: tasks pending.",
+    "assignedFarmersTitle": "TH: Assigned Farmers",
+    "farmersInPortfolio": "TH: farmers in portfolio.",
+    "portfolioTitle": "TH: Farmer Portfolio",
+    "lastVisit": "TH: Last Visit",
+    "issues": "TH: Issues",
+    "viewFarmerButton": "TH: View Farmer",
+    "noFarmersAssigned": "TH: No farmers have been assigned to your portfolio yet."
+  },
+  "InputSupplierDashboard": {
+    "title": "TH: Input Supplier Dashboard",
+    "ordersTitle": "TH: Active Orders",
+    "totalValue": "TH: total value",
+    "manageOrdersButton": "TH: Manage Orders",
+    "forecastTitle": "TH: Demand Forecast",
+    "in": "TH: in",
+    "noForecast": "TH: No demand forecast data available.",
+    "performanceTitle": "TH: Product Performance",
+    "viewReviewsButton": "TH: View Reviews",
+    "noFeedback": "TH: No product feedback yet.",
+    "promotionsTitle": "TH: Marketing & Promotions",
+    "promotionsDescription": "TH: Create and manage coupons to boost your sales.",
+    "manageCouponsButton": "TH: Manage Coupons"
+  },
+  "InsuranceProviderDashboard": {
+    "title": "TH: Insurance Provider Dashboard",
+    "claimsTitle": "TH: Pending Claims",
+    "claimsDescription": "TH: Review and process new claims from policyholders.",
+    "table": {
+      "policyHolder": "TH: Policy Holder",
+      "policyType": "TH: Policy Type",
+      "claimDate": "TH: Claim Date",
+      "status": "TH: Status",
+      "action": "TH: Action"
+    },
+    "reviewClaimButton": "TH: Review Claim",
+    "noPendingClaims": "TH: No pending claims at this time.",
+    "riskAlertsTitle": "TH: Risk Assessment Alerts",
+    "riskAlertsDescription": "TH: Proactive alerts for high-risk policies based on real-time data.",
+    "alert": "TH: Alert",
+    "severity": "TH: Severity",
+    "investigateButton": "TH: Investigate",
+    "noRiskAlerts": "TH: No high-risk alerts at this time.",
+    "activePoliciesTitle": "TH: Active Policies Overview",
+    "activePoliciesDescription": "TH: An overview of your active insurance policies.",
+    "coverage": "TH: Coverage",
+    "expires": "TH: Expires",
+    "noActivePolicies": "TH: No active policies found."
+  },
+  "LogisticsDashboard": {
+    "title": "TH: Logistics Dashboard",
+    "performanceTitle": "TH: Performance",
+    "onTimeDelivery": "TH: On-time delivery rate",
+    "viewReportButton": "TH: View Full Report",
+    "activeShipmentsTitle": "TH: Active Shipments",
+    "to": "TH: to",
+    "trackButton": "TH: Track",
+    "noActiveShipments": "TH: No active shipments.",
+    "incomingJobsTitle": "TH: Incoming Jobs",
+    "from": "TH: from",
+    "acceptJobButton": "TH: Accept Job",
+    "noIncomingJobs": "TH: No new jobs."
+  },
+  "OperationsDashboard": {
+    "title": "TH: Platform Operations Dashboard",
+    "vtiRateTitle": "TH: VTI Creation Rate",
+    "pipelineStatusTitle": "TH: Data Pipeline Status",
+    "lastCheck": "TH: Last checked",
+    "flaggedEventsTitle": "TH: Flagged Traceability Events",
+    "viewVtiButton": "TH: View VTI",
+    "noFlaggedEvents": "TH: No flagged events to review."
+  },
+  "PackagingSupplierDashboard": {
+    "title": "TH: Packaging Supplier Dashboard",
+    "ordersTitle": "TH: Incoming Orders",
+    "table": {
+      "customer": "TH: Customer",
+      "product": "TH: Product",
+      "quantity": "TH: Quantity",
+      "status": "TH: Status",
+      "action": "TH: Action"
+    },
+    "viewOrderButton": "TH: View Order",
+    "noOrders": "TH: No new orders.",
+    "inventoryTitle": "TH: Inventory Status",
+    "inStock": "TH: in stock",
+    "reorderLevel": "TH: reorder level",
+    "lowStock": "TH: Low Stock",
+    "noInventory": "TH: No inventory data.",
+    "listProductButton": "TH: List New Product"
+  },
+  "ProcessingUnitDashboard": {
+    "title": "TH: Processing Unit Dashboard",
+    "yieldTitle": "TH: Yield Optimization",
+    "potential": "TH: potential",
+    "wasteTitle": "TH: Waste Reduction",
+    "rawMaterialTitle": "TH: Raw Material Inventory",
+    "table": {
+      "product": "TH: Product",
+      "quality": "TH: Quality",
+      "quantity": "TH: Quantity (Tons)",
+      "supplier": "TH: Supplier",
+      "deliveryDate": "TH: Delivery Date",
+      "status": "TH: Status",
+      "action": "TH: Action"
+    },
+    "noInventoryData": "TH: No raw material inventory data.",
+    "packagingOrdersTitle": "TH: Packaging Orders",
+    "noPackagingOrders": "TH: No active packaging orders.",
+    "viewButton": "TH: View",
+    "packagingInventoryTitle": "TH: Packaging Inventory",
+    "inStock": "TH: in stock",
+    "reorderLevel": "TH: reorder level",
+    "noPackagingData": "TH: No packaging inventory data.",
+    "sourcePackagingButton": "TH: Source Packaging"
+  },
+  "QaDashboard": {
+    "title": "TH: Quality Assurance Dashboard",
+    "inspectionsTitle": "TH: Pending Inspections",
+    "inspectionsDescription": "TH: Batches awaiting quality inspection and verification.",
+    "table": {
+      "batchId": "TH: Batch ID",
+      "product": "TH: Product",
+      "seller": "TH: Seller",
+      "dueDate": "TH: Due Date",
+      "action": "TH: Action",
+      "result": "TH: Result",
+      "reason": "TH: Reason",
+      "inspectedAt": "TH: Inspected At"
+    },
+    "performInspectionButton": "TH: Perform Inspection",
+    "noPendingInspections": "TH: No pending inspections at this time.",
+    "resultsTitle": "TH: Recent Quality Issues",
+    "resultsDescription": "TH: The latest flagged quality issues that may require action.",
+    "noRecentIssues": "TH: No recent quality issues logged.",
+    "metricsTitle": "TH: Quality Metrics",
+    "metricsDescription": "TH: Overall quality performance across the platform.",
+    "passRate": "TH: Pass rate",
+    "averageScore": "TH: Average score",
+    "noMetrics": "TH: No quality metrics available yet."
+  },
+  "RegulatorDashboard": {
+    "title": "TH: Regulator Dashboard",
+    "pendingCertificationsTitle": "TH: Pending Certifications",
+    "reviewsOutstanding": "TH: reviews outstanding.",
+    "reviewAllButton": "TH: Review All",
+    "riskAlertsTitle": "TH: Compliance Risk Alerts",
+    "investigateButton": "TH: Investigate",
+    "noComplianceAlerts": "TH: No active compliance alerts.",
+    "anomaliesTitle": "TH: Supply Chain Anomalies",
+    "trackVtiButton": "TH: Track VTI",
+    "noAnomalies": "TH: No supply chain anomalies detected."
+  },
+  "ResearcherDashboard": {
+    "title": "TH: Researcher Dashboard",
+    "datasetsTitle": "TH: Available Datasets",
+    "datasetsDescription": "TH: Anonymized datasets available for research purposes.",
+    "table": {
+      "name": "TH: Name",
+      "dataType": "TH: Data Type",
+      "accessLevel": "TH: Access Level",
+      "action": "TH: Action",
+      "title": "TH: Title",
+      "progress": "TH: Progress",
+      "collaborators": "TH: Collaborators",
+      "status": "TH: Status"
+    },
+    "requestAccessButton": "TH: Request Access",
+    "noDatasets": "TH: No datasets are currently available.",
+    "projectsTitle": "TH: Ongoing Projects",
+    "projectsDescription": "TH: Your active research projects on the platform.",
+    "viewProjectButton": "TH: View Project",
+    "noProjects": "TH: You are not involved in any ongoing projects.",
+    "contributionsTitle": "TH: Contributions to Knowledge Hub",
+    "contributionsDescription": "TH: Your submitted articles and research papers.",
+    "viewButton": "TH: View",
+    "noContributions": "TH: You have not submitted any contributions yet.",
+    "chart": {
+      "count": "TH: Count",
+      "published": "TH: Published",
+      "pending": "TH: Pending Review",
+      "draft": "TH: Draft"
+    },
+    "noData": "TH: No dashboard data available."
+  },
+  "WasteManagementDashboard": {
+    "title": "TH: Waste Management Dashboard",
+    "wasteStreamsTitle": "TH: Incoming Waste Streams",
+    "from": "TH: from",
+    "acceptButton": "TH: Accept",
+    "noWasteStreams": "TH: No new incoming waste streams.",
+    "compostBatchesTitle": "TH: Compost Batches",
+    "batch": "TH: Batch",
+    "estReady": "TH: Est. Ready",
+    "noCompostBatches": "TH: No active compost batches.",
+    "inventoryTitle": "TH: Finished Product Inventory",
+    "inStock": "TH: in stock",
+    "noFinishedProducts": "TH: No finished products in stock.",
+    "sellButton": "TH: Sell on Marketplace"
+  },
+  "FeedItemCard": {
+    "signInToLikeToast": "TH: You must be signed in to like a post.",
+    "repostPlaceholderToast": "TH: Repost feature coming soon!",
+    "signInToVoteToast": "TH: You must be signed in to vote.",
+    "voteSuccessToast": "TH: Your vote has been counted!",
+    "voteErrorToast": "TH: Could not save vote.",
+    "editPost": "TH: Edit Post",
+    "deletePost": "TH: Delete Post",
+    "like": "TH: Like",
+    "comment": "TH: Comment",
+    "repost": "TH: Repost",
+    "likes": "TH: {count, plural, =0 {likes} =1 {like} other {{count} likes}}",
+    "comments": "TH: {count, plural, =0 {comments} =1 {comment} other {{count} comments}}",
+    "loadCommentsErrorToast": "TH: Could not load comments.",
+    "noComments": "TH: Be the first to comment!",
+    "loadingComments": "TH: Loading comments...",
+    "loadMoreComments": "TH: Load more comments",
+    "writeCommentPlaceholder": "TH: Add a comment...",
+    "postButton": "TH: Post",
+    "votes": "TH: {count, plural, =0 {votes} =1 {vote} other {{count} votes}}"
+  },
+  "CreatePostModal": {
+    "title": "TH: Create a new post",
+    "description": "TH: Share an update, ask a question, or start a conversation with the community.",
+    "yourName": "TH: Your Name",
+    "shareUpdate": "TH: Share an update",
+    "placeholder": "TH: What's on your mind?",
+    "selectedFile": "TH: Selected file:",
+    "pollOptionsLabel": "TH: Poll Options",
+    "pollOptionPlaceholder": "TH: Option {index}",
+    "addOptionButton": "TH: Add Option",
+    "pollNote": "TH: A maximum of {maxOptions} options are allowed.",
+    "photoVideo": "TH: Photo/Video",
+    "agriEvent": "TH: Agri-Event",
+    "shareDocumentButton": "TH: Share Document",
+    "createPollButton": "TH: Create Poll",
+    "postButton": "TH: Post",
+    "pollOptionsError": "TH: A poll must have at least 2 non-empty options.",
+    "emptyPostError": "TH: Your post cannot be empty."
   },
   "formErrors": {
     "createMarketplaceCoupon": {
       "code": {
-        "min": "รหัสต้องมีอย่างน้อย 4 ตัวอักษร",
-        "max": "รหัสต้องไม่เกิน 20 ตัวอักษร",
-        "regex": "รหัสสามารถมีได้เฉพาะตัวอักษรและตัวเลขเท่านั้น"
+        "min": "TH: Code must be at least 4 characters.",
+        "max": "TH: Code must be no more than 20 characters.",
+        "regex": "TH: Code must be alphanumeric."
       },
       "discountType": {
-        "required": "โปรดเลือกประเภทส่วนลด"
+        "required": "TH: Please select a discount type."
       },
       "discountValue": {
-        "invalid": "โปรดป้อนหมายเลขที่ถูกต้อง",
-        "positive": "มูลค่าส่วนลดต้องเป็นบวก",
-        "percentageMax": "ส่วนลดเป็นเปอร์เซ็นต์ต้องไม่เกิน 100"
+        "invalid": "TH: Discount value must be a number.",
+        "positive": "TH: Discount value must be positive.",
+        "percentageMax": "TH: Percentage discount cannot exceed 100."
       },
       "usageLimit": {
-        "positive": "ขีดจำกัดการใช้งานต้องเป็นจำนวนเต็มบวก"
+        "positive": "TH: Usage limit must be a positive integer."
       }
     }
+  },
+  "CropRotationSuggester": {
+    "title": "TH: AI Crop Rotation Suggester",
+    "description": "TH: Get AI-powered suggestions for your next crop to improve soil health and break pest cycles.",
+    "buttonText": "TH: Get Rotation Suggestion",
+    "loadingText": "TH: Analyzing field history...",
+    "error": "TH: Could not get a suggestion at this time. Please try again.",
+    "noSuggestions": "TH: The AI could not generate a specific suggestion based on the history provided.",
+    "regenerateButton": "TH: Regenerate Suggestion"
+  },
+  "networkPage": {
+    "title": "TH: Network",
+    "description": "TH: Discover and connect with stakeholders across the agricultural supply chain.",
+    "myNetworkButton": "TH: My Network",
+    "agentToolsButton": "TH: Agent Tools",
+    "aiSuggestionsTitle": "TH: AI Suggestions",
+    "aiSuggestionsDescription": "TH: Connect with people you may know based on your profile and activity.",
+    "toast": {
+      "errorTitle": "TH: Error",
+      "loadError": "TH: Could not load network data.",
+      "connectError": "TH: Could not send connection request."
+    },
+    "following": "TH: Following",
+    "follow": "TH: Follow",
+    "connect": "TH: Connect",
+    "profile": "TH: Profile",
+    "noSuggestions": "TH: No new suggestions right now. Check back later!",
+    "browseAllTitle": "TH: Browse All Stakeholders",
+    "browseAllDescription": "TH: Find and connect with new partners in the supply chain.",
+    "searchPlaceholder": "TH: Search by name or summary...",
+    "locationPlaceholder": "TH: Search by location...",
+    "rolePlaceholder": "TH: Filter by role",
+    "allRoles": "TH: All Roles",
+    "noStakeholdersFound": "TH: No stakeholders found.",
+    "noStakeholdersHint": "TH: Try adjusting your search filters."
   }
 }

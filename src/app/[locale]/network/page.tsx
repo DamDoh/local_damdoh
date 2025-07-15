@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
@@ -10,7 +9,7 @@ import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { Search, UserPlus, Link as LinkIcon, UserCog, Users, Frown, Loader2, Send, CheckCircle, Clock } from "lucide-react";
+import { Search, UserPlus, Link as LinkIcon, UserCog, Users, Frown, Loader2, Send, CheckCircle, Clock, MapPin, User } from "lucide-react";
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
