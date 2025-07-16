@@ -1,14 +1,164 @@
-commit e6d3a40e8b098b3553a52481354d94b9b2b6817c
+commit 2ac9a21d7dac5862f4cffe282651b5529b149403
 Author: Sok Chuob <chuob.sok@gmail.com>
-Date:   Tue Jul 15 10:17:24 2025 +0000
+Date:   Mon Jul 14 21:46:44 2025 +0000
 
-    fix: resolve translation and import errors
+    I see this error with the app, reported by NextJS, please fix it. The er
 
-commit 5b2693133b170a68de4a3becff20c775783005e8
+commit a78dfa2b7c6d7b041527583902127283e3d36458
 Author: Sok Chuob <chuob.sok@gmail.com>
-Date:   Tue Jul 15 08:15:11 2025 +0000
+Date:   Mon Jul 14 10:26:18 2025 +0000
 
-    feat: add translations for fr, de, km, and th
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit 4509a0a9af47251a56e581a6a291ee3f2294cc65
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 10:20:29 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit ba82156abf26f2eeaf10149abd5fa3343acaa68b
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 10:12:29 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit c43abd0f27e4eb711878b551935e8d1e9834c2e6
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 10:09:39 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit 525298bc40d557509ac46e290d21353d18f6eb23
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 10:04:01 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit 9c1f2aba28013483cc4243a89c768741114a3bc2
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 10:01:49 2025 +0000
+
+    Ok, can you give me here also?
+
+commit 1e009345381400980dac778755e1d24d5ef626e8
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:59:32 2025 +0000
+
+    I believe we have so much achieve on trying to functional perfection and
+
+commit 7c7a01d5664aad1d75f9dcac1aabdb41c67f44fb
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:55:24 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit d2b2b1d766da8c6105995046ae1ebd529d5f51de
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:52:36 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit e480c62aced790fb99b3c817441995c32be8ca82
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:50:13 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit cefbf9be33dc9400612b4c83ceda758f4c8c5819
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:44:36 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit 035b54c476229853f47a919a3dcf9ff064f026e2
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:41:04 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit c9416ae85920a47463c77840fff8d925a857e06e
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:38:06 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit 48317527359d16866871d575f69dcd71ce437828
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:36:34 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit f632d8834b42862af281e55910d1236452da09f2
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:34:06 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit a105b8873667049cc396a8cb6ee8b4f42c4314c7
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:32:20 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit 38cbe6ca34c8a6b010bc5ee5d01b2fd547ae5ad0
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:30:35 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit 19e61261dc12f134a45fe2c10a1fc11019b5a536
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:29:10 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit 448488529a429a63f38671b7ed278707fbb1a321
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:28:02 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit 9312f941934e42f5ebd5249eabe5389dc70e81d6
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:25:19 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit 83d9f8430a207749f9f297ad5277cd784f33022c
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:19:23 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit 489afb00a9f15ea8783fe0e7db57ad7d2548aea5
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:16:43 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit a5fe5c87b78ccc958ab9b4cd386c065725225232
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:14:46 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit cb47e264258b9134104770c5245c04cd5ba09701
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:11:38 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit 1ee11efe0119acbae853dda891dc47f50d2c7054
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:09:18 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
+
+commit 868b465c8ab72bd84a7d119db4ac81021eb6a1a0
+Author: Sok Chuob <chuob.sok@gmail.com>
+Date:   Mon Jul 14 09:07:24 2025 +0000
+
+    Good job, you can continue functional perfection and predictive optimiza
 
 commit df458d341aa26a0c41c69505fbbfbc091598dd1e
 Author: Sok Chuob <chuob.sok@gmail.com>

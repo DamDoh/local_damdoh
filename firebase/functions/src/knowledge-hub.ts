@@ -6,8 +6,15 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const db = admin.firestore();
 
 // Initialize the Gemini AI model for translation
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+let genAI;
+let model;
+
+if (process.env.GEMINI_API_KEY) {
+  genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+  model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+} else {
+    console.warn("GEMINI_API_KEY not found. Translation features will be disabled.");
+}
 
 const SUPPORTED_LANGUAGES = ["en", "km", "es", "fr", "de"];
 
@@ -18,7 +25,7 @@ const SUPPORTED_LANGUAGES = ["en", "km", "es", "fr", "de"];
  * @return {Promise<string>} The translated text.
  */
 async function translateText(text: string, targetLanguage: string): Promise<string> {
-    if (!text) return "";
+    if (!model || !text) return `[Translation Disabled] ${text}`;
     try {
         const prompt = `Translate the following text to the language with code "${targetLanguage}":
 
@@ -43,6 +50,10 @@ Return only the translated text, without any introductory phrases or quotation m
 export const onArticleWriteTranslate = functions.firestore
   .document("knowledge_articles/{articleId}")
   .onWrite(async (change, context) => {
+    if (!model) {
+        console.log("Translation model not initialized. Skipping onArticleWriteTranslate.");
+        return null;
+    }
     const { articleId } = context.params;
     const afterData = change.after.data();
 
@@ -447,11 +458,7 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
     // 3. Combine the data
     const finalData = {
       id: courseDoc.id,
-      title: courseData.titleEn,
-      description: courseData.descriptionEn,
-      category: courseData.category,
-      level: courseData.level,
-      instructor: {name: "Dr. Alima Bello", title: "Senior Agronomist"}, // Instructor info would need another fetch
+      title:.google.com/genai-api/guides/get-api-key for more information.
       modules: modulesData.map((m: any) => ({
         id: m.id,
         title: m.moduleTitleEn,

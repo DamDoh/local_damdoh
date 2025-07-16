@@ -1,45 +1,67 @@
 
-'use server';
-import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
+import { ai } from "@/ai/genkit";
+import { z } from "zod";
 
-export const ForumTopicSuggestionSchema = z.object({
-  title: z.string().describe('A compelling and engaging title for a new forum topic. Should be a question or a statement that encourages discussion.'),
-  description: z.string().describe('A brief, one-sentence description of what the topic will be about, to be used as a placeholder or helper text.'),
-  category: z.enum(['General', 'Technology', 'Markets', 'Sustainability', 'Logistics', 'Policy']).describe('The most relevant category for this suggested topic.'),
+const ForumTopicSuggestionSchema = z.object({
+  title: z
+    .string()
+    .describe("A concise and engaging title for the new forum topic."),
+  description: z
+    .string()
+    .describe("A brief, one-sentence description of what the topic is about."),
+  category: z
+    .string()
+    .describe(
+      "A relevant category for the topic (e.g., 'Crop Management', 'Pest Control', 'Harvesting Techniques', 'Soil Health', 'Technology')."
+    ),
 });
 
-export const ForumTopicSuggestionsOutputSchema = z.object({
+const ForumTopicSuggestionsOutputSchema = z.object({
   suggestions: z.array(ForumTopicSuggestionSchema),
 });
 
 const SuggestForumTopicsInputSchema = z.object({
-    existingTopics: z.array(z.object({
-        name: z.string(),
-        description: z.string(),
-    })),
-    language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English.'),
+  existingTopics: z.array(
+    z.object({
+      name: z.string(),
+      description: z.string(),
+    })
+  ),
+  language: z
+    .string()
+    .optional()
+    .describe(
+      "The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English."
+    ),
 });
-
 
 export const suggestForumTopics = ai.defineFlow(
   {
-    name: 'suggestForumTopics',
+    name: "suggestForumTopics",
     inputSchema: SuggestForumTopicsInputSchema,
     outputSchema: ForumTopicSuggestionsOutputSchema,
   },
   async (input) => {
-    const llmResponse = await ai.generate({
-      prompt: `Based on the following list of existing forum topics, generate 5 new, engaging, and relevant topic suggestions for an agricultural community platform. The suggestions should cover a range of categories and encourage discussion. Avoid creating duplicates of existing topics.
+    // Construct the list of existing topics cleanly.
+    const existingTopicsList = input.existingTopics
+      .map((t) => `- ${t.name}`)
+      .join("
+");
+
+    // Construct the final prompt.
+    const prompt = `Based on the following list of existing forum topics, generate 5 new, engaging, and relevant topic suggestions for an agricultural community platform. The suggestions should cover a range of categories and encourage discussion. Avoid creating duplicates of existing topics.
       
-      CRITICAL: You MUST generate the response (titles and descriptions) in the specified language: '${input.language || 'en'}'.
+CRITICAL: You MUST generate the response (titles and descriptions) in the specified language: '${
+  input.language || "en"
+}'.
 
-      Existing Topics:
-      ${input.existingTopics.map(t => `- ${t.name}`).join('
-')}
+Existing Topics:
+${existingTopicsList}
 
-      Your suggestions should be diverse and interesting.
-      `,
+Your suggestions should be diverse and interesting.`;
+
+    const llmResponse = await ai.generate({
+      prompt: prompt,
       output: {
         schema: ForumTopicSuggestionsOutputSchema,
       },

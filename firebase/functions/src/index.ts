@@ -6,6 +6,7 @@
  */
 
 import * as admin from "firebase-admin";
+import { configureGenkit } from "../../src/ai/genkit";
 
 // The 'server.ts' file handles its own initialization.
 // We import it to ensure Express routes are registered with Cloud Functions.
@@ -16,6 +17,9 @@ import * as functions from "firebase-functions";
 if (admin.apps.length === 0) {
   admin.initializeApp();
 }
+
+// Initialize the Genkit AI framework
+configureGenkit();
 
 // Export all other cloud functions
 export * from "./traceability";

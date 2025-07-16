@@ -18,9 +18,14 @@ import { usePathname } from 'next/navigation';
 import { useHomepagePreference } from '@/hooks/useHomepageRedirect';
 import { formatDistanceToNow } from 'date-fns';
 import { useTranslations, useLocale } from 'next-intl';
-import { suggestForumTopics } from '@/ai/flows/forum-topic-suggestions';
-import { ForumTopicSuggestionSchema } from '@/ai/flows/forum-topic-suggestions';
 import { z } from 'zod';
+
+// This schema is now only used for type safety on the client
+const ForumTopicSuggestionSchema = z.object({
+    title: z.string(),
+    description: z.string(),
+    category: z.string(),
+});
 
 type SuggestedTopic = z.infer<typeof ForumTopicSuggestionSchema>;
 
@@ -74,6 +79,8 @@ export default function ForumsPage() {
     const { toast } = useToast();
     const functions = getFunctions(firebaseApp);
     const getTopicsCallable = useMemo(() => httpsCallable(functions, 'getTopics'), [functions]);
+    // Create a callable function for the new secure endpoint
+    const getSuggestionsCallable = useMemo(() => httpsCallable(functions, 'getForumTopicSuggestions'), [functions]);
     const pathname = usePathname();
     const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
     const locale = useLocale();
@@ -90,11 +97,14 @@ export default function ForumsPage() {
                 if (data?.topics && data.topics.length > 0) {
                     setIsLoadingSuggestions(true);
                     try {
-                        const suggestionsResult = await suggestForumTopics({ 
+                        // Call the new secure Cloud Function
+                        const suggestionsResult = await getSuggestionsCallable({ 
                             existingTopics: data.topics.map(t => ({ name: t.name, description: t.description })),
                             language: locale,
                         });
-                        setSuggestedTopics(suggestionsResult.suggestions);
+                        // The result.data from a callable function is the object returned by the function
+                        const suggestionsData = suggestionsResult.data as { suggestions: SuggestedTopic[] };
+                        setSuggestedTopics(suggestionsData.suggestions);
                     } catch (e) {
                         console.error("Failed to fetch topic suggestions:", e);
                     } finally {
@@ -116,7 +126,7 @@ export default function ForumsPage() {
         };
 
         fetchTopics();
-    }, [getTopicsCallable, toast, t, locale]);
+    }, [getTopicsCallable, getSuggestionsCallable, toast, t, locale]);
 
     const filteredTopics = useMemo(() => {
         if (!Array.isArray(topics)) return [];

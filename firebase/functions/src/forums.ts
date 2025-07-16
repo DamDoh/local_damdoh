@@ -1,8 +1,8 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB } from './profiles';
+import { suggestForumTopics } from '../../src/ai/flows/forum-topic-suggestions';
 
 const db = admin.firestore();
 
@@ -12,6 +12,23 @@ const checkAuth = (context: functions.https.CallableContext) => {
   }
   return context.auth.uid;
 };
+
+// New function to securely call the AI flow
+export const getForumTopicSuggestions = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
+    const { existingTopics, language } = data;
+    if (!existingTopics) {
+        throw new functions.https.HttpsError('invalid-argument', 'Existing topics are required.');
+    }
+    try {
+        const suggestions = await suggestForumTopics({ existingTopics, language });
+        return suggestions;
+    } catch (error) {
+        console.error("Error calling suggestForumTopics flow:", error);
+        throw new functions.https.HttpsError("internal", "Failed to get topic suggestions.");
+    }
+});
+
 
 export const getTopics = functions.https.onCall(async (data, context) => {
     const topicsSnapshot = await db.collection('forums').orderBy('lastActivityAt', 'desc').get();
