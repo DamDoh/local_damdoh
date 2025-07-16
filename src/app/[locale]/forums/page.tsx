@@ -15,7 +15,7 @@ import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { usePathname } from 'next/navigation';
-import { useHomepagePreference } from '@/hooks/useHomepageRedirect';
+import { useHomepageRedirect } from '@/hooks/useHomepageRedirect';
 import { formatDistanceToNow } from 'date-fns';
 import { useTranslations, useLocale } from 'next-intl';
 import { z } from 'zod';

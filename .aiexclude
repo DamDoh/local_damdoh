@@ -1,8 +1,33 @@
+# Exclude node_modules directory
+/node_modules/
+
+# Exclude Next.js build output
 .next/
-node_modules/
-firebase/functions/dist/
-src/messages/de.json
-src/messages/fr.json
-src/messages/km.json
-src/messages/th.json
-src/app/[^e][^n]/
+
+# Exclude package lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Exclude log files
+*.log
+git_log.txt
+git_log_14-Jul-25.txt
+
+# Exclude temporary files
+Users/
+
+# Other build artifacts
+dist/
+build/
+out/
+coverage/
+
+# IDE settings
+.vscode/
+.idea/
+.idx/
+
+# OS files
+.DS_Store
+Thumbs.db
