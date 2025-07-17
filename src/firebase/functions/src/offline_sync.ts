@@ -146,6 +146,21 @@ export const processOfflineChange = functions.firestore
 
     const {collectionPath, documentId, operation, payload, timestamp} =
       changeData;
+    
+    // Special handling for complex operations that aren't simple CRUD
+    if (collectionPath === 'harvest_events' && operation === 'create') {
+        const handleHarvestEvent = (await import('./traceability')).handleHarvestEvent;
+        try {
+            await handleHarvestEvent(payload, { auth: { uid: changeData.userId, token: {} as any } });
+            await snapshot.ref.update({ status: "completed", processedAt: admin.firestore.FieldValue.serverTimestamp() });
+        } catch (error: any) {
+             console.error(`Transaction failed for complex harvest event ${changeId}:`, error.message);
+             await snapshot.ref.update({ status: "failed", errorMessage: error.message, processedAt: admin.firestore.FieldValue.serverTimestamp() });
+        }
+        return null;
+    }
+
+
     const targetDocRef = db.collection(collectionPath).doc(documentId);
 
     try {
