@@ -1,17 +1,17 @@
 
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import type { MarketplaceItem } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search as SearchIconLucide, MapPin, Pin, PinOff, Building, ShoppingCart, Brain, Loader2 } from "lucide-react"; 
+import { PlusCircle, Search as SearchIconLucide, MapPin, Pin, PinOff, Building, ShoppingCart, Brain } from "lucide-react"; 
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { getListingTypeFilterOptions, type ListingType, UNIFIED_MARKETPLACE_CATEGORY_IDS } from "@/lib/constants";
-import { usePathname, useRouter } from "@/navigation";
+import { usePathname, useRouter } from '@/navigation';
 import { useSearchParams } from 'next/navigation';
 import { useHomepagePreference } from '@/hooks/useHomepagePreference';
 import { AllCategoriesDropdown } from "@/components/marketplace/AllCategoriesDropdown"; 

@@ -1,13 +1,13 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { geohashForLocation } from "geofire-common";
 
 const db = admin.firestore();
 
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
   }
   return context.auth.uid;
 };
@@ -39,9 +39,6 @@ interface SearchableItem {
  * A generic Firestore trigger that listens to writes on specified collections
  * and creates/updates a corresponding document in a dedicated 'search_index' collection.
  * This pattern allows for flexible and scalable querying.
- * @param {functions.Change<functions.firestore.DocumentSnapshot>} change The change event containing before and after data.
- * @param {functions.EventContext} context The event context.
- * @return {Promise<void> | null} A promise that resolves when the operation is complete.
  */
 export const onSourceDocumentWriteIndex = functions.firestore
   .document("{collectionId}/{documentId}")
@@ -60,7 +57,7 @@ export const onSourceDocumentWriteIndex = functions.firestore
     ];
 
     if (!INDEXABLE_COLLECTIONS.includes(collectionId)) {
-      return null;
+      return;
     }
 
     const indexRef = db.collection("search_index").doc(`${collectionId}_${documentId}`);
@@ -69,16 +66,8 @@ export const onSourceDocumentWriteIndex = functions.firestore
     if (!documentData) {
       await indexRef.delete();
       console.log(`Removed ${collectionId}/${documentId} from search index.`);
-      return null;
+      return;
     }
-    
-    // For marketplace items, only index if they are 'active'
-    if (collectionId === "marketplaceItems" && documentData.status !== 'active') {
-        await indexRef.delete();
-        console.log(`Item ${documentId} is not active. Removed from search index.`);
-        return null;
-    }
-
 
     // Standardize common fields
     const title = documentData.name || documentData.title || documentData.displayName || documentData.metadata?.cropType || "Untitled";
@@ -114,8 +103,8 @@ export const onSourceDocumentWriteIndex = functions.firestore
     };
     
     // --- Add Geohash for items with lat/lng ---
-    if (documentData.geohash) {
-      indexData.geohash = documentData.geohash;
+    if (documentData.location && typeof documentData.location.lat === 'number' && typeof documentData.location.lng === 'number') {
+      indexData.geohash = geohashForLocation([documentData.location.lat, documentData.location.lng]);
     }
 
 
@@ -133,16 +122,12 @@ export const onSourceDocumentWriteIndex = functions.firestore
     } catch (error) {
       console.error(`Error indexing document ${collectionId}/${documentId}:`, error);
     }
-    return null;
   });
 
 
 /**
  * Performs a search against the denormalized search_index collection.
  * Supports keyword, filter, and geospatial searching.
- * @param {any} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<any[]>} A promise that resolves with the search results.
  */
 export const performSearch = functions.https.onCall(async (data, context) => {
   checkAuth(context);
