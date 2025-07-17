@@ -617,7 +617,7 @@
         "descriptionLabel": "Description",
         "descriptionPlaceholder": "Describe your product or service in detail...",
         "locationLabel": "Location",
-        "locationPlaceholder": "e.g., Nakuru, Kenya",
+        "changeLocationButton": "Change",
         "relatedVtiLabel": "Related Traceability ID (Optional)",
         "relatedVtiPlaceholder": "Enter VTI if available",
         "relatedVtiDescription": "Link this item to a specific harvest batch for full transparency.",
@@ -634,7 +634,7 @@
         "skillsLabel": "Skills Required (for services)",
         "skillsPlaceholder": "e.g., Crop Spraying, Soil Analysis, Organic Certification",
         "skillsDescription": "Separate skills with a comma.",
-        "imageUrlLabel": "Image URL",
+        "imageFile": "Promotional Image",
         "sustainableLabel": "Sustainably Produced",
         "sustainableDescription": "Check this box if your product or service follows recognized sustainable practices.",
         "submitButton": "Create Listing",
@@ -2037,82 +2037,5 @@
     "allRoles": "All Roles",
     "noStakeholdersFound": "No stakeholders found.",
     "noStakeholdersHint": "Try adjusting your search filters."
-  },
-  "constants": {
-    "listingTypes": {
-      "All": "All Types",
-      "Product": "Product",
-      "Service": "Service",
-      "AgroTourism": "Agro-Tourism"
-    }
-  },
-  "ErrorPage": {
-    "title": "Something Went Wrong",
-    "description": "We apologize, but an unexpected error has occurred. Please try again or return to the homepage.",
-    "retryButton": "Try Again",
-    "homeButton": "Go to Homepage"
-  },
-  "talentExchangePage": {
-  "title": "Talent Exchange",
-  "description": "Find specialized agricultural services or offer your own expertise.",
-  "searchPlaceholder": "Search for services (e.g., drone survey, soil testing)",
-  "locationPlaceholder": "Filter by location",
-  "categoryPlaceholder": "Filter by category",
-  "allCategories": "All Categories",
-  "noResults": "No talent found for your search.",
-  "postJobButton": "Post a Job",
-  "offerServiceButton": "Offer a Service",
-  "listServiceButton": "List a Service",
-  "noResultsTitle": "No Services Found",
-  "noResultsDescription": "Try adjusting your search filters or be the first to offer a service in your area.",
-  "toast": {
-    "error": {
-      "title": "Error",
-      "description": "Failed to fetch services."
-      }
-    }
-  },
-  "traceabilityPage": {
-    "title": "Product Traceability",
-    "description": "Enter a Verifiable Traceability Identifier (VTI) to see the complete journey of a product from farm to shelf.",
-    "inputPlaceholder": "Enter VTI code...",
-    "trackButton": "Track Product",
-    "vtiDescription": "The VTI is a unique code found on product packaging that ensures transparency.",
-    "recentTitle": "Recently Tracked Batches",
-    "recentDescription": "A list of the traceability reports you have recently viewed.",
-    "noRecentBatches": "You have no recently tracked batches.",
-    "invalidVtiError": "The VTI you entered is not valid. Please check the code and try again.",
-    "trackingError": "Could not retrieve traceability information for that VTI.",
-    "emptyVtiError": "Please enter a VTI to track.",
-    "detail": {
-      "title": "Traceability Report",
-      "subtitle": "Batch ID: {batchId}",
-      "loadError": "Could not load the traceability report for this batch.",
-      "invalidIdError": "The batch ID is invalid or missing.",
-      "summaryTitle": "Batch Summary",
-      "originLabel": "Origin",
-      "productLabel": "Product",
-      "harvestDateLabel": "Harvest Date",
-      "processorLabel": "Processor",
-      "journeyTitle": "Product Journey",
-      "noEvents": "No journey events have been recorded for this batch yet.",
-      "sustainability": {
-        "grownSustainably": "Sustainably Grown",
-        "notGrownSustainably": "Conventional Farming",
-        "sustainabilityTooltip": "This product was grown using sustainable practices as recorded on the platform."
-      },
-      "eventTypes": {
-        "BATCH_CREATED": "Batch Created",
-        "INPUT_APPLIED": "Input Applied",
-        "OBSERVATION_LOGGED": "Observation Logged",
-        "HARVEST_LOGGED": "Harvest Logged",
-        "INSPECTION_PASSED": "Inspection Passed",
-        "INSPECTION_FAILED": "Inspection Failed",
-        "PROCESSED": "Processed",
-        "PACKAGED": "Packaged",
-        "SHIPPED": "Shipped",
-        "RECEIVED": "Received"
-      }
-    }
   }
 }
