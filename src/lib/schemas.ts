@@ -416,9 +416,29 @@ export const ServiceItemSchema = MarketplaceItemSchema.extend({
     experienceLevel: z.string(),
 });
 
+export const GroupPostReplySchema = z.object({
+  id: z.string(),
+  content: z.string(),
+  timestamp: z.string(), // ISO string
+  author: z.object({
+      id: z.string(),
+      name: z.string(),
+      avatarUrl: z.string().optional(),
+  }),
+});
+
+
 // =================================================================
 // 2. DASHBOARD DATA SCHEMAS
 // =================================================================
+
+export const FarmerDashboardAlertSchema = z.object({
+    id: z.string(),
+    icon: z.enum(['FlaskConical', 'Sprout']),
+    type: z.enum(['info', 'warning']),
+    message: z.string(),
+    link: z.string(),
+});
 
 export const FarmerDashboardDataSchema = z.object({
   farmCount: z.number(),
@@ -431,7 +451,7 @@ export const FarmerDashboardDataSchema = z.object({
       farmId: z.string(),
       plantingDate: z.string().nullable(),
   })),
-  knfBatches: z.array(KnfBatchSchema.omit({ createdAt: true})), // Omit createdAt as it's not on the frontend type
+  knfBatches: z.array(KnfBatchSchema.omit({ createdAt: true, id: true }).extend({ id: z.string()})), // Omit createdAt as it's not on the frontend type
   financialSummary: FinancialSummarySchema.optional(),
   alerts: z.array(FarmerDashboardAlertSchema).optional(),
   certifications: z.array(z.object({
@@ -919,18 +939,6 @@ export const FinancialApplicationSchema = z.object({
   applicantProfile: StakeholderProfileSchema.optional(),
 });
 
-export const GroupPostReplySchema = z.object({
-  id: z.string(),
-  content: z.string(),
-  timestamp: z.string(), // ISO string
-  author: z.object({
-      id: z.string(),
-      name: z.string(),
-      avatarUrl: z.string().optional(),
-  }),
-});
-
-
 // =================================================================
 // 3. AI FLOW SCHEMAS
 // =================================================================
@@ -1027,15 +1035,4 @@ export const FarmingAssistantOutputSchema = z.object({
   summary: z.string().describe("A concise overall answer, summary, primary diagnosis, or explanation to the user's query. This should be a few sentences long and directly address the main question or image content."),
   detailedPoints: z.array(DetailedPointSchema).optional().describe("An array of 3-5 detailed points or sections, each with a title and content, expanding on the summary/diagnosis/explanation or providing scannable key information. Only provide this if the query/image warrants a detailed breakdown."),
   suggestedQueries: z.array(z.string()).optional().describe("A list of 2-3 short, relevant follow-up questions or related topics the user might be interested in based on their initial query. For example, if they ask about one KNF input, suggest another."),
-});
-
-export const GroupPostSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  content: z.string(),
-  authorRef: z.string(),
-  authorName: z.string(),
-  authorAvatarUrl: z.string(),
-  replyCount: z.number(),
-  createdAt: z.string(), // ISO
 });

@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -71,6 +72,7 @@ import type {
     FinancialApplicationSchema,
     createFarmSchema,
     createCropSchema,
+    GroupPostReplySchema,
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 
@@ -117,6 +119,7 @@ export type Notification = z.infer<typeof NotificationSchema>;
 export type PaymentLog = z.infer<typeof PaymentLogSchema>;
 export type PollOption = z.infer<typeof PollOptionSchema>;
 export type PostReply = z.infer<typeof PostReplySchema>;
+export type GroupPostReply = z.infer<typeof GroupPostReplySchema>;
 export type Worker = z.infer<typeof WorkerSchema>;
 export type WorkLog = z.infer<typeof WorkLogSchema>;
 export type Farm = z.infer<typeof createFarmSchema> & { id: string };
@@ -183,3 +186,5 @@ export interface TraceabilityEvent {
   };
   geoLocation?: { lat: number; lng: number } | null;
 }
+export type GenerateForumPostDraftInput = z.infer<typeof import('../ai/flows/generate-forum-post-draft').GenerateForumPostDraftInputSchema>;
+export type GenerateForumPostDraftOutput = z.infer<typeof import('../ai/flows/generate-forum-post-draft').GenerateForumPostDraftOutputSchema>;

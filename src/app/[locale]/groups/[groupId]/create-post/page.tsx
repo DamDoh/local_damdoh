@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useMemo } from 'react';
@@ -7,14 +8,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, Loader2, Save } from "lucide-react";
+import { ArrowLeft, Loader2, Sparkles, Save } from "lucide-react";
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import { generateForumPostDraftCallable } from '@/lib/server-actions';
 
 export default function CreateGroupPostPage() {
     const params = useParams();
@@ -23,13 +25,48 @@ export default function CreateGroupPostPage() {
     const { user } = useAuth();
     const t = useTranslations('groupsPage.createPost');
     const groupId = params.groupId as string;
+    const locale = useLocale();
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [aiPrompt, setAiPrompt] = useState("");
+    const [isGenerating, setIsGenerating] = useState(false);
     
     const functions = getFunctions(firebaseApp);
     const createGroupPostCallable = useMemo(() => httpsCallable(functions, 'createGroupPost'), [functions]);
+
+    const handleGenerateWithAi = async () => {
+        if (!aiPrompt.trim()) {
+            toast({
+                title: t('toast.aiPromptMissing.title'),
+                description: t('toast.aiPromptMissing.description'),
+                variant: "destructive",
+            });
+            return;
+        }
+        setIsGenerating(true);
+        try {
+            // Note: We are reusing the forum post generator for groups. This might need a more specific
+            // generator in the future if group context becomes important for the AI.
+            const result = await generateForumPostDraftCallable({ topicId: groupId, prompt: aiPrompt, language: locale });
+            setTitle(result.title);
+            setContent(result.content);
+            toast({
+                title: t('toast.aiDraft.title'),
+                description: t('toast.aiDraft.description'),
+            });
+        } catch (error: any) {
+            console.error("Error generating post draft:", error);
+            toast({
+                title: t('toast.error.title'),
+                description: error.message || t('toast.aiDraft.errorDescription'),
+                variant: "destructive",
+            });
+        } finally {
+            setIsGenerating(false);
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -79,6 +116,40 @@ export default function CreateGroupPostPage() {
                 <ArrowLeft className="h-4 w-4 mr-1" />
                 {t('backLink')}
             </Link>
+
+            <Card className="mb-6 bg-primary-foreground/40 border-primary/30">
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                        <Sparkles className="h-5 w-5 text-primary" />
+                        {t('aiHelper.title')}
+                    </CardTitle>
+                    <CardDescription>{t('aiHelper.description')}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                     <Label htmlFor="ai-prompt">{t('aiHelper.promptLabel')}</Label>
+                    <Textarea 
+                        id="ai-prompt"
+                        placeholder={t('aiHelper.promptPlaceholder')}
+                        value={aiPrompt}
+                        onChange={(e) => setAiPrompt(e.target.value)}
+                        disabled={isGenerating}
+                        rows={2}
+                    />
+                </CardContent>
+                <CardFooter>
+                    <Button onClick={handleGenerateWithAi} disabled={isGenerating || !aiPrompt.trim()}>
+                        {isGenerating ? (
+                            <>
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                {t('aiHelper.generatingButton')}
+                            </>
+                        ) : (
+                            t('aiHelper.generateButton')
+                        )}
+                    </Button>
+                </CardFooter>
+            </Card>
+
             <form onSubmit={handleSubmit}>
                 <Card>
                     <CardHeader>
