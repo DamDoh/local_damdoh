@@ -27,6 +27,8 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
             uid: user.uid,
             email: user.email,
             avatarUrl: user.photoURL || null,
+            primaryRole: 'Consumer', // Default role. User will update this in their profile.
+            profileSummary: "Just joined the DamDoh community!", // A generic initial summary.
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
             viewCount: 0,
@@ -403,7 +405,3 @@ export const deleteUserAccount = functions.https.onCall(async (data, context) =>
         throw new functions.https.HttpsError('internal', 'Failed to delete account.');
     }
 });
-
-    
-
-    

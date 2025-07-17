@@ -109,7 +109,7 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
     // 1. Delete main user profile document
     cleanupPromises.push(userRef.delete());
 
-    // 2. Delete all subcollections of the user (e.g., workers, api_keys)
+    // 2. Delete all subcollections of the user
     cleanupPromises.push(deleteCollection(`users/${userId}/workers`, 100));
     cleanupPromises.push(deleteCollection(`users/${userId}/api_keys`, 50));
     cleanupPromises.push(deleteCollection(`users/${userId}/certifications`, 50));
