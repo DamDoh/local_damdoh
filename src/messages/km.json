@@ -1635,7 +1635,10 @@
       "farmName": "KM: Farm Name",
       "standard": "KM: Standard",
       "dueDate": "KM: Due Date",
-      "action": "KM: Action"
+      "action": "KM: Action",
+      "result": "KM: Result",
+      "reason": "KM: Reason",
+      "inspectedAt": "KM: Inspected At"
     },
     "reviewAuditButton": "KM: Review Audit",
     "noPendingAudits": "KM: No pending audits at this time.",
