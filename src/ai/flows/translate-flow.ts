@@ -24,5 +24,3 @@ export async function translateText(input: z.infer<typeof TranslateInputSchema>)
 
   return llmResponse.output() || ""; // Return empty string if translation fails
 }
-
-    
