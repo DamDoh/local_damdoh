@@ -1,12 +1,11 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
 import { UserRole } from "@/lib/types";
 import { geohashForLocation } from "geofire-common";
-import { logInfo, logError, logWarning, logCritical } from "./logging";
+import { logInfo, logError } from "./logging";
 
 
 const db = admin.firestore();
