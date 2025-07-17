@@ -289,8 +289,8 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
   .onRun(async (context) => {
     console.log("Running daily event reminder check...");
 
-    const now = new Date();
-    const aDayFromNow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+    const now = admin.firestore.Timestamp.now();
+    const aDayFromNow = admin.firestore.Timestamp.fromMillis(now.toMillis() + 24 * 60 * 60 * 1000);
 
     // 1. Handle Agri-Events
     try {
@@ -329,8 +329,8 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
     // 2. Handle Agro-Tourism Bookings
     try {
         const upcomingBookingsQuery = db.collectionGroup("bookings")
-            .where("startDate", ">=", admin.firestore.Timestamp.fromDate(now)) 
-            .where("startDate", "<=", admin.firestore.Timestamp.fromDate(aDayFromNow));
+            .where("startDate", ">=", now) 
+            .where("startDate", "<=", aDayFromNow);
         
         const bookingsSnapshot = await upcomingBookingsQuery.get();
         if (bookingsSnapshot.empty) {
@@ -364,4 +364,3 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
     console.log("Daily event reminder check finished.");
     return null;
   });
-

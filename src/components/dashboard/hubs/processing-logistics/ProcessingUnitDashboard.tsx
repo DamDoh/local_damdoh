@@ -95,7 +95,7 @@ export const ProcessingUnitDashboard = () => {
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
                        {(packagingInventory || []).length > 0 ? (
-                           (packagingInventory || []).map((item, index) => (
+                           (packagingInventory || []).map((item) => (
                                <div key={item.id} className="text-sm p-2 bg-background rounded-md border">
                                    <p className="font-medium">{item.packagingType}</p>
                                    <p className="text-xs">{t('inStock')}: {item.unitsInStock.toLocaleString()}</p>
