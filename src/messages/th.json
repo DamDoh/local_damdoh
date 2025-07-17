@@ -1,5 +1,18 @@
 
 {
+  "MobileHomepage": {
+    "welcome": {
+      "morning": "TH: Good Morning, {name}",
+      "afternoon": "TH: Good Afternoon, {name}",
+      "evening": "TH: Good Evening, {name}"
+    },
+    "discoverTitle": "TH: Discover",
+    "seeAllButton": "TH: See All",
+    "communityFeedTitle": "TH: Community Feed",
+    "communityFeedDescription": "TH: Connect with others, share your knowledge, and stay up-to-date with the latest conversations.",
+    "goToFeedButton": "TH: Go to Feed",
+    "noRecommendations": "TH: No recommendations available right now. Explore the marketplace to get started!"
+  },
   "LandingPage": {
     "hero": {
       "title": "TH: Empowering Agriculture from Soil to Sale on {appName}",
@@ -1966,3 +1979,4 @@
     "noStakeholdersHint": "TH: Try adjusting your search filters."
   }
 }
+```
