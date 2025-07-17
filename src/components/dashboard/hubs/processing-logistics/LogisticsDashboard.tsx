@@ -74,7 +74,7 @@ export const LogisticsDashboard = () => {
                     </CardContent>
                     <CardFooter>
                          <Button asChild variant="outline" size="sm" className="w-full">
-                            {/* @ts-ignore */}
+                            
                             <Link href={performanceMetrics?.actionLink || '#'}>{t('viewReportButton')}</Link>
                         </Button>
                     </CardFooter>

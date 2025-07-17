@@ -97,6 +97,7 @@ export default function FinancialApplicationDetailPage() {
             case 'Rejected': return 'destructive';
             case 'Under Review':
             case 'More Info Required':
+            case 'Pending':
                 return 'secondary';
             default: return 'outline';
         }

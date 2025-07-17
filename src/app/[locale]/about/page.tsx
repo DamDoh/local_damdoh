@@ -14,29 +14,29 @@ export default function AboutPage() {
   const t = useTranslations('aboutPage');
 
   const challenges = [
-    { text: t('challenge.list.marketAccess'), icon: <ShoppingCart className="h-6 w-6 text-destructive" />, detailKey: 'marketAccess' },
-    { text: t('challenge.list.inefficiency'), icon: <Truck className="h-6 w-6 text-destructive" />, detailKey: 'inefficiency' },
-    { text: t('challenge.list.financialExclusion'), icon: <CircleDollarSign className="h-6 w-6 text-destructive" />, detailKey: 'financialExclusion' },
-    { text: t('challenge.list.informationGaps'), icon: <BookOpen className="h-6 w-6 text-destructive" />, detailKey: 'informationGaps' },
-    { text: t('challenge.list.qualityTrust'), icon: <CheckCircle className="h-6 w-6 text-destructive" />, detailKey: 'qualityTrust' },
-    { text: t('challenge.list.climatePressure'), icon: <Thermometer className="h-6 w-6 text-destructive" />, detailKey: 'climatePressure' },
-    { text: t('challenge.list.foodLoss'), icon: <Filter className="h-6 w-6 text-destructive" />, detailKey: 'foodLoss' },
-    { text: t('challenge.list.dataFragmentation'), icon: <Database className="h-6 w-6 text-destructive" />, detailKey: 'dataFragmentation' }
+    { text: t('challenge.marketAccess'), icon: <ShoppingCart className="h-6 w-6 text-destructive" />, detailKey: 'marketAccess' },
+    { text: t('challenge.inefficiency'), icon: <Truck className="h-6 w-6 text-destructive" />, detailKey: 'inefficiency' },
+    { text: t('challenge.financialExclusion'), icon: <CircleDollarSign className="h-6 w-6 text-destructive" />, detailKey: 'financialExclusion' },
+    { text: t('challenge.informationGaps'), icon: <BookOpen className="h-6 w-6 text-destructive" />, detailKey: 'informationGaps' },
+    { text: t('challenge.qualityTrust'), icon: <CheckCircle className="h-6 w-6 text-destructive" />, detailKey: 'qualityTrust' },
+    { text: t('challenge.climatePressure'), icon: <Thermometer className="h-6 w-6 text-destructive" />, detailKey: 'climatePressure' },
+    { text: t('challenge.foodLoss'), icon: <Filter className="h-6 w-6 text-destructive" />, detailKey: 'foodLoss' },
+    { text: t('challenge.dataFragmentation'), icon: <Database className="h-6 w-6 text-destructive" />, detailKey: 'dataFragmentation' }
   ];
   
   const solutions = [
-    { text: t('solution.list.education'), icon: <BookOpen className="h-5 w-5 text-primary" /> },
-    { text: t('solution.list.ai'), icon: <Brain className="h-5 w-5 text-primary" /> },
-    { text: t('solution.list.marketplace'), icon: <ShoppingCart className="h-5 w-5 text-primary" /> },
-    { text: t('solution.list.logistics'), icon: <Truck className="h-5 w-5 text-primary" /> },
-    { text: t('solution.list.financial'), icon: <CircleDollarSign className="h-5 w-5 text-primary" /> },
+    { text: t('solution.education'), icon: <BookOpen className="h-5 w-5 text-primary" /> },
+    { text: t('solution.ai'), icon: <Brain className="h-5 w-5 text-primary" /> },
+    { text: t('solution.marketplace'), icon: <ShoppingCart className="h-5 w-5 text-primary" /> },
+    { text: t('solution.logistics'), icon: <Truck className="h-5 w-5 text-primary" /> },
+    { text: t('solution.financial'), icon: <CircleDollarSign className="h-5 w-5 text-primary" /> },
   ];
   
   const connectionTypes = [
-    { id: "c1", title: t('beyondTechnology.list.p2p.title'), content: t('beyondTechnology.list.p2p.content'), icon: <Users className="h-5 w-5 text-primary" /> },
-    { id: "c2", title: t('beyondTechnology.list.p2b.title'), content: t('beyondTechnology.list.p2b.content'), icon: <Handshake className="h-5 w-5 text-primary" /> },
-    { id: "c3", title: t('beyondTechnology.list.p2e.title'), content: t('beyondTechnology.list.p2e.content'), icon: <Briefcase className="h-5 w-5 text-primary" /> },
-    { id: "c4", title: t('beyondTechnology.list.p2w.title'), content: t('beyondTechnology.list.p2w.content'), icon: <Globe className="h-5 w-5 text-primary" /> },
+    { id: "c1", title: t('beyondTechnology.p2p.title'), content: t('beyondTechnology.p2p.content'), icon: <Users className="h-5 w-5 text-primary" /> },
+    { id: "c2", title: t('beyondTechnology.p2b.title'), content: t('beyondTechnology.p2b.content'), icon: <Handshake className="h-5 w-5 text-primary" /> },
+    { id: "c3", title: t('beyondTechnology.p2e.title'), content: t('beyondTechnology.p2e.content'), icon: <Briefcase className="h-5 w-5 text-primary" /> },
+    { id: "c4", title: t('beyondTechnology.p2w.title'), content: t('beyondTechnology.p2w.content'), icon: <Globe className="h-5 w-5 text-primary" /> },
   ];
 
   return (
@@ -91,7 +91,7 @@ export default function AboutPage() {
                           <div className="flex-shrink-0 mt-1">{challenge.icon}</div>
                           <div>
                             <h4 className="font-semibold text-foreground">{challenge.text}</h4>
-                            <p className="text-sm text-muted-foreground">{t(`challenge.details.${challenge.detailKey}`)}</p>
+                            <p className="text-sm text-muted-foreground">{t(`challenge.${challenge.detailKey}`)}</p>
                           </div>
                       </div>
                   ))}

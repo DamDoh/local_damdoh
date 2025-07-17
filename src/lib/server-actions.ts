@@ -130,3 +130,18 @@ export async function generateForumPostDraftCallable(input: GenerateForumPostDra
         return { title: 'Error', content: 'Could not generate a draft at this time.' };
     }
 }
+
+/**
+ * Server Action to fetch all financial institutions.
+ * @returns A promise that resolves to an array of user profiles for financial institutions.
+ */
+export async function getFinancialInstitutions(): Promise<UserProfile[]> {
+  try {
+    const getFIsCallable = httpsCallable(functions, 'getFinancialInstitutions');
+    const result = await getFIsCallable();
+    return result.data as UserProfile[];
+  } catch (error) {
+    console.error("Error fetching financial institutions:", error);
+    return [];
+  }
+}
