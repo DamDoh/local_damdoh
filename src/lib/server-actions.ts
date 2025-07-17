@@ -9,7 +9,7 @@ import { suggestMarketPrice as suggestMarketPriceFlow } from "@/ai/flows/suggest
 import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";
 import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
 import { suggestForumTopics as suggestForumTopicsFlow } from '@/ai/flows/forum-topic-suggestions';
-import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRotationOutput, CreateFarmValues, CreateCropValues, Farm } from '@/lib/types';
+import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRotationOutput, CreateFarmValues, CreateCropValues, Farm, Crop } from '@/lib/types';
 import { functions } from './firebase/client-server';
 import { httpsCallable } from 'firebase/functions';
 import { getLocale } from 'next-intl/server';
@@ -121,19 +121,25 @@ export async function updateFarm(farmId: string, data: CreateFarmValues): Promis
     return result.data as { success: boolean; farmId: string; };
 }
 
-export async function getCrop(cropId: string): Promise<any | null> {
+export async function getCrop(cropId: string): Promise<Crop | null> {
     const isAuthenticated = await isServerAuthenticated();
     if (!isAuthenticated) { throw new Error("Unauthorized"); }
     const getCropCallable = httpsCallable(functions, 'getCrop');
     const result = await getCropCallable({ cropId });
-    return result.data as any | null;
+    return result.data as Crop | null;
 }
 
 export async function updateCrop(cropId: string, data: CreateCropValues): Promise<{ success: boolean; message: string; }> {
     const isAuthenticated = await isServerAuthenticated();
     if (!isAuthenticated) { throw new Error("Unauthorized"); }
     const updateCropCallable = httpsCallable(functions, 'updateCrop');
-    const result = await updateCropCallable({ cropId, ...data });
+    // Ensure all data is serializable (e.g., Dates to ISO strings)
+    const payload = {
+        ...data,
+        plantingDate: data.plantingDate instanceof Date ? data.plantingDate.toISOString() : data.plantingDate,
+        harvestDate: data.harvestDate instanceof Date ? data.harvestDate.toISOString() : undefined,
+    };
+    const result = await updateCropCallable({ cropId, ...payload });
     return result.data as { success: boolean; message: string; };
 }
 
@@ -143,7 +149,7 @@ export async function updateCrop(cropId: string, data: CreateCropValues): Promis
  * @param input The existing topics and desired language.
  * @returns A promise that resolves to the suggested topics.
  */
-export async function getForumTopicSuggestions(input: {
+export async function getForumTopicSuggestionsAction(input: {
   existingTopics: { name: string; description: string }[];
   language: string;
 }): Promise<{ suggestions: { title: string; description: string }[] }> {

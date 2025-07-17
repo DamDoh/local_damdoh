@@ -1,4 +1,5 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -74,7 +75,7 @@ import type {
     GroupPostReplySchema,
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
-import type { GenerateForumPostDraftInputSchema, GenerateForumPostDraftOutputSchema } from '@/ai/flows/generate-forum-post-draft';
+import type { GenerateForumPostDraftInput, GenerateForumPostDraftOutput } from '@/ai/flows/generate-forum-post-draft';
 
 
 // =================================================================
@@ -123,7 +124,9 @@ export type GroupPostReply = z.infer<typeof GroupPostReplySchema>;
 export type Worker = z.infer<typeof WorkerSchema>;
 export type WorkLog = z.infer<typeof WorkLogSchema>;
 export type Farm = z.infer<typeof createFarmSchema> & { id: string };
-export type Crop = z.infer<typeof createCropSchema> & { id: string };
+export type Crop = z.infer<typeof createCropSchema> & { id: string, plantingDate: string, harvestDate?: string, createdAt: string, ownerId: string };
+export type CreateFarmValues = z.infer<typeof createFarmSchema>;
+export type CreateCropValues = z.infer<typeof createCropSchema>;
 
 
 export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";
@@ -186,5 +189,5 @@ export interface TraceabilityEvent {
   };
   geoLocation?: { lat: number; lng: number } | null;
 }
-export type GenerateForumPostDraftInput = z.infer<typeof GenerateForumPostDraftInputSchema>;
-export type GenerateForumPostDraftOutput = z.infer<typeof GenerateForumPostDraftOutputSchema>;
+export type GenerateForumPostDraftInput = z.infer<typeof GenerateForumPostDraftInput>;
+export type GenerateForumPostDraftOutput = z.infer<typeof GenerateForumPostDraftOutput>;

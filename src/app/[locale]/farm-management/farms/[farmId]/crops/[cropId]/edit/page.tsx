@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import Link from "next/link";
@@ -33,12 +34,12 @@ import { useState, useMemo, useEffect, useCallback } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslations } from "next-intl";
 import { getCropStages } from "@/lib/i18n-constants";
 import { getCrop as getCropData, updateCrop as updateCropData } from '@/lib/server-actions';
+import type { Crop } from '@/lib/types';
+
 
 export default function EditCropPage() {
   const t = useTranslations('farmManagement.createCrop'); // Re-use create translations
