@@ -59,7 +59,6 @@ export const pathnames = {
   '/notifications': '/notifications',
   '/pinboard': '/pinboard',
   '/privacy': '/privacy',
-  '/profiles': '/profiles',
   '/search': '/search',
   '/settings': '/settings',
   '/sustainability': '/sustainability',

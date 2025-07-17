@@ -27,15 +27,6 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
 }
 
 /**
- * Server Action to fetch all user profiles.
- * It wraps the internal database utility function.
- * @returns A promise that resolves to an array of user profiles.
- */
-export async function getAllProfilesFromDB(): Promise<UserProfile[]> {
-  return getAllProfilesFromDB_internal();
-}
-
-/**
  * Server Action to perform a search based on an AI-interpreted query.
  * This function now calls the secure backend cloud function.
  * @param interpretation The structured search query.

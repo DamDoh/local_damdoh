@@ -5,14 +5,14 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
 import { Search, UserPlus, Link as LinkIcon, UserCog, Users, Frown, Loader2, Send, CheckCircle, Clock } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getAllProfilesFromDB } from "@/lib/server-actions";
+import { performSearch } from "@/lib/server-actions";
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 import { useAuth } from "@/lib/auth-utils";
@@ -63,39 +63,53 @@ export default function NetworkPage() {
   const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), []);
   const getProfileStatusesCallable = useMemo(() => httpsCallable(functions, 'getProfileConnectionStatuses'), []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const fetchedProfiles = await getAllProfilesFromDB();
-        const profilesArray = Array.isArray(fetchedProfiles) ? fetchedProfiles : [];
-        setProfiles(profilesArray);
-        
-        if (user && profilesArray.length > 0) {
-            setIsLoadingStatuses(true);
-            const profileIds = profilesArray.map(p => p.id);
-            const statusesResult = await getProfileStatusesCallable({ profileIds });
-            setConnectionStatuses(statusesResult.data as any);
-            setIsLoadingStatuses(false);
-        } else {
-            setIsLoadingStatuses(false);
-        }
+  const fetchProfiles = useCallback(async () => {
+    setIsLoading(true);
+    const filters: { type: string, value: string }[] = [];
+    if (roleFilter !== 'all') {
+      filters.push({ type: 'category', value: roleFilter });
+    }
 
-      } catch (error) {
-        console.error("Failed to load profiles:", error);
-        toast({ title: t('toast.errorTitle'), description: t('toast.loadError'), variant: "destructive" });
-        setProfiles([]);
-      } finally {
-        setIsLoading(false);
-      }
+    const searchPayload = {
+      mainKeywords: searchTerm.split(' ').filter(Boolean),
+      identifiedLocation: locationFilter,
+      suggestedFilters: filters,
     };
-    fetchData();
-  }, [user, getProfileStatusesCallable, toast, t]);
+    
+    try {
+      const results = await performSearch(searchPayload);
+      const profilesArray = results.map((p: any) => ({
+        ...p,
+        id: p.itemId,
+      }));
+      setProfiles(profilesArray);
+
+      if (user && profilesArray.length > 0) {
+        setIsLoadingStatuses(true);
+        const profileIds = profilesArray.map((p: UserProfile) => p.id);
+        const statusesResult = await getProfileStatusesCallable({ profileIds });
+        setConnectionStatuses(statusesResult.data as any);
+        setIsLoadingStatuses(false);
+      } else {
+        setIsLoadingStatuses(false);
+      }
+    } catch (error) {
+      console.error("Failed to load profiles:", error);
+      toast({ title: t('toast.errorTitle'), description: t('toast.loadError'), variant: "destructive" });
+      setProfiles([]);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [user, searchTerm, roleFilter, locationFilter, getProfileStatusesCallable, toast, t]);
+
+  useEffect(() => {
+    fetchProfiles();
+  }, [fetchProfiles]);
 
 
   const handleConnect = async (recipientId: string) => {
     if (!user) {
-        toast({ title: "Please sign in to connect.", variant: "destructive" });
+        toast({ title: t('toast.connectError'), description: t('toast.signInToConnect'), variant: "destructive" });
         return;
     }
     setIsConnecting(recipientId);
@@ -110,28 +124,6 @@ export default function NetworkPage() {
     }
   };
 
-  const filteredProfiles = useMemo(() => {
-    if (!Array.isArray(profiles)) return [];
-
-    return profiles.filter(profile => {
-      if (!profile || profile.id === user?.uid) return false;
-      const searchLower = searchTerm.toLowerCase();
-      const locationLower = locationFilter.toLowerCase();
-      
-      const nameMatch = (profile.displayName || '').toLowerCase().includes(searchLower);
-      const summaryMatch = (profile.profileSummary || '').toLowerCase().includes(searchLower);
-      
-      const userRoles = [profile.primaryRole, ...(profile.secondaryRoles || [])].filter(Boolean);
-      const roleMatch = roleFilter === 'all' || userRoles.includes(roleFilter);
-      
-      const locationMatch = !locationFilter || (profile.location?.address || '').toLowerCase().includes(locationLower);
-
-      return (nameMatch || summaryMatch) && roleMatch && locationMatch;
-    });
-  }, [searchTerm, roleFilter, locationFilter, profiles, user]);
-
-  const isAgent = currentUserProfile?.primaryRole === 'Field Agent/Agronomist (DamDoh Internal)' || currentUserProfile?.primaryRole === 'Admin';
-  
   const handleInvite = async () => {
     const inviteeEmail = prompt(t('invite.prompt'));
     if (inviteeEmail) {
@@ -164,7 +156,7 @@ export default function NetworkPage() {
         case 'pending_sent':
             return <Button className="w-full sm:flex-1" variant="outline" disabled><Clock className="mr-2 h-4 w-4" />{t('actions.pending')}</Button>;
         case 'pending_received':
-             return <Button className="w-full sm:flex-1" asChild><Link href="/network/my-network">{t('actions.respond')}</Link></Button>
+             return <Button className="w-full sm:flex-1" asChild><Link href="/network/my-network">{t('actions.respond')}</Link></Button>;
         default:
             return (
                 <Button className="w-full sm:flex-1" onClick={() => handleConnect(profileId)} disabled={isConnecting === profileId}>
@@ -175,6 +167,7 @@ export default function NetworkPage() {
     }
 };
 
+  const isAgent = currentUserProfile?.primaryRole === 'Field Agent/Agronomist (DamDoh Internal)' || currentUserProfile?.primaryRole === 'Admin';
 
   return (
     <div className="space-y-6">
@@ -257,7 +250,7 @@ export default function NetworkPage() {
             {isLoading && !profileLoading ? (
               Array.from({ length: 6 }).map((_, i) => <ProfileCardSkeleton key={i} />)
             ) : (
-                filteredProfiles.length > 0 ? filteredProfiles.map(profile => (
+                profiles.length > 0 ? profiles.map(profile => (
                 <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow">
                     <CardHeader className="items-center text-center">
                     <Avatar className="h-24 w-24 border-2 border-primary mb-2">
@@ -269,7 +262,7 @@ export default function NetworkPage() {
                     </Link>
                     <CardDescription className="flex items-center gap-2">
                       <StakeholderIcon role={profile.primaryRole} className="h-4 w-4 text-muted-foreground" />
-                      {profile.primaryRole} - {profile.location?.address}
+                      {profile.primaryRole}
                     </CardDescription>
                     </CardHeader>
                     <CardContent className="flex-grow text-center">

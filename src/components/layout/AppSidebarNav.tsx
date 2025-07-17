@@ -3,7 +3,7 @@
 
 import { useTranslations } from 'next-intl';
 import { usePathname, Link } from '@/navigation';
-import { Home, Users, Bell, MessageSquare, Briefcase, Fingerprint, ShoppingCart, Leaf, Sprout, Wallet, Settings, HelpCircle, LogOut } from "lucide-react";
+import { Home, Users, Bell, MessageSquare, Briefcase, Fingerprint, ShoppingCart, Leaf, Sprout, Wallet, Settings, HelpCircle, LogOut, PanelLeft } from "lucide-react";
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarHeader, SidebarTrigger } from '../ui/sidebar';
 import { useAuth, logOut } from '@/lib/auth-utils';
 import { useRouter } from 'next/navigation';
@@ -49,15 +49,12 @@ export const AppSidebarNav = ({ isMobile = false, onLinkClick }: AppSidebarNavPr
 
   return (
     <>
-      <SidebarHeader className="flex justify-end p-2 md:hidden">
+      <SidebarHeader className="flex justify-between items-center p-2">
+          {/* Empty div for spacing, aligns trigger to the right */}
+          <div className="w-7 h-7"></div>
           <SidebarTrigger />
       </SidebarHeader>
       <SidebarMenu>
-        {!isMobile && (
-            <SidebarMenuItem>
-                <SidebarTrigger />
-            </SidebarMenuItem>
-        )}
         {mainNavItems.map(item => (
           <SidebarMenuItem key={`main-${item.label}`}>
             <Link href={item.href}>
