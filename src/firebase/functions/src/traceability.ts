@@ -1,5 +1,4 @@
 
-
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
@@ -627,3 +626,5 @@ export const onTraceabilityEventCreated = functions.firestore
     
     return null;
   });
+
+    

@@ -64,3 +64,5 @@ export function logError(message: string, payload?: LogPayload): void {
 export function logCritical(message: string, payload?: LogPayload): void {
   log(LogSeverity.CRITICAL, message, payload);
 }
+
+    

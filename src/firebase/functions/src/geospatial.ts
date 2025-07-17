@@ -52,3 +52,5 @@ export const onDocumentWriteSetGeohash = functions.firestore
 
     return null;
   });
+
+    

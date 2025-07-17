@@ -393,3 +393,5 @@ export const requestDataExport = functions.https.onCall(async (data, context) =>
         message: "Your data export request has been received. You will receive an email with a download link within 24 hours.",
     };
 });
+
+    
