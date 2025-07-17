@@ -85,12 +85,13 @@ export default function LogHarvestPage() {
       // Offline logic: Add to queue
       await addActionToQueue({
         operation: 'create', // This is a complex operation, we'll represent it as a single 'create'
-        collectionPath: 'harvest_events', // Conceptual collection
-        documentId: `harvest-${Date.now()}`,
+        collectionPath: 'harvest_events', // Conceptual collection for the outbox pattern
+        documentId: `harvest-${Date.now()}`, // Unique ID for the offline action
         payload: payload,
       });
       setSubmissionSuccess(true);
-      setCreatedVtiId('offline-vti-placeholder');
+      // Use a placeholder to indicate offline success
+      setCreatedVtiId('offline-vti-placeholder'); 
       setIsSubmitting(false);
       return;
     }
@@ -125,6 +126,7 @@ export default function LogHarvestPage() {
   }
 
   if (submissionSuccess && createdVtiId) {
+    const isOfflinePlaceholder = createdVtiId === 'offline-vti-placeholder';
     return (
        <div className="space-y-6 max-w-2xl mx-auto">
             <Card className="text-center">
@@ -134,19 +136,19 @@ export default function LogHarvestPage() {
                     </div>
                     <CardTitle className="text-2xl pt-4">{t('success.successCardTitle')}</CardTitle>
                     <CardDescription>
-                       {createdVtiId === 'offline-vti-placeholder' 
+                       {isOfflinePlaceholder
                             ? t('offlineToast.description')
                             : t('success.successCardDescription', { cropType, vtiId: createdVtiId })
                        }
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                    <Button size="lg" className="w-full" asChild disabled={createdVtiId === 'offline-vti-placeholder'}>
+                    <Button size="lg" className="w-full" asChild disabled={isOfflinePlaceholder}>
                        <Link href={`/traceability/batches/${createdVtiId}`}>
                             <GitBranch className="mr-2 h-4 w-4" /> {t('success.viewReportButton')}
                         </Link>
                     </Button>
-                    <Button size="lg" className="w-full" asChild disabled={createdVtiId === 'offline-vti-placeholder'}>
+                    <Button size="lg" className="w-full" asChild disabled={isOfflinePlaceholder}>
                         <Link href={`/marketplace/create?vtiId=${createdVtiId}&productName=${encodeURIComponent(cropType)}`}>
                             <DollarSign className="mr-2 h-4 w-4" /> {t('success.sellButton')}
                         </Link>

@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -149,8 +150,9 @@ export const processOfflineChange = functions.firestore
     
     // Special handling for complex operations that aren't simple CRUD
     if (collectionPath === 'harvest_events' && operation === 'create') {
-        const handleHarvestEvent = (await import('./traceability')).handleHarvestEvent;
+        const { handleHarvestEvent } = await import('./traceability');
         try {
+            // Re-authenticate the context for the called function
             await handleHarvestEvent(payload, { auth: { uid: changeData.userId, token: {} as any } });
             await snapshot.ref.update({ status: "completed", processedAt: admin.firestore.FieldValue.serverTimestamp() });
         } catch (error: any) {

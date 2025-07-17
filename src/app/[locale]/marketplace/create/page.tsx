@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useMemo, useEffect } from 'react';
@@ -66,7 +67,7 @@ export default function CreateListingPage() {
             form.setValue('relatedTraceabilityId', vtiId);
         }
         if (productName) {
-            form.setValue('name', `Fresh Harvested ${productName}`);
+            form.setValue('name', productName);
             form.setValue('listingType', 'Product');
         }
     }, [searchParams, form]);
