@@ -21,6 +21,9 @@ import type { DateRange } from "react-day-picker";
 import { cn } from '@/lib/utils';
 import { useDebounce } from 'use-debounce';
 import { Badge } from '@/components/ui/badge';
+import { getAllProfilesFromDB } from '@/lib/server-actions';
+import type { UserProfile } from '@/lib/types';
+
 
 interface GeneratedReport {
   id: string;
@@ -34,15 +37,9 @@ interface GeneratedReport {
   }
 }
 
-interface UserSearchResult {
-    id: string;
-    displayName: string;
-}
-
 const functionsCallable = {
   generateRegulatoryReport: httpsCallable(functions, 'generateRegulatoryReport'),
   getGeneratedReports: httpsCallable(functions, 'getGeneratedReports'),
-  searchUsersForStaffing: httpsCallable(functions, 'searchUsersForStaffing'),
 };
 
 export default function ReportsManagementPage() {
@@ -59,11 +56,12 @@ export default function ReportsManagementPage() {
   const [dateRange, setDateRange] = useState<DateRange | undefined>();
   
   // User Search State
+  const [allUsers, setAllUsers] = useState<UserProfile[]>([]);
   const [userSearchQuery, setUserSearchQuery] = useState('');
-  const [debouncedUserSearchQuery] = useDebounce(userSearchQuery, 500);
-  const [userSearchResults, setUserSearchResults] = useState<UserSearchResult[]>([]);
-  const [isSearchingUsers, setIsSearchingUsers] = useState(false);
-
+  const [debouncedUserSearchQuery] = useDebounce(userSearchQuery, 300);
+  const [userSearchResults, setUserSearchResults] = useState<UserProfile[]>([]);
+  const [isUsersLoading, setIsUsersLoading] = useState(true);
+  
   const fetchReports = useCallback(async () => {
     setIsLoading(true);
     try {
@@ -75,29 +73,35 @@ export default function ReportsManagementPage() {
       setIsLoading(false);
     }
   }, [toast, t]);
+  
+  const fetchAllUsers = useCallback(async () => {
+      setIsUsersLoading(true);
+      try {
+          const users = await getAllProfilesFromDB();
+          setAllUsers(users);
+      } catch (error) {
+          console.error("Failed to fetch users for report generation:", error);
+      } finally {
+          setIsUsersLoading(false);
+      }
+  }, []);
 
   useEffect(() => {
     fetchReports();
-  }, [fetchReports]);
+    fetchAllUsers();
+  }, [fetchReports, fetchAllUsers]);
 
   useEffect(() => {
-    if (debouncedUserSearchQuery.length < 3) {
+    if (debouncedUserSearchQuery.length < 2) {
       setUserSearchResults([]);
       return;
     }
-    const search = async () => {
-      setIsSearchingUsers(true);
-      try {
-        const result = await functionsCallable.searchUsersForStaffing({ query: debouncedUserSearchQuery });
-        setUserSearchResults((result.data as any).users || []);
-      } catch (error) {
-        console.error("Error searching users:", error);
-      } finally {
-        setIsSearchingUsers(false);
-      }
-    };
-    search();
-  }, [debouncedUserSearchQuery]);
+    const filtered = allUsers.filter(user => 
+        user.displayName.toLowerCase().includes(debouncedUserSearchQuery.toLowerCase()) ||
+        user.email.toLowerCase().includes(debouncedUserSearchQuery.toLowerCase())
+    );
+    setUserSearchResults(filtered.slice(0, 10)); // Limit results
+  }, [debouncedUserSearchQuery, allUsers]);
 
   const handleGenerateReport = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -120,6 +124,7 @@ export default function ReportsManagementPage() {
       toast({ title: t('toast.generateSuccessTitle'), description: t('toast.generateSuccessDescription') });
       setTargetUserId('');
       setUserSearchQuery('');
+      setTargetUserName('');
       setDateRange(undefined);
       fetchReports();
     } catch (error: any) {
@@ -138,7 +143,7 @@ export default function ReportsManagementPage() {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleGenerateReport} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
               <div className="space-y-1.5">
                 <Label htmlFor="report-type">{t('generate.reportTypeLabel')}</Label>
                 <Select value={reportType} onValueChange={setReportType}>
@@ -149,25 +154,26 @@ export default function ReportsManagementPage() {
                 </Select>
               </div>
 
-              <div className="space-y-1.5">
+              <div className="space-y-1.5 relative">
                 <Label htmlFor="user-search">{t('generate.targetUserLabel')}</Label>
                 <div className="relative">
                   <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                   <Input 
                     id="user-search"
-                    placeholder={t('generate.userSearchPlaceholder')}
+                    placeholder={isUsersLoading ? t('generate.loadingUsers') : t('generate.userSearchPlaceholder')}
                     value={userSearchQuery}
                     onChange={(e) => setUserSearchQuery(e.target.value)}
                     className="pl-8"
                     autoComplete="off"
+                    disabled={isUsersLoading}
                   />
-                  {isSearchingUsers && <Loader2 className="absolute right-2.5 top-2.5 h-4 w-4 animate-spin text-muted-foreground" />}
                 </div>
-                {userSearchResults.length > 0 && (
+                {userSearchResults.length > 0 && userSearchQuery.length > 0 && (
                    <div className="p-2 border rounded-md max-h-40 overflow-y-auto absolute bg-background z-10 w-full shadow-md">
                      {userSearchResults.map(user => (
                        <div key={user.id} className="p-2 hover:bg-accent rounded-md cursor-pointer" onClick={() => { setTargetUserId(user.id); setUserSearchQuery(user.displayName); setTargetUserName(user.displayName); setUserSearchResults([]); }}>
                          <p className="text-sm font-medium">{user.displayName}</p>
+                         <p className="text-xs text-muted-foreground">{user.email}</p>
                        </div>
                      ))}
                    </div>

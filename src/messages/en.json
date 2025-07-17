@@ -291,44 +291,41 @@
     "challenge": {
       "title": "The Challenge We're Solving",
       "description": "The agricultural supply chain is fragmented, inefficient, and often lacks the transparency needed for sustainable growth. Key challenges include:",
-      "list": {
-        "knowledge": "Fragmented knowledge and lack of access to best practices.",
-        "market": "Limited market access for smallholder farmers.",
-        "quality": "Inconsistent quality control and a lack of verifiable product data.",
-        "logistics": "Inefficient logistics leading to post-harvest losses.",
-        "financial": "Difficulty accessing finance and insurance for small-scale producers.",
-        "climate": "Increasing pressure from climate change on traditional farming methods.",
-        "informal": "Informal and relationship-based systems that can exclude new entrants."
-      }
+      "marketAccess": "Limited market access & price opacity for smallholders.",
+      "inefficiency": "Supply chain inefficiencies & post-harvest losses.",
+      "financialExclusion": "Financial exclusion of rural producers.",
+      "informationGaps": "Information gaps in best practices & market data.",
+      "qualityTrust": "Lack of trust and verifiable quality assurance.",
+      "climatePressure": "Pressure from climate change and resource scarcity.",
+      "foodLoss": "High rates of food loss and waste.",
+      "dataFragmentation": "Data fragmentation across the value chain."
     },
     "solution": {
       "title": "The DamDoh Solution",
       "description": "We are building a comprehensive 'super app' that digitizes and connects the entire agricultural ecosystem through several key pillars:",
-      "list": {
-        "education": "Education and Knowledge Sharing",
-        "ai": "AI-Powered Assistance and Insights",
-        "logistics": "Integrated Logistics and Traceability"
-      }
+      "education": "Education & Knowledge Sharing",
+      "ai": "AI-Powered Assistance & Insights",
+      "marketplace": "A Direct Marketplace",
+      "logistics": "Integrated Logistics & Traceability",
+      "financial": "Accessible Financial Services"
     },
     "beyondTechnology": {
       "title": "Beyond Technology: It's About People",
-      "list": {
-        "p2p": {
-          "title": "People to People",
-          "content": "Connecting farmers to other farmers to share knowledge and build community."
-        },
-        "p2b": {
-          "title": "People to Business",
-          "content": "Fostering direct, trusted relationships between producers and buyers."
-        },
-        "p2e": {
-          "title": "People to Ecosystem",
-          "content": "Giving individuals access to a whole ecosystem of services – finance, logistics, insurance, and more."
-        },
-        "p2w": {
-          "title": "People to World",
-          "content": "Opening global markets and opportunities for even the most remote producers through digital access and traceability."
-        }
+      "p2p": {
+        "title": "People to People",
+        "content": "Connecting farmers to other farmers to share knowledge and build community."
+      },
+      "p2b": {
+        "title": "People to Business",
+        "content": "Fostering direct, trusted relationships between producers and buyers."
+      },
+      "p2e": {
+        "title": "People to Ecosystem",
+        "content": "Giving individuals access to a whole ecosystem of services – finance, logistics, insurance, and more."
+      },
+      "p2w": {
+        "title": "People to World",
+        "content": "Opening global markets and opportunities for even the most remote producers through digital access and traceability."
       }
     },
     "commitment": {
@@ -2039,4 +2036,3 @@
     "noStakeholdersHint": "Try adjusting your search filters."
   }
 }
-```
