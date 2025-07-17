@@ -89,39 +89,6 @@
     "googlePlayAlt": "ดาวน์โหลดบน Google Play",
     "appStoreAlt": "ดาวน์โหลดบน App Store"
   },
-  "forumsPage": {
-    "title": "ฟอรัม",
-    "description": "เชื่อมต่อกับผู้อื่น แบ่งปันความรู้ของคุณ และติดตามข่าวสารล่าสุดจากการสนทนา",
-    "createTopic": "สร้างกระทู้",
-    "searchPlaceholder": "ค้นหากระทู้...",
-    "suggestedTopicsTitle": "กระทู้แนะนำ",
-    "activity": "ใช้งานเมื่อ {time}",
-    "joinDiscussion": "เข้าร่วมการสนทนา",
-    "pinning": {
-      "unpinButton": "เลิกปักหมุดหน้าแรก",
-      "pinButton": "ปักหมุดเป็นหน้าแรก",
-      "pinnedTitle": "ปักหมุดฟอรัมแล้ว",
-      "pinnedDescription": "หน้าฟอรัมตอนนี้เป็นหน้าแรกเริ่มต้นของคุณ",
-      "unpinnedTitle": "เลิกปักหมุดฟอรัมแล้ว",
-      "unpinnedDescription": "หน้าแรกของคุณถูกรีเซ็ตเป็นค่าเริ่มต้นแล้ว"
-    },
-    "noTopics": {
-      "title": "ยังไม่มีกระทู้",
-      "description": "เป็นคนแรกที่สร้างกระทู้ในฟอรัม!"
-    },
-    "noTopicsFound": {
-      "title": "ไม่พบกระทู้",
-      "description": "ลองปรับตัวกรองการค้นหาของคุณ หรือกลับมาตรวจสอบอีกครั้งในภายหลัง"
-    },
-    "errors": {
-      "loadTitle": "เกิดข้อผิดพลาดในการโหลดกระทู้",
-      "loadDescription": "ไม่สามารถโหลดกระทู้ในฟอรัมได้ในขณะนี้",
-      "loadSuggestions": {
-        "title": "เกิดข้อผิดพลาดในการโหลดคำแนะนำ",
-        "description": "ไม่สามารถดึงข้อมูลคำแนะนำกระทู้ได้"
-      }
-    }
-  },
   "Auth": {
     "signInWelcome": "ยินดีต้อนรับกลับสู่ {appName}",
     "signUpWelcome": "เข้าร่วมเครือข่ายเกษตรกรรม DamDoh",
@@ -247,5 +214,40 @@
     },
     "signUpFailed": "การลงทะเบียนล้มเหลว",
     "error": "ข้อผิดพลาด"
+  },
+  "forumsPage": {
+    "title": "ฟอรัม",
+    "description": "เชื่อมต่อกับผู้อื่น แบ่งปันความรู้ของคุณ และติดตามข่าวสารล่าสุดจากการสนทนา",
+    "createTopic": "สร้างกระทู้",
+    "searchPlaceholder": "ค้นหากระทู้...",
+    "suggestedTopicsTitle": "กระทู้แนะนำ",
+    "activity": "ใช้งานเมื่อ {time}",
+    "joinDiscussion": "เข้าร่วมการสนทนา",
+    "pinning": {
+      "unpinButton": "เลิกปักหมุดหน้าแรก",
+      "pinButton": "ปักหมุดเป็นหน้าแรก",
+      "pinnedTitle": "ปักหมุดฟอรัมแล้ว",
+      "pinnedDescription": "หน้าฟอรัมตอนนี้เป็นหน้าแรกเริ่มต้นของคุณ",
+      "unpinnedTitle": "เลิกปักหมุดฟอรัมแล้ว",
+      "unpinnedDescription": "หน้าแรกของคุณถูกรีเซ็ตเป็นค่าเริ่มต้นแล้ว"
+    },
+    "noTopics": {
+      "title": "ยังไม่มีกระทู้",
+      "description": "เป็นคนแรกที่สร้างกระทู้ในฟอรัม!"
+    },
+    "noTopicsFound": {
+      "title": "ไม่พบกระทู้",
+      "description": "ลองปรับตัวกรองการค้นหาของคุณ หรือกลับมาตรวจสอบอีกครั้งในภายหลัง"
+    },
+    "errors": {
+      "loadTitle": "เกิดข้อผิดพลาดในการโหลดกระทู้",
+      "loadDescription": "ไม่สามารถโหลดกระทู้ในฟอรัมได้ในขณะนี้",
+      "loadSuggestions": {
+        "title": "เกิดข้อผิดพลาดในการโหลดคำแนะนำ",
+        "description": "ไม่สามารถดึงข้อมูลคำแนะนำกระทู้ได้"
+      }
+    }
   }
 }
+
+    

@@ -1,18 +1,5 @@
 
 {
-  "MobileHomepage": {
-    "welcome": {
-      "morning": "Guten Morgen, {name}",
-      "afternoon": "Guten Tag, {name}",
-      "evening": "Guten Abend, {name}"
-    },
-    "discoverTitle": "Entdecken",
-    "seeAllButton": "Alle ansehen",
-    "communityFeedTitle": "Community-Feed",
-    "communityFeedDescription": "Vernetzen Sie sich mit anderen, teilen Sie Ihr Wissen und bleiben Sie über die neuesten Gespräche auf dem Laufenden.",
-    "goToFeedButton": "Zum Feed gehen",
-    "noRecommendations": "Im Moment sind keine Empfehlungen verfügbar. Erkunden Sie den Marktplatz, um loszulegen!"
-  },
   "LandingPage": {
     "hero": {
       "title": "Landwirtschaft stärken vom Boden bis zum Verkauf auf {appName}",
@@ -25,7 +12,7 @@
       "subtitle": "Alles, was Sie zum Wachsen, Verbinden und Handeln brauchen, an einem Ort.",
       "networking": {
         "title": "Intelligentes Networking",
-        "description": "KI-gestützte Verbindungsvorschläge, um Sie mit den richtigen Partnern zu verbinden, von Lieferanten bis hin zu internationalen Käufern."
+        "description": "KI-gestützte Verbindungsvorschläge, um Sie mit den richtigen Partnern zu verbinden, von Lieferanten bis zu internationalen Käufern."
       },
       "marketplace": {
         "title": "Direkter Marktplatz",
@@ -88,39 +75,6 @@
     "getMobileApp": "Holen Sie sich die mobile App",
     "googlePlayAlt": "Bei Google Play holen",
     "appStoreAlt": "Im App Store herunterladen"
-  },
-  "forumsPage": {
-    "title": "Foren",
-    "description": "Vernetzen Sie sich mit anderen, teilen Sie Ihr Wissen und bleiben Sie über die neuesten Gespräche auf dem Laufenden.",
-    "createTopic": "Thema erstellen",
-    "searchPlaceholder": "Themen suchen...",
-    "suggestedTopicsTitle": "Vorgeschlagene Themen",
-    "activity": "Aktiv vor {time}",
-    "joinDiscussion": "Diskussion beitreten",
-    "pinning": {
-      "unpinButton": "Homepage loslösen",
-      "pinButton": "Als Homepage anheften",
-      "pinnedTitle": "Foren angeheftet",
-      "pinnedDescription": "Die Forenseite ist jetzt Ihre Standard-Homepage.",
-      "unpinnedTitle": "Foren losgelöst",
-      "unpinnedDescription": "Ihre Homepage wurde auf die Standardeinstellung zurückgesetzt."
-    },
-    "noTopics": {
-      "title": "Noch keine Themen",
-      "description": "Seien Sie der Erste, der ein Forumsthema erstellt!"
-    },
-    "noTopicsFound": {
-      "title": "Keine Themen gefunden",
-      "description": "Versuchen Sie, Ihre Suchfilter anzupassen, oder schauen Sie später wieder vorbei."
-    },
-    "errors": {
-      "loadTitle": "Fehler beim Laden der Themen",
-      "loadDescription": "Forumsthemen konnten zu diesem Zeitpunkt nicht geladen werden.",
-      "loadSuggestions": {
-        "title": "Fehler beim Laden der Vorschläge",
-        "description": "Themenvorschläge konnten nicht abgerufen werden."
-      }
-    }
   },
   "Auth": {
     "signInWelcome": "Willkommen zurück bei {appName}",
@@ -247,5 +201,40 @@
     },
     "signUpFailed": "Registrierung fehlgeschlagen",
     "error": "Fehler"
+  },
+  "forumsPage": {
+    "title": "Foren",
+    "description": "Vernetzen Sie sich mit anderen, teilen Sie Ihr Wissen und bleiben Sie über die neuesten Gespräche auf dem Laufenden.",
+    "createTopic": "Thema erstellen",
+    "searchPlaceholder": "Themen suchen...",
+    "suggestedTopicsTitle": "Vorgeschlagene Themen",
+    "activity": "Aktiv vor {time}",
+    "joinDiscussion": "Diskussion beitreten",
+    "pinning": {
+      "unpinButton": "Homepage loslösen",
+      "pinButton": "Als Homepage anheften",
+      "pinnedTitle": "Foren angeheftet",
+      "pinnedDescription": "Die Forenseite ist jetzt Ihre Standard-Homepage.",
+      "unpinnedTitle": "Foren losgelöst",
+      "unpinnedDescription": "Ihre Homepage wurde auf die Standardeinstellung zurückgesetzt."
+    },
+    "noTopics": {
+      "title": "Noch keine Themen",
+      "description": "Seien Sie der Erste, der ein Forumsthema erstellt!"
+    },
+    "noTopicsFound": {
+      "title": "Keine Themen gefunden",
+      "description": "Versuchen Sie, Ihre Suchfilter anzupassen, oder schauen Sie später wieder vorbei."
+    },
+    "errors": {
+      "loadTitle": "Fehler beim Laden der Themen",
+      "loadDescription": "Forumsthemen konnten zu diesem Zeitpunkt nicht geladen werden.",
+      "loadSuggestions": {
+        "title": "Fehler beim Laden der Vorschläge",
+        "description": "Themenvorschläge konnten nicht abgerufen werden."
+      }
+    }
   }
 }
+
+    

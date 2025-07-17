@@ -1,275 +1,221 @@
 
 {
-  "MobileHomepage": {
-    "welcome": {
-      "morning": "Good Morning, {name}",
-      "afternoon": "Good Afternoon, {name}",
-      "evening": "Good Evening, {name}"
+  "AppHeader": {
+    "searchPlaceholder": "Search for products, services, people...",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "myProfile": "My Profile",
+    "settings": "Settings",
+    "logOut": "Log Out",
+    "switchToDarkAria": "Switch to dark mode",
+    "switchToLightAria": "Switch to light mode",
+    "mobileMenu": {
+      "description": "Main navigation menu for the DamDoh mobile view."
     },
-    "discoverTitle": "Discover",
-    "seeAllButton": "See All",
-    "communityFeedTitle": "Community Feed",
-    "communityFeedDescription": "Connect with others, share your knowledge, and stay up-to-date with the latest conversations.",
-    "goToFeedButton": "Go to Feed",
-    "noRecommendations": "No recommendations available right now. Explore the marketplace to get started!"
-  },
-  "LandingPage": {
-    "hero": {
-      "title": "Empowering Agriculture from Soil to Sale on {appName}",
-      "subtitle": "The single platform connecting every stakeholder in the agricultural value chain for a more transparent, efficient, and sustainable future.",
-      "getStartedButton": "Get Started for Free",
-      "learnMoreButton": "Learn More"
-    },
-    "features": {
-      "title": "DamDoh's Main Features",
-      "subtitle": "Everything you need to grow, connect, and trade, all in one place.",
-      "networking": {
-        "title": "Intelligent Networking",
-        "description": "AI-powered connection suggestions to link you with the right partners, from suppliers to international buyers."
-      },
-      "marketplace": {
-        "title": "Direct Marketplace",
-        "description": "Buy and sell products and services directly, increasing transparency and profitability for all stakeholders."
-      },
-      "forums": {
-        "title": "Topical Forums",
-        "description": "Share knowledge, discuss challenges, and collaborate on solutions in topic-specific forums."
-      },
-      "talent": {
-        "title": "Talent Exchange",
-        "description": "Offer or find specialized agricultural services, from on-demand harvesting to drone surveys."
+    "toast": {
+      "logOut": {
+        "title": "Logged Out",
+        "description": "You have been successfully logged out.",
+        "failTitle": "Logout Failed",
+        "failDescription": "An error occurred while logging out. Please try again."
       }
     },
-    "forWho": {
-      "badge": "For Everyone in Agriculture",
-      "title": "One Platform for the Entire Value Chain",
-      "description": "DamDoh is uniquely designed to serve the entire agricultural ecosystem, creating a single point of truth and opportunity for all.",
-      "farmers": {
-        "title": "Farmers",
-        "description": "Access better markets, find quality inputs, and get expert advice to increase yield and profitability."
-      },
-      "buyers": {
-        "title": "Buyers & Processors",
-        "description": "Source high-quality, traceable produce directly from growers and co-ops, ensuring supply chain reliability."
-      },
-      "experts": {
-        "title": "Experts & Service Providers",
-        "description": "Offer your specialized skills and services to a wide agricultural audience seeking your expertise."
-      },
-      "fis": {
-        "title": "Financial Institutions",
-        "description": "Offer loans, insurance, and financial products to a verified agricultural community."
-      },
-      "imageAlt": "A diverse group of agricultural stakeholders collaborating"
-    },
-    "cta": {
-      "title": "Join the Agricultural Revolution",
-      "subtitle": "Sign up today and become part of a growing global network dedicated to transforming the future of food.",
-      "button": "Create Your Free Account"
+    "home": "Home",
+    "network": "Network",
+    "farmMgmt": "Farm Mgmt",
+    "marketplace": "Marketplace",
+    "talentExchange": "Talent",
+    "traceability": "Traceability",
+    "forums": "Forums",
+    "sustainability": "Sustainability",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Wallet",
+    "helpCenter": "Help Center"
+  },
+  "DashboardLeftSidebar": {
+    "viewProfileLink": "View & Edit Profile",
+    "profileViewers": "Profile viewers",
+    "postEngagements": "Post engagements",
+    "pro": {
+      "unlock": "Unlock advanced insights for your business.",
+      "try": "Try DamDoh Pro",
+      "title": "DamDoh Pro Coming Soon!",
+      "description": "Unlock deeper analytics, priority support, and more."
     }
   },
-  "AppFooter": {
-    "tagline": "Connecting the entire agricultural value chain.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "About Us",
-    "contactLabel": "Contact",
-    "careersLabel": "Careers",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Resources",
-    "helpCenterLabel": "Help Center",
-    "communityGuidelinesLabel": "Community Guidelines",
-    "industryNewsLabel": "Industry News",
-    "eventsLabel": "Events",
-    "talentExchangeLabel": "Talent Exchange",
-    "legalTitle": "Legal",
-    "privacyPolicyLabel": "Privacy Policy",
-    "termsOfServiceLabel": "Terms of Service",
-    "copyright": "© {year} {appName}. All Rights Reserved.",
-    "getMobileApp": "Get the Mobile App",
-    "googlePlayAlt": "Get it on Google Play",
-    "appStoreAlt": "Download on the App Store"
+  "DashboardRightSidebar": {
+    "networkTitle": "Grow Your Network",
+    "infoTooltip": "AI-powered suggestions based on your profile and activity.",
+    "refreshSuggestions": "Refresh Suggestions",
+    "follow": "Follow",
+    "following": "Following",
+    "viewAllButton": "View All",
+    "ad": "Ad",
+    "adTitle": "DamDoh Trade Insights",
+    "adDescription": "Get real-time market data and price analytics.",
+    "adButton": "Learn More",
+    "adAlt": "DamDoh Trade Insights Logo",
+    "loadError": "Could not load suggestions at this time.",
+    "signInPrompt": "Sign in to see personalized connection suggestions.",
+    "noSuggestions": "No new suggestions right now. Try expanding your profile!",
+    "toast": {
+      "signInToConnect": "Please sign in to connect with others.",
+      "requestSent": "Connection Request Sent",
+      "requestSentDescription": "Your connection request has been sent successfully.",
+      "requestFailed": "Request Failed"
+    },
+    "promotionsTitle": "Promotions & Coupons",
+    "promotionsDescription": "Create and manage discounts for your products or services to attract more customers.",
+    "managePromotionsButton": "Manage Promotions"
   },
-  "forumsPage": {
-    "title": "Forums",
-    "description": "Connect with others, share your knowledge, and stay up-to-date with the latest conversations.",
-    "createTopic": "Create Topic",
-    "searchPlaceholder": "Search topics...",
-    "suggestedTopicsTitle": "Suggested Topics",
-    "activity": "Active {time}",
-    "joinDiscussion": "Join Discussion",
-    "pinning": {
-      "unpinButton": "Unpin Homepage",
-      "pinButton": "Pin as Homepage",
-      "pinnedTitle": "Forums Pinned",
-      "pinnedDescription": "The forums page is now your default homepage.",
-      "unpinnedTitle": "Forums Unpinned",
-      "unpinnedDescription": "Your homepage has been reset to the default."
+  "StartPost": {
+    "placeholder": "Start a post, ask a question, or share an update...",
+    "photoVideo": "Photo/Video",
+    "agriEvent": "Agri-Event",
+    "shareDocument": "Share Document",
+    "createPoll": "Create a Poll"
+  },
+  "FeedItemCard": {
+    "like": "Like",
+    "comment": "Comment",
+    "repost": "Repost",
+    "editPost": "Edit Post",
+    "deletePost": "Delete Post",
+    "signInToLikeToast": "Please sign in to like posts.",
+    "repostPlaceholderToast": "Repost functionality coming soon!",
+    "loadCommentsErrorToast": "Failed to load comments.",
+    "signInToVoteToast": "Please sign in to vote.",
+    "voteSuccessToast": "Your vote has been recorded!",
+    "voteErrorToast": "Failed to record vote",
+    "noComments": "No comments yet. Be the first to reply!",
+    "loadingComments": "Loading comments...",
+    "loadMoreComments": "Load more comments",
+    "writeCommentPlaceholder": "Write a comment...",
+    "postButton": "Post",
+    "likes_one": "{count} like",
+    "likes_other": "{count} likes",
+    "comments_one": "{count} comment",
+    "comments_other": "{count} comments",
+    "votes_one": "{count} vote",
+    "votes_other": "{count} votes"
+  },
+  "MainDashboard": {
+    "feedError": {
+      "title": "Feed Error",
+      "description": "Could not load the community feed at this time."
     },
-    "noTopics": {
-      "title": "No Topics Yet",
-      "description": "Be the first to create a forum topic!"
+    "postError": {
+      "auth": "You must be logged in to post.",
+      "fail": "Failed to create post. Please try again."
     },
-    "noTopicsFound": {
-      "title": "No Topics Found",
-      "description": "Try adjusting your search filters or check back later."
+    "uploadingMedia": "Uploading Media...",
+    "uploadComplete": "Upload complete!",
+    "postSuccess": {
+      "title": "Post Created",
+      "description": "Your post has been shared successfully."
     },
-    "errors": {
-      "loadTitle": "Error Loading Topics",
-      "loadDescription": "Could not load forum topics at this time.",
-      "loadSuggestions": {
-        "title": "Error Loading Suggestions",
-        "description": "Could not fetch topic suggestions."
-      }
+    "likeError": {
+      "auth": "You must be logged in to like posts.",
+      "fail": "Failed to like post. Please try again."
+    },
+    "commentError": {
+      "auth": "You must be logged in to comment.",
+      "fail": "Failed to add comment. Please try again."
+    },
+    "commentSuccess": "Comment added successfully.",
+    "deleteError": {
+      "auth": "You must be logged in to delete posts.",
+      "fail": "Failed to delete post. Please try again."
+    },
+    "deleteSuccess": {
+      "title": "Post Deleted",
+      "description": "Your post has been successfully removed."
+    },
+    "noActivity": "There's no activity in your feed yet. Start by connecting with others or exploring the marketplace!",
+    "profileCompletion": {
+      "title": "Welcome to DamDoh! Let's Complete Your Profile",
+      "description": "A complete profile helps others connect with you. Tell the community about yourself and what you're looking for.",
+      "button": "Complete Your Profile"
     }
   },
-  "forumTopicPage": {
-    "backLink": "Back to Forums",
-    "loading": "Loading topic...",
-    "error": "Error loading topic.",
-    "postError": "Error creating post.",
-    "title": "{topicName}",
-    "description": "{topicDescription}",
-    "postsTitle": "Posts",
-    "noPosts": "No posts yet. Be the first to start the conversation!",
-    "loadMorePosts": "Load More Posts",
-    "createPost": {
-      "title": "Create a Post",
-      "postTitleLabel": "Post Title",
-      "postTitlePlaceholder": "Enter a title for your post",
-      "contentLabel": "Content",
-      "contentPlaceholder": "Write your post here...",
-      "submitButton": "Post",
-      "submittingButton": "Posting..."
-    },
-    "post": {
-      "postedBy": "Posted by {authorName}",
-      "postedOn": "on {date}"
-    }
+  "CreatePostModal": {
+    "title": "Create a post",
+    "description": "Share what's on your mind with the community.",
+    "yourName": "Your Name",
+    "shareUpdate": "Share an update",
+    "placeholder": "What do you want to talk about?",
+    "addMediaButton": "Add Photo/Video",
+    "createEventButton": "Create Agri-Event",
+    "shareDocumentButton": "Share Document",
+    "createPollButton": "Create a Poll",
+    "postButton": "Post",
+    "selectedFile": "Selected file:",
+    "pollOptionsLabel": "Poll Options",
+    "pollOptionsError": "A poll must have at least two non-empty options.",
+    "emptyPostError": "Your post cannot be empty. Please add some content, an image, or a poll.",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Add Option",
+    "pollNote": "Create a poll to get opinions from your network. Max {maxOptions} options."
   },
-  "Auth": {
-    "signInWelcome": "Welcome back to {appName}",
-    "signUpWelcome": "Join the DamDoh Agricultural Network",
-    "forgotPasswordResetPrompt": "Reset your password for {appName}",
-    "resetPasswordPrompt": "Create a new password for {appName}",
-    "signInTitle": "Sign in to your account",
-    "signInDescription": "Enter your credentials to access your dashboard.",
-    "emailLabel": "Email",
-    "emailPlaceholder": "you@example.com",
-    "passwordLabel": "Password",
-    "forgotPasswordLink": "Forgot password?",
-    "signingInButton": "Signing in...",
-    "signInButton": "Sign In",
-    "noAccountPrompt": "Don't have an account?",
-    "signUpLink": "Sign Up",
-    "signInLink": "Sign In",
-    "recoverWithUniversalIdPrompt": "Or recover access with your Universal ID",
-    "signUpTitle": "Create a new account",
-    "signUpDescription": "Tell us a bit about yourself to get started.",
-    "nameLabel": "Your Name or Business Name",
-    "namePlaceholder": "e.g., Chan Nary or Green Valley Farms",
-    "roleLabel": "Your Primary Role",
-    "rolePlaceholder": "Select your role in the supply chain...",
-    "confirmPasswordLabel": "Confirm Password",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Creating account...",
-    "signUpButton": "Create Account",
-    "alreadyHaveAccountPrompt": "Already have an account?",
-    "forgotPasswordTitle": "Forgot Password?",
-    "forgotPasswordDescription": "No problem. Enter your email address below, and we'll send you a link to reset it.",
-    "sendResetLinkButton": "Send Reset Link",
-    "sendingEmailButton": "Sending email...",
-    "rememberPasswordPrompt": "Remember your password?",
-    "resetPasswordTitle": "Reset Your Password",
-    "resetPasswordDescription": "Enter and confirm your new password below.",
-    "newPasswordLabel": "New Password",
-    "newPasswordPlaceholder": "Enter a strong new password",
-    "resetPasswordButton": "Reset Password",
-    "resettingPasswordButton": "Resetting...",
-    "recoverPage": {
-      "title": "Recover Your Account",
-      "description": "Use your network to regain access.",
-      "howItWorksTitle": "How it Works",
-      "step1": "Enter your phone number to start a recovery session.",
-      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
-      "step3": "Once your friend scans the code to verify your identity, you'll regain access.",
-      "startButton": "Start Account Recovery",
-      "scanTitle": "Ask a Friend to Scan",
-      "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
-      "scanNote": "This code is temporary and expires in 10 minutes.",
-      "startOverButton": "Start Over",
-      "enterPhone": {
-        "title": "Enter Your Phone Number",
-        "description": "We'll use this to find your account and start the recovery process.",
-        "phoneNumberLabel": "Phone Number",
-        "phoneNumberPlaceholder": "+1 (555) 123-4567",
-        "phoneRequiredError": "A phone number is required.",
-        "getRecoveryCodeButton": "Get Recovery Code",
-        "verifyingButton": "Verifying...",
-        "genericError": "Could not start recovery. Please check the number and try again."
+  "UniversalSearchModal": {
+    "title": "Universal Search",
+    "placeholder": "Search across the entire DamDoh platform...",
+    "searchButton": "Search",
+    "searchError": "Search Failed",
+    "searchErrorDescription": "An error occurred while performing the search. Please try again.",
+    "interpretationTitle": "AI Interpretation",
+    "interpretationNotesDefault": "Showing general results.",
+    "filtersTitle": "Applied Filters",
+    "scanError": "QR Scan Failed",
+    "scanErrorDescription": "Could not process the scanned QR code.",
+    "noResults": "No results found.",
+    "tryAgain": "Try a different search query."
+  },
+  "MobileBottomNav": {
+    "home": "Home",
+    "market": "Market",
+    "search": "Search",
+    "messages": "Messages",
+    "profile": "Profile"
+  },
+  "LanguageSwitcher": {
+    "toggle": "Toggle language"
+  },
+  "OfflineIndicator": {
+    "toast": {
+      "online": {
+        "title": "You're back online!",
+        "description": "Your connection has been restored."
       },
-      "helpFriend": {
-        "prompt": "Need to help a friend recover their account?",
-        "button": "Help a Friend Recover",
-        "scanError": "The scanned code is not a valid DamDoh recovery code.",
-        "scanSuccess": "Scan Successful!",
-        "scanFail": "Could not read the QR code. Please try again."
+      "offline": {
+        "title": "You're currently offline",
+        "description": "Some features may be limited. Your changes will be synced when you reconnect."
+      },
+      "syncing": {
+        "title": "Syncing Offline Changes",
+        "description": "Uploading {count, plural, =1 {# change} other {# changes}} made while you were offline."
+      },
+      "synced": {
+        "title": "Sync Complete",
+        "description": "All your offline changes have been saved."
+      },
+      "syncFailed": {
+        "title": "Sync Failed",
+        "description": "Could not sync all offline changes. Will try again later."
+      },
+      "queued": {
+        "title": "Action Queued",
+        "description": "You are offline. This action will be performed when you reconnect."
       }
     },
-    "forgotPassword": {
-      "emailSentTitle": "Check Your Email",
-      "emailSentDescription": "A password reset link has been sent to {email}.",
-      "emailSentDescriptionIfAccountExists": "If an account with {email} exists, a password reset link has been sent.",
-      "successTitle": "Email Sent!",
-      "successDescription": "Please check your inbox (and spam folder) for the password reset link.",
-      "errors": {
-        "unexpected": "An unexpected error occurred. Please try again.",
-        "invalidEmail": "The email address is not valid.",
-        "tooManyRequests": "Too many requests. Please try again later.",
-        "default": "Failed to send reset email"
-      }
-    },
-    "resetPassword": {
-      "successTitle": "Password Reset Successfully!",
-      "successDescription": "You can now sign in with your new password.",
-      "successRedirect": "You will be redirected to the sign-in page shortly.",
-      "errors": {
-        "missingCode": "Invalid password reset link. Please request a new one.",
-        "missingCodeTitle": "Invalid Link",
-        "missingCodeDescription": "The password reset link is missing or invalid. Please return to the 'Forgot Password' page to request a new one.",
-        "unexpected": "An unexpected error occurred. Please try again.",
-        "invalidOrExpiredCode": "The password reset link is invalid or has expired. Please request a new one.",
-        "userDisabled": "This user account has been disabled.",
-        "userNotFound": "No user found corresponding to this reset link.",
-        "weakPassword": "The new password is not strong enough.",
-        "default": "Failed to reset password"
-      }
-    },
-    "signInSuccess": {
-      "title": "Sign In Successful",
-      "description": "Welcome back to {appName}!"
-    },
-    "signInFailed": "Sign In Failed",
-    "errors": {
-      "unexpected": "An unexpected error occurred. Please try again.",
-      "invalidCredential": "The email or password you entered is incorrect.",
-      "invalidEmail": "The email address is not valid.",
-      "userDisabled": "This user account has been disabled.",
-      "default": "Authentication failed",
-      "emailInUse": "An account with this email already exists.",
-      "weakPassword": "The password is too weak. Please use a stronger password."
-    },
-    "passwordStrength": {
-      "label": "Strength",
-      "weak": "Weak",
-      "medium": "Medium",
-      "strong": "Strong",
-      "veryStrong": "Very Strong"
-    },
-    "signUpSuccess": {
-      "title": "Account Created!",
-      "description": "Welcome to {appName}! You have been signed in."
-    },
-    "signUpFailed": "Sign Up Failed",
-    "error": "Error"
+    "tooltip": {
+      "syncing": "Syncing {count} pending actions...",
+      "onlinePending": "Online with {count} pending actions to sync.",
+      "onlineSynced": "Online and all changes are synced.",
+      "offline": "Offline with {count} unsynced actions."
+    }
   }
 }
+
+    
