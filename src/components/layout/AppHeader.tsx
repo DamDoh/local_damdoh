@@ -27,7 +27,6 @@ import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
 import { UniversalSearchModal } from './UniversalSearchModal';
 import { Skeleton } from "@/components/ui/skeleton";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { SidebarTrigger } from '../ui/sidebar';
 import { AppSidebarNav } from './AppSidebarNav';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { APP_NAME } from '@/lib/constants';
@@ -92,7 +91,6 @@ export function AppHeader() {
         {/* Desktop Header */}
         <div className="hidden md:flex container mx-auto h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2">
-             <SidebarTrigger />
              <Logo iconSize={32} textSize="text-2xl" className="text-foreground" />
           </div>
 

@@ -4,7 +4,7 @@
 import { useTranslations } from 'next-intl';
 import { usePathname, Link } from '@/navigation';
 import { Home, Users, Bell, MessageSquare, Briefcase, Fingerprint, ShoppingCart, Leaf, Sprout, Wallet, Settings, HelpCircle, LogOut } from "lucide-react";
-import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '../ui/sidebar';
+import { SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarHeader, SidebarTrigger } from '../ui/sidebar';
 import { useAuth, logOut } from '@/lib/auth-utils';
 import { useRouter } from 'next/navigation';
 
@@ -48,60 +48,69 @@ export const AppSidebarNav = ({ isMobile = false, onLinkClick }: AppSidebarNavPr
   };
 
   return (
-    <SidebarMenu>
-      {mainNavItems.map(item => (
-        <SidebarMenuItem key={`main-${item.label}`}>
-          <Link href={item.href}>
-            <SidebarMenuButton
-              isActive={pathname === item.href}
-              tooltip={{ children: item.label }}
-              onClick={onLinkClick}
-            >
-              <item.icon />
-              <span>{item.label}</span>
-            </SidebarMenuButton>
-          </Link>
-        </SidebarMenuItem>
-      ))}
-      {user && userNavItems.length > 0 && (
-        <>
-            <hr className="my-2"/>
-             {userNavItems.map(item => (
-                <SidebarMenuItem key={`user-${item.label}`}>
-                <Link href={item.href}>
-                    <SidebarMenuButton
-                    isActive={pathname === item.href}
-                    tooltip={{ children: item.label }}
-                    onClick={onLinkClick}
-                    >
-                    <item.icon />
-                    <span>{item.label}</span>
-                    </SidebarMenuButton>
-                </Link>
-                </SidebarMenuItem>
-            ))}
-        </>
-      )}
-       {isMobile && (
-        <>
-            <hr className="my-2"/>
-             {secondaryNavItems.map(item => (
-                <SidebarMenuItem key={`secondary-${item.label}`}>
-                <Link href={item.href}>
-                    <SidebarMenuButton
-                    isActive={pathname === item.href}
-                    tooltip={{ children: item.label }}
-                    onClick={onLinkClick}
-                    >
-                    <item.icon />
-                    <span>{item.label}</span>
-                    </SidebarMenuButton>
-                </Link>
-                </SidebarMenuItem>
-            ))}
-        </>
-      )}
-
-    </SidebarMenu>
+    <>
+      <SidebarHeader className="flex justify-end p-2 md:hidden">
+          <SidebarTrigger />
+      </SidebarHeader>
+      <SidebarMenu>
+        {!isMobile && (
+            <SidebarMenuItem>
+                <SidebarTrigger />
+            </SidebarMenuItem>
+        )}
+        {mainNavItems.map(item => (
+          <SidebarMenuItem key={`main-${item.label}`}>
+            <Link href={item.href}>
+              <SidebarMenuButton
+                isActive={pathname === item.href}
+                tooltip={{ children: item.label }}
+                onClick={onLinkClick}
+              >
+                <item.icon />
+                <span>{item.label}</span>
+              </SidebarMenuButton>
+            </Link>
+          </SidebarMenuItem>
+        ))}
+        {user && userNavItems.length > 0 && (
+          <>
+              <hr className="my-2"/>
+              {userNavItems.map(item => (
+                  <SidebarMenuItem key={`user-${item.label}`}>
+                  <Link href={item.href}>
+                      <SidebarMenuButton
+                      isActive={pathname === item.href}
+                      tooltip={{ children: item.label }}
+                      onClick={onLinkClick}
+                      >
+                      <item.icon />
+                      <span>{item.label}</span>
+                      </SidebarMenuButton>
+                  </Link>
+                  </SidebarMenuItem>
+              ))}
+          </>
+        )}
+        {isMobile && (
+          <>
+              <hr className="my-2"/>
+              {secondaryNavItems.map(item => (
+                  <SidebarMenuItem key={`secondary-${item.label}`}>
+                  <Link href={item.href}>
+                      <SidebarMenuButton
+                      isActive={pathname === item.href}
+                      tooltip={{ children: item.label }}
+                      onClick={onLinkClick}
+                      >
+                      <item.icon />
+                      <span>{item.label}</span>
+                      </SidebarMenuButton>
+                  </Link>
+                  </SidebarMenuItem>
+              ))}
+          </>
+        )}
+      </SidebarMenu>
+    </>
   );
 };
