@@ -15,7 +15,7 @@
   },
   "LandingPage": {
     "hero": {
-      "title": "DE: Empowering Agriculture from Soil to Sale on DamDoh",
+      "title": "DE: Empowering Agriculture from Soil to Sale on {appName}",
       "subtitle": "DE: The single platform connecting every stakeholder in the agricultural value chain for a more transparent, efficient, and sustainable future.",
       "getStartedButton": "DE: Get Started for Free",
       "learnMoreButton": "DE: Learn More"
@@ -56,6 +56,10 @@
         "title": "DE: Experts & Service Providers",
         "description": "DE: Offer your specialized skills and services to a wide agricultural audience seeking your expertise."
       },
+      "fis": {
+        "title": "Financial Institutions",
+        "description": "Offer loans, insurance, and financial products to a verified agricultural community."
+      },
       "imageAlt": "DE: A diverse group of agricultural stakeholders collaborating"
     },
     "cta": {
@@ -65,10 +69,10 @@
     }
   },
   "Auth": {
-    "signInWelcome": "DE: Welcome back to DamDoh",
+    "signInWelcome": "DE: Welcome back to {appName}",
     "signUpWelcome": "Join the DamDoh Agricultural Network",
-    "forgotPasswordResetPrompt": "DE: Reset your password for DamDoh",
-    "resetPasswordPrompt": "DE: Create a new password for DamDoh",
+    "forgotPasswordResetPrompt": "DE: Reset your password for {appName}",
+    "resetPasswordPrompt": "DE: Create a new password for {appName}",
     "signInTitle": "DE: Sign in to your account",
     "signInDescription": "DE: Enter your credentials to access your dashboard.",
     "emailLabel": "DE: Email",
@@ -114,7 +118,24 @@
       "scanTitle": "DE: Ask a Friend to Scan",
       "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
       "scanNote": "DE: This code is temporary and expires in 10 minutes.",
-      "startOverButton": "DE: Start Over"
+      "startOverButton": "DE: Start Over",
+      "enterPhone": {
+        "title": "DE: Enter Your Phone Number",
+        "description": "DE: We'll use this to find your account and start the recovery process.",
+        "phoneNumberLabel": "DE: Phone Number",
+        "phoneNumberPlaceholder": "+1 (555) 123-4567",
+        "phoneRequiredError": "DE: A phone number is required.",
+        "getRecoveryCodeButton": "DE: Get Recovery Code",
+        "verifyingButton": "DE: Verifying...",
+        "genericError": "DE: Could not start recovery. Please check the number and try again."
+      },
+      "helpFriend": {
+        "prompt": "DE: Need to help a friend recover their account?",
+        "button": "DE: Help a Friend Recover",
+        "scanError": "DE: The scanned code is not a valid DamDoh recovery code.",
+        "scanSuccess": "DE: Scan Successful!",
+        "scanFail": "DE: Could not read the QR code. Please try again."
+      }
     },
     "forgotPassword": {
       "emailSentTitle": "DE: Check Your Email",
@@ -144,7 +165,34 @@
         "weakPassword": "DE: The new password is not strong enough.",
         "default": "DE: Failed to reset password"
       }
-    }
+    },
+    "signInSuccess": {
+      "title": "DE: Sign In Successful",
+      "description": "DE: Welcome back to {appName}!"
+    },
+    "signInFailed": "DE: Sign In Failed",
+    "errors": {
+      "unexpected": "DE: An unexpected error occurred. Please try again.",
+      "invalidCredential": "DE: The email or password you entered is incorrect.",
+      "invalidEmail": "DE: The email address is not valid.",
+      "userDisabled": "DE: This user account has been disabled.",
+      "default": "DE: Authentication failed",
+      "emailInUse": "DE: An account with this email already exists.",
+      "weakPassword": "DE: The password is too weak. Please use a stronger password."
+    },
+    "passwordStrength": {
+      "label": "DE: Strength",
+      "weak": "DE: Weak",
+      "medium": "DE: Medium",
+      "strong": "DE: Strong",
+      "veryStrong": "DE: Very Strong"
+    },
+    "signUpSuccess": {
+      "title": "DE: Account Created!",
+      "description": "DE: Welcome to {appName}! You have been signed in."
+    },
+    "signUpFailed": "DE: Sign Up Failed",
+    "error": "DE: Error"
   },
   "AppHeader": {
     "home": "DE: Home",
@@ -167,13 +215,25 @@
     "helpCenter": "DE: Help Center",
     "logOut": "DE: Log Out",
     "switchToLightAria": "DE: Switch to light theme",
-    "switchToDarkAria": "DE: Switch to dark theme"
+    "switchToDarkAria": "DE: Switch to dark theme",
+    "mobileMenu": {
+      "description": "DE: A mobile menu with navigation links."
+    },
+    "toast": {
+      "logOut": {
+        "title": "DE: Logged Out",
+        "description": "DE: You have been successfully logged out.",
+        "failTitle": "DE: Logout Failed",
+        "failDescription": "DE: Could not log out. Please try again."
+      }
+    }
   },
   "MobileBottomNav": {
     "home": "DE: Home",
     "market": "DE: Market",
     "search": "DE: Search",
     "forums": "DE: Forums",
+    "messages": "DE: Messages",
     "profile": "DE: Profile"
   },
   "DashboardRightSidebar": {
@@ -212,7 +272,7 @@
     "legalTitle": "DE: Legal",
     "privacyPolicyLabel": "DE: Privacy Policy",
     "termsOfServiceLabel": "DE: Terms of Service",
-    "copyright": "DE: © {year} DamDoh All rights reserved.",
+    "copyright": "DE: © {year} {appName} All rights reserved.",
     "getMobileApp": "DE: Get the Mobile App",
     "googlePlayAlt": "DE: Get it on Google Play",
     "appStoreAlt": "DE: Download on the App Store"
@@ -231,44 +291,41 @@
     "challenge": {
       "title": "DE: The Challenge We're Solving",
       "description": "DE: The agricultural supply chain is fragmented, inefficient, and often lacks the transparency needed for sustainable growth. Key challenges include:",
-      "list": {
-        "knowledge": "DE: Fragmented knowledge and lack of access to best practices.",
-        "market": "DE: Limited market access for smallholder farmers.",
-        "quality": "DE: Inconsistent quality control and a lack of verifiable product data.",
-        "logistics": "DE: Inefficient logistics leading to post-harvest losses.",
-        "financial": "DE: Difficulty accessing finance and insurance for small-scale producers.",
-        "climate": "DE: Increasing pressure from climate change on traditional farming methods.",
-        "informal": "DE: Informal and relationship-based systems that can exclude new entrants."
-      }
+      "marketAccess": "Limited market access & price opacity for smallholders.",
+      "inefficiency": "Supply chain inefficiencies & post-harvest losses.",
+      "financialExclusion": "Financial exclusion of rural producers.",
+      "informationGaps": "Information gaps in best practices & market data.",
+      "qualityTrust": "Lack of trust and verifiable quality assurance.",
+      "climatePressure": "Pressure from climate change and resource scarcity.",
+      "foodLoss": "High rates of food loss and waste.",
+      "dataFragmentation": "Data fragmentation across the value chain."
     },
     "solution": {
       "title": "The DamDoh Solution",
       "description": "DE: We are building a comprehensive 'super app' that digitizes and connects the entire agricultural ecosystem through several key pillars:",
-      "list": {
-        "education": "DE: Education and Knowledge Sharing",
-        "ai": "DE: AI-Powered Assistance and Insights",
-        "logistics": "DE: Integrated Logistics and Traceability"
-      }
+      "education": "DE: Education & Knowledge Sharing",
+      "ai": "DE: AI-Powered Assistance & Insights",
+      "marketplace": "DE: A Direct Marketplace",
+      "logistics": "DE: Integrated Logistics & Traceability",
+      "financial": "DE: Accessible Financial Services"
     },
     "beyondTechnology": {
       "title": "DE: Beyond Technology: It's About People",
-      "list": {
-        "p2p": {
-          "title": "DE: People to People",
-          "content": "DE: Connecting farmers to other farmers to share knowledge and build community."
-        },
-        "p2b": {
-          "title": "DE: People to Business",
-          "content": "DE: Fostering direct, trusted relationships between producers and buyers."
-        },
-        "p2e": {
-          "title": "DE: People to Ecosystem",
-          "content": "DE: Giving individuals access to a whole ecosystem of services – finance, logistics, insurance, and more."
-        },
-        "p2w": {
-          "title": "DE: People to World",
-          "content": "DE: Opening global markets and opportunities for even the most remote producers through digital access and traceability."
-        }
+      "p2p": {
+        "title": "DE: People to People",
+        "content": "DE: Connecting farmers to other farmers to share knowledge and build community."
+      },
+      "p2b": {
+        "title": "DE: People to Business",
+        "content": "DE: Fostering direct, trusted relationships between producers and buyers."
+      },
+      "p2e": {
+        "title": "DE: People to Ecosystem",
+        "content": "DE: Giving individuals access to a whole ecosystem of services – finance, logistics, insurance, and more."
+      },
+      "p2w": {
+        "title": "DE: People to World",
+        "content": "DE: Opening global markets and opportunities for even the most remote producers through digital access and traceability."
       }
     },
     "commitment": {
@@ -557,7 +614,7 @@
         "descriptionLabel": "DE: Description",
         "descriptionPlaceholder": "DE: Describe your product or service in detail...",
         "locationLabel": "DE: Location",
-        "locationPlaceholder": "DE: e.g., Nakuru, Kenya",
+        "changeLocationButton": "DE: Change",
         "relatedVtiLabel": "DE: Related Traceability ID (Optional)",
         "relatedVtiPlaceholder": "DE: Enter VTI if available",
         "relatedVtiDescription": "DE: Link this item to a specific harvest batch for full transparency.",
@@ -574,7 +631,7 @@
         "skillsLabel": "DE: Skills Required (for services)",
         "skillsPlaceholder": "DE: e.g., Crop Spraying, Soil Analysis, Organic Certification",
         "skillsDescription": "DE: Separate skills with a comma.",
-        "imageUrlLabel": "DE: Image URL",
+        "imageFile": "DE: Promotional Image",
         "sustainableLabel": "DE: Sustainably Produced",
         "sustainableDescription": "DE: Check this box if your product or service follows recognized sustainable practices.",
         "submitButton": "DE: Create Listing",
@@ -1979,5 +2036,3 @@
     "noStakeholdersHint": "DE: Try adjusting your search filters."
   }
 }
-
-    

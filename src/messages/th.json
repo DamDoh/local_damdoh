@@ -56,6 +56,10 @@
         "title": "TH: Experts & Service Providers",
         "description": "TH: Offer your specialized skills and services to a wide agricultural audience seeking your expertise."
       },
+      "fis": {
+        "title": "Financial Institutions",
+        "description": "Offer loans, insurance, and financial products to a verified agricultural community."
+      },
       "imageAlt": "TH: A diverse group of agricultural stakeholders collaborating"
     },
     "cta": {
@@ -114,7 +118,24 @@
       "scanTitle": "TH: Ask a Friend to Scan",
       "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
       "scanNote": "TH: This code is temporary and expires in 10 minutes.",
-      "startOverButton": "TH: Start Over"
+      "startOverButton": "TH: Start Over",
+      "enterPhone": {
+        "title": "TH: Enter Your Phone Number",
+        "description": "TH: We'll use this to find your account and start the recovery process.",
+        "phoneNumberLabel": "TH: Phone Number",
+        "phoneNumberPlaceholder": "+1 (555) 123-4567",
+        "phoneRequiredError": "TH: A phone number is required.",
+        "getRecoveryCodeButton": "TH: Get Recovery Code",
+        "verifyingButton": "TH: Verifying...",
+        "genericError": "TH: Could not start recovery. Please check the number and try again."
+      },
+      "helpFriend": {
+        "prompt": "TH: Need to help a friend recover their account?",
+        "button": "TH: Help a Friend Recover",
+        "scanError": "TH: The scanned code is not a valid DamDoh recovery code.",
+        "scanSuccess": "TH: Scan Successful!",
+        "scanFail": "TH: Could not read the QR code. Please try again."
+      }
     },
     "forgotPassword": {
       "emailSentTitle": "TH: Check Your Email",
@@ -144,7 +165,34 @@
         "weakPassword": "TH: The new password is not strong enough.",
         "default": "TH: Failed to reset password"
       }
-    }
+    },
+    "signInSuccess": {
+      "title": "TH: Sign In Successful",
+      "description": "TH: Welcome back to {appName}!"
+    },
+    "signInFailed": "TH: Sign In Failed",
+    "errors": {
+      "unexpected": "TH: An unexpected error occurred. Please try again.",
+      "invalidCredential": "TH: The email or password you entered is incorrect.",
+      "invalidEmail": "TH: The email address is not valid.",
+      "userDisabled": "TH: This user account has been disabled.",
+      "default": "TH: Authentication failed",
+      "emailInUse": "TH: An account with this email already exists.",
+      "weakPassword": "TH: The password is too weak. Please use a stronger password."
+    },
+    "passwordStrength": {
+      "label": "TH: Strength",
+      "weak": "TH: Weak",
+      "medium": "TH: Medium",
+      "strong": "TH: Strong",
+      "veryStrong": "TH: Very Strong"
+    },
+    "signUpSuccess": {
+      "title": "TH: Account Created!",
+      "description": "TH: Welcome to {appName}! You have been signed in."
+    },
+    "signUpFailed": "TH: Sign Up Failed",
+    "error": "TH: Error"
   },
   "AppHeader": {
     "home": "TH: Home",
@@ -167,13 +215,25 @@
     "helpCenter": "TH: Help Center",
     "logOut": "TH: Log Out",
     "switchToLightAria": "TH: Switch to light theme",
-    "switchToDarkAria": "TH: Switch to dark theme"
+    "switchToDarkAria": "TH: Switch to dark theme",
+    "mobileMenu": {
+      "description": "TH: A mobile menu with navigation links."
+    },
+    "toast": {
+      "logOut": {
+        "title": "TH: Logged Out",
+        "description": "TH: You have been successfully logged out.",
+        "failTitle": "TH: Logout Failed",
+        "failDescription": "TH: Could not log out. Please try again."
+      }
+    }
   },
   "MobileBottomNav": {
     "home": "TH: Home",
     "market": "TH: Market",
     "search": "TH: Search",
     "forums": "TH: Forums",
+    "messages": "TH: Messages",
     "profile": "TH: Profile"
   },
   "DashboardRightSidebar": {
@@ -212,7 +272,7 @@
     "legalTitle": "TH: Legal",
     "privacyPolicyLabel": "TH: Privacy Policy",
     "termsOfServiceLabel": "TH: Terms of Service",
-    "copyright": "TH: © {year} DamDoh All rights reserved.",
+    "copyright": "TH: © {year} {appName} All rights reserved.",
     "getMobileApp": "TH: Get the Mobile App",
     "googlePlayAlt": "TH: Get it on Google Play",
     "appStoreAlt": "TH: Download on the App Store"

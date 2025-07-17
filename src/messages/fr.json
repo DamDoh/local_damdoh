@@ -15,7 +15,7 @@
   },
   "LandingPage": {
     "hero": {
-      "title": "FR: Empowering Agriculture from Soil to Sale on DamDoh",
+      "title": "FR: Empowering Agriculture from Soil to Sale on {appName}",
       "subtitle": "FR: The single platform connecting every stakeholder in the agricultural value chain for a more transparent, efficient, and sustainable future.",
       "getStartedButton": "FR: Get Started for Free",
       "learnMoreButton": "FR: Learn More"
@@ -56,6 +56,10 @@
         "title": "FR: Experts & Service Providers",
         "description": "FR: Offer your specialized skills and services to a wide agricultural audience seeking your expertise."
       },
+      "fis": {
+        "title": "Financial Institutions",
+        "description": "Offer loans, insurance, and financial products to a verified agricultural community."
+      },
       "imageAlt": "FR: A diverse group of agricultural stakeholders collaborating"
     },
     "cta": {
@@ -65,10 +69,10 @@
     }
   },
   "Auth": {
-    "signInWelcome": "FR: Welcome back to DamDoh",
+    "signInWelcome": "FR: Welcome back to {appName}",
     "signUpWelcome": "Join the DamDoh Agricultural Network",
-    "forgotPasswordResetPrompt": "FR: Reset your password for DamDoh",
-    "resetPasswordPrompt": "FR: Create a new password for DamDoh",
+    "forgotPasswordResetPrompt": "FR: Reset your password for {appName}",
+    "resetPasswordPrompt": "FR: Create a new password for {appName}",
     "signInTitle": "FR: Sign in to your account",
     "signInDescription": "FR: Enter your credentials to access your dashboard.",
     "emailLabel": "FR: Email",
@@ -114,7 +118,24 @@
       "scanTitle": "FR: Ask a Friend to Scan",
       "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
       "scanNote": "FR: This code is temporary and expires in 10 minutes.",
-      "startOverButton": "FR: Start Over"
+      "startOverButton": "FR: Start Over",
+      "enterPhone": {
+        "title": "FR: Enter Your Phone Number",
+        "description": "FR: We'll use this to find your account and start the recovery process.",
+        "phoneNumberLabel": "FR: Phone Number",
+        "phoneNumberPlaceholder": "+1 (555) 123-4567",
+        "phoneRequiredError": "FR: A phone number is required.",
+        "getRecoveryCodeButton": "FR: Get Recovery Code",
+        "verifyingButton": "FR: Verifying...",
+        "genericError": "FR: Could not start recovery. Please check the number and try again."
+      },
+      "helpFriend": {
+        "prompt": "FR: Need to help a friend recover their account?",
+        "button": "FR: Help a Friend Recover",
+        "scanError": "FR: The scanned code is not a valid DamDoh recovery code.",
+        "scanSuccess": "FR: Scan Successful!",
+        "scanFail": "FR: Could not read the QR code. Please try again."
+      }
     },
     "forgotPassword": {
       "emailSentTitle": "FR: Check Your Email",
@@ -144,7 +165,34 @@
         "weakPassword": "FR: The new password is not strong enough.",
         "default": "FR: Failed to reset password"
       }
-    }
+    },
+    "signInSuccess": {
+      "title": "FR: Sign In Successful",
+      "description": "FR: Welcome back to {appName}!"
+    },
+    "signInFailed": "FR: Sign In Failed",
+    "errors": {
+      "unexpected": "FR: An unexpected error occurred. Please try again.",
+      "invalidCredential": "FR: The email or password you entered is incorrect.",
+      "invalidEmail": "FR: The email address is not valid.",
+      "userDisabled": "FR: This user account has been disabled.",
+      "default": "FR: Authentication failed",
+      "emailInUse": "FR: An account with this email already exists.",
+      "weakPassword": "FR: The password is too weak. Please use a stronger password."
+    },
+    "passwordStrength": {
+      "label": "FR: Strength",
+      "weak": "FR: Weak",
+      "medium": "FR: Medium",
+      "strong": "FR: Strong",
+      "veryStrong": "FR: Very Strong"
+    },
+    "signUpSuccess": {
+      "title": "FR: Account Created!",
+      "description": "FR: Welcome to {appName}! You have been signed in."
+    },
+    "signUpFailed": "FR: Sign Up Failed",
+    "error": "FR: Error"
   },
   "AppHeader": {
     "home": "FR: Home",
@@ -167,13 +215,25 @@
     "helpCenter": "FR: Help Center",
     "logOut": "FR: Log Out",
     "switchToLightAria": "FR: Switch to light theme",
-    "switchToDarkAria": "FR: Switch to dark theme"
+    "switchToDarkAria": "FR: Switch to dark theme",
+    "mobileMenu": {
+      "description": "FR: A mobile menu with navigation links."
+    },
+    "toast": {
+      "logOut": {
+        "title": "FR: Logged Out",
+        "description": "FR: You have been successfully logged out.",
+        "failTitle": "FR: Logout Failed",
+        "failDescription": "FR: Could not log out. Please try again."
+      }
+    }
   },
   "MobileBottomNav": {
     "home": "FR: Home",
     "market": "FR: Market",
     "search": "FR: Search",
     "forums": "FR: Forums",
+    "messages": "FR: Messages",
     "profile": "FR: Profile"
   },
   "DashboardRightSidebar": {
@@ -212,7 +272,7 @@
     "legalTitle": "FR: Legal",
     "privacyPolicyLabel": "FR: Privacy Policy",
     "termsOfServiceLabel": "FR: Terms of Service",
-    "copyright": "FR: © {year} DamDoh All rights reserved.",
+    "copyright": "FR: © {year} {appName} All rights reserved.",
     "getMobileApp": "FR: Get the Mobile App",
     "googlePlayAlt": "FR: Get it on Google Play",
     "appStoreAlt": "FR: Download on the App Store"
@@ -239,7 +299,15 @@
         "financial": "FR: Difficulty accessing finance and insurance for small-scale producers.",
         "climate": "FR: Increasing pressure from climate change on traditional farming methods.",
         "informal": "FR: Informal and relationship-based systems that can exclude new entrants."
-      }
+      },
+      "marketAccess": "Limited market access & price opacity for smallholders.",
+      "inefficiency": "Supply chain inefficiencies & post-harvest losses.",
+      "financialExclusion": "Financial exclusion of rural producers.",
+      "informationGaps": "Information gaps in best practices & market data.",
+      "qualityTrust": "Lack of trust and verifiable quality assurance.",
+      "climatePressure": "Pressure from climate change and resource scarcity.",
+      "foodLoss": "High rates of food loss and waste.",
+      "dataFragmentation": "Data fragmentation across the value chain."
     },
     "solution": {
       "title": "The DamDoh Solution",
@@ -248,7 +316,12 @@
         "education": "FR: Education and Knowledge Sharing",
         "ai": "FR: AI-Powered Assistance and Insights",
         "logistics": "FR: Integrated Logistics and Traceability"
-      }
+      },
+      "education": "FR: Education & Knowledge Sharing",
+      "ai": "FR: AI-Powered Assistance & Insights",
+      "marketplace": "FR: A Direct Marketplace",
+      "logistics": "FR: Integrated Logistics & Traceability",
+      "financial": "FR: Accessible Financial Services"
     },
     "beyondTechnology": {
       "title": "FR: Beyond Technology: It's About People",
@@ -269,6 +342,22 @@
           "title": "FR: People to World",
           "content": "FR: Opening global markets and opportunities for even the most remote producers through digital access and traceability."
         }
+      },
+      "p2p": {
+        "title": "FR: People to People",
+        "content": "FR: Connecting farmers to other farmers to share knowledge and build community."
+      },
+      "p2b": {
+        "title": "FR: People to Business",
+        "content": "FR: Fostering direct, trusted relationships between producers and buyers."
+      },
+      "p2e": {
+        "title": "FR: People to Ecosystem",
+        "content": "FR: Giving individuals access to a whole ecosystem of services – finance, logistics, insurance, and more."
+      },
+      "p2w": {
+        "title": "FR: People to World",
+        "content": "FR: Opening global markets and opportunities for even the most remote producers through digital access and traceability."
       }
     },
     "commitment": {
@@ -557,7 +646,7 @@
         "descriptionLabel": "FR: Description",
         "descriptionPlaceholder": "FR: Describe your product or service in detail...",
         "locationLabel": "FR: Location",
-        "locationPlaceholder": "FR: e.g., Nakuru, Kenya",
+        "changeLocationButton": "FR: Change",
         "relatedVtiLabel": "FR: Related Traceability ID (Optional)",
         "relatedVtiPlaceholder": "FR: Enter VTI if available",
         "relatedVtiDescription": "FR: Link this item to a specific harvest batch for full transparency.",
@@ -574,7 +663,7 @@
         "skillsLabel": "FR: Skills Required (for services)",
         "skillsPlaceholder": "FR: e.g., Crop Spraying, Soil Analysis, Organic Certification",
         "skillsDescription": "FR: Separate skills with a comma.",
-        "imageUrlLabel": "FR: Image URL",
+        "imageFile": "FR: Promotional Image",
         "sustainableLabel": "FR: Sustainably Produced",
         "sustainableDescription": "FR: Check this box if your product or service follows recognized sustainable practices.",
         "submitButton": "FR: Create Listing",
@@ -1979,3 +2068,5 @@
     "noStakeholdersHint": "FR: Try adjusting your search filters."
   }
 }
+
+    

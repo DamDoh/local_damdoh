@@ -1,3 +1,4 @@
+
 {
   "MobileHomepage": {
     "welcome": {
@@ -54,6 +55,10 @@
       "experts": {
         "title": "KM: Experts & Service Providers",
         "description": "KM: Offer your specialized skills and services to a wide agricultural audience seeking your expertise."
+      },
+      "fis": {
+        "title": "Financial Institutions",
+        "description": "Offer loans, insurance, and financial products to a verified agricultural community."
       },
       "imageAlt": "KM: A diverse group of agricultural stakeholders collaborating"
     },
@@ -113,7 +118,24 @@
       "scanTitle": "KM: Ask a Friend to Scan",
       "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
       "scanNote": "KM: This code is temporary and expires in 10 minutes.",
-      "startOverButton": "KM: Start Over"
+      "startOverButton": "KM: Start Over",
+      "enterPhone": {
+        "title": "KM: Enter Your Phone Number",
+        "description": "KM: We'll use this to find your account and start the recovery process.",
+        "phoneNumberLabel": "KM: Phone Number",
+        "phoneNumberPlaceholder": "+1 (555) 123-4567",
+        "phoneRequiredError": "KM: A phone number is required.",
+        "getRecoveryCodeButton": "KM: Get Recovery Code",
+        "verifyingButton": "KM: Verifying...",
+        "genericError": "KM: Could not start recovery. Please check the number and try again."
+      },
+      "helpFriend": {
+        "prompt": "KM: Need to help a friend recover their account?",
+        "button": "KM: Help a Friend Recover",
+        "scanError": "KM: The scanned code is not a valid DamDoh recovery code.",
+        "scanSuccess": "KM: Scan Successful!",
+        "scanFail": "KM: Could not read the QR code. Please try again."
+      }
     },
     "forgotPassword": {
       "emailSentTitle": "KM: Check Your Email",
@@ -143,7 +165,34 @@
         "weakPassword": "KM: The new password is not strong enough.",
         "default": "KM: Failed to reset password"
       }
-    }
+    },
+    "signInSuccess": {
+      "title": "KM: Sign In Successful",
+      "description": "KM: Welcome back to {appName}!"
+    },
+    "signInFailed": "KM: Sign In Failed",
+    "errors": {
+      "unexpected": "KM: An unexpected error occurred. Please try again.",
+      "invalidCredential": "KM: The email or password you entered is incorrect.",
+      "invalidEmail": "KM: The email address is not valid.",
+      "userDisabled": "KM: This user account has been disabled.",
+      "default": "KM: Authentication failed",
+      "emailInUse": "KM: An account with this email already exists.",
+      "weakPassword": "KM: The password is too weak. Please use a stronger password."
+    },
+    "passwordStrength": {
+      "label": "KM: Strength",
+      "weak": "KM: Weak",
+      "medium": "KM: Medium",
+      "strong": "KM: Strong",
+      "veryStrong": "KM: Very Strong"
+    },
+    "signUpSuccess": {
+      "title": "KM: Account Created!",
+      "description": "KM: Welcome to {appName}! You have been signed in."
+    },
+    "signUpFailed": "KM: Sign Up Failed",
+    "error": "KM: Error"
   },
   "AppHeader": {
     "home": "KM: Home",
@@ -166,13 +215,25 @@
     "helpCenter": "KM: Help Center",
     "logOut": "KM: Log Out",
     "switchToLightAria": "KM: Switch to light theme",
-    "switchToDarkAria": "KM: Switch to dark theme"
+    "switchToDarkAria": "KM: Switch to dark theme",
+    "mobileMenu": {
+      "description": "KM: A mobile menu with navigation links."
+    },
+    "toast": {
+      "logOut": {
+        "title": "KM: Logged Out",
+        "description": "KM: You have been successfully logged out.",
+        "failTitle": "KM: Logout Failed",
+        "failDescription": "KM: Could not log out. Please try again."
+      }
+    }
   },
   "MobileBottomNav": {
     "home": "KM: Home",
     "market": "KM: Market",
     "search": "KM: Search",
     "forums": "KM: Forums",
+    "messages": "KM: Messages",
     "profile": "KM: Profile"
   },
   "DashboardRightSidebar": {
@@ -211,7 +272,7 @@
     "legalTitle": "KM: Legal",
     "privacyPolicyLabel": "KM: Privacy Policy",
     "termsOfServiceLabel": "KM: Terms of Service",
-    "copyright": "KM: © {year} DamDoh All rights reserved.",
+    "copyright": "KM: © {year} {appName} All rights reserved.",
     "getMobileApp": "KM: Get the Mobile App",
     "googlePlayAlt": "KM: Get it on Google Play",
     "appStoreAlt": "KM: Download on the App Store"
@@ -238,7 +299,15 @@
         "financial": "KM: Difficulty accessing finance and insurance for small-scale producers.",
         "climate": "KM: Increasing pressure from climate change on traditional farming methods.",
         "informal": "KM: Informal and relationship-based systems that can exclude new entrants."
-      }
+      },
+      "marketAccess": "Limited market access & price opacity for smallholders.",
+      "inefficiency": "Supply chain inefficiencies & post-harvest losses.",
+      "financialExclusion": "Financial exclusion of rural producers.",
+      "informationGaps": "Information gaps in best practices & market data.",
+      "qualityTrust": "Lack of trust and verifiable quality assurance.",
+      "climatePressure": "Pressure from climate change and resource scarcity.",
+      "foodLoss": "High rates of food loss and waste.",
+      "dataFragmentation": "Data fragmentation across the value chain."
     },
     "solution": {
       "title": "The DamDoh Solution",
@@ -247,7 +316,12 @@
         "education": "KM: Education and Knowledge Sharing",
         "ai": "KM: AI-Powered Assistance and Insights",
         "logistics": "KM: Integrated Logistics and Traceability"
-      }
+      },
+      "education": "KM: Education & Knowledge Sharing",
+      "ai": "KM: AI-Powered Assistance & Insights",
+      "marketplace": "KM: A Direct Marketplace",
+      "logistics": "KM: Integrated Logistics & Traceability",
+      "financial": "KM: Accessible Financial Services"
     },
     "beyondTechnology": {
       "title": "KM: Beyond Technology: It's About People",
@@ -268,6 +342,22 @@
           "title": "KM: People to World",
           "content": "KM: Opening global markets and opportunities for even the most remote producers through digital access and traceability."
         }
+      },
+      "p2p": {
+        "title": "KM: People to People",
+        "content": "KM: Connecting farmers to other farmers to share knowledge and build community."
+      },
+      "p2b": {
+        "title": "KM: People to Business",
+        "content": "KM: Fostering direct, trusted relationships between producers and buyers."
+      },
+      "p2e": {
+        "title": "KM: People to Ecosystem",
+        "content": "KM: Giving individuals access to a whole ecosystem of services – finance, logistics, insurance, and more."
+      },
+      "p2w": {
+        "title": "KM: People to World",
+        "content": "KM: Opening global markets and opportunities for even the most remote producers through digital access and traceability."
       }
     },
     "commitment": {
@@ -556,7 +646,7 @@
         "descriptionLabel": "KM: Description",
         "descriptionPlaceholder": "KM: Describe your product or service in detail...",
         "locationLabel": "KM: Location",
-        "locationPlaceholder": "KM: e.g., Nakuru, Kenya",
+        "changeLocationButton": "KM: Change",
         "relatedVtiLabel": "KM: Related Traceability ID (Optional)",
         "relatedVtiPlaceholder": "KM: Enter VTI if available",
         "relatedVtiDescription": "KM: Link this item to a specific harvest batch for full transparency.",
@@ -573,7 +663,7 @@
         "skillsLabel": "KM: Skills Required (for services)",
         "skillsPlaceholder": "KM: e.g., Crop Spraying, Soil Analysis, Organic Certification",
         "skillsDescription": "KM: Separate skills with a comma.",
-        "imageUrlLabel": "KM: Image URL",
+        "imageFile": "KM: Promotional Image",
         "sustainableLabel": "KM: Sustainably Produced",
         "sustainableDescription": "KM: Check this box if your product or service follows recognized sustainable practices.",
         "submitButton": "KM: Create Listing",
@@ -1858,7 +1948,7 @@
     "contributionsTitle": "KM: Contributions to Knowledge Hub",
     "contributionsDescription": "KM: Your submitted articles and research papers.",
     "viewButton": "KM: View",
-    "noContributions": "KM: You have not submitted any contributions yet.",
+    "noContributions": "KM: You have not made any contributions yet.",
     "chart": {
       "count": "KM: Count",
       "published": "KM: Published",
@@ -1978,3 +2068,5 @@
     "noStakeholdersHint": "KM: Try adjusting your search filters."
   }
 }
+
+    

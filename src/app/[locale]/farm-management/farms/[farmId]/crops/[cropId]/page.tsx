@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useEffect, useState, useMemo, useCallback } from 'react';
@@ -16,7 +17,7 @@ import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
-import type { FarmingAssistantOutput } from '@/ai/flows/farming-assistant-flow';
+import type { FarmingAssistantOutput } from '@/lib/types';
 import { CropRotationSuggester } from '@/components/farm-management/CropRotationSuggester';
 
 interface CropDetails {
