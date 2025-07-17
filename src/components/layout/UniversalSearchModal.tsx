@@ -9,18 +9,13 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Search, Sparkles, ShoppingCart, Users, MessageSquare, FileText, Loader2, ArrowRight, QrCode, GitBranch } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 import { interpretSearchQuery, type SmartSearchInterpretation } from '@/ai/flows/query-interpreter-flow';
 import { Badge } from '../ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { APP_NAME } from '@/lib/constants';
 import { Card, CardContent } from '../ui/card';
 import { performSearch } from '@/lib/server-actions';
 import { QrScanner } from '../QrScanner';
-import { httpsCallable } from 'firebase/functions';
-import { functions } from '@/lib/firebase/client';
-import type { UserProfile } from '@/lib/types';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
