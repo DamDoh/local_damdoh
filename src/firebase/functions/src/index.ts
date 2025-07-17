@@ -17,12 +17,17 @@ if (admin.apps.length === 0) {
   admin.initializeApp();
 }
 
+// Initialize the Genkit AI framework
+import { configureGenkit } from "../../src/ai/genkit";
+configureGenkit();
+
 // Export all other cloud functions
 export * from "./traceability";
 export * from "./profiles";
 export * from "./farm-management";
 export * from "./marketplace";
 export * from "./community";
+export * from "./ai-and-analytics";
 export * from "./financial-services";
 export * from "./knowledge-hub";
 export * from "./api-gateway";
@@ -41,8 +46,8 @@ export * from "./universal-id";
 export * from "./agro-tourism";
 export * from "./network";
 export * from "./labor";
+export * from "./ai-services";
 export * from "./api-keys";
-export * from "./ai-and-analytics";
 export * from "./geospatial";
 
 

@@ -9,7 +9,8 @@ import {
 import { suggestMarketPrice } from "@/ai/flows/suggest-market-price-flow";
 import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";
 import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
-import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRotationOutput, CreateFarmValues, CreateCropValues, Farm } from '@/lib/types';
+import { generateForumPostDraft } from "@/ai/flows/generate-forum-post-draft";
+import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRotationOutput, CreateFarmValues, CreateCropValues, Farm, GenerateForumPostDraftInput, GenerateForumPostDraftOutput } from '@/lib/types';
 import { functions } from './firebase/client';
 import { httpsCallable } from 'firebase/functions';
 import { getLocale } from 'next-intl/server';
@@ -109,4 +110,19 @@ export async function updateCrop(cropId: string, data: CreateCropValues): Promis
     const updateCropCallable = httpsCallable(functions, 'updateCrop');
     const result = await updateCropCallable({ cropId, ...data });
     return result.data as { success: boolean; message: string; };
+}
+
+/**
+ * Server Action to generate a forum post draft using AI.
+ * @param input The topic ID, user prompt, and language.
+ * @returns A promise that resolves to the generated post draft.
+ */
+export async function generateForumPostDraftCallable(input: GenerateForumPostDraftInput): Promise<GenerateForumPostDraftOutput> {
+    try {
+        return await generateForumPostDraft(input);
+    } catch (error) {
+        console.error("[Server Action] generateForumPostDraftCallable failed:", error);
+        // Provide a default error response
+        return { title: 'Error', content: 'Could not generate a draft at this time.' };
+    }
 }
