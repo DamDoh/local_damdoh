@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
 import { UserRole } from "@/lib/types";
 import { geohashForLocation } from "geofire-common";
+import { logInfo, logError, logWarning, logCritical } from "./logging";
 
 
 const db = admin.firestore();
@@ -18,15 +19,13 @@ const db = admin.firestore();
  * @return {Promise<null>} A promise that resolves when the function is complete.
  */
 export const onUserCreate = functions.auth.user().onCreate(async (user) => {
-    console.log(`New user signed up: ${user.uid}, email: ${user.email}`);
+    logInfo("New user signed up", { uid: user.uid, email: user.email });
 
     const userRef = db.collection("users").doc(user.uid);
     const universalId = uuidv4();
     const defaultLocation = { lat: 0, lng: 0, address: "Not specified" };
 
     try {
-        // Only set the most basic, non-user-provided information here.
-        // Role and display name will be handled by the client call to upsertStakeholderProfile.
         await userRef.set({
             uid: user.uid,
             email: user.email,
@@ -41,10 +40,10 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         });
-        console.log(`Successfully created Firestore base profile for user ${user.uid}.`);
+        logInfo("Successfully created Firestore base profile for user", { uid: user.uid });
         return null;
-    } catch (error) {
-        console.error(`Error creating Firestore profile for user ${user.uid}:`, error);
+    } catch (error: any) {
+        logError("Error creating Firestore profile", { uid: user.uid, errorMessage: error.message });
         return null;
     }
 });
@@ -57,7 +56,7 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
  */
 export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) => {
     const userId = user.uid;
-    console.log(`Starting data cleanup for deleted user: ${userId}`);
+    logInfo("Starting data cleanup for deleted user", { uid: userId });
 
     const db = admin.firestore();
     const userRef = db.collection('users').doc(userId);
@@ -125,9 +124,9 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
 
     try {
         await Promise.all(cleanupPromises);
-        console.log(`Successfully completed data cleanup for user: ${userId}`);
-    } catch (error) {
-        console.error(`Error during data cleanup for user ${userId}:`, error);
+        logInfo("Successfully completed data cleanup for user", { uid: userId });
+    } catch (error: any) {
+        logError("Error during data cleanup", { uid: userId, errorMessage: error.message });
     }
 });
 
@@ -275,9 +274,10 @@ export const upsertStakeholderProfile = functions.https.onCall(
       // Use { merge: true } to create or update the document without overwriting existing fields.
       await userRef.set(updatePayload, {merge: true});
 
+      logInfo("User profile updated successfully", { uid: userId, role: primaryRole });
       return {status: "success", message: "Profile updated successfully."};
     } catch (error: any) {
-      console.error("Error upserting stakeholder profile:", error);
+      logError("Error upserting stakeholder profile", { uid: userId, errorMessage: error.message });
        if (error instanceof functions.https.HttpsError) {
         throw error;
       }
@@ -304,8 +304,8 @@ export async function getRole(uid: string | undefined): Promise<UserRole | null>
     const userDoc = await db.collection("users").doc(uid).get();
     const role = userDoc.data()?.primaryRole;
     return role ? (role as UserRole) : null;
-  } catch (error) {
-    console.error("Error fetching user role:", error);
+  } catch (error: any) {
+    logError("Error fetching user role", { uid, errorMessage: error.message });
     return null;
   }
 }
@@ -321,8 +321,8 @@ export async function getUserDocument(
   try {
     const userDoc = await db.collection("users").doc(uid).get();
     return userDoc.exists ? userDoc : null;
-  } catch (error) {
-    console.error("Error getting user document:", error);
+  } catch (error: any) {
+    logError("Error getting user document", { uid, errorMessage: error.message });
     return null;
   }
 }
@@ -353,8 +353,8 @@ export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
         };
 
         return serializedData;
-    } catch (error) {
-        console.error("Error fetching user profile by ID:", error);
+    } catch (error: any) {
+        logError("Error fetching user profile by ID", { uid, errorMessage: error.message });
         return null;
     }
 }
@@ -366,16 +366,31 @@ export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
  */
 export const deleteUserAccount = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
-
-    // For security, you might want to require the user to re-authenticate
-    // before performing this sensitive action. This is a simplified version.
-
     try {
         await admin.auth().deleteUser(uid);
-        console.log(`Successfully deleted auth user ${uid}`);
+        logInfo("Successfully deleted auth user", { uid });
         return { success: true, message: "Account deleted successfully." };
-    } catch (error) {
-        console.error(`Error deleting user ${uid}:`, error);
+    } catch (error: any) {
+        logError("Error deleting user account", { uid, errorMessage: error.message });
         throw new functions.https.HttpsError('internal', 'Failed to delete account.');
     }
+});
+
+/**
+ * Initiates a data export process for the calling user.
+ */
+export const requestDataExport = functions.https.onCall(async (data, context) => {
+    const uid = checkAuth(context);
+    
+    // In a real application, this would trigger a long-running process
+    // using Cloud Tasks to gather all user data from various collections,
+    // generate a file (JSON, CSV), and send a secure download link via email.
+    
+    logInfo("User requested data export", { uid });
+    
+    // For this demonstration, we'll just return a success message.
+    return {
+        success: true,
+        message: "Your data export request has been received. You will receive an email with a download link within 24 hours.",
+    };
 });

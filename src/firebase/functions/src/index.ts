@@ -51,7 +51,9 @@ export * from "./ai-services";
 export * from "./api-keys";
 export * from "./geospatial";
 export * from "./activity";
+export * from "./logging";
 
 
 // Export the Express app as a Cloud Function
 export const api = functions.https.onRequest(expressApp);
+
