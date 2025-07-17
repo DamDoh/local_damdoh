@@ -13,31 +13,34 @@ import { Link } from '@/navigation';
 export default function AboutPage() {
   const t = useTranslations('aboutPage');
 
-  const challenges = [
-    { text: t('challenge.marketAccess'), icon: <ShoppingCart className="h-6 w-6 text-destructive" />, detailKey: 'marketAccess' },
-    { text: t('challenge.inefficiency'), icon: <Truck className="h-6 w-6 text-destructive" />, detailKey: 'inefficiency' },
-    { text: t('challenge.financialExclusion'), icon: <CircleDollarSign className="h-6 w-6 text-destructive" />, detailKey: 'financialExclusion' },
-    { text: t('challenge.informationGaps'), icon: <BookOpen className="h-6 w-6 text-destructive" />, detailKey: 'informationGaps' },
-    { text: t('challenge.qualityTrust'), icon: <CheckCircle className="h-6 w-6 text-destructive" />, detailKey: 'qualityTrust' },
-    { text: t('challenge.climatePressure'), icon: <Thermometer className="h-6 w-6 text-destructive" />, detailKey: 'climatePressure' },
-    { text: t('challenge.foodLoss'), icon: <Filter className="h-6 w-6 text-destructive" />, detailKey: 'foodLoss' },
-    { text: t('challenge.dataFragmentation'), icon: <Database className="h-6 w-6 text-destructive" />, detailKey: 'dataFragmentation' }
-  ];
+  const challenges = t.tm('challenge.list');
+  const challengeIcons: { [key: string]: React.ReactElement } = {
+    marketAccess: <ShoppingCart className="h-6 w-6 text-destructive" />,
+    inefficiency: <Truck className="h-6 w-6 text-destructive" />,
+    financialExclusion: <CircleDollarSign className="h-6 w-6 text-destructive" />,
+    informationGaps: <BookOpen className="h-6 w-6 text-destructive" />,
+    qualityTrust: <CheckCircle className="h-6 w-6 text-destructive" />,
+    climatePressure: <Thermometer className="h-6 w-6 text-destructive" />,
+    foodLoss: <Filter className="h-6 w-6 text-destructive" />,
+    dataFragmentation: <Database className="h-6 w-6 text-destructive" />
+  };
   
-  const solutions = [
-    { text: t('solution.education'), icon: <BookOpen className="h-5 w-5 text-primary" /> },
-    { text: t('solution.ai'), icon: <Brain className="h-5 w-5 text-primary" /> },
-    { text: t('solution.marketplace'), icon: <ShoppingCart className="h-5 w-5 text-primary" /> },
-    { text: t('solution.logistics'), icon: <Truck className="h-5 w-5 text-primary" /> },
-    { text: t('solution.financial'), icon: <CircleDollarSign className="h-5 w-5 text-primary" /> },
-  ];
+  const solutions = t.tm('solution.list');
+  const solutionIcons: { [key: string]: React.ReactElement } = {
+    education: <BookOpen className="h-5 w-5 text-primary" />,
+    ai: <Brain className="h-5 w-5 text-primary" />,
+    marketplace: <ShoppingCart className="h-5 w-5 text-primary" />,
+    logistics: <Truck className="h-5 w-5 text-primary" />,
+    financial: <CircleDollarSign className="h-5 w-5 text-primary" />
+  };
   
-  const connectionTypes = [
-    { id: "c1", title: t('beyondTechnology.p2p.title'), content: t('beyondTechnology.p2p.content'), icon: <Users className="h-5 w-5 text-primary" /> },
-    { id: "c2", title: t('beyondTechnology.p2b.title'), content: t('beyondTechnology.p2b.content'), icon: <Handshake className="h-5 w-5 text-primary" /> },
-    { id: "c3", title: t('beyondTechnology.p2e.title'), content: t('beyondTechnology.p2e.content'), icon: <Briefcase className="h-5 w-5 text-primary" /> },
-    { id: "c4", title: t('beyondTechnology.p2w.title'), content: t('beyondTechnology.p2w.content'), icon: <Globe className="h-5 w-5 text-primary" /> },
-  ];
+  const connectionTypes = t.tm('beyondTechnology.list');
+   const connectionIcons: { [key: string]: React.ReactElement } = {
+    p2p: <Users className="h-5 w-5 text-primary" />,
+    p2b: <Handshake className="h-5 w-5 text-primary" />,
+    p2e: <Briefcase className="h-5 w-5 text-primary" />,
+    p2w: <Globe className="h-5 w-5 text-primary" />
+  };
 
   return (
     <div className="space-y-12 md:space-y-20">
@@ -86,12 +89,12 @@ export default function AboutPage() {
                   <p className="text-destructive/80 max-w-2xl mx-auto mt-2">{t('challenge.description')}</p>
               </CardHeader>
               <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-                  {challenges.map((challenge, index) => (
+                  {challenges.map((challenge: { id: string; text: string; detail: string }, index: number) => (
                       <div key={index} className="flex items-start gap-4 p-4 bg-background rounded-lg shadow-sm">
-                          <div className="flex-shrink-0 mt-1">{challenge.icon}</div>
+                          <div className="flex-shrink-0 mt-1">{challengeIcons[challenge.id as keyof typeof challengeIcons]}</div>
                           <div>
                             <h4 className="font-semibold text-foreground">{challenge.text}</h4>
-                            <p className="text-sm text-muted-foreground">{t(`challenge.${challenge.detailKey}`)}</p>
+                            <p className="text-sm text-muted-foreground">{challenge.detail}</p>
                           </div>
                       </div>
                   ))}
@@ -107,9 +110,9 @@ export default function AboutPage() {
                   <CardDescription>{t('solution.description')}</CardDescription>
               </CardHeader>
               <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {solutions.map((solution, index) => (
+                  {solutions.map((solution: { id: string; text: string; }, index: number) => (
                       <div key={index} className="flex items-start gap-3 p-3 bg-background rounded-lg">
-                           <div className="shrink-0">{solution.icon}</div>
+                           <div className="shrink-0">{solutionIcons[solution.id as keyof typeof solutionIcons]}</div>
                           <p className="text-sm text-muted-foreground">{solution.text}</p>
                       </div>
                   ))}
@@ -121,11 +124,11 @@ export default function AboutPage() {
       <section className="container">
         <h2 className="text-3xl font-bold tracking-tight text-center mb-8">{t('beyondTechnology.title')}</h2>
         <Accordion type="single" collapsible className="w-full max-w-3xl mx-auto" defaultValue="c1">
-          {connectionTypes.map(item => (
+          {connectionTypes.map((item: {id: string; title: string; content: string}) => (
             <AccordionItem value={item.id} key={item.id}>
               <AccordionTrigger className="text-lg hover:no-underline">
                 <div className="flex items-center gap-3">
-                  {item.icon}
+                  {connectionIcons[item.id as keyof typeof connectionIcons]}
                   {item.title}
                 </div>
               </AccordionTrigger>
@@ -151,3 +154,5 @@ export default function AboutPage() {
     </div>
   );
 }
+
+    
