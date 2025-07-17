@@ -19,12 +19,12 @@ import { useHomepagePreference } from '@/hooks/useHomepageRedirect';
 import { formatDistanceToNow } from 'date-fns';
 import { useTranslations, useLocale } from 'next-intl';
 import { z } from 'zod';
+import { getForumTopicSuggestions } from '@/lib/server-actions'; // Import the server action
 
 // This schema is now only used for type safety on the client
 const ForumTopicSuggestionSchema = z.object({
     title: z.string(),
     description: z.string(),
-    category: z.string(),
 });
 
 type SuggestedTopic = z.infer<typeof ForumTopicSuggestionSchema>;
@@ -79,11 +79,30 @@ export default function ForumsPage() {
     const { toast } = useToast();
     const functions = getFunctions(firebaseApp);
     const getTopicsCallable = useMemo(() => httpsCallable(functions, 'getTopics'), [functions]);
-    // Create a callable function for the new secure endpoint
-    const getSuggestionsCallable = useMemo(() => httpsCallable(functions, 'getForumTopicSuggestions'), [functions]);
     const pathname = usePathname();
     const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
     const locale = useLocale();
+
+    const handleGetSuggestions = useCallback(async () => {
+        if (topics.length === 0) return;
+        setIsLoadingSuggestions(true);
+        try {
+            const suggestionsResult = await getForumTopicSuggestions({ 
+                existingTopics: topics.map(t => ({ name: t.name, description: t.description })),
+                language: locale,
+            });
+            setSuggestedTopics(suggestionsResult.suggestions);
+        } catch (e) {
+            console.error("Failed to fetch topic suggestions:", e);
+            toast({
+                title: t('errors.loadSuggestions.title'),
+                description: t('errors.loadSuggestions.description'),
+                variant: 'destructive',
+            });
+        } finally {
+            setIsLoadingSuggestions(false);
+        }
+    }, [topics, locale, toast, t]);
 
     useEffect(() => {
         const fetchTopics = async () => {
@@ -91,28 +110,8 @@ export default function ForumsPage() {
             try {
                 const result = await getTopicsCallable();
                 const data = result.data as { topics?: ForumTopic[] };
-                setTopics(data?.topics || []);
-                
-                // Fetch suggestions after topics are loaded
-                if (data?.topics && data.topics.length > 0) {
-                    setIsLoadingSuggestions(true);
-                    try {
-                        // Call the new secure Cloud Function
-                        const suggestionsResult = await getSuggestionsCallable({ 
-                            existingTopics: data.topics.map(t => ({ name: t.name, description: t.description })),
-                            language: locale,
-                        });
-                        // The result.data from a callable function is the object returned by the function
-                        const suggestionsData = suggestionsResult.data as { suggestions: SuggestedTopic[] };
-                        setSuggestedTopics(suggestionsData.suggestions);
-                    } catch (e) {
-                        console.error("Failed to fetch topic suggestions:", e);
-                    } finally {
-                        setIsLoadingSuggestions(false);
-                    }
-                } else {
-                    setIsLoadingSuggestions(false);
-                }
+                const fetchedTopics = data?.topics || [];
+                setTopics(fetchedTopics);
             } catch (error) {
                 console.error("Error fetching topics:", error);
                 toast({
@@ -126,7 +125,14 @@ export default function ForumsPage() {
         };
 
         fetchTopics();
-    }, [getTopicsCallable, getSuggestionsCallable, toast, t, locale]);
+    }, [getTopicsCallable, toast, t]);
+    
+    // Automatically fetch suggestions once topics are loaded
+    useEffect(() => {
+        if (!isLoading && topics.length > 0) {
+            handleGetSuggestions();
+        }
+    }, [isLoading, topics, handleGetSuggestions]);
 
     const filteredTopics = useMemo(() => {
         if (!Array.isArray(topics)) return [];
@@ -193,8 +199,8 @@ export default function ForumsPage() {
                 <CardContent className="flex-grow">
                     <p className="text-sm text-muted-foreground line-clamp-3 h-[60px]">{topic.description}</p>
                 </CardContent>
-                <CardFooter className="flex flex-col items-start gap-2 text-xs text-muted-foreground">
-                    <div className="flex items-center gap-1.5">
+                <CardFooter className="flex flex-col items-start gap-2">
+                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                         <Clock className="h-3 w-3" />
                         <span>{t('activity', { time: formatDistanceToNow(new Date(topic.lastActivityAt), { addSuffix: true }) })}</span>
                     </div>
@@ -253,6 +259,9 @@ export default function ForumsPage() {
                             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
                                 <Lightbulb className="h-5 w-5 text-yellow-400" />
                                 {t('suggestedTopicsTitle')}
+                                <Button variant="ghost" size="icon" className="h-7 w-7" onClick={handleGetSuggestions} disabled={isLoadingSuggestions}>
+                                    <RefreshCw className={`h-4 w-4 ${isLoadingSuggestions ? 'animate-spin' : ''}`} />
+                                </Button>
                             </h3>
                             {isLoadingSuggestions ? (
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -261,9 +270,9 @@ export default function ForumsPage() {
                                 </div>
                             ) : (
                                 <div className="flex flex-wrap gap-2">
-                                    {suggestedTopics.map(suggestion => (
+                                    {(suggestedTopics || []).map(suggestion => (
                                         <Button key={suggestion.title} variant="outline" asChild>
-                                            <Link href={`/forums/create?title=${encodeURIComponent(suggestion.title)}&description=${encodeURIComponent(suggestion.description)}`}>
+                                            <Link href={`/forums/create-post?title=${encodeURIComponent(suggestion.title)}&description=${encodeURIComponent(suggestion.description)}`}>
                                                 {suggestion.title}
                                             </Link>
                                         </Button>

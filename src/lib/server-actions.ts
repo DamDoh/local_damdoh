@@ -9,8 +9,8 @@ import {
 import { suggestMarketPrice } from "@/ai/flows/suggest-market-price-flow";
 import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";
 import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
-import { generateForumPostDraft } from "@/ai/flows/generate-forum-post-draft";
-import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRotationOutput, CreateFarmValues, CreateCropValues, Farm, GenerateForumPostDraftInput, GenerateForumPostDraftOutput } from '@/lib/types';
+import { suggestForumTopics as suggestForumTopicsFlow } from '@/ai/flows/forum-topic-suggestions';
+import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRotationOutput, CreateFarmValues, CreateCropValues, Farm } from '@/lib/types';
 import { functions } from './firebase/client';
 import { httpsCallable } from 'firebase/functions';
 import { getLocale } from 'next-intl/server';
@@ -113,35 +113,19 @@ export async function updateCrop(cropId: string, data: CreateCropValues): Promis
 }
 
 /**
- * Server Action to generate a forum post draft using AI.
+ * Server Action to get forum topic suggestions.
  * This is a client-safe wrapper around the Genkit flow.
- * @param input The topic ID, user prompt, and language.
- * @returns A promise that resolves to the generated post draft.
+ * @param input The existing topics and desired language.
+ * @returns A promise that resolves to the suggested topics.
  */
-export async function generateForumPostDraftCallable(input: GenerateForumPostDraftInput): Promise<GenerateForumPostDraftOutput> {
-    try {
-        // Here we're calling the function directly because it's already a server-side function
-        // defined with 'use server'. This avoids an unnecessary network hop if this
-        // server action is called from another server component.
-        return await generateForumPostDraft(input);
-    } catch (error) {
-        console.error("[Server Action] generateForumPostDraftCallable failed:", error);
-        // Provide a default error response
-        return { title: 'Error', content: 'Could not generate a draft at this time.' };
-    }
-}
-
-/**
- * Server Action to fetch all financial institutions.
- * @returns A promise that resolves to an array of user profiles for financial institutions.
- */
-export async function getFinancialInstitutions(): Promise<UserProfile[]> {
+export async function getForumTopicSuggestions(input: {
+  existingTopics: { name: string; description: string }[];
+  language: string;
+}): Promise<{ suggestions: { title: string; description: string }[] }> {
   try {
-    const getFIsCallable = httpsCallable(functions, 'getFinancialInstitutions');
-    const result = await getFIsCallable();
-    return result.data as UserProfile[];
+    return await suggestForumTopicsFlow(input);
   } catch (error) {
-    console.error("Error fetching financial institutions:", error);
-    return [];
+    console.error("[Server Action] getForumTopicSuggestions failed:", error);
+    return { suggestions: [] };
   }
 }
