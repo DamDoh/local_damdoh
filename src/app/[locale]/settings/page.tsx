@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
-import { User, Bell, Shield, Palette, Lock, Users as ConnectionsIcon, SearchCheck, Save, ShieldOff, Briefcase, Mail, FileText, Sparkles, TrendingUp, Settings as SettingsIconLucide, Globe, Edit, Info } from "lucide-react"; 
+import { User, Bell, Shield, Palette, Lock, Users as ConnectionsIcon, SearchCheck, Save, ShieldOff, Briefcase, Mail, FileText, Sparkles, TrendingUp, Settings as SettingsIconLucide, Globe, Edit, Info, Loader2 } from "lucide-react"; 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -15,8 +16,23 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useToast } from "@/hooks/use-toast";
+import { getFunctions, httpsCallable } from "firebase/functions";
+import { functions } from "@/lib/firebase/client";
+import { useAuth } from "@/lib/auth-utils";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { useRouter } from "@/navigation";
 
-function PrivacySetting({ icon, title, description, helpText, children }: { icon: React.ReactNode, title: string, description: string, helpText: string, children: React.ReactNode }) {
+interface PrivacySettingProps { 
+  icon: React.ReactNode, 
+  title: string, 
+  description: string, 
+  helpText: string, 
+  children: React.ReactNode 
+}
+
+function PrivacySetting({ icon, title, description, helpText, children }: PrivacySettingProps) {
     return (
         <div className="flex items-start justify-between rounded-lg border p-4">
             <div className="flex items-start gap-4">
@@ -44,6 +60,52 @@ function PrivacySetting({ icon, title, description, helpText, children }: { icon
 
 export default function SettingsPage() {
     const t = useTranslations('settingsPage');
+    const { toast } = useToast();
+    const { user, loading } = useAuth();
+    const router = useRouter();
+
+    const [notificationPrefs, setNotificationPrefs] = useState({ emailDigest: true, connectionRequests: true, forumMentions: true });
+    const [privacyPrefs, setPrivacyPrefs] = useState({ profileVisibility: 'everyone', allowConnectionRequests: 'everyone' });
+    const [isSaving, setIsSaving] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    const manageNotificationPreferences = useMemo(() => httpsCallable(functions, 'manageNotificationPreferences'), []);
+    const deleteUserAccount = useMemo(() => httpsCallable(functions, 'deleteUserAccount'), []);
+
+    const handleSavePreferences = async () => {
+        setIsSaving(true);
+        try {
+            await manageNotificationPreferences({ preferences: { ...notificationPrefs, ...privacyPrefs } });
+            toast({ title: t('toast.saveSuccessTitle'), description: t('toast.saveSuccessDescription') });
+        } catch (error: any) {
+            toast({ title: t('toast.saveErrorTitle'), description: error.message, variant: "destructive" });
+        } finally {
+            setIsSaving(false);
+        }
+    };
+    
+    const handleDeleteAccount = async () => {
+        setIsDeleting(true);
+        try {
+            await deleteUserAccount();
+            toast({ title: t('toast.deleteSuccessTitle'), description: t('toast.deleteSuccessDescription') });
+            router.push('/auth/signin');
+        } catch(error: any) {
+             toast({ title: t('toast.deleteErrorTitle'), description: error.message, variant: "destructive" });
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
+    if (loading) {
+        return <div>{t('loading')}</div>; // Or a skeleton loader
+    }
+
+    if (!user) {
+        // This should ideally be handled by middleware, but serves as a backup.
+        router.push('/auth/signin');
+        return null;
+    }
 
   return (
     <div className="space-y-6">
@@ -88,21 +150,30 @@ export default function SettingsPage() {
               <CardDescription>{t('account.description')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="space-y-1">
-                  <Label htmlFor="current-password">{t('account.currentPasswordLabel')}</Label>
-                  <Input id="current-password" type="password" />
-                </div>
-                <div className="space-y-1">
-                  <Label htmlFor="new-password">{t('account.newPasswordLabel')}</Label>
-                  <Input id="new-password" type="password" />
-                </div>
-                 <div className="space-y-1">
-                  <Label htmlFor="confirm-password">{t('account.confirmPasswordLabel')}</Label>
-                  <Input id="confirm-password" type="password" />
-                </div>
-                <Button><Save className="mr-2 h-4 w-4" />{t('account.changePasswordButton')}</Button>
+                <Button asChild>
+                    <Link href="/auth/forgot-password">{t('account.changePasswordButton')}</Link>
+                </Button>
                 <Separator />
-                <Button variant="destructive"><ShieldOff className="mr-2 h-4 w-4" />{t('account.deactivateButton')}</Button>
+                <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                        <Button variant="destructive"><ShieldOff className="mr-2 h-4 w-4" />{t('account.deactivateButton')}</Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle>{t('deactivateModal.title')}</AlertDialogTitle>
+                            <AlertDialogDescription>
+                               {t('deactivateModal.description')}
+                            </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                            <AlertDialogCancel disabled={isDeleting}>{t('deactivateModal.cancel')}</AlertDialogCancel>
+                            <AlertDialogAction onClick={handleDeleteAccount} disabled={isDeleting}>
+                                {isDeleting && <Loader2 className="h-4 w-4 mr-2 animate-spin"/>}
+                                {t('deactivateModal.confirm')}
+                            </AlertDialogAction>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
             </CardContent>
           </Card>
         </TabsContent>
@@ -115,21 +186,18 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <PrivacySetting icon={<Mail className="h-6 w-6"/>} title={t('notifications.emailDigestLabel')} description={t('notifications.emailDigestDescription')} helpText={t('notifications.emailDigestHelpText')}>
-                  <Switch id="email-notifications" defaultChecked />
+                  <Switch id="email-notifications" checked={notificationPrefs.emailDigest} onCheckedChange={(checked) => setNotificationPrefs(p => ({...p, emailDigest: checked}))} />
               </PrivacySetting>
               <PrivacySetting icon={<ConnectionsIcon className="h-6 w-6"/>} title={t('notifications.connectionRequestsLabel')} description={t('notifications.connectionRequestsDescription')} helpText={t('notifications.connectionRequestsHelpText')}>
-                 <Switch id="connection-requests-notifications" defaultChecked />
+                 <Switch id="connection-requests-notifications" checked={notificationPrefs.connectionRequests} onCheckedChange={(checked) => setNotificationPrefs(p => ({...p, connectionRequests: checked}))} />
               </PrivacySetting>
               <PrivacySetting icon={<MessageSquare className="h-6 w-6"/>} title={t('notifications.forumMentionsLabel')} description={t('notifications.forumMentionsDescription')} helpText={t('notifications.forumMentionsHelpText')}>
-                <Switch id="forum-mentions-notifications" defaultChecked />
+                <Switch id="forum-mentions-notifications" checked={notificationPrefs.forumMentions} onCheckedChange={(checked) => setNotificationPrefs(p => ({...p, forumMentions: checked}))} />
               </PrivacySetting>
-              <PrivacySetting icon={<ShoppingCart className="h-6 w-6"/>} title={t('notifications.marketplaceActivityLabel')} description={t('notifications.marketplaceActivityDescription')} helpText={t('notifications.marketplaceActivityHelpText')}>
-                 <Switch id="marketplace-updates-notifications" />
-              </PrivacySetting>
-              <PrivacySetting icon={<Briefcase className="h-6 w-6"/>} title={t('notifications.talentExchangeLabel')} description={t('notifications.talentExchangeDescription')} helpText={t('notifications.talentExchangeHelpText')}>
-                  <Switch id="talent-exchange-notifications" defaultChecked/>
-              </PrivacySetting>
-              <Button><Save className="mr-2 h-4 w-4" />{t('notifications.saveButton')}</Button>
+              <Button onClick={handleSavePreferences} disabled={isSaving}>
+                {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
+                <Save className="mr-2 h-4 w-4" />{t('notifications.saveButton')}
+              </Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -142,7 +210,7 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-6">
                 <PrivacySetting icon={<User className="h-6 w-6" />} title={t('privacy.profileVisibilityLabel')} description={t('privacy.profileVisibilityDescription')} helpText={t('privacy.profileVisibilityHelpText')}>
-                    <Select defaultValue="everyone">
+                    <Select value={privacyPrefs.profileVisibility} onValueChange={(value) => setPrivacyPrefs(p => ({...p, profileVisibility: value}))}>
                         <SelectTrigger className="w-[220px]"><SelectValue /></SelectTrigger>
                         <SelectContent>
                             <SelectItem value="everyone">{t('privacy.profileVisibilityAll')}</SelectItem>
@@ -151,38 +219,14 @@ export default function SettingsPage() {
                         </SelectContent>
                     </Select>
                 </PrivacySetting>
-                <PrivacySetting icon={<ConnectionsIcon className="h-6 w-6" />} title={t('privacy.connectionRequestsLabel')} description={t('privacy.connectionRequestsDescription')} helpText={t('privacy.connectionRequestsHelpText')}>
-                    <Select defaultValue="everyone">
-                        <SelectTrigger className="w-[220px]"><SelectValue /></SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="everyone">{t('privacy.connectionRequestsAll')}</SelectItem>
-                            <SelectItem value="connections-of-connections">{t('privacy.connectionRequestsConnectionsOfConnections')}</SelectItem>
-                        </SelectContent>
-                    </Select>
-                </PrivacySetting>
                 <PrivacySetting icon={<SearchCheck className="h-6 w-6" />} title={t('privacy.searchIndexingLabel')} description={t('privacy.searchIndexingDescription')} helpText={t('privacy.searchIndexingHelpText')}>
                     <Switch id="search-engine-indexing" defaultChecked />
                 </PrivacySetting>
               
-              <Separator className="my-8" /> 
-              
-              <CardHeader className="p-0">
-                <CardTitle className="text-xl flex items-center gap-2"><Shield className="h-6 w-6 text-primary" />{t('privacy.dataConsentTitle')}</CardTitle>
-                <CardDescription>{t('privacy.dataConsentDescription')}</CardDescription>
-              </CardHeader>
-
-              <div className="space-y-4 pt-2">
-                <PrivacySetting icon={<TrendingUp className="h-6 w-6" />} title={t('privacy.marketplaceHistoryLabel')} description={t('privacy.marketplaceHistoryDescription')} helpText={t('privacy.marketplaceHistoryHelpText')}>
-                  <Switch id="consent-marketplace-fi" defaultChecked /> 
-                </PrivacySetting>
-                 <PrivacySetting icon={<Sparkles className="h-6 w-6" />} title={t('privacy.aiPersonalizationLabel')} description={t('privacy.aiPersonalizationDescription')} helpText={t('privacy.aiPersonalizationHelpText')}>
-                   <Switch id="consent-traceability-public" defaultChecked /> 
-                 </PrivacySetting>
-                 <PrivacySetting icon={<FileText className="h-6 w-6" />} title={t('privacy.financialApplicationDataLabel')} description={t('privacy.financialApplicationDataDescription')} helpText={t('privacy.financialApplicationDataHelpText')}>
-                    <Switch id="consent-financial-ai" defaultChecked /> 
-                 </PrivacySetting>
-              </div>
-              <Button><Save className="mr-2 h-4 w-4" />{t('privacy.saveConsentButton')}</Button>
+              <Button onClick={handleSavePreferences} disabled={isSaving}>
+                 {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
+                 <Save className="mr-2 h-4 w-4" />{t('privacy.saveConsentButton')}
+              </Button>
             </CardContent>
           </Card>
         </TabsContent>

@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
@@ -125,11 +126,6 @@ export const upsertStakeholderProfile = functions.https.onCall(
       // Handle Geohash generation for location
       if (location !== undefined) {
         updatePayload.location = location;
-        if (location && typeof location.lat === 'number' && typeof location.lng === 'number') {
-            updatePayload.geohash = geohashForLocation([location.lat, location.lng]);
-        } else {
-            updatePayload.geohash = null;
-        }
       }
 
       if (Array.isArray(areasOfInterest)) updatePayload.areasOfInterest = areasOfInterest;
@@ -389,94 +385,22 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
     }
 });
 
-
 /**
- * Deletes a user's data from across the entire Firestore database upon their Auth deletion.
- * This is a critical function for GDPR "Right to be Forgotten" compliance.
- * It performs a "cascade delete" of all content created by the user.
- * @param {functions.auth.UserRecord} user The user record of the deleted user.
- * @return {Promise<void>} A promise that resolves when cleanup is complete.
+ * Deletes the calling user's account from Firebase Authentication.
+ * This will then trigger the onUserDeleteCleanup function to remove their data.
  */
-export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) => {
-    console.log(`User deletion triggered for UID: ${user.uid}. Cleaning up Firestore data.`);
+export const deleteUserAccount = functions.https.onCall(async (data, context) => {
+    const uid = checkAuth(context);
 
-    const uid = user.uid;
-    const batchSize = 200; // Firestore batch limit is 500 writes
+    // For security, you might want to require the user to re-authenticate
+    // before performing this sensitive action. This is a simplified version.
 
-    // Mapping of collections to the field that stores the user's UID.
-    const collectionsToDeleteFrom: { [key: string]: string | string[] } = {
-        posts: 'userId',
-        marketplaceItems: 'sellerId',
-        farms: 'ownerId',
-        crops: 'ownerId',
-        knf_batches: 'userId',
-        traceability_events: 'actorRef',
-        connection_requests: ['requesterId', 'recipientId'], // Special case for multiple fields
-        agri_events: 'organizerId',
-        financial_applications: 'applicantId',
-        insurance_applications: 'applicantId',
-        groups: 'ownerId',
-    };
-
-    const promises: Promise<any>[] = [];
-
-    // Loop through each collection and delete documents related to the user.
-    for (const [collection, field] of Object.entries(collectionsToDeleteFrom)) {
-        if (Array.isArray(field)) {
-            for (const f of field) {
-                const query = db.collection(collection).where(f, '==', uid).limit(batchSize);
-                promises.push(deleteQueryBatch(query));
-            }
-        } else {
-            const query = db.collection(collection).where(field, '==', uid).limit(batchSize);
-            promises.push(deleteQueryBatch(query));
-        }
+    try {
+        await admin.auth().deleteUser(uid);
+        console.log(`Successfully deleted auth user ${uid}`);
+        return { success: true, message: "Account deleted successfully." };
+    } catch (error) {
+        console.error(`Error deleting user ${uid}:`, error);
+        throw new functions.https.HttpsError('internal', 'Failed to delete account.');
     }
-    
-    // Remove user from any groups they are a member of
-    const memberOfQuery = db.collectionGroup('members').where(admin.firestore.FieldPath.documentId(), '==', uid);
-    promises.push(deleteQueryBatch(memberOfQuery));
-
-    // Also delete the main user profile document
-    promises.push(db.collection('users').doc(uid).delete());
-    
-    // Delete any credit scores associated with the user
-    promises.push(db.collection('credit_scores').doc(uid).delete());
-
-    await Promise.all(promises);
-    console.log(`Cleanup finished for user ${uid}.`);
 });
-
-/**
- * Recursively deletes documents from a query in batches.
- * @param {FirebaseFirestore.Query} query The query to delete documents from.
- * @return {Promise<number>} A promise that resolves with the number of documents deleted.
- */
-async function deleteQueryBatch(query: FirebaseFirestore.Query): Promise<number> {
-  const snapshot = await query.get();
-
-  if (snapshot.size === 0) {
-    return 0;
-  }
-
-  const batch = query.firestore.batch();
-  snapshot.docs.forEach((doc) => {
-    // If it's a member document, we also need to decrement the group's memberCount
-    if (doc.ref.parent.parent?.path.startsWith('groups/')) {
-        const groupRef = doc.ref.parent.parent;
-        if(groupRef) {
-            batch.update(groupRef, { memberCount: admin.firestore.FieldValue.increment(-1) });
-        }
-    }
-    batch.delete(doc.ref);
-  });
-  await batch.commit();
-  console.log(`Deleted ${snapshot.size} documents.`);
-
-  // Recurse on the same query to delete more documents if the batch was full.
-  if (snapshot.size > 0) {
-    return snapshot.size + await deleteQueryBatch(query);
-  } else {
-    return snapshot.size;
-  }
-}
