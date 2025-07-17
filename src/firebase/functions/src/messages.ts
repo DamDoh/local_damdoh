@@ -99,39 +99,6 @@ export const getConversationsForUser = functions.https.onCall(async (data, conte
 });
 
 
-// Fetches all messages for a specific conversation.
-export const getMessagesForConversation = functions.https.onCall(async (data, context) => {
-    const userId = checkAuth(context);
-    const { conversationId } = data;
-
-    if (!conversationId) {
-        throw new functions.https.HttpsError('invalid-argument', 'A conversationId must be provided.');
-    }
-
-    // Security check: Ensure the user is part of this conversation
-    const conversationRef = db.collection('conversations').doc(conversationId);
-    const conversationSnap = await conversationRef.get();
-    if (!conversationSnap.exists || !conversationSnap.data()?.participantIds.includes(userId)) {
-        throw new functions.https.HttpsError('permission-denied', 'You are not a participant in this conversation.');
-    }
-
-    const messagesQuery = conversationRef.collection('messages').orderBy('timestamp', 'asc');
-    const snapshot = await messagesQuery.get();
-    
-    const messages = snapshot.docs.map(doc => {
-        const data = doc.data();
-        return {
-            id: doc.id,
-            conversationId: conversationId,
-            senderId: data.senderId,
-            content: data.content,
-            timestamp: (data.timestamp as admin.firestore.Timestamp)?.toDate?.().toISOString(),
-        }
-    });
-
-    return { messages };
-});
-
 // Sends a new message to a conversation.
 export const sendMessage = functions.https.onCall(async (data, context) => {
     const userId = checkAuth(context);
