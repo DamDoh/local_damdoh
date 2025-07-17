@@ -564,7 +564,7 @@ export const getRecentVtiBatches = functions.https.onCall(async (data, context) 
                 if (harvestEvent.actorRef) {
                     try {
                         const userDoc = await db.collection('users').doc(harvestEvent.actorRef).get();
-                        if (userDoc.exists) {
+                        if (userDoc.exists && userDoc.data()) {
                             producerName = userDoc.data()?.displayName || 'Unknown';
                         }
                     } catch (e) {

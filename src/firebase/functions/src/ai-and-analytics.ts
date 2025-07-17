@@ -1,9 +1,6 @@
 
 
 import * as functions from "firebase-functions";
-import {
-  _internalMatchFundingOpportunities,
-} from "./financial-services";
 
 /**
  * Checks if the user is authenticated.
@@ -22,18 +19,12 @@ const checkAuth = (context: functions.https.CallableContext) => {
  * =================================================================
  * Module 6: AI & Analytics Engine (The Brain of DamDoh)
  * =================================================================
- * NOTE: The assessCreditRiskWithAI function has been officially removed.
- * It has been migrated to the Express server in `server.ts` for deployment on Cloud Run.
- * This ensures better performance by avoiding cold starts. New client calls must be
- * directed to the Cloud Run endpoint: `/ai/assess-risk`.
+ * NOTE: The assessCreditRiskWithAI and matchFundingOpportunitiesWithAI functions
+ * have been officially migrated to the Express server in `server.ts` for deployment
+ * on Cloud Run. This ensures better performance by avoiding cold starts.
+ * New client calls must be directed to the Cloud Run endpoints.
  */
 
-export const matchFundingOpportunitiesWithAI = functions.https.onCall(
-    async (data, context) => {
-      checkAuth(context);
-      return await _internalMatchFundingOpportunities(data);
-    },
-);
 
 /**
  * Processes raw data (like a list of traceability events) and generates
