@@ -53,23 +53,16 @@ export function HeaderThemeToggle() {
   }
 
   return (
-    <div key="actual" className="flex items-center p-1 bg-white/10 rounded-full h-9">
-      <Button 
-        variant={currentTheme === 'light' ? 'secondary' : 'ghost'} 
-        onClick={() => handleSetTheme('light')} 
-        aria-label={t('switchToLightAria')}
-        className="h-7 w-7 p-0 rounded-full"
+    <Button
+        key="actual"
+        variant="ghost"
+        size="icon"
+        onClick={() => handleSetTheme(currentTheme === 'light' ? 'dark' : 'light')}
+        aria-label={currentTheme === 'light' ? t('switchToDarkAria') : t('switchToLightAria')}
       >
-        <Sun className="h-4 w-4" />
-      </Button>
-      <Button 
-        variant={currentTheme === 'dark' ? 'secondary' : 'ghost'} 
-        onClick={() => handleSetTheme('dark')} 
-        aria-label={t('switchToDarkAria')}
-        className="h-7 w-7 p-0 rounded-full"
-      >
-        <Moon className="h-4 w-4" />
-      </Button>
-    </div>
+        <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+        <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <span className="sr-only">Toggle theme</span>
+    </Button>
   );
 }
