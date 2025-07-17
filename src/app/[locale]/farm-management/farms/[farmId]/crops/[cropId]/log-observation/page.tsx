@@ -34,7 +34,7 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from 'firebase/functions';
+import { getFunctions, httpsCallable, HttpsError } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { uploadFileAndGetURL } from '@/lib/storage-utils';
 import { useTranslations, useLocale } from "next-intl";
@@ -106,8 +106,13 @@ export default function LogObservationPage() {
     } catch (error: any) {
       console.error("Error logging observation:", error);
       toast({
-        variant: "destructive",
-        title: t('toast.fail'),
+ variant: "destructive",
+ title: t('toast.fail'),
+ description:
+          error instanceof HttpsError && t(error.message) !== error.message
+ ? t(error.message) // Use translated backend error if available
+ : error.message || t('toast.failDescription'), // Fallback to raw message or generic if translation isn't found
+
         description: error.message || t('toast.failDescription'),
       });
     } finally {

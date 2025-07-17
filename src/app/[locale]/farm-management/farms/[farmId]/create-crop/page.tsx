@@ -98,7 +98,10 @@ export default function CreateCropPage() {
       toast({
         variant: "destructive",
         title: t('toast.failTitle'),
-        description: error.message || t('toast.failDescription'),
+        description:
+          error instanceof Error && "code" in error && typeof error.code === "string"
+            ? t(error.message) // Use backend-provided key if HttpsError
+ : t('toast.failDescription'), // Fallback generic message
       });
     } finally {
       setIsSubmitting(false);

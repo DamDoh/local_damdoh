@@ -5,7 +5,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Textarea } from "@/components/ui/textarea"
 import { ArrowLeft, Loader2, Sparkles, Save, Briefcase, Star, MapPin, ImageUp } from "lucide-react";
 import { useRouter, useSearchParams, Link } from '@/navigation';
 import { useToast } from '@/hooks/use-toast';
@@ -22,7 +22,7 @@ import { Switch } from '@/components/ui/switch';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useLocale } from 'next-intl';
-import { uploadFileAndGetURL } from '@/lib/storage-utils';
+import { uploadFileAndGetURL } from '@/lib/storage-utils'
 import { suggestMarketPrice as suggestMarketPriceAction } from '@/lib/server-actions';
 
 export default function CreateListingPage() {

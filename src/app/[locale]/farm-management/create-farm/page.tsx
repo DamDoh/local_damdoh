@@ -12,7 +12,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useForm } from "react-hook-form";
+import { useForm, FieldError } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createFarmSchema, type CreateFarmValues } from "@/lib/form-schemas";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -20,6 +20,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from '@/lib/auth-utils';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
+import { HttpsCallableResult } from "firebase/functions";
 
 export default function CreateFarmPage() {
   const t = useTranslations('farmManagement.createFarm');
@@ -50,13 +51,23 @@ export default function CreateFarmPage() {
     setIsSubmitting(true);
     try {
         await createFarmCallable(values);
-        toast({
+        toast({ // Use a unique key for success toast to avoid stacking
           title: t('toast.successTitle'),
           description: t('toast.successDescription', { farmName: values.name }),
+          variant: "default",
+          key: `create-farm-success-${Date.now()}`,
         });
         form.reset();
         router.push('/farm-management/farms');
     } catch(error: any) {
+        let errorMessage = t('toast.errorDescription'); // Fallback generic message
+
+        // Check if it's a Firebase HttpsError and use the message if available
+        if (error && typeof error === 'object' && error.message) {
+           // Assume backend sends translation key in error.message for HttpsError
+            errorMessage = t(error.message as any);
+        }
+
         console.error("Error creating farm:", error);
         toast({
           title: t('toast.errorTitle'),
@@ -65,6 +76,7 @@ export default function CreateFarmPage() {
         });
     } finally {
         setIsSubmitting(false);
+        // No need to set a key here, as we want errors to stack if multiple happen
     }
   };
 

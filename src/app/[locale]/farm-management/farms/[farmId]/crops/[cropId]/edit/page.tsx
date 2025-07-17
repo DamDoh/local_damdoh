@@ -42,7 +42,7 @@ import type { Crop } from '@/lib/types';
 
 
 export default function EditCropPage() {
-  const t = useTranslations('farmManagement.createCrop'); // Re-use create translations
+  const t = useTranslations('farmManagement.createCrop');
   const tEdit = useTranslations('farmManagement.editCrop');
   const tConstants = useTranslations('constants');
   const router = useRouter();
@@ -74,8 +74,8 @@ export default function EditCropPage() {
         if (cropData) {
             form.reset({
                 ...cropData,
-                plantingDate: cropData.plantingDate ? new Date(cropData.plantingDate) : undefined,
-                harvestDate: cropData.harvestDate ? new Date(cropData.harvestDate) : undefined,
+                plantingDate: cropData.plantingDate ? new Date(cropData.plantingDate) : null,
+                harvestDate: cropData.harvestDate ? new Date(cropData.harvestDate) : null,
             });
         } else {
              toast({ title: tEdit('toast.notFound'), description: tEdit('toast.loadError'), variant: "destructive" });
@@ -93,7 +93,7 @@ export default function EditCropPage() {
           fetchCropData();
       }
   }, [user, fetchCropData]);
-
+  
   async function onSubmit(data: CreateCropValues) {
     if (!user) return;
 

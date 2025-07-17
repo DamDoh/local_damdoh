@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Sprout, ArrowLeft, Leaf, Package, Sun, CheckCircle, AlertTriangle, Lightbulb, Grid } from "lucide-react";
 import React from "react";
+import parse, { DOMNode, domToReact, HTMLReactParserOptions } from 'html-react-parser';
 import { useTranslations } from "next-intl";
 
 interface Section {
@@ -20,6 +21,31 @@ interface Section {
 
 export default function SeedStartingPage() {
   const t = useTranslations('farmManagement.seedStartingPage');
+
+  // Options for html-react-parser to allow only a safe subset of HTML
+  const parseOptions: HTMLReactParserOptions = {
+    replace: (domNode) => {
+      // Only allow known safe tags
+      if (domNode.type === 'tag') {
+        const element = domNode as unknown as Element; // Cast for tag-specific properties
+        switch (element.tagName) {
+          case 'strong':
+          case 'em':
+          case 'ul':
+          case 'ol':
+          case 'li':
+          case 'br':
+            // Allow these tags and their children
+            return undefined;
+          default:
+            // Strip out all other tags, render their children
+            return <React.Fragment>{domToReact(element.children as DOMNode[], parseOptions)}</React.Fragment>;
+        }
+      }
+      // Keep text nodes and other non-tag nodes
+      return undefined;
+    },
+  };
 
   const sections: Section[] = t.tm('sections');
 
@@ -68,7 +94,7 @@ export default function SeedStartingPage() {
                   {section.steps && (
                      <ol className="list-decimal list-inside text-muted-foreground space-y-3 pl-5">
                        {section.steps.map((step, index) => (
-                         <li key={index} dangerouslySetInnerHTML={{ __html: step }}></li>
+                         <li key={index}>{parse(step, parseOptions)}</li>
                        ))}
                      </ol>
                   )}

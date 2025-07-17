@@ -17,7 +17,7 @@ import { useRouter, Link } from '@/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
-import { Badge } from "@/components/ui/badge";
+import { Badge } from '@/components/ui/badge';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
@@ -26,7 +26,7 @@ import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, Mess
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
-import { Textarea } from '@/components/ui/textarea';
+import { Textarea } from '@/components/ui/textarea'; // Corrected import
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
 import { cn } from '@/lib/utils';
@@ -186,7 +186,7 @@ function ItemPageContent() {
         }
     };
 
-    const handlePlaceOrder = async () => {
+    const handlePlaceOrder = async () => { // Ensure this function exists and is used
         if (!user) {
              toast({ variant: 'destructive', title: t('order.authTitle'), description: t('order.authDescription') });
              router.push('/auth/signin');
@@ -403,7 +403,7 @@ function ItemPageContent() {
                      
                      {seller && (
                         <Card>
-                            <CardHeader>
+                            <CardHeader className="pb-4"> {/* Added padding */}
                                 <CardTitle className="text-lg">{t('aboutSeller')}</CardTitle>
                             </CardHeader> 
                             <CardContent className="flex items-center gap-4">
@@ -427,21 +427,21 @@ function ItemPageContent() {
                     <div className="flex flex-col sm:flex-row gap-2">
                          {isOwner ? (
                              <>
-                                <Button size="lg" className="w-full"><Edit className="mr-2 h-4 w-4" />{t('editListing')}</Button>
+                                <Button size="lg" className="w-full" asChild><Link href={`/marketplace/${item.id}/edit`}><Edit className="mr-2 h-4 w-4" />{t('editListing')}</Link></Button> {/* Added Link for edit */}
                                 {isAgroTourismService && (
                                     <Button asChild size="lg" variant="secondary" className="w-full">
                                         <Link href={`/marketplace/${item.id}/manage-service`}><Settings className="mr-2 h-4 w-4" />{t('manageService')}</Link>
                                     </Button>
                                 )}
                             </>
-                        ) : isAgroTourismService ? null 
+                        ) : isAgroTourismService ? null // Removed redundant "Contact Seller" button for service items, now handled by booking flow
                         : isProduct ? (
                             <Button size="lg" className="w-full" onClick={() => setIsOrderDialogOpen(true)}>
                                 <ShoppingCart className="mr-2 h-4 w-4" />{t('buyNowButton')}
                             </Button>
                         ) : (
                              <Button asChild size="lg" className="w-full">
-                                <Link href={`/messages?with=${item.sellerId}`}><MessageSquare className="mr-2 h-4 w-4" />{t('contactForService')}</Link>
+                                <Link href={`/messages?with=${item.sellerId}`}><MessageSquare className="mr-2 h-4 w-4" />{t('contactSeller')}</Link> {/* Used generic contactSeller for non-product/non-agrotourism */}
                             </Button>
                         )}
                         {!isOwner && !isProduct && !isAgroTourismService && (

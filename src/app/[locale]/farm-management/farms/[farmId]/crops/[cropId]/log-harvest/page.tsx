@@ -26,7 +26,7 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from 'firebase/functions';
+import { getFunctions, httpsCallable, HttpsError } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useTranslations } from "next-intl";
 import { useOfflineSync } from "@/hooks/useOfflineSync";
@@ -40,7 +40,7 @@ export default function LogHarvestPage() {
   const cropId = params.cropId as string; // This acts as our farmFieldId
   const cropType = searchParams.get('cropType') || 'Unknown Crop';
 
-  const { toast } = useToast();
+  const { toast, dismiss } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
   const [createdVtiId, setCreatedVtiId] = useState<string | null>(null);
@@ -84,12 +84,17 @@ export default function LogHarvestPage() {
     if (!isOnline) {
       // Offline logic: Add to queue
       await addActionToQueue({
-        operation: 'create', // This is a complex operation, we'll represent it as a single 'create'
+        operation: 'logHarvestAndCreateVTI', // Operation name matching backend function conceptually
         collectionPath: 'harvest_events', // Conceptual collection for the outbox pattern
         documentId: `harvest-${Date.now()}`, // Unique ID for the offline action
         payload: payload,
       });
       setSubmissionSuccess(true);
+       toast({
+         title: t('offlineToast.title'),
+         description: t('offlineToast.description'),
+         variant: "default" // or "secondary", maybe add a specific offline style
+       });
       // Use a placeholder to indicate offline success
       setCreatedVtiId('offline-vti-placeholder'); 
       setIsSubmitting(false);
@@ -97,19 +102,26 @@ export default function LogHarvestPage() {
     }
     
     // Online logic
+     let loadingToastId: string | undefined;
     try {
+         loadingToastId = toast({
+            title: t('toast.savingTitle'),
+            description: t('toast.savingDescription'),
+            duration: Infinity, // Keep open until dismissed
+         }).id;
+
       const result = await handleHarvestEvent(payload);
       const newVtiId = (result.data as any)?.vtiId;
       setCreatedVtiId(newVtiId);
 
       toast({
-        title: t('success.title'),
-        description: t('success.description', {cropType, vtiId: newVtiId}),
+        title: t('toast.successTitle'),
+        description: t('toast.successDescription', {cropType, vtiId: newVtiId}),
       });
       setSubmissionSuccess(true);
     } catch (error: any) {
       console.error("Error logging harvest:", error);
-      toast({
+       toast({
         variant: "destructive",
         title: t('fail.title'),
         description: error.message || "An error occurred. Please try again.",
@@ -117,6 +129,9 @@ export default function LogHarvestPage() {
     } finally {
       setIsSubmitting(false);
     }
+      if (loadingToastId) {
+          dismiss(loadingToastId);
+      }
   }
   
   const handleResetForm = () => {
@@ -136,10 +151,7 @@ export default function LogHarvestPage() {
                     </div>
                     <CardTitle className="text-2xl pt-4">{t('success.successCardTitle')}</CardTitle>
                     <CardDescription>
-                       {isOfflinePlaceholder
-                            ? t('offlineToast.description')
-                            : t('success.successCardDescription', { cropType, vtiId: createdVtiId })
-                       }
+                       {t('success.successCardDescription', { cropType, vtiId: createdVtiId, isOffline: isOfflinePlaceholder })
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">

@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from "firebase/functions";
+import { getFunctions, httpsCallable, HttpsCallableResult, HttpsError } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -62,7 +62,12 @@ export default function MyFarmsPage() {
         toast({
             variant: "destructive",
             title: t('toast.errorTitle'),
-            description: error.message
+            description: error instanceof HttpsError && error.message
+ ? t(error.message) // Use translation key from backend
+ : t('toast.fetchError'), // Fallback to generic error
+            
+
+
         });
         setFarms([]); // Ensure farms is an array on error
       } finally {
