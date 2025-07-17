@@ -176,7 +176,7 @@
       "invalidCredential": "L'e-mail ou le mot de passe que vous avez entré est incorrect.",
       "invalidEmail": "L'adresse e-mail n'est pas valide.",
       "userDisabled": "Ce compte utilisateur a été désactivé.",
-      "default": "Échec de l'authentification",
+      "default": "Authentification échouée",
       "emailInUse": "Un compte avec cette adresse e-mail existe déjà.",
       "weakPassword": "Le mot de passe est trop faible. Veuillez utiliser un mot de passe plus fort."
     },
@@ -195,5 +195,3 @@
     "error": "Erreur"
   }
 }
-
-    

@@ -4,16 +4,17 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Leaf, Users, Shield, Heart, Handshake, CheckCircle, ArrowRight, BookOpen, Truck, CircleDollarSign, ShoppingCart, Brain, Briefcase, Globe, Database, Thermometer, Filter } from "lucide-react";
+import { Users, Handshake, Briefcase, Globe, BookOpen, Truck, CircleDollarSign, ShoppingCart, Brain, CheckCircle, ArrowRight, Thermometer, Filter, Database } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from '@/navigation';
+import React from 'react';
 
 export default function AboutPage() {
   const t = useTranslations('aboutPage');
 
-  const challenges = t.tm('challenge.list');
+  const challenges: {id: string, text: string, detail: string}[] = t.tm('challenge.list');
   const challengeIcons: { [key: string]: React.ReactElement } = {
     marketAccess: <ShoppingCart className="h-6 w-6 text-destructive" />,
     inefficiency: <Truck className="h-6 w-6 text-destructive" />,
@@ -25,7 +26,7 @@ export default function AboutPage() {
     dataFragmentation: <Database className="h-6 w-6 text-destructive" />
   };
   
-  const solutions = t.tm('solution.list');
+  const solutions: {id: string, text: string}[] = t.tm('solution.list');
   const solutionIcons: { [key: string]: React.ReactElement } = {
     education: <BookOpen className="h-5 w-5 text-primary" />,
     ai: <Brain className="h-5 w-5 text-primary" />,
@@ -34,7 +35,7 @@ export default function AboutPage() {
     financial: <CircleDollarSign className="h-5 w-5 text-primary" />
   };
   
-  const connectionTypes = t.tm('beyondTechnology.list');
+  const connectionTypes: {id: string, title: string, content: string}[] = t.tm('beyondTechnology.list');
    const connectionIcons: { [key: string]: React.ReactElement } = {
     p2p: <Users className="h-5 w-5 text-primary" />,
     p2b: <Handshake className="h-5 w-5 text-primary" />,
@@ -89,7 +90,7 @@ export default function AboutPage() {
                   <p className="text-destructive/80 max-w-2xl mx-auto mt-2">{t('challenge.description')}</p>
               </CardHeader>
               <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-                  {challenges.map((challenge: { id: string; text: string; detail: string }, index: number) => (
+                  {challenges.map((challenge, index) => (
                       <div key={index} className="flex items-start gap-4 p-4 bg-background rounded-lg shadow-sm">
                           <div className="flex-shrink-0 mt-1">{challengeIcons[challenge.id as keyof typeof challengeIcons]}</div>
                           <div>
@@ -110,7 +111,7 @@ export default function AboutPage() {
                   <CardDescription>{t('solution.description')}</CardDescription>
               </CardHeader>
               <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {solutions.map((solution: { id: string; text: string; }, index: number) => (
+                  {solutions.map((solution, index) => (
                       <div key={index} className="flex items-start gap-3 p-3 bg-background rounded-lg">
                            <div className="shrink-0">{solutionIcons[solution.id as keyof typeof solutionIcons]}</div>
                           <p className="text-sm text-muted-foreground">{solution.text}</p>
@@ -123,9 +124,9 @@ export default function AboutPage() {
        {/* Beyond Technology Section */}
       <section className="container">
         <h2 className="text-3xl font-bold tracking-tight text-center mb-8">{t('beyondTechnology.title')}</h2>
-        <Accordion type="single" collapsible className="w-full max-w-3xl mx-auto" defaultValue="c1">
-          {connectionTypes.map((item: {id: string; title: string; content: string}) => (
-            <AccordionItem value={item.id} key={item.id}>
+        <Accordion type="single" collapsible className="w-full max-w-3xl mx-auto" defaultValue="item-0">
+          {connectionTypes.map((item, index) => (
+            <AccordionItem value={`item-${index}`} key={item.id}>
               <AccordionTrigger className="text-lg hover:no-underline">
                 <div className="flex items-center gap-3">
                   {connectionIcons[item.id as keyof typeof connectionIcons]}
@@ -154,5 +155,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
-    

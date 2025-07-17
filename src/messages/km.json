@@ -74,7 +74,7 @@
     "forgotPasswordResetPrompt": "รีเซ็ตรหัสผ่านของคุณสำหรับ {appName}",
     "resetPasswordPrompt": "สร้างรหัสผ่านใหม่สำหรับ {appName}",
     "signInTitle": "ลงชื่อเข้าใช้บัญชีของคุณ",
-    "signInDescription": "ป้อนข้อมูลประจำตัวของคุณเพื่อเข้าถึงแดชบอร์ดของคุณ។",
+    "signInDescription": "ป้อนข้อมูลประจำตัวของคุณเพื่อเข้าถึงแดชบอร์ดของคุณ",
     "emailLabel": "อีเมล",
     "emailPlaceholder": "you@example.com",
     "passwordLabel": "รหัสผ่าน",
@@ -195,5 +195,3 @@
     "error": "ข้อผิดพลาด"
   }
 }
-
-    

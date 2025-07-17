@@ -10,7 +10,7 @@
     "seeAllButton": "Alle ansehen",
     "communityFeedTitle": "Community-Feed",
     "communityFeedDescription": "Vernetzen Sie sich mit anderen, teilen Sie Ihr Wissen und bleiben Sie über die neuesten Gespräche auf dem Laufenden.",
-    "goToFeedButton": "Zum Feed",
+    "goToFeedButton": "Zum Feed gehen",
     "noRecommendations": "Im Moment sind keine Empfehlungen verfügbar. Erkunden Sie den Marktplatz, um loszulegen!"
   },
   "LandingPage": {
@@ -195,5 +195,3 @@
     "error": "Fehler"
   }
 }
-
-    
