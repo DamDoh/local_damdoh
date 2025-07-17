@@ -1,7 +1,6 @@
-
 "use client";
 
-import { Suspense, useEffect } from 'react';
+import { Suspense } from 'react';
 import { PageSkeleton } from '@/components/Skeletons';
 import { MainDashboard } from '@/components/dashboard/MainDashboard';
 import { LandingPage } from '@/components/landing/LandingPage';

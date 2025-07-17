@@ -825,60 +825,60 @@
       }
     },
     "promotions": {
-        "title": "My Promotions",
-        "description": "Create and manage coupon codes to attract more buyers.",
-        "backToDashboard": "Back to Dashboard",
-        "signInPrompt": "Please sign in to manage your promotions.",
-        "create": {
-            "title": "Create New Coupon",
-            "description": "Define the details for your new promotional coupon.",
-            "form": {
-                "code": "Coupon Code",
-                "codePlaceholder": "e.g., SALE20",
-                "usageLimit": "Usage Limit",
-                "usageLimitPlaceholder": "e.g., 100",
-                "discountType": "Discount Type",
-                "discountTypePlaceholder": "Select type",
-                "percentage": "Percentage",
-                "fixed": "Fixed Amount",
-                "discountValue": "Discount Value",
-                "expiryDate": "Expiry Date (Optional)",
-                "pickDate": "Pick a date",
-                "submitButton": "Create Coupon"
-            },
-            "toast": {
-                "successTitle": "Coupon Created!",
-                "successDescription": "Coupon '{code}' is now available.",
-                "failTitle": "Creation Failed"
-            }
-        },
-        "list": {
-            "title": "Existing Coupons",
-            "description": "View and manage your active promotional codes.",
-            "usage": "Usage",
-            "expires": "Expires",
-            "never": "Never",
-            "share": "Share",
-            "noCoupons": "You haven't created any coupons yet.",
-            "toastTitle": "Link Copied!",
-            "toastDescription": "A shareable link for coupon '{link}' has been copied to your clipboard.",
-            "shareModal": {
-                "title": "Share Coupon Code",
-                "description": "Share this link with your customers to automatically apply the coupon.",
-                "link": "Link",
-                "copy": "Copy",
-                "close": "Close"
-            }
+      "title": "My Promotions",
+      "description": "Create and manage coupon codes to attract more buyers.",
+      "backToDashboard": "Back to Dashboard",
+      "signInPrompt": "Please sign in to manage your promotions.",
+      "create": {
+        "title": "Create New Coupon",
+        "description": "Define the details for your new promotional coupon.",
+        "form": {
+          "code": "Coupon Code",
+          "codePlaceholder": "e.g., SALE20",
+          "usageLimit": "Usage Limit",
+          "usageLimitPlaceholder": "e.g., 100",
+          "discountType": "Discount Type",
+          "discountTypePlaceholder": "Select type",
+          "percentage": "Percentage",
+          "fixed": "Fixed Amount",
+          "discountValue": "Discount Value",
+          "expiryDate": "Expiry Date (Optional)",
+          "pickDate": "Pick a date",
+          "submitButton": "Create Coupon"
         },
         "toast": {
-            "error": "Error",
-            "fetchError": "Could not fetch your coupons.",
-            "createSuccess": "Coupon '{code}' created successfully.",
-            "createFail": "Could not create coupon.",
-            "createError": "An unexpected error occurred.",
-            "linkCopied": "Link Copied!",
-            "shareDescription": "Shareable link for coupon '{code}' copied."
+          "successTitle": "Coupon Created!",
+          "successDescription": "Coupon '{code}' is now available.",
+          "failTitle": "Creation Failed"
         }
+      },
+      "list": {
+        "title": "Existing Coupons",
+        "description": "View and manage your active promotional codes.",
+        "usage": "Usage",
+        "expires": "Expires",
+        "never": "Never",
+        "share": "Share",
+        "noCoupons": "You haven't created any coupons yet.",
+        "toastTitle": "Link Copied!",
+        "toastDescription": "A shareable link for coupon '{link}' has been copied to your clipboard.",
+        "shareModal": {
+          "title": "Share Coupon Code",
+          "description": "Share this link with your customers to automatically apply the coupon.",
+          "link": "Link",
+          "copy": "Copy",
+          "close": "Close"
+        }
+      },
+      "toast": {
+        "error": "Error",
+        "fetchError": "Could not fetch your coupons.",
+        "createSuccess": "Coupon '{code}' created successfully.",
+        "createFail": "Could not create coupon.",
+        "createError": "An unexpected error occurred.",
+        "linkCopied": "Link Copied!",
+        "shareDescription": "Shareable link for coupon '{code}' copied."
+      }
     },
     "manageService": {
       "title": "Manage Service",
@@ -2039,3 +2039,4 @@
     "noStakeholdersHint": "Try adjusting your search filters."
   }
 }
+```

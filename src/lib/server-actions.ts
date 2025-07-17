@@ -1,4 +1,3 @@
-
 "use server";
 
 import {
@@ -14,6 +13,7 @@ import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRot
 import { functions } from './firebase/client';
 import { httpsCallable } from 'firebase/functions';
 import { getLocale } from 'next-intl/server';
+import { generateForumPostDraft as generateForumPostDraftFlow } from '@/ai/flows/generate-forum-post-draft';
 
 /**
  * Server Action to fetch a single user profile by ID.
@@ -128,4 +128,25 @@ export async function getForumTopicSuggestions(input: {
     console.error("[Server Action] getForumTopicSuggestions failed:", error);
     return { suggestions: [] };
   }
+}
+
+
+export async function generateForumPostDraftCallable(input: {
+  topicId: string;
+  prompt: string;
+  language: string;
+}) {
+  try {
+    return await generateForumPostDraftFlow(input);
+  } catch (error) {
+    console.error("[Server Action] generateForumPostDraft failed:", error);
+    // You might want to throw a more specific error or handle it as needed
+    throw new Error('Failed to generate draft from AI.');
+  }
+}
+
+export async function getFinancialInstitutions() {
+    const getFisCallable = httpsCallable(functions, 'getFinancialInstitutions');
+    const result = await getFisCallable();
+    return result.data as UserProfile[];
 }
