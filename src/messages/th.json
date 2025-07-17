@@ -1,21 +1,8 @@
 
 {
-  "MobileHomepage": {
-    "welcome": {
-      "morning": "TH: Good Morning, {name}",
-      "afternoon": "TH: Good Afternoon, {name}",
-      "evening": "TH: Good Evening, {name}"
-    },
-    "discoverTitle": "TH: Discover",
-    "seeAllButton": "TH: See All",
-    "communityFeedTitle": "TH: Community Feed",
-    "communityFeedDescription": "TH: Connect with others, share your knowledge, and stay up-to-date with the latest conversations.",
-    "goToFeedButton": "TH: Go to Feed",
-    "noRecommendations": "TH: No recommendations available right now. Explore the marketplace to get started!"
-  },
   "LandingPage": {
     "hero": {
-      "title": "TH: Empowering Agriculture from Soil to Sale on DamDoh",
+      "title": "TH: Empowering Agriculture from Soil to Sale on {appName}",
       "subtitle": "TH: The single platform connecting every stakeholder in the agricultural value chain for a more transparent, efficient, and sustainable future.",
       "getStartedButton": "TH: Get Started for Free",
       "learnMoreButton": "TH: Learn More"
@@ -65,10 +52,10 @@
     }
   },
   "Auth": {
-    "signInWelcome": "TH: Welcome back to DamDoh",
+    "signInWelcome": "TH: Welcome back to {appName}",
     "signUpWelcome": "Join the DamDoh Agricultural Network",
-    "forgotPasswordResetPrompt": "TH: Reset your password for DamDoh",
-    "resetPasswordPrompt": "TH: Create a new password for DamDoh",
+    "forgotPasswordResetPrompt": "TH: Reset your password for {appName}",
+    "resetPasswordPrompt": "TH: Create a new password for {appName}",
     "signInTitle": "TH: Sign in to your account",
     "signInDescription": "TH: Enter your credentials to access your dashboard.",
     "emailLabel": "TH: Email",

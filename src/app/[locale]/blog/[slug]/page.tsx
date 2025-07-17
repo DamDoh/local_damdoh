@@ -15,6 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { useLocale, useTranslations, useFormatter } from 'next-intl';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 interface BlogPost {
   id: string;
@@ -22,6 +23,12 @@ interface BlogPost {
   content_markdown_en: string;
   title_km?: string;
   content_markdown_km?: string;
+  title_fr?: string;
+  content_markdown_fr?: string;
+  title_de?: string;
+  content_markdown_de?: string;
+  title_th?: string;
+  content_markdown_th?: string;
   author: string;
   createdAt: string;
   category: string;
@@ -106,13 +113,14 @@ export default function BlogPostPage() {
     );
   }
 
-  const isKhmer = locale === 'km';
-  const displayTitle = isKhmer && post.title_km ? post.title_km : post.title_en;
-  const displayContent = isKhmer && post.content_markdown_km ? post.content_markdown_km : post.content_markdown_en;
-  
-  const originalLang = isKhmer ? 'en' : 'km';
-  const originalTitle = originalLang === 'en' ? post.title_en : post.title_km;
-  const originalContent = originalLang === 'en' ? post.content_markdown_en : post.content_markdown_km;
+  const getLocalized = (fieldPrefix: string) => {
+    const key = `${fieldPrefix}_${locale}`;
+    // @ts-ignore
+    return post[key] || post[`${fieldPrefix}_en`]; // Fallback to English
+  }
+
+  const displayTitle = getLocalized('title');
+  const displayContent = getLocalized('content_markdown');
 
   return (
     <article className="max-w-3xl mx-auto space-y-6">
@@ -157,18 +165,22 @@ export default function BlogPostPage() {
           </p>
       </div>
       
-      {originalTitle && originalContent && (
-        <div className="pt-6 mt-6 border-t border-dashed">
-            <h3 className="text-sm font-semibold text-muted-foreground mb-2">{t('originalContentTitle', { lang: originalLang.toUpperCase() })}</h3>
-            <div className="space-y-2 p-4 bg-muted/50 rounded-lg">
-                <h2 className="text-2xl font-bold leading-tight">{originalTitle}</h2>
-                 <div className="prose dark:prose-invert max-w-none">
-                    <p className="whitespace-pre-wrap font-sans text-base text-muted-foreground">
-                        {originalContent}
-                    </p>
-                </div>
-            </div>
-        </div>
+      {locale !== 'en' && post.title_en && post.content_markdown_en && (
+         <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1">
+                <AccordionTrigger>{t('originalContentTitle')}</AccordionTrigger>
+                <AccordionContent>
+                   <div className="space-y-2 p-4 bg-muted/50 rounded-lg">
+                        <h2 className="text-2xl font-bold leading-tight">{post.title_en}</h2>
+                        <div className="prose dark:prose-invert max-w-none">
+                            <p className="whitespace-pre-wrap font-sans text-base text-muted-foreground">
+                                {post.content_markdown_en}
+                            </p>
+                        </div>
+                    </div>
+                </AccordionContent>
+            </AccordionItem>
+        </Accordion>
       )}
     </article>
   );
