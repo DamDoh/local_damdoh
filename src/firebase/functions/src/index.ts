@@ -71,7 +71,7 @@ async function deleteCollection(collectionPath: string, batchSize: number): Prom
 /**
  * Recursively deletes documents from a query in batches.
  * @param {FirebaseFirestore.Query} query The query to delete documents from.
- * @param {Function} resolve The promise resolve function.
+ * @param {() => void} resolve The promise resolve function.
  */
 async function deleteQueryBatch(query: admin.firestore.Query, resolve: () => void): Promise<void> {
   const snapshot = await query.get();
