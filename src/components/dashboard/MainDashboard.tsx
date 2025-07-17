@@ -15,10 +15,12 @@ import { functions, app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
 import { collection, query, orderBy, onSnapshot, getFirestore, limit } from "firebase/firestore";
-import { useUserProfile } from '@/hooks/useUserProfile';
 import { uploadFileAndGetURL } from '@/lib/storage-utils';
 import { useTranslations } from 'next-intl';
 import { STAKEHOLDER_ROLES } from '@/lib/constants';
+import { Button } from '../ui/button';
+import { Link } from '@/navigation';
+import { Edit } from 'lucide-react';
 
 // Hub Components
 import { AgroExportDashboard } from '@/components/dashboard/hubs/AgroExportDashboard';
@@ -45,9 +47,6 @@ import { OperationsDashboard } from './hubs/OperationsDashboard';
 import { LogisticsDashboard } from './hubs/processing-logistics/LogisticsDashboard';
 import { ProcessingUnitDashboard } from '@/components/dashboard/hubs/processing-logistics/ProcessingUnitDashboard';
 import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
-import { Button } from '../ui/button';
-import { Link } from '@/navigation';
-import { Edit } from 'lucide-react';
 
 
 const { useState, useEffect, useMemo } = React;
@@ -86,8 +85,7 @@ function MainContent() {
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
   
   const { toast } = useToast();
-  const { user, loading: authLoading } = useAuth();
-  const { profile, loading: profileLoading } = useUserProfile();
+  const { user, profile, loading: authLoading } = useAuth(); // Use the global context
   const t = useTranslations('MainDashboard');
   
   const createPostCallable = httpsCallable(functions, 'createFeedPost');
@@ -191,7 +189,7 @@ function MainContent() {
   };
 
   const renderContent = () => {
-    if (authLoading || profileLoading) {
+    if (authLoading) {
       return (
         <div className="space-y-6">
           <Skeleton className="h-48 w-full rounded-lg" />
@@ -201,7 +199,7 @@ function MainContent() {
     }
     
     // Check if the profile is incomplete (using a simple heuristic for now)
-    const isProfileIncomplete = profile && (!profile.profileSummary || profile.profileSummary.includes("New User") || !profile.location);
+    const isProfileIncomplete = profile && (!profile.profileSummary || profile.profileSummary.includes("Just joined") || !profile.location);
 
     if (isProfileIncomplete) {
         return (

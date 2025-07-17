@@ -3,15 +3,14 @@
 
 import {
   getProfileByIdFromDB as getProfileByIdFromDB_internal,
-  getAllProfilesFromDB as getAllProfilesFromDB_internal,
 } from './db-utils';
-
+import { isServerAuthenticated } from './server-auth-utils';
 import { suggestMarketPrice } from "@/ai/flows/suggest-market-price-flow";
 import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";
 import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
 import { suggestForumTopics as suggestForumTopicsFlow } from '@/ai/flows/forum-topic-suggestions';
 import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRotationOutput, CreateFarmValues, CreateCropValues, Farm } from '@/lib/types';
-import { functions } from './firebase/client';
+import { functions } from './firebase/client-server';
 import { httpsCallable } from 'firebase/functions';
 import { getLocale } from 'next-intl/server';
 import { generateForumPostDraftFlow } from '@/ai/flows/generate-forum-post-draft';
@@ -33,6 +32,9 @@ export async function getProfileByIdFromDB(id: string): Promise<UserProfile | nu
  * @returns A promise that resolves to an array of search results.
  */
 export async function performSearch(interpretation: Partial<SmartSearchInterpretation>): Promise<any[]> {
+  const isAuthenticated = await isServerAuthenticated();
+  if (!isAuthenticated) { throw new Error("Unauthorized"); }
+  
   try {
       const performSearchCallable = httpsCallable(functions, 'performSearch');
       const result = await performSearchCallable(interpretation);
@@ -53,6 +55,9 @@ export async function performSearch(interpretation: Partial<SmartSearchInterpret
  * @returns A promise that resolves to an array of recommendation objects.
  */
 export async function getMarketplaceRecommendationsAction(userId: string, count: number = 5) {
+    const isAuthenticated = await isServerAuthenticated();
+    if (!isAuthenticated) { throw new Error("Unauthorized"); }
+  
     try {
         const locale = await getLocale();
         const result = await getMarketplaceRecommendations({ userId, count, language: locale });
@@ -70,6 +75,9 @@ export async function getMarketplaceRecommendationsAction(userId: string, count:
  * @returns A promise that resolves to the crop rotation suggestions.
  */
 export async function suggestCropRotationAction(input: Omit<CropRotationInput, 'language'>): Promise<CropRotationOutput> {
+    const isAuthenticated = await isServerAuthenticated();
+    if (!isAuthenticated) { throw new Error("Unauthorized"); }
+  
     try {
         const locale = await getLocale();
         return await suggestCropRotation({ ...input, language: locale });
@@ -81,24 +89,32 @@ export async function suggestCropRotationAction(input: Omit<CropRotationInput, '
 
 // Server Action Wrappers for Farm Management
 export async function getFarm(farmId: string): Promise<Farm | null> {
+    const isAuthenticated = await isServerAuthenticated();
+    if (!isAuthenticated) { throw new Error("Unauthorized"); }
     const getFarmCallable = httpsCallable(functions, 'getFarm');
     const result = await getFarmCallable({ farmId });
     return result.data as Farm | null;
 }
 
 export async function updateFarm(farmId: string, data: CreateFarmValues): Promise<{ success: boolean; farmId: string; }> {
+    const isAuthenticated = await isServerAuthenticated();
+    if (!isAuthenticated) { throw new Error("Unauthorized"); }
     const updateFarmCallable = httpsCallable(functions, 'updateFarm');
     const result = await updateFarmCallable({ farmId, ...data });
     return result.data as { success: boolean; farmId: string; };
 }
 
 export async function getCrop(cropId: string): Promise<any | null> {
+    const isAuthenticated = await isServerAuthenticated();
+    if (!isAuthenticated) { throw new Error("Unauthorized"); }
     const getCropCallable = httpsCallable(functions, 'getCrop');
     const result = await getCropCallable({ cropId });
     return result.data as any | null;
 }
 
 export async function updateCrop(cropId: string, data: CreateCropValues): Promise<{ success: boolean; message: string; }> {
+    const isAuthenticated = await isServerAuthenticated();
+    if (!isAuthenticated) { throw new Error("Unauthorized"); }
     const updateCropCallable = httpsCallable(functions, 'updateCrop');
     const result = await updateCropCallable({ cropId, ...data });
     return result.data as { success: boolean; message: string; };
@@ -114,6 +130,8 @@ export async function getForumTopicSuggestions(input: {
   existingTopics: { name: string; description: string }[];
   language: string;
 }): Promise<{ suggestions: { title: string; description: string }[] }> {
+    const isAuthenticated = await isServerAuthenticated();
+    if (!isAuthenticated) { throw new Error("Unauthorized"); }
   try {
     return await suggestForumTopicsFlow(input);
   } catch (error) {
@@ -128,6 +146,8 @@ export async function generateForumPostDraftCallable(input: {
   prompt: string;
   language: string;
 }) {
+    const isAuthenticated = await isServerAuthenticated();
+    if (!isAuthenticated) { throw new Error("Unauthorized"); }
   try {
     return await generateForumPostDraftFlow(input);
   } catch (error) {
@@ -138,6 +158,8 @@ export async function generateForumPostDraftCallable(input: {
 }
 
 export async function getFinancialInstitutions() {
+    const isAuthenticated = await isServerAuthenticated();
+    if (!isAuthenticated) { throw new Error("Unauthorized"); }
     const getFisCallable = httpsCallable(functions, 'getFinancialInstitutions');
     const result = await getFisCallable();
     return result.data as UserProfile[];

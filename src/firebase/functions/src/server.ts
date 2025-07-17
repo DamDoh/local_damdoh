@@ -1,8 +1,9 @@
 
+
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import * as admin from 'firebase-admin';
-import { _internalAssessCreditRisk } from './financial-services'; // Assuming this function is accessible
+import { _internalAssessCreditRisk } from './financial-services'; 
 
 // Initialize Firebase Admin if it hasn't been already.
 // This is important because this file might be the entry point in a Cloud Run environment,

@@ -10,7 +10,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Brain, Key, Server, Rocket, Copy, EyeOff, Eye, PlusCircle, Trash2, Loader2, CheckCircle } from 'lucide-react';
-import type { ApiKey } from '@/lib/types';
+import type { AgriTechInnovatorDashboardData, ApiKey } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 import { format, formatDistanceToNow } from 'date-fns';
 import { useTranslations } from 'next-intl';
@@ -88,7 +88,7 @@ const ApiKeyRow = ({ apiKey, onRevoke }: { apiKey: ApiKey, onRevoke: (keyId: str
 export const AgriTechInnovatorDashboard = () => {
   const t = useTranslations('AgriTechDashboard');
   const { toast } = useToast();
-  const [dashboardData, setDashboardData] = useState<any | null>(null);
+  const [dashboardData, setDashboardData] = useState<AgriTechInnovatorDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isGenerateModalOpen, setIsGenerateModalOpen] = useState(false);

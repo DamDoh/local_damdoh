@@ -15,13 +15,15 @@ import { auth, functions } from './firebase/client';
 import { httpsCallable } from "firebase/functions";
 import type { StakeholderRole } from './constants';
 import { createContext, useContext } from 'react';
+import type { UserProfile } from './types';
 
 export interface AuthContextType {
   user: FirebaseUser | null;
+  profile: UserProfile | null;
   loading: boolean;
 }
 
-export const AuthContext = createContext<AuthContextType>({ user: null, loading: true });
+export const AuthContext = createContext<AuthContextType>({ user: null, profile: null, loading: true });
 
 export const useAuth = () => {
   const context = useContext(AuthContext);

@@ -1,3 +1,4 @@
+
 // src/lib/server-auth-utils.ts
 import { headers } from 'next/headers';
 import { getAdminAuth } from './firebase/admin';
@@ -32,7 +33,7 @@ export async function isServerAuthenticated(): Promise<boolean> {
     await adminAuth.verifyIdToken(token);
     return true;
   } catch (error) {
-    console.error("isServerAuthenticated: Auth token verification error:", error);
+    console.log("isServerAuthenticated: Auth token verification failed:", (error as Error).message);
     return false;
   }
 }

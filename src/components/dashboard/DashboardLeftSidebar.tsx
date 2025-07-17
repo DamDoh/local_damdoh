@@ -19,17 +19,16 @@ import { useTranslations } from 'next-intl';
 export function DashboardLeftSidebar() {
   const t = useTranslations('DashboardLeftSidebar');
   const { toast } = useToast();
-  const { profile, loading } = useUserProfile();
-  const { user } = useAuth();
+  const { profile, loading } = useAuth(); // Changed to useAuth
   
   const [stats, setStats] = useState<{ profileViews: number, postLikes: number, postComments: number } | null>(null);
   const [isLoadingStats, setIsLoadingStats] = useState(true);
 
 
   useEffect(() => {
-    if (user) {
+    if (profile?.id) { // Use profile.id instead of user
         const getStatsCallable = httpsCallable(functions, 'getUserEngagementStats');
-        getStatsCallable({ userId: user.uid })
+        getStatsCallable({ userId: profile.id })
             .then(result => {
                 setStats(result.data as any);
             })
@@ -41,11 +40,11 @@ export function DashboardLeftSidebar() {
             .finally(() => {
                 setIsLoadingStats(false);
             });
-    } else {
+    } else if (!loading) { // If not loading and still no profile
         setIsLoadingStats(false);
         setStats({ profileViews: 0, postLikes: 0, postComments: 0 }); 
     }
-  }, [user]);
+  }, [profile, loading]); // Depend on profile and loading state from context
 
 
   const handleTryProClick = () => {
@@ -82,7 +81,7 @@ export function DashboardLeftSidebar() {
         <CardContent className="pt-6 text-center">
           <Link href="/profiles/me">
             <Avatar className="h-20 w-20 mx-auto mb-2 border-2 border-primary cursor-pointer">
-              <AvatarImage src={profile?.avatarUrl} alt={profile?.displayName} data-ai-hint="profile agriculture" />
+              <AvatarImage src={profile?.avatarUrl ?? undefined} alt={profile?.displayName} data-ai-hint="profile agriculture" />
               <AvatarFallback>{profile?.displayName?.substring(0, 2).toUpperCase() || 'U'}</AvatarFallback>
             </Avatar>
           </Link>
