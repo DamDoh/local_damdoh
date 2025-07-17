@@ -1,65 +1,46 @@
+
 rules_version = '2';
 
-// The service that controls access to files in Cloud Storage.
 service firebase.storage {
-  // The {bucket} wildcard indicates that these rules apply to all buckets in your project.
   match /b/{bucket}/o {
-
-    // Helper function to check if the user is authenticated.
-    function isAuthenticated() {
-      return request.auth != null;
-    }
-
-    // Helper function to check if the user ID from the path matches the authenticated user's UID.
-    function isOwner(userId) {
-      return request.auth.uid == userId;
-    }
-
-    // Default deny all reads and writes to ensure no path is left unsecured.
+  
+    // Default deny all access to all files.
     match /{allPaths=**} {
       allow read, write: if false;
     }
 
-    // --- User Profile Images ---
-    // Path: /users/{userId}/profile/avatar.jpg
-    match /users/{userId}/profile/{fileName} {
-      // Anyone can read profile pictures.
-      allow read: if true;
-      // Only the owner of the profile can upload or update their own profile picture.
-      allow write: if isOwner(userId);
-    }
-    
-     // --- Post Images ---
-    // Path: /feed-posts/{userId}/{postId}/{fileName}
-    match /feed-posts/{userId}/{postId}/{fileName} {
-        allow read: if true;
-        allow write: if isOwner(userId);
-    }
-
-    // --- Marketplace Item Images ---
-    // Path: /marketplace-items/{itemId}/{fileName}
-    match /marketplace-items/{itemId}/{fileName} {
-      // Anyone can view marketplace item images.
-      allow read: if true;
-      // Only authenticated users can upload images for new listings.
-      // A more robust rule would check if the user is the owner of the associated Firestore document.
-      // This requires custom claims or a separate function call, so we'll keep it simple for now.
-      allow write: if isAuthenticated();
-    }
-
-    // --- Event Banner Images ---
-    // Path: /event-banners/{fileName}
+    // Allow public read access for event banners.
     match /event-banners/{fileName} {
       allow read: if true;
-      allow write: if isAuthenticated();
+      // Only authenticated users can upload banners (via cloud function).
+      allow write: if request.auth != null;
     }
     
-    // --- Observation Images for Traceability ---
-    // Path: /observations/{cropId}/{fileName}
-    match /observations/{cropId}/{fileName} {
-        allow read: if isAuthenticated(); // Only logged-in users can see observation images for now.
-        allow write: if isAuthenticated();
+    // Allow public read access for marketplace listing images.
+    match /marketplace-listings/{fileName} {
+      allow read: if true;
+      allow write: if request.auth != null;
     }
 
+    // Allow public read access for user avatars.
+    match /user-avatars/{userId}/{fileName} {
+      allow read: if true;
+      // Only the authenticated user can upload to their own avatar folder.
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+     // Allow public read for observation images.
+    match /observations/{cropId}/{fileName} {
+       allow read: if true;
+       allow write: if request.auth != null;
+    }
+    
+    // Allow public read access for general feed post images.
+    match /feed-posts/{userId}/{fileName} {
+      allow read: if true;
+      // Only the authenticated user can upload to their own feed post folder.
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
   }
 }
+    

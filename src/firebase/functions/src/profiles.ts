@@ -4,7 +4,6 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
 import { UserRole } from "./types";
-import { geohashForLocation } from 'geofire-common';
 
 const db = admin.firestore();
 
@@ -404,3 +403,5 @@ export const deleteUserAccount = functions.https.onCall(async (data, context) =>
         throw new functions.https.HttpsError('internal', 'Failed to delete account.');
     }
 });
+
+    
