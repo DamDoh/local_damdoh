@@ -27,6 +27,7 @@ export * from "./profiles";
 export * from "./farm-management";
 export * from "./marketplace";
 export * from "./community";
+export * from "./ai-and-analytics";
 export * from "./financial-services";
 export * from "./knowledge-hub";
 export * from "./api-gateway";

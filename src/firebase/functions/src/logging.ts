@@ -1,3 +1,4 @@
+
 // A structured logger for Cloud Functions to enable better monitoring and alerting.
 // By logging in a structured JSON format, we can easily create metrics and alerts
 // in Google Cloud's operations suite based on specific fields (like 'severity' or 'name').
