@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -222,7 +221,7 @@ export const markNotificationAsRead = functions.https.onCall(
     if (!context.auth) {
       throw new functions.https.HttpsError(
         "unauthenticated",
-        "User must be authenticated.",
+        "error.unauthenticated",
       );
     }
 
@@ -230,7 +229,7 @@ export const markNotificationAsRead = functions.https.onCall(
     if (!notificationId) {
       throw new functions.https.HttpsError(
         "invalid-argument",
-        "Notification ID is required.",
+        "error.notificationId.required",
       );
     }
 
@@ -243,7 +242,7 @@ export const markNotificationAsRead = functions.https.onCall(
     ) {
       throw new functions.https.HttpsError(
         "permission-denied",
-        "You do not have permission to update this notification.",
+        "error.permissionDenied",
       );
     }
 
@@ -263,7 +262,7 @@ export const manageNotificationPreferences = functions.https.onCall(
     if (!context.auth) {
       throw new functions.https.HttpsError(
         "unauthenticated",
-        "User must be authenticated.",
+        "error.unauthenticated",
       );
     }
 
