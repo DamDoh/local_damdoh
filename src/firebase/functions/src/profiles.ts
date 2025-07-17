@@ -1,8 +1,11 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { v4 as uuidv4 } from "uuid";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
 import { UserRole } from "@/lib/types";
+import { geohashForLocation } from "geofire-common";
+
 
 const db = admin.firestore();
 
@@ -17,20 +20,25 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
     console.log(`New user signed up: ${user.uid}, email: ${user.email}`);
 
     const userRef = db.collection("users").doc(user.uid);
-    
+    const universalId = uuidv4();
+    const defaultLocation = { lat: 0, lng: 0, address: "Not specified" };
+
     try {
         // Only set the most basic, non-user-provided information here.
         // Role and display name will be handled by the client call to upsertStakeholderProfile.
-        // The universalId is handled by a separate trigger in universal-id.ts
         await userRef.set({
             uid: user.uid,
             email: user.email,
+            displayName: user.displayName || user.email?.split('@')[0] || "New User",
             avatarUrl: user.photoURL || null,
             primaryRole: 'Consumer', // Default role. User will update this in their profile.
             profileSummary: "Just joined the DamDoh community!", // A generic initial summary.
+            universalId: universalId,
+            location: defaultLocation,
+            geohash: geohashForLocation([defaultLocation.lat, defaultLocation.lng]),
+            viewCount: 0,
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-            viewCount: 0,
         });
         console.log(`Successfully created Firestore base profile for user ${user.uid}.`);
         return null;
@@ -39,6 +47,130 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
         return null;
     }
 });
+
+
+/**
+ * A cleanup function triggered when a user is deleted from Firebase Authentication.
+ * This function performs a "cascade delete" to remove all of a user's data
+ * from various collections in Firestore, ensuring data privacy compliance.
+ */
+export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) => {
+    const userId = user.uid;
+    console.log(`Starting data cleanup for deleted user: ${userId}`);
+
+    const db = admin.firestore();
+    const userRef = db.collection('users').doc(userId);
+
+    const cleanupPromises: Promise<any>[] = [];
+
+    // 1. Delete main user profile document
+    cleanupPromises.push(userRef.delete());
+
+    // 2. Delete all subcollections of the user
+    cleanupPromises.push(deleteCollection(`users/${userId}/workers`, 100));
+    cleanupPromises.push(deleteCollection(`users/${userId}/api_keys`, 50));
+    cleanupPromises.push(deleteCollection(`users/${userId}/certifications`, 50));
+
+
+    // 3. Delete all top-level documents directly created by the user
+    const collectionsToClean: { name: string, userField: string }[] = [
+        { name: 'posts', userField: 'userId' },
+        { name: 'farms', userField: 'ownerId' },
+        { name: 'crops', userField: 'ownerId' },
+        { name: 'knf_batches', userField: 'userId' },
+        { name: 'marketplaceItems', userField: 'sellerId' },
+        { name: 'shops', userField: 'ownerId' },
+        { name: 'agri_events', userField: 'organizerId' },
+        { name: 'financial_transactions', userField: 'userRef' }, // Note: userRef is a reference, not a string
+    ];
+
+    collectionsToClean.forEach(collectionInfo => {
+        const userIdentifier = collectionInfo.userField === 'userRef' ? userRef : userId;
+        const query = db.collection(collectionInfo.name).where(collectionInfo.userField, '==', userIdentifier);
+        cleanupPromises.push(query.get().then(snapshot => {
+            if (snapshot.empty) return;
+            const batch = db.batch();
+            snapshot.docs.forEach(doc => batch.delete(doc.ref));
+            return batch.commit();
+        }));
+    });
+    
+    // 4. Clean up connections in other users' documents
+    const connectionsQuery = db.collection('users').where('connections', 'array-contains', userId);
+    cleanupPromises.push(connectionsQuery.get().then(snapshot => {
+        if (snapshot.empty) return;
+        const batch = db.batch();
+        snapshot.docs.forEach(doc => {
+            batch.update(doc.ref, { connections: admin.firestore.FieldValue.arrayRemove(userId) });
+        });
+        return batch.commit();
+    }));
+    
+    // 5. Clean up group memberships
+    const groupMembershipQuery = db.collectionGroup('members').where(admin.firestore.FieldPath.documentId(), '==', userId);
+    cleanupPromises.push(groupMembershipQuery.get().then(snapshot => {
+      if (snapshot.empty) return;
+      const batch = db.batch();
+      snapshot.docs.forEach(doc => {
+        const groupRef = doc.ref.parent.parent;
+        if(groupRef) {
+          batch.update(groupRef, { memberCount: admin.firestore.FieldValue.increment(-1) });
+        }
+        batch.delete(doc.ref);
+      });
+      return batch.commit();
+    }));
+
+
+    try {
+        await Promise.all(cleanupPromises);
+        console.log(`Successfully completed data cleanup for user: ${userId}`);
+    } catch (error) {
+        console.error(`Error during data cleanup for user ${userId}:`, error);
+    }
+});
+
+
+/**
+ * Recursively deletes a collection in batches.
+ * This is a helper function used by onUserDeleteCleanup.
+ * @param {string} collectionPath The path of the collection to delete.
+ * @param {number} batchSize The number of documents to delete in each batch.
+ * @return {Promise<void>}
+ */
+async function deleteCollection(collectionPath: string, batchSize: number): Promise<void> {
+  const db = admin.firestore();
+  const collectionRef = db.collection(collectionPath);
+  const query = collectionRef.orderBy('__name__').limit(batchSize);
+
+  return new Promise((resolve, reject) => {
+    deleteQueryBatch(query, resolve).catch(reject);
+  });
+}
+
+/**
+ * Recursively deletes documents from a query in batches.
+ * @param {FirebaseFirestore.Query} query The query to delete documents from.
+ * @param {() => void} resolve The promise resolve function.
+ */
+async function deleteQueryBatch(query: admin.firestore.Query, resolve: () => void): Promise<void> {
+  const snapshot = await query.get();
+
+  if (snapshot.size === 0) {
+    resolve();
+    return;
+  }
+
+  const batch = admin.firestore().batch();
+  snapshot.docs.forEach((doc) => {
+    batch.delete(doc.ref);
+  });
+  await batch.commit();
+
+  process.nextTick(() => {
+    deleteQueryBatch(query, resolve);
+  });
+}
 
 
 /**
@@ -226,164 +358,6 @@ export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
     }
 }
 
-/**
- * Logs a profile view event and increments the view count on the user's profile.
- * @param {any} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{success: boolean, logId?: string, message?: string}>} A promise that resolves with the operation status.
- */
-export const logProfileView = functions.https.onCall(async (data, context) => {
-    const viewerId = checkAuth(context);
-    const { viewedId } = data;
-
-    if (!viewedId) {
-        throw new functions.https.HttpsError("invalid-argument", "A 'viewedId' must be provided.");
-    }
-
-    // Don't log self-views
-    if (viewerId === viewedId) {
-        console.log("User viewed their own profile. No log created.");
-        return { success: true, message: "Self-view, not logged." };
-    }
-    
-    const viewedUserRef = db.collection('users').doc(viewedId);
-    
-    // Atomically increment the view count on the user's profile.
-    await viewedUserRef.update({
-        viewCount: admin.firestore.FieldValue.increment(1)
-    });
-
-    const logRef = db.collection('profile_views').doc();
-    await logRef.set({
-        viewerId,
-        viewedId,
-        timestamp: admin.firestore.FieldValue.serverTimestamp(),
-    });
-
-    return { success: true, logId: logRef.id };
-});
-
-
-/**
- * Fetches recent activity for a given user.
- * @param {any} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{activities: any[]}>} A promise that resolves with the user's recent activities.
- */
-export const getUserActivity = functions.https.onCall(async (data, context) => {
-    checkAuth(context);
-    const { userId } = data;
-    if (!userId) {
-        throw new functions.https.HttpsError('invalid-argument', 'A userId must be provided.');
-    }
-
-    try {
-        const postsPromise = db.collection('posts').where('userId', '==', userId).orderBy('createdAt', 'desc').limit(5).get();
-        const ordersPromise = db.collection('marketplace_orders').where('buyerId', '==', userId).orderBy('createdAt', 'desc').limit(5).get();
-        const salesPromise = db.collection('marketplace_orders').where('sellerId', '==', userId).orderBy('createdAt', 'desc').limit(5).get();
-        const eventsPromise = db.collection('traceability_events').where('actorRef', '==', userId).orderBy('timestamp', 'desc').limit(5).get();
-
-        const [postsSnap, ordersSnap, salesSnap, eventsSnap] = await Promise.all([postsPromise, ordersPromise, salesSnap, eventsSnap]);
-        
-        const activities: any[] = [];
-        const toISODate = (timestamp: admin.firestore.Timestamp | undefined) => {
-            return timestamp && timestamp.toDate ? timestamp.toDate().toISOString() : new Date().toISOString();
-        };
-
-        postsSnap.forEach(doc => {
-            const post = doc.data();
-            activities.push({
-                id: doc.id,
-                type: 'Shared a Post',
-                title: post.content.substring(0, 70) + (post.content.length > 70 ? '...' : ''),
-                timestamp: toISODate(post.createdAt),
-                icon: 'MessageSquare'
-            });
-        });
-
-        ordersSnap.forEach(doc => {
-            const order = doc.data();
-            activities.push({
-                id: doc.id,
-                type: 'Placed an Order',
-                title: `For: ${order.listingName}`,
-                timestamp: toISODate(order.createdAt),
-                icon: 'ShoppingCart'
-            });
-        });
-
-        salesSnap.forEach(doc => {
-            const sale = doc.data();
-            activities.push({
-                id: doc.id,
-                type: 'Received an Order',
-                title: `For: ${sale.listingName}`,
-                timestamp: toISODate(sale.createdAt),
-                icon: 'CircleDollarSign'
-            });
-        });
-        
-        eventsSnap.forEach(doc => {
-            const event = doc.data();
-            activities.push({
-                id: doc.id,
-                type: `Logged Event: ${event.eventType}`,
-                title: event.payload?.inputId || event.payload?.cropType || 'Traceability Update',
-                timestamp: toISODate(event.timestamp),
-                icon: 'GitBranch'
-            });
-        });
-
-        // Sort all activities by date and take the most recent 10
-        activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-
-        return { activities: activities.slice(0, 10) };
-
-    } catch (error) {
-        console.error(`Error fetching activity for user ${userId}:`, error);
-        throw new functions.https.HttpsError('internal', 'error.activity.fetchFailed');
-    }
-});
-
-/**
- * Fetches engagement statistics for a given user.
- * @param {object} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<object>} A promise that resolves with the user's engagement stats.
- */
-export const getUserEngagementStats = functions.https.onCall(async (data, context) => {
-    checkAuth(context);
-    const { userId } = data;
-     if (!userId) {
-        throw new functions.https.HttpsError('invalid-argument', 'A userId must be provided.');
-    }
-
-    try {
-        // Fetch the user document to get the pre-aggregated view count.
-        const userDoc = await db.collection('users').doc(userId).get();
-        const profileViews = userDoc.data()?.viewCount || 0;
-
-        // The logic for likes and comments remains the same, as it's already performant.
-        const postsQuery = db.collection('posts').where('userId', '==', userId).get();
-        const postsSnapshot = await postsQuery;
-
-        let postLikes = 0;
-        let postComments = 0;
-        postsSnapshot.forEach(doc => {
-            postLikes += doc.data().likesCount || 0;
-            postComments += doc.data().commentsCount || 0;
-        });
-
-        return {
-            profileViews,
-            postLikes,
-            postComments
-        };
-    } catch (error) {
-        console.error(`Error fetching engagement stats for user ${userId}:`, error);
-        throw new functions.https.HttpsError('internal', 'error.stats.fetchFailed');
-    }
-});
 
 /**
  * Deletes the calling user's account from Firebase Authentication.
