@@ -68,6 +68,27 @@
       "button": "Create Your Free Account"
     }
   },
+  "AppFooter": {
+    "tagline": "Connecting the entire agricultural value chain.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "About Us",
+    "contactLabel": "Contact",
+    "careersLabel": "Careers",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Resources",
+    "helpCenterLabel": "Help Center",
+    "communityGuidelinesLabel": "Community Guidelines",
+    "industryNewsLabel": "Industry News",
+    "eventsLabel": "Events",
+    "talentExchangeLabel": "Talent Exchange",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Privacy Policy",
+    "termsOfServiceLabel": "Terms of Service",
+    "copyright": "© {year} {appName}. All Rights Reserved.",
+    "getMobileApp": "Get the Mobile App",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store"
+  },
   "forumsPage": {
     "title": "Forums",
     "description": "Connect with others, share your knowledge, and stay up-to-date with the latest conversations.",

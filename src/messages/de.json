@@ -68,6 +68,60 @@
       "button": "Kostenloses Konto erstellen"
     }
   },
+  "AppFooter": {
+    "tagline": "Verbindung der gesamten landwirtschaftlichen Wertschöpfungskette.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Über uns",
+    "contactLabel": "Kontakt",
+    "careersLabel": "Karriere",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressourcen",
+    "helpCenterLabel": "Hilfezentrum",
+    "communityGuidelinesLabel": "Community-Richtlinien",
+    "industryNewsLabel": "Branchennachrichten",
+    "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
+    "legalTitle": "Rechtliches",
+    "privacyPolicyLabel": "Datenschutzrichtlinie",
+    "termsOfServiceLabel": "Nutzungsbedingungen",
+    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
+    "getMobileApp": "Holen Sie sich die mobile App",
+    "googlePlayAlt": "Bei Google Play holen",
+    "appStoreAlt": "Im App Store herunterladen"
+  },
+  "forumsPage": {
+    "title": "Foren",
+    "description": "Vernetzen Sie sich mit anderen, teilen Sie Ihr Wissen und bleiben Sie über die neuesten Gespräche auf dem Laufenden.",
+    "createTopic": "Thema erstellen",
+    "searchPlaceholder": "Themen suchen...",
+    "suggestedTopicsTitle": "Vorgeschlagene Themen",
+    "activity": "Aktiv vor {time}",
+    "joinDiscussion": "Diskussion beitreten",
+    "pinning": {
+      "unpinButton": "Homepage loslösen",
+      "pinButton": "Als Homepage anheften",
+      "pinnedTitle": "Foren angeheftet",
+      "pinnedDescription": "Die Forenseite ist jetzt Ihre Standard-Homepage.",
+      "unpinnedTitle": "Foren losgelöst",
+      "unpinnedDescription": "Ihre Homepage wurde auf die Standardeinstellung zurückgesetzt."
+    },
+    "noTopics": {
+      "title": "Noch keine Themen",
+      "description": "Seien Sie der Erste, der ein Forumsthema erstellt!"
+    },
+    "noTopicsFound": {
+      "title": "Keine Themen gefunden",
+      "description": "Versuchen Sie, Ihre Suchfilter anzupassen, oder schauen Sie später wieder vorbei."
+    },
+    "errors": {
+      "loadTitle": "Fehler beim Laden der Themen",
+      "loadDescription": "Forumsthemen konnten zu diesem Zeitpunkt nicht geladen werden.",
+      "loadSuggestions": {
+        "title": "Fehler beim Laden der Vorschläge",
+        "description": "Themenvorschläge konnten nicht abgerufen werden."
+      }
+    }
+  },
   "Auth": {
     "signInWelcome": "Willkommen zurück bei {appName}",
     "signUpWelcome": "Treten Sie dem DamDoh Agrarnetzwerk bei",

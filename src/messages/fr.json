@@ -68,6 +68,60 @@
       "button": "Créez votre compte gratuit"
     }
   },
+  "AppFooter": {
+    "tagline": "Connecter toute la chaîne de valeur agricole.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "À propos de nous",
+    "contactLabel": "Contact",
+    "careersLabel": "Carrières",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressources",
+    "helpCenterLabel": "Centre d'aide",
+    "communityGuidelinesLabel": "Directives de la communauté",
+    "industryNewsLabel": "Actualités du secteur",
+    "eventsLabel": "Événements",
+    "talentExchangeLabel": "Bourse de talents",
+    "legalTitle": "Légal",
+    "privacyPolicyLabel": "Politique de confidentialité",
+    "termsOfServiceLabel": "Conditions d'utilisation",
+    "copyright": "© {year} {appName}. Tous droits réservés.",
+    "getMobileApp": "Obtenez l'application mobile",
+    "googlePlayAlt": "Obtenez-le sur Google Play",
+    "appStoreAlt": "Télécharger sur l'App Store"
+  },
+  "forumsPage": {
+    "title": "Forums",
+    "description": "Connectez-vous avec les autres, partagez vos connaissances et restez à jour sur les dernières conversations.",
+    "createTopic": "Créer un sujet",
+    "searchPlaceholder": "Rechercher des sujets...",
+    "suggestedTopicsTitle": "Sujets suggérés",
+    "activity": "Actif {time}",
+    "joinDiscussion": "Rejoindre la discussion",
+    "pinning": {
+      "unpinButton": "Détacher la page d'accueil",
+      "pinButton": "Épingler comme page d'accueil",
+      "pinnedTitle": "Forums épinglés",
+      "pinnedDescription": "La page des forums est maintenant votre page d'accueil par défaut.",
+      "unpinnedTitle": "Forums détachés",
+      "unpinnedDescription": "Votre page d'accueil a été réinitialisée par défaut."
+    },
+    "noTopics": {
+      "title": "Aucun sujet pour l'instant",
+      "description": "Soyez le premier à créer un sujet de forum !"
+    },
+    "noTopicsFound": {
+      "title": "Aucun sujet trouvé",
+      "description": "Essayez d'ajuster vos filtres de recherche ou revenez plus tard."
+    },
+    "errors": {
+      "loadTitle": "Erreur de chargement des sujets",
+      "loadDescription": "Impossible de charger les sujets du forum pour le moment.",
+      "loadSuggestions": {
+        "title": "Erreur de chargement des suggestions",
+        "description": "Impossible de récupérer les suggestions de sujets."
+      }
+    }
+  },
   "Auth": {
     "signInWelcome": "Content de vous revoir sur {appName}",
     "signUpWelcome": "Rejoignez le réseau agricole DamDoh",
