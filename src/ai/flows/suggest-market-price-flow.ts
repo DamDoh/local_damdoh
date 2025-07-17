@@ -17,6 +17,7 @@ export const SuggestMarketPriceInputSchema = z.object({
   description: z.string().describe('A detailed description of the product, including quality, origin, and certifications.'),
   category: z.string().optional().describe('The marketplace category of the product.'),
   location: z.string().optional().describe('The location where the product is being sold.'),
+  language: z.string().optional().describe('The language for the AI to respond in (e.g., "en", "km"). Defaults to English.'),
 });
 export type SuggestMarketPriceInput = z.infer<typeof SuggestMarketPriceInputSchema>;
 

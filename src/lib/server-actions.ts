@@ -5,7 +5,7 @@ import {
   getProfileByIdFromDB as getProfileByIdFromDB_internal,
 } from './db-utils';
 import { isServerAuthenticated } from './server-auth-utils';
-import { suggestMarketPrice } from "@/ai/flows/suggest-market-price-flow";
+import { suggestMarketPrice as suggestMarketPriceFlow } from "@/ai/flows/suggest-market-price-flow";
 import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";
 import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
 import { suggestForumTopics as suggestForumTopicsFlow } from '@/ai/flows/forum-topic-suggestions';
@@ -45,6 +45,23 @@ export async function performSearch(interpretation: Partial<SmartSearchInterpret
       // or handle it gracefully. For now, we'll return an empty array.
       return [];
   }
+}
+
+/**
+ * Server Action to suggest a market price for a product using an AI flow.
+ * @param input The details of the product.
+ * @returns A promise that resolves to the price suggestion.
+ */
+export async function suggestMarketPrice(input: { productName: string; description: string; category?: string; location?: string; language?: string; }) {
+    const isAuthenticated = await isServerAuthenticated();
+    if (!isAuthenticated) { throw new Error("Unauthorized"); }
+
+    try {
+        return await suggestMarketPriceFlow(input);
+    } catch (error) {
+        console.error("[Server Action] suggestMarketPrice failed:", error);
+        throw new Error("Failed to get price suggestion from AI.");
+    }
 }
 
 

@@ -19,11 +19,11 @@ import { UNIFIED_MARKETPLACE_FORM_CATEGORIES } from '@/lib/constants';
 import { getListingTypeFormOptions } from '@/lib/i18n-constants';
 import { useAuth } from '@/lib/auth-utils';
 import { Switch } from '@/components/ui/switch';
-import { suggestMarketPrice } from '@/ai/flows/suggest-market-price-flow';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useLocale } from 'next-intl';
 import { uploadFileAndGetURL } from '@/lib/storage-utils';
+import { suggestMarketPrice as suggestMarketPriceAction } from '@/lib/server-actions';
 
 export default function CreateListingPage() {
     const router = useRouter();
@@ -88,7 +88,7 @@ export default function CreateListingPage() {
       setIsSuggestingPrice(true);
       setSuggestedPrice(null);
       try {
-        const result = await suggestMarketPrice({ productName: name, description, category, location: location.address, language: locale });
+        const result = await suggestMarketPriceAction({ productName: name, description, category, location: location.address, language: locale });
         const price = result.price;
         setSuggestedPrice(price.toFixed(2));
       } catch (error: any) {
