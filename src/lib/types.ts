@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -72,9 +71,10 @@ import type {
     FinancialApplicationSchema,
     createFarmSchema,
     createCropSchema,
-    GroupPostReplySchema,
+    GroupPostReplySchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
+import type { GenerateForumPostDraftInputSchema } from '@/ai/flows/generate-forum-post-draft';
 
 
 // =================================================================

@@ -13,7 +13,7 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import { getAdminDb } from '@/lib/firebase/admin';
 
-const GenerateForumPostDraftInputSchema = z.object({
+export const GenerateForumPostDraftInputSchema = z.object({
   topicId: z.string().describe('The ID of the forum topic where the post will be created.'),
   prompt: z.string().describe("The user's initial idea, question, or prompt for the post."),
   language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English.'),

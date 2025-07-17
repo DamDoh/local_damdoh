@@ -13,7 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { ForumPost, PostReply } from '@/lib/types';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { doc, getDoc, getFirestore, onSnapshot, query, collection, orderBy } from "firebase/firestore";
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
 import { useTranslations } from 'next-intl';
@@ -95,77 +95,64 @@ export default function PostPage() {
 
     const [post, setPost] = useState<ForumPost | null>(null);
     const [replies, setReplies] = useState<PostReply[]>([]);
-    const [lastVisible, setLastVisible] = useState<string | null>(null);
-    const [hasMore, setHasMore] = useState(true);
     const [newReply, setNewReply] = useState("");
     const [isLoading, setIsLoading] = useState(true);
-    const [isLoadingMore, setIsLoadingMore] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const functions = getFunctions(firebaseApp);
-    const getRepliesForPost = useMemo(() => httpsCallable(functions, 'getRepliesForPost'), [functions]);
     const addReplyToPost = useMemo(() => httpsCallable(functions, 'addReplyToPost'), [functions]);
 
-    const fetchReplies = useCallback(async (isInitialLoad = false) => {
-        if (!hasMore && !isInitialLoad) return;
-        
-        if (isInitialLoad) {
-             setIsLoading(true);
-        } else {
-            setIsLoadingMore(true);
-        }
+    useEffect(() => {
+        if (!topicId || !postId) return;
 
-        try {
-            const result = await getRepliesForPost({ topicId, postId, lastVisible: isInitialLoad ? null : lastVisible });
-            const data = result.data as { replies?: PostReply[], lastVisible?: string | null };
-            const backendReplies = data?.replies || [];
-            
-            if (backendReplies.length > 0) {
-                setReplies(prev => isInitialLoad ? backendReplies : [...prev, ...backendReplies]);
-                setLastVisible(data?.lastVisible || null);
+        const fetchPostData = async () => {
+            try {
+                const postDetails = await getPostDetails(topicId, postId);
+                setPost(postDetails);
+            } catch (error) {
+                console.error("Error fetching post data:", error);
+                toast({
+                    title: t('errors.loadPost.title'),
+                    description: t('errors.loadPost.description'),
+                    variant: "destructive"
+                });
+            } finally {
+                setIsLoading(false);
             }
-            
-            setHasMore(!!data?.lastVisible);
+        };
+        fetchPostData();
+        
+        const db = getFirestore(firebaseApp);
+        const repliesQuery = query(collection(db, `forums/${topicId}/posts/${postId}/replies`), orderBy('createdAt', 'asc'));
 
-        } catch (error) {
-             console.error("Error fetching replies:", error);
+        const unsubscribe = onSnapshot(repliesQuery, (snapshot) => {
+            const fetchedReplies = snapshot.docs.map(doc => {
+                const data = doc.data();
+                return {
+                    id: doc.id, 
+                    content: data.content,
+                    author: {
+                        id: data.authorRef,
+                        name: data.authorName || 'Unknown User',
+                        avatarUrl: data.authorAvatarUrl || null,
+                    },
+                    timestamp: (data.createdAt as any)?.toDate?.().toISOString() || new Date().toISOString()
+                } as PostReply;
+            });
+            setReplies(fetchedReplies);
+        }, (error) => {
+            console.error("Error listening for replies:", error);
             toast({
                 title: t('errors.loadReplies.title'),
                 description: t('errors.loadReplies.description'),
                 variant: "destructive"
             });
-        } finally {
-            if(isInitialLoad) setIsLoading(false);
-            else setIsLoadingMore(false);
-        }
-    }, [topicId, postId, lastVisible, getRepliesForPost, toast, t, hasMore]);
+        });
 
-
-    const fetchInitialData = useCallback(async () => {
-        setIsLoading(true);
-        try {
-            const postDetails = await getPostDetails(topicId, postId);
-            setPost(postDetails);
-            if(postDetails){
-               await fetchReplies(true);
-            }
-        } catch (error) {
-            console.error("Error fetching post data:", error);
-             toast({
-                title: t('errors.loadPost.title'),
-                description: t('errors.loadPost.description'),
-                variant: "destructive"
-            });
-        } finally {
-            setIsLoading(false);
-        }
-    }, [topicId, postId, fetchReplies, toast, t]);
-
-
-    useEffect(() => {
-        if (!topicId || !postId) return;
-        fetchInitialData();
-    }, [topicId, postId, fetchInitialData]);
+        // Cleanup listener on component unmount
+        return () => unsubscribe();
+        
+    }, [topicId, postId, toast, t]);
 
     const handleReplySubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -178,11 +165,6 @@ export default function PostPage() {
             await addReplyToPost({ topicId, postId, content: newReply });
             setNewReply("");
             toast({ title: t('reply.success') });
-            // Reset replies and fetch from the beginning
-            setReplies([]);
-            setLastVisible(null);
-            setHasMore(true);
-            await fetchReplies(true);
         } catch (error) {
              console.error("Error adding reply:", error);
              toast({
@@ -195,7 +177,6 @@ export default function PostPage() {
         }
     };
     
-
     if (isLoading) {
         return <PostPageSkeleton />;
     }
@@ -211,7 +192,6 @@ export default function PostPage() {
             </div>
         );
     }
-
 
     return (
         <div className="container mx-auto max-w-3xl py-8">
@@ -261,24 +241,6 @@ export default function PostPage() {
                         <p>{t('noReplies')}</p>
                     </div>
                 )}
-                 {hasMore && (
-                    <div className="flex justify-center">
-                        <Button
-                            onClick={() => fetchReplies()}
-                            disabled={isLoadingMore}
-                            variant="outline"
-                        >
-                            {isLoadingMore ? (
-                                <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    {t('buttons.loadingMore')}
-                                </>
-                            ) : (
-                                t('buttons.loadMore')
-                            )}
-                        </Button>
-                    </div>
-                )}
             </div>
             
             {user && (
@@ -307,3 +269,4 @@ export default function PostPage() {
         </div>
     );
 }
+

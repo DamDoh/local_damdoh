@@ -114,11 +114,15 @@ export async function updateCrop(cropId: string, data: CreateCropValues): Promis
 
 /**
  * Server Action to generate a forum post draft using AI.
+ * This is a client-safe wrapper around the Genkit flow.
  * @param input The topic ID, user prompt, and language.
  * @returns A promise that resolves to the generated post draft.
  */
 export async function generateForumPostDraftCallable(input: GenerateForumPostDraftInput): Promise<GenerateForumPostDraftOutput> {
     try {
+        // Here we're calling the function directly because it's already a server-side function
+        // defined with 'use server'. This avoids an unnecessary network hop if this
+        // server action is called from another server component.
         return await generateForumPostDraft(input);
     } catch (error) {
         console.error("[Server Action] generateForumPostDraftCallable failed:", error);

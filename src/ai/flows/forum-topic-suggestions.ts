@@ -9,11 +9,6 @@ const ForumTopicSuggestionSchema = z.object({
   description: z
     .string()
     .describe("A brief, one-sentence description of what the topic is about."),
-  category: z
-    .string()
-    .describe(
-      "A relevant category for the topic (e.g., 'Crop Management', 'Pest Control', 'Harvesting Techniques', 'Soil Health', 'Technology')."
-    ),
 });
 
 const ForumTopicSuggestionsOutputSchema = z.object({
@@ -45,8 +40,7 @@ export const suggestForumTopics = ai.defineFlow(
     // Construct the list of existing topics cleanly.
     const existingTopicsList = input.existingTopics
       .map((t) => `- ${t.name}`)
-      .join("
-");
+      .join("\n");
 
     // Construct the final prompt.
     const prompt = `Based on the following list of existing forum topics, generate 5 new, engaging, and relevant topic suggestions for an agricultural community platform. The suggestions should cover a range of categories and encourage discussion. Avoid creating duplicates of existing topics.
