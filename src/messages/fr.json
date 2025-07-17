@@ -8,9 +8,9 @@
     },
     "discoverTitle": "Découvrir",
     "seeAllButton": "Voir tout",
-    "communityFeedTitle": "Fil communautaire",
-    "communityFeedDescription": "Connectez-vous avec d'autres, partagez vos connaissances et restez à jour avec les dernières conversations.",
-    "goToFeedButton": "Aller au fil",
+    "communityFeedTitle": "Fil d'actualité de la communauté",
+    "communityFeedDescription": "Connectez-vous avec les autres, partagez vos connaissances et restez à jour sur les dernières conversations.",
+    "goToFeedButton": "Aller au fil d'actualité",
     "noRecommendations": "Aucune recommandation disponible pour le moment. Explorez le marché pour commencer !"
   },
   "LandingPage": {
@@ -22,18 +22,18 @@
     },
     "features": {
       "title": "Principales fonctionnalités de DamDoh",
-      "subtitle": "Tout ce dont vous avez besoin pour grandir, vous connecter et échanger, en un seul endroit.",
+      "subtitle": "Tout ce dont vous avez besoin pour grandir, vous connecter et commercer, le tout en un seul endroit.",
       "networking": {
         "title": "Réseautage intelligent",
         "description": "Suggestions de connexion basées sur l'IA pour vous mettre en relation avec les bons partenaires, des fournisseurs aux acheteurs internationaux."
       },
       "marketplace": {
         "title": "Marché direct",
-        "description": "Achetez et vendez des produits et services directement, augmentant la transparence et la rentabilité pour toutes les parties prenantes."
+        "description": "Achetez et vendez des produits et services directement, augmentant ainsi la transparence et la rentabilité pour toutes les parties prenantes."
       },
       "forums": {
         "title": "Forums thématiques",
-        "description": "Partagez des connaissances, discutez des défis et collaborez sur des solutions dans des forums spécifiques."
+        "description": "Partagez vos connaissances, discutez des défis et collaborez sur des solutions dans des forums thématiques."
       },
       "talent": {
         "title": "Bourse de talents",
@@ -49,11 +49,11 @@
         "description": "Accédez à de meilleurs marchés, trouvez des intrants de qualité et obtenez des conseils d'experts pour augmenter le rendement et la rentabilité."
       },
       "buyers": {
-        "title": "Acheteurs & Transformateurs",
+        "title": "Acheteurs et transformateurs",
         "description": "Sourcez des produits traçables et de haute qualité directement auprès des producteurs et des coopératives, garantissant la fiabilité de la chaîne d'approvisionnement."
       },
       "experts": {
-        "title": "Experts & Fournisseurs de services",
+        "title": "Experts et prestataires de services",
         "description": "Proposez vos compétences et services spécialisés à un large public agricole à la recherche de votre expertise."
       },
       "fis": {
@@ -79,7 +79,7 @@
     "emailPlaceholder": "vous@exemple.com",
     "passwordLabel": "Mot de passe",
     "forgotPasswordLink": "Mot de passe oublié ?",
-    "signingInButton": "Connexion...",
+    "signingInButton": "Connexion en cours...",
     "signInButton": "Se connecter",
     "noAccountPrompt": "Vous n'avez pas de compte ?",
     "signUpLink": "S'inscrire",
@@ -93,11 +93,11 @@
     "rolePlaceholder": "Sélectionnez votre rôle dans la chaîne d'approvisionnement...",
     "confirmPasswordLabel": "Confirmez le mot de passe",
     "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Création du compte...",
+    "creatingAccountButton": "Création du compte en cours...",
     "signUpButton": "Créer un compte",
     "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
     "forgotPasswordTitle": "Mot de passe oublié ?",
-    "forgotPasswordDescription": "Pas de problème. Entrez votre adresse e-mail ci-dessous, et nous vous enverrons un lien pour le réinitialiser.",
+    "forgotPasswordDescription": "Pas de problème. Entrez votre adresse e-mail ci-dessous et nous vous enverrons un lien pour le réinitialiser.",
     "sendResetLinkButton": "Envoyer le lien de réinitialisation",
     "sendingEmailButton": "Envoi de l'e-mail...",
     "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
@@ -106,7 +106,7 @@
     "newPasswordLabel": "Nouveau mot de passe",
     "newPasswordPlaceholder": "Entrez un nouveau mot de passe fort",
     "resetPasswordButton": "Réinitialiser le mot de passe",
-    "resettingPasswordButton": "Réinitialisation...",
+    "resettingPasswordButton": "Réinitialisation en cours...",
     "recoverPage": {
       "title": "Récupérer votre compte",
       "description": "Utilisez votre réseau pour retrouver l'accès.",
@@ -126,7 +126,7 @@
         "phoneNumberPlaceholder": "+1 (555) 123-4567",
         "phoneRequiredError": "Un numéro de téléphone est requis.",
         "getRecoveryCodeButton": "Obtenir le code de récupération",
-        "verifyingButton": "Vérification...",
+        "verifyingButton": "Vérification en cours...",
         "genericError": "Impossible de démarrer la récupération. Veuillez vérifier le numéro et réessayer."
       },
       "helpFriend": {
@@ -140,9 +140,9 @@
     "forgotPassword": {
       "emailSentTitle": "Vérifiez votre e-mail",
       "emailSentDescription": "Un lien de réinitialisation de mot de passe a été envoyé à {email}.",
-      "emailSentDescriptionIfAccountExists": "Si un compte avec {email} existe, un lien de réinitialisation de mot de passe a été envoyé.",
+      "emailSentDescriptionIfAccountExists": "Si un compte avec l'adresse {email} existe, un lien de réinitialisation de mot de passe a été envoyé.",
       "successTitle": "E-mail envoyé !",
-      "successDescription": "Veuillez vérifier votre boîte de réception (et votre dossier spam) pour le lien de réinitialisation du mot de passe.",
+      "successDescription": "Veuillez vérifier votre boîte de réception (et votre dossier de courrier indésirable) pour le lien de réinitialisation du mot de passe.",
       "errors": {
         "unexpected": "Une erreur inattendue s'est produite. Veuillez réessayer.",
         "invalidEmail": "L'adresse e-mail n'est pas valide.",
@@ -153,13 +153,13 @@
     "resetPassword": {
       "successTitle": "Mot de passe réinitialisé avec succès !",
       "successDescription": "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
-      "successRedirect": "Vous allez être redirigé vers la page de connexion.",
+      "successRedirect": "Vous allez être redirigé vers la page de connexion sous peu.",
       "errors": {
         "missingCode": "Lien de réinitialisation de mot de passe invalide. Veuillez en demander un nouveau.",
         "missingCodeTitle": "Lien invalide",
         "missingCodeDescription": "Le lien de réinitialisation du mot de passe est manquant ou invalide. Veuillez retourner à la page 'Mot de passe oublié' pour en demander un nouveau.",
         "unexpected": "Une erreur inattendue s'est produite. Veuillez réessayer.",
-        "invalidOrExpiredCode": "Le lien de réinitialisation du mot de passe est invalide ou a expiré. Veuillez en demander un nouveau.",
+        "invalidOrExpiredCode": "Le lien de réinitialisation de mot de passe est invalide ou a expiré. Veuillez en demander un nouveau.",
         "userDisabled": "Ce compte utilisateur a été désactivé.",
         "userNotFound": "Aucun utilisateur trouvé correspondant à ce lien de réinitialisation.",
         "weakPassword": "Le nouveau mot de passe n'est pas assez fort.",
@@ -177,7 +177,7 @@
       "invalidEmail": "L'adresse e-mail n'est pas valide.",
       "userDisabled": "Ce compte utilisateur a été désactivé.",
       "default": "Échec de l'authentification",
-      "emailInUse": "Un compte avec cet e-mail existe déjà.",
+      "emailInUse": "Un compte avec cette adresse e-mail existe déjà.",
       "weakPassword": "Le mot de passe est trop faible. Veuillez utiliser un mot de passe plus fort."
     },
     "passwordStrength": {
@@ -189,11 +189,9 @@
     },
     "signUpSuccess": {
       "title": "Compte créé !",
-      "description": "Bienvenue sur {appName} ! Vous êtes connecté."
+      "description": "Bienvenue sur {appName} ! Vous avez été connecté."
     },
     "signUpFailed": "Échec de l'inscription",
     "error": "Erreur"
   }
 }
-
-    
