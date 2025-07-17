@@ -1,4 +1,3 @@
-
 # DamDoh: The Super App for Global Agri-Communities
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -28,11 +27,12 @@ DamDoh is a comprehensive platform that includes a wide range of features, inclu
 
 DamDoh isn't just a feature-rich application; it's an ecosystem engineered for security, high performance, and massive scalability from day one. We have proactively addressed the key challenges of building a global platform:
 
-*   **Blazing-Fast, Scalable Search:** We've implemented a denormalized search index, allowing for complex queries across the entire platform with millisecond latency, ensuring a smooth user experience even with billions of items.
-*   **Ironclad Security:** The platform is built on a "default-deny" principle with granular, role-based security rules for every piece of data. User data is protected at every level.
-*   **Seamless Offline Experience:** With a robust "Outbox" pattern, user actions performed offline are securely synced the moment they reconnect. This is critical for users in areas with intermittent connectivity.
+*   **Blazing-Fast, Scalable Search:** We've implemented a denormalized search index (`search_index`), allowing for complex, multi-faceted queries across the entire platform with millisecond latency, ensuring a smooth user experience even with billions of items.
+*   **Ironclad Security:** The platform is built on a "default-deny" principle with granular, role-based Firestore security rules for every piece of data. User data is protected at every level.
+*   **Seamless Offline Experience:** With a robust "Outbox" pattern using IndexedDB, user actions performed offline are securely queued and synced the moment a user reconnects. This is critical for users in areas with intermittent connectivity.
 *   **Hybrid Cloud Architecture:** We leverage the best of serverless, using Firebase Functions for event-driven tasks and Google Cloud Run for performance-critical services (like AI analysis), eliminating cold starts and ensuring consistent speed.
-*   **Data Privacy & Compliance:** We are committed to user privacy with built-in GDPR/CCPA compliance, including a "Right to be Forgotten" feature that ensures a user's data can be completely and permanently erased upon request.
+*   **Data Privacy & Compliance:** We are committed to user privacy with built-in GDPR/CCPA compliance, including a "Right to be Forgotten" feature (`onUserDeleteCleanup`) that ensures a user's data can be completely and permanently erased upon request.
+*   **Geospatial Efficiency:** Location-based queries are optimized using Geohashing, allowing for efficient "near me" searches without the need for a specialized database.
 
 ## 🛠️ Technology Stack
 
@@ -43,7 +43,7 @@ DamDoh is built on a modern, scalable, and reliable technology stack:
 *   **Database:** [Firestore](https://firebase.google.com/docs/firestore), a flexible, scalable NoSQL database.
 *   **Authentication:** [Firebase Authentication](https://firebase.google.com/docs/auth) for secure and easy user management.
 *   **Storage:** [Cloud Storage for Firebase](https://firebase.google.com/docs/storage) for storing user-generated content.
-*   **AI & Machine Learning:** [Google AI Platform](https://cloud.google.com/ai-platform) for our AI-powered features.
+*   **AI & Machine Learning:** [Genkit](https://firebase.google.com/docs/genkit) with [Google AI](https://ai.google/) for our AI-powered features.
 *   **Deployment:** [Firebase Hosting](https://firebase.google.com/docs/hosting) for fast and secure content delivery.
 
 ## ⚙️ Getting Started
@@ -64,6 +64,7 @@ To get started with local development, please follow these steps:
 3.  **Configure Firebase:**
     *   Create a new Firebase project in the [Firebase Console](https://console.firebase.google.com/).
     *   Copy your Firebase project configuration into `src/lib/firebase/client.ts`.
+    *   Set up a service account key and add it to your environment variables as `FIREBASE_SERVICE_ACCOUNT_KEY` for backend functions.
 
 4.  **Run the Development Server:**
     ```bash

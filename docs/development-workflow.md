@@ -43,7 +43,7 @@ This document outlines the phased, logical workflow used to build the core featu
 *   **Achievements:**
     1.  **Financial Institution Hub (DONE):** Built the dashboard for FIs to review loan applications and manage their financial products.
     2.  **Insurance Hub (DONE):** Implemented the dashboard for Insurance Providers to manage policies and process claims.
-    3.  **Specialized Stakeholder Dashboards (DONE):** Successfully rolled out dedicated, data-driven dashboards for **all 21 stakeholder roles**, from Researchers and Agronomists to Logistics Partners and Packaging Suppliers, providing each with a tailored and valuable user experience.
+    3.  **Specialized Stakeholder Dashboards (DONE):** Successfully rolled out dedicated, data-driven dashboards for all relevant stakeholder roles, from Researchers and Agronomists to Logistics Partners and Packaging Suppliers, providing each with a tailored and valuable user experience.
 
 ---
 
