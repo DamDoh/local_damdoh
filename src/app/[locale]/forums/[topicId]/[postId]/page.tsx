@@ -232,7 +232,7 @@ export default function PostPage() {
                                 </div>
                             </CardHeader>
                             <CardContent>
-                                <p className="whitespace-pre-wrap text-sm">{reply.content}</p>
+                                <p className="whitespace-pre-line text-sm">{reply.content}</p>
                             </CardContent>
                         </Card>
                     ))
@@ -269,4 +269,3 @@ export default function PostPage() {
         </div>
     );
 }
-

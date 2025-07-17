@@ -9,7 +9,7 @@ import { MessageSquare, PlusCircle, ArrowLeft, Frown, Loader2 } from "lucide-rea
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import type { ForumTopic, ForumPost, UserProfile } from '@/lib/types';
+import type { ForumTopic, ForumPost } from '@/lib/types';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
@@ -54,7 +54,7 @@ export default function TopicPage() {
         else setIsLoadingMore(true);
 
         try {
-            const result = await getPostsForTopic({ topicId, lastVisible });
+            const result = await getPostsForTopic({ topicId, lastVisible: isInitialLoad ? null : lastVisible });
             const data = result.data as { posts?: ForumPost[], lastVisible?: any };
             const backendPosts = data?.posts || [];
             
@@ -107,7 +107,7 @@ export default function TopicPage() {
         
         fetchInitialData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [topicId, toast]);
+    }, [topicId, toast, t]);
 
     if (isLoading) {
         return <TopicPageSkeleton />;
@@ -186,7 +186,7 @@ export default function TopicPage() {
                         )}
                     </div>
                 </CardContent>
-                 {hasMore && (
+                 {hasMore && !isLoading && (
                     <CardFooter className="flex justify-center">
                         <Button
                             onClick={() => fetchPosts()}
