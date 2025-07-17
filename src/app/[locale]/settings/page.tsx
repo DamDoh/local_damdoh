@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -20,7 +19,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { functions } from "@/lib/firebase/client";
-import { useAuth } from "@/lib/auth-utils";
+import { useAuth, logOut } from "@/lib/auth-utils";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { useRouter } from "@/navigation";
 
@@ -91,8 +90,10 @@ export default function SettingsPage() {
         setIsDeleting(true);
         try {
             await deleteUserAccount();
+            await logOut();
             toast({ title: t('toast.deleteSuccessTitle'), description: t('toast.deleteSuccessDescription') });
             router.push('/auth/signin');
+            router.refresh();
         } catch(error: any) {
              toast({ title: t('toast.deleteErrorTitle'), description: error.message, variant: "destructive" });
         } finally {
