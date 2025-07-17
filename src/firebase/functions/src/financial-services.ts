@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -905,12 +906,8 @@ export const getFinancialProducts = functions.https.onCall(async (data, context)
     
 
 export const getFinancialInstitutions = functions.https.onCall(async (data, context) => {
-    // This function can be called by any authenticated user looking for FIs
     checkAuth(context);
-    
-    const fiSnapshot = await db.collection("users")
-        .where("primaryRole", "==", "Financial Institution (Micro-finance/Loans)")
-        .get();
+    const fiSnapshot = await db.collection("users").where("primaryRole", "==", "Financial Institution (Micro-finance/Loans)").get();
     
     const fis = fiSnapshot.docs.map(doc => ({
         id: doc.id,
@@ -944,4 +941,30 @@ export const getFiApplications = functions.https.onCall(async (data, context) =>
     });
 
     return { applications };
+});
+
+// New function for farmers to get their own applications
+export const getFarmerApplications = functions.https.onCall(async (data, context) => {
+  const farmerId = checkAuth(context);
+
+  try {
+    const snapshot = await db.collection('financial_applications')
+      .where('applicantId', '==', farmerId)
+      .orderBy('submittedAt', 'desc')
+      .get();
+    
+    const applications = snapshot.docs.map(doc => {
+        const appData = doc.data();
+        return {
+            ...appData,
+            id: doc.id,
+            submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+        }
+    });
+
+    return { applications };
+  } catch (error) {
+    console.error(`Error fetching applications for farmer ${farmerId}:`, error);
+    throw new functions.https.HttpsError('internal', 'Could not fetch your applications.');
+  }
 });

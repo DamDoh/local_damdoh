@@ -180,5 +180,3 @@ export interface TraceabilityEvent {
   };
   geoLocation?: { lat: number; lng: number } | null;
 }
-
-    

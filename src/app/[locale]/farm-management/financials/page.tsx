@@ -1,18 +1,18 @@
 
 "use client";
 
-import React, { useState, useEffect, useMemo } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Skeleton } from '@/components/ui/skeleton';
-import { ArrowUpCircle, ArrowDownCircle, Banknote, DollarSign, PlusCircle, FilePlus } from 'lucide-react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ArrowUpCircle, ArrowDownCircle, Banknote, DollarSign, PlusCircle, FilePlus, FileText } from 'lucide-react';
 import { useAuth } from '@/lib/auth-utils';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
-import type { FinancialSummary, FinancialTransaction } from '@/lib/types';
+import type { FinancialSummary, FinancialTransaction, FinancialApplication } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
 
@@ -32,36 +32,49 @@ const StatCard = ({ title, value, icon, currency = "USD" }: { title: string, val
 
 export default function FinancialDashboardPage() {
   const t = useTranslations('farmManagement.financials');
+  const tAppPage = useTranslations('FiApplicationListPage'); // For status labels
   const { user } = useAuth();
   const [summary, setSummary] = useState<FinancialSummary | null>(null);
   const [transactions, setTransactions] = useState<FinancialTransaction[]>([]);
+  const [applications, setApplications] = useState<FinancialApplication[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
   const getFinancialsCallable = useMemo(() => httpsCallable(functions, 'getFinancialSummaryAndTransactions'), []);
+  const getApplicationsCallable = useMemo(() => httpsCallable(functions, 'getFarmerApplications'), []);
+  
+  const fetchAllData = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const [financialsResult, applicationsResult] = await Promise.all([
+        getFinancialsCallable(),
+        getApplicationsCallable()
+      ]);
+
+      const finData = financialsResult.data as { summary: FinancialSummary; transactions: FinancialTransaction[] };
+      setSummary(finData?.summary ?? { totalIncome: 0, totalExpense: 0, netFlow: 0 });
+      setTransactions(finData?.transactions ?? []);
+
+      const appData = applicationsResult.data as { applications: FinancialApplication[] };
+      setApplications(appData?.applications ?? []);
+
+    } catch (err) {
+      console.error("Failed to load financial data.", err);
+      setSummary(null);
+      setTransactions([]);
+      setApplications([]);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [getFinancialsCallable, getApplicationsCallable]);
+
 
   useEffect(() => {
-    if (!user) {
+    if (user) {
+      fetchAllData();
+    } else {
         setIsLoading(false);
-        return;
     }
-    const loadData = async () => {
-        setIsLoading(true);
-        try {
-            const result = await getFinancialsCallable();
-            const data = result.data as { summary: FinancialSummary; transactions: FinancialTransaction[] };
-            
-            setSummary(data?.summary ?? { totalIncome: 0, totalExpense: 0, netFlow: 0 });
-            setTransactions(data?.transactions ?? []);
-
-        } catch (err) {
-            console.error("Failed to load financial data.", err);
-            setSummary(null);
-            setTransactions([]);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-    loadData();
-  }, [user, getFinancialsCallable]);
+  }, [user, fetchAllData]);
 
   if (isLoading) {
     return (
@@ -90,6 +103,19 @@ export default function FinancialDashboardPage() {
       </Card>
     );
   }
+  
+  const getStatusBadgeVariant = (status: string) => {
+    switch (status) {
+        case 'Approved': return 'default';
+        case 'Rejected': return 'destructive';
+        case 'Under Review':
+        case 'More Info Required':
+        case 'Pending':
+            return 'secondary';
+        default: return 'outline';
+    }
+  };
+
 
   const netFlow = (summary?.totalIncome ?? 0) - (summary?.totalExpense ?? 0);
 
@@ -121,6 +147,42 @@ export default function FinancialDashboardPage() {
         <StatCard title={t('totalExpense')} value={summary?.totalExpense ?? 0} icon={<ArrowDownCircle className="h-4 w-4 text-red-500" />} />
         <StatCard title={t('netFlow')} value={netFlow} icon={<Banknote className="h-4 w-4 text-blue-500" />} />
       </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2"><FileText className="h-5 w-5"/>{t('applications.title')}</CardTitle>
+          <CardDescription>{t('applications.description')}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>{t('applications.table.type')}</TableHead>
+                <TableHead>{t('applications.table.amount')}</TableHead>
+                <TableHead>{t('applications.table.status')}</TableHead>
+                <TableHead>{t('applications.table.date')}</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {applications.length > 0 ? (
+                applications.map(app => (
+                  <TableRow key={app.id}>
+                    <TableCell className="font-medium">{app.type}</TableCell>
+                    <TableCell>${app.amount.toLocaleString()}</TableCell>
+                    <TableCell><Badge variant={getStatusBadgeVariant(app.status)}>{tAppPage(`status.${app.status.toLowerCase().replace(/\s/g, '_')}` as any, app.status)}</Badge></TableCell>
+                    <TableCell>{app.submittedAt ? new Date(app.submittedAt).toLocaleDateString() : 'N/A'}</TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={4} className="text-center h-24">{t('applications.noApplications')}</TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+
 
       <Card>
         <CardHeader>
