@@ -23,7 +23,7 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
     const { viewedId } = data;
 
     if (!viewedId) {
-        throw new functions.https.HttpsError("invalid-argument", "A 'viewedId' must be provided.");
+        throw new functions.https.HttpsError("invalid-argument", "error.viewedId.required");
     }
 
     // Don't log self-views
@@ -60,7 +60,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
     checkAuth(context);
     const { userId } = data;
     if (!userId) {
-        throw new functions.https.HttpsError('invalid-argument', 'A userId must be provided.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.userId.required');
     }
 
     try {
@@ -141,7 +141,7 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
     checkAuth(context);
     const { userId } = data;
      if (!userId) {
-        throw new functions.https.HttpsError('invalid-argument', 'A userId must be provided.');
+        throw new functions.https.HttpsError('invalid-argument', 'error.userId.required');
     }
 
     try {

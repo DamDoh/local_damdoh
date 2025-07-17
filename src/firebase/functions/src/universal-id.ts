@@ -48,12 +48,12 @@ export const generateUniversalIdOnUserCreate = functions.firestore
  */
 export const getUniversalIdData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to scan a Universal ID.");
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
     }
 
     const { scannedUniversalId } = data;
     if (!scannedUniversalId) {
-        throw new functions.https.HttpsError("invalid-argument", "A 'scannedUniversalId' must be provided.");
+        throw new functions.https.HttpsError("invalid-argument", "error.universalId.required");
     }
 
     const scannerUid = context.auth.uid;
@@ -64,7 +64,7 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
         const querySnapshot = await usersRef.where("universalId", "==", scannedUniversalId).limit(1).get();
 
         if (querySnapshot.empty) {
-            throw new functions.https.HttpsError("not-found", "The scanned Universal ID does not correspond to any user.");
+            throw new functions.https.HttpsError("not-found", "error.user.notFound");
         }
 
         const scannedUserDoc = querySnapshot.docs[0];
@@ -90,6 +90,7 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
             return {
                 ...publicProfile,
                 email: scannedUserData.email,
+                phoneNumber: scannedUserData.phoneNumber, // Include phone number for self-scan
             };
         } else if (scannerRole === 'Field Agent/Agronomist (DamDoh Internal)' || scannerRole === 'Admin') {
             // An agent or admin gets more detailed information
@@ -108,7 +109,7 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
         if (error instanceof functions.https.HttpsError) {
             throw error;
         }
-        throw new functions.https.HttpsError("internal", "An unexpected error occurred while fetching user data.");
+        throw new functions.https.HttpsError("internal", "error.internal");
     }
 });
 
@@ -118,12 +119,12 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
  */
 export const lookupUserByPhone = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to perform this action.");
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
     }
 
     const { phoneNumber } = data;
     if (!phoneNumber) {
-        throw new functions.https.HttpsError("invalid-argument", "A 'phoneNumber' must be provided.");
+        throw new functions.https.HttpsError("invalid-argument", "error.phoneNumber.required");
     }
 
     const agentUid = context.auth.uid;
@@ -132,7 +133,7 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
     // Security Check: Only allow authorized roles to perform this lookup
     const authorizedRoles = ['Field Agent/Agronomist (DamDoh Internal)', 'Admin', 'Operations/Logistics Team (DamDoh Internal)'];
     if (!agentRole || !authorizedRoles.includes(agentRole)) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to look up users by phone number.");
+        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
     }
 
     try {
@@ -140,7 +141,7 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
         const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
 
         if (querySnapshot.empty) {
-            throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
+            throw new functions.https.HttpsError("not-found", `error.user.notFound`);
         }
 
         const foundUserDoc = querySnapshot.docs[0];
@@ -164,7 +165,7 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
         if (error instanceof functions.https.HttpsError) {
             throw error;
         }
-        throw new functions.https.HttpsError("internal", "An unexpected error occurred while searching for the user.");
+        throw new functions.https.HttpsError("internal", "error.internal");
     }
 });
 
@@ -177,7 +178,7 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
 export const createRecoverySession = functions.https.onCall(async (data, context) => {
     const { phoneNumber } = data;
     if (!phoneNumber) {
-        throw new functions.https.HttpsError("invalid-argument", "A 'phoneNumber' must be provided.");
+        throw new functions.https.HttpsError("invalid-argument", "error.phoneNumber.required");
     }
     
     // Find user by phone number
@@ -185,7 +186,7 @@ export const createRecoverySession = functions.https.onCall(async (data, context
     const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
 
     if (querySnapshot.empty) {
-        throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
+        throw new functions.https.HttpsError("not-found", `error.user.notFound`);
     }
 
     const userToRecoverDoc = querySnapshot.docs[0];
@@ -217,21 +218,21 @@ export const createRecoverySession = functions.https.onCall(async (data, context
  */
 export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to help a friend recover their account.");
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
     }
 
     const friendUid = context.auth.uid;
     const { sessionId, scannedSecret } = data;
 
     if (!sessionId || !scannedSecret) {
-        throw new functions.https.HttpsError("invalid-argument", "Session ID and secret are required.");
+        throw new functions.https.HttpsError("invalid-argument", "error.recovery.missingFields");
     }
 
     const sessionRef = db.collection('recovery_sessions').doc(sessionId);
     const sessionDoc = await sessionRef.get();
 
     if (!sessionDoc.exists) {
-        throw new functions.https.HttpsError("not-found", "Invalid recovery session.");
+        throw new functions.https.HttpsError("not-found", "error.recovery.invalidSession");
     }
 
     const sessionData = sessionDoc.data()!;
@@ -239,19 +240,19 @@ export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
 
     if (new Date() > expiresAt) {
         await sessionRef.update({ status: 'expired' });
-        throw new functions.https.HttpsError("deadline-exceeded", "This recovery session has expired. Please start over.");
+        throw new functions.https.HttpsError("deadline-exceeded", "error.recovery.expired");
     }
     
     if (sessionData.status !== 'pending') {
-        throw new functions.https.HttpsError("failed-precondition", "This recovery session has already been used or is invalid.");
+        throw new functions.https.HttpsError("failed-precondition", "error.recovery.sessionUsed");
     }
 
     if (sessionData.recoverySecret !== scannedSecret) {
-        throw new functions.https.HttpsError("permission-denied", "Invalid recovery code.");
+        throw new functions.https.HttpsError("permission-denied", "error.recovery.invalidCode");
     }
     
     if (sessionData.userIdToRecover === friendUid) {
-        throw new functions.https.HttpsError("invalid-argument", "You cannot use your own recovery code.");
+        throw new functions.https.HttpsError("invalid-argument", "error.recovery.selfScan");
     }
     
     // Mark session as confirmed
@@ -259,10 +260,6 @@ export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
         status: 'confirmed',
         confirmedBy: friendUid,
     });
-    
-    // In a real application, the next step would be for the original user's device
-    // to poll the session status. Once 'confirmed', it would request a custom auth token.
-    // For this demo, we'll just return a success message.
     
     return { success: true, message: "Friend confirmation successful! The user can now proceed with their recovery.", recoveryComplete: true };
 });

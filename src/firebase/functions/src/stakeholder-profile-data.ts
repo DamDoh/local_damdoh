@@ -179,4 +179,5 @@ export const stakeholderProfileSchemas = {
   "Waste Management & Compost Facility": wasteManagementProfileSchema,
   "Crowdfunder (Impact Investor, Individual)": crowdfunderProfileSchema,
   "Insurance Provider": insuranceProviderProfileSchema,
+  "Packaging Supplier": packagingSupplierProfileSchema,
 };

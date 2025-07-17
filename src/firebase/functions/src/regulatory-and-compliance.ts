@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {getRole} from "./profiles";
@@ -126,14 +125,14 @@ export const getGeneratedReports = functions.https.onCall(async (data, context) 
         .get();
         
     const reports = reportsSnapshot.docs.map(doc => {
-        const data = doc.data();
+        const reportData = doc.data();
         return {
             id: doc.id,
-            ...data,
-            generatedAt: (data.generatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            ...reportData,
+            generatedAt: (reportData.generatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
             reportPeriod: {
-                startDate: (data.reportPeriod.startDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
-                endDate: (data.reportPeriod.endDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+                startDate: (reportData.reportPeriod.startDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+                endDate: (reportData.reportPeriod.endDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
             }
         }
     });
