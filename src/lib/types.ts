@@ -71,10 +71,10 @@ import type {
     FinancialApplicationSchema,
     createFarmSchema,
     createCropSchema,
-    GroupPostReplySchema
+    GroupPostReplySchema,
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
-import type { GenerateForumPostDraftInputSchema } from '@/ai/flows/generate-forum-post-draft';
+import type { GenerateForumPostDraftInputSchema, GenerateForumPostDraftOutputSchema } from '@/ai/flows/generate-forum-post-draft';
 
 
 // =================================================================
@@ -186,5 +186,5 @@ export interface TraceabilityEvent {
   };
   geoLocation?: { lat: number; lng: number } | null;
 }
-export type GenerateForumPostDraftInput = z.infer<typeof import('../ai/flows/generate-forum-post-draft').GenerateForumPostDraftInputSchema>;
-export type GenerateForumPostDraftOutput = z.infer<typeof import('../ai/flows/generate-forum-post-draft').GenerateForumPostDraftOutputSchema>;
+export type GenerateForumPostDraftInput = z.infer<typeof GenerateForumPostDraftInputSchema>;
+export type GenerateForumPostDraftOutput = z.infer<typeof GenerateForumPostDraftOutputSchema>;

@@ -9,24 +9,24 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, Loader2, Sparkles, Save } from "lucide-react";
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
-import { useTranslations } from 'next-intl';
-import { generateForumPostDraft } from '@/ai/flows/generate-forum-post-draft';
-import { useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import { generateForumPostDraftCallable } from '@/lib/server-actions';
 
 export default function CreatePostPage() {
     const params = useParams();
     const router = useRouter();
+    const searchParams = useSearchParams();
     const { toast } = useToast();
     const t = useTranslations('Forums.createPost');
     const topicId = params.topicId as string;
     const locale = useLocale();
 
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
+    const [title, setTitle] = useState(searchParams.get('title') || "");
+    const [content, setContent] = useState(searchParams.get('description') || "");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [aiPrompt, setAiPrompt] = useState("");
     const [isGenerating, setIsGenerating] = useState(false);
@@ -45,7 +45,7 @@ export default function CreatePostPage() {
         }
         setIsGenerating(true);
         try {
-            const result = await generateForumPostDraft({ topicId, prompt: aiPrompt, language: locale });
+            const result = await generateForumPostDraftCallable({ topicId, prompt: aiPrompt, language: locale });
             setTitle(result.title);
             setContent(result.content);
             toast({

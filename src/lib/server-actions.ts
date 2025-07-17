@@ -1,3 +1,4 @@
+
 "use server";
 
 import {
@@ -13,7 +14,7 @@ import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRot
 import { functions } from './firebase/client';
 import { httpsCallable } from 'firebase/functions';
 import { getLocale } from 'next-intl/server';
-import { generateForumPostDraft as generateForumPostDraftFlow } from '@/ai/flows/generate-forum-post-draft';
+import { generateForumPostDraftFlow } from '@/ai/flows/generate-forum-post-draft';
 
 /**
  * Server Action to fetch a single user profile by ID.

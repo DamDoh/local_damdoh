@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { MessageSquare, PlusCircle, Search, Frown, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin, PinOff, Clock, Users, Lightbulb } from "lucide-react";
+import { MessageSquare, PlusCircle, Search, Frown, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin, PinOff, Clock, Users, Lightbulb, RefreshCcw } from "lucide-react";
 import Link from 'next/link';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
@@ -104,35 +104,35 @@ export default function ForumsPage() {
         }
     }, [topics, locale, toast, t]);
 
-    useEffect(() => {
-        const fetchTopics = async () => {
-            setIsLoading(true);
-            try {
-                const result = await getTopicsCallable();
-                const data = result.data as { topics?: ForumTopic[] };
-                const fetchedTopics = data?.topics || [];
-                setTopics(fetchedTopics);
-            } catch (error) {
-                console.error("Error fetching topics:", error);
-                toast({
-                    title: t('errors.loadTitle'),
-                    description: t('errors.loadDescription'),
-                    variant: "destructive",
-                });
-            } finally {
-                setIsLoading(false);
+    const fetchTopics = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const result = await getTopicsCallable();
+            const data = result.data as { topics?: ForumTopic[] };
+            const fetchedTopics = data?.topics || [];
+            setTopics(fetchedTopics);
+            // After fetching topics, trigger suggestions
+            if (fetchedTopics.length > 0) {
+                await handleGetSuggestions();
+            } else {
+                setIsLoadingSuggestions(false);
             }
-        };
-
-        fetchTopics();
-    }, [getTopicsCallable, toast, t]);
-    
-    // Automatically fetch suggestions once topics are loaded
-    useEffect(() => {
-        if (!isLoading && topics.length > 0) {
-            handleGetSuggestions();
+        } catch (error) {
+            console.error("Error fetching topics:", error);
+            toast({
+                title: t('errors.loadTitle'),
+                description: t('errors.loadDescription'),
+                variant: "destructive",
+            });
+        } finally {
+            setIsLoading(false);
         }
-    }, [isLoading, topics, handleGetSuggestions]);
+    }, [getTopicsCallable, toast, t, handleGetSuggestions]);
+    
+    useEffect(() => {
+        fetchTopics();
+    }, [fetchTopics]);
+    
 
     const filteredTopics = useMemo(() => {
         if (!Array.isArray(topics)) return [];

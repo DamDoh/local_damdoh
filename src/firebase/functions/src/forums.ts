@@ -2,7 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB } from './profiles';
-import { suggestForumTopics } from '../../src/ai/flows/forum-topic-suggestions';
+import { suggestForumTopics } from '@/ai/flows/forum-topic-suggestions';
 
 const db = admin.firestore();
 
@@ -213,5 +213,3 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
     await batch.commit();
     return { replyId: replyRef.id };
 });
-
-    

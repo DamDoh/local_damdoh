@@ -19,3 +19,4 @@ import '@/ai/flows/crop-rotation-suggester';
 import '@/ai/flows/diagnose-crop-flow';
 import '@/ai/tools/file-writer-tool.ts';
 import '@/ai/flows/translate-flow.ts';
+import '@/ai/flows/generate-forum-post-draft.ts';
