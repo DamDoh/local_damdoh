@@ -9,7 +9,7 @@ import {
 import { suggestMarketPrice } from "@/ai/flows/suggest-market-price-flow";
 import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";
 import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
-import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRotationOutput } from '@/lib/types';
+import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRotationOutput, CreateFarmValues, CreateCropValues, Farm } from '@/lib/types';
 import { functions } from './firebase/client';
 import { httpsCallable } from 'firebase/functions';
 import { getLocale } from 'next-intl/server';
@@ -84,4 +84,29 @@ export async function suggestCropRotationAction(input: Omit<CropRotationInput, '
         console.error("[Server Action] suggestCropRotationAction failed:", error);
         return { suggestions: [] };
     }
+}
+
+// Server Action Wrappers for Farm Management
+export async function getFarm(farmId: string): Promise<Farm | null> {
+    const getFarmCallable = httpsCallable(functions, 'getFarm');
+    const result = await getFarmCallable({ farmId });
+    return result.data as Farm | null;
+}
+
+export async function updateFarm(farmId: string, data: CreateFarmValues): Promise<{ success: boolean; farmId: string; }> {
+    const updateFarmCallable = httpsCallable(functions, 'updateFarm');
+    const result = await updateFarmCallable({ farmId, ...data });
+    return result.data as { success: boolean; farmId: string; };
+}
+
+export async function getCrop(cropId: string): Promise<any | null> {
+    const getCropCallable = httpsCallable(functions, 'getCrop');
+    const result = await getCropCallable({ cropId });
+    return result.data as any | null;
+}
+
+export async function updateCrop(cropId: string, data: CreateCropValues): Promise<{ success: boolean; message: string; }> {
+    const updateCropCallable = httpsCallable(functions, 'updateCrop');
+    const result = await updateCropCallable({ cropId, ...data });
+    return result.data as { success: boolean; message: string; };
 }

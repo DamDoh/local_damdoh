@@ -33,11 +33,12 @@ import { useState, useMemo, useEffect, useCallback } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { app as firebaseApp } from "@/lib/firebase/client";
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { app as firebaseApp } from '@/lib/firebase/client';
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslations } from "next-intl";
 import { getCropStages } from "@/lib/i18n-constants";
+import { getCrop as getCropData, updateCrop as updateCropData } from '@/lib/server-actions';
 
 export default function EditCropPage() {
   const t = useTranslations('farmManagement.createCrop'); // Re-use create translations
@@ -51,10 +52,6 @@ export default function EditCropPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useAuth();
-  const functions = getFunctions(firebaseApp);
-  
-  const getCropCallable = useMemo(() => httpsCallable(functions, 'getCrop'), [functions]);
-  const updateCropCallable = useMemo(() => httpsCallable(functions, 'updateCrop'), [functions]);
 
   const form = useForm<CreateCropValues>({
     resolver: zodResolver(createCropSchema),
@@ -72,8 +69,7 @@ export default function EditCropPage() {
   const fetchCropData = useCallback(async () => {
     setIsLoading(true);
     try {
-        const result = await getCropCallable({ cropId });
-        const cropData = result.data as any; // Cast to any to handle Firestore Timestamps
+        const cropData = await getCropData(cropId);
         if (cropData) {
             form.reset({
                 ...cropData,
@@ -89,7 +85,7 @@ export default function EditCropPage() {
     } finally {
         setIsLoading(false);
     }
-  }, [cropId, getCropCallable, form, toast, router, farmId, tEdit]);
+  }, [cropId, form, toast, router, farmId, tEdit]);
 
   useEffect(() => {
       if (user) {
@@ -103,15 +99,7 @@ export default function EditCropPage() {
     setIsSubmitting(true);
 
     try {
-      const payload = {
-        cropId,
-        ...data,
-        plantingDate: data.plantingDate?.toISOString(),
-        harvestDate: data.harvestDate?.toISOString(),
-      };
-      
-      await updateCropCallable(payload);
-
+      await updateCropData(cropId, data);
       toast({
         title: tEdit('toast.success'),
         description: tEdit('toast.description', {cropType: data.cropType}),

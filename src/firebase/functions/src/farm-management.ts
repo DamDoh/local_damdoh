@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type {KnfBatch} from "@/lib/types";
@@ -154,6 +153,10 @@ export const updateFarm = functions.https.onCall(async (data, context) => {
   }
 
   const { farmId, ...updatePayload } = data;
+  
+  if (!farmId) {
+    throw new functions.https.HttpsError("invalid-argument", "farmId is required for updates.");
+  }
   
   const validation = createFarmSchema.partial().safeParse(updatePayload);
   if (!validation.success) {

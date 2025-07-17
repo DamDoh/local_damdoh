@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -69,7 +68,9 @@ import type {
     SustainabilityDashboardDataSchema,
     WarehouseDashboardDataSchema,
     WasteManagementDashboardDataSchema,
-    FinancialApplicationSchema
+    FinancialApplicationSchema,
+    createFarmSchema,
+    createCropSchema,
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 
@@ -118,6 +119,8 @@ export type PollOption = z.infer<typeof PollOptionSchema>;
 export type PostReply = z.infer<typeof PostReplySchema>;
 export type Worker = z.infer<typeof WorkerSchema>;
 export type WorkLog = z.infer<typeof WorkLogSchema>;
+export type Farm = z.infer<typeof createFarmSchema> & { id: string };
+export type Crop = z.infer<typeof createCropSchema> & { id: string };
 
 
 export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";

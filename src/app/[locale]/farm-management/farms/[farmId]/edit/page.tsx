@@ -20,6 +20,8 @@ import { useAuth } from '@/lib/auth-utils';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Skeleton } from '@/components/ui/skeleton';
+import { getFarm as getFarmData, updateFarm as updateFarmData } from '@/lib/server-actions';
+
 
 export default function EditFarmPage() {
   const t = useTranslations('farmManagement.editFarm');
@@ -31,10 +33,6 @@ export default function EditFarmPage() {
   const { user } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoadingData, setIsLoadingData] = useState(true);
-
-  const functions = getFunctions(firebaseApp);
-  const getFarmCallable = useMemo(() => httpsCallable(functions, 'getFarm'), [functions]);
-  const updateFarmCallable = useMemo(() => httpsCallable(functions, 'updateFarm'), [functions]);
 
   const form = useForm<CreateFarmValues>({
     resolver: zodResolver(createFarmSchema),
@@ -51,8 +49,7 @@ export default function EditFarmPage() {
   const fetchFarmData = useCallback(async () => {
     setIsLoadingData(true);
     try {
-        const result = await getFarmCallable({ farmId });
-        const farmData = result.data as CreateFarmValues;
+        const farmData = await getFarmData(farmId);
         if (farmData) {
             form.reset(farmData);
         } else {
@@ -64,7 +61,7 @@ export default function EditFarmPage() {
     } finally {
         setIsLoadingData(false);
     }
-  }, [farmId, getFarmCallable, form, toast, router, t]);
+  }, [farmId, form, toast, router, t]);
 
   useEffect(() => {
     if (user && farmId) {
@@ -77,8 +74,7 @@ export default function EditFarmPage() {
     if (!user) return;
     setIsSubmitting(true);
     try {
-        const payload = { ...values, farmId };
-        await updateFarmCallable(payload);
+        await updateFarmData(farmId, values);
         toast({
           title: t('toast.successTitle'),
           description: t('toast.successDescription', { farmName: values.name }),
@@ -240,5 +236,6 @@ export default function EditFarmPage() {
     </div>
   );
 }
+
 
 
