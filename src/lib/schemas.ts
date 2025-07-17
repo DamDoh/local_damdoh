@@ -17,8 +17,8 @@ export const StakeholderProfileSchema = z.object({
   primaryRole: z.string(),
   secondaryRoles: z.array(z.string()).optional(),
   location: z.object({
-    lat: z.number(),
-    lng: z.number(),
+    lat: z.number().optional(),
+    lng: z.number().optional(),
     address: z.string(),
   }).optional().nullable(),
   avatarUrl: z.string().url().optional().nullable(),
@@ -285,13 +285,6 @@ export const NotificationSchema = z.object({
   createdAt: z.any(), // Firestore Timestamp
 });
 
-export const FarmerDashboardAlertSchema = z.object({
-    id: z.string(),
-    icon: z.enum(['FlaskConical', 'Sprout']),
-    type: z.enum(['info', 'warning']),
-    message: z.string(),
-    link: z.string(),
-});
 
 export const FinancialTransactionSchema = z.object({
     id: z.string(),
