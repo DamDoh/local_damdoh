@@ -1,7 +1,6 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { geohashForLocation } from "geofire-common";
 
 const db = admin.firestore();
 
@@ -23,8 +22,7 @@ interface SearchableItem {
   imageUrl: string | null;
   tags: string[];
   searchable_terms: string[];
-  // Location and Geohash for geospatial queries
-  location?: { address?: string, lat?: number, lng?: number } | null;
+  // Geohash is now added by a separate trigger, so it's optional here
   geohash?: string | null;
   // Fields for Marketplace
   price?: number | null;
@@ -39,6 +37,7 @@ interface SearchableItem {
  * A generic Firestore trigger that listens to writes on specified collections
  * and creates/updates a corresponding document in a dedicated 'search_index' collection.
  * This pattern allows for flexible and scalable querying.
+ * The geohash itself is added by a separate, dedicated trigger.
  */
 export const onSourceDocumentWriteIndex = functions.firestore
   .document("{collectionId}/{documentId}")
@@ -87,8 +86,8 @@ export const onSourceDocumentWriteIndex = functions.firestore
     const allText = [title, description, ...tags].join(" ").toLowerCase();
     const searchable_terms = [...new Set(allText.match(/\b(\w+)\b/g) || [])];
 
-    // --- Prepare the base index data ---
-    const indexData: SearchableItem = {
+    // Prepare the base index data, geohash will be handled by the onDocumentWriteSetGeohash trigger
+    const indexData: Partial<SearchableItem> = {
       itemId: documentId,
       itemCollection: collectionId,
       createdAt: documentData.createdAt || admin.firestore.FieldValue.serverTimestamp(),
@@ -98,17 +97,10 @@ export const onSourceDocumentWriteIndex = functions.firestore
       imageUrl: documentData.imageUrl || documentData.avatarUrl || null,
       tags,
       searchable_terms,
-      location: documentData.location || null,
       primaryRole: documentData.primaryRole || null,
     };
     
-    // --- Add Geohash for items with lat/lng ---
-    if (documentData.location && typeof documentData.location.lat === 'number' && typeof documentData.location.lng === 'number') {
-      indexData.geohash = geohashForLocation([documentData.location.lat, documentData.location.lng]);
-    }
-
-
-    // --- Add collection-specific fields ---
+    // Add collection-specific fields
     if (collectionId === "marketplaceItems") {
       indexData.price = documentData.price ?? null;
       indexData.currency = documentData.currency ?? null;
@@ -182,8 +174,9 @@ export const performSearch = functions.https.onCall(async (data, context) => {
         query = query.where('tags', 'array-contains', categoryFilter);
     }
     if (identifiedLocation) {
-        query = query.where("location.address", ">=", identifiedLocation);
-        query = query.where("location.address", "<=", identifiedLocation + '\\uf8ff');
+        // This is a simple text search on the address, not a proximity search.
+        // Proximity searches should ideally use the geohash field.
+        query = query.where("tags", "array-contains", identifiedLocation);
     }
     if (perUnit) {
         query = query.where("perUnit", "==", perUnit);
