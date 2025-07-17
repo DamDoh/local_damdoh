@@ -282,7 +282,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
         const salesPromise = db.collection('marketplace_orders').where('sellerId', '==', userId).orderBy('createdAt', 'desc').limit(5).get();
         const eventsPromise = db.collection('traceability_events').where('actorRef', '==', userId).orderBy('timestamp', 'desc').limit(5).get();
 
-        const [postsSnap, ordersSnap, salesSnap, eventsSnap] = await Promise.all([postsPromise, ordersPromise, salesPromise, eventsSnap]);
+        const [postsSnap, ordersSnap, salesSnap, eventsSnap] = await Promise.all([postsPromise, ordersPromise, salesSnap, eventsSnap]);
         
         const activities: any[] = [];
         const toISODate = (timestamp: admin.firestore.Timestamp | undefined) => {
@@ -403,5 +403,7 @@ export const deleteUserAccount = functions.https.onCall(async (data, context) =>
         throw new functions.https.HttpsError('internal', 'Failed to delete account.');
     }
 });
+
+    
 
     
