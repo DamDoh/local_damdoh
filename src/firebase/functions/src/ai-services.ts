@@ -54,4 +54,3 @@ export const onProfileUpdateEnrich = functions.firestore
 
     return null;
   });
-

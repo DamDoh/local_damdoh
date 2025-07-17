@@ -188,8 +188,8 @@ export const ApiKeySchema = z.object({
   environment: z.enum(['Sandbox', 'Production']),
   status: z.enum(['Active', 'Revoked']),
   key: z.string(),
-  keyPrefix: z.string(),
-  lastFour: z.string(),
+  keyPrefix: z.string().optional(),
+  lastFour: z.string().optional(),
   createdAt: z.string(),
 });
 
@@ -539,8 +539,24 @@ export const LogisticsDashboardDataSchema = z.object({
     }),
 });
 
+export const FinancialApplicationSchema = z.object({
+  id: z.string(),
+  applicantId: z.string(),
+  applicantName: z.string(),
+  fiId: z.string(),
+  type: z.string(),
+  amount: z.number(),
+  currency: z.string(),
+  status: z.string(),
+  riskScore: z.number().optional(),
+  purpose: z.string(),
+  submittedAt: z.string().nullable(),
+  actionLink: z.string().optional(),
+  applicantProfile: StakeholderProfileSchema.optional(),
+});
+
 export const FiDashboardDataSchema = z.object({
-    pendingApplications: z.array(z.any()), // Would be FinancialApplicationSchema
+    pendingApplications: z.array(FinancialApplicationSchema),
     portfolioOverview: z.object({
         loanCount: z.number(),
         totalValue: z.number(),
@@ -916,21 +932,6 @@ export const AgriTechInnovatorDashboardDataSchema = z.object({
   })),
 });
 
-export const FinancialApplicationSchema = z.object({
-  id: z.string(),
-  applicantId: z.string(),
-  applicantName: z.string(),
-  fiId: z.string(),
-  type: z.string(),
-  amount: z.number(),
-  currency: z.string(),
-  status: z.string(),
-  riskScore: z.number().optional(),
-  purpose: z.string(),
-  submittedAt: z.string().nullable(),
-  actionLink: z.string().optional(),
-  applicantProfile: StakeholderProfileSchema.optional(),
-});
 
 // =================================================================
 // 3. AI FLOW SCHEMAS
