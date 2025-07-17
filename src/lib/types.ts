@@ -71,6 +71,7 @@ import type {
     WasteManagementDashboardDataSchema,
     FinancialApplicationSchema
 } from './schemas';
+import type { LucideIcon } from 'lucide-react';
 
 
 // =================================================================
@@ -179,3 +180,5 @@ export interface TraceabilityEvent {
   };
   geoLocation?: { lat: number; lng: number } | null;
 }
+
+    
