@@ -9,7 +9,8 @@ import {
   Search as SearchIconLucide,
   X,
   LogIn,
-  UserPlus
+  UserPlus,
+  LogOut
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";

@@ -1,7 +1,7 @@
 
 import type { LucideIcon } from "lucide-react";
 import { STAKEHOLDER_ROLES, LISTING_TYPES, AGRI_EVENT_TYPES, FINANCIAL_SERVICE_TYPES, INSURANCE_SERVICE_TYPES } from './constants';
-import { Sprout, Apple, Tractor, Briefcase, Bot, CalendarDays, Search, User, MessageSquare, ShoppingCart as MarketIcon, Home } from 'lucide-react';
+import { Sprout, Apple, Tractor, Briefcase, Bot, CalendarDays, Search, User, Users, MessageSquare, ShoppingCart as MarketIcon, Home } from 'lucide-react';
 
 export const getStakeholderRoles = (t: any) =>
   STAKEHOLDER_ROLES.map(role => ({
