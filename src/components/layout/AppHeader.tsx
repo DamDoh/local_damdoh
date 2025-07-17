@@ -21,6 +21,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetDescription,
+  SheetTrigger,
 } from "@/components/ui/sheet";
 import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
 import { UniversalSearchModal } from './UniversalSearchModal';
