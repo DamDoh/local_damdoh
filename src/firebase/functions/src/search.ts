@@ -139,15 +139,17 @@ export const performSearch = functions.https.onCall(async (data, context) => {
   }
 
   const rawQuery = mainKeywords.join(' ');
-  const isVtiQuery = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(rawQuery);
+  // A VTI is a UUID v4. This regex checks for that specific format.
+  const isVtiQuery = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(rawQuery);
 
     if (isVtiQuery) {
+        console.log(`Direct VTI lookup detected for: ${rawQuery}`);
         try {
             const vtiDoc = await db.collection("vti_registry").doc(rawQuery).get();
             if (vtiDoc.exists) {
                 const vtiData = vtiDoc.data()!;
                 return [{
-                    id: `vti_${vtiDoc.id}`,
+                    id: `vti_registry_${vtiDoc.id}`,
                     itemId: vtiDoc.id,
                     itemCollection: 'vti_registry',
                     title: `VTI Batch: ${vtiData.metadata?.cropType || 'Product'}`,

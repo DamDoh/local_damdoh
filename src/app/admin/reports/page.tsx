@@ -164,7 +164,7 @@ export default function ReportsManagementPage() {
                   {isSearchingUsers && <Loader2 className="absolute right-2.5 top-2.5 h-4 w-4 animate-spin text-muted-foreground" />}
                 </div>
                 {userSearchResults.length > 0 && (
-                   <div className="p-2 border rounded-md max-h-40 overflow-y-auto absolute bg-background z-10 w-full">
+                   <div className="p-2 border rounded-md max-h-40 overflow-y-auto absolute bg-background z-10 w-full shadow-md">
                      {userSearchResults.map(user => (
                        <div key={user.id} className="p-2 hover:bg-accent rounded-md cursor-pointer" onClick={() => { setTargetUserId(user.id); setUserSearchQuery(user.displayName); setTargetUserName(user.displayName); setUserSearchResults([]); }}>
                          <p className="text-sm font-medium">{user.displayName}</p>
