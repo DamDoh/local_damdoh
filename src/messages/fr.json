@@ -1,219 +1,99 @@
 
 {
-  "AppHeader": {
-    "searchPlaceholder": "Rechercher des produits, services, personnes...",
-    "signIn": "Se connecter",
-    "signUp": "S'inscrire",
-    "myProfile": "Mon Profil",
-    "settings": "Paramètres",
-    "logOut": "Se déconnecter",
-    "switchToDarkAria": "Passer en mode sombre",
-    "switchToLightAria": "Passer en mode clair",
-    "mobileMenu": {
-      "description": "Menu de navigation principal pour la vue mobile de DamDoh."
-    },
-    "toast": {
-      "logOut": {
-        "title": "Déconnecté",
-        "description": "Vous avez été déconnecté avec succès.",
-        "failTitle": "Échec de la déconnexion",
-        "failDescription": "Une erreur est survenue lors de la déconnexion. Veuillez réessayer."
-      }
-    },
-    "home": "Accueil",
-    "network": "Réseau",
-    "farmMgmt": "Gestion Ferme",
-    "marketplace": "Marché",
-    "talentExchange": "Talents",
-    "traceability": "Traçabilité",
-    "forums": "Forums",
-    "sustainability": "Durabilité",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Portefeuille",
-    "helpCenter": "Aide"
+  "common": {
+    "error": "Erreur",
+    "success": "Succès",
+    "loading": "Chargement...",
+    "noData": "Aucune donnée disponible.",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "viewDetails": "Voir les détails",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "back": "Retour",
+    "submit": "Soumettre",
+    "yes": "Oui",
+    "no": "Non",
+    "confirm": "Confirmer",
+    "close": "Fermer",
+    "optional": "Optionnel"
   },
-  "DashboardLeftSidebar": {
-    "viewProfileLink": "Voir & Modifier le Profil",
-    "profileViewers": "Visiteurs du profil",
-    "postEngagements": "Engagements sur les posts",
-    "pro": {
-      "unlock": "Débloquez des informations avancées pour votre entreprise.",
-      "try": "Essayer DamDoh Pro",
-      "title": "DamDoh Pro Bientôt Disponible !",
-      "description": "Débloquez des analyses plus approfondies, un support prioritaire, et plus encore."
-    }
-  },
-  "DashboardRightSidebar": {
-    "networkTitle": "Développez Votre Réseau",
-    "infoTooltip": "Suggestions basées sur l'IA selon votre profil et votre activité.",
-    "refreshSuggestions": "Actualiser les suggestions",
-    "follow": "Suivre",
-    "following": "Abonné",
-    "viewAllButton": "Voir tout",
-    "ad": "Pub",
-    "adTitle": "Aperçus du Marché DamDoh",
-    "adDescription": "Obtenez des données de marché et des analyses de prix en temps réel.",
-    "adButton": "En savoir plus",
-    "adAlt": "Logo des Aperçus du Marché DamDoh",
-    "loadError": "Impossible de charger les suggestions pour le moment.",
-    "signInPrompt": "Connectez-vous pour voir des suggestions de connexion personnalisées.",
-    "noSuggestions": "Aucune nouvelle suggestion pour le moment. Essayez d'étoffer votre profil !",
-    "toast": {
-      "signInToConnect": "Veuillez vous connecter pour établir des liens avec d'autres.",
-      "requestSent": "Demande de Connexion Envoyée",
-      "requestSentDescription": "Votre demande de connexion a été envoyée avec succès.",
-      "requestFailed": "Échec de la Demande"
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "Agriculteur",
+      "AgriculturalCooperative": "Coopérative Agricole",
+      "FieldAgentAgronomistDamDohInternal": "Agent de Terrain/Agronome (DamDoh Interne)",
+      "OperationsLogisticsTeamDamDohInternal": "Équipe Opérations/Logistique (DamDoh Interne)",
+      "QualityAssuranceTeamDamDohInternal": "Équipe d'Assurance Qualité (DamDoh Interne)",
+      "ProcessingPackagingUnit": "Unité de Transformation & Emballage",
+      "BuyerRestaurantSupermarketExporter": "Acheteur (Restaurant, Supermarché, Exportateur)",
+      "InputSupplierSeedFertilizerPesticide": "Fournisseur d'Intrants (Semences, Engrais, Pesticides)",
+      "EquipmentSupplierSalesofMachineryIoT": "Fournisseur d'Équipement (Vente de Machines/IoT)",
+      "FinancialInstitutionMicrofinanceLoans": "Institution Financière (Micro-finance/Prêts)",
+      "GovernmentRegulatorAuditor": "Régulateur/Auditeur Gouvernemental",
+      "CertificationBodyOrganicFairTradeetc": "Organisme de Certification (Bio, Commerce Équitable, etc.)",
+      "Consumer": "Consommateur",
+      "ResearcherAcademic": "Chercheur/Académique",
+      "LogisticsPartnerThirdPartyTransporter": "Partenaire Logistique (Transporteur Tiers)",
+      "StorageWarehouseFacility": "Installation de Stockage/Entrepôt",
+      "AgronomyExpertConsultantExternal": "Expert Agronome/Consultant (Externe)",
+      "AgroTourismOperator": "Opérateur d'Agro-Tourisme",
+      "EnergySolutionsProviderSolarBiogas": "Fournisseur de Solutions Énergétiques (Solaire, Biogaz)",
+      "AgroExportFacilitatorCustomsBroker": "Facilitateur d'Agro-Export/Courtier en Douane",
+      "AgriTechInnovatorDeveloper": "Innovateur/Développeur Agri-Tech",
+      "WasteManagementCompostFacility": "Installation de Gestion des Déchets & Compostage",
+      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Investisseur d'Impact, Particulier)",
+      "InsuranceProvider": "Fournisseur d'Assurance",
+      "PackagingSupplier": "Fournisseur d'Emballages"
     },
-    "promotionsTitle": "Promotions et Coupons",
-    "promotionsDescription": "Créez et gérez des réductions pour vos produits ou services afin d'attirer plus de clients.",
-    "managePromotionsButton": "Gérer les Promotions"
-  },
-  "StartPost": {
-    "placeholder": "Commencez un post, posez une question, ou partagez une mise à jour...",
-    "photoVideo": "Photo/Vidéo",
-    "agriEvent": "Événement Agri",
-    "shareDocument": "Partager Document",
-    "createPoll": "Créer un Sondage"
-  },
-  "FeedItemCard": {
-    "like": "J'aime",
-    "comment": "Commenter",
-    "repost": "Republier",
-    "editPost": "Modifier le post",
-    "deletePost": "Supprimer le post",
-    "signInToLikeToast": "Veuillez vous connecter pour aimer les posts.",
-    "repostPlaceholderToast": "La fonctionnalité de republication sera bientôt disponible !",
-    "loadCommentsErrorToast": "Échec du chargement des commentaires.",
-    "signInToVoteToast": "Veuillez vous connecter pour voter.",
-    "voteSuccessToast": "Votre vote a été enregistré !",
-    "voteErrorToast": "Échec de l'enregistrement du vote",
-    "noComments": "Aucun commentaire pour l'instant. Soyez le premier à répondre !",
-    "loadingComments": "Chargement des commentaires...",
-    "loadMoreComments": "Charger plus de commentaires",
-    "writeCommentPlaceholder": "Écrivez un commentaire...",
-    "postButton": "Publier",
-    "likes_one": "{count} j'aime",
-    "likes_other": "{count} j'aime",
-    "comments_one": "{count} commentaire",
-    "comments_other": "{count} commentaires",
-    "votes_one": "{count} vote",
-    "votes_other": "{count} votes"
-  },
-  "MainDashboard": {
-    "feedError": {
-      "title": "Erreur de Fil d'Actualité",
-      "description": "Impossible de charger le fil d'actualité de la communauté pour le moment."
+    "listingTypes": {
+      "All": "Tous les types",
+      "Product": "Produit",
+      "Service": "Service"
     },
-    "postError": {
-      "auth": "Vous devez être connecté pour publier.",
-      "fail": "Échec de la création du post. Veuillez réessayer."
+    "agriEventTypes": {
+      "All": "Tous les types",
+      "Conference": "Conférence",
+      "Webinar": "Webinaire",
+      "Workshop": "Atelier",
+      "TradeShow": "Salon professionnel",
+      "FieldDay": "Journée de terrain",
+      "NetworkingEvent": "Événement de réseautage",
+      "OnlineCourseLaunch": "Lancement de cours en ligne",
+      "PolicyBriefing": "Briefing politique"
     },
-    "uploadingMedia": "Téléchargement du média...",
-    "uploadComplete": "Téléchargement terminé !",
-    "postSuccess": {
-      "title": "Post Créé",
-      "description": "Votre post a été partagé avec succès."
+    "insuranceProductTypes": {
+      "Crop": "Assurance récolte",
+      "Livestock": "Assurance bétail",
+      "Asset": "Assurance des actifs",
+      "Weather": "Basée sur la météo (Paramétrique)"
     },
-    "likeError": {
-      "auth": "Vous devez être connecté pour aimer les posts.",
-      "fail": "Échec de l'action 'J'aime'. Veuillez réessayer."
+    "financialServiceTypes": {},
+    "cropStages": {
+      "Planting": "Plantation",
+      "Vegetative": "Végétatif",
+      "Flowering": "Floraison",
+      "Fruiting": "Fructification",
+      "Harvesting": "Récolte",
+      "Post-Harvest": "Après-récolte"
     },
-    "commentError": {
-      "auth": "Vous devez être connecté pour commenter.",
-      "fail": "Échec de l'ajout du commentaire. Veuillez réessayer."
+    "observationTypes": {
+      "GeneralNote": "Note générale",
+      "PestSighting": "Observation de ravageurs",
+      "DiseaseSighting": "Observation de maladies",
+      "SoilCondition": "État du sol",
+      "WeatherEvent": "Événement météorologique",
+      "GrowthStageChange": "Changement de stade de croissance",
+      "IrrigationEvent": "Événement d'irrigation"
     },
-    "commentSuccess": "Commentaire ajouté avec succès.",
-    "deleteError": {
-      "auth": "Vous devez être connecté pour supprimer des posts.",
-      "fail": "Échec de la suppression du post. Veuillez réessayer."
-    },
-    "deleteSuccess": {
-      "title": "Post Supprimé",
-      "description": "Votre post a été supprimé avec succès."
-    },
-    "noActivity": "Il n'y a pas encore d'activité dans votre fil. Commencez par vous connecter avec d'autres ou explorez le marché !",
-    "profileCompletion": {
-      "title": "Bienvenue sur DamDoh ! Complétons votre profil",
-      "description": "Un profil complet aide les autres à se connecter avec vous. Parlez à la communauté de vous et de ce que vous recherchez.",
-      "button": "Compléter Votre Profil"
-    }
-  },
-  "CreatePostModal": {
-    "title": "Créer un post",
-    "description": "Partagez ce que vous avez en tête avec la communauté.",
-    "yourName": "Votre Nom",
-    "shareUpdate": "Partager une mise à jour",
-    "placeholder": "De quoi voulez-vous parler ?",
-    "addMediaButton": "Ajouter Photo/Vidéo",
-    "createEventButton": "Créer un Événement Agri",
-    "shareDocumentButton": "Partager un Document",
-    "createPollButton": "Créer un Sondage",
-    "postButton": "Publier",
-    "selectedFile": "Fichier sélectionné :",
-    "pollOptionsLabel": "Options du Sondage",
-    "pollOptionsError": "Un sondage doit avoir au moins deux options non vides.",
-    "emptyPostError": "Votre post ne peut pas être vide. Veuillez ajouter du contenu, une image ou un sondage.",
-    "pollOptionPlaceholder": "Option {index}",
-    "addOptionButton": "Ajouter une option",
-    "pollNote": "Créez un sondage pour obtenir l'avis de votre réseau. Max {maxOptions} options."
-  },
-  "UniversalSearchModal": {
-    "title": "Recherche Universelle",
-    "placeholder": "Recherchez sur toute la plateforme DamDoh...",
-    "searchButton": "Rechercher",
-    "searchError": "Échec de la recherche",
-    "searchErrorDescription": "Une erreur est survenue lors de la recherche. Veuillez réessayer.",
-    "interpretationTitle": "Interprétation de l'IA",
-    "interpretationNotesDefault": "Affichage des résultats généraux.",
-    "filtersTitle": "Filtres Appliqués",
-    "scanError": "Échec du Scan QR",
-    "scanErrorDescription": "Impossible de traiter le code QR scanné.",
-    "noResults": "Aucun résultat trouvé.",
-    "tryAgain": "Essayez une autre recherche."
-  },
-  "MobileBottomNav": {
-    "home": "Accueil",
-    "market": "Marché",
-    "search": "Recherche",
-    "messages": "Messages",
-    "profile": "Profil"
-  },
-  "LanguageSwitcher": {
-    "toggle": "Changer de langue"
-  },
-  "OfflineIndicator": {
-    "toast": {
-      "online": {
-        "title": "Vous êtes de nouveau en ligne !",
-        "description": "Votre connexion a été rétablie."
-      },
-      "offline": {
-        "title": "Vous êtes actuellement hors ligne",
-        "description": "Certaines fonctionnalités peuvent être limitées. Vos modifications seront synchronisées lors de la reconnexion."
-      },
-      "syncing": {
-        "title": "Synchronisation des modifications hors ligne",
-        "description": "Téléchargement de {count, plural, =1 {# modification} other {# modifications}} effectuées hors ligne."
-      },
-      "synced": {
-        "title": "Synchronisation terminée",
-        "description": "Toutes vos modifications hors ligne ont été enregistrées."
-      },
-      "syncFailed": {
-        "title": "Échec de la synchronisation",
-        "description": "Impossible de synchroniser toutes les modifications hors ligne. Une nouvelle tentative sera effectuée plus tard."
-      },
-      "queued": {
-        "title": "Action mise en file d'attente",
-        "description": "Vous êtes hors ligne. Cette action sera effectuée lors de votre reconnexion."
-      }
-    },
-    "tooltip": {
-      "syncing": "Synchronisation de {count} actions en attente...",
-      "onlinePending": "En ligne avec {count} actions en attente de synchronisation.",
-      "onlineSynced": "En ligne et toutes les modifications sont synchronisées.",
-      "offline": "Hors ligne avec {count} actions non synchronisées."
+    "mobileHomeCategories": {
+      "produceMarket": "Marché des produits",
+      "farmInputs": "Intrants agricoles",
+      "talentExchange": "Bourse de talents",
+      "machinery": "Machines",
+      "community": "Communauté",
+      "aiAssistant": "Assistant IA",
+      "events": "Événements"
     }
   },
   "LandingPage": {

@@ -1,5 +1,101 @@
 
 {
+  "common": {
+    "error": "Fehler",
+    "success": "Erfolg",
+    "loading": "Wird geladen...",
+    "noData": "Keine Daten verfügbar.",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "viewDetails": "Details anzeigen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "back": "Zurück",
+    "submit": "Senden",
+    "yes": "Ja",
+    "no": "Nein",
+    "confirm": "Bestätigen",
+    "close": "Schließen",
+    "optional": "Optional"
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "Landwirt",
+      "AgriculturalCooperative": "Landwirtschaftliche Genossenschaft",
+      "FieldAgentAgronomistDamDohInternal": "Feldagent/Agronom (DamDoh Intern)",
+      "OperationsLogisticsTeamDamDohInternal": "Betriebs-/Logistikteam (DamDoh Intern)",
+      "QualityAssuranceTeamDamDohInternal": "Qualitätssicherungsteam (DamDoh Intern)",
+      "ProcessingPackagingUnit": "Verarbeitungs- & Verpackungseinheit",
+      "BuyerRestaurantSupermarketExporter": "Käufer (Restaurant, Supermarkt, Exporteur)",
+      "InputSupplierSeedFertilizerPesticide": "Input-Lieferant (Saatgut, Dünger, Pestizide)",
+      "EquipmentSupplierSalesofMachineryIoT": "Ausrüstungslieferant (Verkauf von Maschinen/IoT)",
+      "FinancialInstitutionMicrofinanceLoans": "Finanzinstitut (Mikrofinanz/Kredite)",
+      "GovernmentRegulatorAuditor": "Regierungsregulierer/Prüfer",
+      "CertificationBodyOrganicFairTradeetc": "Zertifizierungsstelle (Bio, Fair Trade etc.)",
+      "Consumer": "Verbraucher",
+      "ResearcherAcademic": "Forscher/Akademiker",
+      "LogisticsPartnerThirdPartyTransporter": "Logistikpartner (Drittanbieter-Transporteur)",
+      "StorageWarehouseFacility": "Lager-/Lagerhauseinrichtung",
+      "AgronomyExpertConsultantExternal": "Agronomie-Experte/Berater (Extern)",
+      "AgroTourismOperator": "Agro-Tourismus-Betreiber",
+      "EnergySolutionsProviderSolarBiogas": "Anbieter von Energielösungen (Solar, Biogas)",
+      "AgroExportFacilitatorCustomsBroker": "Agro-Export-Vermittler/Zollagent",
+      "AgriTechInnovatorDeveloper": "Agri-Tech-Innovator/Entwickler",
+      "WasteManagementCompostFacility": "Abfallwirtschafts- & Kompostieranlage",
+      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Impact Investor, Einzelperson)",
+      "InsuranceProvider": "Versicherungsanbieter",
+      "PackagingSupplier": "Verpackungslieferant"
+    },
+    "listingTypes": {
+      "All": "Alle Typen",
+      "Product": "Produkt",
+      "Service": "Dienstleistung"
+    },
+    "agriEventTypes": {
+      "All": "Alle Typen",
+      "Conference": "Konferenz",
+      "Webinar": "Webinar",
+      "Workshop": "Workshop",
+      "TradeShow": "Messe",
+      "FieldDay": "Feldtag",
+      "NetworkingEvent": "Netzwerkveranstaltung",
+      "OnlineCourseLaunch": "Online-Kurs-Start",
+      "PolicyBriefing": "Politik-Briefing"
+    },
+    "insuranceProductTypes": {
+      "Crop": "Ernteversicherung",
+      "Livestock": "Tierversicherung",
+      "Asset": "Anlagenversicherung",
+      "Weather": "Wetterbasiert (Parametrisch)"
+    },
+    "financialServiceTypes": {},
+    "cropStages": {
+      "Planting": "Pflanzung",
+      "Vegetative": "Vegetativ",
+      "Flowering": "Blüte",
+      "Fruiting": "Fruchtbildung",
+      "Harvesting": "Ernte",
+      "Post-Harvest": "Nach der Ernte"
+    },
+    "observationTypes": {
+      "GeneralNote": "Allgemeine Notiz",
+      "PestSighting": "Schädlingssichtung",
+      "DiseaseSighting": "Krankheitssichtung",
+      "SoilCondition": "Bodenzustand",
+      "WeatherEvent": "Wetterereignis",
+      "GrowthStageChange": "Wachstumsphasenwechsel",
+      "IrrigationEvent": "Bewässerungsereignis"
+    },
+    "mobileHomeCategories": {
+      "produceMarket": "Produktmarkt",
+      "farmInputs": "Betriebsmittel",
+      "talentExchange": "Talentbörse",
+      "machinery": "Maschinen",
+      "community": "Community",
+      "aiAssistant": "KI-Assistent",
+      "events": "Veranstaltungen"
+    }
+  },
   "LandingPage": {
     "hero": {
       "title": "Landwirtschaft stärken vom Boden bis zum Verkauf auf {appName}",
@@ -75,132 +171,6 @@
     "getMobileApp": "Holen Sie sich die mobile App",
     "googlePlayAlt": "Bei Google Play holen",
     "appStoreAlt": "Im App Store herunterladen"
-  },
-  "Auth": {
-    "signInWelcome": "Willkommen zurück bei {appName}",
-    "signUpWelcome": "Treten Sie dem DamDoh Agrarnetzwerk bei",
-    "forgotPasswordResetPrompt": "Setzen Sie Ihr Passwort für {appName} zurück",
-    "resetPasswordPrompt": "Erstellen Sie ein neues Passwort für {appName}",
-    "signInTitle": "Melden Sie sich bei Ihrem Konto an",
-    "signInDescription": "Geben Sie Ihre Zugangsdaten ein, um auf Ihr Dashboard zuzugreifen.",
-    "emailLabel": "E-Mail",
-    "emailPlaceholder": "sie@beispiel.com",
-    "passwordLabel": "Passwort",
-    "forgotPasswordLink": "Passwort vergessen?",
-    "signingInButton": "Anmeldung läuft...",
-    "signInButton": "Anmelden",
-    "noAccountPrompt": "Sie haben noch kein Konto?",
-    "signUpLink": "Registrieren",
-    "signInLink": "Anmelden",
-    "recoverWithUniversalIdPrompt": "Oder Zugriff mit Ihrer Universal ID wiederherstellen",
-    "signUpTitle": "Neues Konto erstellen",
-    "signUpDescription": "Erzählen Sie uns ein wenig über sich, um loszulegen.",
-    "nameLabel": "Ihr Name oder Firmenname",
-    "namePlaceholder": "z.B. Chan Nary oder Green Valley Farms",
-    "roleLabel": "Ihre primäre Rolle",
-    "rolePlaceholder": "Wählen Sie Ihre Rolle in der Lieferkette...",
-    "confirmPasswordLabel": "Passwort bestätigen",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Konto wird erstellt...",
-    "signUpButton": "Konto erstellen",
-    "alreadyHaveAccountPrompt": "Sie haben bereits ein Konto?",
-    "forgotPasswordTitle": "Passwort vergessen?",
-    "forgotPasswordDescription": "Kein Problem. Geben Sie unten Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen.",
-    "sendResetLinkButton": "Link zum Zurücksetzen senden",
-    "sendingEmailButton": "E-Mail wird gesendet...",
-    "rememberPasswordPrompt": "Erinnern Sie sich an Ihr Passwort?",
-    "resetPasswordTitle": "Setzen Sie Ihr Passwort zurück",
-    "resetPasswordDescription": "Geben Sie unten Ihr neues Passwort ein und bestätigen Sie es.",
-    "newPasswordLabel": "Neues Passwort",
-    "newPasswordPlaceholder": "Geben Sie ein starkes neues Passwort ein",
-    "resetPasswordButton": "Passwort zurücksetzen",
-    "resettingPasswordButton": "Wird zurückgesetzt...",
-    "recoverPage": {
-      "title": "Ihr Konto wiederherstellen",
-      "description": "Nutzen Sie Ihr Netzwerk, um wieder Zugriff zu erhalten.",
-      "howItWorksTitle": "So funktioniert's",
-      "step1": "Geben Sie Ihre Telefonnummer ein, um eine Wiederherstellungssitzung zu starten.",
-      "step2": "Zeigen Sie den temporären QR-Code einem vertrauenswürdigen Freund auf DamDoh.",
-      "step3": "Sobald Ihr Freund den Code scannt, um Ihre Identität zu bestätigen, erhalten Sie wieder Zugriff.",
-      "startButton": "Kontowiederherstellung starten",
-      "scanTitle": "Bitten Sie einen Freund zu scannen",
-      "scanDescription": "Lassen Sie einen vertrauenswürdigen DamDoh-Kontakt diesen QR-Code mit der Funktion 'Einem Freund bei der Wiederherstellung helfen' in seiner App scannen.",
-      "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
-      "startOverButton": "Von vorne beginnen",
-      "enterPhone": {
-        "title": "Geben Sie Ihre Telefonnummer ein",
-        "description": "Wir verwenden diese, um Ihr Konto zu finden und den Wiederherstellungsprozess zu starten.",
-        "phoneNumberLabel": "Telefonnummer",
-        "phoneNumberPlaceholder": "+1 (555) 123-4567",
-        "phoneRequiredError": "Eine Telefonnummer ist erforderlich.",
-        "getRecoveryCodeButton": "Wiederherstellungscode erhalten",
-        "verifyingButton": "Wird überprüft...",
-        "genericError": "Wiederherstellung konnte nicht gestartet werden. Bitte überprüfen Sie die Nummer und versuchen Sie es erneut."
-      },
-      "helpFriend": {
-        "prompt": "Müssen Sie einem Freund bei der Wiederherstellung seines Kontos helfen?",
-        "button": "Einem Freund helfen",
-        "scanError": "Der gescannte Code ist kein gültiger DamDoh-Wiederherstellungscode.",
-        "scanSuccess": "Scan erfolgreich!",
-        "scanFail": "QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut."
-      }
-    },
-    "forgotPassword": {
-      "emailSentTitle": "Überprüfen Sie Ihre E-Mails",
-      "emailSentDescription": "Ein Link zum Zurücksetzen des Passworts wurde an {email} gesendet.",
-      "emailSentDescriptionIfAccountExists": "Wenn ein Konto mit {email} existiert, wurde ein Link zum Zurücksetzen des Passworts gesendet.",
-      "successTitle": "E-Mail gesendet!",
-      "successDescription": "Bitte überprüfen Sie Ihren Posteingang (und Spam-Ordner) auf den Link zum Zurücksetzen des Passworts.",
-      "errors": {
-        "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
-        "invalidEmail": "Die E-Mail-Adresse ist ungültig.",
-        "tooManyRequests": "Zu viele Anfragen. Bitte versuchen Sie es später noch einmal.",
-        "default": "Fehler beim Senden der E-Mail zum Zurücksetzen"
-      }
-    },
-    "resetPassword": {
-      "successTitle": "Passwort erfolgreich zurückgesetzt!",
-      "successDescription": "Sie können sich jetzt mit Ihrem neuen Passwort anmelden.",
-      "successRedirect": "Sie werden in Kürze zur Anmeldeseite weitergeleitet.",
-      "errors": {
-        "missingCode": "Ungültiger Link zum Zurücksetzen des Passworts. Bitte fordern Sie einen neuen an.",
-        "missingCodeTitle": "Ungültiger Link",
-        "missingCodeDescription": "Der Link zum Zurücksetzen des Passworts fehlt oder ist ungültig. Bitte kehren Sie zur Seite 'Passwort vergessen' zurück, um einen neuen anzufordern.",
-        "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
-        "invalidOrExpiredCode": "Der Link zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordern Sie einen neuen an.",
-        "userDisabled": "Dieses Benutzerkonto wurde deaktiviert.",
-        "userNotFound": "Kein Benutzer zu diesem Reset-Link gefunden.",
-        "weakPassword": "Das neue Passwort ist nicht stark genug.",
-        "default": "Fehler beim Zurücksetzen des Passworts"
-      }
-    },
-    "signInSuccess": {
-      "title": "Anmeldung erfolgreich",
-      "description": "Willkommen zurück bei {appName}!"
-    },
-    "signInFailed": "Anmeldung fehlgeschlagen",
-    "errors": {
-      "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
-      "invalidCredential": "Die eingegebene E-Mail oder das Passwort ist falsch.",
-      "invalidEmail": "Die E-Mail-Adresse ist ungültig.",
-      "userDisabled": "Dieses Benutzerkonto wurde deaktiviert.",
-      "default": "Authentifizierung fehlgeschlagen",
-      "emailInUse": "Ein Konto mit dieser E-Mail existiert bereits.",
-      "weakPassword": "Das Passwort ist zu schwach. Bitte verwenden Sie ein stärkeres Passwort."
-    },
-    "passwordStrength": {
-      "label": "Stärke",
-      "weak": "Schwach",
-      "medium": "Mittel",
-      "strong": "Stark",
-      "veryStrong": "Sehr stark"
-    },
-    "signUpSuccess": {
-      "title": "Konto erstellt!",
-      "description": "Willkommen bei {appName}! Sie wurden angemeldet."
-    },
-    "signUpFailed": "Registrierung fehlgeschlagen",
-    "error": "Fehler"
   },
   "forumsPage": {
     "title": "Foren",

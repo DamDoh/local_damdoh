@@ -1,17 +1,100 @@
 
 {
-  "MobileHomepage": {
-    "welcome": {
-      "morning": "អរុណសួស្តី, {name}",
-      "afternoon": "ទិវាសួស្តី, {name}",
-      "evening": "សាយណ្ហសួស្តី, {name}"
+  "common": {
+    "error": "កំហុស",
+    "success": "ជោគជ័យ",
+    "loading": "កំពុងដំណើរការ...",
+    "noData": "មិនមានទិន្នន័យ។",
+    "save": "រក្សាទុក",
+    "cancel": "បោះបង់",
+    "viewDetails": "មើលព័ត៌មានលម្អិត",
+    "edit": "កែសម្រួល",
+    "delete": "លុប",
+    "back": "ត្រឡប់ក្រោយ",
+    "submit": "ដាក់ស្នើ",
+    "yes": "បាទ/ចាស",
+    "no": "ទេ",
+    "confirm": "បញ្ជាក់",
+    "close": "បិទ",
+    "optional": "ស្រេចចិត្ត"
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "កសិករ",
+      "AgriculturalCooperative": "សហគមន៍កសិកម្ម",
+      "FieldAgentAgronomistDamDohInternal": "ភ្នាក់ងារ/អ្នកជំនាញកសិកម្ម (DamDoh)",
+      "OperationsLogisticsTeamDamDohInternal": "ក្រុមប្រតិបត្តិការ/ភស្តុភារ (DamDoh)",
+      "QualityAssuranceTeamDamDohInternal": "ក្រុមធានាគុណភាព (DamDoh)",
+      "ProcessingPackagingUnit": "หน่วยแปรรูปและบรรจุภัณฑ์",
+      "BuyerRestaurantSupermarketExporter": "ผู้ซื้อ (ร้านอาหาร, ซูเปอร์มาร์เก็ต, ผู้ส่งออก)",
+      "InputSupplierSeedFertilizerPesticide": "អ្នកផ្គត់ផ្គង់ធាតុចូល (គ្រាប់ពូជ ជី ថ្នាំសម្លាប់សត្វល្អិត)",
+      "EquipmentSupplierSalesofMachineryIoT": "អ្នកផ្គត់ផ្គង់គ្រឿងបរិក្ខារ (គ្រឿងចក្រ/IoT)",
+      "FinancialInstitutionMicrofinanceLoans": "គ្រឹះស្ថានហិរញ្ញវត្ថុ (មីក្រូហិរញ្ញវត្ថុ/ឥណទាន)",
+      "GovernmentRegulatorAuditor": "និយតករ/សវនកររដ្ឋាភិបាល",
+      "CertificationBodyOrganicFairTradeetc": "ស្ថាប័នបញ្ជាក់ (សរីរាង្គ, ពាណិជ្ជកម្មដោយត្រឹមត្រូវ ។ល។)",
+      "Consumer": "អ្នក​ប្រើប្រាស់",
+      "ResearcherAcademic": "អ្នកស្រាវជ្រាវ/អ្នកសិក្សា",
+      "LogisticsPartnerThirdPartyTransporter": "ដៃគូភស្តុភារ (អ្នកដឹកជញ្ជូន)",
+      "StorageWarehouseFacility": "สถานที่จัดเก็บ/คลังสินค้า",
+      "AgronomyExpertConsultantExternal": "ผู้เชี่ยวชาญด้านพืชไร่/ที่ปรึกษา (ภายนอก)",
+      "AgroTourismOperator": "ผู้ประกอบการท่องเที่ยวเชิงเกษตร",
+      "EnergySolutionsProviderSolarBiogas": "ผู้ให้บริการโซลูชั่นพลังงาน (พลังงานแสงอาทิตย์, ก๊าซชีวภาพ)",
+      "AgroExportFacilitatorCustomsBroker": "ผู้อำนวยความสะดวกการส่งออกเกษตร/นายหน้าศุลกากร",
+      "AgriTechInnovatorDeveloper": "ผู้ริเริ่ม/นักพัฒนาเทคโนโลยีเกษตร",
+      "WasteManagementCompostFacility": "โรงงานจัดการของเสียและปุ๋ยหมัก",
+      "CrowdfunderImpactInvestorIndividual": "ผู้ระดมทุน (นักลงทุนเพื่อผลกระทบ, บุคคล)",
+      "InsuranceProvider": "ผู้ให้บริการประกันภัย",
+      "PackagingSupplier": "ผู้จัดหาบรรจุภัณฑ์"
     },
-    "discoverTitle": "ស្វែងយល់",
-    "seeAllButton": "មើល​ទាំងអស់",
-    "communityFeedTitle": "ហ្វីតសហគមន៍",
-    "communityFeedDescription": "ភ្ជាប់ទំនាក់ទំនងជាមួយអ្នកដទៃ ចែករំលែកចំណេះដឹងរបស់អ្នក និងទទួលបានព័ត៌មានថ្មីៗពីការសន្ទនាចុងក្រោយបំផុត។",
-    "goToFeedButton": "ទៅកាន់ហ្វីត",
-    "noRecommendations": "មិនមានការណែនាំទេនាពេលនេះ។ សូមស្វែងរកទីផ្សារដើម្បីចាប់ផ្តើម!"
+    "listingTypes": {
+      "All": "គ្រប់ប្រភេទ",
+      "Product": "ផលិតផល",
+      "Service": "សេវាកម្ម"
+    },
+    "agriEventTypes": {
+      "All": "គ្រប់ប្រភេទ",
+      "Conference": "សន្និសីទ",
+      "Webinar": "Webinar",
+      "Workshop": "សិក្ខាសាលា",
+      "TradeShow": "ពិព័រណ៍ពាណិជ្ជកម្ម",
+      "FieldDay": "ទិវាស្រែ",
+      "NetworkingEvent": "ព្រឹត្តិការណ៍បណ្តាញ",
+      "OnlineCourseLaunch": "ការចាប់ផ្តើមវគ្គសិក្សាតាមអ៊ីនធឺណិត",
+      "PolicyBriefing": "សង្ខេបគោលនយោបាយ"
+    },
+    "insuranceProductTypes": {
+      "Crop": "ประกันដំណាំ",
+      "Livestock": "ประกันសត្វពាហនៈ",
+      "Asset": "ประกันទ្រព្យសម្បត្តិ",
+      "Weather": "ផ្អែកលើអាកាសធាតុ (Parametric)"
+    },
+    "financialServiceTypes": {},
+    "cropStages": {
+      "Planting": "ការដាំដុះ",
+      "Vegetative": "ការលូតលាស់",
+      "Flowering": "ការចេញផ្កា",
+      "Fruiting": "ការចេញផ្លែ",
+      "Harvesting": "ការប្រមូលផល",
+      "Post-Harvest": "ក្រោយការប្រមូលផល"
+    },
+    "observationTypes": {
+      "GeneralNote": "កំណត់ត្រាទូទៅ",
+      "PestSighting": "ការមើលឃើញសត្វល្អិត",
+      "DiseaseSighting": "ការមើលឃើញជំងឺ",
+      "SoilCondition": "លក្ខខណ្ឌដី",
+      "WeatherEvent": "ព្រឹត្តិការណ៍អាកាសធាតុ",
+      "GrowthStageChange": "ការផ្លាស់ប្តូរដំណាក់កាលលូតលាស់",
+      "IrrigationEvent": "ព្រឹត្តិការណ៍ស្រោចស្រព"
+    },
+    "mobileHomeCategories": {
+      "produceMarket": "ទីផ្សារផលិតផល",
+      "farmInputs": "ធាតុចូលកសិកម្ម",
+      "talentExchange": "ផ្សារទេពកោសល្យ",
+      "machinery": "គ្រឿងចក្រ",
+      "community": "សហគមន៍",
+      "aiAssistant": "ជំនួយការ AI",
+      "events": "ព្រឹត្តិការណ៍"
+    }
   },
   "LandingPage": {
     "hero": {
@@ -41,30 +124,30 @@
       }
     },
     "forWho": {
-      "badge": "សម្រាប់អ្នករាល់គ្នាក្នុងវិស័យកសិកម្ម",
-      "title": "វេទិកាតែមួយសម្រាប់ខ្សែសង្វាក់តម្លៃទាំងមូល",
-      "description": "DamDoh ត្រូវបានរចនាឡើងយ៉ាងពិសេសដើម្បីបម្រើប្រព័ន្ធអេកូឡូស៊ីកសិកម្មទាំងមូល បង្កើតចំណុចតែមួយនៃសេចក្តីពិតនិងឱកាសសម្រាប់ទាំងអស់គ្នា។",
+      "badge": "สำหรับทุกคนในภาคเกษตรกรรม",
+      "title": "แพลตฟอร์มเดียวสำหรับทั้งห่วงโซ่คุณค่า",
+      "description": "DamDoh ได้รับการออกแบบมาโดยเฉพาะเพื่อให้บริการระบบนิเวศทางการเกษตรทั้งหมด สร้างจุดศูนย์กลางของความจริงและโอกาสสำหรับทุกคน",
       "farmers": {
-        "title": "កសិករ",
-        "description": "ចូលទៅកាន់ទីផ្សារល្អប្រសើរ ស្វែងរកធាតុចូលដែលមានគុណភាព និងទទួលបានដំបូន្មានពីผู้เชี่ยวชาญដើម្បីเพิ่มผลผลิตនិងผลกำไร។"
+        "title": "เกษตรกร",
+        "description": "เข้าถึงตลาดที่ดีขึ้น ค้นหาปัจจัยการผลิตที่มีคุณภาพ และรับคำแนะนำจากผู้เชี่ยวชาญเพื่อเพิ่มผลผลิตและผลกำไร"
       },
       "buyers": {
-        "title": "អ្នកទិញនិងអ្នកកែច្នៃ",
-        "description": "จัดหาผลผลิตคุณภาพสูงที่ตรวจสอบย้อนกลับได้โดยตรงจากผู้ปลูกและสหกรณ์ เพื่อรับประกันความน่าเชื่อถือของห่วงโซ่อุปทาน។"
+        "title": "ผู้ซื้อและผู้แปรรูป",
+        "description": "จัดหาผลผลิตคุณภาพสูงที่ตรวจสอบย้อนกลับได้โดยตรงจากผู้ปลูกและสหกรณ์ เพื่อรับประกันความน่าเชื่อถือของห่วงโซ่อุปทาน"
       },
       "experts": {
         "title": "ผู้เชี่ยวชาญและผู้ให้บริการ",
-        "description": "เสนอทักษะและบริการเฉพาะทางของคุณแก่ผู้ชมทางการเกษตรในวงกว้างที่กำลังมองหาความเชี่ยวชาญของคุณ។"
+        "description": "เสนอทักษะและบริการเฉพาะทางของคุณแก่ผู้ชมทางการเกษตรในวงกว้างที่กำลังมองหาความเชี่ยวชาญของคุณ"
       },
       "fis": {
         "title": "สถาบันการเงิน",
-        "description": "เสนอสินเชื่อ ประกันภัย และผลิตภัณฑ์ทางการเงินแก่ชุมชนเกษตรที่ผ่านการตรวจสอบแล้ว។"
+        "description": "เสนอสินเชื่อ ประกันภัย และผลิตภัณฑ์ทางการเงินแก่ชุมชนเกษตรที่ผ่านการตรวจสอบแล้ว"
       },
       "imageAlt": "กลุ่มผู้มีส่วนได้ส่วนเสียทางการเกษตรที่หลากหลายกำลังทำงานร่วมกัน"
     },
     "cta": {
       "title": "เข้าร่วมการปฏิวัติการเกษตร",
-      "subtitle": "ลงทะเบียนวันนี้และเป็นส่วนหนึ่งของเครือข่ายระดับโลกที่กำลังเติบโตซึ่งอุทิศตนเพื่อเปลี่ยนแปลงอนาคตของอาหาร។",
+      "subtitle": "ลงทะเบียนวันนี้และเป็นส่วนหนึ่งของเครือข่ายระดับโลกที่กำลังเติบโตซึ่งอุทิศตนเพื่อเปลี่ยนแปลงอนาคตของอาหาร",
       "button": "สร้างบัญชีฟรีของคุณ"
     }
   },
@@ -89,131 +172,18 @@
     "googlePlayAlt": "ดาวน์โหลดบน Google Play",
     "appStoreAlt": "ดาวน์โหลดบน App Store"
   },
-  "Auth": {
-    "signInWelcome": "ยินดีต้อนรับกลับสู่ {appName}",
-    "signUpWelcome": "เข้าร่วมเครือข่ายเกษตรกรรม DamDoh",
-    "forgotPasswordResetPrompt": "รีเซ็ตรหัสผ่านของคุณสำหรับ {appName}",
-    "resetPasswordPrompt": "สร้างรหัสผ่านใหม่สำหรับ {appName}",
-    "signInTitle": "ลงชื่อเข้าใช้บัญชีของคุณ",
-    "signInDescription": "ป้อนข้อมูลประจำตัวของคุณเพื่อเข้าถึงแดชบอร์ดของคุณ",
-    "emailLabel": "อีเมล",
-    "emailPlaceholder": "you@example.com",
-    "passwordLabel": "รหัสผ่าน",
-    "forgotPasswordLink": "ลืมรหัสผ่าน?",
-    "signingInButton": "กำลังลงชื่อเข้าใช้...",
-    "signInButton": "ลงชื่อเข้าใช้",
-    "noAccountPrompt": "ยังไม่มีบัญชี?",
-    "signUpLink": "ลงทะเบียน",
-    "signInLink": "ลงชื่อเข้าใช้",
-    "recoverWithUniversalIdPrompt": "หรือกู้คืนการเข้าถึงด้วย Universal ID ของคุณ",
-    "signUpTitle": "สร้างบัญชีใหม่",
-    "signUpDescription": "บอกเราเกี่ยวกับตัวคุณสักหน่อยเพื่อเริ่มต้น",
-    "nameLabel": "ชื่อของคุณหรือชื่อธุรกิจ",
-    "namePlaceholder": "เช่น ชาญ นารี หรือ กรีน วัลเลย์ ฟาร์มส์",
-    "roleLabel": "บทบาทหลักของคุณ",
-    "rolePlaceholder": "เลือกบทบาทของคุณในห่วงโซ่อุปทาน...",
-    "confirmPasswordLabel": "ยืนยันรหัสผ่าน",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "กำลังสร้างบัญชี...",
-    "signUpButton": "สร้างบัญชี",
-    "alreadyHaveAccountPrompt": "มีบัญชีอยู่แล้ว?",
-    "forgotPasswordTitle": "ลืมรหัสผ่าน?",
-    "forgotPasswordDescription": "ไม่มีปัญหา. ป้อนที่อยู่อีเมลของคุณด้านล่าง แล้วเราจะส่งลิงก์เพื่อรีเซ็ตให้คุณ",
-    "sendResetLinkButton": "ส่งลิงก์รีเซ็ต",
-    "sendingEmailButton": "กำลังส่งอีเมล...",
-    "rememberPasswordPrompt": "จำรหัสผ่านของคุณได้ไหม?",
-    "resetPasswordTitle": "รีเซ็ตรหัสผ่านของคุณ",
-    "resetPasswordDescription": "ป้อนและยืนยันรหัสผ่านใหม่ของคุณด้านล่าง",
-    "newPasswordLabel": "รหัสผ่านใหม่",
-    "newPasswordPlaceholder": "ป้อนรหัสผ่านใหม่ที่คาดเดายาก",
-    "resetPasswordButton": "รีเซ็ตรหัสผ่าน",
-    "resettingPasswordButton": "กำลังรีเซ็ต...",
-    "recoverPage": {
-      "title": "กู้คืนบัญชีของคุณ",
-      "description": "ใช้เครือข่ายของคุณเพื่อกลับเข้าสู่ระบบ",
-      "howItWorksTitle": "วิธีการทำงาน",
-      "step1": "ป้อนหมายเลขโทรศัพท์ของคุณเพื่อเริ่มเซสชันการกู้คืน",
-      "step2": "แสดงรหัส QR ชั่วคราวให้เพื่อนที่เชื่อถือได้บน DamDoh",
-      "step3": "เมื่อเพื่อนของคุณสแกนรหัสเพื่อยืนยันตัวตนของคุณ คุณจะกลับเข้าสู่ระบบได้อีกครั้ง",
-      "startButton": "เริ่มการกู้คืนบัญชี",
-      "scanTitle": "ขอให้เพื่อนสแกน",
-      "scanDescription": "ให้ผู้ติดต่อ DamDoh ที่เชื่อถือได้สแกนรหัส QR นี้โดยใช้คุณสมบัติ 'ช่วยเพื่อนกู้คืน' ในแอปของพวกเขา",
-      "scanNote": "รหัสนี้เป็นรหัสชั่วคราวและจะหมดอายุใน 10 นาที",
-      "startOverButton": "เริ่มใหม่",
-      "enterPhone": {
-        "title": "ป้อนหมายเลขโทรศัพท์ของคุณ",
-        "description": "เราจะใช้ข้อมูลนี้เพื่อค้นหาบัญชีของคุณและเริ่มกระบวนการกู้คืน",
-        "phoneNumberLabel": "หมายเลขโทรศัพท์",
-        "phoneNumberPlaceholder": "+1 (555) 123-4567",
-        "phoneRequiredError": "ต้องระบุหมายเลขโทรศัพท์",
-        "getRecoveryCodeButton": "รับรหัสกู้คืน",
-        "verifyingButton": "กำลังตรวจสอบ...",
-        "genericError": "ไม่สามารถเริ่มการกู้คืนได้ โปรดตรวจสอบหมายเลขและลองอีกครั้ง"
-      },
-      "helpFriend": {
-        "prompt": "ต้องการช่วยเพื่อนกู้คืนบัญชีของพวกเขาหรือไม่?",
-        "button": "ช่วยเพื่อนกู้คืน",
-        "scanError": "รหัสที่สแกนไม่ใช่รหัสกู้คืน DamDoh ที่ถูกต้อง",
-        "scanSuccess": "สแกนสำเร็จ!",
-        "scanFail": "ไม่สามารถอ่านรหัส QR ได้ โปรดลองอีกครั้ง"
-      }
+  "MobileHomepage": {
+    "welcome": {
+      "morning": "អរុណសួស្តី, {name}",
+      "afternoon": "ទិវាសួស្តី, {name}",
+      "evening": "សាយណ្ហសួស្តី, {name}"
     },
-    "forgotPassword": {
-      "emailSentTitle": "ตรวจสอบอีเมลของคุณ",
-      "emailSentDescription": "ลิงก์รีเซ็ตรหัสผ่านได้ถูกส่งไปยัง {email} แล้ว",
-      "emailSentDescriptionIfAccountExists": "หากมีบัญชีที่ใช้ {email} อยู่ ลิงก์รีเซ็ตรหัสผ่านได้ถูกส่งไปแล้ว",
-      "successTitle": "ส่งอีเมลแล้ว!",
-      "successDescription": "โปรดตรวจสอบกล่องจดหมายเข้าของคุณ (และโฟลเดอร์สแปม) เพื่อหารหัสผ่านใหม่",
-      "errors": {
-        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
-        "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
-        "tooManyRequests": "มีการร้องขอมากเกินไป โปรดลองอีกครั้งในภายหลัง",
-        "default": "ไม่สามารถส่งอีเมลรีเซ็ตได้"
-      }
-    },
-    "resetPassword": {
-      "successTitle": "รีเซ็ตรหัสผ่านสำเร็จ!",
-      "successDescription": "ตอนนี้คุณสามารถลงชื่อเข้าใช้ด้วยรหัสผ่านใหม่ของคุณได้แล้ว",
-      "successRedirect": "คุณจะถูกนำไปยังหน้าลงชื่อเข้าใช้ในไม่ช้า",
-      "errors": {
-        "missingCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้อง โปรดขอใหม่",
-        "missingCodeTitle": "ลิงก์ไม่ถูกต้อง",
-        "missingCodeDescription": "ลิงก์รีเซ็ตรหัสผ่านหายไปหรือไม่ถูกต้อง โปรดกลับไปที่หน้า 'ลืมรหัสผ่าน' เพื่อขอลิงก์ใหม่",
-        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
-        "invalidOrExpiredCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้องหรือหมดอายุแล้ว โปรดขอใหม่",
-        "userDisabled": "บัญชีผู้ใช้นี้ถูกปิดใช้งานแล้ว",
-        "userNotFound": "ไม่พบผู้ใช้ที่สอดคล้องกับลิงก์รีเซ็ตนี้",
-        "weakPassword": "รหัสผ่านใหม่ไม่รัดกุมพอ",
-        "default": "ไม่สามารถรีเซ็ตรหัสผ่านได้"
-      }
-    },
-    "signInSuccess": {
-      "title": "ลงชื่อเข้าใช้สำเร็จ",
-      "description": "ยินดีต้อนรับกลับสู่ {appName}!"
-    },
-    "signInFailed": "ลงชื่อเข้าใช้ไม่สำเร็จ",
-    "errors": {
-      "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
-      "invalidCredential": "อีเมลหรือรหัสผ่านที่คุณป้อนไม่ถูกต้อง",
-      "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
-      "userDisabled": "บัญชีผู้ใช้นี้ถูกปิดใช้งานแล้ว",
-      "default": "การยืนยันตัวตนล้มเหลว",
-      "emailInUse": "มีบัญชีที่ใช้อีเมลนี้อยู่แล้ว",
-      "weakPassword": "รหัสผ่านอ่อนแอเกินไป โปรดใช้รหัสผ่านที่รัดกุมกว่านี้"
-    },
-    "passwordStrength": {
-      "label": "ความแข็งแกร่ง",
-      "weak": "อ่อนแอ",
-      "medium": "ปานกลาง",
-      "strong": "แข็งแกร่ง",
-      "veryStrong": "แข็งแกร่งมาก"
-    },
-    "signUpSuccess": {
-      "title": "สร้างบัญชีแล้ว!",
-      "description": "ยินดีต้อนรับสู่ {appName}! คุณได้ลงชื่อเข้าใช้แล้ว"
-    },
-    "signUpFailed": "การลงทะเบียนล้มเหลว",
-    "error": "ข้อผิดพลาด"
+    "discoverTitle": "ស្វែងយល់",
+    "seeAllButton": "មើល​ទាំងអស់",
+    "communityFeedTitle": "ហ្វីតសហគមន៍",
+    "communityFeedDescription": "ភ្ជាប់ទំនាក់ទំនងជាមួយអ្នកដទៃ ចែករំលែកចំណេះដឹងរបស់អ្នក និងទទួលបានព័ត៌មានថ្មីៗពីការសន្ទនាចុងក្រោយបំផុត។",
+    "goToFeedButton": "ไปที่ฟีด",
+    "noRecommendations": "ยังไม่มีคำแนะนำในขณะนี้ สำรวจตลาดเพื่อเริ่มต้น!"
   },
   "forumsPage": {
     "title": "ฟอรัม",

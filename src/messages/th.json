@@ -1,5 +1,101 @@
 
 {
+  "common": {
+    "error": "ข้อผิดพลาด",
+    "success": "สำเร็จ",
+    "loading": "กำลังโหลด...",
+    "noData": "ไม่มีข้อมูล",
+    "save": "บันทึก",
+    "cancel": "ยกเลิก",
+    "viewDetails": "ดูรายละเอียด",
+    "edit": "แก้ไข",
+    "delete": "ลบ",
+    "back": "กลับ",
+    "submit": "ส่ง",
+    "yes": "ใช่",
+    "no": "ไม่",
+    "confirm": "ยืนยัน",
+    "close": "ปิด",
+    "optional": "ไม่บังคับ"
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "เกษตรกร",
+      "AgriculturalCooperative": "สหกรณ์การเกษตร",
+      "FieldAgentAgronomistDamDohInternal": "เจ้าหน้าที่ภาคสนาม/นักปฐพีวิทยา (DamDoh Internal)",
+      "OperationsLogisticsTeamDamDohInternal": "ทีมปฏิบัติการ/โลจิสติกส์ (DamDoh Internal)",
+      "QualityAssuranceTeamDamDohInternal": "ทีมประกันคุณภาพ (DamDoh Internal)",
+      "ProcessingPackagingUnit": "หน่วยแปรรูปและบรรจุภัณฑ์",
+      "BuyerRestaurantSupermarketExporter": "ผู้ซื้อ (ร้านอาหาร, ซูเปอร์มาร์เก็ต, ผู้ส่งออก)",
+      "InputSupplierSeedFertilizerPesticide": "ผู้จัดหาปัจจัยการผลิต (เมล็ดพันธุ์, ปุ๋ย, ยาฆ่าแมลง)",
+      "EquipmentSupplierSalesofMachineryIoT": "ผู้จำหน่ายอุปกรณ์ (ขายเครื่องจักร/IoT)",
+      "FinancialInstitutionMicrofinanceLoans": "สถาบันการเงิน (ไมโครไฟแนนซ์/สินเชื่อ)",
+      "GovernmentRegulatorAuditor": "หน่วยงานกำกับดูแลของรัฐ/ผู้ตรวจสอบบัญชี",
+      "CertificationBodyOrganicFairTradeetc": "หน่วยงานรับรอง (เกษตรอินทรีย์, การค้าที่เป็นธรรม ฯลฯ)",
+      "Consumer": "ผู้บริโภค",
+      "ResearcherAcademic": "นักวิจัย/นักวิชาการ",
+      "LogisticsPartnerThirdPartyTransporter": "พันธมิตรด้านโลจิสติกส์ (ผู้ขนส่งบุคคลที่สาม)",
+      "StorageWarehouseFacility": "สถานที่จัดเก็บ/คลังสินค้า",
+      "AgronomyExpertConsultantExternal": "ผู้เชี่ยวชาญด้านพืชไร่/ที่ปรึกษา (ภายนอก)",
+      "AgroTourismOperator": "ผู้ประกอบการท่องเที่ยวเชิงเกษตร",
+      "EnergySolutionsProviderSolarBiogas": "ผู้ให้บริการโซลูชั่นพลังงาน (พลังงานแสงอาทิตย์, ก๊าซชีวภาพ)",
+      "AgroExportFacilitatorCustomsBroker": "ผู้อำนวยความสะดวกการส่งออกเกษตร/นายหน้าศุลกากร",
+      "AgriTechInnovatorDeveloper": "ผู้ริเริ่ม/นักพัฒนาเทคโนโลยีเกษตร",
+      "WasteManagementCompostFacility": "โรงงานจัดการของเสียและปุ๋ยหมัก",
+      "CrowdfunderImpactInvestorIndividual": "ผู้ระดมทุน (นักลงทุนเพื่อผลกระทบ, บุคคล)",
+      "InsuranceProvider": "ผู้ให้บริการประกันภัย",
+      "PackagingSupplier": "ผู้จัดหาบรรจุภัณฑ์"
+    },
+    "listingTypes": {
+      "All": "ทุกประเภท",
+      "Product": "ผลิตภัณฑ์",
+      "Service": "บริการ"
+    },
+    "agriEventTypes": {
+      "All": "ทุกประเภท",
+      "Conference": "การประชุม",
+      "Webinar": "สัมมนาออนไลน์",
+      "Workshop": "เวิร์คช็อป",
+      "TradeShow": "งานแสดงสินค้า",
+      "FieldDay": "วันสาธิต",
+      "NetworkingEvent": "กิจกรรมสร้างเครือข่าย",
+      "OnlineCourseLaunch": "เปิดตัวคอร์สออนไลน์",
+      "PolicyBriefing": "การบรรยายสรุปนโยบาย"
+    },
+    "insuranceProductTypes": {
+      "Crop": "ประกันภัยพืชผล",
+      "Livestock": "ประกันภัยปศุสัตว์",
+      "Asset": "ประกันภัยทรัพย์สิน",
+      "Weather": "ประกันภัยตามสภาพอากาศ"
+    },
+    "financialServiceTypes": {},
+    "cropStages": {
+      "Planting": "การปลูก",
+      "Vegetative": "การเจริญเติบโต",
+      "Flowering": "การออกดอก",
+      "Fruiting": "การติดผล",
+      "Harvesting": "การเก็บเกี่ยว",
+      "Post-Harvest": "หลังการเก็บเกี่ยว"
+    },
+    "observationTypes": {
+      "GeneralNote": "บันทึกทั่วไป",
+      "PestSighting": "การพบเห็นศัตรูพืช",
+      "DiseaseSighting": "การพบเห็นโรค",
+      "SoilCondition": "สภาพดิน",
+      "WeatherEvent": "เหตุการณ์สภาพอากาศ",
+      "GrowthStageChange": "การเปลี่ยนแปลงระยะการเจริญเติบโต",
+      "IrrigationEvent": "เหตุการณ์การให้น้ำ"
+    },
+    "mobileHomeCategories": {
+      "produceMarket": "ตลาดผลผลิต",
+      "farmInputs": "ปัจจัยการผลิต",
+      "talentExchange": "ตลาดนัดแรงงาน",
+      "machinery": "เครื่องจักร",
+      "community": "ชุมชน",
+      "aiAssistant": "ผู้ช่วย AI",
+      "events": "กิจกรรม"
+    }
+  },
   "MobileHomepage": {
     "welcome": {
       "morning": "สวัสดีตอนเช้า, {name}",
@@ -121,132 +217,6 @@
         "description": "ไม่สามารถดึงข้อมูลคำแนะนำกระทู้ได้"
       }
     }
-  },
-  "Auth": {
-    "signInWelcome": "ยินดีต้อนรับกลับสู่ {appName}",
-    "signUpWelcome": "เข้าร่วมเครือข่ายเกษตรกรรม DamDoh",
-    "forgotPasswordResetPrompt": "รีเซ็ตรหัสผ่านของคุณสำหรับ {appName}",
-    "resetPasswordPrompt": "สร้างรหัสผ่านใหม่สำหรับ {appName}",
-    "signInTitle": "ลงชื่อเข้าใช้บัญชีของคุณ",
-    "signInDescription": "ป้อนข้อมูลประจำตัวของคุณเพื่อเข้าถึงแดชบอร์ดของคุณ",
-    "emailLabel": "อีเมล",
-    "emailPlaceholder": "you@example.com",
-    "passwordLabel": "รหัสผ่าน",
-    "forgotPasswordLink": "ลืมรหัสผ่าน?",
-    "signingInButton": "กำลังลงชื่อเข้าใช้...",
-    "signInButton": "ลงชื่อเข้าใช้",
-    "noAccountPrompt": "ยังไม่มีบัญชี?",
-    "signUpLink": "ลงทะเบียน",
-    "signInLink": "ลงชื่อเข้าใช้",
-    "recoverWithUniversalIdPrompt": "หรือกู้คืนการเข้าถึงด้วย Universal ID ของคุณ",
-    "signUpTitle": "สร้างบัญชีใหม่",
-    "signUpDescription": "บอกเราเกี่ยวกับตัวคุณสักหน่อยเพื่อเริ่มต้น",
-    "nameLabel": "ชื่อของคุณหรือชื่อธุรกิจ",
-    "namePlaceholder": "เช่น ชาญ นารี หรือ กรีน วัลเลย์ ฟาร์มส์",
-    "roleLabel": "บทบาทหลักของคุณ",
-    "rolePlaceholder": "เลือกบทบาทของคุณในห่วงโซ่อุปทาน...",
-    "confirmPasswordLabel": "ยืนยันรหัสผ่าน",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "กำลังสร้างบัญชี...",
-    "signUpButton": "สร้างบัญชี",
-    "alreadyHaveAccountPrompt": "มีบัญชีอยู่แล้ว?",
-    "forgotPasswordTitle": "ลืมรหัสผ่าน?",
-    "forgotPasswordDescription": "ไม่มีปัญหา. ป้อนที่อยู่อีเมลของคุณด้านล่าง แล้วเราจะส่งลิงก์เพื่อรีเซ็ตให้คุณ",
-    "sendResetLinkButton": "ส่งลิงก์รีเซ็ต",
-    "sendingEmailButton": "กำลังส่งอีเมล...",
-    "rememberPasswordPrompt": "จำรหัสผ่านของคุณได้ไหม?",
-    "resetPasswordTitle": "รีเซ็ตรหัสผ่านของคุณ",
-    "resetPasswordDescription": "ป้อนและยืนยันรหัสผ่านใหม่ของคุณด้านล่าง",
-    "newPasswordLabel": "รหัสผ่านใหม่",
-    "newPasswordPlaceholder": "ป้อนรหัสผ่านใหม่ที่คาดเดายาก",
-    "resetPasswordButton": "รีเซ็ตรหัสผ่าน",
-    "resettingPasswordButton": "กำลังรีเซ็ต...",
-    "recoverPage": {
-      "title": "กู้คืนบัญชีของคุณ",
-      "description": "ใช้เครือข่ายของคุณเพื่อกลับเข้าสู่ระบบ",
-      "howItWorksTitle": "วิธีการทำงาน",
-      "step1": "ป้อนหมายเลขโทรศัพท์ของคุณเพื่อเริ่มเซสชันการกู้คืน",
-      "step2": "แสดงรหัส QR ชั่วคราวให้เพื่อนที่เชื่อถือได้บน DamDoh",
-      "step3": "เมื่อเพื่อนของคุณสแกนรหัสเพื่อยืนยันตัวตนของคุณ คุณจะกลับเข้าสู่ระบบได้อีกครั้ง",
-      "startButton": "เริ่มการกู้คืนบัญชี",
-      "scanTitle": "ขอให้เพื่อนสแกน",
-      "scanDescription": "ให้ผู้ติดต่อ DamDoh ที่เชื่อถือได้สแกนรหัส QR นี้โดยใช้คุณสมบัติ 'ช่วยเพื่อนกู้คืน' ในแอปของพวกเขา",
-      "scanNote": "รหัสนี้เป็นรหัสชั่วคราวและจะหมดอายุใน 10 นาที",
-      "startOverButton": "เริ่มใหม่",
-      "enterPhone": {
-        "title": "ป้อนหมายเลขโทรศัพท์ของคุณ",
-        "description": "เราจะใช้ข้อมูลนี้เพื่อค้นหาบัญชีของคุณและเริ่มกระบวนการกู้คืน",
-        "phoneNumberLabel": "หมายเลขโทรศัพท์",
-        "phoneNumberPlaceholder": "+1 (555) 123-4567",
-        "phoneRequiredError": "ต้องระบุหมายเลขโทรศัพท์",
-        "getRecoveryCodeButton": "รับรหัสกู้คืน",
-        "verifyingButton": "กำลังตรวจสอบ...",
-        "genericError": "ไม่สามารถเริ่มการกู้คืนได้ โปรดตรวจสอบหมายเลขและลองอีกครั้ง"
-      },
-      "helpFriend": {
-        "prompt": "ต้องการช่วยเพื่อนกู้คืนบัญชีของพวกเขาหรือไม่?",
-        "button": "ช่วยเพื่อนกู้คืน",
-        "scanError": "รหัสที่สแกนไม่ใช่รหัสกู้คืน DamDoh ที่ถูกต้อง",
-        "scanSuccess": "สแกนสำเร็จ!",
-        "scanFail": "ไม่สามารถอ่านรหัส QR ได้ โปรดลองอีกครั้ง"
-      }
-    },
-    "forgotPassword": {
-      "emailSentTitle": "ตรวจสอบอีเมลของคุณ",
-      "emailSentDescription": "ลิงก์รีเซ็ตรหัสผ่านได้ถูกส่งไปยัง {email} แล้ว",
-      "emailSentDescriptionIfAccountExists": "หากมีบัญชีที่ใช้ {email} อยู่ ลิงก์รีเซ็ตรหัสผ่านได้ถูกส่งไปแล้ว",
-      "successTitle": "ส่งอีเมลแล้ว!",
-      "successDescription": "โปรดตรวจสอบกล่องจดหมายเข้าของคุณ (และโฟลเดอร์สแปม) เพื่อหารหัสผ่านใหม่",
-      "errors": {
-        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
-        "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
-        "tooManyRequests": "มีการร้องขอมากเกินไป โปรดลองอีกครั้งในภายหลัง",
-        "default": "ไม่สามารถส่งอีเมลรีเซ็ตได้"
-      }
-    },
-    "resetPassword": {
-      "successTitle": "รีเซ็ตรหัสผ่านสำเร็จ!",
-      "successDescription": "ตอนนี้คุณสามารถลงชื่อเข้าใช้ด้วยรหัสผ่านใหม่ของคุณได้แล้ว",
-      "successRedirect": "คุณจะถูกนำไปยังหน้าลงชื่อเข้าใช้ในไม่ช้า",
-      "errors": {
-        "missingCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้อง โปรดขอใหม่",
-        "missingCodeTitle": "ลิงก์ไม่ถูกต้อง",
-        "missingCodeDescription": "ลิงก์รีเซ็ตรหัสผ่านหายไปหรือไม่ถูกต้อง โปรดกลับไปที่หน้า 'ลืมรหัสผ่าน' เพื่อขอลิงก์ใหม่",
-        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
-        "invalidOrExpiredCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้องหรือหมดอายุแล้ว โปรดขอใหม่",
-        "userDisabled": "บัญชีผู้ใช้นี้ถูกปิดใช้งานแล้ว",
-        "userNotFound": "ไม่พบผู้ใช้ที่สอดคล้องกับลิงก์รีเซ็ตนี้",
-        "weakPassword": "รหัสผ่านใหม่ไม่รัดกุมพอ",
-        "default": "ไม่สามารถรีเซ็ตรหัสผ่านได้"
-      }
-    },
-    "signInSuccess": {
-      "title": "ลงชื่อเข้าใช้สำเร็จ",
-      "description": "ยินดีต้อนรับกลับสู่ {appName}!"
-    },
-    "signInFailed": "ลงชื่อเข้าใช้ไม่สำเร็จ",
-    "errors": {
-      "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
-      "invalidCredential": "อีเมลหรือรหัสผ่านที่คุณป้อนไม่ถูกต้อง",
-      "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
-      "userDisabled": "บัญชีผู้ใช้นี้ถูกปิดใช้งานแล้ว",
-      "default": "การยืนยันตัวตนล้มเหลว",
-      "emailInUse": "มีบัญชีที่ใช้อีเมลนี้อยู่แล้ว",
-      "weakPassword": "รหัสผ่านอ่อนแอเกินไป โปรดใช้รหัสผ่านที่รัดกุมกว่านี้"
-    },
-    "passwordStrength": {
-      "label": "ความแข็งแกร่ง",
-      "weak": "อ่อนแอ",
-      "medium": "ปานกลาง",
-      "strong": "แข็งแกร่ง",
-      "veryStrong": "แข็งแกร่งมาก"
-    },
-    "signUpSuccess": {
-      "title": "สร้างบัญชีแล้ว!",
-      "description": "ยินดีต้อนรับสู่ {appName}! คุณได้ลงชื่อเข้าใช้แล้ว"
-    },
-    "signUpFailed": "การลงทะเบียนล้มเหลว",
-    "error": "ข้อผิดพลาด"
   }
 }
 
