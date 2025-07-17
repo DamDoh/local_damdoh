@@ -3,10 +3,10 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, Loader2, Sparkles, Save, Briefcase, Star, MapPin } from "lucide-react";
+import { ArrowLeft, Loader2, Sparkles, Save, Briefcase, Star, MapPin, ImageUp } from "lucide-react";
 import { useRouter, useSearchParams, Link } from '@/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslations } from 'next-intl';
@@ -23,6 +23,7 @@ import { suggestMarketPrice } from '@/ai/flows/suggest-market-price-flow';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useLocale } from 'next-intl';
+import { uploadFileAndGetURL } from '@/lib/storage-utils';
 
 export default function CreateListingPage() {
     const router = useRouter();
@@ -51,7 +52,7 @@ export default function CreateListingPage() {
         category: undefined,
         location: { lat: 11.5564, lng: 104.9282, address: "Phnom Penh, Cambodia" }, // Default location
         isSustainable: false,
-        imageUrl: "",
+        imageFile: undefined,
         skillsRequired: "",
         experienceLevel: "",
         compensation: "",
@@ -103,8 +104,6 @@ export default function CreateListingPage() {
     };
     
     const handleSetLocation = () => {
-        // In a real app, this would open a map modal.
-        // For now, we'll just cycle through a few locations.
         const locations = [
             { lat: 11.5564, lng: 104.9282, address: "Phnom Penh, Cambodia" },
             { lat: 13.363, lng: 103.844, address: "Siem Reap, Cambodia" },
@@ -128,7 +127,14 @@ export default function CreateListingPage() {
 
         setIsSubmitting(true);
         try {
-            const payload = { ...data };
+            let imageUrl: string | undefined = undefined;
+            if (data.imageFile) {
+                toast({ title: "Uploading Image", description: "Please wait while your image is uploaded..." });
+                imageUrl = await uploadFileAndGetURL(data.imageFile, 'marketplace-listings');
+            }
+
+            const payload = { ...data, imageUrl, imageFile: undefined }; // Don't send file to backend
+            
             await createListingCallable(payload);
             toast({ title: t('success.title'), description: t('success.description') });
             router.push('/marketplace');
@@ -359,17 +365,22 @@ export default function CreateListingPage() {
                             )}
 
                              <FormField
-                              control={form.control}
-                              name="imageUrl"
-                              render={({ field }) => (
+                                control={form.control}
+                                name="imageFile"
+                                render={({ field: { onChange, value, ...rest } }) => (
                                 <FormItem>
-                                  <FormLabel>{t('form.imageUrlLabel')}</FormLabel>
-                                  <FormControl>
-                                    <Input placeholder="https://placehold.co/400x300.png" {...field} />
-                                  </FormControl>
-                                  <FormMessage />
+                                    <FormLabel className="flex items-center gap-2"><ImageUp className="h-4 w-4 text-muted-foreground" />{t('form.imageFile')}</FormLabel>
+                                    <FormControl>
+                                    <Input 
+                                        type="file" 
+                                        accept="image/*"
+                                        onChange={(e) => onChange(e.target.files?.[0])}
+                                        {...rest}
+                                    />
+                                    </FormControl>
+                                    <FormMessage />
                                 </FormItem>
-                              )}
+                                )}
                             />
 
                              <FormField

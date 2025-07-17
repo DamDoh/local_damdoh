@@ -1,5 +1,4 @@
 
-
 import { z } from "zod";
 import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from "@/lib/constants";
 
@@ -37,7 +36,6 @@ export const createMarketplaceItemSchema = z.object({
     lng: z.number(),
     address: z.string(),
   }),
-  imageUrl: z.string().url({ message: "Please enter a valid URL for the image (e.g., https://placehold.co/300x200.png)." }).optional().or(z.literal('')),
   imageFile: imageFileSchema,
   dataAiHint: z.string().optional(),
   contactInfo: z.string().min(5, "Contact information must be at least 5 characters long.").max(200, "Contact information cannot exceed 200 characters.").optional(),
@@ -75,7 +73,6 @@ export const createAgriEventSchema = z.object({
   }),
   organizer: z.string().max(100, "Organizer name cannot exceed 100 characters.").optional(),
   websiteLink: z.string().url({ message: "Please enter a valid URL for the event website." }).optional().or(z.literal('')),
-  imageUrl: z.string().url({ message: "Please enter a valid URL for the event image." }).optional().or(z.literal('')),
   imageFile: imageFileSchema,
   dataAiHint: z.string().optional(),
   registrationEnabled: z.boolean().default(false).optional(),
