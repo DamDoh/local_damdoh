@@ -11,8 +11,6 @@ import * as admin from "firebase-admin";
 // We import it to ensure Express routes are registered with Cloud Functions.
 import expressApp from "./server";
 import * as functions from "firebase-functions";
-import type { UserProfile } from './types';
-
 
 // We only need to initialize the admin SDK once for all other functions.
 if (admin.apps.length === 0) {
@@ -61,7 +59,8 @@ export * from "./geospatial";
  * @return {Promise<void>}
  */
 async function deleteCollection(collectionPath: string, batchSize: number): Promise<void> {
-  const collectionRef = admin.firestore().collection(collectionPath);
+  const db = admin.firestore();
+  const collectionRef = db.collection(collectionPath);
   const query = collectionRef.orderBy('__name__').limit(batchSize);
 
   return new Promise((resolve, reject) => {
@@ -110,19 +109,29 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
     // 1. Delete main user profile document
     cleanupPromises.push(userRef.delete());
 
-    // 2. Delete all subcollections of the user
+    // 2. Delete all subcollections of the user (e.g., workers, api_keys)
     cleanupPromises.push(deleteCollection(`users/${userId}/workers`, 100));
+    cleanupPromises.push(deleteCollection(`users/${userId}/api_keys`, 50));
+    cleanupPromises.push(deleteCollection(`users/${userId}/certifications`, 50));
 
-    // 3. Delete all top-level documents created by the user
-    const collectionsToClean = [
-        'posts', 'farms', 'crops', 'knf_batches', 'marketplaceItems', 'shops', 'agri_events'
+
+    // 3. Delete all top-level documents directly created by the user
+    const collectionsToClean: { name: string, userField: string }[] = [
+        { name: 'posts', userField: 'userId' },
+        { name: 'farms', userField: 'ownerId' },
+        { name: 'crops', userField: 'ownerId' },
+        { name: 'knf_batches', userField: 'userId' },
+        { name: 'marketplaceItems', userField: 'sellerId' },
+        { name: 'shops', userField: 'ownerId' },
+        { name: 'agri_events', userField: 'organizerId' },
+        { name: 'financial_transactions', userField: 'userRef' }, // Note: userRef is a reference, not a string
     ];
-    collectionsToClean.forEach(collectionName => {
-        const query = db.collection(collectionName).where('ownerId', '==', userId);
-        // Special case for posts where the field is 'userId'
-        const userField = collectionName === 'posts' ? 'userId' : 'ownerId';
-        const queryByUser = db.collection(collectionName).where(userField, '==', userId);
-        cleanupPromises.push(queryByUser.get().then(snapshot => {
+
+    collectionsToClean.forEach(collectionInfo => {
+        const userIdentifier = collectionInfo.userField === 'userRef' ? userRef : userId;
+        const query = db.collection(collectionInfo.name).where(collectionInfo.userField, '==', userIdentifier);
+        cleanupPromises.push(query.get().then(snapshot => {
+            if (snapshot.empty) return;
             const batch = db.batch();
             snapshot.docs.forEach(doc => batch.delete(doc.ref));
             return batch.commit();
@@ -132,6 +141,7 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
     // 4. Clean up connections in other users' documents
     const connectionsQuery = db.collection('users').where('connections', 'array-contains', userId);
     cleanupPromises.push(connectionsQuery.get().then(snapshot => {
+        if (snapshot.empty) return;
         const batch = db.batch();
         snapshot.docs.forEach(doc => {
             batch.update(doc.ref, { connections: admin.firestore.FieldValue.arrayRemove(userId) });
@@ -142,9 +152,9 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
     // 5. Clean up group memberships
     const groupMembershipQuery = db.collectionGroup('members').where(admin.firestore.FieldPath.documentId(), '==', userId);
     cleanupPromises.push(groupMembershipQuery.get().then(snapshot => {
+      if (snapshot.empty) return;
       const batch = db.batch();
       snapshot.docs.forEach(doc => {
-        // Also decrement the memberCount on the parent group
         const groupRef = doc.ref.parent.parent;
         if(groupRef) {
           batch.update(groupRef, { memberCount: admin.firestore.FieldValue.increment(-1) });
@@ -166,5 +176,3 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
 
 // Export the Express app as a Cloud Function
 export const api = functions.https.onRequest(expressApp);
-
-    
