@@ -14,8 +14,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslations, useLocale } from 'next-intl';
-import { generateForumPostDraftCallable as generateDraft } from '@/lib/server-actions';
-
+import { generateForumPostDraftCallable } from '@/lib/server-actions';
 
 export default function CreatePostPage() {
     const params = useParams();
@@ -46,7 +45,7 @@ export default function CreatePostPage() {
         }
         setIsGenerating(true);
         try {
-            const result = await generateDraft({ topicId, prompt: aiPrompt, language: locale });
+            const result = await generateForumPostDraftCallable({ topicId, prompt: aiPrompt, language: locale });
             setTitle(result.title);
             setContent(result.content);
             toast({
@@ -186,3 +185,5 @@ export default function CreatePostPage() {
         </div>
     );
 }
+
+    

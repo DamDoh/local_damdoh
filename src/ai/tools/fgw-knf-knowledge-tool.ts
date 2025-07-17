@@ -28,7 +28,7 @@ export const fwg_knf_tool = ai.defineTool(
           collection(db, "knowledge_base"),
           or(
             where("name", "==", input.techniqueName),
-            where(collection(db, "knowledge_base").idField(), '==', input.techniqueName.toLowerCase())
+            where(collection(db, "knowledge_base").idField(), '==', input.techniqueName.toLowerCase().replace(/\s+/g, '_'))
           ),
           limit(1)
         );

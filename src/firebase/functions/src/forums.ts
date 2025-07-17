@@ -3,7 +3,6 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB } from './profiles';
 import { suggestForumTopics } from '../../src/ai/flows/forum-topic-suggestions';
-import { generateForumPostDraft } from '../../src/ai/flows/generate-forum-post-draft';
 
 const db = admin.firestore();
 
@@ -27,22 +26,6 @@ export const getForumTopicSuggestions = functions.https.onCall(async (data, cont
     } catch (error) {
         console.error("Error calling suggestForumTopics flow:", error);
         throw new functions.https.HttpsError("internal", "Failed to get topic suggestions.");
-    }
-});
-
-// New function to securely call the AI flow for post drafts
-export const generateForumPostDraftCallable = functions.https.onCall(async (data, context) => {
-    checkAuth(context);
-    const { topicId, prompt, language } = data;
-    if (!topicId || !prompt) {
-        throw new functions.https.HttpsError('invalid-argument', 'Topic ID and a prompt are required.');
-    }
-    try {
-        const draft = await generateForumPostDraft({ topicId, prompt, language });
-        return draft;
-    } catch (error) {
-        console.error("Error calling generateForumPostDraft flow:", error);
-        throw new functions.https.HttpsError("internal", "Failed to generate post draft.");
     }
 });
 
@@ -230,3 +213,5 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
     await batch.commit();
     return { replyId: replyRef.id };
 });
+
+    

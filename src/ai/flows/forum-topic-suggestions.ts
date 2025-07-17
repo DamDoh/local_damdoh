@@ -1,4 +1,8 @@
 
+'use server';
+/**
+ * @fileOverview AI flow to generate forum topic suggestions.
+ */
 import { ai } from "@/ai/genkit";
 import { z } from "zod";
 
@@ -65,3 +69,5 @@ Your suggestions should be diverse and interesting.`;
     return llmResponse.output() || { suggestions: [] };
   }
 );
+
+    

@@ -2,124 +2,156 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
+import { BookOpen, ArrowRight, Brain, Newspaper } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Badge } from '@/components/ui/badge';
 
-// Define the structure of an article
-interface Article {
+interface Course {
   id: string;
-  title_en: string;
-  excerpt_en: string;
-  imageUrl?: string;
-  // Add other fields if necessary
+  titleEn: string;
+  descriptionEn: string;
+  category: string;
+  level: 'Beginner' | 'Intermediate' | 'Advanced';
 }
 
 const functions = getFunctions(firebaseApp);
 
+const CourseCardSkeleton = () => (
+    <Card className="flex flex-col">
+        <CardHeader>
+            <Skeleton className="h-5 w-24 mb-2" />
+            <Skeleton className="h-6 w-3/4" />
+        </CardHeader>
+        <CardContent className="flex-grow">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-5/6 mt-2" />
+        </CardContent>
+        <CardFooter>
+            <Skeleton className="h-10 w-full" />
+        </CardFooter>
+    </Card>
+);
+
+
 const KnowledgeHubPage = () => {
   const t = useTranslations('knowledgeHub');
-  const [featuredArticles, setFeaturedArticles] = useState<Article[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const getFeaturedKnowledge = useMemo(() => httpsCallable(functions, 'getFeaturedKnowledge'), []);
+  const getAvailableCourses = useMemo(() => httpsCallable(functions, 'getAvailableCourses'), []);
 
   useEffect(() => {
-    const fetchFeatured = async () => {
-      setLoading(true);
+    const fetchCourses = async () => {
+      setIsLoading(true);
       setError(null);
       try {
-        const currentUserId = 'placeholderUserId'; // TODO: Replace with actual user ID fetching logic
-        const result = await getFeaturedKnowledge({ userId: currentUserId });
-        const data = result.data as { success: boolean, articles: Article[] };
+        const result = await getAvailableCourses();
+        const data = result.data as { success: boolean, courses: Course[] };
         if (data.success) {
-          setFeaturedArticles(data.articles ?? []); // Safeguard against undefined articles
+          setCourses(data.courses ?? []);
         } else {
-          throw new Error('Failed to fetch featured articles.');
+          throw new Error('Failed to fetch courses.');
         }
       } catch (err: any) {
         setError(err.message);
-        setFeaturedArticles([]); // Ensure it's an array on error
+        setCourses([]);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
-    fetchFeatured();
-  }, [getFeaturedKnowledge]);
+    fetchCourses();
+  }, [getAvailableCourses]);
 
   return (
     <div className="container mx-auto p-4 md:p-6">
       <header className="text-center mb-12">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl">
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl flex items-center justify-center gap-3">
+          <BookOpen className="h-10 w-10 text-primary"/>
           {t('title')}
         </h1>
-        <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+        <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           {t('description')}
         </p>
       </header>
 
-      {/* Main Sections */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        <Card className="flex flex-col">
-          <CardHeader>
-            <CardTitle>{t('courses.title')}</CardTitle>
-            <CardDescription>{t('courses.description')}</CardDescription>
-          </CardHeader>
-          <CardContent className="flex-grow">
-            <p>{t('courses.body')}</p>
-          </CardContent>
-          <div className="p-6 pt-0">
-            <Link href="/knowledge-hub/courses" passHref>
-              <Button className="w-full">{t('courses.cta')}</Button>
-            </Link>
-          </div>
-        </Card>
-        <Card className="flex flex-col">
-          <CardHeader>
-            <CardTitle>{t('blog.title')}</CardTitle>
-            <CardDescription>{t('blog.description')}</CardDescription>
-          </CardHeader>
-          <CardContent className="flex-grow">
-            <p>{t('blog.body')}</p>
-          </CardContent>
-          <div className="p-6 pt-0">
-            <Link href="/blog" passHref>
-              <Button className="w-full">{t('blog.cta')}</Button>
-            </Link>
-          </div>
-        </Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Newspaper className="h-5 w-5 text-primary"/>{t('blog.title')}</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <CardDescription>{t('blog.description')}</CardDescription>
+            </CardContent>
+            <CardFooter>
+                 <Button asChild variant="outline" className="w-full"><Link href="/blog">{t('blog.cta')}</Link></Button>
+            </CardFooter>
+          </Card>
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Brain className="h-5 w-5 text-primary"/>{t('aiAssistant.title')}</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <CardDescription>{t('aiAssistant.description')}</CardDescription>
+            </CardContent>
+            <CardFooter>
+                 <Button asChild variant="outline" className="w-full"><Link href="/ai-assistant">{t('aiAssistant.cta')}</Link></Button>
+            </CardFooter>
+          </Card>
+           <Card className="hover:shadow-lg transition-shadow bg-primary/10 border-primary/30">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2">{t('contribute.title')}</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <CardDescription>{t('contribute.description')}</CardDescription>
+            </CardContent>
+            <CardFooter>
+                 <Button asChild className="w-full"><Link href="/admin/content">{t('contribute.cta')}</Link></Button>
+            </CardFooter>
+          </Card>
       </div>
 
-      {/* Featured Articles */}
       <div>
-        <h2 className="text-3xl font-bold text-center mb-8">{t('featured.title')}</h2>
-        {loading && <p className="text-center">{t('featured.loading')}</p>}
-        {error && <p className="text-center text-red-500">{t('featured.error')}: {error}</p>}
-        {!loading && !error && (
+        <h2 className="text-3xl font-bold text-center mb-8">{t('courses.title')}</h2>
+        {isLoading && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <CourseCardSkeleton />
+                <CourseCardSkeleton />
+                <CourseCardSkeleton />
+            </div>
+        )}
+        {error && <p className="text-center text-red-500">{t('courses.error')}: {error}</p>}
+        {!isLoading && !error && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredArticles.length > 0 ? (
-                featuredArticles.map((article) => (
-                <Link key={article.id} href={`/blog/${article.id}`} passHref>
-                    <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-                    {article.imageUrl && (
-                        <img src={article.imageUrl} alt={article.title_en} className="w-full h-48 object-cover" />
-                    )}
-                    <CardHeader>
-                        <CardTitle>{article.title_en}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-gray-700 dark:text-gray-300">{article.excerpt_en}</p>
-                    </CardContent>
+            {courses.length > 0 ? (
+                courses.map((course) => (
+                    <Card key={course.id} className="flex flex-col h-full">
+                        <CardHeader>
+                            <div className="flex justify-between items-start">
+                                <Badge variant="secondary" className="w-fit">{course.category}</Badge>
+                                <Badge variant={course.level === 'Beginner' ? 'default' : 'outline'}>{course.level}</Badge>
+                            </div>
+                            <CardTitle className="pt-2">{course.titleEn}</CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex-grow">
+                            <p className="text-sm text-muted-foreground">{course.descriptionEn}</p>
+                        </CardContent>
+                        <CardFooter>
+                             <Button asChild className="w-full">
+                                <Link href={`/knowledge-hub/courses/${course.id}`}>{t('courses.cta')} <ArrowRight className="ml-2 h-4 w-4"/></Link>
+                            </Button>
+                        </CardFooter>
                     </Card>
-                </Link>
                 ))
             ) : (
-                <p className="col-span-full text-center text-muted-foreground">{t('featured.noArticles')}</p>
+                <p className="col-span-full text-center text-muted-foreground">{t('courses.noCourses')}</p>
             )}
           </div>
         )}
@@ -127,3 +159,5 @@ const KnowledgeHubPage = () => {
     </div>
   );
 };
+
+export default KnowledgeHubPage;

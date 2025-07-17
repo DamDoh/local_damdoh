@@ -48,12 +48,12 @@ export const generateUniversalIdOnUserCreate = functions.firestore
  */
 export const getUniversalIdData = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to scan a Universal ID.");
     }
 
     const { scannedUniversalId } = data;
     if (!scannedUniversalId) {
-        throw new functions.https.HttpsError("invalid-argument", "error.universalId.required");
+        throw new functions.https.HttpsError("invalid-argument", "A 'scannedUniversalId' must be provided.");
     }
 
     const scannerUid = context.auth.uid;
@@ -64,7 +64,7 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
         const querySnapshot = await usersRef.where("universalId", "==", scannedUniversalId).limit(1).get();
 
         if (querySnapshot.empty) {
-            throw new functions.https.HttpsError("not-found", "error.user.notFound");
+            throw new functions.https.HttpsError("not-found", "The scanned Universal ID does not correspond to any user.");
         }
 
         const scannedUserDoc = querySnapshot.docs[0];
@@ -89,15 +89,15 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
             // The user is scanning their own ID, return all non-sensitive data
             return {
                 ...publicProfile,
-                email: scannedUserData.email,
                 phoneNumber: scannedUserData.phoneNumber, // Include phone number for self-scan
+                email: scannedUserData.email,
             };
         } else if (scannerRole === 'Field Agent/Agronomist (DamDoh Internal)' || scannerRole === 'Admin') {
             // An agent or admin gets more detailed information
             return {
                 ...publicProfile,
-                email: scannedUserData.email,
                 phoneNumber: scannedUserData.phoneNumber,
+                // Concept: Could also return linked farm data here
             };
         } else {
             // For any other authenticated user, just return the public profile
@@ -109,7 +109,7 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
         if (error instanceof functions.https.HttpsError) {
             throw error;
         }
-        throw new functions.https.HttpsError("internal", "error.internal");
+        throw new functions.https.HttpsError("internal", "An unexpected error occurred while fetching user data.");
     }
 });
 
@@ -119,12 +119,12 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
  */
 export const lookupUserByPhone = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to perform this action.");
     }
 
     const { phoneNumber } = data;
     if (!phoneNumber) {
-        throw new functions.https.HttpsError("invalid-argument", "error.phoneNumber.required");
+        throw new functions.https.HttpsError("invalid-argument", "A 'phoneNumber' must be provided.");
     }
 
     const agentUid = context.auth.uid;
@@ -133,7 +133,7 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
     // Security Check: Only allow authorized roles to perform this lookup
     const authorizedRoles = ['Field Agent/Agronomist (DamDoh Internal)', 'Admin', 'Operations/Logistics Team (DamDoh Internal)'];
     if (!agentRole || !authorizedRoles.includes(agentRole)) {
-        throw new functions.https.HttpsError("permission-denied", "error.permissionDenied");
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to look up users by phone number.");
     }
 
     try {
@@ -141,7 +141,7 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
         const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
 
         if (querySnapshot.empty) {
-            throw new functions.https.HttpsError("not-found", `error.user.notFound`);
+            throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
         }
 
         const foundUserDoc = querySnapshot.docs[0];
@@ -165,7 +165,7 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
         if (error instanceof functions.https.HttpsError) {
             throw error;
         }
-        throw new functions.https.HttpsError("internal", "error.internal");
+        throw new functions.https.HttpsError("internal", "An unexpected error occurred while searching for the user.");
     }
 });
 
@@ -178,7 +178,7 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
 export const createRecoverySession = functions.https.onCall(async (data, context) => {
     const { phoneNumber } = data;
     if (!phoneNumber) {
-        throw new functions.https.HttpsError("invalid-argument", "error.phoneNumber.required");
+        throw new functions.https.HttpsError("invalid-argument", "A 'phoneNumber' must be provided.");
     }
     
     // Find user by phone number
@@ -186,7 +186,7 @@ export const createRecoverySession = functions.https.onCall(async (data, context
     const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
 
     if (querySnapshot.empty) {
-        throw new functions.https.HttpsError("not-found", `error.user.notFound`);
+        throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
     }
 
     const userToRecoverDoc = querySnapshot.docs[0];
@@ -218,21 +218,21 @@ export const createRecoverySession = functions.https.onCall(async (data, context
  */
 export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to help a friend recover their account.");
     }
 
     const friendUid = context.auth.uid;
     const { sessionId, scannedSecret } = data;
 
     if (!sessionId || !scannedSecret) {
-        throw new functions.https.HttpsError("invalid-argument", "error.recovery.missingFields");
+        throw new functions.https.HttpsError("invalid-argument", "Session ID and secret are required.");
     }
 
     const sessionRef = db.collection('recovery_sessions').doc(sessionId);
     const sessionDoc = await sessionRef.get();
 
     if (!sessionDoc.exists) {
-        throw new functions.https.HttpsError("not-found", "error.recovery.invalidSession");
+        throw new functions.https.HttpsError("not-found", "Invalid recovery session.");
     }
 
     const sessionData = sessionDoc.data()!;
@@ -240,19 +240,19 @@ export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
 
     if (new Date() > expiresAt) {
         await sessionRef.update({ status: 'expired' });
-        throw new functions.https.HttpsError("deadline-exceeded", "error.recovery.expired");
+        throw new functions.https.HttpsError("deadline-exceeded", "This recovery session has expired. Please start over.");
     }
     
     if (sessionData.status !== 'pending') {
-        throw new functions.https.HttpsError("failed-precondition", "error.recovery.sessionUsed");
+        throw new functions.https.HttpsError("failed-precondition", "This recovery session has already been used or is invalid.");
     }
 
     if (sessionData.recoverySecret !== scannedSecret) {
-        throw new functions.https.HttpsError("permission-denied", "error.recovery.invalidCode");
+        throw new functions.https.HttpsError("permission-denied", "Invalid recovery code.");
     }
     
     if (sessionData.userIdToRecover === friendUid) {
-        throw new functions.https.HttpsError("invalid-argument", "error.recovery.selfScan");
+        throw new functions.https.HttpsError("invalid-argument", "You cannot use your own recovery code.");
     }
     
     // Mark session as confirmed
@@ -260,6 +260,10 @@ export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
         status: 'confirmed',
         confirmedBy: friendUid,
     });
+    
+    // In a real application, the next step would be for the original user's device
+    // to poll the session status. Once 'confirmed', it would request a custom auth token.
+    // For this demo, we'll just return a success message.
     
     return { success: true, message: "Friend confirmation successful! The user can now proceed with their recovery.", recoveryComplete: true };
 });

@@ -160,6 +160,7 @@ export const getFarmerDashboardData = functions.https.onCall(
                     nextStep: batchData.nextStep,
                     quantityProduced: batchData.quantityProduced,
                     unit: batchData.unit,
+                    createdAt: (batchData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString()
                 };
             });
 
@@ -354,6 +355,8 @@ export const getCooperativeDashboardData = functions.https.onCall(
         let aggregatedProduce: CooperativeDashboardData['aggregatedProduce'] = [];
         
         if (memberIds.length > 0) {
+            // Firestore 'in' query is limited to 30 items per query.
+            // Chunk the memberIds array to handle more than 30 members.
             const memberChunks: string[][] = [];
             for (let i = 0; i < memberIds.length; i += 30) {
                 memberChunks.push(memberIds.slice(i, i + 30));
@@ -1169,13 +1172,13 @@ export const getAdminDashboardData = functions.https.onCall(async (data, context
     checkAuth(context);
     
     try {
-        const usersPromise = db.collection('users').get();
-        const farmsPromise = db.collection('farms').get();
-        const listingsPromise = db.collection('marketplaceItems').get();
-        const pendingApprovalsPromise = db.collection('marketplaceItems').where('status', '==', 'pending_approval').get();
+        const usersPromise = db.collection('users').count().get();
+        const farmsPromise = db.collection('farms').count().get();
+        const listingsPromise = db.collection('marketplaceItems').count().get();
+        const pendingApprovalsPromise = db.collection('marketplaceItems').where('status', '==', 'pending_approval').count().get();
 
         const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-        const newUsersQuery = db.collection('users').where('createdAt', '>=', sevenDaysAgo).get();
+        const newUsersQuery = db.collection('users').where('createdAt', '>=', sevenDaysAgo).count().get();
 
         const [usersSnap, farmsSnap, listingsSnap, newUsersSnap, pendingApprovalsSnap] = await Promise.all([
             usersPromise,
@@ -1186,11 +1189,11 @@ export const getAdminDashboardData = functions.https.onCall(async (data, context
         ]);
 
         const result: AdminDashboardData = {
-            totalUsers: usersSnap.size,
-            totalFarms: farmsSnap.size,
-            totalListings: listingsSnap.size,
-            pendingApprovals: pendingApprovalsSnap.size,
-            newUsersLastWeek: newUsersSnap.size,
+            totalUsers: usersSnap.data().count,
+            totalFarms: farmsSnap.data().count,
+            totalListings: listingsSnap.data().count,
+            pendingApprovals: pendingApprovalsSnap.data().count,
+            newUsersLastWeek: newUsersSnap.data().count,
         };
         return AdminDashboardDataSchema.parse(result);
     } catch (error) {
@@ -1250,3 +1253,5 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
+
+    

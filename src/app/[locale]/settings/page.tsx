@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
-import { User, Bell, Shield, Palette, Lock, Users as ConnectionsIcon, SearchCheck, Save, ShieldOff, Briefcase, Mail, FileText, Sparkles, TrendingUp, Settings as SettingsIconLucide, Globe, Edit, Info, Loader2 } from "lucide-react"; 
+import { User, Bell, Shield, Palette, Lock, Users as ConnectionsIcon, SearchCheck, Save, ShieldOff, Briefcase, Mail, FileText, Sparkles, TrendingUp, Settings as SettingsIconLucide, Globe, Edit, Info, Loader2, Download } from "lucide-react"; 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -68,9 +68,12 @@ export default function SettingsPage() {
     const [privacyPrefs, setPrivacyPrefs] = useState({ profileVisibility: 'everyone', allowConnectionRequests: 'everyone' });
     const [isSaving, setIsSaving] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [isRequestingData, setIsRequestingData] = useState(false);
 
     const manageNotificationPreferences = useMemo(() => httpsCallable(functions, 'manageNotificationPreferences'), []);
     const deleteUserAccount = useMemo(() => httpsCallable(functions, 'deleteUserAccount'), []);
+    const requestDataExportCallable = useMemo(() => httpsCallable(functions, 'requestDataExport'), []);
+
 
     const handleSavePreferences = async () => {
         setIsSaving(true);
@@ -94,6 +97,18 @@ export default function SettingsPage() {
              toast({ title: t('toast.deleteErrorTitle'), description: error.message, variant: "destructive" });
         } finally {
             setIsDeleting(false);
+        }
+    };
+
+    const handleRequestData = async () => {
+        setIsRequestingData(true);
+        try {
+            const result = await requestDataExportCallable();
+            toast({ title: t('toast.dataRequestSuccessTitle'), description: (result.data as any).message });
+        } catch (error: any) {
+            toast({ title: t('toast.dataRequestErrorTitle'), description: error.message, variant: 'destructive' });
+        } finally {
+            setIsRequestingData(false);
         }
     };
 
@@ -150,30 +165,39 @@ export default function SettingsPage() {
               <CardDescription>{t('account.description')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-                <Button asChild>
-                    <Link href="/auth/forgot-password">{t('account.changePasswordButton')}</Link>
-                </Button>
+                <div className="space-y-2">
+                    <h4 className="font-medium">{t('account.dataExportTitle')}</h4>
+                    <p className="text-sm text-muted-foreground">{t('account.dataExportDescription')}</p>
+                    <Button onClick={handleRequestData} variant="secondary" disabled={isRequestingData}>
+                        {isRequestingData && <Loader2 className="h-4 w-4 mr-2 animate-spin"/>}
+                        <Download className="mr-2 h-4 w-4" />{t('account.dataExportButton')}
+                    </Button>
+                </div>
                 <Separator />
-                <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                        <Button variant="destructive"><ShieldOff className="mr-2 h-4 w-4" />{t('account.deactivateButton')}</Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                        <AlertDialogHeader>
-                            <AlertDialogTitle>{t('deactivateModal.title')}</AlertDialogTitle>
-                            <AlertDialogDescription>
-                               {t('deactivateModal.description')}
-                            </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                            <AlertDialogCancel disabled={isDeleting}>{t('deactivateModal.cancel')}</AlertDialogCancel>
-                            <AlertDialogAction onClick={handleDeleteAccount} disabled={isDeleting}>
-                                {isDeleting && <Loader2 className="h-4 w-4 mr-2 animate-spin"/>}
-                                {t('deactivateModal.confirm')}
-                            </AlertDialogAction>
-                        </AlertDialogFooter>
-                    </AlertDialogContent>
-                </AlertDialog>
+                <div className="space-y-2">
+                    <h4 className="font-medium">{t('account.deactivateTitle')}</h4>
+                     <p className="text-sm text-muted-foreground">{t('account.deactivateWarning')}</p>
+                    <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                            <Button variant="destructive"><ShieldOff className="mr-2 h-4 w-4" />{t('account.deactivateButton')}</Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                            <AlertDialogHeader>
+                                <AlertDialogTitle>{t('deactivateModal.title')}</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                {t('deactivateModal.description')}
+                                </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                                <AlertDialogCancel disabled={isDeleting}>{t('deactivateModal.cancel')}</AlertDialogCancel>
+                                <AlertDialogAction onClick={handleDeleteAccount} disabled={isDeleting}>
+                                    {isDeleting && <Loader2 className="h-4 w-4 mr-2 animate-spin"/>}
+                                    {t('deactivateModal.confirm')}
+                                </AlertDialogAction>
+                            </AlertDialogFooter>
+                        </AlertDialogContent>
+                    </AlertDialog>
+                </div>
             </CardContent>
           </Card>
         </TabsContent>

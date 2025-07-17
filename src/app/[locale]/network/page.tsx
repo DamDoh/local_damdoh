@@ -1,7 +1,7 @@
 
-
 "use client";
 
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -10,15 +10,13 @@ import type { UserProfile } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { STAKEHOLDER_ROLES } from "@/lib/constants";
-import { Search, UserPlus, Link as LinkIcon, UserCog, Users, Frown, Loader2, Send, CheckCircle, Clock, MapPin, User } from "lucide-react";
-import { useState, useMemo, useEffect, useCallback } from "react";
-import { Label } from "@/components/ui/label";
+import { Search, UserPlus, Link as LinkIcon, UserCog, Users, Frown, Loader2, Send, CheckCircle, Clock } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getAllProfilesFromDB } from "@/lib/server-actions";
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 import { useAuth } from "@/lib/auth-utils";
-import { useUserProfile } from "@/hooks/useUserProfile";
+import { useUserProfile } from '@/hooks/useUserProfile';
 import { useToast } from "@/hooks/use-toast";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
@@ -103,10 +101,10 @@ export default function NetworkPage() {
     setIsConnecting(recipientId);
     try {
         await sendConnectionRequestCallable({ recipientId });
-        toast({ title: "Connection Request Sent!", description: "Your request has been sent to the user."});
+        toast({ title: t('toast.requestSentTitle'), description: t('toast.requestSentDescription') });
         setConnectionStatuses(prev => ({...prev, [recipientId]: 'pending_sent'}));
     } catch (error: any) {
-         toast({ title: "Could Not Send Request", description: error.message, variant: "destructive" });
+         toast({ title: t('toast.connectError'), description: error.message, variant: "destructive" });
     } finally {
         setIsConnecting(null);
     }
@@ -135,17 +133,17 @@ export default function NetworkPage() {
   const isAgent = currentUserProfile?.primaryRole === 'Field Agent/Agronomist (DamDoh Internal)' || currentUserProfile?.primaryRole === 'Admin';
   
   const handleInvite = async () => {
-    const inviteeEmail = prompt(t('invitePrompt'));
+    const inviteeEmail = prompt(t('invite.prompt'));
     if (inviteeEmail) {
       try {
         await sendInviteCallable({ inviteeEmail });
         toast({
-          title: t('inviteSuccessTitle'),
-          description: t('inviteSuccessDescription', { email: inviteeEmail }),
+          title: t('invite.successTitle'),
+          description: t('invite.successDescription', { email: inviteeEmail }),
         });
       } catch (error: any) {
         toast({
-          title: t('inviteErrorTitle'),
+          title: t('invite.errorTitle'),
           description: error.message,
           variant: 'destructive',
         });
@@ -162,16 +160,16 @@ export default function NetworkPage() {
 
     switch (status) {
         case 'connected':
-            return <Button className="w-full sm:flex-1" variant="outline" disabled><CheckCircle className="mr-2 h-4 w-4" />{t('connected')}</Button>;
+            return <Button className="w-full sm:flex-1" variant="outline" disabled><CheckCircle className="mr-2 h-4 w-4" />{t('actions.connected')}</Button>;
         case 'pending_sent':
-            return <Button className="w-full sm:flex-1" variant="outline" disabled><Clock className="mr-2 h-4 w-4" />{t('pending')}</Button>;
+            return <Button className="w-full sm:flex-1" variant="outline" disabled><Clock className="mr-2 h-4 w-4" />{t('actions.pending')}</Button>;
         case 'pending_received':
-             return <Button className="w-full sm:flex-1" asChild><Link href="/network/my-network">{t('respond')}</Link></Button>
+             return <Button className="w-full sm:flex-1" asChild><Link href="/network/my-network">{t('actions.respond')}</Link></Button>
         default:
             return (
                 <Button className="w-full sm:flex-1" onClick={() => handleConnect(profileId)} disabled={isConnecting === profileId}>
                     {isConnecting === profileId ? <Loader2 className="h-4 w-4 animate-spin"/> : <LinkIcon className="mr-2 h-4 w-4" />}
-                    {t('connect')}
+                    {t('actions.connect')}
                 </Button>
             );
     }
