@@ -6,4 +6,4 @@
 export * from "@/lib/types";
 
 // Explicitly export UserRole as it's used directly by some functions
-export type { UserRole } from '@/lib/types';
+export type { UserRole, UserProfile } from '@/lib/types';

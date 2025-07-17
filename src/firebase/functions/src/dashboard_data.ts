@@ -1209,6 +1209,9 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         const [usersSnap, listingsSnap] = await Promise.all([newUsersPromise, newListingsPromise]);
         
         let activities: AdminActivity[] = [];
+        const toISODate = (timestamp: admin.firestore.Timestamp | undefined) => {
+            return timestamp && timestamp.toDate ? timestamp.toDate().toISOString() : new Date().toISOString();
+        };
 
         usersSnap.forEach(doc => {
             const user = doc.data();
@@ -1217,7 +1220,7 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
                 type: 'New User',
                 primaryInfo: user.displayName,
                 secondaryInfo: user.primaryRole,
-                timestamp: (user.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+                timestamp: toISODate(user.createdAt),
                 link: `/profiles/${doc.id}`,
                 avatarUrl: user.avatarUrl,
             });
@@ -1230,7 +1233,7 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
                 type: 'New Listing',
                 primaryInfo: listing.name,
                 secondaryInfo: listing.category,
-                timestamp: (listing.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+                timestamp: toISODate(listing.createdAt),
                 link: `/marketplace/${doc.id}`,
                 avatarUrl: listing.imageUrl,
             });

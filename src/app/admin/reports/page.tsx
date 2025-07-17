@@ -29,8 +29,8 @@ interface GeneratedReport {
   generatedAt: { toDate: () => Date };
   status: string;
   reportPeriod: {
-    startDate: string;
-    endDate: string;
+    startDate: { toDate: () => Date };
+    endDate: { toDate: () => Date };
   }
 }
 

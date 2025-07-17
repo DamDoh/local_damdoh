@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -48,7 +47,7 @@ export default function AdminDashboardPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   const getAdminDashboardDataCallable = useMemo(() => httpsCallable(functions, 'getAdminDashboardData'), []);
-  const getAdminRecentActivityCallable = useMemo(() => httpsCallable(functions, 'getAdminRecentActivity'), []);
+  const getAdminRecentActivityCallable = useMemo(() => httpsCallable(functions, 'getAdminRecentActivity'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
