@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile } from "./types";
@@ -144,7 +145,7 @@ export const respondToConnectionRequest = functions.https.onCall(async (data, co
 
     await batch.commit();
 
-    return { success: true, message: `Request has been ${response}.` };
+    return { success: true, message: `Request has been ${response}ed.` };
 });
 
 

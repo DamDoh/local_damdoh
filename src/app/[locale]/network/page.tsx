@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
@@ -61,7 +62,7 @@ export default function NetworkPage() {
   const { toast } = useToast();
   const functions = getFunctions(firebaseApp);
   const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'sendConnectionRequest'), []);
-  const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), [functions]);
+  const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), []);
   const getProfileStatusesCallable = useMemo(() => httpsCallable(functions, 'getProfileConnectionStatuses'), []);
 
   useEffect(() => {
