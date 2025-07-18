@@ -1,39 +1,35 @@
 
+'use server';
 // src/lib/server-auth-utils.ts
-import { headers } from 'next/headers';
+import { headers, cookies } from 'next/headers';
 import { getAdminAuth } from './firebase/admin';
 
 /**
- * Verifies if a request is authenticated on the server side by checking the
- * Authorization header for a valid Firebase ID token.
- * This should be used in API Routes and Server Actions.
+ * Verifies if a request is authenticated on the server side by checking for
+ * a valid Firebase auth session cookie. This is the correct method for
+ * server actions and components.
  *
  * @returns {Promise<boolean>} True if the user is authenticated, false otherwise.
  */
 export async function isServerAuthenticated(): Promise<boolean> {
-  const authHeader = headers().get('Authorization');
-  if (!authHeader) {
-    console.warn("isServerAuthenticated: No Authorization header found.");
+  const adminAuth = getAdminAuth();
+  if (!adminAuth) {
+    console.error("isServerAuthenticated: Firebase Admin SDK is not initialized. Cannot verify token.");
     return false;
   }
 
-  const token = authHeader.split('Bearer ')[1];
-  if (!token) {
-    console.warn("isServerAuthenticated: Bearer token is missing.");
+  const sessionCookie = cookies().get('session')?.value;
+  if (!sessionCookie) {
+    console.log("isServerAuthenticated: No session cookie found.");
     return false;
   }
 
   try {
-    const adminAuth = getAdminAuth();
-    if (!adminAuth) {
-        console.error("isServerAuthenticated: Firebase Admin SDK is not initialized. Cannot verify token.");
-        return false;
-    }
-    // This will throw an error if the token is invalid or expired
-    await adminAuth.verifyIdToken(token);
+    // verifySessionCookie() will throw an error if the cookie is invalid or expired.
+    await adminAuth.verifySessionCookie(sessionCookie, true);
     return true;
   } catch (error) {
-    console.log("isServerAuthenticated: Auth token verification failed:", (error as Error).message);
+    console.log("isServerAuthenticated: Session cookie verification failed:", (error as Error).message);
     return false;
   }
 }
