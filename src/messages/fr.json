@@ -1,72 +1,72 @@
 
 {
   "common": {
-    "error": "Erreur",
-    "success": "Succès",
-    "loading": "Chargement...",
-    "noData": "Aucune donnée disponible.",
-    "save": "Enregistrer",
-    "cancel": "Annuler",
-    "viewDetails": "Voir les détails",
-    "edit": "Modifier",
-    "delete": "Supprimer",
-    "back": "Retour",
-    "submit": "Soumettre",
-    "yes": "Oui",
-    "no": "Non",
-    "confirm": "Confirmer",
-    "close": "Fermer",
-    "optional": "Optionnel"
+    "error": "Error",
+    "success": "Success",
+    "loading": "Loading...",
+    "noData": "No data available.",
+    "save": "Save",
+    "cancel": "Cancel",
+    "viewDetails": "View Details",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "submit": "Submit",
+    "yes": "Yes",
+    "no": "No",
+    "confirm": "Confirm",
+    "close": "Close",
+    "optional": "Optional"
   },
   "constants": {
     "stakeholderRoles": {
-      "Farmer": "Agriculteur",
-      "AgriculturalCooperative": "Coopérative Agricole",
-      "FieldAgentAgronomistDamDohInternal": "Agent de Terrain/Agronome (DamDoh Interne)",
-      "OperationsLogisticsTeamDamDohInternal": "Équipe Opérations/Logistique (DamDoh Interne)",
-      "QualityAssuranceTeamDamDohInternal": "Équipe d'Assurance Qualité (DamDoh Interne)",
-      "ProcessingPackagingUnit": "Unité de Transformation & Emballage",
-      "BuyerRestaurantSupermarketExporter": "Acheteur (Restaurant, Supermarché, Exportateur)",
-      "InputSupplierSeedFertilizerPesticide": "Fournisseur d'Intrants (Semences, Engrais, Pesticides)",
-      "EquipmentSupplierSalesofMachineryIoT": "Fournisseur d'Équipement (Vente de Machines/IoT)",
-      "FinancialInstitutionMicrofinanceLoans": "Institution Financière (Micro-finance/Prêts)",
-      "GovernmentRegulatorAuditor": "Régulateur/Auditeur Gouvernemental",
-      "CertificationBodyOrganicFairTradeetc": "Organisme de Certification (Bio, Commerce Équitable, etc.)",
-      "Consumer": "Consommateur",
-      "ResearcherAcademic": "Chercheur/Académique",
-      "LogisticsPartnerThirdPartyTransporter": "Partenaire Logistique (Transporteur Tiers)",
-      "StorageWarehouseFacility": "Installation de Stockage/Entrepôt",
-      "AgronomyExpertConsultantExternal": "Expert Agronome/Consultant (Externe)",
-      "AgroTourismOperator": "Opérateur d'Agro-Tourisme",
-      "EnergySolutionsProviderSolarBiogas": "Fournisseur de Solutions Énergétiques (Solaire, Biogaz)",
-      "AgroExportFacilitatorCustomsBroker": "Facilitateur d'Agro-Export/Courtier en Douane",
-      "AgriTechInnovatorDeveloper": "Innovateur/Développeur Agri-Tech",
-      "WasteManagementCompostFacility": "Installation de Gestion des Déchets & Compostage",
-      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Investisseur d'Impact, Particulier)",
-      "InsuranceProvider": "Fournisseur d'Assurance",
-      "PackagingSupplier": "Fournisseur d'Emballages"
+      "Farmer": "Farmer",
+      "AgriculturalCooperative": "Agricultural Cooperative",
+      "FieldAgentAgronomistDamDohInternal": "Field Agent/Agronomist (DamDoh Internal)",
+      "OperationsLogisticsTeamDamDohInternal": "Operations/Logistics Team (DamDoh Internal)",
+      "QualityAssuranceTeamDamDohInternal": "Quality Assurance Team (DamDoh Internal)",
+      "ProcessingPackagingUnit": "Processing & Packaging Unit",
+      "BuyerRestaurantSupermarketExporter": "Buyer (Restaurant, Supermarket, Exporter)",
+      "InputSupplierSeedFertilizerPesticide": "Input Supplier (Seed, Fertilizer, Pesticide)",
+      "EquipmentSupplierSalesofMachineryIoT": "Equipment Supplier (Sales of Machinery/IoT)",
+      "FinancialInstitutionMicrofinanceLoans": "Financial Institution (Microfinance/Loans)",
+      "GovernmentRegulatorAuditor": "Government Regulator/Auditor",
+      "CertificationBodyOrganicFairTradeetc": "Certification Body (Organic, Fair Trade, etc.)",
+      "Consumer": "Consumer",
+      "ResearcherAcademic": "Researcher/Academic",
+      "LogisticsPartnerThirdPartyTransporter": "Logistics Partner (Third-Party Transporter)",
+      "StorageWarehouseFacility": "Storage/Warehouse Facility",
+      "AgronomyExpertConsultantExternal": "Agronomy Expert/Consultant (External)",
+      "AgroTourismOperator": "Agro-Tourism Operator",
+      "EnergySolutionsProviderSolarBiogas": "Energy Solutions Provider (Solar, Biogas)",
+      "AgroExportFacilitatorCustomsBroker": "Agro-Export Facilitator/Customs Broker",
+      "AgriTechInnovatorDeveloper": "Agri-Tech Innovator/Developer",
+      "WasteManagementCompostFacility": "Waste Management & Compost Facility",
+      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Impact Investor, Individual)",
+      "InsuranceProvider": "Insurance Provider",
+      "PackagingSupplier": "Packaging Supplier"
     },
     "listingTypes": {
-      "All": "Tous les types",
-      "Product": "Produit",
+      "All": "All Types",
+      "Product": "Product",
       "Service": "Service"
     },
     "agriEventTypes": {
-      "All": "Tous les types",
-      "Conference": "Conférence",
-      "Webinar": "Webinaire",
-      "Workshop": "Atelier",
-      "TradeShow": "Salon professionnel",
-      "FieldDay": "Journée de terrain",
-      "NetworkingEvent": "Événement de réseautage",
-      "OnlineCourseLaunch": "Lancement de cours en ligne",
-      "PolicyBriefing": "Briefing politique"
+      "All": "All Types",
+      "Conference": "Conference",
+      "Webinar": "Webinar",
+      "Workshop": "Workshop",
+      "TradeShow": "Trade Show",
+      "FieldDay": "Field Day",
+      "NetworkingEvent": "Networking Event",
+      "OnlineCourseLaunch": "Online Course Launch",
+      "PolicyBriefing": "Policy Briefing"
     },
     "insuranceProductTypes": {
-      "Crop": "Assurance récolte",
-      "Livestock": "Assurance bétail",
-      "Asset": "Assurance des actifs",
-      "Weather": "Basée sur la météo (Paramétrique)"
+      "Crop": "Crop Insurance",
+      "Livestock": "Livestock Insurance",
+      "Asset": "Asset Insurance",
+      "Weather": "Weather-Based (Parametric)"
     },
     "financialServiceTypes": {},
     "cropStages": {
@@ -78,16 +78,16 @@
       "Post-Harvest": "Après-récolte"
     },
     "observationTypes": {
-      "GeneralNote": "Note générale",
-      "PestSighting": "Observation de ravageurs",
-      "DiseaseSighting": "Observation de maladies",
-      "SoilCondition": "État du sol",
-      "WeatherEvent": "Événement météorologique",
-      "GrowthStageChange": "Changement de stade de croissance",
-      "IrrigationEvent": "Événement d'irrigation"
+      "GeneralNote": "General Note",
+      "PestSighting": "Pest Sighting",
+      "DiseaseSighting": "Disease Sighting",
+      "SoilCondition": "Soil Condition",
+      "WeatherEvent": "Weather Event",
+      "GrowthStageChange": "Growth Stage Change",
+      "IrrigationEvent": "Irrigation Event"
     },
     "mobileHomeCategories": {
-      "produceMarket": "Marché des produits",
+      "produceMarket": "Produce Market",
       "farmInputs": "Intrants agricoles",
       "talentExchange": "Bourse de talents",
       "machinery": "Machines",
@@ -98,72 +98,72 @@
   },
   "LandingPage": {
     "hero": {
-      "title": "Renforcer l'agriculture du sol à la vente sur {appName}",
-      "subtitle": "La plateforme unique qui relie chaque acteur de la chaîne de valeur agricole pour un avenir plus transparent, efficace et durable.",
-      "getStartedButton": "Commencer gratuitement",
-      "learnMoreButton": "En savoir plus"
+      "title": "Empowering Agriculture from Soil to Sale on {appName}",
+      "subtitle": "The single platform connecting every actor in the agricultural value chain for a more transparent, efficient, and sustainable future.",
+      "getStartedButton": "Get Started for Free",
+      "learnMoreButton": "Learn More"
     },
     "features": {
-      "title": "Principales fonctionnalités de DamDoh",
-      "subtitle": "Tout ce dont vous avez besoin pour grandir, vous connecter et commercer, le tout en un seul endroit.",
+      "title": "Key Features of DamDoh",
+      "subtitle": "Everything you need to grow, connect, and trade, all in one place.",
       "networking": {
-        "title": "Réseautage intelligent",
-        "description": "Suggestions de connexion basées sur l'IA pour vous mettre en relation avec les bons partenaires, des fournisseurs aux acheteurs internationaux."
+        "title": "Intelligent Networking",
+        "description": "AI-powered connection suggestions to link you with the right partners, from input suppliers to international buyers."
       },
       "marketplace": {
-        "title": "Marché direct",
-        "description": "Achetez et vendez des produits et services directement, augmentant ainsi la transparence et la rentabilité pour toutes les parties prenantes."
+        "title": "Direct Marketplace",
+        "description": "Buy and sell produce and services directly, increasing transparency and profitability for all stakeholders."
       },
       "forums": {
-        "title": "Forums thématiques",
-        "description": "Partagez vos connaissances, discutez des défis et collaborez sur des solutions dans des forums thématiques."
+        "title": "Topical Forums",
+        "description": "Share knowledge, discuss challenges, and collaborate on solutions within focused topic forums."
       },
       "talent": {
-        "title": "Bourse de talents",
-        "description": "Proposez ou trouvez des services agricoles spécialisés, de la récolte à la demande aux relevés par drone."
+        "title": "Talent Exchange",
+        "description": "Offer or find specialized agricultural services, from on-demand harvesting to drone surveying."
       }
     },
     "forWho": {
-      "badge": "Pour tous les acteurs de l'agriculture",
-      "title": "Une plateforme pour toute la chaîne de valeur",
-      "description": "DamDoh est conçu de manière unique pour servir l'ensemble de l'écosystème agricole, créant un point de vérité et d'opportunité unique pour tous.",
+      "badge": "For Everyone in Agriculture",
+      "title": "One Platform for the Entire Value Chain",
+      "description": "DamDoh is uniquely designed to serve the entire agricultural ecosystem, creating a single source of truth and opportunity for all.",
       "farmers": {
-        "title": "Agriculteurs",
-        "description": "Accédez à de meilleurs marchés, trouvez des intrants de qualité et obtenez des conseils d'experts pour augmenter le rendement et la rentabilité."
+        "title": "Farmers",
+        "description": "Access better markets, find quality inputs, and get expert advice to increase yield and profitability."
       },
       "buyers": {
-        "title": "Acheteurs & transformateurs",
-        "description": "Sourcez des produits traçables et de haute qualité directement auprès des producteurs et des coopératives, garantissant la fiabilité de la chaîne d'approvisionnement."
+        "title": "Buyers & Processors",
+        "description": "Source traceable, high-quality produce directly from growers and cooperatives, ensuring supply chain reliability."
       },
       "experts": {
-        "title": "Experts & prestataires de services",
-        "description": "Proposez vos compétences et services spécialisés à un large public agricole à la recherche de votre expertise."
+        "title": "Experts & Service Providers",
+        "description": "Offer your specialized skills and services to a broad agricultural audience seeking your expertise."
       },
       "fis": {
-        "title": "Institutions financières",
-        "description": "Proposez des prêts, des assurances et des produits financiers à une communauté agricole vérifiée."
+        "title": "Financial Institutions",
+        "description": "Offer loans, insurance, and financial products to a verified agricultural community."
       },
-      "imageAlt": "Un groupe diversifié d'acteurs agricoles collaborant"
+      "imageAlt": "A diverse group of agricultural stakeholders collaborating"
     },
     "cta": {
-      "title": "Rejoignez la révolution agricole",
-      "subtitle": "Inscrivez-vous aujourd'hui et faites partie d'un réseau mondial en pleine croissance dédié à la transformation de l'avenir de l'alimentation.",
-      "button": "Créez votre compte gratuit"
+      "title": "Join the Agricultural Revolution",
+      "subtitle": "Sign up today and be part of a growing global network dedicated to transforming the future of food.",
+      "button": "Create Your Free Account"
     }
   },
   "AppFooter": {
-    "tagline": "Connecter toute la chaîne de valeur agricole.",
+    "tagline": "Connecting the entire agricultural value chain.",
     "damdohTitle": "DamDoh",
-    "aboutLabel": "À propos de nous",
+    "aboutLabel": "About Us",
     "contactLabel": "Contact",
-    "careersLabel": "Carrières",
+    "careersLabel": "Careers",
     "blogLabel": "Blog",
-    "resourcesTitle": "Ressources",
-    "helpCenterLabel": "Centre d'aide",
-    "communityGuidelinesLabel": "Directives de la communauté",
-    "industryNewsLabel": "Actualités du secteur",
-    "eventsLabel": "Événements",
-    "talentExchangeLabel": "Bourse de talents",
+    "resourcesTitle": "Resources",
+    "helpCenterLabel": "Help Center",
+    "communityGuidelinesLabel": "Community Guidelines",
+    "industryNewsLabel": "Industry News",
+    "eventsLabel": "Events",
+    "talentExchangeLabel": "Talent Exchange",
     "legalTitle": "Légal",
     "privacyPolicyLabel": "Politique de confidentialité",
     "termsOfServiceLabel": "Conditions d'utilisation",
@@ -174,27 +174,27 @@
   },
   "forumsPage": {
     "title": "Forums",
-    "description": "Connectez-vous avec les autres, partagez vos connaissances et restez à jour sur les dernières conversations.",
-    "createTopic": "Créer un sujet",
-    "searchPlaceholder": "Rechercher des sujets...",
-    "suggestedTopicsTitle": "Sujets suggérés",
-    "activity": "Actif {time}",
-    "joinDiscussion": "Rejoindre la discussion",
+    "description": "Connect with others, share knowledge, and stay up-to-date on the latest conversations.",
+    "createTopic": "Create Topic",
+    "searchPlaceholder": "Search topics...",
+    "suggestedTopicsTitle": "Suggested Topics",
+    "activity": "Active {time}",
+    "joinDiscussion": "Join Discussion",
     "pinning": {
-      "unpinButton": "Détacher la page d'accueil",
-      "pinButton": "Épingler comme page d'accueil",
-      "pinnedTitle": "Forums épinglés",
-      "pinnedDescription": "La page des forums est maintenant votre page d'accueil par défaut.",
-      "unpinnedTitle": "Forums détachés",
-      "unpinnedDescription": "Votre page d'accueil a été réinitialisée par défaut."
+      "unpinButton": "Unpin as Homepage",
+      "pinButton": "Pin as Homepage",
+      "pinnedTitle": "Forums Pinned",
+      "pinnedDescription": "The forums page is now your default homepage.",
+      "unpinnedTitle": "Forums Unpinned",
+      "unpinnedDescription": "Your homepage has been reset to default."
     },
     "noTopics": {
-      "title": "Aucun sujet pour l'instant",
-      "description": "Soyez le premier à créer un sujet de forum !"
+      "title": "No Topics Yet",
+      "description": "Be the first to create a forum topic!"
     },
     "noTopicsFound": {
-      "title": "Aucun sujet trouvé",
-      "description": "Essayez d'ajuster vos filtres de recherche ou revenez plus tard."
+      "title": "No Topics Found",
+      "description": "Try adjusting your search filters or check back later."
     },
     "errors": {
       "loadTitle": "Erreur de chargement des sujets",

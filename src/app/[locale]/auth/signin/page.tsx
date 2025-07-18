@@ -21,7 +21,7 @@ import { signInSchema, type SignInValues } from "@/lib/form-schemas";
 import { logIn } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertTriangle, Loader2, Mail, Lock } from "lucide-react";
+import { AlertTriangle, Loader2, Mail, Lock, LogIn } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME } from "@/lib/constants";
 import { useTranslations } from "next-intl";
@@ -142,7 +142,9 @@ export default function SignInPage() {
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('signingInButton')}
                   </>
                 ) : (
-                  t('signInButton')
+                  <>
+                    <LogIn className="mr-2 h-4 w-4" /> {t('signInButton')}
+                  </>
                 )}
               </Button>
             </form>

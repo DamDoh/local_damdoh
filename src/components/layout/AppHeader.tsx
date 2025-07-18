@@ -115,8 +115,8 @@ export function AppHeader() {
                 <UserAvatar name={user.displayName || user.email} email={user.email} imageUrl={user.photoURL} />
               ) : (
                  <div className="flex items-center gap-1">
-                    <Button asChild variant="ghost"><Link href="/auth/signin">{t('signIn')}</Link></Button>
-                    <Button asChild><Link href="/auth/signup">{t('signUp')}</Link></Button>
+                    <Button asChild variant="ghost"><Link href="/auth/signin"><LogIn className="mr-2 h-4 w-4" />{t('signIn')}</Link></Button>
+                    <Button asChild><Link href="/auth/signup"><UserPlus className="mr-2 h-4 w-4" />{t('signUp')}</Link></Button>
                  </div>
               )}
             </div>

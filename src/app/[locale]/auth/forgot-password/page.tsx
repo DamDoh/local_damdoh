@@ -21,7 +21,7 @@ import { forgotPasswordSchema, type ForgotPasswordValues } from "@/lib/form-sche
 import { sendPasswordReset } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertTriangle, CheckCircle, Loader2, Mail } from "lucide-react";
+import { AlertTriangle, CheckCircle, Loader2, Mail, Send } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME } from "@/lib/constants";
 import { useTranslations } from "next-intl";
@@ -148,7 +148,9 @@ export default function ForgotPasswordPage() {
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('sendingEmailButton')}
                     </>
                   ) : (
-                    t('sendResetLinkButton')
+                    <>
+                      <Send className="mr-2 h-4 w-4" /> {t('sendResetLinkButton')}
+                    </>
                   )}
                 </Button>
               </form>

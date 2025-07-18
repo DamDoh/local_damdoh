@@ -21,7 +21,7 @@ import { resetPasswordSchema, type ResetPasswordValues } from "@/lib/form-schema
 import { resetPassword } from "@/lib/auth-utils";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Loader2, Lock, CheckCircle, AlertTriangle } from "lucide-react";
+import { Loader2, Lock, CheckCircle, AlertTriangle, Save } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { APP_NAME } from "@/lib/constants";
 import { useTranslations } from "next-intl";
@@ -178,7 +178,9 @@ export default function ResetPasswordPage() {
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('resettingPasswordButton')}
                     </>
                   ) : (
-                    t('resetPasswordButton')
+                    <>
+                      <Save className="mr-2 h-4 w-4" /> {t('resetPasswordButton')}
+                    </>
                   )}
                 </Button>
               </form>
