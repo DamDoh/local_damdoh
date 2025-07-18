@@ -3,37 +3,40 @@
 // src/lib/server-auth-utils.ts
 import { cookies } from 'next/headers';
 import { getAdminAuth } from './firebase/admin';
+import type { DecodedIdToken } from 'firebase-admin/auth';
 
 /**
- * Verifies if a request is authenticated on the server side by checking for
- * a valid Firebase auth session cookie. This is the correct method for
- * server actions and components.
- *
- * @returns {Promise<boolean>} True if the user is authenticated, false otherwise.
+ * Gets the current authenticated user on the server side.
+ * @returns A promise that resolves to the user's decoded token or null if not authenticated.
  */
-export async function isServerAuthenticated(): Promise<boolean> {
+export async function getCurrentUser(): Promise<DecodedIdToken | null> {
   const adminAuth = getAdminAuth();
   if (!adminAuth) {
-    // This can happen in environments where the admin SDK isn't initialized,
-    // which is expected in some client-side build steps. Don't throw an error.
-    console.log("isServerAuthenticated: Firebase Admin SDK is not available. Assuming unauthenticated.");
-    return false;
+    console.log("getCurrentUser: Firebase Admin SDK is not available.");
+    return null;
   }
 
   const sessionCookie = cookies().get('session')?.value;
   if (!sessionCookie) {
-    // This is a normal unauthenticated case.
-    return false;
+    return null;
   }
 
   try {
-    // verifySessionCookie() will throw an error if the cookie is invalid or expired.
-    // The second argument `true` checks for revocation status.
-    await adminAuth.verifySessionCookie(sessionCookie, true);
-    return true;
+    const decodedToken = await adminAuth.verifySessionCookie(sessionCookie, true);
+    return decodedToken;
   } catch (error) {
-    // Any error during verification means the session is invalid.
-    console.log("isServerAuthenticated: Session cookie verification failed:", (error as Error).message);
-    return false;
+    console.log("getCurrentUser: Session cookie verification failed:", (error as Error).message);
+    return null;
   }
+}
+
+/**
+ * Verifies if a request is authenticated on the server side by checking for
+ * a valid Firebase auth session cookie.
+ *
+ * @returns {Promise<boolean>} True if the user is authenticated, false otherwise.
+ */
+export async function isServerAuthenticated(): Promise<boolean> {
+  const user = await getCurrentUser();
+  return !!user;
 }

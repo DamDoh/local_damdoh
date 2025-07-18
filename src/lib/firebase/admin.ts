@@ -4,12 +4,11 @@ import admin from 'firebase-admin';
 // This function ensures the admin app is initialized, but only once.
 function initializeAdminApp() {
   if (admin.apps.length > 0) {
-    return;
+    return admin.apps[0]!;
   }
 
   const serviceAccountKey = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
   if (!serviceAccountKey) {
-    // If not in production, log a clear warning instead of crashing.
     if (process.env.NODE_ENV !== 'production') {
       console.warn(
         '**************************************************************************************************\n' +
@@ -20,19 +19,19 @@ function initializeAdminApp() {
         '*** FIREBASE_SERVICE_ACCOUNT_KEY in your .env.local file.                              ***\n' +
         '**************************************************************************************************'
       );
-      return; // Return early, preventing the app from crashing on startup.
+      return null;
     }
-    // In production, it's critical to fail hard.
     throw new Error('FIREBASE_SERVICE_ACCOUNT_KEY environment variable is not set. Admin SDK cannot be initialized.');
   }
 
   try {
     const serviceAccount = JSON.parse(serviceAccountKey);
-    admin.initializeApp({
+    const app = admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
       databaseURL: `https://${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.firebaseio.com`,
     });
     console.log("Firebase Admin SDK initialized successfully.");
+    return app;
   } catch (error: any) {
     console.error('Firebase Admin SDK initialization failed:', error.message);
     throw new Error('Firebase Admin SDK initialization failed. Check if FIREBASE_SERVICE_ACCOUNT_KEY is a valid JSON.');
@@ -40,20 +39,21 @@ function initializeAdminApp() {
 }
 
 // Export functions that return the initialized services.
-// This "lazy-loads" the services and ensures initialization happens first.
+export function getAdminApp() {
+  return initializeAdminApp();
+}
+
 export function getAdminDb() {
-  initializeAdminApp();
-  // Return null if the admin app is not initialized to avoid crashing serverless functions
-  // that might not have the env var (like client-side bundle analysis).
-  return admin.apps.length > 0 ? admin.firestore() : null;
+  const app = getAdminApp();
+  return app ? admin.firestore(app) : null;
 }
 
 export function getAdminAuth() {
-  initializeAdminApp();
-  return admin.apps.length > 0 ? admin.auth() : null;
+  const app = getAdminApp();
+  return app ? admin.auth(app) : null;
 }
 
 export function getAdminStorage() {
-  initializeAdminApp();
-  return admin.apps.length > 0 ? admin.storage() : null;
+  const app = getAdminApp();
+  return app ? admin.storage(app) : null;
 }
