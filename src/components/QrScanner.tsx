@@ -31,10 +31,12 @@ export const QrScanner = ({ onScanSuccess, onScanFailure, onClose }: QrScannerPr
               qrbox: { width: 250, height: 250 }
             },
             (decodedText, decodedResult) => {
+              // --- FIX: Call onScanSuccess immediately and handle cleanup ---
+              // This prevents a race condition where the parent unmounts this component
+              // before the scanner has finished its own DOM cleanup.
+              onScanSuccess(decodedText);
               if (html5QrCodeRef.current?.isScanning) {
-                html5QrCodeRef.current.stop().then(() => {
-                    onScanSuccess(decodedText);
-                }).catch(err => console.error("Failed to stop scanner after success", err));
+                html5QrCodeRef.current.stop().catch(err => console.error("Failed to stop scanner after success", err));
               }
             },
             (errorMessage) => {
@@ -48,7 +50,7 @@ export const QrScanner = ({ onScanSuccess, onScanFailure, onClose }: QrScannerPr
       startScanner();
     }
 
-    // Cleanup function
+    // Cleanup function remains the same
     return () => {
       if (html5QrCodeRef.current && html5QrCodeRef.current.isScanning) {
         html5QrCodeRef.current.stop().catch(err => {
