@@ -4,35 +4,7 @@
  * @fileOverview AI flow to generate forum topic suggestions.
  */
 import { ai } from "@/ai/genkit";
-import { z } from "zod";
-
-const ForumTopicSuggestionSchema = z.object({
-  title: z
-    .string()
-    .describe("A concise and engaging title for the new forum topic."),
-  description: z
-    .string()
-    .describe("A brief, one-sentence description of what the topic is about."),
-});
-
-const ForumTopicSuggestionsOutputSchema = z.object({
-  suggestions: z.array(ForumTopicSuggestionSchema),
-});
-
-const SuggestForumTopicsInputSchema = z.object({
-  existingTopics: z.array(
-    z.object({
-      name: z.string(),
-      description: z.string(),
-    })
-  ),
-  language: z
-    .string()
-    .optional()
-    .describe(
-      "The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English."
-    ),
-});
+import { SuggestForumTopicsInputSchema, ForumTopicSuggestionsOutputSchema } from './schemas';
 
 export const suggestForumTopics = ai.defineFlow(
   {
@@ -69,5 +41,3 @@ Your suggestions should be diverse and interesting.`;
     return llmResponse.output() || { suggestions: [] };
   }
 );
-
-    

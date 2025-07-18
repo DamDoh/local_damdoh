@@ -14,10 +14,6 @@ import { performSearch } from '@/lib/server-actions';
 import { getProfileByIdFromDB } from '@/lib/server-actions';
 
 
-export type MarketplaceRecommendationInput = z.infer<typeof MarketplaceRecommendationInputSchema>;
-export type MarketplaceRecommendationOutput = z.infer<typeof MarketplaceRecommendationOutputSchema>;
-
-
 const recommendationPrompt = ai.definePrompt({
     name: 'marketplaceRecommendationPrompt',
     input: { schema: z.object({ userProfile: z.any(), items: z.any(), count: z.number(), language: z.string().optional() }) },
@@ -31,7 +27,7 @@ Analyze the following user profile:
 - Role: {{{userProfile.primaryRole}}}
 - Location: {{{userProfile.location.address}}}
 - Interests: {{#if userProfile.areasOfInterest}}{{#each userProfile.areasOfInterest}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}{{else}}Not specified{{/if}}
-- Needs: {{#if userProfile.needs}}{{#each userProfile.needs}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}{{else}}Not specified{{/if}}
+- Needs: {{#if user.needs}}{{#each user.needs}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}{{else}}Not specified{{/if}}
 
 Here is a list of available marketplace items (JSON format):
 \`\`\`json
@@ -49,7 +45,7 @@ Return the results as a JSON object with a 'recommendations' array. Each object 
 });
 
 
-export async function getMarketplaceRecommendations(input: MarketplaceRecommendationInput): Promise<MarketplaceRecommendationOutput> {
+export async function getMarketplaceRecommendations(input: any): Promise<any> {
     const { userId, count = 5, language = 'en' } = input;
     
     if (!userId) {

@@ -11,21 +11,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-
-export const SuggestMarketPriceInputSchema = z.object({
-  productName: z.string().describe('The name of the product.'),
-  description: z.string().describe('A detailed description of the product, including quality, origin, and certifications.'),
-  category: z.string().optional().describe('The marketplace category of the product.'),
-  location: z.string().optional().describe('The location where the product is being sold.'),
-  language: z.string().optional().describe('The language for the AI to respond in (e.g., "en", "km"). Defaults to English.'),
-});
-export type SuggestMarketPriceInput = z.infer<typeof SuggestMarketPriceInputSchema>;
-
-
-export const SuggestMarketPriceOutputSchema = z.object({
-  price: z.number().describe('The suggested market price as a number.'),
-});
-export type SuggestMarketPriceOutput = z.infer<typeof SuggestMarketPriceOutputSchema>;
+import { SuggestMarketPriceInputSchema, SuggestMarketPriceOutputSchema } from '@/lib/schemas';
 
 
 const prompt = ai.definePrompt({
@@ -66,6 +52,6 @@ const suggestMarketPriceFlow = ai.defineFlow(
 );
 
 
-export async function suggestMarketPrice(input: SuggestMarketPriceInput): Promise<SuggestMarketPriceOutput> {
+export async function suggestMarketPrice(input: any): Promise<any> {
   return suggestMarketPriceFlow(input);
 }

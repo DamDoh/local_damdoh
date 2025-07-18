@@ -6,7 +6,7 @@
 
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
-import { CropRotationInputSchema, CropRotationOutputSchema, type CropRotationInput, type CropRotationOutput } from '@/lib/schemas';
+import { CropRotationInputSchema, CropRotationOutputSchema } from '@/lib/schemas';
 
 
 const prompt = ai.definePrompt(
@@ -57,6 +57,6 @@ const suggestCropRotationFlow = ai.defineFlow(
   }
 );
 
-export async function suggestCropRotation(input: CropRotationInput): Promise<CropRotationOutput> {
+export async function suggestCropRotation(input: any): Promise<any> {
   return suggestCropRotationFlow(input);
 }
