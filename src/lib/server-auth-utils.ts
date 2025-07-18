@@ -1,7 +1,7 @@
 
 'use server';
 // src/lib/server-auth-utils.ts
-import { headers, cookies } from 'next/headers';
+import { cookies } from 'next/headers';
 import { getAdminAuth } from './firebase/admin';
 
 /**
@@ -14,21 +14,25 @@ import { getAdminAuth } from './firebase/admin';
 export async function isServerAuthenticated(): Promise<boolean> {
   const adminAuth = getAdminAuth();
   if (!adminAuth) {
-    console.error("isServerAuthenticated: Firebase Admin SDK is not initialized. Cannot verify token.");
+    // This can happen in environments where the admin SDK isn't initialized,
+    // which is expected in some client-side build steps. Don't throw an error.
+    console.log("isServerAuthenticated: Firebase Admin SDK is not available. Assuming unauthenticated.");
     return false;
   }
 
   const sessionCookie = cookies().get('session')?.value;
   if (!sessionCookie) {
-    console.log("isServerAuthenticated: No session cookie found.");
+    // This is a normal unauthenticated case.
     return false;
   }
 
   try {
     // verifySessionCookie() will throw an error if the cookie is invalid or expired.
+    // The second argument `true` checks for revocation status.
     await adminAuth.verifySessionCookie(sessionCookie, true);
     return true;
   } catch (error) {
+    // Any error during verification means the session is invalid.
     console.log("isServerAuthenticated: Session cookie verification failed:", (error as Error).message);
     return false;
   }

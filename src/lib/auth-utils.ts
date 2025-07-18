@@ -44,7 +44,12 @@ export function isAdmin(userId: string | null): boolean {
 
 export async function logOut(): Promise<void> {
   try {
+    // 1. Sign out from Firebase client-side auth
     await firebaseSignOut(auth);
+    
+    // 2. Clear the server-side session cookie by calling our new API route
+    await fetch('/api/auth/session', { method: 'DELETE' });
+
     console.log("User logged out successfully via auth-utils.");
   } catch (error) {
     console.error("Error logging out from auth-utils: ", error);
@@ -55,8 +60,20 @@ export async function logOut(): Promise<void> {
 export async function logIn(email: string, password: string): Promise<FirebaseUser> {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    console.log("User logged in successfully via auth-utils:", userCredential.user.uid);
-    return userCredential.user;
+    const user = userCredential.user;
+    
+    // 1. Get the ID token from the signed-in user
+    const idToken = await user.getIdToken();
+
+    // 2. Call our new API route to create a server-side session cookie
+    await fetch('/api/auth/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ idToken }),
+    });
+
+    console.log("User logged in and session cookie set via auth-utils:", user.uid);
+    return user;
   } catch (error) {
     console.error("Error logging in via auth-utils:", error);
     throw error;
@@ -89,7 +106,7 @@ export async function registerUser(
     console.log("Firebase Auth profile updated with display name.");
 
     // Step 2: Call a secure Cloud Function to create the initial profile.
-    const upsertStakeholderProfile = httpsCallable(functions, 'upsertStakeholderProfile');
+    const upsertStakeholderProfile = httpsCallable(functions, 'profiles.upsertStakeholderProfile');
     await upsertStakeholderProfile({
         displayName: name,
         primaryRole: role,

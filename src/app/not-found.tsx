@@ -1,13 +1,15 @@
+
 "use client";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Frown } from "lucide-react";
-import Link from 'next/link'; // Use the standard Link for the root 404 page
-import { useTranslations } from "next-intl";
+import Link from 'next/link';
 
-export default function NotFoundPage() {
-  const t = useTranslations('NotFoundPage');
+// This is the root not-found page. It should not use i18n hooks
+// as it exists outside the [locale] segment and thus has no
+// NextIntlClientProvider context.
+export default function NotFound() {
   return (
     <html lang="en">
       <body>
@@ -16,12 +18,12 @@ export default function NotFoundPage() {
             <div className="flex justify-center mb-4">
               <Frown className="h-12 w-12 text-destructive" />
             </div>
-            <AlertTitle className="text-2xl font-bold">{t('title')}</AlertTitle>
+            <AlertTitle className="text-2xl font-bold">Page Not Found</AlertTitle>
             <AlertDescription className="mt-2 text-muted-foreground">
-              {t('description')}
+              Sorry, the page you are looking for does not exist or has been moved.
             </AlertDescription>
             <Button asChild className="mt-6">
-              <Link href="/">{t('goHomeButton')}</Link>
+              <Link href="/">Go to Homepage</Link>
             </Button>
           </Alert>
         </div>
