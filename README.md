@@ -63,8 +63,8 @@ To get started with local development, please follow these steps:
 
 3.  **Configure Firebase:**
     *   Create a new Firebase project in the [Firebase Console](https://console.firebase.google.com/).
-    *   Copy your Firebase project configuration into `src/lib/firebase/client.ts`.
-    *   Set up a service account key and add it to your environment variables as `FIREBASE_SERVICE_ACCOUNT_KEY` for backend functions.
+    *   Copy your Firebase project configuration into a new `.env` file at the root of the project. Use the `.env.example` file as a template.
+    *   Set up a service account key and add it to your environment variables. See the Deployment section for details.
 
 4.  **Run the Development Server:**
     ```bash
@@ -72,6 +72,50 @@ To get started with local development, please follow these steps:
     ```
 
 5.  Open your browser to [http://localhost:3000](http://localhost:3000) to see the application in action.
+
+## 🚀 Deployment
+
+To deploy the application to your Firebase project, follow these steps.
+
+### 1. Install Firebase CLI
+
+If you haven't already, install the Firebase Command Line Interface globally.
+
+```bash
+npm install -g firebase-tools
+```
+
+### 2. Login to Firebase
+
+Log in to your Google account that has access to your Firebase project.
+
+```bash
+firebase login
+```
+
+### 3. Configure Your Project
+
+Copy the environment variables from `.env.example` into a new file named `.env`. Then, fill in the values from your Firebase project's settings.
+
+1.  **Go to Project Settings:** In the [Firebase Console](https://console.firebase.google.com/), select your project, click the gear icon, and go to "Project settings".
+2.  **Find Web App Config:** In the "General" tab, scroll down to "Your apps". Find your web app and copy the `firebaseConfig` object values into your `.env` file.
+3.  **Create Service Account (for backend functions):**
+    *   In Project Settings, go to the "Service accounts" tab.
+    *   Click "Generate new private key". A JSON file will be downloaded.
+    *   **IMPORTANT:** Copy the entire content of this JSON file and set it as the value for `FIREBASE_SERVICE_ACCOUNT_KEY` in your `.env` file.
+4.  **Set AI API Key:**
+    *   Go to [Google AI Studio](https://aistudio.google.com/app/apikey) to create an API key for Gemini.
+    *   Copy the key and set it as the value for `GEMINI_API_KEY` in your `.env` file.
+
+### 4. Deploy!
+
+Once configured, run the following command from the root of your project to deploy everything (Hosting, Functions, and Rules):
+
+```bash
+firebase deploy
+```
+
+The first deployment may take a few minutes as it provisions your Cloud Functions. After deployment, your application will be live at the hosting URL provided by Firebase.
 
 ## 📄 Documentation
 
