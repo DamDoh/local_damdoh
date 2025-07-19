@@ -327,36 +327,64 @@ export async function getUserDocument(
 }
 
 /**
- * Helper function to get a user's profile from Firestore by their ID.
- * @param {string} uid The user's ID.
+ * Cloud Function to get a user's profile from Firestore by their ID.
+ * @param {any} data The data for the function call, expects a `uid`.
+ * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<any | null>} The user's profile data or null if not found.
  */
-export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
+export const getProfileByIdFromDB = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
+    const { uid } = data;
     if (!uid) {
-        return null;
+        throw new functions.https.HttpsError("invalid-argument", "UID is required.");
     }
     try {
         const userDoc = await db.collection("users").doc(uid).get();
         if (!userDoc.exists) {
             return null;
         }
-        const data = userDoc.data();
-        if (!data) return null;
+        const profileData = userDoc.data();
+        if (!profileData) return null;
         
         // Ensure timestamps are serialized
         const serializedData = {
             id: userDoc.id,
-            ...data,
-            createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate ? (data.createdAt as admin.firestore.Timestamp).toDate().toISOString() : new Date().toISOString(),
-            updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate ? (data.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : new Date().toISOString(),
+            ...profileData,
+            createdAt: (profileData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            updatedAt: (profileData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         };
 
         return serializedData;
     } catch (error: any) {
         logError("Error fetching user profile by ID", { uid, errorMessage: error.message });
-        return null;
+        throw new functions.https.HttpsError("internal", "Failed to fetch profile.");
     }
-}
+});
+
+
+/**
+ * Cloud Function to fetch all user profiles from Firestore.
+ */
+export const getAllProfilesFromDB = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
+    try {
+        const usersSnapshot = await db.collection('users').get();
+        const profiles: UserProfile[] = [];
+        usersSnapshot.forEach(doc => {
+            const data = doc.data();
+            profiles.push({
+                id: doc.id,
+                ...data,
+                createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            } as UserProfile);
+        });
+        return { profiles };
+    } catch (error: any) {
+        logError("Error fetching all profiles", { errorMessage: error.message });
+        throw new functions.https.HttpsError("internal", "Failed to fetch profiles.");
+    }
+});
 
 
 /**

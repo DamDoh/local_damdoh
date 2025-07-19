@@ -50,6 +50,7 @@ export default function ProfilesPage() {
     const fetchProfiles = async () => {
       setIsLoading(true);
       try {
+        // Use the server action to fetch profiles
         const fetchedProfiles = await getAllProfilesFromDB();
         setProfiles(Array.isArray(fetchedProfiles) ? fetchedProfiles : []);
       } catch (error) {
@@ -148,7 +149,7 @@ export default function ProfilesPage() {
                 <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow">
                   <CardHeader className="flex flex-row items-center gap-4">
                     <Avatar className="h-16 w-16 border">
-                      <AvatarImage src={profile.avatarUrl} alt={profile.displayName} data-ai-hint="profile agriculture person" />
+                      <AvatarImage src={profile.avatarUrl ?? undefined} alt={profile.displayName} data-ai-hint="profile agriculture person" />
                       <AvatarFallback>{profile.displayName?.substring(0,1)}</AvatarFallback>
                     </Avatar>
                     <div>
