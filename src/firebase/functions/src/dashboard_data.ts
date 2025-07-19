@@ -1185,7 +1185,7 @@ export const getAdminDashboardData = functions.https.onCall(async (data, context
             farmsPromise,
             listingsPromise,
             newUsersQuery,
-            pendingApprovalsPromise,
+            pendingApprovalsSnap,
         ]);
 
         const result: AdminDashboardData = {

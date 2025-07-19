@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -191,3 +190,5 @@ export interface TraceabilityEvent {
 }
 export type GenerateForumPostDraftInput = z.infer<typeof GenerateForumPostDraftInput>;
 export type GenerateForumPostDraftOutput = z.infer<typeof GenerateForumPostDraftOutput>;
+
+    
