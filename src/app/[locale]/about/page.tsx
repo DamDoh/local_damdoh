@@ -14,7 +14,14 @@ import React from 'react';
 export default function AboutPage() {
   const t = useTranslations('aboutPage');
 
-  const challenges: {id: string, text: string, detail: string}[] = t.raw('challenge.list');
+  // Transform the object from t.raw into an array of objects
+  const challengesRaw = t.raw('challenge.list') as Record<string, { title: string, details: string }>;
+  const challenges: {id: string, text: string, detail: string}[] = Object.entries(challengesRaw).map(([key, value]) => ({
+    id: key,
+    text: value.title,
+    detail: value.details,
+  }));
+
   const challengeIcons: { [key: string]: React.ReactElement } = {
     marketAccess: <ShoppingCart className="h-6 w-6 text-destructive" />,
     inefficiency: <Truck className="h-6 w-6 text-destructive" />,
@@ -26,7 +33,12 @@ export default function AboutPage() {
     dataFragmentation: <Database className="h-6 w-6 text-destructive" />
   };
   
-  const solutions: {id: string, text: string}[] = t.raw('solution.list');
+  const solutionsRaw = t.raw('solution.list') as Record<string, string>;
+  const solutions: {id: string, text: string}[] = Object.entries(solutionsRaw).map(([key, value]) => ({
+    id: key,
+    text: value
+  }));
+
   const solutionIcons: { [key: string]: React.ReactElement } = {
     education: <BookOpen className="h-5 w-5 text-primary" />,
     ai: <Brain className="h-5 w-5 text-primary" />,
@@ -35,7 +47,12 @@ export default function AboutPage() {
     financial: <CircleDollarSign className="h-5 w-5 text-primary" />
   };
   
-  const connectionTypes: {id: string, title: string, content: string}[] = t.raw('beyondTechnology.list');
+  const connectionTypesRaw = t.raw('beyondTechnology.list') as Record<string, { title: string, content: string }>;
+  const connectionTypes: {id: string, title: string, content: string}[] = Object.entries(connectionTypesRaw).map(([key, value]) => ({
+      id: key,
+      ...value,
+  }));
+
    const connectionIcons: { [key: string]: React.ReactElement } = {
     p2p: <Users className="h-5 w-5 text-primary" />,
     p2b: <Handshake className="h-5 w-5 text-primary" />,
