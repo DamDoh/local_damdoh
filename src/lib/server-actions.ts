@@ -10,7 +10,7 @@ import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommenda
 import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
 import { suggestForumTopics as suggestForumTopicsFlow } from '@/ai/flows/forum-topic-suggestions';
 import type { UserProfile, SmartSearchInterpretation, CropRotationInput, CropRotationOutput, CreateFarmValues, CreateCropValues, Farm, Crop } from '@/lib/types';
-import { getFunctions, httpsCallable } from 'firebase-functions/v1'; // Use v1 for direct invocation
+import { getFunctions } from 'firebase-admin/functions'; // Use admin SDK functions
 import { getAdminApp } from './firebase/admin';
 import { getLocale } from 'next-intl/server';
 import { generateForumPostDraftFlow } from '@/ai/flows/generate-forum-post-draft';
@@ -39,7 +39,11 @@ export async function performSearch(interpretation: Partial<SmartSearchInterpret
   }
 
   try {
-    const searchFunction = getFunctions(getAdminApp()).httpsCallable('search.performSearch');
+    const adminApp = getAdminApp();
+    if (!adminApp) throw new Error("Admin SDK not initialized");
+    
+    // Using the admin SDK to get a callable function reference
+    const searchFunction = getFunctions(adminApp).httpsCallable('search.performSearch');
     
     // The Admin SDK's callable function requires an 'auth' object in the context.
     // We construct it using the authenticated user's details.
@@ -115,7 +119,7 @@ export async function suggestCropRotationAction(input: Omit<CropRotationInput, '
 export async function getFarm(farmId: string): Promise<Farm | null> {
     const isAuthenticated = await isServerAuthenticated();
     if (!isAuthenticated) { throw new Error("Unauthorized"); }
-    const getFarmCallable = httpsCallable(getFunctions(getAdminApp()), 'farmManagement.getFarm');
+    const getFarmCallable = getFunctions(getAdminApp()).httpsCallable('farmManagement.getFarm');
     const result = await getFarmCallable({ farmId });
     return result.data as Farm | null;
 }
@@ -123,7 +127,7 @@ export async function getFarm(farmId: string): Promise<Farm | null> {
 export async function updateFarm(farmId: string, data: CreateFarmValues): Promise<{ success: boolean; farmId: string; }> {
     const isAuthenticated = await isServerAuthenticated();
     if (!isAuthenticated) { throw new Error("Unauthorized"); }
-    const updateFarmCallable = httpsCallable(getFunctions(getAdminApp()), 'farmManagement.updateFarm');
+    const updateFarmCallable = getFunctions(getAdminApp()).httpsCallable('farmManagement.updateFarm');
     const result = await updateFarmCallable({ farmId, ...data });
     return result.data as { success: boolean; farmId: string; };
 }
@@ -131,7 +135,7 @@ export async function updateFarm(farmId: string, data: CreateFarmValues): Promis
 export async function getCrop(cropId: string): Promise<Crop | null> {
     const isAuthenticated = await isServerAuthenticated();
     if (!isAuthenticated) { throw new Error("Unauthorized"); }
-    const getCropCallable = httpsCallable(getFunctions(getAdminApp()), 'farmManagement.getCrop');
+    const getCropCallable = getFunctions(getAdminApp()).httpsCallable('farmManagement.getCrop');
     const result = await getCropCallable({ cropId });
     return result.data as Crop | null;
 }
@@ -139,7 +143,7 @@ export async function getCrop(cropId: string): Promise<Crop | null> {
 export async function updateCrop(cropId: string, data: CreateCropValues): Promise<{ success: boolean; message: string; }> {
     const isAuthenticated = await isServerAuthenticated();
     if (!isAuthenticated) { throw new Error("Unauthorized"); }
-    const updateCropCallable = httpsCallable(getFunctions(getAdminApp()), 'farmManagement.updateCrop');
+    const updateCropCallable = getFunctions(getAdminApp()).httpsCallable('farmManagement.updateCrop');
     // Ensure all data is serializable (e.g., Dates to ISO strings)
     const payload = {
         ...data,
@@ -190,7 +194,7 @@ export async function generateForumPostDraftCallable(input: {
 export async function getFinancialInstitutions() {
     const isAuthenticated = await isServerAuthenticated();
     if (!isAuthenticated) { throw new Error("Unauthorized"); }
-    const getFisCallable = httpsCallable(getFunctions(getAdminApp()), 'financials.getFinancialInstitutions');
+    const getFisCallable = getFunctions(getAdminApp()).httpsCallable('financials.getFinancialInstitutions');
     const result = await getFisCallable();
     return result.data as UserProfile[];
 }
