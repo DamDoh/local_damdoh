@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
@@ -10,7 +9,6 @@ import QRCode from 'qrcode.react';
 
 import type { UserProfile } from "@/lib/types";
 import { useAuth } from "@/lib/auth-utils";
-import { getProfileByIdFromDB } from "@/lib/server-actions";
 import { APP_NAME } from "@/lib/constants";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -88,10 +86,11 @@ export default function ProfileDetailPage() {
   const [isActivityLoading, setIsActivityLoading] = useState(true);
 
   const functions = getFunctions(firebaseApp);
-  const getUserActivity = useMemo(() => httpsCallable(functions, 'getUserActivity'), [functions]);
-  const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'logProfileView'), [functions]);
-  const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'getUserEngagementStats'), [functions]);
-  const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), [functions]);
+  const getUserActivity = useMemo(() => httpsCallable(functions, 'profiles-getUserActivity'), [functions]);
+  const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'activity-logProfileView'), [functions]);
+  const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'profiles-getUserEngagementStats'), [functions]);
+  const getProfileByIdCallable = useMemo(() => httpsCallable(functions, 'profiles-getProfileByIdFromDB'), [functions]);
+  const sendInviteCallable = useMemo(() => httpsCallable(functions, 'network-sendInvite'), [functions]);
   
   useEffect(() => {
     const profileIdParam = params.id as string;
@@ -114,16 +113,15 @@ export default function ProfileDetailPage() {
 
     if (idToFetch) {
       setIsLoading(true);
-      getProfileByIdFromDB(idToFetch)
-        .then(fetchedProfile => {
+      getProfileByIdCallable({ uid: idToFetch })
+        .then(result => {
+          const fetchedProfile = result.data as UserProfile;
           setProfile(fetchedProfile);
           if (fetchedProfile) {
-            // Log the profile view if applicable
             if (authUser && fetchedProfile.id !== authUser.uid) {
                 logProfileViewCallable({ viewedId: fetchedProfile.id }).catch(err => console.error("Failed to log profile view:", err));
             }
             
-            // Fetch activity
             setIsActivityLoading(true);
             getUserActivity({ userId: fetchedProfile.id })
               .then(result => {
@@ -131,7 +129,6 @@ export default function ProfileDetailPage() {
               })
               .catch(err => console.error("Failed to fetch activity:", err));
               
-            // Fetch stats
             getEngagementStatsCallable({ userId: fetchedProfile.id })
               .then(result => {
                   setStats(result.data as EngagementStats);
@@ -151,7 +148,7 @@ export default function ProfileDetailPage() {
     } else if (!authLoading) {
       setIsLoading(false);
     }
-  }, [params.id, authUser, authLoading, router, getUserActivity, logProfileViewCallable, getEngagementStatsCallable]);
+  }, [params.id, authUser, authLoading, router, getUserActivity, logProfileViewCallable, getEngagementStatsCallable, getProfileByIdCallable]);
   
   const handleInvite = async () => {
     const inviteeEmail = prompt(t('invitePrompt'));
@@ -226,7 +223,7 @@ export default function ProfileDetailPage() {
                 {profile.primaryRole}
               </CardDescription>
               <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
-                <MapPin className="h-4 w-4" /> {profile.location}
+                <MapPin className="h-4 w-4" /> {profile.location?.address}
               </div>
             </div>
             <div className="flex gap-2 mt-4 sm:mt-0">
@@ -372,5 +369,3 @@ export default function ProfileDetailPage() {
     </div>
   );
 }
-
-    
