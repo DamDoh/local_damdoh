@@ -14,7 +14,7 @@ import React from 'react';
 export default function AboutPage() {
   const t = useTranslations('aboutPage');
 
-  const challenges: {id: string, text: string, detail: string}[] = t.tm('challenge.list');
+  const challenges: {id: string, text: string, detail: string}[] = t.raw('challenge.list');
   const challengeIcons: { [key: string]: React.ReactElement } = {
     marketAccess: <ShoppingCart className="h-6 w-6 text-destructive" />,
     inefficiency: <Truck className="h-6 w-6 text-destructive" />,
@@ -26,7 +26,7 @@ export default function AboutPage() {
     dataFragmentation: <Database className="h-6 w-6 text-destructive" />
   };
   
-  const solutions: {id: string, text: string}[] = t.tm('solution.list');
+  const solutions: {id: string, text: string}[] = t.raw('solution.list');
   const solutionIcons: { [key: string]: React.ReactElement } = {
     education: <BookOpen className="h-5 w-5 text-primary" />,
     ai: <Brain className="h-5 w-5 text-primary" />,
@@ -35,7 +35,7 @@ export default function AboutPage() {
     financial: <CircleDollarSign className="h-5 w-5 text-primary" />
   };
   
-  const connectionTypes: {id: string, title: string, content: string}[] = t.tm('beyondTechnology.list');
+  const connectionTypes: {id: string, title: string, content: string}[] = t.raw('beyondTechnology.list');
    const connectionIcons: { [key: string]: React.ReactElement } = {
     p2p: <Users className="h-5 w-5 text-primary" />,
     p2b: <Handshake className="h-5 w-5 text-primary" />,

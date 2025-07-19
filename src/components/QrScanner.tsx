@@ -1,8 +1,7 @@
-
 "use client";
 
 import { useEffect, useRef } from 'react';
-import { Html5Qrcode } from 'html5-qrcode';
+import { Html5Qrcode, Html5QrcodeScannerState } from 'html5-qrcode';
 import { Card, CardContent } from './ui/card';
 import { X } from 'lucide-react';
 import { Button } from './ui/button';
@@ -17,48 +16,69 @@ export const QrScanner = ({ onScanSuccess, onScanFailure, onClose }: QrScannerPr
   const qrCodeReaderRef = useRef<HTMLDivElement>(null);
   const html5QrCodeRef = useRef<Html5Qrcode | null>(null);
 
-  useEffect(() => {
-    if (qrCodeReaderRef.current) {
-      const html5QrCode = new Html5Qrcode(qrCodeReaderRef.current.id);
-      html5QrCodeRef.current = html5QrCode;
+  // Use refs for callbacks to prevent re-running the effect
+  const onScanSuccessRef = useRef(onScanSuccess);
+  onScanSuccessRef.current = onScanSuccess;
+  const onScanFailureRef = useRef(onScanFailure);
+  onScanFailureRef.current = onScanFailure;
 
-      const startScanner = async () => {
-        try {
-          await html5QrCode.start(
-            { facingMode: "environment" },
-            {
-              fps: 10,
-              qrbox: { width: 250, height: 250 }
-            },
-            (decodedText, decodedResult) => {
-              // --- FIX: Call onScanSuccess immediately and handle cleanup ---
-              // This prevents a race condition where the parent unmounts this component
-              // before the scanner has finished its own DOM cleanup.
-              onScanSuccess(decodedText);
-              if (html5QrCodeRef.current?.isScanning) {
-                html5QrCodeRef.current.stop().catch(err => console.error("Failed to stop scanner after success", err));
-              }
-            },
-            (errorMessage) => {
-              // This function is called frequently, so we don't log every "failure"
-            }
-          );
-        } catch (err: any) {
-            onScanFailure(`Unable to start scanning, error: ${err.message}`);
-        }
-      };
-      startScanner();
+  useEffect(() => {
+    if (!qrCodeReaderRef.current) {
+      return;
     }
 
-    // Cleanup function remains the same
+    const html5QrCode = new Html5Qrcode(qrCodeReaderRef.current.id);
+    html5QrCodeRef.current = html5QrCode;
+
+    const startScanner = async () => {
+      try {
+        await html5QrCode.start(
+          { facingMode: "environment" },
+          {
+            fps: 10,
+            qrbox: { width: 250, height: 250 }
+          },
+          (decodedText, decodedResult) => {
+            // Stop the scanner first, then call the success handler to avoid race conditions.
+            if (html5QrCode.getState() === Html5QrcodeScannerState.SCANNING) {
+              html5QrCode.stop()
+                .then(() => {
+                  onScanSuccessRef.current(decodedText);
+                })
+                .catch(err => {
+                  console.error("Error stopping scanner after successful scan.", err);
+                   // Still notify success even if cleanup failed.
+                  onScanSuccessRef.current(decodedText);
+                });
+            }
+          },
+          (errorMessage) => {
+            // This callback is called frequently, so we don't do anything here.
+            // Failures are handled by the catch block below.
+          }
+        );
+      } catch (err: any) {
+        onScanFailureRef.current(`Unable to start scanning, error: ${err.message}`);
+      }
+    };
+    startScanner();
+
+    // Cleanup function for when the component unmounts
     return () => {
-      if (html5QrCodeRef.current && html5QrCodeRef.current.isScanning) {
+      if (html5QrCodeRef.current && html5QrCodeRef.current.getState() === Html5QrcodeScannerState.SCANNING) {
         html5QrCodeRef.current.stop().catch(err => {
-          console.error("Failed to stop QR scanner on cleanup:", err);
+          // This error is expected when the component unmounts quickly
+          // (e.g., user presses Esc). React removes the DOM node before
+          // the scanner's async stop() method finishes. We can safely ignore it.
+          if (err.message.includes("The node to be removed is not a child of this node.")) {
+            console.log("QR scanner cleanup: DOM node already removed, which is expected on fast close.");
+          } else {
+            console.error("Failed to stop QR scanner on cleanup:", err);
+          }
         });
       }
     };
-  }, [onScanSuccess, onScanFailure]);
+  }, []); // Empty dependency array ensures this runs only once on mount/unmount
 
   return (
     <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
