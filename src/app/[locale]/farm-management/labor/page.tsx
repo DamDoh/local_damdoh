@@ -22,6 +22,7 @@ import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useTranslations } from 'next-intl';
 import type { Worker } from '@/lib/types';
+import { useParams, useRouter } from '@/navigation';
 
 export default function LaborManagementPage() {
     const t = useTranslations('farmManagement.laborPage');
@@ -132,7 +133,7 @@ export default function LaborManagementPage() {
 
     return (
         <div className="space-y-6">
-            <Link href="/farm-management" className="inline-flex items-center text-sm text-primary hover:underline mb-4">
+             <Link href="/farm-management" className="inline-flex items-center text-sm text-primary hover:underline mb-4">
                 <ArrowLeft className="mr-1 h-4 w-4" /> {t('backLink')}
             </Link>
 
