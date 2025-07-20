@@ -150,6 +150,7 @@ export default function LaborManagementPage() {
                                     <Input id="worker-name" value={newWorkerName} onChange={e => setNewWorkerName(e.target.value)} />
                                 </div>
                                 <Button onClick={handleAddWorker} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}{t('saveWorker')}</Button>
+                                </div>
                             </DialogContent>
                         </Dialog>
                     </div>
@@ -221,7 +222,9 @@ export default function LaborManagementPage() {
                                             <CalendarIcon className="mr-2 h-4 w-4" />{paymentDate ? format(paymentDate, "PPP") : <span>{t('pickDate')}</span>}
                                         </Button>
                                     </PopoverTrigger>
-                                    <PopoverContent className="w-auto p-0"><Calendar mode="single" selected={paymentDate} onSelect={setPaymentDate} initialFocus /></PopoverContent>
+                                    <PopoverContent className="w-auto p-0">
+                                        <Calendar mode="single" selected={paymentDate} onSelect={setPaymentDate} initialFocus />
+                                    </PopoverContent>
                                 </Popover>
                             </div>
                         </div>
