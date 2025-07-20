@@ -45,10 +45,10 @@ export default function LaborManagementPage() {
     const [paymentDate, setPaymentDate] = useState<Date | undefined>(new Date());
 
     const functions = getFunctions(firebaseApp);
-    const getWorkersCallable = useMemo(() => httpsCallable(functions, 'getWorkers'), []);
-    const addWorkerCallable = useMemo(() => httpsCallable(functions, 'addWorker'), []);
-    const logHoursCallable = useMemo(() => httpsCallable(functions, 'logHours'), []);
-    const logPaymentCallable = useMemo(() => httpsCallable(functions, 'logPayment'), []);
+    const getWorkersCallable = useMemo(() => httpsCallable(functions, 'labor-getWorkers'), [functions]);
+    const addWorkerCallable = useMemo(() => httpsCallable(functions, 'labor-addWorker'), [functions]);
+    const logHoursCallable = useMemo(() => httpsCallable(functions, 'labor-logHours'), [functions]);
+    const logPaymentCallable = useMemo(() => httpsCallable(functions, 'labor-logPayment'), [functions]);
 
     const fetchWorkers = useCallback(async () => {
         if (!user) { setIsLoading(false); return; }
