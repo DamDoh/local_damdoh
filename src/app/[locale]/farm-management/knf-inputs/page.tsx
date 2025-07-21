@@ -34,9 +34,9 @@ export default function KNFInputAssistantPage() {
   const { toast } = useToast();
   const functions = getFunctions(firebaseApp);
   
-  const createKnfBatchCallable = useMemo(() => httpsCallable(functions, 'createKnfBatch'), [functions]);
-  const getUserKnfBatchesCallable = useMemo(() => httpsCallable(functions, 'getUserKnfBatches'), [functions]);
-  const updateKnfBatchStatusCallable = useMemo(() => httpsCallable(functions, 'updateKnfBatchStatus'), [functions]);
+  const createKnfBatchCallable = useMemo(() => httpsCallable(functions, 'farmManagement-createKnfBatch'), [functions]);
+  const getUserKnfBatchesCallable = useMemo(() => httpsCallable(functions, 'farmManagement-getUserKnfBatches'), [functions]);
+  const updateKnfBatchStatusCallable = useMemo(() => httpsCallable(functions, 'farmManagement-updateKnfBatchStatus'), [functions]);
 
   const [allBatches, setAllBatches] = useState<ActiveBatch[]>([]);
   const [isLoadingBatches, setIsLoadingBatches] = useState(true);
@@ -51,8 +51,8 @@ export default function KNFInputAssistantPage() {
   const [unit, setUnit] = useState<string>('');
 
 
-  const knfOptions: { value: KnfInputType; label: string; placeholder: string }[] = t.tm('knfOptions');
-  const knfRecipeData: any[] = t.tm('recipeData');
+  const knfOptions: { value: KnfInputType; label: string; placeholder: string }[] = t.raw('knfOptions');
+  const knfRecipeData: any[] = t.raw('recipeData');
 
   const fetchBatches = async () => {
     if (!user) {
