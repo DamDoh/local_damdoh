@@ -134,7 +134,9 @@ export default function SignUpPage() {
       if (error.code) {
         switch (error.code) {
           case "auth/email-already-in-use":
-            errorMessage = t('errors.emailInUse');
+            errorMessage = t.rich('errors.emailInUseRich', {
+              signInLink: (chunks) => <Link href="/auth/signin" className="font-bold underline">{chunks}</Link>
+            }) as any; // Use t.rich for links
             break;
           case "auth/invalid-email":
             errorMessage = t('errors.invalidEmail');
@@ -147,11 +149,14 @@ export default function SignUpPage() {
         }
       }
       setAuthError(errorMessage);
-      toast({
-        title: t('signUpFailed'),
-        description: errorMessage,
-        variant: "destructive",
-      });
+      // We don't show a toast for email-already-in-use because the inline error is more helpful.
+      if (error.code !== 'auth/email-already-in-use') {
+        toast({
+          title: t('signUpFailed'),
+          description: errorMessage,
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsLoading(false);
     }
