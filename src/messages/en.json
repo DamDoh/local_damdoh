@@ -957,6 +957,75 @@
         "button": "Manage Assets"
       }
     },
+    "laborPage":{
+      "backLink": "Back to Farm Hub",
+      "title": "Labor Management",
+      "description": "Track your farm workers, log their hours, and manage payments.",
+      "loading": "Loading...",
+      "signInPrompt": {
+        "title": "Please Sign In",
+        "description": "You must be signed in to manage farm labor.",
+        "button": "Sign In"
+      },
+      "addWorkerButton": "Add New Worker",
+      "noWorkersTitle": "No workers added yet.",
+      "noWorkersDescription": "Start by adding your first worker to track their activities and payments.",
+      "table": {
+        "name": "Name",
+        "phone": "Phone",
+        "totalHours": "Total Hours Logged",
+        "totalPaid": "Total Paid",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "logHours": "Log Hours",
+        "makePayment": "Make Payment",
+        "viewDetails": "View Details"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "addWorkerModal": {
+        "title": "Add New Worker",
+        "nameLabel": "Worker's Name",
+        "namePlaceholder": "e.g., John Doe",
+        "phoneLabel": "Phone Number (Optional)",
+        "phonePlaceholder": "e.g., +254 712 345 678",
+        "rateLabel": "Pay Rate (Optional)",
+        "ratePlaceholder": "e.g., 500",
+        "rateUnitLabel": "per",
+        "rateUnitPlaceholder": "e.g., Day, Hour",
+        "addButton": "Add Worker",
+        "addingButton": "Adding..."
+      },
+      "toast": {
+        "authErrorTitle": "Not Authenticated",
+        "authErrorDescription": "You must be signed in to manage labor.",
+        "loadError": "Could not load worker data.",
+        "addSuccessTitle": "Worker Added",
+        "addSuccessDescription": "{name} has been added to your workforce.",
+        "addFailTitle": "Could not add worker."
+      },
+      "workerDetailPage": {
+        "backLink": "Back to Labor Management",
+        "title": "Worker Details",
+        "summaryTitle": "Summary",
+        "statusLabel": "Status",
+        "totalHoursLabel": "Total Hours Logged",
+        "totalPaidLabel": "Total Amount Paid",
+        "payRateLabel": "Pay Rate",
+        "activityTitle": "Activity Log",
+        "noActivity": "No activity has been logged for this worker yet.",
+        "paymentsTitle": "Payment History",
+        "noPayments": "No payments have been made to this worker yet.",
+        "toasts": {
+          "errorTitle": "Error",
+          "loadError": "Could not load worker details. Please try again."
+        }
+      }
+    },
     "myFarms": {
       "backToDashboard": "Back to Farm Hub",
       "title": "My Farms",
@@ -2020,7 +2089,11 @@
     "aiSuggestionsTitle": "AI Suggestions",
     "aiSuggestionsDescription": "Connect with people you may know based on your profile and activity.",
     "invite": {
-      "button": "Invite"
+      "button": "Invite",
+      "prompt": "Enter the email address of the person you want to invite.",
+      "successTitle": "Invite Sent!",
+      "successDescription": "An invitation has been sent to {email}.",
+      "errorTitle": "Invite Failed"
     },
     "toast": {
       "errorTitle": "Error",
