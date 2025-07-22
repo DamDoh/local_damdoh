@@ -1,5 +1,37 @@
 
+
 {
+  "FarmerDashboard": {
+    "title": "My Farm Dashboard",
+    "description": "An overview of your farming operations.",
+    "alertsTitle": "Action Required",
+    "viewButton": "View",
+    "noData": "No farm data available yet. Add a farm to get started!",
+    "cards": {
+        "farms": { "title": "My Farms", "button": "Manage Farms" },
+        "crops": { "title": "Active Crops", "button": "Manage Crops" },
+        "knf": { "title": "Active KNF Batches", "button": "Manage Inputs" },
+        "financials": { "title": "Net Cash Flow", "button": "View Financials" }
+    },
+    "financials": {
+        "title": "Financial Summary",
+        "income": "Total Income",
+        "expense": "Total Expenses"
+    },
+    "recentCrops": {
+        "title": "Recent Crop Activity",
+        "button": "Add Crop",
+        "onFarm": "on farm",
+        "plantedOn": "Planted",
+        "noCrops": "No recent crop activity. Add a crop to get started!"
+    },
+    "knfBatches": {
+        "title": "KNF Inputs Status",
+        "button": "Start New Batch",
+        "nextStep": "Next Step",
+        "noBatches": "No active KNF batches."
+    }
+  },
   "MobileHomepage": {
     "welcome": {
       "morning": "Good Morning, {name}",
@@ -178,6 +210,7 @@
       "userDisabled": "This user account has been disabled.",
       "default": "Authentication failed",
       "emailInUse": "An account with this email already exists.",
+      "emailInUseRich": "An account with this email already exists. Please {signInLink} or use a different email.",
       "weakPassword": "The password is too weak. Please use a stronger password."
     },
     "passwordStrength": {
@@ -236,6 +269,61 @@
     "messages": "Messages",
     "profile": "Profile"
   },
+  "DashboardLeftSidebar": {
+    "viewProfileLink": "View and edit your profile",
+    "profileViewers": "Profile viewers",
+    "postEngagements": "Post engagements",
+    "pro": {
+      "unlock": "Unlock advanced analytics and insights.",
+      "try": "Try Pro for free",
+      "title": "Coming Soon!",
+      "description": "Advanced analytics and Pro features are on their way."
+    }
+  },
+  "MainDashboard": {
+    "feedError": {
+      "title": "Could Not Load Feed",
+      "description": "There was a problem fetching the latest activity."
+    },
+    "uploadingMedia": "Uploading media...",
+    "uploadComplete": "Upload complete!",
+    "postSuccess": {
+      "title": "Post Created",
+      "description": "Your post is now live on the feed."
+    },
+    "postError": {
+      "auth": "You must be signed in to create a post.",
+      "fail": "Could not create post."
+    },
+    "likeError": {
+      "auth": "You must be signed in to like a post.",
+      "fail": "Could not process like."
+    },
+    "commentError": {
+      "auth": "You must be signed in to comment.",
+      "fail": "Could not post comment."
+    },
+    "deleteError": {
+      "auth": "You must be signed in to delete a post.",
+      "fail": "Could not delete post."
+    },
+    "deleteSuccess": {
+      "title": "Post Deleted",
+      "description": "The post has been successfully removed."
+    },
+    "noActivity": "No recent activity in the feed. Why not start a conversation?",
+    "profileCompletion": {
+      "title": "Complete Your Profile!",
+      "description": "A complete profile helps you make better connections. Add a summary and your location to get started.",
+      "button": "Edit Your Profile"
+    }
+  },
+  "StartPost": {
+    "placeholder": "Start a post, ask a question...",
+    "photoVideo": "Photo/Video",
+    "agriEvent": "Agri-Event",
+    "createPoll": "Create Poll"
+  },
   "DashboardRightSidebar": {
     "networkTitle": "Add to your feed",
     "refreshSuggestions": "Refresh suggestions",
@@ -245,13 +333,20 @@
     "noSuggestions": "No new suggestions right now. Check back later!",
     "following": "Following",
     "follow": "Follow",
+    "viewAllButton": "View All Suggestions",
     "promotionsTitle": "Promotions",
     "promotionsDescription": "See special offers and deals from partners in the ecosystem.",
     "managePromotionsButton": "Manage Promotions",
     "ad": "Ad",
     "adTitle": "Unlock Market Insights",
     "adDescription": "Get real-time data and analytics with DamDoh Pro.",
-    "adButton": "Learn More"
+    "adButton": "Learn More",
+    "toast": {
+      "signInToConnect": "Please sign in to connect with others.",
+      "requestSent": "Connection Request Sent",
+      "requestSentDescription": "Your request has been sent. You will be notified when they accept.",
+      "requestFailed": "Could not send connection request."
+    }
   },
   "LanguageSwitcher": {
     "toggle": "Change language"
@@ -635,10 +730,12 @@
         "skillsPlaceholder": "e.g., Crop Spraying, Soil Analysis, Organic Certification",
         "skillsDescription": "Separate skills with a comma.",
         "imageUrlLabel": "Image URL",
+        "imageFile": "Feature Image",
         "sustainableLabel": "Sustainably Produced",
         "sustainableDescription": "Check this box if your product or service follows recognized sustainable practices.",
         "submitButton": "Create Listing",
-        "submittingButton": "Creating..."
+        "submittingButton": "Creating...",
+        "changeLocationButton": "Change"
       },
       "aiPriceSuggestion": {
         "button": "Suggest Price with AI",
@@ -758,13 +855,15 @@
         "product": "Product",
         "total": "Total",
         "status": "Status",
-        "actions": "Actions"
+        "actions": "Actions",
+        "seller": "Seller"
       },
       "actions": {
         "confirm": "Confirm",
         "ship": "Ship",
         "complete": "Complete",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "cancelOrder": "Cancel Order"
       },
       "status": {
         "new": "New",
@@ -801,8 +900,11 @@
         "submitButton": "Create Shop",
         "submittingButton": "Creating..."
       },
-      "authErrorTitle": "Not Authenticated",
-      "authErrorDescription": "You must be signed in to create a shop.",
+      "authRequired": {
+        "title": "Authentication Required",
+        "description": "You need to be logged in to create a shopfront.",
+        "signInButton": "Sign In to Continue"
+      },
       "toast": {
         "successTitle": "Shop Created!",
         "successDescription": "Your shop '{shopName}' is now live.",
@@ -889,6 +991,32 @@
         "bookings": "Bookings",
         "staff": "Staff"
       },
+      "checkin": {
+        "title": "Guest Check-in",
+        "description": "Scan a guest's QR code to check them in.",
+        "scanButton": "Scan Check-in Code",
+        "verifying": "Verifying...",
+        "success": "Success",
+        "errorTitle": "Error",
+        "error": {
+          "invalidCode": "This is not a valid check-in code.",
+          "wrongEvent": "This ticket is for a different service or event.",
+          "noUserId": "Could not find user ID in the QR code.",
+          "failUnknown": "Check-in failed for an unknown reason."
+        },
+        "toast": {
+          "success": {
+            "title": "Check-in Successful"
+          },
+          "fail": {
+            "title": "Check-in Failed"
+          },
+          "scanFail": {
+            "title": "Scan Failed",
+            "description": "Could not read the QR code. Please try again."
+          }
+        }
+      },
       "bookingsTab": {
         "title": "Bookings",
         "description": "View a list of all users who have booked this service.",
@@ -908,6 +1036,27 @@
         "fetchError": "Could not load bookings.",
         "toast": {
           "noBookings": "No bookings to download."
+        }
+      },
+      "staff": {
+        "title": "Manage Staff",
+        "description": "Add or remove staff who can help manage this service.",
+        "addTitle": "Add New Staff",
+        "searchPlaceholder": "Search by name or email...",
+        "addButton": "Add",
+        "currentTitle": "Current Staff",
+        "removeButton": "Remove",
+        "noStaff": "No staff members have been added.",
+        "toast": {
+          "searchLengthError": "Search query must be at least 3 characters.",
+          "error": "Error",
+          "searchFailed": "Could not perform user search.",
+          "success": "Success",
+          "addSuccess": "{name} has been added as staff.",
+          "addFailed": "Could not add staff member.",
+          "removeSuccess": "{name} has been removed from staff.",
+          "removeFailed": "Could not remove staff member.",
+          "fetchStaffError": "Could not load staff list."
         }
       }
     }
@@ -967,59 +1116,48 @@
         "description": "You must be signed in to manage farm labor.",
         "button": "Sign In"
       },
-      "addWorkerButton": "Add New Worker",
-      "noWorkersTitle": "No workers added yet.",
-      "noWorkersDescription": "Start by adding your first worker to track their activities and payments.",
-      "table": {
-        "name": "Name",
-        "phone": "Phone",
-        "totalHours": "Total Hours Logged",
-        "totalPaid": "Total Paid",
-        "status": "Status",
-        "actions": "Actions"
-      },
-      "actions": {
-        "logHours": "Log Hours",
-        "makePayment": "Make Payment",
-        "viewDetails": "View Details"
-      },
-      "status": {
-        "active": "Active",
-        "inactive": "Inactive"
-      },
-      "addWorkerModal": {
-        "title": "Add New Worker",
-        "nameLabel": "Worker's Name",
-        "namePlaceholder": "e.g., John Doe",
-        "phoneLabel": "Phone Number (Optional)",
-        "phonePlaceholder": "e.g., +254 712 345 678",
-        "rateLabel": "Pay Rate (Optional)",
-        "ratePlaceholder": "e.g., 500",
-        "rateUnitLabel": "per",
-        "rateUnitPlaceholder": "e.g., Day, Hour",
-        "addButton": "Add Worker",
-        "addingButton": "Adding..."
-      },
+      "addWorker": "Add Worker",
+      "workerName": "Worker Name",
+      "saveWorker": "Save Worker",
+      "hoursLogged": "Hours Logged",
+      "totalPaid": "Total Paid",
+      "logHours": "Log Hours",
+      "logPayment": "Log Payment",
+      "viewDetails": "View Details",
+      "noWorkers": "No workers have been added yet.",
+      "logHoursFor": "Log Hours for",
+      "hoursWorked": "Hours Worked",
+      "date": "Date",
+      "pickDate": "Pick a date",
+      "taskDescription": "Task Description (Optional)",
+      "logPaymentFor": "Log Payment for",
+      "amountPaid": "Amount Paid",
       "toast": {
+        "nameRequired": "Worker name cannot be empty.",
+        "errorTitle": "Error",
+        "workerAdded": "Worker Added!",
+        "hoursLogged": "Hours logged successfully!",
+        "paymentLoggedTitle": "Payment Logged!",
+        "paymentLoggedDescription": "The payment has been recorded and also added to your farm's expenses.",
+        "fetchWorkersError": "Could not fetch worker data.",
         "authErrorTitle": "Not Authenticated",
-        "authErrorDescription": "You must be signed in to manage labor.",
-        "loadError": "Could not load worker data.",
-        "addSuccessTitle": "Worker Added",
-        "addSuccessDescription": "{name} has been added to your workforce.",
-        "addFailTitle": "Could not add worker."
+        "authErrorDescription": "You must be signed in to manage labor."
       },
       "workerDetailPage": {
         "backLink": "Back to Labor Management",
-        "title": "Worker Details",
-        "summaryTitle": "Summary",
-        "statusLabel": "Status",
-        "totalHoursLabel": "Total Hours Logged",
-        "totalPaidLabel": "Total Amount Paid",
-        "payRateLabel": "Pay Rate",
-        "activityTitle": "Activity Log",
-        "noActivity": "No activity has been logged for this worker yet.",
-        "paymentsTitle": "Payment History",
-        "noPayments": "No payments have been made to this worker yet.",
+        "notFoundTitle": "Worker Not Found",
+        "notFoundDescription": "The worker you are looking for could not be found.",
+        "goBackButton": "Go Back",
+        "workLogsTitle": "Work Logs",
+        "paymentHistoryTitle": "Payment History",
+        "table": {
+          "date": "Date",
+          "hours": "Hours",
+          "task": "Task",
+          "amount": "Amount"
+        },
+        "noWorkLogs": "No work has been logged.",
+        "noPayments": "No payments have been logged.",
         "toasts": {
           "errorTitle": "Error",
           "loadError": "Could not load worker details. Please try again."
@@ -1126,14 +1264,6 @@
       "yieldPlaceholder": "e.g., 5 Tons/Hectare",
       "stageLabel": "Current Stage (Optional)",
       "stagePlaceholder": "Select a stage",
-      "stages": {
-        "Planting": "Planting",
-        "Vegetative": "Vegetative",
-        "Flowering": "Flowering",
-        "Fruiting": "Fruiting",
-        "Harvesting": "Harvesting",
-        "Post-Harvest": "Post-Harvest"
-      },
       "notesLabel": "Notes (Optional)",
       "notesPlaceholder": "Add any relevant notes about this batch...",
       "saveButton": "Save Crop",
@@ -1164,6 +1294,8 @@
       "methodPlaceholder": "e.g., Foliar spray, Soil drench",
       "saveButton": "Log Application",
       "savingButton": "Logging...",
+      "typeLabel": "Input Type",
+      "typePlaceholder": "Select input type",
       "toast": {
         "authErrorTitle": "Not Authenticated",
         "authErrorDescription": "You must be signed in to log an application.",
@@ -1371,7 +1503,7 @@
           "name": "Fermented Plant Juice (FPJ)",
           "description": "A fermented extract of a plant's sap and chlorophyll. Rich in enzymes and microorganisms, it's a potent growth enhancer for plants.",
           "ingredients": [
-            "1kg of fast-growing plant parts (e.g., sweet potato tips, bamboo shoots)",
+            "1kg of fast-growing plant parts (e.g., sweet potato tips, bamboo shoots, squash tips)",
             "1kg of brown sugar (or molasses)"
           ],
           "yield": "approx. 0.8 L",
@@ -1396,7 +1528,7 @@
           "yield": "approx. 1.5 L",
           "steps": [
             "Chop the fish parts into small pieces.",
-            "In a container, layer the fish parts and brown sugar, starting and ending with sugar.",
+            "In a container, layer the fish parts and brown sugar, starting and ending with a layer of sugar.",
             "Fill the container to about 2/3 capacity and cover with a breathable cloth.",
             "Store in a cool, dark place and allow to ferment for at least 3-6 months."
           ],
@@ -1615,8 +1747,8 @@
       "knowledgeContributions": "Knowledge Contributions"
     },
     "activeAlerts": "Active Alerts",
-    "reportsToFile": "Reports to File",
-    "tasksPending": "Tasks Pending",
+    "reportsToFile": "Reports to file.",
+    "tasksPending": "Tasks pending.",
     "consultations": {
       "title": "Consultation Requests",
       "description": "Respond to incoming requests from farmers.",
@@ -2098,7 +2230,10 @@
     "toast": {
       "errorTitle": "Error",
       "loadError": "Could not load network data.",
-      "connectError": "Could not send connection request."
+      "connectError": "Could not send connection request.",
+      "signInToConnect": "You must be signed in to connect with others.",
+      "requestSentTitle": "Request Sent",
+      "requestSentDescription": "Your connection request has been sent."
     },
     "following": "Following",
     "follow": "Follow",
@@ -2129,22 +2264,22 @@
     "homeButton": "Go to Homepage"
   },
   "talentExchangePage": {
-  "title": "Talent Exchange",
-  "description": "Find specialized agricultural services or offer your own expertise.",
-  "searchPlaceholder": "Search for services (e.g., drone survey, soil testing)",
-  "locationPlaceholder": "Filter by location",
-  "categoryPlaceholder": "Filter by category",
-  "allCategories": "All Categories",
-  "noResults": "No talent found for your search.",
-  "postJobButton": "Post a Job",
-  "offerServiceButton": "Offer a Service",
-  "listServiceButton": "List a Service",
-  "noResultsTitle": "No Services Found",
-  "noResultsDescription": "Try adjusting your search filters or be the first to offer a service in your area.",
-  "toast": {
-    "error": {
-      "title": "Error",
-      "description": "Failed to fetch services."
+    "title": "Talent Exchange",
+    "description": "Find specialized agricultural services or offer your own expertise.",
+    "searchPlaceholder": "Search for services (e.g., drone survey, soil testing)",
+    "locationPlaceholder": "Filter by location",
+    "categoryPlaceholder": "Filter by category",
+    "allCategories": "All Categories",
+    "noResults": "No talent found for your search.",
+    "postJobButton": "Post a Job",
+    "offerServiceButton": "Offer a Service",
+    "listServiceButton": "List a Service",
+    "noResultsTitle": "No Services Found",
+    "noResultsDescription": "Try adjusting your search filters or be the first to offer a service in your area.",
+    "toast": {
+      "error": {
+        "title": "Error",
+        "description": "Failed to fetch services."
       }
     }
   },
@@ -2192,4 +2327,3 @@
     }
   }
 }
-

@@ -1,4 +1,3 @@
-
 import { z } from "zod";
 import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from '@/lib/constants';
 
@@ -1043,5 +1042,13 @@ export const SuggestMarketPriceOutputSchema = z.object({
   price: z.number().describe('The suggested market price as a number.'),
 });
 export type SuggestMarketPriceOutput = z.infer<typeof SuggestMarketPriceOutputSchema>;
+export const GenerateForumPostDraftInputSchema = z.object({
+    topicId: z.string().describe("The ID of the forum topic the post will be created in."),
+    prompt: z.string().describe("The user's short prompt or idea for the post."),
+    language: z.string().optional().describe("The language for the AI to respond in (e.g., 'en', 'km'). Defaults to English."),
+});
 
-    
+export const GenerateForumPostDraftOutputSchema = z.object({
+    title: z.string().describe("A concise and engaging title for the new forum post."),
+    content: z.string().describe("The full content of the forum post, written in a helpful and engaging tone."),
+});

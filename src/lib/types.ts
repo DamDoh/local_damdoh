@@ -1,4 +1,3 @@
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -176,19 +175,6 @@ export type DiagnoseCropInput = z.infer<typeof DiagnoseCropInputSchema>;
 export type DiagnoseCropOutput = z.infer<typeof DiagnoseCropOutputSchema>;
 export type FarmingAssistantInput = z.infer<typeof FarmingAssistantInputSchema>;
 export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema>;
-export interface TraceabilityEvent {
-  id: string;
-  eventType: string;
-  timestamp: string;
-  payload: any;
-  actor: {
-    name: string;
-    role: string;
-    avatarUrl?: string;
-  };
-  geoLocation?: { lat: number; lng: number } | null;
-}
-export type GenerateForumPostDraftInput = z.infer<typeof GenerateForumPostDraftInput>;
-export type GenerateForumPostDraftOutput = z.infer<typeof GenerateForumPostDraftOutput>;
-
-    
+export type ForumPost = z.infer<typeof ForumPostSchema>;
+export type GenerateForumPostInput = z.infer<typeof GenerateForumPostDraftInput>;
+export type GenerateForumPostOutput = z.infer<typeof GenerateForumPostDraftOutput>;

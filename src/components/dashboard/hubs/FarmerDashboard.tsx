@@ -47,7 +47,7 @@ export function FarmerDashboard() {
     const [isLoading, setIsLoading] = useState(true);
 
     const functions = getFunctions(firebaseApp);
-    const getFarmerData = useMemo(() => httpsCallable(functions, 'getFarmerDashboardData'), [functions]);
+    const getFarmerData = useMemo(() => httpsCallable(functions, 'dashboardData-getFarmerDashboardData'), [functions]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -219,7 +219,7 @@ export function FarmerDashboard() {
                     </div>
                 )) : <p className="text-sm text-center text-muted-foreground py-4">{t('knfBatches.noBatches')}</p>}
             </CardContent>
-        </Card>
+            </Card>
         </div>
     );
 }

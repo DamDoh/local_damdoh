@@ -132,6 +132,7 @@ export const getFarmerDashboardData = functions.https.onCall(
                     nextStep: batchData.nextStep,
                     quantityProduced: batchData.quantityProduced,
                     unit: batchData.unit,
+                    createdAt: (batchData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
                 };
             });
 
@@ -259,6 +260,7 @@ export const getFiDashboardData = functions.https.onCall(
                 purpose: appData.purpose,
                 submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
                 actionLink: `/fi/applications/${doc.id}`,
+                applicantProfile: undefined
             };
         });
         
@@ -678,7 +680,7 @@ export const getAgroExportDashboardData = functions.https.onCall(
   async (data, context): Promise<AgroExportDashboardData> => {
     checkAuth(context);
      try {
-        const vtisForExportPromise = await db.collection('vti_registry')
+        const vtisForExportPromise = db.collection('vti_registry')
             .where('metadata.forExport', '==', true)
             // Ideally, we'd have a `documentationStatus` field to query
             .limit(5)
@@ -1223,8 +1225,4 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
 
         return { activity: activities.slice(0, 10) };
     } catch (error) {
-         console.error("Error fetching admin recent activity:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
-    }
-});
-
+         console.error("Error fetching
