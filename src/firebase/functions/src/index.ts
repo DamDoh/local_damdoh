@@ -1,4 +1,5 @@
 
+
 /**
  * @fileoverview This is the main entry point for all Firebase Cloud Functions.
  * It initializes the Firebase Admin SDK and exports all the functions from other
@@ -56,7 +57,7 @@ export const aiServices = aiServicesFunctions;
 export const apiKeys = apiKeyFunctions;
 export const apiGateway = apiGatewayFunctions;
 export const community = communityFunctions;
-export const dashboard = dashboardDataFunctions;
+export const dashboardData = dashboardDataFunctions; // Changed from 'dashboard'
 export const farmManagement = farmManagementFunctions;
 export const financials = financialServicesFunctions;
 export const forums = forumFunctions;

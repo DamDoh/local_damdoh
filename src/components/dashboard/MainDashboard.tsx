@@ -5,7 +5,7 @@ import React, { Suspense } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import type { FeedItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
-import { DashboardRightSidebar } from "@/components/dashboard/DashboardRightSidebar";
+import { DashboardRightSidebar } from "@/components/dashboard/hubs/DashboardRightSidebar";
 import { StartPost } from "@/components/dashboard/StartPost";
 import { PageSkeleton } from '@/components/Skeletons';
 import { Skeleton } from "@/components/ui/skeleton";
