@@ -20,7 +20,7 @@ import { useToast } from "@/hooks/use-toast";
 import { performSearch, getMarketplaceRecommendationsAction } from "@/lib/server-actions";
 import { ItemCard } from "@/components/marketplace/ItemCard";
 import { useTranslations } from "next-intl";
-import { useAuth } from "@/lib/auth-utils";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface RecommendedItem {
   item: MarketplaceItem;

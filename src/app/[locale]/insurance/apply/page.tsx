@@ -10,7 +10,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { useTranslations } from 'next-intl';
 
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { useAuth } from '@/lib/auth-utils';
+import { useAuth } from '@/contexts/AuthContext';
 import { createInsuranceApplicationSchema, type CreateInsuranceApplicationValues } from '@/lib/form-schemas';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -41,9 +41,9 @@ export default function ApplyForInsurancePage() {
     const [isSuccess, setIsSuccess] = useState(false);
     
     const functions = getFunctions(firebaseApp);
-    const getUserFarmsCallable = useMemo(() => httpsCallable(functions, 'getUserFarms'), []);
-    const getProductDetailsCallable = useMemo(() => httpsCallable(functions, 'getInsuranceProductDetails'), []);
-    const submitApplicationCallable = useMemo(() => httpsCallable(functions, 'submitInsuranceApplication'), []);
+    const getUserFarmsCallable = useMemo(() => httpsCallable(functions, 'getUserFarms'), [functions]);
+    const getProductDetailsCallable = useMemo(() => httpsCallable(functions, 'getInsuranceProductDetails'), [functions]);
+    const submitApplicationCallable = useMemo(() => httpsCallable(functions, 'submitInsuranceApplication'), [functions]);
     
     const productId = searchParams.get('productId');
 

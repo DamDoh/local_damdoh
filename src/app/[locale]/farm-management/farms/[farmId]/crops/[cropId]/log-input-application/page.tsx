@@ -24,7 +24,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useState, useMemo, useEffect } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { useAuth } from "@/lib/auth-utils";
+import { useAuth } from "@/contexts/AuthContext";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import type { KnfBatch } from '@/lib/types';

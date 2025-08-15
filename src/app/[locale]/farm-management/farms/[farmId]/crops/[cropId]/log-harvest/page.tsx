@@ -25,7 +25,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { useAuth } from "@/lib/auth-utils";
+import { useAuth } from "@/contexts/AuthContext";
 import { getFunctions, httpsCallable, HttpsError } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useTranslations } from "next-intl";

@@ -2,8 +2,8 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useAuth } from "@/lib/auth-utils";
-import { firebaseApp } from "@/lib/firebase/client";
+import { useAuth } from "@/contexts/AuthContext";
+import { app as firebaseApp } from "@/lib/firebase/client";
 import { collection, query, where, orderBy, onSnapshot, getFirestore, doc, getDocs, limit } from "firebase/firestore";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

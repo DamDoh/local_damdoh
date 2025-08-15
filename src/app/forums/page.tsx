@@ -6,19 +6,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { MessageSquare, PlusCircle, Search, Frown, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin, PinOff, Clock, Users, Lightbulb } from "lucide-react";
+import { MessageSquare, PlusCircle, Search, Frown, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin, PinOff, Clock, Users, Lightbulb, RefreshCcw } from "lucide-react";
 import Link from 'next/link';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import type { ForumTopic } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
-import { useAuth } from '@/lib/auth-utils';
+import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { usePathname, useRouter } from '@/navigation';
-import { useHomepagePreference } from '@/hooks/useHomepageRedirect';
+import { useHomepagePreference } from '@/hooks/useHomepagePreference';
 import { formatDistanceToNow } from 'date-fns';
 import { useTranslations, useLocale } from 'next-intl';
 import { z } from 'zod';
+import { getForumTopicSuggestions as getForumTopicSuggestionsAction } from '@/lib/server-actions'; // Correctly import the server action
 
 // This schema is now only used for type safety on the client
 const ForumTopicSuggestionSchema = z.object({

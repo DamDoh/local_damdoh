@@ -11,7 +11,7 @@ import { useTranslations } from 'next-intl';
 import { createFinancialProductSchema, type CreateFinancialProductValues } from '@/lib/form-schemas';
 import { STAKEHOLDER_ROLES } from '@/lib/constants';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/lib/auth-utils';
+import { useAuth } from '@/contexts/AuthContext';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 

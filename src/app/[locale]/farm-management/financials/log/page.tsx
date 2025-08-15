@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -23,10 +24,10 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { logFinancialTransactionSchema, type LogFinancialTransactionValues } from "@/lib/form-schemas";
-import { ArrowLeft, Save, DollarSign, Loader2, ListFilter, FileText, Tag } from "lucide-react";
+import { ArrowLeft, Save, DollarSign, Loader2, ListFilter, FileText, Tag, CalendarIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useState, useEffect } from "react";
-import { useAuth } from "@/lib/auth-utils";
+import { useState, useMemo } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { useTranslations } from "next-intl";
@@ -41,16 +42,17 @@ export default function LogFinancialTransactionPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
   const functions = getFunctions(firebaseApp);
-  const logFinancialTransactionCallable = httpsCallable(functions, 'logFinancialTransaction');
+  const logFinancialTransactionCallable = useMemo(() => httpsCallable(functions, 'financials-logFinancialTransaction'), [functions]);
+  
   const form = useForm<LogFinancialTransactionValues>({
     resolver: zodResolver(logFinancialTransactionSchema),
     defaultValues: {
-      type: "expense", // Default to expense? Or make it required?
+      type: "expense",
       amount: undefined,
       currency: "USD",
       description: "",
       category: "",
-      date: new Date().toISOString().split('T')[0], // Default to today
+      date: new Date().toISOString().split('T')[0],
     },
   });
 
@@ -74,20 +76,16 @@ export default function LogFinancialTransactionPage() {
         description: t('toast.description'),
       });
 
-      // Redirect to the financial dashboard after successful submission
       router.push("/farm-management/financials");
 
     } catch (error: any) {
       console.error("Error logging transaction:", error);
 
-      let errorMessage = t('toast.fail'); // Default fallback message title
-      if (error.message) {
-         errorMessage = error.message;
-      }
-
+      let errorMessage = error.message || t('toast.fail');
+      
       toast({
         variant: "destructive",
-        title: t('toast.fail'),
+        title: "Transaction Failed",
         description: errorMessage,
       });
 
@@ -96,9 +94,14 @@ export default function LogFinancialTransactionPage() {
     }
   }
 
-   const transactionTypes = Object.keys(t.raw('types')).map(key => ({
+  const transactionTypes = Object.keys(t.raw('types')).map(key => ({
     value: key,
     label: t(`types.${key}`)
+  }));
+  
+  const categories = Object.keys(t.raw('categories')).map(key => ({
+    value: key,
+    label: t(`categories.${key}`)
   }));
 
   return (
@@ -124,11 +127,30 @@ export default function LogFinancialTransactionPage() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
 
               <FormField
+                control={form.control}
+                name="type"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-2"><ListFilter className="h-4 w-4" />{t('typeLabel')}</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl><SelectTrigger><SelectValue/></SelectTrigger></FormControl>
+                      <SelectContent>
+                        {transactionTypes.map(type => (
+                          <SelectItem key={type.value} value={type.value}>{type.label}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
                  control={form.control}
                  name="date"
                  render={({ field }) => (
                    <FormItem>
-                     <FormLabel>{t('dateLabel')}</FormLabel>
+                     <FormLabel className="flex items-center gap-2"><CalendarIcon className="h-4 w-4" />{t('dateLabel')}</FormLabel>
                      <FormControl>
                        <Input type="date" {...field} />
                      </FormControl>
@@ -136,26 +158,66 @@ export default function LogFinancialTransactionPage() {
                    </FormItem>
                  )}
                />
-              {/* Form Fields for Type, Description, Amount, Currency, Category */}
-              {/* These are already implemented in the provided code */}
-              {/* ... (Existing form fields for type, description, amount, currency, category) ... */}
 
-              <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
-                {isSubmitting ? (
-                    <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('savingButton')}
-                    </>
-                ) : (
-                    <><Save className="mr-2 h-4 w-4" /> {t('saveButton')}</>
-                )}
-              </Button>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}
+               <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2"><FileText className="h-4 w-4"/>{t('descriptionLabel')}</FormLabel>
+                      <FormControl><Input placeholder={t('descriptionPlaceholder')} {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+              />
+
+              <div className="grid grid-cols-2 gap-4">
+                <FormField
+                    control={form.control}
+                    name="amount"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="flex items-center gap-2"><DollarSign className="h-4 w-4"/>{t('amountLabel')}</FormLabel>
+                        <FormControl><Input type="number" placeholder="0.00" {...field} /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="currency"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t('currencyLabel')}</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                           <FormControl><SelectTrigger><SelectValue/></SelectTrigger></FormControl>
+                           <SelectContent>
+                              {currencies.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                           </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+              </div>
+
+               <FormField
+                  control={form.control}
+                  name="category"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2"><Tag className="h-4 w-4"/>{t('categoryLabel')}</FormLabel>
+                       <Select onValueChange={field.onChange} defaultValue={field.value}>
+                           <FormControl><SelectTrigger><SelectValue placeholder={t('categoryPlaceholder')}/></SelectTrigger></FormControl>
+                           <SelectContent>
+                              {categories.map(cat => <SelectItem key={cat.value} value={cat.value}>{cat.label}</SelectItem>)}
+                           </SelectContent>
+                        </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+              />
+              
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
                 {isSubmitting ? (
                     <>

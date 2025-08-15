@@ -16,7 +16,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { performSearch } from "@/lib/server-actions";
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
-import { useAuth } from "@/lib/auth-utils";
+import { useAuth } from "@/contexts/AuthContext";
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { useToast } from "@/hooks/use-toast";
 import { getFunctions, httpsCallable } from 'firebase/functions';

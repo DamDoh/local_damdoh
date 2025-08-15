@@ -33,7 +33,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { useAuth } from "@/lib/auth-utils";
+import { useAuth } from "@/contexts/AuthContext";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslations } from "next-intl";
 import { getCropStages } from "@/lib/i18n-constants";

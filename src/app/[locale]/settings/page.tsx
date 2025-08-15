@@ -19,7 +19,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { functions } from "@/lib/firebase/client";
-import { useAuth, logOut } from "@/lib/auth-utils";
+import { useAuth, logOut } from "@/contexts/AuthContext";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { useRouter } from "@/navigation";
 

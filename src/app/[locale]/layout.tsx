@@ -8,7 +8,7 @@ import { MobileBottomNavigation } from "@/components/layout/MobileBottomNavigati
 import { APP_NAME } from "@/lib/constants";
 import { Providers } from "@/components/Providers";
 import {NextIntlClientProvider} from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { locales } from '@/i18n-config';
 import { notFound } from "next/navigation";
 import { OfflineIndicator } from "@/components/layout/OfflineIndicator";
@@ -37,6 +37,7 @@ export default async function LocaleLayout({
 }) {
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as any)) notFound();
+  unstable_setRequestLocale(locale);
  
   let messages;
   try {
