@@ -7,7 +7,7 @@ import { ArrowDown, ArrowUp, Cloud, MapPin, Sprout, TrendingUp } from "lucide-re
 interface StatCardProps {
     title: string;
     value: string | number;
-    unit: string;
+    unit?: string;
     change?: number;
     higherIsBetter?: boolean;
     icon?: React.ReactNode;
@@ -35,7 +35,7 @@ export const StatCard = ({ title, value, unit, change, higherIsBetter = true, ic
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="text-2xl font-bold">{value} <span className="text-lg text-muted-foreground">{unit}</span></div>
+                <div className="text-2xl font-bold">{value} {unit && <span className="text-lg text-muted-foreground">{unit}</span>}</div>
                 {change !== undefined && (
                      <p className={`text-xs flex items-center ${changeColorClass}`}>
                         {isPositiveChange ? <ArrowUp className="h-4 w-4" /> : <ArrowDown className="h-4 w-4" />}
@@ -77,3 +77,5 @@ export const WeatherCard = ({ weather }: WeatherCardProps) => {
         </Card>
     );
 };
+
+    

@@ -24,6 +24,7 @@ export const LandOverviewChart = ({ data }: LandOverviewChartProps) => {
     <Card className="lg:col-span-2">
       <CardHeader>
         <CardTitle>Land Overview</CardTitle>
+        <CardDescription>Total: {data.totalArea.toLocaleString()} acres</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="h-[200px] w-full">
@@ -45,12 +46,6 @@ export const LandOverviewChart = ({ data }: LandOverviewChartProps) => {
                     </Pie>
                     <Tooltip formatter={(value: number) => `${value}%`} />
                     <Legend iconType="circle" />
-                    <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" className="text-sm text-muted-foreground">
-                        Land Area
-                    </text>
-                     <text x="50%" y="50%" dy="1.2em" textAnchor="middle" className="text-lg font-bold">
-                        {data.totalArea.toLocaleString()} acres
-                    </text>
                 </PieChart>
             </ResponsiveContainer>
         </div>
@@ -58,3 +53,5 @@ export const LandOverviewChart = ({ data }: LandOverviewChartProps) => {
     </Card>
   );
 };
+
+    

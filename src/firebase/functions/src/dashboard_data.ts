@@ -1,7 +1,8 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import type {
+import type { 
     AdminDashboardData,
     AdminActivity,
     FarmerDashboardData,
@@ -51,86 +52,124 @@ const checkAuth = (context: functions.https.CallableContext) => {
 // LIVE DATA DASHBOARDS
 // =================================================================
 
-// This is a new version of the function, designed to provide all the data
-// needed for the visually rich dashboard in a single backend call.
 export const getFarmerDashboardData = functions.https.onCall(
-  async (data, context): Promise<any> => {
+  async (data, context): Promise<FarmerDashboardData> => {
     const farmerId = checkAuth(context);
-    
-    // In a real application, this data would be fetched and calculated from various
-    // Firestore collections (farms, crops, financials, etc.).
-    // For this redesign, we'll return a complete, mocked data structure
-    // that matches the target UI exactly.
+    try {
+        const farmsPromise = db.collection('farms').where('ownerId', '==', farmerId).get();
+        const cropsPromise = db.collection('crops').where('ownerId', '==', farmerId).orderBy('plantingDate', 'desc').get();
+        const knfBatchesPromise = db.collection('knf_batches').where('userId', '==', farmerId).orderBy('createdAt', 'desc').get();
+        const financialsPromise = db.collection('financial_transactions').where('userRef', '==', db.collection('users').doc(farmerId)).get();
 
-    const mockData = {
-        // Top Stat Cards
-        landArea: { value: 14000, unit: "acres" },
-        estimatedProfit: { value: "12,538,467", unit: "pkr", change: 25.5 },
-        estimatedCost: { value: "1,250,000", unit: "pkr", change: -15.0 },
-        weather: { location: "Islamabad", temp: 30, condition: "Cloudy", date: "27 Aug, 2024" },
-        
-        // Land Overview Doughnut Chart
-        landOverview: {
-            totalArea: 14000,
-            covered: 86, // percentage
-            free: 14,    // percentage
-        },
-        
-        // Cost Estimation Line Chart
-        costEstimation: [
-            { month: "JAN", profit: 40, cost: 24 },
-            { month: "FEB", profit: 30, cost: 40 },
-            { month: "MAR", profit: 75, cost: 52 },
-            { month: "APR", profit: 50, cost: 38 },
-            { month: "MAY", profit: 75, cost: 43 },
-            { month: "JUN", profit: 60, cost: 55 },
-        ],
-        
-        // My Crops List
-        myCrops: [
-            {
-                name: "Apple Gourd",
-                type: "Fruits & Vegetables",
-                growthStage: "Seed Started",
-                growthPercent: 5,
-                healthMetrics: [
-                    { name: "Good Health", value: 60, color: "#34D399" }, // Green
-                    { name: "Medium Nitrogen", value: 60, color: "#FBBF24" }, // Yellow
-                    { name: "Open Soil Moisture", value: 57, color: "#F87171" }, // Red
-                ],
-                imageUrl: "https://placehold.co/40x40.png",
-                dataAiHint: "gourd vegetable"
-            },
-            {
-                name: "Wheat",
-                type: "Grains & Cereals",
-                growthStage: "Ripening",
-                growthPercent: 35,
-                 healthMetrics: [],
-                imageUrl: "https://placehold.co/40x40.png",
-                dataAiHint: "wheat field"
-            },
-            {
-                name: "Corn",
-                type: "Grains & Cereals",
-                growthStage: "Vegetative",
-                growthPercent: 85,
-                 healthMetrics: [],
-                imageUrl: "https://placehold.co/40x40.png",
-                dataAiHint: "corn plant"
-            },
-        ],
-        
-        // Summary Cards
-        summaries: {
-            warehouses: 15,
-            machinery: 35,
-            livestock: 305,
-            inventory: 8762,
-        },
-    };
 
-    return mockData;
+        const [farmsSnapshot, cropsSnapshot, knfBatchesSnapshot, financialsSnapshot] = await Promise.all([
+            farmsPromise,
+            cropsPromise,
+            knfBatchesPromise,
+            financialsPromise,
+        ]);
+        
+        // --- Alerts Logic ---
+        const alerts: FarmerDashboardAlert[] = [];
+        const now = new Date();
+        const sevenDaysFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+        knfBatchesSnapshot.docs.forEach(doc => {
+            const batch = doc.data();
+            if (batch.status === 'Fermenting' && batch.nextStepDate && batch.nextStepDate.toDate() <= now) {
+                alerts.push({
+                    id: `knf-${doc.id}`,
+                    icon: 'FlaskConical',
+                    type: 'info',
+                    message: `Your ${batch.typeName} batch is ready for its next step.`,
+                    link: '/farm-management/knf-inputs'
+                });
+            }
+        });
+
+        cropsSnapshot.docs.forEach(doc => {
+            const crop = doc.data();
+            if (crop.harvestDate && crop.harvestDate.toDate() <= sevenDaysFromNow && crop.harvestDate.toDate() >= now) {
+                 alerts.push({
+                    id: `crop-${doc.id}`,
+                    icon: 'Sprout',
+                    type: 'warning',
+                    message: `Your ${crop.cropType} crop is due for harvest soon.`,
+                    link: `/farm-management/farms/${crop.farmId}`
+                });
+            }
+        });
+
+
+        const farmsMap = new Map(farmsSnapshot.docs.map(doc => [doc.id, doc.data().name]));
+
+        const recentCrops = cropsSnapshot.docs.slice(0, 5).map(doc => {
+            const cropData = doc.data();
+            return {
+                id: doc.id,
+                name: cropData.cropType || "Unknown Crop",
+                stage: cropData.currentStage || 'Unknown',
+                farmName: farmsMap.get(cropData.farmId) || 'Unknown Farm',
+                farmId: cropData.farmId,
+                plantingDate: (cropData.plantingDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            };
+        });
+
+        const activeKnfBatches: KnfBatch[] = knfBatchesSnapshot.docs
+            .filter(doc => ['Fermenting', 'Ready'].includes(doc.data().status))
+            .slice(0, 5)
+            .map(doc => {
+                const batchData = doc.data();
+                return {
+                    id: doc.id,
+                    userId: batchData.userId,
+                    type: batchData.type,
+                    typeName: batchData.typeName,
+                    ingredients: batchData.ingredients,
+                    startDate: (batchData.startDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                    nextStepDate: (batchData.nextStepDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                    status: batchData.status,
+                    nextStep: batchData.nextStep,
+                    quantityProduced: batchData.quantityProduced,
+                    unit: batchData.unit,
+                };
+            });
+
+        let totalIncome = 0;
+        let totalExpense = 0;
+        financialsSnapshot.forEach(doc => {
+            const tx = doc.data();
+            if (tx.type === 'income') {
+                totalIncome += tx.amount;
+            } else if (tx.type === 'expense') {
+                totalExpense += tx.amount;
+            }
+        });
+        
+        const financialSummary = {
+            totalIncome,
+            totalExpense,
+            netFlow: totalIncome - totalExpense,
+        };
+        
+        const certsSnapshot = await db.collection('users').doc(farmerId).collection('certifications').get();
+        const certifications = certsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as FarmerDashboardData['certifications'];
+
+
+        return {
+            farmCount: farmsSnapshot.size,
+            cropCount: cropsSnapshot.size,
+            recentCrops: recentCrops, 
+            knfBatches: activeKnfBatches,
+            financialSummary: financialSummary,
+            alerts: alerts,
+            certifications: certifications,
+        };
+
+    } catch (error) {
+        console.error("Error fetching farmer dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch farmer dashboard data.");
+    }
   },
 );
 
@@ -220,7 +259,6 @@ export const getFiDashboardData = functions.https.onCall(
                 purpose: appData.purpose,
                 submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
                 actionLink: `/fi/applications/${doc.id}`,
-                applicantProfile: undefined
             };
         });
         
@@ -676,23 +714,18 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
   async (data, context): Promise<ProcessingUnitDashboardData> => {
     const unitId = checkAuth(context);
     try {
-        const packagingOrdersPromise = db.collection('marketplace_orders')
+        const packagingOrdersPromise = await db.collection('marketplace_orders')
             .where('buyerId', '==', unitId)
             .orderBy('createdAt', 'desc')
             .limit(5)
             .get();
 
-        const packagingInventoryPromise = db.collection('marketplaceItems')
+        const packagingInventoryPromise = await db.collection('marketplaceItems')
             .where('sellerId', '==', unitId)
             .where('category', '==', 'packaging-solutions')
             .get();
-
-        const [ordersSnapshot, inventorySnapshot] = await Promise.all([
-            packagingOrdersPromise,
-            packagingInventoryPromise,
-        ]);
         
-        const sellerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().sellerId))];
+        const sellerIds = [...new Set(packagingOrdersPromise.docs.map(doc => doc.data().sellerId))];
         const sellerProfiles: Record<string, string> = {};
         if (sellerIds.length > 0) {
             const sellerDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', sellerIds).get();
@@ -701,7 +734,7 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
             });
         }
 
-        const packagingOrders = ordersSnapshot.docs.map(doc => {
+        const packagingOrders = packagingOrdersPromise.docs.map(doc => {
             const order = doc.data();
             return {
                 id: doc.id,
@@ -712,7 +745,7 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
             };
         });
         
-        const packagingInventory = inventorySnapshot.docs.map(doc => {
+        const packagingInventory = packagingInventoryPromise.docs.map(doc => {
             const item = doc.data();
             return {
                 id: doc.id,
@@ -1189,3 +1222,5 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
+
+    
