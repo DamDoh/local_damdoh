@@ -117,37 +117,3 @@ export async function generateForumPostDraftCallable(input: {
 
     return generateForumPostDraftFlow(input);
 }
-
-export async function getProfileByIdFromDB(uid: string) {
-    const getProfileCallable = httpsCallable(functions, 'profiles-getProfileByIdFromDB');
-    const result = await getProfileCallable({ uid });
-    return result.data as any;
-}
-
-export async function getFarm(farmId: string) {
-    const getFarmCallable = httpsCallable(functions, 'farmManagement-getFarm');
-    const result = await getFarmCallable({ farmId });
-    return result.data as any;
-}
-
-export async function updateFarm(farmId: string, data: any) {
-    const updateFarmCallable = httpsCallable(functions, 'farmManagement-updateFarm');
-    await updateFarmCallable({ farmId, ...data });
-}
-
-export async function getCrop(cropId: string) {
-    const getCropCallable = httpsCallable(functions, 'farmManagement-getCrop');
-    const result = await getCropCallable({ cropId });
-    return result.data as any;
-}
-
-export async function updateCrop(cropId: string, data: any) {
-    const updateCropCallable = httpsCallable(functions, 'farmManagement-updateCrop');
-    await updateCropCallable({ cropId, ...data });
-}
-
-export async function getFinancialInstitutions() {
-    const getFisCallable = httpsCallable(functions, 'financials-getFinancialInstitutions');
-    const result = await getFisCallable();
-    return result.data as any[];
-}
