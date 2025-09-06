@@ -2,14 +2,13 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter } from "@/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import QRCode from 'qrcode.react';
 
 import type { UserProfile } from "@/lib/types";
-import { useAuth } from "@/contexts/AuthContext";
-import { getProfileByIdFromDB } from "@/lib/server-actions";
+import { useAuth } from "@/lib/auth-utils";
 import { APP_NAME } from "@/lib/constants";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -90,6 +89,7 @@ export default function ProfileDetailPage() {
   const getUserActivity = useMemo(() => httpsCallable(functions, 'activity-getUserActivity'), [functions]);
   const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'activity-logProfileView'), [functions]);
   const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'activity-getUserEngagementStats'), [functions]);
+  const getProfileByIdCallable = useMemo(() => httpsCallable(functions, 'profiles-getProfileByIdFromDB'), [functions]);
   const sendInviteCallable = useMemo(() => httpsCallable(functions, 'network-sendInvite'), [functions]);
   
   useEffect(() => {
@@ -113,8 +113,9 @@ export default function ProfileDetailPage() {
 
     if (idToFetch) {
       setIsLoading(true);
-      getProfileByIdFromDB(idToFetch)
-        .then(fetchedProfile => {
+      getProfileByIdCallable({ uid: idToFetch })
+        .then(result => {
+          const fetchedProfile = result.data as UserProfile;
           setProfile(fetchedProfile);
           if (fetchedProfile) {
             if (authUser && fetchedProfile.id !== authUser.uid) {
@@ -147,7 +148,7 @@ export default function ProfileDetailPage() {
     } else if (!authLoading) {
       setIsLoading(false);
     }
-  }, [params.id, authUser, authLoading, router, getUserActivity, logProfileViewCallable, getEngagementStatsCallable]);
+  }, [params.id, authUser, authLoading, router, getUserActivity, logProfileViewCallable, getEngagementStatsCallable, getProfileByIdCallable]);
   
   const handleInvite = async () => {
     const inviteeEmail = prompt(t('invitePrompt'));
@@ -368,3 +369,5 @@ export default function ProfileDetailPage() {
     </div>
   );
 }
+
+    
