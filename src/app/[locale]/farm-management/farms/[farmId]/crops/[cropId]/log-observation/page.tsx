@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import Link from "next/link";
@@ -30,7 +29,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { createObservationSchema, type CreateObservationValues } from "@/lib/form-schemas";
 import { ArrowLeft, Save, CalendarIcon, FileText, Loader2, NotebookPen, ImageUp, Eye, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
@@ -106,13 +105,8 @@ export default function LogObservationPage() {
     } catch (error: any) {
       console.error("Error logging observation:", error);
       toast({
- variant: "destructive",
- title: t('toast.fail'),
- description:
-          error instanceof HttpsError && t(error.message) !== error.message
- ? t(error.message) // Use translated backend error if available
- : error.message || t('toast.failDescription'), // Fallback to raw message or generic if translation isn't found
-
+        variant: "destructive",
+        title: t('toast.fail'),
         description: error.message || t('toast.failDescription'),
       });
     } finally {

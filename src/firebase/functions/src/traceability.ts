@@ -1,5 +1,4 @@
 
-
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
@@ -351,7 +350,7 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
 
     } catch (error: any) {
         console.error('Error handling observation event:', error);
-        throw new functions.https.HttpsError('internal', 'error.observation.failed', error.message);
+        throw new functions.https.HttpsError('internal', 'error.observation.failed', {originalError: error.message});
     }
 });
 
