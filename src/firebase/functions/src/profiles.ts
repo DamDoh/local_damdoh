@@ -1,6 +1,5 @@
 
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
@@ -30,7 +29,7 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
             primaryRole: 'Consumer', // Default role
             profileSummary: "Just joined the DamDoh community!",
             universalId: universalId,
-            viewCount: 0,
+            viewCount: 0, // Initialize view count
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         });
@@ -273,5 +272,3 @@ export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
         return null;
     }
 }
-
-    

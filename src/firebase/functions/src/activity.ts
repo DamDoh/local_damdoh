@@ -14,7 +14,8 @@ const checkAuth = (context: functions.https.CallableContext) => {
 
 
 /**
- * Logs a profile view event and increments the view count on the user's profile.
+ * Logs a profile view event. This function ONLY writes to the `profile_views` collection.
+ * The actual incrementing of the view count is handled by the `onNewProfileView` trigger.
  * @param {any} data The data for the function call.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{success: boolean, logId?: string, message?: string}>} A promise that resolves with the operation status.
@@ -29,16 +30,8 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
 
     // Don't log self-views
     if (viewerId === viewedId) {
-        console.log("User viewed their own profile. No log created.");
         return { success: true, message: "Self-view, not logged." };
     }
-    
-    const viewedUserRef = db.collection('users').doc(viewedId);
-    
-    // Atomically increment the view count on the user's profile.
-    await viewedUserRef.update({
-        viewCount: admin.firestore.FieldValue.increment(1)
-    });
     
     const logRef = db.collection('profile_views').doc();
     await logRef.set({
@@ -49,6 +42,40 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
 
     return { success: true, logId: logRef.id };
 });
+
+/**
+ * Firestore trigger that listens for new documents in the `profile_views` collection.
+ * It atomically increments the `viewCount` on the corresponding user's profile.
+ * This is the new, scalable way to handle view counts.
+ */
+export const onNewProfileView = functions.firestore
+    .document('profile_views/{viewId}')
+    .onCreate(async (snap, context) => {
+        const viewData = snap.data();
+        if (!viewData) {
+            console.error("View log created with no data:", context.params.viewId);
+            return;
+        }
+
+        const { viewedId } = viewData;
+        
+        if (!viewedId) {
+            console.error("View log is missing 'viewedId':", context.params.viewId);
+            return;
+        }
+        
+        const viewedUserRef = db.collection('users').doc(viewedId);
+        
+        try {
+            // Atomically increment the view count on the user's profile.
+            await viewedUserRef.update({
+                viewCount: admin.firestore.FieldValue.increment(1)
+            });
+            console.log(`Successfully incremented view count for user ${viewedId}.`);
+        } catch (error) {
+            console.error(`Failed to increment view count for user ${viewedId}:`, error);
+        }
+    });
 
 
 /**
@@ -171,5 +198,3 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError('internal', 'error.stats.fetchFailed');
     }
 });
-
-    
