@@ -113,11 +113,11 @@ export const ShopSchema = z.object({
 });
 
 export const AgriEventSchema = z.object({
-  title: z.string(),
-  description: z.string(),
+  title: z.string().min(5).max(100),
+  description: z.string().min(20).max(2000),
   eventDate: z.string(),
   eventTime: z.string().optional(),
-  location: z.string(),
+  location: z.string().min(3).max(150),
   eventType: z.string(),
   organizer: z.string().optional(),
   websiteLink: z.string().optional(),
@@ -541,12 +541,28 @@ export const LogisticsDashboardDataSchema = z.object({
 });
 
 export const FiDashboardDataSchema = z.object({
-    pendingApplications: z.array(FinancialApplicationSchema),
+    pendingApplications: z.array(z.lazy(() => FinancialApplicationSchema)),
     portfolioOverview: z.object({
         loanCount: z.number(),
         totalValue: z.number(),
     }),
-    financialProducts: z.array(FinancialProductSchema),
+    financialProducts: z.array(z.lazy(() => FinancialProductSchema)),
+});
+
+export const FinancialApplicationSchema = z.object({
+  id: z.string(),
+  applicantId: z.string(),
+  applicantName: z.string(),
+  fiId: z.string(),
+  type: z.string(),
+  amount: z.number(),
+  currency: z.string(),
+  status: z.string(),
+  riskScore: z.number().optional(),
+  purpose: z.string(),
+  submittedAt: z.string().nullable(),
+  actionLink: z.string().optional(),
+  applicantProfile: StakeholderProfileSchema.optional(),
 });
 
 
@@ -1022,13 +1038,11 @@ export const SuggestMarketPriceInputSchema = z.object({
   location: z.string().optional().describe('The location where the product is being sold.'),
   language: z.string().optional().describe('The language for the AI to respond in (e.g., "en", "km"). Defaults to English.'),
 });
-export type SuggestMarketPriceInput = z.infer<typeof SuggestMarketPriceInputSchema>;
 
 
 export const SuggestMarketPriceOutputSchema = z.object({
   price: z.number().describe('The suggested market price as a number.'),
 });
-export type SuggestMarketPriceOutput = z.infer<typeof SuggestMarketPriceOutputSchema>;
 export const GenerateForumPostDraftInputSchema = z.object({
     topicId: z.string().describe("The ID of the forum topic the post will be created in."),
     prompt: z.string().describe("The user's short prompt or idea for the post."),
@@ -1039,5 +1053,7 @@ export const GenerateForumPostDraftOutputSchema = z.object({
     title: z.string().describe("A concise and engaging title for the new forum post."),
     content: z.string().describe("The full content of the forum post, written in a helpful and engaging tone."),
 });
+
+    
 
     

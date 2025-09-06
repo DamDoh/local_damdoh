@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB } from './profiles';
@@ -214,5 +213,7 @@ export const getAgroTourismBookings = functions.https.onCall(async (data, contex
 
     return { bookings: bookingsList };
 });
+
+    
 
     
