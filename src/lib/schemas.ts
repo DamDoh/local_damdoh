@@ -537,22 +537,6 @@ export const LogisticsDashboardDataSchema = z.object({
     }),
 });
 
-export const FinancialApplicationSchema = z.object({
-  id: z.string(),
-  applicantId: z.string(),
-  applicantName: z.string(),
-  fiId: z.string(),
-  type: z.string(),
-  amount: z.number(),
-  currency: z.string(),
-  status: z.string(),
-  riskScore: z.number().optional(),
-  purpose: z.string(),
-  submittedAt: z.string().nullable(),
-  actionLink: z.string().optional(),
-  applicantProfile: StakeholderProfileSchema.optional(),
-});
-
 export const FiDashboardDataSchema = z.object({
     pendingApplications: z.array(FinancialApplicationSchema),
     portfolioOverview: z.object({

@@ -179,3 +179,5 @@ export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema
 export type ForumPost = z.infer<typeof ForumPostSchema>;
 export type GenerateForumPostInput = z.infer<typeof GenerateForumPostDraftInput>;
 export type GenerateForumPostOutput = z.infer<typeof GenerateForumPostDraftOutput>;
+
+  

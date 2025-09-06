@@ -1,3 +1,4 @@
+
 import type { LucideIcon } from "lucide-react";
 import { STAKEHOLDER_ROLES, LISTING_TYPES, AGRI_EVENT_TYPES, FINANCIAL_SERVICE_TYPES, INSURANCE_SERVICE_TYPES } from './constants';
 import { Sprout, Apple, Tractor, Briefcase, Bot, CalendarDays, Search, User, Users, MessageSquare, ShoppingCart as MarketIcon, Home, Leaf, FlaskConical } from 'lucide-react';
@@ -67,3 +68,5 @@ export const getMobileHomeCategories = (t: any): { id: string; name: string; ico
     { id: 'cat6', name: t('aiAssistant'), icon: Bot, href: '/ai-assistant', dataAiHint: "ai agriculture" },
     { id: 'cat7', name: t('events'), icon: CalendarDays, href: '/agri-events', dataAiHint: "farm event" },
 ];
+
+  
