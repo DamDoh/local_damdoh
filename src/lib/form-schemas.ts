@@ -1,6 +1,7 @@
 
+
 import { z } from "zod";
-import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from "@/lib/constants";
+import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from '@/lib/constants';
 
 const MAX_FILE_SIZE_MB = 5;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
@@ -110,9 +111,7 @@ export const createCropSchema = z.object({
 export type CreateCropValues = z.infer<typeof createCropSchema>;
 
 export const createInputApplicationSchema = z.object({
-  applicationDate: z.date({
-    required_error: "An application date is required.",
-  }),
+  applicationDate: z.date({ required_error: "An application date is required." }),
   inputId: z.string().min(2, "Input name/ID is required.").max(100),
   quantity: z.coerce.number().positive("Quantity must be a positive number."),
   unit: z.string().min(1, "Unit is required.").max(20),

@@ -1,35 +1,28 @@
 
 "use client";
 
+import { useState, useMemo, useEffect } from 'react';
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { ArrowLeft, Loader2, Save, CalendarIcon, Scale, Beaker, FlaskConical, CircleDot, List, Text } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { createInputApplicationSchema, type CreateInputApplicationValues } from "@/lib/form-schemas";
-import { ArrowLeft, Save, CalendarIcon, Loader2, Droplets, Text, Hash, List, FlaskConical } from "lucide-react";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { useState, useMemo, useEffect } from "react";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from '@/lib/auth-utils';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { format } from "date-fns";
+import { cn } from '@/lib/utils';
 import type { KnfBatch } from '@/lib/types';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useTranslations } from "next-intl";
 
 export default function LogInputApplicationPage() {
   const t = useTranslations('farmManagement.logInput');
@@ -40,11 +33,26 @@ export default function LogInputApplicationPage() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
+  
   const functions = getFunctions(firebaseApp);
-  const handleInputApplicationEvent = httpsCallable(functions, 'handleInputApplicationEvent');
+  const handleInputApplicationEvent = useMemo(() => httpsCallable(functions, 'traceability-handleInputApplicationEvent'), [functions]);
+  const getUserKnfBatchesCallable = useMemo(() => httpsCallable(functions, 'farmManagement-getUserKnfBatches'), [functions]);
 
   const [knfBatches, setKnfBatches] = useState<KnfBatch[]>([]);
-  const getUserKnfBatchesCallable = useMemo(() => httpsCallable(functions, 'getUserKnfBatches'), [functions]);
+
+  useEffect(() => {
+    if (!user) return;
+    const fetchKnfBatches = async () => {
+      try {
+        const result = await getUserKnfBatchesCallable();
+        const allBatches = (result.data as KnfBatch[]) || [];
+        setKnfBatches(allBatches.filter(b => b.status === 'Ready'));
+      } catch (error) {
+        console.error("Error fetching KNF batches:", error);
+      }
+    };
+    fetchKnfBatches();
+  }, [user, getUserKnfBatchesCallable]);
 
   const form = useForm<CreateInputApplicationValues>({
     resolver: zodResolver(createInputApplicationSchema),
@@ -56,21 +64,6 @@ export default function LogInputApplicationPage() {
       method: "",
     },
   });
-
-  useEffect(() => {
-    if (!user) return;
-    const fetchKnfBatches = async () => {
-      try {
-        const result = await getUserKnfBatchesCallable();
-        const allBatches = (result.data as KnfBatch[]) || [];
-        // Filter for batches that are ready to be used
-        setKnfBatches(allBatches.filter(b => b.status === 'Ready'));
-      } catch (error) {
-        console.error("Error fetching KNF batches:", error);
-      }
-    };
-    fetchKnfBatches();
-  }, [user, getUserKnfBatchesCallable]);
 
   async function onSubmit(data: CreateInputApplicationValues) {
     if (!user) {
@@ -93,9 +86,9 @@ export default function LogInputApplicationPage() {
         unit: data.unit,
         method: data.method,
         actorVtiId: user.uid,
-        geoLocation: null, // Placeholder for future location capture
+        geoLocation: null,
       };
-
+      
       await handleInputApplicationEvent(payload);
 
       toast({
@@ -103,13 +96,13 @@ export default function LogInputApplicationPage() {
         description: t('toast.description'),
       });
 
-      router.push(`/farm-management/farms/${farmId}`);
+      router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);
     } catch (error: any) {
       console.error("Error logging input application:", error);
       toast({
         variant: "destructive",
         title: t('toast.fail'),
-        description: error.message || "An error occurred. Please try again.",
+        description: error.message || "An unexpected error occurred.",
       });
     } finally {
       setIsSubmitting(false);
@@ -119,7 +112,7 @@ export default function LogInputApplicationPage() {
   return (
     <div className="space-y-6">
       <Button asChild variant="outline" className="mb-4">
-        <Link href={`/farm-management/farms/${farmId}`}>
+        <Link href={`/farm-management/farms/${farmId}/crops/${cropId}`}>
           <ArrowLeft className="mr-2 h-4 w-4" /> {t('backLink')}
         </Link>
       </Button>
@@ -153,7 +146,7 @@ export default function LogInputApplicationPage() {
                           </FormControl>
                           <SelectContent>
                             {knfBatches.map(batch => (
-                              <SelectItem key={batch.id} value={`${batch.typeName} (Batch: ${batch.id.substring(0,5)})`}>{batch.typeName}</SelectItem>
+                              <SelectItem key={batch.id} value={`${batch.typeName} (Batch: ${batch.id.substring(0,5)})`}>{batch.typeName} - {format(new Date(batch.startDate), 'PPP')}</SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
@@ -168,7 +161,7 @@ export default function LogInputApplicationPage() {
                 name="inputId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Text className="mr-2 h-4 w-4 text-muted-foreground" />{t('manualInputLabel')}</FormLabel>
+                    <FormLabel className="flex items-center gap-2"><Beaker className="h-4 w-4 text-muted-foreground" />{t('manualInputLabel')}</FormLabel>
                     <FormControl>
                       <Input placeholder={t('manualInputPlaceholder')} {...field} />
                     </FormControl>
@@ -219,7 +212,7 @@ export default function LogInputApplicationPage() {
                     name="quantity"
                     render={({ field }) => (
                     <FormItem>
-                        <FormLabel className="flex items-center gap-2"><Hash className="mr-2 h-4 w-4 text-muted-foreground" />{t('quantityLabel')}</FormLabel>
+                        <FormLabel className="flex items-center gap-2"><Scale className="mr-2 h-4 w-4 text-muted-foreground" />{t('quantityLabel')}</FormLabel>
                         <FormControl>
                         <Input type="number" placeholder={t('quantityPlaceholder')} {...field} onChange={e => field.onChange(parseFloat(e.target.value))}/>
                         </FormControl>
@@ -232,7 +225,7 @@ export default function LogInputApplicationPage() {
                     name="unit"
                     render={({ field }) => (
                     <FormItem>
-                        <FormLabel className="flex items-center gap-2"><List className="mr-2 h-4 w-4 text-muted-foreground" />{t('unitLabel')}</FormLabel>
+                        <FormLabel className="flex items-center gap-2"><CircleDot className="mr-2 h-4 w-4 text-muted-foreground" />{t('unitLabel')}</FormLabel>
                         <FormControl>
                         <Input placeholder={t('unitPlaceholder')} {...field} />
                         </FormControl>
