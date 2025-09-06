@@ -7,7 +7,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import type { MarketplaceItem, UserProfile, Shop } from '@/lib/types';
-import { getProfileByIdFromDB } from '@/lib/server-actions';
+import { getProfileByIdFromDB } from '@/lib/db-utils';
 import QRCode from 'qrcode.react';
 import { differenceInCalendarDays } from 'date-fns';
 import type { DateRange } from "react-day-picker";
@@ -274,7 +274,7 @@ function ItemPageContent() {
                         <Badge variant="secondary">{item.category}</Badge>
                         <h1 className="text-3xl font-bold mt-2">{item.name}</h1>
                          <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
-                            <MapPin className="h-4 w-4"/> {item.location.address}
+                            <MapPin className="h-4 w-4"/> {item.location?.address}
                         </div>
                     </div>
 
@@ -403,12 +403,12 @@ function ItemPageContent() {
                      
                      {seller && (
                         <Card>
-                            <CardHeader className="pb-4"> {/* Added padding */}
+                            <CardHeader>
                                 <CardTitle className="text-lg">{t('aboutSeller')}</CardTitle>
                             </CardHeader> 
                             <CardContent className="flex items-center gap-4">
                                <Avatar className="h-14 w-14">
-                                    <AvatarImage src={seller.avatarUrl} alt={seller.displayName} data-ai-hint="seller profile person" />
+                                    <AvatarImage src={seller.avatarUrl || ''} alt={seller.displayName} data-ai-hint="seller profile person" />
                                     <AvatarFallback>{seller.displayName?.substring(0, 2).toUpperCase()}</AvatarFallback>
                                 </Avatar>
                                 <div>
@@ -427,21 +427,21 @@ function ItemPageContent() {
                     <div className="flex flex-col sm:flex-row gap-2">
                          {isOwner ? (
                              <>
-                                <Button size="lg" className="w-full" asChild><Link href={`/marketplace/${item.id}/edit`}><Edit className="mr-2 h-4 w-4" />{t('editListing')}</Link></Button> {/* Added Link for edit */}
+                                <Button size="lg" className="w-full" asChild><Link href={`/marketplace/${item.id}/edit`}><Edit className="mr-2 h-4 w-4" />{t('editListing')}</Link></Button>
                                 {isAgroTourismService && (
                                     <Button asChild size="lg" variant="secondary" className="w-full">
                                         <Link href={`/marketplace/${item.id}/manage-service`}><Settings className="mr-2 h-4 w-4" />{t('manageService')}</Link>
                                     </Button>
                                 )}
                             </>
-                        ) : isAgroTourismService ? null // Removed redundant "Contact Seller" button for service items, now handled by booking flow
+                        ) : isAgroTourismService ? null 
                         : isProduct ? (
                             <Button size="lg" className="w-full" onClick={() => setIsOrderDialogOpen(true)}>
                                 <ShoppingCart className="mr-2 h-4 w-4" />{t('buyNowButton')}
                             </Button>
                         ) : (
                              <Button asChild size="lg" className="w-full">
-                                <Link href={`/messages?with=${item.sellerId}`}><MessageSquare className="mr-2 h-4 w-4" />{t('contactSeller')}</Link> {/* Used generic contactSeller for non-product/non-agrotourism */}
+                                <Link href={`/messages?with=${item.sellerId}`}><MessageSquare className="mr-2 h-4 w-4" />{t('contactForService')}</Link>
                             </Button>
                         )}
                         {!isOwner && !isProduct && !isAgroTourismService && (
@@ -501,5 +501,3 @@ export default function MarketplaceItemPageWrapper() {
     </Suspense>
   );
 }
-
-    

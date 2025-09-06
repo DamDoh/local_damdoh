@@ -14,8 +14,14 @@ import { suggestForumTopics as suggestForumTopicsFlow } from '@/ai/flows/forum-t
 import type { CropRotationInput, CropRotationOutput, SmartSearchInterpretation } from '@/lib/types';
 import { getLocale } from 'next-intl/server';
 import { generateForumPostDraftFlow } from '@/ai/flows/generate-forum-post-draft';
-import { httpsCallable } from 'firebase/functions';
-import { functions } from '@/lib/firebase/client'; // This should point to client setup
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { getApp } from 'firebase/app'; // Use getApp to get the initialized app
+import { app } from './firebase/client'; // Assuming client init is sufficient
+
+
+// Use the client-initialized app for functions. This is a bit of a workaround
+// for Server Actions but ensures we use the same Firebase instance as the client.
+const functions = getFunctions(app);
 
 /**
  * Server Action to perform a search. It authenticates the user on the server
@@ -31,16 +37,7 @@ export async function performSearch(interpretation: Partial<SmartSearchInterpret
   }
 
   try {
-      // It's important to use a client-side initialized functions instance
-      // for this to work correctly when called from a server action context
-      // where there is no implicit auth. We pass the token.
-      // NOTE: This pattern is complex. Direct client->function calls are preferred.
-      // This is a workaround for the current architecture.
-      const performSearchCallable = httpsCallable(functions, 'search-performSearch');
-      
-      // In a more robust setup, you'd get the auth token and pass it.
-      // For now, the cloud function is protected and this will fail if not authenticated.
-      // The `checkAuth` on the cloud function side will handle it.
+      const performSearchCallable = httpsCallable(functions, 'performSearch');
       const result = await performSearchCallable(interpretation);
       return result.data as any[];
   } catch (error) {
@@ -116,4 +113,10 @@ export async function generateForumPostDraftCallable(input: {
     if (!user) throw new Error("Unauthorized");
 
     return generateForumPostDraftFlow(input);
+}
+
+export async function getProfileByIdFromDB(uid: string) {
+    const getProfileCallable = httpsCallable(functions, 'profiles-getProfileByIdFromDB');
+    const result = await getProfileCallable({ uid });
+    return result.data as any;
 }
