@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import Link from "next/link";
@@ -36,7 +35,7 @@ export function DashboardRightSidebar() {
   
   const { user, profile, loading: authLoading } = useAuth(); // Using the centralized profile
 
-  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'sendConnectionRequest'), []);
+  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'network-sendConnectionRequest'), []);
   const suggestConnectionsCallable = useMemo(() => httpsCallable(functions, 'suggestConnections'), []);
 
   const fetchSuggestions = useCallback(async () => {
@@ -48,9 +47,11 @@ export function DashboardRightSidebar() {
       const userInput: SuggestedConnectionsInput = {
         userId: profile.id,
         count: 5,
+        language: 'en', // Hardcoding for now, can be replaced with locale
       };
 
-      const result: SuggestedConnectionsOutput = await suggestConnections(userInput);
+      const result: SuggestedConnectionsOutput = (await suggestConnectionsCallable(userInput)).data as any;
+      
       if (result && Array.isArray(result.suggestions)) {
         setAiSuggestions(result.suggestions.map(s => ({
           ...s,
@@ -254,3 +255,5 @@ const MoreHorizontalIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <circle cx="5" cy="12" r="1" />
   </svg>
 );
+
+    

@@ -626,5 +626,3 @@ export const onTraceabilityEventCreated = functions.firestore
     
     return null;
   });
-
-    
