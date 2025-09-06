@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
@@ -208,7 +209,7 @@ export const createRecoverySession = functions.https.onCall(async (data, context
         expiresAt: admin.firestore.Timestamp.fromMillis(Date.now() + 10 * 60 * 1000), // Session expires in 10 minutes
     });
 
-    return { sessionId, recoveryQrValue };
+    return { sessionId, recoveryQrValue, userIdToRecover: userToRecoverDoc.id };
 });
 
 
@@ -261,9 +262,36 @@ export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
         confirmedBy: friendUid,
     });
     
-    // In a real application, the next step would be for the original user's device
-    // to poll the session status. Once 'confirmed', it would request a custom auth token.
-    // For this demo, we'll just return a success message.
-    
     return { success: true, message: "Friend confirmation successful! The user can now proceed with their recovery.", recoveryComplete: true };
+});
+
+/**
+ * Called by the original user's device to finalize the recovery and get a custom auth token.
+ */
+export const completeRecovery = functions.https.onCall(async (data, context) => {
+    const { sessionId } = data;
+    if (!sessionId) {
+        throw new functions.https.HttpsError("invalid-argument", "A sessionId is required.");
+    }
+    
+    const sessionRef = db.collection('recovery_sessions').doc(sessionId);
+    const sessionDoc = await sessionRef.get();
+
+    if (!sessionDoc.exists || sessionDoc.data()?.status !== 'confirmed') {
+        throw new functions.https.HttpsError("failed-precondition", "Recovery not confirmed by a friend yet.");
+    }
+    
+    const userIdToRecover = sessionDoc.data()?.userIdToRecover;
+
+    if (!userIdToRecover) {
+        throw new functions.https.HttpsError("internal", "Could not find user ID in recovery session.");
+    }
+
+    // Generate a custom token for the user to sign in
+    const customToken = await admin.auth().createCustomToken(userIdToRecover);
+
+    // Mark the session as completed to prevent reuse
+    await sessionRef.update({ status: 'completed' });
+
+    return { success: true, customToken: customToken };
 });
