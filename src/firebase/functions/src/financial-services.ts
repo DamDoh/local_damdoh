@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -149,64 +148,52 @@ export const initiatePayment = functions.https.onCall(async (data, context) => {
   }
 });
 
-// Firestore trigger to calculate the DamDoh Credit Score
-export const calculateDamDohCreditScore = functions.firestore
-  .document("financial_transactions/{transactionId}")
-  .onCreate(async (snapshot, context) => {
-    console.log("Triggered calculateDamDohCreditScore (placeholder).");
+/**
+ * Firestore trigger to assess credit risk when a user profile is updated.
+ */
+export const assessCreditRisk = functions.firestore
+  .document("users/{userId}")
+  .onUpdate(async (change, context) => {
+    const userId = context.params.userId;
+    const beforeData = change.before.data();
+    const afterData = change.after.data();
 
-    const userId = snapshot.data()?.userRef?.id;
-
-    if (!userId) {
-      console.warn(
-        "Could not identify user from trigger data. Skipping score calculation.",
-      );
+    // To prevent an infinite loop, only run if the profile data relevant to the score has changed.
+    // This is a simple check; a more complex system might compare specific fields.
+    if (beforeData.updatedAt.isEqual(afterData.updatedAt)) {
+      console.log(`Skipping credit risk assessment for user ${userId} as there are no new data changes.`);
       return null;
     }
 
+    console.log(`Credit risk assessment triggered for user ${userId} due to profile update.`);
+
     try {
-      console.log(`Calculating DamDoh Credit Score for user ${userId}...`);
       const userRef = db.collection("users").doc(userId);
-      const userDoc = await userRef.get();
-      const userData = userDoc.exists ? userDoc.data() : null;
-
-      if (!userData) {
-        console.warn(
-          `User document not found for ${userId}. Skipping score calculation.`,
-        );
-        return null;
-      }
-
       const relevantData = {
-        userData: userData,
+        userData: afterData,
+        // In the future, we could aggregate financial transactions here as well.
       };
-      console.log("Sending data to Module 8 AI for score calculation...");
+
       const scoreResult = await _internalAssessCreditRisk(relevantData);
+      const { score, riskFactors } = scoreResult;
 
-      const calculatedScore = scoreResult.score;
-      const riskFactors = scoreResult.riskFactors;
+      await db.collection("credit_scores").doc(userId).set({
+        userId,
+        userRef,
+        score,
+        riskFactors,
+        lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
+        aiModelVersion: "v1.0-placeholder",
+      }, { merge: true });
 
-      await db
-        .collection("credit_scores")
-        .doc(userId)
-        .set(
-          {
-            userId: userId,
-            userRef: userRef,
-            score: calculatedScore,
-            lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
-            riskFactors: riskFactors,
-          },
-          {merge: true},
-        );
-
-      console.log(`Credit score for user ${userId} updated.`);
+      console.log(`Credit score for user ${userId} updated to ${score}.`);
       return null;
     } catch (error) {
       console.error(`Error calculating credit score for user ${userId}:`, error);
       return null;
     }
   });
+
 
 // Triggered function to match users with funding opportunities
 export const matchFundingOpportunities = functions.firestore
@@ -747,15 +734,189 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
   },
 );
 
-// New function for farmers to get their own applications
-export const getFarmerApplications = functions.https.onCall(async (data, context) => {
-  const farmerId = checkAuth(context);
+const checkFiAuth = async (context: functions.https.CallableContext) => {
+    const uid = context.auth?.uid;
+    if (!uid) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
 
-  try {
-    const snapshot = await db.collection('financial_applications')
-      .where('applicantId', '==', farmerId)
-      .orderBy('submittedAt', 'desc')
-      .get();
+    const userDoc = await db.collection("users").doc(uid).get();
+    const userRole = userDoc.data()?.primaryRole;
+    
+    if (userRole !== 'Financial Institution (Micro-finance/Loans)') {
+         throw new functions.https.HttpsError("permission-denied", "You are not authorized to perform this action.");
+    }
+    
+    return uid;
+};
+
+export const getFinancialApplicationDetails = functions.https.onCall(async (data, context) => {
+    await checkFiAuth(context);
+    const { applicationId } = data;
+    if (!applicationId) {
+        throw new functions.https.HttpsError('invalid-argument', 'Application ID is required.');
+    }
+
+    const appRef = db.collection('financial_applications').doc(applicationId);
+    const appDoc = await appRef.get();
+
+    if (!appDoc.exists) {
+        throw new functions.https.HttpsError('not-found', 'Application not found.');
+    }
+
+    const appData = appDoc.data()!;
+    let applicantProfile = null;
+
+    if (appData.applicantId) {
+        const profileDoc = await db.collection('users').doc(appData.applicantId).get();
+        if (profileDoc.exists) {
+            const profileData = profileDoc.data()!;
+            applicantProfile = {
+                id: profileDoc.id,
+                ...profileData,
+                createdAt: (profileData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+                updatedAt: (profileData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+            };
+        }
+    }
+    
+    const serializedAppData = {
+        ...appData,
+        id: appDoc.id,
+        submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+    };
+
+    return { application: serializedAppData, applicant: applicantProfile };
+});
+
+export const updateFinancialApplicationStatus = functions.https.onCall(async (data, context) => {
+    await checkFiAuth(context);
+    const { applicationId, status } = data;
+
+    if (!applicationId || !status) {
+        throw new functions.https.HttpsError('invalid-argument', 'Application ID and a new status are required.');
+    }
+    
+    const validStatuses = ['Approved', 'Rejected', 'More Info Required'];
+    if (!validStatuses.includes(status)) {
+         throw new functions.https.HttpsError('invalid-argument', 'Invalid status provided.');
+    }
+
+    const appRef = db.collection('financial_applications').doc(applicationId);
+    
+    await appRef.update({
+        status: status,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp()
+    });
+
+    return { success: true, message: `Application status updated to ${status}.` };
+});
+
+
+export const submitFinancialApplication = functions.https.onCall(async (data, context) => {
+    const applicantId = checkAuth(context);
+    const { fiId, type, amount, currency, purpose } = data;
+
+    // Basic validation
+    if (!fiId || !type || !amount || !purpose) {
+        throw new functions.https.HttpsError("invalid-argument", "Missing required application fields.");
+    }
+    
+    const applicantDoc = await db.collection("users").doc(applicantId).get();
+    if (!applicantDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Applicant profile not found.");
+    }
+    const applicantName = applicantDoc.data()?.displayName || "Unknown Applicant";
+
+    const applicationRef = db.collection("financial_applications").doc();
+    await applicationRef.set({
+        applicantId: applicantId,
+        applicantName: applicantName,
+        fiId: fiId,
+        type: type,
+        amount: Number(amount),
+        currency: currency || "USD",
+        status: "Pending", // Initial status
+        purpose: purpose,
+        submittedAt: admin.firestore.FieldValue.serverTimestamp(),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return { success: true, applicationId: applicationRef.id };
+});
+
+export const createFinancialProduct = functions.https.onCall(async (data, context) => {
+    const fiId = await checkFiAuth(context); // Reuse the auth check for FIs
+    const { name, type, description, interestRate, maxAmount, targetRoles } = data;
+
+    if (!name || !type || !description) {
+        throw new functions.https.HttpsError("invalid-argument", "Name, type, and description are required.");
+    }
+
+    const productRef = db.collection("financial_products").doc();
+    await productRef.set({
+        fiId,
+        name,
+        type,
+        description,
+        interestRate: type === 'Loan' ? interestRate : null,
+        maxAmount: maxAmount || null,
+        targetRoles: targetRoles || [],
+        status: 'Active',
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return { success: true, productId: productRef.id };
+});
+
+export const getFinancialProducts = functions.https.onCall(async (data, context) => {
+    const fiId = await checkFiAuth(context);
+
+    const productsSnapshot = await db.collection("financial_products")
+        .where("fiId", "==", fiId)
+        .orderBy("createdAt", "desc")
+        .get();
+
+    const products = productsSnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+            id: doc.id,
+            ...data,
+            createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+        }
+    });
+    
+    return { products };
+});
+    
+
+export const getFinancialInstitutions = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
+    const fiSnapshot = await db.collection("users").where("primaryRole", "==", "Financial Institution (Micro-finance/Loans)").get();
+    
+    const fis = fiSnapshot.docs.map(doc => ({
+        id: doc.id,
+        displayName: doc.data().displayName,
+    }));
+
+    return fis;
+});
+
+export const getFiApplications = functions.https.onCall(async (data, context) => {
+    const fiId = await checkFiAuth(context);
+    const { status } = data; // e.g., "Pending", "Approved", "All"
+
+    let query: admin.firestore.Query = db.collection("financial_applications").where("fiId", "==", fiId);
+
+    if (status && status !== 'All') {
+        query = query.where("status", "==", status);
+    }
+
+    query = query.orderBy("submittedAt", "desc");
+
+    const snapshot = await query.get();
     
     const applications = snapshot.docs.map(doc => {
         const appData = doc.data();
@@ -767,8 +928,4 @@ export const getFarmerApplications = functions.https.onCall(async (data, context
     });
 
     return { applications };
-  } catch (error) {
-    console.error(`Error fetching applications for farmer ${farmerId}:`, error);
-    throw new functions.https.HttpsError('internal', 'Could not fetch your applications.');
-  }
 });
