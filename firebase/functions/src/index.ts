@@ -6,7 +6,6 @@
  */
 
 import * as admin from "firebase-admin";
-import { configureGenkit } from "../../src/ai/genkit";
 
 // The 'server.ts' file handles its own initialization.
 // We import it to ensure Express routes are registered with Cloud Functions.
@@ -18,36 +17,66 @@ if (admin.apps.length === 0) {
   admin.initializeApp();
 }
 
-// Initialize the Genkit AI framework
-configureGenkit();
+// Group functions by module for cleaner organization
+import * as activityFunctions from "./activity";
+import * as agriEventsFunctions from "./agri-events";
+import * as agroTourismFunctions from "./agro-tourism";
+import * as aiAndAnalyticsFunctions from "./ai-and-analytics";
+import * as aiServicesFunctions from "./ai-services";
+import * as apiKeyFunctions from "./api-keys";
+import * as apiGatewayFunctions from "./api-gateway";
+import * as communityFunctions from "./community";
+import * as dashboardDataFunctions from "./dashboard_data";
+import * as farmManagementFunctions from "./farm-management";
+import * as financialServicesFunctions from "./financial-services";
+import * as forumFunctions from "./forums";
+import * as groupFunctions from "./groups";
+import * as insuranceFunctions from "./insurance";
+import * as knowledgeHubFunctions from "./knowledge-hub";
+import * as laborFunctions from "./labor";
+import * as loggingFunctions from "./logging";
+import * as marketplaceFunctions from "./marketplace";
+import * as messageFunctions from "./messages";
+import * as networkFunctions from "./network";
+import * as notificationFunctions from "./notifications";
+import * as offlineSyncFunctions from "./offline_sync";
+import * as profileFunctions from "./profiles";
+import * as regulatoryFunctions from "./regulatory-and-compliance";
+import * as searchFunctions from "./search";
+import * as sustainabilityFunctions from "./sustainability";
+import * as universalIdFunctions from "./universal-id";
+import * as geospatialFunctions from "./geospatial";
 
-// Export all other cloud functions
-export * from "./traceability";
-export * from "./profiles";
-export * from "./farm-management";
-export * from "./marketplace";
-export * from "./community";
-export * from "./ai-and-analytics";
-export * from "./financial-services";
-export * from "./knowledge-hub";
-export * from "./api-gateway";
-export * from "./regulatory-and-compliance";
-export * from "./insurance";
-export * from "./sustainability";
-export * from "./notifications";
-export * from "./dashboard_data";
-export * from "./search";
-export * from "./offline_sync";
-export * from "./forums";
-export * from "./groups";
-export * from "./messages";
-export * from "./agri-events";
-export * from "./universal-id";
-export * from "./agro-tourism";
-export * from "./network";
-export * from "./labor";
-export * from "./ai-services";
-export * from "./api-keys";
+// Export all cloud functions, grouped by their respective modules
+export const activity = activityFunctions;
+export const agriEvents = agriEventsFunctions;
+export const agroTourism = agroTourismFunctions;
+export const aiAndAnalytics = aiAndAnalyticsFunctions;
+export const aiServices = aiServicesFunctions;
+export const apiKeys = apiKeyFunctions;
+export const apiGateway = apiGatewayFunctions;
+export const community = communityFunctions;
+export const dashboardData = dashboardDataFunctions; // Changed from 'dashboard'
+export const farmManagement = farmManagementFunctions;
+export const financials = financialServicesFunctions;
+export const forums = forumFunctions;
+export const groups = groupFunctions;
+export const insurance = insuranceFunctions;
+export const knowledgeHub = knowledgeHubFunctions;
+export const labor = laborFunctions;
+export const logging = loggingFunctions;
+export const marketplace = marketplaceFunctions;
+export const messages = messageFunctions;
+export const network = networkFunctions;
+export const notifications = notificationFunctions;
+export const offlineSync = offlineSyncFunctions;
+export const profiles = profileFunctions;
+export const regulatory = regulatoryFunctions;
+export const search = searchFunctions;
+export const sustainability = sustainabilityFunctions;
+export const universalId = universalIdFunctions;
+export const geospatial = geospatialFunctions;
 
-// Export the Express app as a Cloud Function
+
+// Export the Express app as a Cloud Function for Cloud Run services
 export const api = functions.https.onRequest(expressApp);
