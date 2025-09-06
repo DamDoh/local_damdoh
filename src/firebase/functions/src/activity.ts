@@ -38,7 +38,7 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
     await viewedUserRef.update({
         viewCount: admin.firestore.FieldValue.increment(1)
     });
-
+    
     const logRef = db.collection('profile_views').doc();
     await logRef.set({
         viewerId,
