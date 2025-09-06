@@ -1,3 +1,4 @@
+
 import { z } from "zod";
 import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from '@/lib/constants';
 
@@ -92,21 +93,23 @@ export const MarketplaceOrderSchema = z.object({
 
 
 export const ShopSchema = z.object({
-  id: z.string(),
-  ownerId: z.string(),
-  name: z.string(),
-  description: z.string(),
-  stakeholderType: z.string(),
-  createdAt: z.any(), // Firestore Timestamp
-  updatedAt: z.any(), // Firestore Timestamp
-  logoUrl: z.string().url().nullable(),
-  bannerUrl: z.string().url().nullable(),
+  id: z.string().optional(), // Optional for creation form
+  ownerId: z.string().optional(), // Optional for creation form
+  name: z.string().min(3, "Shop name must be at least 3 characters.").max(100),
+  description: z.string().min(10, "Description must be at least 10 characters long.").max(1000),
+  stakeholderType: z.enum(STAKEHOLDER_ROLES, {
+    errorMap: () => ({ message: "Please select a valid business type."}),
+  }),
+  createdAt: z.any().optional(), // Firestore Timestamp
+  updatedAt: z.any().optional(), // Firestore Timestamp
+  logoUrl: z.string().url().nullable().optional(),
+  bannerUrl: z.string().url().nullable().optional(),
   contactInfo: z.object({
       phone: z.string().optional(),
       website: z.string().optional(),
-  }),
-  itemCount: z.number(),
-  rating: z.number(),
+  }).optional(),
+  itemCount: z.number().optional(),
+  rating: z.number().optional(),
 });
 
 export const AgriEventSchema = z.object({
@@ -1036,3 +1039,5 @@ export const GenerateForumPostDraftOutputSchema = z.object({
     title: z.string().describe("A concise and engaging title for the new forum post."),
     content: z.string().describe("The full content of the forum post, written in a helpful and engaging tone."),
 });
+
+    
