@@ -84,7 +84,7 @@ export default function LogHarvestPage() {
     if (!isOnline) {
       // Offline logic: Add to queue
       await addActionToQueue({
-        operation: 'logHarvestAndCreateVTI', // Operation name matching backend function conceptually
+        operation: 'logHarvestAndCreateVTI', // Specific operation name for the backend to handle
         collectionPath: 'harvest_events', // Conceptual collection for the outbox pattern
         documentId: `harvest-${Date.now()}`, // Unique ID for the offline action
         payload: payload,
@@ -93,7 +93,7 @@ export default function LogHarvestPage() {
        toast({
          title: t('offlineToast.title'),
          description: t('offlineToast.description'),
-         variant: "default" // or "secondary", maybe add a specific offline style
+         variant: "default"
        });
       // Use a placeholder to indicate offline success
       setCreatedVtiId('offline-vti-placeholder'); 
@@ -128,10 +128,10 @@ export default function LogHarvestPage() {
       });
     } finally {
       setIsSubmitting(false);
-    }
-      if (loadingToastId) {
+       if (loadingToastId) {
           dismiss(loadingToastId);
       }
+    }
   }
   
   const handleResetForm = () => {
@@ -151,7 +151,7 @@ export default function LogHarvestPage() {
                     </div>
                     <CardTitle className="text-2xl pt-4">{t('success.successCardTitle')}</CardTitle>
                     <CardDescription>
-                       {t('success.successCardDescription', { cropType, vtiId: createdVtiId, isOffline: isOfflinePlaceholder })
+                       {t('success.successCardDescription', { cropType, vtiId: createdVtiId, isOffline: isOfflinePlaceholder ? 1 : 0 })}
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -184,7 +184,7 @@ export default function LogHarvestPage() {
   return (
     <div className="space-y-6">
       <Button asChild variant="outline" className="mb-4">
-        <Link href={`/farm-management/farms/${farmId}`}>
+        <Link href={`/farm-management/farms/${farmId}/crops/${cropId}`}>
           <ArrowLeft className="mr-2 h-4 w-4" /> {t('backLink')}
         </Link>
       </Button>

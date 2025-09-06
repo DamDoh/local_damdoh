@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -147,13 +146,13 @@ export const processOfflineChange = functions.firestore
 
     const {collectionPath, documentId, operation, payload, timestamp} =
       changeData;
-    
+      
     // Special handling for complex operations that aren't simple CRUD
-    if (collectionPath === 'harvest_events' && operation === 'create') {
+    if (operation === 'logHarvestAndCreateVTI') {
         const { handleHarvestEvent } = await import('./traceability');
         try {
-            // Re-authenticate the context for the called function
-            await handleHarvestEvent(payload, { auth: { uid: changeData.userId, token: {} as any } });
+            // Re-authenticate the context for the called function, as this is a backend trigger
+            await handleHarvestEvent(payload, { auth: { uid: changeData.userId, token: {} as any } } as functions.https.CallableContext);
             await snapshot.ref.update({ status: "completed", processedAt: admin.firestore.FieldValue.serverTimestamp() });
         } catch (error: any) {
              console.error(`Transaction failed for complex harvest event ${changeId}:`, error.message);
@@ -161,7 +160,6 @@ export const processOfflineChange = functions.firestore
         }
         return null;
     }
-
 
     const targetDocRef = db.collection(collectionPath).doc(documentId);
 
