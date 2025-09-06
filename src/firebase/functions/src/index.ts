@@ -1,5 +1,4 @@
 
-
 /**
  * @fileoverview This is the main entry point for all Firebase Cloud Functions.
  * It initializes the Firebase Admin SDK and exports all the functions from other
@@ -47,6 +46,7 @@ import * as searchFunctions from "./search";
 import * as sustainabilityFunctions from "./sustainability";
 import * as universalIdFunctions from "./universal-id";
 import * as geospatialFunctions from "./geospatial";
+// No need to import from 'utils.ts' as it only contains helpers
 
 // Export all cloud functions, grouped by their respective modules
 export const activity = activityFunctions;

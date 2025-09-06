@@ -5,7 +5,7 @@ import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
 import { UserRole } from "./types";
-import { deleteCollectionByPath } from './community';
+import { deleteCollectionByPath } from './utils';
 
 const db = admin.firestore();
 
@@ -29,7 +29,7 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
             primaryRole: 'Consumer', // Default role
             profileSummary: "Just joined the DamDoh community!",
             universalId: universalId,
-            viewCount: 0, // Initialize view count
+            viewCount: 0,
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         });

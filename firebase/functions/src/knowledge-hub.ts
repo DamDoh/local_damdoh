@@ -1,59 +1,22 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { translateText } from "@/ai/flows/translate-flow";
 
 const db = admin.firestore();
 
-// Initialize the Gemini AI model for translation
-let genAI;
-let model;
-
-if (process.env.GEMINI_API_KEY) {
-  genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-  model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
-} else {
-    console.warn("GEMINI_API_KEY not found. Translation features will be disabled.");
-}
-
-const SUPPORTED_LANGUAGES = ["en", "km", "es", "fr", "de"];
-
-/**
- * A helper function to translate text using the Gemini API.
- * @param {string} text The text to translate.
- * @param {string} targetLanguage The target language code (e.g., 'km' for Khmer).
- * @return {Promise<string>} The translated text.
- */
-async function translateText(text: string, targetLanguage: string): Promise<string> {
-    if (!model || !text) return `[Translation Disabled] ${text}`;
-    try {
-        const prompt = `Translate the following text to the language with code "${targetLanguage}":
-
-"${text}"
-
-Return only the translated text, without any introductory phrases or quotation marks.`;
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        return response.text().trim();
-    } catch (error: any) {
-        console.error(`Error translating text to ${targetLanguage}:`, error);
-        // Return a noticeable error string but don't cause the entire function to fail
-        return `[Translation Error: ${error.message}]`;
-    }
-}
-
+const SUPPORTED_LANGUAGES = ["en", "km", "es", "fr", "de", "th"];
 
 /**
  * Firestore trigger that automatically translates new or updated knowledge articles
- * into all supported languages.
+ * into all supported languages. This function now treats English as the source of truth.
+ * @param {functions.Change<functions.firestore.DocumentSnapshot>} change The change event.
+ * @param {functions.EventContext} context The event context.
+ * @return {Promise<null>} A promise that resolves when the function is complete.
  */
 export const onArticleWriteTranslate = functions.firestore
   .document("knowledge_articles/{articleId}")
   .onWrite(async (change, context) => {
-    if (!model) {
-        console.log("Translation model not initialized. Skipping onArticleWriteTranslate.");
-        return null;
-    }
     const { articleId } = context.params;
     const afterData = change.after.data();
 
@@ -64,29 +27,25 @@ export const onArticleWriteTranslate = functions.firestore
 
     const beforeData = change.before.data() || {};
     
-    // Determine the source language of the change.
-    // If English content changed, it's the source. If not, check Khmer, etc.
-    let sourceLang = null;
-    if (afterData.content_markdown_en && afterData.content_markdown_en !== beforeData.content_markdown_en) {
-        sourceLang = 'en';
-    } else if (afterData.content_markdown_km && afterData.content_markdown_km !== beforeData.content_markdown_km) {
-        sourceLang = 'km';
-    }
-    // Add other source languages here if needed in the future
+    const englishContentChanged = (
+        afterData.title_en !== beforeData.title_en ||
+        afterData.content_markdown_en !== beforeData.content_markdown_en ||
+        afterData.excerpt_en !== beforeData.excerpt_en
+    );
 
-    if (!sourceLang) {
-        console.log(`No content change detected in a source language for article ${articleId}. No translation action needed.`);
+    if (!englishContentChanged) {
+        console.log(`No change in English source content for article ${articleId}. No translation action needed.`);
         return null;
     }
     
-    console.log(`Change detected in '${sourceLang}' for article ${articleId}. Triggering translations.`);
+    console.log(`English content for article ${articleId} changed. Triggering re-translation for all other languages.`);
 
-    const sourceTitle = afterData[`title_${sourceLang}`];
-    const sourceContent = afterData[`content_markdown_${sourceLang}`];
-    const sourceExcerpt = afterData[`excerpt_${sourceLang}`];
+    const sourceTitle = afterData.title_en;
+    const sourceContent = afterData.content_markdown_en;
+    const sourceExcerpt = afterData.excerpt_en;
 
     if (!sourceTitle || !sourceContent || !sourceExcerpt) {
-        console.log("Source language content is incomplete. Skipping translation.");
+        console.log("English source content is incomplete. Skipping translation.");
         return null;
     }
 
@@ -94,30 +53,28 @@ export const onArticleWriteTranslate = functions.firestore
     const updatePayload: {[key: string]: any} = {};
 
     for (const lang of SUPPORTED_LANGUAGES) {
-        if (lang === sourceLang) continue; // Don't translate to the source language
+        if (lang === 'en') continue;
 
-        // Check if translation already exists and is up-to-date
-        // This simple check assumes if title is present, content is too.
-        // A more robust system might use versioning or timestamps.
-        if (afterData[`title_${lang}`]) {
-            console.log(`Translation for '${lang}' already exists. Skipping.`);
-            continue;
-        }
-
-        console.log(`Queueing translation for '${lang}' for article ${articleId}.`);
+        console.log(`Queueing translation to '${lang}' for article ${articleId}.`);
         const p = (async () => {
+          try {
             const [translatedTitle, translatedContent, translatedExcerpt] = await Promise.all([
-                translateText(sourceTitle, lang),
-                translateText(sourceContent, lang),
-                translateText(sourceExcerpt, lang)
+                translateText({ text: sourceTitle, targetLanguage: lang }),
+                translateText({ text: sourceContent, targetLanguage: lang }),
+                translateText({ text: sourceExcerpt, targetLanguage: lang })
             ]);
             
-            // Add to payload only if translation was successful
-            if (!translatedTitle.startsWith('[Translation Error')) {
-                updatePayload[`title_${lang}`] = translatedTitle;
-                updatePayload[`content_markdown_${lang}`] = translatedContent;
-                updatePayload[`excerpt_${lang}`] = translatedExcerpt;
+            // Check for translation errors before adding to payload
+            if (translatedTitle && !translatedTitle.startsWith('[Translation Error')) {
+              updatePayload[`title_${lang}`] = translatedTitle;
+              updatePayload[`content_markdown_${lang}`] = translatedContent;
+              updatePayload[`excerpt_${lang}`] = translatedExcerpt;
+            } else {
+              console.warn(`Translation to ${lang} for article ${articleId} resulted in an error or empty string.`);
             }
+          } catch (error) {
+             console.error(`Translation to ${lang} for article ${articleId} failed:`, error);
+          }
         })();
         translationPromises.push(p);
     }
@@ -128,7 +85,7 @@ export const onArticleWriteTranslate = functions.firestore
         console.log(`Updating article ${articleId} with new translations.`);
         return change.after.ref.update(updatePayload);
     } else {
-        console.log(`No new translations to update for article ${articleId}.`);
+        console.log(`No new successful translations to update for article ${articleId}.`);
         return null;
     }
   });
@@ -228,6 +185,9 @@ export const createModule = functions.https.onCall(async (data, context) => {
 
 /**
  * Fetches the 3 most recent knowledge articles to be featured.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, articles: any[]}>} A promise that resolves with the articles.
  */
 export const getFeaturedKnowledge = functions.https.onCall(async (data, context) => {
   try {
@@ -244,12 +204,12 @@ export const getFeaturedKnowledge = functions.https.onCall(async (data, context)
       .get();
       
     const articles = articlesSnapshot.docs.map(doc => {
-      const data = doc.data();
+      const articleData = doc.data();
       return {
         id: doc.id,
-        ...data,
-        createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate ? (data.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
-        updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate ? (data.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+        ...articleData,
+        createdAt: (articleData.createdAt as admin.firestore.Timestamp)?.toDate ? (articleData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+        updatedAt: (articleData.updatedAt as admin.firestore.Timestamp)?.toDate ? (articleData.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
       };
     });
 
@@ -283,15 +243,15 @@ export const createKnowledgeArticle = functions.https.onCall(
     const callerUid = context.auth.uid; // Get the UID of the user calling the function
 
     const { title_en, content_markdown_en, tags, category, excerpt_en, imageUrl, dataAiHint, author, title_km, content_markdown_km, excerpt_km, status } = data;
-    if (!title_en && !title_km) {
-        throw new functions.https.HttpsError("invalid-argument", "At least one title (English or Khmer) is required.");
+    
+    // A post is valid if it has content in at least one primary language.
+    const hasEnglishContent = title_en && content_markdown_en && excerpt_en;
+    const hasKhmerContent = title_km && content_markdown_km && excerpt_km;
+    
+    if (!hasEnglishContent && !hasKhmerContent) {
+        throw new functions.https.HttpsError("invalid-argument", "error.article.contentRequired");
     }
-     if (!content_markdown_en && !content_markdown_km) {
-        throw new functions.https.HttpsError("invalid-argument", "At least one content block (English or Khmer) is required.");
-    }
-     if (!excerpt_en && !excerpt_km) {
-        throw new functions.https.HttpsError("invalid-argument", "At least one excerpt (English or Khmer) is required.");
-    }
+
 
     try {
         const newArticleRef = await db.collection('knowledge_articles').add({
@@ -327,17 +287,23 @@ export const createKnowledgeArticle = functions.https.onCall(
 
 /**
  * Fetches all knowledge articles, ordered by creation date.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, articles: any[]}>} A promise that resolves with the articles.
  */
 export const getKnowledgeArticles = functions.https.onCall(async (data, context) => {
     try {
         const articlesSnapshot = await db.collection('knowledge_articles').orderBy('createdAt', 'desc').get();
-        const articles = articlesSnapshot.docs.map(doc => ({ 
-            id: doc.id, 
-            ...doc.data(),
-            // Ensure timestamps are ISO strings for the client
-            createdAt: (doc.data().createdAt as admin.firestore.Timestamp)?.toDate ? (doc.data().createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
-            updatedAt: (doc.data().updatedAt as admin.firestore.Timestamp)?.toDate ? (doc.data().updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
-        }));
+        const articles = articlesSnapshot.docs.map(doc => {
+            const articleData = doc.data();
+            return { 
+                id: doc.id, 
+                ...articleData,
+                // Ensure timestamps are ISO strings for the client
+                createdAt: (articleData.createdAt as admin.firestore.Timestamp)?.toDate ? (articleData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+                updatedAt: (articleData.updatedAt as admin.firestore.Timestamp)?.toDate ? (articleData.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+            };
+        });
         return { success: true, articles };
     } catch (error) {
         console.error("Error fetching articles:", error);
@@ -348,6 +314,9 @@ export const getKnowledgeArticles = functions.https.onCall(async (data, context)
 
 /**
  * Fetches a single knowledge article by its ID.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, article: any}>} A promise that resolves with the article.
  */
 export const getKnowledgeArticleById = functions.https.onCall(async (data, context) => {
     const { articleId } = data;
@@ -458,7 +427,11 @@ export const getCourseDetails = functions.https.onCall(async (data, context) => 
     // 3. Combine the data
     const finalData = {
       id: courseDoc.id,
-      title:.google.com/genai-api/guides/get-api-key for more information.
+      title: courseData.titleEn,
+      description: courseData.descriptionEn,
+      category: courseData.category,
+      level: courseData.level,
+      instructor: {name: "Dr. Alima Bello", title: "Senior Agronomist"}, // Instructor info would need another fetch
       modules: modulesData.map((m: any) => ({
         id: m.id,
         title: m.moduleTitleEn,
