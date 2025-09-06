@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Briefcase, PlusCircle, Search as SearchIconLucide, MapPin, Users } from "lucide-react"; 
+import { Briefcase, PlusCircle, Search as SearchIconLucide, MapPin } from "lucide-react"; 
 import Link from "next/link";
 import type { MarketplaceItem } from "@/lib/types";
 import { ItemCard } from "@/components/marketplace/ItemCard";
@@ -18,7 +18,6 @@ import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data"
 import { performSearch } from "@/lib/server-actions";
 
 function TalentPageSkeleton() {
-    const t = useTranslations('talentExchangePage');
     return (
         <div className="space-y-6">
             <Card>
@@ -157,7 +156,9 @@ export default function TalentExchangePage() {
                     </div>
 
                     {isLoading ? (
-                        <TalentPageSkeleton />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                            {Array.from({ length: 5 }).map((_, i) => <ItemCardSkeleton key={`skel-item-${i}`} />)}
+                        </div>
                     ) : items.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                             {items.map(item => <ItemCard key={item.id} item={item} />)}
@@ -172,5 +173,23 @@ export default function TalentExchangePage() {
                 </CardContent>
             </Card>
         </div>
+    );
+}
+
+function ItemCardSkeleton() {
+    return (
+        <Card className="w-full">
+            <CardHeader className="p-0">
+                <Skeleton className="w-full aspect-[4/3] rounded-t-lg"/>
+            </CardHeader>
+            <CardContent className="p-3 space-y-2">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-3 w-1/2" />
+                <Skeleton className="h-5 w-1/3" />
+            </CardContent>
+            <CardFooter className="p-2">
+                    <Skeleton className="h-9 w-full" />
+            </CardFooter>
+        </Card>
     );
 }

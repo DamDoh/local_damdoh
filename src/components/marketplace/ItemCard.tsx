@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import type { MarketplaceItem, ServiceItem } from "@/lib/types";
+import type { MarketplaceItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { Briefcase, DollarSign, Brain } from "lucide-react";
@@ -49,12 +49,12 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
                 <Link href={`/marketplace/${item.id}`} className="hover:text-primary">
                     <CardTitle className="text-sm font-semibold line-clamp-2 leading-tight h-10">{item.name}</CardTitle>
                 </Link>
-                <CardDescription className="text-xs text-muted-foreground">{item.location.address}</CardDescription>
+                <CardDescription className="text-xs text-muted-foreground">{item.location?.address}</CardDescription>
                 
                 <div className="text-md font-bold pt-1 flex items-center gap-1.5">
                     {isService ? <Briefcase className="h-4 w-4" /> : <DollarSign className="h-4 w-4" />}
                     {isService ? (
-                        <span>{(item as ServiceItem).compensation || t('itemView.contactForRates')}</span>
+                        <span>{(item as any).compensation || t('itemView.contactForRates')}</span>
                     ) : (
                         <span>
                             {typeof item.price === 'number' ? (
