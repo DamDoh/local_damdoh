@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -149,64 +148,52 @@ export const initiatePayment = functions.https.onCall(async (data, context) => {
   }
 });
 
-// Firestore trigger to calculate the DamDoh Credit Score
-export const calculateDamDohCreditScore = functions.firestore
-  .document("financial_transactions/{transactionId}")
-  .onCreate(async (snapshot, context) => {
-    console.log("Triggered calculateDamDohCreditScore (placeholder).");
+/**
+ * Firestore trigger to assess credit risk when a user profile is updated.
+ */
+export const assessCreditRisk = functions.firestore
+  .document("users/{userId}")
+  .onUpdate(async (change, context) => {
+    const userId = context.params.userId;
+    const beforeData = change.before.data();
+    const afterData = change.after.data();
 
-    const userId = snapshot.data()?.userRef?.id;
-
-    if (!userId) {
-      console.warn(
-        "Could not identify user from trigger data. Skipping score calculation.",
-      );
+    // To prevent an infinite loop, only run if the profile data relevant to the score has changed.
+    // This is a simple check; a more complex system might compare specific fields.
+    if (beforeData.updatedAt.isEqual(afterData.updatedAt)) {
+      console.log(`Skipping credit risk assessment for user ${userId} as there are no new data changes.`);
       return null;
     }
 
+    console.log(`Credit risk assessment triggered for user ${userId} due to profile update.`);
+
     try {
-      console.log(`Calculating DamDoh Credit Score for user ${userId}...`);
       const userRef = db.collection("users").doc(userId);
-      const userDoc = await userRef.get();
-      const userData = userDoc.exists ? userDoc.data() : null;
-
-      if (!userData) {
-        console.warn(
-          `User document not found for ${userId}. Skipping score calculation.`,
-        );
-        return null;
-      }
-
       const relevantData = {
-        userData: userData,
+        userData: afterData,
+        // In the future, we could aggregate financial transactions here as well.
       };
-      console.log("Sending data to Module 8 AI for score calculation...");
+
       const scoreResult = await _internalAssessCreditRisk(relevantData);
+      const { score, riskFactors } = scoreResult;
 
-      const calculatedScore = scoreResult.score;
-      const riskFactors = scoreResult.riskFactors;
+      await db.collection("credit_scores").doc(userId).set({
+        userId,
+        userRef,
+        score,
+        riskFactors,
+        lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
+        aiModelVersion: "v1.0-placeholder",
+      }, { merge: true });
 
-      await db
-        .collection("credit_scores")
-        .doc(userId)
-        .set(
-          {
-            userId: userId,
-            userRef: userRef,
-            score: calculatedScore,
-            lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
-            riskFactors: riskFactors,
-          },
-          {merge: true},
-        );
-
-      console.log(`Credit score for user ${userId} updated.`);
+      console.log(`Credit score for user ${userId} updated to ${score}.`);
       return null;
     } catch (error) {
       console.error(`Error calculating credit score for user ${userId}:`, error);
       return null;
     }
   });
+
 
 // Triggered function to match users with funding opportunities
 export const matchFundingOpportunities = functions.firestore
@@ -941,3 +928,4 @@ export const getFiApplications = functions.https.onCall(async (data, context) =>
     });
 
     return { applications };
+});
