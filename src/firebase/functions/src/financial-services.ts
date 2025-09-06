@@ -585,14 +585,7 @@ export const distributeCrowdfundingPayouts = functions.firestore
 // Callable function for users to log manual financial transactions
 export const logFinancialTransaction = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "error.unauthenticated",
-      );
-    }
-
-    const callerUid = context.auth.uid;
+    const callerUid = checkAuth(context);
     const {type, amount, currency, description, category} = data;
 
     const validTypes = ["income", "expense"];
@@ -675,14 +668,7 @@ export const logFinancialTransaction = functions.https.onCall(
  */
 export const getFinancialSummaryAndTransactions = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "error.unauthenticated",
-      );
-    }
-
-    const userId = context.auth.uid;
+    const userId = checkAuth(context);
     
     try {
       const transactionsRef = db.collection("financial_transactions");
@@ -914,6 +900,26 @@ export const getFiApplications = functions.https.onCall(async (data, context) =>
         query = query.where("status", "==", status);
     }
 
+    query = query.orderBy("submittedAt", "desc");
+
+    const snapshot = await query.get();
+    
+    const applications = snapshot.docs.map(doc => {
+        const appData = doc.data();
+        return {
+            ...appData,
+            id: doc.id,
+            submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+        }
+    });
+
+    return { applications };
+});
+
+export const getFarmerApplications = functions.https.onCall(async (data, context) => {
+    const farmerId = checkAuth(context);
+
+    let query: admin.firestore.Query = db.collection("financial_applications").where("applicantId", "==", farmerId);
     query = query.orderBy("submittedAt", "desc");
 
     const snapshot = await query.get();

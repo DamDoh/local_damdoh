@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PlusCircle, FileSpreadsheet } from 'lucide-react';
 import Link from 'next/link';
-import { useAuth } from '@/lib/auth-utils';
+import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
@@ -24,7 +24,7 @@ export default function FinancialProductsPage() {
     const [isLoading, setIsLoading] = useState(true);
 
     const functions = getFunctions(firebaseApp);
-    const getProductsCallable = useMemo(() => httpsCallable(functions, 'getFinancialProducts'), [functions]);
+    const getProductsCallable = useMemo(() => httpsCallable(functions, 'financials-getFinancialProducts'), [functions]);
     
     const fetchProducts = useCallback(async () => {
         setIsLoading(true);

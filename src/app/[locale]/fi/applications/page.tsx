@@ -8,7 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowLeft, FileText, Filter } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/lib/auth-utils';
+import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
@@ -48,7 +48,7 @@ export default function ApplicationListPage() {
     const [activeTab, setActiveTab] = useState('All');
 
     const functions = getFunctions(firebaseApp);
-    const getFiApplicationsCallable = useMemo(() => httpsCallable(functions, 'getFiApplications'), []);
+    const getFiApplicationsCallable = useMemo(() => httpsCallable(functions, 'financials-getFiApplications'), [functions]);
 
     const fetchApplications = useCallback(async (status: string) => {
         setIsLoading(true);

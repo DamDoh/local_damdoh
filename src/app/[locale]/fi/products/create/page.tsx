@@ -33,7 +33,7 @@ export default function CreateFinancialProductPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const functions = getFunctions(firebaseApp);
-  const createProductCallable = useMemo(() => httpsCallable(functions, 'createFinancialProduct'), [functions]);
+  const createProductCallable = useMemo(() => httpsCallable(functions, 'financials-createFinancialProduct'), [functions]);
 
   const form = useForm<CreateFinancialProductValues>({
     resolver: zodResolver(createFinancialProductSchema),

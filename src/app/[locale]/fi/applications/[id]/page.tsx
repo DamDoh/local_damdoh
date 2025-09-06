@@ -8,7 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowLeft, CheckCircle, FileText, User, DollarSign, Calendar, BarChart, Info, Loader2, MessageSquare, XCircle, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import { useAuth } from '@/lib/auth-utils';
+import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
@@ -52,8 +52,8 @@ export default function FinancialApplicationDetailPage() {
     const [isUpdating, setIsUpdating] = useState(false);
     
     const functions = getFunctions(firebaseApp);
-    const getApplicationDetailsCallable = useMemo(() => httpsCallable(functions, 'getFinancialApplicationDetails'), []);
-    const updateStatusCallable = useMemo(() => httpsCallable(functions, 'updateFinancialApplicationStatus'), []);
+    const getApplicationDetailsCallable = useMemo(() => httpsCallable(functions, 'financials-getFinancialApplicationDetails'), [functions]);
+    const updateStatusCallable = useMemo(() => httpsCallable(functions, 'financials-updateFinancialApplicationStatus'), [functions]);
 
     const fetchDetails = useCallback(async () => {
         if (!applicationId || !user) return;
