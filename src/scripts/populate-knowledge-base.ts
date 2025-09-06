@@ -124,7 +124,7 @@ async function populateKnowledgeBase() {
     const writeBatch = db.batch();
 
     KNOWLEDGE_BASE_DATA.forEach(item => {
-        const docId = item.id.toLowerCase().replace(/\s+/g, '_'); // Ensure consistent ID format
+        const docId = item.id.toLowerCase().replace(/[^a-z0-9_]/g, ''); // Sanitize ID
         const docRef = collectionRef.doc(docId);
         const { id, ...itemData } = item;
         writeBatch.set(docRef, itemData);

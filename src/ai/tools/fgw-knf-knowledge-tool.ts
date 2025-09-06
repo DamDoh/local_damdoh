@@ -23,12 +23,14 @@ export const fwg_knf_tool = ai.defineTool(
     }
 
     try {
+        const techniqueId = input.techniqueName.toLowerCase().replace(/[^a-z0-9]/g, '_');
+        
         // Create a query that searches by name or by the ID (for abbreviations like 'FPJ')
         const q = query(
           collection(db, "knowledge_base"),
           or(
             where("name", "==", input.techniqueName),
-            where(collection(db, "knowledge_base").idField(), '==', input.techniqueName.toLowerCase().replace(/\s+/g, '_'))
+            where(collection(db, "knowledge_base").idField(), '==', techniqueId)
           ),
           limit(1)
         );

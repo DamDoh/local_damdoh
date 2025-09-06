@@ -13,7 +13,7 @@ import '@/ai/flows/market-insights-flow.ts';
 import '@/ai/flows/query-interpreter-flow.ts';
 import '@/ai/tools/stakeholder-info-tool.ts';
 import '@/ai/flows/suggest-market-price-flow.ts';
-import '@/ai/tools/fgw-knf-knowledge-tool.ts';
+import '@/ai/tools/fgw-knf-knowledge-tool';
 import '@/ai/flows/marketplace-recommendations.ts';
 import '@/ai/flows/crop-rotation-suggester';
 import '@/ai/flows/diagnose-crop-flow';
