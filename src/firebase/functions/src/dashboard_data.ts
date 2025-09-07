@@ -11,10 +11,8 @@ import type {
     RegulatorDashboardData,
     FiDashboardData,
     FieldAgentDashboardData,
-    CertificationBodyDashboardData,
     ResearcherDashboardData,
     AgronomistDashboardData,
-    InsuranceProviderDashboardData,
     EnergyProviderDashboardData,
     CrowdfunderDashboardData,
     WasteManagementDashboardData,
@@ -161,65 +159,6 @@ export const getFarmerDashboardData = functions.https.onCall(
         throw new functions.https.HttpsError("internal", "Failed to fetch farmer dashboard data.");
     }
   },
-);
-
-
-export const getPackagingSupplierDashboardData = functions.https.onCall(
-  async (data, context): Promise<PackagingSupplierDashboardData> => {
-    const supplierId = checkAuth(context);
-    try {
-        // Fetch real inventory data
-        const inventorySnapshot = await db.collection('marketplaceItems')
-            .where('sellerId', '==', supplierId)
-            .where('category', '==', 'packaging-solutions')
-            .get();
-
-        const inventory = inventorySnapshot.docs.map(doc => {
-            const item = doc.data();
-            return {
-                id: doc.id,
-                item: item.name,
-                stock: item.stock || 0, // Assuming a stock field exists
-                reorderLevel: item.reorderLevel || 100, // Assuming a reorderLevel field
-            };
-        });
-        
-        // Fetch real orders
-         const ordersSnapshot = await db.collection('marketplace_orders')
-            .where('sellerId', '==', supplierId)
-            .orderBy('createdAt', 'desc')
-            .limit(10)
-            .get();
-
-        const buyerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().buyerId))];
-        const buyerProfiles: {[key: string]: string} = {};
-        if(buyerIds.length > 0) {
-            const buyerDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', buyerIds).get();
-            buyerDocs.forEach(doc => {
-                buyerProfiles[doc.id] = doc.data().displayName || 'Unknown Customer';
-            });
-        }
-
-        const incomingOrders = ordersSnapshot.docs.map(doc => {
-            const order = doc.data();
-            return {
-                id: doc.id,
-                customerName: buyerProfiles[order.buyerId] || 'Unknown Customer',
-                product: order.listingName,
-                quantity: order.quantity,
-                status: order.status,
-                actionLink: `/marketplace/my-orders/${doc.id}`,
-            };
-        });
-
-
-        return { incomingOrders, inventory };
-
-    } catch (error) {
-        console.error("Error fetching packaging supplier dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
-    }
-  }
 );
 
 
@@ -481,7 +420,6 @@ export const getRegulatorDashboardData = functions.https.onCall(
 );
 
 
-
 export const getFieldAgentDashboardData = functions.https.onCall(
   async (data, context): Promise<FieldAgentDashboardData> => {
     const agentId = checkAuth(context);
@@ -544,64 +482,6 @@ export const getFieldAgentDashboardData = functions.https.onCall(
 );
 
 
-
-export const getCertificationBodyDashboardData = functions.https.onCall(
-  async (data, context): Promise<CertificationBodyDashboardData> => {
-    checkAuth(context);
-    return {
-        pendingAudits: [
-            { id: 'aud1', farmName: 'Green Valley Farms', standard: 'EU Organic', dueDate: new Date().toISOString(), actionLink: '#' }
-        ],
-        certifiedEntities: [
-            { id: 'ent1', name: 'Riverside Orchards', type: 'Farm', certificationStatus: 'Active', actionLink: '#' }
-        ],
-        standardsMonitoring: [
-            { standard: 'Fair Trade', adherenceRate: 95, alerts: 2, actionLink: '#' }
-        ]
-    };
-  }
-);
-
-
-export const getInsuranceProviderDashboardData = functions.https.onCall(
-  async (data, context): Promise<InsuranceProviderDashboardData> => {
-    checkAuth(context);
-
-    try {
-        const claimsSnapshot = await db.collection('insurance_applications')
-            .where('status', 'in', ['Submitted', 'Under Review'])
-            // Ideally, we'd also filter by providerId if that field existed
-            .limit(10)
-            .get();
-        
-        const pendingClaims = claimsSnapshot.docs.map(doc => {
-            const claim = doc.data();
-            return {
-                id: doc.id,
-                policyHolderName: claim.applicantName || 'Unknown Farmer', // Placeholder
-                policyType: 'Crop', // Placeholder
-                claimDate: (claim.submittedAt as admin.firestore.Timestamp).toDate().toISOString(),
-                status: claim.status,
-                actionLink: '#'
-            }
-        });
-
-        return {
-            pendingClaims,
-            // These remain mocked as their data sources are complex
-            riskAssessmentAlerts: [
-                { id: 'risk1', policyHolderName: 'Sunset Farms', alert: 'High flood risk predicted for next month.', severity: 'High', actionLink: '#' }
-            ],
-            activePolicies: [
-                { id: 'pol1', policyHolderName: 'Green Valley Farms', policyType: 'Multi-peril Crop', coverageAmount: 50000, expiryDate: new Date().toISOString() }
-            ]
-        };
-    } catch (error) {
-        console.error("Error fetching insurance provider dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
-    }
-  }
-);
 
 export const getEnergyProviderDashboardData = functions.https.onCall(
   (data, context): EnergyProviderDashboardData => {
