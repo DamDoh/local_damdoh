@@ -66,7 +66,7 @@ const KNOWLEDGE_BASE_DATA = [
       ],
       related_principles: ["Minimal Soil Disturbance", "High Standards"]
     },
-     {
+    {
       id: "knf_faa",
       name: "Fish Amino Acid (FAA)",
       methodology: "KNF",
@@ -93,55 +93,102 @@ const KNOWLEDGE_BASE_DATA = [
         frequency: "Once every 1-2 weeks during active growth."
       },
       storage: "After fermentation, strain the liquid and store in a loosely capped bottle in a cool, dark place."
-    }
-];
-
-// Initialize Firebase Admin SDK
-if (!getApps().length) {
-    try {
-        const serviceAccountEnv = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
-        if (!serviceAccountEnv) {
-            throw new Error("FIREBASE_SERVICE_ACCOUNT_KEY environment variable is not set.");
-        }
-        const serviceAccount = JSON.parse(serviceAccountEnv);
-        initializeApp({
-            credential: cert(serviceAccount),
-            databaseURL: `https://${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.firebaseio.com`
-        });
-        console.log("Firebase Admin SDK initialized successfully.");
-    } catch (error: any) {
-        console.error("Firebase Admin SDK initialization failed:", error.message);
-        process.exit(1);
-    }
-}
-
-const db = getFirestore();
-
-async function populateKnowledgeBase() {
-    console.log("Starting to populate 'knowledge_base' collection...");
-
-    const collectionRef = db.collection('knowledge_base');
-    const writeBatch = db.batch();
-
-    KNOWLEDGE_BASE_DATA.forEach(item => {
-        const docId = item.id.toLowerCase().replace(/[^a-z0-9_]/g, ''); // Sanitize ID
-        const docRef = collectionRef.doc(docId);
-        const { id, ...itemData } = item;
-        writeBatch.set(docRef, itemData);
-    });
-
-    try {
-        await writeBatch.commit();
-        console.log(`Successfully populated ${KNOWLEDGE_BASE_DATA.length} documents into the 'knowledge_base' collection.`);
-    } catch (error) {
-        console.error("Error writing batch to Firestore:", error);
-    }
-}
-
-populateKnowledgeBase().then(() => {
-    console.log("Script finished.");
-    process.exit(0);
-}).catch((error) => {
-    console.error("Script failed:", error);
-    process.exit(1);
-});
+    },
+    {
+      id: "knf_wca",
+      name: "Water-Soluble Calcium (WCA)",
+      methodology: "KNF",
+      type: "Concoction",
+      description: "A calcium supplement made from eggshells, essential for fruit development and preventing blossom-end rot.",
+      source: "Korean Natural Farming Official Guide",
+      suitability: {
+        crop_stages: ["Fruiting", "Flowering"],
+        benefits: ["Strengthens cell walls", "Prevents blossom-end rot in crops like tomatoes and peppers", "Improves fruit quality and shelf life"]
+      },
+      ingredients: [
+        { name: "Eggshells (washed and roasted until lightly brown)", amount: 1, unit: "part" },
+        { name: "Brown Rice Vinegar", amount: 10, unit: "parts" }
+      ],
+      steps: [
+        { order: 1, description: "Roast clean, dry eggshells until they are lightly browned but not burnt. This makes them brittle." },
+        { order: 2, description: "Crush the roasted eggshells into a coarse powder." },
+        { order: 3, description: "Place the crushed eggshells in a jar and add brown rice vinegar at a 1:10 ratio (shells:vinegar) by volume." },
+        { order: 4, "description": "You will see bubbles as the acetic acid reacts with the calcium carbonate. Leave the lid slightly loose to allow gas to escape." },
+        { order: 5, "description": "It is ready when the bubbling stops, typically in 5-10 days. The liquid is then strained and stored." }
+      ],
+      usage: {
+        dilution_ratio: "1:1000 with water",
+        application_method: "Used as a foliar spray during the flowering and fruiting stages.",
+        frequency: "Once a week during fruit development."
+      },
+      storage: "Store in a loosely capped bottle in a cool, dark place."
+    },
+    {
+      id: "knf_lab",
+      name: "Lactic Acid Bacteria (LAB)",
+      methodology: "KNF",
+      type: "Concoction",
+      description: "A culture of beneficial bacteria that aids in composting, odor control, and improving soil health.",
+      source: "Korean Natural Farming Official Guide",
+      suitability: {
+        crop_stages: ["All stages", "Composting"],
+        benefits: ["Speeds up decomposition of organic matter", "Suppresses harmful pathogens", "Improves soil nutrient availability", "Reduces odors in livestock operations"]
+      },
+      ingredients: [
+        { name: "Rice wash water (water from the first rinse of rice)", amount: 1, unit: "L" },
+        { name: "Milk", amount: 10, unit: "L" }
+      ],
+      steps: [
+        { order: 1, description: "Collect the milky water from the first rinse of rice. Fill a jar about 2/3 full and cover loosely with a breathable cloth." },
+        { order: 2, description: "Let the rice wash water sit for 5-7 days in a cool, dark place. It will separate into layers and have a slightly sour smell." },
+        { order: 3, description: "Carefully extract the middle layer of liquid, avoiding the top mold and bottom sediment. This is your LAB serum." },
+        { order: 4, "description": "Add this serum to milk at a 1:10 ratio (serum:milk). For example, 100ml serum to 1L milk." },
+        { order: 5, "description": "Let this mixture sit for another 5-7 days. It will separate into curds (top) and a clear yellow liquid (whey). The whey is your concentrated LAB." },
+        { order: 6, "description": "Strain and collect the yellow whey. This is your final LAB solution." }
+      ],
+      usage: {
+        dilution_ratio: "1:1000 with water for soil application; 1:500 for compost piles.",
+        application_method: "Soil drench, compost treatment, or as part of a cleaning solution for livestock housing.",
+        frequency: "As needed, especially when incorporating new organic matter."
+      },
+      storage: "Store the final whey in the refrigerator with a loose cap, or mix with an equal part of brown sugar for room temperature storage."
+    },
+    {
+        id: "knf_imo",
+        name: "Indigenous Microorganisms (IMO)",
+        methodology: "KNF",
+        type: "Concoction",
+        description: "The cornerstone of KNF, this is a method for collecting and cultivating beneficial, native microorganisms from the local environment to dramatically improve soil health and fertility.",
+        source: "Korean Natural Farming Official Guide",
+        suitability: {
+            crop_stages: ["Soil Preparation", "Throughout lifecycle"],
+            benefits: ["Restores and enhances soil biodiversity", "Improves nutrient cycling and availability", "Suppresses soil-borne pathogens", "Enhances plant root development"]
+        },
+        ingredients: [
+            { name: "Hard-cooked rice or other cooked grain", amount: 1, unit: "box" },
+            { name: "Brown sugar or molasses", amount: 1, unit: "equal weight to IMO-2" },
+            { name: "Soil from your farm", amount: 1, unit: "equal volume to IMO-3" },
+            { name: "Water", amount: 1, unit: "variable" }
+        ],
+        steps: [
+            { order: 1, title: "IMO-1: Collection", description: "Place a wooden box filled with hard-cooked rice in a local forest or undisturbed area with rich leaf mold. Cover it to protect from rain and animals. Leave for 3-5 days until a white mold covers the rice." },
+            { order: 2, title: "IMO-2: Cultivation", description: "Mix the moldy rice (IMO-1) with an equal weight of brown sugar. This preserves and feeds the collected microbes. Store in a breathable container." },
+            { order: 3, title: "IMO-3: Extension", description: "Mix the IMO-2 with an equal volume of soil from your farm and water to achieve a 65-70% moisture content. This inoculates your farm soil with the powerful microbes. Pile it and cover, turning when the pile's internal temperature exceeds 50°C." },
+            { order: 4, title: "IMO-4: Final Soil Inoculation", description: "Mix the IMO-3 with more farm soil and other organic inputs to create a large batch of microbially active compost, ready to be applied to your fields." }
+        ],
+        usage: {
+            application_method: "Applied as a soil amendment before planting or as a top dressing around existing plants.",
+            frequency: "Ideally applied at the beginning of each planting season."
+        },
+        storage: "Each stage has different storage requirements. IMO-2 is relatively stable, while IMO-3 and IMO-4 should be used when ready."
+    },
+    {
+        id: "knf_ohn",
+        name: "Oriental Herbal Nutrient (OHN)",
+        methodology: "KNF",
+        type: "Concoction",
+        description: "A complex fermented herbal tincture that acts as a natural plant medicine, boosting resilience against pests, diseases, and environmental stress.",
+        source: "Korean Natural Farming Official Guide",
+        suitability: {
+            crop_stages: ["All stages"],
+            benefits: ["Boosts plant immunity and resilience", "Acts as a natural pest and disease repellent", "Impro...
