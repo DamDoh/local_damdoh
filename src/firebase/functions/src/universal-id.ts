@@ -209,7 +209,7 @@ export const createRecoverySession = functions.https.onCall(async (data, context
         expiresAt: admin.firestore.Timestamp.fromMillis(Date.now() + 10 * 60 * 1000), // Session expires in 10 minutes
     });
 
-    return { sessionId, recoveryQrValue, userIdToRecover: userToRecoverDoc.id };
+    return { sessionId, recoveryQrValue };
 });
 
 
@@ -265,8 +265,11 @@ export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
     return { success: true, message: "Friend confirmation successful! The user can now proceed with their recovery.", recoveryComplete: true };
 });
 
+/**
+ * Called by the recovering user's device to finalize the process.
+ * Verifies that the session was confirmed and issues a custom auth token.
+ */
 export const completeRecovery = functions.https.onCall(async (data, context) => {
-    // This function is polled by the original user's device
     const { sessionId } = data;
     if (!sessionId) {
         throw new functions.https.HttpsError('invalid-argument', 'A session ID is required.');

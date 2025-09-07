@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link, useRouter } from '@/navigation';
@@ -11,12 +11,11 @@ import { useTranslations } from 'next-intl';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { app as firebaseApp, auth } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/lib/auth-utils';
+import { useAuth, logIn } from '@/lib/auth-utils';
 import dynamic from 'next/dynamic';
-import { getProfileByIdFromDB } from '@/lib/server-actions';
-import { logIn } from '@/lib/auth-utils';
+import { signInWithCustomToken } from "firebase/auth";
 
 const QrScanner = dynamic(() => import('@/components/QrScanner').then(mod => mod.QrScanner), {
     ssr: false,
@@ -35,7 +34,7 @@ export default function RecoverPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [recoverySession, setRecoverySession] = useState<{ sessionId: string; recoveryQrValue: string; userIdToRecover: string } | null>(null);
+  const [recoverySession, setRecoverySession] = useState<{ sessionId: string; recoveryQrValue: string; } | null>(null);
   const [isScanning, setIsScanning] = useState(false);
 
   const createRecoverySessionCallable = useMemo(() => httpsCallable(functions, 'universalId-createRecoverySession'), []);
@@ -58,7 +57,7 @@ export default function RecoverPage() {
 
     try {
         const result = await createRecoverySessionCallable({ phoneNumber });
-        const data = result.data as { sessionId: string; recoveryQrValue: string; userIdToRecover: string };
+        const data = result.data as { sessionId: string; recoveryQrValue: string; };
         setRecoverySession(data);
         setRecoveryStep('display_qr');
     } catch (error: any) {
@@ -108,19 +107,27 @@ export default function RecoverPage() {
         try {
           const result = await completeRecoveryCallable({ sessionId: recoverySession.sessionId });
           const data = result.data as { success: boolean; customToken?: string };
+          
           if (data.success && data.customToken) {
             clearInterval(intervalId); // Stop polling
             
-            // This part is simplified. A real implementation would securely
-            // use this custom token to sign the user in.
-            // For this demo, we'll simulate it by redirecting with a success flag.
-            const userProfile = await getProfileByIdFromDB(recoverySession.userIdToRecover);
+            // Sign in with the custom token
+            await signInWithCustomToken(auth, data.customToken);
+            
+            // Call the session creation API endpoint
+            const idToken = await auth.currentUser?.getIdToken();
+            await fetch('/api/auth/session', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ idToken }),
+            });
+
             toast({
               title: "Recovery Complete!",
-              description: `You have successfully recovered the account for ${userProfile?.displayName}.`,
+              description: `You have successfully recovered your account.`,
             });
             setRecoveryStep('success');
-            // In a real app: await signInWithCustomToken(auth, data.customToken); router.push('/');
+            router.push('/');
           }
         } catch (error) {
           // It's normal to get errors here while polling before confirmation.
@@ -130,7 +137,7 @@ export default function RecoverPage() {
     }
 
     return () => clearInterval(intervalId); // Cleanup on unmount or step change
-  }, [recoveryStep, recoverySession, completeRecoveryCallable, toast]);
+  }, [recoveryStep, recoverySession, completeRecoveryCallable, toast, router]);
 
 
   const handleScanFailure = (error: string) => {
