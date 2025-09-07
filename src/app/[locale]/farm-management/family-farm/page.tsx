@@ -66,7 +66,6 @@ export default function FamilyFarmPage() {
             <Image 
                 src="https://firebasestorage.googleapis.com/v0/b/damdoh-923bf.appspot.com/o/images%2F200sqm-farm-model-diagram.png?alt=media&token=65b4f9a4-d53b-49e3-8d74-3566d5f231a7" 
                 alt="200sqm Integrated Family Farm Model Diagram"
-                alt={t('diagramCaption')}
                 width={800}
                 height={500}
                 className="rounded-lg border shadow-md object-contain mx-auto"
