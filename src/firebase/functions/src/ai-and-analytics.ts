@@ -1,6 +1,9 @@
 
 
 import * as functions from "firebase-functions";
+import {
+  _internalMatchFundingOpportunities,
+} from "./financial-services";
 
 /**
  * Checks if the user is authenticated.
@@ -75,3 +78,4 @@ export async function _internalProcessReportData(data: { reportType: string; dat
     ],
   };
 }
+
