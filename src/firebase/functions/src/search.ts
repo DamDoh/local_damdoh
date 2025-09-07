@@ -1,7 +1,8 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { geohashForLocation } from "geofire-common";
+import { geohashForLocation, geohashQueryBounds, distanceBetween } from "geofire-common";
 
 const db = admin.firestore();
 
@@ -139,16 +140,58 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     minPrice,
     maxPrice,
     perUnit,
+    lat,
+    lng,
+    radiusInKm = 50, // Default to 50km radius
     limit: queryLimit = 50,
   } = data;
 
   if (!Array.isArray(mainKeywords)) {
       throw new functions.https.HttpsError("invalid-argument", "mainKeywords must be an array.");
   }
+  
+  let query: admin.firestore.Query = db.collection("search_index");
+
+  // --- Geospatial Querying ---
+  if (typeof lat === 'number' && typeof lng === 'number') {
+    const center = [lat, lng];
+    const radiusInM = radiusInKm * 1000;
+    const bounds = geohashQueryBounds(center, radiusInM);
+    
+    const geohashPromises = bounds.map(b => {
+      const q = query.orderBy('geohash').startAt(b[0]).endAt(b[1]);
+      return q.get();
+    });
+
+    try {
+      const snapshots = await Promise.all(geohashPromises);
+      const matchingDocs: admin.firestore.QueryDocumentSnapshot[] = [];
+      for (const snap of snapshots) {
+        for (const doc of snap.docs) {
+          const docLocation = doc.data().location;
+          if (docLocation?.lat && docLocation?.lng) {
+            const distanceInKm = distanceBetween([docLocation.lat, docLocation.lng], center);
+            if (distanceInKm <= radiusInKm) {
+              matchingDocs.push(doc);
+            }
+          }
+        }
+      }
+      // If we did a geo-query, we start with this filtered set of documents.
+      // This is less efficient than combining in one query, but a limitation of Firestore.
+      // We will perform other filters on this smaller set in memory.
+      const ids = matchingDocs.map(d => d.id);
+      if (ids.length === 0) return []; // No results found nearby
+      query = db.collection('search_index').where(admin.firestore.FieldPath.documentId(), 'in', ids);
+      
+    } catch(e) {
+       console.error("Geospatial query failed", e);
+       // Continue without geo-filtering
+    }
+  }
+
 
   try {
-    let query: admin.firestore.Query = db.collection("search_index");
-
     // --- Standard Filter Application ---
     const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category')?.value;
     const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType')?.value;
@@ -159,7 +202,7 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     if (categoryFilter) {
         query = query.where('tags', 'array-contains', categoryFilter);
     }
-    if (identifiedLocation) {
+    if (identifiedLocation && !(typeof lat === 'number' && typeof lng === 'number')) {
         query = query.where("location.address", ">=", identifiedLocation);
         query = query.where("location.address", "<=", identifiedLocation + '\uf8ff');
     }
@@ -213,6 +256,3 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     throw new functions.https.HttpsError("internal", "An unexpected error occurred while searching.");
   }
 });
-
-
-    
