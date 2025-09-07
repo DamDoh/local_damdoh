@@ -58,5 +58,3 @@ export const getEquipmentSupplierDashboardData = functions.https.onCall(
     }
   }
 );
-
-    
