@@ -6,8 +6,10 @@ import type {
     AdminDashboardData,
     AdminActivity,
     FarmerDashboardData,
+    CooperativeDashboardData,
     BuyerDashboardData,
     RegulatorDashboardData,
+    LogisticsDashboardData,
     FiDashboardData,
     FieldAgentDashboardData,
     InputSupplierDashboardData,
@@ -26,7 +28,6 @@ import type {
     WasteManagementDashboardData,
     PackagingSupplierDashboardData,
     FinancialApplication,
-    AgriTechInnovatorDashboardData,
     FarmerDashboardAlert,
     OperationsDashboardData,
     FinancialProduct,
@@ -270,3 +271,4 @@ export const getCertificationBodyDashboardData = functions.https.onCall(
     };
   }
 );
+
