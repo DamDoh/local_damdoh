@@ -6,31 +6,14 @@ import type {
     AdminDashboardData,
     AdminActivity,
     FarmerDashboardData,
-    CooperativeDashboardData,
-    BuyerDashboardData,
     RegulatorDashboardData,
-    FiDashboardData,
     FieldAgentDashboardData,
-    InputSupplierDashboardData,
     AgroExportDashboardData,
     ProcessingUnitDashboardData,
     WarehouseDashboardData,
     QaDashboardData,
-    CertificationBodyDashboardData,
-    ResearcherDashboardData,
-    AgronomistDashboardData,
-    AgroTourismDashboardData,
-    InsuranceProviderDashboardData,
-    EnergyProviderDashboardData,
-    CrowdfunderDashboardData,
-    EquipmentSupplierDashboardData,
-    WasteManagementDashboardData,
-    PackagingSupplierDashboardData,
-    FinancialApplication,
-    AgriTechInnovatorDashboardData,
     FarmerDashboardAlert,
     OperationsDashboardData,
-    FinancialProduct,
     KnfBatch
 } from "@/lib/types";
 
@@ -173,6 +156,7 @@ export const getFarmerDashboardData = functions.https.onCall(
 );
 
 
+
 // =================================================================
 // DASHBOARDS WITH PARTIAL OR MOCK DATA
 // =================================================================
@@ -239,6 +223,42 @@ export const getFieldAgentDashboardData = functions.https.onCall(
   }
 );
 
+
+export const getAgroExportDashboardData = functions.https.onCall(
+  async (data, context): Promise<AgroExportDashboardData> => {
+    checkAuth(context);
+     try {
+        const vtisForExportPromise = db.collection('vti_registry')
+            .where('metadata.forExport', '==', true)
+            // Ideally, we'd have a `documentationStatus` field to query
+            .limit(5)
+            .get();
+
+        const [vtisSnapshot] = await Promise.all([vtisForExportPromise]);
+
+        const pendingCustomsDocs = vtisSnapshot.docs.map(doc => ({
+            id: doc.id,
+            vtiLink: `/traceability/batches/${doc.id}`,
+            destination: doc.data().metadata.destinationCountry || 'Unknown',
+            status: 'Awaiting Phytosanitary Certificate' // Mock status
+        }));
+
+        return {
+            pendingCustomsDocs,
+            // These remain mocked
+            trackedShipments: [
+                { id: 'ship1', status: 'In Transit', location: 'Indian Ocean', carrier: 'Maersk' }
+            ],
+            complianceAlerts: [
+                { id: 'ca1', content: 'New packaging regulations for EU effective Aug 1.', actionLink: '#' }
+            ]
+        };
+     } catch (error) {
+        console.error("Error fetching agro-export dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
+  }
+);
 
 export const getProcessingUnitDashboardData = functions.https.onCall(
   async (data, context): Promise<ProcessingUnitDashboardData> => {
@@ -367,3 +387,84 @@ export const getOperationsDashboardData = functions.https.onCall(
     };
   }
 );
+
+
+export const getAdminDashboardData = functions.https.onCall(async (data, context): Promise<AdminDashboardData> => {
+    // Ideally, you'd add an admin role check here.
+    checkAuth(context);
+    
+    try {
+        const usersPromise = db.collection('users').get();
+        const farmsPromise = db.collection('farms').get();
+        const listingsPromise = db.collection('marketplaceItems').get();
+        const pendingApprovalsPromise = db.collection('marketplaceItems').where('status', '==', 'pending_approval').get();
+
+        const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+        const newUsersQuery = db.collection('users').where('createdAt', '>=', sevenDaysAgo).get();
+
+        const [usersSnap, farmsSnap, listingsSnap, newUsersSnap, pendingApprovalsSnap] = await Promise.all([
+            usersPromise,
+            farmsPromise,
+            listingsPromise,
+            newUsersQuery,
+            pendingApprovalsPromise,
+        ]);
+
+        return {
+            totalUsers: usersSnap.size,
+            totalFarms: farmsSnap.size,
+            totalListings: listingsSnap.size,
+            pendingApprovals: pendingApprovalsSnap.size,
+            newUsersLastWeek: newUsersSnap.size,
+        };
+    } catch (error) {
+        console.error("Error fetching admin dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch admin dashboard data.");
+    }
+});
+
+
+export const getAdminRecentActivity = functions.https.onCall(async (data, context): Promise<{ activity: AdminActivity[] }> => {
+    checkAuth(context);
+    try {
+        const newUsersPromise = db.collection('users').orderBy('createdAt', 'desc').limit(5).get();
+        const newListingsPromise = db.collection('marketplaceItems').orderBy('createdAt', 'desc').limit(5).get();
+
+        const [usersSnap, listingsSnap] = await Promise.all([newUsersPromise, newListingsPromise]);
+        
+        const activities: AdminActivity[] = [];
+
+        usersSnap.forEach(doc => {
+            const user = doc.data();
+            activities.push({
+                id: doc.id,
+                type: 'New User',
+                primaryInfo: user.displayName,
+                secondaryInfo: user.primaryRole,
+                timestamp: (user.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+                link: `/profiles/${doc.id}`,
+                avatarUrl: user.avatarUrl,
+            });
+        });
+
+        listingsSnap.forEach(doc => {
+            const listing = doc.data();
+            activities.push({
+                id: doc.id,
+                type: 'New Listing',
+                primaryInfo: listing.name,
+                secondaryInfo: listing.category,
+                timestamp: (listing.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+                link: `/marketplace/${doc.id}`,
+                avatarUrl: listing.imageUrl,
+            });
+        });
+        
+        activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
+        return { activity: activities.slice(0, 10) };
+    } catch (error) {
+         console.error("Error fetching admin recent activity:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
+    }
+});
