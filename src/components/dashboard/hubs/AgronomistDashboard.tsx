@@ -16,8 +16,6 @@ import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Cell } from "recharts";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart";
 import { useTranslations } from 'next-intl';
 
-const functions = getFunctions(firebaseApp);
-
 const StatCard = ({ title, value, icon }: { title: string, value: string | number, icon: React.ReactNode }) => (
     <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -36,6 +34,7 @@ export const AgronomistDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const functions = useMemo(() => getFunctions(firebaseApp), []);
   const getAgronomistDashboardDataCallable = useMemo(() => httpsCallable<void, AgronomistDashboardData>(functions, 'dashboardData-getAgronomistDashboardData'), [functions]);
 
   useEffect(() => {

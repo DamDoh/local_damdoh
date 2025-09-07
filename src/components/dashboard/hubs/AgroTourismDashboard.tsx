@@ -21,7 +21,7 @@ export const AgroTourismDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const functions = getFunctions(firebaseApp);
+  const functions = useMemo(() => getFunctions(firebaseApp), []);
   const getAgroTourismDashboardDataCallable = useMemo(() => httpsCallable<void, AgroTourismDashboardData>(functions, 'dashboardData-getAgroTourismDashboardData'), [functions]);
 
   useEffect(() => {
