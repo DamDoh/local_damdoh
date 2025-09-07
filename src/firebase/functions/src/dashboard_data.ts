@@ -163,6 +163,68 @@ export const getRegulatorDashboardData = functions.https.onCall(
 );
 
 
+export const getFieldAgentDashboardData = functions.https.onCall(
+  async (data, context): Promise<FieldAgentDashboardData> => {
+    const agentId = checkAuth(context);
+    
+    try {
+        const agentDoc = await db.collection('users').doc(agentId).get();
+        if (!agentDoc.exists) {
+            throw new functions.https.HttpsError('not-found', 'Agent profile not found.');
+        }
+        
+        const agentData = agentDoc.data();
+        // Assuming assigned farmers are stored in profileData.assignedFarmers
+        const assignedFarmerIds = agentData?.profileData?.assignedFarmers || [];
+        
+        let assignedFarmers: FieldAgentDashboardData['assignedFarmers'] = [];
+
+        if (assignedFarmerIds.length > 0) {
+            // Firestore 'in' query is limited to 30 items per query.
+            // For a production app, this would need chunking if an agent has > 30 farmers.
+            const farmersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', assignedFarmerIds.slice(0, 30)).get();
+            
+            assignedFarmers = farmersSnapshot.docs.map(doc => {
+                const farmerData = doc.data();
+                // Mocking lastVisit and issues for now
+                return {
+                    id: doc.id,
+                    name: farmerData.displayName || 'Unknown Farmer',
+                    lastVisit: new Date(Date.now() - Math.random() * 30 * 86400000).toISOString(),
+                    issues: Math.floor(Math.random() * 3), // Random number of issues
+                    actionLink: `/profiles/${doc.id}`
+                };
+            });
+        }
+        
+        // Keep other parts mocked for this iteration
+        const portfolioHealth = {
+            overallScore: 85,
+            alerts: ['Pest alert in North region'],
+            actionLink: '#'
+        };
+        const pendingReports = 3;
+        const dataVerificationTasks = {
+            count: 8,
+            description: 'Verify harvest logs for maize',
+            actionLink: '#'
+        };
+
+        return {
+            assignedFarmers,
+            portfolioHealth,
+            pendingReports,
+            dataVerificationTasks
+        };
+        
+    } catch (error) {
+        console.error("Error fetching field agent dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data for field agent.");
+    }
+  }
+);
+
+
 export const getInputSupplierDashboardData = functions.https.onCall(
   async (data, context): Promise<InputSupplierDashboardData> => {
     const supplierId = checkAuth(context);
@@ -239,6 +301,7 @@ export const getAgroExportDashboardData = functions.https.onCall(
   }
 );
 
+
 export const getQaDashboardData = functions.https.onCall(
   (data, context): QaDashboardData => {
     checkAuth(context);
@@ -272,3 +335,20 @@ export const getCertificationBodyDashboardData = functions.https.onCall(
   }
 );
 
+export const getWasteManagementDashboardData = functions.https.onCall(
+  (data, context): WasteManagementDashboardData => {
+    checkAuth(context);
+    return {
+      incomingWasteStreams: [
+        { id: 'waste1', type: 'Maize Stover', source: 'Green Valley Farms', quantity: '10 tons' }
+      ],
+      compostBatches: [
+        { id: 'comp1', status: 'Active', estimatedCompletion: new Date(Date.now() + 86400000 * 30).toISOString() },
+        { id: 'comp2', status: 'Curing', estimatedCompletion: new Date(Date.now() + 86400000 * 10).toISOString() },
+      ],
+      finishedProductInventory: [
+        { product: 'Grade A Compost', quantity: '25 tons', actionLink: '#' }
+      ]
+    };
+  }
+);
