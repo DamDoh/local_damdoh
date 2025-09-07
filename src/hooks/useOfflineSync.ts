@@ -76,7 +76,7 @@ export function useOfflineSync() {
       
       syncChanges();
     }
-  }, [isOnline, pendingActionCount, isSyncing, toast, t]);
+  }, [isOnline, pendingActionCount, isSyncing, toast, t, functions]);
   
   // Exposed function to add an action to the queue
   const addActionToQueue = useCallback(async (actionPayload: any) => {

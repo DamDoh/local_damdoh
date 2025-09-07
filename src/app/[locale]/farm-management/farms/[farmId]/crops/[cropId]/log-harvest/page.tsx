@@ -26,8 +26,8 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
-import { getFunctions, httpsCallable, HttpsError } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { httpsCallable } from 'firebase/functions';
+import { functions } from '@/lib/firebase/client';
 import { useTranslations } from "next-intl";
 import { useOfflineSync } from '@/hooks/useOfflineSync';
 
@@ -47,7 +47,6 @@ export default function LogHarvestPage() {
   const { user } = useAuth();
   const { isOnline, addActionToQueue } = useOfflineSync();
 
-  const functions = getFunctions(firebaseApp);
   const handleHarvestEvent = httpsCallable(functions, 'traceability-handleHarvestEvent');
 
   const form = useForm<CreateHarvestValues>({
