@@ -33,7 +33,7 @@ export const getInputSupplierDashboardData = functions.https.onCall(
 
       // 2. Keep other sections as mock data for now
       const demandForecast = [
-        { id: 'df1', region: 'Rift Valley', product: 'DAP Fertilizer', trend: 'High', reason: 'Planting season approaching' }
+        { id: 'df1', region: 'Rift Valley', product: 'DAP Fertilizer', trend: 'High' as 'High' | 'Steady' | 'Low', reason: 'Planting season approaching' }
       ];
       const productPerformance = [
         { id: 'pp1', productName: 'Eco-Fertilizer Plus', rating: 4.5, feedback: 'Great results on maize crops.', link: '#' }
@@ -51,5 +51,3 @@ export const getInputSupplierDashboardData = functions.https.onCall(
     }
   }
 );
-
-    
