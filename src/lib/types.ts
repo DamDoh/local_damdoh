@@ -11,6 +11,7 @@ import type {
     InsuranceProductSchema,
     InsuranceApplicationSchema,
     FinancialProductSchema,
+    FinancialApplicationSchema,
     SmartSearchInterpretationSchema,
     MarketplaceRecommendationInputSchema,
     MarketplaceRecommendationOutputSchema,
@@ -68,7 +69,6 @@ import type {
     SustainabilityDashboardDataSchema,
     WarehouseDashboardDataSchema,
     WasteManagementDashboardDataSchema,
-    FinancialApplicationSchema,
     createFarmSchema,
     createCropSchema,
     GroupPostReplySchema,
@@ -181,3 +181,4 @@ export type DiagnoseCropInput = z.infer<typeof DiagnoseCropInputSchema>;
 export type DiagnoseCropOutput = z.infer<typeof DiagnoseCropOutputSchema>;
 export type FarmingAssistantInput = z.infer<typeof FarmingAssistantInputSchema>;
 export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema>;
+
