@@ -14,14 +14,13 @@ import { CheckCircle, AlertTriangle, FileText } from 'lucide-react';
 import type { QaDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
-const functions = getFunctions(firebaseApp);
-
 export const QaDashboard = () => {
   const t = useTranslations('QaDashboard');
   const [dashboardData, setDashboardData] = useState<QaDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  
+  const functions = useMemo(() => getFunctions(firebaseApp), []);
   const getQaDashboardDataCallable = useMemo(() => httpsCallable<void, QaDashboardData>(functions, 'dashboardData-getQaDashboardData'), [functions]);
 
   useEffect(() => {
