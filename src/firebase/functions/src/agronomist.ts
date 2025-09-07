@@ -28,7 +28,7 @@ export const getAgronomistDashboardData = functions.https.onCall(
             return {
                 id: doc.id,
                 title: article.title_en || article.title_km || "Untitled Article",
-                status: 'Published' as const, // Placeholder status
+                status: article.status || 'Draft',
             };
         });
 
