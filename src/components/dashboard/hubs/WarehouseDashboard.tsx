@@ -19,7 +19,7 @@ export const WarehouseDashboard = () => {
     const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
-    const getWarehouseData = useMemo(() => httpsCallable(functions, 'dashboardData-getWarehouseDashboardData'), [functions]);
+    const getWarehouseData = useMemo(() => httpsCallable(functions, 'processingLogistics-getWarehouseDashboardData'), [functions]);
 
     useEffect(() => {
         const fetchData = async () => {
