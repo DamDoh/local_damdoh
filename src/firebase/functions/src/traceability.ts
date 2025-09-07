@@ -1,5 +1,4 @@
 
-
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
@@ -165,7 +164,8 @@ export const handleHarvestEvent = functions.https.onCall(
       );
     }
 
-    const {farmFieldId, cropType, yieldKg, qualityGrade, actorVtiId, geoLocation, pricePerUnit, unit, notes} =
+    // Combine all potential payload fields into one object
+    const {farmFieldId, cropType, actorVtiId, geoLocation, ...payload} =
       data;
 
     if (!farmFieldId || typeof farmFieldId !== "string") {
@@ -173,12 +173,6 @@ export const handleHarvestEvent = functions.https.onCall(
     }
     if (!cropType || typeof cropType !== "string") {
       throw new functions.https.HttpsError("invalid-argument", "'cropType' is required.");
-    }
-    if (yieldKg !== undefined && typeof yieldKg !== "number") {
-      throw new functions.https.HttpsError("invalid-argument", "'yieldKg' must be a number.");
-    }
-    if (qualityGrade !== undefined && typeof qualityGrade !== "string") {
-      throw new functions.https.HttpsError("invalid-argument", "'qualityGrade' must be a string.");
     }
     if (!actorVtiId || typeof actorVtiId !== "string") {
       throw new functions.https.HttpsError("invalid-argument", "'actorVtiId' is required.");
@@ -191,8 +185,8 @@ export const handleHarvestEvent = functions.https.onCall(
           type: "farm_batch",
           metadata: {
             cropType,
-            initialYieldKg: yieldKg,
-            initialQualityGrade: qualityGrade,
+            initialYieldKg: payload.yieldKg,
+            initialQualityGrade: payload.qualityGrade,
             farmFieldId: farmFieldId, // explicitly add farmFieldId to metadata
           },
         },
@@ -207,7 +201,7 @@ export const handleHarvestEvent = functions.https.onCall(
           eventType: "HARVESTED",
           actorRef: actorVtiId,
           geoLocation: geoLocation || null,
-          payload: {yieldKg, qualityGrade, pricePerUnit, unit, notes},
+          payload: payload,
           farmFieldId: farmFieldId, // Keep for cross-reference
         },
       );

@@ -82,5 +82,3 @@ export const geospatial = geospatialFunctions;
 
 // Export the Express app as a Cloud Function for Cloud Run services
 export const api = functions.https.onRequest(expressApp);
-
-    

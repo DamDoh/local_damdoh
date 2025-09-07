@@ -27,7 +27,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { createObservationSchema, type CreateObservationValues } from "@/lib/form-schemas";
-import { ArrowLeft, Save, CalendarIcon, FileText, Loader2, NotebookPen, ImageUp, Eye, Sparkles } from "lucide-react";
+import { ArrowLeft, Save, CalendarIcon, FileText, Loader2, NotebookPen, ImageUp, Eye, Sparkles, WifiOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useMemo } from "react";
 import { format } from "date-fns";
@@ -38,6 +38,8 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { uploadFileAndGetURL } from '@/lib/storage-utils';
 import { useTranslations, useLocale } from "next-intl";
 import { getObservationTypes } from "@/lib/i18n-constants";
+import { useOfflineSync } from "@/hooks/useOfflineSync";
+import { askFarmingAssistant } from "@/lib/server-actions";
 
 export default function LogObservationPage() {
   const t = useTranslations('farmManagement.logObservation');
@@ -49,8 +51,10 @@ export default function LogObservationPage() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
+  const locale = useLocale();
   const functions = getFunctions(firebaseApp);
-  const handleObservationEvent = httpsCallable(functions, 'handleObservationEvent');
+  const { isOnline, addActionToQueue } = useOfflineSync();
+  const handleObservationEvent = httpsCallable(functions, 'traceability-handleObservationEvent');
 
   const form = useForm<CreateObservationValues>({
     resolver: zodResolver(createObservationSchema),
@@ -75,13 +79,12 @@ export default function LogObservationPage() {
     }
 
     setIsSubmitting(true);
-    let mediaUrls: string[] = [];
+    let imageUrl: string | undefined = undefined;
 
     try {
       if (data.imageFile) {
         toast({ title: t('toast.uploading'), description: t('toast.uploadingDescription') });
-        const imageUrl = await uploadFileAndGetURL(data.imageFile, `observations/${cropId}`);
-        mediaUrls.push(imageUrl);
+        imageUrl = await uploadFileAndGetURL(data.imageFile, `observations/${cropId}`);
         toast({ title: t('toast.aiAnalyzing'), description: t('toast.aiDescription') });
       }
 
@@ -90,18 +93,25 @@ export default function LogObservationPage() {
         observationType: data.observationType,
         observationDate: data.observationDate.toISOString(),
         details: data.details,
-        mediaUrls: mediaUrls, // Pass the URL to the backend
-        geoLocation: null, 
+        mediaUrls: imageUrl ? [imageUrl] : [],
+        actorVtiId: user.uid,
+        geoLocation: null,
       };
 
-      await handleObservationEvent(payload);
+      if (isOnline) {
+        await handleObservationEvent(payload);
+        toast({ title: t('toast.success'), description: t('toast.successDescription') });
+        router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);
+      } else {
+        await addActionToQueue({
+            operation: 'handleObservationEvent',
+            collectionPath: 'traceability_events',
+            documentId: `observation-${Date.now()}`,
+            payload: payload,
+        });
+         router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);
+      }
 
-      toast({
-        title: t('toast.success'),
-        description: t('toast.successDescription'),
-      });
-
-      router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);
     } catch (error: any) {
       console.error("Error logging observation:", error);
       toast({
@@ -245,13 +255,14 @@ export default function LogObservationPage() {
                 />
 
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
-                {isSubmitting ? (
-                    <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('processingButton')}
-                    </>
-                ) : (
-                    <><Save className="mr-2 h-4 w-4" /> {t('saveButton')}</>
-                )}
+                 {isSubmitting ? (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                 ) : isOnline ? (
+                    <Save className="mr-2 h-4 w-4" />
+                 ) : (
+                    <WifiOff className="mr-2 h-4 w-4" />
+                 )}
+                 {isSubmitting ? t('processingButton') : (isOnline ? t('saveButton') : t('saveOfflineButton'))}
               </Button>
             </form>
           </Form>

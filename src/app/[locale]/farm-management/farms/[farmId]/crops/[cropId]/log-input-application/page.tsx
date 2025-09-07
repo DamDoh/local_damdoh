@@ -4,7 +4,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft, Loader2, Save, CalendarIcon, Scale, Beaker, FlaskConical, CircleDot, List, Text } from "lucide-react";
+import { ArrowLeft, Loader2, Save, CalendarIcon, Scale, Beaker, FlaskConical, CircleDot, List, Text, WifiOff, Droplets } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -23,6 +23,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { format } from "date-fns";
 import { cn } from '@/lib/utils';
 import type { KnfBatch } from '@/lib/types';
+import { useOfflineSync } from '@/hooks/useOfflineSync';
 
 export default function LogInputApplicationPage() {
   const t = useTranslations('farmManagement.logInput');
@@ -37,6 +38,8 @@ export default function LogInputApplicationPage() {
   const functions = getFunctions(firebaseApp);
   const handleInputApplicationEvent = useMemo(() => httpsCallable(functions, 'traceability-handleInputApplicationEvent'), [functions]);
   const getUserKnfBatchesCallable = useMemo(() => httpsCallable(functions, 'farmManagement-getUserKnfBatches'), [functions]);
+  
+  const { isOnline, addActionToQueue } = useOfflineSync();
 
   const [knfBatches, setKnfBatches] = useState<KnfBatch[]>([]);
 
@@ -77,18 +80,30 @@ export default function LogInputApplicationPage() {
 
     setIsSubmitting(true);
 
+    const payload = {
+      farmFieldId: cropId,
+      inputId: data.inputId,
+      applicationDate: data.applicationDate.toISOString(),
+      quantity: data.quantity,
+      unit: data.unit,
+      method: data.method,
+      actorVtiId: user.uid,
+      geoLocation: null,
+    };
+    
+    if (!isOnline) {
+      await addActionToQueue({
+        operation: 'handleInputApplicationEvent',
+        collectionPath: 'traceability_events',
+        documentId: `input-${Date.now()}`,
+        payload: payload
+      });
+      router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      const payload = {
-        farmFieldId: cropId,
-        inputId: data.inputId,
-        applicationDate: data.applicationDate.toISOString(),
-        quantity: data.quantity,
-        unit: data.unit,
-        method: data.method,
-        actorVtiId: user.uid,
-        geoLocation: null,
-      };
-      
       await handleInputApplicationEvent(payload);
 
       toast({
@@ -250,12 +265,11 @@ export default function LogInputApplicationPage() {
               />
 
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
-                {isSubmitting ? (
-                    <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('savingButton')}
-                    </>
-                ) : (
+                {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {isOnline ? (
                     <><Save className="mr-2 h-4 w-4" /> {t('saveButton')}</>
+                ) : (
+                    <><WifiOff className="mr-2 h-4 w-4" /> {t('saveOfflineButton')}</>
                 )}
               </Button>
             </form>

@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { stakeholderProfileSchemas } from "@/lib/schemas"; // Corrected import
 import { deleteCollectionByPath, getRole } from './utils';
 import { randomBytes } from 'crypto';
+import type { UserProfile } from "./types";
 
 const db = admin.firestore();
 
@@ -203,8 +204,9 @@ export const upsertStakeholderProfile = functions.https.onCall(
 
 /**
  * Fetches a user's profile from Firestore by their ID.
- * @param {string} uid The user's ID.
- * @return {Promise<any | null>} The user's profile data or null if not found.
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<any | null>} A promise that resolves with the user's profile data or null if not found.
  */
 export const getProfileByIdFromDB = functions.https.onCall(async (data, context): Promise<any | null> => {
     const { uid } = data;
@@ -236,7 +238,9 @@ export const getProfileByIdFromDB = functions.https.onCall(async (data, context)
 /**
  * Fetches all user profiles from the database.
  * NOTE: This is an admin-level function and should be protected by security rules.
- * @return {Promise<any[]>} A promise that resolves with an array of all user profiles.
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{profiles: any[]}>} A promise that resolves with an array of all user profiles.
  */
 export const getAllProfilesFromDB = functions.https.onCall(async (data, context) => {
     checkAuth(context);
@@ -315,7 +319,7 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
         }
 
         const scannedUserDoc = querySnapshot.docs[0];
-        const scannedUserData = scannedUserDoc.data();
+        const scannedUserData = scannedUserDoc.data() as UserProfile;
         
         // Get the role of the user who is doing the scanning
         const scannerRole = await getRole(scannerUid);
@@ -332,9 +336,9 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
 
         // Here, we implement the Role-Based Access Control (RBAC) logic.
         if (scannerUid === scannedUserDoc.id) {
-            return { ...publicProfile, phoneNumber: scannedUserData.phoneNumber, email: scannedUserData.email };
+            return { ...publicProfile, phoneNumber: scannedUserData.contactInfo?.phone, email: scannedUserData.email };
         } else if (scannerRole === 'Field Agent/Agronomist (DamDoh Internal)' || scannerRole === 'Admin') {
-            return { ...publicProfile, phoneNumber: scannedUserData.phoneNumber };
+            return { ...publicProfile, phoneNumber: scannedUserData.contactInfo?.phone };
         } else {
             return publicProfile;
         }
@@ -373,14 +377,14 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
 
     try {
         const usersRef = db.collection("users");
-        const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
+        const querySnapshot = await usersRef.where("contactInfo.phone", "==", phoneNumber).limit(1).get();
 
         if (querySnapshot.empty) {
             throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
         }
 
         const foundUserDoc = querySnapshot.docs[0];
-        const foundUserData = foundUserDoc.data();
+        const foundUserData = foundUserDoc.data() as UserProfile;
 
         return {
             uid: foundUserDoc.id,
@@ -389,7 +393,7 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
             primaryRole: foundUserData.primaryRole,
             avatarUrl: foundUserData.avatarUrl || null,
             location: foundUserData.location || null,
-            phoneNumber: foundUserData.phoneNumber,
+            phoneNumber: foundUserData.contactInfo?.phone,
         };
         
     } catch (error) {
@@ -410,7 +414,7 @@ export const createRecoverySession = functions.https.onCall(async (data, context
     }
     
     const usersRef = db.collection("users");
-    const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
+    const querySnapshot = await usersRef.where("contactInfo.phone", "==", phoneNumber).limit(1).get();
 
     if (querySnapshot.empty) {
         throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);

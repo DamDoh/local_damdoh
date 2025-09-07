@@ -2091,7 +2091,7 @@
       "reason": "Reason",
       "inspectedAt": "Inspected At"
     },
-    "performInspectionButton": "Perform Inspection",
+    "performInspectionButton": "form Inspection",
     "noPendingInspections": "No pending inspections at this time.",
     "resultsTitle": "Recent Quality Issues",
     "resultsDescription": "The latest flagged quality issues that may require action.",
