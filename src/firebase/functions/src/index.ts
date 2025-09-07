@@ -41,6 +41,7 @@ import * as geospatialFunctions from "./geospatial";
 import * as groupFunctions from "./groups";
 import * as inputSupplierFunctions from "./input-supplier";
 import * as insuranceFunctions from "./insurance";
+import * as insuranceProviderFunctions from "./insurance-provider";
 import * as knowledgeHubFunctions from "./knowledge-hub";
 import * as laborFunctions from "./labor";
 import * as loggingFunctions from "./logging";
@@ -84,6 +85,7 @@ export const geospatial = geospatialFunctions;
 export const groups = groupFunctions;
 export const inputSupplier = inputSupplierFunctions;
 export const insurance = insuranceFunctions;
+export const insuranceProvider = insuranceProviderFunctions;
 export const knowledgeHub = knowledgeHubFunctions;
 export const labor = laborFunctions;
 export const logging = loggingFunctions;
@@ -105,5 +107,7 @@ export const utilityFunctions = utils;
 
 // Export the Express app as a Cloud Function for Cloud Run services
 export const api = functions.https.onRequest(expressApp);
+
+    
 
     

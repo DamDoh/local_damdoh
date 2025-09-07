@@ -23,7 +23,7 @@ export default function InsuranceHubPage() {
     const [isLoading, setIsLoading] = useState(true);
 
     const functions = getFunctions(firebaseApp);
-    const getProductsCallable = useMemo(() => httpsCallable(functions, 'getAvailableInsuranceProducts'), [functions]);
+    const getProductsCallable = useMemo(() => httpsCallable(functions, 'insurance-getAvailableInsuranceProducts'), [functions]);
     
     useEffect(() => {
         const fetchProducts = async () => {
@@ -88,3 +88,5 @@ export default function InsuranceHubPage() {
 }
 
   
+
+    

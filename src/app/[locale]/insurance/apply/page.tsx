@@ -41,9 +41,9 @@ export default function ApplyForInsurancePage() {
     const [isSuccess, setIsSuccess] = useState(false);
     
     const functions = getFunctions(firebaseApp);
-    const getUserFarmsCallable = useMemo(() => httpsCallable(functions, 'getUserFarms'), [functions]);
-    const getProductDetailsCallable = useMemo(() => httpsCallable(functions, 'getInsuranceProductDetails'), [functions]);
-    const submitApplicationCallable = useMemo(() => httpsCallable(functions, 'submitInsuranceApplication'), [functions]);
+    const getUserFarmsCallable = useMemo(() => httpsCallable(functions, 'farmManagement-getUserFarms'), [functions]);
+    const getProductDetailsCallable = useMemo(() => httpsCallable(functions, 'insurance-getInsuranceProductDetails'), [functions]);
+    const submitApplicationCallable = useMemo(() => httpsCallable(functions, 'insurance-submitInsuranceApplication'), [functions]);
     
     const productId = searchParams.get('productId');
 
@@ -170,3 +170,5 @@ export default function ApplyForInsurancePage() {
 }
 
   
+
+    

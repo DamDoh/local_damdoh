@@ -51,7 +51,7 @@ export default function InsuranceProductDetailPage() {
     const [isLoading, setIsLoading] = useState(true);
 
     const functions = getFunctions(firebaseApp);
-    const getProductDetailsCallable = useMemo(() => httpsCallable(functions, 'getInsuranceProductDetails'), []);
+    const getProductDetailsCallable = useMemo(() => httpsCallable(functions, 'insurance-getInsuranceProductDetails'), [functions]);
 
     useEffect(() => {
         if (!productId) return;
@@ -123,3 +123,5 @@ export default function InsuranceProductDetailPage() {
 }
 
   
+
+    
