@@ -2,8 +2,8 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import { useParams, useRouter } from "@/navigation";
-import Link from "next/link";
+import { useParams } from 'next/navigation'; // Corrected import
+import { useRouter, Link } from "@/navigation";
 import Image from "next/image";
 import QRCode from 'qrcode.react';
 
@@ -208,7 +208,7 @@ export default function ProfileDetailPage() {
             data-ai-hint={profile.primaryRole ? `${profile.primaryRole.toLowerCase()} agriculture background` : "agriculture background"} />
           <div className="absolute bottom-[-50px] left-6">
             <Avatar className="h-32 w-32 border-4 border-background shadow-lg">
-              <AvatarImage src={profile.avatarUrl} alt={profile.displayName} data-ai-hint="profile business food" />
+              <AvatarImage src={profile.avatarUrl ?? undefined} alt={profile.displayName} data-ai-hint="profile business food" />
               <AvatarFallback className="text-4xl">{profile.displayName.substring(0,1).toUpperCase()}</AvatarFallback>
             </Avatar>
           </div>
@@ -368,5 +368,3 @@ export default function ProfileDetailPage() {
     </div>
   );
 }
-
-  
