@@ -3,8 +3,6 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
-    AdminDashboardData,
-    AdminActivity,
     FarmerDashboardData,
     CooperativeDashboardData,
     BuyerDashboardData,
@@ -13,7 +11,6 @@ import type {
     FieldAgentDashboardData,
     EnergyProviderDashboardData,
     CrowdfunderDashboardData,
-    WasteManagementDashboardData,
     AgriTechInnovatorDashboardData,
     FinancialApplication,
     FarmerDashboardAlert,
@@ -158,7 +155,6 @@ export const getFarmerDashboardData = functions.https.onCall(
     }
   },
 );
-
 
 export const getFiDashboardData = functions.https.onCall(
   async (data, context): Promise<FiDashboardData> => {
@@ -478,6 +474,7 @@ export const getFieldAgentDashboardData = functions.https.onCall(
     }
   }
 );
+
 
 export const getEnergyProviderDashboardData = functions.https.onCall(
   (data, context): EnergyProviderDashboardData => {
