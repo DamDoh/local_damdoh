@@ -24,6 +24,7 @@ import { Loader2 } from 'lucide-react';
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { useAuth } from "@/lib/auth-utils";
 import { useFormatter, useTranslations } from "next-intl";
+import { onSnapshot, collection, query, orderBy, getFirestore, limit } from "firebase/firestore";
 
 interface FeedItemCardProps {
   item: FeedItem;
@@ -33,6 +34,7 @@ interface FeedItemCardProps {
 }
 
 const functions = getFunctions(firebaseApp);
+const db = getFirestore(firebaseApp);
 
 export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItemCardProps) {
   const t = useTranslations('FeedItemCard');
@@ -43,13 +45,10 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   const [votedOptionIndex, setVotedOptionIndex] = useState<number | null>(null);
   const [currentPollOptions, setCurrentPollOptions] = useState<PollOption[]>([]);
   
-  const voteOnPollCallable = useMemo(() => httpsCallable(functions, 'voteOnPoll'), [functions]);
+  const voteOnPollCallable = useMemo(() => httpsCallable(functions, 'community-voteOnPoll'), [functions]);
 
   useEffect(() => {
       setCurrentPollOptions(item.pollOptions?.map(opt => ({...opt})) || []);
-      // Here you could add logic to check if the user has already voted on this poll
-      // e.g., by checking a `votes` subcollection on the post.
-      // For this implementation, we rely on client-side state after the first vote.
       setVotedOptionIndex(null); 
   }, [item.pollOptions, item.id]);
 
@@ -68,11 +67,10 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   const [hasMoreComments, setHasMoreComments] = useState(true);
 
   const { toast } = useToast();
-  const getCommentsForPost = useMemo(() => httpsCallable(functions, 'getCommentsForPost'), [functions]);
+  const getCommentsForPost = useMemo(() => httpsCallable(functions, 'community-getCommentsForPost'), [functions]);
   const { profile: currentUserProfile } = useUserProfile();
   
   useEffect(() => {
-    // Reset state when the item prop changes to prevent visual bugs
     setIsLiked(false); 
     setShowCommentInput(false);
     setCommentText("");
@@ -94,18 +92,35 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
     if (!hasMoreComments && !isInitialLoad) return;
     setIsLoadingReplies(true);
     try {
-      const result = await getCommentsForPost({ postId: item.id, lastVisible: isInitialLoad ? null : lastVisible });
-      const data = (result.data as { replies: PostReply[], lastVisible?: any }) || { replies: [], lastVisible: null };
-      setReplies(prev => isInitialLoad ? data.replies : [...prev, ...data.replies]);
-      setLastVisible(data.lastVisible || null);
-      setHasMoreComments(!!data.lastVisible);
+      const q = query(
+        collection(db, `posts/${item.id}/comments`),
+        orderBy("createdAt", "asc"),
+        limit(5)
+      );
+
+      onSnapshot(q, (snapshot) => {
+        const fetchedReplies = snapshot.docs.map(doc => {
+            const data = doc.data();
+            return {
+                id: doc.id,
+                ...data,
+                timestamp: (data.createdAt as any)?.toDate?.().toISOString() || new Date().toISOString()
+            } as PostReply;
+        });
+
+        setReplies(prev => isInitialLoad ? fetchedReplies : [...prev, ...fetchedReplies]);
+        setLastVisible(snapshot.docs[snapshot.docs.length - 1]);
+        setHasMoreComments(snapshot.docs.length === 5);
+        setIsLoadingReplies(false);
+      });
+      
     } catch (error) {
       console.error("Failed to fetch comments:", error);
       toast({ title: t('loadCommentsErrorToast'), variant: "destructive" });
     } finally {
       setIsLoadingReplies(false);
     }
-  }, [item.id, lastVisible, hasMoreComments, getCommentsForPost, toast, t]);
+  }, [item.id, lastVisible, hasMoreComments, toast, t]);
 
 
   const handleCommentButtonClick = async () => {
@@ -137,7 +152,6 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
         return;
     }
     
-    // Optimistic UI update
     const originalPollOptions = [...currentPollOptions];
     const newPollOptions = [...currentPollOptions];
     newPollOptions[optionIndex] = {
@@ -152,7 +166,6 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
         toast({ title: t('voteSuccessToast') });
     } catch (error: any) {
         toast({ title: t('voteErrorToast'), description: error.message, variant: "destructive" });
-        // Revert UI on error
         setCurrentPollOptions(originalPollOptions);
         setVotedOptionIndex(null);
     }

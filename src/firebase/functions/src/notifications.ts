@@ -16,18 +16,13 @@ import {getUserDocument} from "./utils";
  * notifications to users based on various platform events.
  */
 
-/**
- * Creates a notification document in Firestore and attempts to send a push notification.
- * @param {string} userId - The ID of the user to notify.
- * @param {object} notificationPayload - The content of the notification.
- */
 async function createAndSendNotification(
   userId: string,
   notificationPayload: {
       type: string,
       title_en: string,
       body_en: string,
-      actorId: string, // Added actorId to know who performed the action
+      actorId: string, 
       linkedEntity: { collection: string; documentId: string } | null,
     },
 ) {
@@ -40,7 +35,6 @@ async function createAndSendNotification(
     `Creating notification for user ${userId}, type: ${notificationPayload.type}`,
   );
 
-  // 1. Create a document in the 'notifications' collection
   const newNotificationRef = db.collection("notifications").doc();
   await newNotificationRef.set({
     notificationId: newNotificationRef.id,
@@ -51,7 +45,6 @@ async function createAndSendNotification(
   });
   console.log(`Notification document created: ${newNotificationRef.id}`);
 
-  // 2. Attempt to send a push notification via FCM
   const userDoc = await getUserDocument(userId);
   const fcmToken = userDoc?.data()?.fcmToken;
 
@@ -78,7 +71,6 @@ async function createAndSendNotification(
       console.log("Successfully sent FCM message:", response);
     } catch (error) {
       console.error("Error sending FCM message:", error);
-      // Handle invalid tokens, e.g., remove from user document
     }
   } else {
     console.log(
@@ -87,9 +79,6 @@ async function createAndSendNotification(
   }
 }
 
-/**
- * Firestore trigger for new connection requests.
- */
 export const onNewConnectionRequest = functions.firestore
     .document('connection_requests/{requestId}')
     .onCreate(async (snap, context) => {
@@ -173,9 +162,6 @@ export const onPostComment = functions.firestore
   });
 
 
-/**
- * Firestore trigger for new marketplace orders.
- */
 export const onNewMarketplaceOrder = functions.firestore
     .document('marketplace_orders/{orderId}')
     .onCreate(async (snap, context) => {
@@ -191,14 +177,6 @@ export const onNewMarketplaceOrder = functions.firestore
         });
     });
 
-
-
-/**
- * Marks a specific notification as read for the authenticated user.
- * @param {any} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{status: string}>} A promise that resolves with the status.
- */
 export const markNotificationAsRead = functions.https.onCall(
   async (data, context) => {
     if (!context.auth) {
@@ -234,12 +212,6 @@ export const markNotificationAsRead = functions.https.onCall(
   },
 );
 
-/**
- * Retrieves and updates notification preferences for the authenticated user.
- * @param {any} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<any>} A promise that resolves with the preferences.
- */
 export const manageNotificationPreferences = functions.https.onCall(
   async (data, context) => {
     if (!context.auth) {
@@ -261,11 +233,6 @@ export const manageNotificationPreferences = functions.https.onCall(
   },
 );
 
-
-/**
- * Scheduled function to send reminders for upcoming events.
- * Runs every day at a specified time (e.g., 8 AM UTC).
- */
 export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
   .timeZone("UTC")
   .onRun(async (context) => {
@@ -309,39 +276,11 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
     }
 
     // 2. Handle Agro-Tourism Bookings
-    // NOTE: This part is conceptual. It assumes a `bookingDate` field exists on the booking documents.
-    // This logic needs to be activated once the data model supports specific booking dates.
     try {
         const upcomingBookingsQuery = db.collectionGroup("bookings")
-            // This query is commented out because 'bookingDate' does not exist on the documents yet.
-            // .where("bookingDate", ">=", now) 
-            // .where("bookingDate", "<=", aDayFromNow)
-            .get(); // We get all for now for demonstration, but this is inefficient.
+            .get(); 
         
         console.log("Conceptually checking for Agro-Tourism bookings... (This part is not fully functional without a booking date field)");
-        // The loop below is commented out to prevent it from running with an inefficient query.
-        // It serves as a blueprint for future implementation.
-        /*
-        for (const bookingDoc of (await upcomingBookingsQuery).docs) {
-            const bookingData = bookingDoc.data();
-            const serviceRef = bookingDoc.ref.parent.parent; // This gets the marketplaceItem doc
-            if (serviceRef) {
-              const serviceDoc = await serviceRef.get();
-              if (serviceDoc.exists) {
-                const serviceData = serviceDoc.data()!;
-                const guestId = bookingData.userId;
-                const notificationPayload = {
-                    type: "service_reminder",
-                    title_en: "Service Reminder",
-                    body_en: `Your booked service, "${serviceData.name}", is coming up soon!`,
-                    actorId: 'system',
-                    linkedEntity: { collection: "marketplaceItems", documentId: serviceDoc.id },
-                };
-                await createAndSendNotification(guestId, notificationPayload);
-              }
-            }
-        }
-        */
 
     } catch (error) {
         console.error("Error processing agro-tourism booking reminders:", error);

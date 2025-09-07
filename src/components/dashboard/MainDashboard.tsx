@@ -200,7 +200,6 @@ function MainContent() {
       );
     }
     
-    // Check if the profile is incomplete (using a simple heuristic for now)
     const isProfileIncomplete = profile && (!profile.profileSummary || profile.profileSummary.includes("Just joined") || !profile.location);
 
     if (isProfileIncomplete) {
@@ -222,13 +221,11 @@ function MainContent() {
         );
     }
   
-    // Use the stable key from the profile for logic
     const HubComponent = profile ? HubComponentMap[profile.primaryRole as keyof typeof HubComponentMap] : null;
     if (HubComponent) {
       return <HubComponent />;
     }
 
-    // Default feed view if no specific hub component
     if (isLoadingFeed) {
       return (
         <div className="space-y-6">

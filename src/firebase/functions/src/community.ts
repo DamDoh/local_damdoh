@@ -74,12 +74,10 @@ export const deletePost = functions.https.onCall(async (data, context) => {
     const postData = postDoc.data()!;
     const callerRole = await getRole(uid);
 
-    // Allow deletion if the user is the author OR if the user is an Admin
     if (postData.userId !== uid && callerRole !== 'Admin') {
         throw new functions.https.HttpsError('permission-denied', 'error.permissionDenied');
     }
     
-    // Perform a cascade delete of subcollections before deleting the post itself.
     const likesPath = `posts/${postId}/likes`;
     const commentsPath = `posts/${postId}/comments`;
     const votesPath = `posts/${postId}/votes`;
@@ -94,11 +92,7 @@ export const deletePost = functions.https.onCall(async (data, context) => {
     
     console.log(`Subcollections deleted. Deleting main post document ${postId}.`);
 
-    // Finally, delete the post document itself
     await postRef.delete();
-
-    // Note: Deleting associated media from Cloud Storage would require another step,
-    // often handled by a separate onFinalize trigger or by storing the full GCS path.
 
     return { success: true, message: 'Post and all associated data deleted successfully.' };
 });
@@ -136,7 +130,6 @@ export const addComment = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
 
-    // Denormalize author data on write for performance
     await commentRef.set({
         content,
         userId: uid,
@@ -170,7 +163,6 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
         return { replies: [], lastVisible: null };
     }
     
-    // The author data is now denormalized onto the comment, so no extra lookups are needed.
     const comments = commentsSnapshot.docs.map(doc => {
         const commentData = doc.data();
         return {
@@ -215,13 +207,11 @@ export const voteOnPoll = functions.https.onCall(async (data, context) => {
             throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionInvalid');
         }
 
-        // Atomically update the vote count for the specific option
         const newPollOptions = [...postData.pollOptions];
         newPollOptions[optionIndex].votes = (newPollOptions[optionIndex].votes || 0) + 1;
         
         transaction.update(postRef, { pollOptions: newPollOptions });
 
-        // Record the user's vote to prevent duplicates
         transaction.set(voteRef, {
             optionIndex,
             votedAt: admin.firestore.FieldValue.serverTimestamp()
