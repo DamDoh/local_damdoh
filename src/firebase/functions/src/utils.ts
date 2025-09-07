@@ -1,6 +1,8 @@
 
+
 import * as admin from "firebase-admin";
 import * as functions from "firebase-functions";
+import { v4 as uuidv4 } from "uuid";
 
 const db = admin.firestore();
 
@@ -45,6 +47,38 @@ async function deleteQueryBatch(query: admin.firestore.Query, resolve: (value?: 
         deleteQueryBatch(query, resolve, reject);
     });
 }
+
+/**
+ * Triggered on new Firebase Authentication user creation.
+ * Creates a corresponding user document in Firestore with default values.
+ * This is the secure, server-side way to create user profiles.
+ */
+export const onUserCreate = functions.auth.user().onCreate(async (user) => {
+    console.log(`New user signed up: ${user.uid}, email: ${user.email}`);
+
+    const userRef = db.collection("users").doc(user.uid);
+    const universalId = uuidv4();
+
+    try {
+        await userRef.set({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName || user.email?.split('@')[0] || "New User",
+            avatarUrl: user.photoURL || null,
+            primaryRole: 'Consumer', // Default role
+            profileSummary: "Just joined the DamDoh community!",
+            universalId: universalId,
+            viewCount: 0,
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        console.log(`Successfully created Firestore profile for user ${user.uid}.`);
+        return null;
+    } catch (error) {
+        console.error(`Error creating Firestore profile for user ${user.uid}:`, error);
+        return null;
+    }
+});
 
 
 /**
