@@ -6,7 +6,7 @@ import { AuthContext, type AuthContextType } from "@/lib/auth-utils";
 import React, { useState, useEffect, Suspense, useCallback } from 'react';
 import { onAuthStateChanged, type User as FirebaseUser } from "firebase/auth";
 import { auth, functions } from '@/lib/firebase/client';
-import { useOfflineSync } from '@/hooks/useOfflineSync'; // Import the hook
+import { useOfflineSync } from '@/hooks/useOfflineSync';
 import type { UserProfile } from '@/lib/types';
 import { httpsCallable } from 'firebase/functions';
 
@@ -39,18 +39,26 @@ export function Providers({
     }, []);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-            if (firebaseUser) {
-                setUser(firebaseUser);
-                await fetchProfile(firebaseUser.uid);
-            } else {
-                setUser(null);
-                setProfile(null);
-            }
+        // Only set up the listener if the auth object is valid (i.e., Firebase was initialized)
+        if (auth && Object.keys(auth).length > 0) {
+            const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+                if (firebaseUser) {
+                    setUser(firebaseUser);
+                    await fetchProfile(firebaseUser.uid);
+                } else {
+                    setUser(null);
+                    setProfile(null);
+                }
+                setLoading(false);
+            });
+            // Cleanup subscription on unmount
+            return () => unsubscribe();
+        } else {
+            // If Firebase isn't configured, we're not loading and there's no user.
             setLoading(false);
-        });
-        // Cleanup subscription on unmount
-        return () => unsubscribe();
+            setUser(null);
+            setProfile(null);
+        }
     }, [fetchProfile]);
 
     const authValue: AuthContextType = { user, profile, loading };
