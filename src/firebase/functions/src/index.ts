@@ -20,19 +20,24 @@ if (admin.apps.length === 0) {
 // Group functions by module for cleaner organization
 import * as activityFunctions from "./activity";
 import * as agriEventsFunctions from "./agri-events";
+import * as agronomistFunctions from "./agronomist";
 import * as agroTourismFunctions from "./agro-tourism";
 import * as aiAndAnalyticsFunctions from "./ai-and-analytics";
 import * as aiServicesFunctions from "./ai-services";
 import * as apiKeyFunctions from "./api-keys";
 import * as apiGatewayFunctions from "./api-gateway";
 import * as assetManagementFunctions from "./asset-management";
+import * as certificationFunctions from "./certification";
 import * as communityFunctions from "./community";
 import * as dashboardDataFunctions from "./dashboard_data";
+import * as energyProviderFunctions from "./energy-provider";
+import * as equipmentSupplierFunctions from "./equipment-supplier";
 import * as farmManagementFunctions from "./farm-management";
 import * as financialServicesFunctions from "./financial-services";
 import * as forumFunctions from "./forums";
 import * as geospatialFunctions from "./geospatial";
 import * as groupFunctions from "./groups";
+import * as inputSupplierFunctions from "./input-supplier";
 import * as insuranceFunctions from "./insurance";
 import * as inventoryFunctions from "./inventory";
 import * as knowledgeHubFunctions from "./knowledge-hub";
@@ -45,29 +50,36 @@ import * as notificationFunctions from "./notifications";
 import * as offlineSyncFunctions from "./offline_sync";
 import * as packagingFunctions from "./packaging";
 import * as profileFunctions from "./profiles";
+import * as qaFunctions from "./qa";
 import * as regulatoryFunctions from "./regulatory-and-compliance";
 import * as researchFunctions from "./research";
 import * as searchFunctions from "./search";
 import * as sustainabilityFunctions from "./sustainability";
 import * as universalIdFunctions from "./universal-id";
 import * as utils from "./utils";
+import * as wasteManagementFunctions from "./waste-management";
 
 // Export all cloud functions, grouped by their respective modules
 export const activity = activityFunctions;
 export const agriEvents = agriEventsFunctions;
+export const agronomist = agronomistFunctions;
 export const agroTourism = agroTourismFunctions;
 export const aiAndAnalytics = aiAndAnalyticsFunctions;
 export const aiServices = aiServicesFunctions;
 export const apiKeys = apiKeyFunctions;
 export const apiGateway = apiGatewayFunctions;
 export const assetManagement = assetManagementFunctions;
+export const certification = certificationFunctions;
 export const community = communityFunctions;
 export const dashboardData = dashboardDataFunctions;
+export const energyProvider = energyProviderFunctions;
+export const equipmentSupplier = equipmentSupplierFunctions;
 export const farmManagement = farmManagementFunctions;
 export const financials = financialServicesFunctions;
 export const forums = forumFunctions;
 export const geospatial = geospatialFunctions;
 export const groups = groupFunctions;
+export const inputSupplier = inputSupplierFunctions;
 export const insurance = insuranceFunctions;
 export const inventory = inventoryFunctions;
 export const knowledgeHub = knowledgeHubFunctions;
@@ -80,12 +92,15 @@ export const notifications = notificationFunctions;
 export const offlineSync = offlineSyncFunctions;
 export const packaging = packagingFunctions;
 export const profiles = profileFunctions;
+export const qa = qaFunctions;
 export const regulatory = regulatoryFunctions;
 export const research = researchFunctions;
 export const search = searchFunctions;
 export const sustainability = sustainabilityFunctions;
 export const universalId = universalIdFunctions;
 export const utilityFunctions = utils;
+export const wasteManagement = wasteManagementFunctions;
+
 
 // Export the Express app as a Cloud Function for Cloud Run services
 export const api = functions.https.onRequest(expressApp);
