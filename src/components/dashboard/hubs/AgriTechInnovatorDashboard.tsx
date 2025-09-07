@@ -30,8 +30,6 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 
-const functions = getFunctions(firebaseApp);
-
 const ApiKeyRow = ({ apiKey, onRevoke }: { apiKey: ApiKey, onRevoke: (keyId: string) => void }) => {
     const t = useTranslations('AgriTechDashboard');
     const [isVisible, setIsVisible] = useState(false);
@@ -110,6 +108,7 @@ export const AgriTechInnovatorDashboard = () => {
   
   const [newlyGeneratedKey, setNewlyGeneratedKey] = useState<ApiKey | null>(null);
 
+  const functions = useMemo(() => getFunctions(firebaseApp), []);
   const generateApiKeyCallable = useMemo(() => httpsCallable(functions, 'apiKeys-generateApiKey'), [functions]);
   const revokeApiKeyCallable = useMemo(() => httpsCallable(functions, 'apiKeys-revokeApiKey'), [functions]);
   const getAgriTechInnovatorDashboardDataCallable = useMemo(() => httpsCallable(functions, 'dashboardData-getAgriTechInnovatorDashboardData'), [functions]);
