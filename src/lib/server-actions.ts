@@ -143,5 +143,3 @@ export async function updateCropData(cropId: string, values: any) {
     const payload = { cropId, ...values };
     await updateCropCallable(payload);
 }
-
-  

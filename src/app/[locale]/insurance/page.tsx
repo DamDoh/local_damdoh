@@ -23,22 +23,31 @@ export default function InsuranceHubPage() {
     const [isLoading, setIsLoading] = useState(true);
 
     const functions = getFunctions(firebaseApp);
-    const getProductsCallable = useMemo(() => httpsCallable(functions, 'insurance-getAvailableInsuranceProducts'), [functions]);
+    const getProductsCallable = useMemo(() => httpsCallable(functions, 'insurance-getInsuranceProducts'), [functions]);
+    
+    const fetchProducts = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const result = await getProductsCallable();
+            setProducts((result.data as any)?.products || []);
+        } catch (error: any) {
+            toast({ variant: 'destructive', title: t('toast.errorTitle'), description: error.message });
+        } finally {
+            setIsLoading(false);
+        }
+    }, [getProductsCallable, toast, t]);
     
     useEffect(() => {
-        const fetchProducts = async () => {
-            setIsLoading(true);
-            try {
-                const result = await getProductsCallable();
-                setProducts((result.data as any)?.products || []);
-            } catch (error: any) {
-                toast({ variant: 'destructive', title: t('toast.errorTitle'), description: error.message });
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchProducts();
-    }, [getProductsCallable, toast, t]);
+        if (user) {
+            fetchProducts();
+        } else {
+            setIsLoading(false);
+        }
+    }, [user, fetchProducts]);
+
+    if (!user && !isLoading) {
+        return <Card><CardContent className="pt-6">{t('authError')}</CardContent></Card>
+    }
 
     return (
         <div className="space-y-6">
@@ -86,7 +95,3 @@ export default function InsuranceHubPage() {
         </div>
     );
 }
-
-  
-
-    

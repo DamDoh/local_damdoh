@@ -32,7 +32,7 @@ export default function CreateInsuranceProductPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const functions = getFunctions(firebaseApp);
-  const createProductCallable = useMemo(() => httpsCallable(functions, 'createInsuranceProduct'), [functions]);
+  const createProductCallable = useMemo(() => httpsCallable(functions, 'insurance-createInsuranceProduct'), [functions]);
 
   const form = useForm<CreateInsuranceProductValues>({
     resolver: zodResolver(createInsuranceProductSchema),
@@ -164,5 +164,3 @@ export default function CreateInsuranceProductPage() {
     </div>
   );
 }
-
-  

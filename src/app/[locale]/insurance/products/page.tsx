@@ -24,7 +24,7 @@ export default function InsuranceProductsPage() {
     const [isLoading, setIsLoading] = useState(true);
 
     const functions = getFunctions(firebaseApp);
-    const getProductsCallable = useMemo(() => httpsCallable(functions, 'getInsuranceProducts'), [functions]);
+    const getProductsCallable = useMemo(() => httpsCallable(functions, 'insurance-getInsuranceProducts'), [functions]);
     
     const fetchProducts = useCallback(async () => {
         setIsLoading(true);
@@ -94,5 +94,3 @@ export default function InsuranceProductsPage() {
         </div>
     );
 }
-
-  

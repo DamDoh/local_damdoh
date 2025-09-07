@@ -168,7 +168,3 @@ export default function ApplyForInsurancePage() {
         </div>
     );
 }
-
-  
-
-    

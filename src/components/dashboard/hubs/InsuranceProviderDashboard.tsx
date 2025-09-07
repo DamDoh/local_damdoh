@@ -22,7 +22,7 @@ export const InsuranceProviderDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
-  const getInsuranceProviderDashboardDataCallable = useMemo(() => httpsCallable<void, InsuranceProviderDashboardData>(functions, 'getInsuranceProviderDashboardData'), [functions]);
+  const getInsuranceProviderDashboardDataCallable = useMemo(() => httpsCallable<void, InsuranceProviderDashboardData>(functions, 'dashboardData-getInsuranceProviderDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {

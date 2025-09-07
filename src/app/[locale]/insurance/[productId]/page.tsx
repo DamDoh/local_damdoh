@@ -121,7 +121,3 @@ export default function InsuranceProductDetailPage() {
         </div>
     );
 }
-
-  
-
-    
