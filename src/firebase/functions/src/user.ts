@@ -1,11 +1,11 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
 import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
 import { UserRole } from "./types";
-import { deleteCollectionByPath } from './utils';
+import { deleteCollectionByPath, getRole } from './utils';
+import { randomBytes } from 'crypto';
 
 const db = admin.firestore();
 
@@ -37,8 +37,6 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
         return null;
     } catch (error) {
         console.error(`Error creating Firestore profile for user ${user.uid}:`, error);
-        // Optional: you could add logic to delete the auth user if the profile creation fails,
-        // but this could also be problematic if the function fails for transient reasons.
         return null;
     }
 });
@@ -286,4 +284,237 @@ export const requestDataExport = functions.https.onCall(async (data, context) =>
     // 4. Generate a secure, time-limited download link.
     // 5. Email the link to the user's registered email address.
     return { success: true, message: "If an account with your email exists, a data export link will be sent shortly." };
+});
+
+// =================================================================
+// UNIVERSAL ID & RECOVERY FUNCTIONS
+// =================================================================
+
+/**
+ * Securely retrieves a subset of a user's data based on their Universal ID.
+ * The amount of data returned depends on the role of the person scanning the ID.
+ */
+export const getUniversalIdData = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to scan a Universal ID.");
+    }
+
+    const { scannedUniversalId } = data;
+    if (!scannedUniversalId) {
+        throw new functions.https.HttpsError("invalid-argument", "A 'scannedUniversalId' must be provided.");
+    }
+
+    const scannerUid = context.auth.uid;
+
+    try {
+        // Find the user document corresponding to the scanned Universal ID
+        const usersRef = db.collection("users");
+        const querySnapshot = await usersRef.where("universalId", "==", scannedUniversalId).limit(1).get();
+
+        if (querySnapshot.empty) {
+            throw new functions.https.HttpsError("not-found", "The scanned Universal ID does not correspond to any user.");
+        }
+
+        const scannedUserDoc = querySnapshot.docs[0];
+        const scannedUserData = scannedUserDoc.data();
+        
+        // Get the role of the user who is doing the scanning
+        const scannerRole = await getRole(scannerUid);
+
+        // Define the public profile data that anyone can see
+        const publicProfile = {
+            uid: scannedUserDoc.id,
+            universalId: scannedUserData.universalId,
+            displayName: scannedUserData.displayName,
+            primaryRole: scannedUserData.primaryRole,
+            avatarUrl: scannedUserData.avatarUrl || null,
+            location: scannedUserData.location || null,
+        };
+
+        // Here, we implement the Role-Based Access Control (RBAC) logic.
+        if (scannerUid === scannedUserDoc.id) {
+            return { ...publicProfile, phoneNumber: scannedUserData.phoneNumber, email: scannedUserData.email };
+        } else if (scannerRole === 'Field Agent/Agronomist (DamDoh Internal)' || scannerRole === 'Admin') {
+            return { ...publicProfile, phoneNumber: scannedUserData.phoneNumber };
+        } else {
+            return publicProfile;
+        }
+
+    } catch (error) {
+        console.error("Error retrieving Universal ID data:", error);
+        if (error instanceof functions.https.HttpsError) {
+            throw error;
+        }
+        throw new functions.https.HttpsError("internal", "An unexpected error occurred while fetching user data.");
+    }
+});
+
+
+/**
+ * Securely retrieves a user's data by their phone number for authorized agents.
+ */
+export const lookupUserByPhone = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to perform this action.");
+    }
+
+    const { phoneNumber } = data;
+    if (!phoneNumber) {
+        throw new functions.https.HttpsError("invalid-argument", "A 'phoneNumber' must be provided.");
+    }
+
+    const agentUid = context.auth.uid;
+    const agentRole = await getRole(agentUid);
+
+    // Security Check: Only allow authorized roles to perform this lookup
+    const authorizedRoles = ['Field Agent/Agronomist (DamDoh Internal)', 'Admin', 'Operations/Logistics Team (DamDoh Internal)'];
+    if (!agentRole || !authorizedRoles.includes(agentRole)) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to look up users by phone number.");
+    }
+
+    try {
+        const usersRef = db.collection("users");
+        const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
+
+        if (querySnapshot.empty) {
+            throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
+        }
+
+        const foundUserDoc = querySnapshot.docs[0];
+        const foundUserData = foundUserDoc.data();
+
+        return {
+            uid: foundUserDoc.id,
+            universalId: foundUserData.universalId,
+            displayName: foundUserData.displayName,
+            primaryRole: foundUserData.primaryRole,
+            avatarUrl: foundUserData.avatarUrl || null,
+            location: foundUserData.location || null,
+            phoneNumber: foundUserData.phoneNumber,
+        };
+        
+    } catch (error) {
+        console.error("Error looking up user by phone:", error);
+        if (error instanceof functions.https.HttpsError) throw error;
+        throw new functions.https.HttpsError("internal", "An unexpected error occurred while searching for the user.");
+    }
+});
+
+
+/**
+ * Creates a temporary, secure session for account recovery.
+ */
+export const createRecoverySession = functions.https.onCall(async (data, context) => {
+    const { phoneNumber } = data;
+    if (!phoneNumber) {
+        throw new functions.https.HttpsError("invalid-argument", "A 'phoneNumber' must be provided.");
+    }
+    
+    const usersRef = db.collection("users");
+    const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
+
+    if (querySnapshot.empty) {
+        throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
+    }
+
+    const userToRecoverDoc = querySnapshot.docs[0];
+    
+    const sessionId = uuidv4();
+    const recoverySecret = randomBytes(16).toString('hex');
+    const recoveryQrValue = `damdoh:recover:${sessionId}:${recoverySecret}`;
+
+    const sessionRef = db.collection('recovery_sessions').doc(sessionId);
+
+    await sessionRef.set({
+        sessionId,
+        userIdToRecover: userToRecoverDoc.id,
+        recoverySecret,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        status: 'pending', 
+        confirmedBy: null,
+        expiresAt: admin.firestore.Timestamp.fromMillis(Date.now() + 10 * 60 * 1000), // Expires in 10 minutes
+    });
+
+    return { sessionId, recoveryQrValue };
+});
+
+
+/**
+ * Called by a logged-in user (the "friend") who has scanned the recovery QR code.
+ */
+export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to help a friend recover their account.");
+    }
+
+    const friendUid = context.auth.uid;
+    const { sessionId, scannedSecret } = data;
+
+    if (!sessionId || !scannedSecret) {
+        throw new functions.https.HttpsError("invalid-argument", "Session ID and secret are required.");
+    }
+
+    const sessionRef = db.collection('recovery_sessions').doc(sessionId);
+    const sessionDoc = await sessionRef.get();
+
+    if (!sessionDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Invalid recovery session.");
+    }
+
+    const sessionData = sessionDoc.data()!;
+    const expiresAt = (sessionData.expiresAt as admin.firestore.Timestamp).toDate();
+
+    if (new Date() > expiresAt) {
+        await sessionRef.update({ status: 'expired' });
+        throw new functions.https.HttpsError("deadline-exceeded", "This recovery session has expired. Please start over.");
+    }
+    
+    if (sessionData.status !== 'pending') {
+        throw new functions.https.HttpsError("failed-precondition", "This recovery session has already been used or is invalid.");
+    }
+
+    if (sessionData.recoverySecret !== scannedSecret) {
+        throw new functions.https.HttpsError("permission-denied", "Invalid recovery code.");
+    }
+    
+    if (sessionData.userIdToRecover === friendUid) {
+        throw new functions.https.HttpsError("invalid-argument", "You cannot use your own recovery code.");
+    }
+    
+    await sessionRef.update({
+        status: 'confirmed',
+        confirmedBy: friendUid,
+    });
+    
+    return { success: true, message: "Friend confirmation successful! The user can now proceed with their recovery.", recoveryComplete: true };
+});
+
+/**
+ * Called by the recovering user's device to finalize the process.
+ */
+export const completeRecovery = functions.https.onCall(async (data, context) => {
+    const { sessionId } = data;
+    if (!sessionId) {
+        throw new functions.https.HttpsError('invalid-argument', 'A session ID is required.');
+    }
+
+    const sessionRef = db.collection('recovery_sessions').doc(sessionId);
+    const sessionDoc = await sessionRef.get();
+
+    if (!sessionDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Invalid recovery session.");
+    }
+
+    const sessionData = sessionDoc.data()!;
+    if (sessionData.status !== 'confirmed') {
+        throw new functions.https.HttpsError('failed-precondition', 'Session not yet confirmed by a friend.');
+    }
+
+    // Generate a custom auth token for the recovered user
+    const customToken = await admin.auth().createCustomToken(sessionData.userIdToRecover);
+    
+    // Clean up the session
+    await sessionRef.update({ status: 'completed' });
+
+    return { success: true, customToken: customToken };
 });

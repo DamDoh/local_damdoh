@@ -45,7 +45,6 @@ import * as offlineSyncFunctions from "./offline_sync";
 import * as regulatoryFunctions from "./regulatory-and-compliance";
 import * as searchFunctions from "./search";
 import * as sustainabilityFunctions from "./sustainability";
-import * as universalIdFunctions from "./universal-id";
 import * as userFunctions from "./user";
 import * as utilsFunctions from "./utils";
 
@@ -80,7 +79,6 @@ export const utils = utilsFunctions;
 export const regulatory = regulatoryFunctions;
 export const search = searchFunctions;
 export const sustainability = sustainabilityFunctions;
-export const universalId = universalIdFunctions;
 
 
 // Export the Express app as a Cloud Function for Cloud Run services

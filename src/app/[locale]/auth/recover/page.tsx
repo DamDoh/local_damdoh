@@ -13,7 +13,7 @@ import { Label } from '@/components/ui/label';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp, auth } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth, logIn } from '@/lib/auth-utils';
+import { useAuth } from '@/lib/auth-utils';
 import dynamic from 'next/dynamic';
 import { signInWithCustomToken } from "firebase/auth";
 
@@ -37,9 +37,9 @@ export default function RecoverPage() {
   const [recoverySession, setRecoverySession] = useState<{ sessionId: string; recoveryQrValue: string; } | null>(null);
   const [isScanning, setIsScanning] = useState(false);
 
-  const createRecoverySessionCallable = useMemo(() => httpsCallable(functions, 'universalId-createRecoverySession'), []);
-  const scanRecoveryQrCallable = useMemo(() => httpsCallable(functions, 'universalId-scanRecoveryQr'), []);
-  const completeRecoveryCallable = useMemo(() => httpsCallable(functions, 'universalId-completeRecovery'), []);
+  const createRecoverySessionCallable = useMemo(() => httpsCallable(functions, 'user-createRecoverySession'), []);
+  const scanRecoveryQrCallable = useMemo(() => httpsCallable(functions, 'user-scanRecoveryQr'), []);
+  const completeRecoveryCallable = useMemo(() => httpsCallable(functions, 'user-completeRecovery'), []);
 
   const handleStartRecovery = () => {
     setRecoveryStep('enter_phone');
@@ -98,46 +98,54 @@ export default function RecoverPage() {
     }
   };
   
-  // This effect will run on the recovering user's device after a friend has confirmed.
+  const pollForConfirmation = useCallback(async (sessionId: string) => {
+    try {
+      const result = await completeRecoveryCallable({ sessionId });
+      const data = result.data as { success: boolean; customToken?: string };
+      
+      if (data.success && data.customToken) {
+        await signInWithCustomToken(auth, data.customToken);
+        
+        const idToken = await auth.currentUser?.getIdToken();
+        await fetch('/api/auth/session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idToken }),
+        });
+
+        toast({
+          title: "Recovery Complete!",
+          description: `You have successfully recovered your account.`,
+        });
+        setRecoveryStep('success');
+        router.push('/');
+        return true; // Stop polling
+      }
+    } catch (error) {
+      // It's normal to get errors here while polling before confirmation.
+      // console.log("Polling for confirmation...");
+    }
+    return false; // Continue polling
+  }, [completeRecoveryCallable, toast, router]);
+
   useEffect(() => {
-    let intervalId: NodeJS.Timeout;
+    let intervalId: NodeJS.Timeout | undefined;
 
     if (recoveryStep === 'display_qr' && recoverySession?.sessionId) {
       intervalId = setInterval(async () => {
-        try {
-          const result = await completeRecoveryCallable({ sessionId: recoverySession.sessionId });
-          const data = result.data as { success: boolean; customToken?: string };
-          
-          if (data.success && data.customToken) {
-            clearInterval(intervalId); // Stop polling
-            
-            // Sign in with the custom token
-            await signInWithCustomToken(auth, data.customToken);
-            
-            // Call the session creation API endpoint
-            const idToken = await auth.currentUser?.getIdToken();
-            await fetch('/api/auth/session', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ idToken }),
-            });
-
-            toast({
-              title: "Recovery Complete!",
-              description: `You have successfully recovered your account.`,
-            });
-            setRecoveryStep('success');
-            router.push('/');
+          const isComplete = await pollForConfirmation(recoverySession.sessionId);
+          if(isComplete) {
+              clearInterval(intervalId);
           }
-        } catch (error) {
-          // It's normal to get errors here while polling before confirmation.
-          // console.log("Polling for confirmation...");
-        }
       }, 5000); // Poll every 5 seconds
     }
 
-    return () => clearInterval(intervalId); // Cleanup on unmount or step change
-  }, [recoveryStep, recoverySession, completeRecoveryCallable, toast, router]);
+    return () => {
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
+    };
+  }, [recoveryStep, recoverySession, pollForConfirmation]);
 
 
   const handleScanFailure = (error: string) => {
