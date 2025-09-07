@@ -140,7 +140,7 @@ export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" |
 // =================================================================
 export type FarmerDashboardAlert = z.infer<typeof FarmerDashboardAlertSchema>;
 export type FarmerDashboardData = z.infer<typeof FarmerDashboardDataSchema>;
-export type CooperativeDashboardData = z.infer<typeof CooperativeDashboardDataSchema>;
+export type CooperativeDashboardData = z.infer<typeof CooperativeDashboardDataSchema> & { groupId: string | null };
 export type BuyerDashboardData = z.infer<typeof BuyerDashboardDataSchema>;
 export type RegulatorDashboardData = z.infer<typeof RegulatorDashboardDataSchema>;
 export type LogisticsDashboardData = z.infer<typeof LogisticsDashboardDataSchema>;
