@@ -25,6 +25,7 @@ import * as aiAndAnalyticsFunctions from "./ai-and-analytics";
 import * as aiServicesFunctions from "./ai-services";
 import * as apiKeyFunctions from "./api-keys";
 import * as apiGatewayFunctions from "./api-gateway";
+import * as assetManagementFunctions from "./asset-management";
 import * as communityFunctions from "./community";
 import * as dashboardDataFunctions from "./dashboard_data";
 import * as farmManagementFunctions from "./farm-management";
@@ -32,6 +33,7 @@ import * as financialServicesFunctions from "./financial-services";
 import * as forumFunctions from "./forums";
 import * as groupFunctions from "./groups";
 import * as insuranceFunctions from "./insurance";
+import * as inventoryFunctions from "./inventory";
 import * as knowledgeHubFunctions from "./knowledge-hub";
 import * as laborFunctions from "./labor";
 import * as loggingFunctions from "./logging";
@@ -46,8 +48,7 @@ import * as sustainabilityFunctions from "./sustainability";
 import * as universalIdFunctions from "./universal-id";
 import * as userFunctions from "./user";
 import * as utilsFunctions from "./utils";
-import * as assetManagementFunctions from "./asset-management";
-import * as inventoryFunctions from "./inventory";
+
 
 // Export all cloud functions, grouped by their respective modules
 export const activity = activityFunctions;
@@ -57,13 +58,15 @@ export const aiAndAnalytics = aiAndAnalyticsFunctions;
 export const aiServices = aiServicesFunctions;
 export const apiKeys = apiKeyFunctions;
 export const apiGateway = apiGatewayFunctions;
+export const assetManagement = assetManagementFunctions;
 export const community = communityFunctions;
-export const dashboardData = dashboardDataFunctions;
+export const dashboardData = dashboardDataFunctions; // Changed from 'dashboard'
 export const farmManagement = farmManagementFunctions;
 export const financials = financialServicesFunctions;
 export const forums = forumFunctions;
 export const groups = groupFunctions;
 export const insurance = insuranceFunctions;
+export const inventory = inventoryFunctions;
 export const knowledgeHub = knowledgeHubFunctions;
 export const labor = laborFunctions;
 export const logging = loggingFunctions;
@@ -72,14 +75,12 @@ export const messages = messageFunctions;
 export const network = networkFunctions;
 export const notifications = notificationFunctions;
 export const offlineSync = offlineSyncFunctions;
+export const user = userFunctions;
+export const utils = utilsFunctions;
 export const regulatory = regulatoryFunctions;
 export const search = searchFunctions;
 export const sustainability = sustainabilityFunctions;
 export const universalId = universalIdFunctions;
-export const user = userFunctions;
-export const utils = utilsFunctions;
-export const assetManagement = assetManagementFunctions;
-export const inventory = inventoryFunctions;
 
 
 // Export the Express app as a Cloud Function for Cloud Run services
