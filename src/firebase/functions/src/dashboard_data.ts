@@ -32,7 +32,8 @@ import type {
     FarmerDashboardAlert,
     OperationsDashboardData,
     FinancialProduct,
-    KnfBatch
+    KnfBatch,
+    InsuranceProduct
 } from "@/lib/types";
 
 const db = admin.firestore();
@@ -517,7 +518,7 @@ export const getLogisticsDashboardData = functions.https.onCall(
             const relatedVtiId = itemDetails[order.itemId]?.relatedTraceabilityId;
             return {
                 id: doc.id,
-                to: order.buyerLocation || 'Unknown Destination', 
+                to: order.buyerLocation?.address || 'Unknown Destination', 
                 status: 'In Transit',
                 eta: new Date(Date.now() + Math.random() * 5 * 86400000).toISOString(),
                 vtiLink: relatedVtiId ? `/traceability/batches/${relatedVtiId}` : '#'
@@ -537,7 +538,7 @@ export const getLogisticsDashboardData = functions.https.onCall(
         if (sellerIds.length > 0) {
             const sellersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', sellerIds).get();
             sellersSnapshot.forEach(doc => {
-                sellerProfiles[doc.id] = { location: doc.data().location || 'Unknown Origin' };
+                sellerProfiles[doc.id] = { location: doc.data().location?.address || 'Unknown Origin' };
             });
         }
 
@@ -546,7 +547,7 @@ export const getLogisticsDashboardData = functions.https.onCall(
             return {
                 id: doc.id,
                 from: sellerProfiles[order.sellerId]?.location || 'Unknown Origin',
-                to: order.buyerLocation || 'Unknown Destination',
+                to: order.buyerLocation?.address || 'Unknown Destination',
                 product: `${order.listingName} (${order.quantity} units)`,
                 requirements: 'Standard Transport',
                 actionLink: `/marketplace/my-orders/${order.id}`
@@ -741,10 +742,11 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
 
         const packagingOrders = ordersSnapshot.docs.map(doc => {
             const order = doc.data();
+            const deliveryTimestamp = order.expectedDeliveryDate as admin.firestore.Timestamp | undefined;
             return {
                 id: doc.id,
                 supplierName: sellerProfiles[order.sellerId] || 'Unknown Supplier',
-                deliveryDate: order.expectedDeliveryDate?.toDate().toISOString() || new Date(Date.now() + 86400000 * 5).toISOString(),
+                deliveryDate: deliveryTimestamp?.toDate().toISOString() || new Date(Date.now() + 86400000 * 5).toISOString(),
                 status: order.status,
                 actionLink: `/marketplace/my-orders/${order.id}`,
             };
@@ -998,15 +1000,29 @@ export const getInsuranceProviderDashboardData = functions.https.onCall(
             }
         });
 
+        const activePoliciesSnapshot = await db.collection('insurance_policies')
+            .where('providerId', '==', context.auth!.uid)
+            .where('status', '==', 'Active')
+            .get();
+            
+        const activePolicies = activePoliciesSnapshot.docs.map(doc => {
+            const policy = doc.data();
+            return {
+                id: doc.id,
+                policyHolderName: policy.policyHolderName || 'Unknown',
+                policyType: policy.policyType,
+                coverageAmount: policy.coverageAmount,
+                expiryDate: (policy.expiryDate as admin.firestore.Timestamp).toDate().toISOString(),
+            }
+        })
+
         return {
             pendingClaims,
             // These remain mocked as their data sources are complex
             riskAssessmentAlerts: [
                 { id: 'risk1', policyHolderName: 'Sunset Farms', alert: 'High flood risk predicted for next month.', severity: 'High', actionLink: '#' }
             ],
-            activePolicies: [
-                { id: 'pol1', policyHolderName: 'Green Valley Farms', policyType: 'Multi-peril Crop', coverageAmount: 50000, expiryDate: new Date().toISOString() }
-            ]
+            activePolicies: activePolicies
         };
     } catch (error) {
         console.error("Error fetching insurance provider dashboard data:", error);

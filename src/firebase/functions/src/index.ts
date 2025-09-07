@@ -47,6 +47,7 @@ import * as universalIdFunctions from "./universal-id";
 import * as geospatialFunctions from "./geospatial";
 import * as userFunctions from "./user";
 import * as utilsFunctions from "./utils";
+import * as inventoryFunctions from "./inventory";
 
 
 // Export all cloud functions, grouped by their respective modules
@@ -58,7 +59,7 @@ export const aiServices = aiServicesFunctions;
 export const apiKeys = apiKeyFunctions;
 export const apiGateway = apiGatewayFunctions;
 export const community = communityFunctions;
-export const dashboardData = dashboardDataFunctions; // Changed from 'dashboard'
+export const dashboardData = dashboardDataFunctions;
 export const farmManagement = farmManagementFunctions;
 export const financials = financialServicesFunctions;
 export const forums = forumFunctions;
@@ -79,6 +80,7 @@ export const universalId = universalIdFunctions;
 export const geospatial = geospatialFunctions;
 export const user = userFunctions;
 export const utils = utilsFunctions;
+export const inventory = inventoryFunctions;
 
 
 // Export the Express app as a Cloud Function for Cloud Run services
