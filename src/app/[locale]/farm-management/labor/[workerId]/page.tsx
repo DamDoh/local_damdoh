@@ -55,7 +55,7 @@ export default function WorkerDetailPage() {
     const [isLoading, setIsLoading] = useState(true);
     
     const functions = getFunctions(firebaseApp);
-    const getWorkerDetailsCallable = useMemo(() => httpsCallable(functions, 'getWorkerDetails'), []);
+    const getWorkerDetailsCallable = useMemo(() => httpsCallable(functions, 'labor-getWorkerDetails'), []);
 
     useEffect(() => {
         if (!user || !workerId) return;

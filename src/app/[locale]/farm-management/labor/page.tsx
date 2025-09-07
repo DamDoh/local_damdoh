@@ -22,7 +22,7 @@ import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useTranslations } from 'next-intl';
 import type { Worker } from '@/lib/types';
-import { useParams, useRouter } from '@/navigation';
+import { useRouter } from '@/navigation';
 
 export default function LaborManagementPage() {
     const t = useTranslations('farmManagement.laborPage');
