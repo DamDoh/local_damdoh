@@ -592,7 +592,6 @@ export const updateKnfBatchStatus = functions.https.onCall(
   },
 );
 
-// Helper to check for authentication in a consistent way
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
     throw new functions.https.HttpsError(
