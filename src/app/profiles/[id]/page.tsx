@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
@@ -9,7 +10,6 @@ import QRCode from 'qrcode.react';
 
 import type { UserProfile } from "@/lib/types";
 import { useAuth } from "@/lib/auth-utils";
-import { APP_NAME } from "@/lib/constants";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -25,6 +25,8 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { formatDistanceToNow } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { getProfileByIdFromDB as getProfileByIdFromServer } from "@/lib/server-actions";
+
 
 function ProfileSkeleton() {
   return (
@@ -89,7 +91,6 @@ export default function ProfileDetailPage() {
   const getUserActivity = useMemo(() => httpsCallable(functions, 'activity-getUserActivity'), [functions]);
   const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'activity-logProfileView'), [functions]);
   const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'activity-getUserEngagementStats'), [functions]);
-  const getProfileByIdCallable = useMemo(() => httpsCallable(functions, 'user-getProfileByIdFromDB'), [functions]);
   const sendInviteCallable = useMemo(() => httpsCallable(functions, 'network-sendInvite'), [functions]);
   
   useEffect(() => {
@@ -113,9 +114,8 @@ export default function ProfileDetailPage() {
 
     if (idToFetch) {
       setIsLoading(true);
-      getProfileByIdCallable({ uid: idToFetch })
-        .then(result => {
-          const fetchedProfile = result.data as UserProfile;
+      getProfileByIdFromServer(idToFetch)
+        .then(fetchedProfile => {
           setProfile(fetchedProfile);
           if (fetchedProfile) {
             if (authUser && fetchedProfile.id !== authUser.uid) {
@@ -148,7 +148,7 @@ export default function ProfileDetailPage() {
     } else if (!authLoading) {
       setIsLoading(false);
     }
-  }, [params.id, authUser, authLoading, router, getUserActivity, logProfileViewCallable, getEngagementStatsCallable, getProfileByIdCallable]);
+  }, [params.id, authUser, authLoading, router, getUserActivity, logProfileViewCallable, getEngagementStatsCallable]);
   
   const handleInvite = async () => {
     const inviteeEmail = prompt(t('invitePrompt'));
@@ -209,7 +209,7 @@ export default function ProfileDetailPage() {
             data-ai-hint={profile.primaryRole ? `${profile.primaryRole.toLowerCase()} agriculture background` : "agriculture background"} />
           <div className="absolute bottom-[-50px] left-6">
             <Avatar className="h-32 w-32 border-4 border-background shadow-lg">
-              <AvatarImage src={profile.avatarUrl} alt={profile.displayName} data-ai-hint="profile business food" />
+              <AvatarImage src={profile.avatarUrl ?? undefined} alt={profile.displayName} data-ai-hint="profile business food" />
               <AvatarFallback className="text-4xl">{profile.displayName.substring(0,1).toUpperCase()}</AvatarFallback>
             </Avatar>
           </div>
@@ -369,5 +369,3 @@ export default function ProfileDetailPage() {
     </div>
   );
 }
-
-    
