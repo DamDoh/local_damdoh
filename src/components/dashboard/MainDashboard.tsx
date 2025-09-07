@@ -44,7 +44,7 @@ import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashb
 import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
 import { AgriTechInnovatorDashboard } from './hubs/AgriTechInnovatorDashboard';
 import { OperationsDashboard } from './hubs/OperationsDashboard';
-import { LogisticsDashboard } from './hubs/processing-logistics/LogisticsDashboard';
+import { LogisticsDashboard } from './hubs/LogisticsDashboard';
 import { ProcessingUnitDashboard } from './hubs/processing-logistics/ProcessingUnitDashboard';
 import { WarehouseDashboard } from './hubs/processing-logistics/WarehouseDashboard';
 import { ConsumerDashboard } from './hubs/ConsumerDashboard';
@@ -53,7 +53,7 @@ import { ConsumerDashboard } from './hubs/ConsumerDashboard';
 const { useState, useEffect, useMemo } = React;
 const db = getFirestore(firebaseApp);
 
-const HubComponentMap: { [key in typeof STAKEHOLDER_ROLES[number]]?: React.ComponentType } = {
+const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Farmer': FarmerDashboard,
     'Agricultural Cooperative': CooperativeDashboard,
     'Field Agent/Agronomist (DamDoh Internal)': FieldAgentDashboard,
@@ -221,7 +221,7 @@ function MainContent() {
         );
     }
   
-    const HubComponent = profile ? HubComponentMap[profile.primaryRole as keyof typeof HubComponentMap] : null;
+    const HubComponent = profile ? HubComponentMap[profile.primaryRole] : null;
     if (HubComponent) {
       return <HubComponent />;
     }

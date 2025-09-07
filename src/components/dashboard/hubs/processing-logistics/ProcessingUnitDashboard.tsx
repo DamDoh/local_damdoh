@@ -21,7 +21,7 @@ export const ProcessingUnitDashboard = () => {
     const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
-    const getProcessingUnitData = useMemo(() => httpsCallable(functions, 'getProcessingUnitDashboardData'), [functions]);
+    const getProcessingUnitData = useMemo(() => httpsCallable(functions, 'dashboardData-getProcessingUnitDashboardData'), [functions]);
 
     useEffect(() => {
         const fetchData = async () => {
