@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Brain, Key, Server, Rocket, Copy, EyeOff, Eye, PlusCircle, Trash2, Loader2, CheckCircle } from 'lucide-react';
 import type { AgriTechInnovatorDashboardData, ApiKey } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
-import { format, formatDistanceToNow } from 'date-fns';
+import { format } from 'date-fns';
 import { useTranslations } from 'next-intl';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
@@ -28,7 +28,7 @@ const ApiKeyRow = ({ apiKey, onRevoke }: { apiKey: ApiKey, onRevoke: (keyId: str
     const { toast } = useToast();
 
     const handleCopy = () => {
-        if (!apiKey.key) {
+        if (!apiKey.key || apiKey.status === 'Revoked') {
             toast({ title: t('toast.keyNotAvailable'), variant: "destructive" });
             return;
         }
@@ -56,7 +56,7 @@ const ApiKeyRow = ({ apiKey, onRevoke }: { apiKey: ApiKey, onRevoke: (keyId: str
                 <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setIsVisible(!isVisible)} title={isVisible ? t('table.hideKey') : t('table.showKey')}>
                     {isVisible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </Button>
-                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handleCopy} title={t('table.copyKey')}>
+                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handleCopy} title={t('table.copyKey')} disabled={!apiKey.key}>
                     <Copy className="h-4 w-4" />
                 </Button>
                  <Dialog>
@@ -99,9 +99,9 @@ export const AgriTechInnovatorDashboard = () => {
   
   const [newlyGeneratedKey, setNewlyGeneratedKey] = useState<ApiKey | null>(null);
 
-  const generateApiKeyCallable = useMemo(() => httpsCallable(functions, 'generateApiKey'), []);
-  const revokeApiKeyCallable = useMemo(() => httpsCallable(functions, 'revokeApiKey'), []);
-  const getAgriTechInnovatorDashboardDataCallable = useMemo(() => httpsCallable(functions, 'getAgriTechInnovatorDashboardData'), []);
+  const generateApiKeyCallable = useMemo(() => httpsCallable(functions, 'apiKeys-generateApiKey'), []);
+  const revokeApiKeyCallable = useMemo(() => httpsCallable(functions, 'apiKeys-revokeApiKey'), []);
+  const getAgriTechInnovatorDashboardDataCallable = useMemo(() => httpsCallable(functions, 'dashboardData-getAgriTechInnovatorDashboardData'), []);
 
   const fetchDashboardData = useCallback(async () => {
       setIsLoading(true);
@@ -145,7 +145,10 @@ export const AgriTechInnovatorDashboard = () => {
        try {
           await revokeApiKeyCallable({ keyId });
           toast({ title: t('toast.keyRevokedSuccess') });
-          document.querySelector('[role="dialog"] [aria-label="Close"]')?.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
+          const dialogCloseButton = document.querySelector('[role="dialog"] [aria-label="Close"]');
+          if (dialogCloseButton instanceof HTMLElement) {
+              dialogCloseButton.click();
+          }
           fetchDashboardData();
       } catch (error: any) {
           toast({ title: t('toast.keyRevokedError'), description: error.message, variant: 'destructive' });
