@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowLeft, ShoppingCart, MessageSquare } from "lucide-react";
+import { ArrowLeft, ShoppingCart, MoreHorizontal } from "lucide-react";
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
@@ -13,6 +13,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { MarketplaceOrder } from '@/lib/types';
 import { useTranslations } from 'next-intl';
@@ -31,27 +32,28 @@ function OrderPageSkeleton() {
     );
 }
 
-export default function MyPurchasesPage() {
-    const t = useTranslations('Marketplace.myPurchases');
+export default function MySalesPage() {
+    const t = useTranslations('Marketplace.mySales');
     const { user, loading: authLoading } = useAuth();
     const { toast } = useToast();
     const [orders, setOrders] = useState<MarketplaceOrder[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const functions = getFunctions(firebaseApp);
-    const getBuyerOrdersCallable = useMemo(() => httpsCallable(functions, 'marketplace-getBuyerOrders'), [functions]);
+    const getSellerOrdersCallable = useMemo(() => httpsCallable(functions, 'marketplace-getSellerOrders'), [functions]);
+    const updateOrderStatusCallable = useMemo(() => httpsCallable(functions, 'marketplace-updateOrderStatus'), [functions]);
 
     const fetchOrders = useCallback(async () => {
         setIsLoading(true);
         try {
-            const result = await getBuyerOrdersCallable();
+            const result = await getSellerOrdersCallable();
             setOrders((result?.data as any)?.orders || []);
         } catch (error: any) {
             toast({ variant: "destructive", title: t('toast.errorTitle'), description: t('toast.fetchError') });
         } finally {
             setIsLoading(false);
         }
-    }, [getBuyerOrdersCallable, toast, t]);
+    }, [getSellerOrdersCallable, toast, t]);
 
     useEffect(() => {
         if (user) {
@@ -60,6 +62,16 @@ export default function MyPurchasesPage() {
             setIsLoading(false);
         }
     }, [user, authLoading, fetchOrders]);
+
+    const handleStatusUpdate = async (orderId: string, newStatus: MarketplaceOrder['status']) => {
+        try {
+            await updateOrderStatusCallable({ orderId, newStatus });
+            toast({ title: t('toast.successTitle'), description: t('toast.updateSuccess', { status: t(`status.${newStatus}`) }) });
+            fetchOrders();
+        } catch (error: any) {
+            toast({ variant: "destructive", title: t('toast.failTitle'), description: error.message });
+        }
+    };
     
     const getStatusBadgeVariant = (status: string) => {
         switch (status) {
@@ -103,8 +115,8 @@ export default function MyPurchasesPage() {
                         <TableHeader>
                             <TableRow>
                                 <TableHead>{t('table.date')}</TableHead>
+                                <TableHead>{t('table.buyer')}</TableHead>
                                 <TableHead>{t('table.product')}</TableHead>
-                                <TableHead>{t('table.seller')}</TableHead>
                                 <TableHead>{t('table.total')}</TableHead>
                                 <TableHead>{t('table.status')}</TableHead>
                                 <TableHead className="text-right">{t('table.actions')}</TableHead>
@@ -114,28 +126,28 @@ export default function MyPurchasesPage() {
                             {orders.length > 0 ? orders.map(order => (
                                 <TableRow key={order.id}>
                                     <TableCell>{order.createdAt ? new Date(order.createdAt).toLocaleDateString() : 'N/A'}</TableCell>
-                                    <TableCell className="font-medium">
-                                        <Link href={`/marketplace/${order.itemId}`} className="hover:underline">
-                                            {order.listingName}
-                                        </Link>
+                                    <TableCell className="flex items-center gap-2">
+                                        <Avatar className="h-8 w-8">
+                                            <AvatarImage src={order.buyerProfile.avatarUrl} />
+                                            <AvatarFallback>{order.buyerProfile.displayName?.substring(0,1) || '?'}</AvatarFallback>
+                                        </Avatar>
+                                        <span className="font-medium">{order.buyerProfile.displayName || 'Unknown Buyer'}</span>
                                     </TableCell>
-                                    <TableCell>
-                                        <Link href={`/profiles/${order.sellerId}`} className="flex items-center gap-2 hover:underline">
-                                            <Avatar className="h-8 w-8">
-                                                <AvatarImage src={order.sellerProfile?.avatarUrl} />
-                                                <AvatarFallback>{order.sellerProfile?.displayName?.substring(0,1) || '?'}</AvatarFallback>
-                                            </Avatar>
-                                            <span className="font-medium">{order.sellerProfile?.displayName || 'Unknown Seller'}</span>
-                                        </Link>
-                                    </TableCell>
+                                    <TableCell>{order.listingName}</TableCell>
                                     <TableCell>${order.totalPrice.toFixed(2)}</TableCell>
                                     <TableCell><Badge variant={getStatusBadgeVariant(order.status)}>{t(`status.${order.status}`)}</Badge></TableCell>
                                     <TableCell className="text-right">
-                                        <Button asChild size="sm" variant="outline">
-                                            <Link href={`/messages?with=${order.sellerId}`}>
-                                                <MessageSquare className="mr-2 h-4 w-4" /> {t('contactSeller')}
-                                            </Link>
-                                        </Button>
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon"><MoreHorizontal className="h-4 w-4"/></Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent>
+                                                <DropdownMenuItem onClick={() => handleStatusUpdate(order.id, 'confirmed')}>{t('actions.confirm')}</DropdownMenuItem>
+                                                <DropdownMenuItem onClick={() => handleStatusUpdate(order.id, 'shipped')}>{t('actions.ship')}</DropdownMenuItem>
+                                                <DropdownMenuItem onClick={() => handleStatusUpdate(order.id, 'completed')}>{t('actions.complete')}</DropdownMenuItem>
+                                                <DropdownMenuItem className="text-destructive" onClick={() => handleStatusUpdate(order.id, 'cancelled')}>{t('actions.cancel')}</DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
                                     </TableCell>
                                 </TableRow>
                             )) : (

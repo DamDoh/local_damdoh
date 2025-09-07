@@ -207,7 +207,8 @@ export const upsertStakeholderProfile = functions.https.onCall(
  * @param {string} uid The user's ID.
  * @return {Promise<any | null>} The user's profile data or null if not found.
  */
-export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
+export const getProfileByIdFromDB = functions.https.onCall(async (data, context): Promise<any | null> => {
+    const { uid } = data;
     if (!uid) {
         return null;
     }
@@ -230,7 +231,7 @@ export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
         console.error("Error fetching user profile by ID:", error);
         return null;
     }
-}
+});
 
 
 /**

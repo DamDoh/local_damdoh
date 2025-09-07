@@ -181,4 +181,3 @@ export type DiagnoseCropInput = z.infer<typeof DiagnoseCropInputSchema>;
 export type DiagnoseCropOutput = z.infer<typeof DiagnoseCropOutputSchema>;
 export type FarmingAssistantInput = z.infer<typeof FarmingAssistantInputSchema>;
 export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema>;
-
