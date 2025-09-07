@@ -19,6 +19,7 @@ if (admin.apps.length === 0) {
 
 // Group functions by module for cleaner organization
 import * as activityFunctions from "./activity";
+import * as adminFunctions from "./admin";
 import * as agriEventsFunctions from "./agri-events";
 import * as agronomistFunctions from "./agronomist";
 import * as agroTourismFunctions from "./agro-tourism";
@@ -43,6 +44,7 @@ import * as inventoryFunctions from "./inventory";
 import * as knowledgeHubFunctions from "./knowledge-hub";
 import * as laborFunctions from "./labor";
 import * as loggingFunctions from "./logging";
+import * as logisticsFunctions from "./logistics";
 import * as marketplaceFunctions from "./marketplace";
 import * as messageFunctions from "./messages";
 import * as networkFunctions from "./network";
@@ -61,6 +63,7 @@ import * as wasteManagementFunctions from "./waste-management";
 
 // Export all cloud functions, grouped by their respective modules
 export const activity = activityFunctions;
+export const admin = adminFunctions;
 export const agriEvents = agriEventsFunctions;
 export const agronomist = agronomistFunctions;
 export const agroTourism = agroTourismFunctions;
@@ -85,6 +88,7 @@ export const inventory = inventoryFunctions;
 export const knowledgeHub = knowledgeHubFunctions;
 export const labor = laborFunctions;
 export const logging = loggingFunctions;
+export const logistics = logisticsFunctions;
 export const marketplace = marketplaceFunctions;
 export const messages = messageFunctions;
 export const network = networkFunctions;
