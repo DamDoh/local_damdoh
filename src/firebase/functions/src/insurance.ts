@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB } from './user';
@@ -117,4 +116,3 @@ export const submitInsuranceApplication = functions.https.onCall(async (data, co
 
     return { success: true, applicationId: newApplicationRef.id };
 });
-

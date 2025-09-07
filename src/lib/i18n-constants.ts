@@ -68,5 +68,3 @@ export const getMobileHomeCategories = (t: any): { id: string; name: string; ico
     { id: 'cat6', name: t('aiAssistant'), icon: Bot, href: '/ai-assistant', dataAiHint: "ai agriculture" },
     { id: 'cat7', name: t('events'), icon: CalendarDays, href: '/agri-events', dataAiHint: "farm event" },
 ];
-
-  
