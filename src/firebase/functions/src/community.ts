@@ -1,5 +1,4 @@
 
-
 // Note: The functions related to knowledge hub and courses have been removed
 // from this file and are now located in `knowledge-hub.ts`.
 // This file should only contain functions related to community and social engagement.
@@ -22,7 +21,6 @@ const checkAuth = (context: functions.https.CallableContext) => {
   return context.auth.uid;
 };
 
-
 export const createFeedPost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { content, pollOptions, imageUrl, dataAiHint } = data; // pollOptions is an array of objects with a 'text' property
@@ -37,7 +35,6 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
 
     const userProfileResult = await getProfileByIdFromDB({ uid }, context);
     const userProfile = userProfileResult;
-
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -111,22 +108,16 @@ export const likePost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { postId } = data;
 
-    const postRef = db.collection('posts').doc(postId);
-    const likeRef = postRef.collection('likes').doc(uid);
+    const likeRef = db.collection(`posts/${postId}/likes`).doc(uid);
+    const likeDoc = await likeRef.get();
     
-    return db.runTransaction(async (transaction) => {
-        const likeDoc = await transaction.get(likeRef);
-        
-        if (likeDoc.exists) {
-            transaction.delete(likeRef);
-            transaction.update(postRef, { likesCount: admin.firestore.FieldValue.increment(-1) });
-            return { success: true, action: 'unliked' };
-        } else {
-            transaction.set(likeRef, { createdAt: admin.firestore.FieldValue.serverTimestamp() });
-            transaction.update(postRef, { likesCount: admin.firestore.FieldValue.increment(1) });
-            return { success: true, action: 'liked' };
-        }
-    });
+    if (likeDoc.exists) {
+        await likeRef.delete();
+        return { success: true, action: 'unliked' };
+    } else {
+        await likeRef.set({ createdAt: admin.firestore.FieldValue.serverTimestamp() });
+        return { success: true, action: 'liked' };
+    }
 });
 
 
@@ -138,29 +129,24 @@ export const addComment = functions.https.onCall(async (data, context) => {
          throw new functions.https.HttpsError('invalid-argument', 'error.form.missingFields');
     }
 
-    const postRef = db.collection('posts').doc(postId);
-    const commentRef = postRef.collection('comments').doc();
+    const commentRef = db.collection(`posts/${postId}/comments`).doc();
 
-    const userProfileResult = await getProfileByIdFromDB({ uid }, context);
+    const userProfileResult = await getProfileByIdFromDB({uid}, context);
     const userProfile = userProfileResult;
-     if (!userProfile) {
+    
+    if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
 
-    const batch = db.batch();
-
     // Denormalize author data on write for performance
-    batch.set(commentRef, {
+    await commentRef.set({
         content,
         userId: uid,
         userName: userProfile.displayName,
         userAvatar: userProfile.avatarUrl || null,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
-
-    batch.update(postRef, { commentsCount: admin.firestore.FieldValue.increment(1) });
-
-    await batch.commit();
+    
     return { success: true, commentId: commentRef.id };
 });
 

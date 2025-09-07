@@ -88,37 +88,6 @@ async function createAndSendNotification(
 }
 
 /**
- * Firestore trigger for new profile views.
- */
-export const onNewProfileView = functions.firestore
-    .document('profile_views/{viewId}')
-    .onCreate(async (snap, context) => {
-        const viewData = snap.data();
-        if (!viewData) return;
-
-        const { viewerId, viewedId } = viewData;
-        
-        // Extra safeguard: do not notify on self-views.
-        if (!viewerId || !viewedId || viewerId === viewedId) {
-            return;
-        }
-
-        const viewerDoc = await db.collection('users').doc(viewerId).get();
-        const viewerName = viewerDoc.data()?.displayName || 'Someone';
-
-        const notificationPayload = {
-            type: "profile_view",
-            title_en: "Your profile has a new view",
-            body_en: `${viewerName} viewed your profile.`,
-            actorId: viewerId,
-            linkedEntity: { collection: "profiles", documentId: viewerId },
-        };
-
-        await createAndSendNotification(viewedId, notificationPayload);
-    });
-
-
-/**
  * Firestore trigger for new connection requests.
  */
 export const onNewConnectionRequest = functions.firestore
@@ -142,52 +111,65 @@ export const onNewConnectionRequest = functions.firestore
     });
 
 /**
- * Firestore trigger for new likes on posts.
+ * Firestore trigger to update a post's like count and send a notification.
  */
-export const onNewPostLike = functions.firestore
+export const onPostLike = functions.firestore
   .document('posts/{postId}/likes/{userId}')
-  .onCreate(async (snap, context) => {
+  .onWrite(async (change, context) => {
     const { postId, userId } = context.params;
-
     const postRef = db.collection('posts').doc(postId);
-    const postDoc = await postRef.get();
-    const postData = postDoc.data();
-    if (!postData) return;
 
-    const likerProfile = await db.collection('users').doc(userId).get();
-    const likerName = likerProfile.data()?.displayName || 'Someone';
+    if (change.after.exists && !change.before.exists) { // Document created (like)
+      await postRef.update({ likesCount: admin.firestore.FieldValue.increment(1) });
+      const postDoc = await postRef.get();
+      const postData = postDoc.data();
+      if (!postData) return;
 
-    await createAndSendNotification(postData.userId, {
-      type: 'like',
-      title_en: `${likerName} liked your post`,
-      body_en: `Your post "${postData.content.substring(0, 50)}..." has a new like.`,
-      actorId: userId,
-      linkedEntity: { collection: 'posts', documentId: postId }
-    });
+      const likerProfile = await db.collection('users').doc(userId).get();
+      const likerName = likerProfile.data()?.displayName || 'Someone';
+
+      await createAndSendNotification(postData.userId, {
+        type: 'like',
+        title_en: `${likerName} liked your post`,
+        body_en: `Your post "${postData.content.substring(0, 50)}..." has a new like.`,
+        actorId: userId,
+        linkedEntity: { collection: 'posts', documentId: postId }
+      });
+
+    } else if (!change.after.exists && change.before.exists) { // Document deleted (unlike)
+      await postRef.update({ likesCount: admin.firestore.FieldValue.increment(-1) });
+    }
   });
 
-/**
- * Firestore trigger for new comments on posts.
- */
-export const onNewPostComment = functions.firestore
-  .document('posts/{postId}/comments/{commentId}')
-  .onCreate(async (snap, context) => {
-    const { postId } = context.params;
-    const commentData = snap.data();
-    if (!commentData) return;
-    
-    const postRef = db.collection('posts').doc(postId);
-    const postDoc = await postRef.get();
-    const postData = postDoc.data();
-    if (!postData) return;
 
-    await createAndSendNotification(postData.userId, {
-      type: 'comment',
-      title_en: `${commentData.userName} commented on your post`,
-      body_en: `"${commentData.content.substring(0, 50)}..."`,
-      actorId: commentData.userId,
-      linkedEntity: { collection: 'posts', documentId: postId }
-    });
+/**
+ * Firestore trigger to update a post's comment count and send a notification.
+ */
+export const onPostComment = functions.firestore
+  .document('posts/{postId}/comments/{commentId}')
+  .onWrite(async (change, context) => {
+    const { postId } = context.params;
+    const postRef = db.collection('posts').doc(postId);
+
+    if (change.after.exists && !change.before.exists) { // Comment created
+      await postRef.update({ commentsCount: admin.firestore.FieldValue.increment(1) });
+      const commentData = change.after.data();
+      if (!commentData) return;
+
+      const postDoc = await postRef.get();
+      const postData = postDoc.data();
+      if (!postData) return;
+
+      await createAndSendNotification(postData.userId, {
+        type: 'comment',
+        title_en: `${commentData.userName} commented on your post`,
+        body_en: `"${commentData.content.substring(0, 50)}..."`,
+        actorId: commentData.userId,
+        linkedEntity: { collection: 'posts', documentId: postId }
+      });
+    } else if (!change.after.exists && change.before.exists) { // Comment deleted
+        await postRef.update({ commentsCount: admin.firestore.FieldValue.increment(-1) });
+    }
   });
 
 

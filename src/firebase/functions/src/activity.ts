@@ -159,7 +159,8 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
 });
 
 /**
- * Fetches engagement statistics for a given user.
+ * Fetches engagement statistics for a given user. This has been optimized to read
+ * pre-aggregated counts from user and post documents.
  * @param {object} data The data for the function call.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<object>} A promise that resolves with the user's engagement stats.
@@ -176,7 +177,7 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
         const userDoc = await db.collection('users').doc(userId).get();
         const profileViews = userDoc.data()?.viewCount || 0;
 
-        // The logic for likes and comments remains the same, as it's already performant.
+        // Fetch all posts by the user to sum up pre-aggregated like and comment counts.
         const postsQuery = db.collection('posts').where('userId', '==', userId).get();
         const postsSnapshot = await postsQuery;
 
