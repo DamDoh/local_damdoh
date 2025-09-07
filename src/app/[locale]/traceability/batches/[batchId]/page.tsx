@@ -16,7 +16,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { format } from 'date-fns';
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
-import type { FarmingAssistantOutput } from '@/ai/flows/farming-assistant-flow';
+import type { FarmingAssistantOutput } from '@/lib/types';
 
 // Define types for the data we expect from the backend
 interface TraceabilityEvent {
@@ -134,7 +134,7 @@ export default function TraceabilityBatchDetailPage() {
   const [error, setError] = useState<string | null>(null);
 
   const functions = getFunctions(firebaseApp);
-  const getVtiHistoryCallable = useMemo(() => httpsCallable(functions, 'getVtiTraceabilityHistory'), [functions]);
+  const getVtiHistoryCallable = useMemo(() => httpsCallable(functions, 'traceability-getVtiTraceabilityHistory'), [functions]);
 
   useEffect(() => {
     if (!batchId) {

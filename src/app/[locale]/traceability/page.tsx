@@ -46,7 +46,7 @@ export default function TraceabilityHubPage() {
   const router = useRouter();
 
   const functions = getFunctions(firebaseApp);
-  const getRecentBatchesCallable = useMemo(() => httpsCallable(functions, 'getRecentVtiBatches'), []);
+  const getRecentBatchesCallable = useMemo(() => httpsCallable(functions, 'traceability-getRecentVtiBatches'), [functions]);
 
   useEffect(() => {
     const fetchRecentBatches = async () => {
