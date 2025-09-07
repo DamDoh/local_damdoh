@@ -32,8 +32,7 @@ import type {
     FarmerDashboardAlert,
     OperationsDashboardData,
     FinancialProduct,
-    KnfBatch,
-    InsuranceProduct
+    KnfBatch
 } from "@/lib/types";
 
 const db = admin.firestore();
@@ -1000,29 +999,15 @@ export const getInsuranceProviderDashboardData = functions.https.onCall(
             }
         });
 
-        const activePoliciesSnapshot = await db.collection('insurance_policies')
-            .where('providerId', '==', context.auth!.uid)
-            .where('status', '==', 'Active')
-            .get();
-            
-        const activePolicies = activePoliciesSnapshot.docs.map(doc => {
-            const policy = doc.data();
-            return {
-                id: doc.id,
-                policyHolderName: policy.policyHolderName || 'Unknown',
-                policyType: policy.policyType,
-                coverageAmount: policy.coverageAmount,
-                expiryDate: (policy.expiryDate as admin.firestore.Timestamp).toDate().toISOString(),
-            }
-        })
-
         return {
             pendingClaims,
             // These remain mocked as their data sources are complex
             riskAssessmentAlerts: [
                 { id: 'risk1', policyHolderName: 'Sunset Farms', alert: 'High flood risk predicted for next month.', severity: 'High', actionLink: '#' }
             ],
-            activePolicies: activePolicies
+            activePolicies: [
+                { id: 'pol1', policyHolderName: 'Green Valley Farms', policyType: 'Multi-peril Crop', coverageAmount: 50000, expiryDate: new Date().toISOString() }
+            ]
         };
     } catch (error) {
         console.error("Error fetching insurance provider dashboard data:", error);
@@ -1135,7 +1120,7 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
         .orderBy('createdAt', 'desc')
         .get();
 
-    const apiKeys: ApiKey[] = keysSnapshot.docs.map(doc => {
+    const apiKeys = keysSnapshot.docs.map(doc => {
         const keyData = doc.data();
         return {
             id: doc.id,
@@ -1145,7 +1130,7 @@ export const getAgriTechInnovatorDashboardData = functions.https.onCall(
             keyPrefix: keyData.keyPrefix, 
             createdAt: (keyData.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
             key: `${keyData.keyPrefix}...${keyData.lastFour}` 
-        };
+        }
     });
 
     // In a real app, this data would be pulled from system monitoring tools.
@@ -1243,3 +1228,95 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
+
+```
+  </change>
+  <change>
+    <file>src/firebase/functions/src/index.ts</file>
+    <content><![CDATA[
+/**
+ * @fileoverview This is the main entry point for all Firebase Cloud Functions.
+ * It initializes the Firebase Admin SDK and exports all the functions from other
+ * modules, making them available for deployment.
+ */
+
+import * as admin from "firebase-admin";
+
+// The 'server.ts' file handles its own initialization.
+// We import it to ensure Express routes are registered with Cloud Functions.
+import expressApp from "./server";
+import * as functions from "firebase-functions";
+
+// We only need to initialize the admin SDK once for all other functions.
+if (admin.apps.length === 0) {
+  admin.initializeApp();
+}
+
+// Group functions by module for cleaner organization
+import * as activityFunctions from "./activity";
+import * as agriEventsFunctions from "./agri-events";
+import * as agroTourismFunctions from "./agro-tourism";
+import * as aiAndAnalyticsFunctions from "./ai-and-analytics";
+import * as aiServicesFunctions from "./ai-services";
+import * as apiKeyFunctions from "./api-keys";
+import * as apiGatewayFunctions from "./api-gateway";
+import * as communityFunctions from "./community";
+import * as dashboardDataFunctions from "./dashboard_data";
+import * as farmManagementFunctions from "./farm-management";
+import * as financialServicesFunctions from "./financial-services";
+import * as forumFunctions from "./forums";
+import * as groupFunctions from "./groups";
+import * as insuranceFunctions from "./insurance";
+import * as knowledgeHubFunctions from "./knowledge-hub";
+import * as laborFunctions from "./labor";
+import * as loggingFunctions from "./logging";
+import * as marketplaceFunctions from "./marketplace";
+import * as messageFunctions from "./messages";
+import * as networkFunctions from "./network";
+import * as notificationFunctions from "./notifications";
+import * as offlineSyncFunctions from "./offline_sync";
+import * as regulatoryFunctions from "./regulatory-and-compliance";
+import * as searchFunctions from "./search";
+import * as sustainabilityFunctions from "./sustainability";
+import * as universalIdFunctions from "./universal-id";
+import * as geospatialFunctions from "./geospatial";
+import * as userFunctions from "./user";
+import * as utilsFunctions from "./utils";
+import * as inventoryFunctions from "./inventory";
+
+
+// Export all cloud functions, grouped by their respective modules
+export const activity = activityFunctions;
+export const agriEvents = agriEventsFunctions;
+export const agroTourism = agroTourismFunctions;
+export const aiAndAnalytics = aiAndAnalyticsFunctions;
+export const aiServices = aiServicesFunctions;
+export const apiKeys = apiKeyFunctions;
+export const apiGateway = apiGatewayFunctions;
+export const community = communityFunctions;
+export const dashboardData = dashboardDataFunctions;
+export const farmManagement = farmManagementFunctions;
+export const financials = financialServicesFunctions;
+export const forums = forumFunctions;
+export const groups = groupFunctions;
+export const insurance = insuranceFunctions;
+export const knowledgeHub = knowledgeHubFunctions;
+export const labor = laborFunctions;
+export const logging = loggingFunctions;
+export const marketplace = marketplaceFunctions;
+export const messages = messageFunctions;
+export const network = networkFunctions;
+export const notifications = notificationFunctions;
+export const offlineSync = offlineSyncFunctions;
+export const regulatory = regulatoryFunctions;
+export const search = searchFunctions;
+export const sustainability = sustainabilityFunctions;
+export const universalId = universalIdFunctions;
+export const geospatial = geospatialFunctions;
+export const user = userFunctions;
+export const utils = utilsFunctions;
+export const inventory = inventoryFunctions;
+
+
+// Export the Express app as a Cloud Function for Cloud Run services
+export const api = functions.https.onRequest(expressApp);
