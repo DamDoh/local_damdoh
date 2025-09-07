@@ -75,24 +75,6 @@ export const getRegulatorDashboardData = functions.https.onCall(
 );
 
 
-export const getCertificationBodyDashboardData = functions.https.onCall(
-  async (data, context): Promise<any> => {
-    checkAuth(context);
-    return {
-        pendingAudits: [
-            { id: 'aud1', farmName: 'Green Valley Farms', standard: 'EU Organic', dueDate: new Date().toISOString(), actionLink: '#' }
-        ],
-        certifiedEntities: [
-            { id: 'ent1', name: 'Riverside Orchards', type: 'Farm', certificationStatus: 'Active', actionLink: '#' }
-        ],
-        standardsMonitoring: [
-            { standard: 'Fair Trade', adherenceRate: 95, alerts: 2, actionLink: '#' }
-        ]
-    };
-  }
-);
-
-
 export const getWasteManagementDashboardData = functions.https.onCall(
   (data, context): WasteManagementDashboardData => {
     checkAuth(context);
