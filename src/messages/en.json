@@ -1,5 +1,4 @@
 
-
 {
   "FarmerDashboard": {
     "title": "My Farm Dashboard",
@@ -244,9 +243,12 @@
     "signUp": "Sign Up",
     "myProfile": "My Profile",
     "myOrders": "My Orders",
+    "myPurchases": "My Purchases",
+    "mySales": "My Sales",
     "settings": "Settings",
     "helpCenter": "Help Center",
     "logOut": "Log Out",
+    "orders": "Orders",
     "switchToLightAria": "Switch to light theme",
     "switchToDarkAria": "Switch to dark theme",
     "mobileMenu": {
@@ -387,22 +389,25 @@
       "title": "The Challenge We're Solving",
       "description": "The agricultural supply chain is fragmented, inefficient, and often lacks the transparency needed for sustainable growth. Key challenges include:",
       "list": {
-        "knowledge": "Fragmented knowledge and lack of access to best practices.",
-        "market": "Limited market access for smallholder farmers.",
-        "quality": "Inconsistent quality control and a lack of verifiable product data.",
-        "logistics": "Inefficient logistics leading to post-harvest losses.",
-        "financial": "Difficulty accessing finance and insurance for small-scale producers.",
-        "climate": "Increasing pressure from climate change on traditional farming methods.",
-        "informal": "Informal and relationship-based systems that can exclude new entrants."
+        "marketAccess": {"title": "Market Access", "details": "Limited market access for smallholder farmers, leading to lower prices and dependency on middlemen."},
+        "inefficiency": {"title": "Inefficiency", "details": "Inefficient logistics and supply chain management result in high post-harvest losses and increased costs."},
+        "financialExclusion": {"title": "Financial Exclusion", "details": "Difficulty for small-scale producers to access fair credit, insurance, and other financial services."},
+        "informationGaps": {"title": "Information Gaps", "details": "Fragmented knowledge and lack of access to best practices, weather data, and market price information."},
+        "qualityTrust": {"title": "Quality & Trust", "details": "Inconsistent quality control and a lack of verifiable product data erode trust between buyers and sellers."},
+        "climatePressure": {"title": "Climate Pressure", "details": "Increasing pressure from climate change on traditional farming methods requires new, sustainable solutions."},
+        "foodLoss": {"title": "Food Loss", "details": "Significant portions of produce are lost between the farm and the consumer due to poor handling and storage."},
+        "dataFragmentation": {"title": "Data Fragmentation", "details": "Critical data is scattered across multiple incompatible systems, hindering effective decision-making."}
       }
     },
     "solution": {
       "title": "The DamDoh Solution",
       "description": "We are building a comprehensive 'super app' that digitizes and connects the entire agricultural ecosystem through several key pillars:",
       "list": {
-        "education": "Education and Knowledge Sharing",
-        "ai": "AI-Powered Assistance and Insights",
-        "logistics": "Integrated Logistics and Traceability"
+        "education": "Education and Knowledge Sharing via our Knowledge Hub.",
+        "ai": "AI-Powered Assistance for crop diagnosis and market insights.",
+        "logistics": "Integrated Logistics and Traceability for supply chain transparency.",
+        "marketplace": "A direct Marketplace for fair trade.",
+        "financial": "Access to Financial Services through trusted partners."
       }
     },
     "beyondTechnology": {
@@ -1747,8 +1752,8 @@
       "knowledgeContributions": "Knowledge Contributions"
     },
     "activeAlerts": "Active Alerts",
-    "reportsToFile": "Reports to file.",
-    "tasksPending": "Tasks pending.",
+    "reportsToFile": "reports to file.",
+    "tasksPending": "tasks pending.",
     "consultations": {
       "title": "Consultation Requests",
       "description": "Respond to incoming requests from farmers.",
@@ -1920,9 +1925,8 @@
     "pendingApplicationsTitle": "Pending Applications",
     "pendingApplicationsDescription": "applications require your review.",
     "manageApplicationsButton": "Manage Applications",
-    "portfolioAtRiskTitle": "Portfolio at Risk",
-    "portfolioAtRiskDescription": "{count} loans with high-risk alerts.",
-    "reviewRiskButton": "Review Risk",
+    "activePortfolioTitle": "Active Portfolio",
+    "activePortfolioDescription": "{count} active loans",
     "manageProductsTitle": "Financial Products",
     "manageProductsDescription": "Active loan and grant products.",
     "manageProductsButton": "Manage Products",
@@ -1935,7 +1939,17 @@
     },
     "reviewButton": "Review",
     "noApplications": "No pending applications to review.",
-    "viewAllButton": "View All Applications"
+    "viewAllButton": "View All Applications",
+    "yourProductsTitle": "Your Financial Products",
+    "yourProductsDescription": "Manage your listed loan and grant offerings.",
+    "createNewProductButton": "Create New Product",
+    "productsTable": {
+        "name": "Product Name",
+        "type": "Type",
+        "interestRate": "Interest Rate",
+        "maxAmount": "Max Amount"
+    },
+    "noProducts": "You have not created any financial products yet."
   },
   "FieldAgentDashboard": {
     "title": "Field Agent Dashboard",
@@ -1991,7 +2005,10 @@
     "activePoliciesDescription": "An overview of your active insurance policies.",
     "coverage": "Coverage",
     "expires": "Expires",
-    "noActivePolicies": "No active policies found."
+    "noActivePolicies": "No active policies found.",
+    "manageProductsTitle": "Manage Insurance Products",
+    "manageProductsDescription": "Create and view your listed insurance products.",
+    "manageProductsButton": "Manage Products"
   },
   "LogisticsDashboard": {
     "title": "Logistics Dashboard",
@@ -2325,5 +2342,40 @@
         "RECEIVED": "Received"
       }
     }
+  },
+  "ProfilePage": {
+    "editProfile": "Edit Profile",
+    "showUniversalIdButton": "Show Universal ID",
+    "universalIdModalTitle": "Your Universal ID",
+    "universalIdModalDescription": "This QR code is your unique digital identity on DamDoh. Others can scan it to view your public profile.",
+    "connect": "Connect",
+    "message": "Message",
+    "invite": {
+      "title": "Invite to DamDoh",
+      "description": "Expand your network by inviting new members to the platform.",
+      "explanation": "Send an email invitation to colleagues and partners to join you on DamDoh.",
+      "button": "Invite Someone"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "activity": "Activity"
+    },
+    "aboutTitle": "About {displayName}",
+    "interestsTitle": "Areas of Interest",
+    "engagementStats": "Engagement Stats",
+    "profileViews": "Profile Views",
+    "postLikes": "Post Likes",
+    "postComments": "Post Comments",
+    "contactTitle": "Contact Information",
+    "needsTitle": "Looking For / Offering",
+    "recentActivityTitle": "Recent Activity",
+    "noRecentActivity": "This user has no recent public activity.",
+    "invitePrompt": "Enter the email address of the person you want to invite.",
+    "inviteSuccessTitle": "Invite Sent!",
+    "inviteSuccessDescription": "An invitation has been sent to {email}.",
+    "inviteErrorTitle": "Invite Failed",
+    "notFoundTitle": "Profile Not Found",
+    "notFoundDescription": "The user profile you are looking for does not exist.",
+    "backToNetwork": "Back to Network"
   }
 }
