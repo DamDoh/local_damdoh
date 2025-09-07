@@ -21,16 +21,15 @@ import type {
     AgronomistDashboardData,
     AgroTourismDashboardData,
     InsuranceProviderDashboardData,
-    CrowdfunderDashboardData,
     EquipmentSupplierDashboardData,
     WasteManagementDashboardData,
     PackagingSupplierDashboardData,
+    FinancialApplication,
     AgriTechInnovatorDashboardData,
     OperationsDashboardData,
-    FinancialApplication,
-    FarmerDashboardAlert,
     FinancialProduct,
-    KnfBatch
+    KnfBatch,
+    FarmerDashboardAlert
 } from "@/lib/types";
 
 const db = admin.firestore();
@@ -488,88 +487,6 @@ export const getRegulatorDashboardData = functions.https.onCall(
   }
 );
 
-
-export const getLogisticsDashboardData = functions.https.onCall(
-  async (data, context): Promise<LogisticsDashboardData> => {
-    const logisticsProviderId = checkAuth(context);
-    
-    try {
-        const shipmentsSnapshot = await db.collection('marketplace_orders')
-            .where('status', '==', 'shipped')
-            // In a real app, we'd also filter by logisticsProviderId if that field existed on the order
-            .orderBy('updatedAt', 'desc')
-            .limit(5)
-            .get();
-
-        const itemIdsForVti = [...new Set(shipmentsSnapshot.docs.map(doc => doc.data().itemId))];
-        const itemDetails: Record<string, any> = {};
-        if (itemIdsForVti.length > 0) {
-            const itemsSnapshot = await db.collection('marketplaceItems').where(admin.firestore.FieldPath.documentId(), 'in', itemIdsForVti).get();
-            itemsSnapshot.forEach(doc => {
-                itemDetails[doc.id] = { relatedTraceabilityId: doc.data().relatedTraceabilityId };
-            });
-        }
-
-        const activeShipments = shipmentsSnapshot.docs.map(doc => {
-            const order = doc.data();
-            const relatedVtiId = itemDetails[order.itemId]?.relatedTraceabilityId;
-            return {
-                id: doc.id,
-                to: order.buyerLocation || 'Unknown Destination', 
-                status: 'In Transit',
-                eta: new Date(Date.now() + Math.random() * 5 * 86400000).toISOString(),
-                vtiLink: relatedVtiId ? `/traceability/batches/${relatedVtiId}` : '#'
-            };
-        });
-
-        const jobsSnapshot = await db.collection('marketplace_orders')
-            .where('status', '==', 'confirmed')
-            // Filter where no logistics provider is assigned yet
-            //.where('logisticsProviderId', '==', null) 
-            .orderBy('createdAt', 'desc')
-            .limit(5)
-            .get();
-            
-        const sellerIds = [...new Set(jobsSnapshot.docs.map(doc => doc.data().sellerId))];
-        const sellerProfiles: Record<string, any> = {};
-        if (sellerIds.length > 0) {
-            const sellersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', sellerIds).get();
-            sellersSnapshot.forEach(doc => {
-                sellerProfiles[doc.id] = { location: doc.data().location || 'Unknown Origin' };
-            });
-        }
-
-        const incomingJobs = jobsSnapshot.docs.map(doc => {
-            const order = doc.data();
-            return {
-                id: doc.id,
-                from: sellerProfiles[order.sellerId]?.location || 'Unknown Origin',
-                to: order.buyerLocation || 'Unknown Destination',
-                product: `${order.listingName} (${order.quantity} units)`,
-                requirements: 'Standard Transport',
-                actionLink: `/marketplace/my-orders/${order.id}`
-            };
-        });
-
-        const performanceMetrics = { 
-            onTimePercentage: 97, 
-            fuelEfficiency: '12km/L', 
-            actionLink: '#' 
-        };
-
-        return {
-            activeShipments,
-            incomingJobs,
-            performanceMetrics,
-        };
-    } catch (error) {
-        console.error("Error fetching logistics dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data for logistics.");
-    }
-  }
-);
-
-
 export const getFieldAgentDashboardData = functions.https.onCall(
   async (data, context): Promise<FieldAgentDashboardData> => {
     const agentId = checkAuth(context);
@@ -672,42 +589,6 @@ export const getInputSupplierDashboardData = functions.https.onCall(
   }
 );
 
-export const getAgroExportDashboardData = functions.https.onCall(
-  async (data, context): Promise<AgroExportDashboardData> => {
-    checkAuth(context);
-     try {
-        const vtisForExportPromise = db.collection('vti_registry')
-            .where('metadata.forExport', '==', true)
-            // Ideally, we'd have a `documentationStatus` field to query
-            .limit(5)
-            .get();
-
-        const [vtisSnapshot] = await Promise.all([vtisForExportPromise]);
-
-        const pendingCustomsDocs = vtisSnapshot.docs.map(doc => ({
-            id: doc.id,
-            vtiLink: `/traceability/batches/${doc.id}`,
-            destination: doc.data().metadata.destinationCountry || 'Unknown',
-            status: 'Awaiting Phytosanitary Certificate' // Mock status
-        }));
-
-        return {
-            pendingCustomsDocs,
-            // These remain mocked
-            trackedShipments: [
-                { id: 'ship1', status: 'In Transit', location: 'Indian Ocean', carrier: 'Maersk' }
-            ],
-            complianceAlerts: [
-                { id: 'ca1', content: 'New packaging regulations for EU effective Aug 1.', actionLink: '#' }
-            ]
-        };
-     } catch (error) {
-        console.error("Error fetching agro-export dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
-    }
-  }
-);
-
 export const getProcessingUnitDashboardData = functions.https.onCall(
   async (data, context): Promise<ProcessingUnitDashboardData> => {
     const unitId = checkAuth(context);
@@ -774,38 +655,6 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
         console.error("Error fetching Processing Unit dashboard data:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
     }
-  }
-);
-
-
-export const getWarehouseDashboardData = functions.https.onCall(
-  async (data, context): Promise<WarehouseDashboardData> => {
-    checkAuth(context);
-    
-    // In a real app, this would perform aggregations on inventory data linked to this warehouse.
-    const inventorySnapshot = await db.collection('marketplaceItems').limit(100).get();
-    
-    const inventoryLevels = {
-        totalItems: inventorySnapshot.size,
-        itemsNeedingAttention: inventorySnapshot.docs.filter(doc => (doc.data().stock || 0) < (doc.data().reorderLevel || 20)).length,
-    };
-    
-    // This would be a more complex calculation based on capacity vs. stored volume.
-    const storageOptimization = { 
-        utilization: 78, 
-        suggestion: 'Consolidate pallets in Zone C.' 
-    };
-    
-    // This would come from an AI model or rule-based system analyzing data streams.
-    const predictiveAlerts = [
-            { alert: 'High humidity detected in Cold Storage 2. Risk of mold.', actionLink: '#' }
-    ];
-
-    return {
-        storageOptimization,
-        inventoryLevels,
-        predictiveAlerts
-    };
   }
 );
 
@@ -929,50 +778,6 @@ export const getAgronomistDashboardData = functions.https.onCall(
 );
 
 
-export const getAgroTourismDashboardData = functions.https.onCall(
-  async (data, context): Promise<AgroTourismDashboardData> => {
-    const operatorId = checkAuth(context);
-    try {
-        // --- Fetch Live Data for Listed Experiences ---
-        const experiencesSnapshot = await db.collection('marketplaceItems')
-            .where('sellerId', '==', operatorId)
-            .where('category', '==', 'agri-tourism-services')
-            .orderBy('createdAt', 'desc')
-            .get();
-
-        const listedExperiences = experiencesSnapshot.docs.map(doc => {
-            const item = doc.data();
-            return {
-                id: doc.id,
-                title: item.name,
-                location: item.location.address,
-                status: 'Published' as 'Published' | 'Draft', // Assuming all listed items are published for now
-                bookingsCount: item.bookingsCount || 0, // A field we can increment
-                actionLink: `/marketplace/${item.id}/manage-service`
-            };
-        });
-
-        // --- Keep Mock Data for other sections for now ---
-        const upcomingBookings = [
-            { id: 'book1', experienceTitle: 'Coffee Farm Tour & Tasting', guestName: 'Alice Johnson', date: new Date().toISOString(), actionLink: '#' }
-        ];
-        const guestReviews = [
-            { id: 'rev1', guestName: 'Bob Williams', experienceTitle: 'Coffee Farm Tour & Tasting', rating: 5, comment: 'Amazing experience, learned so much!', actionLink: '#' }
-        ];
-
-        return {
-            listedExperiences,
-            upcomingBookings,
-            guestReviews,
-        };
-
-    } catch (error) {
-        console.error("Error fetching Agro-Tourism dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
-    }
-  }
-);
-
 export const getInsuranceProviderDashboardData = functions.https.onCall(
   async (data, context): Promise<InsuranceProviderDashboardData> => {
     checkAuth(context);
@@ -1010,37 +815,6 @@ export const getInsuranceProviderDashboardData = functions.https.onCall(
         console.error("Error fetching insurance provider dashboard data:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
     }
-  }
-);
-
-export const getEnergyProviderDashboardData = functions.https.onCall(
-  (data, context): EnergyProviderDashboardData => {
-    checkAuth(context);
-    return {
-        projectLeads: [
-            { id: 'lead1', entityName: 'Rift Valley Growers Co-op', location: 'Naivasha', estimatedEnergyNeed: '150kW Solar for Irrigation', status: 'Proposal Sent', actionLink: '#' }
-        ],
-        activeProjects: [
-            { id: 'proj1', projectName: 'Greenhouse Solar Installation', solutionType: 'Solar PV', status: 'In Progress', completionDate: new Date().toISOString() }
-        ],
-        impactMetrics: { totalInstallations: 45, totalEstimatedCarbonReduction: '1,200 tCO2e/year' }
-    };
-  }
-);
-
-
-export const getCrowdfunderDashboardData = functions.https.onCall(
-  (data, context): CrowdfunderDashboardData => {
-    checkAuth(context);
-    return {
-        portfolioOverview: { totalInvested: 75000, numberOfInvestments: 8, estimatedReturns: 95000 },
-        suggestedOpportunities: [
-            { id: 'opp1', projectName: 'Women-Led Shea Butter Processing Unit', category: 'Value Addition', fundingGoal: 50000, amountRaised: 35000, actionLink: '#' }
-        ],
-        recentTransactions: [
-            { id: 'tx1', projectName: 'Rift Valley Growers Co-op', type: 'Investment', amount: 5000, date: new Date().toISOString() }
-        ]
-    };
   }
 );
 
@@ -1225,3 +999,23 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
+
+export const getOperationsDashboardData = functions.https.onCall(
+  (data, context): OperationsDashboardData => {
+    checkAuth(context);
+    return {
+      vtiGenerationRate: {
+        rate: 120, // Example value
+        unit: 'VTIs/hour',
+        trend: 5, // 5% increase
+      },
+      dataPipelineStatus: {
+        status: 'Operational',
+        lastChecked: new Date().toISOString(),
+      },
+      flaggedEvents: [
+        { id: 'evt1', type: 'Anomalous Geolocation', description: 'Batch moved 500km in 1 hour', vtiLink: '#' },
+      ],
+    };
+  }
+);
