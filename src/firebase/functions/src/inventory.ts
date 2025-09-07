@@ -45,7 +45,7 @@ export const addInventoryItem = functions.https.onCall(async (data, context) => 
 // Callable function to get all inventory items for a user
 export const getInventory = functions.https.onCall(async (data, context) => {
   const ownerId = checkAuth(context);
-  const itemsSnapshot = await db.collection(`users/${ownerId}/inventory`).orderBy('purchaseDate', 'desc').get();
+  const itemsSnapshot = await db.collection(`users/${ownerId}/inventory`).orderBy('name', 'asc').get();
   
   const items = itemsSnapshot.docs.map(doc => {
     const itemData = doc.data();
@@ -125,3 +125,5 @@ export const updateInventoryItem = functions.https.onCall(async (data, context) 
 
     return { success: true };
 });
+
+    

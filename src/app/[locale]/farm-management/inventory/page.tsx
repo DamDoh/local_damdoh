@@ -67,7 +67,7 @@ export default function InventoryManagementPage() {
     fetchInventory();
   }, [fetchInventory]);
 
-  const isExpired = (expiryDate?: string) => {
+  const isExpired = (expiryDate?: string | null) => {
     if (!expiryDate) return false;
     return new Date(expiryDate) < new Date();
   };
@@ -165,3 +165,5 @@ export default function InventoryManagementPage() {
     </div>
   );
 }
+
+    

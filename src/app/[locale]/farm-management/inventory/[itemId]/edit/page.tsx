@@ -4,7 +4,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft, Loader2, Save, Tractor, Calendar, DollarSign, FileText, Package, Tag, CircleDot } from "lucide-react";
+import { ArrowLeft, Loader2, Save, Package, Calendar, DollarSign, FileText, Tag, CircleDot } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -158,3 +158,5 @@ export default function EditInventoryItemPage() {
     </div>
   );
 }
+
+    
