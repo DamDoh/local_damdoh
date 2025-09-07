@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
@@ -132,7 +131,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
                 id: doc.id,
                 type: 'Received an Order',
                 title: `For: ${sale.listingName}`,
-                timestamp: toISODate(sale.createdAt),
+                timestamp: toISODate(order.createdAt),
                 icon: 'CircleDollarSign'
             });
         });
