@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB } from './user';
@@ -68,7 +69,7 @@ export const getInsuranceProductDetails = functions.https.onCall(async (data, co
     let provider = null;
     
     if (productData.providerId) {
-        const providerProfileResult = await getProfileByIdFromDB({ uid: productData.providerId });
+        const providerProfileResult = (await getProfileByIdFromDB({ uid: productData.providerId })).data;
         const providerProfile = providerProfileResult; // data is the profile object
         if (providerProfile) {
             provider = {

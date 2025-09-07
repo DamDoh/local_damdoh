@@ -1,83 +1,270 @@
-/**
- * @fileoverview This is the main entry point for all Firebase Cloud Functions.
- * It initializes the Firebase Admin SDK and exports all the functions from other
- * modules, making them available for deployment.
- */
 
-import * as admin from "firebase-admin";
 
-// The 'server.ts' file handles its own initialization.
-// We import it to ensure Express routes are registered with Cloud Functions.
-import expressApp from "./server";
 import * as functions from "firebase-functions";
+import * as admin from "firebase-admin";
+import { v4 as uuidv4 } from "uuid";
+import { getRole } from "./utils";
+import { randomBytes } from 'crypto'; // For generating a secret
 
-// We only need to initialize the admin SDK once for all other functions.
-if (admin.apps.length === 0) {
-  admin.initializeApp();
-}
+const db = admin.firestore();
 
-// Group functions by module for cleaner organization
-import * as activityFunctions from "./activity";
-import * as agriEventsFunctions from "./agri-events";
-import * as agroTourismFunctions from "./agro-tourism";
-import * as aiServicesFunctions from "./ai-services";
-import * as apiKeyFunctions from "./api-keys";
-import * as apiGatewayFunctions from "./api-gateway";
-import * as assetManagementFunctions from "./asset-management";
-import * as communityFunctions from "./community";
-import * as dashboardDataFunctions from "./dashboard_data";
-import * as farmManagementFunctions from "./farm-management";
-import * as financialServicesFunctions from "./financial-services";
-import * as forumFunctions from "./forums";
-import * as groupFunctions from "./groups";
-import * as insuranceFunctions from "./insurance";
-import * as inventoryFunctions from "./inventory";
-import * as knowledgeHubFunctions from "./knowledge-hub";
-import * as laborFunctions from "./labor";
-import * as loggingFunctions from "./logging";
-import * as marketplaceFunctions from "./marketplace";
-import * as messageFunctions from "./messages";
-import * as networkFunctions from "./network";
-import * as notificationFunctions from "./notifications";
-import * as offlineSyncFunctions from "./offline_sync";
-import * as regulatoryFunctions from "./regulatory-and-compliance";
-import * as searchFunctions from "./search";
-import * as sustainabilityFunctions from "./sustainability";
-import * as userFunctions from "./user";
-import * as utilsFunctions from "./utils";
-import * as geospatialFunctions from "./geospatial";
+/**
+ * Triggered on new user creation to generate a unique, non-sensitive Universal ID.
+ * This ID is then stored back into the user's document.
+ */
+export const generateUniversalIdOnUserCreate = functions.firestore
+  .document("users/{userId}")
+  .onCreate(async (snap, context) => {
+    const userId = context.params.userId;
+    const userData = snap.data();
 
-// Export all cloud functions, grouped by their respective modules
-export const activity = activityFunctions;
-export const agriEvents = agriEventsFunctions;
-export const agroTourism = agroTourismFunctions;
-export const aiServices = aiServicesFunctions;
-export const apiKeys = apiKeyFunctions;
-export const apiGateway = apiGatewayFunctions;
-export const assetManagement = assetManagementFunctions;
-export const community = communityFunctions;
-export const dashboardData = dashboardDataFunctions;
-export const farmManagement = farmManagementFunctions;
-export const financials = financialServicesFunctions;
-export const forums = forumFunctions;
-export const groups = groupFunctions;
-export const insurance = insuranceFunctions;
-export const inventory = inventoryFunctions;
-export const knowledgeHub = knowledgeHubFunctions;
-export const labor = laborFunctions;
-export const logging = loggingFunctions;
-export const marketplace = marketplaceFunctions;
-export const messages = messageFunctions;
-export const network = networkFunctions;
-export const notifications = notificationFunctions;
-export const offlineSync = offlineSyncFunctions;
-export const user = userFunctions;
-export const utils = utilsFunctions;
-export const regulatory = regulatoryFunctions;
-export const search = searchFunctions;
-export const sustainability = sustainabilityFunctions;
-export const geospatial = geospatialFunctions;
+    // Prevent function from running again if universalId already exists
+    if (userData.universalId) {
+      console.log(`User ${userId} already has a Universal ID. Exiting function.`);
+      return null;
+    }
+
+    console.log(`Generating Universal ID for new user: ${userId}`);
+
+    // Generate a unique ID (UUID v4)
+    const universalId = uuidv4();
+
+    try {
+      await snap.ref.update({
+        universalId: universalId,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+      console.log(`Successfully assigned Universal ID ${universalId} to user ${userId}.`);
+      return null;
+    } catch (error) {
+      console.error(`Error updating user ${userId} with Universal ID:`, error);
+      return null;
+    }
+  });
 
 
-// Export the Express app as a Cloud Function for Cloud Run services
-export const api = functions.https.onRequest(expressApp);
+/**
+ * Securely retrieves a subset of a user's data based on their Universal ID.
+ * The amount of data returned depends on the role of the person scanning the ID.
+ */
+export const getUniversalIdData = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to scan a Universal ID.");
+    }
+
+    const { scannedUniversalId } = data;
+    if (!scannedUniversalId) {
+        throw new functions.https.HttpsError("invalid-argument", "A 'scannedUniversalId' must be provided.");
+    }
+
+    const scannerUid = context.auth.uid;
+
+    try {
+        // Find the user document corresponding to the scanned Universal ID
+        const usersRef = db.collection("users");
+        const querySnapshot = await usersRef.where("universalId", "==", scannedUniversalId).limit(1).get();
+
+        if (querySnapshot.empty) {
+            throw new functions.https.HttpsError("not-found", "The scanned Universal ID does not correspond to any user.");
+        }
+
+        const scannedUserDoc = querySnapshot.docs[0];
+        const scannedUserData = scannedUserDoc.data();
+        
+        // Get the role of the user who is doing the scanning
+        const scannerRole = await getRole(scannerUid);
+
+        // Define the public profile data that anyone can see
+        const publicProfile = {
+            uid: scannedUserDoc.id,
+            universalId: scannedUserData.universalId,
+            displayName: scannedUserData.displayName,
+            primaryRole: scannedUserData.primaryRole,
+            avatarUrl: scannedUserData.avatarUrl || null,
+            location: scannedUserData.location || null,
+        };
+
+        // Here, we implement the Role-Based Access Control (RBAC) logic.
+        // This can be expanded with more granular permissions.
+        if (scannerUid === scannedUserDoc.id) {
+            // The user is scanning their own ID, return all non-sensitive data
+            return {
+                ...publicProfile,
+                phoneNumber: scannedUserData.phoneNumber, // Include phone number for self-scan
+                email: scannedUserData.email,
+            };
+        } else if (scannerRole === 'Field Agent/Agronomist (DamDoh Internal)' || scannerRole === 'Admin') {
+            // An agent or admin gets more detailed information
+            return {
+                ...publicProfile,
+                phoneNumber: scannedUserData.phoneNumber,
+                // Concept: Could also return linked farm data here
+            };
+        } else {
+            // For any other authenticated user, just return the public profile
+            return publicProfile;
+        }
+
+    } catch (error) {
+        console.error("Error retrieving Universal ID data:", error);
+        if (error instanceof functions.https.HttpsError) {
+            throw error;
+        }
+        throw new functions.https.HttpsError("internal", "An unexpected error occurred while fetching user data.");
+    }
+});
+
+
+/**
+ * Securely retrieves a user's data by their phone number for authorized agents.
+ */
+export const lookupUserByPhone = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to perform this action.");
+    }
+
+    const { phoneNumber } = data;
+    if (!phoneNumber) {
+        throw new functions.https.HttpsError("invalid-argument", "A 'phoneNumber' must be provided.");
+    }
+
+    const agentUid = context.auth.uid;
+    const agentRole = await getRole(agentUid);
+
+    // Security Check: Only allow authorized roles to perform this lookup
+    const authorizedRoles = ['Field Agent/Agronomist (DamDoh Internal)', 'Admin', 'Operations/Logistics Team (DamDoh Internal)'];
+    if (!agentRole || !authorizedRoles.includes(agentRole)) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to look up users by phone number.");
+    }
+
+    try {
+        const usersRef = db.collection("users");
+        const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
+
+        if (querySnapshot.empty) {
+            throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
+        }
+
+        const foundUserDoc = querySnapshot.docs[0];
+        const foundUserData = foundUserDoc.data();
+
+        // Return a subset of data, similar to getUniversalIdData for an agent
+        const userProfileSubset = {
+            uid: foundUserDoc.id,
+            universalId: foundUserData.universalId,
+            displayName: foundUserData.displayName,
+            primaryRole: foundUserData.primaryRole,
+            avatarUrl: foundUserData.avatarUrl || null,
+            location: foundUserData.location || null,
+            phoneNumber: foundUserData.phoneNumber,
+        };
+        
+        return userProfileSubset;
+
+    } catch (error) {
+        console.error("Error looking up user by phone:", error);
+        if (error instanceof functions.https.HttpsError) {
+            throw error;
+        }
+        throw new functions.https.HttpsError("internal", "An unexpected error occurred while searching for the user.");
+    }
+});
+
+
+/**
+ * Creates a temporary, secure session for account recovery.
+ * The user provides their phone number to initiate this process.
+ * The function returns a session ID and a value to be embedded in a temporary QR code.
+ */
+export const createRecoverySession = functions.https.onCall(async (data, context) => {
+    const { phoneNumber } = data;
+    if (!phoneNumber) {
+        throw new functions.https.HttpsError("invalid-argument", "A 'phoneNumber' must be provided.");
+    }
+    
+    // Find user by phone number
+    const usersRef = db.collection("users");
+    const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
+
+    if (querySnapshot.empty) {
+        throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
+    }
+
+    const userToRecoverDoc = querySnapshot.docs[0];
+    
+    // Generate a secure, short-lived session
+    const sessionId = uuidv4();
+    const recoverySecret = randomBytes(16).toString('hex'); // A secret that the friend's app will send back
+    const recoveryQrValue = `damdoh:recover:${sessionId}:${recoverySecret}`; // Format: standard:action:sessionId:secret
+
+    const sessionRef = db.collection('recovery_sessions').doc(sessionId);
+
+    await sessionRef.set({
+        sessionId,
+        userIdToRecover: userToRecoverDoc.id,
+        recoverySecret,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        status: 'pending', // pending -> confirmed -> completed
+        confirmedBy: null, // UID of the friend who confirms
+        expiresAt: admin.firestore.Timestamp.fromMillis(Date.now() + 10 * 60 * 1000), // Session expires in 10 minutes
+    });
+
+    return { sessionId, recoveryQrValue };
+});
+
+
+/**
+ * Called by a logged-in user (the "friend") who has scanned the recovery QR code.
+ * This function verifies the session and secret, and if valid, marks the recovery as confirmed.
+ */
+export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to help a friend recover their account.");
+    }
+
+    const friendUid = context.auth.uid;
+    const { sessionId, scannedSecret } = data;
+
+    if (!sessionId || !scannedSecret) {
+        throw new functions.https.HttpsError("invalid-argument", "Session ID and secret are required.");
+    }
+
+    const sessionRef = db.collection('recovery_sessions').doc(sessionId);
+    const sessionDoc = await sessionRef.get();
+
+    if (!sessionDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Invalid recovery session.");
+    }
+
+    const sessionData = sessionDoc.data()!;
+    const expiresAt = (sessionData.expiresAt as admin.firestore.Timestamp).toDate();
+
+    if (new Date() > expiresAt) {
+        await sessionRef.update({ status: 'expired' });
+        throw new functions.https.HttpsError("deadline-exceeded", "This recovery session has expired. Please start over.");
+    }
+    
+    if (sessionData.status !== 'pending') {
+        throw new functions.https.HttpsError("failed-precondition", "This recovery session has already been used or is invalid.");
+    }
+
+    if (sessionData.recoverySecret !== scannedSecret) {
+        throw new functions.https.HttpsError("permission-denied", "Invalid recovery code.");
+    }
+    
+    if (sessionData.userIdToRecover === friendUid) {
+        throw new functions.https.HttpsError("invalid-argument", "You cannot use your own recovery code.");
+    }
+    
+    // Mark session as confirmed
+    await sessionRef.update({
+        status: 'confirmed',
+        confirmedBy: friendUid,
+    });
+    
+    // In a real application, the next step would be for the original user's device
+    // to poll the session status. Once 'confirmed', it would request a custom auth token.
+    // For this demo, we'll just return a success message.
+    
+    return { success: true, message: "Friend confirmation successful! The user can now proceed with their recovery.", recoveryComplete: true };
+});
