@@ -174,6 +174,65 @@ export const getFarmerDashboardData = functions.https.onCall(
 );
 
 
+export const getPackagingSupplierDashboardData = functions.https.onCall(
+  async (data, context): Promise<PackagingSupplierDashboardData> => {
+    const supplierId = checkAuth(context);
+    try {
+        // Fetch real inventory data
+        const inventorySnapshot = await db.collection('marketplaceItems')
+            .where('sellerId', '==', supplierId)
+            .where('category', '==', 'packaging-solutions')
+            .get();
+
+        const inventory = inventorySnapshot.docs.map(doc => {
+            const item = doc.data();
+            return {
+                id: doc.id,
+                item: item.name,
+                stock: item.stock || 0, // Assuming a stock field exists
+                reorderLevel: item.reorderLevel || 100, // Assuming a reorderLevel field
+            };
+        });
+        
+        // Fetch real orders
+         const ordersSnapshot = await db.collection('marketplace_orders')
+            .where('sellerId', '==', supplierId)
+            .orderBy('createdAt', 'desc')
+            .limit(10)
+            .get();
+
+        const buyerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().buyerId))];
+        const buyerProfiles: {[key: string]: string} = {};
+        if(buyerIds.length > 0) {
+            const buyerDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', buyerIds).get();
+            buyerDocs.forEach(doc => {
+                buyerProfiles[doc.id] = doc.data().displayName || 'Unknown Customer';
+            });
+        }
+
+        const incomingOrders = ordersSnapshot.docs.map(doc => {
+            const order = doc.data();
+            return {
+                id: doc.id,
+                customerName: buyerProfiles[order.buyerId] || 'Unknown Customer',
+                product: order.listingName,
+                quantity: order.quantity,
+                status: order.status,
+                actionLink: `/marketplace/my-orders/${doc.id}`,
+            };
+        });
+
+
+        return { incomingOrders, inventory };
+
+    } catch (error) {
+        console.error("Error fetching packaging supplier dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
+  }
+);
+
+
 export const getFiDashboardData = functions.https.onCall(
   async (data, context): Promise<FiDashboardData> => {
     const fiId = checkAuth(context);
@@ -746,50 +805,6 @@ export const getCertificationBodyDashboardData = functions.https.onCall(
   }
 );
 
-export const getResearcherDashboardData = functions.https.onCall(
-    async (data, context): Promise<ResearcherDashboardData> => {
-      const userId = checkAuth(context);
-      try {
-          // Fetch knowledge hub contributions made by this user
-          const articlesSnapshot = await db.collection('knowledge_articles')
-              .where('authorId', '==', userId) // Query by UID
-              .orderBy('createdAt', 'desc')
-              .limit(10)
-              .get();
-
-          const knowledgeHubContributions = articlesSnapshot.docs.map(doc => {
-              const article = doc.data();
-              return {
-                  id: doc.id,
-                  title: article.title_en || article.title_km || "Untitled Article",
-                  status: 'Published' as const // Placeholder status
-              };
-          });
-
-          // Mock data for datasets and projects, as these collections don't exist yet
-          const availableDatasets = [
-              { id: 'set1', name: 'Rift Valley Maize Yields (2020-2023)', dataType: 'CSV', accessLevel: 'Requires Request' as const, actionLink: '#' },
-              { id: 'set2', name: 'Regional Soil Health Data (Anonymized)', dataType: 'JSON', accessLevel: 'Public' as const, actionLink: '#' },
-          ];
-          
-          const ongoingProjects = [
-              { id: 'proj1', title: 'Impact of KNF on Soil Health in Smallholder Farms', progress: 65, collaborators: ['University of Nairobi'], actionLink: '#' },
-              { id: 'proj2', title: 'AI-driven Pest Identification Accuracy Study', progress: 30, collaborators: ['DamDoh AI Team'], actionLink: '#' }
-          ];
-
-          return {
-              availableDatasets,
-              ongoingProjects,
-              knowledgeHubContributions,
-          };
-
-      } catch (error) {
-          console.error("Error fetching researcher dashboard data:", error);
-          throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
-      }
-    }
-);
-
 
 export const getAgronomistDashboardData = functions.https.onCall(
   async (data, context): Promise<AgronomistDashboardData> => {
@@ -1067,7 +1082,7 @@ export const getAdminDashboardData = functions.https.onCall(async (data, context
             farmsPromise,
             listingsPromise,
             newUsersQuery,
-            pendingApprovalsPromise,
+            pendingApprovalsSnap,
         ]);
 
         return {
