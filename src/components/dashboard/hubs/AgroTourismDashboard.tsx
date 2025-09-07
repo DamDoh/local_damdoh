@@ -15,16 +15,14 @@ import type { AgroTourismDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
 
-const functions = getFunctions(firebaseApp);
-
-
 export const AgroTourismDashboard = () => {
   const t = useTranslations('AgroTourismDashboard');
   const [dashboardData, setDashboardData] = useState<AgroTourismDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const getAgroTourismDashboardDataCallable = useMemo(() => httpsCallable<void, AgroTourismDashboardData>(functions, 'getAgroTourismDashboardData'), [functions]);
+  const functions = getFunctions(firebaseApp);
+  const getAgroTourismDashboardDataCallable = useMemo(() => httpsCallable<void, AgroTourismDashboardData>(functions, 'dashboardData-getAgroTourismDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -204,10 +202,10 @@ export const AgroTourismDashboard = () => {
 const DashboardSkeleton = () => (
     <div className="space-y-6">
         <Skeleton className="h-9 w-64 mb-6" />
-        <Skeleton className="h-48 w-full rounded-lg" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Skeleton className="h-64 w-full rounded-lg" />
-            <Skeleton className="h-64 w-full rounded-lg" />
+            <Skeleton className="h-48 w-full rounded-lg" />
+            <Skeleton className="h-48 w-full rounded-lg" />
+            <Skeleton className="h-32 w-full rounded-lg md:col-span-2" />
         </div>
     </div>
 );
