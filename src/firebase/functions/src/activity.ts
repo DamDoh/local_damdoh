@@ -166,8 +166,11 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
  * @return {Promise<object>} A promise that resolves with the user's engagement stats.
  */
 export const getUserEngagementStats = functions.https.onCall(async (data, context) => {
-    const userId = checkAuth(context); // FIX: checkAuth was missing
-    // const { userId } = data; // This line is now redundant
+    const userId = checkAuth(context);
+    
+    // The userId is now securely taken from the authenticated context, not from the data payload.
+    // const { userId } = data; // This line is removed for security and consistency.
+    
      if (!userId) {
         throw new functions.https.HttpsError('invalid-argument', 'error.userId.required');
     }
