@@ -1,5 +1,4 @@
 
-
 /**
  * @fileoverview This is the main entry point for all Firebase Cloud Functions.
  * It initializes the Firebase Admin SDK and exports all the functions from other
@@ -56,7 +55,6 @@ import * as notificationFunctions from "./notifications";
 import * as offlineSyncFunctions from "./offline_sync";
 import * as packagingFunctions from "./packaging";
 import * as processingLogisticsFunctions from "./processing-logistics";
-import * as profileFunctions from "./profiles";
 import * as qaFunctions from "./qa";
 import * as regulatoryFunctions from "./regulatory-and-compliance";
 import * as researchFunctions from "./research";
@@ -105,7 +103,6 @@ export const notifications = notificationFunctions;
 export const offlineSync = offlineSyncFunctions;
 export const packaging = packagingFunctions;
 export const processingLogistics = processingLogisticsFunctions;
-export const profiles = profileFunctions;
 export const qa = qaFunctions;
 export const regulatory = regulatoryFunctions;
 export const research = researchFunctions;
