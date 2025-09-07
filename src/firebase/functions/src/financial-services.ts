@@ -1,7 +1,7 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import type { FiDashboardData, FinancialApplication, FinancialProduct } from "@/lib/types";
 
 const db = admin.firestore();
 
@@ -952,62 +952,3 @@ export const getFarmerApplications = functions.https.onCall(async (data, context
 
     return { applications };
 });
-
-export const getFiDashboardData = functions.https.onCall(
-  async (data, context): Promise<FiDashboardData> => {
-    const fiId = await checkFiAuth(context);
-    try {
-        const applicationsSnapshot = await db.collection('financial_applications')
-            .where('fiId', '==', fiId)
-            .where('status', 'in', ['Pending', 'Under Review'])
-            .orderBy('submittedAt', 'desc')
-            .limit(10)
-            .get();
-            
-        const pendingApplications: FinancialApplication[] = applicationsSnapshot.docs.map(doc => {
-            const appData = doc.data();
-            return {
-                id: doc.id,
-                applicantId: appData.applicantId,
-                applicantName: appData.applicantName,
-                fiId: appData.fiId,
-                type: appData.type,
-                amount: appData.amount,
-                currency: appData.currency,
-                status: appData.status,
-                riskScore: appData.riskScore,
-                purpose: appData.purpose,
-                submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
-                actionLink: `/fi/applications/${doc.id}`,
-            };
-        });
-        
-        // Live data for portfolio
-        const loansSnapshot = await db.collection('financial_applications')
-            .where('fiId', '==', fiId)
-            .where('status', '==', 'Approved')
-            .get();
-
-        const portfolioOverview = {
-            loanCount: loansSnapshot.size,
-            totalValue: loansSnapshot.docs.reduce((sum, doc) => sum + doc.data().amount, 0),
-        };
-        
-        const productsSnapshot = await db.collection('financial_products')
-            .where('fiId', '==', fiId)
-            .get();
-
-        const financialProducts = productsSnapshot.docs.map(doc => ({id: doc.id, ...doc.data()})) as FinancialProduct[];
-
-
-        return {
-            pendingApplications,
-            portfolioOverview,
-            financialProducts,
-        };
-    } catch (error) {
-        console.error("Error fetching Financial Institution dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch FI dashboard data.");
-    }
-  }
-);
