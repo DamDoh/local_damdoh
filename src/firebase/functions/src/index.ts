@@ -1,4 +1,5 @@
 
+
 /**
  * @fileoverview This is the main entry point for all Firebase Cloud Functions.
  * It initializes the Firebase Admin SDK and exports all the functions from other
@@ -33,7 +34,6 @@ import * as certificationFunctions from "./certification";
 import * as communityFunctions from "./community";
 import * as cooperativeFunctions from "./cooperative";
 import * as crowdfunderFunctions from "./crowdfunder";
-import * as dashboardDataFunctions from "./dashboard_data";
 import * as energyProviderFunctions from "./energy-provider";
 import * as equipmentSupplierFunctions from "./equipment-supplier";
 import * as farmManagementFunctions from "./farm-management";
@@ -84,7 +84,6 @@ export const certification = certificationFunctions;
 export const community = communityFunctions;
 export const cooperative = cooperativeFunctions;
 export const crowdfunder = crowdfunderFunctions;
-export const dashboardData = dashboardDataFunctions; // Changed from 'dashboard'
 export const energyProvider = energyProviderFunctions;
 export const equipmentSupplier = equipmentSupplierFunctions;
 export const farmManagement = farmManagementFunctions;
