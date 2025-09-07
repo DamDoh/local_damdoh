@@ -5,8 +5,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB } from './user';
-import { getRole } from './utils';
-import { deleteCollectionByPath } from './utils';
+import { getRole, deleteCollectionByPath } from './utils';
 
 const db = admin.firestore();
 
