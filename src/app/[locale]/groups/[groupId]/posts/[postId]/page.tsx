@@ -13,7 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { PostReply } from '@/lib/types';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { doc, getDoc, getFirestore, onSnapshot, collection, query, orderBy } from "firebase/firestore";
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
 import { useTranslations } from 'next-intl';
@@ -110,67 +110,18 @@ export default function GroupPostPage() {
 
     const [post, setPost] = useState<GroupPost | null>(null);
     const [replies, setReplies] = useState<PostReply[]>([]);
-    const [lastVisible, setLastVisible] = useState<string | null>(null);
-    const [hasMore, setHasMore] = useState(true);
     const [newReply, setNewReply] = useState("");
     const [isLoading, setIsLoading] = useState(true);
-    const [isLoadingMore, setIsLoadingMore] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const functions = getFunctions(firebaseApp);
-    const getRepliesForPost = useMemo(() => httpsCallable(functions, 'getGroupPostReplies'), [functions]);
     const addReplyToPost = useMemo(() => httpsCallable(functions, 'addGroupPostReply'), [functions]);
-
-    const fetchReplies = useCallback(async (isInitialLoad = false) => {
-        if (!hasMore && !isInitialLoad) return;
-        
-        if (isInitialLoad) setIsLoading(true);
-        else setIsLoadingMore(true);
-
-        try {
-            const result = await getRepliesForPost({ groupId, postId, lastVisible: isInitialLoad ? null : lastVisible });
-            const data = result.data as { replies?: any[], lastVisible?: string | null };
-            const backendReplies = data?.replies || [];
-            
-            if (backendReplies.length > 0) {
-                const enrichedReplies: PostReply[] = backendReplies.map((reply: any) => ({
-                    id: reply.id,
-                    content: reply.content,
-                    timestamp: reply.createdAt ? new Date(reply.createdAt).toISOString() : new Date().toISOString(),
-                    author: {
-                        id: reply.authorRef,
-                        name: reply.authorName,
-                        avatarUrl: reply.authorAvatarUrl
-                    }
-                }));
-                
-                setReplies(prev => isInitialLoad ? enrichedReplies : [...prev, ...enrichedReplies]);
-                setLastVisible(data?.lastVisible || null);
-            }
-            
-            setHasMore(!!data?.lastVisible);
-
-        } catch (error) {
-             console.error("Error fetching replies:", error);
-            toast({
-                title: t('toast.loadRepliesError.title'),
-                description: t('toast.loadRepliesError.description'),
-                variant: "destructive"
-            });
-        } finally {
-            if(isInitialLoad) setIsLoading(false);
-            else setIsLoadingMore(false);
-        }
-    }, [groupId, postId, lastVisible, getRepliesForPost, toast, hasMore, t]);
 
     const fetchInitialData = useCallback(async () => {
         setIsLoading(true);
         try {
             const postDetails = await getGroupPostDetails(groupId, postId);
             setPost(postDetails);
-            if(postDetails){
-               await fetchReplies(true);
-            }
         } catch (error) {
             console.error("Error fetching post data:", error);
              toast({
@@ -181,13 +132,42 @@ export default function GroupPostPage() {
         } finally {
             setIsLoading(false);
         }
-    }, [groupId, postId, fetchReplies, toast, t]);
-
+    }, [groupId, postId, toast, t]);
 
     useEffect(() => {
         if (!groupId || !postId) return;
+        
         fetchInitialData();
-    }, [groupId, postId, fetchInitialData]);
+        
+        const db = getFirestore(firebaseApp);
+        const repliesQuery = query(collection(db, `groups/${groupId}/posts/${postId}/replies`), orderBy('createdAt', 'asc'));
+
+        const unsubscribe = onSnapshot(repliesQuery, (snapshot) => {
+            const fetchedReplies = snapshot.docs.map(doc => {
+                const data = doc.data();
+                return {
+                    id: doc.id,
+                    content: data.content,
+                    timestamp: data.createdAt ? new Date(data.createdAt.seconds * 1000).toISOString() : new Date().toISOString(),
+                    author: {
+                        id: data.authorRef,
+                        name: data.authorName,
+                        avatarUrl: data.authorAvatarUrl,
+                    }
+                } as PostReply;
+            });
+            setReplies(fetchedReplies);
+        }, (error) => {
+             console.error("Error listening for replies:", error);
+             toast({
+                title: t('toast.loadRepliesError.title'),
+                description: t('toast.loadRepliesError.description'),
+                variant: "destructive"
+            });
+        });
+
+        return () => unsubscribe();
+    }, [groupId, postId, fetchInitialData, toast, t]);
 
     const handleReplySubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -200,10 +180,7 @@ export default function GroupPostPage() {
             await addReplyToPost({ groupId, postId, content: newReply });
             setNewReply("");
             toast({ title: t('toast.replySuccess') });
-            setReplies([]);
-            setLastVisible(null);
-            setHasMore(true);
-            await fetchReplies(true);
+            // No need to manually refetch, onSnapshot will do it.
         } catch (error) {
              console.error("Error adding reply:", error);
              toast({
@@ -259,7 +236,7 @@ export default function GroupPostPage() {
                 </CardContent>
             </Card>
 
-            <h2 className="text-xl font-semibold mt-8 mb-4">{t('repliesTitle', { count: post.replyCount })}</h2>
+            <h2 className="text-xl font-semibold mt-8 mb-4">{t('repliesTitle', { count: replies.length })}</h2>
             <div className="space-y-4">
                 {replies.length > 0 ? (
                     replies.map(reply => (
@@ -282,24 +259,6 @@ export default function GroupPostPage() {
                 ) : (
                     <div className="text-center py-8 text-muted-foreground bg-slate-50 dark:bg-slate-800/20 rounded-lg">
                         <p>{t('noReplies')}</p>
-                    </div>
-                )}
-                 {hasMore && (
-                    <div className="flex justify-center">
-                        <Button
-                            onClick={() => fetchReplies()}
-                            disabled={isLoadingMore}
-                            variant="outline"
-                        >
-                            {isLoadingMore ? (
-                                <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    {t('loadingMoreButton')}
-                                </>
-                            ) : (
-                                t('loadMoreButton')
-                            )}
-                        </Button>
                     </div>
                 )}
             </div>

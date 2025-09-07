@@ -216,7 +216,7 @@ export default function PostPage() {
                 </CardContent>
             </Card>
 
-            <h2 className="text-xl font-semibold mt-8 mb-4">{t('repliesTitle', { count: post.replyCount || 0 })}</h2>
+            <h2 className="text-xl font-semibold mt-8 mb-4">{t('repliesTitle', { count: replies.length })}</h2>
             <div className="space-y-4">
                 {replies.length > 0 ? (
                     replies.map(reply => (
