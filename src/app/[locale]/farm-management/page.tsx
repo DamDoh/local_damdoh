@@ -77,11 +77,11 @@ export default function FarmManagementPage() {
     {
       title: t('assetManagement.title'),
       description: t('assetManagement.description'),
-      link: "#",
+      link: "/farm-management/asset-management",
       buttonIcon: <Tractor className="mr-2 h-4 w-4" />,
       icon: <Tractor className="h-8 w-8 text-primary mb-2" />,
       buttonText: t('assetManagement.button'),
-      enabled: false,
+      enabled: true,
     },
   ];
 

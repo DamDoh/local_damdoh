@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -39,7 +40,7 @@ export default function AssetManagementPage() {
   const [error, setError] = useState<string | null>(null);
 
   const functions = getFunctions(firebaseApp);
-  const getUserAssetsCallable = useMemo(() => httpsCallable(functions, 'getUserAssets'), [functions]);
+  const getUserAssetsCallable = useMemo(() => httpsCallable(functions, 'assetManagement-getUserAssets'), [functions]);
 
   const fetchAssets = useCallback(async () => {
     if (!user) {
@@ -51,7 +52,7 @@ export default function AssetManagementPage() {
     setError(null);
     try {
       const result = await getUserAssetsCallable();
-      setAssets((result.data as FarmAsset[] | undefined) ?? []);
+      setAssets((result.data as any)?.assets ?? []);
     } catch (err: any) {
       console.error("Failed to fetch assets:", err);
       setError(err.message || 'Failed to load assets.');
