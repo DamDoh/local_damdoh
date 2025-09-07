@@ -8,6 +8,137 @@ import { createFarmSchema, createCropSchema } from "@/lib/schemas";
 
 const db = admin.firestore();
 
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "error.unauthenticated",
+    );
+  }
+  return context.auth.uid;
+};
+
+export const getFarmerDashboardData = functions.https.onCall(
+  async (data, context): Promise<FarmerDashboardData> => {
+    const farmerId = checkAuth(context);
+    try {
+        const farmsPromise = db.collection('farms').where('ownerId', '==', farmerId).get();
+        const cropsPromise = db.collection('crops').where('ownerId', '==', farmerId).orderBy('plantingDate', 'desc').get();
+        const knfBatchesPromise = db.collection('knf_batches').where('userId', '==', farmerId).orderBy('createdAt', 'desc').get();
+        const financialsPromise = db.collection('financial_transactions').where('userRef', '==', db.collection('users').doc(farmerId)).get();
+
+
+        const [farmsSnapshot, cropsSnapshot, knfBatchesSnapshot, financialsSnapshot] = await Promise.all([
+            farmsPromise,
+            cropsPromise,
+            knfBatchesPromise,
+            financialsPromise,
+        ]);
+        
+        // --- Alerts Logic ---
+        const alerts: FarmerDashboardAlert[] = [];
+        const now = new Date();
+        const sevenDaysFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+        knfBatchesSnapshot.docs.forEach(doc => {
+            const batch = doc.data();
+            if (batch.status === 'Fermenting' && batch.nextStepDate && batch.nextStepDate.toDate() <= now) {
+                alerts.push({
+                    id: `knf-${doc.id}`,
+                    icon: 'FlaskConical',
+                    type: 'info',
+                    message: `Your ${batch.typeName} batch is ready for its next step.`,
+                    link: '/farm-management/knf-inputs'
+                });
+            }
+        });
+
+        cropsSnapshot.docs.forEach(doc => {
+            const crop = doc.data();
+            if (crop.harvestDate && crop.harvestDate.toDate() <= sevenDaysFromNow && crop.harvestDate.toDate() >= now) {
+                 alerts.push({
+                    id: `crop-${doc.id}`,
+                    icon: 'Sprout',
+                    type: 'warning',
+                    message: `Your ${crop.cropType} crop is due for harvest soon.`,
+                    link: `/farm-management/farms/${crop.farmId}`
+                });
+            }
+        });
+
+
+        const farmsMap = new Map(farmsSnapshot.docs.map(doc => [doc.id, doc.data().name]));
+
+        const recentCrops = cropsSnapshot.docs.slice(0, 5).map(doc => {
+            const cropData = doc.data();
+            return {
+                id: doc.id,
+                name: cropData.cropType || "Unknown Crop",
+                stage: cropData.currentStage || 'Unknown',
+                farmName: farmsMap.get(cropData.farmId) || 'Unknown Farm',
+                farmId: cropData.farmId,
+                plantingDate: (cropData.plantingDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            };
+        });
+
+        const activeKnfBatches: KnfBatch[] = knfBatchesSnapshot.docs
+            .filter(doc => ['Fermenting', 'Ready'].includes(doc.data().status))
+            .slice(0, 5)
+            .map(doc => {
+                const batchData = doc.data();
+                return {
+                    id: doc.id,
+                    userId: batchData.userId,
+                    type: batchData.type,
+                    typeName: batchData.typeName,
+                    ingredients: batchData.ingredients,
+                    startDate: (batchData.startDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                    nextStepDate: (batchData.nextStepDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                    status: batchData.status,
+                    nextStep: batchData.nextStep,
+                    quantityProduced: batchData.quantityProduced,
+                    unit: batchData.unit,
+                };
+            });
+
+        let totalIncome = 0;
+        let totalExpense = 0;
+        financialsSnapshot.forEach(doc => {
+            const tx = doc.data();
+            if (tx.type === 'income') {
+                totalIncome += tx.amount;
+            } else if (tx.type === 'expense') {
+                totalExpense += tx.amount;
+            }
+        });
+        
+        const financialSummary = {
+            totalIncome,
+            totalExpense,
+            netFlow: totalIncome - totalExpense,
+        };
+        
+        const certsSnapshot = await db.collection('users').doc(farmerId).collection('certifications').get();
+        const certifications = certsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as FarmerDashboardData['certifications'];
+
+
+        return {
+            farmCount: farmsSnapshot.size,
+            cropCount: cropsSnapshot.size,
+            recentCrops: recentCrops, 
+            knfBatches: activeKnfBatches,
+            financialSummary: financialSummary,
+            alerts: alerts,
+            certifications: certifications,
+        };
+
+    } catch (error) {
+        console.error("Error fetching farmer dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch farmer dashboard data.");
+    }
+  },
+);
+
 /**
  * Creates a new farm document in Firestore for an authenticated user.
  * @param {any} data The data for the new farm.
@@ -588,137 +719,6 @@ export const updateKnfBatchStatus = functions.https.onCall(
       console.error(`Error updating KNF batch ${batchId}:`, error);
       if (error instanceof functions.https.HttpsError) throw error;
       throw new functions.https.HttpsError("internal", "error.knf.updateFailed", {originalError: error.message});
-    }
-  },
-);
-
-const checkAuth = (context: functions.https.CallableContext) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError(
-      "unauthenticated",
-      "error.unauthenticated",
-    );
-  }
-  return context.auth.uid;
-};
-
-export const getFarmerDashboardData = functions.https.onCall(
-  async (data, context): Promise<FarmerDashboardData> => {
-    const farmerId = checkAuth(context);
-    try {
-        const farmsPromise = db.collection('farms').where('ownerId', '==', farmerId).get();
-        const cropsPromise = db.collection('crops').where('ownerId', '==', farmerId).orderBy('plantingDate', 'desc').get();
-        const knfBatchesPromise = db.collection('knf_batches').where('userId', '==', farmerId).orderBy('createdAt', 'desc').get();
-        const financialsPromise = db.collection('financial_transactions').where('userRef', '==', db.collection('users').doc(farmerId)).get();
-
-
-        const [farmsSnapshot, cropsSnapshot, knfBatchesSnapshot, financialsSnapshot] = await Promise.all([
-            farmsPromise,
-            cropsPromise,
-            knfBatchesPromise,
-            financialsPromise,
-        ]);
-        
-        // --- Alerts Logic ---
-        const alerts: FarmerDashboardAlert[] = [];
-        const now = new Date();
-        const sevenDaysFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-
-        knfBatchesSnapshot.docs.forEach(doc => {
-            const batch = doc.data();
-            if (batch.status === 'Fermenting' && batch.nextStepDate && batch.nextStepDate.toDate() <= now) {
-                alerts.push({
-                    id: `knf-${doc.id}`,
-                    icon: 'FlaskConical',
-                    type: 'info',
-                    message: `Your ${batch.typeName} batch is ready for its next step.`,
-                    link: '/farm-management/knf-inputs'
-                });
-            }
-        });
-
-        cropsSnapshot.docs.forEach(doc => {
-            const crop = doc.data();
-            if (crop.harvestDate && crop.harvestDate.toDate() <= sevenDaysFromNow && crop.harvestDate.toDate() >= now) {
-                 alerts.push({
-                    id: `crop-${doc.id}`,
-                    icon: 'Sprout',
-                    type: 'warning',
-                    message: `Your ${crop.cropType} crop is due for harvest soon.`,
-                    link: `/farm-management/farms/${crop.farmId}`
-                });
-            }
-        });
-
-
-        const farmsMap = new Map(farmsSnapshot.docs.map(doc => [doc.id, doc.data().name]));
-
-        const recentCrops = cropsSnapshot.docs.slice(0, 5).map(doc => {
-            const cropData = doc.data();
-            return {
-                id: doc.id,
-                name: cropData.cropType || "Unknown Crop",
-                stage: cropData.currentStage || 'Unknown',
-                farmName: farmsMap.get(cropData.farmId) || 'Unknown Farm',
-                farmId: cropData.farmId,
-                plantingDate: (cropData.plantingDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
-            };
-        });
-
-        const activeKnfBatches: KnfBatch[] = knfBatchesSnapshot.docs
-            .filter(doc => ['Fermenting', 'Ready'].includes(doc.data().status))
-            .slice(0, 5)
-            .map(doc => {
-                const batchData = doc.data();
-                return {
-                    id: doc.id,
-                    userId: batchData.userId,
-                    type: batchData.type,
-                    typeName: batchData.typeName,
-                    ingredients: batchData.ingredients,
-                    startDate: (batchData.startDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
-                    nextStepDate: (batchData.nextStepDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
-                    status: batchData.status,
-                    nextStep: batchData.nextStep,
-                    quantityProduced: batchData.quantityProduced,
-                    unit: batchData.unit,
-                };
-            });
-
-        let totalIncome = 0;
-        let totalExpense = 0;
-        financialsSnapshot.forEach(doc => {
-            const tx = doc.data();
-            if (tx.type === 'income') {
-                totalIncome += tx.amount;
-            } else if (tx.type === 'expense') {
-                totalExpense += tx.amount;
-            }
-        });
-        
-        const financialSummary = {
-            totalIncome,
-            totalExpense,
-            netFlow: totalIncome - totalExpense,
-        };
-        
-        const certsSnapshot = await db.collection('users').doc(farmerId).collection('certifications').get();
-        const certifications = certsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as FarmerDashboardData['certifications'];
-
-
-        return {
-            farmCount: farmsSnapshot.size,
-            cropCount: cropsSnapshot.size,
-            recentCrops: recentCrops, 
-            knfBatches: activeKnfBatches,
-            financialSummary: financialSummary,
-            alerts: alerts,
-            certifications: certifications,
-        };
-
-    } catch (error) {
-        console.error("Error fetching farmer dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch farmer dashboard data.");
     }
   },
 );

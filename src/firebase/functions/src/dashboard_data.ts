@@ -1,5 +1,3 @@
-
-
 // This file is deprecated. All dashboard data functions have been refactored
 // into their own dedicated files within the `src/firebase/functions/src` directory
 // (e.g., farmer.ts, buyer.ts, cooperative.ts).

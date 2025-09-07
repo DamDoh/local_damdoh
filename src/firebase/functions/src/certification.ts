@@ -13,7 +13,7 @@ const checkAuth = (context: functions.https.CallableContext) => {
 };
 
 export const getCertificationBodyDashboardData = functions.https.onCall(
-  async (data, context): Promise<CertificationBodyDashboardData> => {
+  (data, context): CertificationBodyDashboardData => {
     checkAuth(context);
     // This function returns mock data. In a real-world scenario, this would query
     // collections like 'audits' and 'certifications', filtered by the certifier's ID.

@@ -1,5 +1,4 @@
 
-      
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { PackagingSupplierDashboardData } from "@/lib/types";
@@ -71,5 +70,3 @@ export const getPackagingSupplierDashboardData = functions.https.onCall(
     }
   }
 );
-
-    

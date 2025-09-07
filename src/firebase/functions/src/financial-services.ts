@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { FiDashboardData, FinancialApplication, FinancialProduct } from "@/lib/types";
@@ -931,6 +930,7 @@ export const getFiApplications = functions.https.onCall(async (data, context) =>
 
     return { applications };
 });
+
 
 export const getFarmerApplications = functions.https.onCall(async (data, context) => {
     const farmerId = checkAuth(context);
