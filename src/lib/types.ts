@@ -1,11 +1,10 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
     MarketplaceItemSchema,
     MarketplaceOrderSchema,
-    ForumTopicSchema,
+    ForumPostSchema,
     AgriEventSchema,
     ShopSchema,
     ApiKeySchema,
@@ -78,7 +77,6 @@ import type {
     FarmAssetSchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
-import type { GenerateForumPostDraftInput, GenerateForumPostDraftOutput } from '@/ai/flows/generate-forum-post-draft';
 
 
 // =================================================================
@@ -185,5 +183,3 @@ export type FarmingAssistantInput = z.infer<typeof FarmingAssistantInputSchema>;
 export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema>;
 export type GenerateForumPostInput = z.infer<typeof GenerateForumPostDraftInput>;
 export type GenerateForumPostOutput = z.infer<typeof GenerateForumPostDraftOutput>;
-
-    

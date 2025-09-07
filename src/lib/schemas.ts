@@ -970,127 +970,6 @@ export const AgriTechInnovatorDashboardDataSchema = z.object({
   })),
 });
 
-
-// =================================================================
-// 3. AI FLOW SCHEMAS
-// =================================================================
-
-export const SuggestedFilterSchema = z.object({
-  type: z.string().describe("The type of filter suggested (e.g., 'category', 'listingType', 'locationScope', 'intent')."),
-  value: z.string().describe("The suggested value for the filter (e.g., 'fresh-produce-fruits', 'Product', 'Region', 'buy').")
-});
-
-export const SmartSearchInterpretationSchema = z.object({
-  originalQuery: z.string().describe("The original query provided by the user."),
-  mainKeywords: z.array(z.string()).describe("The core items, products, or services the user is likely searching for, extracted from the query."),
-  identifiedLocation: z.string().optional().describe("Any specific location (city, region, country, continent) explicitly mentioned or strongly implied by the query. If multiple are mentioned, pick the most prominent or encompassing one."),
-  identifiedIntent: z.string().optional().describe("The inferred user intent (e.g., 'buy', 'sell', 'rent', 'find service', 'job search', 'information', 'advice')."),
-  suggestedFilters: z.array(SuggestedFilterSchema).optional().describe("An array of potential filters that could be applied based on the query interpretation. Helps narrow down search results."),
-  interpretationNotes: z.string().optional().describe("A brief explanation of how the AI understood the query, or suggestions for how the user might refine their search for better results. This could include identified scope like 'local', 'regional', 'continental', 'global' if discernible."),
-  minPrice: z.number().optional().describe("The minimum price if specified by the user (e.g., from 'over $50')."),
-  maxPrice: z.number().optional().describe("The maximum price if specified by the user (e.g., from 'under $100')."),
-  perUnit: z.string().optional().describe("The unit for the price if specified (e.g., '/kg', '/ton').")
-});
-
-
-export const MarketplaceRecommendationInputSchema = z.object({
-  userId: z.string().optional().describe("The ID of the user to generate recommendations for."),
-  count: z.number().optional().default(5).describe('The number of suggestions to generate.'),
-  language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English.'),
-});
-
-const RecommendedItemSchema = z.object({
-    item: MarketplaceItemSchema, // Using the existing schema
-    reason: z.string().describe("A brief, user-friendly explanation (max 1-2 sentences) of why this item is recommended for this specific user.")
-});
-
-export const MarketplaceRecommendationOutputSchema = z.object({
-  recommendations: z.array(RecommendedItemSchema).describe("A list of suggested marketplace items (products or services) with accompanying reasons."),
-});
-
-export const CropRotationInputSchema = z.object({
-  cropHistory: z.array(z.string()).describe('An array of crop names that have been previously planted in the field, in chronological order.'),
-  location: z.string().describe('The geographical location of the farm (e.g., "Rift Valley, Kenya").'),
-  soilType: z.string().optional().describe('The type of soil in the field (e.g., "Clay", "Sandy Loam").'),
-  language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English.'),
-});
-
-const CropSuggestionSchema = z.object({
-  cropName: z.string().describe('The name of the suggested crop to plant next.'),
-  benefits: z.string().describe('A brief explanation of the primary benefits of planting this crop (e.g., "Fixes nitrogen, improves soil structure", "Breaks pest cycles for cereals").'),
-  notes: z.string().optional().describe('Any additional notes or considerations for planting this crop, such as timing or specific variety recommendations.'),
-});
-export const CropRotationOutputSchema = z.object({
-  suggestions: z.array(CropSuggestionSchema).describe('A list of 2-4 recommended crops for the next planting season, along with their benefits.'),
-});
-
-
-export const DiagnoseCropInputSchema = z.object({
-  photoDataUri: z
-    .string()
-    .describe(
-      "A photo of a plant, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'."
-    ),
-  description: z.string().describe('The user\'s description of the problem or question about the plant.'),
-  language: z.string().optional().describe('The language for the AI to respond in (e.g., "en", "km"). Defaults to English.'),
-});
-
-export const DiagnoseCropOutputSchema = z.object({
-  isPlant: z.boolean().describe('Whether the image appears to contain a plant.'),
-  isHealthy: z.boolean().describe('Whether the plant appears to be healthy.'),
-  potentialProblems: z
-    .array(z.string())
-    .describe('A list of potential diseases, pests, or nutrient deficiencies identified.'),
-  suggestedActions: z
-    .array(
-      z.object({
-        title: z.string().describe('A short, actionable title for a suggested treatment or action.'),
-        details: z.string().describe('A detailed description of the suggested action, preferably using sustainable or organic methods.'),
-        type: z.enum(['treatment', 'prevention', 'further-investigation']).describe('The category of the suggested action.'),
-      })
-    )
-    .describe('A list of structured, actionable suggestions for the user.'),
-});
-
-const DetailedPointSchema = z.object({
-  title: z.string().describe('A concise title for a specific aspect, key practice, or detailed point related to the answer/diagnosis/explanation. Max 5-7 words.'),
-  content: z.string().describe('The detailed explanation, advice, or information for this point. Should be a paragraph or two.'),
-});
-
-export const FarmingAssistantInputSchema = z.object({
-  query: z.string().describe('The user\'s question about farming, agriculture, supply chain, farming business, app guidance, crop issues, or stakeholders in the agricultural ecosystem.'),
-  photoDataUri: z.string().optional().describe("A photo of a plant or crop issue, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'. This is used for diagnosis."),
-  language: z.string().optional().describe('The language for the AI to respond in, specified as a two-letter ISO 639-1 code (e.g., "en", "km", "fr", "de", "th"). Defaults to English if not provided.'),
-});
-
-export const FarmingAssistantOutputSchema = z.object({
-  summary: z.string().describe("A concise overall answer, summary, primary diagnosis, or explanation to the user's query. This should be a few sentences long and directly address the main question or image content."),
-  detailedPoints: z.array(DetailedPointSchema).optional().describe("An array of 3-5 detailed points or sections, each with a title and content, expanding on the summary/diagnosis/explanation or providing scannable key information. Only provide this if the query/image warrants a detailed breakdown."),
-  suggestedQueries: z.array(z.string()).optional().describe("A list of 2-3 short, relevant follow-up questions or related topics the user might be interested in based on their initial query. For example, if they ask about one KNF input, suggest another."),
-});
-export const SuggestMarketPriceInputSchema = z.object({
-  productName: z.string().describe('The name of the product.'),
-  description: z.string().describe('A detailed description of the product, including quality, origin, and certifications.'),
-  category: z.string().optional().describe('The marketplace category of the product.'),
-  location: z.string().optional().describe('The location where the product is being sold.'),
-  language: z.string().optional().describe('The language for the AI to respond in (e.g., "en", "km"). Defaults to English.'),
-});
-
-
-export const SuggestMarketPriceOutputSchema = z.object({
-  price: z.number().describe('The suggested market price as a number.'),
-});
-export const GenerateForumPostDraftInputSchema = z.object({
-    topicId: z.string().describe("The ID of the forum topic the post will be created in."),
-    prompt: z.string().describe("The user's short prompt or idea for the post."),
-    language: z.string().optional().describe("The language for the AI to respond in (e.g., 'en', 'km'). Defaults to English."),
-});
-
-export const GenerateForumPostDraftOutputSchema = z.object({
-    title: z.string().describe("A concise and engaging title for the new forum post."),
-    content: z.string().describe("The full content of the forum post, written in a helpful and engaging tone."),
-});
-
 export const FinancialApplicationSchema = z.object({
     id: z.string(),
     applicantId: z.string(),
@@ -1107,4 +986,31 @@ export const FinancialApplicationSchema = z.object({
     applicantProfile: StakeholderProfileSchema.optional(),
 });
 
-    
+// =================================================================
+// 2. FORM-SPECIFIC SCHEMAS
+// These are used for client-side form validation and often overlap with
+// the core schemas but may omit fields generated by the server.
+// =================================================================
+const MAX_FILE_SIZE_MB = 5;
+const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+
+const imageFileSchema = z
+  .instanceof(File, { message: "Please upload a file." })
+  .optional()
+  .refine(
+    (file) => !file || file.size <= MAX_FILE_SIZE_BYTES,
+    `Max image size is ${MAX_FILE_SIZE_MB}MB.`
+  )
+  .refine(
+    (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
+    "Only .jpg, .jpeg, .png and .webp formats are accepted."
+  );
+
+export const financialApplicationSchema = z.object({
+  fiId: z.string({ required_error: "Please select a financial institution." }),
+  type: z.enum(['Loan', 'Grant']),
+  amount: z.coerce.number().positive("Please enter a valid loan amount."),
+  currency: z.string().length(3, "Currency must be a 3-letter code.").default("USD"),
+  purpose: z.string().min(20, "Please describe the purpose of the funding.").max(2000),
+});
