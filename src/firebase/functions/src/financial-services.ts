@@ -280,112 +280,6 @@ export const processCrowdfundingInvestment = functions.https.onCall(
   },
 );
 
-// Triggered function to distribute payouts to crowdfunding investors
-export const distributeCrowdfundingPayouts = functions.firestore
-  .document("crowdfunding_projects/{projectId}")
-  .onUpdate(async (change, context) => {
-    const projectId = context.params.projectId;
-    const projectBefore = change.before.data();
-    const projectAfter = change.after.data();
-
-    console.log(
-      `Triggered distributeCrowdfundingPayouts for project ${projectId} (placeholder).`,
-    );
-
-    const shouldTriggerPayout =
-      projectAfter?.status === "completed" &&
-      projectBefore?.status !== "completed";
-
-    if (!shouldTriggerPayout) {
-      console.log(`Payout trigger conditions not met for project ${projectId}.`);
-      return null;
-    }
-
-    console.log(`Initiating payout distribution for project ${projectId}...`);
-
-    try {
-      console.log(`Fetching investments for project ${projectId}...`);
-      const investmentsSnapshot = await db
-        .collection("crowdfunding_projects")
-        .doc(projectId)
-        .collection("investments")
-        .get();
-
-      if (investmentsSnapshot.empty) {
-        console.log(`No investments found for project ${projectId}. Skipping payout.`);
-        return null;
-      }
-
-      console.log("Calculating payouts...");
-      const totalInvested = investmentsSnapshot.docs.reduce(
-        (sum, doc) => sum + (doc.data().amount || 0),
-        0,
-      );
-      const totalPayoutAmount = totalInvested * 1.1;
-
-      const payoutPromises: Promise<any>[] = [];
-
-      investmentsSnapshot.docs.forEach((investmentDoc) => {
-        const investmentData = investmentDoc.data();
-        const investmentAmount = investmentData.amount || 0;
-        const investorRef = investmentData.investorRef as admin.firestore.DocumentReference;
-        const investorUid = investorRef.id;
-
-        const individualPayout =
-          (investmentAmount / totalInvested) * totalPayoutAmount;
-
-        console.log(
-          `Calculating payout for investor ${investorUid}: ${individualPayout} ${investmentData.currency}`,
-        );
-
-        console.log(`Initiating payout payment for investor ${investorUid}...`);
-
-        payoutPromises.push(
-          _internalInitiatePayment({
-            orderId: `payout_${projectId}_${investmentDoc.id}`,
-            amount: individualPayout,
-            currency: investmentData.currency,
-            buyerInfo: {userId: investorUid},
-            sellerInfo: {projectId: projectId},
-            description: `Payout for investment in project ${projectId}`,
-            type: "crowdfunding_payout",
-          }),
-        );
-
-        console.log(
-          `Recording payout transaction for investor ${investorUid}...`,
-        );
-        const payoutTransactionRef = db.collection("financial_transactions").doc();
-        payoutPromises.push(
-          payoutTransactionRef.set({
-            transactionId: payoutTransactionRef.id,
-            userRef: investorRef,
-            type: "payout",
-            amount: individualPayout,
-            currency: investmentData.currency,
-            description: `Payout from crowdfunding project ${projectId}`,
-            timestamp: admin.firestore.FieldValue.serverTimestamp(),
-            linkedCrowdfundingProjectId: projectId,
-            linkedInvestmentId: investmentDoc.id,
-          }),
-        );
-      });
-
-      await Promise.all(payoutPromises);
-      console.log(
-        `Payout distribution initiated and transactions recorded for project ${projectId}.`,
-      );
-
-      return null;
-    } catch (error) {
-      console.error(
-        `Error distributing payouts for project ${projectId}:`,
-        error,
-      );
-      return null;
-    }
-  });
-
 // Callable function for users to log manual financial transactions
 export const logFinancialTransaction = functions.https.onCall(
   async (data, context) => {
@@ -722,6 +616,27 @@ export const getFiApplications = functions.https.onCall(async (data, context) =>
 
     const snapshot = await query.get();
     
+    const applications = snapshot.docs.map(doc => {
+        const appData = doc.data();
+        return {
+            ...appData,
+            id: doc.id,
+            submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+        }
+    });
+
+    return { applications };
+});
+
+export const getFarmerApplications = functions.https.onCall(async (data, context) => {
+    const farmerId = checkAuth(context);
+    
+    const query = db.collection("financial_applications")
+        .where("applicantId", "==", farmerId)
+        .orderBy("submittedAt", "desc");
+
+    const snapshot = await query.get();
+
     const applications = snapshot.docs.map(doc => {
         const appData = doc.data();
         return {

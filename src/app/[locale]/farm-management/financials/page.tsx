@@ -32,15 +32,15 @@ const StatCard = ({ title, value, icon, currency = "USD" }: { title: string, val
 
 export default function FinancialDashboardPage() {
   const t = useTranslations('farmManagement.financials');
-  const tAppPage = useTranslations('FiApplicationListPage'); // For status labels
+  const tAppPage = useTranslations('FiApplicationPage'); // For status labels
   const { user } = useAuth();
   const [summary, setSummary] = useState<FinancialSummary | null>(null);
   const [transactions, setTransactions] = useState<FinancialTransaction[]>([]);
   const [applications, setApplications] = useState<FinancialApplication[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getFinancialsCallable = useMemo(() => httpsCallable(functions, 'getFinancialSummaryAndTransactions'), []);
-  const getApplicationsCallable = useMemo(() => httpsCallable(functions, 'getFarmerApplications'), []);
+  const getFinancialsCallable = useMemo(() => httpsCallable(functions, 'financials-getFinancialSummaryAndTransactions'), []);
+  const getApplicationsCallable = useMemo(() => httpsCallable(functions, 'financials-getFarmerApplications'), []);
   
   const fetchAllData = useCallback(async () => {
     setIsLoading(true);

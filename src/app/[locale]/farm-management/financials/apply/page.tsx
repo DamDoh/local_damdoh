@@ -12,7 +12,6 @@ import { useTranslations } from 'next-intl';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { financialApplicationSchema, type FinancialApplicationValues } from '@/lib/form-schemas';
-import { getFinancialInstitutions } from '@/lib/server-actions';
 import { useToast } from '@/hooks/use-toast';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -68,6 +67,7 @@ export default function ApplyForFundingPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const functions = getFunctions(firebaseApp);
+  const getFinancialInstitutionsCallable = useMemo(() => httpsCallable(functions, 'financials-getFinancialInstitutions'), [functions]);
   const submitFinancialApplicationCallable = useMemo(() => httpsCallable(functions, 'financials-submitFinancialApplication'), [functions]);
 
   const form = useForm<FinancialApplicationValues>({
@@ -81,14 +81,14 @@ export default function ApplyForFundingPage() {
   const fetchFis = useCallback(async () => {
       setIsLoadingFis(true);
       try {
-        const fiList = await getFinancialInstitutions();
-        setFis(fiList);
+        const result = await getFinancialInstitutionsCallable();
+        setFis((result.data as any) || []);
       } catch (error) {
         toast({ variant: 'destructive', title: t('toast.error'), description: t('toast.fetchFiError') });
       } finally {
         setIsLoadingFis(false);
       }
-  }, [toast, t]);
+  }, [getFinancialInstitutionsCallable, toast, t]);
   
   useEffect(() => {
     fetchFis();

@@ -267,4 +267,3 @@ export const financialApplicationSchema = z.object({
   purpose: z.string().min(20, "Please describe the purpose of the funding.").max(2000),
 });
 export type FinancialApplicationValues = z.infer<typeof financialApplicationSchema>;
-
