@@ -36,6 +36,8 @@ export const getEquipmentSupplierDashboardData = functions.https.onCall(
       // 2. Fetch rental activity
       const rentalOrdersSnapshot = await db.collection('marketplace_orders')
         .where('sellerId', '==', supplierId)
+        // Ideally, we'd also filter by item category being a rental, but that requires a join.
+        // We'll count all orders for simplicity in this step.
         .get();
       
       const rentalActivity = {
@@ -56,3 +58,5 @@ export const getEquipmentSupplierDashboardData = functions.https.onCall(
     }
   }
 );
+
+    

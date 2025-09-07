@@ -176,98 +176,6 @@ export const getFarmerDashboardData = functions.https.onCall(
 // DASHBOARDS WITH PARTIAL OR MOCK DATA
 // =================================================================
 
-export const getCooperativeDashboardData = functions.https.onCall(
-  async (data, context): Promise<CooperativeDashboardData> => {
-    const cooperativeId = checkAuth(context);
-    
-    try {
-        const coopDoc = await db.collection('users').doc(cooperativeId).get();
-        if (!coopDoc.exists) {
-            throw new functions.https.HttpsError('not-found', 'Cooperative profile not found.');
-        }
-
-        const coopData = coopDoc.data();
-        const groupId = coopData?.profileData?.groupId;
-        let memberCount = 0;
-        let memberIds: string[] = [];
-
-        if (groupId) {
-             const groupDoc = await db.collection('groups').doc(groupId).get();
-             if (groupDoc.exists) {
-                 memberCount = groupDoc.data()?.memberCount || 0;
-                 const membersSnapshot = await db.collection(`groups/${groupId}/members`).get();
-                 memberIds = membersSnapshot.docs.map(doc => doc.id);
-             }
-        }
-        
-        let totalLandArea = 0;
-        let aggregatedProduce: CooperativeDashboardData['aggregatedProduce'] = [];
-        
-        if (memberIds.length > 0) {
-            // Firestore 'in' query is limited to 30 items per query.
-            // Chunk the memberIds array to handle more than 30 members.
-            const memberChunks: string[][] = [];
-            for (let i = 0; i < memberIds.length; i += 30) {
-                memberChunks.push(memberIds.slice(i, i + 30));
-            }
-            
-            const farmPromises = memberChunks.map(chunk => 
-                db.collection('farms').where('ownerId', 'in', chunk).get()
-            );
-
-            const cropPromises = memberChunks.map(chunk =>
-                db.collection('crops')
-                  .where('ownerId', 'in', chunk)
-                  .where('currentStage', 'in', ['Harvesting', 'Post-Harvest'])
-                  .orderBy('harvestDate', 'desc')
-                  .limit(10) // Limit per chunk for performance
-                  .get()
-            );
-
-            const farmSnapshots = await Promise.all(farmPromises);
-            farmSnapshots.forEach(snapshot => {
-                snapshot.forEach(doc => {
-                    const sizeString = doc.data().size || '0';
-                    const sizeValue = parseFloat(sizeString.split(' ')[0]) || 0;
-                    totalLandArea += sizeValue;
-                });
-            });
-
-            const cropSnapshots = await Promise.all(cropPromises);
-            cropSnapshots.forEach(snapshot => {
-                snapshot.forEach(doc => {
-                    const cropData = doc.data();
-                    aggregatedProduce.push({
-                        id: doc.id,
-                        productName: cropData.cropType || 'Unknown Produce',
-                        quantity: parseFloat(cropData.expectedYield?.split(' ')[0] || '0'), 
-                        quality: 'Grade A', // Placeholder as it's not on the crop model
-                        readyBy: (cropData.harvestDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
-                    });
-                });
-            });
-            // Sort and limit final aggregated produce
-            aggregatedProduce.sort((a, b) => new Date(b.readyBy).getTime() - new Date(a.readyBy).getTime()).slice(0, 10);
-        }
-
-
-        const pendingMemberApplications = 3; // This remains mocked
-
-        return {
-            memberCount,
-            totalLandArea,
-            aggregatedProduce,
-            pendingMemberApplications,
-            groupId: groupId || null,
-        };
-
-    } catch (error) {
-        console.error("Error fetching cooperative dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
-    }
-  }
-);
-
 export const getBuyerDashboardData = functions.https.onCall(
   async (data, context): Promise<BuyerDashboardData> => {
     checkAuth(context);
@@ -330,4 +238,87 @@ export const getBuyerDashboardData = functions.https.onCall(
   }
 );
 
+
+export const getFieldAgentDashboardData = functions.https.onCall(
+  async (data, context): Promise<FieldAgentDashboardData> => {
+    const agentId = checkAuth(context);
     
+    try {
+        const agentDoc = await db.collection('users').doc(agentId).get();
+        if (!agentDoc.exists) {
+            throw new functions.https.HttpsError('not-found', 'Agent profile not found.');
+        }
+        
+        const agentData = agentDoc.data();
+        // Assuming assigned farmers are stored in profileData.assignedFarmers
+        const assignedFarmerIds = agentData?.profileData?.assignedFarmers || [];
+        
+        let assignedFarmers: FieldAgentDashboardData['assignedFarmers'] = [];
+
+        if (assignedFarmerIds.length > 0) {
+            // Firestore 'in' query is limited to 30 items per query.
+            // For a production app, this would need chunking if an agent has > 30 farmers.
+            const farmersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', assignedFarmerIds.slice(0, 30)).get();
+            
+            assignedFarmers = farmersSnapshot.docs.map(doc => {
+                const farmerData = doc.data();
+                // Mocking lastVisit and issues for now
+                return {
+                    id: doc.id,
+                    name: farmerData.displayName || 'Unknown Farmer',
+                    lastVisit: new Date(Date.now() - Math.random() * 30 * 86400000).toISOString(),
+                    issues: Math.floor(Math.random() * 3), // Random number of issues
+                    actionLink: `/profiles/${doc.id}`
+                };
+            });
+        }
+        
+        // Keep other parts mocked for this iteration
+        const portfolioHealth = {
+            overallScore: 85,
+            alerts: ['Pest alert in North region'],
+            actionLink: '#'
+        };
+        const pendingReports = 3;
+        const dataVerificationTasks = {
+            count: 8,
+            description: 'Verify harvest logs for maize',
+            actionLink: '#'
+        };
+
+        return {
+            assignedFarmers,
+            portfolioHealth,
+            pendingReports,
+            dataVerificationTasks
+        };
+        
+    } catch (error) {
+        console.error("Error fetching field agent dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data for field agent.");
+    }
+  }
+);
+
+
+export const getOperationsDashboardData = functions.https.onCall(
+  (data, context): OperationsDashboardData => {
+    // This is a placeholder. A real implementation would query monitoring systems or logs.
+    checkAuth(context); // Ensure only authorized users can see this
+    return {
+      vtiGenerationRate: {
+        rate: 120, // Example: 120 VTIs generated per hour
+        unit: 'VTIs/hour',
+        trend: 5, // 5% increase
+      },
+      dataPipelineStatus: {
+        status: 'Operational',
+        lastChecked: new Date(Date.now() - 5 * 60000).toISOString(), // 5 minutes ago
+      },
+      flaggedEvents: [
+        { id: 'flag1', type: 'Unusual Time Lag', description: '36-hour delay between harvest and transport for VTI-XYZ-123', vtiLink: '/traceability/batches/VTI-XYZ-123' },
+        { id: 'flag2', type: 'Anomalous Geolocation', description: 'Transport event logged 500km away from previous location for VTI-ABC-456', vtiLink: '/traceability/batches/VTI-ABC-456' },
+      ],
+    };
+  }
+);
