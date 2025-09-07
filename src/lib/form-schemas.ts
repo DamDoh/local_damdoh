@@ -1,5 +1,4 @@
 
-
 import { z } from "zod";
 import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from '@/lib/constants';
 
@@ -18,6 +17,16 @@ const imageFileSchema = z
     (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
     "Only .jpg, .jpeg, .png and .webp formats are accepted."
   );
+
+export const createAssetSchema = z.object({
+  name: z.string().min(3, "Asset name must be at least 3 characters.").max(100),
+  type: z.enum(['Machinery', 'Tool', 'Building', 'Other'], { required_error: "Please select an asset type." }),
+  purchaseDate: z.date({ required_error: "Purchase date is required." }),
+  value: z.coerce.number().min(0, "Value cannot be negative."),
+  currency: z.string().default('USD'),
+  notes: z.string().max(1000, "Notes cannot exceed 1000 characters.").optional(),
+});
+export type CreateAssetValues = z.infer<typeof createAssetSchema>;
 
 export const createMarketplaceItemSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters long.").max(100, "Name cannot exceed 100 characters."),
@@ -258,3 +267,4 @@ export const financialApplicationSchema = z.object({
   purpose: z.string().min(20, "Please describe the purpose of the funding.").max(2000),
 });
 export type FinancialApplicationValues = z.infer<typeof financialApplicationSchema>;
+

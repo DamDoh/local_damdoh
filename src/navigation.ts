@@ -25,6 +25,7 @@ export const pathnames = {
   '/contact': '/contact',
   '/farm-management': '/farm-management',
   '/farm-management/asset-management': '/farm-management/asset-management',
+  '/farm-management/asset-management/create': '/farm-management/asset-management/create',
   '/farm-management/create-farm': '/farm-management/create-farm',
   '/farm-management/family-farm': '/farm-management/family-farm',
   '/farm-management/farms': '/farm-management/farms',
