@@ -15,7 +15,6 @@ import type { CropRotationInput, CropRotationOutput, SmartSearchInterpretation }
 import { getLocale } from 'next-intl/server';
 import { generateForumPostDraftFlow } from '@/ai/flows/generate-forum-post-draft';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { getApp } from 'firebase/app'; // Use getApp to get the initialized app
 import { app } from './firebase/client'; // Assuming client init is sufficient
 
 
