@@ -241,7 +241,7 @@ export const getProfileByIdFromDB = functions.https.onCall(async (data, context)
  * NOTE: This is an admin-level function and should be protected by security rules.
  * @param {any} data The data for the function call.
  * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{profiles: any[]}>} A promise that resolves with an array of all user profiles.
+ * @return {Promise<any[]>} A promise that resolves with an array of all user profiles.
  */
 export const getAllProfilesFromDB = functions.https.onCall(async (data, context) => {
     checkAuth(context);
