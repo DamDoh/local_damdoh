@@ -17,32 +17,6 @@ import { useToast } from "@/hooks/use-toast";
 import { AGRICULTURAL_CATEGORIES, type CategoryNode } from "@/lib/category-data";
 import { performSearch } from "@/lib/server-actions";
 
-function TalentPageSkeleton() {
-    return (
-        <div className="space-y-6">
-            <Card>
-                <CardHeader>
-                    <Skeleton className="h-8 w-1/3 mb-2" />
-                    <Skeleton className="h-4 w-2/3" />
-                </CardHeader>
-                <CardContent>
-                    <div className="mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <Skeleton className="h-10 w-full lg:col-span-1" />
-                        <Skeleton className="h-10 w-full" />
-                        <Skeleton className="h-10 w-full" />
-                    </div>
-                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <Skeleton className="h-56 w-full" />
-                        <Skeleton className="h-56 w-full" />
-                        <Skeleton className="h-56 w-full" />
-                        <Skeleton className="h-56 w-full" />
-                    </div>
-                </CardContent>
-            </Card>
-        </div>
-    );
-}
-
 function ItemCardSkeleton() {
     return (
         <Card className="w-full">
@@ -194,4 +168,3 @@ export default function TalentExchangePage() {
         </div>
     );
 }
-
