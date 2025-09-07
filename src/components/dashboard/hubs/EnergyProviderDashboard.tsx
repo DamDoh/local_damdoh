@@ -14,15 +14,14 @@ import { Zap, BarChart, CheckCircle } from 'lucide-react';
 import type { EnergyProviderDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
-const functions = getFunctions(firebaseApp);
-
 export const EnergyProviderDashboard = () => {
   const t = useTranslations('EnergyProviderDashboard');
   const [dashboardData, setDashboardData] = useState<EnergyProviderDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const getEnergyProviderData = useMemo(() => httpsCallable(functions, 'getEnergyProviderDashboardData'), [functions]);
+  const functions = useMemo(() => getFunctions(firebaseApp), []);
+  const getEnergyProviderData = useMemo(() => httpsCallable<void, EnergyProviderDashboardData>(functions, 'dashboardData-getEnergyProviderDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +29,7 @@ export const EnergyProviderDashboard = () => {
       setError(null);
       try {
         const result = await getEnergyProviderData();
-        setDashboardData(result.data as EnergyProviderDashboardData);
+        setDashboardData(result.data);
       } catch (err) {
         console.error("Error fetching Energy Provider dashboard data:", err);
         setError(t('errors.load'));
@@ -69,20 +68,20 @@ export const EnergyProviderDashboard = () => {
   const { projectLeads, activeProjects, impactMetrics } = dashboardData;
 
   const getStatusBadgeVariant = (status: string) => {
-    switch (status.toLowerCase()) {
-      case 'new': return 'default';
-      case 'contacted':
-      case 'proposal sent':
-      case 'in progress':
-        return 'secondary';
-      case 'completed':
-        return 'default'; // Success variant
-      case 'closed':
-        return 'outline';
-      default:
-        return 'outline';
-    }
-  };
+        switch (status.toLowerCase()) {
+            case 'new': return 'default';
+            case 'contacted':
+            case 'proposal sent':
+            case 'in progress':
+                return 'secondary';
+            case 'completed':
+                return 'default'; // Success variant
+            case 'closed':
+                return 'outline';
+            default:
+                return 'outline';
+        }
+    };
 
   return (
     <div className="space-y-6">
