@@ -425,41 +425,31 @@ export const createMarketplaceOrder = functions.https.onCall(async (data, contex
     }
 });
 
-export const getSellerOrders = functions.https.onCall(async (data, context) => {
-    const sellerId = checkAuth(context);
-    
+export const getMyMarketplaceOrders = functions.https.onCall(async (data, context) => {
+    const userId = checkAuth(context);
+
     try {
-        const ordersSnapshot = await db.collection("marketplace_orders")
-            .where("sellerId", "==", sellerId)
+        const buyOrdersPromise = db.collection("marketplace_orders")
+            .where("buyerId", "==", userId)
             .orderBy("createdAt", "desc")
             .get();
-        
-        const buyerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().buyerId))];
-        const buyerProfiles: Record<string, any> = {};
 
-        if (buyerIds.length > 0) {
-            const profileChunks = [];
-            for (let i = 0; i < buyerIds.length; i += 30) {
-                profileChunks.push(buyerIds.slice(i, i + 30));
-            }
+        const sellOrdersPromise = db.collection("marketplace_orders")
+            .where("sellerId", "==", userId)
+            .orderBy("createdAt", "desc")
+            .get();
 
-            for (const chunk of profileChunks) {
-                const profilesSnapshot = await db.collection("users").where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
-                profilesSnapshot.forEach(doc => {
-                    buyerProfiles[doc.id] = {
-                        displayName: doc.data().displayName,
-                        avatarUrl: doc.data().avatarUrl || null,
-                    };
-                });
-            }
-        }
+        const [buySnapshot, sellSnapshot] = await Promise.all([buyOrdersPromise, sellOrdersPromise]);
 
-        const orders = ordersSnapshot.docs.map(doc => {
+        const allDocs = [...buySnapshot.docs, ...sellSnapshot.docs];
+        // Remove duplicates if a user somehow buys from themselves
+        const uniqueDocs = Array.from(new Map(allDocs.map(doc => [doc.id, doc])).values());
+
+        const orders = uniqueDocs.map(doc => {
             const orderData = doc.data();
             return {
                 id: doc.id,
                 ...orderData,
-                buyerProfile: buyerProfiles[orderData.buyerId] || { displayName: 'Unknown Buyer', avatarUrl: null },
                 createdAt: (orderData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
                 updatedAt: (orderData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
             };
@@ -467,10 +457,11 @@ export const getSellerOrders = functions.https.onCall(async (data, context) => {
 
         return { orders };
     } catch (error) {
-        console.error("Error fetching seller orders:", error);
+        console.error("Error fetching user orders:", error);
         throw new functions.https.HttpsError("internal", "Could not fetch orders.");
     }
 });
+
 
 export const updateOrderStatus = functions.https.onCall(async (data, context) => {
     const sellerId = checkAuth(context);

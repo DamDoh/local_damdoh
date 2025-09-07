@@ -34,8 +34,8 @@ export default function MarketplacePromotionsPage() {
     const [coupons, setCoupons] = useState<MarketplaceCoupon[]>([]);
     const [isLoadingCoupons, setIsLoadingCoupons] = useState(true);
     const functions = getFunctions(firebaseApp);
-    const createCouponCallable = useMemo(() => httpsCallable(functions, 'createMarketplaceCoupon'), [functions]);
-    const getCouponsCallable = useMemo(() => httpsCallable(functions, 'getSellerCoupons'), [functions]);
+    const createCouponCallable = useMemo(() => httpsCallable(functions, 'marketplace-createMarketplaceCoupon'), [functions]);
+    const getCouponsCallable = useMemo(() => httpsCallable(functions, 'marketplace-getSellerCoupons'), [functions]);
 
     const createMarketplaceCouponSchema = getCreateMarketplaceCouponSchema(tFormErrors);
     
@@ -63,7 +63,8 @@ export default function MarketplacePromotionsPage() {
 
     async function onCouponSubmit(data: CreateMarketplaceCouponValues) {
         try {
-            await createCouponCallable({ ...data, expiryDate: data.expiresAt?.toISOString() });
+            const payload = { ...data, expiresAt: data.expiresAt?.toISOString() };
+            await createCouponCallable(payload);
             toast({ title: t('toast.success'), description: t('toast.createSuccess', { code: data.code }) });
             form.reset();
             fetchCoupons();

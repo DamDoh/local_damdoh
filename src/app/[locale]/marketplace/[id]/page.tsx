@@ -7,7 +7,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import type { MarketplaceItem, UserProfile, Shop } from '@/lib/types';
-import { getProfileByIdFromDB } from '@/lib/db-utils';
+import { getProfileByIdFromDB } from '@/lib/server-actions';
 import QRCode from 'qrcode.react';
 import { differenceInCalendarDays } from 'date-fns';
 import type { DateRange } from "react-day-picker";
@@ -86,11 +86,11 @@ function ItemPageContent() {
     const [isPlacingOrder, setIsPlacingOrder] = useState(false);
 
     const functions = getFunctions(firebaseApp);
-    const getMarketplaceItemById = useMemo(() => httpsCallable(functions, 'getMarketplaceItemById'), [functions]);
-    const getShopDetailsCallable = useMemo(() => httpsCallable(functions, 'getShopDetails'), [functions]);
-    const validateCouponCallable = useMemo(() => httpsCallable(functions, 'validateMarketplaceCoupon'), [functions]);
-    const bookAgroTourismServiceCallable = useMemo(() => httpsCallable(functions, 'bookAgroTourismService'), [functions]);
-    const createMarketplaceOrderCallable = useMemo(() => httpsCallable(functions, 'createMarketplaceOrder'), [functions]);
+    const getMarketplaceItemById = useMemo(() => httpsCallable(functions, 'marketplace-getMarketplaceItemById'), [functions]);
+    const getShopDetailsCallable = useMemo(() => httpsCallable(functions, 'marketplace-getShopDetails'), [functions]);
+    const validateCouponCallable = useMemo(() => httpsCallable(functions, 'marketplace-validateMarketplaceCoupon'), [functions]);
+    const bookAgroTourismServiceCallable = useMemo(() => httpsCallable(functions, 'agroTourism-bookAgroTourismService'), [functions]);
+    const createMarketplaceOrderCallable = useMemo(() => httpsCallable(functions, 'marketplace-createMarketplaceOrder'), [functions]);
     
     useEffect(() => {
         const couponFromUrl = searchParams.get('coupon');
@@ -186,7 +186,7 @@ function ItemPageContent() {
         }
     };
 
-    const handlePlaceOrder = async () => { // Ensure this function exists and is used
+    const handlePlaceOrder = async () => {
         if (!user) {
              toast({ variant: 'destructive', title: t('order.authTitle'), description: t('order.authDescription') });
              router.push('/auth/signin');
@@ -427,7 +427,7 @@ function ItemPageContent() {
                     <div className="flex flex-col sm:flex-row gap-2">
                          {isOwner ? (
                              <>
-                                <Button size="lg" className="w-full" asChild><Link href={`/marketplace/${item.id}/edit`}><Edit className="mr-2 h-4 w-4" />{t('editListing')}</Link></Button>
+                                <Button size="lg" className="w-full"><Link href={`/marketplace/${item.id}/edit`}><Edit className="mr-2 h-4 w-4" />{t('editListing')}</Link></Button>
                                 {isAgroTourismService && (
                                     <Button asChild size="lg" variant="secondary" className="w-full">
                                         <Link href={`/marketplace/${item.id}/manage-service`}><Settings className="mr-2 h-4 w-4" />{t('manageService')}</Link>
