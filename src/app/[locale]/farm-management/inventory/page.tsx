@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import Link from "next/link";
-import { ArrowLeft, PlusCircle, Package, Tag, CircleDot, AlertCircle, Trash2, Edit } from "lucide-react";
+import { ArrowLeft, PlusCircle, Package, AlertCircle, Trash2, Edit } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";

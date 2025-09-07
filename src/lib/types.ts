@@ -1,10 +1,10 @@
 
+
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
     MarketplaceItemSchema,
     MarketplaceOrderSchema,
-    ForumPostSchema,
     AgriEventSchema,
     ShopSchema,
     ApiKeySchema,
@@ -74,7 +74,8 @@ import type {
     GroupPostReplySchema,
     createInventoryItemSchema,
     KnowledgeArticleSchema,
-    FarmAssetSchema
+    FarmAssetSchema,
+    ForumTopicSchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 
@@ -95,7 +96,7 @@ export type AgriEvent = z.infer<typeof AgriEventSchema> & {
   registeredAttendeesCount: number;
   isRegistered?: boolean;
 };
-export type ForumTopic = z.infer<typeof ForumPostSchema>;
+export type ForumTopic = z.infer<typeof ForumTopicSchema>;
 export type Shop = z.infer<typeof ShopSchema>;
 export type ApiKey = z.infer<typeof ApiKeySchema>;
 export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
