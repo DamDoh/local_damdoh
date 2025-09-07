@@ -244,7 +244,7 @@ function MessagingContent() {
                 </ScrollArea>
             </div>
 
-            <div className={cn("flex flex-col h-full bg-muted/30", !showChatPanel && "hidden md:flex")}>
+            <div className={cn("flex flex-col h-full bg-muted/30", !showChatPanel && "flex")}>
                 {showChatPanel ? (
                     <>
                         <div className="p-4 border-b flex items-center gap-3 bg-background">

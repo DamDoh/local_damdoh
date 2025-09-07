@@ -1,5 +1,4 @@
 
-
 /**
  * @fileoverview This is the main entry point for all Firebase Cloud Functions.
  * It initializes the Firebase Admin SDK and exports all the functions from other
@@ -47,7 +46,8 @@ import * as sustainabilityFunctions from "./sustainability";
 import * as universalIdFunctions from "./universal-id";
 import * as userFunctions from "./user";
 import * as utilsFunctions from "./utils";
-
+import * as assetManagementFunctions from "./asset-management";
+import * as inventoryFunctions from "./inventory";
 
 // Export all cloud functions, grouped by their respective modules
 export const activity = activityFunctions;
@@ -58,7 +58,7 @@ export const aiServices = aiServicesFunctions;
 export const apiKeys = apiKeyFunctions;
 export const apiGateway = apiGatewayFunctions;
 export const community = communityFunctions;
-export const dashboardData = dashboardDataFunctions; // Changed from 'dashboard'
+export const dashboardData = dashboardDataFunctions;
 export const farmManagement = farmManagementFunctions;
 export const financials = financialServicesFunctions;
 export const forums = forumFunctions;
@@ -78,6 +78,8 @@ export const sustainability = sustainabilityFunctions;
 export const universalId = universalIdFunctions;
 export const user = userFunctions;
 export const utils = utilsFunctions;
+export const assetManagement = assetManagementFunctions;
+export const inventory = inventoryFunctions;
 
 
 // Export the Express app as a Cloud Function for Cloud Run services
