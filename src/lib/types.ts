@@ -72,6 +72,7 @@ import type {
     createFarmSchema,
     createCropSchema,
     GroupPostReplySchema,
+    InventoryItemSchema
 } from './schemas';
 import type { LucideIcon } from 'lucide-react';
 import type { GenerateForumPostDraftInput, GenerateForumPostDraftOutput } from '@/ai/flows/generate-forum-post-draft';
@@ -126,6 +127,7 @@ export type Farm = z.infer<typeof createFarmSchema> & { id: string };
 export type Crop = z.infer<typeof createCropSchema> & { id: string, plantingDate: string, harvestDate?: string, createdAt: string, ownerId: string };
 export type CreateFarmValues = z.infer<typeof createFarmSchema>;
 export type CreateCropValues = z.infer<typeof createCropSchema>;
+export type InventoryItem = z.infer<typeof InventoryItemSchema>;
 
 
 export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" | "Buyer" | "Input Supplier" | "Agricultural Cooperative" | "Field Agent/Agronomist (DamDoh Internal)" | "Financial Institution (Micro-finance/Loans)" | "Logistics Partner (Third-Party Transporter)" | "Processing & Packaging Unit" | "Researcher/Academic" | "Quality Assurance Team (DamDoh Internal)" | "Certification Body (Organic, Fair Trade etc.)" | "Insurance Provider" | "Energy Solutions Provider (Solar, Biogas)" | "Agro-Tourism Operator" | "Agro-Export Facilitator/Customs Broker" | "Crowdfunder (Impact Investor, Individual)" | "Consumer" | "General" | "Equipment Supplier (Sales of Machinery/IoT)" | "Waste Management & Compost Facility" | "Storage/Warehouse Facility" | "Agronomy Expert/Consultant (External)" | "Agri-Tech Innovator/Developer" | "Operations/Logistics Team (DamDoh Internal)" | "Packaging Supplier";

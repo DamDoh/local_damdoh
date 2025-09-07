@@ -218,6 +218,26 @@ export const createCropSchema = z.object({
   notes: z.string().max(1000, "Notes are too long.").optional(),
 });
 
+export const createInventoryItemSchema = z.object({
+    name: z.string().min(2, "Item name must be at least 2 characters.").max(100),
+    category: z.string({ required_error: "Please select a category." }),
+    quantity: z.coerce.number({ required_error: "Please enter a quantity."}).min(0, "Quantity cannot be negative."),
+    unit: z.string().min(1, "Please enter a unit (e.g., kg, bags, liters).").max(50),
+    purchaseDate: z.date().optional(),
+    expiryDate: z.date().optional(),
+    supplier: z.string().max(100, "Supplier name is too long.").optional(),
+    notes: z.string().max(500, "Notes are too long.").optional(),
+});
+export type CreateInventoryItemValues = z.infer<typeof createInventoryItemSchema>;
+
+export const InventoryItemSchema = createInventoryItemSchema.extend({
+    id: z.string(),
+    ownerId: z.string(),
+    createdAt: z.any(),
+    updatedAt: z.any(),
+});
+
+
 // Other Schemas to be moved from `types.ts`
 export const MarketplaceCouponSchema = z.object({
     id: z.string(),
@@ -723,7 +743,7 @@ export const CertificationBodyDashboardDataSchema = z.object({
 export const ResearcherDashboardDataSchema = z.object({
   availableDatasets: z.array(z.object({
     id: z.string(),
-    name: zstring(),
+    name: z.string(),
     dataType: z.string(),
     accessLevel: z.enum(['Public', 'Requires Request']),
     actionLink: z.string(),
@@ -1057,3 +1077,4 @@ export const GenerateForumPostDraftOutputSchema = z.object({
     
 
     
+

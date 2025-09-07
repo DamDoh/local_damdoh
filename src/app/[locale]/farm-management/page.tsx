@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Leaf, Sprout, Tractor, DollarSign, FlaskConical, Home, Users, BookOpen, Heart } from 'lucide-react';
+import { Leaf, Sprout, Tractor, DollarSign, FlaskConical, Home, Users, BookOpen, Heart, Package as InventoryIcon } from 'lucide-react';
 
 export default function FarmManagementPage() {
   const t = useTranslations('farmManagement.hub');
@@ -18,6 +18,15 @@ export default function FarmManagementPage() {
       icon: <Home className="h-8 w-8 text-primary mb-2" />,
       buttonIcon: <Home className="mr-2 h-4 w-4" />,
       buttonText: t('myFarms.button'),
+      enabled: true,
+    },
+    {
+      title: t('inventory.title'),
+      description: t('inventory.description'),
+      link: "/farm-management/inventory",
+      icon: <InventoryIcon className="h-8 w-8 text-primary mb-2" />,
+      buttonIcon: <InventoryIcon className="mr-2 h-4 w-4" />,
+      buttonText: t('inventory.button'),
       enabled: true,
     },
     {

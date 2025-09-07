@@ -47,7 +47,8 @@ import * as sustainabilityFunctions from "./sustainability";
 import * as universalIdFunctions from "./universal-id";
 import * as geospatialFunctions from "./geospatial";
 import * as utils from "./utils"; 
-import * as assetManagementFunctions from './asset-management'; // Added import
+import * as assetManagementFunctions from './asset-management';
+import * as inventoryFunctions from './inventory';
 
 // Export all cloud functions, grouped by their respective modules
 export const activity = activityFunctions;
@@ -79,7 +80,8 @@ export const sustainability = sustainabilityFunctions;
 export const universalId = universalIdFunctions;
 export const geospatial = geospatialFunctions;
 export const utilityFunctions = utils; 
-export const assetManagement = assetManagementFunctions; // Added export
+export const assetManagement = assetManagementFunctions;
+export const inventory = inventoryFunctions;
 
 
 // Export the Express app as a Cloud Function for Cloud Run services
