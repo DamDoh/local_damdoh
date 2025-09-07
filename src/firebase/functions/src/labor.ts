@@ -44,7 +44,7 @@ export const getWorkers = functions.https.onCall(async (data, context) => {
   const workers = workersSnapshot.docs.map(doc => ({
     id: doc.id,
     ...doc.data(),
-    createdAt: doc.data().createdAt.toDate().toISOString(),
+    createdAt: (doc.data().createdAt as admin.firestore.Timestamp).toDate().toISOString(),
   }));
 
   return { workers };
@@ -155,24 +155,29 @@ export const getWorkerDetails = functions.https.onCall(async (data, context) => 
         throw new functions.https.HttpsError('not-found', 'Worker not found.');
     }
     
-    const workLogs = workLogsSnap.docs.map(doc => ({ 
+    const workLogs = workLogsSnap.docs.map(doc => {
+      const docData = doc.data();
+      return { 
         id: doc.id, 
-        ...doc.data(), 
-        date: doc.data().date.toDate().toISOString(),
-        createdAt: doc.data().createdAt.toDate().toISOString(),
-    }));
-    const payments = paymentsSnap.docs.map(doc => ({ 
+        ...docData, 
+        date: (docData.date as admin.firestore.Timestamp).toDate().toISOString(),
+        createdAt: (docData.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+    }});
+    const payments = paymentsSnap.docs.map(doc => {
+      const docData = doc.data();
+      return { 
         id: doc.id, 
-        ...doc.data(), 
-        date: doc.data().date.toDate().toISOString(),
-        createdAt: doc.data().createdAt.toDate().toISOString(),
-    }));
+        ...docData, 
+        date: (docData.date as admin.firestore.Timestamp).toDate().toISOString(),
+        createdAt: (docData.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+    }});
 
+    const profileData = workerSnap.data()!;
     return {
         profile: { 
             id: workerSnap.id, 
-            ...workerSnap.data(),
-            createdAt: workerSnap.data()?.createdAt.toDate().toISOString(),
+            ...profileData,
+            createdAt: (profileData.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
         },
         workLogs,
         payments
