@@ -106,7 +106,7 @@ export async function registerUser(
     console.log("Firebase Auth profile updated with display name.");
 
     // Step 2: Call a secure Cloud Function to create the initial profile.
-    const upsertStakeholderProfile = httpsCallable(functions, 'profiles.upsertStakeholderProfile');
+    const upsertStakeholderProfile = httpsCallable(functions, 'user-upsertStakeholderProfile');
     await upsertStakeholderProfile({
         displayName: name,
         primaryRole: role,

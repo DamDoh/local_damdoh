@@ -37,11 +37,6 @@ interface GeneratedReport {
   }
 }
 
-const functionsCallable = {
-  generateRegulatoryReport: httpsCallable(functions, 'generateRegulatoryReport'),
-  getGeneratedReports: httpsCallable(functions, 'getGeneratedReports'),
-};
-
 export default function ReportsManagementPage() {
   const t = useTranslations('admin.reports');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -61,30 +56,33 @@ export default function ReportsManagementPage() {
   const [debouncedUserSearchQuery] = useDebounce(userSearchQuery, 300);
   const [userSearchResults, setUserSearchResults] = useState<UserProfile[]>([]);
   const [isUsersLoading, setIsUsersLoading] = useState(true);
+
+  const generateRegulatoryReportCallable = useMemo(() => httpsCallable(functions, 'regulatory-generateRegulatoryReport'), [functions]);
+  const getGeneratedReportsCallable = useMemo(() => httpsCallable(functions, 'regulatory-getGeneratedReports'), [functions]);
   
   const fetchReports = useCallback(async () => {
     setIsLoading(true);
     try {
-      const result = await functionsCallable.getGeneratedReports();
+      const result = await getGeneratedReportsCallable();
       setReports((result.data as any).reports || []);
     } catch (error: any) {
       toast({ title: t('toast.loadErrorTitle'), description: error.message, variant: "destructive" });
     } finally {
       setIsLoading(false);
     }
-  }, [toast, t]);
+  }, [getGeneratedReportsCallable, toast, t]);
   
   const fetchAllUsers = useCallback(async () => {
       setIsUsersLoading(true);
       try {
-          const users = await getAllProfilesFromDB();
-          setAllUsers(users);
+          const result = await httpsCallable(functions, 'user-getAllProfilesFromDB')();
+          setAllUsers((result.data as any).profiles || []);
       } catch (error) {
           console.error("Failed to fetch users for report generation:", error);
       } finally {
           setIsUsersLoading(false);
       }
-  }, []);
+  }, [functions]);
 
   useEffect(() => {
     fetchReports();
@@ -98,7 +96,7 @@ export default function ReportsManagementPage() {
     }
     const filtered = allUsers.filter(user => 
         user.displayName.toLowerCase().includes(debouncedUserSearchQuery.toLowerCase()) ||
-        user.email.toLowerCase().includes(debouncedUserSearchQuery.toLowerCase())
+        (user.email || '').toLowerCase().includes(debouncedUserSearchQuery.toLowerCase())
     );
     setUserSearchResults(filtered.slice(0, 10)); // Limit results
   }, [debouncedUserSearchQuery, allUsers]);
@@ -120,7 +118,7 @@ export default function ReportsManagementPage() {
           endDate: dateRange.to.getTime(),
         },
       };
-      await functionsCallable.generateRegulatoryReport(payload);
+      await generateRegulatoryReportCallable(payload);
       toast({ title: t('toast.generateSuccessTitle'), description: t('toast.generateSuccessDescription') });
       setTargetUserId('');
       setUserSearchQuery('');

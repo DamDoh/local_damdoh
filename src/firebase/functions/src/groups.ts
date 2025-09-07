@@ -3,7 +3,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile, JoinRequest } from './types';
-import { getProfileByIdFromDB as getProfileByIdFromDBCallable } from './user';
+import { getProfileByIdFromDB } from './user';
 
 const db = admin.firestore();
 
@@ -22,8 +22,7 @@ export const createGroup = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Group name and description are required.');
     }
 
-    const userProfileResult = await getProfileByIdFromDBCallable({ uid }, context);
-    const userProfile = userProfileResult.data;
+    const userProfile = await getProfileByIdFromDB(uid);
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
     }
@@ -112,7 +111,7 @@ export const getGroupMembers = functions.https.onCall(async (data, context) => {
     return { members };
 });
 
-const modifyMembership = async (groupId: string, userId: string, join: boolean, context: functions.https.CallableContext) => {
+const modifyMembership = async (groupId: string, userId: string, join: boolean) => {
     const groupRef = db.collection('groups').doc(groupId);
     const memberRef = groupRef.collection('members').doc(userId);
 
@@ -129,8 +128,7 @@ const modifyMembership = async (groupId: string, userId: string, join: boolean, 
                 throw new functions.https.HttpsError('already-exists', 'You are already a member of this group.');
             }
             
-            const userProfileResult = await getProfileByIdFromDBCallable({ uid: userId }, context);
-            const userProfile = userProfileResult.data as UserProfile;
+            const userProfile = await getProfileByIdFromDB(userId);
              if (!userProfile) {
                 throw new functions.https.HttpsError('not-found', 'Your user profile could not be found.');
             }
@@ -156,14 +154,14 @@ const modifyMembership = async (groupId: string, userId: string, join: boolean, 
 export const joinGroup = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { groupId } = data;
-    await modifyMembership(groupId, uid, true, context);
+    await modifyMembership(groupId, uid, true);
     return { success: true, message: 'Successfully joined the group.' };
 });
 
 export const leaveGroup = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { groupId } = data;
-    await modifyMembership(groupId, uid, false, context);
+    await modifyMembership(groupId, uid, false);
     return { success: true, message: 'Successfully left the group.' };
 });
 
@@ -312,8 +310,7 @@ export const requestToJoinGroup = functions.https.onCall(async (data, context) =
         throw new functions.https.HttpsError('already-exists', 'You have already sent a request to join this group.');
     }
     
-    const userProfileResult = await getProfileByIdFromDBCallable({uid: requesterId}, context);
-    const userProfile = userProfileResult.data;
+    const userProfile = await getProfileByIdFromDB(requesterId);
 
     await requestRef.set({
         requesterId,
@@ -370,7 +367,7 @@ export const respondToJoinRequest = functions.https.onCall(async (data, context)
     
     if (action === 'accept') {
         await requestRef.update({ status: 'accepted' });
-        await modifyMembership(groupId, requesterId, true, context);
+        await modifyMembership(groupId, requesterId, true);
     } else { // decline
         await requestRef.update({ status: 'declined' });
     }

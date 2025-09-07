@@ -318,7 +318,7 @@ const checkFiAuth = async (context: functions.https.CallableContext) => {
 };
 
 export const getFinancialApplicationDetails = functions.https.onCall(async (data, context) => {
-    checkAuth(context);
+    checkAuth(context); // General auth check first
     const { applicationId } = data;
     if (!applicationId) {
         throw new functions.https.HttpsError('invalid-argument', 'Application ID is required.');
@@ -517,4 +517,3 @@ export const getFarmerApplications = functions.https.onCall(async (data, context
 
     return { applications };
 });
-

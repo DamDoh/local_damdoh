@@ -20,7 +20,7 @@ export async function getVtiTraceabilityHistory(vtiId: string): Promise<any> {
     const result: HttpsCallableResult<any> = await getVtiHistoryCallable({ vtiId });
     return result.data;
   } catch (error) {
-    console.error("Error calling getVtiTraceabilityHistory:", error);
+    console.error("Error calling traceability-getVtiTraceabilityHistory:", error);
     // Re-throw the error so the client-side can handle it.
     throw error;
   }

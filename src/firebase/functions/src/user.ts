@@ -3,7 +3,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
-import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
+import { stakeholderProfileSchemas } from "@/lib/schemas"; // Corrected import
 import { deleteCollectionByPath, getRole } from './utils';
 import { randomBytes } from 'crypto';
 
@@ -203,12 +203,12 @@ export const upsertStakeholderProfile = functions.https.onCall(
 );
 
 /**
- * Fetches a user's profile from Firestore by their ID.
+ * Helper function to get a user's profile from Firestore by their ID.
+ * This is an internal helper for other backend functions.
  * @param {string} uid The user's ID.
  * @return {Promise<any | null>} The user's profile data or null if not found.
  */
-export const getProfileByIdFromDB = functions.https.onCall(async (data, context): Promise<any | null> => {
-    const { uid } = data;
+export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
     if (!uid) {
         return null;
     }
@@ -231,7 +231,7 @@ export const getProfileByIdFromDB = functions.https.onCall(async (data, context)
         console.error("Error fetching user profile by ID:", error);
         return null;
     }
-});
+}
 
 
 /**
@@ -249,8 +249,8 @@ export const getAllProfilesFromDB = functions.https.onCall(async (data, context)
             return {
                 id: doc.id,
                 ...profileData,
-                createdAt: (profileData.createdAt as admin.firestore.Timestamp)?.toDate ? (profileData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : new Date().toISOString(),
-                updatedAt: (profileData.updatedAt as admin.firestore.Timestamp)?.toDate ? (profileData.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : new Date().toISOString(),
+                createdAt: (profileData.createdAt as admin.firestore.Timestamp)?.toDate ? (profileData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
+                updatedAt: (profileData.updatedAt as admin.firestore.Timestamp)?.toDate ? (profileData.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
             };
         });
         return { profiles };
