@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { createAssetSchema } from "@/lib/schemas";
@@ -97,6 +98,15 @@ export const updateAsset = functions.https.onCall(async (data, context) => {
     }
 
     const assetRef = db.collection(`users/${ownerId}/assets`).doc(assetId);
+
+    // Security Check: Verify owner
+    const assetDoc = await assetRef.get();
+    if (!assetDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Asset not found.");
+    }
+    if (assetDoc.data()?.ownerId !== ownerId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to update this asset.");
+    }
 
     await assetRef.update({
         ...validation.data,
