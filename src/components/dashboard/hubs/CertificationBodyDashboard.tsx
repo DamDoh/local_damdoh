@@ -17,14 +17,13 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/
 import { PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
 
 
-const functions = getFunctions(firebaseApp);
-
 export const CertificationBodyDashboard = () => {
   const t = useTranslations('CertificationBodyDashboard');
   const [dashboardData, setDashboardData] = useState<CertificationBodyDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  
+  const functions = useMemo(() => getFunctions(firebaseApp), []);
   const getCertificationBodyDashboardDataCallable = useMemo(() => httpsCallable<void, CertificationBodyDashboardData>(functions, 'dashboardData-getCertificationBodyDashboardData'), [functions]);
 
   useEffect(() => {
