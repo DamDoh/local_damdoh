@@ -531,7 +531,7 @@ export const getLogisticsDashboardData = functions.https.onCall(
             .orderBy('createdAt', 'desc')
             .limit(5)
             .get();
-
+            
         const incomingJobs = jobsSnapshot.docs.map(doc => {
             const order = doc.data();
             return {
@@ -853,7 +853,7 @@ export const getResearcherDashboardData = functions.https.onCall(
               return {
                   id: doc.id,
                   title: article.title_en || article.title_km || "Untitled Article",
-                  status: 'Published' as const // Placeholder status
+                  status: article.status || 'Draft',
               };
           });
 
@@ -898,7 +898,7 @@ export const getAgronomistDashboardData = functions.https.onCall(
             return {
                 id: doc.id,
                 title: article.title_en || article.title_km || "Untitled Article",
-                status: 'Published' as const,
+                status: article.status || 'Draft',
             };
         });
 
