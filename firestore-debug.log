@@ -14,3 +14,5 @@ Dev App Server is now running.
 
 Sep 07, 2025 7:38:17 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
+Sep 07, 2025 7:38:19 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected HTTP/2 connection.
