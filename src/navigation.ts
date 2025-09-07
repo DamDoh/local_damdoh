@@ -56,7 +56,6 @@ export const pathnames = {
   '/network': '/network',
   '/network/agent-tools': '/network/agent-tools',
   '/network/my-network': '/network/my-network',
-  '/notifications': '/notifications',
   '/pinboard': '/pinboard',
   '/privacy': '/privacy',
   '/search': '/search',
