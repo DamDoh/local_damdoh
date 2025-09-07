@@ -272,3 +272,6 @@ export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
         return null;
     }
 }
+
+// Note: The getUserActivity and logProfileView functions have been moved to activity.ts
+// The getUserEngagementStats function has been removed as the more robust version exists in activity.ts

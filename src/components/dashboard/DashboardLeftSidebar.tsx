@@ -1,16 +1,14 @@
 
-
 "use client"; 
 
 import { Link } from '@/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Bookmark, Users, Newspaper, CalendarDays, BarChart2, Link2 } from "lucide-react";
+import { BarChart2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useUserProfile } from "@/hooks/useUserProfile";
 import { Skeleton } from "../ui/skeleton";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useAuth } from "@/lib/auth-utils";
 import { httpsCallable } from "firebase/functions";
 import { functions } from "@/lib/firebase/client";
@@ -19,32 +17,31 @@ import { useTranslations } from 'next-intl';
 export function DashboardLeftSidebar() {
   const t = useTranslations('DashboardLeftSidebar');
   const { toast } = useToast();
-  const { profile, loading } = useAuth(); // Changed to useAuth
+  const { profile, loading: authLoading } = useAuth(); // Use the correct hook
   
   const [stats, setStats] = useState<{ profileViews: number, postLikes: number, postComments: number } | null>(null);
   const [isLoadingStats, setIsLoadingStats] = useState(true);
 
+  const getStatsCallable = useMemo(() => httpsCallable(functions, 'activity-getUserEngagementStats'), []);
 
   useEffect(() => {
-    if (profile?.id) { // Use profile.id instead of user
-        const getStatsCallable = httpsCallable(functions, 'getUserEngagementStats');
+    if (profile?.id) { 
         getStatsCallable({ userId: profile.id })
             .then(result => {
                 setStats(result.data as any);
             })
             .catch(error => {
                 console.error("Error fetching stats:", error);
-                // Don't show a toast for this, just fail gracefully
                 setStats({ profileViews: 0, postLikes: 0, postComments: 0 }); 
             })
             .finally(() => {
                 setIsLoadingStats(false);
             });
-    } else if (!loading) { // If not loading and still no profile
+    } else if (!authLoading) {
         setIsLoadingStats(false);
         setStats({ profileViews: 0, postLikes: 0, postComments: 0 }); 
     }
-  }, [profile, loading]); // Depend on profile and loading state from context
+  }, [profile, authLoading, getStatsCallable]); 
 
 
   const handleTryProClick = () => {
@@ -54,7 +51,7 @@ export function DashboardLeftSidebar() {
     });
   };
 
-  if (loading) {
+  if (authLoading) {
     return (
       <div className="space-y-4">
         <Card>
