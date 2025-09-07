@@ -1,4 +1,5 @@
 
+
 import { z } from "zod";
 import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from '@/lib/constants';
 
@@ -644,6 +645,7 @@ export const createFinancialProductSchema = z.object({
 // 3. AI FLOW-SPECIFIC SCHEMAS
 // These define the inputs and outputs for Genkit AI flows.
 // =================================================================
+
 export const SmartSearchInterpretationSchema = z.object({
   originalQuery: z.string().describe("The original, unmodified user query."),
   mainKeywords: z.array(z.string()).describe("The core nouns or concepts the user is searching for."),
@@ -729,3 +731,4 @@ export const SuggestMarketPriceInputSchema = z.object({
 export const SuggestMarketPriceOutputSchema = z.object({
     price: z.number(),
 });
+

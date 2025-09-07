@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, FormEvent, useCallback } from 'react';
@@ -10,7 +11,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Search, Sparkles, ShoppingCart, Users, MessageSquare, FileText, Loader2, ArrowRight, QrCode, GitBranch } from 'lucide-react';
 import Link from 'next/link';
 
-import { interpretSearchQuery, type SmartSearchInterpretation } from '@/ai/flows/query-interpreter-flow';
+import { interpretSearchQuery } from '@/lib/server-actions';
 import { Badge } from '../ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent } from '../ui/card';
@@ -18,6 +19,7 @@ import { performSearch } from '@/lib/server-actions';
 import { QrScanner } from '../QrScanner';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import type { SmartSearchInterpretation } from '@/lib/types';
 
 interface SearchResult {
   id: string;

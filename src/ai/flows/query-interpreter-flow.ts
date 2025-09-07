@@ -1,4 +1,5 @@
 
+
 'use server';
 /**
  * @fileOverview AI flow to interpret user search queries for the DamDoh platform.
@@ -36,7 +37,7 @@ User's Raw Query: "{{{rawQuery}}}"
 Based on this query, please provide:
 1.  **mainKeywords**: Identify the primary items, products, services, or concepts the user is searching for. Extract these as an array of strings. (e.g., ["organic mangoes", "tractor repair"], ["coffee beans"]).
 2.  **identifiedLocation**: If a specific location (city, region, country, continent) is mentioned or strongly implied, state it. If no location is clear, omit this field.
-3.  **identifiedIntent**: Infer the user's likely intent (e.g., 'buy', 'sell', 'rent', 'find service'). If unclear, omit.
+3.  **identifiedIntent**: Infer the user's likely goal (e.g., 'buy', 'sell', 'rent', 'find service'). If unclear, omit.
 4.  **price constraints**: If the user mentions a price (e.g., 'under $50', 'over $1000', 'between $20 and $40', 'costs 300'), extract the minimum and maximum price into the 'minPrice' and 'maxPrice' fields. Extract only the numbers.
 5.  **unit constraints**: If a pricing unit is mentioned (e.g., '/kg', '/ton', per hour), extract it into the 'perUnit' field.
 6.  **suggestedFilters**: Based on the query and intent, suggest potential filters an e-commerce platform might use. For example:

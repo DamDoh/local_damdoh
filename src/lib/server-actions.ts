@@ -1,4 +1,5 @@
 
+
 'use server';
 
 // Note: Most data-fetching server actions have been removed.
@@ -11,6 +12,7 @@ import { suggestMarketPrice as suggestMarketPriceFlow } from "@/ai/flows/suggest
 import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";
 import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
 import { suggestForumTopics as suggestForumTopicsFlow } from '@/ai/flows/forum-topic-suggestions';
+import { interpretSearchQuery as interpretSearchQueryFlow } from '@/ai/flows/query-interpreter-flow';
 import type { CropRotationInput, CropRotationOutput, SmartSearchInterpretation } from '@/lib/types';
 import { getLocale } from 'next-intl/server';
 import { generateForumPostDraftFlow } from '@/ai/flows/generate-forum-post-draft';
@@ -21,6 +23,18 @@ import { app } from './firebase/client'; // Assuming client init is sufficient
 // Use the client-initialized app for functions. This is a bit of a workaround
 // for Server Actions but ensures we use the same Firebase instance as the client.
 const functions = getFunctions(app);
+
+/**
+ * Server Action to interpret a search query using AI.
+ * @param input The raw search query.
+ * @returns A promise that resolves to the structured interpretation.
+ */
+export async function interpretSearchQuery(input: { rawQuery: string }): Promise<SmartSearchInterpretation> {
+    const user = await getCurrentUser();
+    // Public search is allowed, so no need to throw an error if user is null.
+    const result = await interpretSearchQueryFlow(input);
+    return result;
+}
 
 /**
  * Server Action to perform a search. It authenticates the user on the server
@@ -144,3 +158,4 @@ export async function getProfileByIdFromDB(uid: string) {
     const result = await getProfile({ uid });
     return result.data as any;
 }
+
