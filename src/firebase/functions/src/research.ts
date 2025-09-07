@@ -34,7 +34,7 @@ export const getResearcherDashboardData = functions.https.onCall(
 
           // Mock data for datasets and projects, as these collections don't exist yet
           const availableDatasets = [
-              { id: 'set1', name: 'Rift Valley Maize Yields (2020-2023)', dataType: 'CSV', accessLevel: 'Requires Request' as const, actionLink: '#' },
+              { id: 'set1', name: 'Rift Valley Maize Yields (2020-2023)', dataType: 'CSV', accessLevel: 'Public' as const, actionLink: '#' },
               { id: 'set2', name: 'Regional Soil Health Data (Anonymized)', dataType: 'JSON', accessLevel: 'Public' as const, actionLink: '#' },
           ];
           
@@ -55,5 +55,3 @@ export const getResearcherDashboardData = functions.https.onCall(
       }
     }
 );
-
-    
