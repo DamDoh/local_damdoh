@@ -1,5 +1,7 @@
 # DamDoh: The Super App for Global Agri-Communities
 
+> **Note:** All major development phases for the foundational architecture of the DamDoh super app are now complete. The platform is feature-rich, architecturally sound, and considered ready for its initial launch and user feedback cycles.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://img.shields.io/ci/github/DamDoh/super-app.svg)](https://github.com/DamDoh/super-app/actions)
 [![Firebase](https://img.shields.io/badge/Powered%20by-Firebase-orange)](https://firebase.google.com/)
