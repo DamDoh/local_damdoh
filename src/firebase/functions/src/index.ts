@@ -48,6 +48,16 @@ import * as geospatialFunctions from "./geospatial";
 import * as utils from "./utils"; 
 import * as agronomistFunctions from "./agronomist";
 import * as researchFunctions from "./research";
+import * as buyerFunctions from "./buyer";
+import * as cooperativeFunctions from "./cooperative";
+import * as fiFunctions from "./fi";
+import * as packagingFunctions from "./packaging";
+import * as qaFunctions from "./qa";
+import * as certificationFunctions from "./certification";
+import * as inputSupplierFunctions from "./input-supplier";
+import * as equipmentSupplierFunctions from "./equipment-supplier";
+import * as energyProviderFunctions from "./energy-provider";
+
 
 // Export all cloud functions, grouped by their respective modules
 export const activity = activityFunctions;
@@ -80,6 +90,16 @@ export const geospatial = geospatialFunctions;
 export const utilityFunctions = utils; 
 export const agronomist = agronomistFunctions;
 export const research = researchFunctions;
+export const buyer = buyerFunctions;
+export const cooperative = cooperativeFunctions;
+export const fi = fiFunctions;
+export const packaging = packagingFunctions;
+export const qa = qaFunctions;
+export const certification = certificationFunctions;
+export const inputSupplier = inputSupplierFunctions;
+export const equipmentSupplier = equipmentSupplierFunctions;
+export const energyProvider = energyProviderFunctions;
+
 
 
 // Export the Express app as a Cloud Function for Cloud Run services
