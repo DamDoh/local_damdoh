@@ -32,8 +32,8 @@ interface Article {
 }
 
 // Create callable references to our content creation functions
-const createArticleFunction = httpsCallable(functions, 'createKnowledgeArticle');
-const getArticlesFunction = httpsCallable(functions, 'getKnowledgeArticles');
+const createArticleFunction = httpsCallable(functions, 'knowledgeHub-createKnowledgeArticle');
+const getArticlesFunction = httpsCallable(functions, 'knowledgeHub-getKnowledgeArticles');
 
 export default function ContentManagementPage() {
   const t = useTranslations('admin.contentManagement');
@@ -87,7 +87,7 @@ export default function ContentManagementPage() {
         status: formData.get('article_status'),
       };
 
-      console.log("Calling 'createKnowledgeArticle' with payload:", articleData);
+      console.log("Calling 'knowledgeHub-createKnowledgeArticle' with payload:", articleData);
       const result = await createArticleFunction(articleData);
 
       if (!(result.data as any).success) throw new Error((result.data as any).message);

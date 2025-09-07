@@ -13,32 +13,12 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Separator } from '@/components/ui/separator';
 import { useLocale, useTranslations, useFormatter } from 'next-intl';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-
-interface BlogPost {
-  id: string;
-  title_en: string;
-  content_markdown_en: string;
-  title_km?: string;
-  content_markdown_km?: string;
-  title_fr?: string;
-  content_markdown_fr?: string;
-  title_de?: string;
-  content_markdown_de?: string;
-  title_th?: string;
-  content_markdown_th?: string;
-  author: string;
-  createdAt: string;
-  category: string;
-  imageUrl?: string;
-  dataAiHint?: string;
-  tags?: string[];
-}
+import type { KnowledgeArticle } from '@/lib/types';
 
 const functions = getFunctions(firebaseApp);
-const getArticleCallable = httpsCallable(functions, 'getKnowledgeArticleById');
+const getArticleCallable = httpsCallable(functions, 'knowledgeHub-getKnowledgeArticleById');
 
 function PostPageSkeleton() {
     return (
@@ -67,7 +47,7 @@ export default function BlogPostPage() {
   const params = useParams();
   const slug = params.slug as string;
   const { toast } = useToast();
-  const [post, setPost] = useState<BlogPost | null>(null);
+  const [post, setPost] = useState<KnowledgeArticle | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const t = useTranslations('blogPage');
   const locale = useLocale();
@@ -79,8 +59,8 @@ export default function BlogPostPage() {
       setIsLoading(true);
       try {
         const result = await getArticleCallable({ articleId: slug });
-        const data = result.data as { success: boolean, article: BlogPost };
-        if (data.success) {
+        const data = result.data as { success: boolean, article: KnowledgeArticle };
+        if (data.success && data.article) {
           setPost(data.article);
         } else {
           setPost(null);
@@ -113,7 +93,7 @@ export default function BlogPostPage() {
     );
   }
 
-  const getLocalized = (fieldPrefix: string) => {
+  const getLocalized = (fieldPrefix: 'title' | 'content_markdown' | 'excerpt') => {
     const key = `${fieldPrefix}_${locale}`;
     // @ts-ignore
     return post[key] || post[`${fieldPrefix}_en`]; // Fallback to English

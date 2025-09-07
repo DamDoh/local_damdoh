@@ -13,22 +13,10 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
 import { useLocale, useTranslations, useFormatter } from 'next-intl';
-
-interface BlogPost {
-  id: string;
-  title_en: string;
-  excerpt_en: string;
-  title_km?: string;
-  excerpt_km?: string;
-  author: string;
-  createdAt: string;
-  category: string;
-  imageUrl?: string;
-  dataAiHint?: string;
-}
+import type { KnowledgeArticle } from '@/lib/types';
 
 const functions = getFunctions(firebaseApp);
-const getArticlesCallable = httpsCallable(functions, 'getKnowledgeArticles');
+const getArticlesCallable = httpsCallable(functions, 'knowledgeHub-getKnowledgeArticles');
 
 function PostCardSkeleton() {
   return (
@@ -53,7 +41,7 @@ function PostCardSkeleton() {
 
 export default function BlogPage() {
   const t = useTranslations('blogPage');
-  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [posts, setPosts] = useState<KnowledgeArticle[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
   const locale = useLocale();
@@ -66,7 +54,7 @@ export default function BlogPage() {
         const result = await getArticlesCallable();
         const data = result.data as { success: boolean, articles: any[] };
         if (data.success) {
-          const blogPosts = data.articles.filter(article => article.category === 'Blog' || article.category === 'Industry News');
+          const blogPosts = data.articles.filter(article => (article.category === 'Blog' || article.category === 'Industry News') && article.status === 'Published');
           setPosts(blogPosts);
         } else {
           throw new Error("Failed to fetch articles.");
