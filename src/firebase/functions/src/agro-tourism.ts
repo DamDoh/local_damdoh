@@ -2,8 +2,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getProfileByIdFromDB } from './profiles';
-import type { AgroTourismDashboardData } from "@/lib/types";
+import { getProfileByIdFromDB } from './user';
 
 const db = admin.firestore();
 
@@ -210,54 +209,4 @@ export const getAgroTourismBookings = functions.https.onCall(async (data, contex
         }
     });
 
-    return { bookings: bookingsList };
-});
-
-// =================================================================
-// DASHBOARD DATA FUNCTION
-// =================================================================
-
-export const getAgroTourismDashboardData = functions.https.onCall(
-  async (data, context): Promise<AgroTourismDashboardData> => {
-    const operatorId = checkAuth(context);
-    try {
-        // --- Fetch Live Data for Listed Experiences ---
-        const experiencesSnapshot = await db.collection('marketplaceItems')
-            .where('sellerId', '==', operatorId)
-            .where('category', '==', 'agri-tourism-services')
-            .orderBy('createdAt', 'desc')
-            .get();
-
-        const listedExperiences = experiencesSnapshot.docs.map(doc => {
-            const item = doc.data();
-            return {
-                id: doc.id,
-                title: item.name,
-                location: item.location.address,
-                status: 'Published' as 'Published' | 'Draft', // Assuming all listed items are published for now
-                bookingsCount: item.bookingsCount || 0, // A field we can increment
-                actionLink: `/marketplace/${item.id}/manage-service`
-            };
-        });
-
-        // --- Keep Mock Data for other sections for now ---
-        const upcomingBookings = [
-            { id: 'book1', experienceTitle: 'Coffee Farm Tour & Tasting', guestName: 'Alice Johnson', date: new Date().toISOString(), actionLink: '#' }
-        ];
-        const guestReviews = [
-            { id: 'rev1', guestName: 'Bob Williams', experienceTitle: 'Coffee Farm Tour & Tasting', rating: 5, comment: 'Amazing experience, learned so much!', actionLink: '#' }
-        ];
-
-        return {
-            listedExperiences,
-            upcomingBookings,
-            guestReviews,
-        };
-
-    } catch (error) {
-        console.error("Error fetching Agro-Tourism dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
-    }
-  }
-);
-    
+    return { bookings: bookingsList

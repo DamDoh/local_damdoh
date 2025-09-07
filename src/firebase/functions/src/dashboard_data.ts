@@ -1232,91 +1232,219 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
 ```
   </change>
   <change>
-    <file>src/firebase/functions/src/index.ts</file>
+    <file>src/firebase/functions/src/agro-tourism.ts</file>
     <content><![CDATA[
-/**
- * @fileoverview This is the main entry point for all Firebase Cloud Functions.
- * It initializes the Firebase Admin SDK and exports all the functions from other
- * modules, making them available for deployment.
- */
 
-import * as admin from "firebase-admin";
-
-// The 'server.ts' file handles its own initialization.
-// We import it to ensure Express routes are registered with Cloud Functions.
-import expressApp from "./server";
 import * as functions from "firebase-functions";
+import * as admin from "firebase-admin";
+import { getProfileByIdFromDB } from './user';
 
-// We only need to initialize the admin SDK once for all other functions.
-if (admin.apps.length === 0) {
-  admin.initializeApp();
-}
+const db = admin.firestore();
 
-// Group functions by module for cleaner organization
-import * as activityFunctions from "./activity";
-import * as agriEventsFunctions from "./agri-events";
-import * as agroTourismFunctions from "./agro-tourism";
-import * as aiAndAnalyticsFunctions from "./ai-and-analytics";
-import * as aiServicesFunctions from "./ai-services";
-import * as apiKeyFunctions from "./api-keys";
-import * as apiGatewayFunctions from "./api-gateway";
-import * as communityFunctions from "./community";
-import * as dashboardDataFunctions from "./dashboard_data";
-import * as farmManagementFunctions from "./farm-management";
-import * as financialServicesFunctions from "./financial-services";
-import * as forumFunctions from "./forums";
-import * as groupFunctions from "./groups";
-import * as insuranceFunctions from "./insurance";
-import * as knowledgeHubFunctions from "./knowledge-hub";
-import * as laborFunctions from "./labor";
-import * as loggingFunctions from "./logging";
-import * as marketplaceFunctions from "./marketplace";
-import * as messageFunctions from "./messages";
-import * as networkFunctions from "./network";
-import * as notificationFunctions from "./notifications";
-import * as offlineSyncFunctions from "./offline_sync";
-import * as regulatoryFunctions from "./regulatory-and-compliance";
-import * as searchFunctions from "./search";
-import * as sustainabilityFunctions from "./sustainability";
-import * as universalIdFunctions from "./universal-id";
-import * as geospatialFunctions from "./geospatial";
-import * as userFunctions from "./user";
-import * as utilsFunctions from "./utils";
-import * as inventoryFunctions from "./inventory";
+const checkAuth = (context: functions.https.CallableContext) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+  }
+  return context.auth.uid;
+};
+
+// =================================================================
+// BOOKING MANAGEMENT
+// =================================================================
+
+export const bookAgroTourismService = functions.https.onCall(async (data, context) => {
+    const uid = checkAuth(context);
+    const { itemId, bookingDetails } = data; // bookingDetails could contain dates, number of people, etc.
+    if (!itemId) throw new functions.https.HttpsError('invalid-argument', 'An Item ID for the service is required.');
+
+    const itemRef = db.collection('marketplaceItems').doc(itemId);
+    const bookingRef = itemRef.collection('bookings').doc(uid);
+    const userProfileDoc = await getProfileByIdFromDB(uid);
+    
+    if (!userProfileDoc) {
+        throw new functions.https.HttpsError('not-found', 'User profile not found.');
+    }
+
+    return db.runTransaction(async (transaction) => {
+        const itemDoc = await transaction.get(itemRef);
+        if (!itemDoc.exists || itemDoc.data()?.listingType !== 'Service' || itemDoc.data()?.category !== 'agri-tourism-services') {
+            throw new functions.https.HttpsError('not-found', 'Valid Agro-Tourism service not found.');
+        }
+
+        const bookingDoc = await transaction.get(bookingRef);
+        if (bookingDoc.exists) {
+            throw new functions.https.HttpsError('already-exists', 'You have already booked this service.');
+        }
+
+        // TODO: Add payment processing logic here if the service has a price.
+        
+        transaction.set(bookingRef, {
+            ...bookingDetails,
+            userId: uid,
+            displayName: userProfileDoc.displayName,
+            avatarUrl: userProfileDoc.avatarUrl || null,
+            bookedAt: admin.firestore.FieldValue.serverTimestamp(),
+            checkedIn: false,
+            checkedInAt: null
+        });
+        
+        // Optionally, increment a booking counter on the item itself
+        transaction.update(itemRef, {
+            bookingsCount: admin.firestore.FieldValue.increment(1)
+        });
+        
+        return { success: true, message: 'Successfully booked the Agro-Tourism service.' };
+    });
+});
+
+export const checkInAgroTourismBooking = functions.https.onCall(async (data, context) => {
+    const callerId = checkAuth(context);
+    const { itemId, attendeeUid } = data;
+
+    if (!itemId || !attendeeUid) {
+        throw new functions.https.HttpsError("invalid-argument", "Item ID and Attendee UID are required.");
+    }
+    
+    const itemRef = db.collection('marketplaceItems').doc(itemId);
+    const itemDoc = await itemRef.get();
+    const itemData = itemDoc.data();
+    if (!itemDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Service not found.");
+    }
+
+    const organizerId = itemData?.sellerId;
+    const staffRef = itemRef.collection('staff').doc(callerId);
+    const staffDoc = await staffRef.get();
+    
+    if (organizerId !== callerId && !staffDoc.exists) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to check-in guests for this service.");
+    }
+
+    const guestUserDoc = await db.collection('users').doc(attendeeUid).get();
+    if (!guestUserDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "No user found with this ID.");
+    }
+    const guestName = guestUserDoc.data()?.displayName || 'Unknown Guest';
+
+    const bookingRef = itemRef.collection('bookings').doc(attendeeUid);
+    return db.runTransaction(async (transaction) => {
+        const bookingDoc = await transaction.get(bookingRef);
+        if (!bookingDoc.exists) {
+            throw new functions.https.HttpsError("not-found", `${guestName} does not have a booking for this service.`);
+        }
+        
+        const bookingData = bookingDoc.data()!;
+        if (bookingData.checkedIn) {
+            throw new functions.https.HttpsError("already-exists", `${guestName} has already been checked in.`);
+        }
+
+        transaction.update(bookingRef, {
+            checkedIn: true,
+            checkedInAt: admin.firestore.FieldValue.serverTimestamp()
+        });
+        
+        return { success: true, message: `Successfully checked in ${guestName}.` };
+    });
+});
 
 
-// Export all cloud functions, grouped by their respective modules
-export const activity = activityFunctions;
-export const agriEvents = agriEventsFunctions;
-export const agroTourism = agroTourismFunctions;
-export const aiAndAnalytics = aiAndAnalyticsFunctions;
-export const aiServices = aiServicesFunctions;
-export const apiKeys = apiKeyFunctions;
-export const apiGateway = apiGatewayFunctions;
-export const community = communityFunctions;
-export const dashboardData = dashboardDataFunctions;
-export const farmManagement = farmManagementFunctions;
-export const financials = financialServicesFunctions;
-export const forums = forumFunctions;
-export const groups = groupFunctions;
-export const insurance = insuranceFunctions;
-export const knowledgeHub = knowledgeHubFunctions;
-export const labor = laborFunctions;
-export const logging = loggingFunctions;
-export const marketplace = marketplaceFunctions;
-export const messages = messageFunctions;
-export const network = networkFunctions;
-export const notifications = notificationFunctions;
-export const offlineSync = offlineSyncFunctions;
-export const regulatory = regulatoryFunctions;
-export const search = searchFunctions;
-export const sustainability = sustainabilityFunctions;
-export const universalId = universalIdFunctions;
-export const geospatial = geospatialFunctions;
-export const user = userFunctions;
-export const utils = utilsFunctions;
-export const inventory = inventoryFunctions;
+// =================================================================
+// STAFF MANAGEMENT FUNCTIONS
+// =================================================================
+
+export const addAgroTourismStaff = functions.https.onCall(async (data, context) => {
+    const operatorId = checkAuth(context);
+    const { itemId, staffUserId, staffDisplayName, staffAvatarUrl } = data;
+    if (!itemId || !staffUserId) {
+        throw new functions.https.HttpsError("invalid-argument", "Service Item ID and Staff User ID are required.");
+    }
+    
+    const itemRef = db.collection('marketplaceItems').doc(itemId);
+    const itemDoc = await itemRef.get();
+    if (!itemDoc.exists || itemDoc.data()?.sellerId !== operatorId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to add staff to this service.");
+    }
+
+    const staffRef = itemRef.collection('staff').doc(staffUserId);
+    await staffRef.set({
+        displayName: staffDisplayName || "Unknown Staff",
+        avatarUrl: staffAvatarUrl || null,
+        addedAt: admin.firestore.FieldValue.serverTimestamp(),
+        addedBy: operatorId,
+    });
+
+    return { success: true, message: `${staffDisplayName || 'User'} has been added as staff.` };
+});
 
 
-// Export the Express app as a Cloud Function for Cloud Run services
-export const api = functions.https.onRequest(expressApp);
+export const getAgroTourismStaff = functions.https.onCall(async (data, context) => {
+    const operatorId = checkAuth(context);
+    const { itemId } = data;
+    if (!itemId) {
+        throw new functions.https.HttpsError("invalid-argument", "Item ID is required.");
+    }
+
+    const itemRef = db.collection('marketplaceItems').doc(itemId);
+    const itemDoc = await itemRef.get();
+    if (!itemDoc.exists || itemDoc.data()?.sellerId !== operatorId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to view staff for this service.");
+    }
+    
+    const staffSnapshot = await itemRef.collection('staff').get();
+    const staffList = staffSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
+
+    return { staff: staffList };
+});
+
+
+export const removeAgroTourismStaff = functions.https.onCall(async (data, context) => {
+    const operatorId = checkAuth(context);
+    const { itemId, staffUserId } = data;
+
+    if (!itemId || !staffUserId) {
+        throw new functions.https.HttpsError("invalid-argument", "Item ID and Staff User ID are required.");
+    }
+    
+    const itemRef = db.collection('marketplaceItems').doc(itemId);
+    const itemDoc = await itemRef.get();
+    if (!itemDoc.exists || itemDoc.data()?.sellerId !== operatorId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to remove staff from this service.");
+    }
+
+    const staffRef = itemRef.collection('staff').doc(staffUserId);
+    await staffRef.delete();
+    
+    return { success: true, message: "Staff member has been removed." };
+});
+
+export const getAgroTourismBookings = functions.https.onCall(async (data, context) => {
+    const operatorId = checkAuth(context);
+    const { itemId } = data;
+    if (!itemId) {
+        throw new functions.https.HttpsError("invalid-argument", "Item ID is required.");
+    }
+
+    const itemRef = db.collection('marketplaceItems').doc(itemId);
+    const itemDoc = await itemRef.get();
+    if (!itemDoc.exists || itemDoc.data()?.sellerId !== operatorId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to view bookings for this service.");
+    }
+    
+    const bookingsSnapshot = await itemRef.collection('bookings').orderBy('bookedAt', 'desc').get();
+    const bookingsList = bookingsSnapshot.docs.map(doc => {
+         const data = doc.data();
+        return {
+            id: doc.id,
+            ...data,
+            bookedAt: (data.bookedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+            checkedInAt: (data.checkedInAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+        }
+    });
+
+    return { bookings: bookingsList };
+});
+
+    
