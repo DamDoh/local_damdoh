@@ -41,33 +41,33 @@ import type {
     PostReplySchema,
     WorkerSchema,
     WorkLogSchema,
-    AdminActivitySchema,
-    AdminDashboardDataSchema,
-    AgriTechInnovatorDashboardDataSchema,
-    AgroExportDashboardDataSchema,
-    AgroTourismDashboardDataSchema,
-    AgronomistDashboardDataSchema,
-    BuyerDashboardDataSchema,
-    CertificationBodyDashboardDataSchema,
-    CooperativeDashboardDataSchema,
-    CrowdfunderDashboardDataSchema,
-    EnergyProviderDashboardDataSchema,
-    EquipmentSupplierDashboardDataSchema,
-    FarmerDashboardDataSchema,
-    FarmerDashboardAlertSchema,
-    FieldAgentDashboardDataSchema,
-    FiDashboardDataSchema,
-    InputSupplierDashboardDataSchema,
-    InsuranceProviderDashboardDataSchema,
-    OperationsDashboardDataSchema,
-    PackagingSupplierDashboardDataSchema,
-    ProcessingUnitDashboardDataSchema,
-    QaDashboardDataSchema,
-    RegulatorDashboardDataSchema,
-    ResearcherDashboardDataSchema,
-    SustainabilityDashboardDataSchema,
-    WarehouseDashboardDataSchema,
-    WasteManagementDashboardDataSchema,
+    AdminActivity,
+    AdminDashboardData,
+    AgriTechInnovatorDashboardData,
+    AgroExportDashboardData,
+    AgroTourismDashboardData,
+    AgronomistDashboardData,
+    BuyerDashboardData,
+    CertificationBodyDashboardData,
+    CooperativeDashboardData,
+    CrowdfunderDashboardData,
+    EnergyProviderDashboardData,
+    EquipmentSupplierDashboardData,
+    FarmerDashboardData,
+    FarmerDashboardAlert,
+    FieldAgentDashboardData,
+    FiDashboardData,
+    InputSupplierDashboardData,
+    InsuranceProviderDashboardData,
+    OperationsDashboardData,
+    PackagingSupplierDashboardData,
+    ProcessingUnitDashboardData,
+    QaDashboardData,
+    RegulatorDashboardData,
+    ResearcherDashboardData,
+    SustainabilityDashboardData,
+    WarehouseDashboardData,
+    WasteManagementDashboardData,
     FinancialApplicationSchema,
     createFarmSchema,
     createCropSchema,
@@ -88,7 +88,8 @@ import type { LucideIcon } from 'lucide-react';
 export type UserProfile = z.infer<typeof StakeholderProfileSchema>;
 export type MarketplaceItem = z.infer<typeof MarketplaceItemSchema>;
 export type MarketplaceOrder = z.infer<typeof MarketplaceOrderSchema> & {
-    buyerProfile: { displayName: string, avatarUrl?: string }
+    buyerProfile: { displayName: string, avatarUrl?: string },
+    sellerProfile?: { displayName: string, avatarUrl?: string }
 };
 export type AgriEvent = z.infer<typeof AgriEventSchema> & {
   id: string; // Add id to the type for frontend use
@@ -127,8 +128,6 @@ export type Worker = z.infer<typeof WorkerSchema>;
 export type WorkLog = z.infer<typeof WorkLogSchema>;
 export type Farm = z.infer<typeof createFarmSchema> & { id: string };
 export type Crop = z.infer<typeof createCropSchema> & { id: string, plantingDate: string, harvestDate?: string, createdAt: string, ownerId: string };
-export type CreateFarmValues = z.infer<typeof createFarmSchema>;
-export type CreateCropValues = z.infer<typeof createCropSchema>;
 export type InventoryItem = z.infer<typeof createInventoryItemSchema> & { id: string };
 export type KnowledgeArticle = z.infer<typeof KnowledgeArticleSchema>;
 export type FarmAsset = z.infer<typeof FarmAssetSchema>;
@@ -182,5 +181,4 @@ export type DiagnoseCropInput = z.infer<typeof DiagnoseCropInputSchema>;
 export type DiagnoseCropOutput = z.infer<typeof DiagnoseCropOutputSchema>;
 export type FarmingAssistantInput = z.infer<typeof FarmingAssistantInputSchema>;
 export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema>;
-export type GenerateForumPostInput = z.infer<typeof GenerateForumPostDraftInput>;
-export type GenerateForumPostOutput = z.infer<typeof GenerateForumPostDraftOutput>;
+

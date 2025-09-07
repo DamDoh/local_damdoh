@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -29,8 +30,13 @@ export function Providers({
     const [loading, setLoading] = useState(true);
 
     const fetchProfile = useCallback(async (uid: string) => {
-        const result = await getProfileByIdFromDB({ uid });
-        setProfile(result.data as UserProfile);
+        try {
+            const result = await getProfileByIdFromDB({ uid });
+            setProfile(result.data as UserProfile);
+        } catch (error) {
+            console.error("Failed to fetch user profile on auth change:", error);
+            setProfile(null);
+        }
     }, []);
 
     useEffect(() => {
