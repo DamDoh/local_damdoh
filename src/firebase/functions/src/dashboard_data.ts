@@ -4,32 +4,21 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
     AdminDashboardData,
-    AdminActivity,
     FarmerDashboardData,
     CooperativeDashboardData,
     BuyerDashboardData,
     RegulatorDashboardData,
     FiDashboardData,
     FieldAgentDashboardData,
-    InputSupplierDashboardData,
-    AgroExportDashboardData,
-    ProcessingUnitDashboardData,
-    WarehouseDashboardData,
     QaDashboardData,
     CertificationBodyDashboardData,
-    ResearcherDashboardData,
-    AgronomistDashboardData,
-    AgroTourismDashboardData,
     InsuranceProviderDashboardData,
     EnergyProviderDashboardData,
     CrowdfunderDashboardData,
-    EquipmentSupplierDashboardData,
     WasteManagementDashboardData,
-    PackagingSupplierDashboardData,
     FinancialApplication,
     AgriTechInnovatorDashboardData,
     FarmerDashboardAlert,
-    OperationsDashboardData,
     FinancialProduct,
     KnfBatch
 } from "@/lib/types";
@@ -171,6 +160,8 @@ export const getFarmerDashboardData = functions.https.onCall(
     }
   },
 );
+
+
 
 
 // =================================================================
@@ -369,3 +360,290 @@ export const getRegulatorDashboardData = functions.https.onCall(
     }
   }
 );
+
+
+
+
+export const getFiDashboardData = functions.https.onCall(
+  async (data, context): Promise<FiDashboardData> => {
+    const fiId = checkAuth(context);
+    try {
+        const applicationsSnapshot = await db.collection('financial_applications')
+            .where('fiId', '==', fiId)
+            .where('status', 'in', ['Pending', 'Under Review'])
+            .orderBy('submittedAt', 'desc')
+            .limit(10)
+            .get();
+            
+        const pendingApplications: FinancialApplication[] = applicationsSnapshot.docs.map(doc => {
+            const appData = doc.data();
+            return {
+                id: doc.id,
+                applicantId: appData.applicantId,
+                applicantName: appData.applicantName,
+                fiId: appData.fiId,
+                type: appData.type,
+                amount: appData.amount,
+                currency: appData.currency,
+                status: appData.status,
+                riskScore: appData.riskScore,
+                purpose: appData.purpose,
+                submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+                actionLink: `/fi/applications/${doc.id}`,
+            };
+        });
+        
+        // Live data for portfolio
+        const loansSnapshot = await db.collection('financial_applications')
+            .where('fiId', '==', fiId)
+            .where('status', '==', 'Approved')
+            .get();
+
+        const portfolioOverview = {
+            loanCount: loansSnapshot.size,
+            totalValue: loansSnapshot.docs.reduce((sum, doc) => sum + doc.data().amount, 0),
+        };
+        
+        const productsSnapshot = await db.collection('financial_products')
+            .where('fiId', '==', fiId)
+            .get();
+
+        const financialProducts = productsSnapshot.docs.map(doc => ({id: doc.id, ...doc.data()})) as FinancialProduct[];
+
+
+        return {
+            pendingApplications,
+            portfolioOverview,
+            financialProducts,
+        };
+    } catch (error) {
+        console.error("Error fetching Financial Institution dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch FI dashboard data.");
+    }
+  }
+);
+
+
+export const getFieldAgentDashboardData = functions.https.onCall(
+  async (data, context): Promise<FieldAgentDashboardData> => {
+    const agentId = checkAuth(context);
+    
+    try {
+        const agentDoc = await db.collection('users').doc(agentId).get();
+        if (!agentDoc.exists) {
+            throw new functions.https.HttpsError('not-found', 'Agent profile not found.');
+        }
+        
+        const agentData = agentDoc.data();
+        // Assuming assigned farmers are stored in profileData.assignedFarmers
+        const assignedFarmerIds = agentData?.profileData?.assignedFarmers || [];
+        
+        let assignedFarmers: FieldAgentDashboardData['assignedFarmers'] = [];
+
+        if (assignedFarmerIds.length > 0) {
+            // Firestore 'in' query is limited to 30 items per query.
+            // For a production app, this would need chunking if an agent has > 30 farmers.
+            const farmersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', assignedFarmerIds.slice(0, 30)).get();
+            
+            assignedFarmers = farmersSnapshot.docs.map(doc => {
+                const farmerData = doc.data();
+                // Mocking lastVisit and issues for now
+                return {
+                    id: doc.id,
+                    name: farmerData.displayName || 'Unknown Farmer',
+                    lastVisit: new Date(Date.now() - Math.random() * 30 * 86400000).toISOString(),
+                    issues: Math.floor(Math.random() * 3), // Random number of issues
+                    actionLink: `/profiles/${doc.id}`
+                };
+            });
+        }
+        
+        // Keep other parts mocked for this iteration
+        const portfolioHealth = {
+            overallScore: 85,
+            alerts: ['Pest alert in North region'],
+            actionLink: '#'
+        };
+        const pendingReports = 3;
+        const dataVerificationTasks = {
+            count: 8,
+            description: 'Verify harvest logs for maize',
+            actionLink: '#'
+        };
+
+        return {
+            assignedFarmers,
+            portfolioHealth,
+            pendingReports,
+            dataVerificationTasks
+        };
+        
+    } catch (error) {
+        console.error("Error fetching field agent dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data for field agent.");
+    }
+  }
+);
+
+
+export const getQaDashboardData = functions.https.onCall(
+  (data, context): QaDashboardData => {
+    checkAuth(context);
+    return {
+        pendingInspections: [
+            { id: 'insp1', batchId: 'vti-xyz-123', productName: 'Avocado Batch', sellerName: 'Green Valley Farms', dueDate: new Date().toISOString(), actionLink: '#'}
+        ],
+        recentResults: [
+            { id: 'res1', productName: 'Maize Batch', result: 'Fail', reason: 'Aflatoxin levels exceed limit.', inspectedAt: new Date().toISOString() }
+        ],
+        qualityMetrics: { passRate: 98, averageScore: 9.2 }
+    };
+  }
+);
+
+
+export const getCertificationBodyDashboardData = functions.https.onCall(
+  async (data, context): Promise<CertificationBodyDashboardData> => {
+    checkAuth(context);
+    return {
+        pendingAudits: [
+            { id: 'aud1', farmName: 'Green Valley Farms', standard: 'EU Organic', dueDate: new Date().toISOString(), actionLink: '#' }
+        ],
+        certifiedEntities: [
+            { id: 'ent1', name: 'Riverside Orchards', type: 'Farm', certificationStatus: 'Active', actionLink: '#' }
+        ],
+        standardsMonitoring: [
+            { standard: 'Fair Trade', adherenceRate: 95, alerts: 2, actionLink: '#' }
+        ]
+    };
+  }
+);
+
+
+
+export const getInsuranceProviderDashboardData = functions.https.onCall(
+  async (data, context): Promise<InsuranceProviderDashboardData> => {
+    checkAuth(context);
+
+    try {
+        const claimsSnapshot = await db.collection('insurance_applications')
+            .where('status', 'in', ['Submitted', 'Under Review'])
+            // Ideally, we'd also filter by providerId if that field existed
+            .limit(10)
+            .get();
+        
+        const pendingClaims = claimsSnapshot.docs.map(doc => {
+            const claim = doc.data();
+            return {
+                id: doc.id,
+                policyHolderName: claim.applicantName || 'Unknown Farmer', // Placeholder
+                policyType: 'Crop', // Placeholder
+                claimDate: (claim.submittedAt as admin.firestore.Timestamp).toDate().toISOString(),
+                status: claim.status,
+                actionLink: '#'
+            }
+        });
+
+        return {
+            pendingClaims,
+            // These remain mocked as their data sources are complex
+            riskAssessmentAlerts: [
+                { id: 'risk1', policyHolderName: 'Sunset Farms', alert: 'High flood risk predicted for next month.', severity: 'High', actionLink: '#' }
+            ],
+            activePolicies: [
+                { id: 'pol1', policyHolderName: 'Green Valley Farms', policyType: 'Multi-peril Crop', coverageAmount: 50000, expiryDate: new Date().toISOString() }
+            ]
+        };
+    } catch (error) {
+        console.error("Error fetching insurance provider dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
+  }
+);
+
+export const getEnergyProviderDashboardData = functions.https.onCall(
+  (data, context): EnergyProviderDashboardData => {
+    checkAuth(context);
+    return {
+        projectLeads: [
+            { id: 'lead1', entityName: 'Rift Valley Growers Co-op', location: 'Naivasha', estimatedEnergyNeed: '150kW Solar for Irrigation', status: 'Proposal Sent', actionLink: '#' }
+        ],
+        activeProjects: [
+            { id: 'proj1', projectName: 'Greenhouse Solar Installation', solutionType: 'Solar PV', status: 'In Progress', completionDate: new Date().toISOString() }
+        ],
+        impactMetrics: { totalInstallations: 45, totalEstimatedCarbonReduction: '1,200 tCO2e/year' }
+    };
+  }
+);
+
+
+export const getCrowdfunderDashboardData = functions.https.onCall(
+  (data, context): CrowdfunderDashboardData => {
+    checkAuth(context);
+    return {
+        portfolioOverview: { totalInvested: 75000, numberOfInvestments: 8, estimatedReturns: 95000 },
+        suggestedOpportunities: [
+            { id: 'opp1', projectName: 'Women-Led Shea Butter Processing Unit', category: 'Value Addition', fundingGoal: 50000, amountRaised: 35000, actionLink: '#' }
+        ],
+        recentTransactions: [
+            { id: 'tx1', projectName: 'Rift Valley Growers Co-op', type: 'Investment', amount: 5000, date: new Date().toISOString() }
+        ]
+    };
+  }
+);
+
+
+export const getWasteManagementDashboardData = functions.https.onCall(
+  (data, context): WasteManagementDashboardData => {
+    checkAuth(context);
+    return {
+      incomingWasteStreams: [
+        { id: 'waste1', type: 'Maize Stover', source: 'Green Valley Farms', quantity: '10 tons' }
+      ],
+      compostBatches: [
+        { id: 'comp1', status: 'Active', estimatedCompletion: new Date(Date.now() + 86400000 * 30).toISOString() },
+        { id: 'comp2', status: 'Curing', estimatedCompletion: new Date(Date.now() + 86400000 * 10).toISOString() },
+      ],
+      finishedProductInventory: [
+        { product: 'Grade A Compost', quantity: '25 tons', actionLink: '#' }
+      ]
+    };
+  }
+);
+
+export const getAgriTechInnovatorDashboardData = functions.https.onCall(
+  async (data, context): Promise<AgriTechInnovatorDashboardData> => {
+    const innovatorId = checkAuth(context);
+    
+    const keysSnapshot = await db.collection('users').doc(innovatorId).collection('api_keys')
+        .orderBy('createdAt', 'desc')
+        .get();
+
+    const apiKeys = keysSnapshot.docs.map(doc => {
+        const keyData = doc.data();
+        return {
+            id: doc.id,
+            description: keyData.description,
+            environment: keyData.environment,
+            status: keyData.status,
+            keyPrefix: keyData.keyPrefix, 
+            createdAt: (keyData.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+            key: `${keyData.keyPrefix}...${keyData.lastFour}` 
+        }
+    });
+
+    // In a real app, this data would be pulled from system monitoring tools.
+    return {
+      apiKeys: apiKeys,
+      sandboxStatus: {
+        status: 'Operational',
+        lastReset: new Date(Date.now() - 86400000 * 3).toISOString(),
+      },
+      integrationProjects: [
+        { id: 'proj1', title: 'Real-time Cold Chain Monitoring with CoolTech', status: 'Live', partner: 'CoolTech Solutions', actionLink: '#' },
+        { id: 'proj2', title: 'Drone-based Crop Scouting API Integration', status: 'In Development', partner: 'SkyAgroScout', actionLink: '#' },
+      ],
+    };
+  }
+);
+
