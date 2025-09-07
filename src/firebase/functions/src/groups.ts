@@ -22,11 +22,12 @@ export const createGroup = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Group name and description are required.');
     }
 
-    const userProfileDoc = await db.collection('users').doc(uid).get();
-    if (!userProfileDoc.exists) {
+    const userProfileResult = await getProfileByIdFromDB({ uid }, context);
+    const userProfile = userProfileResult;
+
+    if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
     }
-    const userProfile = userProfileDoc.data() as UserProfile;
 
     const groupRef = db.collection('groups').doc();
     
@@ -391,3 +392,5 @@ export const inviteUserToGroup = functions.https.onCall(async (data, context) =>
     
     return { success: true, message: `An invitation has been sent to ${email}.`};
 });
+
+    
