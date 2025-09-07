@@ -95,7 +95,7 @@ export type AgriEvent = z.infer<typeof AgriEventSchema> & {
   registeredAttendeesCount: number;
   isRegistered?: boolean;
 };
-export type ForumTopic = z.infer<typeof ForumTopicSchema>;
+export type ForumTopic = z.infer<typeof ForumPostSchema>;
 export type Shop = z.infer<typeof ShopSchema>;
 export type ApiKey = z.infer<typeof ApiKeySchema>;
 export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
