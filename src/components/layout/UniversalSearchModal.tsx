@@ -118,8 +118,22 @@ export function UniversalSearchModal({ isOpen, onClose, initialQuery = "" }: Uni
 
   const handleScanSuccess = async (decodedText: string) => {
       setIsScanning(false);
-      onClose(); // Close the search modal
-      router.push(decodedText); // Navigate to the scanned URL
+      
+      const vtiRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      
+      if (vtiRegex.test(decodedText)) {
+          onClose(); // Close the search modal
+          router.push(`/traceability/batches/${decodedText}`);
+      } else if (decodedText.includes('damdoh:user')) {
+          const url = new URL(decodedText);
+          const userId = url.searchParams.get('id');
+          if (userId) {
+              onClose();
+              router.push(`/profiles/${userId}`);
+          }
+      } else {
+           toast({ title: t('modal.invalidCodeError'), variant: "destructive"});
+      }
   };
 
   const handleScanFailure = (error: string) => {

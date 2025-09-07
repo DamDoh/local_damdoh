@@ -1074,8 +1074,3 @@ export const GenerateForumPostDraftOutputSchema = z.object({
     title: z.string().describe("A concise and engaging title for the new forum post."),
     content: z.string().describe("The full content of the forum post, written in a helpful and engaging tone."),
 });
-
-    
-
-    
-
