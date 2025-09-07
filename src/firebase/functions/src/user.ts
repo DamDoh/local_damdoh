@@ -1,9 +1,10 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { stakeholderProfileSchemas } from "./stakeholder-profile-data";
 import { UserRole } from "./types";
-import { getRole as getRoleUtil, getUserDocument as getUserDocumentUtil } from './utils';
+import { v4 as uuidv4 } from "uuid";
 
 const db = admin.firestore();
 
@@ -110,31 +111,6 @@ export const upsertStakeholderProfile = functions.https.onCall(
   },
 );
 
-/**
- * Helper function to get a user's role from Firestore.
- * @param {string | undefined} uid The user's ID.
- * @return {Promise<UserRole | null>} The user's role or null if not found.
- */
-export const getRole = functions.https.onCall(async (data, context): Promise<UserRole | null> => {
-    checkAuth(context);
-    const uid = data.uid as string | undefined;
-    return getRoleUtil(uid);
-});
-
-/**
- * Helper function to get a user's document from Firestore.
- * @param {string} uid The user's ID.
- * @return {Promise<FirebaseFirestore.DocumentSnapshot | null>} The user's document snapshot or null if not found.
- */
-export const getUserDocument = functions.https.onCall(async (data, context): Promise<any | null> => {
-    checkAuth(context);
-    const uid = data.uid as string;
-    const doc = await getUserDocumentUtil(uid);
-    if (doc) {
-        return { ...doc.data(), id: doc.id };
-    }
-    return null;
-});
 
 /**
  * Fetches a user's profile from Firestore by their ID.
@@ -175,6 +151,7 @@ export const getProfileByIdFromDB = functions.https.onCall(async (data, context)
  */
 export const getAllProfilesFromDB = functions.https.onCall(async (data, context) => {
     checkAuth(context);
+    // TODO: Add admin role check for production
     try {
         const usersSnapshot = await db.collection("users").get();
         const profiles = usersSnapshot.docs.map(doc => {
@@ -191,4 +168,30 @@ export const getAllProfilesFromDB = functions.https.onCall(async (data, context)
         console.error("Error fetching all user profiles:", error);
         throw new functions.https.HttpsError("internal", "Could not fetch all profiles.");
     }
+});
+
+export const deleteUserAccount = functions.https.onCall(async (data, context) => {
+    const uid = checkAuth(context);
+    console.log(`User ${uid} has requested account deletion.`);
+    try {
+        await admin.auth().deleteUser(uid);
+        console.log(`Successfully deleted Firebase Auth user ${uid}. The onDelete trigger will now handle data cleanup.`);
+        return { success: true, message: "Account deletion process initiated." };
+    } catch (error) {
+        console.error(`Error deleting auth user ${uid}:`, error);
+        throw new functions.https.HttpsError("internal", "Failed to delete user account.");
+    }
+});
+
+export const requestDataExport = functions.https.onCall(async (data, context) => {
+    const uid = checkAuth(context);
+    console.log(`User ${uid} has requested a data export.`);
+    // Placeholder for actual data export logic
+    // In a real app, this would:
+    // 1. Gather all of the user's data from Firestore, Storage, etc.
+    // 2. Package it into a file (e.g., JSON).
+    // 3. Upload it to a secure, private Cloud Storage bucket.
+    // 4. Generate a secure, time-limited download link.
+    // 5. Email the link to the user's registered email address.
+    return { success: true, message: "If an account with your email exists, a data export link will be sent shortly." };
 });

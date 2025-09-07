@@ -24,7 +24,7 @@ export const bookAgroTourismService = functions.https.onCall(async (data, contex
 
     const itemRef = db.collection('marketplaceItems').doc(itemId);
     const bookingRef = itemRef.collection('bookings').doc(uid);
-    const userProfileDoc = await getProfileByIdFromDB(uid);
+    const userProfileDoc = await getProfileByIdFromDB({ uid });
     
     if (!userProfileDoc) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
@@ -209,4 +209,5 @@ export const getAgroTourismBookings = functions.https.onCall(async (data, contex
         }
     });
 
-    return { bookings: bookingsList
+    return { bookings: bookingsList };
+});

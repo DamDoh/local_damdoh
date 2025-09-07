@@ -1,10 +1,12 @@
 
+
 // Note: The functions related to knowledge hub and courses have been removed
 // from this file and are now located in `knowledge-hub.ts`.
 // This file should only contain functions related to community and social engagement.
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getProfileByIdFromDB, getRole } from './profiles';
+import { getProfileByIdFromDB } from './user';
+import { getRole } from './utils';
 import { deleteCollectionByPath } from './utils';
 
 const db = admin.firestore();
@@ -34,7 +36,7 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionsInvalid');
     }
 
-    const userProfile = await getProfileByIdFromDB(uid);
+    const userProfile = await getProfileByIdFromDB({ uid });
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -138,7 +140,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
     const postRef = db.collection('posts').doc(postId);
     const commentRef = postRef.collection('comments').doc();
 
-    const userProfile = await getProfileByIdFromDB(uid);
+    const userProfile = await getProfileByIdFromDB({ uid });
      if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }

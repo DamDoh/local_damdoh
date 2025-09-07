@@ -3,7 +3,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
-import { getRole } from './profiles';
+import { getRole } from './utils';
 
 const db = admin.firestore();
 
@@ -148,7 +148,14 @@ export const logTraceEvent = functions.https.onCall(async (data, context) => {
 
 export const handleHarvestEvent = functions.https.onCall(
   async (data, context) => {
-    const callerUid = checkAuth(context);
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "User must be authenticated.",
+      );
+    }
+
+    const callerUid = context.auth.uid;
     const role = await getRole(callerUid);
 
     if (role !== "Farmer" && role !== "System") {

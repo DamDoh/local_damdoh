@@ -1,4 +1,5 @@
 
+
 import * as admin from "firebase-admin";
 import * as functions from "firebase-functions";
 import { v4 as uuidv4 } from "uuid";
@@ -151,6 +152,7 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
 
 /**
  * Helper function to get a user's role from Firestore.
+ * This is not a callable function, but a utility for other backend functions.
  * @param {string | undefined} uid The user's ID.
  * @return {Promise<UserRole | null>} The user's role or null if not found.
  */
@@ -170,6 +172,7 @@ export async function getRole(uid: string | undefined): Promise<UserRole | null>
 
 /**
  * Helper function to get a user's document from Firestore.
+ * This is not a callable function, but a utility for other backend functions.
  * @param {string} uid The user's ID.
  * @return {Promise<FirebaseFirestore.DocumentSnapshot | null>} The user's document snapshot or null if not found.
  */
