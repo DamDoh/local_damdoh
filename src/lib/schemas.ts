@@ -219,25 +219,24 @@ export const createCropSchema = z.object({
   notes: z.string().max(1000, "Notes are too long.").optional(),
 });
 
-export const createInventoryItemSchema = z.object({
-    name: z.string().min(2, "Item name must be at least 2 characters.").max(100),
-    category: z.string({ required_error: "Please select a category." }),
-    quantity: z.coerce.number({ required_error: "Please enter a quantity."}).min(0, "Quantity cannot be negative."),
-    unit: z.string().min(1, "Please enter a unit (e.g., kg, bags, liters).").max(50),
-    purchaseDate: z.date().optional(),
-    expiryDate: z.date().optional(),
-    supplier: z.string().max(100, "Supplier name is too long.").optional(),
-    notes: z.string().max(500, "Notes are too long.").optional(),
+export const KnowledgeArticleSchema = z.object({
+  id: z.string(),
+  title_en: z.string().optional().nullable(),
+  title_km: z.string().optional().nullable(),
+  content_markdown_en: z.string().optional().nullable(),
+  content_markdown_km: z.string().optional().nullable(),
+  excerpt_en: z.string().optional().nullable(),
+  excerpt_km: z.string().optional().nullable(),
+  category: z.string(),
+  tags: z.array(z.string()),
+  author: z.string(),
+  authorId: z.string(),
+  status: z.enum(['Published', 'Draft']),
+  createdAt: z.any(), // Timestamp
+  updatedAt: z.any(), // Timestamp
+  imageUrl: z.string().url().optional().nullable(),
+  dataAiHint: z.string().optional().nullable(),
 });
-export type CreateInventoryItemValues = z.infer<typeof createInventoryItemSchema>;
-
-export const InventoryItemSchema = createInventoryItemSchema.extend({
-    id: z.string(),
-    ownerId: z.string(),
-    createdAt: z.any(),
-    updatedAt: z.any(),
-});
-
 
 // Other Schemas to be moved from `types.ts`
 export const MarketplaceCouponSchema = z.object({
@@ -569,23 +568,6 @@ export const FiDashboardDataSchema = z.object({
     }),
     financialProducts: z.array(z.lazy(() => FinancialProductSchema)),
 });
-
-export const FinancialApplicationSchema = z.object({
-  id: z.string(),
-  applicantId: z.string(),
-  applicantName: z.string(),
-  fiId: z.string(),
-  type: z.string(),
-  amount: z.number(),
-  currency: z.string(),
-  status: z.string(),
-  riskScore: z.number().optional(),
-  purpose: z.string(),
-  submittedAt: z.string().nullable(),
-  actionLink: z.string().optional(),
-  applicantProfile: StakeholderProfileSchema.optional(),
-});
-
 
 export const FieldAgentDashboardDataSchema = z.object({
     assignedFarmers: z.array(z.object({
