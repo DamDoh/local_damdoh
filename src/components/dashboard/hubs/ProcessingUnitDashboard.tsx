@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -20,7 +21,7 @@ export const ProcessingUnitDashboard = () => {
     const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
-    const getProcessingUnitData = useMemo(() => httpsCallable(functions, 'getProcessingUnitDashboardData'), [functions]);
+    const getProcessingUnitData = useMemo(() => httpsCallable(functions, 'dashboardData-getProcessingUnitDashboardData'), [functions]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -94,8 +95,8 @@ export const ProcessingUnitDashboard = () => {
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
                        {(packagingInventory || []).length > 0 ? (
-                           (packagingInventory || []).map((item, index) => (
-                               <div key={index} className="text-sm p-2 bg-background rounded-md border">
+                           (packagingInventory || []).map((item) => (
+                               <div key={item.id} className="text-sm p-2 bg-background rounded-md border">
                                    <p className="font-medium">{item.packagingType}</p>
                                    <p className="text-xs">{t('inStock')}: {item.unitsInStock.toLocaleString()}</p>
                                    <p className="text-xs text-muted-foreground">{t('reorderLevel')}: {item.reorderLevel.toLocaleString()}</p>

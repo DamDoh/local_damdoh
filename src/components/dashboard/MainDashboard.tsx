@@ -44,9 +44,9 @@ import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashb
 import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
 import { AgriTechInnovatorDashboard } from './hubs/AgriTechInnovatorDashboard';
 import { OperationsDashboard } from './hubs/OperationsDashboard';
-import { LogisticsDashboard } from './hubs/processing-logistics/LogisticsDashboard';
-import { ProcessingUnitDashboard } from '@/components/dashboard/hubs/processing-logistics/ProcessingUnitDashboard';
-import { WarehouseDashboard } from '@/components/dashboard/hubs/processing-logistics/WarehouseDashboard';
+import { LogisticsDashboard } from './hubs/LogisticsDashboard';
+import { ProcessingUnitDashboard } from './hubs/ProcessingUnitDashboard';
+import { WarehouseDashboard } from './hubs/WarehouseDashboard';
 
 
 const { useState, useEffect, useMemo } = React;
@@ -88,10 +88,10 @@ function MainContent() {
   const { user, profile, loading: authLoading } = useAuth(); // Use the global context
   const t = useTranslations('MainDashboard');
   
-  const createPostCallable = httpsCallable(functions, 'createFeedPost');
-  const likePostCallable = httpsCallable(functions, 'likePost');
-  const addCommentCallable = httpsCallable(functions, 'addComment');
-  const deletePostCallable = httpsCallable(functions, 'deletePost');
+  const createPostCallable = httpsCallable(functions, 'community-createFeedPost');
+  const likePostCallable = httpsCallable(functions, 'community-likePost');
+  const addCommentCallable = httpsCallable(functions, 'community-addComment');
+  const deletePostCallable = httpsCallable(functions, 'community-deletePost');
   
   useEffect(() => {
     let unsubscribeFeed: () => void = () => {};

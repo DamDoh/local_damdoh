@@ -21,7 +21,7 @@ export const LogisticsDashboard = () => {
     const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
-    const getLogisticsData = useMemo(() => httpsCallable(functions, 'getLogisticsDashboardData'), [functions]);
+    const getLogisticsData = useMemo(() => httpsCallable(functions, 'dashboardData-getLogisticsDashboardData'), [functions]);
 
     useEffect(() => {
         const fetchData = async () => {
