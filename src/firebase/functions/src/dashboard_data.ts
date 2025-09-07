@@ -25,6 +25,7 @@ import type {
     CrowdfunderDashboardData,
     EquipmentSupplierDashboardData,
     WasteManagementDashboardData,
+    PackagingSupplierDashboardData,
     FinancialApplication,
     AgriTechInnovatorDashboardData,
     FarmerDashboardAlert,
@@ -171,73 +172,9 @@ export const getFarmerDashboardData = functions.https.onCall(
   },
 );
 
-
-
-
-export const getFiDashboardData = functions.https.onCall(
-  async (data, context): Promise<FiDashboardData> => {
-    const fiId = checkAuth(context);
-    try {
-        const applicationsSnapshot = await db.collection('financial_applications')
-            .where('fiId', '==', fiId)
-            .where('status', 'in', ['Pending', 'Under Review'])
-            .orderBy('submittedAt', 'desc')
-            .limit(10)
-            .get();
-            
-        const pendingApplications: FinancialApplication[] = applicationsSnapshot.docs.map(doc => {
-            const appData = doc.data();
-            return {
-                id: doc.id,
-                applicantId: appData.applicantId,
-                applicantName: appData.applicantName,
-                fiId: appData.fiId,
-                type: appData.type,
-                amount: appData.amount,
-                currency: appData.currency,
-                status: appData.status,
-                riskScore: appData.riskScore,
-                purpose: appData.purpose,
-                submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
-                actionLink: `/fi/applications/${doc.id}`,
-            };
-        });
-        
-        // Live data for portfolio
-        const loansSnapshot = await db.collection('financial_applications')
-            .where('fiId', '==', fiId)
-            .where('status', '==', 'Approved')
-            .get();
-
-        const portfolioOverview = {
-            loanCount: loansSnapshot.size,
-            totalValue: loansSnapshot.docs.reduce((sum, doc) => sum + doc.data().amount, 0),
-        };
-        
-        const productsSnapshot = await db.collection('financial_products')
-            .where('fiId', '==', fiId)
-            .get();
-
-        const financialProducts = productsSnapshot.docs.map(doc => ({id: doc.id, ...doc.data()})) as FinancialProduct[];
-
-
-        return {
-            pendingApplications,
-            portfolioOverview,
-            financialProducts,
-        };
-    } catch (error) {
-        console.error("Error fetching Financial Institution dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch FI dashboard data.");
-    }
-  }
-);
-
-
 // =================================================================
 // DASHBOARDS WITH PARTIAL OR MOCK DATA
 // =================================================================
-
 
 export const getCooperativeDashboardData = functions.https.onCall(
   async (data, context): Promise<CooperativeDashboardData> => {
@@ -393,141 +330,4 @@ export const getBuyerDashboardData = functions.https.onCall(
   }
 );
 
-
-export const getRegulatorDashboardData = functions.https.onCall(
-  async (data, context): Promise<RegulatorDashboardData> => {
-    checkAuth(context);
-
-    try {
-        const anomaliesPromise = db.collection('traceability_events')
-            .where('payload.isAnomaly', '==', true)
-            .limit(5)
-            .get();
-
-        const [anomaliesSnapshot] = await Promise.all([anomaliesPromise]);
-        
-        const supplyChainAnomalies = anomaliesSnapshot.docs.map(doc => {
-            const event = doc.data();
-            return {
-                 id: doc.id, 
-                 description: event.payload.anomalyDescription || 'Unusual supply chain activity detected.', 
-                 level: 'Warning' as 'Critical' | 'Warning', 
-                 vtiLink: `/traceability/batches/${event.vtiId}` 
-            }
-        });
-
-        return {
-            // These remain mocked as their data sources are complex
-            complianceRiskAlerts: [
-                { id: 'alert1', issue: 'Unverified organic inputs detected in VTI log', region: 'Rift Valley', severity: 'High', actionLink: '#' },
-            ],
-            pendingCertifications: { count: 12, actionLink: '#' },
-            supplyChainAnomalies,
-        };
-    } catch (error) {
-        console.error("Error fetching regulator dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
-    }
-  }
-);
-
-
-
-
-export const getFieldAgentDashboardData = functions.https.onCall(
-  async (data, context): Promise<FieldAgentDashboardData> => {
-    const agentId = checkAuth(context);
     
-    try {
-        const agentDoc = await db.collection('users').doc(agentId).get();
-        if (!agentDoc.exists) {
-            throw new functions.https.HttpsError('not-found', 'Agent profile not found.');
-        }
-        
-        const agentData = agentDoc.data();
-        // Assuming assigned farmers are stored in profileData.assignedFarmers
-        const assignedFarmerIds = agentData?.profileData?.assignedFarmers || [];
-        
-        let assignedFarmers: FieldAgentDashboardData['assignedFarmers'] = [];
-
-        if (assignedFarmerIds.length > 0) {
-            // Firestore 'in' query is limited to 30 items per query.
-            // For a production app, this would need chunking if an agent has > 30 farmers.
-            const farmersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', assignedFarmerIds.slice(0, 30)).get();
-            
-            assignedFarmers = farmersSnapshot.docs.map(doc => {
-                const farmerData = doc.data();
-                // Mocking lastVisit and issues for now
-                return {
-                    id: doc.id,
-                    name: farmerData.displayName || 'Unknown Farmer',
-                    lastVisit: new Date(Date.now() - Math.random() * 30 * 86400000).toISOString(),
-                    issues: Math.floor(Math.random() * 3), // Random number of issues
-                    actionLink: `/profiles/${doc.id}`
-                };
-            });
-        }
-        
-        // Keep other parts mocked for this iteration
-        const portfolioHealth = {
-            overallScore: 85,
-            alerts: ['Pest alert in North region'],
-            actionLink: '#'
-        };
-        const pendingReports = 3;
-        const dataVerificationTasks = {
-            count: 8,
-            description: 'Verify harvest logs for maize',
-            actionLink: '#'
-        };
-
-        return {
-            assignedFarmers,
-            portfolioHealth,
-            pendingReports,
-            dataVerificationTasks
-        };
-        
-    } catch (error) {
-        console.error("Error fetching field agent dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data for field agent.");
-    }
-  }
-);
-
-
-export const getAgroExportDashboardData = functions.https.onCall(
-  async (data, context): Promise<AgroExportDashboardData> => {
-    checkAuth(context);
-     try {
-        const vtisForExportPromise = db.collection('vti_registry')
-            .where('metadata.forExport', '==', true)
-            // Ideally, we'd have a `documentationStatus` field to query
-            .limit(5)
-            .get();
-
-        const [vtisSnapshot] = await Promise.all([vtisForExportPromise]);
-
-        const pendingCustomsDocs = vtisSnapshot.docs.map(doc => ({
-            id: doc.id,
-            vtiLink: `/traceability/batches/${doc.id}`,
-            destination: doc.data().metadata.destinationCountry || 'Unknown',
-            status: 'Awaiting Phytosanitary Certificate' // Mock status
-        }));
-
-        return {
-            pendingCustomsDocs,
-            // These remain mocked
-            trackedShipments: [
-                { id: 'ship1', status: 'In Transit', location: 'Indian Ocean', carrier: 'Maersk' }
-            ],
-            complianceAlerts: [
-                { id: 'ca1', content: 'New packaging regulations for EU effective Aug 1.', actionLink: '#' }
-            ]
-        };
-     } catch (error) {
-        console.error("Error fetching agro-export dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
-    }
-  }
-);
