@@ -3,16 +3,35 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
+    AdminDashboardData,
+    AdminActivity,
     FarmerDashboardData,
+    CooperativeDashboardData,
     BuyerDashboardData,
     LogisticsDashboardData,
+    FiDashboardData,
     FieldAgentDashboardData,
+    InputSupplierDashboardData,
+    AgroExportDashboardData,
     ProcessingUnitDashboardData,
     WarehouseDashboardData,
+    QaDashboardData,
+    CertificationBodyDashboardData,
+    ResearcherDashboardData,
+    AgronomistDashboardData,
     AgroTourismDashboardData,
+    InsuranceProviderDashboardData,
+    EnergyProviderDashboardData,
+    CrowdfunderDashboardData,
+    EquipmentSupplierDashboardData,
+    WasteManagementDashboardData,
+    PackagingSupplierDashboardData,
+    FinancialApplication,
+    AgriTechInnovatorDashboardData,
+    FarmerDashboardAlert,
     OperationsDashboardData,
-    KnfBatch,
-    FarmerDashboardAlert
+    FinancialProduct,
+    KnfBatch
 } from "@/lib/types";
 
 const db = admin.firestore();
@@ -153,71 +172,11 @@ export const getFarmerDashboardData = functions.https.onCall(
   },
 );
 
+
 // =================================================================
 // DASHBOARDS WITH PARTIAL OR MOCK DATA
 // =================================================================
 
-export const getBuyerDashboardData = functions.https.onCall(
-  async (data, context): Promise<BuyerDashboardData> => {
-    checkAuth(context);
-    
-    try {
-        // --- Sourcing Recommendations ---
-        // Fetch a few highly-rated, verified product listings.
-        const recommendationsSnapshot = await db.collection('marketplaceItems')
-            .where('listingType', '==', 'Product')
-            .where('isSustainable', '==', true) // Example filter for "good" products
-            .orderBy('createdAt', 'desc')
-            .limit(5)
-            .get();
-        
-        const sellerIds = [...new Set(recommendationsSnapshot.docs.map(doc => doc.data().sellerId))];
-        const sellerProfiles: Record<string, string> = {};
-        if (sellerIds.length > 0) {
-            const sellersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', sellerIds).get();
-            sellersSnapshot.forEach(doc => {
-                sellerProfiles[doc.id] = doc.data().displayName || 'Unknown Seller';
-            });
-        }
-
-        const sourcingRecommendations = recommendationsSnapshot.docs.map(doc => {
-            const item = doc.data();
-            return {
-                id: doc.id,
-                name: sellerProfiles[item.sellerId] || 'Verified Supplier',
-                product: item.name,
-                reliability: 85 + Math.floor(Math.random() * 15), // Mock reliability
-                vtiVerified: !!item.relatedTraceabilityId,
-            };
-        });
-
-        // --- Mock Data for other sections ---
-        // These sections would require more complex AI/data analysis in a real app.
-        const supplyChainRisk = { 
-            region: 'East Africa', 
-            level: 'Medium', 
-            factor: 'Drought conditions affecting coffee bean yields.', 
-            action: { label: 'Diversify Sourcing', link: '/network?role=Farmer&region=WestAfrica' }
-        };
-        const marketPriceIntelligence = { 
-            product: 'Coffee Beans', 
-            trend: 'up' as 'up' | 'down' | 'stable', 
-            forecast: 'Prices expected to rise 5% next month due to weather.', 
-            action: { label: 'Secure Forward Contracts', link: '/marketplace?category=fresh-produce-fruits' } // updated link to match a category
-        };
-
-        return {
-            supplyChainRisk,
-            sourcingRecommendations,
-            marketPriceIntelligence
-        };
-
-    } catch (error) {
-        console.error("Error fetching buyer dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data for buyer.");
-    }
-  }
-);
 
 export const getLogisticsDashboardData = functions.https.onCall(
   async (data, context): Promise<LogisticsDashboardData> => {
@@ -361,6 +320,43 @@ export const getFieldAgentDashboardData = functions.https.onCall(
   }
 );
 
+
+export const getAgroExportDashboardData = functions.https.onCall(
+  async (data, context): Promise<AgroExportDashboardData> => {
+    checkAuth(context);
+     try {
+        const vtisForExportPromise = db.collection('vti_registry')
+            .where('metadata.forExport', '==', true)
+            // Ideally, we'd have a `documentationStatus` field to query
+            .limit(5)
+            .get();
+
+        const [vtisSnapshot] = await Promise.all([vtisForExportPromise]);
+
+        const pendingCustomsDocs = vtisSnapshot.docs.map(doc => ({
+            id: doc.id,
+            vtiLink: `/traceability/batches/${doc.id}`,
+            destination: doc.data().metadata.destinationCountry || 'Unknown',
+            status: 'Awaiting Phytosanitary Certificate' // Mock status
+        }));
+
+        return {
+            pendingCustomsDocs,
+            // These remain mocked
+            trackedShipments: [
+                { id: 'ship1', status: 'In Transit', location: 'Indian Ocean', carrier: 'Maersk' }
+            ],
+            complianceAlerts: [
+                { id: 'ca1', content: 'New packaging regulations for EU effective Aug 1.', actionLink: '#' }
+            ]
+        };
+     } catch (error) {
+        console.error("Error fetching agro-export dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
+  }
+);
+
 export const getProcessingUnitDashboardData = functions.https.onCall(
   async (data, context): Promise<ProcessingUnitDashboardData> => {
     const unitId = checkAuth(context);
@@ -461,6 +457,23 @@ export const getWarehouseDashboardData = functions.https.onCall(
     };
   }
 );
+
+
+export const getQaDashboardData = functions.https.onCall(
+  (data, context): QaDashboardData => {
+    checkAuth(context);
+    return {
+        pendingInspections: [
+            { id: 'insp1', batchId: 'vti-xyz-123', productName: 'Avocado Batch', sellerName: 'Green Valley Farms', dueDate: new Date().toISOString(), actionLink: '#'}
+        ],
+        recentResults: [
+            { id: 'res1', productName: 'Maize Batch', result: 'Fail', reason: 'Aflatoxin levels exceed limit.', inspectedAt: new Date().toISOString() }
+        ],
+        qualityMetrics: { passRate: 98, averageScore: 9.2 }
+    };
+  }
+);
+
 
 export const getAgroTourismDashboardData = functions.https.onCall(
   async (data, context): Promise<AgroTourismDashboardData> => {
