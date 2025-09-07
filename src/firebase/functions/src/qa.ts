@@ -15,8 +15,6 @@ const checkAuth = (context: functions.https.CallableContext) => {
 export const getQaDashboardData = functions.https.onCall(
   (data, context): QaDashboardData => {
     checkAuth(context);
-    // This function returns mock data. In a real-world scenario, this would query
-    // collections like 'inspections' and aggregate results.
     return {
         pendingInspections: [
             { id: 'insp1', batchId: 'vti-xyz-123', productName: 'Avocado Batch', sellerName: 'Green Valley Farms', dueDate: new Date().toISOString(), actionLink: '#'}

@@ -6,7 +6,6 @@ import type {
     AdminDashboardData,
     AdminActivity,
     RegulatorDashboardData,
-    QaDashboardData,
     WasteManagementDashboardData
 } from "@/lib/types";
 
@@ -72,22 +71,6 @@ export const getRegulatorDashboardData = functions.https.onCall(
         console.error("Error fetching regulator dashboard data:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
     }
-  }
-);
-
-
-export const getQaDashboardData = functions.https.onCall(
-  (data, context): QaDashboardData => {
-    checkAuth(context);
-    return {
-        pendingInspections: [
-            { id: 'insp1', batchId: 'vti-xyz-123', productName: 'Avocado Batch', sellerName: 'Green Valley Farms', dueDate: new Date().toISOString(), actionLink: '#'}
-        ],
-        recentResults: [
-            { id: 'res1', productName: 'Maize Batch', result: 'Fail', reason: 'Aflatoxin levels exceed limit.', inspectedAt: new Date().toISOString() }
-        ],
-        qualityMetrics: { passRate: 98, averageScore: 9.2 }
-    };
   }
 );
 
