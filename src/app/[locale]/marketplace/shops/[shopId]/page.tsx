@@ -61,8 +61,8 @@ export default function ShopFrontPage() {
     const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
-    const getShopDetails = useMemo(() => httpsCallable(functions, 'getShopDetails'), [functions]);
-    const getListingsBySeller = useMemo(() => httpsCallable(functions, 'getListingsBySeller'), [functions]);
+    const getShopDetails = useMemo(() => httpsCallable(functions, 'marketplace-getShopDetails'), [functions]);
+    const getListingsBySeller = useMemo(() => httpsCallable(functions, 'marketplace-getListingsBySeller'), [functions]);
 
     useEffect(() => {
         if (!shopId) return;

@@ -372,7 +372,7 @@ export const createMarketplaceOrder = functions.https.onCall(async (data, contex
     const buyerId = checkAuth(context);
 
     // Validate incoming data
-    const validation = MarketplaceOrderSchema.omit({id: true, buyerId: true, sellerId: true, createdAt: true, updatedAt: true, totalPrice: true, currency: true, orderId: true, sellerLocation: true, buyerLocation: true}).safeParse(data);
+    const validation = MarketplaceOrderSchema.omit({id: true, buyerId: true, sellerId: true, createdAt: true, updatedAt: true, totalPrice: true, currency: true, orderId: true}).safeParse(data);
     if (!validation.success) {
       throw new functions.https.HttpsError('invalid-argument', 'Invalid order data.', validation.error.format());
     }
@@ -387,14 +387,7 @@ export const createMarketplaceOrder = functions.https.onCall(async (data, contex
             throw new functions.https.HttpsError("not-found", "The item you are trying to order does not exist.");
         }
 
-        const buyerDoc = await db.collection("users").doc(buyerId).get();
-        if (!buyerDoc.exists) {
-            throw new functions.https.HttpsError("not-found", "Buyer profile not found.");
-        }
-
         const itemData = itemDoc.data() as MarketplaceItem;
-        const buyerData = buyerDoc.data() as UserProfile;
-
         const sellerId = itemData.sellerId;
         const totalPrice = (itemData.price || 0) * quantity;
 
@@ -410,8 +403,6 @@ export const createMarketplaceOrder = functions.https.onCall(async (data, contex
             currency: itemData.currency,
             buyerNotes: buyerNotes || "",
             status: "new",
-            sellerLocation: itemData.location || null,
-            buyerLocation: buyerData.location || null,
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         });
@@ -472,54 +463,6 @@ export const getSellerOrders = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("internal", "Could not fetch orders.");
     }
 });
-
-export const getBuyerOrders = functions.https.onCall(async (data, context) => {
-    const buyerId = checkAuth(context);
-    
-    try {
-        const ordersSnapshot = await db.collection("marketplace_orders")
-            .where("buyerId", "==", buyerId)
-            .orderBy("createdAt", "desc")
-            .get();
-        
-        const sellerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().sellerId))];
-        const sellerProfiles: Record<string, any> = {};
-
-        if (sellerIds.length > 0) {
-            const profileChunks = [];
-            for (let i = 0; i < sellerIds.length; i += 30) {
-                profileChunks.push(sellerIds.slice(i, i + 30));
-            }
-
-            for (const chunk of profileChunks) {
-                const profilesSnapshot = await db.collection("users").where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
-                profilesSnapshot.forEach(doc => {
-                    sellerProfiles[doc.id] = {
-                        displayName: doc.data().displayName,
-                        avatarUrl: doc.data().avatarUrl || null,
-                    };
-                });
-            }
-        }
-
-        const orders = ordersSnapshot.docs.map(doc => {
-            const orderData = doc.data();
-            return {
-                id: doc.id,
-                ...orderData,
-                sellerProfile: sellerProfiles[orderData.sellerId] || { displayName: 'Unknown Seller', avatarUrl: null },
-                createdAt: (orderData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
-                updatedAt: (orderData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
-            };
-        });
-
-        return { orders };
-    } catch (error) {
-        console.error("Error fetching buyer orders:", error);
-        throw new functions.https.HttpsError("internal", "Could not fetch orders.");
-    }
-});
-
 
 export const updateOrderStatus = functions.https.onCall(async (data, context) => {
     const sellerId = checkAuth(context);
