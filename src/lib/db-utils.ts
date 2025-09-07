@@ -29,9 +29,9 @@ export const getAllMarketplaceItemsFromDB = async () => {
  * @deprecated Use the `marketplace-getMarketplaceItemByIdFromDB` Cloud Function directly.
  */
 export const getMarketplaceItemByIdFromDB = async (id: string) => {
-  // This is a placeholder as the function has been removed.
-  console.warn("`getMarketplaceItemByIdFromDB` from `db-utils` is deprecated.");
-  return null;
+  const getMarketplaceItemCallable = httpsCallable(functions, 'marketplace-getMarketplaceItemById');
+  const result = await getMarketplaceItemCallable({ itemId: id });
+  return result.data as any;
 };
 
 /**
@@ -51,3 +51,5 @@ export const deleteMarketplaceItemFromDB = async (id: string) => {
   console.warn("`deleteMarketplaceItemFromDB` from `db-utils` is deprecated.");
   return false;
 };
+
+  

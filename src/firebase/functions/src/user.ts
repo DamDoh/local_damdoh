@@ -3,8 +3,6 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { stakeholderProfileSchemas } from "./stakeholder-profile-data";
-import { UserRole } from "./types";
-import { v4 as uuidv4 } from "uuid";
 
 const db = admin.firestore();
 
@@ -195,3 +193,5 @@ export const requestDataExport = functions.https.onCall(async (data, context) =>
     // 5. Email the link to the user's registered email address.
     return { success: true, message: "If an account with your email exists, a data export link will be sent shortly." };
 });
+
+  
