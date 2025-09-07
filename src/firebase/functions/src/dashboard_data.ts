@@ -11,7 +11,6 @@ import type {
     RegulatorDashboardData,
     FiDashboardData,
     FieldAgentDashboardData,
-    QaDashboardData,
     CertificationBodyDashboardData,
     ResearcherDashboardData,
     AgronomistDashboardData,
@@ -165,6 +164,123 @@ export const getFarmerDashboardData = functions.https.onCall(
 );
 
 
+export const getPackagingSupplierDashboardData = functions.https.onCall(
+  async (data, context): Promise<PackagingSupplierDashboardData> => {
+    const supplierId = checkAuth(context);
+    try {
+        // Fetch real inventory data
+        const inventorySnapshot = await db.collection('marketplaceItems')
+            .where('sellerId', '==', supplierId)
+            .where('category', '==', 'packaging-solutions')
+            .get();
+
+        const inventory = inventorySnapshot.docs.map(doc => {
+            const item = doc.data();
+            return {
+                id: doc.id,
+                item: item.name,
+                stock: item.stock || 0, // Assuming a stock field exists
+                reorderLevel: item.reorderLevel || 100, // Assuming a reorderLevel field
+            };
+        });
+        
+        // Fetch real orders
+         const ordersSnapshot = await db.collection('marketplace_orders')
+            .where('sellerId', '==', supplierId)
+            .orderBy('createdAt', 'desc')
+            .limit(10)
+            .get();
+
+        const buyerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().buyerId))];
+        const buyerProfiles: {[key: string]: string} = {};
+        if(buyerIds.length > 0) {
+            const buyerDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', buyerIds).get();
+            buyerDocs.forEach(doc => {
+                buyerProfiles[doc.id] = doc.data().displayName || 'Unknown Customer';
+            });
+        }
+
+        const incomingOrders = ordersSnapshot.docs.map(doc => {
+            const order = doc.data();
+            return {
+                id: doc.id,
+                customerName: buyerProfiles[order.buyerId] || 'Unknown Customer',
+                product: order.listingName,
+                quantity: order.quantity,
+                status: order.status,
+                actionLink: `/marketplace/my-orders/${doc.id}`,
+            };
+        });
+
+
+        return { incomingOrders, inventory };
+
+    } catch (error) {
+        console.error("Error fetching packaging supplier dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
+  }
+);
+
+
+export const getFiDashboardData = functions.https.onCall(
+  async (data, context): Promise<FiDashboardData> => {
+    const fiId = checkAuth(context);
+    try {
+        const applicationsSnapshot = await db.collection('financial_applications')
+            .where('fiId', '==', fiId)
+            .where('status', 'in', ['Pending', 'Under Review'])
+            .orderBy('submittedAt', 'desc')
+            .limit(10)
+            .get();
+            
+        const pendingApplications: FinancialApplication[] = applicationsSnapshot.docs.map(doc => {
+            const appData = doc.data();
+            return {
+                id: doc.id,
+                applicantId: appData.applicantId,
+                applicantName: appData.applicantName,
+                fiId: appData.fiId,
+                type: appData.type,
+                amount: appData.amount,
+                currency: appData.currency,
+                status: appData.status,
+                riskScore: appData.riskScore,
+                purpose: appData.purpose,
+                submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+                actionLink: `/fi/applications/${doc.id}`,
+            };
+        });
+        
+        // Live data for portfolio
+        const loansSnapshot = await db.collection('financial_applications')
+            .where('fiId', '==', fiId)
+            .where('status', '==', 'Approved')
+            .get();
+
+        const portfolioOverview = {
+            loanCount: loansSnapshot.size,
+            totalValue: loansSnapshot.docs.reduce((sum, doc) => sum + doc.data().amount, 0),
+        };
+        
+        const productsSnapshot = await db.collection('financial_products')
+            .where('fiId', '==', fiId)
+            .get();
+
+        const financialProducts = productsSnapshot.docs.map(doc => ({id: doc.id, ...doc.data()})) as FinancialProduct[];
+
+
+        return {
+            pendingApplications,
+            portfolioOverview,
+            financialProducts,
+        };
+    } catch (error) {
+        console.error("Error fetching Financial Institution dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch FI dashboard data.");
+    }
+  }
+);
 
 
 // =================================================================
@@ -365,65 +481,6 @@ export const getRegulatorDashboardData = functions.https.onCall(
 );
 
 
-export const getFiDashboardData = functions.https.onCall(
-  async (data, context): Promise<FiDashboardData> => {
-    const fiId = checkAuth(context);
-    try {
-        const applicationsSnapshot = await db.collection('financial_applications')
-            .where('fiId', '==', fiId)
-            .where('status', 'in', ['Pending', 'Under Review'])
-            .orderBy('submittedAt', 'desc')
-            .limit(10)
-            .get();
-            
-        const pendingApplications: FinancialApplication[] = applicationsSnapshot.docs.map(doc => {
-            const appData = doc.data();
-            return {
-                id: doc.id,
-                applicantId: appData.applicantId,
-                applicantName: appData.applicantName,
-                fiId: appData.fiId,
-                type: appData.type,
-                amount: appData.amount,
-                currency: appData.currency,
-                status: appData.status,
-                riskScore: appData.riskScore,
-                purpose: appData.purpose,
-                submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
-                actionLink: `/fi/applications/${doc.id}`,
-            };
-        });
-        
-        // Live data for portfolio
-        const loansSnapshot = await db.collection('financial_applications')
-            .where('fiId', '==', fiId)
-            .where('status', '==', 'Approved')
-            .get();
-
-        const portfolioOverview = {
-            loanCount: loansSnapshot.size,
-            totalValue: loansSnapshot.docs.reduce((sum, doc) => sum + doc.data().amount, 0),
-        };
-        
-        const productsSnapshot = await db.collection('financial_products')
-            .where('fiId', '==', fiId)
-            .get();
-
-        const financialProducts = productsSnapshot.docs.map(doc => ({id: doc.id, ...doc.data()})) as FinancialProduct[];
-
-
-        return {
-            pendingApplications,
-            portfolioOverview,
-            financialProducts,
-        };
-    } catch (error) {
-        console.error("Error fetching Financial Institution dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch FI dashboard data.");
-    }
-  }
-);
-
 
 export const getFieldAgentDashboardData = functions.https.onCall(
   async (data, context): Promise<FieldAgentDashboardData> => {
@@ -487,21 +544,6 @@ export const getFieldAgentDashboardData = functions.https.onCall(
 );
 
 
-export const getQaDashboardData = functions.https.onCall(
-  (data, context): QaDashboardData => {
-    checkAuth(context);
-    return {
-        pendingInspections: [
-            { id: 'insp1', batchId: 'vti-xyz-123', productName: 'Avocado Batch', sellerName: 'Green Valley Farms', dueDate: new Date().toISOString(), actionLink: '#'}
-        ],
-        recentResults: [
-            { id: 'res1', productName: 'Maize Batch', result: 'Fail', reason: 'Aflatoxin levels exceed limit.', inspectedAt: new Date().toISOString() }
-        ],
-        qualityMetrics: { passRate: 98, averageScore: 9.2 }
-    };
-  }
-);
-
 
 export const getCertificationBodyDashboardData = functions.https.onCall(
   async (data, context): Promise<CertificationBodyDashboardData> => {
@@ -519,92 +561,6 @@ export const getCertificationBodyDashboardData = functions.https.onCall(
     };
   }
 );
-
-export const getResearcherDashboardData = functions.https.onCall(
-    async (data, context): Promise<ResearcherDashboardData> => {
-      const userId = checkAuth(context);
-      try {
-          // Fetch knowledge hub contributions made by this user
-          const articlesSnapshot = await db.collection('knowledge_articles')
-              .where('authorId', '==', userId) // Query by UID
-              .orderBy('createdAt', 'desc')
-              .limit(10)
-              .get();
-
-          const knowledgeHubContributions = articlesSnapshot.docs.map(doc => {
-              const article = doc.data();
-              return {
-                  id: doc.id,
-                  title: article.title_en || article.title_km || "Untitled Article",
-                  status: 'Published' as const // Placeholder status
-              };
-          });
-
-          // Mock data for datasets and projects, as these collections don't exist yet
-          const availableDatasets = [
-              { id: 'set1', name: 'Rift Valley Maize Yields (2020-2023)', dataType: 'CSV', accessLevel: 'Requires Request' as const, actionLink: '#' },
-              { id: 'set2', name: 'Regional Soil Health Data (Anonymized)', dataType: 'JSON', accessLevel: 'Public' as const, actionLink: '#' },
-          ];
-          
-          const ongoingProjects = [
-              { id: 'proj1', title: 'Impact of KNF on Soil Health in Smallholder Farms', progress: 65, collaborators: ['University of Nairobi'], actionLink: '#' },
-              { id: 'proj2', title: 'AI-driven Pest Identification Accuracy Study', progress: 30, collaborators: ['DamDoh AI Team'], actionLink: '#' }
-          ];
-
-          return {
-              availableDatasets,
-              ongoingProjects,
-              knowledgeHubContributions,
-          };
-
-      } catch (error) {
-          console.error("Error fetching researcher dashboard data:", error);
-          throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
-      }
-    }
-);
-
-
-export const getAgronomistDashboardData = functions.https.onCall(
-  async (data, context): Promise<AgronomistDashboardData> => {
-    const userId = checkAuth(context);
-    try {
-        // Fetch knowledge hub contributions made by this user
-        const articlesSnapshot = await db.collection('knowledge_articles')
-            .where('authorId', '==', userId)
-            .orderBy('createdAt', 'desc')
-            .limit(10)
-            .get();
-
-        const knowledgeHubContributions = articlesSnapshot.docs.map(doc => {
-            const article = doc.data();
-            return {
-                id: doc.id,
-                title: article.title_en || article.title_km || "Untitled Article",
-                status: 'Published' as const,
-            };
-        });
-
-        // Mock data for other sections
-        const assignedFarmersOverview = [
-            { id: 'farmer1', name: 'John Doe', farmLocation: 'Nakuru', lastConsultation: new Date(Date.now() - 86400000 * 7).toISOString(), alerts: 1 }
-        ];
-        const pendingConsultationRequests = [
-            { id: 'req1', farmerName: 'Jane Smith', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString(), farmerId: 'farmer1' }
-        ];
-
-        return {
-            assignedFarmersOverview,
-            pendingConsultationRequests,
-            knowledgeHubContributions,
-        };
-    } catch (error) {
-        console.error("Error fetching agronomist dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
-    }
-  }
-);
-
 
 
 export const getInsuranceProviderDashboardData = functions.https.onCall(
@@ -677,7 +633,6 @@ export const getCrowdfunderDashboardData = functions.https.onCall(
     };
   }
 );
-
 
 export const getWasteManagementDashboardData = functions.https.onCall(
   (data, context): WasteManagementDashboardData => {
