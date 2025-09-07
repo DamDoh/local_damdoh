@@ -115,3 +115,32 @@ export async function generateForumPostDraftCallable(input: {
 
     return generateForumPostDraftFlow(input);
 }
+
+// Server actions to call callable functions for farm management
+export async function getFarmData(farmId: string) {
+    const getFarm = httpsCallable(functions, 'farmManagement-getFarm');
+    const result = await getFarm({ farmId });
+    return result.data;
+}
+
+export async function updateFarmData(farmId: string, data: any) {
+    const updateFarm = httpsCallable(functions, 'farmManagement-updateFarm');
+    await updateFarm({ farmId, ...data });
+}
+
+export async function getCropData(cropId: string) {
+    const getCrop = httpsCallable(functions, 'farmManagement-getCrop');
+    const result = await getCrop({ cropId });
+    return result.data as any;
+}
+
+export async function updateCropData(cropId: string, data: any) {
+    const updateCrop = httpsCallable(functions, 'farmManagement-updateCrop');
+    await updateCrop({ cropId, ...data });
+}
+
+export async function getProfileByIdFromDB(uid: string) {
+    const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
+    const result = await getProfile({ uid });
+    return result.data as any;
+}
