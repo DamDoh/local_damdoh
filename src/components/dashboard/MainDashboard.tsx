@@ -10,7 +10,7 @@ import { StartPost } from "@/components/dashboard/StartPost";
 import { PageSkeleton } from '@/components/Skeletons';
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/lib/auth-utils";
-import { httpsCallable } from 'firebase/functions';
+import { httpsCallable, getFunctions } from 'firebase/functions';
 import { functions, app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
@@ -51,7 +51,7 @@ import { ConsumerDashboard } from './hubs/ConsumerDashboard';
 
 
 const { useState, useEffect, useMemo } = React;
-const db = getFirestore(firebaseApp);
+
 
 const HubComponentMap: { [key: string]: React.ComponentType } = {
     'Farmer': FarmerDashboard,
@@ -90,6 +90,9 @@ function MainContent() {
   const { user, profile, loading: authLoading } = useAuth(); // Use the global context
   const t = useTranslations('MainDashboard');
   
+  const functions = useMemo(() => getFunctions(firebaseApp), []);
+  const db = useMemo(() => getFirestore(firebaseApp), []);
+
   const createPostCallable = httpsCallable(functions, 'community-createFeedPost');
   const likePostCallable = httpsCallable(functions, 'community-likePost');
   const addCommentCallable = httpsCallable(functions, 'community-addComment');
@@ -98,31 +101,36 @@ function MainContent() {
   useEffect(() => {
     let unsubscribeFeed: () => void = () => {};
 
-    setIsLoadingFeed(true);
-    const q = query(collection(db, "posts"), orderBy("createdAt", "desc"), limit(20));
-    unsubscribeFeed = onSnapshot(q, (snapshot) => {
-        const posts = snapshot.docs.map(doc => {
-          const data = doc.data();
-          return {
-              id: doc.id,
-              ...data,
-              timestamp: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
-          } as FeedItem
+    if (Object.keys(db).length > 0) { // Check if db is a valid object
+        setIsLoadingFeed(true);
+        const q = query(collection(db, "posts"), orderBy("createdAt", "desc"), limit(20));
+        unsubscribeFeed = onSnapshot(q, (snapshot) => {
+            const posts = snapshot.docs.map(doc => {
+              const data = doc.data();
+              return {
+                  id: doc.id,
+                  ...data,
+                  timestamp: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
+              } as FeedItem
+            });
+            setFeedItems(posts);
+            setIsLoadingFeed(false);
+        }, (error) => {
+            console.error("Error fetching real-time feed:", error);
+            toast({
+                title: t('feedError.title'),
+                description: t('feedError.description'),
+                variant: "destructive"
+            });
+            setIsLoadingFeed(false);
         });
-        setFeedItems(posts);
+    } else {
+        // Firebase is not configured, don't attempt to fetch
         setIsLoadingFeed(false);
-    }, (error) => {
-        console.error("Error fetching real-time feed:", error);
-        toast({
-            title: t('feedError.title'),
-            description: t('feedError.description'),
-            variant: "destructive"
-        });
-        setIsLoadingFeed(false);
-    });
+    }
     
     return () => unsubscribeFeed();
-  }, [toast, t]);
+  }, [db, toast, t]);
 
 
   const handleCreatePost = async (content: string, media?: File, pollData?: { text: string }[]) => {
