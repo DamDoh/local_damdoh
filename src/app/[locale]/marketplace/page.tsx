@@ -7,7 +7,7 @@ import Link from 'next/link';
 import type { MarketplaceItem } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PlusCircle, Search as SearchIconLucide, MapPin, Pin, PinOff, Building, ShoppingCart, Brain } from "lucide-react"; 
+import { PlusCircle, Search as SearchIconLucide, MapPin, Pin, PinOff, Building, ShoppingCart, Brain, LocateFixed } from "lucide-react"; 
 import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { getListingTypeFilterOptions, type ListingType, UNIFIED_MARKETPLACE_CATEGORY_IDS } from "@/lib/constants";
@@ -21,6 +21,7 @@ import { performSearch, getMarketplaceRecommendationsAction } from "@/lib/server
 import { ItemCard } from "@/components/marketplace/ItemCard";
 import { useTranslations } from "next-intl";
 import { useAuth } from "@/lib/auth-utils";
+import { cn } from "@/lib/utils";
 
 interface RecommendedItem {
   item: MarketplaceItem;
@@ -35,6 +36,7 @@ function MarketplaceContent() {
   const [searchTerm, setSearchTerm] = useState("");
   const [listingTypeFilter, setListingTypeFilter] = useState<ListingType | 'All'>('All');
   const [locationFilter, setLocationFilter] = useState("");
+  const [isLocating, setIsLocating] = useState(false);
   
   const [displayedItems, setDisplayedItems] = useState<MarketplaceItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -55,7 +57,7 @@ function MarketplaceContent() {
     setIsMounted(true);
   }, []);
 
-  const fetchItems = useCallback(async () => {
+  const fetchItems = useCallback(async (coords?: {lat: number, lng: number}) => {
     setIsLoading(true);
     const filters = [];
     if (currentCategory) {
@@ -69,6 +71,8 @@ function MarketplaceContent() {
       mainKeywords: searchTerm.split(' ').filter(Boolean),
       identifiedLocation: locationFilter,
       suggestedFilters: filters,
+      lat: coords?.lat,
+      lng: coords?.lng
     };
 
     try {
@@ -101,6 +105,29 @@ function MarketplaceContent() {
       setIsLoading(false);
     }
   }, [searchTerm, currentCategory, listingTypeFilter, locationFilter, toast, t]);
+
+  const handleLocationSearch = () => {
+    if (!navigator.geolocation) {
+      toast({ variant: 'destructive', title: t('errors.location.unsupported')});
+      return;
+    }
+    
+    setIsLocating(true);
+    setLocationFilter(t('location.locating'));
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setIsLocating(false);
+        setLocationFilter(t('location.nearYou'));
+        fetchItems({ lat: position.coords.latitude, lng: position.coords.longitude });
+      },
+      () => {
+        setIsLocating(false);
+        setLocationFilter('');
+        toast({ variant: 'destructive', title: t('errors.location.deniedTitle'), description: t('errors.location.deniedDescription') });
+      }
+    );
+  };
 
   const fetchAiRecs = useCallback(async () => {
     if (!user) {
@@ -186,9 +213,12 @@ function MarketplaceContent() {
                 <Label htmlFor="location-filter-marketplace" className="sr-only">{t('locationPlaceholder')}</Label>
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input 
-                  id="location-filter-marketplace" placeholder={t('locationPlaceholder')} className="pl-10 h-10"
+                  id="location-filter-marketplace" placeholder={t('locationPlaceholder')} className="pl-10 pr-9 h-10"
                   value={locationFilter} onChange={(e) => setLocationFilter(e.target.value)}
                 />
+                <Button variant="ghost" size="icon" className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8" onClick={handleLocationSearch} disabled={isLocating}>
+                    <LocateFixed className={cn("h-4 w-4", isLocating && "animate-pulse")} />
+                </Button>
               </div>
               <Select value={listingTypeFilter} onValueChange={(value) => setListingTypeFilter(value as ListingType | 'All')}>
                 <SelectTrigger id="listing-type-filter-marketplace" className="h-10">
