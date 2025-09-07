@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { geohashForLocation } from "geofire-common";
+import { geohashForLocation, geohashQueryBounds, distanceBetween } from "geofire-common";
 
 const db = admin.firestore();
 
@@ -71,7 +71,7 @@ export const onSourceDocumentWriteIndex = functions.firestore
 
     // Standardize common fields
     const title = documentData.name || documentData.title || documentData.displayName || documentData.metadata?.cropType || "Untitled";
-    const description = documentData.description || documentData.profileSummary || documentData.bio || documentData.excerpt_en || "";
+    const description = documentData.description || documentData.profileSummary || documentData.bio || documentData.excerpt_en || `Traceability report for batch ID ${documentId}`;
 
     // Build a comprehensive list of tags for filtering
     const sourceTags = Array.isArray(documentData.tags) ? documentData.tags : [];
@@ -139,74 +139,95 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     minPrice,
     maxPrice,
     perUnit,
+    lat,
+    lng,
+    radiusInKm = 50, // Default to 50km radius
     limit: queryLimit = 50,
   } = data;
 
   if (!Array.isArray(mainKeywords)) {
       throw new functions.https.HttpsError("invalid-argument", "mainKeywords must be an array.");
   }
+  
+  let query: admin.firestore.Query = db.collection("search_index");
 
-  const rawQuery = mainKeywords.join(' ');
-  const isVtiQuery = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(rawQuery);
+  // --- Geospatial Querying ---
+  if (typeof lat === 'number' && typeof lng === 'number') {
+    const center: [number, number] = [lat, lng];
+    const radiusInM = radiusInKm * 1000;
+    const bounds = geohashQueryBounds(center, radiusInM);
+    
+    const geohashPromises = bounds.map(b => {
+      const q = query.orderBy('geohash').startAt(b[0]).endAt(b[1]);
+      return q.get();
+    });
 
-    if (isVtiQuery) {
-        try {
-            const vtiDoc = await db.collection("vti_registry").doc(rawQuery).get();
-            if (vtiDoc.exists) {
-                const vtiData = vtiDoc.data()!;
-                return {
-                    results: [{
-                        id: `vti_${vtiDoc.id}`,
-                        itemId: vtiDoc.id,
-                        itemCollection: 'vti_registry',
-                        title: `VTI Batch: ${vtiData.metadata?.cropType || 'Product'}`,
-                        description: `Traceability report for batch ID ${vtiDoc.id}`,
-                    }]
-                };
+    try {
+      const snapshots = await Promise.all(geohashPromises);
+      const matchingDocs: admin.firestore.QueryDocumentSnapshot[] = [];
+      for (const snap of snapshots) {
+        for (const doc of snap.docs) {
+          const docLocation = doc.data().location;
+          if (docLocation?.lat && docLocation?.lng) {
+            const distanceInKm = distanceBetween([docLocation.lat, docLocation.lng], center);
+            if (distanceInKm * 1000 <= radiusInM) { // Convert km to m for comparison
+              matchingDocs.push(doc);
             }
-        } catch (error) {
-            console.error(`Error performing direct VTI search for ${rawQuery}:`, error);
+          }
         }
+      }
+      
+      const ids = matchingDocs.map(d => d.id);
+      if (ids.length === 0) return []; // No results found nearby
+      // Since we can't combine 'in' with other range filters, this becomes the primary filter.
+      // Other filters will have to be applied in-memory if a geo-query is active.
+      query = db.collection('search_index').where(admin.firestore.FieldPath.documentId(), 'in', ids);
+      
+    } catch(e) {
+       console.error("Geospatial query failed", e);
+       // Continue without geo-filtering
     }
+  }
 
 
   try {
-    let query: admin.firestore.Query = db.collection("search_index");
+    // --- Standard Filter Application (only if not a geo-query) ---
+    if (!(typeof lat === 'number' && typeof lng === 'number')) {
+      const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category')?.value;
+      const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType')?.value;
+      
+      if (listingTypeFilter) {
+          query = query.where('listingType', '==', listingTypeFilter);
+      }
+      if (categoryFilter) {
+          query = query.where('tags', 'array-contains', categoryFilter);
+      }
+      if (identifiedLocation) {
+          query = query.where("location.address", ">=", identifiedLocation);
+          query = query.where("location.address", "<=", identifiedLocation + '\uf8ff');
+      }
+      if (perUnit) {
+          query = query.where("perUnit", "==", perUnit);
+      }
 
-    // --- Standard Filter Application ---
-    const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category')?.value;
-    const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType')?.value;
-    
-    if (listingTypeFilter) {
-        query = query.where('listingType', '==', listingTypeFilter);
-    }
-    if (categoryFilter) {
-        query = query.where('tags', 'array-contains', categoryFilter);
-    }
-    if (identifiedLocation) {
-        query = query.where("location.address", ">=", identifiedLocation);
-        query = query.where("location.address", "<=", identifiedLocation + '\uf8ff');
-    }
-    if (perUnit) {
-        query = query.where("perUnit", "==", perUnit);
+      let hasPriceFilter = false;
+      if (typeof minPrice === 'number' && minPrice > 0) {
+          query = query.where('price', '>=', minPrice);
+          hasPriceFilter = true;
+      }
+      if (typeof maxPrice === 'number' && maxPrice > 0) {
+          query = query.where('price', '<=', maxPrice);
+          hasPriceFilter = true;
+      }
+
+      // Determine sorting order
+      if (hasPriceFilter) {
+          query = query.orderBy('price', 'asc');
+      } else {
+          query = query.orderBy("updatedAt", "desc");
+      }
     }
 
-    let hasPriceFilter = false;
-    if (typeof minPrice === 'number' && minPrice > 0) {
-        query = query.where('price', '>=', minPrice);
-        hasPriceFilter = true;
-    }
-    if (typeof maxPrice === 'number' && maxPrice > 0) {
-        query = query.where('price', '<=', maxPrice);
-        hasPriceFilter = true;
-    }
-
-    // Determine sorting order
-    if (hasPriceFilter) {
-        query = query.orderBy('price', 'asc');
-    } else {
-        query = query.orderBy("updatedAt", "desc");
-    }
 
     query = query.limit(queryLimit);
 
