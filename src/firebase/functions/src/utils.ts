@@ -1,5 +1,4 @@
 
-
 import * as admin from "firebase-admin";
 import * as functions from "firebase-functions";
 
@@ -47,6 +46,7 @@ async function deleteQueryBatch(query: admin.firestore.Query, resolve: (value?: 
     });
 }
 
+
 /**
  * Triggered when a user deletes their Firebase Authentication account.
  * This function performs a "cascade delete" to remove all of the user's
@@ -62,7 +62,10 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
         { name: 'marketplaceItems', userIdField: 'sellerId' },
         { name: 'farms', userIdField: 'ownerId' },
         { name: 'crops', userIdField: 'ownerId' },
-        // Add other collections and their respective user ID fields here
+        { name: 'knf_batches', userIdField: 'userId' },
+        { name: 'financial_transactions', userIdField: 'userRef' }, // Note: userRef is a reference, not a string
+        { name: 'shops', userIdField: 'ownerId' },
+        // ... add more collections as needed
     ];
 
     try {
@@ -70,7 +73,14 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
 
         // Delete top-level collections created by the user
         for (const collection of collectionsToDelete) {
-            const query = db.collection(collection.name).where(collection.userIdField, '==', uid);
+            let query;
+            if (collection.userIdField === 'userRef') {
+                const userRef = db.collection('users').doc(uid);
+                query = db.collection(collection.name).where(collection.userIdField, '==', userRef);
+            } else {
+                query = db.collection(collection.name).where(collection.userIdField, '==', uid);
+            }
+            
             const snapshot = await query.get();
             if (!snapshot.empty) {
                 console.log(`Deleting ${snapshot.size} documents from '${collection.name}' for user ${uid}.`);
@@ -83,11 +93,16 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
         promises.push(db.collection('users').doc(uid).delete());
         
         // Delete any collections nested under the user document
-        const workersPath = `users/${uid}/workers`;
-        promises.push(deleteCollectionByPath(workersPath, batchSize));
+        const subCollections = ['workers', 'inventory', 'api_keys', 'certifications'];
+        for (const subCollection of subCollections) {
+            const path = `users/${uid}/${subCollection}`;
+            promises.push(deleteCollectionByPath(path, batchSize));
+        }
 
-        // Delete credit score document
+        // Delete other user-specific documents
         promises.push(db.collection('credit_scores').doc(uid).delete());
+        promises.push(db.collection('user_funding_recommendations').doc(uid).delete());
+
 
         await Promise.all(promises);
         console.log(`Successfully completed data cleanup for user ${uid}.`);

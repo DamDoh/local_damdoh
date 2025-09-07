@@ -6,7 +6,7 @@ import Dexie, { type EntityTable } from 'dexie';
 // Define the structure of an action in the outbox
 export interface OfflineAction {
   id?: number; // Primary key, auto-incremented
-  operation: 'create' | 'update' | 'delete';
+  operation: 'create' | 'update' | 'delete' | 'logHarvestAndCreateVTI';
   collectionPath: string;
   documentId: string;
   payload: any;

@@ -61,7 +61,7 @@ export default async function LocaleLayout({
                 <SidebarInset>
                     <div className="flex flex-col min-h-screen">
                         <AppHeader />
-                        <main className="flex-grow container mx-auto max-w-screen-2xl px-4 py-6 md:px-6 lg:px-8 print:p-0 pt-16">
+                        <main className="flex-grow container mx-auto max-w-screen-2xl px-4 py-6 md:px-6 lg:px-8 print:p-0">
                             {children}
                         </main>
                         <div className="md:hidden h-16" />

@@ -10,7 +10,7 @@ export function AppFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border mt-12">
+    <footer className="border-t border-border mt-12 print:hidden">
       {/* Top Section: Logo, Links */}
       <div className="bg-primary text-primary-foreground">
         <div className="container mx-auto max-w-screen-2xl px-4 py-10 md:px-6 lg:px-8">

@@ -29,7 +29,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { getFunctions, httpsCallable, HttpsError } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useTranslations } from "next-intl";
-import { useOfflineSync } from "@/hooks/useOfflineSync";
+import { useOfflineSync } from '@/hooks/useOfflineSync';
 
 export default function LogHarvestPage() {
   const t = useTranslations('farmManagement.logHarvest');
