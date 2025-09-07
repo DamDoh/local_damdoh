@@ -3,8 +3,6 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { app as firebaseApp } from "./firebase/client"; // Use your client-side firebase app instance
 import { v4 as uuidv4 } from 'uuid';
 
-const storage = getStorage(firebaseApp);
-
 /**
  * Uploads a file to Firebase Storage and returns its public download URL.
  *
@@ -13,6 +11,7 @@ const storage = getStorage(firebaseApp);
  * @returns A promise that resolves with the public download URL of the uploaded file.
  */
 export async function uploadFileAndGetURL(file: File, path: string): Promise<string> {
+  const storage = getStorage(firebaseApp); // Initialize storage inside the function
   if (!file) {
     throw new Error("No file provided for upload.");
   }
