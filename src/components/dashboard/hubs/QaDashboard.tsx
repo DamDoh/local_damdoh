@@ -22,7 +22,7 @@ export const QaDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const getQaDashboardDataCallable = useMemo(() => httpsCallable<void, QaDashboardData>(functions, 'getQaDashboardData'), [functions]);
+  const getQaDashboardDataCallable = useMemo(() => httpsCallable<void, QaDashboardData>(functions, 'dashboardData-getQaDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -178,6 +178,7 @@ export const QaDashboard = () => {
     </div>
   );
 };
+
 
 const DashboardSkeleton = () => (
     <div className="space-y-6">

@@ -10,7 +10,7 @@ import { AlertTriangle, BadgeCheck, Zap, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-import { RegulatorDashboardData } from "@/lib/types";
+import type { RegulatorDashboardData } from "@/lib/types";
 import { useTranslations } from 'next-intl';
 
 export const RegulatorDashboard = () => {
@@ -20,7 +20,7 @@ export const RegulatorDashboard = () => {
     const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
-    const getRegulatorData = useMemo(() => httpsCallable(functions, 'getRegulatorDashboardData'), [functions]);
+    const getRegulatorData = useMemo(() => httpsCallable(functions, 'dashboardData-getRegulatorDashboardData'), [functions]);
 
     useEffect(() => {
         const fetchData = async () => {

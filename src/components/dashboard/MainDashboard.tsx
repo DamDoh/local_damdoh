@@ -2,7 +2,7 @@
 "use client";
 
 import React, { Suspense } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import type { FeedItem } from "@/lib/types";
 import { DashboardLeftSidebar } from "@/components/dashboard/DashboardLeftSidebar";
 import { DashboardRightSidebar } from "@/components/dashboard/hubs/DashboardRightSidebar";
@@ -44,9 +44,9 @@ import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashb
 import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
 import { AgriTechInnovatorDashboard } from './hubs/AgriTechInnovatorDashboard';
 import { OperationsDashboard } from './hubs/OperationsDashboard';
-import { LogisticsDashboard } from './hubs/LogisticsDashboard';
-import { ProcessingUnitDashboard } from './hubs/ProcessingUnitDashboard';
-import { WarehouseDashboard } from './hubs/WarehouseDashboard';
+import { LogisticsDashboard } from './hubs/processing-logistics/LogisticsDashboard';
+import { ProcessingUnitDashboard } from './hubs/processing-logistics/ProcessingUnitDashboard';
+import { WarehouseDashboard } from './hubs/processing-logistics/WarehouseDashboard';
 
 
 const { useState, useEffect, useMemo } = React;

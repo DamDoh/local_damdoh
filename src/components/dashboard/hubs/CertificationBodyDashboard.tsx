@@ -25,7 +25,7 @@ export const CertificationBodyDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const getCertificationBodyDashboardDataCallable = useMemo(() => httpsCallable<void, CertificationBodyDashboardData>(functions, 'getCertificationBodyDashboardData'), [functions]);
+  const getCertificationBodyDashboardDataCallable = useMemo(() => httpsCallable<void, CertificationBodyDashboardData>(functions, 'dashboardData-getCertificationBodyDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {

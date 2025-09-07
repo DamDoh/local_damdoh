@@ -255,5 +255,3 @@ const MoreHorizontalIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <circle cx="5" cy="12" r="1" />
   </svg>
 );
-
-    

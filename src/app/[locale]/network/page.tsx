@@ -16,7 +16,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { performSearch } from "@/lib/server-actions";
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/lib/auth-utils";
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { useToast } from "@/hooks/use-toast";
 import { getFunctions, httpsCallable } from 'firebase/functions';
@@ -60,9 +60,9 @@ export default function NetworkPage() {
   const { user } = useAuth();
   const { toast } = useToast();
   const functions = getFunctions(firebaseApp);
-  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'sendConnectionRequest'), []);
-  const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), []);
-  const getProfileStatusesCallable = useMemo(() => httpsCallable(functions, 'getProfileConnectionStatuses'), []);
+  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'network-sendConnectionRequest'), [functions]);
+  const sendInviteCallable = useMemo(() => httpsCallable(functions, 'network-sendInvite'), [functions]);
+  const getProfileStatusesCallable = useMemo(() => httpsCallable(functions, 'network-getProfileConnectionStatuses'), [functions]);
 
   const fetchProfiles = useCallback(async () => {
     setIsLoading(true);
