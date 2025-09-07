@@ -165,7 +165,7 @@ export const handleHarvestEvent = functions.https.onCall(
       );
     }
 
-    const {farmFieldId, cropType, yieldKg, qualityGrade, actorVtiId, geoLocation} =
+    const {farmFieldId, cropType, yieldKg, qualityGrade, actorVtiId, geoLocation, pricePerUnit, unit, notes} =
       data;
 
     if (!farmFieldId || typeof farmFieldId !== "string") {
@@ -207,7 +207,7 @@ export const handleHarvestEvent = functions.https.onCall(
           eventType: "HARVESTED",
           actorRef: actorVtiId,
           geoLocation: geoLocation || null,
-          payload: {yieldKg, qualityGrade},
+          payload: {yieldKg, qualityGrade, pricePerUnit, unit, notes},
           farmFieldId: farmFieldId, // Keep for cross-reference
         },
       );

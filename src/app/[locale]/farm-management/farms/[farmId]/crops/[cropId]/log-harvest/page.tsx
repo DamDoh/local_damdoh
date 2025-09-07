@@ -56,6 +56,8 @@ export default function LogHarvestPage() {
       yield_kg: undefined,
       quality_grade: "",
       notes: "",
+      pricePerUnit: undefined,
+      unit: "kg",
     },
   });
 
@@ -76,6 +78,9 @@ export default function LogHarvestPage() {
       cropType: cropType,
       yieldKg: data.yield_kg,
       qualityGrade: data.quality_grade,
+      pricePerUnit: data.pricePerUnit,
+      unit: data.unit,
+      notes: data.notes,
       actorVtiId: user.uid,
       geoLocation: null, // Placeholder for future location capture
     };
@@ -123,7 +128,7 @@ export default function LogHarvestPage() {
        toast({
         variant: "destructive",
         title: t('fail.title'),
-        description: error.message || "An error occurred. Please try again.",
+        description: error.message || "An unexpected error occurred. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
@@ -242,33 +247,63 @@ export default function LogHarvestPage() {
                   )}
                 />
               
-              <FormField
-                control={form.control}
-                name="yield_kg"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Weight className="h-4 w-4 text-muted-foreground" />{t('yieldLabel')}</FormLabel>
-                    <FormControl>
-                      <Input type="number" placeholder={t('yieldPlaceholder')} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <div className="grid grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="yield_kg"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2"><Weight className="h-4 w-4 text-muted-foreground" />{t('yieldLabel')}</FormLabel>
+                      <FormControl>
+                        <Input type="number" placeholder={t('yieldPlaceholder')} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="quality_grade"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2"><Award className="h-4 w-4 text-muted-foreground" />{t('qualityLabel')}</FormLabel>
+                      <FormControl>
+                        <Input placeholder={t('qualityPlaceholder')} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
-              <FormField
-                control={form.control}
-                name="quality_grade"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Award className="h-4 w-4 text-muted-foreground" />{t('qualityLabel')}</FormLabel>
-                    <FormControl>
-                      <Input placeholder={t('qualityPlaceholder')} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+               <div className="grid grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="pricePerUnit"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2"><DollarSign className="h-4 w-4 text-muted-foreground" />{t('priceLabel')}</FormLabel>
+                      <FormControl>
+                        <Input type="number" step="0.01" placeholder="e.g., 2.50" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                 <FormField
+                  control={form.control}
+                  name="unit"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2"><Weight className="h-4 w-4 text-muted-foreground" />{t('unitLabel')}</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g., kg, lb, ton" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
               <FormField
                 control={form.control}

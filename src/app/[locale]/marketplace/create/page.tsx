@@ -24,6 +24,7 @@ import { app as firebaseApp } from '@/lib/firebase/client';
 import { useLocale } from 'next-intl';
 import { uploadFileAndGetURL } from '@/lib/storage-utils'
 import { suggestMarketPrice as suggestMarketPriceAction } from '@/lib/server-actions';
+import { getVtiTraceabilityHistory } from '@/lib/server-actions/traceability';
 
 export default function CreateListingPage() {
     const router = useRouter();
@@ -45,7 +46,7 @@ export default function CreateListingPage() {
       resolver: zodResolver(createMarketplaceItemSchema),
       defaultValues: {
         name: "",
-        listingType: searchParams.get('listingType') === 'Service' ? 'Service' : undefined,
+        listingType: searchParams.get('listingType') === 'Service' ? 'Service' : 'Product',
         description: "",
         price: undefined,
         perUnit: "",
@@ -63,8 +64,23 @@ export default function CreateListingPage() {
     useEffect(() => {
         const vtiId = searchParams.get('vtiId');
         const productName = searchParams.get('productName');
+        
+        const fetchVtiData = async (id: string) => {
+            try {
+                const data = await getVtiTraceabilityHistory(id);
+                const harvestEvent = data.events.find(e => e.eventType === 'HARVESTED');
+                if (harvestEvent && harvestEvent.payload) {
+                    form.setValue('price', harvestEvent.payload.pricePerUnit);
+                    form.setValue('perUnit', harvestEvent.payload.unit);
+                }
+            } catch (error) {
+                console.warn("Could not pre-fill price from VTI:", error);
+            }
+        };
+
         if (vtiId) {
             form.setValue('relatedTraceabilityId', vtiId);
+            fetchVtiData(vtiId);
         }
         if (productName) {
             form.setValue('name', productName);

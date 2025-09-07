@@ -1,4 +1,5 @@
 
+
 import { z } from "zod";
 import { UNIFIED_MARKETPLACE_CATEGORY_IDS, LISTING_TYPES, AGRI_EVENT_TYPES, STAKEHOLDER_ROLES } from '@/lib/constants';
 
@@ -141,6 +142,8 @@ export const createHarvestSchema = z.object({
     yield_kg: z.coerce.number().positive("Yield must be a positive number."),
     quality_grade: z.string().min(1, "Quality grade is required.").max(50),
     notes: z.string().max(1000).optional(),
+    pricePerUnit: z.coerce.number().positive("Price must be a positive number.").optional(),
+    unit: z.string().min(1, "Unit is required.").max(20).optional(),
 });
 export type CreateHarvestValues = z.infer<typeof createHarvestSchema>;
 
