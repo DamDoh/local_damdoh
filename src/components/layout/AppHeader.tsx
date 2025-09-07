@@ -9,6 +9,8 @@ import {
   Search as SearchIconLucide,
   LogIn,
   UserPlus,
+  ShoppingCart,
+  DollarSign
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
@@ -30,6 +32,14 @@ import { AppSidebarNav } from './AppSidebarNav';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { APP_NAME } from '@/lib/constants';
 import { HeaderThemeToggle } from '../HeaderThemeToggle';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 
 function HeaderSkeleton() {
@@ -112,13 +122,28 @@ export function AppHeader() {
               {authLoading ? (
                 <div className="h-9 w-9 bg-muted rounded-full animate-pulse ml-2"></div>
               ) : user ? (
-                <UserAvatar name={user.displayName || user.email} email={user.email} imageUrl={user.photoURL} />
+                 <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost">
+                        {t('orders')}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem asChild>
+                        <Link href="/marketplace/my-purchases"><ShoppingCart className="mr-2 h-4 w-4" />{t('myPurchases')}</Link>
+                    </DropdownMenuItem>
+                     <DropdownMenuItem asChild>
+                        <Link href="/marketplace/my-sales"><DollarSign className="mr-2 h-4 w-4" />{t('mySales')}</Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               ) : (
                  <div className="flex items-center gap-1">
                     <Button asChild variant="ghost"><Link href="/auth/signin"><LogIn className="mr-2 h-4 w-4" />{t('signIn')}</Link></Button>
                     <Button asChild><Link href="/auth/signup"><UserPlus className="mr-2 h-4 w-4" />{t('signUp')}</Link></Button>
                  </div>
               )}
+               {user && <UserAvatar name={user.displayName || user.email} email={user.email} imageUrl={user.photoURL} />}
             </div>
           </nav>
         </div>

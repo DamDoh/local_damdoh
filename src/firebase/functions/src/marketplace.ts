@@ -1,3 +1,4 @@
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { MarketplaceCoupon, MarketplaceItem, Shop, MarketplaceOrder, UserProfile } from "@/lib/types"; // Import from new location
@@ -425,31 +426,41 @@ export const createMarketplaceOrder = functions.https.onCall(async (data, contex
     }
 });
 
-export const getMyMarketplaceOrders = functions.https.onCall(async (data, context) => {
-    const userId = checkAuth(context);
-
+export const getSellerOrders = functions.https.onCall(async (data, context) => {
+    const sellerId = checkAuth(context);
+    
     try {
-        const buyOrdersPromise = db.collection("marketplace_orders")
-            .where("buyerId", "==", userId)
+        const ordersSnapshot = await db.collection("marketplace_orders")
+            .where("sellerId", "==", sellerId)
             .orderBy("createdAt", "desc")
             .get();
+        
+        const buyerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().buyerId))];
+        const buyerProfiles: Record<string, any> = {};
 
-        const sellOrdersPromise = db.collection("marketplace_orders")
-            .where("sellerId", "==", userId)
-            .orderBy("createdAt", "desc")
-            .get();
+        if (buyerIds.length > 0) {
+            const profileChunks = [];
+            for (let i = 0; i < buyerIds.length; i += 30) {
+                profileChunks.push(buyerIds.slice(i, i + 30));
+            }
 
-        const [buySnapshot, sellSnapshot] = await Promise.all([buyOrdersPromise, sellOrdersPromise]);
+            for (const chunk of profileChunks) {
+                const profilesSnapshot = await db.collection("users").where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
+                profilesSnapshot.forEach(doc => {
+                    buyerProfiles[doc.id] = {
+                        displayName: doc.data().displayName,
+                        avatarUrl: doc.data().avatarUrl || null,
+                    };
+                });
+            }
+        }
 
-        const allDocs = [...buySnapshot.docs, ...sellSnapshot.docs];
-        // Remove duplicates if a user somehow buys from themselves
-        const uniqueDocs = Array.from(new Map(allDocs.map(doc => [doc.id, doc])).values());
-
-        const orders = uniqueDocs.map(doc => {
+        const orders = ordersSnapshot.docs.map(doc => {
             const orderData = doc.data();
             return {
                 id: doc.id,
                 ...orderData,
+                buyerProfile: buyerProfiles[orderData.buyerId] || { displayName: 'Unknown Buyer', avatarUrl: null },
                 createdAt: (orderData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
                 updatedAt: (orderData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
             };
@@ -457,7 +468,54 @@ export const getMyMarketplaceOrders = functions.https.onCall(async (data, contex
 
         return { orders };
     } catch (error) {
-        console.error("Error fetching user orders:", error);
+        console.error("Error fetching seller orders:", error);
+        throw new functions.https.HttpsError("internal", "Could not fetch orders.");
+    }
+});
+
+export const getBuyerOrders = functions.https.onCall(async (data, context) => {
+    const buyerId = checkAuth(context);
+    
+    try {
+        const ordersSnapshot = await db.collection("marketplace_orders")
+            .where("buyerId", "==", buyerId)
+            .orderBy("createdAt", "desc")
+            .get();
+        
+        const sellerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().sellerId))];
+        const sellerProfiles: Record<string, any> = {};
+
+        if (sellerIds.length > 0) {
+            const profileChunks = [];
+            for (let i = 0; i < sellerIds.length; i += 30) {
+                profileChunks.push(sellerIds.slice(i, i + 30));
+            }
+
+            for (const chunk of profileChunks) {
+                const profilesSnapshot = await db.collection("users").where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
+                profilesSnapshot.forEach(doc => {
+                    sellerProfiles[doc.id] = {
+                        displayName: doc.data().displayName,
+                        avatarUrl: doc.data().avatarUrl || null,
+                    };
+                });
+            }
+        }
+
+        const orders = ordersSnapshot.docs.map(doc => {
+            const orderData = doc.data();
+            return {
+                id: doc.id,
+                ...orderData,
+                sellerProfile: sellerProfiles[orderData.sellerId] || { displayName: 'Unknown Seller', avatarUrl: null },
+                createdAt: (orderData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                updatedAt: (orderData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            };
+        });
+
+        return { orders };
+    } catch (error) {
+        console.error("Error fetching buyer orders:", error);
         throw new functions.https.HttpsError("internal", "Could not fetch orders.");
     }
 });
