@@ -26,7 +26,16 @@
     ],
     "frameworksBackend": {
       "region": "us-central1"
-    }
+    },
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "run": {
+          "serviceId": "api",
+          "region": "us-central1"
+        }
+      }
+    ]
   },
   "firestore": {
     "rules": "firebase/firestore.rules",
