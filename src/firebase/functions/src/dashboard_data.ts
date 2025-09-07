@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
@@ -686,12 +685,15 @@ export const getAgroExportDashboardData = functions.https.onCall(
 
         const [vtisSnapshot] = await Promise.all([vtisForExportPromise]);
 
-        const pendingCustomsDocs = vtisSnapshot.docs.map(doc => ({
-            id: doc.id,
-            vtiLink: `/traceability/batches/${doc.id}`,
-            destination: doc.data().metadata.destinationCountry || 'Unknown',
-            status: 'Awaiting Phytosanitary Certificate' // Mock status
-        }));
+        const pendingCustomsDocs = vtisSnapshot.docs.map(doc => {
+            const vtiData = doc.data();
+            return {
+                id: doc.id,
+                vtiLink: `/traceability/batches/${doc.id}`,
+                destination: vtiData.metadata.destinationCountry || 'Unknown',
+                status: 'Awaiting Phytosanitary Certificate' // Mock status
+            }
+        });
 
         return {
             pendingCustomsDocs,
