@@ -88,6 +88,12 @@ export const MarketplaceOrderSchema = z.object({
   currency: z.string(),
   status: z.string(), // e.g., 'new', 'confirmed', 'shipped', 'completed'
   buyerNotes: z.string().optional(),
+  sellerLocation: z.object({
+    address: z.string().optional(),
+  }).optional().nullable(),
+  buyerLocation: z.object({
+    address: z.string().optional(),
+  }).optional().nullable(),
   createdAt: z.any(), // Firestore Timestamp
   updatedAt: z.any(), // Firestore Timestamp
 });
@@ -1013,4 +1019,94 @@ export const financialApplicationSchema = z.object({
   amount: z.coerce.number().positive("Please enter a valid loan amount."),
   currency: z.string().length(3, "Currency must be a 3-letter code.").default("USD"),
   purpose: z.string().min(20, "Please describe the purpose of the funding.").max(2000),
+});
+
+// =================================================================
+// 3. AI FLOW-SPECIFIC SCHEMAS
+// These define the inputs and outputs for Genkit AI flows.
+// =================================================================
+export const SmartSearchInterpretationSchema = z.object({
+  originalQuery: z.string().describe("The original, unmodified user query."),
+  mainKeywords: z.array(z.string()).describe("The core nouns or concepts the user is searching for."),
+  identifiedLocation: z.string().optional().describe("A specific location (city, region, country) mentioned in the query."),
+  identifiedIntent: z.enum(['buy', 'sell', 'rent', 'find service', 'find information']).optional().describe("The user's likely goal."),
+  suggestedFilters: z.array(z.object({
+    type: z.enum(['category', 'listingType', 'role', 'tag']).describe("The type of filter to apply."),
+    value: z.string().describe("The specific value for the filter."),
+  })).optional().describe("A list of potential filters to apply to the search results."),
+  interpretationNotes: z.string().optional().describe("A brief, natural language explanation of how the query was interpreted."),
+  minPrice: z.number().optional().describe("The minimum price specified in the query."),
+  maxPrice: z.number().optional().describe("The maximum price specified in the query."),
+  perUnit: z.string().optional().describe("The pricing unit specified (e.g., /kg, /ton, /hour)."),
+});
+
+export const MarketplaceRecommendationInputSchema = z.object({
+    userId: z.string(),
+    count: z.number().optional().default(5),
+});
+
+export const MarketplaceRecommendationOutputSchema = z.object({
+    recommendations: z.array(z.object({
+        item: MarketplaceItemSchema,
+        reason: z.string().describe("A personalized reason why this item is recommended for the user."),
+    })),
+});
+
+export const CropRotationInputSchema = z.object({
+  cropHistory: z.array(z.string()).describe("List of previous crops planted in the field, in chronological order."),
+  location: z.string().describe("The geographical location of the farm (e.g., 'Rift Valley, Kenya')."),
+  soilType: z.string().optional().describe("The soil type of the field (e.g., 'Loamy', 'Clay')."),
+  language: z.string().optional().describe("The language for the AI to respond in (e.g., 'en', 'km'). Defaults to English."),
+});
+
+export const CropRotationOutputSchema = z.object({
+  suggestions: z.array(z.object({
+    cropName: z.string().describe("The name of the suggested crop."),
+    benefits: z.string().describe("Explanation of the agronomic benefits of planting this crop next."),
+    notes: z.string().optional().describe("Any additional practical tips for the farmer."),
+  })),
+});
+
+export const DiagnoseCropInputSchema = z.object({
+  photoDataUri: z.string().describe("A photo of the plant as a Base64 encoded data URI."),
+  description: z.string().describe("The user's description of the problem or question about the plant."),
+  language: z.string().optional().describe("The language for the AI to respond in (e.g., 'en', 'es'). Defaults to English."),
+});
+
+export const DiagnoseCropOutputSchema = z.object({
+  isPlant: z.boolean().describe("Whether the image contains a plant."),
+  isHealthy: z.boolean().describe("Whether the plant appears to be healthy."),
+  potentialProblems: z.array(z.string()).describe("A list of potential diseases, pests, or deficiencies identified."),
+  suggestedActions: z.array(z.object({
+    title: z.string().describe("A short title for the suggested action."),
+    details: z.string().describe("A detailed explanation of the action."),
+    type: z.enum(['treatment', 'prevention', 'further-investigation']).describe("The category of the action."),
+  })),
+});
+
+export const FarmingAssistantInputSchema = z.object({
+  query: z.string().describe("The user's question or message to the assistant."),
+  photoDataUri: z.string().optional().describe("An optional photo of a plant provided by the user for diagnosis, as a data URI."),
+  language: z.string().optional().describe("The language for the AI to respond in, specified as a two-letter ISO 639-1 code. Defaults to English."),
+});
+
+export const FarmingAssistantOutputSchema = z.object({
+  summary: z.string().describe("A concise, direct summary of the answer or diagnosis."),
+  detailedPoints: z.array(z.object({
+    title: z.string().describe("A short, clear heading for a specific point or action."),
+    content: z.string().describe("The detailed content or explanation for that point."),
+  })).optional().describe("An optional list of structured points for more complex answers."),
+  suggestedQueries: z.array(z.string()).optional().describe("An optional list of 2-3 relevant follow-up questions."),
+});
+
+
+export const SuggestMarketPriceInputSchema = z.object({
+    productName: z.string(),
+    description: z.string(),
+    category: z.string().optional(),
+    location: z.string(),
+});
+
+export const SuggestMarketPriceOutputSchema = z.object({
+    price: z.number(),
 });
