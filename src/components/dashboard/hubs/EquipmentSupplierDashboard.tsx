@@ -14,15 +14,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from '@/components/ui/badge';
 import { useTranslations } from 'next-intl';
 
-const functions = getFunctions(firebaseApp);
-
 export const EquipmentSupplierDashboard = () => {
     const t = useTranslations('EquipmentSupplierDashboard');
     const [dashboardData, setDashboardData] = useState<EquipmentSupplierDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const getEquipmentData = useMemo(() => httpsCallable(functions, 'getEquipmentSupplierDashboardData'), [functions]);
+    const functions = useMemo(() => getFunctions(firebaseApp), []);
+    const getEquipmentData = useMemo(() => httpsCallable(functions, 'dashboardData-getEquipmentSupplierDashboardData'), [functions]);
 
     useEffect(() => {
         const fetchData = async () => {
