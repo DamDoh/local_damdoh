@@ -8,6 +8,7 @@ import type {
     FarmerDashboardData,
     CooperativeDashboardData,
     BuyerDashboardData,
+    RegulatorDashboardData,
     LogisticsDashboardData,
     FiDashboardData,
     FieldAgentDashboardData,
@@ -459,62 +460,19 @@ export const getWarehouseDashboardData = functions.https.onCall(
 );
 
 
-export const getQaDashboardData = functions.https.onCall(
-  (data, context): QaDashboardData => {
+export const getCertificationBodyDashboardData = functions.https.onCall(
+  async (data, context): Promise<CertificationBodyDashboardData> => {
     checkAuth(context);
     return {
-        pendingInspections: [
-            { id: 'insp1', batchId: 'vti-xyz-123', productName: 'Avocado Batch', sellerName: 'Green Valley Farms', dueDate: new Date().toISOString(), actionLink: '#'}
+        pendingAudits: [
+            { id: 'aud1', farmName: 'Green Valley Farms', standard: 'EU Organic', dueDate: new Date().toISOString(), actionLink: '#' }
         ],
-        recentResults: [
-            { id: 'res1', productName: 'Maize Batch', result: 'Fail', reason: 'Aflatoxin levels exceed limit.', inspectedAt: new Date().toISOString() }
+        certifiedEntities: [
+            { id: 'ent1', name: 'Riverside Orchards', type: 'Farm', certificationStatus: 'Active', actionLink: '#' }
         ],
-        qualityMetrics: { passRate: 98, averageScore: 9.2 }
+        standardsMonitoring: [
+            { standard: 'Fair Trade', adherenceRate: 95, alerts: 2, actionLink: '#' }
+        ]
     };
-  }
-);
-
-
-export const getAgroTourismDashboardData = functions.https.onCall(
-  async (data, context): Promise<AgroTourismDashboardData> => {
-    const operatorId = checkAuth(context);
-    try {
-        // --- Fetch Live Data for Listed Experiences ---
-        const experiencesSnapshot = await db.collection('marketplaceItems')
-            .where('sellerId', '==', operatorId)
-            .where('category', '==', 'agri-tourism-services')
-            .orderBy('createdAt', 'desc')
-            .get();
-
-        const listedExperiences = experiencesSnapshot.docs.map(doc => {
-            const item = doc.data();
-            return {
-                id: doc.id,
-                title: item.name,
-                location: item.location.address,
-                status: 'Published' as 'Published' | 'Draft', // Assuming all listed items are published for now
-                bookingsCount: item.bookingsCount || 0, // A field we can increment
-                actionLink: `/marketplace/${item.id}/manage-service`
-            };
-        });
-
-        // --- Keep Mock Data for other sections for now ---
-        const upcomingBookings = [
-            { id: 'book1', experienceTitle: 'Coffee Farm Tour & Tasting', guestName: 'Alice Johnson', date: new Date().toISOString(), actionLink: '#' }
-        ];
-        const guestReviews = [
-            { id: 'rev1', guestName: 'Bob Williams', experienceTitle: 'Coffee Farm Tour & Tasting', rating: 5, comment: 'Amazing experience, learned so much!', actionLink: '#' }
-        ];
-
-        return {
-            listedExperiences,
-            upcomingBookings,
-            guestReviews,
-        };
-
-    } catch (error) {
-        console.error("Error fetching Agro-Tourism dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
-    }
   }
 );
