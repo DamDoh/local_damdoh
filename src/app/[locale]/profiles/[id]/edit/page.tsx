@@ -65,7 +65,7 @@ export default function EditProfilePage() {
   const { toast } = useToast();
   const { user: authUser, loading: authLoading } = useAuth();
   const functions = getFunctions(firebaseApp);
-  const upsertStakeholderProfile = useMemo(() => httpsCallable(functions, 'upsertStakeholderProfile'), [functions]);
+  const upsertStakeholderProfile = useMemo(() => httpsCallable(functions, 'user-upsertStakeholderProfile'), [functions]);
 
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [isLoadingData, setIsLoadingData] = useState(true);
