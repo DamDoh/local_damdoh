@@ -13,15 +13,14 @@ import { Badge } from '@/components/ui/badge';
 import type { WasteManagementDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
-const functions = getFunctions(firebaseApp);
-
 export const WasteManagementDashboard = () => {
     const t = useTranslations('WasteManagementDashboard');
     const [dashboardData, setDashboardData] = useState<WasteManagementDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
-    const getWasteData = useMemo(() => httpsCallable(functions, 'getWasteManagementDashboardData'), [functions]);
+    
+    const functions = useMemo(() => getFunctions(firebaseApp), []);
+    const getWasteData = useMemo(() => httpsCallable(functions, 'dashboardData-getWasteManagementDashboardData'), [functions]);
 
     useEffect(() => {
         const fetchData = async () => {
