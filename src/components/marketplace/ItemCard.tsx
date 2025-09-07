@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import type { MarketplaceItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
-import { Briefcase, DollarSign, Brain } from "lucide-react";
+import { Briefcase, DollarSign, Brain, Star } from "lucide-react";
 
 interface ItemCardProps {
     item: MarketplaceItem;
@@ -20,6 +20,7 @@ interface ItemCardProps {
 export function ItemCard({ item, reason, className }: ItemCardProps) {
     const t = useTranslations('Marketplace');
     const isService = item.listingType === 'Service';
+    const isTourism = item.category === 'agri-tourism-services';
 
     return (
         <Card className={cn("flex flex-col h-full w-full max-w-sm hover:shadow-lg transition-shadow duration-200", className)}>
@@ -53,8 +54,9 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
                 
                 <div className="text-md font-bold pt-1 flex items-center gap-1.5">
                     {isService ? <Briefcase className="h-4 w-4" /> : <DollarSign className="h-4 w-4" />}
-                    {isService ? (
-                        <span>{(item as any).compensation || t('itemView.contactForRates')}</span>
+                    
+                    {isService && !isTourism ? (
+                        <span className="text-sm">{(item as any).compensation || t('itemView.contactForRates')}</span>
                     ) : (
                         <span>
                             {typeof item.price === 'number' ? (
@@ -68,6 +70,12 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
                         </span>
                     )}
                 </div>
+                 {isService && !isTourism && (item as any).experienceLevel && (
+                    <div className="text-xs text-muted-foreground flex items-center gap-1">
+                        <Star className="h-3 w-3" />
+                        <span>{(item as any).experienceLevel}</span>
+                    </div>
+                )}
                  {reason && (
                     <div className="text-xs text-blue-700 dark:text-blue-300 pt-1 italic flex items-start gap-1.5">
                        <Brain className="h-4 w-4 shrink-0 mt-0.5"/>

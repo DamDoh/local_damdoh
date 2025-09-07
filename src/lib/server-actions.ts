@@ -32,12 +32,14 @@ export async function performSearch(interpretation: Partial<SmartSearchInterpret
   const user = await getCurrentUser();
   if (!user) {
     console.error("performSearch: User is not authenticated.");
-    throw new Error("Unauthorized");
+    // For public-facing pages like the marketplace, we might allow unauthenticated searches.
+    // Let the backend function decide if auth is truly needed.
   }
 
   try {
       const performSearchCallable = httpsCallable(functions, 'search-performSearch');
-      const result = await performSearchCallable(interpretation);
+      // Pass the user's UID for potential personalization, but the function should handle null.
+      const result = await performSearchCallable({ ...interpretation, userId: user?.uid });
       return result.data as any[];
   } catch (error) {
       console.error("Error calling performSearch cloud function:", error);

@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { geohashForLocation, geohashQueryBounds, distanceBetween } from "geofire-common";
@@ -149,16 +150,18 @@ export const performSearch = functions.https.onCall(async (data, context) => {
       throw new functions.https.HttpsError("invalid-argument", "mainKeywords must be an array.");
   }
   
-  let query: admin.firestore.Query = db.collection("search_index");
+  let query: admin.firestore.Query | null = db.collection("search_index");
+  let isGeoQuery = false;
 
   // --- Geospatial Querying ---
   if (typeof lat === 'number' && typeof lng === 'number') {
-    const center = [lat, lng];
+    isGeoQuery = true;
+    const center: [number, number] = [lat, lng];
     const radiusInM = radiusInKm * 1000;
     const bounds = geohashQueryBounds(center, radiusInM);
     
     const geohashPromises = bounds.map(b => {
-      const q = query.orderBy('geohash').startAt(b[0]).endAt(b[1]);
+      const q = db.collection("search_index").orderBy('geohash').startAt(b[0]).endAt(b[1]);
       return q.get();
     });
 
@@ -170,18 +173,19 @@ export const performSearch = functions.https.onCall(async (data, context) => {
           const docLocation = doc.data().location;
           if (docLocation?.lat && docLocation?.lng) {
             const distanceInKm = distanceBetween([docLocation.lat, docLocation.lng], center);
-            if (distanceInKm <= radiusInKm) {
+            if (distanceInKm * 1000 <= radiusInM) { // Convert km to m for comparison
               matchingDocs.push(doc);
             }
           }
         }
       }
-      // If we did a geo-query, we start with this filtered set of documents.
-      // This is less efficient than combining in one query, but a limitation of Firestore.
-      // We will perform other filters on this smaller set in memory.
+      
       const ids = matchingDocs.map(d => d.id);
-      if (ids.length === 0) return []; // No results found nearby
-      query = db.collection('search_index').where(admin.firestore.FieldPath.documentId(), 'in', ids);
+      if (ids.length === 0) {
+        query = null; // Set query to null to indicate no results, skipping further queries
+      } else {
+        query = db.collection('search_index').where(admin.firestore.FieldPath.documentId(), 'in', ids);
+      }
       
     } catch(e) {
        console.error("Geospatial query failed", e);
@@ -191,40 +195,48 @@ export const performSearch = functions.https.onCall(async (data, context) => {
 
 
   try {
-    // --- Standard Filter Application ---
-    const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category')?.value;
-    const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType')?.value;
+    // If the query is null after a failed geo-search, return empty array immediately.
+    if (query === null) {
+      return [];
+    }
     
-    if (listingTypeFilter) {
-        query = query.where('listingType', '==', listingTypeFilter);
-    }
-    if (categoryFilter) {
-        query = query.where('tags', 'array-contains', categoryFilter);
-    }
-    if (identifiedLocation && !(typeof lat === 'number' && typeof lng === 'number')) {
-        query = query.where("location.address", ">=", identifiedLocation);
-        query = query.where("location.address", "<=", identifiedLocation + '\uf8ff');
-    }
-    if (perUnit) {
-        query = query.where("perUnit", "==", perUnit);
+    // --- Standard Filter Application (only if not a geo-query) ---
+    if (!isGeoQuery) {
+      const categoryFilter = suggestedFilters?.find((f: any) => f.type === 'category')?.value;
+      const listingTypeFilter = suggestedFilters?.find((f: any) => f.type === 'listingType')?.value;
+      
+      if (listingTypeFilter) {
+          query = query.where('listingType', '==', listingTypeFilter);
+      }
+      if (categoryFilter) {
+          query = query.where('tags', 'array-contains', categoryFilter);
+      }
+      if (identifiedLocation) {
+          query = query.where("location.address", ">=", identifiedLocation);
+          query = query.where("location.address", "<=", identifiedLocation + '\uf8ff');
+      }
+      if (perUnit) {
+          query = query.where("perUnit", "==", perUnit);
+      }
+
+      let hasPriceFilter = false;
+      if (typeof minPrice === 'number' && minPrice > 0) {
+          query = query.where('price', '>=', minPrice);
+          hasPriceFilter = true;
+      }
+      if (typeof maxPrice === 'number' && maxPrice > 0) {
+          query = query.where('price', '<=', maxPrice);
+          hasPriceFilter = true;
+      }
+
+      // Determine sorting order
+      if (hasPriceFilter) {
+          query = query.orderBy('price', 'asc');
+      } else {
+          query = query.orderBy("updatedAt", "desc");
+      }
     }
 
-    let hasPriceFilter = false;
-    if (typeof minPrice === 'number' && minPrice > 0) {
-        query = query.where('price', '>=', minPrice);
-        hasPriceFilter = true;
-    }
-    if (typeof maxPrice === 'number' && maxPrice > 0) {
-        query = query.where('price', '<=', maxPrice);
-        hasPriceFilter = true;
-    }
-
-    // Determine sorting order
-    if (hasPriceFilter) {
-        query = query.orderBy('price', 'asc');
-    } else {
-        query = query.orderBy("updatedAt", "desc");
-    }
 
     query = query.limit(queryLimit);
 
