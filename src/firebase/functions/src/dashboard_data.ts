@@ -4,9 +4,7 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
     AdminDashboardData,
-    AdminActivity,
-    RegulatorDashboardData,
-    WasteManagementDashboardData
+    AdminActivity
 } from "@/lib/types";
 
 const db = admin.firestore();
@@ -37,61 +35,6 @@ const checkAuth = (context: functions.https.CallableContext) => {
 
 
 
-export const getRegulatorDashboardData = functions.https.onCall(
-  async (data, context): Promise<RegulatorDashboardData> => {
-    checkAuth(context);
-
-    try {
-        const anomaliesPromise = db.collection('traceability_events')
-            .where('payload.isAnomaly', '==', true)
-            .limit(5)
-            .get();
-
-        const [anomaliesSnapshot] = await Promise.all([anomaliesPromise]);
-        
-        const supplyChainAnomalies = anomaliesSnapshot.docs.map(doc => {
-            const event = doc.data();
-            return {
-                 id: doc.id, 
-                 description: event.payload.anomalyDescription || 'Unusual supply chain activity detected.', 
-                 level: 'Warning' as 'Critical' | 'Warning', 
-                 vtiLink: `/traceability/batches/${event.vtiId}` 
-            }
-        });
-
-        return {
-            // These remain mocked as their data sources are complex
-            complianceRiskAlerts: [
-                { id: 'alert1', issue: 'Unverified organic inputs detected in VTI log', region: 'Rift Valley', severity: 'High', actionLink: '#' },
-            ],
-            pendingCertifications: { count: 12, actionLink: '#' },
-            supplyChainAnomalies,
-        };
-    } catch (error) {
-        console.error("Error fetching regulator dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
-    }
-  }
-);
-
-
-export const getWasteManagementDashboardData = functions.https.onCall(
-  (data, context): WasteManagementDashboardData => {
-    checkAuth(context);
-    return {
-      incomingWasteStreams: [
-        { id: 'waste1', type: 'Maize Stover', source: 'Green Valley Farms', quantity: '10 tons' }
-      ],
-      compostBatches: [
-        { id: 'comp1', status: 'Active', estimatedCompletion: new Date(Date.now() + 86400000 * 30).toISOString() },
-        { id: 'comp2', status: 'Curing', estimatedCompletion: new Date(Date.now() + 86400000 * 10).toISOString() },
-      ],
-      finishedProductInventory: [
-        { product: 'Grade A Compost', quantity: '25 tons', actionLink: '#' }
-      ]
-    };
-  }
-);
 
 
 export const getAdminDashboardData = functions.https.onCall(async (data, context): Promise<AdminDashboardData> => {
