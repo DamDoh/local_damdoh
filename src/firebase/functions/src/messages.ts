@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB } from './user';
@@ -32,8 +31,8 @@ export const getOrCreateConversation = functions.https.onCall(async (data, conte
 
     if (!conversationSnap.exists) {
         // Fetch profiles to store basic info in the conversation doc for easier access
-        const userProfile = (await getProfileByIdFromDB({ uid: userId })).data;
-        const recipientProfile = (await getProfileByIdFromDB({ uid: recipientId })).data;
+        const userProfile = (await getProfileByIdFromDB({ uid: userId }) as any);
+        const recipientProfile = (await getProfileByIdFromDB({ uid: recipientId }) as any);
 
         if (!userProfile || !recipientProfile) {
             throw new functions.https.HttpsError('not-found', 'One or more user profiles could not be found.');
@@ -99,39 +98,6 @@ export const getConversationsForUser = functions.https.onCall(async (data, conte
     return { conversations };
 });
 
-
-// Fetches all messages for a specific conversation.
-export const getMessagesForConversation = functions.https.onCall(async (data, context) => {
-    const userId = checkAuth(context);
-    const { conversationId } = data;
-
-    if (!conversationId) {
-        throw new functions.https.HttpsError('invalid-argument', 'A conversationId must be provided.');
-    }
-
-    // Security check: Ensure the user is part of this conversation
-    const conversationRef = db.collection('conversations').doc(conversationId);
-    const conversationSnap = await conversationRef.get();
-    if (!conversationSnap.exists || !conversationSnap.data()?.participantIds.includes(userId)) {
-        throw new functions.https.HttpsError('permission-denied', 'You are not a participant in this conversation.');
-    }
-
-    const messagesQuery = conversationRef.collection('messages').orderBy('timestamp', 'asc');
-    const snapshot = await messagesQuery.get();
-    
-    const messages = snapshot.docs.map(doc => {
-        const data = doc.data();
-        return {
-            id: doc.id,
-            conversationId: conversationId,
-            senderId: data.senderId,
-            content: data.content,
-            timestamp: (data.timestamp as admin.firestore.Timestamp)?.toDate?.().toISOString(),
-        }
-    });
-
-    return { messages };
-});
 
 // Sends a new message to a conversation.
 export const sendMessage = functions.https.onCall(async (data, context) => {

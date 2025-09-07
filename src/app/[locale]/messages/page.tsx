@@ -252,10 +252,10 @@ function MessagingContent() {
                                 <ArrowLeft className="h-4 w-4"/>
                             </Button>
                             <Avatar>
-                                <AvatarImage src={conversationHeaderProfile.avatarUrl} data-ai-hint="profile person agriculture" />
-                                <AvatarFallback>{conversationHeaderProfile.name?.substring(0,2) ?? '??'}</AvatarFallback>
+                                <AvatarImage src={conversationHeaderProfile?.avatarUrl} data-ai-hint="profile person agriculture" />
+                                <AvatarFallback>{conversationHeaderProfile?.name?.substring(0,2) ?? '??'}</AvatarFallback>
                             </Avatar>
-                            <h3 className="font-semibold">{conversationHeaderProfile.name}</h3>
+                            <h3 className="font-semibold">{conversationHeaderProfile?.name}</h3>
                         </div>
                         <ScrollArea className="flex-grow p-4">
                             {isLoadingMessages ? (
@@ -267,7 +267,7 @@ function MessagingContent() {
                                     {messages && messages.length > 0 ? (
                                         messages.map(msg => (
                                             <div key={msg.id} className={cn("flex gap-2 items-end", msg.senderId === user.uid ? "justify-end" : "justify-start")}>
-                                                {msg.senderId !== user.uid && <Avatar className="h-6 w-6 self-end"><AvatarImage src={conversationHeaderProfile.avatarUrl}/><AvatarFallback>{conversationHeaderProfile.name?.substring(0,1) ?? '?'}</AvatarFallback></Avatar>}
+                                                {msg.senderId !== user.uid && <Avatar className="h-6 w-6 self-end"><AvatarImage src={conversationHeaderProfile?.avatarUrl}/><AvatarFallback>{conversationHeaderProfile?.name?.substring(0,1) ?? '?'}</AvatarFallback></Avatar>}
                                                 <div className={cn("p-3 rounded-lg max-w-xs lg:max-w-md shadow-sm", msg.senderId === user.uid ? "bg-primary text-primary-foreground rounded-br-none" : "bg-background rounded-bl-none")}>
                                                     <p className="whitespace-pre-line break-words">{msg.content}</p>
                                                 </div>
