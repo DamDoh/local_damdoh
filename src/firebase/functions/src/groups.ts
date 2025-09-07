@@ -24,7 +24,6 @@ export const createGroup = functions.https.onCall(async (data, context) => {
 
     const userProfileResult = await getProfileByIdFromDB({ uid }, context);
     const userProfile = userProfileResult;
-
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
     }
@@ -113,7 +112,7 @@ export const getGroupMembers = functions.https.onCall(async (data, context) => {
     return { members };
 });
 
-const modifyMembership = async (groupId: string, userId: string, join: boolean) => {
+const modifyMembership = async (groupId: string, userId: string, join: boolean, context: functions.https.CallableContext) => {
     const groupRef = db.collection('groups').doc(groupId);
     const memberRef = groupRef.collection('members').doc(userId);
 
@@ -130,11 +129,11 @@ const modifyMembership = async (groupId: string, userId: string, join: boolean) 
                 throw new functions.https.HttpsError('already-exists', 'You are already a member of this group.');
             }
             
-            const userProfileDoc = await db.collection('users').doc(userId).get();
-             if (!userProfileDoc.exists) {
+            const userProfileResult = await getProfileByIdFromDB({ uid: userId }, context);
+            const userProfile = userProfileResult;
+             if (!userProfile) {
                 throw new functions.https.HttpsError('not-found', 'Your user profile could not be found.');
             }
-            const userProfile = userProfileDoc.data() as UserProfile;
 
             transaction.set(memberRef, {
                 displayName: userProfile.displayName,
@@ -157,14 +156,14 @@ const modifyMembership = async (groupId: string, userId: string, join: boolean) 
 export const joinGroup = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { groupId } = data;
-    await modifyMembership(groupId, uid, true);
+    await modifyMembership(groupId, uid, true, context);
     return { success: true, message: 'Successfully joined the group.' };
 });
 
 export const leaveGroup = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { groupId } = data;
-    await modifyMembership(groupId, uid, false);
+    await modifyMembership(groupId, uid, false, context);
     return { success: true, message: 'Successfully left the group.' };
 });
 
@@ -371,7 +370,7 @@ export const respondToJoinRequest = functions.https.onCall(async (data, context)
     
     if (action === 'accept') {
         await requestRef.update({ status: 'accepted' });
-        await modifyMembership(groupId, requesterId, true);
+        await modifyMembership(groupId, requesterId, true, context);
     } else { // decline
         await requestRef.update({ status: 'declined' });
     }
@@ -392,5 +391,3 @@ export const inviteUserToGroup = functions.https.onCall(async (data, context) =>
     
     return { success: true, message: `An invitation has been sent to ${email}.`};
 });
-
-    
