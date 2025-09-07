@@ -51,7 +51,6 @@ export const getRegulatorDashboardData = functions.https.onCall(
   }
 );
 
-
 export const generateRegulatoryReport = functions.https.onCall(
   async (data, context) => {
     const callerUid = checkAuth(context);

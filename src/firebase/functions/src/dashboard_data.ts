@@ -4,7 +4,34 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
     AdminDashboardData,
-    AdminActivity
+    AdminActivity,
+    FarmerDashboardData,
+    CooperativeDashboardData,
+    BuyerDashboardData,
+    LogisticsDashboardData,
+    FiDashboardData,
+    FieldAgentDashboardData,
+    InputSupplierDashboardData,
+    AgroExportDashboardData,
+    ProcessingUnitDashboardData,
+    WarehouseDashboardData,
+    QaDashboardData,
+    CertificationBodyDashboardData,
+    ResearcherDashboardData,
+    AgronomistDashboardData,
+    AgroTourismDashboardData,
+    InsuranceProviderDashboardData,
+    EnergyProviderDashboardData,
+    CrowdfunderDashboardData,
+    EquipmentSupplierDashboardData,
+    WasteManagementDashboardData,
+    PackagingSupplierDashboardData,
+    FinancialApplication,
+    AgriTechInnovatorDashboardData,
+    FarmerDashboardAlert,
+    OperationsDashboardData,
+    FinancialProduct,
+    KnfBatch
 } from "@/lib/types";
 
 const db = admin.firestore();
@@ -34,6 +61,82 @@ const checkAuth = (context: functions.https.CallableContext) => {
 // =================================================================
 
 
+export const getQaDashboardData = functions.https.onCall(
+  (data, context): QaDashboardData => {
+    checkAuth(context);
+    return {
+        pendingInspections: [
+            { id: 'insp1', batchId: 'vti-xyz-123', productName: 'Avocado Batch', sellerName: 'Green Valley Farms', dueDate: new Date().toISOString(), actionLink: '#'}
+        ],
+        recentResults: [
+            { id: 'res1', productName: 'Maize Batch', result: 'Fail', reason: 'Aflatoxin levels exceed limit.', inspectedAt: new Date().toISOString() }
+        ],
+        qualityMetrics: { passRate: 98, averageScore: 9.2 }
+    };
+  }
+);
+
+
+export const getCertificationBodyDashboardData = functions.https.onCall(
+  async (data, context): Promise<CertificationBodyDashboardData> => {
+    checkAuth(context);
+    return {
+        pendingAudits: [
+            { id: 'aud1', farmName: 'Green Valley Farms', standard: 'EU Organic', dueDate: new Date().toISOString(), actionLink: '#' }
+        ],
+        certifiedEntities: [
+            { id: 'ent1', name: 'Riverside Orchards', type: 'Farm', certificationStatus: 'Active', actionLink: '#' }
+        ],
+        standardsMonitoring: [
+            { standard: 'Fair Trade', adherenceRate: 95, alerts: 2, actionLink: '#' }
+        ]
+    };
+  }
+);
+
+export const getResearcherDashboardData = functions.https.onCall(
+    async (data, context): Promise<ResearcherDashboardData> => {
+      const userId = checkAuth(context);
+      try {
+          // Fetch knowledge hub contributions made by this user
+          const articlesSnapshot = await db.collection('knowledge_articles')
+              .where('authorId', '==', userId) // Query by UID
+              .orderBy('createdAt', 'desc')
+              .limit(10)
+              .get();
+
+          const knowledgeHubContributions = articlesSnapshot.docs.map(doc => {
+              const article = doc.data();
+              return {
+                  id: doc.id,
+                  title: article.title_en || article.title_km || "Untitled Article",
+                  status: 'Published' as const // Placeholder status
+              };
+          });
+
+          // Mock data for datasets and projects, as these collections don't exist yet
+          const availableDatasets = [
+              { id: 'set1', name: 'Rift Valley Maize Yields (2020-2023)', dataType: 'CSV', accessLevel: 'Requires Request' as const, actionLink: '#' },
+              { id: 'set2', name: 'Regional Soil Health Data (Anonymized)', dataType: 'JSON', accessLevel: 'Public' as const, actionLink: '#' },
+          ];
+          
+          const ongoingProjects = [
+              { id: 'proj1', title: 'Impact of KNF on Soil Health in Smallholder Farms', progress: 65, collaborators: ['University of Nairobi'], actionLink: '#' },
+              { id: 'proj2', title: 'AI-driven Pest Identification Accuracy Study', progress: 30, collaborators: ['DamDoh AI Team'], actionLink: '#' }
+          ];
+
+          return {
+              availableDatasets,
+              ongoingProjects,
+              knowledgeHubContributions,
+          };
+
+      } catch (error) {
+          console.error("Error fetching researcher dashboard data:", error);
+          throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+      }
+    }
+);
 
 
 
