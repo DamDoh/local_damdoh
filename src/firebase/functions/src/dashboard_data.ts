@@ -6,10 +6,8 @@ import type {
     AdminDashboardData,
     AdminActivity,
     FarmerDashboardData,
-    CooperativeDashboardData,
     BuyerDashboardData,
     RegulatorDashboardData,
-    LogisticsDashboardData,
     FiDashboardData,
     FieldAgentDashboardData,
     InputSupplierDashboardData,
@@ -62,97 +60,6 @@ const checkAuth = (context: functions.https.CallableContext) => {
 // =================================================================
 
 
-export const getCooperativeDashboardData = functions.https.onCall(
-  async (data, context): Promise<CooperativeDashboardData> => {
-    const cooperativeId = checkAuth(context);
-    
-    try {
-        const coopDoc = await db.collection('users').doc(cooperativeId).get();
-        if (!coopDoc.exists) {
-            throw new functions.https.HttpsError('not-found', 'Cooperative profile not found.');
-        }
-
-        const coopData = coopDoc.data();
-        const groupId = coopData?.profileData?.groupId;
-        let memberCount = 0;
-        let memberIds: string[] = [];
-
-        if (groupId) {
-             const groupDoc = await db.collection('groups').doc(groupId).get();
-             if (groupDoc.exists) {
-                 memberCount = groupDoc.data()?.memberCount || 0;
-                 const membersSnapshot = await db.collection(`groups/${groupId}/members`).get();
-                 memberIds = membersSnapshot.docs.map(doc => doc.id);
-             }
-        }
-        
-        let totalLandArea = 0;
-        let aggregatedProduce: CooperativeDashboardData['aggregatedProduce'] = [];
-        
-        if (memberIds.length > 0) {
-            // Firestore 'in' query is limited to 30 items per query.
-            // Chunk the memberIds array to handle more than 30 members.
-            const memberChunks: string[][] = [];
-            for (let i = 0; i < memberIds.length; i += 30) {
-                memberChunks.push(memberIds.slice(i, i + 30));
-            }
-            
-            const farmPromises = memberChunks.map(chunk => 
-                db.collection('farms').where('ownerId', 'in', chunk).get()
-            );
-
-            const cropPromises = memberChunks.map(chunk =>
-                db.collection('crops')
-                  .where('ownerId', 'in', chunk)
-                  .where('currentStage', 'in', ['Harvesting', 'Post-Harvest'])
-                  .orderBy('harvestDate', 'desc')
-                  .limit(10) // Limit per chunk for performance
-                  .get()
-            );
-
-            const farmSnapshots = await Promise.all(farmPromises);
-            farmSnapshots.forEach(snapshot => {
-                snapshot.forEach(doc => {
-                    const sizeString = doc.data().size || '0';
-                    const sizeValue = parseFloat(sizeString.split(' ')[0]) || 0;
-                    totalLandArea += sizeValue;
-                });
-            });
-
-            const cropSnapshots = await Promise.all(cropPromises);
-            cropSnapshots.forEach(snapshot => {
-                snapshot.forEach(doc => {
-                    const cropData = doc.data();
-                    aggregatedProduce.push({
-                        id: doc.id,
-                        productName: cropData.cropType || 'Unknown Produce',
-                        quantity: parseFloat(cropData.expectedYield?.split(' ')[0] || '0'), 
-                        quality: 'Grade A', // Placeholder as it's not on the crop model
-                        readyBy: (cropData.harvestDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
-                    });
-                });
-            });
-            // Sort and limit final aggregated produce
-            aggregatedProduce.sort((a, b) => new Date(b.readyBy).getTime() - new Date(a.readyBy).getTime()).slice(0, 10);
-        }
-
-
-        const pendingMemberApplications = 3; // This remains mocked
-
-        return {
-            memberCount,
-            totalLandArea,
-            aggregatedProduce,
-            pendingMemberApplications,
-            groupId: groupId || null,
-        };
-
-    } catch (error) {
-        console.error("Error fetching cooperative dashboard data:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
-    }
-  }
-);
 
 export const getBuyerDashboardData = functions.https.onCall(
   async (data, context): Promise<BuyerDashboardData> => {
@@ -222,7 +129,7 @@ export const getRegulatorDashboardData = functions.https.onCall(
     checkAuth(context);
 
     try {
-        const anomaliesPromise = db.collection('traceability_events')
+        const anomaliesPromise = await db.collection('traceability_events')
             .where('payload.isAnomaly', '==', true)
             .limit(5)
             .get();
@@ -254,6 +161,83 @@ export const getRegulatorDashboardData = functions.https.onCall(
   }
 );
 
+
+export const getInputSupplierDashboardData = functions.https.onCall(
+  async (data, context): Promise<InputSupplierDashboardData> => {
+    const supplierId = checkAuth(context);
+
+    try {
+      // 1. Fetch active orders
+      const ordersSnapshot = await db.collection('marketplace_orders')
+        .where('sellerId', '==', supplierId)
+        .get();
+
+      const ordersData = ordersSnapshot.docs.map(doc => doc.data());
+      const totalValue = ordersData.reduce((sum, order) => sum + (order.totalPrice || 0), 0);
+
+      const activeOrders = {
+        count: ordersSnapshot.size,
+        value: totalValue,
+        link: '/marketplace/my-orders'
+      };
+
+      // 2. Keep other sections as mock data for now
+      const demandForecast = [
+        { id: 'df1', region: 'Rift Valley', product: 'DAP Fertilizer', trend: 'High', reason: 'Planting season approaching' }
+      ];
+      const productPerformance = [
+        { id: 'pp1', productName: 'Eco-Fertilizer Plus', rating: 4.5, feedback: 'Great results on maize crops.', link: '#' }
+      ];
+
+      return {
+        demandForecast,
+        productPerformance,
+        activeOrders,
+      };
+
+    } catch (error) {
+        console.error("Error fetching Input Supplier dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
+  }
+);
+
+export const getAgroExportDashboardData = functions.https.onCall(
+  async (data, context): Promise<AgroExportDashboardData> => {
+    checkAuth(context);
+     try {
+        const vtisForExportPromise = db.collection('vti_registry')
+            .where('metadata.forExport', '==', true)
+            // Ideally, we'd have a `documentationStatus` field to query
+            .limit(5)
+            .get();
+
+        const [vtisSnapshot] = await Promise.all([vtisForExportPromise]);
+
+        const pendingCustomsDocs = vtisSnapshot.docs.map(doc => ({
+            id: doc.id,
+            vtiLink: `/traceability/batches/${doc.id}`,
+            destination: doc.data().metadata.destinationCountry || 'Unknown',
+            status: 'Awaiting Phytosanitary Certificate' // Mock status
+        }));
+
+        return {
+            pendingCustomsDocs,
+            // These remain mocked
+            trackedShipments: [
+                { id: 'ship1', status: 'In Transit', location: 'Indian Ocean', carrier: 'Maersk' }
+            ],
+            complianceAlerts: [
+                { id: 'ca1', content: 'New packaging regulations for EU effective Aug 1.', actionLink: '#' }
+            ]
+        };
+     } catch (error) {
+        console.error("Error fetching agro-export dashboard data:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch dashboard data.");
+    }
+  }
+);
+
 export const getQaDashboardData = functions.https.onCall(
   (data, context): QaDashboardData => {
     checkAuth(context);
@@ -265,6 +249,24 @@ export const getQaDashboardData = functions.https.onCall(
             { id: 'res1', productName: 'Maize Batch', result: 'Fail', reason: 'Aflatoxin levels exceed limit.', inspectedAt: new Date().toISOString() }
         ],
         qualityMetrics: { passRate: 98, averageScore: 9.2 }
+    };
+  }
+);
+
+
+export const getCertificationBodyDashboardData = functions.https.onCall(
+  async (data, context): Promise<CertificationBodyDashboardData> => {
+    checkAuth(context);
+    return {
+        pendingAudits: [
+            { id: 'aud1', farmName: 'Green Valley Farms', standard: 'EU Organic', dueDate: new Date().toISOString(), actionLink: '#' }
+        ],
+        certifiedEntities: [
+            { id: 'ent1', name: 'Riverside Orchards', type: 'Farm', certificationStatus: 'Active', actionLink: '#' }
+        ],
+        standardsMonitoring: [
+            { standard: 'Fair Trade', adherenceRate: 95, alerts: 2, actionLink: '#' }
+        ]
     };
   }
 );
