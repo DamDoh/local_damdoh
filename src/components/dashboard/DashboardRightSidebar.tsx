@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import Link from "next/link";
@@ -38,7 +37,7 @@ export function DashboardRightSidebar() {
   const { user, loading: authLoading } = useAuth();
   const { profile, loading: profileLoading } = useUserProfile();
 
-  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'sendConnectionRequest'), []);
+  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'network-sendConnectionRequest'), []);
   const suggestConnectionsCallable = useMemo(() => httpsCallable(functions, 'suggestConnections'), []);
 
   const fetchSuggestions = useCallback(async () => {
