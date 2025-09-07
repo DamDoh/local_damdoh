@@ -19,6 +19,7 @@ if (admin.apps.length === 0) {
 
 // Group functions by module for cleaner organization
 import * as activityFunctions from "./activity";
+import * as adminFunctions from "./admin";
 import * as agriEventsFunctions from "./agri-events";
 import * as agroTourismFunctions from "./agro-tourism";
 import * as agronomistFunctions from "./agronomist";
@@ -61,6 +62,7 @@ import * as utils from "./utils";
 
 // Export all cloud functions, grouped by their respective modules
 export const activity = activityFunctions;
+export const admin = adminFunctions;
 export const agriEvents = agriEventsFunctions;
 export const agroTourism = agroTourismFunctions;
 export const agronomist = agronomistFunctions;
