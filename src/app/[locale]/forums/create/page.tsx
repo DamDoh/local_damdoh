@@ -26,7 +26,7 @@ export default function CreateTopicPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const functions = getFunctions(firebaseApp);
-    const createTopicCallable = useMemo(() => httpsCallable(functions, 'createTopic'), [functions]);
+    const createTopicCallable = useMemo(() => httpsCallable(functions, 'forums-createTopic'), [functions]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
