@@ -20,6 +20,8 @@ const checkAuth = (context: functions.https.CallableContext) => {
   return context.auth.uid;
 };
 
+
+
 export const createFeedPost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { content, pollOptions, imageUrl, dataAiHint } = data; // pollOptions is an array of objects with a 'text' property
