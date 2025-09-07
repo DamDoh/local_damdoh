@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -19,15 +18,14 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Cell } from 'recharts';
 import { useAuth } from '@/lib/auth-utils';
 
 
-const functions = getFunctions(firebaseApp);
-
 export const ResearcherDashboard = () => {
   const t = useTranslations('ResearcherDashboard');
   const [dashboardData, setDashboardData] = useState<ResearcherDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { user } = useAuth();
-
+  
+  const functions = useMemo(() => getFunctions(firebaseApp), []);
   const getKnowledgeArticlesCallable = useMemo(() => httpsCallable(functions, 'knowledgeHub-getKnowledgeArticles'), [functions]);
 
   useEffect(() => {
@@ -51,8 +49,8 @@ export const ResearcherDashboard = () => {
           })),
           // Mock data for other sections as they don't have backend functions yet
           availableDatasets: [
-              { id: 'set1', name: 'Rift Valley Maize Yields (2020-2023)', dataType: 'CSV', accessLevel: 'Requires Request', actionLink: '#' },
-              { id: 'set2', name: 'Regional Soil Health Data (Anonymized)', dataType: 'JSON', accessLevel: 'Public', actionLink: '#' },
+              { id: 'set1', name: 'Rift Valley Maize Yields (2020-2023)', dataType: 'CSV', accessLevel: 'Requires Request' as const, actionLink: '#' },
+              { id: 'set2', name: 'Regional Soil Health Data (Anonymized)', dataType: 'JSON', accessLevel: 'Public' as const, actionLink: '#' },
           ],
           ongoingProjects: [
               { id: 'proj1', title: 'Impact of KNF on Soil Health in Smallholder Farms', progress: 65, collaborators: ['University of Nairobi'], actionLink: '#' },
