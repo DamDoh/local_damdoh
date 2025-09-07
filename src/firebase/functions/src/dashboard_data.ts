@@ -498,6 +498,7 @@ export const getLogisticsDashboardData = functions.https.onCall(
     try {
         const shipmentsSnapshot = await db.collection('marketplace_orders')
             .where('status', '==', 'shipped')
+            // In a real app, we'd also filter by logisticsProviderId if that field existed on the order
             .orderBy('updatedAt', 'desc')
             .limit(5)
             .get();
@@ -525,6 +526,8 @@ export const getLogisticsDashboardData = functions.https.onCall(
 
         const jobsSnapshot = await db.collection('marketplace_orders')
             .where('status', '==', 'confirmed')
+            // Filter where no logistics provider is assigned yet
+            //.where('logisticsProviderId', '==', null) 
             .orderBy('createdAt', 'desc')
             .limit(5)
             .get();
@@ -1216,4 +1219,3 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
-

@@ -2,7 +2,9 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { stakeholderProfileSchemas } from "./stakeholder-profile-data";
+import { v4 as uuidv4 } from "uuid";
+import {stakeholderProfileSchemas} from "./stakeholder-profile-data";
+import { UserRole } from "./types";
 import { deleteCollectionByPath } from './utils';
 
 const db = admin.firestore();
@@ -195,4 +197,3 @@ export const requestDataExport = functions.https.onCall(async (data, context) =>
     return { success: true, message: "If an account with your email exists, a data export link will be sent shortly." };
 });
 
-  

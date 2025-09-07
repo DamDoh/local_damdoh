@@ -27,7 +27,7 @@ export const ResearcherDashboard = () => {
   const [error, setError] = useState<string | null>(null);
   const { user } = useAuth();
 
-  const getResearcherDashboardDataCallable = useMemo(() => httpsCallable(functions, 'knowledgeHub-getKnowledgeArticles'), [functions]);
+  const getKnowledgeArticlesCallable = useMemo(() => httpsCallable(functions, 'knowledgeHub-getKnowledgeArticles'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +38,7 @@ export const ResearcherDashboard = () => {
       setIsLoading(true);
       setError(null);
       try {
-        const result = await getResearcherDashboardDataCallable({ authorId: user.uid });
+        const result = await getKnowledgeArticlesCallable({ authorId: user.uid });
         const articles = (result.data as any)?.articles || [];
         
         // This dashboard's data is different from the function's direct output, so we construct it.
@@ -69,7 +69,7 @@ export const ResearcherDashboard = () => {
     };
 
     fetchData();
-  }, [getResearcherDashboardDataCallable, user, t]);
+  }, [getKnowledgeArticlesCallable, user, t]);
 
     const contributionStatusCounts = useMemo(() => {
         if (!dashboardData?.knowledgeHubContributions) return [];
