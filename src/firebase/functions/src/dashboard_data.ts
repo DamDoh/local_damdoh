@@ -475,7 +475,6 @@ export const getFieldAgentDashboardData = functions.https.onCall(
   }
 );
 
-
 export const getEnergyProviderDashboardData = functions.https.onCall(
   (data, context): EnergyProviderDashboardData => {
     checkAuth(context);
@@ -507,23 +506,6 @@ export const getCrowdfunderDashboardData = functions.https.onCall(
   }
 );
 
-export const getWasteManagementDashboardData = functions.https.onCall(
-  (data, context): WasteManagementDashboardData => {
-    checkAuth(context);
-    return {
-      incomingWasteStreams: [
-        { id: 'waste1', type: 'Maize Stover', source: 'Green Valley Farms', quantity: '10 tons' }
-      ],
-      compostBatches: [
-        { id: 'comp1', status: 'Active', estimatedCompletion: new Date(Date.now() + 86400000 * 30).toISOString() },
-        { id: 'comp2', status: 'Curing', estimatedCompletion: new Date(Date.now() + 86400000 * 10).toISOString() },
-      ],
-      finishedProductInventory: [
-        { product: 'Grade A Compost', quantity: '25 tons', actionLink: '#' }
-      ]
-    };
-  }
-);
 
 export const getAgriTechInnovatorDashboardData = functions.https.onCall(
   async (data, context): Promise<AgriTechInnovatorDashboardData> => {
