@@ -30,11 +30,10 @@ export default function MyNetworkPage() {
     const [isResponding, setIsResponding] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
-    const getPendingRequests = useMemo(() => httpsCallable(functions, 'getPendingRequests'), []);
-    const getConnectionsCallable = useMemo(() => httpsCallable(functions, 'getConnections'), []);
-    const respondToRequest = useMemo(() => httpsCallable(functions, 'respondToConnectionRequest'), []);
-    const removeConnection = useMemo(() => httpsCallable(functions, 'removeConnection'), []);
-    const sendInviteCallable = useMemo(() => httpsCallable(functions, 'sendInvite'), []);
+    const getPendingRequests = useMemo(() => httpsCallable(functions, 'network-getPendingRequests'), [functions]);
+    const getConnectionsCallable = useMemo(() => httpsCallable(functions, 'network-getConnections'), [functions]);
+    const respondToRequest = useMemo(() => httpsCallable(functions, 'network-respondToConnectionRequest'), []);
+    const removeConnectionCallable = useMemo(() => httpsCallable(functions, 'network-removeConnection'), []);
 
     const fetchData = useCallback(async () => {
         setIsLoading(true);
@@ -77,7 +76,7 @@ export default function MyNetworkPage() {
     const handleRemoveConnection = async (connectionId: string) => {
         setIsResponding(connectionId); // Reuse loading state
         try {
-            await removeConnection({ connectionId });
+            await removeConnectionCallable({ connectionId });
             toast({ title: t('toast.connectionRemoved') });
             fetchData(); // Refetch
         } catch (error: any) {
@@ -86,26 +85,7 @@ export default function MyNetworkPage() {
             setIsResponding(null);
         }
     };
-
-    const handleInvite = async () => {
-      const inviteeEmail = prompt(t('noConnections.invitePrompt'));
-      if (inviteeEmail) {
-        try {
-          await sendInviteCallable({ inviteeEmail });
-          toast({
-            title: t('noConnections.inviteSuccessTitle'),
-            description: t('noConnections.inviteSuccessDescription', { email: inviteeEmail }),
-          });
-        } catch (error: any) {
-          toast({
-            title: t('noConnections.inviteErrorTitle'),
-            description: error.message,
-            variant: 'destructive',
-          });
-        }
-      }
-    };
-
+    
 
     if (isLoading || authLoading) {
         return <NetworkPageSkeleton />;
@@ -175,7 +155,7 @@ export default function MyNetworkPage() {
                                         <Users className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
                                         <h3 className="font-semibold">{t('noConnections.title')}</h3>
                                         <p className="text-sm text-muted-foreground mb-4">{t('noConnections.description')}</p>
-                                        <Button onClick={handleInvite}><Send className="mr-2 h-4 w-4" />{t('noConnections.inviteButton')}</Button>
+                                        <Button asChild><Link href="/network"><UserPlus className="mr-2 h-4 w-4" />{t('noConnections.findButton')}</Link></Button>
                                     </div>
                                 )}
                             </div>
@@ -206,7 +186,9 @@ export default function MyNetworkPage() {
                                             </div>
                                         </div>
                                         <div className="flex gap-2 self-end sm:self-center">
-                                            <Button size="sm" variant="secondary" onClick={() => handleRespondToRequest(req.id, 'declined')} disabled={!!isResponding}><X className="h-4 w-4"/></Button>
+                                            <Button size="sm" variant="outline" onClick={() => handleRespondToRequest(req.id, 'declined')} disabled={!!isResponding}>
+                                                <X className="h-4 w-4"/>
+                                            </Button>
                                             <Button size="sm" onClick={() => handleRespondToRequest(req.id, 'accepted')} disabled={isResponding === req.id}>
                                                 {isResponding === req.id ? <Loader2 className="h-4 w-4 animate-spin"/> : <Check className="h-4 w-4"/>}
                                             </Button>
