@@ -66,6 +66,7 @@ import * as universalIdFunctions from "./universal-id";
 import * as utils from "./utils";
 import * as wasteManagementFunctions from "./waste-management";
 import * as agriTechInnovatorFunctions from "./agri-tech-innovator";
+import * as agroExportFunctions from "./agro-export";
 
 // Export all cloud functions, grouped by their respective modules
 export const activity = activityFunctions;
@@ -116,6 +117,7 @@ export const universalId = universalIdFunctions;
 export const utilityFunctions = utils;
 export const wasteManagement = wasteManagementFunctions;
 export const agriTechInnovator = agriTechInnovatorFunctions;
+export const agroExport = agroExportFunctions;
 
 
 // Export the Express app as a Cloud Function for Cloud Run services
