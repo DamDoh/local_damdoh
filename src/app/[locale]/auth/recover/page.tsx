@@ -38,9 +38,9 @@ export default function RecoverPage() {
   const [recoverySession, setRecoverySession] = useState<{ sessionId: string; recoveryQrValue: string; userIdToRecover: string } | null>(null);
   const [isScanning, setIsScanning] = useState(false);
 
-  const createRecoverySessionCallable = useMemo(() => httpsCallable(functions, 'universalId-createRecoverySession'), [functions]);
-  const scanRecoveryQrCallable = useMemo(() => httpsCallable(functions, 'universalId-scanRecoveryQr'), [functions]);
-  const completeRecoveryCallable = useMemo(() => httpsCallable(functions, 'universalId-completeRecovery'), [functions]);
+  const createRecoverySessionCallable = useMemo(() => httpsCallable(functions, 'universalId-createRecoverySession'), []);
+  const scanRecoveryQrCallable = useMemo(() => httpsCallable(functions, 'universalId-scanRecoveryQr'), []);
+  const completeRecoveryCallable = useMemo(() => httpsCallable(functions, 'universalId-completeRecovery'), []);
 
   const handleStartRecovery = () => {
     setRecoveryStep('enter_phone');
