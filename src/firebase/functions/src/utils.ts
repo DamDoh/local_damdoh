@@ -1,7 +1,7 @@
 
 
 import * as admin from "firebase-admin";
-import type { UserRole } from "./types";
+import type { UserRole } from "@/lib/types";
 
 const db = admin.firestore();
 

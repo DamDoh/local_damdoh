@@ -203,8 +203,7 @@ export const upsertStakeholderProfile = functions.https.onCall(
 );
 
 /**
- * Helper function to get a user's profile from Firestore by their ID.
- * This is an internal helper for other backend functions.
+ * Fetches a user's profile from Firestore by their ID.
  * @param {string} uid The user's ID.
  * @return {Promise<any | null>} The user's profile data or null if not found.
  */

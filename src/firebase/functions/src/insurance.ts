@@ -69,7 +69,7 @@ export const getInsuranceProductDetails = functions.https.onCall(async (data, co
     let provider = null;
     
     if (productData.providerId) {
-        const providerProfile = await getProfileByIdFromDB(productData.providerId);
+        const providerProfile = (await getProfileByIdFromDB({ uid: productData.providerId })).data;
         if (providerProfile) {
             provider = {
                 displayName: providerProfile.displayName,
@@ -116,3 +116,4 @@ export const submitInsuranceApplication = functions.https.onCall(async (data, co
 
     return { success: true, applicationId: newApplicationRef.id };
 });
+

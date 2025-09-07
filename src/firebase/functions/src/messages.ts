@@ -32,8 +32,8 @@ export const getOrCreateConversation = functions.https.onCall(async (data, conte
 
     if (!conversationSnap.exists) {
         // Fetch profiles to store basic info in the conversation doc for easier access
-        const userProfile = await getProfileByIdFromDB(userId);
-        const recipientProfile = await getProfileByIdFromDB(recipientId);
+        const userProfile = (await getProfileByIdFromDB({ uid: userId })).data;
+        const recipientProfile = (await getProfileByIdFromDB({ uid: recipientId })).data;
 
         if (!userProfile || !recipientProfile) {
             throw new functions.https.HttpsError('not-found', 'One or more user profiles could not be found.');

@@ -21,7 +21,6 @@ if (admin.apps.length === 0) {
 import * as activityFunctions from "./activity";
 import * as agriEventsFunctions from "./agri-events";
 import * as agroTourismFunctions from "./agro-tourism";
-import * as aiAndAnalyticsFunctions from "./ai-and-analytics";
 import * as aiServicesFunctions from "./ai-services";
 import * as apiKeyFunctions from "./api-keys";
 import * as apiGatewayFunctions from "./api-gateway";
@@ -53,7 +52,6 @@ import * as geospatialFunctions from "./geospatial";
 export const activity = activityFunctions;
 export const agriEvents = agriEventsFunctions;
 export const agroTourism = agroTourismFunctions;
-export const aiAndAnalytics = aiAndAnalyticsFunctions;
 export const aiServices = aiServicesFunctions;
 export const apiKeys = apiKeyFunctions;
 export const apiGateway = apiGatewayFunctions;

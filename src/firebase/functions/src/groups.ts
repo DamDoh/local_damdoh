@@ -22,7 +22,7 @@ export const createGroup = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Group name and description are required.');
     }
 
-    const userProfile = await getProfileByIdFromDB(uid);
+    const userProfile = (await getProfileByIdFromDB({ uid })).data as UserProfile;
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
     }
@@ -128,7 +128,7 @@ const modifyMembership = async (groupId: string, userId: string, join: boolean) 
                 throw new functions.https.HttpsError('already-exists', 'You are already a member of this group.');
             }
             
-            const userProfile = await getProfileByIdFromDB(userId);
+            const userProfile = (await getProfileByIdFromDB({ uid: userId })).data as UserProfile;
              if (!userProfile) {
                 throw new functions.https.HttpsError('not-found', 'Your user profile could not be found.');
             }
@@ -310,7 +310,7 @@ export const requestToJoinGroup = functions.https.onCall(async (data, context) =
         throw new functions.https.HttpsError('already-exists', 'You have already sent a request to join this group.');
     }
     
-    const userProfile = await getProfileByIdFromDB(requesterId);
+    const userProfile = (await getProfileByIdFromDB({ uid: requesterId })).data;
 
     await requestRef.set({
         requesterId,
