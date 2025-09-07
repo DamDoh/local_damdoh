@@ -26,7 +26,6 @@ import * as aiServicesFunctions from "./ai-services";
 import * as apiKeyFunctions from "./api-keys";
 import * as apiGatewayFunctions from "./api-gateway";
 import * as communityFunctions from "./community";
-import * as dashboardDataFunctions from "./dashboard_data";
 import * as farmManagementFunctions from "./farm-management";
 import * as financialServicesFunctions from "./financial-services";
 import * as forumFunctions from "./forums";
@@ -46,7 +45,7 @@ import * as searchFunctions from "./search";
 import * as sustainabilityFunctions from "./sustainability";
 import * as universalIdFunctions from "./universal-id";
 import * as geospatialFunctions from "./geospatial";
-// No need to import from 'utils.ts' as it only contains helpers
+import * as utils from "./utils"; // Import utils
 
 // Export all cloud functions, grouped by their respective modules
 export const activity = activityFunctions;
@@ -57,7 +56,6 @@ export const aiServices = aiServicesFunctions;
 export const apiKeys = apiKeyFunctions;
 export const apiGateway = apiGatewayFunctions;
 export const community = communityFunctions;
-export const dashboardData = dashboardDataFunctions; // Changed from 'dashboard'
 export const farmManagement = farmManagementFunctions;
 export const financials = financialServicesFunctions;
 export const forums = forumFunctions;
@@ -77,6 +75,7 @@ export const search = searchFunctions;
 export const sustainability = sustainabilityFunctions;
 export const universalId = universalIdFunctions;
 export const geospatial = geospatialFunctions;
+export const utilityFunctions = utils; // Exporting utils might be useful for testing or direct calls if needed
 
 
 // Export the Express app as a Cloud Function for Cloud Run services
