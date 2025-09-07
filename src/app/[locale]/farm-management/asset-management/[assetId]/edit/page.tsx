@@ -76,6 +76,7 @@ export default function EditAssetPage() {
       form.reset({
         ...data,
         purchaseDate: new Date(data.purchaseDate),
+        value: data.value ?? undefined
       });
     } catch (error: any) {
       toast({ variant: "destructive", title: "Error", description: error.message });

@@ -128,7 +128,7 @@ export type Worker = z.infer<typeof WorkerSchema>;
 export type WorkLog = z.infer<typeof WorkLogSchema>;
 export type Farm = z.infer<typeof createFarmSchema> & { id: string };
 export type Crop = z.infer<typeof createCropSchema> & { id: string, plantingDate: string, harvestDate?: string, createdAt: string, ownerId: string };
-export type InventoryItem = z.infer<typeof createInventoryItemSchema> & { id: string };
+export type InventoryItem = z.infer<typeof createInventoryItemSchema> & { id: string, purchaseDate?: string, expiryDate?: string | null };
 export type KnowledgeArticle = z.infer<typeof KnowledgeArticleSchema>;
 export type FarmAsset = z.infer<typeof FarmAssetSchema>;
 

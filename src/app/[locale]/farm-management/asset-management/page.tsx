@@ -130,7 +130,7 @@ export default function AssetManagementPage() {
                     <TableCell className="font-medium">{asset.name}</TableCell>
                     <TableCell>{asset.type}</TableCell>
                     <TableCell>{asset.purchaseDate ? new Date(asset.purchaseDate).toLocaleDateString() : 'N/A'}</TableCell>
-                    <TableCell>{asset.currency} {asset.value.toLocaleString()}</TableCell>
+                    <TableCell>{asset.currency} {asset.value?.toLocaleString()}</TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end space-x-2">
                         <Button asChild variant="outline" size="sm" title={t('actions.edit')}>

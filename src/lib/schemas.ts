@@ -608,7 +608,7 @@ export const createAssetSchema = z.object({
   name: z.string().min(3, "Asset name must be at least 3 characters.").max(100),
   type: z.enum(['Machinery', 'Tool', 'Building', 'Other'], { required_error: "Please select an asset type." }),
   purchaseDate: z.date({ required_error: "Purchase date is required." }),
-  value: z.coerce.number().min(0, "Value cannot be negative."),
+  value: z.coerce.number().min(0, "Value cannot be negative.").optional(),
   currency: z.string().default('USD'),
   notes: z.string().max(1000, "Notes cannot exceed 1000 characters.").optional(),
 });
