@@ -44,9 +44,9 @@ import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashb
 import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
 import { AgriTechInnovatorDashboard } from './hubs/AgriTechInnovatorDashboard';
 import { OperationsDashboard } from './hubs/OperationsDashboard';
-import { LogisticsDashboard } from './processing-logistics/LogisticsDashboard';
-import { ProcessingUnitDashboard } from './processing-logistics/ProcessingUnitDashboard';
-import { WarehouseDashboard } from './processing-logistics/WarehouseDashboard';
+import { LogisticsDashboard } from './hubs/processing-logistics/LogisticsDashboard';
+import { ProcessingUnitDashboard } from './hubs/processing-logistics/ProcessingUnitDashboard';
+import { WarehouseDashboard } from './hubs/processing-logistics/WarehouseDashboard';
 import { ConsumerDashboard } from './hubs/ConsumerDashboard';
 
 
