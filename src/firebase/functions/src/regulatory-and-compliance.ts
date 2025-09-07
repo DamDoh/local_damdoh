@@ -1,7 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import {getRole} from "./profiles";
+import { getRole } from "./utils";
 import {_internalProcessReportData} from "./ai-and-analytics";
 import type { RegulatorDashboardData } from "@/lib/types";
 

@@ -1,4 +1,3 @@
-
 // This file is deprecated.
 // The functions previously in this file have been moved to:
 // - `user.ts` for profile creation and updates.

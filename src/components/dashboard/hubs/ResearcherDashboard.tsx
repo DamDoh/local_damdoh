@@ -15,6 +15,8 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/
 import type { ResearcherDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Cell } from 'recharts';
+import { useAuth } from '@/lib/auth-utils';
+
 
 const functions = getFunctions(firebaseApp);
 
@@ -23,16 +25,41 @@ export const ResearcherDashboard = () => {
   const [dashboardData, setDashboardData] = useState<ResearcherDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { user } = useAuth();
 
-  const getResearcherDashboardDataCallable = useMemo(() => httpsCallable<void, ResearcherDashboardData>(functions, 'getResearcherDashboardData'), [functions]);
+  const getResearcherDashboardDataCallable = useMemo(() => httpsCallable(functions, 'knowledgeHub-getKnowledgeArticles'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!user) {
+        setIsLoading(false);
+        return;
+      }
       setIsLoading(true);
       setError(null);
       try {
-        const result = await getResearcherDashboardDataCallable();
-        setDashboardData(result.data);
+        const result = await getResearcherDashboardDataCallable({ authorId: user.uid });
+        const articles = (result.data as any)?.articles || [];
+        
+        // This dashboard's data is different from the function's direct output, so we construct it.
+        const constructedData: ResearcherDashboardData = {
+          knowledgeHubContributions: articles.map((article: any) => ({
+              id: article.id,
+              title: article.title_en || article.title_km || "Untitled Article",
+              status: article.status || 'Draft',
+          })),
+          // Mock data for other sections as they don't have backend functions yet
+          availableDatasets: [
+              { id: 'set1', name: 'Rift Valley Maize Yields (2020-2023)', dataType: 'CSV', accessLevel: 'Requires Request', actionLink: '#' },
+              { id: 'set2', name: 'Regional Soil Health Data (Anonymized)', dataType: 'JSON', accessLevel: 'Public', actionLink: '#' },
+          ],
+          ongoingProjects: [
+              { id: 'proj1', title: 'Impact of KNF on Soil Health in Smallholder Farms', progress: 65, collaborators: ['University of Nairobi'], actionLink: '#' },
+              { id: 'proj2', title: 'AI-driven Pest Identification Accuracy Study', progress: 30, collaborators: ['DamDoh AI Team'], actionLink: '#' }
+          ],
+        };
+        setDashboardData(constructedData);
+
       } catch (err) {
         console.error("Error fetching Researcher dashboard data:", err);
         setError(t('errors.load'));
@@ -42,7 +69,7 @@ export const ResearcherDashboard = () => {
     };
 
     fetchData();
-  }, [getResearcherDashboardDataCallable, t]);
+  }, [getResearcherDashboardDataCallable, user, t]);
 
     const contributionStatusCounts = useMemo(() => {
         if (!dashboardData?.knowledgeHubContributions) return [];

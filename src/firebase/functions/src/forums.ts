@@ -109,7 +109,8 @@ export const createForumPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Topic ID, title, and content are required.');
     }
     
-    const userProfile = await getProfileByIdFromDB({ uid });
+    const userProfileResult = await getProfileByIdFromDB({ uid }, context);
+    const userProfile = userProfileResult;
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
     }
@@ -188,7 +189,8 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Topic ID, post ID, and content are required.');
     }
     
-    const userProfile = await getProfileByIdFromDB({ uid });
+    const userProfileResult = await getProfileByIdFromDB({ uid }, context);
+    const userProfile = userProfileResult;
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
     }

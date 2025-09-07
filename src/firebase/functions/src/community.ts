@@ -36,7 +36,9 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionsInvalid');
     }
 
-    const userProfile = await getProfileByIdFromDB({ uid });
+    const userProfileResult = await getProfileByIdFromDB({ uid }, context);
+    const userProfile = userProfileResult;
+
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -140,7 +142,8 @@ export const addComment = functions.https.onCall(async (data, context) => {
     const postRef = db.collection('posts').doc(postId);
     const commentRef = postRef.collection('comments').doc();
 
-    const userProfile = await getProfileByIdFromDB({ uid });
+    const userProfileResult = await getProfileByIdFromDB({ uid }, context);
+    const userProfile = userProfileResult;
      if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
