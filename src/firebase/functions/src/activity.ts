@@ -131,7 +131,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
                 id: doc.id,
                 type: 'Received an Order',
                 title: `For: ${sale.listingName}`,
-                timestamp: toISODate(order.createdAt),
+                timestamp: toISODate(sale.createdAt),
                 icon: 'CircleDollarSign'
             });
         });

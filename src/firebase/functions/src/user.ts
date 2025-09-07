@@ -9,6 +9,94 @@ import { deleteCollectionByPath } from './utils';
 
 const db = admin.firestore();
 
+/**
+ * Triggered on new Firebase Authentication user creation.
+ * Creates a corresponding user document in Firestore with default values.
+ * This is the secure, server-side way to create user profiles.
+ */
+export const onUserCreate = functions.auth.user().onCreate(async (user) => {
+    console.log(`New user signed up: ${user.uid}, email: ${user.email}`);
+
+    const userRef = db.collection("users").doc(user.uid);
+    const universalId = uuidv4();
+
+    try {
+        await userRef.set({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName || user.email?.split('@')[0] || "New User",
+            avatarUrl: user.photoURL || null,
+            primaryRole: 'Consumer', // Default role
+            profileSummary: "Just joined the DamDoh community!",
+            universalId: universalId,
+            viewCount: 0,
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        console.log(`Successfully created Firestore profile for user ${user.uid}.`);
+        return null;
+    } catch (error) {
+        console.error(`Error creating Firestore profile for user ${user.uid}:`, error);
+        // Optional: you could add logic to delete the auth user if the profile creation fails,
+        // but this could also be problematic if the function fails for transient reasons.
+        return null;
+    }
+});
+
+
+/**
+ * Triggered when a user deletes their Firebase Authentication account.
+ * This function performs a "cascade delete" to remove all of the user's
+ * data from the Firestore database, ensuring GDPR/CCPA compliance.
+ */
+export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) => {
+    console.log(`User account deleted: ${user.uid}. Starting data cleanup.`);
+    const uid = user.uid;
+    const batchSize = 200; // Define a batch size for deletions
+
+    const collectionsToDelete = [
+        { name: 'posts', userIdField: 'userId' },
+        { name: 'marketplaceItems', userIdField: 'sellerId' },
+        { name: 'farms', userIdField: 'ownerId' },
+        { name: 'crops', userIdField: 'ownerId' },
+        // Add other collections and their respective user ID fields here
+    ];
+
+    try {
+        const promises: Promise<any>[] = [];
+
+        // Delete top-level collections created by the user
+        for (const collection of collectionsToDelete) {
+            const query = db.collection(collection.name).where(collection.userIdField, '==', uid);
+            const snapshot = await query.get();
+            if (!snapshot.empty) {
+                console.log(`Deleting ${snapshot.size} documents from '${collection.name}' for user ${uid}.`);
+                const deletePromise = Promise.all(snapshot.docs.map(doc => doc.ref.delete()));
+                promises.push(deletePromise);
+            }
+        }
+        
+        // Delete user's own profile document
+        promises.push(db.collection('users').doc(uid).delete());
+        
+        // Delete any collections nested under the user document
+        const workersPath = `users/${uid}/workers`;
+        promises.push(deleteCollectionByPath(workersPath, batchSize));
+
+        // Delete credit score document
+        promises.push(db.collection('credit_scores').doc(uid).delete());
+
+        await Promise.all(promises);
+        console.log(`Successfully completed data cleanup for user ${uid}.`);
+        return null;
+
+    } catch (error) {
+        console.error(`Error cleaning up data for user ${uid}:`, error);
+        return null;
+    }
+});
+
+
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
     throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
@@ -39,6 +127,7 @@ const validateProfileData = (role: string, data: any) => {
   return data || {};
 };
 
+
 /**
  * Creates or updates a detailed stakeholder profile. This is the single, secure entry point for all profile modifications.
  * @param {any} data The data for the function call. Must include a primaryRole.
@@ -62,6 +151,8 @@ export const upsertStakeholderProfile = functions.https.onCall(
       profileData,
     } = data;
 
+    // During initial sign-up, only role and display name are required.
+    // The onUserCreate trigger handles the base document. This function just merges the initial role info.
     if (!primaryRole) {
       throw new functions.https.HttpsError(
         "invalid-argument",
@@ -95,6 +186,7 @@ export const upsertStakeholderProfile = functions.https.onCall(
       // Add the validated data to the payload
       if (validatedProfileData) updatePayload.profileData = validatedProfileData;
 
+      // Use { merge: true } to create or update the document without overwriting existing fields.
       await userRef.set(updatePayload, {merge: true});
 
       return {status: "success", message: "Profile updated successfully."};
@@ -111,7 +203,6 @@ export const upsertStakeholderProfile = functions.https.onCall(
     }
   },
 );
-
 
 /**
  * Fetches a user's profile from Firestore by their ID.
@@ -196,4 +287,3 @@ export const requestDataExport = functions.https.onCall(async (data, context) =>
     // 5. Email the link to the user's registered email address.
     return { success: true, message: "If an account with your email exists, a data export link will be sent shortly." };
 });
-
