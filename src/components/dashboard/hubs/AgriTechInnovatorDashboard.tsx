@@ -18,6 +18,17 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@/components/ui/alert-dialog"
 
 const functions = getFunctions(firebaseApp);
 
@@ -59,26 +70,26 @@ const ApiKeyRow = ({ apiKey, onRevoke }: { apiKey: ApiKey, onRevoke: (keyId: str
                 <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handleCopy} title={t('table.copyKey')} disabled={!apiKey.key}>
                     <Copy className="h-4 w-4" />
                 </Button>
-                 <Dialog>
-                    <DialogTrigger asChild>
+                 <AlertDialog>
+                    <AlertDialogTrigger asChild>
                         <Button variant="ghost" size="icon" className="h-8 w-8" title={t('table.revokeKey')} disabled={apiKey.status === 'Revoked'}>
                             <Trash2 className="h-4 w-4 text-destructive" />
                         </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                        <DialogHeader>
-                        <DialogTitle>{t('revokeDialog.title')}</DialogTitle>
-                        <DialogDescription>{t('revokeDialog.description')}</DialogDescription>
-                        </DialogHeader>
-                        <DialogFooter>
-                            <Button variant="outline" onClick={(e) => (e.target as HTMLElement).closest('[role="dialog"]')?.click()}>{t('revokeDialog.cancel')}</Button>
-                            <Button variant="destructive" onClick={handleRevokeClick} disabled={isRevoking}>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                        <AlertDialogTitle>{t('revokeDialog.title')}</AlertDialogTitle>
+                        <AlertDialogDescription>{t('revokeDialog.description')}</AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                            <AlertDialogCancel>{t('revokeDialog.cancel')}</AlertDialogCancel>
+                            <AlertDialogAction onClick={handleRevokeClick} disabled={isRevoking}>
                                 {isRevoking && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
                                 {t('revokeDialog.confirm')}
-                            </Button>
-                        </DialogFooter>
-                    </DialogContent>
-                </Dialog>
+                            </AlertDialogAction>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
             </TableCell>
         </TableRow>
     );
@@ -99,9 +110,9 @@ export const AgriTechInnovatorDashboard = () => {
   
   const [newlyGeneratedKey, setNewlyGeneratedKey] = useState<ApiKey | null>(null);
 
-  const generateApiKeyCallable = useMemo(() => httpsCallable(functions, 'apiKeys-generateApiKey'), []);
-  const revokeApiKeyCallable = useMemo(() => httpsCallable(functions, 'apiKeys-revokeApiKey'), []);
-  const getAgriTechInnovatorDashboardDataCallable = useMemo(() => httpsCallable(functions, 'dashboardData-getAgriTechInnovatorDashboardData'), []);
+  const generateApiKeyCallable = useMemo(() => httpsCallable(functions, 'apiKeys-generateApiKey'), [functions]);
+  const revokeApiKeyCallable = useMemo(() => httpsCallable(functions, 'apiKeys-revokeApiKey'), [functions]);
+  const getAgriTechInnovatorDashboardDataCallable = useMemo(() => httpsCallable(functions, 'dashboardData-getAgriTechInnovatorDashboardData'), [functions]);
 
   const fetchDashboardData = useCallback(async () => {
       setIsLoading(true);
