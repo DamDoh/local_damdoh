@@ -43,9 +43,9 @@ function MessagingContent() {
     const [isSending, setIsSending] = useState(false);
     const [recipientProfile, setRecipientProfile] = useState<UserProfile | null>(null);
 
-    const getConversationsCallable = useCallback(() => httpsCallable(functions, 'getConversationsForUser')(), [functions]);
-    const sendMessageCallable = useCallback((conversationId: string, content: string) => httpsCallable(functions, 'sendMessage')({ conversationId, content }), [functions]);
-    const getOrCreateConversationCallable = useCallback((recipientId: string) => httpsCallable(functions, 'getOrCreateConversation')({ recipientId }), [functions]);
+    const getConversationsCallable = useCallback(() => httpsCallable(functions, 'messages-getConversationsForUser')(), [functions]);
+    const sendMessageCallable = useCallback((conversationId: string, content: string) => httpsCallable(functions, 'messages-sendMessage')({ conversationId, content }), [functions]);
+    const getOrCreateConversationCallable = useCallback((recipientId: string) => httpsCallable(functions, 'messages-getOrCreateConversation')({ recipientId }), [functions]);
     
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
