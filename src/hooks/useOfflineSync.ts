@@ -59,7 +59,7 @@ export function useOfflineSync() {
           const actionsToSync = await db.outbox.toArray();
           
           // Call the backend function with the batch of changes
-          const uploadChanges = httpsCallable(functions, 'uploadOfflineChanges');
+          const uploadChanges = httpsCallable(functions, 'offlineSync-uploadOfflineChanges');
           await uploadChanges({ changes: actionsToSync });
           
           // On success, clear the synced items from the outbox
@@ -81,7 +81,7 @@ export function useOfflineSync() {
   // Exposed function to add an action to the queue
   const addActionToQueue = useCallback(async (actionPayload: any) => {
     const newAction: OfflineAction = {
-      ...actionPayload, // This should contain collectionPath, documentId, operation, payload
+      ...actionPayload, // This should contain operation, collectionPath, documentId, payload
       timestamp: Date.now()
     };
     try {

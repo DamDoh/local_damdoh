@@ -48,7 +48,7 @@ export default function LogHarvestPage() {
   const { isOnline, addActionToQueue } = useOfflineSync();
 
   const functions = getFunctions(firebaseApp);
-  const handleHarvestEvent = httpsCallable(functions, 'handleHarvestEvent');
+  const handleHarvestEvent = httpsCallable(functions, 'traceability-handleHarvestEvent');
 
   const form = useForm<CreateHarvestValues>({
     resolver: zodResolver(createHarvestSchema),
@@ -151,7 +151,12 @@ export default function LogHarvestPage() {
                     </div>
                     <CardTitle className="text-2xl pt-4">{t('success.successCardTitle')}</CardTitle>
                     <CardDescription>
-                       {t('success.successCardDescription', { cropType, vtiId: createdVtiId, isOffline: isOfflinePlaceholder ? 1 : 0 })}
+                       {t.rich('success.successCardDescription', { 
+                           cropType, 
+                           vtiId: isOfflinePlaceholder ? t('success.offlineVtiPlaceholder') : createdVtiId,
+                           isOffline: isOfflinePlaceholder,
+                           b: (chunks) => <b className="text-foreground">{chunks}</b>
+                        })}
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
