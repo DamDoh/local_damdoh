@@ -72,6 +72,7 @@ export const pathnames = {
   '/agri-events/[id]': '/agri-events/[id]',
   '/agri-events/[id]/manage': '/agri-events/[id]/manage',
   '/blog/[slug]': '/blog/[slug]',
+  '/farm-management/asset-management/[assetId]/edit': '/farm-management/asset-management/[assetId]/edit',
   '/farm-management/farms/[farmId]': '/farm-management/farms/[farmId]',
   '/farm-management/farms/[farmId]/create-crop': '/farm-management/farms/[farmId]/create-crop',
   '/farm-management/farms/[farmId]/crops/[cropId]': '/farm-management/farms/[farmId]/crops/[cropId]',

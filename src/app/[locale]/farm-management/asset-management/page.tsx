@@ -12,6 +12,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useToast } from '@/hooks/use-toast';
 
 interface FarmAsset {
   id: string;
@@ -38,6 +39,7 @@ export default function AssetManagementPage() {
   const [assets, setAssets] = useState<FarmAsset[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { toast } = useToast();
 
   const functions = getFunctions(firebaseApp);
   const getUserAssetsCallable = useMemo(() => httpsCallable(functions, 'assetManagement-getUserAssets'), [functions]);
@@ -57,10 +59,15 @@ export default function AssetManagementPage() {
       console.error("Failed to fetch assets:", err);
       setError(err.message || 'Failed to load assets.');
       setAssets([]);
+      toast({
+          variant: "destructive",
+          title: "Error",
+          description: err.message,
+      });
     } finally {
       setIsLoading(false);
     }
-  }, [user, getUserAssetsCallable]);
+  }, [user, getUserAssetsCallable, toast]);
 
   useEffect(() => {
     fetchAssets();
@@ -126,13 +133,9 @@ export default function AssetManagementPage() {
                     <TableCell>{asset.currency} {asset.value.toLocaleString()}</TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end space-x-2">
-                        <Link href={`/farm-management/asset-management/${asset.id}`} passHref>
-                            <Button variant="outline" size="sm" title={t('actions.view')}><Eye className="h-4 w-4"/></Button>
-                        </Link>
-                        <Link href={`/farm-management/asset-management/${asset.id}/edit`} passHref>
-                             <Button variant="outline" size="sm" title={t('actions.edit')}><Edit className="h-4 w-4"/></Button>
-                        </Link>
-                         {/* Implement Delete/Archive functionality */}
+                        <Button asChild variant="outline" size="sm" title={t('actions.edit')}>
+                           <Link href={`/farm-management/asset-management/${asset.id}/edit`}><Edit className="h-4 w-4"/></Link>
+                        </Button>
                          <Button variant="destructive" size="sm" title={t('actions.delete')} onClick={() => alert('Delete functionality coming soon')}><Trash2 className="h-4 w-4"/></Button>
                       </div>
                     </TableCell>
