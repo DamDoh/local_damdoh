@@ -37,7 +37,7 @@ export async function performSearch(interpretation: Partial<SmartSearchInterpret
   }
 
   try {
-      const performSearchCallable = httpsCallable(functions, 'performSearch');
+      const performSearchCallable = httpsCallable(functions, 'search-performSearch');
       const result = await performSearchCallable(interpretation);
       return result.data as any[];
   } catch (error) {
@@ -116,7 +116,31 @@ export async function generateForumPostDraftCallable(input: {
 }
 
 export async function getProfileByIdFromDB(uid: string) {
-    const getProfileCallable = httpsCallable(functions, 'profiles-getProfileByIdFromDB');
+    const getProfileCallable = httpsCallable(functions, 'user-getProfileByIdFromDB');
     const result = await getProfileCallable({ uid });
     return result.data as any;
+}
+
+export async function getFarmData(farmId: string) {
+    const getFarmCallable = httpsCallable(functions, 'farmManagement-getFarm');
+    const result = await getFarmCallable({ farmId });
+    return result.data as any;
+}
+
+export async function updateFarmData(farmId: string, values: any) {
+    const updateFarmCallable = httpsCallable(functions, 'farmManagement-updateFarm');
+    const payload = { farmId, ...values };
+    await updateFarmCallable(payload);
+}
+
+export async function getCropData(cropId: string) {
+    const getCropCallable = httpsCallable(functions, 'farmManagement-getCrop');
+    const result = await getCropCallable({ cropId });
+    return result.data as any;
+}
+
+export async function updateCropData(cropId: string, values: any) {
+    const updateCropCallable = httpsCallable(functions, 'farmManagement-updateCrop');
+    const payload = { cropId, ...values };
+    await updateCropCallable(payload);
 }

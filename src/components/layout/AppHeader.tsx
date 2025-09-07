@@ -23,13 +23,13 @@ import {
   SheetDescription,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { HeaderThemeToggle } from "@/components/HeaderThemeToggle";
 import { UniversalSearchModal } from './UniversalSearchModal';
 import { Skeleton } from "@/components/ui/skeleton";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { AppSidebarNav } from './AppSidebarNav';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { APP_NAME } from '@/lib/constants';
+import { HeaderThemeToggle } from '../HeaderThemeToggle';
 
 
 function HeaderSkeleton() {

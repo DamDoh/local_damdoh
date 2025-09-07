@@ -5,17 +5,19 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthContext, type AuthContextType } from "@/lib/auth-utils";
 import React, { useState, useEffect, Suspense, useCallback } from 'react';
 import { onAuthStateChanged, type User as FirebaseUser } from "firebase/auth";
-import { auth } from '@/lib/firebase/client';
+import { auth, functions } from '@/lib/firebase/client';
 import { useOfflineSync } from '@/hooks/useOfflineSync'; // Import the hook
-import { getProfileByIdFromDB } from '@/lib/server-actions';
 import type { UserProfile } from '@/lib/types';
-
+import { httpsCallable } from 'firebase/functions';
 
 // A dummy component to ensure the offline sync hook is initialized at the root.
 function OfflineSyncInitializer() {
     useOfflineSync(); // This initializes the listeners and sync logic.
     return null; // It doesn't render anything.
 }
+
+const getProfileByIdFromDB = httpsCallable(functions, 'user-getProfileByIdFromDB');
+
 
 export function Providers({ 
     children
@@ -27,8 +29,8 @@ export function Providers({
     const [loading, setLoading] = useState(true);
 
     const fetchProfile = useCallback(async (uid: string) => {
-        const userProfile = await getProfileByIdFromDB(uid);
-        setProfile(userProfile);
+        const result = await getProfileByIdFromDB({ uid });
+        setProfile(result.data as UserProfile);
     }, []);
 
     useEffect(() => {

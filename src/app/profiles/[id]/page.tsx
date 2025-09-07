@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
@@ -11,6 +10,7 @@ import QRCode from 'qrcode.react';
 import type { UserProfile } from "@/lib/types";
 import { useAuth } from "@/lib/auth-utils";
 import { APP_NAME } from "@/lib/constants";
+import { getProfileByIdFromDB as getProfileByIdFromServer } from "@/lib/server-actions";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -90,7 +90,6 @@ export default function ProfileDetailPage() {
   const getUserActivity = useMemo(() => httpsCallable(functions, 'activity-getUserActivity'), [functions]);
   const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'activity-logProfileView'), [functions]);
   const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'activity-getUserEngagementStats'), [functions]);
-  const getProfileByIdCallable = useMemo(() => httpsCallable(functions, 'profiles-getProfileByIdFromDB'), [functions]);
   const sendInviteCallable = useMemo(() => httpsCallable(functions, 'network-sendInvite'), [functions]);
   
   useEffect(() => {
@@ -114,9 +113,8 @@ export default function ProfileDetailPage() {
 
     if (idToFetch) {
       setIsLoading(true);
-      getProfileByIdCallable({ uid: idToFetch })
-        .then(result => {
-          const fetchedProfile = result.data as UserProfile;
+      getProfileByIdFromServer(idToFetch)
+        .then(fetchedProfile => {
           setProfile(fetchedProfile);
           if (fetchedProfile) {
             if (authUser && fetchedProfile.id !== authUser.uid) {
@@ -149,7 +147,7 @@ export default function ProfileDetailPage() {
     } else if (!authLoading) {
       setIsLoading(false);
     }
-  }, [params.id, authUser, authLoading, router, getUserActivity, logProfileViewCallable, getEngagementStatsCallable, getProfileByIdCallable]);
+  }, [params.id, authUser, authLoading, router, getUserActivity, logProfileViewCallable, getEngagementStatsCallable]);
   
   const handleInvite = async () => {
     const inviteeEmail = prompt(t('invitePrompt'));
@@ -370,13 +368,3 @@ export default function ProfileDetailPage() {
     </div>
   );
 }
-
-```
-    <file>src/firebase/functions/src/profiles.ts</file>
-    <content><![CDATA[
-
-// This file is deprecated. All profile-related callable functions have been moved to their own dedicated files
-// (e.g., activity.ts, network.ts) and user lifecycle triggers (onCreate, onDelete) are now in utils.ts.
-// This file is kept temporarily to avoid breaking any lingering imports but should
-// not be used for new development. It will be removed in a future cleanup.
-export {};

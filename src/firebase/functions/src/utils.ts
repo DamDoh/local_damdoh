@@ -2,6 +2,7 @@
 import * as admin from "firebase-admin";
 import * as functions from "firebase-functions";
 import { v4 as uuidv4 } from "uuid";
+import type { UserRole } from "./types";
 
 const db = admin.firestore();
 
@@ -146,3 +147,40 @@ export const onUserDeleteCleanup = functions.auth.user().onDelete(async (user) =
         return null;
     }
 });
+
+
+/**
+ * Helper function to get a user's role from Firestore.
+ * @param {string | undefined} uid The user's ID.
+ * @return {Promise<UserRole | null>} The user's role or null if not found.
+ */
+export async function getRole(uid: string | undefined): Promise<UserRole | null> {
+  if (!uid) {
+    return null;
+  }
+  try {
+    const userDoc = await db.collection("users").doc(uid).get();
+    const role = userDoc.data()?.primaryRole;
+    return role ? (role as UserRole) : null;
+  } catch (error) {
+    console.error("Error fetching user role:", error);
+    return null;
+  }
+}
+
+/**
+ * Helper function to get a user's document from Firestore.
+ * @param {string} uid The user's ID.
+ * @return {Promise<FirebaseFirestore.DocumentSnapshot | null>} The user's document snapshot or null if not found.
+ */
+export async function getUserDocument(
+  uid: string,
+): Promise<FirebaseFirestore.DocumentSnapshot | null> {
+  try {
+    const userDoc = await db.collection("users").doc(uid).get();
+    return userDoc.exists ? userDoc : null;
+  } catch (error) {
+    console.error("Error getting user document:", error);
+    return null;
+  }
+}

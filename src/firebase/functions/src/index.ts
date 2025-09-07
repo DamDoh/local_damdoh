@@ -1,5 +1,4 @@
 
-
 /**
  * @fileoverview This is the main entry point for all Firebase Cloud Functions.
  * It initializes the Firebase Admin SDK and exports all the functions from other
@@ -62,6 +61,7 @@ import * as researchFunctions from "./research";
 import * as searchFunctions from "./search";
 import * as sustainabilityFunctions from "./sustainability";
 import * as universalIdFunctions from "./universal-id";
+import * as userFunctions from "./user";
 import * as utilsFunctions from "./utils";
 import * as wasteManagementFunctions from "./waste-management";
 
@@ -110,6 +110,7 @@ export const research = researchFunctions;
 export const search = searchFunctions;
 export const sustainability = sustainabilityFunctions;
 export const universalId = universalIdFunctions;
+export const user = userFunctions;
 export const utils = utilsFunctions;
 export const wasteManagement = wasteManagementFunctions;
 
