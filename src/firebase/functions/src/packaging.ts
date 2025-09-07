@@ -1,4 +1,5 @@
 
+      
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { PackagingSupplierDashboardData } from "@/lib/types";
@@ -7,10 +8,11 @@ const db = admin.firestore();
 
 const checkAuth = (context: functions.https.CallableContext) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
   }
   return context.auth.uid;
 };
+
 
 export const getPackagingSupplierDashboardData = functions.https.onCall(
   async (data, context): Promise<PackagingSupplierDashboardData> => {
@@ -69,3 +71,5 @@ export const getPackagingSupplierDashboardData = functions.https.onCall(
     }
   }
 );
+
+    
