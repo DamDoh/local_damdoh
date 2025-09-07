@@ -1,7 +1,8 @@
 
+
 "use client";
 
-import { useState, useEffect, useCallback, useRef, Suspense } from 'react';
+import { useState, useEffect, useCallback, useRef, Suspense, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from '@/navigation';
 import { Card, CardContent } from "@/components/ui/card";
@@ -23,10 +24,6 @@ import { useTranslations } from 'next-intl';
 import { getFirestore, collection, query, where, orderBy, onSnapshot, Timestamp } from 'firebase/firestore';
 
 
-const functions = getFunctions(firebaseApp);
-const db = getFirestore(firebaseApp);
-
-
 function MessagingContent() {
     const t = useTranslations('messagingPage');
     const { user, loading: authLoading } = useAuth();
@@ -42,6 +39,9 @@ function MessagingContent() {
     const [newMessage, setNewMessage] = useState("");
     const [isSending, setIsSending] = useState(false);
     const [recipientProfile, setRecipientProfile] = useState<UserProfile | null>(null);
+
+    const functions = useMemo(() => getFunctions(firebaseApp), []);
+    const db = useMemo(() => getFirestore(firebaseApp), []);
 
     const getConversationsCallable = useCallback(() => httpsCallable(functions, 'messages-getConversationsForUser')(), [functions]);
     const sendMessageCallable = useCallback((conversationId: string, content: string) => httpsCallable(functions, 'messages-sendMessage')({ conversationId, content }), [functions]);
@@ -112,7 +112,7 @@ function MessagingContent() {
         // Cleanup listener when conversation changes or component unmounts
         return () => unsubscribe();
 
-    }, [selectedConversation, toast]);
+    }, [selectedConversation, toast, db]);
 
     // This useEffect is for INITIAL load and handling deep links
     useEffect(() => {

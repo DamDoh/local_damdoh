@@ -21,7 +21,7 @@ import { useToast } from "@/hooks/use-toast";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { Loader2 } from 'lucide-react';
-import { useUserProfile } from "@/hooks/useUserProfile";
+import { useUserProfile } from '@/hooks/useUserProfile';
 import { useAuth } from "@/lib/auth-utils";
 import { useFormatter, useTranslations } from "next-intl";
 import { onSnapshot, collection, query, orderBy, getFirestore, limit } from "firebase/firestore";
@@ -33,9 +33,6 @@ interface FeedItemCardProps {
   onDeletePost: (id: string) => void;
 }
 
-const functions = getFunctions(firebaseApp);
-const db = getFirestore(firebaseApp);
-
 export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItemCardProps) {
   const t = useTranslations('FeedItemCard');
   const format = useFormatter();
@@ -44,18 +41,6 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   
   const [votedOptionIndex, setVotedOptionIndex] = useState<number | null>(null);
   const [currentPollOptions, setCurrentPollOptions] = useState<PollOption[]>([]);
-  
-  const voteOnPollCallable = useMemo(() => httpsCallable(functions, 'community-voteOnPoll'), [functions]);
-
-  useEffect(() => {
-      setCurrentPollOptions(item.pollOptions?.map(opt => ({...opt})) || []);
-      setVotedOptionIndex(null); 
-  }, [item.pollOptions, item.id]);
-
-  const totalVotes = useMemo(() => {
-    return currentPollOptions.reduce((acc, opt) => acc + (opt.votes || 0), 0);
-  }, [currentPollOptions]);
-
   
   const [showCommentInput, setShowCommentInput] = useState(false);
   const [commentText, setCommentText] = useState("");
@@ -67,8 +52,23 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   const [hasMoreComments, setHasMoreComments] = useState(true);
 
   const { toast } = useToast();
-  const getCommentsForPost = useMemo(() => httpsCallable(functions, 'community-getCommentsForPost'), [functions]);
   const { profile: currentUserProfile } = useUserProfile();
+
+  // Initialize Firebase services within the component
+  const functions = useMemo(() => getFunctions(firebaseApp), []);
+  const db = useMemo(() => getFirestore(firebaseApp), []);
+  const voteOnPollCallable = useMemo(() => httpsCallable(functions, 'community-voteOnPoll'), [functions]);
+  const getCommentsForPost = useMemo(() => httpsCallable(functions, 'community-getCommentsForPost'), [functions]);
+  
+
+  useEffect(() => {
+      setCurrentPollOptions(item.pollOptions?.map(opt => ({...opt})) || []);
+      setVotedOptionIndex(null); 
+  }, [item.pollOptions, item.id]);
+
+  const totalVotes = useMemo(() => {
+    return currentPollOptions.reduce((acc, opt) => acc + (opt.votes || 0), 0);
+  }, [currentPollOptions]);
   
   useEffect(() => {
     setIsLiked(false); 
@@ -120,7 +120,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
     } finally {
       setIsLoadingReplies(false);
     }
-  }, [item.id, lastVisible, hasMoreComments, toast, t]);
+  }, [item.id, lastVisible, hasMoreComments, toast, t, db]);
 
 
   const handleCommentButtonClick = async () => {
