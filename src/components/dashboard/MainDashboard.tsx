@@ -47,6 +47,7 @@ import { OperationsDashboard } from './hubs/OperationsDashboard';
 import { LogisticsDashboard } from './hubs/processing-logistics/LogisticsDashboard';
 import { ProcessingUnitDashboard } from './hubs/processing-logistics/ProcessingUnitDashboard';
 import { WarehouseDashboard } from './hubs/processing-logistics/WarehouseDashboard';
+import { ConsumerDashboard } from './hubs/ConsumerDashboard';
 
 
 const { useState, useEffect, useMemo } = React;
@@ -65,6 +66,7 @@ const HubComponentMap: { [key in typeof STAKEHOLDER_ROLES[number]]?: React.Compo
     'Financial Institution (Micro-finance/Loans)': FiDashboard,
     'Government Regulator/Auditor': RegulatorDashboard,
     'Certification Body (Organic, Fair Trade etc.)': CertificationBodyDashboard,
+    'Consumer': ConsumerDashboard,
     'Researcher/Academic': ResearcherDashboard,
     'Logistics Partner (Third-Party Transporter)': LogisticsDashboard,
     'Storage/Warehouse Facility': WarehouseDashboard,
