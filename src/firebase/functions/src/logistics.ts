@@ -39,7 +39,7 @@ export const getLogisticsDashboardData = functions.https.onCall(
             const relatedVtiId = itemDetails[order.itemId]?.relatedTraceabilityId;
             return {
                 id: doc.id,
-                to: order.buyerLocation || 'Unknown Destination', 
+                to: order.buyerLocation?.address || 'Unknown Destination', 
                 status: 'In Transit',
                 eta: new Date(Date.now() + Math.random() * 5 * 86400000).toISOString(),
                 vtiLink: relatedVtiId ? `/traceability/batches/${relatedVtiId}` : '#'
@@ -68,7 +68,7 @@ export const getLogisticsDashboardData = functions.https.onCall(
             return {
                 id: doc.id,
                 from: sellerProfiles[order.sellerId]?.location || 'Unknown Origin',
-                to: order.buyerLocation || 'Unknown Destination',
+                to: order.buyerLocation?.address || 'Unknown Destination',
                 product: `${order.listingName} (${order.quantity} units)`,
                 requirements: 'Standard Transport',
                 actionLink: `/marketplace/my-orders/${order.id}`
