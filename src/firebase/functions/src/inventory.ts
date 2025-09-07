@@ -30,7 +30,7 @@ export const addInventoryItem = functions.https.onCall(async (data, context) => 
     category,
     quantity: Number(quantity),
     unit,
-    purchaseDate: admin.firestore.Timestamp.fromDate(new Date(purchaseDate)),
+    purchaseDate: purchaseDate ? admin.firestore.Timestamp.fromDate(new Date(purchaseDate)) : null,
     expiryDate: expiryDate ? admin.firestore.Timestamp.fromDate(new Date(expiryDate)) : null,
     supplier: supplier || null,
     notes: notes || "",
@@ -60,4 +60,68 @@ export const getInventory = functions.https.onCall(async (data, context) => {
   });
 
   return { items };
+});
+
+
+// Callable function to get a single inventory item
+export const getInventoryItem = functions.https.onCall(async (data, context) => {
+    const ownerId = checkAuth(context);
+    const { itemId } = data;
+    if(!itemId) throw new functions.https.HttpsError("invalid-argument", "Item ID is required.");
+    
+    const itemRef = db.collection(`users/${ownerId}/inventory`).doc(itemId);
+    const doc = await itemRef.get();
+    
+    if(!doc.exists) {
+        throw new functions.https.HttpsError("not-found", "Inventory item not found.");
+    }
+
+    const itemData = doc.data()!;
+
+    return {
+        id: doc.id,
+        ...itemData,
+        purchaseDate: itemData.purchaseDate?.toDate().toISOString(),
+        expiryDate: itemData.expiryDate?.toDate().toISOString() || null,
+        createdAt: itemData.createdAt.toDate().toISOString(),
+        updatedAt: itemData.updatedAt.toDate().toISOString(),
+    }
+});
+
+
+// Callable function to update an inventory item
+export const updateInventoryItem = functions.https.onCall(async (data, context) => {
+    const ownerId = checkAuth(context);
+    const { itemId, ...updateData } = data;
+    if(!itemId) throw new functions.https.HttpsError("invalid-argument", "Item ID is required.");
+
+    const validation = createInventoryItemSchema.partial().safeParse(updateData);
+     if(!validation.success) {
+      throw new functions.https.HttpsError("invalid-argument", "Invalid inventory item data.", validation.error.format());
+    }
+
+    const itemRef = db.collection(`users/${ownerId}/inventory`).doc(itemId);
+
+    const itemDoc = await itemRef.get();
+    if (!itemDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Inventory item not found.");
+    }
+    if (itemDoc.data()?.ownerId !== ownerId) {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to update this item.");
+    }
+
+    const validatedPayload = validation.data;
+    const payloadForFirestore: any = { ...validatedPayload, updatedAt: admin.firestore.FieldValue.serverTimestamp() };
+
+    if (validatedPayload.purchaseDate) {
+        payloadForFirestore.purchaseDate = admin.firestore.Timestamp.fromDate(new Date(validatedPayload.purchaseDate));
+    }
+    if (validatedPayload.expiryDate) {
+        payloadForFirestore.expiryDate = admin.firestore.Timestamp.fromDate(new Date(validatedPayload.expiryDate));
+    }
+
+
+    await itemRef.update(payloadForFirestore);
+
+    return { success: true };
 });
