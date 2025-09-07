@@ -4,7 +4,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -14,14 +14,13 @@ import { Shield, FileText, AlertTriangle, PlusCircle } from 'lucide-react';
 import type { InsuranceProviderDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
-const functions = getFunctions(firebaseApp);
-
 export const InsuranceProviderDashboard = () => {
   const t = useTranslations('InsuranceProviderDashboard');
   const [dashboardData, setDashboardData] = useState<InsuranceProviderDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
+  const functions = useMemo(() => getFunctions(firebaseApp), []);
   const getInsuranceProviderDashboardDataCallable = useMemo(() => httpsCallable<void, InsuranceProviderDashboardData>(functions, 'dashboardData-getInsuranceProviderDashboardData'), [functions]);
 
   useEffect(() => {
