@@ -15,15 +15,14 @@ import { Progress } from "@/components/ui/progress";
 import type { CrowdfunderDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
-const functions = getFunctions(firebaseApp);
-
 export const CrowdfunderDashboard = () => {
   const t = useTranslations('CrowdfunderDashboard');
   const [dashboardData, setDashboardData] = useState<CrowdfunderDashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const getCrowdfunderDashboardDataCallable = useMemo(() => httpsCallable<void, CrowdfunderDashboardData>(functions, 'getCrowdfunderDashboardData'), [functions]);
+  const functions = useMemo(() => getFunctions(firebaseApp), []);
+  const getCrowdfunderDashboardDataCallable = useMemo(() => httpsCallable<void, CrowdfunderDashboardData>(functions, 'dashboardData-getCrowdfunderDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
