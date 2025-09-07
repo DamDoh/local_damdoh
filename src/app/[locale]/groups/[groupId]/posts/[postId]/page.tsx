@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -115,7 +116,7 @@ export default function GroupPostPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const functions = getFunctions(firebaseApp);
-    const addReplyToPost = useMemo(() => httpsCallable(functions, 'addGroupPostReply'), [functions]);
+    const addReplyToPost = useMemo(() => httpsCallable(functions, 'groups-addGroupPostReply'), [functions]);
 
     const fetchInitialData = useCallback(async () => {
         setIsLoading(true);
@@ -289,3 +290,5 @@ export default function GroupPostPage() {
         </div>
     );
 }
+
+    

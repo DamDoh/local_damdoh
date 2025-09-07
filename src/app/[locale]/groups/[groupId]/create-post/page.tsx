@@ -9,14 +9,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, Loader2, Sparkles, Save } from "lucide-react";
-import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
+import { Link, useRouter, useSearchParams } from '@/navigation';
+import { useParams } from 'next/navigation';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/lib/auth-utils';
 import { useTranslations, useLocale } from 'next-intl';
 import { generateForumPostDraftCallable } from '@/lib/server-actions';
+import { useAuth } from '@/lib/auth-utils';
 
 export default function CreateGroupPostPage() {
     const params = useParams();
@@ -34,7 +34,7 @@ export default function CreateGroupPostPage() {
     const [isGenerating, setIsGenerating] = useState(false);
     
     const functions = getFunctions(firebaseApp);
-    const createGroupPostCallable = useMemo(() => httpsCallable(functions, 'createGroupPost'), [functions]);
+    const createGroupPostCallable = useMemo(() => httpsCallable(functions, 'groups-createGroupPost'), [functions]);
 
     const handleGenerateWithAi = async () => {
         if (!aiPrompt.trim()) {
@@ -201,3 +201,5 @@ export default function CreateGroupPostPage() {
         </div>
     );
 }
+
+    

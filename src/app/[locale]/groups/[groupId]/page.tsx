@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -42,12 +43,12 @@ export default function GroupPage() {
     const [hasRequested, setHasRequested] = useState(false); // To track join request status
 
     const functions = getFunctions(firebaseApp);
-    const getGroupDetails = useMemo(() => httpsCallable(functions, 'getGroupDetails'), [functions]);
-    const getGroupMembers = useMemo(() => httpsCallable(functions, 'getGroupMembers'), [functions]);
-    const getGroupPosts = useMemo(() => httpsCallable(functions, 'getGroupPosts'), [functions]);
-    const joinGroup = useMemo(() => httpsCallable(functions, 'joinGroup'), [functions]);
-    const leaveGroup = useMemo(() => httpsCallable(functions, 'leaveGroup'), [functions]);
-    const requestToJoinGroup = useMemo(() => httpsCallable(functions, 'requestToJoinGroup'), [functions]);
+    const getGroupDetails = useMemo(() => httpsCallable(functions, 'groups-getGroupDetails'), [functions]);
+    const getGroupMembers = useMemo(() => httpsCallable(functions, 'groups-getGroupMembers'), [functions]);
+    const getGroupPosts = useMemo(() => httpsCallable(functions, 'groups-getGroupPosts'), [functions]);
+    const joinGroup = useMemo(() => httpsCallable(functions, 'groups-joinGroup'), [functions]);
+    const leaveGroup = useMemo(() => httpsCallable(functions, 'groups-leaveGroup'), [functions]);
+    const requestToJoinGroup = useMemo(() => httpsCallable(functions, 'groups-requestToJoinGroup'), [functions]);
 
     const fetchData = useCallback(async () => {
         if (!groupId) return;
@@ -298,3 +299,5 @@ export default function GroupPage() {
         </div>
     );
 }
+
+    

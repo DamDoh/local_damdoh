@@ -33,8 +33,8 @@ function JoinRequestsTab() {
     const [isLoading, setIsLoading] = useState(true);
     const [isResponding, setIsResponding] = useState<string | null>(null);
 
-    const getRequestsCallable = useMemo(() => httpsCallable(functions, 'getGroupJoinRequests'), []);
-    const respondCallable = useMemo(() => httpsCallable(functions, 'respondToJoinRequest'), []);
+    const getRequestsCallable = useMemo(() => httpsCallable(functions, 'groups-getGroupJoinRequests'), []);
+    const respondCallable = useMemo(() => httpsCallable(functions, 'groups-respondToJoinRequest'), []);
     
     const fetchRequests = useCallback(async () => {
         setIsLoading(true);
@@ -113,7 +113,7 @@ function InvitesTab() {
     const [inviteEmail, setInviteEmail] = useState('');
     const [isSending, setIsSending] = useState(false);
     
-    const inviteUserCallable = useMemo(() => httpsCallable(functions, 'inviteUserToGroup'), []);
+    const inviteUserCallable = useMemo(() => httpsCallable(functions, 'groups-inviteUserToGroup'), []);
 
     const handleSendInvite = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -206,3 +206,5 @@ export default function ManageGroupPage() {
         </div>
     );
 }
+
+    

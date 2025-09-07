@@ -114,6 +114,7 @@ export const ShopSchema = z.object({
 });
 
 export const AgriEventSchema = z.object({
+  id: z.string().optional(),
   title: z.string().min(5).max(100),
   description: z.string().min(20).max(2000),
   eventDate: z.string(),
@@ -126,11 +127,12 @@ export const AgriEventSchema = z.object({
   dataAiHint: z.string().optional().nullable(),
   registrationEnabled: z.boolean().optional(),
   attendeeLimit: z.number().optional().nullable(),
+  registeredAttendeesCount: z.number().optional(),
   price: z.number().optional().nullable(),
   currency: z.string().optional(),
 });
 
-export const ForumPostSchema = z.object({
+export const ForumTopicSchema = z.object({
     id: z.string(),
     name: z.string(),
     description: z.string(),
@@ -139,7 +141,6 @@ export const ForumPostSchema = z.object({
     lastActivityAt: z.any(), // Firestore Timestamp
     createdAt: z.any(), // Firestore Timestamp
     icon: z.string().optional(), // For display purposes
-    updatedAt: z.any(),
 });
 
 export const FinancialProductSchema = z.object({
@@ -193,6 +194,28 @@ export const ApiKeySchema = z.object({
   keyPrefix: z.string().optional(),
   lastFour: z.string().optional(),
   createdAt: z.string(),
+});
+
+export const FarmAssetSchema = z.object({
+  name: z.string().min(3, "Asset name must be at least 3 characters.").max(100),
+  type: z.enum(['Machinery', 'Tool', 'Building', 'Other'], { required_error: "Please select an asset type." }),
+  purchaseDate: z.date({ required_error: "Purchase date is required." }),
+  value: z.coerce.number().min(0, "Value cannot be negative."),
+  currency: z.string().default('USD'),
+  notes: z.string().max(1000, "Notes cannot exceed 1000 characters.").optional(),
+});
+
+export const createInventoryItemSchema = z.object({
+    name: z.string().min(2, "Item name must be at least 2 characters.").max(100),
+    category: z.enum(['Seeds', 'Fertilizers', 'Pesticides', 'Animal Feed', 'Tools', 'Other'], {
+        required_error: "Please select a category.",
+    }),
+    quantity: z.coerce.number().positive("Quantity must be a positive number."),
+    unit: z.string().min(1, "Unit is required (e.g., kg, bags, liters).").max(20),
+    purchaseDate: z.date().optional(),
+    expiryDate: z.date().optional(),
+    supplier: z.string().max(100).optional(),
+    notes: z.string().max(500).optional(),
 });
 
 export const createFarmSchema = z.object({
@@ -428,6 +451,17 @@ export const ServiceItemSchema = MarketplaceItemSchema.extend({
     skillsRequired: z.array(z.string()),
     compensation: z.string(),
     experienceLevel: z.string(),
+});
+
+export const GroupPostSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  content: z.string(),
+  authorRef: z.string(),
+  authorName: z.string(),
+  authorAvatarUrl: z.string(),
+  replyCount: z.number(),
+  createdAt: z.string(), // ISO
 });
 
 export const GroupPostReplySchema = z.object({
@@ -1056,3 +1090,21 @@ export const GenerateForumPostDraftOutputSchema = z.object({
     title: z.string().describe("A concise and engaging title for the new forum post."),
     content: z.string().describe("The full content of the forum post, written in a helpful and engaging tone."),
 });
+
+export const FinancialApplicationSchema = z.object({
+    id: z.string(),
+    applicantId: z.string(),
+    applicantName: z.string(),
+    fiId: z.string(),
+    type: z.string(),
+    amount: z.number(),
+    currency: z.string(),
+    status: z.string(),
+    riskScore: z.number().optional(),
+    purpose: z.string(),
+    submittedAt: z.string().nullable(),
+    actionLink: z.string().optional(),
+    applicantProfile: StakeholderProfileSchema.optional(),
+});
+
+    

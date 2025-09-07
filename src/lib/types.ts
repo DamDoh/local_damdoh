@@ -5,7 +5,7 @@ import type {
     StakeholderProfileSchema,
     MarketplaceItemSchema,
     MarketplaceOrderSchema,
-    ForumPostSchema,
+    ForumTopicSchema,
     AgriEventSchema,
     ShopSchema,
     ApiKeySchema,
@@ -97,7 +97,7 @@ export type AgriEvent = z.infer<typeof AgriEventSchema> & {
   registeredAttendeesCount: number;
   isRegistered?: boolean;
 };
-export type ForumTopic = z.infer<typeof ForumPostSchema>;
+export type ForumTopic = z.infer<typeof ForumTopicSchema>;
 export type Shop = z.infer<typeof ShopSchema>;
 export type ApiKey = z.infer<typeof ApiKeySchema>;
 export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
@@ -185,3 +185,5 @@ export type FarmingAssistantInput = z.infer<typeof FarmingAssistantInputSchema>;
 export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema>;
 export type GenerateForumPostInput = z.infer<typeof GenerateForumPostDraftInput>;
 export type GenerateForumPostOutput = z.infer<typeof GenerateForumPostDraftOutput>;
+
+    

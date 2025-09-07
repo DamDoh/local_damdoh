@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useMemo } from 'react';
@@ -28,7 +29,7 @@ export default function CreateGroupPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const functions = getFunctions(firebaseApp);
-    const createGroupCallable = useMemo(() => httpsCallable(functions, 'createGroup'), [functions]);
+    const createGroupCallable = useMemo(() => httpsCallable(functions, 'groups-createGroup'), [functions]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -116,8 +117,14 @@ export default function CreateGroupPage() {
                     </CardContent>
                     <CardFooter>
                         <Button type="submit" disabled={isSubmitting}>
-                            {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
-                            {isSubmitting ? t('form.submittingButton') : <><Save className="mr-2 h-4 w-4" />{t('form.submitButton')}</>}
+                            {isSubmitting ? (
+                                <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    {t('form.submittingButton')}
+                                </>
+                            ) : (
+                                <><Save className="mr-2 h-4 w-4" />{t('form.submitButton')}</>
+                            )}
                         </Button>
                     </CardFooter>
                 </Card>
@@ -125,3 +132,5 @@ export default function CreateGroupPage() {
         </div>
     );
 }
+
+    
