@@ -21,7 +21,7 @@ export const CooperativeDashboard = () => {
     const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
-    const getCooperativeData = useMemo(() => httpsCallable(functions, 'getCooperativeDashboardData'), [functions]);
+    const getCooperativeData = useMemo(() => httpsCallable(functions, 'dashboardData-getCooperativeDashboardData'), [functions]);
 
     useEffect(() => {
         const fetchData = async () => {
