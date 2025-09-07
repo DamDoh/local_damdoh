@@ -723,7 +723,7 @@ export const CertificationBodyDashboardDataSchema = z.object({
 export const ResearcherDashboardDataSchema = z.object({
   availableDatasets: z.array(z.object({
     id: z.string(),
-    name: z.string(),
+    name: zstring(),
     dataType: z.string(),
     accessLevel: z.enum(['Public', 'Requires Request']),
     actionLink: z.string(),

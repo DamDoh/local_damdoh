@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -43,7 +42,7 @@ export const FiDashboard = () => {
     const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
-    const getFiData = useMemo(() => httpsCallable(functions, 'getFiDashboardData'), [functions]);
+    const getFiData = useMemo(() => httpsCallable(functions, 'dashboardData-getFiDashboardData'), [functions]);
 
     useEffect(() => {
         const fetchData = async () => {
