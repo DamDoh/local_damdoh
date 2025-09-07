@@ -2,7 +2,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getProfileByIdFromDB } from './user';
+import { getProfileByIdFromDB as getProfileByIdFromDBCallable } from './user';
 import type { InsuranceApplication, InsuranceProduct } from "@/lib/types";
 
 const db = admin.firestore();
@@ -69,11 +69,12 @@ export const getInsuranceProductDetails = functions.https.onCall(async (data, co
     let provider = null;
     
     if (productData.providerId) {
-        const providerResult = await getProfileByIdFromDB({ uid: productData.providerId }, context);
-        if (providerResult) {
+        const providerResult = await getProfileByIdFromDBCallable({ uid: productData.providerId }, context);
+        const providerProfile = providerResult.data;
+        if (providerProfile) {
             provider = {
-                displayName: providerResult.displayName,
-                avatarUrl: providerResult.avatarUrl
+                displayName: providerProfile.displayName,
+                avatarUrl: providerProfile.avatarUrl
             };
         }
     }

@@ -4,7 +4,7 @@
 // This file should only contain functions related to community and social engagement.
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getProfileByIdFromDB } from './user';
+import { getProfileByIdFromDB as getProfileByIdFromDBCallable } from './user';
 import { getRole, deleteCollectionByPath } from './utils';
 
 const db = admin.firestore();
@@ -32,8 +32,8 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionsInvalid');
     }
 
-    const userProfileResult = await getProfileByIdFromDB({ uid }, context);
-    const userProfile = userProfileResult;
+    const userProfileResult = await getProfileByIdFromDBCallable({ uid }, context);
+    const userProfile = userProfileResult.data;
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -130,8 +130,8 @@ export const addComment = functions.https.onCall(async (data, context) => {
 
     const commentRef = db.collection(`posts/${postId}/comments`).doc();
 
-    const userProfileResult = await getProfileByIdFromDB({uid}, context);
-    const userProfile = userProfileResult;
+    const userProfileResult = await getProfileByIdFromDBCallable({uid}, context);
+    const userProfile = userProfileResult.data;
     
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');

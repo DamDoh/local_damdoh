@@ -2,7 +2,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getProfileByIdFromDB } from './user';
+import { getProfileByIdFromDB as getProfileByIdFromDBCallable } from './user';
 
 const db = admin.firestore();
 
@@ -24,8 +24,8 @@ export const bookAgroTourismService = functions.https.onCall(async (data, contex
 
     const itemRef = db.collection('marketplaceItems').doc(itemId);
     const bookingRef = itemRef.collection('bookings').doc(uid);
-    const userProfileResult = await getProfileByIdFromDB({ uid }, context);
-    const userProfileDoc = userProfileResult;
+    const userProfileResult = await getProfileByIdFromDBCallable({ uid }, context);
+    const userProfileDoc = userProfileResult.data;
     
     if (!userProfileDoc) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
@@ -212,5 +212,3 @@ export const getAgroTourismBookings = functions.https.onCall(async (data, contex
 
     return { bookings: bookingsList };
 });
-
-    
