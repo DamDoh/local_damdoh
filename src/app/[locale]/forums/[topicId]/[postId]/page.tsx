@@ -2,12 +2,12 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowLeft, Loader2, Send } from "lucide-react";
-import Link from 'next/link';
+import { ArrowLeft, Loader2, Send, ChevronDown, ChevronUp } from "lucide-react";
+import { Link } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { ForumPost, PostReply } from '@/lib/types';
@@ -17,6 +17,7 @@ import { doc, getDoc, getFirestore, onSnapshot, query, collection, orderBy } fro
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
 import { useTranslations } from 'next-intl';
+import { formatDistanceToNow } from 'date-fns';
 
 // This helper could be centralized in a future refactor
 const getPostDetails = async (topicId: string, postId: string): Promise<ForumPost | null> => {
@@ -100,7 +101,7 @@ export default function PostPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const functions = getFunctions(firebaseApp);
-    const addReplyToPost = useMemo(() => httpsCallable(functions, 'addReplyToPost'), [functions]);
+    const addReplyToPostCallable = useMemo(() => httpsCallable(functions, 'forums-addReplyToPost'), [functions]);
 
     useEffect(() => {
         if (!topicId || !postId) return;
@@ -134,7 +135,7 @@ export default function PostPage() {
                     author: {
                         id: data.authorRef,
                         name: data.authorName || 'Unknown User',
-                        avatarUrl: data.authorAvatarUrl || null,
+                        avatarUrl: data.authorAvatarUrl || undefined,
                     },
                     timestamp: (data.createdAt as any)?.toDate?.().toISOString() || new Date().toISOString()
                 } as PostReply;
@@ -162,7 +163,7 @@ export default function PostPage() {
         }
         setIsSubmitting(true);
         try {
-            await addReplyToPost({ topicId, postId, content: newReply });
+            await addReplyToPostCallable({ topicId, postId, content: newReply });
             setNewReply("");
             toast({ title: t('reply.success') });
         } catch (error) {

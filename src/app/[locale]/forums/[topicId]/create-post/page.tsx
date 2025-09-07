@@ -8,8 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, Loader2, Sparkles, Save } from "lucide-react";
-import Link from 'next/link';
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { Link, useRouter, useSearchParams } from '@/navigation';
+import { useParams } from 'next/navigation';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -32,7 +32,7 @@ export default function CreatePostPage() {
     const [isGenerating, setIsGenerating] = useState(false);
     
     const functions = getFunctions(firebaseApp);
-    const createForumPost = useMemo(() => httpsCallable(functions, 'createForumPost'), [functions]);
+    const createForumPost = useMemo(() => httpsCallable(functions, 'forums-createForumPost'), [functions]);
 
     const handleGenerateWithAi = async () => {
         if (!aiPrompt.trim()) {
