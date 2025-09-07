@@ -226,6 +226,7 @@ function MainContent() {
       return <HubComponent />;
     }
 
+    // Default Fallback: Social Feed
     if (isLoadingFeed) {
       return (
         <div className="space-y-6">

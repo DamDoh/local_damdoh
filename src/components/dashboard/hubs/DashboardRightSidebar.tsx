@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import Link from "next/link";
@@ -36,8 +35,8 @@ export function DashboardRightSidebar() {
   
   const { user, profile, loading: authLoading } = useAuth(); // Using the centralized profile
 
-  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'network-sendConnectionRequest'), []);
-  const suggestConnectionsCallable = useMemo(() => httpsCallable(functions, 'suggestConnections'), []);
+  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'network-sendConnectionRequest'), [functions]);
+  const suggestConnectionsCallable = useMemo(() => httpsCallable(functions, 'suggestConnections'), [functions]);
 
   const fetchSuggestions = useCallback(async () => {
     if (!profile) return; // Wait until the user profile is loaded from context
@@ -51,7 +50,7 @@ export function DashboardRightSidebar() {
         language: 'en', // Hardcoding for now, can be replaced with locale
       };
 
-      const result: SuggestedConnectionsOutput = (await suggestConnectionsCallable(userInput)).data as any;
+      const result = (await suggestConnectionsCallable(userInput)).data as SuggestedConnectionsOutput;
       
       if (result && Array.isArray(result.suggestions)) {
         setAiSuggestions(result.suggestions.map(s => ({

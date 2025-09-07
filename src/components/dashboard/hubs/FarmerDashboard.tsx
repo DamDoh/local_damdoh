@@ -15,7 +15,7 @@ import { CostEstimationChart } from '@/components/farm-management/CostEstimation
 import { MyCropsList } from '@/components/farm-management/MyCropsList';
 import { SummaryCard } from '@/components/farm-management/SummaryCard';
 
-import { Sprout, Warehouse, Tractor, Sheep, Archive } from 'lucide-react';
+import { Sprout, Warehouse, Tractor, Sheep, Archive, FlaskConical, CircleDollarSign, Leaf } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { useAuth } from '@/lib/auth-utils';
 import { TrustScoreWidget } from './TrustScoreWidget';
@@ -34,12 +34,10 @@ function DashboardSkeleton() {
                 <Skeleton className="h-28 rounded-lg" />
                 <Skeleton className="h-28 rounded-lg" />
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-                <Skeleton className="h-64 lg:col-span-3 rounded-lg" />
-                <Skeleton className="h-64 lg:col-span-2 rounded-lg" />
-            </div>
-             <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
-                <Skeleton className="h-96 lg:col-span-3 rounded-lg" />
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
+                 <div className="lg:col-span-3 space-y-6">
+                    <Skeleton className="h-96 rounded-lg" />
+                 </div>
                  <div className="lg:col-span-2 space-y-6">
                     <Skeleton className="h-48 rounded-lg" />
                     <Skeleton className="h-48 rounded-lg" />
@@ -167,18 +165,18 @@ const MyCropsList = ({ crops }: { crops: FarmerDashboardData['recentCrops'] }) =
             <CardHeader><CardTitle>{t('recentCrops.title')}</CardTitle></CardHeader>
             <CardContent className="space-y-3">
                 {crops.map((crop) => (
-                    <div key={crop.id} className="p-3 border rounded-lg flex justify-between items-center">
-                        <div>
+                    <div key={crop.id} className="p-3 border rounded-lg hover:bg-accent transition-colors cursor-pointer" onClick={() => window.location.href = `/farm-management/farms/${crop.farmId}/crops/${crop.id}`}>
+                        <div className="flex items-center justify-between">
+                          <div>
                             <p className="font-semibold">{crop.name}</p>
                             <p className="text-xs text-muted-foreground">{t('recentCrops.onFarm')} {crop.farmName}</p>
-                            <p className="text-xs text-muted-foreground">{t('recentCrops.plantedOn')}: {crop.plantingDate ? format(new Date(crop.plantingDate), 'PPP') : 'N/A'}</p>
+                          </div>
+                          <Badge>{crop.stage}</Badge>
                         </div>
-                        <Badge>{crop.stage}</Badge>
+                        <p className="text-xs text-muted-foreground mt-1">{t('recentCrops.plantedOn')}: {crop.plantingDate ? format(new Date(crop.plantingDate), 'PPP') : 'N/A'}</p>
                     </div>
                 ))}
             </CardContent>
         </Card>
     )
 };
-
-    

@@ -52,5 +52,3 @@ export const TrustScoreWidget = ({ reputationScore, certifications }: TrustScore
         </Card>
     );
 };
-
-    
