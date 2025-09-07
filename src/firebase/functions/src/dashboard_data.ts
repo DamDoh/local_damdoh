@@ -517,7 +517,7 @@ export const getLogisticsDashboardData = functions.https.onCall(
             const relatedVtiId = itemDetails[order.itemId]?.relatedTraceabilityId;
             return {
                 id: doc.id,
-                to: order.buyerLocation?.address || 'Unknown Destination', 
+                to: order.buyerLocation || 'Unknown Destination', 
                 status: 'In Transit',
                 eta: new Date(Date.now() + Math.random() * 5 * 86400000).toISOString(),
                 vtiLink: relatedVtiId ? `/traceability/batches/${relatedVtiId}` : '#'
@@ -532,12 +532,21 @@ export const getLogisticsDashboardData = functions.https.onCall(
             .limit(5)
             .get();
             
+        const sellerIds = [...new Set(jobsSnapshot.docs.map(doc => doc.data().sellerId))];
+        const sellerProfiles: Record<string, any> = {};
+        if (sellerIds.length > 0) {
+            const sellersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', sellerIds).get();
+            sellersSnapshot.forEach(doc => {
+                sellerProfiles[doc.id] = { location: doc.data().location || 'Unknown Origin' };
+            });
+        }
+
         const incomingJobs = jobsSnapshot.docs.map(doc => {
             const order = doc.data();
             return {
                 id: doc.id,
-                from: order.sellerLocation?.address || 'Unknown Origin',
-                to: order.buyerLocation?.address || 'Unknown Destination',
+                from: sellerProfiles[order.sellerId]?.location || 'Unknown Origin',
+                to: order.buyerLocation || 'Unknown Destination',
                 product: `${order.listingName} (${order.quantity} units)`,
                 requirements: 'Standard Transport',
                 actionLink: `/marketplace/my-orders/${order.id}`
@@ -732,11 +741,10 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
 
         const packagingOrders = ordersSnapshot.docs.map(doc => {
             const order = doc.data();
-            const deliveryTimestamp = order.expectedDeliveryDate as admin.firestore.Timestamp | undefined;
             return {
                 id: doc.id,
                 supplierName: sellerProfiles[order.sellerId] || 'Unknown Supplier',
-                deliveryDate: deliveryTimestamp?.toDate().toISOString() || new Date(Date.now() + 86400000 * 5).toISOString(),
+                deliveryDate: order.expectedDeliveryDate?.toDate().toISOString() || new Date(Date.now() + 86400000 * 5).toISOString(),
                 status: order.status,
                 actionLink: `/marketplace/my-orders/${order.id}`,
             };

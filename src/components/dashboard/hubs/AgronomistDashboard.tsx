@@ -36,7 +36,7 @@ export const AgronomistDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const getAgronomistDashboardDataCallable = useMemo(() => httpsCallable<void, AgronomistDashboardData>(functions, 'getAgronomistDashboardData'), [functions]);
+  const getAgronomistDashboardDataCallable = useMemo(() => httpsCallable<void, AgronomistDashboardData>(functions, 'dashboardData-getAgronomistDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
