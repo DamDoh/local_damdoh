@@ -65,6 +65,90 @@ export async function _internalMatchFundingOpportunities(data: any) {
   };
 }
 
+
+/**
+ * Internal logic for initiating a payment.
+ * @param {any} data The data for the payment.
+ * @param {functions.https.CallableContext} [context] The context of the function call.
+ * @return {Promise<{orderId: string, status: string, transactionId: string}>} A promise that resolves with the payment details.
+ */
+export async function _internalInitiatePayment(
+  data: any,
+  context?: functions.https.CallableContext,
+) {
+  const {orderId, amount, currency} = data;
+
+  if (!orderId || typeof orderId !== "string") {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "error.orderId.required",
+    );
+  }
+  if (amount === undefined || typeof amount !== "number" || amount <= 0) {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "error.amount.invalid",
+    );
+  }
+  if (!currency || typeof currency !== "string") {
+    throw new functions.https.HttpsError(
+      "invalid-argument",
+      "error.currency.required",
+    );
+  }
+
+  console.log(
+    `Attempting to initiate payment for order ${orderId} (Amount: ${amount} ${currency})...`,
+  );
+
+  console.log("Placeholder for payment gateway API call...");
+  const paymentGatewayResponse = {
+    success: true,
+    transactionId: `pg_txn_${orderId}_${Date.now()}`,
+  };
+
+  if (paymentGatewayResponse.success) {
+    console.log(
+      `Payment initiation successful for order ${orderId}. Transaction ID: ${paymentGatewayResponse.transactionId}`,
+    );
+    return {
+      orderId: orderId,
+      status: "payment_initiation_successful",
+      transactionId: paymentGatewayResponse.transactionId,
+    };
+  } else {
+    console.error(`Payment initiation failed for order ${orderId}.`);
+    throw new functions.https.HttpsError(
+      "aborted",
+      "error.payment.initiationFailed",
+    );
+  }
+}
+
+// Callable function to initiate a payment
+export const initiatePayment = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "error.unauthenticated",
+    );
+  }
+
+  try {
+    return await _internalInitiatePayment(data, context);
+  } catch (error) {
+    console.error(`Error during payment initiation for order ${data.orderId}:`, error);
+    if (error instanceof functions.https.HttpsError) {
+      throw error;
+    }
+    throw new functions.https.HttpsError(
+      "internal",
+      "error.internal",
+      error,
+    );
+  }
+});
+
 // Callable function for users to log manual financial transactions
 export const logFinancialTransaction = functions.https.onCall(
   async (data, context) => {
@@ -76,7 +160,7 @@ export const logFinancialTransaction = functions.https.onCall(
     }
 
     const callerUid = context.auth.uid;
-    const {type, amount, currency, description, category} = data;
+    const {type, amount, currency, description, category, date} = data;
 
     const validTypes = ["income", "expense"];
     if (!type || typeof type !== "string" || !validTypes.includes(type)) {
@@ -122,7 +206,7 @@ export const logFinancialTransaction = functions.https.onCall(
         currency: currency,
         description: description,
         category: category || "Uncategorized",
-        timestamp: admin.firestore.FieldValue.serverTimestamp(),
+        timestamp: date ? admin.firestore.Timestamp.fromDate(new Date(date)) : admin.firestore.FieldValue.serverTimestamp(),
         linkedOrderId: null,
         linkedLoanApplicationId: null,
         linkedGrantApplicationId: null,

@@ -1,7 +1,7 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getProfileByIdFromDB } from './user';
 
 const db = admin.firestore();
 
@@ -30,9 +30,15 @@ export const getOrCreateConversation = functions.https.onCall(async (data, conte
     const conversationSnap = await conversationRef.get();
 
     if (!conversationSnap.exists) {
-        // Fetch profiles to store basic info in the conversation doc for easier access
-        const userProfile = (await getProfileByIdFromDB({ uid: userId }, context) as any);
-        const recipientProfile = (await getProfileByIdFromDB({ uid: recipientId }, context) as any);
+        const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
+        
+        const [userProfileResult, recipientProfileResult] = await Promise.all([
+            getProfile({ uid: userId }),
+            getProfile({ uid: recipientId })
+        ]);
+
+        const userProfile = userProfileResult.data as any;
+        const recipientProfile = recipientProfileResult.data as any;
 
         if (!userProfile || !recipientProfile) {
             throw new functions.https.HttpsError('not-found', 'One or more user profiles could not be found.');

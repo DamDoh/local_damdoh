@@ -3,7 +3,6 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile, JoinRequest } from './types';
-import { getProfileByIdFromDB } from './user';
 
 const db = admin.firestore();
 
@@ -22,10 +21,11 @@ export const createGroup = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Group name and description are required.');
     }
 
-    const userProfile = (await getProfileByIdFromDB({ uid }, context) as any)?.data as UserProfile;
-    if (!userProfile) {
+    const userProfileDoc = await db.collection('users').doc(uid).get();
+    if (!userProfileDoc.exists) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
     }
+    const userProfile = userProfileDoc.data() as UserProfile;
 
     const groupRef = db.collection('groups').doc();
     
@@ -128,10 +128,11 @@ const modifyMembership = async (groupId: string, userId: string, join: boolean) 
                 throw new functions.https.HttpsError('already-exists', 'You are already a member of this group.');
             }
             
-            const userProfile = (await getProfileByIdFromDB({ uid: userId }, {} as any) as any)?.data as UserProfile;
-             if (!userProfile) {
+            const userProfileDoc = await db.collection('users').doc(userId).get();
+             if (!userProfileDoc.exists) {
                 throw new functions.https.HttpsError('not-found', 'Your user profile could not be found.');
             }
+            const userProfile = userProfileDoc.data() as UserProfile;
 
             transaction.set(memberRef, {
                 displayName: userProfile.displayName,
@@ -310,7 +311,8 @@ export const requestToJoinGroup = functions.https.onCall(async (data, context) =
         throw new functions.https.HttpsError('already-exists', 'You have already sent a request to join this group.');
     }
     
-    const userProfile = (await getProfileByIdFromDB({ uid: requesterId }, context) as any).data;
+    const userProfileResult = await httpsCallable(functions, 'user-getProfileByIdFromDB')({ uid: requesterId });
+    const userProfile = userProfileResult.data as UserProfile;
 
     await requestRef.set({
         requesterId,

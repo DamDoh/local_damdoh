@@ -9,7 +9,7 @@
 
 import { getCurrentUser } from './server-auth-utils';
 import { suggestMarketPrice as suggestMarketPriceFlow } from "@/ai/flows/suggest-market-price-flow";
-import { getMarketplaceRecommendations } from "@/ai/flows/marketplace-recommendations";
+import { getMarketplaceRecommendations as getMarketplaceRecommendationsFlow } from "@/ai/flows/marketplace-recommendations";
 import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
 import { suggestForumTopics as suggestForumTopicsFlow } from '@/ai/flows/forum-topic-suggestions';
 import { interpretSearchQuery as interpretSearchQueryFlow } from '@/ai/flows/query-interpreter-flow';
@@ -84,7 +84,7 @@ export async function getMarketplaceRecommendationsAction(userId: string, count:
     if (!user || user.uid !== userId) throw new Error("Unauthorized");
 
     const locale = await getLocale();
-    const result = await getMarketplaceRecommendations({ userId, count, language: locale });
+    const result = await getMarketplaceRecommendationsFlow({ userId, count, language: locale });
     return result.recommendations || [];
 }
 
@@ -158,4 +158,3 @@ export async function getProfileByIdFromDB(uid: string) {
     const result = await getProfile({ uid });
     return result.data as any;
 }
-

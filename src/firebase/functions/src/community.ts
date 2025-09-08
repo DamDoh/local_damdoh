@@ -4,7 +4,6 @@
 // This file should only contain functions related to community and social engagement.
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getProfileByIdFromDB } from './user';
 import { getRole, deleteCollectionByPath } from './utils';
 
 const db = admin.firestore();
@@ -32,7 +31,10 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionsInvalid');
     }
 
-    const userProfile = (await getProfileByIdFromDB({ uid }, context) as any);
+    const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
+    const userProfileResult = await getProfile({ uid });
+    const userProfile = userProfileResult.data as any;
+
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -73,7 +75,6 @@ export const deletePost = functions.https.onCall(async (data, context) => {
     const postData = postDoc.data()!;
     const callerRole = await getRole(uid);
 
-    // Allow deletion if the user is the author OR if the user is an Admin
     if (postData.userId !== uid && callerRole !== 'Admin') {
         throw new functions.https.HttpsError('permission-denied', 'error.permissionDenied');
     }
@@ -109,13 +110,12 @@ export const likePost = functions.https.onCall(async (data, context) => {
         
         if (likeDoc.exists) {
             transaction.delete(likeRef);
-            transaction.update(postRef, { likesCount: admin.firestore.FieldValue.increment(-1) });
-            return { success: true, action: 'unliked' };
+            // The onWrite trigger for likes will handle decrementing the count
         } else {
             transaction.set(likeRef, { createdAt: admin.firestore.FieldValue.serverTimestamp() });
-            transaction.update(postRef, { likesCount: admin.firestore.FieldValue.increment(1) });
-            return { success: true, action: 'liked' };
+            // The onWrite trigger for likes will handle incrementing the count
         }
+        return { success: true, action: likeDoc.exists ? 'unliked' : 'liked' };
     });
 });
 
@@ -131,7 +131,10 @@ export const addComment = functions.https.onCall(async (data, context) => {
     const postRef = db.collection('posts').doc(postId);
     const commentRef = postRef.collection('comments').doc();
 
-    const userProfile = (await getProfileByIdFromDB({ uid }, context) as any);
+    const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
+    const userProfileResult = await getProfile({ uid });
+    const userProfile = userProfileResult.data as any;
+
      if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -147,8 +150,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
-    batch.update(postRef, { commentsCount: admin.firestore.FieldValue.increment(1) });
-
+    // The onWrite trigger will handle incrementing the count
     await batch.commit();
     return { success: true, commentId: commentRef.id };
 });
@@ -175,7 +177,6 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
         return { replies: [], lastVisible: null };
     }
     
-    // The author data is now denormalized onto the comment, so no extra lookups are needed.
     const comments = commentsSnapshot.docs.map(doc => {
         const commentData = doc.data();
         return {
@@ -220,13 +221,11 @@ export const voteOnPoll = functions.https.onCall(async (data, context) => {
             throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionInvalid');
         }
 
-        // Atomically update the vote count for the specific option
         const newPollOptions = [...postData.pollOptions];
         newPollOptions[optionIndex].votes = (newPollOptions[optionIndex].votes || 0) + 1;
         
         transaction.update(postRef, { pollOptions: newPollOptions });
 
-        // Record the user's vote to prevent duplicates
         transaction.set(voteRef, {
             optionIndex,
             votedAt: admin.firestore.FieldValue.serverTimestamp()

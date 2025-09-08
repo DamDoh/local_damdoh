@@ -24,7 +24,10 @@ export const bookAgroTourismService = functions.https.onCall(async (data, contex
 
     const itemRef = db.collection('marketplaceItems').doc(itemId);
     const bookingRef = itemRef.collection('bookings').doc(uid);
-    const userProfileDoc = (await getProfileByIdFromDB({ uid }, context) as any);
+
+    const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
+    const userProfileResult = await getProfile({ uid });
+    const userProfileDoc = userProfileResult.data as any;
     
     if (!userProfileDoc) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');

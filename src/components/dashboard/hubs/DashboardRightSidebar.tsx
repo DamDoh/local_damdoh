@@ -7,13 +7,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, ArrowRight, Info, TrendingUp, MoreHorizontal, RefreshCw, AlertTriangle, Ticket } from "lucide-react";
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { suggestConnections, type SuggestedConnectionsInput, type SuggestedConnectionsOutput } from "@/ai/flows/suggested-connections";
 import { httpsCallable } from "firebase/functions";
 import { functions } from "@/lib/firebase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/lib/auth-utils";
 import { useTranslations } from "next-intl";
 import { useToast } from "@/hooks/use-toast";
+import type { SuggestedConnectionsOutput, SuggestedConnectionsInput } from "@/lib/types";
 
 
 interface AISuggestion {

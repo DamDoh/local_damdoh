@@ -1,7 +1,7 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { logFinancialTransaction } from "./financial-services"; // Assuming this function exists to log expenses
 
 const db = admin.firestore();
 
@@ -101,16 +101,19 @@ export const logPayment = functions.https.onCall(async (data, context) => {
     }
     const workerName = workerSnap.data()?.name || "a worker";
     
+    const logTransaction = httpsCallable(functions, 'financials-logFinancialTransaction');
+
     // --- Automatic Interconnection with Financials Module ---
     // Log this payment as an expense in the "Money Matters" module
     try {
-        await logFinancialTransaction({
+        await logTransaction({
             type: 'expense',
             amount: Number(amount),
             currency: currency,
             description: `Labor payment to ${workerName}`,
-            category: 'Labor'
-        }, context);
+            category: 'Labor',
+            date,
+        });
     } catch (error) {
         console.error("Failed to auto-log labor payment as an expense:", error);
         // Decide if this should be a critical failure or just a warning

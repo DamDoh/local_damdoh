@@ -1,7 +1,7 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getProfileByIdFromDB } from './user';
 import type { InsuranceProduct } from "@/lib/types";
 
 const db = admin.firestore();
@@ -16,7 +16,6 @@ const checkAuth = (context: functions.https.CallableContext) => {
 // =================================================================
 // Module 11: Insurance Service
 // =================================================================
-
 
 export const createInsuranceProduct = functions.https.onCall(async (data, context) => {
     const providerId = checkAuth(context);
@@ -51,7 +50,7 @@ export const getInsuranceProducts = functions.https.onCall(async (data, context)
         return {
             id: doc.id,
             ...productData,
-        }
+        } as InsuranceProduct;
     });
     return { products };
 });
@@ -68,8 +67,10 @@ export const getInsuranceProductDetails = functions.https.onCall(async (data, co
     let provider = null;
     
     if (productData.providerId) {
-        const providerProfileResult = await getProfileByIdFromDB({ uid: productData.providerId }, context) as any;
-        const providerProfile = providerProfileResult;
+        const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
+        const providerProfileResult = await getProfile({ uid: productData.providerId });
+        const providerProfile = providerProfileResult.data as any;
+
         if (providerProfile) {
             provider = {
                 displayName: providerProfile.displayName,
