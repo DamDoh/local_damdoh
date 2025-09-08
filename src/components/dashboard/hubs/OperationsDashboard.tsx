@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
@@ -21,7 +21,7 @@ export const OperationsDashboard = () => {
     const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
-    const getOperationsData = useMemo(() => httpsCallable(functions, 'getOperationsDashboardData'), [functions]);
+    const getOperationsData = useMemo(() => httpsCallable(functions, 'dashboardData-getOperationsDashboardData'), [functions]);
 
     useEffect(() => {
         const fetchData = async () => {

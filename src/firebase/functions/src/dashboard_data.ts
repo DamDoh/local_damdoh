@@ -1317,7 +1317,33 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
     }
 });
 
+export const getOperationsDashboardData = functions.https.onCall(
+  async (data, context): Promise<OperationsDashboardData> => {
+    checkAuth(context);
 
+    // This is a placeholder as the real implementation would require more complex
+    // logging and data aggregation infrastructure.
+    const vtiGenerationRate = {
+      rate: 15,
+      unit: 'VTIs/hour' as 'VTIs/hour',
+      trend: 5,
+    };
+    const dataPipelineStatus = {
+      status: 'Operational' as 'Operational' | 'Degraded' | 'Offline',
+      lastChecked: new Date().toISOString(),
+    };
+    const flaggedEvents = [
+        { id: 'evt1', type: 'Anomalous Geolocation', description: 'Large distance between HARVESTED and PROCESSED events.', vtiLink: '#' },
+        { id: 'evt2', type: 'Unusual Time Lag', description: '48-hour delay between PROCESSED and SHIPPED for perishable goods.', vtiLink: '#' }
+    ];
+
+    return {
+        vtiGenerationRate,
+        dataPipelineStatus,
+        flaggedEvents
+    };
+  }
+);
     
 
     
@@ -1329,6 +1355,7 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
 
 
     
+
 
 
 
