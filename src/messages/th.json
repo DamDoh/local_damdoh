@@ -1,4 +1,3 @@
-
 {
   "OfflineIndicator": {
     "toast": {
@@ -130,19 +129,6 @@
       "aiAssistant": "ผู้ช่วย AI",
       "events": "กิจกรรม"
     }
-  },
-  "MobileHomepage": {
-    "welcome": {
-      "morning": "สวัสดีตอนเช้า, {name}",
-      "afternoon": "สวัสดีตอนบ่าย, {name}",
-      "evening": "สวัสดีตอนเย็น, {name}"
-    },
-    "discoverTitle": "ค้นพบ",
-    "seeAllButton": "ดูทั้งหมด",
-    "communityFeedTitle": "ฟีดชุมชน",
-    "communityFeedDescription": "เชื่อมต่อกับผู้อื่น แบ่งปันความรู้ของคุณ และติดตามข่าวสารล่าสุดจากการสนทนา",
-    "goToFeedButton": "ไปที่ฟีด",
-    "noRecommendations": "ยังไม่มีคำแนะนำในขณะนี้ สำรวจตลาดเพื่อเริ่มต้น!"
   },
   "LandingPage": {
     "hero": {
@@ -347,3 +333,5 @@
     "error": "ข้อผิดพลาด"
   }
 }
+
+    
