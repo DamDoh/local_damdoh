@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -11,7 +12,7 @@ import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { format } from 'date-fns';
@@ -21,8 +22,11 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useTranslations } from 'next-intl';
-import type { Worker } from '@/lib/types';
+import type { Worker, WorkLog } from '@/lib/types';
 import { useRouter } from '@/navigation';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Checkbox } from '@/components/ui/checkbox';
+
 
 export default function LaborManagementPage() {
     const t = useTranslations('farmManagement.laborPage');
@@ -44,12 +48,16 @@ export default function LaborManagementPage() {
     const [isLogPaymentOpen, setIsLogPaymentOpen] = useState(false);
     const [paymentAmount, setPaymentAmount] = useState("");
     const [paymentDate, setPaymentDate] = useState<Date | undefined>(new Date());
+    const [unpaidLogs, setUnpaidLogs] = useState<WorkLog[]>([]);
+    const [selectedLogIds, setSelectedLogIds] = useState<string[]>([]);
 
     const functions = getFunctions(firebaseApp);
     const getWorkersCallable = useMemo(() => httpsCallable(functions, 'labor-getWorkers'), [functions]);
     const addWorkerCallable = useMemo(() => httpsCallable(functions, 'labor-addWorker'), [functions]);
     const logHoursCallable = useMemo(() => httpsCallable(functions, 'labor-logHours'), [functions]);
     const logPaymentCallable = useMemo(() => httpsCallable(functions, 'labor-logPayment'), [functions]);
+    const getUnpaidWorkLogsCallable = useMemo(() => httpsCallable(functions, 'labor-getUnpaidWorkLogs'), [functions]);
+
 
     const fetchWorkers = useCallback(async () => {
         if (!user) { setIsLoading(false); return; }
@@ -110,15 +118,34 @@ export default function LaborManagementPage() {
         if (!selectedWorker || !paymentAmount || !paymentDate) return;
         setIsSubmitting(true);
         try {
-            await logPaymentCallable({ workerId: selectedWorker.id, amount: paymentAmount, date: paymentDate.toISOString(), currency: 'USD' });
+            await logPaymentCallable({ 
+                workerId: selectedWorker.id, 
+                amount: parseFloat(paymentAmount), 
+                date: paymentDate.toISOString(), 
+                currency: 'USD',
+                workLogIds: selectedLogIds
+            });
             toast({ title: t('toast.paymentLoggedTitle'), description: t('toast.paymentLoggedDescription') });
             setIsLogPaymentOpen(false);
             setPaymentAmount("");
+            setSelectedLogIds([]);
             fetchWorkers();
         } catch(error: any) {
              toast({ variant: "destructive", title: t('toast.errorTitle'), description: error.message });
         } finally {
             setIsSubmitting(false);
+        }
+    };
+
+    const handleOpenPaymentDialog = async (worker: Worker) => {
+        setSelectedWorker(worker);
+        setIsLogPaymentOpen(true);
+        try {
+            const result = await getUnpaidWorkLogsCallable({ workerId: worker.id });
+            setUnpaidLogs((result.data as any).workLogs || []);
+        } catch (error) {
+            console.error("Failed to fetch unpaid logs:", error);
+            setUnpaidLogs([]);
         }
     };
 
@@ -172,7 +199,7 @@ export default function LaborManagementPage() {
                                     </CardContent>
                                     <CardFooter className="grid grid-cols-2 gap-2">
                                         <Button variant="outline" size="sm" onClick={() => { setSelectedWorker(worker); setIsLogHoursOpen(true); }}><Clock className="mr-2 h-4 w-4"/>{t('logHours')}</Button>
-                                        <Button variant="secondary" size="sm" onClick={() => { setSelectedWorker(worker); setIsLogPaymentOpen(true); }}><DollarSign className="mr-2 h-4 w-4"/>{t('logPayment')}</Button>
+                                        <Button variant="secondary" size="sm" onClick={() => handleOpenPaymentDialog(worker)}><DollarSign className="mr-2 h-4 w-4"/>{t('logPayment')}</Button>
                                         <Button asChild variant="ghost" className="col-span-2">
                                             <Link href={`/farm-management/labor/${worker.id}`}><Eye className="mr-2 h-4 w-4"/>{t('viewDetails')}</Link>
                                         </Button>
@@ -208,13 +235,38 @@ export default function LaborManagementPage() {
                 </DialogContent>
             </Dialog>
 
-            <Dialog open={isLogPaymentOpen} onOpenChange={setIsLogPaymentOpen}>
-                <DialogContent>
-                    <DialogHeader><DialogTitle>{t('logPaymentFor')} {selectedWorker?.name}</DialogTitle></DialogHeader>
+             <Dialog open={isLogPaymentOpen} onOpenChange={(isOpen) => { if(!isOpen) { setSelectedLogIds([]); setPaymentAmount(""); } setIsLogPaymentOpen(isOpen); }}>
+                <DialogContent className="max-w-md">
+                    <DialogHeader>
+                        <DialogTitle>{t('logPaymentFor')} {selectedWorker?.name}</DialogTitle>
+                        <DialogDescription>{t('paymentDialog.description')}</DialogDescription>
+                    </DialogHeader>
                     <div className="space-y-4 py-4">
-                         <div className="grid grid-cols-2 gap-4">
-                            <div><Label htmlFor="payment-amount">{t('amountPaid')}</Label><Input id="payment-amount" type="number" value={paymentAmount} onChange={e => setPaymentAmount(e.target.value)} /></div>
-                             <div>
+                        <div className="space-y-2">
+                             <Label>{t('paymentDialog.unpaidLogs')}</Label>
+                             <ScrollArea className="h-40 border rounded-md">
+                                <div className="p-3 space-y-2">
+                                    {unpaidLogs.length > 0 ? unpaidLogs.map(log => (
+                                        <div key={log.id} className="flex items-center space-x-2">
+                                            <Checkbox 
+                                                id={`log-${log.id}`} 
+                                                checked={selectedLogIds.includes(log.id)}
+                                                onCheckedChange={(checked) => {
+                                                    setSelectedLogIds(prev => checked ? [...prev, log.id] : prev.filter(id => id !== log.id))
+                                                }}
+                                            />
+                                            <Label htmlFor={`log-${log.id}`} className="flex justify-between w-full text-sm">
+                                                <span>{format(new Date(log.date), 'MMM d')}: {log.taskDescription}</span>
+                                                <span className="font-bold">{log.hours} {t('paymentDialog.hoursSuffix')}</span>
+                                            </Label>
+                                        </div>
+                                    )) : <p className="text-sm text-muted-foreground text-center py-4">{t('paymentDialog.noUnpaidLogs')}</p>}
+                                </div>
+                             </ScrollArea>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div><Label htmlFor="payment-amount">{t('amountPaid')}</Label><Input id="payment-amount" type="number" placeholder="e.g., 50.00" value={paymentAmount} onChange={e => setPaymentAmount(e.target.value)} /></div>
+                            <div>
                                 <Label htmlFor="payment-date">{t('date')}</Label>
                                 <Popover>
                                     <PopoverTrigger asChild>
@@ -222,16 +274,22 @@ export default function LaborManagementPage() {
                                             <CalendarIcon className="mr-2 h-4 w-4" />{paymentDate ? format(paymentDate, "PPP") : <span>{t('pickDate')}</span>}
                                         </Button>
                                     </PopoverTrigger>
-                                    <PopoverContent className="w-auto p-0">
-                                        <Calendar mode="single" selected={paymentDate} onSelect={setPaymentDate} initialFocus />
-                                    </PopoverContent>
+                                    <PopoverContent className="w-auto p-0"><Calendar mode="single" selected={paymentDate} onSelect={setPaymentDate} initialFocus /></PopoverContent>
                                 </Popover>
                             </div>
                         </div>
                     </div>
-                     <Button onClick={handleLogPayment} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}{!isSubmitting && <DollarSign className="mr-2 h-4 w-4" />}{t('logPayment')}</Button>
+                     <DialogFooter>
+                        <Button onClick={handleLogPayment} disabled={isSubmitting || !paymentAmount}>
+                            {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
+                            <DollarSign className="mr-2 h-4 w-4" />
+                            {t('logPayment')}
+                        </Button>
+                     </DialogFooter>
                 </DialogContent>
             </Dialog>
         </div>
     );
 }
+
+    

@@ -2,6 +2,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { logFinancialTransaction } from "./financials"; // Assuming this function exists to log expenses
 
 const db = admin.firestore();
 
@@ -85,10 +86,36 @@ export const logHours = functions.https.onCall(async (data, context) => {
   return { success: true, workLogId: workLogRef.id };
 });
 
-// Log a payment made to a worker and automatically create a corresponding expense
+// New function to get only unpaid work logs for a worker
+export const getUnpaidWorkLogs = functions.https.onCall(async (data, context) => {
+    const farmerId = checkAuth(context);
+    const { workerId } = data;
+    if (!workerId) {
+        throw new functions.https.HttpsError("invalid-argument", "A workerId must be provided.");
+    }
+    
+    const workLogsSnapshot = await db.collection(`users/${farmerId}/workers/${workerId}/work_logs`)
+        .where('isPaid', '==', false)
+        .orderBy('date', 'asc')
+        .get();
+
+    const workLogs = workLogsSnapshot.docs.map(doc => {
+        const docData = doc.data();
+        return { 
+            id: doc.id, 
+            ...docData, 
+            date: (docData.date as admin.firestore.Timestamp).toDate().toISOString(),
+        }
+    });
+
+    return { workLogs };
+});
+
+
+// Enhanced function to log a payment made to a worker and mark work logs as paid
 export const logPayment = functions.https.onCall(async (data, context) => {
     const farmerId = checkAuth(context);
-    const { workerId, amount, date, notes, currency } = data;
+    const { workerId, amount, date, notes, currency, workLogIds } = data;
 
     if (!workerId || !amount || !date || !currency) {
         throw new functions.https.HttpsError("invalid-argument", "Worker ID, amount, currency, and date are required.");
@@ -101,41 +128,46 @@ export const logPayment = functions.https.onCall(async (data, context) => {
     }
     const workerName = workerSnap.data()?.name || "a worker";
     
-    const logTransaction = httpsCallable(functions, 'financials-logFinancialTransaction');
-
-    // --- Automatic Interconnection with Financials Module ---
-    // Log this payment as an expense in the "Money Matters" module
     try {
-        await logTransaction({
+        await logFinancialTransaction({
             type: 'expense',
             amount: Number(amount),
             currency: currency,
             description: `Labor payment to ${workerName}`,
             category: 'Labor',
             date,
-        });
+        }, context);
     } catch (error) {
         console.error("Failed to auto-log labor payment as an expense:", error);
-        // Decide if this should be a critical failure or just a warning
-        // For now, we'll let it fail but a more robust system might queue it for retry
         throw new functions.https.HttpsError('internal', 'Could not record the payment in your financial ledger.');
     }
 
     const paymentRef = db.collection(`users/${farmerId}/workers/${workerId}/payments`).doc();
-    await paymentRef.set({
+
+    const batch = db.batch();
+
+    batch.set(paymentRef, {
         amount: Number(amount),
         currency: currency,
         date: admin.firestore.Timestamp.fromDate(new Date(date)),
         notes: notes || `Payment for services rendered.`,
+        paidLogIds: workLogIds || [],
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
-    await workerRef.update({
+    batch.update(workerRef, {
         totalPaid: admin.firestore.FieldValue.increment(Number(amount)),
     });
-    
-    // Note: A more advanced system would link specific unpaid work_logs to this payment
-    // and mark them as paid. For simplicity, we are just tracking totals for now.
+
+    // Mark the selected work logs as paid
+    if (Array.isArray(workLogIds) && workLogIds.length > 0) {
+        workLogIds.forEach(logId => {
+            const logRef = db.collection(`users/${farmerId}/workers/${workerId}/work_logs`).doc(logId);
+            batch.update(logRef, { isPaid: true });
+        });
+    }
+
+    await batch.commit();
 
     return { success: true, paymentId: paymentRef.id };
 });
@@ -161,7 +193,7 @@ export const getWorkerDetails = functions.https.onCall(async (data, context) => 
         throw new functions.https.HttpsError('not-found', 'Worker not found.');
     }
     
-    const workLogs = workLogsSnap.docs.map(doc => {
+    const workLogs = workLogsSnap.docs.map(doc => { 
       const docData = doc.data();
       return { 
         id: doc.id, 
@@ -189,3 +221,5 @@ export const getWorkerDetails = functions.https.onCall(async (data, context) => 
         payments
     }
 });
+
+    
