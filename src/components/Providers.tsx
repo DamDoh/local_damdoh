@@ -2,9 +2,21 @@
 "use client";
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { AuthContext, useAuth as useAuthHook } from "@/lib/auth-utils";
-import React, { Suspense } from 'react';
+import React, { Suspense, useState, useEffect, createContext } from 'react';
 import { useOfflineSync } from '@/hooks/useOfflineSync';
+import { onAuthStateChanged, type User } from "firebase/auth";
+import { auth } from '@/lib/firebase/client';
+import type { UserProfile } from '@/lib/types';
+import { getProfileByIdFromDB } from '@/lib/server-actions';
+
+export interface AuthContextType {
+  user: User | null;
+  profile: UserProfile | null;
+  loading: boolean;
+}
+
+export const AuthContext = createContext<AuthContextType>({ user: null, profile: null, loading: true });
+
 
 // A dummy component to ensure the offline sync hook is initialized at the root.
 function OfflineSyncInitializer() {
@@ -17,10 +29,33 @@ export function Providers({
 }: { 
     children: React.ReactNode;
 }) {
-    // The actual authentication state is managed within the useAuth hook,
-    // which is provided by the AuthContext.Provider in a higher-level component if needed,
-    // or this can be the root provider.
-    const authValue = useAuthHook();
+    const [user, setUser] = useState<User | null>(null);
+    const [profile, setProfile] = useState<UserProfile | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            setLoading(true);
+            setUser(user);
+            if (user) {
+                try {
+                    const userProfile = await getProfileByIdFromDB(user.uid);
+                    setProfile(userProfile);
+                } catch (error) {
+                    console.error("Failed to fetch user profile:", error);
+                    setProfile(null);
+                }
+            } else {
+                setProfile(null);
+            }
+            setLoading(false);
+        });
+
+        // Cleanup subscription on unmount
+        return () => unsubscribe();
+    }, []);
+    
+    const authValue = { user, profile, loading };
 
     return (
         <Suspense fallback={<div>Loading...</div>}>

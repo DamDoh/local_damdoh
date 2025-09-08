@@ -2,7 +2,6 @@
 "use client";
 
 import {
-  onAuthStateChanged,
   signOut as firebaseSignOut,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -11,19 +10,11 @@ import {
   type User as FirebaseUser,
   updateProfile,
 } from "firebase/auth";
-import { auth, functions } from './firebase/client'; // Correctly import the initialized auth instance
+import { auth, functions } from './firebase/client'; 
 import { httpsCallable } from "firebase/functions";
 import type { StakeholderRole } from './constants';
-import { createContext, useContext } from 'react';
-import type { UserProfile } from './types';
-
-export interface AuthContextType {
-  user: FirebaseUser | null;
-  profile: UserProfile | null;
-  loading: boolean;
-}
-
-export const AuthContext = createContext<AuthContextType>({ user: null, profile: null, loading: true });
+import { useContext } from 'react';
+import { AuthContext } from "@/components/Providers"; // Import context from Providers
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
