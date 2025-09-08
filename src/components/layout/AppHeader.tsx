@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/auth-utils";
 import {
@@ -36,10 +35,9 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { SignInModal } from '@/components/auth/SignInModal';
 
 
 function HeaderSkeleton() {
@@ -77,6 +75,7 @@ export function AppHeader() {
 
   const [isMobileSheetOpen, setIsMobileSheetOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [initialModalQuery, setInitialModalQuery] = useState("");
 
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -141,7 +140,7 @@ export function AppHeader() {
                 </DropdownMenu>
               ) : (
                  <div className="flex items-center gap-1">
-                    <Button asChild variant="ghost"><Link href="/auth/signin"><LogIn className="mr-2 h-4 w-4" />{t('signIn')}</Link></Button>
+                    <Button variant="ghost" onClick={() => setIsSignInModalOpen(true)}><LogIn className="mr-2 h-4 w-4" />{t('signIn')}</Button>
                     <Button asChild><Link href="/auth/signup"><UserPlus className="mr-2 h-4 w-4" />{t('signUp')}</Link></Button>
                  </div>
               )}
@@ -191,6 +190,7 @@ export function AppHeader() {
         onClose={() => setIsSearchModalOpen(false)}
         initialQuery={initialModalQuery}
       />
+      <SignInModal isOpen={isSignInModalOpen} onClose={() => setIsSignInModalOpen(false)} />
     </>
   );
 }
