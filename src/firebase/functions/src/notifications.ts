@@ -373,3 +373,4 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
     console.log("Daily event reminder check finished.");
     return null;
   });
+
