@@ -326,6 +326,8 @@ export const getCooperativeDashboardData = functions.https.onCall(
         let aggregatedProduce: CooperativeDashboardData['aggregatedProduce'] = [];
         
         if (memberIds.length > 0) {
+            // Firestore 'in' query is limited to 30 items per query.
+            // Chunk the memberIds array to handle more than 30 members.
             const memberChunks: string[][] = [];
             for (let i = 0; i < memberIds.length; i += 30) {
                 memberChunks.push(memberIds.slice(i, i + 30));
@@ -340,7 +342,7 @@ export const getCooperativeDashboardData = functions.https.onCall(
                   .where('ownerId', 'in', chunk)
                   .where('currentStage', 'in', ['Harvesting', 'Post-Harvest'])
                   .orderBy('harvestDate', 'desc')
-                  .limit(10) 
+                  .limit(10) // Limit per chunk for performance
                   .get()
             );
 
@@ -374,6 +376,7 @@ export const getCooperativeDashboardData = functions.https.onCall(
                                      .sort((a, b) => new Date(b.readyBy).getTime() - new Date(a.readyBy).getTime())
                                      .slice(0, 10);
         }
+
 
         const pendingMemberApplications = 3; // This remains mocked
 
@@ -716,20 +719,24 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
   async (data, context): Promise<ProcessingUnitDashboardData> => {
     const unitId = checkAuth(context);
     try {
-        const packagingOrdersPromise = db.collection('marketplace_orders')
+        // --- LIVE DATA ---
+        // 1. Fetch incoming raw material orders (where the unit is the buyer)
+        const rawMaterialOrdersPromise = db.collection('marketplace_orders')
             .where('buyerId', '==', unitId)
             .orderBy('createdAt', 'desc')
             .limit(5)
             .get();
-
-        const packagingInventoryPromise = db.collection('marketplaceItems')
+            
+        // 2. Fetch listed finished goods (where the unit is the seller)
+        const finishedGoodsPromise = db.collection('marketplaceItems')
             .where('sellerId', '==', unitId)
-            .where('category', '==', 'packaging-solutions')
+            .orderBy('createdAt', 'desc')
+            .limit(5)
             .get();
 
         const [ordersSnapshot, inventorySnapshot] = await Promise.all([
-            packagingOrdersPromise,
-            packagingInventoryPromise,
+            rawMaterialOrdersPromise,
+            finishedGoodsPromise,
         ]);
         
         const sellerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().sellerId))];
@@ -740,39 +747,40 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
                 sellerProfiles[doc.id] = doc.data().displayName || 'Unknown Supplier';
             });
         }
-
-        const packagingOrders = ordersSnapshot.docs.map(doc => {
+        
+        // This represents incoming raw materials, so we rename it
+        const incomingRawMaterials = ordersSnapshot.docs.map(doc => {
             const order = doc.data();
             return {
                 id: doc.id,
                 supplierName: sellerProfiles[order.sellerId] || 'Unknown Supplier',
+                productName: order.listingName,
                 deliveryDate: order.expectedDeliveryDate?.toDate().toISOString() || new Date(Date.now() + 86400000 * 5).toISOString(),
                 status: order.status,
-                actionLink: `/marketplace/my-purchases`,
+                actionLink: `/marketplace/my-purchases#${order.id}`,
             };
         });
         
-        const packagingInventory = inventorySnapshot.docs.map(doc => {
+        // This represents inventory of finished goods for sale
+        const finishedGoodsInventory = inventorySnapshot.docs.map(doc => {
             const item = doc.data();
             return {
-                id: doc.id,
-                packagingType: item.name,
-                unitsInStock: item.stock || 0,
-                reorderLevel: item.reorderLevel || 100,
+                product: item.name,
+                quality: item.qualityGrade || 'N/A', // Assuming quality grade is on the listing
+                tons: item.stock || 0, // Assuming stock is in tons
             };
         });
 
-        // Mock data for other sections for now
+        // --- MOCK DATA for complex analytics ---
         const yieldOptimization = { currentYield: 88, potentialYield: 92, suggestion: 'Adjust blade speed for softer fruits.' };
-        const inventory = [ { product: 'Mango Pulp', quality: 'Grade A', tons: 15 }, { product: 'Pineapple Rings', quality: 'Grade A', tons: 10 } ];
         const wasteReduction = { currentRate: 12, insight: 'High waste detected from peeling station.' };
 
         return {
             yieldOptimization,
-            inventory,
+            inventory: finishedGoodsInventory, // Renamed for clarity
             wasteReduction,
-            packagingOrders,
-            packagingInventory,
+            packagingOrders: incomingRawMaterials, // Renamed for clarity
+            packagingInventory: [], // Assuming this is about materials they BUY, which is handled by incomingRawMaterials.
         };
     } catch (error) {
         console.error("Error fetching Processing Unit dashboard data:", error);
@@ -1229,3 +1237,4 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
+
