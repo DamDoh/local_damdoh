@@ -326,8 +326,6 @@ export const getCooperativeDashboardData = functions.https.onCall(
         let aggregatedProduce: CooperativeDashboardData['aggregatedProduce'] = [];
         
         if (memberIds.length > 0) {
-            // Firestore 'in' query is limited to 30 items per query.
-            // Chunk the memberIds array to handle more than 30 members.
             const memberChunks: string[][] = [];
             for (let i = 0; i < memberIds.length; i += 30) {
                 memberChunks.push(memberIds.slice(i, i + 30));
@@ -342,7 +340,7 @@ export const getCooperativeDashboardData = functions.https.onCall(
                   .where('ownerId', 'in', chunk)
                   .where('currentStage', 'in', ['Harvesting', 'Post-Harvest'])
                   .orderBy('harvestDate', 'desc')
-                  .limit(10) // Limit per chunk for performance
+                  .limit(10) 
                   .get()
             );
 
@@ -356,22 +354,26 @@ export const getCooperativeDashboardData = functions.https.onCall(
             });
 
             const cropSnapshots = await Promise.all(cropPromises);
+            const produceMap = new Map<string, CooperativeDashboardData['aggregatedProduce'][0]>();
+
             cropSnapshots.forEach(snapshot => {
                 snapshot.forEach(doc => {
                     const cropData = doc.data();
-                    aggregatedProduce.push({
+                    const produceItem = {
                         id: doc.id,
                         productName: cropData.cropType || 'Unknown Produce',
                         quantity: parseFloat(cropData.expectedYield?.split(' ')[0] || '0'), 
-                        quality: 'Grade A', // Placeholder as it's not on the crop model
+                        quality: 'Grade A', // Placeholder
                         readyBy: (cropData.harvestDate as admin.firestore.Timestamp)?.toDate?.().toISOString() || new Date().toISOString(),
-                    });
+                    };
+                    produceMap.set(doc.id, produceItem);
                 });
             });
-            // Sort and limit final aggregated produce
-            aggregatedProduce = aggregatedProduce.sort((a, b) => new Date(b.readyBy).getTime() - new Date(a.readyBy).getTime()).slice(0, 10);
-        }
 
+            aggregatedProduce = Array.from(produceMap.values())
+                                     .sort((a, b) => new Date(b.readyBy).getTime() - new Date(a.readyBy).getTime())
+                                     .slice(0, 10);
+        }
 
         const pendingMemberApplications = 3; // This remains mocked
 
