@@ -1,6 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { getProfileByIdFromDB as getProfileByIdFromDBFunction } from "./user";
 
 const db = admin.firestore();
 
@@ -593,7 +594,7 @@ export const logFinancialTransaction = functions.https.onCall(
     }
 
     const callerUid = context.auth.uid;
-    const {type, amount, currency, description, category} = data;
+    const {type, amount, currency, description, category, date } = data;
 
     const validTypes = ["income", "expense"];
     if (!type || typeof type !== "string" || !validTypes.includes(type)) {
@@ -620,6 +621,12 @@ export const logFinancialTransaction = functions.https.onCall(
         "error.description.required",
       );
     }
+    if(!date) {
+        throw new functions.https.HttpsError(
+            "invalid-argument",
+            "error.date.required",
+        );
+    }
 
     try {
       console.log(
@@ -639,7 +646,7 @@ export const logFinancialTransaction = functions.https.onCall(
         currency: currency,
         description: description,
         category: category || "Uncategorized",
-        timestamp: admin.firestore.FieldValue.serverTimestamp(),
+        timestamp: admin.firestore.Timestamp.fromDate(new Date(date)),
         linkedOrderId: null,
         linkedLoanApplicationId: null,
         linkedGrantApplicationId: null,
@@ -751,7 +758,7 @@ const checkFiAuth = async (context: functions.https.CallableContext) => {
 };
 
 export const getFinancialApplicationDetails = functions.https.onCall(async (data, context) => {
-    await checkFiAuth(context);
+    const fiId = await checkFiAuth(context);
     const { applicationId } = data;
     if (!applicationId) {
         throw new functions.https.HttpsError('invalid-argument', 'Application ID is required.');
@@ -765,19 +772,16 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
     }
 
     const appData = appDoc.data()!;
+    // Security check: Make sure the FI is the one assigned to this application
+    if (appData.fiId !== fiId) {
+        throw new functions.https.HttpsError('permission-denied', 'You are not authorized to view this application.');
+    }
+
     let applicantProfile = null;
 
     if (appData.applicantId) {
-        const profileDoc = await db.collection('users').doc(appData.applicantId).get();
-        if (profileDoc.exists) {
-            const profileData = profileDoc.data()!;
-            applicantProfile = {
-                id: profileDoc.id,
-                ...profileData,
-                createdAt: (profileData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
-                updatedAt: (profileData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
-            };
-        }
+        const result = await getProfileByIdFromDBFunction({ uid: appData.applicantId }, context);
+        applicantProfile = result;
     }
     
     const serializedAppData = {
@@ -951,6 +955,7 @@ export const getFarmerApplications = functions.https.onCall(async (data, context
 
     return { applications };
 });
+
 
 export const getTrustScore = functions.https.onCall(async (data, context) => {
   const uid = checkAuth(context);
