@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import type { FarmerDashboardData } from '@/lib/types';
@@ -51,7 +51,7 @@ function DashboardSkeleton() {
 export function FarmerDashboard() {
     const t = useTranslations('FarmerDashboard');
     const [dashboardData, setDashboardData] = useState<FarmerDashboardData | null>(null);
-    const [trustScore, setTrustScore] = useState<number | null>(null);
+    const [trustScoreData, setTrustScoreData] = useState<{ score: number, riskFactors: string[] } | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const { user } = useAuth();
 
@@ -73,7 +73,7 @@ export function FarmerDashboard() {
                     getTrustScoreCallable()
                 ]);
                 setDashboardData(farmerResult.data as FarmerDashboardData);
-                setTrustScore((scoreResult.data as any)?.score ?? 500);
+                setTrustScoreData((scoreResult.data as any) ?? { score: 500, riskFactors: [] });
 
             } catch (error) {
                 console.error("Error fetching farmer dashboard data:", error);
@@ -129,61 +129,13 @@ export function FarmerDashboard() {
                     <MyCropsList crops={recentCrops} />
                  </div>
                  <div className="lg:col-span-2 space-y-6">
-                    <TrustScoreWidget reputationScore={trustScore || 500} certifications={certifications || []} />
+                    <TrustScoreWidget 
+                        reputationScore={trustScoreData?.score || 500} 
+                        riskFactors={trustScoreData?.riskFactors || []}
+                        certifications={certifications || []}
+                    />
                  </div>
             </div>
         </div>
     );
 }
-
-const StatCard = ({ title, value, icon, ctaLink, ctaText, isCurrency = false }: { title: string, value: number, icon: React.ReactNode, link: string, ctaText: string, isCurrency?: boolean }) => (
-    <Card className="flex flex-col">
-        <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium flex items-center gap-2 text-muted-foreground">
-                {icon} {title}
-            </CardTitle>
-        </CardHeader>
-        <CardContent className="flex-grow">
-            <div className="text-3xl font-bold">{isCurrency ? value.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }) : value}</div>
-        </CardContent>
-        <CardFooter>
-            <Button asChild variant="outline" size="sm" className="w-full">
-                <Link href={ctaLink}>{ctaText}</Link>
-            </Button>
-        </CardFooter>
-    </Card>
-);
-
-const MyCropsList = ({ crops }: { crops: FarmerDashboardData['recentCrops'] }) => {
-    const t = useTranslations('FarmerDashboard');
-    if(!crops || crops.length === 0){
-        return (
-            <Card>
-                <CardHeader><CardTitle>{t('recentCrops.title')}</CardTitle></CardHeader>
-                <CardContent className="text-center text-muted-foreground py-10">
-                    <p>{t('recentCrops.noCrops')}</p>
-                    <Button asChild className="mt-4"><Link href="/farm-management/create-farm">{t('recentCrops.button')}</Link></Button>
-                </CardContent>
-            </Card>
-        )
-    }
-    return (
-        <Card>
-            <CardHeader><CardTitle>{t('recentCrops.title')}</CardTitle></CardHeader>
-            <CardContent className="space-y-3">
-                {crops.map((crop) => (
-                    <div key={crop.id} className="p-3 border rounded-lg hover:bg-accent transition-colors cursor-pointer" onClick={() => window.location.href = `/farm-management/farms/${crop.farmId}/crops/${crop.id}`}>
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="font-semibold">{crop.name}</p>
-                            <p className="text-xs text-muted-foreground">{t('recentCrops.onFarm')} {crop.farmName}</p>
-                          </div>
-                          <Badge>{crop.stage}</Badge>
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-1">{t('recentCrops.plantedOn')}: {crop.plantingDate ? format(new Date(crop.plantingDate), 'PPP') : 'N/A'}</p>
-                    </div>
-                ))}
-            </CardContent>
-        </Card>
-    )
-};

@@ -2,11 +2,18 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { ShieldCheck, Award, Star } from "lucide-react";
+import { ShieldCheck, Award, Star, Info } from "lucide-react";
 import { useTranslations } from "next-intl";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 interface TrustScoreWidgetProps {
     reputationScore: number;
+    riskFactors: string[];
     certifications: {
         id: string;
         name: string;
@@ -14,8 +21,15 @@ interface TrustScoreWidgetProps {
     }[];
 }
 
-export const TrustScoreWidget = ({ reputationScore, certifications }: TrustScoreWidgetProps) => {
+export const TrustScoreWidget = ({ reputationScore, riskFactors, certifications }: TrustScoreWidgetProps) => {
     const t = useTranslations('FarmerDashboard.trustWidget');
+    
+    const getScoreColor = (score: number) => {
+        if (score >= 750) return "text-green-600";
+        if (score >= 600) return "text-yellow-500";
+        return "text-red-500";
+    };
+    
     return (
         <Card className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/30 dark:to-blue-900/30">
             <CardHeader>
@@ -27,8 +41,25 @@ export const TrustScoreWidget = ({ reputationScore, certifications }: TrustScore
             </CardHeader>
             <CardContent className="space-y-4">
                 <div className="text-center">
-                    <p className="text-xs text-muted-foreground">{t('reputationScore')}</p>
-                    <p className="text-4xl font-bold text-primary">{reputationScore}</p>
+                    <p className="text-xs text-muted-foreground">{t('creditScore')}</p>
+                    <p className={`text-4xl font-bold ${getScoreColor(reputationScore)}`}>{reputationScore}</p>
+                </div>
+                 <div>
+                    <h4 className="text-sm font-semibold mb-2 flex items-center gap-1.5">
+                        <Info className="h-4 w-4" />
+                        {t('keyFactorsTitle')}
+                    </h4>
+                    <div className="space-y-2">
+                        {riskFactors.length > 0 ? (
+                            riskFactors.map((factor, index) => (
+                                <div key={index} className="text-xs p-2 bg-background/50 rounded-md border">
+                                    <p className="text-muted-foreground">{factor}</p>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="text-xs text-muted-foreground text-center py-2">{t('noFactors')}</p>
+                        )}
+                    </div>
                 </div>
                 <div>
                     <h4 className="text-sm font-semibold mb-2 flex items-center gap-1.5">
