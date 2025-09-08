@@ -683,7 +683,7 @@ export const getAgroExportDashboardData = functions.https.onCall(
   async (data, context): Promise<AgroExportDashboardData> => {
     checkAuth(context);
      try {
-        const vtisForExportPromise = db.collection('vti_registry')
+        const vtisForExportPromise = await db.collection('vti_registry')
             .where('metadata.forExport', '==', true)
             // Ideally, we'd have a `documentationStatus` field to query
             .limit(5)
@@ -1040,7 +1040,7 @@ export const getInsuranceProviderDashboardData = functions.https.onCall(
             const claim = doc.data();
             return {
                 id: doc.id,
-                policyHolderName: claim.applicantName || 'Unknown Farmer', // Placeholder
+                policyHolderName: claim.applicantName || 'Unknown Farmer',
                 policyType: claim.productName,
                 claimDate: (claim.submittedAt as admin.firestore.Timestamp).toDate().toISOString(),
                 status: claim.status,
@@ -1277,5 +1277,3 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
-
-    
