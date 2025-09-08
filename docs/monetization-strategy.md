@@ -7,7 +7,7 @@ This document outlines the tiered, non-transactional SaaS business model for the
 
 1.  **Value-Based Tiering**: Tiers are structured based on the value a stakeholder segment derives from the platform.
 2.  **Network Effects First**: A robust free tier is essential to build a critical mass of users, which makes the platform valuable for everyone.
-3.  **Non-Transactional Core**: Our revenue comes from software and data services, not from processing payments or taking a percentage of our users' transactions.
+3.  **Hybrid Revenue Model**: Our revenue comes from a mix of recurring software subscriptions (SaaS) and commission-based fees for high-value facilitated services. We do **not** directly process payments between buyers and sellers for standard marketplace transactions.
 4.  **Data as a Product (Consent-Based)**: For enterprise clients, our most valuable asset is aggregated, anonymized, and consent-based data that helps them de-risk their business decisions.
 
 ## The Four Tiers
@@ -22,7 +22,6 @@ This document outlines the tiered, non-transactional SaaS business model for the
     -   Browse the Marketplace and Talent Exchange.
     -   Limited Farm Management: Create 1 farm, track up to 5 concurrent crop/livestock batches.
     -   Limited Marketplace Listings: Create up to 5 active listings per month.
-    -   Access to the Knowledge Hub.
 -   **Goal**: Maximize user acquisition, drive network effects, and serve as the primary funnel for our paid tiers.
 
 ### 2. Professional Tier (Premium Subscription)
@@ -65,14 +64,19 @@ This document outlines the tiered, non-transactional SaaS business model for the
     -   Bespoke data reporting and visualization tools.
     -   Dedicated enterprise support and account management.
 
-#### Example: Monetizing a Financial Institution (FI)
+## Service-Based Commission Model (Agro-Tourism Example)
 
-We will not charge per transaction or take a percentage of loans. Instead, we provide value through data and workflow integration, for which we charge a recurring license fee.
+For specific high-value services that we facilitate, like Agro-Tourism bookings, we will adopt a commission-based model that does **not** involve handling direct payments between the business and their customer.
 
-1.  **The "Hook" (Freemium)**: The FI can create a basic profile on the platform for free, making them discoverable by farmers seeking funding.
-2.  **The Product (Enterprise License)**:
-    *   **Tier 1 License ($5,000/year)**: Access to the FI Dashboard to receive and manage up to 100 applications per month originating from the DamDoh platform. Includes basic applicant profile data.
-    *   **Tier 2 License ($15,000/year)**: Includes everything in Tier 1, plus API access to the AI-generated credit risk scores for applicants who consent to share their data. This is our core value proposition, as it helps the FI de-risk their portfolio.
-    *   **Tier 3 License (Custom Price)**: Includes everything in Tier 2, plus API access to broader, anonymized datasets for market analysis (e.g., "What is the average yield and profitability of coffee farmers in the Rift Valley region?").
+**How it Works:**
+1.  **Facilitation**: A guest discovers and books an Agro-Tourism service (e.g., a farm stay) through the DamDoh platform.
+2.  **No Direct Payment**: The DamDoh platform does **not** process the payment from the guest to the service owner. The financial transaction occurs directly between the guest and the owner via their own established methods (e.g., cash on arrival, local mobile money).
+3.  **Usage Tracking**: DamDoh tracks key metrics of the booking, such as the number of guests and the completion of the stay (verified via the check-in system).
+4.  **Commission Invoicing**: At the end of a billing cycle (e.g., monthly), DamDoh will invoice the Agro-Tourism operator a pre-agreed service fee or commission based on the usage metrics (e.g., a flat fee per guest checked-in).
 
-This model aligns our revenue directly with the value we provide—reducing risk and providing qualified, data-rich leads—without interfering in the financial transaction between the FI and the farmer.
+**Benefits of this Model:**
+*   **Reduces Complexity**: DamDoh avoids the significant legal, regulatory, and technical overhead of becoming a payment processor.
+*   **Aligns with Value**: Our revenue is directly tied to the successful bookings we facilitate for the service provider.
+*   **Flexibility**: Allows operators to use their preferred local payment methods, which is critical in diverse global markets.
+
+This hybrid approach allows us to capture value from the transactions we enable without taking on the burden of payment processing, maintaining our focus as a technology and networking platform.
