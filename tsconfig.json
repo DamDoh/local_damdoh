@@ -28,7 +28,8 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.json",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/app/api/_functions/**/*.ts"
   ],
-  "exclude": ["node_modules", "firebase/functions"]
+  "exclude": ["node_modules"]
 }

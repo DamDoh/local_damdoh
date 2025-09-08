@@ -830,6 +830,8 @@ export const getWarehouseDashboardData = functions.https.onCall(
 export const getQaDashboardData = functions.https.onCall(
   (data, context): QaDashboardData => {
     checkAuth(context);
+    // This dashboard is currently mocked as it requires a more complex data model
+    // for inspections and quality logs that doesn't exist yet.
     return {
         pendingInspections: [
             { id: 'insp1', batchId: 'vti-xyz-123', productName: 'Avocado Batch', sellerName: 'Green Valley Farms', dueDate: new Date().toISOString(), actionLink: '#'}
@@ -1325,6 +1327,7 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
 
 
     
+
 
 
 

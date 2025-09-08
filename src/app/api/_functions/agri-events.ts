@@ -1,3 +1,4 @@
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { AgriEventSchema } from "@/lib/schemas"; // Import from the new single source of truth

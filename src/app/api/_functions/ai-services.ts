@@ -1,4 +1,5 @@
 
+
 'use server';
 
 import * as functions from "firebase-functions";
@@ -54,5 +55,3 @@ export const onProfileUpdateEnrich = functions.firestore
 
     return null;
   });
-
-    
