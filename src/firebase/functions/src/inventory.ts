@@ -2,6 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { createInventoryItemSchema } from "@/lib/schemas";
+import { _internalLogTraceEvent } from "./traceability";
 
 const db = admin.firestore();
 
@@ -126,4 +127,58 @@ export const updateInventoryItem = functions.https.onCall(async (data, context) 
     return { success: true };
 });
 
-    
+export const useInventoryItem = functions.https.onCall(async (data, context) => {
+  const ownerId = checkAuth(context);
+  const { itemId, cropId, quantityUsed, notes } = data;
+
+  if (!itemId || !cropId || !quantityUsed) {
+    throw new functions.https.HttpsError("invalid-argument", "Item ID, Crop ID, and quantity used are required.");
+  }
+
+  const itemRef = db.collection(`users/${ownerId}/inventory`).doc(itemId);
+  const cropRef = db.collection('crops').doc(cropId);
+
+  return db.runTransaction(async (transaction) => {
+    const itemDoc = await transaction.get(itemRef);
+    const cropDoc = await transaction.get(cropRef);
+
+    if (!itemDoc.exists) throw new functions.https.HttpsError("not-found", "Inventory item not found.");
+    if (!cropDoc.exists) throw new functions.https.HttpsError("not-found", "Crop not found.");
+
+    const itemData = itemDoc.data()!;
+    if (itemData.ownerId !== ownerId || cropDoc.data()?.ownerId !== ownerId) {
+        throw new functions.https.HttpsError("permission-denied", "You do not own these resources.");
+    }
+
+    const currentQuantity = itemData.quantity;
+    if (currentQuantity < quantityUsed) {
+      throw new functions.https.HttpsError("failed-precondition", "Not enough inventory for this action.");
+    }
+
+    // 1. Decrement inventory quantity
+    transaction.update(itemRef, {
+      quantity: admin.firestore.FieldValue.increment(-quantityUsed),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp()
+    });
+
+    // 2. Log a traceability event
+    const eventPayload = {
+      inputId: itemData.name, // Use the inventory item name as the input ID
+      quantity: quantityUsed,
+      unit: itemData.unit,
+      applicationDate: new Date().toISOString(),
+      method: notes || 'General Application',
+      sourceInventoryId: itemId,
+    };
+
+    await _internalLogTraceEvent({
+      eventType: "INPUT_APPLIED",
+      actorRef: ownerId,
+      geoLocation: null, // Can be added later
+      payload: eventPayload,
+      farmFieldId: cropId,
+    }, context);
+
+    return { success: true, newQuantity: currentQuantity - quantityUsed };
+  });
+});

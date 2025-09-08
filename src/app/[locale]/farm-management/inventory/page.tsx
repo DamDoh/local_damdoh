@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import Link from "next/link";
-import { ArrowLeft, PlusCircle, Package, AlertCircle, Trash2, Edit } from "lucide-react";
+import { ArrowLeft, PlusCircle, Package, AlertCircle, Trash2, Edit, Eye, Loader2, Droplets } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,7 +15,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useToast } from '@/hooks/use-toast';
 import { Badge } from '@/components/ui/badge';
 import { format } from 'date-fns';
-import { InventoryItem } from '@/lib/types';
+import { InventoryItem, Crop } from '@/lib/types';
+import { LogUsageDialog } from '@/components/farm-management/LogUsageDialog';
+
 
 function InventoryListSkeleton() {
   return (
@@ -33,6 +35,7 @@ export default function InventoryManagementPage() {
   const [inventory, setInventory] = useState<InventoryItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState<InventoryItem | null>(null);
   const { toast } = useToast();
 
   const functions = getFunctions(firebaseApp);
@@ -71,6 +74,11 @@ export default function InventoryManagementPage() {
     if (!expiryDate) return false;
     return new Date(expiryDate) < new Date();
   };
+  
+  const handleUsageLogged = () => {
+    setSelectedItem(null);
+    fetchInventory(); // Refresh data after usage is logged
+  };
 
   if (!user && !isLoading) {
     return (
@@ -89,6 +97,7 @@ export default function InventoryManagementPage() {
   }
 
   return (
+    <>
     <div className="container mx-auto p-4 md:p-8">
       <Link href="/farm-management" className="inline-flex items-center text-sm text-primary hover:underline mb-4">
         <ArrowLeft className="mr-1 h-4 w-4"/> {t('backToHub')}
@@ -135,6 +144,9 @@ export default function InventoryManagementPage() {
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end space-x-2">
+                        <Button variant="secondary" size="sm" title={t('actions.logUsage')} onClick={() => setSelectedItem(item)}>
+                            <Droplets className="h-4 w-4"/>
+                        </Button>
                         <Button asChild variant="outline" size="sm" title={t('actions.edit')}>
                            <Link href={`/farm-management/inventory/${item.id}/edit`}><Edit className="h-4 w-4"/></Link>
                         </Button>
@@ -163,7 +175,14 @@ export default function InventoryManagementPage() {
         </CardContent>
       </Card>
     </div>
+    {selectedItem && (
+        <LogUsageDialog
+            item={selectedItem}
+            isOpen={!!selectedItem}
+            onClose={() => setSelectedItem(null)}
+            onUsageLogged={handleUsageLogged}
+        />
+    )}
+    </>
   );
 }
-
-    
