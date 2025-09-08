@@ -2,7 +2,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getFunctions, httpsCallable } from 'firebase-functions/v1';
+import { getProfileByIdFromDB } from './user';
 
 const db = admin.firestore();
 
@@ -26,9 +26,8 @@ export const bookAgroTourismService = functions.https.onCall(async (data, contex
     const bookingRef = itemRef.collection('bookings').doc(uid);
     
     // Call the centralized user profile function
-    const getProfile = httpsCallable(getFunctions(), 'user-getProfileByIdFromDB');
-    const userProfileResult = await getProfile({ uid });
-    const userProfileDoc = userProfileResult.data as any;
+    const userProfileResult = await getProfileByIdFromDB({ uid }, context);
+    const userProfileDoc = userProfileResult as any;
     
     if (!userProfileDoc) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
