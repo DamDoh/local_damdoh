@@ -33,12 +33,12 @@ import { useState, useMemo } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
-import { getFunctions, httpsCallable, HttpsError } from 'firebase/functions';
+import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import { uploadFileAndGetURL } from '@/lib/storage-utils';
 import { useTranslations, useLocale } from "next-intl";
 import { getObservationTypes } from "@/lib/i18n-constants";
-import { useOfflineSync } from "@/hooks/useOfflineSync";
+import { useOfflineSync } from '@/hooks/useOfflineSync';
 import { askFarmingAssistant } from "@/lib/server-actions";
 
 export default function LogObservationPage() {
@@ -86,6 +86,7 @@ export default function LogObservationPage() {
       if (data.imageFile) {
         toast({ title: t('toast.uploading'), description: t('toast.uploadingDescription') });
         imageUrl = await uploadFileAndGetURL(data.imageFile, `observations/${cropId}`);
+        
         toast({ title: t('toast.aiAnalyzing'), description: t('toast.aiDescription') });
         
         // Convert file to data URI for AI analysis

@@ -383,7 +383,7 @@ export const handleObservationEvent = functions.https.onCall(async (data, contex
             details, 
             mediaUrls: mediaUrls || [], 
             farmFieldId,
-            aiAnalysis: aiAnalysis || "No AI analysis was performed for this observation.",
+            aiAnalysis: aiAnalysis || null,
         };
 
         await _internalLogTraceEvent({
