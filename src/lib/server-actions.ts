@@ -1,5 +1,4 @@
 
-
 'use server';
 
 // Note: Most data-fetching server actions have been removed.
@@ -13,7 +12,8 @@ import { getMarketplaceRecommendations as getMarketplaceRecommendationsFlow } fr
 import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
 import { suggestForumTopics as suggestForumTopicsFlow } from '@/ai/flows/forum-topic-suggestions';
 import { interpretSearchQuery as interpretSearchQueryFlow } from '@/ai/flows/query-interpreter-flow';
-import type { CropRotationInput, CropRotationOutput, SmartSearchInterpretation } from '@/lib/types';
+import { askFarmingAssistant as askFarmingAssistantFlow } from '@/ai/flows/farming-assistant-flow';
+import type { FarmingAssistantInput, FarmingAssistantOutput, CropRotationInput, CropRotationOutput, SmartSearchInterpretation } from '@/lib/types';
 import { getLocale } from 'next-intl/server';
 import { generateForumPostDraftFlow } from '@/ai/flows/generate-forum-post-draft';
 import { getFunctions, httpsCallable } from 'firebase/functions';
@@ -157,4 +157,11 @@ export async function getProfileByIdFromDB(uid: string) {
     const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
     const result = await getProfile({ uid });
     return result.data as any;
+}
+
+export async function askFarmingAssistant(input: FarmingAssistantInput): Promise<FarmingAssistantOutput> {
+    const user = await getCurrentUser();
+    if (!user) throw new Error("Unauthorized");
+    const locale = await getLocale();
+    return askFarmingAssistantFlow({ ...input, language: locale });
 }

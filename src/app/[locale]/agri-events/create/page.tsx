@@ -35,7 +35,7 @@ export default function CreateAgriEventPage() {
   const { user } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const functions = getFunctions(firebaseApp);
-  const createAgriEventCallable = useMemo(() => httpsCallable(functions, 'createAgriEvent'), [functions]);
+  const createAgriEventCallable = useMemo(() => httpsCallable(functions, 'agriEvents-createAgriEvent'), [functions]);
 
   const form = useForm<CreateAgriEventValues>({
     resolver: zodResolver(createAgriEventSchema),

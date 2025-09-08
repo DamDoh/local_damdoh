@@ -49,7 +49,7 @@ export default function CreateCropPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
   const functions = getFunctions(firebaseApp);
-  const createCropCallable = useMemo(() => httpsCallable(functions, 'createCrop'), [functions]);
+  const createCropCallable = useMemo(() => httpsCallable(functions, 'farmManagement-createCrop'), [functions]);
 
   const form = useForm<CreateCropValues>({
     resolver: zodResolver(createCropSchema),

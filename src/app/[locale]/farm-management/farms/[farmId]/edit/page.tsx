@@ -235,7 +235,3 @@ export default function EditFarmPage() {
     </div>
   );
 }
-
-
-
-

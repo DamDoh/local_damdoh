@@ -235,4 +235,3 @@ export default function LogFinancialTransactionPage() {
     </div>
   );
 }
-

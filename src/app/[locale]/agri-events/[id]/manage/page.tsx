@@ -329,7 +329,7 @@ const StaffManagementTab = ({ eventId }: { eventId: string }) => {
                         {searchResults.map(res => (
                             <div key={res.id} className="flex items-center justify-between p-2 border rounded-md">
                                 <div className="flex items-center gap-2">
-                                    <Avatar className="h-8 w-8"><AvatarImage src={res.avatarUrl} /><AvatarFallback>{res.displayName?.substring(0,1)}</AvatarFallback></Avatar>
+                                    <Avatar className="h-8 w-8"><AvatarImage src={res.avatarUrl || ''} /><AvatarFallback>{res.displayName?.substring(0,1)}</AvatarFallback></Avatar>
                                     <div><p className="text-sm font-medium">{res.displayName}</p><p className="text-xs text-muted-foreground">{res.email}</p></div>
                                 </div>
                                 <Button size="sm" onClick={() => handleAddStaff(res)}><UserPlus className="h-4 w-4 mr-2"/>{t('addButton')}</Button>

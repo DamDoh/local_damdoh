@@ -287,22 +287,14 @@ export const createKnowledgeArticle = functions.https.onCall(
 
 
 /**
- * Fetches knowledge articles. Can be filtered by authorId.
+ * Fetches all knowledge articles.
  * @param {object} data The data for the function call.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{success: boolean, articles: any[]}>} A promise that resolves with the articles.
  */
 export const getKnowledgeArticles = functions.https.onCall(async (data, context) => {
-    const { authorId } = data || {};
     try {
-        let query: admin.firestore.Query = db.collection('knowledge_articles');
-        
-        if (authorId) {
-            query = query.where('authorId', '==', authorId);
-        }
-        
-        const articlesSnapshot = await query.orderBy('createdAt', 'desc').get();
-        
+        const articlesSnapshot = await db.collection('knowledge_articles').orderBy('createdAt', 'desc').get();
         const articles = articlesSnapshot.docs.map(doc => {
             const articleData = doc.data();
             return { 

@@ -44,7 +44,7 @@ export default function MyFarmsPage() {
   const { toast } = useToast();
   
   const functions = getFunctions(firebaseApp);
-  const getUserFarmsCallable = useMemo(() => httpsCallable(functions, 'getUserFarms'), [functions]);
+  const getUserFarmsCallable = useMemo(() => httpsCallable(functions, 'farmManagement-getUserFarms'), [functions]);
 
   useEffect(() => {
     if (!user) {
@@ -63,7 +63,7 @@ export default function MyFarmsPage() {
             variant: "destructive",
             title: t('toast.errorTitle'),
             description: error instanceof HttpsError && error.message
- ? t(error.message) // Use translation key from backend
+ ? t(error.message as any) // Use translation key from backend
  : t('toast.fetchError'), // Fallback to generic error
             
 

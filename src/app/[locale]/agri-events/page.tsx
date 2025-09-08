@@ -56,14 +56,14 @@ const EventCardSkeleton = () => (
 
 export default function AgriEventsPage() {
   const t = useTranslations('AgriEvents.page');
-  const tConstants = useTranslations('constants.agriEventTypes');
+  const tConstants = useTranslations('constants');
   const [searchTerm, setSearchTerm] = useState("");
   const [eventTypeFilter, setEventTypeFilter] = useState<AgriEventTypeConstant | 'All'>("All");
   const [events, setEvents] = useState<AgriEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const functions = getFunctions(firebaseApp);
-  const getAgriEventsCallable = useMemo(() => httpsCallable(functions, 'getAgriEvents'), [functions]);
+  const getAgriEventsCallable = useMemo(() => httpsCallable(functions, 'agriEvents-getAgriEvents'), [functions]);
 
   const pathname = usePathname();
   const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
@@ -136,7 +136,7 @@ export default function AgriEventsPage() {
               </div>
               <CardDescription>{t('description')}</CardDescription>
             </div>
-            <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
               <Button asChild>
                 <Link href="/agri-events/create">
                   <PlusCircle className="mr-2 h-4 w-4" />{t('createNewEvent')}

@@ -68,9 +68,9 @@ function EventPageContent() {
     const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; finalPrice: number } | null>(null);
     
     const functions = getFunctions(firebaseApp);
-    const getEventDetailsCallable = useMemo(() => httpsCallable(functions, 'getEventDetails'), [functions]);
-    const registerForEventCallable = useMemo(() => httpsCallable(functions, 'registerForEvent'), [functions]);
-    const validateCouponCallable = useMemo(() => httpsCallable(functions, 'validateEventCoupon'), [functions]);
+    const getEventDetailsCallable = useMemo(() => httpsCallable(functions, 'agriEvents-getEventDetails'), [functions]);
+    const registerForEventCallable = useMemo(() => httpsCallable(functions, 'agriEvents-registerForEvent'), [functions]);
+    const validateCouponCallable = useMemo(() => httpsCallable(functions, 'agriEvents-validateEventCoupon'), [functions]);
 
     useEffect(() => {
         if (!eventId) return;
@@ -84,7 +84,9 @@ function EventPageContent() {
                 if (!eventData) throw new Error(t('notFound'));
                 setEvent(eventData);
 
-                const organizerProfile = (await httpsCallable(functions, 'getProfileByIdFromDB')({ uid: eventData.organizerId })).data as UserProfile;
+                const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
+                const organizerProfileResult = await getProfile({ uid: eventData.organizerId });
+                const organizerProfile = organizerProfileResult.data as UserProfile;
                 setOrganizer(organizerProfile);
 
             } catch (err: any) {
@@ -203,7 +205,7 @@ function EventPageContent() {
                                 <CardTitle className="text-sm font-semibold">{t('organizerTitle')}</CardTitle>
                                 <div className="flex items-center gap-3 pt-2">
                                 <Avatar className="h-10 w-10">
-                                        <AvatarImage src={organizer.avatarUrl} alt={organizer.displayName} data-ai-hint="organizer profile" />
+                                        <AvatarImage src={organizer.avatarUrl || undefined} alt={organizer.displayName} data-ai-hint="organizer profile" />
                                         <AvatarFallback>{organizer.displayName?.substring(0, 2).toUpperCase()}</AvatarFallback>
                                     </Avatar>
                                     <div>
