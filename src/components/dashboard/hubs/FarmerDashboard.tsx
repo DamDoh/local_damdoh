@@ -51,11 +51,13 @@ function DashboardSkeleton() {
 export function FarmerDashboard() {
     const t = useTranslations('FarmerDashboard');
     const [dashboardData, setDashboardData] = useState<FarmerDashboardData | null>(null);
+    const [trustScore, setTrustScore] = useState<number | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const { user } = useAuth();
 
     const functions = getFunctions(firebaseApp);
     const getFarmerData = useMemo(() => httpsCallable(functions, 'dashboardData-getFarmerDashboardData'), [functions]);
+    const getTrustScoreCallable = useMemo(() => httpsCallable(functions, 'financials-getTrustScore'), [functions]);
 
     useEffect(() => {
         if (!user) {
@@ -66,8 +68,13 @@ export function FarmerDashboard() {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const result = await getFarmerData();
-                setDashboardData(result.data as FarmerDashboardData);
+                const [farmerResult, scoreResult] = await Promise.all([
+                    getFarmerData(),
+                    getTrustScoreCallable()
+                ]);
+                setDashboardData(farmerResult.data as FarmerDashboardData);
+                setTrustScore((scoreResult.data as any)?.score ?? 500);
+
             } catch (error) {
                 console.error("Error fetching farmer dashboard data:", error);
             } finally {
@@ -75,7 +82,7 @@ export function FarmerDashboard() {
             }
         };
         fetchData();
-    }, [user, getFarmerData]);
+    }, [user, getFarmerData, getTrustScoreCallable]);
 
     if (isLoading) {
         return <DashboardSkeleton />;
@@ -122,14 +129,14 @@ export function FarmerDashboard() {
                     <MyCropsList crops={recentCrops} />
                  </div>
                  <div className="lg:col-span-2 space-y-6">
-                    <TrustScoreWidget reputationScore={850} certifications={certifications || []} />
+                    <TrustScoreWidget reputationScore={trustScore || 500} certifications={certifications || []} />
                  </div>
             </div>
         </div>
     );
 }
 
-const StatCard = ({ title, value, icon, ctaLink, ctaText, isCurrency = false }: { title: string, value: number, icon: React.ReactNode, ctaLink: string, ctaText: string, isCurrency?: boolean }) => (
+const StatCard = ({ title, value, icon, ctaLink, ctaText, isCurrency = false }: { title: string, value: number, icon: React.ReactNode, link: string, ctaText: string, isCurrency?: boolean }) => (
     <Card className="flex flex-col">
         <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2 text-muted-foreground">
