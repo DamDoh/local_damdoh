@@ -73,7 +73,7 @@ export function LandingPage() {
 
       {/* Features Section */}
       <section id="features" className="py-12 md:py-24 bg-background">
-        <div className="container px-4 md:px-6">
+        <div className="container px-4 md:px-6 flex flex-col items-center">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">{t('features.title')}</h2>
             <p className="max-w-[600px] mx-auto text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
