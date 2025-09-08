@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
@@ -731,7 +730,7 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
         ]);
         
         const sellerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().sellerId))];
-        const sellerProfiles: Record<string, string} = {};
+        const sellerProfiles: Record<string, string> = {};
         if (sellerIds.length > 0) {
             const sellerDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', sellerIds).get();
             sellerDocs.forEach(doc => {
@@ -1227,5 +1226,3 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
-
-    
