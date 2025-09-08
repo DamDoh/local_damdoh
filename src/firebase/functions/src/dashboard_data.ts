@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
@@ -217,7 +218,7 @@ export const getPackagingSupplierDashboardData = functions.https.onCall(
                 product: order.listingName,
                 quantity: order.quantity,
                 status: order.status,
-                actionLink: `/marketplace/my-orders/${doc.id}`,
+                actionLink: `/marketplace/my-sales`,
             };
         });
 
@@ -649,7 +650,7 @@ export const getInputSupplierDashboardData = functions.https.onCall(
       const activeOrders = {
         count: ordersSnapshot.size,
         value: totalValue,
-        link: '/marketplace/my-orders'
+        link: '/marketplace/my-sales'
       };
 
       // 2. Keep other sections as mock data for now
@@ -745,7 +746,7 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
                 supplierName: sellerProfiles[order.sellerId] || 'Unknown Supplier',
                 deliveryDate: order.expectedDeliveryDate?.toDate().toISOString() || new Date(Date.now() + 86400000 * 5).toISOString(),
                 status: order.status,
-                actionLink: `/marketplace/my-orders/${order.id}`,
+                actionLink: `/marketplace/my-purchases`,
             };
         });
         
