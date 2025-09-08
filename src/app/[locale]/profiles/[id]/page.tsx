@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
@@ -88,7 +87,7 @@ export default function ProfileDetailPage() {
   const [isActivityLoading, setIsActivityLoading] = useState(true);
 
   const functions = getFunctions(firebaseApp);
-  const getUserActivity = useMemo(() => httpsCallable(functions, 'activity-getUserActivity'), [functions]);
+  const getUserActivityCallable = useMemo(() => httpsCallable(functions, 'activity-getUserActivity'), [functions]);
   const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'activity-logProfileView'), [functions]);
   const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'activity-getUserEngagementStats'), [functions]);
   const sendInviteCallable = useMemo(() => httpsCallable(functions, 'network-sendInvite'), [functions]);
@@ -123,19 +122,17 @@ export default function ProfileDetailPage() {
             }
             
             setIsActivityLoading(true);
-            getUserActivity({ userId: fetchedProfile.id })
-              .then(result => {
-                  setActivity((result.data as any).activities || []);
-              })
-              .catch(err => console.error("Failed to fetch activity:", err));
-              
-            getEngagementStatsCallable({ userId: fetchedProfile.id })
-              .then(result => {
-                  setStats(result.data as EngagementStats);
-              })
-              .catch(err => console.error("Failed to fetch stats:", err))
-              .finally(() => setIsActivityLoading(false));
-
+            Promise.all([
+              getUserActivityCallable({ userId: fetchedProfile.id }),
+              getEngagementStatsCallable({ userId: fetchedProfile.id })
+            ]).then(([activityResult, statsResult]) => {
+              setActivity((activityResult.data as any).activities || []);
+              setStats(statsResult.data as EngagementStats);
+            }).catch(err => {
+              console.error("Failed to fetch activity or stats:", err);
+            }).finally(() => {
+              setIsActivityLoading(false);
+            });
           }
         })
         .catch(error => {
@@ -148,7 +145,7 @@ export default function ProfileDetailPage() {
     } else if (!authLoading) {
       setIsLoading(false);
     }
-  }, [params.id, authUser, authLoading, router, getUserActivity, logProfileViewCallable, getEngagementStatsCallable]);
+  }, [params.id, authUser, authLoading, router, getUserActivityCallable, logProfileViewCallable, getEngagementStatsCallable]);
   
   const handleInvite = async () => {
     const inviteeEmail = prompt(t('invitePrompt'));
