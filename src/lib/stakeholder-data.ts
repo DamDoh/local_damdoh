@@ -49,7 +49,7 @@ export const STAKEHOLDER_ROLES: Stakeholder[] = [
   { id: 'tourism_operator', name: 'Agro-Tourism Operator', description: 'Facilitates farm-based tourism experiences.', icon: Hotel },
   { id: 'energy_provider', name: 'Energy Solutions Provider', description: 'Offers renewable energy solutions like solar and biogas.', icon: Sun },
   { id: 'export_facilitator', name: 'Agro-Export Facilitator', description: 'Assists with international trade procedures and customs.', icon: Globe },
-  { id:g: 'agritech_innovator', name: 'Agri-Tech Innovator/Developer', description: 'Develops new technologies for the platform.', icon: Rocket },
+  { id: 'agritech_innovator', name: 'Agri-Tech Innovator/Developer', description: 'Develops new technologies for the platform.', icon: Rocket },
   { id: 'waste_management', name: 'Waste Management & Compost Facility', description: 'Manages agricultural waste and promotes circularity.', icon: Recycle },
   { id: 'crowdfunder', name: 'Crowdfunder', description: 'Provides alternative financing for projects.', icon: HeartHandshake },
   { id: 'insurance_provider', name: 'Insurance Provider', description: 'Offers agricultural insurance products to mitigate risk.', icon: ShieldCheck },

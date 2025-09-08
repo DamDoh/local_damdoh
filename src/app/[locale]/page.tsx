@@ -9,6 +9,10 @@ import { useAuth } from '@/lib/auth-utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { MobileHomepage, MobileHomepageSkeleton } from '@/components/dashboard/MobileHomepage';
 import { useHomepageRedirect } from '@/hooks/useHomepageRedirect';
+import { AppHeader } from '@/components/layout/AppHeader';
+import { AppFooter } from '@/components/layout/AppFooter';
+import { Toaster } from '@/components/ui/toaster';
+import { LoggedInLayout } from '@/components/layout/LoggedInLayout';
 
 function HomePageContent() {
   const { user, loading: authLoading } = useAuth();
@@ -22,19 +26,28 @@ function HomePageContent() {
     return <PageSkeleton />;
   }
 
+  // If user is not logged in, show the landing page with its own simple layout.
   if (!user) {
-    return <LandingPage />;
+    return (
+        <div className="flex flex-col min-h-screen">
+            <AppHeader />
+            <main className="flex-grow">
+                <LandingPage />
+            </main>
+            <AppFooter />
+            <Toaster />
+        </div>
+    );
   }
   
-  if (isMobile) {
-    return <MobileHomepage />;
-  }
-
-  return <MainDashboard />;
+  // If user is logged in, show the main dashboard within the full sidebar layout.
+  return (
+    <LoggedInLayout>
+        {isMobile ? <MobileHomepage /> : <MainDashboard />}
+    </LoggedInLayout>
+  );
 }
 
-// The root page component now uses the LoggedInLayout to conditionally show the sidebar.
-// We remove the direct import and usage of MainDashboard from here.
 export default function RootPage() {
   return (
     <Suspense fallback={<PageSkeleton />}>

@@ -1,18 +1,12 @@
 
 import type { Metadata } from "next";
 import '../globals.css';
-import { AppHeader } from "@/components/layout/AppHeader";
-import { AppFooter } from "@/components/layout/AppFooter";
-import { Toaster } from "@/components/ui/toaster";
-import { MobileBottomNavigation } from "@/components/layout/MobileBottomNavigation";
 import { APP_NAME } from "@/lib/constants";
 import { Providers } from "@/components/Providers";
 import {NextIntlClientProvider} from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { locales } from '@/i18n-config';
 import { notFound } from "next/navigation";
-import { OfflineIndicator } from "@/components/layout/OfflineIndicator";
-import { LoggedInLayout } from "@/components/layout/LoggedInLayout";
  
 export const metadata: Metadata = {
   title: {
@@ -53,9 +47,7 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
-            <LoggedInLayout>
-              {children}
-            </LoggedInLayout>
+            {children}
           </Providers>
         </NextIntlClientProvider>
       </body>

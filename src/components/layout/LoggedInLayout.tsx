@@ -21,6 +21,7 @@ export function LoggedInLayout({ children }: { children: React.ReactNode }) {
 
     if (!user) {
         // For unauthenticated users (e.g., on the landing page), render children directly without the sidebar layout.
+        // This case is handled by the RootPage now, but kept as a safeguard.
         return (
             <div className="flex flex-col min-h-screen">
                 <AppHeader />
