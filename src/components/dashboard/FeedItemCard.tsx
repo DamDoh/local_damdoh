@@ -8,7 +8,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { MessageSquare, ThumbsUp, MoreHorizontal, Edit, Trash2, Share2, Send, CheckCircle } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Image as ImageIcon, Video, FileText, CalendarDays, BarChart3, PlusCircle, Trash2, X, MessageSquare, ThumbsUp, MoreHorizontal, Edit, Share2, Send, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -24,7 +28,7 @@ import { Loader2 } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { useAuth } from "@/lib/auth-utils";
 import { useFormatter, useTranslations } from "next-intl";
-import { onSnapshot, collection, query, orderBy, getFirestore, limit } from "firebase/firestore";
+import { onSnapshot, collection, query, orderBy, getFirestore, limit, doc, getDoc } from "firebase/firestore";
 
 interface FeedItemCardProps {
   item: FeedItem;
@@ -58,13 +62,26 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   const functions = useMemo(() => getFunctions(firebaseApp), []);
   const db = useMemo(() => getFirestore(firebaseApp), []);
   const voteOnPollCallable = useMemo(() => httpsCallable(functions, 'community-voteOnPoll'), [functions]);
-  const getCommentsForPost = useMemo(() => httpsCallable(functions, 'community-getCommentsForPost'), [functions]);
+  const getCommentsForPostCallable = useMemo(() => httpsCallable(functions, 'community-getCommentsForPost'), [functions]);
   
 
   useEffect(() => {
       setCurrentPollOptions(item.pollOptions?.map(opt => ({...opt})) || []);
       setVotedOptionIndex(null); 
   }, [item.pollOptions, item.id]);
+  
+   // Check if the current user has already voted on this poll
+  useEffect(() => {
+    if (item.type === 'poll' && user) {
+        const voteRef = doc(db, `posts/${item.id}/votes/${user.uid}`);
+        getDoc(voteRef).then(docSnap => {
+            if (docSnap.exists()) {
+                setVotedOptionIndex(docSnap.data().optionIndex);
+            }
+        });
+    }
+  }, [item.id, item.type, user, db]);
+
 
   const totalVotes = useMemo(() => {
     return currentPollOptions.reduce((acc, opt) => acc + (opt.votes || 0), 0);
@@ -92,35 +109,19 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
     if (!hasMoreComments && !isInitialLoad) return;
     setIsLoadingReplies(true);
     try {
-      const q = query(
-        collection(db, `posts/${item.id}/comments`),
-        orderBy("createdAt", "asc"),
-        limit(5)
-      );
-
-      onSnapshot(q, (snapshot) => {
-        const fetchedReplies = snapshot.docs.map(doc => {
-            const data = doc.data();
-            return {
-                id: doc.id,
-                ...data,
-                timestamp: (data.createdAt as any)?.toDate?.().toISOString() || new Date().toISOString()
-            } as PostReply;
-        });
-
-        setReplies(prev => isInitialLoad ? fetchedReplies : [...prev, ...fetchedReplies]);
-        setLastVisible(snapshot.docs[snapshot.docs.length - 1]);
-        setHasMoreComments(snapshot.docs.length === 5);
-        setIsLoadingReplies(false);
-      });
+      const result = await getCommentsForPostCallable({ postId: item.id, lastVisible: isInitialLoad ? null : lastVisible });
+      const data = result.data as { replies: PostReply[], lastVisible: any };
       
+      setReplies(prev => isInitialLoad ? data.replies : [...prev, ...data.replies]);
+      setLastVisible(data.lastVisible);
+      setHasMoreComments(!!data.lastVisible);
     } catch (error) {
       console.error("Failed to fetch comments:", error);
       toast({ title: t('loadCommentsErrorToast'), variant: "destructive" });
     } finally {
       setIsLoadingReplies(false);
     }
-  }, [item.id, lastVisible, hasMoreComments, toast, t, db]);
+  }, [item.id, lastVisible, hasMoreComments, toast, t, getCommentsForPostCallable]);
 
 
   const handleCommentButtonClick = async () => {
@@ -139,6 +140,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
     try {
       await onComment(item.id, commentText);
       setCommentText("");
+      fetchComments(true);
     } finally {
       setIsSubmittingComment(false);
     }
