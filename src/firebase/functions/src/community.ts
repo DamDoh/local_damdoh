@@ -106,20 +106,16 @@ export const likePost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { postId } = data;
 
-    const postRef = db.collection('posts').doc(postId);
-    const likeRef = postRef.collection('likes').doc(uid);
+    const likeRef = db.collection(`posts/${postId}/likes`).doc(uid);
+    const likeDoc = await likeRef.get();
     
-    return db.runTransaction(async (transaction) => {
-        const likeDoc = await transaction.get(likeRef);
-        
-        if (likeDoc.exists) {
-            transaction.delete(likeRef);
-            return { success: true, action: 'unliked' };
-        } else {
-            transaction.set(likeRef, { createdAt: admin.firestore.FieldValue.serverTimestamp() });
-            return { success: true, action: 'liked' };
-        }
-    });
+    if (likeDoc.exists) {
+        await likeRef.delete();
+        return { success: true, action: 'unliked' };
+    } else {
+        await likeRef.set({ createdAt: admin.firestore.FieldValue.serverTimestamp() });
+        return { success: true, action: 'liked' };
+    }
 });
 
 
@@ -172,7 +168,6 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
         return { replies: [], lastVisible: null };
     }
     
-    // The author data is now denormalized onto the comment, so no extra lookups are needed.
     const comments = commentsSnapshot.docs.map(doc => {
         const commentData = doc.data();
         return {
