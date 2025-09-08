@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
@@ -1241,55 +1240,55 @@ export const getAdminDashboardData = functions.https.onCall(async (data, context
 export const getAdminRecentActivity = functions.https.onCall(async (data, context): Promise<{ activity: AdminActivity[] }> => {
     checkAuth(context);
     try {
-        const newUsersPromise = db.collection('users').orderBy('createdAt', 'desc').limit(5).get();
-        const newListingsPromise = db.collection('marketplaceItems').orderBy('createdAt', 'desc').limit(5).get();
-
-        const [usersSnap, listingsSnap] = await Promise.all([newUsersPromise, newListingsPromise]);
+        const snapshot = await db.collection('search_index')
+            .orderBy('createdAt', 'desc')
+            .limit(10)
+            .get();
         
-        const activities: AdminActivity[] = [];
+        const activities: AdminActivity[] = snapshot.docs.map(doc => {
+            const item = doc.data();
+            let type = 'New Item';
+            let secondaryInfo = item.itemCollection;
+            let link = `/`;
 
-        usersSnap.forEach(doc => {
-            const user = doc.data();
-            activities.push({
+            switch (item.itemCollection) {
+                case 'users':
+                    type = 'New User';
+                    secondaryInfo = item.primaryRole;
+                    link = `/profiles/${item.itemId}`;
+                    break;
+                case 'marketplaceItems':
+                    type = 'New Listing';
+                    secondaryInfo = item.category;
+                     link = `/marketplace/${item.itemId}`;
+                    break;
+                case 'forums':
+                    type = 'New Forum';
+                    secondaryInfo = item.tags.join(', ');
+                     link = `/forums/${item.itemId}`;
+                    break;
+                 case 'agri_events':
+                    type = 'New Event';
+                    secondaryInfo = item.tags.join(', ');
+                     link = `/agri-events/${item.itemId}`;
+                    break;
+            }
+
+            return {
                 id: doc.id,
-                type: 'New User',
-                primaryInfo: user.displayName,
-                secondaryInfo: user.primaryRole,
-                timestamp: (user.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
-                link: `/profiles/${doc.id}`,
-                avatarUrl: user.avatarUrl,
-            });
+                type: type,
+                primaryInfo: item.title,
+                secondaryInfo: secondaryInfo,
+                timestamp: (item.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+                link: link,
+                avatarUrl: item.imageUrl,
+            };
         });
 
-        listingsSnap.forEach(doc => {
-            const listing = doc.data();
-            activities.push({
-                id: doc.id,
-                type: 'New Listing',
-                primaryInfo: listing.name,
-                secondaryInfo: listing.category,
-                timestamp: (listing.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
-                link: `/marketplace/${doc.id}`,
-                avatarUrl: listing.imageUrl,
-            });
-        });
-        
-        activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+        return { activity: activities };
 
-        return { activity: activities.slice(0, 10) };
     } catch (error) {
          console.error("Error fetching admin recent activity:", error);
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
-
-
-
-    
-    
-
-    
-
-
-
-    
