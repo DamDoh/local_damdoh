@@ -29,7 +29,7 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
             primaryRole: 'Consumer', // Default role
             profileSummary: "Just joined the DamDoh community!",
             universalId: universalId,
-            viewCount: 0, // Initialize view count
+            viewCount: 0,
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         });
@@ -37,8 +37,6 @@ export const onUserCreate = functions.auth.user().onCreate(async (user) => {
         return null;
     } catch (error) {
         console.error(`Error creating Firestore profile for user ${user.uid}:`, error);
-        // Optional: you could add logic to delete the auth user if the profile creation fails,
-        // but this could also be problematic if the function fails for transient reasons.
         return null;
     }
 });
