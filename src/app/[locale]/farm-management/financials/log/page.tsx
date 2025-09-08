@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import Link from "next/link";
@@ -178,7 +179,7 @@ export default function LogFinancialTransactionPage() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="flex items-center gap-2"><DollarSign className="h-4 w-4"/>{t('amountLabel')}</FormLabel>
-                        <FormControl><Input type="number" placeholder="0.00" {...field} /></FormControl>
+                        <FormControl><Input type="number" placeholder="0.00" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -234,3 +235,4 @@ export default function LogFinancialTransactionPage() {
     </div>
   );
 }
+
