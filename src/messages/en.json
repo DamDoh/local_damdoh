@@ -69,6 +69,22 @@
     "featured": {
         "title": "AS FEATURED IN"
     },
+    "howItWorks": {
+        "title": "How It Works",
+        "subtitle": "A simple, three-step process to get you started on your journey to smarter farming.",
+        "step1": {
+            "title": "Upload an Image",
+            "description": "Take a photo of your crop. Our AI analyzes it against a vast database of plant diseases and pests."
+        },
+        "step2": {
+            "title": "Get Instant Diagnosis",
+            "description": "Receive an immediate, accurate diagnosis and learn about the potential impact on your crops."
+        },
+        "step3": {
+            "title": "Receive Actionable Advice",
+            "description": "Get tailored, sustainable treatment plans and preventative measures to protect your harvest."
+        }
+    },
     "stopGuessing": {
         "title": "Stop Guessing, Start Growing",
         "description": "Our platform transforms your farming practices from reactive to proactive. Make data-driven decisions that save money, improve crop health, and increase your bottom line.",

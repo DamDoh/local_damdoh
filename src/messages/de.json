@@ -106,6 +106,22 @@
     "featured": {
         "title": "WIE VORGESTELLT IN"
     },
+    "howItWorks": {
+        "title": "Wie es funktioniert",
+        "subtitle": "Ein einfacher, dreistufiger Prozess, um Ihnen den Einstieg in eine intelligentere Landwirtschaft zu erleichtern.",
+        "step1": {
+            "title": "Bild hochladen",
+            "description": "Machen Sie ein Foto Ihrer Pflanze. Unsere KI analysiert es anhand einer riesigen Datenbank von Pflanzenkrankheiten und Schädlingen."
+        },
+        "step2": {
+            "title": "Sofortige Diagnose erhalten",
+            "description": "Erhalten Sie eine sofortige, genaue Diagnose und erfahren Sie mehr über die möglichen Auswirkungen auf Ihre Pflanzen."
+        },
+        "step3": {
+            "title": "Handlungsempfehlungen erhalten",
+            "description": "Erhalten Sie maßgeschneiderte, nachhaltige Behandlungspläne und vorbeugende Maßnahmen zum Schutz Ihrer Ernte."
+        }
+    },
     "stopGuessing": {
         "title": "Hören Sie auf zu raten, fangen Sie an zu wachsen",
         "description": "Unsere Plattform verwandelt Ihre landwirtschaftlichen Praktiken von reaktiv zu proaktiv. Treffen Sie datengestützte Entscheidungen, die Geld sparen, die Pflanzengesundheit verbessern und Ihren Gewinn steigern.",

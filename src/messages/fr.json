@@ -105,6 +105,22 @@
     "featured": {
         "title": "TEL QUE PRÉSENTÉ DANS"
     },
+    "howItWorks": {
+        "title": "Comment ça marche",
+        "subtitle": "Un processus simple en trois étapes pour vous lancer dans votre voyage vers une agriculture plus intelligente.",
+        "step1": {
+            "title": "Télécharger une image",
+            "description": "Prenez une photo de votre culture. Notre IA l'analyse en la comparant à une vaste base de données sur les maladies et les ravageurs des plantes."
+        },
+        "step2": {
+            "title": "Obtenir un diagnostic instantané",
+            "description": "Recevez un diagnostic immédiat et précis et découvrez l'impact potentiel sur vos cultures."
+        },
+        "step3": {
+            "title": "Recevoir des conseils pratiques",
+            "description": "Obtenez des plans de traitement et des mesures préventives durables et personnalisés pour protéger votre récolte."
+        }
+    },
     "stopGuessing": {
         "title": "Arrêtez de deviner, commencez à cultiver",
         "description": "Notre plateforme transforme vos pratiques agricoles de réactives à proactives. Prenez des décisions basées sur les données qui permettent d'économiser de l'argent, d'améliorer la santé des cultures et d'augmenter vos bénéfices.",
