@@ -33,10 +33,12 @@ function HomePageContent() {
   return <MainDashboard />;
 }
 
+// The root page component now uses the LoggedInLayout to conditionally show the sidebar.
+// We remove the direct import and usage of MainDashboard from here.
 export default function RootPage() {
   return (
     <Suspense fallback={<PageSkeleton />}>
-      <HomePageContent />
+        <HomePageContent />
     </Suspense>
   );
 }
