@@ -1,7 +1,9 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile, JoinRequest } from './types';
+import { getFunctions, httpsCallable } from 'firebase-functions/v1';
 
 const db = admin.firestore();
 
@@ -398,4 +400,3 @@ export const inviteUserToGroup = functions.https.onCall(async (data, context) =>
     
     return { success: true, message: `An invitation has been sent to ${email}.`};
 });
-

@@ -2,6 +2,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { getFunctions, httpsCallable } from 'firebase-functions/v1';
 
 const db = admin.firestore();
 
@@ -30,13 +31,12 @@ export const getOrCreateConversation = functions.https.onCall(async (data, conte
     const conversationSnap = await conversationRef.get();
 
     if (!conversationSnap.exists) {
-        const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
-        
+        const getProfile = httpsCallable(getFunctions(), 'user-getProfileByIdFromDB');
+        // Fetch profiles to store basic info in the conversation doc for easier access
         const [userProfileResult, recipientProfileResult] = await Promise.all([
-            getProfile({ uid: userId }),
-            getProfile({ uid: recipientId })
+             getProfile({ uid: userId }),
+             getProfile({ uid: recipientId })
         ]);
-
         const userProfile = userProfileResult.data as any;
         const recipientProfile = recipientProfileResult.data as any;
 

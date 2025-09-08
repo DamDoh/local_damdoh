@@ -3,6 +3,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { suggestForumTopics } from '../../src/ai/flows/forum-topic-suggestions';
+import { getFunctions, httpsCallable } from 'firebase-functions/v1';
 
 const db = admin.firestore();
 
@@ -108,7 +109,7 @@ export const createForumPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Topic ID, title, and content are required.');
     }
     
-    const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
+    const getProfile = httpsCallable(getFunctions(), 'user-getProfileByIdFromDB');
     const userProfileResult = await getProfile({ uid });
     const userProfile = userProfileResult.data as any;
 
@@ -190,7 +191,7 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Topic ID, post ID, and content are required.');
     }
     
-    const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
+    const getProfile = httpsCallable(getFunctions(), 'user-getProfileByIdFromDB');
     const userProfileResult = await getProfile({ uid });
     const userProfile = userProfileResult.data as any;
 
