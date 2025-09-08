@@ -299,6 +299,7 @@ export const getGroupPostReplies = functions.https.onCall(async (data, context) 
     return { replies, lastVisible: newLastVisible };
 });
 
+
 export const requestToJoinGroup = functions.https.onCall(async (data, context) => {
     const requesterId = checkAuth(context);
     const { groupId } = data;
@@ -376,6 +377,7 @@ export const respondToJoinRequest = functions.https.onCall(async (data, context)
     
     return { success: true };
 });
+
 
 export const inviteUserToGroup = functions.https.onCall(async (data, context) => {
     const inviterId = checkAuth(context);

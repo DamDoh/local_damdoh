@@ -181,3 +181,62 @@ export const removeConnection = functions.https.onCall(async (data, context) => 
 
     return { success: true, message: "Connection removed." };
 });
+
+
+export const sendInvite = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
+    const { inviteeEmail } = data;
+    if (!inviteeEmail) {
+        throw new functions.https.HttpsError("invalid-argument", "An email must be provided.");
+    }
+    // In a real app, this would queue an email to be sent with a unique invite link.
+    // For this prototype, we'll just log it.
+    console.log(`User ${context.auth?.uid} invited ${inviteeEmail} to the platform.`);
+    return { success: true, message: `An invitation has been sent to ${inviteeEmail}.` };
+});
+
+
+export const getProfileConnectionStatuses = functions.https.onCall(async (data, context) => {
+    const currentUserId = checkAuth(context);
+    const { profileIds } = data;
+
+    if (!Array.isArray(profileIds) || profileIds.length === 0) {
+        return {};
+    }
+
+    const statuses: Record<string, 'connected' | 'pending_sent' | 'pending_received' | 'none'> = {};
+    const currentUserDoc = await db.collection('users').doc(currentUserId).get();
+    const currentUserConnections = currentUserDoc.data()?.connections || [];
+
+    const sentRequestsQuery = db.collection('connection_requests')
+        .where('requesterId', '==', currentUserId)
+        .where('recipientId', 'in', profileIds)
+        .where('status', '==', 'pending');
+        
+    const receivedRequestsQuery = db.collection('connection_requests')
+        .where('recipientId', '==', currentUserId)
+        .where('requesterId', 'in', profileIds)
+        .where('status', '==', 'pending');
+
+    const [sentSnapshot, receivedSnapshot] = await Promise.all([
+        sentRequestsQuery.get(),
+        receivedRequestsQuery.get()
+    ]);
+
+    const sentRequestsMap = new Map(sentSnapshot.docs.map(doc => [doc.data().recipientId, true]));
+    const receivedRequestsMap = new Map(receivedSnapshot.docs.map(doc => [doc.data().requesterId, true]));
+
+    for (const profileId of profileIds) {
+        if (currentUserConnections.includes(profileId)) {
+            statuses[profileId] = 'connected';
+        } else if (sentRequestsMap.has(profileId)) {
+            statuses[profileId] = 'pending_sent';
+        } else if (receivedRequestsMap.has(profileId)) {
+            statuses[profileId] = 'pending_received';
+        } else {
+            statuses[profileId] = 'none';
+        }
+    }
+    
+    return statuses;
+});

@@ -34,6 +34,8 @@ export default function MyNetworkPage() {
     const getConnectionsCallable = useMemo(() => httpsCallable(functions, 'network-getConnections'), [functions]);
     const respondToRequest = useMemo(() => httpsCallable(functions, 'network-respondToConnectionRequest'), []);
     const removeConnectionCallable = useMemo(() => httpsCallable(functions, 'network-removeConnection'), []);
+    const sendInviteCallable = useMemo(() => httpsCallable(functions, 'network-sendInvite'), [functions]);
+
 
     const fetchData = useCallback(async () => {
         setIsLoading(true);
@@ -86,6 +88,24 @@ export default function MyNetworkPage() {
         }
     };
     
+    const handleInvite = async () => {
+      const inviteeEmail = prompt(t('invitePrompt'));
+      if (inviteeEmail) {
+        try {
+          await sendInviteCallable({ inviteeEmail });
+          toast({
+            title: t('inviteSuccessTitle'),
+            description: t('inviteSuccessDescription', { email: inviteeEmail }),
+          });
+        } catch (error: any) {
+          toast({
+            title: t('inviteErrorTitle'),
+            description: error.message,
+            variant: 'destructive',
+          });
+        }
+      }
+    };
 
     if (isLoading || authLoading) {
         return <NetworkPageSkeleton />;
@@ -112,6 +132,12 @@ export default function MyNetworkPage() {
                 <ArrowLeft className="h-4 w-4 mr-1" />
                 {t('backLink')}
             </Link>
+            
+            <div className="flex justify-end mb-4">
+                <Button onClick={handleInvite} variant="outline">
+                    <Send className="mr-2 h-4 w-4" />{t('inviteButton')}
+                </Button>
+            </div>
 
             <Tabs defaultValue="connections" className="w-full">
                 <TabsList className="grid w-full grid-cols-2">
