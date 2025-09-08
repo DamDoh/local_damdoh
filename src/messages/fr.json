@@ -98,150 +98,198 @@
   },
   "LandingPage": {
     "hero": {
-      "title": "Empowering Agriculture from Soil to Sale on {appName}",
-      "subtitle": "The single platform connecting every actor in the agricultural value chain for a more transparent, efficient, and sustainable future.",
-      "getStartedButton": "Get Started for Free",
-      "learnMoreButton": "Learn More"
+      "title": "Renforcez votre ferme avec des informations intelligentes",
+      "subtitle": "Tirez parti de l'IA pour diagnostiquer les maladies des cultures, obtenir des recommandations personnalisées et optimiser votre rendement. L'avenir de l'agriculture est ici.",
+      "getStartedButton": "Commencer gratuitement"
+    },
+    "featured": {
+        "title": "TEL QUE PRÉSENTÉ DANS"
+    },
+    "stopGuessing": {
+        "title": "Arrêtez de deviner, commencez à cultiver",
+        "description": "Notre plateforme transforme vos pratiques agricoles de réactives à proactives. Prenez des décisions basées sur les données qui permettent d'économiser de l'argent, d'améliorer la santé des cultures et d'augmenter vos bénéfices.",
+        "p1_title": "Réduisez les coûts des intrants",
+        "p1_desc": "Appliquez le bon traitement au bon moment, en minimisant les déchets et en maximisant l'efficacité.",
+        "p2_title": "Augmentez le rendement et la qualité",
+        "p2_desc": "La détection précoce et les recommandations optimisées conduisent à des cultures plus saines et à de meilleures récoltes.",
+        "imageAlt": "Un agriculteur examinant une feuille de plante saine avec un smartphone."
     },
     "features": {
-      "title": "Key Features of DamDoh",
-      "subtitle": "Everything you need to grow, connect, and trade, all in one place.",
-      "networking": {
-        "title": "Intelligent Networking",
-        "description": "AI-powered connection suggestions to link you with the right partners, from input suppliers to international buyers."
+      "title": "Une agriculture plus intelligente, simplifiée",
+      "subtitle": "Notre suite d'outils alimentés par l'IA est conçue pour être intuitive et percutante, vous donnant un agronome expert dans votre poche.",
+      "diagnostics": {
+        "title": "Diagnostics alimentés par l'IA",
+        "description": "Prenez une photo d'une plante malade et obtenez un diagnostic instantané des maladies potentielles, des ravageurs ou des carences nutritionnelles."
       },
-      "marketplace": {
-        "title": "Direct Marketplace",
-        "description": "Buy and sell produce and services directly, increasing transparency and profitability for all stakeholders."
+      "insights": {
+        "title": "Informations basées sur les données",
+        "description": "Suivez les performances de votre ferme au fil du temps, analysez les tendances et débloquez des informations pour améliorer vos opérations saison après saison."
       },
-      "forums": {
-        "title": "Topical Forums",
-        "description": "Share knowledge, discuss challenges, and collaborate on solutions within focused topic forums."
+      "recommendations": {
+        "title": "Recommandations intelligentes",
+        "description": "Recevez des plans de traitement et de prévention personnalisés et durables, adaptés à votre culture et à votre diagnostic spécifiques."
       },
-      "talent": {
-        "title": "Talent Exchange",
-        "description": "Offer or find specialized agricultural services, from on-demand harvesting to drone surveying."
+      "assistant": {
+        "title": "Assistant IA 24/7",
+        "description": "Posez des questions sur les techniques agricoles, les prix du marché ou les pratiques durables et obtenez des réponses instantanées de niveau expert."
       }
     },
-    "forWho": {
-      "badge": "For Everyone in Agriculture",
-      "title": "One Platform for the Entire Value Chain",
-      "description": "DamDoh is uniquely designed to serve the entire agricultural ecosystem, creating a single source of truth and opportunity for all.",
-      "farmers": {
-        "title": "Farmers",
-        "description": "Access better markets, find quality inputs, and get expert advice to increase yield and profitability."
-      },
-      "buyers": {
-        "title": "Buyers & Processors",
-        "description": "Source traceable, high-quality produce directly from growers and cooperatives, ensuring supply chain reliability."
-      },
-      "experts": {
-        "title": "Experts & Service Providers",
-        "description": "Offer your specialized skills and services to a broad agricultural audience seeking your expertise."
-      },
-      "fis": {
-        "title": "Financial Institutions",
-        "description": "Offer loans, insurance, and financial products to a verified agricultural community."
-      },
-      "imageAlt": "A diverse group of agricultural stakeholders collaborating"
+    "howItWorks": {
+        "title": "Comment ça marche",
+        "subtitle": "Obtenez des informations exploitables en trois étapes simples.",
+        "step1": { "title": "Prenez une photo", "description": "Utilisez votre smartphone pour prendre une photo claire de la plante ou de la zone de champ affectée." },
+        "step2": { "title": "Obtenez un diagnostic instantané", "description": "Notre IA analyse l'image par rapport à une vaste base de données pour identifier le problème en quelques secondes." },
+        "step3": { "title": "Suivez les recommandations", "description": "Recevez un plan clair et exploitable avec des options de traitement durables pour soigner votre culture." }
+    },
+    "testimonials": {
+        "title": "Reconnu par les agriculteurs du monde entier",
+        "t1": {
+            "quote": "Cette plateforme a complètement changé la façon dont je gère ma plantation de café. La détection des maladies est incroyablement précise et m'a sauvé le rendement de toute une saison.",
+            "name": "Maria Garcia",
+            "role": "Productrice de café, Colombie"
+        },
+        "t2": {
+            "quote": "En tant que producteur de blé à grande échelle, les informations sur les données sont inestimables. Nous optimisons maintenant notre utilisation d'engrais et constatons une réduction des coûts de 15 % sans sacrifier la qualité.",
+            "name": "John O'Connell",
+            "role": "Producteur de blé, Canada"
+        },
+        "t3": {
+            "quote": "L'assistant IA, c'est comme avoir un agronome personnel disponible 24h/24 et 7j/7. C'est un outil essentiel pour tout agriculteur moderne.",
+            "name": "Amina Bello",
+            "role": "Petite agricultrice, Nigéria"
+        }
     },
     "cta": {
-      "title": "Join the Agricultural Revolution",
-      "subtitle": "Sign up today and be part of a growing global network dedicated to transforming the future of food.",
-      "button": "Create Your Free Account"
+      "title": "Prêt à cultiver plus intelligemment ?",
+      "subtitle": "Rejoignez des milliers d'agriculteurs qui utilisent DamDoh pour construire un avenir plus rentable et durable.",
+      "button": "Inscrivez-vous gratuitement"
     }
   },
-  "AppFooter": {
-    "tagline": "Connecting the entire agricultural value chain.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "About Us",
-    "contactLabel": "Contact",
-    "careersLabel": "Careers",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Resources",
-    "helpCenterLabel": "Help Center",
-    "communityGuidelinesLabel": "Community Guidelines",
-    "industryNewsLabel": "Industry News",
-    "eventsLabel": "Events",
-    "talentExchangeLabel": "Talent Exchange",
-    "legalTitle": "Légal",
-    "privacyPolicyLabel": "Politique de confidentialité",
-    "termsOfServiceLabel": "Conditions d'utilisation",
-    "copyright": "© {year} {appName}. Tous droits réservés.",
-    "getMobileApp": "Obtenez l'application mobile",
-    "googlePlayAlt": "Obtenez-le sur Google Play",
-    "appStoreAlt": "Télécharger sur l'App Store"
-  },
-  "forumsPage": {
-    "title": "Forums",
-    "description": "Connect with others, share knowledge, and stay up-to-date on the latest conversations.",
-    "createTopic": "Create Topic",
-    "searchPlaceholder": "Search topics...",
-    "suggestedTopicsTitle": "Suggested Topics",
-    "activity": "Active {time}",
-    "joinDiscussion": "Join Discussion",
-    "pinning": {
-      "unpinButton": "Unpin as Homepage",
-      "pinButton": "Pin as Homepage",
-      "pinnedTitle": "Forums Pinned",
-      "pinnedDescription": "The forums page is now your default homepage.",
-      "unpinnedTitle": "Forums Unpinned",
-      "unpinnedDescription": "Your homepage has been reset to default."
+  "Auth": {
+    "signInWelcome": "Welcome back to {appName}",
+    "signUpWelcome": "Join the DamDoh Agricultural Network",
+    "forgotPasswordResetPrompt": "Reset your password for {appName}",
+    "resetPasswordPrompt": "Create a new password for {appName}",
+    "signInTitle": "Sign in to your account",
+    "signInDescription": "Enter your credentials to access your dashboard.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "forgotPasswordLink": "Forgot password?",
+    "signingInButton": "Signing in...",
+    "signInButton": "Sign In",
+    "noAccountPrompt": "Don't have an account?",
+    "signUpLink": "Sign Up",
+    "signInLink": "Sign In",
+    "recoverWithUniversalIdPrompt": "Or recover access with your Universal ID",
+    "signUpTitle": "Create a new account",
+    "signUpDescription": "Tell us a bit about yourself to get started.",
+    "nameLabel": "Your Name or Business Name",
+    "namePlaceholder": "e.g., Chan Nary or Green Valley Farms",
+    "roleLabel": "Your Primary Role",
+    "rolePlaceholder": "Select your role in the supply chain...",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Creating account...",
+    "signUpButton": "Create Account",
+    "alreadyHaveAccountPrompt": "Already have an account?",
+    "forgotPasswordTitle": "Forgot Password?",
+    "forgotPasswordDescription": "No problem. Enter your email address below, and we'll send you a link to reset it.",
+    "sendResetLinkButton": "Send Reset Link",
+    "sendingEmailButton": "Sending email...",
+    "rememberPasswordPrompt": "Remember your password?",
+    "resetPasswordTitle": "Reset Your Password",
+    "resetPasswordDescription": "Enter and confirm your new password below.",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "Enter a strong new password",
+    "resetPasswordButton": "Reset Password",
+    "resettingPasswordButton": "Resetting...",
+    "recoverPage": {
+      "title": "Recover Your Account",
+      "description": "Use your network to regain access.",
+      "howItWorksTitle": "How it Works",
+      "step1": "Enter your phone number to start a recovery session.",
+      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
+      "step3": "Once your friend scans the code to verify your identity, you'll regain access.",
+      "startButton": "Start Account Recovery",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
+      "scanNote": "This code is temporary and expires in 10 minutes.",
+      "startOverButton": "Start Over",
+      "enterPhone": {
+        "title": "Enter Your Phone Number",
+        "description": "We'll use this to find your account and start the recovery process.",
+        "phoneNumberLabel": "Phone Number",
+        "phoneNumberPlaceholder": "+1 (555) 123-4567",
+        "phoneRequiredError": "A phone number is required.",
+        "getRecoveryCodeButton": "Get Recovery Code",
+        "verifyingButton": "Verifying...",
+        "genericError": "Could not start recovery. Please check the number and try again."
+      },
+      "helpFriend": {
+        "prompt": "Need to help a friend recover their account?",
+        "button": "Help a Friend Recover",
+        "scanError": "The scanned code is not a valid DamDoh recovery code.",
+        "scanSuccess": "Scan Successful!",
+        "scanFail": "Could not read the QR code. Please try again."
+      }
     },
-    "noTopics": {
-      "title": "No Topics Yet",
-      "description": "Be the first to create a forum topic!"
+    "forgotPassword": {
+      "emailSentTitle": "Check Your Email",
+      "emailSentDescription": "A password reset link has been sent to {email}.",
+      "emailSentDescriptionIfAccountExists": "If an account with {email} exists, a password reset link has been sent.",
+      "successTitle": "Email Sent!",
+      "successDescription": "Please check your inbox (and spam folder) for the password reset link.",
+      "errors": {
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidEmail": "The email address is not valid.",
+        "tooManyRequests": "Too many requests. Please try again later.",
+        "default": "Failed to send reset email"
+      }
     },
-    "noTopicsFound": {
-      "title": "No Topics Found",
-      "description": "Try adjusting your search filters or check back later."
+    "resetPassword": {
+      "successTitle": "Password Reset Successfully!",
+      "successDescription": "You can now sign in with your new password.",
+      "successRedirect": "You will be redirected to the sign-in page shortly.",
+      "errors": {
+        "missingCode": "Invalid password reset link. Please request a new one.",
+        "missingCodeTitle": "Invalid Link",
+        "missingCodeDescription": "The password reset link is missing or invalid. Please return to the 'Forgot Password' page to request a new one.",
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidOrExpiredCode": "The password reset link is invalid or has expired. Please request a new one.",
+        "userDisabled": "This user account has been disabled.",
+        "userNotFound": "No user found corresponding to this reset link.",
+        "weakPassword": "The new password is not strong enough.",
+        "default": "Failed to reset password"
+      }
     },
+    "signInSuccess": {
+      "title": "Sign In Successful",
+      "description": "Welcome back to {appName}!"
+    },
+    "signInFailed": "Sign In Failed",
     "errors": {
-      "loadTitle": "Erreur de chargement des sujets",
-      "loadDescription": "Impossible de charger les sujets du forum pour le moment.",
-      "loadSuggestions": {
-        "title": "Erreur de chargement des suggestions",
-        "description": "Impossible de récupérer les suggestions de sujets."
-      }
-    }
-  },
-  "AppHeader": {
-    "home": "Home",
-    "network": "Network",
-    "farmMgmt": "Farm Mgmt",
-    "marketplace": "Marketplace",
-    "talentExchange": "Talent",
-    "traceability": "Traceability",
-    "forums": "Forums",
-    "sustainability": "Sustainability",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Search people, products, services...",
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "myProfile": "My Profile",
-    "myOrders": "My Orders",
-    "myPurchases": "My Purchases",
-    "mySales": "My Sales",
-    "settings": "Settings",
-    "helpCenter": "Help Center",
-    "logOut": "Log Out",
-    "orders": "Orders",
-    "switchToLightAria": "Switch to light theme",
-    "switchToDarkAria": "Switch to dark theme",
-    "mobileMenu": {
-      "description": "A mobile menu with navigation links."
+      "unexpected": "An unexpected error occurred. Please try again.",
+      "invalidCredential": "The email or password you entered is incorrect.",
+      "invalidEmail": "The email address is not valid.",
+      "userDisabled": "This user account has been disabled.",
+      "default": "Authentication failed",
+      "emailInUse": "An account with this email already exists.",
+      "emailInUseRich": "An account with this email already exists. Please {signInLink} or use a different email.",
+      "weakPassword": "The password is too weak. Please use a stronger password."
     },
-    "toast": {
-      "logOut": {
-        "title": "Logged Out",
-        "description": "You have been successfully logged out.",
-        "failTitle": "Logout Failed",
-        "failDescription": "Could not log out. Please try again."
-      }
-    }
+    "passwordStrength": {
+      "label": "Strength",
+      "weak": "Weak",
+      "medium": "Medium",
+      "strong": "Strong",
+      "veryStrong": "Very Strong"
+    },
+    "signUpSuccess": {
+      "title": "Account Created!",
+      "description": "Welcome to {appName}! You have been signed in."
+    },
+    "signUpFailed": "Sign Up Failed",
+    "error": "Error"
   }
 }
-
-    

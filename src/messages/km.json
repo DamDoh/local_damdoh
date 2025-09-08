@@ -99,163 +99,198 @@
   },
   "LandingPage": {
     "hero": {
-      "title": "ពង្រឹងវិស័យកសិកម្មពីដីដល់ការលក់នៅលើ {appName}",
-      "subtitle": "វេទិកាតែមួយគត់ដែលភ្ជាប់គ្រប់អ្នកពាក់ព័ន្ធក្នុងខ្សែសង្វាក់តម្លៃកសិកម្មសម្រាប់អនាគតមួយដែលកាន់តែមានតម្លាភាព ប្រសិទ្ធភាព និងនិរន្តរភាព។",
-      "getStartedButton": "ចាប់ផ្តើមដោយឥតគិតថ្លៃ",
-      "learnMoreButton": "ស្វែងយល់បន្ថែម"
+      "title": "ពង្រឹងកសិដ្ឋានរបស់អ្នកด้วยข้อมูลเชิงลึกอัจฉริยะ",
+      "subtitle": "ใช้ประโยชน์จาก AI เพื่อวินิจฉัยโรคพืช รับคำแนะนำที่ปรับให้เหมาะกับคุณ และเพิ่มประสิทธิภาพผลผลิตของคุณ อนาคตของการทำฟาร์มอยู่ที่นี่แล้ว",
+      "getStartedButton": "เริ่มต้นฟรี"
+    },
+    "featured": {
+        "title": "ตามที่นำเสนอใน"
+    },
+    "stopGuessing": {
+        "title": "หยุดเดา เริ่มเติบโต",
+        "description": "แพลตฟอร์มของเราเปลี่ยนแนวทางการทำฟาร์มของคุณจากการตอบสนองเป็นการป้องกัน ตัดสินใจโดยใช้ข้อมูลเพื่อประหยัดเงิน ปรับปรุงสุขภาพพืช และเพิ่มผลกำไรของคุณ",
+        "p1_title": "ลดต้นทุนปัจจัยการผลิต",
+        "p1_desc": "ใช้การรักษาที่ถูกต้องในเวลาที่เหมาะสม ลดของเสียและเพิ่มประสิทธิภาพสูงสุด",
+        "p2_title": "เพิ่มผลผลิตและคุณภาพ",
+        "p2_desc": "การตรวจจับตั้งแต่เนิ่นๆ และคำแนะนำที่ปรับให้เหมาะสมนำไปสู่พืชผลที่แข็งแรงขึ้นและการเก็บเกี่ยวที่ดีขึ้น",
+        "imageAlt": "เกษตรกรกำลังตรวจสอบใบพืชที่แข็งแรงด้วยสมาร์ทโฟน"
     },
     "features": {
-      "title": "លក្ខណៈពិសេសចម្បងរបស់ DamDoh",
-      "subtitle": "អ្វីគ្រប់យ៉ាងដែលអ្នកត្រូវការដើម្បីរីកចម្រើន ភ្ជាប់ទំនាក់ទំនង និងធ្វើពាណិជ្ជកម្ម ទាំងអស់នៅកន្លែងតែមួយ។",
-      "networking": {
-        "title": "បណ្តាញឆ្លាតវៃ",
-        "description": "ការណែនាំការតភ្ជាប់ដោយ AI ដើម្បីភ្ជាប់អ្នកជាមួយដៃគូត្រឹមត្រូវ ចាប់ពីអ្នកផ្គត់ផ្គង់រហូតដល់អ្នកទិញអន្តរជាតិ។"
+      "title": "การทำฟาร์มที่ชาญฉลาดยิ่งขึ้น ง่ายขึ้น",
+      "subtitle": "ชุดเครื่องมือที่ขับเคลื่อนด้วย AI ของเราออกแบบมาให้ใช้งานง่ายและมีประสิทธิภาพ ให้คุณมีนักปฐพีวิทยาผู้เชี่ยวชาญอยู่ในกระเป๋าของคุณ",
+      "diagnostics": {
+        "title": "การวินิจฉัยที่ขับเคลื่อนด้วย AI",
+        "description": "ถ่ายภาพพืชที่เป็นโรคและรับการวินิจฉัยทันทีเกี่ยวกับโรคที่อาจเกิดขึ้น ศัตรูพืช หรือการขาดสารอาหาร"
       },
-      "marketplace": {
-        "title": "ទីផ្សារផ្ទាល់",
-        "description": "ទិញនិងលក់ផលិតផលនិងសេវាកម្មដោយផ្ទាល់ បង្កើនតម្លាភាពនិងប្រាក់ចំណេញសម្រាប់អ្នកពាក់ព័ន្ធទាំងអស់។"
+      "insights": {
+        "title": "ข้อมูลเชิงลึกที่ขับเคลื่อนด้วยข้อมูล",
+        "description": "ติดตามประสิทธิภาพของฟาร์มของคุณเมื่อเวลาผ่านไป วิเคราะห์แนวโน้ม และปลดล็อกข้อมูลเชิงลึกเพื่อปรับปรุงการดำเนินงานของคุณในแต่ละฤดูกาล"
       },
-      "forums": {
-        "title": "វេទិកាតាមប្រធានបទ",
-        "description": "ចែករំលែកចំណេះដឹង ពិភាក្សាអំពីបញ្ហាប្រឈម និងសហការគ្នាលើដំណោះស្រាយនៅក្នុងវេទិកាជាក់លាក់តាមប្រធានបទ។"
+      "recommendations": {
+        "title": "คำแนะนำอัจฉริยะ",
+        "description": "รับแผนการรักษาและการป้องกันที่ยั่งยืนและเป็นส่วนตัวซึ่งปรับให้เหมาะกับพืชผลและการวินิจฉัยเฉพาะของคุณ"
       },
-      "talent": {
-        "title": "ផ្សារទេពកោសល្យ",
-        "description": "ផ្តល់ជូនឬស្វែងរកសេវាកម្មកសិកម្មឯកទេស ចាប់ពីការប្រមូលផលតាមតម្រូវការរហូតដល់ការស្ទង់មតិដោយដ្រូន។"
+      "assistant": {
+        "title": "ผู้ช่วย AI ตลอด 24 ชั่วโมงทุกวัน",
+        "description": "ถามคำถามเกี่ยวกับเทคนิคการทำฟาร์ม ราคาตลาด หรือแนวทางปฏิบัติที่ยั่งยืน และรับคำตอบระดับผู้เชี่ยวชาญทันที"
       }
     },
-    "forWho": {
-      "badge": "សម្រាប់អ្នករាល់គ្នាក្នុងវិស័យកសិកម្ម",
-      "title": "แพลตฟอร์มเดียวสำหรับทั้งห่วงโซ่คุณค่า",
-      "description": "DamDoh ได้รับการออกแบบมาโดยเฉพาะเพื่อให้บริการระบบนิเวศทางการเกษตรทั้งหมด สร้างจุดศูนย์กลางของความจริงและโอกาสสำหรับทุกคน",
-      "farmers": {
-        "title": "เกษตรกร",
-        "description": "เข้าถึงตลาดที่ดีขึ้น ค้นหาปัจจัยการผลิตที่มีคุณภาพ และรับคำแนะนำจากผู้เชี่ยวชาญเพื่อเพิ่มผลผลิตและผลกำไร"
-      },
-      "buyers": {
-        "title": "ผู้ซื้อและผู้แปรรูป",
-        "description": "จัดหาผลผลิตคุณภาพสูงที่ตรวจสอบย้อนกลับได้โดยตรงจากผู้ปลูกและสหกรณ์ เพื่อรับประกันความน่าเชื่อถือของห่วงโซ่อุปทาน"
-      },
-      "experts": {
-        "title": "ผู้เชี่ยวชาญและผู้ให้บริการ",
-        "description": "เสนอทักษะและบริการเฉพาะทางของคุณแก่ผู้ชมทางการเกษตรในวงกว้างที่กำลังมองหาความเชี่ยวชาญของคุณ"
-      },
-      "fis": {
-        "title": "สถาบันการเงิน",
-        "description": "เสนอสินเชื่อ ประกันภัย และผลิตภัณฑ์ทางการเงินแก่ชุมชนเกษตรที่ผ่านการตรวจสอบแล้ว"
-      },
-      "imageAlt": "กลุ่มผู้มีส่วนได้ส่วนเสียทางการเกษตรที่หลากหลายกำลังทำงานร่วมกัน"
+    "howItWorks": {
+        "title": "มันทำงานอย่างไร",
+        "subtitle": "รับข้อมูลเชิงลึกที่นำไปปฏิบัติได้ในสามขั้นตอนง่ายๆ",
+        "step1": { "title": "ถ่ายภาพ", "description": "ใช้สมาร์ทโฟนของคุณถ่ายภาพที่ชัดเจนของพืชหรือพื้นที่ไร่ที่ได้รับผลกระทบ" },
+        "step2": { "title": "รับการวินิจฉัยทันที", "description": "AI ของเราวิเคราะห์ภาพโดยเทียบกับฐานข้อมูลขนาดใหญ่เพื่อระบุปัญหาในไม่กี่วินาที" },
+        "step3": { "title": "ปฏิบัติตามคำแนะนำ", "description": "รับแผนการที่ชัดเจนและนำไปปฏิบัติได้พร้อมตัวเลือกการรักษาที่ยั่งยืนเพื่อฟื้นฟูพืชผลของคุณให้กลับมาแข็งแรง" }
+    },
+    "testimonials": {
+        "title": "ได้รับความไว้วางใจจากเกษตรกรทั่วโลก",
+        "t1": {
+            "quote": "แพลตฟอร์มนี้เปลี่ยนวิธีการจัดการสวนกาแฟของฉันไปโดยสิ้นเชิง การตรวจจับโรคมีความแม่นยำอย่างไม่น่าเชื่อและช่วยรักษาผลผลิตทั้งฤดูกาลของฉันไว้ได้",
+            "name": "มาเรีย การ์เซีย",
+            "role": "เกษตรกรผู้ปลูกกาแฟ, โคลอมเบีย"
+        },
+        "t2": {
+            "quote": "ในฐานะผู้ผลิตข้าวสาลีรายใหญ่ ข้อมูลเชิงลึกมีค่ามาก ตอนนี้เรากำลังเพิ่มประสิทธิภาพการใช้ปุ๋ยและเห็นต้นทุนลดลง 15% โดยไม่กระทบต่อคุณภาพ",
+            "name": "จอห์น โอคอนเนลล์",
+            "role": "เกษตรกรผู้ปลูกข้าวสาลี, แคนาดา"
+        },
+        "t3": {
+            "quote": "ผู้ช่วย AI เปรียบเสมือนมีนักปฐพีวิทยาส่วนตัวพร้อมให้บริการตลอด 24 ชั่วโมงทุกวัน มันเป็นเครื่องมือที่จำเป็นสำหรับเกษตรกรยุคใหม่ทุกคน",
+            "name": "อามินา เบลโล",
+            "role": "เกษตรกรรายย่อย, ไนจีเรีย"
+        }
     },
     "cta": {
-      "title": "เข้าร่วมการปฏิวัติการเกษตร",
-      "subtitle": "ลงทะเบียนวันนี้และเป็นส่วนหนึ่งของเครือข่ายระดับโลกที่กำลังเติบโตซึ่งอุทิศตนเพื่อเปลี่ยนแปลงอนาคตของอาหาร",
-      "button": "สร้างบัญชีฟรีของคุณ"
+      "title": "พร้อมที่จะเติบโตอย่างชาญฉลาดขึ้นแล้วหรือยัง?",
+      "subtitle": "เข้าร่วมกับเกษตรกรหลายพันคนที่ใช้ DamDoh เพื่อสร้างอนาคตที่ทำกำไรและยั่งยืนมากขึ้น",
+      "button": "ลงทะเบียนฟรี"
     }
   },
-  "AppFooter": {
-    "tagline": "เชื่อมโยงห่วงโซ่คุณค่าทางการเกษตรทั้งหมด",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "เกี่ยวกับเรา",
-    "contactLabel": "ติดต่อ",
-    "careersLabel": "ร่วมงานกับเรา",
-    "blogLabel": "บล็อก",
-    "resourcesTitle": "แหล่งข้อมูล",
-    "helpCenterLabel": "ศูนย์ช่วยเหลือ",
-    "communityGuidelinesLabel": "แนวทางปฏิบัติของชุมชน",
-    "industryNewsLabel": "ข่าวอุตสาหกรรม",
-    "eventsLabel": "กิจกรรม",
-    "talentExchangeLabel": "ตลาดนัดแรงงาน",
-    "legalTitle": "กฎหมาย",
-    "privacyPolicyLabel": "นโยบายความเป็นส่วนตัว",
-    "termsOfServiceLabel": "ข้อกำหนดในการให้บริการ",
-    "copyright": "© {year} {appName}. สงวนลิขสิทธิ์",
-    "getMobileApp": "ดาวน์โหลดแอปมือถือ",
-    "googlePlayAlt": "ดาวน์โหลดบน Google Play",
-    "appStoreAlt": "ดาวน์โหลดบน App Store"
-  },
-  "MobileHomepage": {
-    "welcome": {
-      "morning": "អរុណសួស្តី, {name}",
-      "afternoon": "ទិវាសួស្តី, {name}",
-      "evening": "សាយណ្ហសួស្តី, {name}"
+  "Auth": {
+    "signInWelcome": "Welcome back to {appName}",
+    "signUpWelcome": "Join the DamDoh Agricultural Network",
+    "forgotPasswordResetPrompt": "Reset your password for {appName}",
+    "resetPasswordPrompt": "Create a new password for {appName}",
+    "signInTitle": "Sign in to your account",
+    "signInDescription": "Enter your credentials to access your dashboard.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "forgotPasswordLink": "Forgot password?",
+    "signingInButton": "Signing in...",
+    "signInButton": "Sign In",
+    "noAccountPrompt": "Don't have an account?",
+    "signUpLink": "Sign Up",
+    "signInLink": "Sign In",
+    "recoverWithUniversalIdPrompt": "Or recover access with your Universal ID",
+    "signUpTitle": "Create a new account",
+    "signUpDescription": "Tell us a bit about yourself to get started.",
+    "nameLabel": "Your Name or Business Name",
+    "namePlaceholder": "e.g., Chan Nary or Green Valley Farms",
+    "roleLabel": "Your Primary Role",
+    "rolePlaceholder": "Select your role in the supply chain...",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Creating account...",
+    "signUpButton": "Create Account",
+    "alreadyHaveAccountPrompt": "Already have an account?",
+    "forgotPasswordTitle": "Forgot Password?",
+    "forgotPasswordDescription": "No problem. Enter your email address below, and we'll send you a link to reset it.",
+    "sendResetLinkButton": "Send Reset Link",
+    "sendingEmailButton": "Sending email...",
+    "rememberPasswordPrompt": "Remember your password?",
+    "resetPasswordTitle": "Reset Your Password",
+    "resetPasswordDescription": "Enter and confirm your new password below.",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "Enter a strong new password",
+    "resetPasswordButton": "Reset Password",
+    "resettingPasswordButton": "Resetting...",
+    "recoverPage": {
+      "title": "Recover Your Account",
+      "description": "Use your network to regain access.",
+      "howItWorksTitle": "How it Works",
+      "step1": "Enter your phone number to start a recovery session.",
+      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
+      "step3": "Once your friend scans the code to verify your identity, you'll regain access.",
+      "startButton": "Start Account Recovery",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
+      "scanNote": "This code is temporary and expires in 10 minutes.",
+      "startOverButton": "Start Over",
+      "enterPhone": {
+        "title": "Enter Your Phone Number",
+        "description": "We'll use this to find your account and start the recovery process.",
+        "phoneNumberLabel": "Phone Number",
+        "phoneNumberPlaceholder": "+1 (555) 123-4567",
+        "phoneRequiredError": "A phone number is required.",
+        "getRecoveryCodeButton": "Get Recovery Code",
+        "verifyingButton": "Verifying...",
+        "genericError": "Could not start recovery. Please check the number and try again."
+      },
+      "helpFriend": {
+        "prompt": "Need to help a friend recover their account?",
+        "button": "Help a Friend Recover",
+        "scanError": "The scanned code is not a valid DamDoh recovery code.",
+        "scanSuccess": "Scan Successful!",
+        "scanFail": "Could not read the QR code. Please try again."
+      }
     },
-    "discoverTitle": "ស្វែងយល់",
-    "seeAllButton": "មើល​ទាំងអស់",
-    "communityFeedTitle": "ហ្វីតសហគមន៍",
-    "communityFeedDescription": "ភ្ជាប់ទំនាក់ទំនងជាមួយអ្នកដទៃ ចែករំលែកចំណេះដឹងរបស់អ្នក និងទទួលបានព័ត៌មានថ្មីៗពីការសន្ទនាចុងក្រោយបំផុត។",
-    "goToFeedButton": "ទៅកាន់ហ្វីត",
-    "noRecommendations": "ยังไม่มีคำแนะนำในขณะนี้ สำรวจตลาดเพื่อเริ่มต้น!"
-  },
-  "forumsPage": {
-    "title": "វេទិកា",
-    "description": "ភ្ជាប់ទំនាក់ទំនងជាមួយអ្នកដទៃ ចែករំលែកចំណេះដឹងរបស់អ្នក និងទទួលបានព័ត៌មានថ្មីៗពីការសន្ទនាចុងក្រោយបំផុត។",
-    "createTopic": "สร้างกระทู้",
-    "searchPlaceholder": "ค้นหากระทู้...",
-    "suggestedTopicsTitle": "กระทู้แนะนำ",
-    "activity": "ใช้งานเมื่อ {time}",
-    "joinDiscussion": "เข้าร่วมการสนทนา",
-    "pinning": {
-      "unpinButton": "เลิกปักหมุดหน้าแรก",
-      "pinButton": "ปักหมุดเป็นหน้าแรก",
-      "pinnedTitle": "ปักหมุดฟอรัมแล้ว",
-      "pinnedDescription": "หน้าฟอรัมตอนนี้เป็นหน้าแรกเริ่มต้นของคุณ",
-      "unpinnedTitle": "เลิกปักหมุดฟอรัมแล้ว",
-      "unpinnedDescription": "หน้าแรกของคุณถูกรีเซ็ตเป็นค่าเริ่มต้นแล้ว"
+    "forgotPassword": {
+      "emailSentTitle": "Check Your Email",
+      "emailSentDescription": "A password reset link has been sent to {email}.",
+      "emailSentDescriptionIfAccountExists": "If an account with {email} exists, a password reset link has been sent.",
+      "successTitle": "Email Sent!",
+      "successDescription": "Please check your inbox (and spam folder) for the password reset link.",
+      "errors": {
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidEmail": "The email address is not valid.",
+        "tooManyRequests": "Too many requests. Please try again later.",
+        "default": "Failed to send reset email"
+      }
     },
-    "noTopics": {
-      "title": "ยังไม่มีกระทู้",
-      "description": "เป็นคนแรกที่สร้างกระทู้ในฟอรัม!"
+    "resetPassword": {
+      "successTitle": "Password Reset Successfully!",
+      "successDescription": "You can now sign in with your new password.",
+      "successRedirect": "You will be redirected to the sign-in page shortly.",
+      "errors": {
+        "missingCode": "Invalid password reset link. Please request a new one.",
+        "missingCodeTitle": "Invalid Link",
+        "missingCodeDescription": "The password reset link is missing or invalid. Please return to the 'Forgot Password' page to request a new one.",
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidOrExpiredCode": "The password reset link is invalid or has expired. Please request a new one.",
+        "userDisabled": "This user account has been disabled.",
+        "userNotFound": "No user found corresponding to this reset link.",
+        "weakPassword": "The new password is not strong enough.",
+        "default": "Failed to reset password"
+      }
     },
-    "noTopicsFound": {
-      "title": "ไม่พบกระทู้",
-      "description": "ลองปรับตัวกรองการค้นหาของคุณ หรือกลับมาตรวจสอบอีกครั้งในภายหลัง"
+    "signInSuccess": {
+      "title": "Sign In Successful",
+      "description": "Welcome back to {appName}!"
     },
+    "signInFailed": "Sign In Failed",
     "errors": {
-      "loadTitle": "เกิดข้อผิดพลาดในการโหลดกระทู้",
-      "loadDescription": "ไม่สามารถโหลดกระทู้ในฟอรัมได้ในขณะนี้",
-      "loadSuggestions": {
-        "title": "เกิดข้อผิดพลาดในการโหลดคำแนะนำ",
-        "description": "ไม่สามารถดึงข้อมูลคำแนะนำกระทู้ได้"
-      }
-    }
-  },
-  "AppHeader": {
-    "home": "Home",
-    "network": "Network",
-    "farmMgmt": "Farm Mgmt",
-    "marketplace": "Marketplace",
-    "talentExchange": "Talent",
-    "traceability": "Traceability",
-    "forums": "Forums",
-    "sustainability": "Sustainability",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Search people, products, services...",
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "myProfile": "My Profile",
-    "myOrders": "My Orders",
-    "myPurchases": "My Purchases",
-    "mySales": "My Sales",
-    "settings": "Settings",
-    "helpCenter": "Help Center",
-    "logOut": "Log Out",
-    "orders": "Orders",
-    "switchToLightAria": "Switch to light theme",
-    "switchToDarkAria": "Switch to dark theme",
-    "mobileMenu": {
-      "description": "A mobile menu with navigation links."
+      "unexpected": "An unexpected error occurred. Please try again.",
+      "invalidCredential": "The email or password you entered is incorrect.",
+      "invalidEmail": "The email address is not valid.",
+      "userDisabled": "This user account has been disabled.",
+      "default": "Authentication failed",
+      "emailInUse": "An account with this email already exists.",
+      "emailInUseRich": "An account with this email already exists. Please {signInLink} or use a different email.",
+      "weakPassword": "The password is too weak. Please use a stronger password."
     },
-    "toast": {
-      "logOut": {
-        "title": "Logged Out",
-        "description": "You have been successfully logged out.",
-        "failTitle": "Logout Failed",
-        "failDescription": "Could not log out. Please try again."
-      }
-    }
+    "passwordStrength": {
+      "label": "Strength",
+      "weak": "Weak",
+      "medium": "Medium",
+      "strong": "Strong",
+      "veryStrong": "Very Strong"
+    },
+    "signUpSuccess": {
+      "title": "Account Created!",
+      "description": "Welcome to {appName}! You have been signed in."
+    },
+    "signUpFailed": "Sign Up Failed",
+    "error": "Error"
   }
 }
-
-    

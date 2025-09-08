@@ -99,150 +99,198 @@
   },
   "LandingPage": {
     "hero": {
-      "title": "Landwirtschaft stärken vom Boden bis zum Verkauf auf {appName}",
-      "subtitle": "Die einzige Plattform, die jeden Akteur in der landwirtschaftlichen Wertschöpfungskette für eine transparentere, effizientere und nachhaltigere Zukunft verbindet.",
-      "getStartedButton": "Kostenlos starten",
-      "learnMoreButton": "Mehr erfahren"
+      "title": "Stärken Sie Ihren Hof mit intelligenten Erkenntnissen",
+      "subtitle": "Nutzen Sie KI, um Pflanzenkrankheiten zu diagnostizieren, maßgeschneiderte Empfehlungen zu erhalten und Ihren Ertrag zu optimieren. Die Zukunft der Landwirtschaft ist da.",
+      "getStartedButton": "Kostenlos starten"
+    },
+    "featured": {
+        "title": "WIE VORGESTELLT IN"
+    },
+    "stopGuessing": {
+        "title": "Hören Sie auf zu raten, fangen Sie an zu wachsen",
+        "description": "Unsere Plattform verwandelt Ihre landwirtschaftlichen Praktiken von reaktiv zu proaktiv. Treffen Sie datengestützte Entscheidungen, die Geld sparen, die Pflanzengesundheit verbessern und Ihren Gewinn steigern.",
+        "p1_title": "Reduzieren Sie die Inputkosten",
+        "p1_desc": "Wenden Sie die richtige Behandlung zur richtigen Zeit an, um Abfall zu minimieren und die Wirksamkeit zu maximieren.",
+        "p2_title": "Steigern Sie Ertrag und Qualität",
+        "p2_desc": "Früherkennung und optimierte Empfehlungen führen zu gesünderen Pflanzen und besseren Ernten.",
+        "imageAlt": "Ein Landwirt, der ein gesundes Pflanzenblatt mit einem Smartphone untersucht."
     },
     "features": {
-      "title": "Hauptfunktionen von DamDoh",
-      "subtitle": "Alles, was Sie zum Wachsen, Verbinden und Handeln brauchen, an einem Ort.",
-      "networking": {
-        "title": "Intelligentes Networking",
-        "description": "KI-gestützte Verbindungsvorschläge, um Sie mit den richtigen Partnern zu verbinden, von Lieferanten bis zu internationalen Käufern."
+      "title": "Smartere Landwirtschaft, vereinfacht",
+      "subtitle": "Unsere Suite von KI-gestützten Werkzeugen ist so konzipiert, dass sie intuitiv und wirkungsvoll ist und Ihnen einen erfahrenen Agronomen in die Tasche steckt.",
+      "diagnostics": {
+        "title": "KI-gestützte Diagnostik",
+        "description": "Machen Sie ein Foto einer kranken Pflanze und erhalten Sie sofort eine Diagnose möglicher Krankheiten, Schädlinge oder Nährstoffmängel."
       },
-      "marketplace": {
-        "title": "Direkter Marktplatz",
-        "description": "Kaufen und verkaufen Sie Produkte und Dienstleistungen direkt und erhöhen Sie so die Transparenz und Rentabilität für alle Beteiligten."
+      "insights": {
+        "title": "Datengesteuerte Einblicke",
+        "description": "Verfolgen Sie die Leistung Ihres Hofes im Laufe der Zeit, analysieren Sie Trends und erschließen Sie Erkenntnisse, um Ihren Betrieb Saison für Saison zu verbessern."
       },
-      "forums": {
-        "title": "Themenforen",
-        "description": "Teilen Sie Wissen, diskutieren Sie Herausforderungen und arbeiten Sie in themenspezifischen Foren an Lösungen zusammen."
+      "recommendations": {
+        "title": "Intelligente Empfehlungen",
+        "description": "Erhalten Sie personalisierte, nachhaltige Behandlungs- und Präventionspläne, die auf Ihre spezifische Ernte und Diagnose zugeschnitten sind."
       },
-      "talent": {
-        "title": "Talentbörse",
-        "description": "Bieten oder finden Sie spezialisierte landwirtschaftliche Dienstleistungen, von der Ernte auf Abruf bis hin zu Drohnenvermessungen."
+      "assistant": {
+        "title": "24/7 KI-Assistent",
+        "description": "Stellen Sie Fragen zu Anbautechniken, Marktpreisen oder nachhaltigen Praktiken und erhalten Sie sofort Antworten auf Expertenniveau."
       }
     },
-    "forWho": {
-      "badge": "Für alle in der Landwirtschaft",
-      "title": "Eine Plattform für die gesamte Wertschöpfungskette",
-      "description": "DamDoh ist einzigartig darauf ausgelegt, das gesamte landwirtschaftliche Ökosystem zu bedienen und schafft einen einzigen Punkt der Wahrheit und der Möglichkeiten für alle.",
-      "farmers": {
-        "title": "Landwirte",
-        "description": "Greifen Sie auf bessere Märkte zu, finden Sie hochwertige Betriebsmittel und erhalten Sie fachkundige Beratung, um Ertrag und Rentabilität zu steigern."
-      },
-      "buyers": {
-        "title": "Käufer & Verarbeiter",
-        "description": "Beziehen Sie hochwertige, rückverfolgbare Produkte direkt von Erzeugern und Genossenschaften und gewährleisten Sie so die Zuverlässigkeit der Lieferkette."
-      },
-      "experts": {
-        "title": "Experten & Dienstleister",
-        "description": "Bieten Sie Ihre spezialisierten Fähigkeiten und Dienstleistungen einem breiten landwirtschaftlichen Publikum an, das Ihre Expertise sucht."
-      },
-      "fis": {
-        "title": "Finanzinstitute",
-        "description": "Bieten Sie Kredite, Versicherungen und Finanzprodukte für eine verifizierte landwirtschaftliche Gemeinschaft an."
-      },
-      "imageAlt": "Eine vielfältige Gruppe von Akteuren aus der Landwirtschaft, die zusammenarbeiten"
+    "howItWorks": {
+        "title": "Wie es funktioniert",
+        "subtitle": "Erhalten Sie umsetzbare Erkenntnisse in drei einfachen Schritten.",
+        "step1": { "title": "Foto machen", "description": "Verwenden Sie Ihr Smartphone, um ein klares Bild der betroffenen Pflanze oder des Feldbereichs aufzunehmen." },
+        "step2": { "title": "Sofortige Diagnose erhalten", "description": "Unsere KI analysiert das Bild anhand einer riesigen Datenbank, um das Problem in Sekunden zu identifizieren." },
+        "step3": { "title": "Empfehlungen befolgen", "description": "Erhalten Sie einen klaren, umsetzbaren Plan mit nachhaltigen Behandlungsoptionen, um Ihre Ernte wieder gesund zu pflegen." }
+    },
+    "testimonials": {
+        "title": "Vertraut von Landwirten weltweit",
+        "t1": {
+            "quote": "Diese Plattform hat die Art und Weise, wie ich meine Kaffeeplantage verwalte, komplett verändert. Die Krankheitserkennung ist unglaublich genau und hat mir den Ertrag einer ganzen Saison gerettet.",
+            "name": "Maria Garcia",
+            "role": "Kaffeebäuerin, Kolumbien"
+        },
+        "t2": {
+            "quote": "Als großflächiger Weizenproduzent sind die Dateneinblicke von unschätzbarem Wert. Wir optimieren jetzt unseren Düngemitteleinsatz und sehen eine Kostenreduzierung von 15 %, ohne die Qualität zu beeinträchtigen.",
+            "name": "John O'Connell",
+            "role": "Weizenbauer, Kanada"
+        },
+        "t3": {
+            "quote": "Der KI-Assistent ist, als hätte man einen persönlichen Agronomen rund um die Uhr zur Verfügung. Es ist ein unverzichtbares Werkzeug für jeden modernen Landwirt.",
+            "name": "Amina Bello",
+            "role": "Kleinbäuerin, Nigeria"
+        }
     },
     "cta": {
-      "title": "Schließen Sie sich der landwirtschaftlichen Revolution an",
-      "subtitle": "Melden Sie sich noch heute an und werden Sie Teil eines wachsenden globalen Netzwerks, das sich der Transformation der Zukunft der Ernährung verschrieben hat.",
-      "button": "Kostenloses Konto erstellen"
+      "title": "Bereit, intelligenter zu wachsen?",
+      "subtitle": "Schließen Sie sich Tausenden von Landwirten an, die DamDoh nutzen, um eine profitablere und nachhaltigere Zukunft aufzubauen.",
+      "button": "Kostenlos registrieren"
     }
   },
-  "AppFooter": {
-    "tagline": "Verbindung der gesamten landwirtschaftlichen Wertschöpfungskette.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Über uns",
-    "contactLabel": "Kontakt",
-    "careersLabel": "Karriere",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Ressourcen",
-    "helpCenterLabel": "Hilfezentrum",
-    "communityGuidelinesLabel": "Community-Richtlinien",
-    "industryNewsLabel": "Branchennachrichten",
-    "eventsLabel": "Veranstaltungen",
-    "talentExchangeLabel": "Talentbörse",
-    "legalTitle": "Rechtliches",
-    "privacyPolicyLabel": "Datenschutzrichtlinie",
-    "termsOfServiceLabel": "Nutzungsbedingungen",
-    "copyright": "© {year} {appName}. Alle Rechte vorbehalten.",
-    "getMobileApp": "Holen Sie sich die mobile App",
-    "googlePlayAlt": "Bei Google Play holen",
-    "appStoreAlt": "Im App Store herunterladen"
-  },
-  "forumsPage": {
-    "title": "Foren",
-    "description": "Vernetzen Sie sich mit anderen, teilen Sie Ihr Wissen und bleiben Sie über die neuesten Gespräche auf dem Laufenden.",
-    "createTopic": "Thema erstellen",
-    "searchPlaceholder": "Themen suchen...",
-    "suggestedTopicsTitle": "Vorgeschlagene Themen",
-    "activity": "Aktiv vor {time}",
-    "joinDiscussion": "Diskussion beitreten",
-    "pinning": {
-      "unpinButton": "Homepage loslösen",
-      "pinButton": "Als Homepage anheften",
-      "pinnedTitle": "Foren angeheftet",
-      "pinnedDescription": "Die Forenseite ist jetzt Ihre Standard-Homepage.",
-      "unpinnedTitle": "Foren losgelöst",
-      "unpinnedDescription": "Ihre Homepage wurde auf die Standardeinstellung zurückgesetzt."
+  "Auth": {
+    "signInWelcome": "Welcome back to {appName}",
+    "signUpWelcome": "Join the DamDoh Agricultural Network",
+    "forgotPasswordResetPrompt": "Reset your password for {appName}",
+    "resetPasswordPrompt": "Create a new password for {appName}",
+    "signInTitle": "Sign in to your account",
+    "signInDescription": "Enter your credentials to access your dashboard.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "forgotPasswordLink": "Forgot password?",
+    "signingInButton": "Signing in...",
+    "signInButton": "Sign In",
+    "noAccountPrompt": "Don't have an account?",
+    "signUpLink": "Sign Up",
+    "signInLink": "Sign In",
+    "recoverWithUniversalIdPrompt": "Or recover access with your Universal ID",
+    "signUpTitle": "Create a new account",
+    "signUpDescription": "Tell us a bit about yourself to get started.",
+    "nameLabel": "Your Name or Business Name",
+    "namePlaceholder": "e.g., Chan Nary or Green Valley Farms",
+    "roleLabel": "Your Primary Role",
+    "rolePlaceholder": "Select your role in the supply chain...",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Creating account...",
+    "signUpButton": "Create Account",
+    "alreadyHaveAccountPrompt": "Already have an account?",
+    "forgotPasswordTitle": "Forgot Password?",
+    "forgotPasswordDescription": "No problem. Enter your email address below, and we'll send you a link to reset it.",
+    "sendResetLinkButton": "Send Reset Link",
+    "sendingEmailButton": "Sending email...",
+    "rememberPasswordPrompt": "Remember your password?",
+    "resetPasswordTitle": "Reset Your Password",
+    "resetPasswordDescription": "Enter and confirm your new password below.",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "Enter a strong new password",
+    "resetPasswordButton": "Reset Password",
+    "resettingPasswordButton": "Resetting...",
+    "recoverPage": {
+      "title": "Recover Your Account",
+      "description": "Use your network to regain access.",
+      "howItWorksTitle": "How it Works",
+      "step1": "Enter your phone number to start a recovery session.",
+      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
+      "step3": "Once your friend scans the code to verify your identity, you'll regain access.",
+      "startButton": "Start Account Recovery",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
+      "scanNote": "This code is temporary and expires in 10 minutes.",
+      "startOverButton": "Start Over",
+      "enterPhone": {
+        "title": "Enter Your Phone Number",
+        "description": "We'll use this to find your account and start the recovery process.",
+        "phoneNumberLabel": "Phone Number",
+        "phoneNumberPlaceholder": "+1 (555) 123-4567",
+        "phoneRequiredError": "A phone number is required.",
+        "getRecoveryCodeButton": "Get Recovery Code",
+        "verifyingButton": "Verifying...",
+        "genericError": "Could not start recovery. Please check the number and try again."
+      },
+      "helpFriend": {
+        "prompt": "Need to help a friend recover their account?",
+        "button": "Help a Friend Recover",
+        "scanError": "The scanned code is not a valid DamDoh recovery code.",
+        "scanSuccess": "Scan Successful!",
+        "scanFail": "Could not read the QR code. Please try again."
+      }
     },
-    "noTopics": {
-      "title": "Noch keine Themen",
-      "description": "Seien Sie der Erste, der ein Forumsthema erstellt!"
+    "forgotPassword": {
+      "emailSentTitle": "Check Your Email",
+      "emailSentDescription": "A password reset link has been sent to {email}.",
+      "emailSentDescriptionIfAccountExists": "If an account with {email} exists, a password reset link has been sent.",
+      "successTitle": "Email Sent!",
+      "successDescription": "Please check your inbox (and spam folder) for the password reset link.",
+      "errors": {
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidEmail": "The email address is not valid.",
+        "tooManyRequests": "Too many requests. Please try again later.",
+        "default": "Failed to send reset email"
+      }
     },
-    "noTopicsFound": {
-      "title": "Keine Themen gefunden",
-      "description": "Versuchen Sie, Ihre Suchfilter anzupassen, oder schauen Sie später wieder vorbei."
+    "resetPassword": {
+      "successTitle": "Password Reset Successfully!",
+      "successDescription": "You can now sign in with your new password.",
+      "successRedirect": "You will be redirected to the sign-in page shortly.",
+      "errors": {
+        "missingCode": "Invalid password reset link. Please request a new one.",
+        "missingCodeTitle": "Invalid Link",
+        "missingCodeDescription": "The password reset link is missing or invalid. Please return to the 'Forgot Password' page to request a new one.",
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidOrExpiredCode": "The password reset link is invalid or has expired. Please request a new one.",
+        "userDisabled": "This user account has been disabled.",
+        "userNotFound": "No user found corresponding to this reset link.",
+        "weakPassword": "The new password is not strong enough.",
+        "default": "Failed to reset password"
+      }
     },
+    "signInSuccess": {
+      "title": "Sign In Successful",
+      "description": "Welcome back to {appName}!"
+    },
+    "signInFailed": "Sign In Failed",
     "errors": {
-      "loadTitle": "Fehler beim Laden der Themen",
-      "loadDescription": "Forumsthemen konnten zu diesem Zeitpunkt nicht geladen werden.",
-      "loadSuggestions": {
-        "title": "Fehler beim Laden der Vorschläge",
-        "description": "Themenvorschläge konnten nicht abgerufen werden."
-      }
-    }
-  },
-  "AppHeader": {
-    "home": "Home",
-    "network": "Network",
-    "farmMgmt": "Farm Mgmt",
-    "marketplace": "Marketplace",
-    "talentExchange": "Talent",
-    "traceability": "Traceability",
-    "forums": "Forums",
-    "sustainability": "Sustainability",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Wallet",
-    "searchPlaceholder": "Search people, products, services...",
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "myProfile": "My Profile",
-    "myOrders": "My Orders",
-    "myPurchases": "My Purchases",
-    "mySales": "My Sales",
-    "settings": "Settings",
-    "helpCenter": "Help Center",
-    "logOut": "Log Out",
-    "orders": "Orders",
-    "switchToLightAria": "Switch to light theme",
-    "switchToDarkAria": "Switch to dark theme",
-    "mobileMenu": {
-      "description": "A mobile menu with navigation links."
+      "unexpected": "An unexpected error occurred. Please try again.",
+      "invalidCredential": "The email or password you entered is incorrect.",
+      "invalidEmail": "The email address is not valid.",
+      "userDisabled": "This user account has been disabled.",
+      "default": "Authentication failed",
+      "emailInUse": "An account with this email already exists.",
+      "emailInUseRich": "An account with this email already exists. Please {signInLink} or use a different email.",
+      "weakPassword": "The password is too weak. Please use a stronger password."
     },
-    "toast": {
-      "logOut": {
-        "title": "Logged Out",
-        "description": "You have been successfully logged out.",
-        "failTitle": "Logout Failed",
-        "failDescription": "Could not log out. Please try again."
-      }
-    }
+    "passwordStrength": {
+      "label": "Strength",
+      "weak": "Weak",
+      "medium": "Medium",
+      "strong": "Strong",
+      "veryStrong": "Very Strong"
+    },
+    "signUpSuccess": {
+      "title": "Account Created!",
+      "description": "Welcome to {appName}! You have been signed in."
+    },
+    "signUpFailed": "Sign Up Failed",
+    "error": "Error"
   }
 }
-
-    
