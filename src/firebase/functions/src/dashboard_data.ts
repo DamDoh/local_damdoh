@@ -591,26 +591,31 @@ export const getFieldAgentDashboardData = functions.https.onCall(
         }
         
         const agentData = agentDoc.data();
+        // Assuming assigned farmers are stored in profileData.assignedFarmers
         const assignedFarmerIds = agentData?.profileData?.assignedFarmers || [];
         
         let assignedFarmers: FieldAgentDashboardData['assignedFarmers'] = [];
 
         if (assignedFarmerIds.length > 0) {
+            // Firestore 'in' query is limited to 30 items per query.
+            // For a production app, this would need chunking if an agent has > 30 farmers.
             const farmersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', assignedFarmerIds.slice(0, 30)).get();
             
             assignedFarmers = farmersSnapshot.docs.map(doc => {
                 const farmerData = doc.data();
+                // Mocking lastVisit and issues for now
                 return {
                     id: doc.id,
                     name: farmerData.displayName || 'Unknown Farmer',
                     lastVisit: new Date(Date.now() - Math.random() * 30 * 86400000).toISOString(),
-                    issues: Math.floor(Math.random() * 3), 
+                    issues: Math.floor(Math.random() * 3), // Random number of issues
                     actionLink: `/profiles/${doc.id}`,
                     avatarUrl: farmerData.avatarUrl || null
                 };
             });
         }
         
+        // Keep other parts mocked for this iteration
         const portfolioHealth = {
             overallScore: 85,
             alerts: ['Pest alert in North region'],
@@ -1276,3 +1281,5 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
+
+    
