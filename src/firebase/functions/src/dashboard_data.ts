@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
@@ -687,7 +686,7 @@ export const getAgroExportDashboardData = functions.https.onCall(
   async (data, context): Promise<AgroExportDashboardData> => {
     checkAuth(context);
      try {
-        const vtisForExportPromise = await db.collection('vti_registry')
+        const vtisForExportPromise = db.collection('vti_registry')
             .where('metadata.forExport', '==', true)
             // Ideally, we'd have a `documentationStatus` field to query
             .limit(5)
@@ -1080,12 +1079,16 @@ export const getInsuranceProviderDashboardData = functions.https.onCall(
 export const getEnergyProviderDashboardData = functions.https.onCall(
   (data, context): EnergyProviderDashboardData => {
     checkAuth(context);
+    // This dashboard remains mock data as it requires a more complex data model
+    // for projects and leads that doesn't exist yet. This provides a blueprint.
     return {
         projectLeads: [
-            { id: 'lead1', entityName: 'Rift Valley Growers Co-op', location: 'Naivasha', estimatedEnergyNeed: '150kW Solar for Irrigation', status: 'Proposal Sent', actionLink: '#' }
+            { id: 'lead1', entityName: 'Rift Valley Growers Co-op', location: 'Naivasha, Kenya', estimatedEnergyNeed: '150kW Solar for Irrigation', status: 'Proposal Sent', actionLink: '#' },
+            { id: 'lead2', entityName: 'Highland Coffee Estate', location: 'Nyeri, Kenya', estimatedEnergyNeed: '50kW Biogas for Processing', status: 'New', actionLink: '#' }
         ],
         activeProjects: [
-            { id: 'proj1', projectName: 'Greenhouse Solar Installation', solutionType: 'Solar PV', status: 'In Progress', completionDate: new Date().toISOString() }
+            { id: 'proj1', projectName: 'Greenhouse Solar Installation', solutionType: 'Solar PV', status: 'In Progress', completionDate: new Date(Date.now() + 30 * 86400000).toISOString() },
+            { id: 'proj2', projectName: 'Dairy Farm Biogas Digester', solutionType: 'Biogas', status: 'Completed', completionDate: new Date(Date.now() - 15 * 86400000).toISOString() }
         ],
         impactMetrics: { totalInstallations: 45, totalEstimatedCarbonReduction: '1,200 tCO2e/year' }
     };
