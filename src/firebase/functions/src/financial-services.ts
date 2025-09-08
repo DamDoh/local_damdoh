@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB as getProfileByIdFromDBFunction } from "./user";
@@ -1050,13 +1051,13 @@ export const getTrustScore = functions.https.onCall(async (data, context) => {
 
     if (!scoreDoc.exists) {
       // Return a default or initial score if one hasn't been calculated yet.
-      return { score: 500, riskFactors: ["No financial history on platform."] };
+      return { score: 500, breakdown: [] };
     }
 
     const scoreData = scoreDoc.data();
     return {
       score: scoreData?.score || 500,
-      riskFactors: scoreData?.riskFactors || [],
+      breakdown: scoreData?.breakdown || [],
     };
   } catch (error) {
     console.error(`Error fetching trust score for user ${uid}:`, error);

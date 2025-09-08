@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
@@ -9,20 +8,15 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useTranslations } from 'next-intl';
 
 // Import the new components
-import { StatCard, WeatherCard } from '@/components/farm-management/DashboardCards';
-import { LandOverviewChart } from '@/components/farm-management/LandOverviewChart';
-import { CostEstimationChart } from '@/components/farm-management/CostEstimationChart';
+import { StatCard } from '@/components/farm-management/DashboardCards';
 import { MyCropsList } from '@/components/farm-management/MyCropsList';
-import { SummaryCard } from '@/components/farm-management/SummaryCard';
-
-import { Sprout, Warehouse, Tractor, Sheep, Archive, FlaskConical, CircleDollarSign, Leaf } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { useAuth } from '@/lib/auth-utils';
 import { TrustScoreWidget } from './TrustScoreWidget';
+
+import { Sprout, Leaf, FlaskConical, CircleDollarSign } from 'lucide-react';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { format } from 'date-fns';
+import { useAuth } from '@/lib/auth-utils';
 
 
 function DashboardSkeleton() {
@@ -39,8 +33,7 @@ function DashboardSkeleton() {
                     <Skeleton className="h-96 rounded-lg" />
                  </div>
                  <div className="lg:col-span-2 space-y-6">
-                    <Skeleton className="h-48 rounded-lg" />
-                    <Skeleton className="h-48 rounded-lg" />
+                    <Skeleton className="h-96 rounded-lg" />
                  </div>
             </div>
         </div>
@@ -51,7 +44,7 @@ function DashboardSkeleton() {
 export function FarmerDashboard() {
     const t = useTranslations('FarmerDashboard');
     const [dashboardData, setDashboardData] = useState<FarmerDashboardData | null>(null);
-    const [trustScoreData, setTrustScoreData] = useState<{ score: number, riskFactors: string[] } | null>(null);
+    const [trustScoreData, setTrustScoreData] = useState<{ score: number, breakdown: any[] } | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const { user } = useAuth();
 
@@ -73,7 +66,7 @@ export function FarmerDashboard() {
                     getTrustScoreCallable()
                 ]);
                 setDashboardData(farmerResult.data as FarmerDashboardData);
-                setTrustScoreData((scoreResult.data as any) ?? { score: 500, riskFactors: [] });
+                setTrustScoreData((scoreResult.data as any) ?? { score: 500, breakdown: [] });
 
             } catch (error) {
                 console.error("Error fetching farmer dashboard data:", error);
@@ -131,7 +124,7 @@ export function FarmerDashboard() {
                  <div className="lg:col-span-2 space-y-6">
                     <TrustScoreWidget 
                         reputationScore={trustScoreData?.score || 500} 
-                        riskFactors={trustScoreData?.riskFactors || []}
+                        riskFactors={trustScoreData?.breakdown || []}
                         certifications={certifications || []}
                     />
                  </div>
