@@ -369,7 +369,7 @@ export const getCooperativeDashboardData = functions.https.onCall(
                 });
             });
             // Sort and limit final aggregated produce
-            aggregatedProduce.sort((a, b) => new Date(b.readyBy).getTime() - new Date(a.readyBy).getTime()).slice(0, 10);
+            aggregatedProduce = aggregatedProduce.sort((a, b) => new Date(b.readyBy).getTime() - new Date(a.readyBy).getTime()).slice(0, 10);
         }
 
 
@@ -493,7 +493,7 @@ export const getRegulatorDashboardData = functions.https.onCall(
 
 export const getLogisticsDashboardData = functions.https.onCall(
   async (data, context): Promise<LogisticsDashboardData> => {
-    checkAuth(context);
+    const logisticsProviderId = checkAuth(context);
     
     try {
         const shipmentsSnapshot = await db.collection('marketplace_orders')
@@ -714,13 +714,13 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
   async (data, context): Promise<ProcessingUnitDashboardData> => {
     const unitId = checkAuth(context);
     try {
-        const packagingOrdersPromise = await db.collection('marketplace_orders')
+        const packagingOrdersPromise = db.collection('marketplace_orders')
             .where('buyerId', '==', unitId)
             .orderBy('createdAt', 'desc')
             .limit(5)
             .get();
 
-        const packagingInventoryPromise = await db.collection('marketplaceItems')
+        const packagingInventoryPromise = db.collection('marketplaceItems')
             .where('sellerId', '==', unitId)
             .where('category', '==', 'packaging-solutions')
             .get();
@@ -731,7 +731,7 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
         ]);
         
         const sellerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().sellerId))];
-        const sellerProfiles: Record<string, string> = {};
+        const sellerProfiles: Record<string, string} = {};
         if (sellerIds.length > 0) {
             const sellerDocs = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', sellerIds).get();
             sellerDocs.forEach(doc => {
@@ -1227,3 +1227,5 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
+
+    
