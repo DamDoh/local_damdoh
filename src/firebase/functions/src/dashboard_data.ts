@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
@@ -609,7 +610,7 @@ export const getFieldAgentDashboardData = functions.https.onCall(
                     lastVisit: new Date(Date.now() - Math.random() * 30 * 86400000).toISOString(),
                     issues: Math.floor(Math.random() * 3), // Random number of issues
                     actionLink: `/profiles/${doc.id}`,
-                    avatarUrl: farmerData.avatarUrl || null
+                    avatarUrl: farmerData.avatarUrl || null,
                 };
             });
         }
@@ -1289,3 +1290,6 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
 
     
 
+
+
+    
