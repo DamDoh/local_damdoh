@@ -88,9 +88,9 @@ export default function ProfileDetailPage() {
   const [isActivityLoading, setIsActivityLoading] = useState(true);
 
   const functions = getFunctions(firebaseApp);
-  const getUserActivity = useMemo(() => httpsCallable(functions, 'user-getUserActivity'), [functions]);
-  const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'user-logProfileView'), [functions]);
-  const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'user-getUserEngagementStats'), [functions]);
+  const getUserActivity = useMemo(() => httpsCallable(functions, 'activity-getUserActivity'), [functions]);
+  const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'activity-logProfileView'), [functions]);
+  const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'activity-getUserEngagementStats'), [functions]);
   const sendInviteCallable = useMemo(() => httpsCallable(functions, 'network-sendInvite'), [functions]);
   
   useEffect(() => {
@@ -369,5 +369,3 @@ export default function ProfileDetailPage() {
     </div>
   );
 }
-
-    
