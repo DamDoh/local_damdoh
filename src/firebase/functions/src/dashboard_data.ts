@@ -687,7 +687,7 @@ export const getAgroExportDashboardData = functions.https.onCall(
   async (data, context): Promise<AgroExportDashboardData> => {
     checkAuth(context);
      try {
-        const vtisForExportPromise = db.collection('vti_registry')
+        const vtisForExportPromise = await db.collection('vti_registry')
             .where('metadata.forExport', '==', true)
             // Ideally, we'd have a `documentationStatus` field to query
             .limit(5)
@@ -1285,4 +1285,6 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
 
 
     
+    
+
     
