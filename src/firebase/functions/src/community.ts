@@ -102,21 +102,16 @@ export const likePost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { postId } = data;
 
-    const postRef = db.collection('posts').doc(postId);
-    const likeRef = postRef.collection('likes').doc(uid);
+    const likeRef = db.collection(`posts/${postId}/likes`).doc(uid);
+    const likeDoc = await likeRef.get();
     
-    return db.runTransaction(async (transaction) => {
-        const likeDoc = await transaction.get(likeRef);
-        
-        if (likeDoc.exists) {
-            transaction.delete(likeRef);
-            // The onWrite trigger for likes will handle decrementing the count
-        } else {
-            transaction.set(likeRef, { createdAt: admin.firestore.FieldValue.serverTimestamp() });
-            // The onWrite trigger for likes will handle incrementing the count
-        }
-        return { success: true, action: likeDoc.exists ? 'unliked' : 'liked' };
-    });
+    if (likeDoc.exists) {
+        await likeRef.delete();
+        return { success: true, action: 'unliked' };
+    } else {
+        await likeRef.set({ createdAt: admin.firestore.FieldValue.serverTimestamp() });
+        return { success: true, action: 'liked' };
+    }
 });
 
 
@@ -139,19 +134,15 @@ export const addComment = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
 
-    const batch = db.batch();
-
     // Denormalize author data on write for performance
-    batch.set(commentRef, {
+    await commentRef.set({
         content,
         userId: uid,
         userName: userProfile.displayName,
         userAvatar: userProfile.avatarUrl || null,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
-
-    // The onWrite trigger will handle incrementing the count
-    await batch.commit();
+    
     return { success: true, commentId: commentRef.id };
 });
 
