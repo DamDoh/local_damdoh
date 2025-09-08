@@ -1,4 +1,5 @@
 
+      
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
@@ -1238,7 +1239,7 @@ export const getAdminDashboardData = functions.https.onCall(async (data, context
             farmsPromise,
             listingsPromise,
             newUsersQuery,
-            pendingApprovalsSnap,
+            pendingApprovalsPromise,
         ]);
 
         return {
@@ -1314,4 +1315,7 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
 
     
 
+    
+
+      
     

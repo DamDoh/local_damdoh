@@ -1,4 +1,5 @@
 
+      
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -21,7 +22,7 @@ export const PackagingSupplierDashboard = () => {
     const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
-    const getPackagingData = useMemo(() => httpsCallable(functions, 'getPackagingSupplierDashboardData'), [functions]);
+    const getPackagingData = useMemo(() => httpsCallable(functions, 'dashboardData-getPackagingSupplierDashboardData'), [functions]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -160,3 +161,5 @@ const DashboardSkeleton = () => (
         </div>
     </div>
 );
+      
+    
