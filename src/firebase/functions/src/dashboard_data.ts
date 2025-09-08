@@ -1166,14 +1166,18 @@ export const getWasteManagementDashboardData = functions.https.onCall(
     checkAuth(context);
     return {
       incomingWasteStreams: [
-        { id: 'waste1', type: 'Maize Stover', source: 'Green Valley Farms', quantity: '10 tons' }
+        { id: 'waste1', type: 'Maize Stover', source: 'Green Valley Farms', quantity: '10 tons' },
+        { id: 'waste2', type: 'Coffee Pulp', source: 'Highland Coffee Collective', quantity: '5 tons' },
+        { id: 'waste3', type: 'Animal Manure', source: 'Riverbend Dairies', quantity: '20 tons' },
       ],
       compostBatches: [
         { id: 'comp1', status: 'Active', estimatedCompletion: new Date(Date.now() + 30 * 86400000).toISOString() },
         { id: 'comp2', status: 'Curing', estimatedCompletion: new Date(Date.now() + 10 * 86400000).toISOString() },
+        { id: 'comp3', status: 'Ready', estimatedCompletion: new Date(Date.now() - 5 * 86400000).toISOString() },
       ],
       finishedProductInventory: [
-        { product: 'Grade A Compost', quantity: '25 tons', actionLink: '#' }
+        { product: 'Grade A Compost', quantity: '25 tons', actionLink: '/marketplace/create?category=fertilizers-soil' },
+        { product: 'Liquid Bio-fertilizer', quantity: '5000 liters', actionLink: '/marketplace/create?category=fertilizers-soil' },
       ]
     };
   }
@@ -1306,3 +1310,6 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
+
+
+    
