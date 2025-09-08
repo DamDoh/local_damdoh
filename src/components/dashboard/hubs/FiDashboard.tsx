@@ -36,7 +36,7 @@ const StatCard = ({ title, value, description, icon, ctaLink, ctaText }: { title
 
 export const FiDashboard = () => {
     const t = useTranslations('FiDashboard');
-    const tAppPage = useTranslations('FiApplicationListPage');
+    const tAppPage = useTranslations('FiApplicationPage');
     const [dashboardData, setDashboardData] = useState<FiDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -106,7 +106,7 @@ export const FiDashboard = () => {
                 />
                 <StatCard 
                     title={t('activePortfolioTitle')}
-                    value={`${(portfolioOverview?.totalValue || 0).toLocaleString()} USD`}
+                    value={`$${(portfolioOverview?.totalValue || 0).toLocaleString()}`}
                     description={t('activePortfolioDescription', { count: portfolioOverview?.loanCount || 0 })}
                     icon={<Landmark className="h-4 w-4 text-muted-foreground" />}
                 />
@@ -196,7 +196,7 @@ export const FiDashboard = () => {
                                             <TableCell className="font-medium">{prod.name}</TableCell>
                                             <TableCell><Badge variant="secondary">{prod.type}</Badge></TableCell>
                                             <TableCell>{prod.interestRate ? `${prod.interestRate}%` : 'N/A'}</TableCell>
-                                            <TableCell className="text-right">${prod.maxAmount?.toLocaleString() || 'N/A'}</TableCell>
+                                            <TableCell className="text-right">{prod.maxAmount ? `$${prod.maxAmount.toLocaleString()}` : 'N/A'}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>

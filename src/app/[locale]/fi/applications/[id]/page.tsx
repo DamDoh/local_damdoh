@@ -18,6 +18,15 @@ import { format } from 'date-fns';
 import { StakeholderIcon } from '@/components/icons/StakeholderIcon';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useTranslations } from 'next-intl';
+import { CreditScorecard } from '@/components/dashboard/hubs/CreditScorecard';
+
+interface ApplicationData extends FinancialApplication {
+  applicantProfile?: UserProfile;
+  creditScore?: {
+      score: number;
+      breakdown: any[];
+  }
+}
 
 function ApplicationDetailSkeleton() {
     const t = useTranslations('FiApplicationPage');
@@ -47,7 +56,7 @@ export default function FinancialApplicationDetailPage() {
     const router = useRouter();
     const applicationId = params.id as string;
 
-    const [application, setApplication] = useState<FinancialApplication | null>(null);
+    const [application, setApplication] = useState<ApplicationData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isUpdating, setIsUpdating] = useState(false);
     
@@ -60,8 +69,8 @@ export default function FinancialApplicationDetailPage() {
         setIsLoading(true);
         try {
             const result = await getApplicationDetailsCallable({ applicationId });
-            const data = result.data as { application: FinancialApplication, applicant: UserProfile };
-            setApplication({ ...data.application, applicantProfile: data.applicant }); // Embed applicant profile in application object
+            const data = result.data as { application: FinancialApplication, applicant: UserProfile, creditScore: any };
+            setApplication({ ...data.application, applicantProfile: data.applicant, creditScore: data.creditScore });
         } catch (error: any) {
              toast({ variant: 'destructive', title: t('toast.errorTitle'), description: error.message });
              router.push('/');
@@ -123,7 +132,7 @@ export default function FinancialApplicationDetailPage() {
                         <CardHeader>
                             <CardTitle className="flex justify-between items-start">
                                 <span>{application.type} {t('applicationTitle')}</span>
-                                <Badge variant={getStatusBadgeVariant(application.status)}>{application.status}</Badge>
+                                <Badge variant={getStatusBadgeVariant(application.status)}>{t(`status.${application.status.toLowerCase().replace(/\\s/g, '_')}` as any, application.status)}</Badge>
                             </CardTitle>
                              <CardDescription>{t('submittedOn')} {application.submittedAt ? format(new Date(application.submittedAt), 'PPP') : 'N/A'}</CardDescription>
                         </CardHeader>
@@ -149,6 +158,9 @@ export default function FinancialApplicationDetailPage() {
                             </Button>
                          </CardFooter>
                     </Card>
+                    {application.creditScore && (
+                        <CreditScorecard score={application.creditScore.score} breakdown={application.creditScore.breakdown} />
+                    )}
                 </div>
                  <div className="md:col-span-1 space-y-6">
                      <Card>
@@ -175,15 +187,6 @@ export default function FinancialApplicationDetailPage() {
                                     <Button asChild size="sm" variant="secondary" className="w-full"><Link href={`/profiles/${application.applicantProfile.id}`}>{t('viewProfileButton')}</Link></Button>
                                 </>
                             ) : <p className="text-sm text-muted-foreground">{t('profileNotFound')}</p>}
-                        </CardContent>
-                    </Card>
-                     <Card>
-                        <CardHeader>
-                            <CardTitle className="text-base flex items-center gap-2"><Info className="h-4 w-4"/>{t('riskAssessment')}</CardTitle>
-                        </CardHeader>
-                        <CardContent className="text-center">
-                            <p className="text-xs text-muted-foreground">{t('creditScore')}</p>
-                            <p className="text-4xl font-bold text-primary">{application.riskScore || 'N/A'}</p>
                         </CardContent>
                     </Card>
                  </div>

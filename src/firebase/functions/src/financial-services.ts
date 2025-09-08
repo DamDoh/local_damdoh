@@ -15,25 +15,91 @@ const checkAuth = (context: functions.https.CallableContext) => {
 // --- Internal AI-Driven Functions (moved from ai-and-analytics.ts) ---
 
 /**
- * Internal logic for assessing credit risk.
- * This is an internal function to be called by other modules.
- * @param {any} data The data payload for assessment, typically containing
- * user profile and financial history.
+ * Internal logic for assessing credit risk based on the 5 Cs of Credit.
+ * @param {any} data The data payload for assessment.
  * @return {Promise<object>} An object with the calculated credit score
- * and contributing risk factors.
+ * and a detailed breakdown of contributing factors.
  */
 export async function _internalAssessCreditRisk(data: any) {
-  console.log("_internalAssessCreditRisk called with data:", data);
-  const calculatedScore = Math.floor(300 + Math.random() * 550);
-  const riskFactors = [
-    "Payment history on platform",
-    "Farm yield variability",
-    "Length of operational history",
-  ];
+  console.log("_internalAssessCreditRisk called with data for user:", data.userId);
+  
+  const { userData, financialData, assetData } = data;
+
+  // --- 1. Character (Weight: 20%) ---
+  // Placeholder: In a real app, this would check credit history, platform transaction history for defaults.
+  const characterScore = 15; // Assuming good but not perfect history
+  const characterFactors = ["Consistent activity on the DamDoh platform."];
+
+  // --- 2. Capacity (Weight: 30%) ---
+  // A simple cash flow simulation based on financial transactions.
+  const income = financialData.totalIncome || 0;
+  const expenses = financialData.totalExpense || 0;
+  const netCashFlow = income - expenses;
+  let capacityScore = 0;
+  const capacityFactors: string[] = [];
+  if (netCashFlow > expenses * 0.5 && expenses > 0) { // Healthy margin
+      capacityScore = 30;
+      capacityFactors.push("Strong positive cash flow from farm operations.");
+  } else if (netCashFlow > 0) { // Positive but small margin
+      capacityScore = 15;
+      capacityFactors.push("Positive cash flow, but with tight margins.");
+  } else {
+      capacityScore = -10;
+      capacityFactors.push("Negative cash flow detected, indicating high risk.");
+  }
+   capacityFactors.push(`Income: $${income.toFixed(2)}, Expenses: $${expenses.toFixed(2)}`);
+
+  // --- 3. Capital (Weight: 15%) ---
+  // Based on the value of owned assets.
+  const totalAssetValue = assetData.reduce((sum: number, asset: any) => sum + (asset.value || 0), 0);
+  let capitalScore = 0;
+  const capitalFactors: string[] = [];
+  if (totalAssetValue > 10000) {
+      capitalScore = 15;
+      capitalFactors.push("Significant capital invested in farm assets.");
+  } else if (totalAssetValue > 2000) {
+      capitalScore = 10;
+      capitalFactors.push("Moderate capital investment in farm assets.");
+  } else {
+      capitalScore = 0;
+      capitalFactors.push("Low level of owned capital assets.");
+  }
+  capitalFactors.push(`Total Asset Value: $${totalAssetValue.toFixed(2)}`);
+
+
+  // --- 4. Collateral (Weight: 20%) ---
+  // Similar to Capital for this simulation. A real app would differentiate pledgeable assets.
+  let collateralScore = 0;
+  const collateralFactors: string[] = [];
+   if (totalAssetValue > 15000) {
+      collateralScore = 20;
+      collateralFactors.push("High value of assets available as potential collateral.");
+  } else if (totalAssetValue > 5000) {
+      collateralScore = 10;
+      collateralFactors.push("Some assets available that could serve as collateral.");
+  } else {
+      collateralScore = 0;
+      collateralFactors.push("Limited assets available for collateral.");
+  }
+
+  // --- 5. Conditions (Weight: 15%) ---
+  // Placeholder: This would analyze market trends for the user's primary crops.
+  const conditionsScore = 15;
+  const conditionsFactors = ["Farmer is operating in a stable market for their primary crop (e.g., coffee)."];
+  
+  // --- Final Score Calculation ---
+  const finalScore = characterScore + capacityScore + capitalScore + collateralScore + conditionsScore;
+
   return {
-    score: calculatedScore,
-    riskFactors: riskFactors,
-    status: "placeholder_analysis_complete",
+    score: finalScore,
+    breakdown: [
+        { name: 'Character', score: characterScore, weight: 20, factors: characterFactors },
+        { name: 'Capacity', score: capacityScore, weight: 30, factors: capacityFactors },
+        { name: 'Capital', score: capitalScore, weight: 15, factors: capitalFactors },
+        { name: 'Collateral', score: collateralScore, weight: 20, factors: collateralFactors },
+        { name: 'Conditions', score: conditionsScore, weight: 15, factors: conditionsFactors },
+    ],
+    status: "detailed_analysis_complete",
   };
 }
 
@@ -778,11 +844,30 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
     }
 
     let applicantProfile = null;
+    let financialData = null;
+    let assetData = null;
 
     if (appData.applicantId) {
+        // Fetch applicant's profile
         const result = await getProfileByIdFromDBFunction({ uid: appData.applicantId }, context);
-        applicantProfile = result;
+        applicantProfile = result as any;
+        
+        // Fetch applicant's financial summary
+        const financialSummaryResult = await getFinancialSummaryAndTransactions({ userId: appData.applicantId }, context);
+        financialData = financialSummaryResult.summary;
+        
+        // Fetch applicant's assets
+        const assetsSnapshot = await db.collection(`users/${appData.applicantId}/assets`).get();
+        assetData = assetsSnapshot.docs.map(doc => doc.data());
     }
+    
+    // Generate the credit score with all available data
+    const creditScore = await _internalAssessCreditRisk({ 
+        userId: appData.applicantId,
+        userData: applicantProfile,
+        financialData: financialData,
+        assetData: assetData
+    });
     
     const serializedAppData = {
         ...appData,
@@ -790,7 +875,7 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
         submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
     };
 
-    return { application: serializedAppData, applicant: applicantProfile };
+    return { application: serializedAppData, applicant: applicantProfile, creditScore };
 });
 
 export const updateFinancialApplicationStatus = functions.https.onCall(async (data, context) => {
