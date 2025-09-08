@@ -2,8 +2,8 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import type { InsuranceProduct, InsuranceApplication } from "@/lib/types";
-import { getFunctions, httpsCallable } from "firebase-functions/v1";
+import type { InsuranceProduct } from "@/lib/types";
+import { getProfileByIdFromDB } from './user';
 
 const db = admin.firestore();
 
@@ -68,9 +68,8 @@ export const getInsuranceProductDetails = functions.https.onCall(async (data, co
     let provider = null;
     
     if (productData.providerId) {
-        const getProfile = httpsCallable(getFunctions(), 'user-getProfileByIdFromDB');
-        const providerProfileResult = await getProfile({ uid: productData.providerId });
-        const providerProfile = providerProfileResult.data as any;
+        const providerProfileResult = await getProfileByIdFromDB.run({ uid: productData.providerId }, {auth: context.auth});
+        const providerProfile = providerProfileResult as any;
 
         if (providerProfile) {
             provider = {

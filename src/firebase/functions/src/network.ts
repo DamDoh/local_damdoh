@@ -3,7 +3,8 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile } from "./types";
-import { getFunctions, httpsCallable } from "firebase-functions/v1";
+import { getProfileByIdFromDB } from './user';
+
 
 const db = admin.firestore();
 
@@ -63,11 +64,10 @@ export const getPendingRequests = functions.https.onCall(async (data, context) =
     }
 
     const requesterIds = snapshot.docs.map(doc => doc.data().requesterId);
-    const getProfile = httpsCallable(getFunctions(), 'user-getProfileByIdFromDB');
     
     const profilePromises = requesterIds.map(async (id) => {
-        const profileResult = await getProfile({ uid: id });
-        return profileResult.data as UserProfile;
+        const profile = await getProfileByIdFromDB.run({ uid: id }, {auth: context.auth});
+        return profile as UserProfile;
     });
 
     const userProfiles = (await Promise.all(profilePromises)).filter(Boolean);
@@ -189,6 +189,7 @@ export const removeConnection = functions.https.onCall(async (data, context) => 
 
     return { success: true, message: "Connection removed." };
 });
+
 
 export const sendInvite = functions.https.onCall(async (data, context) => {
     checkAuth(context);
