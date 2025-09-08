@@ -3,6 +3,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB as getProfileByIdFromDBFunction } from "./user";
+import { getUserEngagementStats } from "./activity";
 
 const db = admin.firestore();
 
@@ -24,12 +25,31 @@ const checkAuth = (context: functions.https.CallableContext) => {
 export async function _internalAssessCreditRisk(data: any) {
   console.log("_internalAssessCreditRisk called with data for user:", data.userId);
   
-  const { userData, financialData, assetData } = data;
+  const { userData, financialData, assetData, engagementData } = data;
 
   // --- 1. Character (Weight: 20%) ---
-  // Placeholder: In a real app, this would check credit history, platform transaction history for defaults.
-  const characterScore = 15; // Assuming good but not perfect history
-  const characterFactors = ["Consistent activity on the DamDoh platform."];
+  const characterFactors: string[] = [];
+  let characterScore = 0;
+  
+  const totalEngagements = (engagementData.postLikes || 0) + (engagementData.postComments || 0);
+  if (totalEngagements > 50) {
+      characterScore += 10;
+      characterFactors.push("High community engagement on posts.");
+  } else if (totalEngagements > 10) {
+      characterScore += 5;
+      characterFactors.push("Moderate community engagement.");
+  } else {
+      characterFactors.push("Limited community engagement.");
+  }
+  
+  if (engagementData.profileViews > 100) {
+      characterScore += 10;
+      characterFactors.push("High number of profile views, indicating network interest.");
+  } else if (engagementData.profileViews > 20) {
+      characterScore += 5;
+      characterFactors.push("Some profile views from the network.");
+  }
+
 
   // --- 2. Capacity (Weight: 30%) ---
   // A simple cash flow simulation based on financial transactions.
@@ -406,6 +426,7 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
     let applicantProfile = null;
     let financialData = null;
     let assetData = null;
+    let engagementData = null;
 
     if (appData.applicantId) {
         // Fetch applicant's profile
@@ -419,6 +440,10 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
         // Fetch applicant's assets
         const assetsSnapshot = await db.collection(`users/${appData.applicantId}/assets`).get();
         assetData = assetsSnapshot.docs.map(doc => doc.data());
+        
+        // Fetch applicant's engagement stats
+        const engagementStatsResult = await getUserEngagementStats({ userId: appData.applicantId }, context);
+        engagementData = engagementStatsResult;
     }
     
     // Generate the credit score with all available data
@@ -426,7 +451,8 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
         userId: appData.applicantId,
         userData: applicantProfile,
         financialData: financialData,
-        assetData: assetData
+        assetData: assetData,
+        engagementData: engagementData
     });
     
     const serializedAppData = {
@@ -622,3 +648,4 @@ export const getTrustScore = functions.https.onCall(async (data, context) => {
     throw new functions.https.HttpsError("internal", "Could not fetch trust score.");
   }
 });
+
