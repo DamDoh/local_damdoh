@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
@@ -718,7 +719,6 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
   async (data, context): Promise<ProcessingUnitDashboardData> => {
     const unitId = checkAuth(context);
     try {
-        // --- LIVE DATA ---
         // 1. Fetch incoming raw material orders (where the unit is the buyer)
         const rawMaterialOrdersPromise = db.collection('marketplace_orders')
             .where('buyerId', '==', unitId)
@@ -903,6 +903,32 @@ export const getAgronomistDashboardData = functions.https.onCall(
   async (data, context): Promise<AgronomistDashboardData> => {
     const userId = checkAuth(context);
     try {
+        const agronomistDoc = await db.collection('users').doc(userId).get();
+        if (!agronomistDoc.exists) {
+            throw new functions.https.HttpsError('not-found', 'Agronomist profile not found.');
+        }
+
+        const assignedFarmerIds = agronomistDoc.data()?.profileData?.assignedFarmers || [];
+        let assignedFarmersOverview: AgronomistDashboardData['assignedFarmersOverview'] = [];
+
+        if(assignedFarmerIds.length > 0) {
+            const farmersSnapshot = await db.collection('users')
+                .where(admin.firestore.FieldPath.documentId(), 'in', assignedFarmerIds.slice(0, 30))
+                .get();
+            
+            assignedFarmersOverview = farmersSnapshot.docs.map(doc => {
+                const farmerData = doc.data();
+                return {
+                    id: doc.id,
+                    name: farmerData.displayName || 'Unknown Farmer',
+                    farmLocation: farmerData.location?.address || 'Unknown Location',
+                    lastConsultation: new Date(Date.now() - Math.random() * 30 * 86400000).toISOString(), // Mocked
+                    alerts: Math.floor(Math.random() * 3), // Mocked
+                };
+            });
+        }
+
+
         // Fetch knowledge hub contributions made by this user
         const articlesSnapshot = await db.collection('knowledge_articles')
             .where('authorId', '==', userId)
@@ -920,9 +946,6 @@ export const getAgronomistDashboardData = functions.https.onCall(
         });
 
         // Mock data for other sections
-        const assignedFarmersOverview = [
-            { id: 'farmer1', name: 'John Doe', farmLocation: 'Nakuru', lastConsultation: new Date(Date.now() - 86400000 * 7).toISOString(), alerts: 1 }
-        ];
         const pendingConsultationRequests = [
             { id: 'req1', farmerName: 'Jane Smith', issueSummary: 'Yellowing leaves on tomato plants.', requestDate: new Date().toISOString(), farmerId: 'farmer1' }
         ];
@@ -1236,3 +1259,5 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
+
+    
