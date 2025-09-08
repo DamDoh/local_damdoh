@@ -4,15 +4,14 @@
 import { Link } from '@/navigation';
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, CheckCircle, Leaf, BrainCircuit, LineChart, MessageCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { APP_NAME } from "@/lib/constants";
 import { SignUpModal } from '@/components/auth/SignUpModal';
 import { useState } from 'react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
-export function LandingPage() {
+export function HomePage() {
   const t = useTranslations('LandingPage');
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
