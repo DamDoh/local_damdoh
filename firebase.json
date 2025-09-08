@@ -2,7 +2,7 @@
 {
   "functions": [
     {
-      "source": "src/app/api/_functions",
+      "source": "firebase/functions",
       "codebase": "default",
       "ignore": [
         "node_modules",
