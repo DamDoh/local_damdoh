@@ -41,11 +41,11 @@ import * as messageFunctions from "./messages";
 import * as networkFunctions from "./network";
 import * as notificationFunctions from "./notifications";
 import * as offlineSyncFunctions from "./offline_sync";
+import * as userFunctions from "./user";
+import * as utilsFunctions from "./utils";
 import * as regulatoryFunctions from "./regulatory-and-compliance";
 import * as searchFunctions from "./search";
 import * as sustainabilityFunctions from "./sustainability";
-import * as userFunctions from "./user";
-import * as utilsFunctions from "./utils";
 import * as geospatialFunctions from "./geospatial";
 import * as universalIdFunctions from "./universal-id";
 

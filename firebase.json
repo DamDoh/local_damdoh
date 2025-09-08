@@ -2,7 +2,7 @@
 {
   "functions": [
     {
-      "source": "src/app/api",
+      "source": "src/app/api/_functions",
       "codebase": "default",
       "ignore": [
         "node_modules",
