@@ -1,5 +1,39 @@
 
 {
+  "OfflineIndicator": {
+    "toast": {
+      "online": {
+        "title": "Vous êtes de nouveau en ligne",
+        "description": "Votre connexion a été restaurée."
+      },
+      "offline": {
+        "title": "Vous êtes actuellement hors ligne",
+        "description": "Vos actions seront enregistrées et synchronisées lorsque vous vous reconnecterez."
+      },
+      "syncing": {
+        "title": "Synchronisation des modifications hors ligne...",
+        "description": "Traitement de {count, plural, one {# action} other {# actions}} enregistrée(s) pendant que vous étiez hors ligne."
+      },
+      "synced": {
+        "title": "Synchronisation terminée",
+        "description": "Toutes les modifications hors ligne ont été enregistrées avec succès."
+      },
+      "syncFailed": {
+        "title": "Échec de la synchronisation",
+        "description": "Impossible de synchroniser les modifications hors ligne. Une nouvelle tentative sera effectuée plus tard."
+      },
+      "queued": {
+        "title": "Action mise en file d'attente",
+        "description": "Vous êtes hors ligne. Cette action sera effectuée lorsque vous vous reconnecterez."
+      }
+    },
+    "tooltip": {
+      "syncing": "Synchronisation de {count, plural, one {# action en attente} other {# actions en attente}}...",
+      "onlinePending": "En ligne | {count, plural, one {# action} other {# actions}} en attente de synchronisation",
+      "onlineSynced": "En ligne | Toutes les modifications sont enregistrées",
+      "offline": "Hors ligne | {count, plural, one {# action} other {# actions}} en file d'attente"
+    }
+  },
   "common": {
     "error": "Error",
     "success": "Success",

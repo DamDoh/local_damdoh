@@ -1,5 +1,39 @@
 
 {
+  "OfflineIndicator": {
+    "toast": {
+      "online": {
+        "title": "Sie sind wieder online",
+        "description": "Ihre Verbindung wurde wiederhergestellt."
+      },
+      "offline": {
+        "title": "Sie sind derzeit offline",
+        "description": "Ihre Aktionen werden gespeichert und synchronisiert, wenn Sie sich wieder verbinden."
+      },
+      "syncing": {
+        "title": "Offline-Änderungen werden synchronisiert...",
+        "description": "Verarbeite {count, plural, one {# Aktion} other {# Aktionen}}, die gespeichert wurden, während Sie offline waren."
+      },
+      "synced": {
+        "title": "Synchronisierung abgeschlossen",
+        "description": "Alle Offline-Änderungen wurden erfolgreich gespeichert."
+      },
+      "syncFailed": {
+        "title": "Synchronisierung fehlgeschlagen",
+        "description": "Offline-Änderungen konnten nicht synchronisiert werden. Es wird später erneut versucht."
+      },
+      "queued": {
+        "title": "Aktion in Warteschlange",
+        "description": "Sie sind offline. Diese Aktion wird ausgeführt, wenn Sie sich wieder verbinden."
+      }
+    },
+    "tooltip": {
+      "syncing": "Synchronisiere {count, plural, one {# ausstehende Aktion} other {# ausstehende Aktionen}}...",
+      "onlinePending": "Online | {count, plural, one {# Aktion} other {# Aktionen}} wartet auf Synchronisierung",
+      "onlineSynced": "Online | Alle Änderungen gespeichert",
+      "offline": "Offline | {count, plural, one {# Aktion} other {# Aktionen}} in Warteschlange"
+    }
+  },
   "common": {
     "error": "Fehler",
     "success": "Erfolg",
