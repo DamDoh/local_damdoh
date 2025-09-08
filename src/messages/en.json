@@ -58,7 +58,7 @@
     "communityFeedTitle": "Community Feed",
     "communityFeedDescription": "Connect with others, share your knowledge, and stay up-to-date with the latest conversations.",
     "goToFeedButton": "Go to Feed",
-    "noRecommendations": "ยังไม่มีคำแนะนำในขณะนี้ สำรวจตลาดเพื่อเริ่มต้น!"
+    "noRecommendations": "No recommendations yet. Explore the marketplace to get started!"
   },
   "LandingPage": {
     "hero": {
@@ -113,6 +113,24 @@
         "title": "24/7 AI Assistant",
         "description": "Ask questions about farming techniques, market prices, or sustainable practices and get instant, expert-level answers."
       }
+    },
+    "testimonials": {
+        "title": "Trusted by Farmers and Partners Worldwide",
+        "t1": {
+            "quote": "DamDoh's AI diagnostics saved our tomato crop from late blight. We got an accurate diagnosis in minutes and the recommended organic treatment worked wonders. It's a game-changer for smallholder farmers like us.",
+            "name": "Amina Bello",
+            "role": "Organic Farmer, Nigeria"
+        },
+        "t2": {
+            "quote": "As an exporter, traceability is non-negotiable. DamDoh provides a seamless, verifiable log for our coffee shipments, giving our international buyers the confidence they need. It has opened up new premium markets for our partner co-ops.",
+            "name": "Carlos Gomez",
+            "role": "Coffee Exporter, Colombia"
+        },
+        "t3": {
+            "quote": "The platform's ability to connect us with verified farmer cooperatives has streamlined our sourcing process. We've reduced our risk and improved the quality of our supply chain significantly.",
+            "name": "Priya Sharma",
+            "role": "Supply Chain Manager, FoodCo"
+        }
     },
     "cta": {
       "title": "Ready to Grow Smarter?",
