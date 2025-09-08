@@ -306,7 +306,6 @@ export const getGroupPostReplies = functions.https.onCall(async (data, context) 
     return { replies, lastVisible: newLastVisible };
 });
 
-
 export const requestToJoinGroup = functions.https.onCall(async (data, context) => {
     const requesterId = checkAuth(context);
     const { groupId } = data;

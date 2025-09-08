@@ -135,7 +135,7 @@ export const CooperativeDashboard = () => {
                                             <TableCell>{new Date(item.readyBy).toLocaleDateString()}</TableCell>
                                             <TableCell className="text-right">
                                                 <Button size="sm" asChild>
-                                                    <Link href={`/marketplace/create?batchId=${item.id}&productName=${item.productName}`}>
+                                                    <Link href={`/marketplace/create?vtiId=${item.id}&productName=${item.productName}`}>
                                                         <CircleDollarSign className="mr-2 h-4 w-4" />
                                                         {t('createListingButton')}
                                                     </Link>

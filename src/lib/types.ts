@@ -42,33 +42,6 @@ import type {
     PostReplySchema,
     WorkerSchema,
     WorkLogSchema,
-    AdminActivitySchema,
-    AdminDashboardDataSchema,
-    AgriTechInnovatorDashboardDataSchema,
-    AgroExportDashboardDataSchema,
-    AgroTourismDashboardDataSchema,
-    AgronomistDashboardDataSchema,
-    BuyerDashboardDataSchema,
-    CertificationBodyDashboardDataSchema,
-    CooperativeDashboardDataSchema,
-    CrowdfunderDashboardDataSchema,
-    EnergyProviderDashboardDataSchema,
-    EquipmentSupplierDashboardDataSchema,
-    FarmerDashboardDataSchema,
-    FarmerDashboardAlertSchema,
-    FieldAgentDashboardDataSchema,
-    FiDashboardDataSchema,
-    InputSupplierDashboardDataSchema,
-    InsuranceProviderDashboardDataSchema,
-    OperationsDashboardDataSchema,
-    PackagingSupplierDashboardDataSchema,
-    ProcessingUnitDashboardDataSchema,
-    QaDashboardDataSchema,
-    RegulatorDashboardDataSchema,
-    ResearcherDashboardDataSchema,
-    SustainabilityDashboardDataSchema,
-    WarehouseDashboardDataSchema,
-    WasteManagementDashboardDataSchema,
     createFarmSchema,
     createCropSchema,
     GroupPostReplySchema,
@@ -141,7 +114,7 @@ export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" |
 // =================================================================
 export type FarmerDashboardAlert = z.infer<typeof FarmerDashboardAlertSchema>;
 export type FarmerDashboardData = z.infer<typeof FarmerDashboardDataSchema>;
-export type CooperativeDashboardData = z.infer<typeof CooperativeDashboardDataSchema> & { groupId: string | null };
+export type CooperativeDashboardData = z.infer<typeof CooperativeDashboardDataSchema>;
 export type BuyerDashboardData = z.infer<typeof BuyerDashboardDataSchema>;
 export type RegulatorDashboardData = z.infer<typeof RegulatorDashboardDataSchema>;
 export type LogisticsDashboardData = z.infer<typeof LogisticsDashboardDataSchema>;

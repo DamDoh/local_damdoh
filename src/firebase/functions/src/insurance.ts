@@ -2,7 +2,8 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import type { InsuranceProduct } from "@/lib/types";
+import type { InsuranceProduct, InsuranceApplication } from "@/lib/types";
+import { getFunctions, httpsCallable } from "firebase-functions/v1";
 
 const db = admin.firestore();
 
@@ -43,7 +44,7 @@ export const createInsuranceProduct = functions.https.onCall(async (data, contex
 });
 
 export const getInsuranceProducts = functions.https.onCall(async (data, context) => {
-    checkAuth(context);
+    // This is a public-facing function, but might be restricted in a real scenario
     const snapshot = await db.collection('insurance_products').where('status', '==', 'Active').get();
     const products = snapshot.docs.map(doc => {
         const productData = doc.data();
@@ -67,7 +68,7 @@ export const getInsuranceProductDetails = functions.https.onCall(async (data, co
     let provider = null;
     
     if (productData.providerId) {
-        const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
+        const getProfile = httpsCallable(getFunctions(), 'user-getProfileByIdFromDB');
         const providerProfileResult = await getProfile({ uid: productData.providerId });
         const providerProfile = providerProfileResult.data as any;
 

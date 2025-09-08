@@ -32,8 +32,7 @@ import type {
     FarmerDashboardAlert,
     OperationsDashboardData,
     FinancialProduct,
-    KnfBatch,
-    UserProfile
+    KnfBatch
 } from "@/lib/types";
 
 const db = admin.firestore();
@@ -1317,6 +1316,7 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
     }
 });
 
+
 export const getOperationsDashboardData = functions.https.onCall(
   async (data, context): Promise<OperationsDashboardData> => {
     checkAuth(context);
@@ -1344,21 +1344,3 @@ export const getOperationsDashboardData = functions.https.onCall(
     };
   }
 );
-    
-
-    
-
-      
-    
-
-
-
-
-    
-
-
-
-
-
-
-
