@@ -103,17 +103,19 @@ export function AppHeader() {
           <div className="flex items-center gap-2">
              <Logo iconSize={32} textSize="text-2xl" className="text-foreground" />
           </div>
-
-          <div className="flex-1 flex justify-center px-12 lg:px-16">
-            <Button
-              variant="outline"
-              className="h-9 w-full max-w-md justify-start rounded-md bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground pl-10 relative"
-              onClick={() => setIsSearchModalOpen(true)}
-            >
-              <SearchIconLucide className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
-              {t('searchPlaceholder')}
-            </Button>
-          </div>
+          
+          {user && (
+            <div className="flex-1 flex justify-center px-12 lg:px-16">
+                <Button
+                variant="outline"
+                className="h-9 w-full max-w-md justify-start rounded-md bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground pl-10 relative"
+                onClick={() => setIsSearchModalOpen(true)}
+                >
+                <SearchIconLucide className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
+                {t('searchPlaceholder')}
+                </Button>
+            </div>
+          )}
 
           <nav className="flex items-center space-x-2 h-full">
             <div className="flex items-center h-full">
