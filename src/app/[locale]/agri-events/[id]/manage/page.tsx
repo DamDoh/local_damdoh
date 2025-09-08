@@ -71,7 +71,7 @@ const CheckInTab = ({ eventId, eventName }: { eventId: string, eventName: string
     const [isProcessing, setIsProcessing] = useState(false);
     
     const { toast } = useToast();
-    const checkInCallable = useMemo(() => httpsCallable(functions, 'checkInAttendee'), []);
+    const checkInCallable = useMemo(() => httpsCallable(functions, 'agriEvents-checkInAttendee'), []);
 
     const handleScanSuccess = async (decodedText: string) => {
         setIsScanning(false);
@@ -154,7 +154,7 @@ const AttendeesTab = ({ eventId }: { eventId: string }) => {
     const [attendees, setAttendees] = useState<Attendee[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const getAttendeesCallable = useMemo(() => httpsCallable(functions, 'getEventAttendees'), []);
+    const getAttendeesCallable = useMemo(() => httpsCallable(functions, 'agriEvents-getEventAttendees'), []);
 
     useEffect(() => {
         if (!eventId) return;
@@ -250,10 +250,10 @@ const StaffManagementTab = ({ eventId }: { eventId: string }) => {
     const [isSearching, setIsSearching] = useState(false);
     const [isLoadingStaff, setIsLoadingStaff] = useState(true);
 
-    const searchUsersCallable = useMemo(() => httpsCallable(functions, 'searchUsersForStaffing'), []);
-    const addStaffCallable = useMemo(() => httpsCallable(functions, 'addEventStaff'), []);
-    const getStaffCallable = useMemo(() => httpsCallable(functions, 'getEventStaff'), []);
-    const removeStaffCallable = useMemo(() => httpsCallable(functions, 'removeEventStaff'), []);
+    const searchUsersCallable = useMemo(() => httpsCallable(functions, 'agriEvents-searchUsersForStaffing'), []);
+    const addStaffCallable = useMemo(() => httpsCallable(functions, 'agriEvents-addEventStaff'), []);
+    const getStaffCallable = useMemo(() => httpsCallable(functions, 'agriEvents-getEventStaff'), []);
+    const removeStaffCallable = useMemo(() => httpsCallable(functions, 'agriEvents-removeEventStaff'), []);
     
     const fetchStaff = useCallback(async () => {
         setIsLoadingStaff(true);
@@ -367,8 +367,8 @@ const CouponsTab = ({ eventId }: { eventId: string }) => {
     const [coupons, setCoupons] = useState<Coupon[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const getCouponsCallable = useMemo(() => httpsCallable(functions, 'getEventCoupons'), []);
-    const createCouponCallable = useMemo(() => httpsCallable(functions, 'createEventCoupon'), []);
+    const getCouponsCallable = useMemo(() => httpsCallable(functions, 'agriEvents-getEventCoupons'), []);
+    const createCouponCallable = useMemo(() => httpsCallable(functions, 'agriEvents-createEventCoupon'), []);
 
     const fetchCoupons = useCallback(async () => {
         setIsLoading(true);
