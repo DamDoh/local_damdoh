@@ -69,7 +69,7 @@ export const getInsuranceProductDetails = functions.https.onCall(async (data, co
     let provider = null;
     
     if (productData.providerId) {
-        const providerProfileResult = (await getProfileByIdFromDB({ uid: productData.providerId })).data;
+        const providerProfileResult = (await getProfileByIdFromDB({ uid: productData.providerId }) as any)?.data;
         const providerProfile = providerProfileResult; // data is the profile object
         if (providerProfile) {
             provider = {
