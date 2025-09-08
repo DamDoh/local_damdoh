@@ -13,6 +13,7 @@ import { AppHeader } from '@/components/layout/AppHeader';
 import { AppFooter } from '@/components/layout/AppFooter';
 import { Toaster } from '@/components/ui/toaster';
 import { LoggedInLayout } from '@/components/layout/LoggedInLayout';
+import { LandingPageLayout } from '@/components/layout/LandingPageLayout';
 
 function HomePageContent() {
   const { user, loading: authLoading } = useAuth();
@@ -29,14 +30,9 @@ function HomePageContent() {
   // If user is not logged in, show the landing page with its own simple layout.
   if (!user) {
     return (
-        <div className="flex flex-col min-h-screen">
-            <AppHeader />
-            <main className="flex-grow">
-                <LandingPage />
-            </main>
-            <AppFooter />
-            <Toaster />
-        </div>
+        <LandingPageLayout>
+            <LandingPage />
+        </LandingPageLayout>
     );
   }
   
