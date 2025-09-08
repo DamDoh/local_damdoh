@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile, JoinRequest } from './types';
@@ -128,12 +127,14 @@ const modifyMembership = async (groupId: string, userId: string, join: boolean) 
                 throw new functions.https.HttpsError('already-exists', 'You are already a member of this group.');
             }
             
-            const userProfileDoc = await db.collection('users').doc(userId).get();
-             if (!userProfileDoc.exists) {
+            const getProfileCallable = httpsCallable(getFunctions(), 'user-getProfileByIdFromDB');
+            const userProfileResult = await getProfileCallable({ uid: userId });
+            const userProfile = userProfileResult.data as UserProfile;
+
+             if (!userProfile) {
                 throw new functions.https.HttpsError('not-found', 'Your user profile could not be found.');
             }
-            const userProfile = userProfileDoc.data() as UserProfile;
-
+            
             transaction.set(memberRef, {
                 displayName: userProfile.displayName,
                 avatarUrl: userProfile.avatarUrl || null,
@@ -185,7 +186,9 @@ export const createGroupPost = functions.https.onCall(async (data, context) => {
     const groupRef = db.collection('groups').doc(groupId);
     const timestamp = admin.firestore.FieldValue.serverTimestamp();
 
-    const userProfile = await db.collection('users').doc(uid).get();
+    const getProfileCallable = httpsCallable(getFunctions(), 'user-getProfileByIdFromDB');
+    const userProfileResult = await getProfileCallable({ uid });
+    const userProfile = userProfileResult.data as UserProfile;
 
     const batch = db.batch();
 
@@ -193,8 +196,8 @@ export const createGroupPost = functions.https.onCall(async (data, context) => {
         title,
         content,
         authorRef: uid,
-        authorName: userProfile.data()?.displayName || 'Unknown User',
-        authorAvatarUrl: userProfile.data()?.avatarUrl || null,
+        authorName: userProfile.displayName || 'Unknown User',
+        authorAvatarUrl: userProfile.avatarUrl || null,
         createdAt: timestamp,
         replyCount: 0,
         likes: 0,
@@ -254,13 +257,15 @@ export const addGroupPostReply = functions.https.onCall(async (data, context) =>
     const postRef = db.collection(`groups/${groupId}/posts`).doc(postId);
 
     const batch = db.batch();
-    const userProfile = await db.collection('users').doc(uid).get();
+    const getProfileCallable = httpsCallable(getFunctions(), 'user-getProfileByIdFromDB');
+    const userProfileResult = await getProfileCallable({ uid });
+    const userProfile = userProfileResult.data as UserProfile;
 
     batch.set(replyRef, {
         content,
         authorRef: uid,
-        authorName: userProfile.data()?.displayName || 'Unknown User',
-        authorAvatarUrl: userProfile.data()?.avatarUrl || null,
+        authorName: userProfile.displayName || 'Unknown User',
+        authorAvatarUrl: userProfile.avatarUrl || null,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
@@ -312,7 +317,8 @@ export const requestToJoinGroup = functions.https.onCall(async (data, context) =
         throw new functions.https.HttpsError('already-exists', 'You have already sent a request to join this group.');
     }
     
-    const userProfileResult = await httpsCallable(functions, 'user-getProfileByIdFromDB')({ uid: requesterId });
+    const getProfileCallable = httpsCallable(getFunctions(), 'user-getProfileByIdFromDB');
+    const userProfileResult = await getProfileCallable({ uid: requesterId });
     const userProfile = userProfileResult.data as UserProfile;
 
     await requestRef.set({
@@ -392,3 +398,4 @@ export const inviteUserToGroup = functions.https.onCall(async (data, context) =>
     
     return { success: true, message: `An invitation has been sent to ${email}.`};
 });
+

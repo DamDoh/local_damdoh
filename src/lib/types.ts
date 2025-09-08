@@ -1,5 +1,4 @@
 
-
 import type { z } from 'zod';
 import type { 
     StakeholderProfileSchema,
@@ -182,3 +181,20 @@ export type DiagnoseCropOutput = z.infer<typeof DiagnoseCropOutputSchema>;
 export type FarmingAssistantInput = z.infer<typeof FarmingAssistantInputSchema>;
 export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema>;
 
+
+// For use in both frontend and backend
+export interface SuggestedConnectionsOutput {
+    suggestions: Array<{
+      id: string;
+      name: string;
+      role: string;
+      avatarUrl?: string;
+      reason: string;
+    }>;
+}
+
+export interface SuggestedConnectionsInput {
+    userId: string;
+    count?: number;
+    language?: string;
+}
