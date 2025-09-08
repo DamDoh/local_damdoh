@@ -26,7 +26,8 @@ export const bookAgroTourismService = functions.https.onCall(async (data, contex
     const bookingRef = itemRef.collection('bookings').doc(uid);
     
     // Call the centralized user profile function directly
-    const userProfileDoc = (await getProfileByIdFromDB({ uid })).data;
+    const userProfileResult = await getProfileByIdFromDB({ uid }, context);
+    const userProfileDoc = userProfileResult;
     
     if (!userProfileDoc) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');

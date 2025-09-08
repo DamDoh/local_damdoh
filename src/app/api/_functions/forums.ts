@@ -3,7 +3,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB } from './user';
-import { suggestForumTopics } from '../../src/ai/flows/forum-topic-suggestions';
+import { suggestForumTopics } from '../../ai/flows/forum-topic-suggestions';
 
 const db = admin.firestore();
 
@@ -109,7 +109,7 @@ export const createForumPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Topic ID, title, and content are required.');
     }
     
-    const userProfile = (await getProfileByIdFromDB({ uid }, context)).data;
+    const userProfile = await getProfileByIdFromDB({ uid }, context);
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
     }
@@ -188,7 +188,7 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Topic ID, post ID, and content are required.');
     }
     
-    const userProfile = (await getProfileByIdFromDB({ uid }, context)).data;
+    const userProfile = await getProfileByIdFromDB({ uid }, context);
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
     }
