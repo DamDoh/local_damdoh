@@ -50,7 +50,7 @@ export default function ProfilesPage() {
   const [locationFilter, setLocationFilter] = useState("");
   const { toast } = useToast();
 
-  const getAllProfilesCallable = useMemo(() => httpsCallable(functions, 'profiles-getAllProfilesFromDB'), [functions]);
+  const getAllProfilesCallable = useMemo(() => httpsCallable(functions, 'user-getAllProfilesFromDB'), [functions]);
 
   useEffect(() => {
     const fetchProfiles = async () => {

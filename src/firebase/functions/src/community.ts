@@ -32,7 +32,7 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionsInvalid');
     }
 
-    const userProfile = (await getProfileByIdFromDB({ uid }) as any).data;
+    const userProfile = (await getProfileByIdFromDB({ uid }, context) as any);
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -78,7 +78,6 @@ export const deletePost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('permission-denied', 'error.permissionDenied');
     }
     
-    // Perform a cascade delete of subcollections before deleting the post itself.
     const likesPath = `posts/${postId}/likes`;
     const commentsPath = `posts/${postId}/comments`;
     const votesPath = `posts/${postId}/votes`;
@@ -93,11 +92,7 @@ export const deletePost = functions.https.onCall(async (data, context) => {
     
     console.log(`Subcollections deleted. Deleting main post document ${postId}.`);
 
-    // Finally, delete the post document itself
     await postRef.delete();
-
-    // Note: Deleting associated media from Cloud Storage would require another step,
-    // often handled by a separate onFinalize trigger or by storing the full GCS path.
 
     return { success: true, message: 'Post and all associated data deleted successfully.' };
 });
@@ -129,7 +124,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
 
     const commentRef = db.collection(`posts/${postId}/comments`).doc();
 
-    const userProfile = (await getProfileByIdFromDB({ uid }) as any).data;
+    const userProfile = (await getProfileByIdFromDB({ uid }, context) as any);
     
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
