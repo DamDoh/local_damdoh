@@ -49,7 +49,8 @@
     "listingTypes": {
       "All": "ทุกประเภท",
       "Product": "ผลิตภัณฑ์",
-      "Service": "บริการ"
+      "Service": "บริการ",
+      "AgroTourism": "ท่องเที่ยวเชิงเกษตร"
     },
     "agriEventTypes": {
       "All": "ทุกประเภท",
@@ -215,6 +216,43 @@
       "loadSuggestions": {
         "title": "เกิดข้อผิดพลาดในการโหลดคำแนะนำ",
         "description": "ไม่สามารถดึงข้อมูลคำแนะนำกระทู้ได้"
+      }
+    }
+  },
+  "AppHeader": {
+    "home": "Home",
+    "network": "Network",
+    "farmMgmt": "Farm Mgmt",
+    "marketplace": "Marketplace",
+    "talentExchange": "Talent",
+    "traceability": "Traceability",
+    "forums": "Forums",
+    "sustainability": "Sustainability",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Wallet",
+    "searchPlaceholder": "Search people, products, services...",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "myProfile": "My Profile",
+    "myOrders": "My Orders",
+    "myPurchases": "My Purchases",
+    "mySales": "My Sales",
+    "settings": "Settings",
+    "helpCenter": "Help Center",
+    "logOut": "Log Out",
+    "orders": "Orders",
+    "switchToLightAria": "Switch to light theme",
+    "switchToDarkAria": "Switch to dark theme",
+    "mobileMenu": {
+      "description": "A mobile menu with navigation links."
+    },
+    "toast": {
+      "logOut": {
+        "title": "Logged Out",
+        "description": "You have been successfully logged out.",
+        "failTitle": "Logout Failed",
+        "failDescription": "Could not log out. Please try again."
       }
     }
   }

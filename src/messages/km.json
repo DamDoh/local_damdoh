@@ -49,7 +49,8 @@
     "listingTypes": {
       "All": "គ្រប់ប្រភេទ",
       "Product": "ផលិតផល",
-      "Service": "សេវាកម្ម"
+      "Service": "សេវាកម្ម",
+      "AgroTourism": "កសិទេសចរណ៍"
     },
     "agriEventTypes": {
       "All": "គ្រប់ប្រភេទ",
@@ -124,7 +125,7 @@
       }
     },
     "forWho": {
-      "badge": "สำหรับทุกคนในภาคเกษตรกรรม",
+      "badge": "សម្រាប់អ្នករាល់គ្នាក្នុងវិស័យកសិកម្ម",
       "title": "แพลตฟอร์มเดียวสำหรับทั้งห่วงโซ่คุณค่า",
       "description": "DamDoh ได้รับการออกแบบมาโดยเฉพาะเพื่อให้บริการระบบนิเวศทางการเกษตรทั้งหมด สร้างจุดศูนย์กลางของความจริงและโอกาสสำหรับทุกคน",
       "farmers": {
@@ -182,12 +183,12 @@
     "seeAllButton": "មើល​ទាំងអស់",
     "communityFeedTitle": "ហ្វីតសហគមន៍",
     "communityFeedDescription": "ភ្ជាប់ទំនាក់ទំនងជាមួយអ្នកដទៃ ចែករំលែកចំណេះដឹងរបស់អ្នក និងទទួលបានព័ត៌មានថ្មីៗពីការសន្ទនាចុងក្រោយបំផុត។",
-    "goToFeedButton": "ไปที่ฟีด",
+    "goToFeedButton": "ទៅកាន់ហ្វីត",
     "noRecommendations": "ยังไม่มีคำแนะนำในขณะนี้ สำรวจตลาดเพื่อเริ่มต้น!"
   },
   "forumsPage": {
-    "title": "ฟอรัม",
-    "description": "เชื่อมต่อกับผู้อื่น แบ่งปันความรู้ของคุณ และติดตามข่าวสารล่าสุดจากการสนทนา",
+    "title": "វេទិកា",
+    "description": "ភ្ជាប់ទំនាក់ទំនងជាមួយអ្នកដទៃ ចែករំលែកចំណេះដឹងរបស់អ្នក និងទទួលបានព័ត៌មានថ្មីៗពីការសន្ទនាចុងក្រោយបំផុត។",
     "createTopic": "สร้างกระทู้",
     "searchPlaceholder": "ค้นหากระทู้...",
     "suggestedTopicsTitle": "กระทู้แนะนำ",
@@ -215,6 +216,43 @@
       "loadSuggestions": {
         "title": "เกิดข้อผิดพลาดในการโหลดคำแนะนำ",
         "description": "ไม่สามารถดึงข้อมูลคำแนะนำกระทู้ได้"
+      }
+    }
+  },
+  "AppHeader": {
+    "home": "Home",
+    "network": "Network",
+    "farmMgmt": "Farm Mgmt",
+    "marketplace": "Marketplace",
+    "talentExchange": "Talent",
+    "traceability": "Traceability",
+    "forums": "Forums",
+    "sustainability": "Sustainability",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Wallet",
+    "searchPlaceholder": "Search people, products, services...",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "myProfile": "My Profile",
+    "myOrders": "My Orders",
+    "myPurchases": "My Purchases",
+    "mySales": "My Sales",
+    "settings": "Settings",
+    "helpCenter": "Help Center",
+    "logOut": "Log Out",
+    "orders": "Orders",
+    "switchToLightAria": "Switch to light theme",
+    "switchToDarkAria": "Switch to dark theme",
+    "mobileMenu": {
+      "description": "A mobile menu with navigation links."
+    },
+    "toast": {
+      "logOut": {
+        "title": "Logged Out",
+        "description": "You have been successfully logged out.",
+        "failTitle": "Logout Failed",
+        "failDescription": "Could not log out. Please try again."
       }
     }
   }
