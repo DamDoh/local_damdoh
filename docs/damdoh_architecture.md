@@ -4,10 +4,10 @@ This document outlines the foundational architecture for the DamDoh platform, de
 
 ## 1. Core Microservices
 
-The platform will be built on a microservices architecture to ensure scalability, maintainability, and independent deployment of functionalities.
+The platform is built on a microservices architecture to ensure scalability, maintainability, and independent deployment of functionalities. These services are implemented as Firebase Cloud Functions, providing a serverless and auto-scaling backend.
 
 ### 1. User Management Service
-*   **Role:** Manages all user-related functionalities, including registration, authentication (handling diverse methods), user profiles for all 21 stakeholder types, role-based access control (RBAC), and permission management.
+*   **Role:** Manages all user-related functionalities, including registration, authentication (handling diverse methods), user profiles for all stakeholder types, and role-based access control (RBAC).
 *   **Interaction:** Interacts with almost all other services to verify user identity and authorization.
 
 ### 2. Farm & Agricultural Asset Service
@@ -23,7 +23,7 @@ The platform will be built on a microservices architecture to ensure scalability
 *   **Interaction:** Interacts with User Management, Farm & Asset Service, and the Financial & Transaction Service.
 
 ### 5. AI & Analytics Service
-*   **Role:** Houses all AI models (powered by Gemini and Vertex AI) for use cases like crop advisories, pest identification, market price prediction, and content moderation. Also responsible for data analytics and generating insights.
+*   **Role:** Houses all AI models (powered by Genkit) for use cases like crop advisories, pest identification, market price prediction, and content moderation. Also responsible for data analytics and generating insights.
 *   **Interaction:** Consumes data from various services and provides intelligent outputs back to them.
 
 ### 6. Communication Service
@@ -35,8 +35,8 @@ The platform will be built on a microservices architecture to ensure scalability
 *   **Interaction:** Works closely with the Marketplace and User Management services.
 
 ### 8. Traceability Service
-*   **Role:** Records and manages the end-to-end journey of agricultural products using Vibrant Traceability IDs (VTIs).
-*   **Interaction:** Receives events from Farm Management, Marketplace, and Logistics services; provides data for verification and consumer transparency.
+*   **Role:** Records and manages the end-to-end journey of agricultural products using Verifiable Traceability IDs (VTIs).
+*   **Interaction:** Receives events from Farm Management and the Marketplace; provides data for verification and consumer transparency.
 
 ### 9. Information & Knowledge Hub Service
 *   **Role:** Manages educational content, including articles, courses, and tutorials on best practices (e.g., KNF, FGW).
@@ -56,53 +56,24 @@ The platform will be built on a microservices architecture to ensure scalability
 
 ---
 
-## 2. Scalable Data Storage (Firebase & Google Cloud)
+## 2. Scalable Data Storage (Firestore & Cloud Storage)
 
-The data storage strategy will leverage Firebase and Google Cloud services for scalability and real-time capabilities.
+The data storage strategy leverages Firebase and Google Cloud services for scalability and real-time capabilities.
 
 ### Firestore Collections
 
-*   **`users`**: Stores profiles for all 21 stakeholder types, linked to Firebase Auth UID.
-    *   `uid`: (string) Firebase Auth UID
-    *   `email`: (string)
-    *   `displayName_en`: (string)
-    *   `displayName_local`: (map) e.g., `{ "km": "ឈ្មោះ", "sw": "Jina" }`
-    *   `roles`: (array of strings) e.g., ['Farmer', 'Buyer']
-    *   `profileData`: (map) Role-specific data. For a **Farmer**, this might include `{farmIds: ['farm1', 'farm2']}`. For a **Financial Institution**, it might include `{fi_name: 'AgriBank', services_offered: ['loan', 'credit']}`.
-    *   `createdAt`, `updatedAt`: (timestamps)
-
+*   **`users`**: Stores profiles for all stakeholder types, linked to Firebase Auth UID.
 *   **`farms`**: Stores information about individual farms.
-    *   `ownerId`: (string) Reference to `users` collection.
-    *   `name`, `location`, `size`, `farmType`, etc.
-
 *   **`crops`**: Stores information about crops being grown on farms.
-    *   `farmId`: (string) Reference to `farms` collection.
-    *   `cropType`, `plantingDate`, `harvestDate`, etc.
-
 *   **`knf_batches`**: Tracks farmer-made KNF inputs.
-    *   `userId`: (string) Reference to `users` collection.
-    *   `type`: (string) 'fpj', 'faa', etc.
-    *   `status`: (string) 'Fermenting', 'Ready', 'Used'.
-    *   `startDate`, `nextStepDate`, etc.
-
 *   **`traceability_events`**: An immutable log of all supply chain events.
-    *   `vtiId`: (string) The Vibrant Traceability ID of the batch.
-    *   `eventType`: (string) 'PLANTED', 'HARVESTED', 'PROCESSED', 'TRANSPORTED'.
-    *   `actorRef`: (string) Reference to the user/organization performing the action.
-    *   `payload`: (map) Event-specific data.
-
 *   **`marketplaceItems`**: Stores listings for products and services.
-    *   `sellerId`: (string) Reference to `users` collection.
-    *   `listingType`: (string) 'Product' or 'Service'.
-    *   `category`: (string) e.g., 'fresh-produce-fruits'.
-    *   `name_en`: (string)
-    *   `description_en`: (string)
-    *   `name_local`, `description_local`: (maps) for i18n
-    *   `price`, `currency`, `location`.
-    *   `relatedTraceabilityId`: (string, optional) Links product to its VTI.
-
 *   **`posts`**, **`comments`**, **`likes`**: Manages social feed content.
 *   **`forums`**, **`forum_posts`**, **`replies`**: Manages community forum content.
+*   **`groups`**, **`group_posts`**, **`members`**: Manages community group information.
+*   **`notifications`**: Stores user-specific notifications.
+*   **`knowledge_base`**: Stores structured data for KNF/FGW recipes and techniques to power the AI Assistant.
+*   **`search_index`**: A denormalized collection to enable fast, complex search queries across the platform.
 
 ### Other Storage
 *   **Google Cloud Storage:** For large, unstructured data like images and videos (e.g., post images, profile pictures, traceability evidence).
@@ -116,8 +87,8 @@ The data storage strategy will leverage Firebase and Google Cloud services for s
 
 ---
 
-## 4. AI Integration Strategy (Gemini & Vertex AI)
-*   **Genkit Framework:** All AI logic will be built using Genkit for structured, maintainable, and scalable AI flows.
+## 4. AI Integration Strategy (Genkit)
+*   **Genkit Framework:** All AI logic is built using Genkit for structured, maintainable, and scalable AI flows.
 *   **Personalized Advisories:** AI analyzes farm data, weather, and market trends to provide tailored recommendations.
 *   **Pest & Disease Identification:** Image recognition models analyze user-uploaded photos to diagnose issues.
 *   **Market Intelligence:** AI models predict market prices and demand trends.
@@ -133,11 +104,11 @@ The data storage strategy will leverage Firebase and Google Cloud services for s
 
 ---
 
-## 6. Scalable Frontend Architecture
-*   **Cross-Platform Framework (e.g., Next.js, Flutter):** Recommended for faster development and deployment across web, Android, and iOS.
-*   **Firebase SDKs:** The frontend will interact directly with Firebase services for authentication, real-time data, and storage.
-*   **Internationalization (i18n) & Localization (l10n):** The architecture must support multilingual content and region-specific features from the ground up.
-*   **Offline Capabilities:** Firestore's built-in offline persistence is crucial for users in areas with limited connectivity.
+## 6. Frontend Architecture
+*   **Next.js with React:** Chosen for its performance benefits (Server Components, App Router), strong TypeScript support, and robust ecosystem.
+*   **Firebase SDKs:** The frontend interacts directly with Firebase services for authentication, real-time data, and storage.
+*   **Internationalization (i18n):** The `next-intl` library is used to support multilingual content and region-specific features from the ground up.
+*   **Offline Capabilities:** A robust "Outbox" pattern using IndexedDB ensures data durability. Firestore's built-in offline persistence is used for caching read data.
 
 ---
 
@@ -145,11 +116,3 @@ The data storage strategy will leverage Firebase and Google Cloud services for s
 *   **Firebase Performance Monitoring:** To track app performance, including startup time and network latency.
 *   **Firebase Crashlytics:** For real-time crash reporting to quickly fix stability issues.
 *   **Cloud Logging & Trace:** For comprehensive backend monitoring and debugging across microservices.
-
----
-
-## 8. Development Workflow & CI/CD
-*   **Version Control (Git):** For managing source code with clear branching strategies.
-*   **Automated Testing:** Unit, integration, and end-to-end tests are essential for maintaining quality.
-*   **CI/CD Pipeline (e.g., Cloud Build, GitHub Actions):** To automate builds, testing, and deployments to various environments (staging, production).
-*   **Infrastructure as Code (IaC):** Using tools like Terraform to manage cloud infrastructure declaratively.
