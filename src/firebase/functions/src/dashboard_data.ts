@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
@@ -1100,13 +1101,15 @@ export const getCrowdfunderDashboardData = functions.https.onCall(
   (data, context): CrowdfunderDashboardData => {
     checkAuth(context);
     return {
-        portfolioOverview: { totalInvested: 75000, numberOfInvestments: 8, estimatedReturns: 95000 },
-        suggestedOpportunities: [
-            { id: 'opp1', projectName: 'Women-Led Shea Butter Processing Unit', category: 'Value Addition', fundingGoal: 50000, amountRaised: 35000, actionLink: '#' }
-        ],
-        recentTransactions: [
-            { id: 'tx1', projectName: 'Rift Valley Growers Co-op', type: 'Investment', amount: 5000, date: new Date().toISOString() }
-        ]
+      portfolioOverview: { totalInvested: 75000, numberOfInvestments: 8, estimatedReturns: 95000 },
+      suggestedOpportunities: [
+        { id: 'opp1', projectName: 'Women-Led Shea Butter Processing Unit', category: 'Value Addition', fundingGoal: 50000, amountRaised: 35000, actionLink: '#' },
+        { id: 'opp2', projectName: 'Solar Irrigation for Rural Co-op', category: 'Infrastructure', fundingGoal: 25000, amountRaised: 10000, actionLink: '#' }
+      ],
+      recentTransactions: [
+        { id: 'tx1', projectName: 'Rift Valley Growers Co-op', type: 'Investment', amount: 5000, date: new Date(Date.now() - 5 * 86400000).toISOString() },
+        { id: 'tx2', projectName: 'Organic Cashew Farm', type: 'Payout', amount: 1200, date: new Date(Date.now() - 20 * 86400000).toISOString() }
+      ]
     };
   }
 );
@@ -1166,8 +1169,8 @@ export const getWasteManagementDashboardData = functions.https.onCall(
         { id: 'waste1', type: 'Maize Stover', source: 'Green Valley Farms', quantity: '10 tons' }
       ],
       compostBatches: [
-        { id: 'comp1', status: 'Active', estimatedCompletion: new Date(Date.now() + 86400000 * 30).toISOString() },
-        { id: 'comp2', status: 'Curing', estimatedCompletion: new Date(Date.now() + 86400000 * 10).toISOString() },
+        { id: 'comp1', status: 'Active', estimatedCompletion: new Date(Date.now() + 30 * 86400000).toISOString() },
+        { id: 'comp2', status: 'Curing', estimatedCompletion: new Date(Date.now() + 10 * 86400000).toISOString() },
       ],
       finishedProductInventory: [
         { product: 'Grade A Compost', quantity: '25 tons', actionLink: '#' }
