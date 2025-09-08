@@ -11,7 +11,7 @@ import {
   type User as FirebaseUser,
   updateProfile,
 } from "firebase/auth";
-import { auth, functions } from './firebase/client';
+import { auth, functions } from './firebase/client'; // Correctly import the initialized auth instance
 import { httpsCallable } from "firebase/functions";
 import type { StakeholderRole } from './constants';
 import { createContext, useContext } from 'react';
