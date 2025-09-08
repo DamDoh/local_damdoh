@@ -199,62 +199,72 @@ export const AgronomistDashboard = () => {
            </CardContent>
          </Card>
          
-         <Card>
-            <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4 text-blue-500"/> {t('contributions.statusTitle')}</CardTitle>
-            </CardHeader>
-            <CardContent>
-                {contributionStatusCounts.length > 0 ? (
-                    <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-                        <BarChart accessibilityLayer data={contributionStatusCounts} layout="vertical" margin={{ left: 10 }}>
-                            <CartesianGrid horizontal={false} />
-                            <YAxis
-                                dataKey="name"
-                                type="category"
-                                tickLine={false}
-                                tickMargin={10}
-                                axisLine={false}
-                                tickFormatter={(value) => chartConfig[value as keyof typeof chartConfig]?.label || value}
-                                className="text-xs"
-                            />
-                            <XAxis dataKey="count" type="number" hide />
-                             <ChartTooltip
-                                cursor={false}
-                                content={<ChartTooltipContent indicator="line" />}
-                            />
-                            <Bar dataKey="count" layout="vertical" radius={4}>
-                                {contributionStatusCounts.map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={chartConfig[entry.name as keyof typeof chartConfig]?.color || "hsl(var(--primary))"} />
-                                ))}
-                            </Bar>
-                        </BarChart>
-                    </ChartContainer>
-                ) : (
-                    <p className="text-sm text-muted-foreground text-center py-4">{t('contributions.noData')}</p>
-                )}
-            </CardContent>
-        </Card>
-
-         <Card>
+         <Card className="lg:col-span-2">
             <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2"><FileText className="h-4 w-4 text-blue-500"/> {t('contributions.title')}</CardTitle>
+                <CardDescription>{t('contributions.description')}</CardDescription>
             </CardHeader>
             <CardContent>
                 {knowledgeHubContributions.length > 0 ? (
-                    <div className="space-y-3">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>{t('contributions.table.title')}</TableHead>
+                          <TableHead>{t('contributions.table.status')}</TableHead>
+                          <TableHead className="text-right">{t('contributions.table.action')}</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
                         {knowledgeHubContributions.map((contribution) => (
-                            <div key={contribution.id} className="text-sm p-3 border rounded-lg flex justify-between items-center">
-                                <Link href={`/blog/${contribution.id}`} className="font-medium hover:underline">{contribution.title}</Link>
-                                <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>
-                            </div>
+                          <TableRow key={contribution.id}>
+                            <TableCell className="font-medium">
+                              <Link href={`/blog/${contribution.id}`} className="hover:underline">{contribution.title}</Link>
+                            </TableCell>
+                            <TableCell>
+                              <Badge variant={getStatusBadgeVariant(contribution.status)}>{contribution.status}</Badge>
+                            </TableCell>
+                            <TableCell className="text-right">
+                              <Button asChild variant="outline" size="sm">
+                                <Link href={`/blog/${contribution.id}`}>{t('contributions.viewButton')}</Link>
+                              </Button>
+                            </TableCell>
+                          </TableRow>
                         ))}
-                    </div>
+                      </TableBody>
+                    </Table>
+                    {contributionStatusCounts.length > 0 && (
+                        <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+                            <BarChart accessibilityLayer data={contributionStatusCounts} layout="vertical" margin={{ left: 10 }}>
+                                <CartesianGrid horizontal={false} />
+                                <YAxis
+                                    dataKey="name"
+                                    type="category"
+                                    tickLine={false}
+                                    tickMargin={10}
+                                    axisLine={false}
+                                    tickFormatter={(value) => chartConfig[value as keyof typeof chartConfig]?.label || value}
+                                    className="text-xs"
+                                />
+                                <XAxis dataKey="count" type="number" hide />
+                                 <ChartTooltip
+                                    cursor={false}
+                                    content={<ChartTooltipContent indicator="line" />}
+                                />
+                                <Bar dataKey="count" layout="vertical" radius={4}>
+                                    {contributionStatusCounts.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={chartConfig[entry.name as keyof typeof chartConfig]?.color || "hsl(var(--primary))"} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </ChartContainer>
+                    )}
+                  </div>
                 ) : (
                    <p className="text-sm text-muted-foreground text-center py-4">{t('contributions.noContributions')}</p>
                 )}
             </CardContent>
          </Card>
-
       </div>
     </div>
   );

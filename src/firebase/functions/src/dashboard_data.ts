@@ -1,6 +1,6 @@
 
 
-      
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
@@ -930,7 +930,7 @@ export const getAgronomistDashboardData = functions.https.onCall(
                 .get();
             
             assignedFarmersOverview = farmersSnapshot.docs.map(doc => {
-                const farmerData = doc.data();
+                const farmerData = doc.data() as UserProfile;
                 return {
                     id: doc.id,
                     name: farmerData.displayName || 'Unknown Farmer',
@@ -1325,5 +1325,6 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
 
 
     
+
 
 
