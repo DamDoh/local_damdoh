@@ -312,13 +312,19 @@ export const getCooperativeDashboardData = functions.https.onCall(
         const groupId = coopData?.profileData?.groupId;
         let memberCount = 0;
         let memberIds: string[] = [];
+        let pendingMemberApplications = 0;
 
         if (groupId) {
-             const groupDoc = await db.collection('groups').doc(groupId).get();
+             const groupRef = db.collection('groups').doc(groupId);
+             const groupDoc = await groupRef.get();
              if (groupDoc.exists) {
                  memberCount = groupDoc.data()?.memberCount || 0;
-                 const membersSnapshot = await db.collection(`groups/${groupId}/members`).get();
+                 const membersSnapshot = await groupRef.collection('members').get();
                  memberIds = membersSnapshot.docs.map(doc => doc.id);
+                 
+                 // Fetch pending join requests
+                 const requestsSnapshot = await groupRef.collection('join_requests').where('status', '==', 'pending').get();
+                 pendingMemberApplications = requestsSnapshot.size;
              }
         }
         
@@ -376,9 +382,6 @@ export const getCooperativeDashboardData = functions.https.onCall(
                                      .sort((a, b) => new Date(b.readyBy).getTime() - new Date(a.readyBy).getTime())
                                      .slice(0, 10);
         }
-
-
-        const pendingMemberApplications = 3; // This remains mocked
 
         return {
             memberCount,
