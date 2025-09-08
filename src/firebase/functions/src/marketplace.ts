@@ -2,6 +2,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { MarketplaceCoupon, MarketplaceItem, Shop, MarketplaceOrder } from "@/lib/types"; // Import from new location
+import { _internalInitiatePayment } from "./financial-services";
 import { MarketplaceItemSchema, ShopSchema, MarketplaceOrderSchema } from "@/lib/schemas"; // Import from new location
 
 const db = admin.firestore();

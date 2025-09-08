@@ -1,10 +1,11 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
 import { getRole } from "./utils";
 import { randomBytes } from 'crypto'; // For generating a secret
+import type { UserProfile } from "./types";
+
 
 const db = admin.firestore();
 
@@ -69,7 +70,7 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
         }
 
         const scannedUserDoc = querySnapshot.docs[0];
-        const scannedUserData = scannedUserDoc.data();
+        const scannedUserData = scannedUserDoc.data() as UserProfile;
         
         // Get the role of the user who is doing the scanning
         const scannerRole = await getRole(scannerUid);
@@ -90,14 +91,14 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
             // The user is scanning their own ID, return all non-sensitive data
             return {
                 ...publicProfile,
-                phoneNumber: scannedUserData.phoneNumber, // Include phone number for self-scan
+                phoneNumber: scannedUserData.contactInfo?.phone, // Corrected path
                 email: scannedUserData.email,
             };
         } else if (scannerRole === 'Field Agent/Agronomist (DamDoh Internal)' || scannerRole === 'Admin') {
             // An agent or admin gets more detailed information
             return {
                 ...publicProfile,
-                phoneNumber: scannedUserData.phoneNumber,
+                phoneNumber: scannedUserData.contactInfo?.phone, // Corrected path
                 // Concept: Could also return linked farm data here
             };
         } else {
@@ -139,14 +140,14 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
 
     try {
         const usersRef = db.collection("users");
-        const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
+        const querySnapshot = await usersRef.where("contactInfo.phone", "==", phoneNumber).limit(1).get();
 
         if (querySnapshot.empty) {
             throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
         }
 
         const foundUserDoc = querySnapshot.docs[0];
-        const foundUserData = foundUserDoc.data();
+        const foundUserData = foundUserDoc.data() as UserProfile;
 
         // Return a subset of data, similar to getUniversalIdData for an agent
         const userProfileSubset = {
@@ -156,7 +157,7 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
             primaryRole: foundUserData.primaryRole,
             avatarUrl: foundUserData.avatarUrl || null,
             location: foundUserData.location || null,
-            phoneNumber: foundUserData.phoneNumber,
+            phoneNumber: foundUserData.contactInfo?.phone, // Corrected path
         };
         
         return userProfileSubset;
@@ -184,7 +185,7 @@ export const createRecoverySession = functions.https.onCall(async (data, context
     
     // Find user by phone number
     const usersRef = db.collection("users");
-    const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
+    const querySnapshot = await usersRef.where("contactInfo.phone", "==", phoneNumber).limit(1).get();
 
     if (querySnapshot.empty) {
         throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
@@ -267,4 +268,35 @@ export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
     // For this demo, we'll just return a success message.
     
     return { success: true, message: "Friend confirmation successful! The user can now proceed with their recovery.", recoveryComplete: true };
+});
+
+
+/**
+ * Called by the recovering user's device to finalize the process.
+ */
+export const completeRecovery = functions.https.onCall(async (data, context) => {
+    const { sessionId } = data;
+    if (!sessionId) {
+        throw new functions.https.HttpsError('invalid-argument', 'A session ID is required.');
+    }
+
+    const sessionRef = db.collection('recovery_sessions').doc(sessionId);
+    const sessionDoc = await sessionRef.get();
+
+    if (!sessionDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Invalid recovery session.");
+    }
+
+    const sessionData = sessionDoc.data()!;
+    if (sessionData.status !== 'confirmed') {
+        throw new functions.https.HttpsError('failed-precondition', 'Session not yet confirmed by a friend.');
+    }
+
+    // Generate a custom auth token for the recovered user
+    const customToken = await admin.auth().createCustomToken(sessionData.userIdToRecover);
+    
+    // Clean up the session
+    await sessionRef.update({ status: 'completed' });
+
+    return { success: true, customToken: customToken };
 });
