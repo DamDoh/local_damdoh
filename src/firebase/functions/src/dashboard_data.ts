@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
@@ -843,15 +844,22 @@ export const getQaDashboardData = functions.https.onCall(
 export const getCertificationBodyDashboardData = functions.https.onCall(
   async (data, context): Promise<CertificationBodyDashboardData> => {
     checkAuth(context);
+    // In a real app, this would query 'audits' and 'certifications' collections.
+    // We are mocking this data for now to represent the intended final state.
     return {
         pendingAudits: [
-            { id: 'aud1', farmName: 'Green Valley Farms', standard: 'EU Organic', dueDate: new Date().toISOString(), actionLink: '#' }
+            { id: 'aud1', farmName: 'Green Valley Farms', standard: 'EU Organic', dueDate: new Date(Date.now() + 15 * 86400000).toISOString(), actionLink: '#' },
+            { id: 'aud2', farmName: 'Riverbend Co-op', standard: 'Fair Trade', dueDate: new Date(Date.now() + 30 * 86400000).toISOString(), actionLink: '#' }
         ],
         certifiedEntities: [
-            { id: 'ent1', name: 'Riverside Orchards', type: 'Farm', certificationStatus: 'Active', actionLink: '#' }
+            { id: 'ent1', name: 'Riverside Orchards', type: 'Farm', certificationStatus: 'Active', actionLink: '#' },
+            { id: 'ent2', name: 'Highland Coffee Collective', type: 'Cooperative', certificationStatus: 'Active', actionLink: '#' },
+            { id: 'ent3', name: 'Sunshine Growers', type: 'Farm', certificationStatus: 'Pending Renewal', actionLink: '#' }
         ],
         standardsMonitoring: [
-            { standard: 'Fair Trade', adherenceRate: 95, alerts: 2, actionLink: '#' }
+            { standard: 'Fair Trade', adherenceRate: 95, alerts: 2, actionLink: '#' },
+            { standard: 'GlobalG.A.P.', adherenceRate: 98, alerts: 0, actionLink: '#' },
+            { standard: 'EU Organic', adherenceRate: 92, alerts: 5, actionLink: '#' }
         ]
     };
   }
