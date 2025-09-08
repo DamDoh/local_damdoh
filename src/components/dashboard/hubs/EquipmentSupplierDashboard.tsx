@@ -74,7 +74,7 @@ export const EquipmentSupplierDashboard = () => {
                     </CardContent>
                     <CardFooter>
                         <Button asChild variant="outline" size="sm" className="w-full">
-                            <Link href="/marketplace/my-orders">{t('manageOrdersButton')}</Link>
+                            <Link href="/marketplace/my-sales">{t('manageOrdersButton')}</Link>
                         </Button>
                     </CardFooter>
                 </Card>
@@ -157,9 +157,11 @@ const DashboardSkeleton = () => (
     <div>
         <Skeleton className="h-9 w-64 mb-6" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Skeleton className="h-32 rounded-lg" />
-            <Skeleton className="h-56 rounded-lg md:col-span-2" />
+            <Skeleton className="h-40 rounded-lg" />
+            <Skeleton className="h-40 rounded-lg md:col-span-2" />
             <Skeleton className="h-48 rounded-lg md:col-span-3" />
         </div>
     </div>
 );
+
+    
