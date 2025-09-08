@@ -870,11 +870,14 @@ export const getCertificationBodyDashboardData = functions.https.onCall(
 
 export const getResearcherDashboardData = functions.https.onCall(
     async (data, context): Promise<ResearcherDashboardData> => {
-      const userId = checkAuth(context);
+      const { authorId } = data;
+      if (!authorId) {
+          throw new functions.https.HttpsError('invalid-argument', 'An authorId must be provided.');
+      }
       try {
           // Fetch knowledge hub contributions made by this user
           const articlesSnapshot = await db.collection('knowledge_articles')
-              .where('authorId', '==', userId) // Query by UID
+              .where('authorId', '==', authorId) // Query by UID
               .orderBy('createdAt', 'desc')
               .limit(10)
               .get();
@@ -1326,6 +1329,7 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
 
 
     
+
 
 
 

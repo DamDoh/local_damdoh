@@ -26,7 +26,7 @@ export const ResearcherDashboard = () => {
   const { user } = useAuth();
   
   const functions = useMemo(() => getFunctions(firebaseApp), []);
-  const getKnowledgeArticlesCallable = useMemo(() => httpsCallable(functions, 'knowledgeHub-getKnowledgeArticles'), [functions]);
+  const getResearcherDashboardDataCallable = useMemo(() => httpsCallable<void, ResearcherDashboardData>(functions, 'dashboardData-getResearcherDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,27 +37,8 @@ export const ResearcherDashboard = () => {
       setIsLoading(true);
       setError(null);
       try {
-        const result = await getKnowledgeArticlesCallable({ authorId: user.uid });
-        const articles = (result.data as any)?.articles || [];
-        
-        // This dashboard's data is different from the function's direct output, so we construct it.
-        const constructedData: ResearcherDashboardData = {
-          knowledgeHubContributions: articles.map((article: any) => ({
-              id: article.id,
-              title: article.title_en || article.title_km || "Untitled Article",
-              status: article.status || 'Draft',
-          })),
-          // Mock data for other sections as they don't have backend functions yet
-          availableDatasets: [
-              { id: 'set1', name: 'Rift Valley Maize Yields (2020-2023)', dataType: 'CSV', accessLevel: 'Requires Request' as const, actionLink: '#' },
-              { id: 'set2', name: 'Regional Soil Health Data (Anonymized)', dataType: 'JSON', accessLevel: 'Public' as const, actionLink: '#' },
-          ],
-          ongoingProjects: [
-              { id: 'proj1', title: 'Impact of KNF on Soil Health in Smallholder Farms', progress: 65, collaborators: ['University of Nairobi'], actionLink: '#' },
-              { id: 'proj2', title: 'AI-driven Pest Identification Accuracy Study', progress: 30, collaborators: ['DamDoh AI Team'], actionLink: '#' }
-          ],
-        };
-        setDashboardData(constructedData);
+        const result = await getResearcherDashboardDataCallable({ authorId: user.uid });
+        setDashboardData(result.data as ResearcherDashboardData);
 
       } catch (err) {
         console.error("Error fetching Researcher dashboard data:", err);
@@ -68,7 +49,7 @@ export const ResearcherDashboard = () => {
     };
 
     fetchData();
-  }, [getKnowledgeArticlesCallable, user, t]);
+  }, [getResearcherDashboardDataCallable, user, t]);
 
     const contributionStatusCounts = useMemo(() => {
         if (!dashboardData?.knowledgeHubContributions) return [];
@@ -242,13 +223,24 @@ export const ResearcherDashboard = () => {
                         ))}
                       </TableBody>
                     </Table>
-                    {contributionStatusCounts.length > 0 ? (
+                    {contributionStatusCounts.length > 0 && (
                         <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-                            <BarChart accessibilityLayer data={contributionStatusCounts}>
-                                <CartesianGrid vertical={false} />
-                                <XAxis dataKey="name" tickLine={false} tickMargin={10} axisLine={false} />
-                                <YAxis tickLine={false} tickMargin={10} axisLine={false} />
-                                <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
+                            <BarChart accessibilityLayer data={contributionStatusCounts} layout="vertical" margin={{ left: 10 }}>
+                                <CartesianGrid horizontal={false} />
+                                <YAxis
+                                    dataKey="name"
+                                    type="category"
+                                    tickLine={false}
+                                    tickMargin={10}
+                                    axisLine={false}
+                                    tickFormatter={(value) => chartConfig[value as keyof typeof chartConfig]?.label || value}
+                                    className="text-xs"
+                                />
+                                <XAxis dataKey="count" type="number" hide />
+                                 <ChartTooltip
+                                    cursor={false}
+                                    content={<ChartTooltipContent indicator="line" />}
+                                />
                                 <Bar dataKey="count" layout="vertical" radius={4}>
                                     {contributionStatusCounts.map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={chartConfig[entry.name as keyof typeof chartConfig]?.color || "hsl(var(--primary))"} />
@@ -256,8 +248,6 @@ export const ResearcherDashboard = () => {
                                 </Bar>
                             </BarChart>
                         </ChartContainer>
-                    ) : (
-                      <div/>
                     )}
                   </div>
                 ) : (
