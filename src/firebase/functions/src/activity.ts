@@ -198,5 +198,3 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError('internal', 'error.stats.fetchFailed');
     }
 });
-
-    

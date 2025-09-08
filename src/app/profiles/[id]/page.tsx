@@ -3,8 +3,8 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import { useParams, useRouter } from "@/navigation";
-import Link from "next/link";
+import { useParams } from 'next/navigation'; // Corrected import
+import { useRouter, Link } from "@/navigation";
 import Image from "next/image";
 import QRCode from 'qrcode.react';
 
