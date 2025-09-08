@@ -928,6 +928,7 @@ export const getAgronomistDashboardData = functions.https.onCall(
                     farmLocation: farmerData.location?.address || 'Unknown Location',
                     lastConsultation: new Date(Date.now() - Math.random() * 30 * 86400000).toISOString(), // Mocked
                     alerts: Math.floor(Math.random() * 3), // Mocked
+                    avatarUrl: farmerData.avatarUrl || null,
                 };
             });
         }
