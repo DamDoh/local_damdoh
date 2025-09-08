@@ -12,7 +12,7 @@
       },
       "syncing": {
         "title": "កំពុងធ្វើសមកាលកម្មការផ្លាស់ប្តូរក្រៅបណ្តាញ...",
-        "description": "កំពុងដំណើរการ {count, plural, one {# សកម្មភាព} other {# សកម្មភាព}} ដែលបានរក្សាទុកនៅពេលអ្នកនៅក្រៅបណ្តាញ។"
+        "description": "កំពុងដំណើរការ {count, plural, one {# សកម្មភាព} other {# សកម្មភាព}} ដែលបានរក្សាទុកនៅពេលអ្នកនៅក្រៅបណ្តាញ។"
       },
       "synced": {
         "title": "ការធ្វើសមកាលកម្មបានបញ្ចប់",
@@ -61,7 +61,7 @@
       "QualityAssuranceTeamDamDohInternal": "ក្រុមធានាគុណភាព (DamDoh)",
       "ProcessingPackagingUnit": "หน่วยแปรรูปและบรรจุภัณฑ์",
       "BuyerRestaurantSupermarketExporter": "ผู้ซื้อ (ร้านอาหาร, ซูเปอร์มาร์เก็ต, ผู้ส่งออก)",
-      "InputSupplierSeedFertilizerPesticide": "អ្នកផ្គត់ផ្គង់ធាតុចូល (គ្រាប់ពូជ ជី ថ្នាំសម្លាប់សត្វល្អិត)",
+      "InputSupplierSeedFertilizerPesticide": "អ្នកផ្គត់ផ្គង់ធាតុចូល (គ្រាប់ពូជ, ជី, ថ្នាំសម្លាប់សត្វល្អិត)",
       "EquipmentSupplierSalesofMachineryIoT": "អ្នកផ្គត់ផ្គង់គ្រឿងបរិក្ខារ (គ្រឿងចក្រ/IoT)",
       "FinancialInstitutionMicrofinanceLoans": "គ្រឹះស្ថានហិរញ្ញវត្ថុ (មីក្រូហិរញ្ញវត្ថុ/ឥណទាន)",
       "GovernmentRegulatorAuditor": "និយតករ/សវនកររដ្ឋាភិបាល",
@@ -98,10 +98,10 @@
       "PolicyBriefing": "សង្ខេបគោលនយោបាយ"
     },
     "insuranceProductTypes": {
-      "Crop": "ประกันដំណាំ",
-      "Livestock": "ประกันសត្វពាហនៈ",
-      "Asset": "ประกันទ្រព្យសម្បត្តិ",
-      "Weather": "ផ្អែកលើអាកាសធាតុ (Parametric)"
+      "Crop": "ประกันภัยพืชผล",
+      "Livestock": "ประกันภัยปศุสัตว์",
+      "Asset": "ประกันภัยทรัพย์สิน",
+      "Weather": "ประกันภัยตามสภาพอากาศ"
     },
     "financialServiceTypes": {},
     "cropStages": {
@@ -185,6 +185,24 @@
         "description": "ถามคำถามเกี่ยวกับเทคนิคการทำฟาร์ม ราคาตลาด หรือแนวทางปฏิบัติที่ยั่งยืน และรับคำตอบระดับผู้เชี่ยวชาญทันที"
       }
     },
+    "testimonials": {
+        "title": "ได้รับความไว้วางใจจากเกษตรกรและพันธมิตรทั่วโลก",
+        "t1": {
+            "quote": "การวินิจฉัยด้วย AI ของ DamDoh ช่วยชีวิตพืชผลมะเขือเทศของเราจากโรคใบไหม้ เราได้รับการวินิจฉัยที่แม่นยำในไม่กี่นาที และการรักษาแบบออร์แกนิกที่แนะนำก็ให้ผลลัพธ์ที่น่าทึ่ง มันเป็นตัวเปลี่ยนเกมสำหรับเกษตรกรรายย่อยเช่นเรา",
+            "name": "Amina Bello",
+            "role": "เกษตรกรอินทรีย์, ไนจีเรีย"
+        },
+        "t2": {
+            "quote": "ในฐานะผู้ส่งออก การตรวจสอบย้อนกลับเป็นสิ่งที่ไม่สามารถต่อรองได้ DamDoh ให้บันทึกที่ราบรื่นและตรวจสอบได้สำหรับการขนส่งกาแฟของเรา ทำให้ผู้ซื้อต่างชาติของเรามีความมั่นใจที่พวกเขาต้องการ มันได้เปิดตลาดพรีเมียมใหม่ๆ ให้กับสหกรณ์พันธมิตรของเรา",
+            "name": "Carlos Gomez",
+            "role": "ผู้ส่งออกกาแฟ, โคลอมเบีย"
+        },
+        "t3": {
+            "quote": "ความสามารถของแพลตฟอร์มในการเชื่อมต่อเรากับสหกรณ์เกษตรกรที่ผ่านการตรวจสอบแล้วได้ทำให้กระบวนการจัดหาของเราคล่องตัวขึ้น เราได้ลดความเสี่ยงและปรับปรุงคุณภาพของห่วงโซ่อุปทานของเราอย่างมีนัยสำคัญ",
+            "name": "Priya Sharma",
+            "role": "ผู้จัดการห่วงโซ่อุปทาน, FoodCo"
+        }
+    },
     "cta": {
       "title": "พร้อมที่จะเติบโตอย่างชาญฉลาดขึ้นแล้วหรือยัง?",
       "subtitle": "เข้าร่วมกับเกษตรกรหลายพันคนที่ใช้ DamDoh เพื่อสร้างอนาคตที่ทำกำไรและยั่งยืนมากขึ้น",
@@ -192,130 +210,127 @@
     }
   },
   "Auth": {
-    "signInWelcome": "Welcome back to {appName}",
-    "signUpWelcome": "Join the DamDoh Agricultural Network",
-    "forgotPasswordResetPrompt": "Reset your password for {appName}",
-    "resetPasswordPrompt": "Create a new password for {appName}",
-    "signInTitle": "Sign in to your account",
-    "signInDescription": "Enter your credentials to access your dashboard.",
-    "emailLabel": "Email",
+    "signInWelcome": "ยินดีต้อนรับกลับสู่ {appName}",
+    "signUpWelcome": "เข้าร่วมเครือข่ายเกษตรกรรม DamDoh",
+    "forgotPasswordResetPrompt": "รีเซ็ตรหัสผ่านของคุณสำหรับ {appName}",
+    "resetPasswordPrompt": "สร้างรหัสผ่านใหม่สำหรับ {appName}",
+    "signInTitle": "ลงชื่อเข้าใช้บัญชีของคุณ",
+    "signInDescription": "ป้อนข้อมูลประจำตัวของคุณเพื่อเข้าถึงแดชบอร์ดของคุณ",
+    "emailLabel": "อีเมล",
     "emailPlaceholder": "you@example.com",
-    "passwordLabel": "Password",
-    "forgotPasswordLink": "Forgot password?",
-    "signingInButton": "Signing in...",
-    "signInButton": "Sign In",
-    "noAccountPrompt": "Don't have an account?",
-    "signUpLink": "Sign Up",
-    "signInLink": "Sign In",
-    "recoverWithUniversalIdPrompt": "Or recover access with your Universal ID",
-    "signUpTitle": "Create a new account",
-    "signUpDescription": "Tell us a bit about yourself to get started.",
-    "nameLabel": "Your Name or Business Name",
-    "namePlaceholder": "e.g., Chan Nary or Green Valley Farms",
-    "roleLabel": "Your Primary Role",
-    "rolePlaceholder": "Select your role in the supply chain...",
-    "confirmPasswordLabel": "Confirm Password",
+    "passwordLabel": "รหัสผ่าน",
+    "forgotPasswordLink": "ลืมรหัสผ่าน?",
+    "signingInButton": "กำลังลงชื่อเข้าใช้...",
+    "signInButton": "ลงชื่อเข้าใช้",
+    "noAccountPrompt": "ไม่มีบัญชี?",
+    "signUpLink": "ลงทะเบียน",
+    "signInLink": "ลงชื่อเข้าใช้",
+    "recoverWithUniversalIdPrompt": "หรือกู้คืนการเข้าถึงด้วย Universal ID ของคุณ",
+    "signUpTitle": "สร้างบัญชีใหม่",
+    "signUpDescription": "บอกเราเกี่ยวกับตัวคุณสักเล็กน้อยเพื่อเริ่มต้น",
+    "nameLabel": "ชื่อของคุณหรือชื่อธุรกิจ",
+    "namePlaceholder": "เช่น ชาญ นารี หรือ กรีนวัลเลย์ฟาร์ม",
+    "roleLabel": "บทบาทหลักของคุณ",
+    "rolePlaceholder": "เลือกบทบาทของคุณในห่วงโซ่อุปทาน...",
+    "confirmPasswordLabel": "ยืนยันรหัสผ่าน",
     "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Creating account...",
-    "signUpButton": "Create Account",
-    "alreadyHaveAccountPrompt": "Already have an account?",
-    "forgotPasswordTitle": "Forgot Password?",
-    "forgotPasswordDescription": "No problem. Enter your email address below, and we'll send you a link to reset it.",
-    "sendResetLinkButton": "Send Reset Link",
-    "sendingEmailButton": "Sending email...",
-    "rememberPasswordPrompt": "Remember your password?",
-    "resetPasswordTitle": "Reset Your Password",
-    "resetPasswordDescription": "Enter and confirm your new password below.",
-    "newPasswordLabel": "New Password",
-    "newPasswordPlaceholder": "Enter a strong new password",
-    "resetPasswordButton": "Reset Password",
-    "resettingPasswordButton": "Resetting...",
+    "creatingAccountButton": "กำลังสร้างบัญชี...",
+    "signUpButton": "สร้างบัญชี",
+    "alreadyHaveAccountPrompt": "มีบัญชีอยู่แล้ว?",
+    "forgotPasswordTitle": "ลืมรหัสผ่าน?",
+    "forgotPasswordDescription": "ไม่มีปัญหา ป้อนที่อยู่อีเมลของคุณด้านล่าง แล้วเราจะส่งลิงก์เพื่อรีเซ็ตให้",
+    "sendResetLinkButton": "ส่งลิงก์รีเซ็ต",
+    "sendingEmailButton": "กำลังส่งอีเมล...",
+    "rememberPasswordPrompt": "จำรหัสผ่านของคุณได้หรือไม่?",
+    "resetPasswordTitle": "รีเซ็ตรหัสผ่านของคุณ",
+    "resetPasswordDescription": "ป้อนและยืนยันรหัสผ่านใหม่ของคุณด้านล่าง",
+    "newPasswordLabel": "รหัสผ่านใหม่",
+    "newPasswordPlaceholder": "ป้อนรหัสผ่านใหม่ที่คาดเดายาก",
+    "resetPasswordButton": "รีเซ็ตรหัสผ่าน",
+    "resettingPasswordButton": "กำลังรีเซ็ต...",
     "recoverPage": {
-      "title": "Recover Your Account",
-      "description": "Use your network to regain access.",
-      "howItWorksTitle": "How it Works",
-      "step1": "Enter your phone number to start a recovery session.",
-      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
-      "step3": "Once your friend scans the code to verify your identity, you'll regain access.",
-      "startButton": "Start Account Recovery",
-      "scanTitle": "Ask a Friend to Scan",
-      "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
-      "scanNote": "This code is temporary and expires in 10 minutes.",
-      "startOverButton": "Start Over",
+      "title": "กู้คืนบัญชีของคุณ",
+      "description": "ใช้เครือข่ายของคุณเพื่อเข้าถึงอีกครั้ง",
+      "howItWorksTitle": "วิธีการทำงาน",
+      "step1": "ป้อนหมายเลขโทรศัพท์ของคุณเพื่อเริ่มเซสชันการกู้คืน",
+      "step2": "แสดงรหัส QR ชั่วคราวให้เพื่อนที่เชื่อถือได้บน DamDoh",
+      "step3": "เมื่อเพื่อนของคุณสแกนรหัสเพื่อยืนยันตัวตนของคุณ คุณจะสามารถเข้าถึงได้อีกครั้ง",
+      "startButton": "เริ่มการกู้คืนบัญชี",
+      "scanTitle": "ขอให้เพื่อนสแกน",
+      "scanDescription": "ให้ผู้ติดต่อ DamDoh ที่เชื่อถือได้สแกนรหัส QR นี้โดยใช้คุณสมบัติ 'ช่วยเพื่อนกู้คืน' ในแอปของพวกเขา",
+      "scanNote": "รหัสนี้เป็นรหัสชั่วคราวและจะหมดอายุใน 10 นาที",
+      "startOverButton": "เริ่มต้นใหม่",
       "enterPhone": {
-        "title": "Enter Your Phone Number",
-        "description": "We'll use this to find your account and start the recovery process.",
-        "phoneNumberLabel": "Phone Number",
-        "phoneNumberPlaceholder": "+1 (555) 123-4567",
-        "phoneRequiredError": "A phone number is required.",
-        "getRecoveryCodeButton": "Get Recovery Code",
-        "verifyingButton": "Verifying...",
-        "genericError": "Could not start recovery. Please check the number and try again."
+        "title": "ป้อนหมายเลขโทรศัพท์ของคุณ",
+        "description": "เราจะใช้ข้อมูลนี้เพื่อค้นหาบัญชีของคุณและเริ่มกระบวนการกู้คืน",
+        "phoneNumberLabel": "หมายเลขโทรศัพท์",
+        "phoneNumberPlaceholder": "+66 81 234 5678",
+        "phoneRequiredError": "ต้องระบุหมายเลขโทรศัพท์",
+        "getRecoveryCodeButton": "รับรหัสกู้คืน",
+        "verifyingButton": "กำลังยืนยัน...",
+        "genericError": "ไม่สามารถเริ่มการกู้คืนได้ โปรดตรวจสอบหมายเลขและลองอีกครั้ง"
       },
       "helpFriend": {
-        "prompt": "Need to help a friend recover their account?",
-        "button": "Help a Friend Recover",
-        "scanError": "The scanned code is not a valid DamDoh recovery code.",
-        "scanSuccess": "Scan Successful!",
-        "scanFail": "Could not read the QR code. Please try again."
+        "prompt": "ต้องการช่วยเพื่อนกู้คืนบัญชีหรือไม่?",
+        "button": "ช่วยเพื่อนกู้คืน",
+        "scanError": "รหัสที่สแกนไม่ใช่รหัสกู้คืน DamDoh ที่ถูกต้อง",
+        "scanSuccess": "สแกนสำเร็จ!",
+        "scanFail": "ไม่สามารถอ่านรหัส QR ได้ โปรดลองอีกครั้ง"
       }
     },
     "forgotPassword": {
-      "emailSentTitle": "Check Your Email",
-      "emailSentDescription": "A password reset link has been sent to {email}.",
-      "emailSentDescriptionIfAccountExists": "If an account with {email} exists, a password reset link has been sent.",
-      "successTitle": "Email Sent!",
-      "successDescription": "Please check your inbox (and spam folder) for the password reset link.",
+      "emailSentTitle": "ตรวจสอบอีเมลของคุณ",
+      "emailSentDescription": "ลิงก์รีเซ็ตรหัสผ่านได้ถูกส่งไปยัง {email} แล้ว",
+      "emailSentDescriptionIfAccountExists": "หากมีบัญชีที่ใช้อีเมล {email} อยู่ ลิงก์รีเซ็ตรหัสผ่านได้ถูกส่งไปแล้ว",
+      "successTitle": "ส่งอีเมลแล้ว!",
+      "successDescription": "โปรดตรวจสอบกล่องจดหมายของคุณ (และโฟลเดอร์สแปม) เพื่อหารหัสผ่าน",
       "errors": {
-        "unexpected": "An unexpected error occurred. Please try again.",
-        "invalidEmail": "The email address is not valid.",
-        "tooManyRequests": "Too many requests. Please try again later.",
-        "default": "Failed to send reset email"
+        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
+        "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
+        "tooManyRequests": "มีการร้องขอมากเกินไป โปรดลองอีกครั้งในภายหลัง",
+        "default": "ส่งอีเมลรีเซ็ตล้มเหลว"
       }
     },
     "resetPassword": {
-      "successTitle": "Password Reset Successfully!",
-      "successDescription": "You can now sign in with your new password.",
-      "successRedirect": "You will be redirected to the sign-in page shortly.",
+      "successTitle": "รีเซ็ตรหัสผ่านสำเร็จ!",
+      "successDescription": "ตอนนี้คุณสามารถลงชื่อเข้าใช้ด้วยรหัสผ่านใหม่ของคุณได้แล้ว",
+      "successRedirect": "คุณจะถูกนำไปยังหน้าลงชื่อเข้าใช้ในไม่ช้า",
       "errors": {
-        "missingCode": "Invalid password reset link. Please request a new one.",
-        "missingCodeTitle": "Invalid Link",
-        "missingCodeDescription": "The password reset link is missing or invalid. Please return to the 'Forgot Password' page to request a new one.",
-        "unexpected": "An unexpected error occurred. Please try again.",
-        "invalidOrExpiredCode": "The password reset link is invalid or has expired. Please request a new one.",
-        "userDisabled": "This user account has been disabled.",
-        "userNotFound": "No user found corresponding to this reset link.",
-        "weakPassword": "The new password is not strong enough.",
-        "default": "Failed to reset password"
+        "missingCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้อง โปรดขอลิงก์ใหม่",
+        "missingCodeTitle": "ลิงก์ไม่ถูกต้อง",
+        "missingCodeDescription": "ลิงก์รีเซ็ตรหัสผ่านหายไปหรือไม่ถูกต้อง โปรดกลับไปที่หน้า 'ลืมรหัสผ่าน' เพื่อขอลิงก์ใหม่",
+        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
+        "invalidOrExpiredCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้องหรือหมดอายุแล้ว โปรดขอลิงก์ใหม่",
+        "userDisabled": "บัญชีผู้ใช้นี้ถูกปิดใช้งานแล้ว",
+        "userNotFound": "ไม่พบผู้ใช้ที่ตรงกับลิงก์รีเซ็ตนี้",
+        "weakPassword": "รหัสผ่านใหม่ไม่คาดเดายากพอ",
+        "default": "รีเซ็ตรหัสผ่านล้มเหลว"
       }
     },
     "signInSuccess": {
-      "title": "Sign In Successful",
-      "description": "Welcome back to {appName}!"
+      "title": "ลงชื่อเข้าใช้สำเร็จ",
+      "description": "ยินดีต้อนรับกลับสู่ {appName}!"
     },
-    "signInFailed": "Sign In Failed",
+    "signInFailed": "ลงชื่อเข้าใช้ล้มเหลว",
     "errors": {
-      "unexpected": "An unexpected error occurred. Please try again.",
-      "invalidCredential": "The email or password you entered is incorrect.",
-      "invalidEmail": "The email address is not valid.",
-      "userDisabled": "This user account has been disabled.",
-      "default": "Authentication failed",
-      "emailInUse": "An account with this email already exists.",
-      "emailInUseRich": "An account with this email already exists. Please {signInLink} or use a different email.",
-      "weakPassword": "The password is too weak. Please use a stronger password."
+      "invalidCredential": "อีเมลหรือรหัสผ่านที่คุณป้อนไม่ถูกต้อง",
+      "userDisabled": "บัญชีผู้ใช้นี้ถูกปิดใช้งานแล้ว",
+      "emailInUse": "มีบัญชีที่ใช้อีเมลนี้อยู่แล้ว",
+      "emailInUseRich": "มีบัญชีที่ใช้อีเมลนี้อยู่แล้ว โปรด {signInLink} หรือใช้อีเมลอื่น",
+      "weakPassword": "รหัสผ่านคาดเดาง่ายเกินไป โปรดใช้รหัสผ่านที่คาดเดายากขึ้น"
     },
     "passwordStrength": {
-      "label": "Strength",
-      "weak": "Weak",
-      "medium": "Medium",
-      "strong": "Strong",
-      "veryStrong": "Very Strong"
+      "label": "ความปลอดภัย",
+      "weak": "อ่อนแอ",
+      "medium": "ปานกลาง",
+      "strong": "แข็งแรง",
+      "veryStrong": "แข็งแรงมาก"
     },
     "signUpSuccess": {
-      "title": "Account Created!",
-      "description": "Welcome to {appName}! You have been signed in."
+      "title": "สร้างบัญชีแล้ว!",
+      "description": "ยินดีต้อนรับสู่ {appName}! คุณได้ลงชื่อเข้าใช้แล้ว"
     },
-    "signUpFailed": "Sign Up Failed",
-    "error": "Error"
+    "signUpFailed": "ลงทะเบียนล้มเหลว",
+    "error": "ข้อผิดพลาด"
   }
 }
