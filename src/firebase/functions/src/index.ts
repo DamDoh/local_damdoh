@@ -1,5 +1,4 @@
 
-
 /**
  * @fileoverview This is the main entry point for all Firebase Cloud Functions.
  * It initializes the Firebase Admin SDK and exports all the functions from other
@@ -22,10 +21,8 @@ if (admin.apps.length === 0) {
 import * as activityFunctions from "./activity";
 import * as agriEventsFunctions from "./agri-events";
 import * as agroTourismFunctions from "./agro-tourism";
-import * as aiAndAnalyticsFunctions from "./ai-and-analytics";
 import * as aiServicesFunctions from "./ai-services";
 import * as apiKeyFunctions from "./api-keys";
-import * as apiGatewayFunctions from "./api-gateway";
 import * as assetManagementFunctions from "./asset-management";
 import * as communityFunctions from "./community";
 import * as dashboardDataFunctions from "./dashboard_data";
@@ -43,7 +40,6 @@ import * as messageFunctions from "./messages";
 import * as networkFunctions from "./network";
 import * as notificationFunctions from "./notifications";
 import * as offlineSyncFunctions from "./offline_sync";
-import * as profileFunctions from "./profiles";
 import * as regulatoryFunctions from "./regulatory-and-compliance";
 import * as searchFunctions from "./search";
 import * as sustainabilityFunctions from "./sustainability";
@@ -56,13 +52,11 @@ import * as universalIdFunctions from "./universal-id";
 export const activity = activityFunctions;
 export const agriEvents = agriEventsFunctions;
 export const agroTourism = agroTourismFunctions;
-export const aiAndAnalytics = aiAndAnalyticsFunctions;
 export const aiServices = aiServicesFunctions;
 export const apiKeys = apiKeyFunctions;
-export const apiGateway = apiGatewayFunctions;
 export const assetManagement = assetManagementFunctions;
 export const community = communityFunctions;
-export const dashboardData = dashboardDataFunctions; // Changed from 'dashboard'
+export const dashboardData = dashboardDataFunctions;
 export const farmManagement = farmManagementFunctions;
 export const financials = financialServicesFunctions;
 export const forums = forumFunctions;
@@ -77,7 +71,6 @@ export const messages = messageFunctions;
 export const network = networkFunctions;
 export const notifications = notificationFunctions;
 export const offlineSync = offlineSyncFunctions;
-export const profiles = profileFunctions;
 export const user = userFunctions;
 export const utils = utilsFunctions;
 export const regulatory = regulatoryFunctions;
