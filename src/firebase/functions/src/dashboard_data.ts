@@ -554,7 +554,7 @@ export const getLogisticsDashboardData = functions.https.onCall(
                 to: order.buyerLocation?.address || 'Unknown Destination',
                 product: `${order.listingName} (${order.quantity} units)`,
                 requirements: 'Standard Transport',
-                actionLink: `/marketplace/my-orders/${order.id}`
+                actionLink: `/marketplace/my-sales/${order.id}`
             };
         });
 
@@ -795,7 +795,7 @@ export const getWarehouseDashboardData = functions.https.onCall(
     checkAuth(context);
     
     // In a real app, this would perform aggregations on inventory data linked to this warehouse.
-    const inventorySnapshot = await db.collection('marketplaceItems').limit(100).get();
+    const inventorySnapshot = await db.collection('marketplaceItems').where('listingType', '==', 'Product').limit(500).get();
     
     const inventoryLevels = {
         totalItems: inventorySnapshot.size,
