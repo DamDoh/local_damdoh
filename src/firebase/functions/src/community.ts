@@ -134,6 +134,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
     const commentRef = db.collection(`posts/${postId}/comments`).doc();
 
     const userProfile = (await getProfileByIdFromDB({ uid }) as any).data;
+    
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -216,13 +217,11 @@ export const voteOnPoll = functions.https.onCall(async (data, context) => {
             throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionInvalid');
         }
 
-        // Atomically update the vote count for the specific option
         const newPollOptions = [...postData.pollOptions];
         newPollOptions[optionIndex].votes = (newPollOptions[optionIndex].votes || 0) + 1;
         
         transaction.update(postRef, { pollOptions: newPollOptions });
 
-        // Record the user's vote to prevent duplicates
         transaction.set(voteRef, {
             optionIndex,
             votedAt: admin.firestore.FieldValue.serverTimestamp()
