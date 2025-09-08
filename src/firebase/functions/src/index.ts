@@ -1,4 +1,5 @@
 
+
 /**
  * @fileoverview This is the main entry point for all Firebase Cloud Functions.
  * It initializes the Firebase Admin SDK and exports all the functions from other
@@ -21,6 +22,7 @@ if (admin.apps.length === 0) {
 import * as activityFunctions from "./activity";
 import * as agriEventsFunctions from "./agri-events";
 import * as agroTourismFunctions from "./agro-tourism";
+import * as aiAndAnalyticsFunctions from "./ai-and-analytics";
 import * as aiServicesFunctions from "./ai-services";
 import * as apiKeyFunctions from "./api-keys";
 import * as apiGatewayFunctions from "./api-gateway";
@@ -41,24 +43,24 @@ import * as messageFunctions from "./messages";
 import * as networkFunctions from "./network";
 import * as notificationFunctions from "./notifications";
 import * as offlineSyncFunctions from "./offline_sync";
-import * as userFunctions from "./user";
-import * as utilsFunctions from "./utils";
 import * as regulatoryFunctions from "./regulatory-and-compliance";
 import * as searchFunctions from "./search";
 import * as sustainabilityFunctions from "./sustainability";
+import * as userFunctions from "./user";
+import * as utilsFunctions from "./utils";
 import * as geospatialFunctions from "./geospatial";
-import * as universalIdFunctions from "./universal-id";
 
 // Export all cloud functions, grouped by their respective modules
 export const activity = activityFunctions;
 export const agriEvents = agriEventsFunctions;
 export const agroTourism = agroTourismFunctions;
+export const aiAndAnalytics = aiAndAnalyticsFunctions;
 export const aiServices = aiServicesFunctions;
 export const apiKeys = apiKeyFunctions;
 export const apiGateway = apiGatewayFunctions;
 export const assetManagement = assetManagementFunctions;
 export const community = communityFunctions;
-export const dashboardData = dashboardDataFunctions;
+export const dashboardData = dashboardDataFunctions; // Changed from 'dashboard'
 export const farmManagement = farmManagementFunctions;
 export const financials = financialServicesFunctions;
 export const forums = forumFunctions;
@@ -79,7 +81,6 @@ export const regulatory = regulatoryFunctions;
 export const search = searchFunctions;
 export const sustainability = sustainabilityFunctions;
 export const geospatial = geospatialFunctions;
-export const universalId = universalIdFunctions;
 
 
 // Export the Express app as a Cloud Function for Cloud Run services

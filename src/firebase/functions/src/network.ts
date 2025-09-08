@@ -3,6 +3,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile } from "./types";
+import { getProfileByIdFromDB } from './user';
 
 const db = admin.firestore();
 
@@ -62,9 +63,14 @@ export const getPendingRequests = functions.https.onCall(async (data, context) =
     }
 
     const requesterIds = snapshot.docs.map(doc => doc.data().requesterId);
-    const userProfiles = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', requesterIds).get();
     
-    const profilesMap = new Map(userProfiles.docs.map(doc => [doc.id, doc.data() as UserProfile]));
+    const profilePromises = requesterIds.map(async (id) => {
+        return await getProfileByIdFromDB(id);
+    });
+
+    const userProfiles = (await Promise.all(profilePromises)).filter(Boolean);
+    
+    const profilesMap = new Map(userProfiles.map(p => [p.id, p]));
 
     const requests = snapshot.docs.map(doc => {
         const reqData = doc.data();
