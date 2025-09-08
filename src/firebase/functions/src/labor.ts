@@ -41,11 +41,14 @@ export const getWorkers = functions.https.onCall(async (data, context) => {
   const farmerId = checkAuth(context);
   const workersSnapshot = await db.collection(`users/${farmerId}/workers`).orderBy('name').get();
   
-  const workers = workersSnapshot.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data(),
-    createdAt: (doc.data().createdAt as admin.firestore.Timestamp).toDate().toISOString(),
-  }));
+  const workers = workersSnapshot.docs.map(doc => {
+    const docData = doc.data();
+    return {
+        id: doc.id,
+        ...docData,
+        createdAt: (docData.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+    }
+  });
 
   return { workers };
 });

@@ -1,8 +1,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import type { MarketplaceCoupon, MarketplaceItem, Shop, MarketplaceOrder, UserProfile } from "@/lib/types"; // Import from new location
-import { _internalInitiatePayment } from "./financial-services";
+import type { MarketplaceCoupon, MarketplaceItem, Shop, MarketplaceOrder } from "@/lib/types"; // Import from new location
 import { MarketplaceItemSchema, ShopSchema, MarketplaceOrderSchema } from "@/lib/schemas"; // Import from new location
 
 const db = admin.firestore();
@@ -463,6 +462,54 @@ export const getSellerOrders = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("internal", "Could not fetch orders.");
     }
 });
+
+export const getBuyerOrders = functions.https.onCall(async (data, context) => {
+    const buyerId = checkAuth(context);
+    
+    try {
+        const ordersSnapshot = await db.collection("marketplace_orders")
+            .where("buyerId", "==", buyerId)
+            .orderBy("createdAt", "desc")
+            .get();
+        
+        const sellerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().sellerId))];
+        const sellerProfiles: Record<string, any> = {};
+
+        if (sellerIds.length > 0) {
+            const profileChunks = [];
+            for (let i = 0; i < sellerIds.length; i += 30) {
+                profileChunks.push(sellerIds.slice(i, i + 30));
+            }
+
+            for (const chunk of profileChunks) {
+                const profilesSnapshot = await db.collection("users").where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
+                profilesSnapshot.forEach(doc => {
+                    sellerProfiles[doc.id] = {
+                        displayName: doc.data().displayName,
+                        avatarUrl: doc.data().avatarUrl || null,
+                    };
+                });
+            }
+        }
+
+        const orders = ordersSnapshot.docs.map(doc => {
+            const orderData = doc.data();
+            return {
+                id: doc.id,
+                ...orderData,
+                sellerProfile: sellerProfiles[orderData.sellerId] || { displayName: 'Unknown Seller', avatarUrl: null },
+                createdAt: (orderData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                updatedAt: (orderData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            };
+        });
+
+        return { orders };
+    } catch (error) {
+        console.error("Error fetching buyer orders:", error);
+        throw new functions.https.HttpsError("internal", "Could not fetch orders.");
+    }
+});
+
 
 export const updateOrderStatus = functions.https.onCall(async (data, context) => {
     const sellerId = checkAuth(context);
