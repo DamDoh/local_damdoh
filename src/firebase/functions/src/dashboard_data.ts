@@ -976,12 +976,12 @@ export const getAgroTourismDashboardData = functions.https.onCall(
 
 export const getInsuranceProviderDashboardData = functions.https.onCall(
   async (data, context): Promise<InsuranceProviderDashboardData> => {
-    checkAuth(context);
+    const providerId = checkAuth(context);
 
     try {
         const claimsSnapshot = await db.collection('insurance_applications')
+            .where('providerId', '==', providerId)
             .where('status', 'in', ['Submitted', 'Under Review'])
-            // Ideally, we'd also filter by providerId if that field existed
             .limit(10)
             .get();
         
@@ -990,10 +990,10 @@ export const getInsuranceProviderDashboardData = functions.https.onCall(
             return {
                 id: doc.id,
                 policyHolderName: claim.applicantName || 'Unknown Farmer', // Placeholder
-                policyType: 'Crop', // Placeholder
+                policyType: claim.productName,
                 claimDate: (claim.submittedAt as admin.firestore.Timestamp).toDate().toISOString(),
                 status: claim.status,
-                actionLink: '#'
+                actionLink: `/insurance/claims/${claim.id}`
             }
         });
 
