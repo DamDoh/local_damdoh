@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { 
@@ -554,7 +553,7 @@ export const getLogisticsDashboardData = functions.https.onCall(
                 to: order.buyerLocation?.address || 'Unknown Destination',
                 product: `${order.listingName} (${order.quantity} units)`,
                 requirements: 'Standard Transport',
-                actionLink: `/marketplace/my-sales/${order.id}`
+                actionLink: `/marketplace/my-sales`
             };
         });
 
@@ -871,7 +870,7 @@ export const getResearcherDashboardData = functions.https.onCall(
               return {
                   id: doc.id,
                   title: article.title_en || article.title_km || "Untitled Article",
-                  status: 'Published' as const // Placeholder status
+                  status: article.status || 'Draft'
               };
           });
 
@@ -1237,4 +1236,3 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
-
