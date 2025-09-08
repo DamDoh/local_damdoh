@@ -30,6 +30,8 @@ export default async function LocaleLayout({
 }) {
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as any)) notFound();
+ 
+  // This function is necessary to enable static rendering of locales.
   unstable_setRequestLocale(locale);
  
   let messages;
