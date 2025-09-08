@@ -34,6 +34,10 @@ export function Providers({
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        if (!auth) {
+            setLoading(false); // Firebase is not configured, stop loading
+            return;
+        }
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             setLoading(true);
             setUser(user);

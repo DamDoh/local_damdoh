@@ -10,11 +10,11 @@ import {
   type User as FirebaseUser,
   updateProfile,
 } from "firebase/auth";
-import { auth, functions } from './firebase/client'; 
+import { auth, functions } from './firebase/client';
 import { httpsCallable } from "firebase/functions";
 import type { StakeholderRole } from './constants';
 import { useContext } from 'react';
-import { AuthContext } from "@/components/Providers"; // Import context from Providers
+import { AuthContext } from "@/components/Providers";
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
@@ -25,7 +25,7 @@ export const useAuth = () => {
 };
 
 export function getCurrentUserId(): string | null {
-  return auth.currentUser ? auth.currentUser.uid : null;
+  return auth?.currentUser ? auth.currentUser.uid : null;
 }
 
 export function isAdmin(userId: string | null): boolean {
@@ -34,13 +34,10 @@ export function isAdmin(userId: string | null): boolean {
 }
 
 export async function logOut(): Promise<void> {
+  if (!auth) throw new Error("Firebase Auth is not initialized.");
   try {
-    // 1. Sign out from Firebase client-side auth
     await firebaseSignOut(auth);
-    
-    // 2. Clear the server-side session cookie by calling our new API route
     await fetch('/api/auth/session', { method: 'DELETE' });
-
     console.log("User logged out successfully via auth-utils.");
   } catch (error) {
     console.error("Error logging out from auth-utils: ", error);
@@ -49,14 +46,13 @@ export async function logOut(): Promise<void> {
 }
 
 export async function logIn(email: string, password: string): Promise<FirebaseUser> {
+  if (!auth) throw new Error("Firebase Auth is not initialized.");
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     
-    // 1. Get the ID token from the signed-in user
     const idToken = await user.getIdToken();
 
-    // 2. Call our new API route to create a server-side session cookie
     await fetch('/api/auth/session', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -71,15 +67,6 @@ export async function logIn(email: string, password: string): Promise<FirebaseUs
   }
 }
 
-/**
- * Registers a user with Firebase Auth and calls a secure Cloud Function to create their profile.
- * @param name The user's display name.
- * @param email The user's email.
- * @param password The user's password.
- * @param role The user's selected stakeholder role.
- * @param profileData Optional object with initial role-specific data.
- * @returns The created Firebase User object.
- */
 export async function registerUser(
   name: string, 
   email: string, 
@@ -87,22 +74,20 @@ export async function registerUser(
   role: StakeholderRole,
   profileData?: any 
 ): Promise<FirebaseUser> {
+  if (!auth || !functions) throw new Error("Firebase is not initialized.");
   try {
-    // Step 1: Create the user in Firebase Authentication.
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     console.log("Firebase Auth user registered successfully:", userCredential.user.uid);
     
-    // Step 1.5: Update the Firebase Auth profile with the display name.
     await updateProfile(userCredential.user, { displayName: name });
     console.log("Firebase Auth profile updated with display name.");
 
-    // Step 2: Call a secure Cloud Function to create the initial profile.
     const upsertStakeholderProfile = httpsCallable(functions, 'user-upsertStakeholderProfile');
     await upsertStakeholderProfile({
         displayName: name,
         primaryRole: role,
         email: email, 
-        profileData: profileData || {}, // Pass along profile data if it exists
+        profileData: profileData || {},
     });
 
     console.log("Profile creation request sent for user:", userCredential.user.uid);
@@ -116,6 +101,7 @@ export async function registerUser(
 
 
 export async function sendPasswordReset(email: string): Promise<void> {
+  if (!auth) throw new Error("Firebase Auth is not initialized.");
   try {
     console.log(`Attempting to send password reset email to: ${email}`);
     await sendPasswordResetEmail(auth, email);
@@ -127,6 +113,7 @@ export async function sendPasswordReset(email: string): Promise<void> {
 }
 
 export async function resetPassword(oobCode: string, newPassword: string): Promise<void> {
+  if (!auth) throw new Error("Firebase Auth is not initialized.");
   try {
     console.log("Attempting to reset password with oobCode:", oobCode);
     await confirmPasswordReset(auth, oobCode, newPassword);
