@@ -218,7 +218,7 @@ export const getPackagingSupplierDashboardData = functions.https.onCall(
                 product: order.listingName,
                 quantity: order.quantity,
                 status: order.status,
-                actionLink: `/marketplace/my-sales`,
+                actionLink: `/marketplace/my-sales#${doc.id}`,
             };
         });
 
@@ -557,7 +557,7 @@ export const getLogisticsDashboardData = functions.https.onCall(
                 to: order.buyerLocation?.address || 'Unknown Destination',
                 product: `${order.listingName} (${order.quantity} units)`,
                 requirements: 'Standard Transport',
-                actionLink: `/marketplace/my-sales`
+                actionLink: `/marketplace/my-sales#${order.id}`
             };
         });
 
@@ -686,7 +686,7 @@ export const getAgroExportDashboardData = functions.https.onCall(
   async (data, context): Promise<AgroExportDashboardData> => {
     checkAuth(context);
      try {
-        const vtisForExportPromise = await db.collection('vti_registry')
+        const vtisForExportPromise = db.collection('vti_registry')
             .where('metadata.forExport', '==', true)
             // Ideally, we'd have a `documentationStatus` field to query
             .limit(5)
@@ -873,7 +873,7 @@ export const getResearcherDashboardData = functions.https.onCall(
               return {
                   id: doc.id,
                   title: article.title_en || article.title_km || "Untitled Article",
-                  status: article.status || 'Draft'
+                  status: article.status || 'Draft',
               };
           });
 
@@ -1280,3 +1280,5 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError("internal", "Failed to fetch recent activity.");
     }
 });
+
+    
