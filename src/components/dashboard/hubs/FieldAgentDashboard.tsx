@@ -6,12 +6,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Skeleton } from '@/components/ui/skeleton';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { Users, Leaf, ClipboardList, CheckSquare } from 'lucide-react';
+import { Users, Leaf, ClipboardList, CheckSquare, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-import type { FieldAgentDashboardData } from '@/lib/types'; 
+import type { FieldAgentDashboardData, UserProfile } from '@/lib/types'; 
 import { useTranslations } from 'next-intl';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { formatDistanceToNow } from 'date-fns';
 
 export const FieldAgentDashboard = () => {
     const t = useTranslations('FieldAgentDashboard');
@@ -20,7 +22,7 @@ export const FieldAgentDashboard = () => {
     const [error, setError] = useState<string | null>(null);
 
     const functions = getFunctions(firebaseApp);
-    const getFieldAgentData = useMemo(() => httpsCallable(functions, 'getFieldAgentDashboardData'), [functions]);
+    const getFieldAgentData = useMemo(() => httpsCallable(functions, 'dashboardData-getFieldAgentDashboardData'), [functions]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -113,18 +115,24 @@ export const FieldAgentDashboard = () => {
                     <CardContent className="space-y-2">
                        {(assignedFarmers || []).length > 0 ? (
                            (assignedFarmers || []).map(farmer => (
-                                <div key={farmer.id} className="flex justify-between items-center text-sm p-2 border rounded-lg">
-                                    <div>
-                                        <p className="font-medium">{farmer.name}</p>
-                                        <p className="text-xs text-muted-foreground">{t('lastVisit')}: {new Date(farmer.lastVisit).toLocaleDateString()}</p>
+                               <div key={farmer.id} className="flex justify-between items-center text-sm p-2 bg-background rounded-md border">
+                                    <div className="flex items-center gap-3">
+                                        <Avatar className="h-10 w-10">
+                                            <AvatarImage src={farmer.avatarUrl} alt={farmer.name} />
+                                            <AvatarFallback>{farmer.name.substring(0,1)}</AvatarFallback>
+                                        </Avatar>
+                                        <div>
+                                            <p className="font-medium">{farmer.name}</p>
+                                            <p className="text-xs text-muted-foreground">{t('lastVisit')}: {formatDistanceToNow(new Date(farmer.lastVisit), { addSuffix: true })}</p>
+                                        </div>
                                     </div>
                                     <div className="flex items-center gap-4">
-                                        {farmer.issues > 0 && <Badge variant="destructive">{farmer.issues} {t('issues')}</Badge>}
+                                        {farmer.issues > 0 && <Badge variant="destructive">{farmer.issues} {t('issues', { count: farmer.issues })}</Badge>}
                                         <Button asChild size="sm">
                                             <Link href={farmer.actionLink}>{t('viewFarmerButton')}</Link>
                                         </Button>
                                     </div>
-                                </div>
+                               </div>
                            ))
                        ) : (
                            <p className="text-sm text-center text-muted-foreground py-4">{t('noFarmersAssigned')}</p>

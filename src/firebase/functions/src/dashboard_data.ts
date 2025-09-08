@@ -33,7 +33,8 @@ import type {
     FarmerDashboardAlert,
     OperationsDashboardData,
     FinancialProduct,
-    KnfBatch
+    KnfBatch,
+    UserProfile
 } from "@/lib/types";
 
 const db = admin.firestore();
@@ -593,7 +594,7 @@ export const getFieldAgentDashboardData = functions.https.onCall(
         
         const agentData = agentDoc.data();
         // Assuming assigned farmers are stored in profileData.assignedFarmers
-        const assignedFarmerIds = agentData?.profileData?.assignedFarmers || [];
+        const assignedFarmerIds: string[] = agentData?.profileData?.assignedFarmers || [];
         
         let assignedFarmers: FieldAgentDashboardData['assignedFarmers'] = [];
 
@@ -603,7 +604,7 @@ export const getFieldAgentDashboardData = functions.https.onCall(
             const farmersSnapshot = await db.collection('users').where(admin.firestore.FieldPath.documentId(), 'in', assignedFarmerIds.slice(0, 30)).get();
             
             assignedFarmers = farmersSnapshot.docs.map(doc => {
-                const farmerData = doc.data();
+                const farmerData = doc.data() as UserProfile;
                 // Mocking lastVisit and issues for now
                 return {
                     id: doc.id,
@@ -1324,4 +1325,5 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
 
 
     
+
 
