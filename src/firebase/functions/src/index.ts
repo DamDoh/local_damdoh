@@ -1,5 +1,4 @@
 
-
 /**
  * @fileoverview This is the main entry point for all Firebase Cloud Functions.
  * It initializes the Firebase Admin SDK and exports all the functions from other
@@ -19,6 +18,7 @@ if (admin.apps.length === 0) {
 }
 
 // Group functions by module for cleaner organization
+import * as activityFunctions from "./activity";
 import * as agriEventsFunctions from "./agri-events";
 import * as agroTourismFunctions from "./agro-tourism";
 import * as aiServicesFunctions from "./ai-services";
@@ -49,6 +49,7 @@ import * as utilsFunctions from "./utils";
 import * as geospatialFunctions from "./geospatial";
 
 // Export all cloud functions, grouped by their respective modules
+export const activity = activityFunctions;
 export const agriEvents = agriEventsFunctions;
 export const agroTourism = agroTourismFunctions;
 export const aiServices = aiServicesFunctions;
