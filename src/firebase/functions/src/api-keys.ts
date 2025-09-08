@@ -35,6 +35,8 @@ export const generateApiKey = functions.https.onCall(async (data, context) => {
     const fullKey = `${keyPrefix}_${secret}`;
     const keyRef = db.collection('users').doc(innovatorId).collection('api_keys').doc();
 
+    // In a real high-security scenario, you'd store a hash of the key (e.g., using bcrypt)
+    // instead of the lastFour, but this is a good starting point.
     const newKeyDataToStore: Omit<ApiKey, 'id'|'key'|'createdAt'> = {
         description,
         environment,
