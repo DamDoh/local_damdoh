@@ -135,31 +135,6 @@
         "description": "Stellen Sie Fragen zu Anbautechniken, Marktpreisen oder nachhaltigen Praktiken und erhalten Sie sofort Antworten auf Expertenniveau."
       }
     },
-    "howItWorks": {
-        "title": "Wie es funktioniert",
-        "subtitle": "Erhalten Sie umsetzbare Erkenntnisse in drei einfachen Schritten.",
-        "step1": { "title": "Foto machen", "description": "Verwenden Sie Ihr Smartphone, um ein klares Bild der betroffenen Pflanze oder des Feldbereichs aufzunehmen." },
-        "step2": { "title": "Sofortige Diagnose erhalten", "description": "Unsere KI analysiert das Bild anhand einer riesigen Datenbank, um das Problem in Sekunden zu identifizieren." },
-        "step3": { "title": "Empfehlungen befolgen", "description": "Erhalten Sie einen klaren, umsetzbaren Plan mit nachhaltigen Behandlungsoptionen, um Ihre Ernte wieder gesund zu pflegen." }
-    },
-    "testimonials": {
-        "title": "Vertraut von Landwirten weltweit",
-        "t1": {
-            "quote": "Diese Plattform hat die Art und Weise, wie ich meine Kaffeeplantage verwalte, komplett verändert. Die Krankheitserkennung ist unglaublich genau und hat mir den Ertrag einer ganzen Saison gerettet.",
-            "name": "Maria Garcia",
-            "role": "Kaffeebäuerin, Kolumbien"
-        },
-        "t2": {
-            "quote": "Als großflächiger Weizenproduzent sind die Dateneinblicke von unschätzbarem Wert. Wir optimieren jetzt unseren Düngemitteleinsatz und sehen eine Kostenreduzierung von 15 %, ohne die Qualität zu beeinträchtigen.",
-            "name": "John O'Connell",
-            "role": "Weizenbauer, Kanada"
-        },
-        "t3": {
-            "quote": "Der KI-Assistent ist, als hätte man einen persönlichen Agronomen rund um die Uhr zur Verfügung. Es ist ein unverzichtbares Werkzeug für jeden modernen Landwirt.",
-            "name": "Amina Bello",
-            "role": "Kleinbäuerin, Nigeria"
-        }
-    },
     "cta": {
       "title": "Bereit, intelligenter zu wachsen?",
       "subtitle": "Schließen Sie sich Tausenden von Landwirten an, die DamDoh nutzen, um eine profitablere und nachhaltigere Zukunft aufzubauen.",

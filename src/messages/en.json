@@ -98,31 +98,6 @@
         "description": "Ask questions about farming techniques, market prices, or sustainable practices and get instant, expert-level answers."
       }
     },
-    "howItWorks": {
-        "title": "How It Works",
-        "subtitle": "Get actionable insights in three simple steps.",
-        "step1": { "title": "Snap a Photo", "description": "Use your smartphone to take a clear picture of the affected plant or field area." },
-        "step2": { "title": "Get Instant Diagnosis", "description": "Our AI analyzes the image against a vast database to identify the issue in seconds." },
-        "step3": { "title": "Follow Recommendations", "description": "Receive a clear, actionable plan with sustainable treatment options to nurse your crop back to health." }
-    },
-    "testimonials": {
-        "title": "Trusted by Farmers Worldwide",
-        "t1": {
-            "quote": "This platform has completely changed how I manage my coffee plantation. The disease detection is incredibly accurate and has saved me an entire season's yield.",
-            "name": "Maria Garcia",
-            "role": "Coffee Farmer, Colombia"
-        },
-        "t2": {
-            "quote": "As a large-scale wheat producer, the data insights are invaluable. We're now optimizing our fertilizer usage and seeing a 15% cost reduction without sacrificing quality.",
-            "name": "John O'Connell",
-            "role": "Wheat Farmer, Canada"
-        },
-        "t3": {
-            "quote": "The AI assistant is like having a personal agronomist on call 24/7. It's an essential tool for any modern farmer.",
-            "name": "Amina Bello",
-            "role": "Smallholder Farmer, Nigeria"
-        }
-    },
     "cta": {
       "title": "Ready to Grow Smarter?",
       "subtitle": "Join thousands of farmers who are using DamDoh to build more profitable and sustainable futures.",

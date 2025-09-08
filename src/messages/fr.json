@@ -134,31 +134,6 @@
         "description": "Posez des questions sur les techniques agricoles, les prix du marché ou les pratiques durables et obtenez des réponses instantanées de niveau expert."
       }
     },
-    "howItWorks": {
-        "title": "Comment ça marche",
-        "subtitle": "Obtenez des informations exploitables en trois étapes simples.",
-        "step1": { "title": "Prenez une photo", "description": "Utilisez votre smartphone pour prendre une photo claire de la plante ou de la zone de champ affectée." },
-        "step2": { "title": "Obtenez un diagnostic instantané", "description": "Notre IA analyse l'image par rapport à une vaste base de données pour identifier le problème en quelques secondes." },
-        "step3": { "title": "Suivez les recommandations", "description": "Recevez un plan clair et exploitable avec des options de traitement durables pour soigner votre culture." }
-    },
-    "testimonials": {
-        "title": "Reconnu par les agriculteurs du monde entier",
-        "t1": {
-            "quote": "Cette plateforme a complètement changé la façon dont je gère ma plantation de café. La détection des maladies est incroyablement précise et m'a sauvé le rendement de toute une saison.",
-            "name": "Maria Garcia",
-            "role": "Productrice de café, Colombie"
-        },
-        "t2": {
-            "quote": "En tant que producteur de blé à grande échelle, les informations sur les données sont inestimables. Nous optimisons maintenant notre utilisation d'engrais et constatons une réduction des coûts de 15 % sans sacrifier la qualité.",
-            "name": "John O'Connell",
-            "role": "Producteur de blé, Canada"
-        },
-        "t3": {
-            "quote": "L'assistant IA, c'est comme avoir un agronome personnel disponible 24h/24 et 7j/7. C'est un outil essentiel pour tout agriculteur moderne.",
-            "name": "Amina Bello",
-            "role": "Petite agricultrice, Nigéria"
-        }
-    },
     "cta": {
       "title": "Prêt à cultiver plus intelligemment ?",
       "subtitle": "Rejoignez des milliers d'agriculteurs qui utilisent DamDoh pour construire un avenir plus rentable et durable.",
