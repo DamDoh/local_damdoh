@@ -79,6 +79,40 @@ async function createAndSendNotification(
   }
 }
 
+/**
+ * Firestore trigger for new profile views.
+ */
+export const onNewProfileView = functions.firestore
+    .document('profile_views/{viewId}')
+    .onCreate(async (snap, context) => {
+        const viewData = snap.data();
+        if (!viewData) return;
+
+        const { viewerId, viewedId } = viewData;
+        
+        // Extra safeguard: do not notify on self-views.
+        if (!viewerId || !viewedId || viewerId === viewedId) {
+            return;
+        }
+
+        const viewerDoc = await db.collection('users').doc(viewerId).get();
+        const viewerName = viewerDoc.data()?.displayName || 'Someone';
+
+        const notificationPayload = {
+            type: "profile_view",
+            title_en: "Your profile has a new view",
+            body_en: `${viewerName} viewed your profile.`,
+            actorId: viewerId,
+            linkedEntity: { collection: "profiles", documentId: viewerId },
+        };
+
+        await createAndSendNotification(viewedId, notificationPayload);
+    });
+
+
+/**
+ * Firestore trigger for new connection requests.
+ */
 export const onNewConnectionRequest = functions.firestore
     .document('connection_requests/{requestId}')
     .onCreate(async (snap, context) => {
@@ -162,6 +196,9 @@ export const onPostComment = functions.firestore
   });
 
 
+/**
+ * Firestore trigger for new marketplace orders.
+ */
 export const onNewMarketplaceOrder = functions.firestore
     .document('marketplace_orders/{orderId}')
     .onCreate(async (snap, context) => {
@@ -177,6 +214,14 @@ export const onNewMarketplaceOrder = functions.firestore
         });
     });
 
+
+
+/**
+ * Marks a specific notification as read for the authenticated user.
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{status: string}>} A promise that resolves with the status.
+ */
 export const markNotificationAsRead = functions.https.onCall(
   async (data, context) => {
     if (!context.auth) {
@@ -212,6 +257,12 @@ export const markNotificationAsRead = functions.https.onCall(
   },
 );
 
+/**
+ * Retrieves and updates notification preferences for the authenticated user.
+ * @param {any} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<any>} A promise that resolves with the preferences.
+ */
 export const manageNotificationPreferences = functions.https.onCall(
   async (data, context) => {
     if (!context.auth) {
@@ -233,6 +284,11 @@ export const manageNotificationPreferences = functions.https.onCall(
   },
 );
 
+
+/**
+ * Scheduled function to send reminders for upcoming events.
+ * Runs every day at a specified time (e.g., 8 AM UTC).
+ */
 export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
   .timeZone("UTC")
   .onRun(async (context) => {
@@ -276,11 +332,39 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
     }
 
     // 2. Handle Agro-Tourism Bookings
+    // NOTE: This part is conceptual. It assumes a `bookingDate` field exists on the booking documents.
+    // This logic needs to be activated once the data model supports specific booking dates.
     try {
         const upcomingBookingsQuery = db.collectionGroup("bookings")
+            // This query is commented out because 'bookingDate' does not exist on the documents yet.
+            // .where("bookingDate", ">=", now) 
+            // .where("bookingDate", "<=", aDayFromNow)
             .get(); 
         
         console.log("Conceptually checking for Agro-Tourism bookings... (This part is not fully functional without a booking date field)");
+        // The loop below is commented out to prevent it from running with an inefficient query.
+        // It serves as a blueprint for future implementation.
+        /*
+        for (const bookingDoc of (await upcomingBookingsQuery).docs) {
+            const bookingData = bookingDoc.data();
+            const serviceRef = bookingDoc.ref.parent.parent; // This gets the marketplaceItem doc
+            if (serviceRef) {
+              const serviceDoc = await serviceRef.get();
+              if (serviceDoc.exists) {
+                const serviceData = serviceDoc.data()!;
+                const guestId = bookingData.userId;
+                const notificationPayload = {
+                    type: "service_reminder",
+                    title_en: "Service Reminder",
+                    body_en: `Your booked service, "${serviceData.name}", is coming up soon!`,
+                    actorId: 'system',
+                    linkedEntity: { collection: "marketplaceItems", documentId: serviceDoc.id },
+                };
+                await createAndSendNotification(guestId, notificationPayload);
+              }
+            }
+        }
+        */
 
     } catch (error) {
         console.error("Error processing agro-tourism booking reminders:", error);
@@ -289,3 +373,5 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
     console.log("Daily event reminder check finished.");
     return null;
   });
+
+    
