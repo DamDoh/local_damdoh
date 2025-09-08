@@ -80,12 +80,30 @@ export default function LogObservationPage() {
 
     setIsSubmitting(true);
     let imageUrl: string | undefined = undefined;
+    let aiDiagnosis: any = null;
 
     try {
       if (data.imageFile) {
         toast({ title: t('toast.uploading'), description: t('toast.uploadingDescription') });
         imageUrl = await uploadFileAndGetURL(data.imageFile, `observations/${cropId}`);
         toast({ title: t('toast.aiAnalyzing'), description: t('toast.aiDescription') });
+        
+        // Convert file to data URI for AI analysis
+        const reader = new FileReader();
+        const dataUriPromise = new Promise<string>((resolve, reject) => {
+            reader.onloadend = () => resolve(reader.result as string);
+            reader.onerror = reject;
+        });
+        reader.readAsDataURL(data.imageFile);
+        const photoDataUri = await dataUriPromise;
+        
+        aiDiagnosis = await askFarmingAssistant({
+            query: data.details,
+            photoDataUri: photoDataUri,
+            language: locale,
+        });
+
+        toast({ title: t('toast.aiComplete'), description: t('toast.aiCompleteDescription') });
       }
 
       const payload = {
@@ -96,6 +114,7 @@ export default function LogObservationPage() {
         mediaUrls: imageUrl ? [imageUrl] : [],
         actorVtiId: user.uid,
         geoLocation: null,
+        aiAnalysis: aiDiagnosis,
       };
 
       if (isOnline) {
@@ -109,7 +128,8 @@ export default function LogObservationPage() {
             documentId: `observation-${Date.now()}`,
             payload: payload,
         });
-         router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);
+        toast({ title: t('toast.queued.title'), description: t('toast.queued.description') });
+        router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);
       }
 
     } catch (error: any) {

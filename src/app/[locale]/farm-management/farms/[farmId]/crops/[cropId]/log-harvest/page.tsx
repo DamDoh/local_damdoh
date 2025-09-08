@@ -20,7 +20,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { createHarvestSchema, type CreateHarvestValues } from "@/lib/form-schemas";
-import { ArrowLeft, Save, CalendarIcon, FileText, Loader2, Weight, Award, CheckCircle, RefreshCw, DollarSign, GitBranch } from "lucide-react";
+import { ArrowLeft, Save, CalendarIcon, FileText, Loader2, Weight, Award, CheckCircle, RefreshCw, DollarSign, GitBranch, WifiOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { format } from "date-fns";
@@ -88,7 +88,7 @@ export default function LogHarvestPage() {
     if (!isOnline) {
       // Offline logic: Add to queue
       await addActionToQueue({
-        operation: 'logHarvestAndCreateVTI', // Specific operation name for the backend to handle
+        operation: 'handleHarvestEvent', // Specific operation name for the backend to handle
         collectionPath: 'harvest_events', // Conceptual collection for the outbox pattern
         documentId: `harvest-${Date.now()}`, // Unique ID for the offline action
         payload: payload,
@@ -325,12 +325,13 @@ export default function LogHarvestPage() {
 
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
                 {isSubmitting ? (
-                    <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('savingButton')}
-                    </>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : isOnline ? (
+                    <Save className="mr-2 h-4 w-4" />
                 ) : (
-                    <><Save className="mr-2 h-4 w-4" /> {t('saveButton')}</>
+                    <WifiOff className="mr-2 h-4 w-4" />
                 )}
+                {isSubmitting ? t('savingButton') : (isOnline ? t('saveButton') : t('saveOfflineButton'))}
               </Button>
             </form>
           </Form>
