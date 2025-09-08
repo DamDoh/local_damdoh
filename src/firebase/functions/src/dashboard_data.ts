@@ -986,17 +986,35 @@ export const getAgroTourismDashboardData = functions.https.onCall(
             };
         });
 
-        // --- Keep Mock Data for other sections for now ---
-        const upcomingBookings = [
-            { id: 'book1', experienceTitle: 'Coffee Farm Tour & Tasting', guestName: 'Alice Johnson', date: new Date().toISOString(), actionLink: '#' }
-        ];
+        // --- Fetch Live Data for Upcoming Bookings ---
+        const upcomingBookings: AgroTourismDashboardData['upcomingBookings'] = [];
+        for (const experience of listedExperiences) {
+            const bookingsSnapshot = await db.collection(`marketplaceItems/${experience.id}/bookings`)
+                .where('checkedIn', '==', false) // Only get upcoming/unchecked-in bookings
+                .orderBy('bookedAt', 'desc')
+                .limit(2) // Limit to a few recent bookings per experience
+                .get();
+
+            bookingsSnapshot.forEach(doc => {
+                const booking = doc.data();
+                upcomingBookings.push({
+                    id: doc.id,
+                    experienceTitle: experience.title,
+                    guestName: booking.displayName,
+                    date: booking.bookedAt.toDate().toISOString(), // Use booking date
+                    actionLink: `/marketplace/${experience.id}/manage-service?tab=bookings`
+                });
+            });
+        }
+        
+        // --- Keep Mock Data for reviews ---
         const guestReviews = [
             { id: 'rev1', guestName: 'Bob Williams', experienceTitle: 'Coffee Farm Tour & Tasting', rating: 5, comment: 'Amazing experience, learned so much!', actionLink: '#' }
         ];
 
         return {
             listedExperiences,
-            upcomingBookings,
+            upcomingBookings: upcomingBookings.slice(0, 5), // Return overall 5 most recent
             guestReviews,
         };
 
