@@ -96,34 +96,36 @@ export function LandingPage() {
 
       {/* For Who Section */}
       <section className="py-12 md:py-24 bg-muted">
-        <div className="container px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-4">
-            <Badge variant="secondary">{t('forWho.badge')}</Badge>
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">{t('forWho.title')}</h2>
-            <p className="text-muted-foreground md:text-xl/relaxed">
-              {t('forWho.description')}
-            </p>
-            <ul className="space-y-3">
-              {forWhoItems.map((item, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  {item.icon}
-                  <div>
-                    <h4 className="font-semibold">{item.title}</h4>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-           <div className="relative w-full aspect-square">
-                <Image
-                    src="https://placehold.co/600x600.png"
-                    alt={t('forWho.imageAlt')}
-                    fill
-                    className="rounded-xl object-cover shadow-2xl"
-                    data-ai-hint="agriculture diverse community"
-                />
+        <div className="container px-4 md:px-6 flex flex-col items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-4">
+              <Badge variant="secondary">{t('forWho.badge')}</Badge>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">{t('forWho.title')}</h2>
+              <p className="text-muted-foreground md:text-xl/relaxed">
+                {t('forWho.description')}
+              </p>
+              <ul className="space-y-3">
+                {forWhoItems.map((item, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    {item.icon}
+                    <div>
+                      <h4 className="font-semibold">{item.title}</h4>
+                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
+             <div className="relative w-full aspect-square">
+                  <Image
+                      src="https://placehold.co/600x600.png"
+                      alt={t('forWho.imageAlt')}
+                      fill
+                      className="rounded-xl object-cover shadow-2xl"
+                      data-ai-hint="agriculture diverse community"
+                  />
+              </div>
+          </div>
         </div>
       </section>
 
