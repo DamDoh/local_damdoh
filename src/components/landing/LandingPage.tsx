@@ -9,9 +9,12 @@ import { Users, ShoppingCart, MessageSquare, ArrowRight, CheckCircle, Briefcase,
 import { useTranslations } from "next-intl";
 import { APP_NAME } from "@/lib/constants";
 import { Badge } from "@/components/ui/badge";
+import { SignUpModal } from '../auth/SignUpModal';
+import { useState } from 'react';
 
 export function LandingPage() {
   const t = useTranslations('LandingPage');
+  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
   const features = [
     {
@@ -45,6 +48,7 @@ export function LandingPage() {
 
 
   return (
+    <>
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-center text-center py-20 md:py-32 bg-beige-100 text-green-900 overflow-hidden">
@@ -61,8 +65,8 @@ export function LandingPage() {
             {t('hero.subtitle')}
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="text-lg py-6 px-8">
-              <Link href="/auth/signup">{t('hero.getStartedButton')}</Link>
+            <Button onClick={() => setIsSignUpModalOpen(true)} size="lg" className="text-lg py-6 px-8">
+              {t('hero.getStartedButton')}
             </Button>
             <Button asChild variant="outline" size="lg" className="text-lg py-6 px-8 border-primary text-primary">
               <Link href="/about">{t('hero.learnMoreButton')}</Link>
@@ -137,12 +141,14 @@ export function LandingPage() {
             {t('cta.subtitle')}
           </p>
           <div className="mt-8">
-            <Button asChild size="lg" variant="secondary" className="text-lg py-6 px-8">
-              <Link href="/auth/signup">{t('cta.button')} <ArrowRight className="ml-2 h-5 w-5" /></Link>
+            <Button onClick={() => setIsSignUpModalOpen(true)} size="lg" variant="secondary" className="text-lg py-6 px-8">
+                {t('cta.button')} <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </div>
       </section>
     </div>
+    <SignUpModal isOpen={isSignUpModalOpen} onClose={() => setIsSignUpModalOpen(false)} />
+    </>
   )
 }

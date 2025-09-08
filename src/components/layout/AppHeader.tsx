@@ -38,6 +38,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { SignInModal } from '@/components/auth/SignInModal';
+import { SignUpModal } from '@/components/auth/SignUpModal';
 
 
 function HeaderSkeleton() {
@@ -76,6 +77,7 @@ export function AppHeader() {
   const [isMobileSheetOpen, setIsMobileSheetOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
   const [initialModalQuery, setInitialModalQuery] = useState("");
 
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -141,7 +143,7 @@ export function AppHeader() {
               ) : (
                  <div className="flex items-center gap-1">
                     <Button variant="ghost" onClick={() => setIsSignInModalOpen(true)}><LogIn className="mr-2 h-4 w-4" />{t('signIn')}</Button>
-                    <Button asChild><Link href="/auth/signup"><UserPlus className="mr-2 h-4 w-4" />{t('signUp')}</Link></Button>
+                    <Button onClick={() => setIsSignUpModalOpen(true)}><UserPlus className="mr-2 h-4 w-4" />{t('signUp')}</Button>
                  </div>
               )}
                {user && <UserAvatar name={user.displayName || user.email} email={user.email} imageUrl={user.photoURL} />}
@@ -191,6 +193,7 @@ export function AppHeader() {
         initialQuery={initialModalQuery}
       />
       <SignInModal isOpen={isSignInModalOpen} onClose={() => setIsSignInModalOpen(false)} />
+      <SignUpModal isOpen={isSignUpModalOpen} onClose={() => setIsSignUpModalOpen(false)} />
     </>
   );
 }
