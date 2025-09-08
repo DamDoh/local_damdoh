@@ -51,7 +51,7 @@ const CheckInTab = ({ itemId, itemName }: { itemId: string, itemName: string }) 
     const [isProcessing, setIsProcessing] = useState(false);
     
     const { toast } = useToast();
-    const checkInCallable = useMemo(() => httpsCallable(functions, 'checkInAgroTourismBooking'), []);
+    const checkInCallable = useMemo(() => httpsCallable(functions, 'agroTourism-checkInAgroTourismBooking'), []);
 
     const handleScanSuccess = async (decodedText: string) => {
         setIsScanning(false);
@@ -138,10 +138,10 @@ const StaffManagementTab = ({ itemId }: { itemId: string }) => {
     const [isSearching, setIsSearching] = useState(false);
     const [isLoadingStaff, setIsLoadingStaff] = useState(true);
 
-    const searchUsersCallable = useMemo(() => httpsCallable(functions, 'searchUsersForStaffing'), []);
-    const addStaffCallable = useMemo(() => httpsCallable(functions, 'addAgroTourismStaff'), []);
-    const getStaffCallable = useMemo(() => httpsCallable(functions, 'getAgroTourismStaff'), []);
-    const removeStaffCallable = useMemo(() => httpsCallable(functions, 'removeAgroTourismStaff'), []);
+    const searchUsersCallable = useMemo(() => httpsCallable(functions, 'agriEvents-searchUsersForStaffing'), []);
+    const addStaffCallable = useMemo(() => httpsCallable(functions, 'agroTourism-addAgroTourismStaff'), []);
+    const getStaffCallable = useMemo(() => httpsCallable(functions, 'agroTourism-getAgroTourismStaff'), []);
+    const removeStaffCallable = useMemo(() => httpsCallable(functions, 'agroTourism-removeAgroTourismStaff'), []);
     
     const fetchStaff = useCallback(async () => {
         setIsLoadingStaff(true);
@@ -255,7 +255,7 @@ const BookingsTab = ({ itemId }: { itemId: string }) => {
     const [bookings, setBookings] = useState<Booking[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const getBookingsCallable = useMemo(() => httpsCallable(functions, 'getAgroTourismBookings'), []);
+    const getBookingsCallable = useMemo(() => httpsCallable(functions, 'agroTourism-getAgroTourismBookings'), []);
 
     useEffect(() => {
         if (!itemId) return;
