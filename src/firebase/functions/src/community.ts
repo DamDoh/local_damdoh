@@ -33,7 +33,7 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionsInvalid');
     }
 
-    const userProfile = (await getProfileByIdFromDB({ uid }, context)).data;
+    const userProfile = (await getProfileByIdFromDB({ uid }, {auth: context.auth})).data;
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -123,22 +123,29 @@ export const addComment = functions.https.onCall(async (data, context) => {
          throw new functions.https.HttpsError('invalid-argument', 'error.form.missingFields');
     }
 
-    const commentRef = db.collection(`posts/${postId}/comments`).doc();
+    const postRef = db.collection('posts').doc(postId);
+    const commentRef = postRef.collection('comments').doc();
 
-    const userProfile = (await getProfileByIdFromDB({ uid }, context)).data;
+    const userProfile = (await getProfileByIdFromDB({ uid }, {auth: context.auth})).data;
     
      if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
 
-    await commentRef.set({
+    const batch = db.batch();
+
+    // Denormalize author data on write for performance
+    batch.set(commentRef, {
         content,
         userId: uid,
         userName: userProfile.displayName,
         userAvatar: userProfile.avatarUrl || null,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
-    
+
+    batch.update(postRef, { commentsCount: admin.firestore.FieldValue.increment(1) });
+
+    await batch.commit();
     return { success: true, commentId: commentRef.id };
 });
 
