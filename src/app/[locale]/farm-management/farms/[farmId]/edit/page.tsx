@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, useMemo, useEffect, useCallback } from 'react';
@@ -17,10 +18,8 @@ import { createFarmSchema, type CreateFarmValues } from "@/lib/form-schemas";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from '@/lib/auth-utils';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { Skeleton } from '@/components/ui/skeleton';
-import { getFarm as getFarmData, updateFarm as updateFarmData } from '@/lib/server-actions';
+import { getFarmData, updateFarmData } from '@/lib/server-actions';
 
 
 export default function EditFarmPage() {
@@ -51,7 +50,7 @@ export default function EditFarmPage() {
     try {
         const farmData = await getFarmData(farmId);
         if (farmData) {
-            form.reset(farmData);
+            form.reset(farmData as CreateFarmValues);
         } else {
             toast({ title: t('toast.notFoundTitle'), description: t('toast.loadError'), variant: "destructive" });
             router.push('/farm-management/farms');
@@ -236,6 +235,7 @@ export default function EditFarmPage() {
     </div>
   );
 }
+
 
 
 

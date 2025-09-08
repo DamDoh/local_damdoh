@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState, useMemo, useCallback } from 'react';
@@ -9,11 +10,13 @@ import { ArrowLeft, MapPin, Sprout, ClipboardList, PlusCircle, Droplets, Weight,
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { httpsCallable } from 'firebase/functions';
+import { functions } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
+import { getFarmData } from '@/lib/server-actions';
+import { CropRotationSuggester } from '@/components/farm-management/CropRotationSuggester';
 
 interface FarmDetails {
   id: string;
@@ -88,37 +91,35 @@ export default function FarmDetailPage() {
   const { user } = useAuth();
   const { toast } = useToast();
 
-  const functions = getFunctions(firebaseApp);
-  const getFarmCallable = useMemo(() => httpsCallable(functions, 'getFarm'), [functions]);
-  const getFarmCropsCallable = useMemo(() => httpsCallable(functions, 'getFarmCrops'), [functions]);
-  const getProfitabilityInsightsCallable = useMemo(() => httpsCallable(functions, 'getProfitabilityInsights'), [functions]);
+  const getFarmCropsCallable = useMemo(() => httpsCallable(functions, 'farmManagement-getFarmCrops'), [functions]);
+  const getProfitabilityInsightsCallable = useMemo(() => httpsCallable(functions, 'farmManagement-getProfitabilityInsights'), [functions]);
 
   const fetchFarmData = useCallback(async () => {
     try {
- const [farmResult, cropsResult] = await Promise.all([
- getFarmCallable({ farmId }),
- getFarmCropsCallable({ farmId })
- ]);
+        const [farmResult, cropsResult] = await Promise.all([
+            getFarmData(farmId),
+            getFarmCropsCallable({ farmId })
+        ]);
 
- if(!farmResult.data){
- toast({
- variant: "destructive",
- title: t('toast.notFoundTitle'),
- });
- router.push('/farm-management/farms');
- return;
- }
+        if(!farmResult){
+            toast({
+                variant: "destructive",
+                title: t('toast.notFoundTitle'),
+            });
+            router.push('/farm-management/farms');
+            return;
+        }
 
- setFarm(farmResult.data as FarmDetails);
- setCrops((cropsResult.data as Crop[]) || []);
+        setFarm(farmResult as FarmDetails);
+        setCrops((cropsResult.data as any).crops || []);
     } catch (error: any) {
- toast({
- variant: "destructive",
- title: t('toast.loadErrorTitle'),
- description: error.message,
- });
+        toast({
+            variant: "destructive",
+            title: t('toast.loadErrorTitle'),
+            description: error.message,
+        });
     }
-  }, [farmId, getFarmCallable, getFarmCropsCallable, toast, router, t]);
+  }, [farmId, getFarmCropsCallable, toast, router, t]);
 
   const fetchInsights = useCallback(async () => {
  setIsLoadingInsights(true);
@@ -166,7 +167,7 @@ export default function FarmDetailPage() {
  );
   }
 
- return (
+  return (
  <div className="container mx-auto p-4 md:p-8">
  <Link href="/farm-management/farms" className="inline-flex items-center text-sm text-primary hover:underline mb-4">
  <ArrowLeft className="mr-1 h-4 w-4"/> {t('backToFarms')}
@@ -273,7 +274,7 @@ export default function FarmDetailPage() {
  </div>
  </div>
  </div>
- );
+  );
 }
 
 "use client";
@@ -287,11 +288,13 @@ import { ArrowLeft, MapPin, Sprout, ClipboardList, PlusCircle, Droplets, Weight,
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { httpsCallable } from 'firebase/functions';
+import { functions } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
+import { getFarmData } from '@/lib/server-actions';
+import { CropRotationSuggester } from '@/components/farm-management/CropRotationSuggester';
 
 interface FarmDetails {
   id: string;
@@ -366,19 +369,17 @@ export default function FarmDetailPage() {
   const { user } = useAuth();
   const { toast } = useToast();
 
-  const functions = getFunctions(firebaseApp);
-  const getFarmCallable = useMemo(() => httpsCallable(functions, 'getFarm'), [functions]);
-  const getFarmCropsCallable = useMemo(() => httpsCallable(functions, 'getFarmCrops'), [functions]);
-  const getProfitabilityInsightsCallable = useMemo(() => httpsCallable(functions, 'getProfitabilityInsights'), [functions]);
+  const getFarmCropsCallable = useMemo(() => httpsCallable(functions, 'farmManagement-getFarmCrops'), [functions]);
+  const getProfitabilityInsightsCallable = useMemo(() => httpsCallable(functions, 'farmManagement-getProfitabilityInsights'), [functions]);
 
   const fetchFarmData = useCallback(async () => {
     try {
         const [farmResult, cropsResult] = await Promise.all([
-            getFarmCallable({ farmId }),
+            getFarmData(farmId),
             getFarmCropsCallable({ farmId })
         ]);
 
-        if(!farmResult.data){
+        if(!farmResult){
             toast({
                 variant: "destructive",
                 title: t('toast.notFoundTitle'),
@@ -387,8 +388,8 @@ export default function FarmDetailPage() {
             return;
         }
 
-        setFarm(farmResult.data as FarmDetails);
-        setCrops((cropsResult.data as Crop[]) || []);
+        setFarm(farmResult as FarmDetails);
+        setCrops((cropsResult.data as any).crops || []);
     } catch (error: any) {
          toast({
             variant: "destructive",
@@ -396,7 +397,7 @@ export default function FarmDetailPage() {
             description: error.message,
         });
     }
-  }, [farmId, getFarmCallable, getFarmCropsCallable, toast, router, t]);
+  }, [farmId, getFarmCropsCallable, toast, router, t]);
 
   const fetchInsights = useCallback(async () => {
       setIsLoadingInsights(true);
@@ -516,6 +517,10 @@ export default function FarmDetailPage() {
                 </Card>
             </div>
             <div className="lg:col-span-1 space-y-6">
+                 <CropRotationSuggester 
+                    cropHistory={crops.map(c => c.cropType)} 
+                    location={farm.location} 
+                />
                 <Card>
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">

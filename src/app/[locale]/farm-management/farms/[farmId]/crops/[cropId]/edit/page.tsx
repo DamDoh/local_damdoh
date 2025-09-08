@@ -37,7 +37,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslations } from "next-intl";
 import { getCropStages } from "@/lib/i18n-constants";
-import { getCrop as getCropData, updateCrop as updateCropData } from '@/lib/server-actions';
+import { getCropData, updateCropData } from '@/lib/server-actions';
 import type { Crop } from '@/lib/types';
 
 
@@ -74,8 +74,8 @@ export default function EditCropPage() {
         if (cropData) {
             form.reset({
                 ...cropData,
-                plantingDate: cropData.plantingDate ? new Date(cropData.plantingDate) : null,
-                harvestDate: cropData.harvestDate ? new Date(cropData.harvestDate) : null,
+                plantingDate: cropData.plantingDate ? new Date(cropData.plantingDate) : undefined,
+                harvestDate: cropData.harvestDate ? new Date(cropData.harvestDate) : undefined,
             });
         } else {
              toast({ title: tEdit('toast.notFound'), description: tEdit('toast.loadError'), variant: "destructive" });
