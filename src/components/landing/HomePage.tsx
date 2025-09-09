@@ -4,37 +4,41 @@
 import { Link } from '@/navigation';
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, CheckCircle, Leaf, BrainCircuit, LineChart, MessageCircle } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { ArrowRight, CheckCircle, Leaf, BrainCircuit, LineChart, MessageCircle, Users, Truck, Banknote, ShieldCheck } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { APP_NAME } from "@/lib/constants";
 import { SignUpModal } from '@/components/auth/SignUpModal';
 import { useState } from 'react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { StakeholderIcon } from '../icons/StakeholderIcon';
+
 
 export function HomePage() {
   const t = useTranslations('LandingPage');
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
-  const features = [
+  const trustPillars = [
+    {
+      icon: <GitBranch className="h-8 w-8 text-primary" />,
+      title: t('trustPillars.traceability.title'),
+      description: t('trustPillars.traceability.description')
+    },
+    {
+      icon: <Users className="h-8 w-8 text-primary" />,
+      title: t('trustPillars.network.title'),
+      description: t('trustPillars.network.description')
+    },
     {
       icon: <BrainCircuit className="h-8 w-8 text-primary" />,
-      title: t('features.diagnostics.title'),
-      description: t('features.diagnostics.description')
+      title: t('trustPillars.ai.title'),
+      description: t('trustPillars.ai.description')
     },
     {
-      icon: <LineChart className="h-8 w-8 text-primary" />,
-      title: t('features.insights.title'),
-      description: t('features.insights.description')
-    },
-    {
-      icon: <Leaf className="h-8 w-8 text-primary" />,
-      title: t('features.recommendations.title'),
-      description: t('features.recommendations.description')
-    },
-    {
-      icon: <MessageCircle className="h-8 w-8 text-primary" />,
-      title: t('features.assistant.title'),
-      description: t('features.assistant.description')
+      icon: <ShieldCheck className="h-8 w-8 text-primary" />,
+      title: t('trustPillars.security.title'),
+      description: t('trustPillars.security.description')
     }
   ];
 
@@ -64,6 +68,13 @@ export function HomePage() {
       avatar: "https://placehold.co/100x100.png"
     }
   ];
+  
+  const stakeholderTabs = [
+    { id: "farmers", name: t('stakeholders.farmers.name'), icon: "Farmer" },
+    { id: "buyers", name: t('stakeholders.buyers.name'), icon: "Buyer (Restaurant, Supermarket, Exporter)" },
+    { id: "logistics", name: t('stakeholders.logistics.name'), icon: "Logistics Partner (Third-Party Transporter)" },
+    { id: "financial", name: t('stakeholders.financial.name'), icon: "Financial Institution (Micro-finance/Loans)" },
+  ];
 
   return (
     <>
@@ -71,10 +82,11 @@ export function HomePage() {
         {/* Hero Section */}
         <section className="relative flex flex-col items-center justify-center text-center py-24 md:py-32 bg-gray-50 dark:bg-gray-900/50">
           <div className="container px-4 md:px-6 z-10">
+             <Badge variant="secondary" className="mb-4">{t('hero.badge')}</Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter text-gray-900 dark:text-gray-50">
               {t('hero.title')}
             </h1>
-            <p className="max-w-[700px] mx-auto text-lg md:text-xl text-muted-foreground mt-4">
+            <p className="max-w-3xl mx-auto text-lg md:text-xl text-muted-foreground mt-4">
               {t('hero.subtitle')}
             </p>
             <div className="mt-8">
@@ -99,56 +111,63 @@ export function HomePage() {
         </section>
 
 
-        {/* Problem/Solution Section */}
+        {/* For Every Stakeholder Section */}
         <section className="py-16 md:py-24 bg-background">
             <div className="container mx-auto px-4 md:px-6">
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="relative w-full aspect-square">
-                        <Image
-                            src="https://placehold.co/600x600.png"
-                            alt={t('stopGuessing.imageAlt')}
-                            fill
-                            className="rounded-xl object-cover shadow-lg"
-                            data-ai-hint="farmer looking at crop"
-                        />
-                    </div>
-                    <div className="space-y-4">
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">{t('stopGuessing.title')}</h2>
-                        <p className="text-muted-foreground md:text-lg">
-                           {t('stopGuessing.description')}
-                        </p>
-                        <ul className="space-y-3">
-                            <li className="flex items-start gap-3">
-                                <CheckCircle className="h-5 w-5 mt-1 text-primary shrink-0" />
-                                <div>
-                                <h4 className="font-semibold">{t('stopGuessing.p1_title')}</h4>
-                                <p className="text-sm text-muted-foreground">{t('stopGuessing.p1_desc')}</p>
-                                </div>
-                            </li>
-                             <li className="flex items-start gap-3">
-                                <CheckCircle className="h-5 w-5 mt-1 text-primary shrink-0" />
-                                <div>
-                                <h4 className="font-semibold">{t('stopGuessing.p2_title')}</h4>
-                                <p className="text-sm text-muted-foreground">{t('stopGuessing.p2_desc')}</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                 <div className="text-center mb-12">
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">{t('stakeholders.title')}</h2>
+                    <p className="max-w-[700px] mx-auto text-muted-foreground md:text-lg/relaxed">{t('stakeholders.subtitle')}</p>
                 </div>
+                <Tabs defaultValue="farmers" className="w-full">
+                    <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 h-auto">
+                        {stakeholderTabs.map(tab => (
+                            <TabsTrigger key={tab.id} value={tab.id} className="flex flex-col sm:flex-row gap-2 h-full py-3 px-2">
+                                <StakeholderIcon role={tab.icon} />
+                                {tab.name}
+                            </TabsTrigger>
+                        ))}
+                    </TabsList>
+                    {stakeholderTabs.map(tab => (
+                        <TabsContent key={tab.id} value={tab.id}>
+                            <Card className="border-t-0 rounded-t-none">
+                                <CardContent className="p-6 grid md:grid-cols-2 gap-8 items-center">
+                                    <div className="relative w-full aspect-square">
+                                        <Image src={t(`stakeholders.${tab.id}.image`)} alt={t(`stakeholders.${tab.id}.name`)} fill className="rounded-lg object-cover shadow-md" data-ai-hint="agriculture professional" />
+                                    </div>
+                                    <div className="space-y-4">
+                                        <h3 className="text-2xl font-bold">{t(`stakeholders.${tab.id}.headline`)}</h3>
+                                        <ul className="space-y-3">
+                                            {(t.raw(`stakeholders.${tab.id}.points`) as {title: string, desc: string}[]).map((point, index) => (
+                                                 <li key={index} className="flex items-start gap-3">
+                                                    <CheckCircle className="h-5 w-5 mt-1 text-primary shrink-0" />
+                                                    <div>
+                                                        <h4 className="font-semibold">{point.title}</h4>
+                                                        <p className="text-sm text-muted-foreground">{point.desc}</p>
+                                                    </div>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </TabsContent>
+                    ))}
+                </Tabs>
             </div>
         </section>
 
-        {/* Features Section */}
+
+        {/* Features / Trust Pillars Section */}
         <section id="features" className="py-16 md:py-24 bg-muted/50">
           <div className="container px-4 md:px-6 flex flex-col items-center">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">{t('features.title')}</h2>
-              <p className="max-w-[600px] mx-auto text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                {t('features.subtitle')}
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">{t('trustPillars.title')}</h2>
+              <p className="max-w-[600px] mx-auto text-muted-foreground md:text-xl/relaxed">
+                {t('trustPillars.subtitle')}
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {features.map((feature, index) => (
+              {trustPillars.map((feature, index) => (
                 <Card key={index} className="text-center p-6 shadow-md hover:shadow-lg transition-shadow bg-card">
                   <div className="flex justify-center mb-4">
                     {feature.icon}

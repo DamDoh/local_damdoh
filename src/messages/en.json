@@ -2,80 +2,116 @@
 {
   "LandingPage": {
     "hero": {
-      "title": "Empower Your Farm with Intelligent Insights",
-      "subtitle": "Leverage AI to diagnose crop diseases, get tailored recommendations, and optimize your yield. The future of farming is here.",
-      "getStartedButton": "Start for Free"
+      "badge": "The Future of Agri-Commerce",
+      "title": "One Platform to Connect the Entire Agricultural Supply Chain.",
+      "subtitle": "From farm to fork, DamDoh is the integrated ecosystem for producers, buyers, logistics partners, and financial institutions to transact with trust and efficiency.",
+      "getStartedButton": "Join the Ecosystem"
     },
     "featured": {
       "title": "AS FEATURED IN"
     },
     "howItWorks": {
-      "title": "How It Works",
-      "subtitle": "A simple, three-step process to get you started on your journey to smarter farming.",
+      "title": "Simple, Powerful, Connected",
+      "subtitle": "A unified workflow for a seamless supply chain.",
       "step1": {
-        "title": "Upload an Image",
-        "description": "Take a photo of your crop. Our AI analyzes it against a vast database of plant diseases and pests."
+        "title": "Create & Verify",
+        "description": "Farmers log activities, creating a verifiable, VTI-backed history for every batch. Input suppliers list certified products. Service providers showcase their expertise."
       },
       "step2": {
-        "title": "Get Instant Diagnosis",
-        "description": "Receive an immediate, accurate diagnosis and learn about the potential impact on your crops."
+        "title": "Discover & Connect",
+        "description": "Buyers find trusted, traceable produce. Logistics partners find shipping jobs. Financial institutions discover low-risk investment opportunities."
       },
       "step3": {
-        "title": "Receive Actionable Advice",
-        "description": "Get tailored, sustainable treatment plans and preventative measures to protect your harvest."
+        "title": "Transact & Thrive",
+        "description": "Execute deals with confidence through a transparent platform. Build your reputation, expand your network, and grow your business."
       }
     },
-    "stopGuessing": {
-      "title": "Stop Guessing, Start Growing",
-      "description": "Our platform transforms your farming practices from reactive to proactive. Make data-driven decisions that save money, improve crop health, and increase your bottom line.",
-      "p1_title": "Reduce Input Costs",
-      "p1_desc": "Apply the right treatment at the right time, minimizing waste and maximizing effectiveness.",
-      "p2_title": "Increase Yield & Quality",
-      "p2_desc": "Early detection and optimized recommendations lead to healthier crops and better harvests.",
-      "imageAlt": "A farmer examining a healthy plant leaf with a smartphone."
-    },
-    "features": {
-      "title": "Smarter Farming, Simplified",
-      "subtitle": "Our suite of AI-powered tools is designed to be intuitive and impactful, giving you an expert agronomist in your pocket.",
-      "diagnostics": {
-        "title": "AI-Powered Diagnostics",
-        "description": "Snap a photo of a sick plant and get an instant diagnosis of potential diseases, pests, or nutrient deficiencies."
+    "trustPillars": {
+      "title": "Built on a Foundation of Trust",
+      "subtitle": "Our four pillars ensure every interaction on the DamDoh platform is secure, transparent, and reliable.",
+      "traceability": {
+        "title": "VTI-Verified Traceability",
+        "description": "Every product batch is tracked from seed to sale with a Verifiable Traceability ID, ensuring unparalleled transparency."
       },
-      "insights": {
-        "title": "Data-Driven Insights",
-        "description": "Track your farm's performance over time, analyze trends, and unlock insights to improve your operations season after season."
+      "network": {
+        "title": "Secure Stakeholder Network",
+        "description": "Connect with a verified network of farmers, buyers, and service providers, all vetted for quality and reliability."
       },
-      "recommendations": {
-        "title": "Smart Recommendations",
-        "description": "Receive personalized, sustainable treatment and prevention plans tailored to your specific crop and diagnosis."
+      "ai": {
+        "title": "AI-Powered Risk Management",
+        "description": "Leverage AI-driven credit scoring and market insights to make smarter, data-backed business decisions."
       },
-      "assistant": {
-        "title": "24/7 AI Assistant",
-        "description": "Ask questions about farming techniques, market prices, or sustainable practices and get instant, expert-level answers."
+      "security": {
+        "title": "Ironclad Data Security",
+        "description": "Your data is protected with enterprise-grade security and granular privacy controls, giving you peace of mind."
       }
+    },
+    "stakeholders": {
+        "title": "For Every Link in the Chain",
+        "subtitle": "DamDoh is designed to create value for every participant in the agricultural ecosystem.",
+        "farmers": {
+            "name": "Producers",
+            "headline": "Access new markets and increase your profitability.",
+            "image": "https://placehold.co/600x600.png",
+            "points": [
+                {"title": "Sell Directly to Buyers", "desc": "List your VTI-verified produce on the marketplace to reach a wider audience of premium buyers."},
+                {"title": "Access Fair Finance", "desc": "Build a data-backed reputation to qualify for loans and insurance from our financial partners."},
+                {"title": "Optimize Your Farm", "desc": "Use AI tools for crop diagnosis, KNF/FGW guides, and profitability tracking."}
+            ]
+        },
+        "buyers": {
+            "name": "Buyers",
+            "headline": "Source high-quality, traceable products with confidence.",
+            "image": "https://placehold.co/600x600.png",
+            "points": [
+                {"title": "Verify Product Origins", "desc": "Use the VTI system to see the complete journey of a product, from farm to you."},
+                {"title": "Find Reliable Suppliers", "desc": "Connect directly with trusted farmers and cooperatives with proven track records."},
+                {"title": "Streamline Your Sourcing", "desc": "Manage orders, communication, and logistics all in one unified platform."}
+            ]
+        },
+        "logistics": {
+            "name": "Logistics",
+            "headline": "Find more jobs and optimize your routes.",
+            "image": "https://placehold.co/600x600.png",
+            "points": [
+                {"title": "Discover Shipping Jobs", "desc": "Get access to a steady stream of transport requests from farmers and buyers on the platform."},
+                {"title": "Plan Efficient Routes", "desc": "Utilize platform data to optimize delivery routes and reduce fuel costs."},
+                {"title": "Build Your Reputation", "desc": "Gain ratings and reviews for on-time deliveries to attract more business."}
+            ]
+        },
+        "financial": {
+            "name": "Financial Institutions",
+            "headline": "De-risk agricultural lending and expand your portfolio.",
+            "image": "https://placehold.co/600x600.png",
+            "points": [
+                {"title": "Access Verified Farmer Data", "desc": "Make informed lending decisions using our AI-powered credit scoring based on real farm performance data."},
+                {"title": "Offer Tailored Products", "desc": "List your loan and insurance products directly to a targeted audience of qualified farmers."},
+                {"title": "Monitor Your Portfolio", "desc": "Track the performance of your agricultural loans and gain insights into regional trends."}
+            ]
+        }
     },
     "testimonials": {
-      "title": "Trusted by Farmers and Partners Worldwide",
-      "t1": {
-        "quote": "DamDoh's AI diagnostics saved our tomato crop from late blight. We got an accurate diagnosis in minutes and the recommended organic treatment worked wonders. It's a game-changer for smallholder farmers like us.",
-        "name": "Amina Bello",
-        "role": "Organic Farmer, Nigeria"
-      },
-      "t2": {
-        "quote": "As an exporter, traceability is non-negotiable. DamDoh provides a seamless, verifiable log for our coffee shipments, giving our international buyers the confidence they need. It has opened up new premium markets for our partner co-ops.",
-        "name": "Carlos Gomez",
-        "role": "Coffee Exporter, Colombia"
-      },
-      "t3": {
-        "quote": "The platform's ability to connect us with verified farmer cooperatives has streamlined our sourcing process. We've reduced our risk and improved the quality of our supply chain significantly.",
-        "name": "Priya Sharma",
-        "role": "Supply Chain Manager, FoodCo"
-      }
+        "title": "Trusted by Leaders Across the Supply Chain",
+        "t1": {
+            "quote": "DamDoh's traceability system has been a game-changer for our cooperative. We can now prove the origin and quality of our coffee, which has opened up new premium export markets and increased our members' incomes.",
+            "name": "Maria Rodriguez",
+            "role": "Cooperative Leader, Colombia"
+        },
+        "t2": {
+            "quote": "As an institutional lender, our biggest challenge has always been assessing the risk of smallholder farmers. DamDoh's data-driven credit scoring is revolutionary. It's the future of agricultural finance.",
+            "name": "David Ochieng",
+            "role": "Head of Agri-Finance, Kenya"
+        },
+        "t3": {
+            "quote": "The efficiency gains are massive. We find reliable transport partners, manage shipments, and communicate with suppliers all in one place. DamDoh is the operating system for our supply chain.",
+            "name": "Priya Sharma",
+            "role": "Supply Chain Manager, FoodCo"
+        }
     },
     "cta": {
-      "title": "Ready to Grow Smarter?",
-      "subtitle": "Join thousands of farmers who are using DamDoh to build more profitable and sustainable futures.",
-      "button": "Sign Up for Free"
+      "title": "Join the Future of Agriculture",
+      "subtitle": "Create your profile and discover a more connected, transparent, and profitable way to do business.",
+      "button": "Join the Ecosystem"
     }
   },
   "searchPage": {
