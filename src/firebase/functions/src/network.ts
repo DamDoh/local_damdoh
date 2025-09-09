@@ -242,4 +242,3 @@ export const getProfileConnectionStatuses = functions.https.onCall(async (data, 
     
     return statuses;
 });
-

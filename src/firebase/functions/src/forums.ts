@@ -208,4 +208,3 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
     await batch.commit();
     return { replyId: replyRef.id };
 });
-

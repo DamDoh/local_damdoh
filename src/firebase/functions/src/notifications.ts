@@ -1,5 +1,4 @@
 
-      
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
@@ -17,7 +16,7 @@ import {getUserDocument} from "./utils";
  * notifications to users based on various platform events.
  */
 
-async function createAndSendNotification(
+export async function createAndSendNotification(
   userId: string,
   notificationPayload: {
       type: string,
@@ -280,5 +279,5 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
     console.log("Daily event reminder check finished.");
     return null;
   });
-      
+
     
