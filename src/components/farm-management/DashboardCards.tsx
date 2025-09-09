@@ -1,81 +1,39 @@
 
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowDown, ArrowUp, Cloud, MapPin, Sprout, TrendingUp } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import Link from 'next/link';
+import { Button } from "../ui/button";
+import { ArrowRight } from "lucide-react";
 
 interface StatCardProps {
     title: string;
     value: string | number;
-    unit?: string;
-    change?: number;
-    higherIsBetter?: boolean;
     icon?: React.ReactNode;
+    isCurrency?: boolean;
+    link: string;
+    ctaText: string;
 }
 
-export const StatCard = ({ title, value, unit, change, higherIsBetter = true, icon }: StatCardProps) => {
-    const isPositiveChange = change && change > 0;
-    const isNegativeChange = change && change < 0;
-
-    let changeColorClass = "";
-    if (change) {
-        if ((isPositiveChange && higherIsBetter) || (isNegativeChange && !higherIsBetter)) {
-            changeColorClass = "text-green-500";
-        } else {
-            changeColorClass = "text-red-500";
-        }
-    }
+export const StatCard = ({ title, value, icon, isCurrency, link, ctaText }: StatCardProps) => {
+    const formattedValue = isCurrency ? `$${Number(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : value;
 
     return (
-        <Card>
+        <Card className="flex flex-col">
             <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium flex items-center gap-2 text-muted-foreground">
-                    {icon || <TrendingUp className="h-4 w-4" />}
-                    {title}
-                </CardTitle>
+                 <div className="flex items-center justify-between">
+                    <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
+                    {icon}
+                 </div>
             </CardHeader>
-            <CardContent>
-                <div className="text-2xl font-bold">{value} {unit && <span className="text-lg text-muted-foreground">{unit}</span>}</div>
-                {change !== undefined && (
-                     <p className={`text-xs flex items-center ${changeColorClass}`}>
-                        {isPositiveChange ? <ArrowUp className="h-4 w-4" /> : <ArrowDown className="h-4 w-4" />}
-                        {change.toFixed(1)}% from last month
-                    </p>
-                )}
+            <CardContent className="flex-grow">
+                <p className="text-3xl font-bold">{formattedValue}</p>
             </CardContent>
+            <CardFooter className="pt-0">
+                 <Button asChild variant="outline" size="sm" className="w-full">
+                    <Link href={link}>{ctaText} <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                </Button>
+            </CardFooter>
         </Card>
     );
 };
-
-
-interface WeatherCardProps {
-    weather: {
-        location: string;
-        temp: number;
-        condition: string;
-        date: string;
-    }
-}
-export const WeatherCard = ({ weather }: WeatherCardProps) => {
-    return (
-        <Card className="bg-blue-500 text-white relative overflow-hidden">
-            <div className="absolute -top-4 -right-4 h-24 w-24 text-white/20">
-                <Cloud className="h-full w-full"/>
-            </div>
-            <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <MapPin className="h-4 w-4" />
-                    {weather.location}
-                </CardTitle>
-            </CardHeader>
-            <CardContent>
-                <div className="text-4xl font-bold">{weather.temp}°C</div>
-                <p className="text-sm">{weather.condition}</p>
-                <p className="text-xs mt-2">{weather.date}</p>
-                <a href="#" className="text-xs underline mt-1 block hover:text-white/80 transition-colors">See next forecast details</a>
-            </CardContent>
-        </Card>
-    );
-};
-
-    

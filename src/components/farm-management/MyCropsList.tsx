@@ -48,5 +48,3 @@ export const MyCropsList = ({ crops }: MyCropsListProps) => {
     </Card>
   );
 };
-
-    
