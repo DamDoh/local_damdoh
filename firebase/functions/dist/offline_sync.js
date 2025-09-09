@@ -40,7 +40,11 @@ const db = admin.firestore();
 // --- Cross-Cutting Data Synchronization for Offline Use ---
 /**
  * Callable function for authenticated users to upload a batch of offline changes.
- * @param {any} data The data for the function call.
+ * This function receives an array of changes from the client's outbox.
+ * Each change is written as a 'pending' document in the `offline_changes_log` collection,
+ * which then triggers the `processOfflineChange` function.
+ *
+ * @param {any} data The data for the function call, expecting a `changes` array.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{status: string, uploadedCount: number, uploadedChangeIds: string[]}>} A promise that resolves with the upload status.
  */
@@ -53,6 +57,7 @@ exports.uploadOfflineChanges = functions.https.onCall(async (data, context) => {
     if (!Array.isArray(changes) || changes.length === 0) {
         throw new functions.https.HttpsError("invalid-argument", "An array of changes is required.");
     }
+    // Basic validation for each change object
     if (changes.some((change) => !change.collectionPath ||
         !change.documentId ||
         !change.operation ||
@@ -67,6 +72,7 @@ exports.uploadOfflineChanges = functions.https.onCall(async (data, context) => {
             const newChangeRef = db.collection("offline_changes_log").doc();
             const changeId = newChangeRef.id;
             uploadedChangeIds.push(changeId);
+            // Create a detailed log entry for each offline change
             batch.set(newChangeRef, {
                 changeId: changeId,
                 userId: callerUid,
@@ -74,8 +80,8 @@ exports.uploadOfflineChanges = functions.https.onCall(async (data, context) => {
                 collectionPath: change.collectionPath,
                 documentId: change.documentId,
                 operation: change.operation,
-                payload: change.payload || null,
-                status: "pending",
+                payload: change.payload || null, // The actual data to create/update
+                status: "pending", // Initial status
                 clientDeviceId: change.clientDeviceId || null,
                 processingAttempts: 0,
                 lastAttemptTimestamp: null,
@@ -102,8 +108,11 @@ exports.uploadOfflineChanges = functions.https.onCall(async (data, context) => {
     }
 });
 /**
- * Triggered function for processing individual offline change log entries.
- * @param {functions.firestore.DocumentSnapshot} snapshot The document snapshot.
+ * Firestore trigger that processes an individual offline change log entry.
+ * It's responsible for applying the change to the main database and handling conflicts.
+ * This uses a "Last-Write-Wins based on Client Timestamp" strategy.
+ *
+ * @param {functions.firestore.DocumentSnapshot} snapshot The document snapshot of the new change log entry.
  * @param {functions.EventContext} context The event context.
  * @return {Promise<null>} A promise that resolves when the function is complete.
  */
@@ -112,11 +121,13 @@ exports.processOfflineChange = functions.firestore
     .onCreate(async (snapshot, context) => {
     const changeId = context.params.changeId;
     const changeData = snapshot.data();
+    // Do not process if the log is not pending or has no data
     if (!changeData || changeData.status !== "pending") {
         console.log(`Offline change log ${changeId} is not pending or data is missing. Skipping processing.`);
         return null;
     }
     console.log(`Processing offline change log: ${changeId} for user ${changeData.userId}. Operation: ${changeData.operation} on ${changeData.collectionPath}/${changeData.documentId}.`);
+    // Mark the log as 'processing' to prevent re-runs
     await snapshot.ref.update({
         status: "processing",
         processingAttempts: admin.firestore.FieldValue.increment(1),
@@ -138,13 +149,15 @@ exports.processOfflineChange = functions.firestore
                 if (!targetDoc.exists) {
                     throw new Error("Conflict: Document not found for update");
                 }
+                // Conflict Resolution: Last Write Wins based on client timestamp
                 const onlineTimestamp = ((_b = (_a = targetDoc.data()) === null || _a === void 0 ? void 0 : _a.updatedAt) === null || _b === void 0 ? void 0 : _b.toDate()) || new Date(0);
                 if (timestamp.toDate() < onlineTimestamp) {
                     throw new Error("Conflict: Online version is newer");
                 }
-                transaction.update(targetDocRef, Object.assign(Object.assign({}, payload), { updatedAt: admin.firestore.FieldValue.serverTimestamp() }));
+                transaction.update(targetDocRef, Object.assign(Object.assign({}, payload), { updatedAt: timestamp }));
             }
             else if (operation === "delete") {
+                // If the document doesn't exist, it's considered a success (idempotent)
                 if (targetDoc.exists) {
                     transaction.delete(targetDocRef);
                 }
@@ -153,6 +166,7 @@ exports.processOfflineChange = functions.firestore
                 throw new Error(`Unknown operation type: ${operation}`);
             }
         });
+        // If transaction is successful, mark as completed
         await snapshot.ref.update({
             status: "completed",
             processedAt: admin.firestore.FieldValue.serverTimestamp(),

@@ -11,7 +11,7 @@ import { Loader2, Droplets } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth } from '@/lib/auth-utils';
 import type { InventoryItem, Crop } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 

@@ -33,12 +33,69 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getFinancialSummaryAndTransactions = exports.logFinancialTransaction = exports.distributeCrowdfundingPayouts = exports.processCrowdfundingInvestment = exports.matchFundingOpportunities = exports.calculateDamDohCreditScore = exports.initiatePayment = void 0;
+exports.getFiApplications = exports.getFinancialInstitutions = exports.getFinancialProducts = exports.createFinancialProduct = exports.submitFinancialApplication = exports.updateFinancialApplicationStatus = exports.getFinancialApplicationDetails = exports.getFinancialSummaryAndTransactions = exports.logFinancialTransaction = exports.distributeCrowdfundingPayouts = exports.processCrowdfundingInvestment = exports.matchFundingOpportunities = exports.assessCreditRisk = exports.initiatePayment = void 0;
+exports._internalAssessCreditRisk = _internalAssessCreditRisk;
+exports._internalMatchFundingOpportunities = _internalMatchFundingOpportunities;
 exports._internalInitiatePayment = _internalInitiatePayment;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
-const ai_and_analytics_1 = require("./ai-and-analytics");
 const db = admin.firestore();
+const checkAuth = (context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    return context.auth.uid;
+};
+// --- Internal AI-Driven Functions (moved from ai-and-analytics.ts) ---
+/**
+ * Internal logic for assessing credit risk.
+ * This is an internal function to be called by other modules.
+ * @param {any} data The data payload for assessment, typically containing
+ * user profile and financial history.
+ * @return {Promise<object>} An object with the calculated credit score
+ * and contributing risk factors.
+ */
+async function _internalAssessCreditRisk(data) {
+    console.log("_internalAssessCreditRisk called with data:", data);
+    const calculatedScore = Math.floor(300 + Math.random() * 550);
+    const riskFactors = [
+        "Payment history on platform",
+        "Farm yield variability",
+        "Length of operational history",
+    ];
+    return {
+        score: calculatedScore,
+        riskFactors: riskFactors,
+        status: "placeholder_analysis_complete",
+    };
+}
+/**
+ * Internal logic for matching a user with funding opportunities.
+ * This is an internal function to be called by other modules.
+ * @param {any} data The data payload, containing user profile and available
+ * opportunities.
+ * @return {Promise<object>} An object with a list of matched
+ * opportunities and their relevance scores.
+ */
+async function _internalMatchFundingOpportunities(data) {
+    console.log("_internalMatchFundingOpportunities called with data:", data);
+    const matchedOpportunities = [
+        {
+            opportunityId: "loan_product_123",
+            relevanceScore: 0.85,
+            reason: "High credit score and matching crop type.",
+        },
+        {
+            opportunityId: "grant_program_456",
+            relevanceScore: 0.70,
+            reason: "Matches sustainability practices and location.",
+        },
+    ];
+    return {
+        matchedOpportunities: matchedOpportunities,
+        status: "placeholder_matching_complete",
+    };
+}
 /**
  * Internal logic for initiating a payment.
  * @param {any} data The data for the payment.
@@ -48,13 +105,13 @@ const db = admin.firestore();
 async function _internalInitiatePayment(data, context) {
     const { orderId, amount, currency } = data;
     if (!orderId || typeof orderId !== "string") {
-        throw new functions.https.HttpsError("invalid-argument", "The 'orderId' parameter is required.");
+        throw new functions.https.HttpsError("invalid-argument", "error.orderId.required");
     }
     if (amount === undefined || typeof amount !== "number" || amount <= 0) {
-        throw new functions.https.HttpsError("invalid-argument", "The 'amount' parameter is required, must be a number, and greater than zero.");
+        throw new functions.https.HttpsError("invalid-argument", "error.amount.invalid");
     }
     if (!currency || typeof currency !== "string") {
-        throw new functions.https.HttpsError("invalid-argument", "The 'currency' parameter is required.");
+        throw new functions.https.HttpsError("invalid-argument", "error.currency.required");
     }
     console.log(`Attempting to initiate payment for order ${orderId} (Amount: ${amount} ${currency})...`);
     console.log("Placeholder for payment gateway API call...");
@@ -72,13 +129,13 @@ async function _internalInitiatePayment(data, context) {
     }
     else {
         console.error(`Payment initiation failed for order ${orderId}.`);
-        throw new functions.https.HttpsError("aborted", "Payment initiation failed with gateway.");
+        throw new functions.https.HttpsError("aborted", "error.payment.initiationFailed");
     }
 }
 // Callable function to initiate a payment
 exports.initiatePayment = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "Caller must be authenticated.");
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
     }
     try {
         return await _internalInitiatePayment(data, context);
@@ -88,47 +145,42 @@ exports.initiatePayment = functions.https.onCall(async (data, context) => {
         if (error instanceof functions.https.HttpsError) {
             throw error;
         }
-        throw new functions.https.HttpsError("internal", "An internal error occurred during payment initiation.", error);
+        throw new functions.https.HttpsError("internal", "error.internal", error);
     }
 });
-// Firestore trigger to calculate the DamDoh Credit Score
-exports.calculateDamDohCreditScore = functions.firestore
-    .document("financial_transactions/{transactionId}")
-    .onCreate(async (snapshot, context) => {
-    var _a, _b;
-    console.log("Triggered calculateDamDohCreditScore (placeholder).");
-    const userId = (_b = (_a = snapshot.data()) === null || _a === void 0 ? void 0 : _a.userRef) === null || _b === void 0 ? void 0 : _b.id;
-    if (!userId) {
-        console.warn("Could not identify user from trigger data. Skipping score calculation.");
+/**
+ * Firestore trigger to assess credit risk when a user profile is updated.
+ */
+exports.assessCreditRisk = functions.firestore
+    .document("users/{userId}")
+    .onUpdate(async (change, context) => {
+    const userId = context.params.userId;
+    const beforeData = change.before.data();
+    const afterData = change.after.data();
+    // To prevent an infinite loop, only run if the profile data relevant to the score has changed.
+    // This is a simple check; a more complex system might compare specific fields.
+    if (beforeData.updatedAt.isEqual(afterData.updatedAt)) {
+        console.log(`Skipping credit risk assessment for user ${userId} as there are no new data changes.`);
         return null;
     }
+    console.log(`Credit risk assessment triggered for user ${userId} due to profile update.`);
     try {
-        console.log(`Calculating DamDoh Credit Score for user ${userId}...`);
         const userRef = db.collection("users").doc(userId);
-        const userDoc = await userRef.get();
-        const userData = userDoc.exists ? userDoc.data() : null;
-        if (!userData) {
-            console.warn(`User document not found for ${userId}. Skipping score calculation.`);
-            return null;
-        }
         const relevantData = {
-            userData: userData,
+            userData: afterData,
+            // In the future, we could aggregate financial transactions here as well.
         };
-        console.log("Sending data to Module 8 AI for score calculation...");
-        const scoreResult = await (0, ai_and_analytics_1._internalAssessCreditRisk)(relevantData);
-        const calculatedScore = scoreResult.score;
-        const riskFactors = scoreResult.riskFactors;
-        await db
-            .collection("credit_scores")
-            .doc(userId)
-            .set({
-            userId: userId,
-            userRef: userRef,
-            score: calculatedScore,
+        const scoreResult = await _internalAssessCreditRisk(relevantData);
+        const { score, riskFactors } = scoreResult;
+        await db.collection("credit_scores").doc(userId).set({
+            userId,
+            userRef,
+            score,
+            riskFactors,
             lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
-            riskFactors: riskFactors,
+            aiModelVersion: "v1.0-placeholder",
         }, { merge: true });
-        console.log(`Credit score for user ${userId} updated.`);
+        console.log(`Credit score for user ${userId} updated to ${score}.`);
         return null;
     }
     catch (error) {
@@ -205,7 +257,7 @@ exports.matchFundingOpportunities = functions.firestore
             return null;
         }
         console.log("Sending data to Module 8 AI for matching...");
-        const matchedOpportunitiesResult = await (0, ai_and_analytics_1._internalMatchFundingOpportunities)({
+        const matchedOpportunitiesResult = await _internalMatchFundingOpportunities({
             user: userProfileDataForMatching,
             opportunities: availableOpportunities,
         });
@@ -236,18 +288,18 @@ exports.matchFundingOpportunities = functions.firestore
 // Callable function to process a crowdfunding investment
 exports.processCrowdfundingInvestment = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated to invest.");
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
     }
     const investorUid = context.auth.uid;
     const { projectId, amount, currency } = data;
     if (!projectId || typeof projectId !== "string") {
-        throw new functions.https.HttpsError("invalid-argument", "The 'projectId' parameter is required.");
+        throw new functions.https.HttpsError("invalid-argument", "error.projectId.required");
     }
     if (amount === undefined || typeof amount !== "number" || amount <= 0) {
-        throw new functions.https.HttpsError("invalid-argument", "The 'amount' parameter is required, must be a number, and greater than zero.");
+        throw new functions.https.HttpsError("invalid-argument", "error.amount.invalid");
     }
     if (!currency || typeof currency !== "string") {
-        throw new functions.https.HttpsError("invalid-argument", "The 'currency' parameter is required.");
+        throw new functions.https.HttpsError("invalid-argument", "error.currency.required");
     }
     try {
         const projectRef = db.collection("crowdfunding_projects").doc(projectId);
@@ -256,14 +308,14 @@ exports.processCrowdfundingInvestment = functions.https.onCall(async (data, cont
         await db.runTransaction(async (transaction) => {
             const projectDoc = await transaction.get(projectRef);
             if (!projectDoc.exists) {
-                throw new functions.https.HttpsError("not-found", `Crowdfunding project with ID ${projectId} not found.`);
+                throw new functions.https.HttpsError("not-found", "error.project.notFound");
             }
             const projectData = projectDoc.data();
             const currentRaised = (projectData === null || projectData === void 0 ? void 0 : projectData.currentRaised) || 0;
             const targetAmount = (projectData === null || projectData === void 0 ? void 0 : projectData.targetAmount) || 0;
             if ((projectData === null || projectData === void 0 ? void 0 : projectData.status) !== "open" ||
                 currentRaised >= targetAmount) {
-                throw new functions.https.HttpsError("failed-precondition", `Project ${projectId} is not open for investment.`);
+                throw new functions.https.HttpsError("failed-precondition", "error.project.notOpen");
             }
             const newCurrentRaised = currentRaised + amount;
             transaction.update(projectRef, {
@@ -305,7 +357,7 @@ exports.processCrowdfundingInvestment = functions.https.onCall(async (data, cont
         if (error instanceof functions.https.HttpsError) {
             throw error;
         }
-        throw new functions.https.HttpsError("internal", "Unable to process crowdfunding investment.", error);
+        throw new functions.https.HttpsError("internal", "error.internal", error);
     }
 });
 // Triggered function to distribute payouts to crowdfunding investors
@@ -381,22 +433,22 @@ exports.distributeCrowdfundingPayouts = functions.firestore
 // Callable function for users to log manual financial transactions
 exports.logFinancialTransaction = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated to log a financial transaction.");
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
     }
     const callerUid = context.auth.uid;
     const { type, amount, currency, description, category } = data;
     const validTypes = ["income", "expense"];
     if (!type || typeof type !== "string" || !validTypes.includes(type)) {
-        throw new functions.https.HttpsError("invalid-argument", `The 'type' parameter is required and must be one of: ${validTypes.join(", ")}.`);
+        throw new functions.https.HttpsError("invalid-argument", "error.type.invalid");
     }
     if (amount === undefined || typeof amount !== "number" || amount <= 0) {
-        throw new functions.https.HttpsError("invalid-argument", "The 'amount' parameter is required, must be a number, and greater than zero.");
+        throw new functions.https.HttpsError("invalid-argument", "error.amount.invalid");
     }
     if (!currency || typeof currency !== "string") {
-        throw new functions.https.HttpsError("invalid-argument", "The 'currency' parameter is required.");
+        throw new functions.https.HttpsError("invalid-argument", "error.currency.required");
     }
     if (!description || typeof description !== "string") {
-        throw new functions.https.HttpsError("invalid-argument", "The 'description' parameter is required.");
+        throw new functions.https.HttpsError("invalid-argument", "error.description.required");
     }
     try {
         console.log(`Logging financial transaction for user ${callerUid}: ${type} ${amount} ${currency} - ${description}`);
@@ -425,7 +477,7 @@ exports.logFinancialTransaction = functions.https.onCall(async (data, context) =
         if (error instanceof functions.https.HttpsError) {
             throw error;
         }
-        throw new functions.https.HttpsError("internal", "Unable to log financial transaction.", error);
+        throw new functions.https.HttpsError("internal", "error.internal", error);
     }
 });
 /**
@@ -436,21 +488,23 @@ exports.logFinancialTransaction = functions.https.onCall(async (data, context) =
  */
 exports.getFinancialSummaryAndTransactions = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
     }
     const userId = context.auth.uid;
     try {
         const transactionsRef = db.collection("financial_transactions");
         const userDocRef = db.collection("users").doc(userId);
+        // 1. Fetch ALL transactions for the user
         const q = transactionsRef
             .where("userRef", "==", userDocRef)
             .orderBy("timestamp", "desc");
-        const querySnapshot = await q.get();
+        const allTransactionsSnapshot = await q.get();
         let totalIncome = 0;
         let totalExpense = 0;
-        const transactions = [];
-        querySnapshot.forEach((doc) => {
-            var _a;
+        const allTransactions = [];
+        // 2. & 3. Iterate once through all transactions
+        allTransactionsSnapshot.forEach((doc) => {
+            var _a, _b, _c;
             const tx = doc.data();
             if (tx.type === "income") {
                 totalIncome += tx.amount;
@@ -458,19 +512,162 @@ exports.getFinancialSummaryAndTransactions = functions.https.onCall(async (data,
             else if (tx.type === "expense") {
                 totalExpense += tx.amount;
             }
-            // Convert timestamp for client
-            transactions.push(Object.assign(Object.assign({ id: doc.id }, tx), { timestamp: ((_a = tx.timestamp) === null || _a === void 0 ? void 0 : _a.toDate) ? tx.timestamp.toDate().toISOString() : null }));
+            // Convert timestamp for client and add to full list
+            allTransactions.push(Object.assign(Object.assign({ id: doc.id }, tx), { timestamp: (_c = (_b = (_a = tx.timestamp) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a).toISOString()) !== null && _c !== void 0 ? _c : null }));
         });
+        // 4. Create summary object
         const summary = {
             totalIncome,
             totalExpense,
             netFlow: totalIncome - totalExpense,
         };
-        return { summary, transactions: transactions.slice(0, 10) }; // Return summary and last 10 transactions
+        // 5. Return summary and sliced list of recent transactions
+        return { summary, transactions: allTransactions.slice(0, 10) };
     }
     catch (error) {
         console.error("Error fetching financial summary:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch financial data.");
+        throw new functions.https.HttpsError("internal", "error.financialData.fetchFailed");
     }
+});
+const checkFiAuth = async (context) => {
+    var _a, _b;
+    const uid = (_a = context.auth) === null || _a === void 0 ? void 0 : _a.uid;
+    if (!uid) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    const userDoc = await db.collection("users").doc(uid).get();
+    const userRole = (_b = userDoc.data()) === null || _b === void 0 ? void 0 : _b.primaryRole;
+    if (userRole !== 'Financial Institution (Micro-finance/Loans)') {
+        throw new functions.https.HttpsError("permission-denied", "You are not authorized to perform this action.");
+    }
+    return uid;
+};
+exports.getFinancialApplicationDetails = functions.https.onCall(async (data, context) => {
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+    await checkFiAuth(context);
+    const { applicationId } = data;
+    if (!applicationId) {
+        throw new functions.https.HttpsError('invalid-argument', 'Application ID is required.');
+    }
+    const appRef = db.collection('financial_applications').doc(applicationId);
+    const appDoc = await appRef.get();
+    if (!appDoc.exists) {
+        throw new functions.https.HttpsError('not-found', 'Application not found.');
+    }
+    const appData = appDoc.data();
+    let applicantProfile = null;
+    if (appData.applicantId) {
+        const profileDoc = await db.collection('users').doc(appData.applicantId).get();
+        if (profileDoc.exists) {
+            const profileData = profileDoc.data();
+            applicantProfile = Object.assign(Object.assign({ id: profileDoc.id }, profileData), { createdAt: (_c = (_b = (_a = profileData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a).toISOString()) !== null && _c !== void 0 ? _c : null, updatedAt: (_f = (_e = (_d = profileData.updatedAt) === null || _d === void 0 ? void 0 : _d.toDate) === null || _e === void 0 ? void 0 : _e.call(_d).toISOString()) !== null && _f !== void 0 ? _f : null });
+        }
+    }
+    const serializedAppData = Object.assign(Object.assign({}, appData), { id: appDoc.id, submittedAt: (_j = (_h = (_g = appData.submittedAt) === null || _g === void 0 ? void 0 : _g.toDate) === null || _h === void 0 ? void 0 : _h.call(_g).toISOString()) !== null && _j !== void 0 ? _j : null });
+    return { application: serializedAppData, applicant: applicantProfile };
+});
+exports.updateFinancialApplicationStatus = functions.https.onCall(async (data, context) => {
+    await checkFiAuth(context);
+    const { applicationId, status } = data;
+    if (!applicationId || !status) {
+        throw new functions.https.HttpsError('invalid-argument', 'Application ID and a new status are required.');
+    }
+    const validStatuses = ['Approved', 'Rejected', 'More Info Required'];
+    if (!validStatuses.includes(status)) {
+        throw new functions.https.HttpsError('invalid-argument', 'Invalid status provided.');
+    }
+    const appRef = db.collection('financial_applications').doc(applicationId);
+    await appRef.update({
+        status: status,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp()
+    });
+    return { success: true, message: `Application status updated to ${status}.` };
+});
+exports.submitFinancialApplication = functions.https.onCall(async (data, context) => {
+    var _a;
+    const applicantId = checkAuth(context);
+    const { fiId, type, amount, currency, purpose } = data;
+    // Basic validation
+    if (!fiId || !type || !amount || !purpose) {
+        throw new functions.https.HttpsError("invalid-argument", "Missing required application fields.");
+    }
+    const applicantDoc = await db.collection("users").doc(applicantId).get();
+    if (!applicantDoc.exists) {
+        throw new functions.https.HttpsError("not-found", "Applicant profile not found.");
+    }
+    const applicantName = ((_a = applicantDoc.data()) === null || _a === void 0 ? void 0 : _a.displayName) || "Unknown Applicant";
+    const applicationRef = db.collection("financial_applications").doc();
+    await applicationRef.set({
+        applicantId: applicantId,
+        applicantName: applicantName,
+        fiId: fiId,
+        type: type,
+        amount: Number(amount),
+        currency: currency || "USD",
+        status: "Pending", // Initial status
+        purpose: purpose,
+        submittedAt: admin.firestore.FieldValue.serverTimestamp(),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    return { success: true, applicationId: applicationRef.id };
+});
+exports.createFinancialProduct = functions.https.onCall(async (data, context) => {
+    const fiId = await checkFiAuth(context); // Reuse the auth check for FIs
+    const { name, type, description, interestRate, maxAmount, targetRoles } = data;
+    if (!name || !type || !description) {
+        throw new functions.https.HttpsError("invalid-argument", "Name, type, and description are required.");
+    }
+    const productRef = db.collection("financial_products").doc();
+    await productRef.set({
+        fiId,
+        name,
+        type,
+        description,
+        interestRate: type === 'Loan' ? interestRate : null,
+        maxAmount: maxAmount || null,
+        targetRoles: targetRoles || [],
+        status: 'Active',
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    return { success: true, productId: productRef.id };
+});
+exports.getFinancialProducts = functions.https.onCall(async (data, context) => {
+    const fiId = await checkFiAuth(context);
+    const productsSnapshot = await db.collection("financial_products")
+        .where("fiId", "==", fiId)
+        .orderBy("createdAt", "desc")
+        .get();
+    const products = productsSnapshot.docs.map(doc => {
+        var _a, _b, _c, _d;
+        const data = doc.data();
+        return Object.assign(Object.assign({ id: doc.id }, data), { createdAt: (_b = (_a = data.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a).toISOString(), updatedAt: (_d = (_c = data.updatedAt) === null || _c === void 0 ? void 0 : _c.toDate) === null || _d === void 0 ? void 0 : _d.call(_c).toISOString() });
+    });
+    return { products };
+});
+exports.getFinancialInstitutions = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
+    const fiSnapshot = await db.collection("users").where("primaryRole", "==", "Financial Institution (Micro-finance/Loans)").get();
+    const fis = fiSnapshot.docs.map(doc => ({
+        id: doc.id,
+        displayName: doc.data().displayName,
+    }));
+    return fis;
+});
+exports.getFiApplications = functions.https.onCall(async (data, context) => {
+    const fiId = await checkFiAuth(context);
+    const { status } = data; // e.g., "Pending", "Approved", "All"
+    let query = db.collection("financial_applications").where("fiId", "==", fiId);
+    if (status && status !== 'All') {
+        query = query.where("status", "==", status);
+    }
+    query = query.orderBy("submittedAt", "desc");
+    const snapshot = await query.get();
+    const applications = snapshot.docs.map(doc => {
+        var _a, _b, _c;
+        const appData = doc.data();
+        return Object.assign(Object.assign({}, appData), { id: doc.id, submittedAt: (_c = (_b = (_a = appData.submittedAt) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a).toISOString()) !== null && _c !== void 0 ? _c : null });
+    });
+    return { applications };
 });
 //# sourceMappingURL=financial-services.js.map

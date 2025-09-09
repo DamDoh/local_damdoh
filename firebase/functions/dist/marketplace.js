@@ -32,44 +32,34 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getListingsBySeller = exports.getShopDetails = exports.validateMarketplaceCoupon = exports.getSellerCoupons = exports.createMarketplaceCoupon = exports.createMarketplaceListing = exports.createShop = void 0;
+exports.updateOrderStatus = exports.getSellerOrders = exports.createMarketplaceOrder = exports.getMarketplaceItemById = exports.getListingsBySeller = exports.getShopDetails = exports.validateMarketplaceCoupon = exports.getSellerCoupons = exports.createMarketplaceCoupon = exports.createMarketplaceListing = exports.createShop = void 0;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
+const schemas_1 = require("@/lib/schemas"); // Import from new location
 const db = admin.firestore();
+// Helper to check for authentication
+const checkAuth = (context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+    return context.auth.uid;
+};
 /**
  * Creates a new Digital Shopfront for an authenticated user.
- * This is the entry point for stakeholders to establish a presence in the Marketplace (Module 4).
- * @param {any} data The data for the new shop.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{success: boolean, shopId: string, message: string}>} A promise that resolves with the new shop ID.
  */
 exports.createShop = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated to create a shop.");
+    const userId = checkAuth(context);
+    // Validate the incoming data against the Zod schema
+    const validation = schemas_1.ShopSchema.safeParse(data);
+    if (!validation.success) {
+        throw new functions.https.HttpsError("invalid-argument", "Invalid shop data provided.", validation.error.format());
     }
-    const { name, description, stakeholderType } = data;
-    if (!name || !description || !stakeholderType) {
-        throw new functions.https.HttpsError("invalid-argument", "Shop name, description, and stakeholder type are required.");
-    }
-    const userId = context.auth.uid;
+    const { name, description, stakeholderType } = validation.data;
     try {
         const shopRef = db.collection("shops").doc();
         const userRef = db.collection("users").doc(userId);
-        // Use a batched write to ensure both operations succeed or fail together.
         const batch = db.batch();
-        // 1. Create the new shop document.
         batch.set(shopRef, {
             ownerId: userId,
             name: name,
@@ -77,15 +67,12 @@ exports.createShop = functions.https.onCall(async (data, context) => {
             stakeholderType: stakeholderType,
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-            // Add other optional fields with defaults if needed
             logoUrl: null,
             bannerUrl: null,
             contactInfo: {},
             itemCount: 0,
             rating: 0,
         });
-        // 2. Update the user's document with a reference to their new shop.
-        // Using an array to support multiple shopfronts in the future if needed.
         batch.update(userRef, {
             shops: admin.firestore.FieldValue.arrayUnion(shopRef.id),
         });
@@ -98,28 +85,23 @@ exports.createShop = functions.https.onCall(async (data, context) => {
     }
     catch (error) {
         console.error("Error creating shop:", error);
-        throw new functions.https.HttpsError("internal", "Failed to create Digital Shopfront. Please check your project's Firestore setup.", { originalError: error.message });
+        throw new functions.https.HttpsError("internal", "Failed to create Digital Shopfront.", { originalError: error.message });
     }
 });
 /**
  * Creates a new marketplace listing.
- * This function is callable from the client.
- * @param {any} data The data for the new listing.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{id: string, name: string}>} A promise that resolves with the new listing ID and name.
  */
 exports.createMarketplaceListing = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to create a listing.");
+    const sellerId = checkAuth(context);
+    // Validate incoming data using the partial schema
+    const listingSchema = schemas_1.MarketplaceItemSchema.omit({ id: true, sellerId: true, createdAt: true, updatedAt: true });
+    const validation = listingSchema.safeParse(data);
+    if (!validation.success) {
+        throw new functions.https.HttpsError("invalid-argument", "Invalid listing data.", validation.error.format());
     }
-    const sellerId = context.auth.uid;
-    const { name, listingType, description, category, location } = data;
-    // Basic validation
-    if (!name || !listingType || !description || !category || !location) {
-        throw new functions.https.HttpsError("invalid-argument", "Missing required fields for the listing.");
-    }
+    const validatedData = validation.data;
     try {
-        const listingData = Object.assign(Object.assign({}, data), { sellerId: sellerId, createdAt: admin.firestore.FieldValue.serverTimestamp(), updatedAt: admin.firestore.FieldValue.serverTimestamp() });
+        const listingData = Object.assign(Object.assign({}, validatedData), { sellerId: sellerId, createdAt: admin.firestore.FieldValue.serverTimestamp(), updatedAt: admin.firestore.FieldValue.serverTimestamp() });
         const docRef = await db.collection("marketplaceItems").add(listingData);
         return { id: docRef.id, name: listingData.name };
     }
@@ -130,9 +112,6 @@ exports.createMarketplaceListing = functions.https.onCall(async (data, context) 
 });
 /**
  * Creates a new marketplace coupon for the authenticated seller.
- * @param {any} data The data for the new coupon.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{couponId: string, code: string, message: string}>} A promise that resolves with the new coupon ID.
  */
 exports.createMarketplaceCoupon = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
@@ -140,7 +119,6 @@ exports.createMarketplaceCoupon = functions.https.onCall(async (data, context) =
     }
     const sellerId = context.auth.uid;
     const { code, discountType, discountValue, expiresAt, usageLimit, applicableToListingIds, applicableToCategories, } = data;
-    // Basic validation
     if (!code || !discountType || discountValue === undefined) {
         throw new functions.https.HttpsError("invalid-argument", "Missing required coupon fields.");
     }
@@ -171,15 +149,9 @@ exports.createMarketplaceCoupon = functions.https.onCall(async (data, context) =
 });
 /**
  * Fetches all marketplace coupons for the authenticated seller.
- * @param {any} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{coupons: any[]}>} A promise that resolves with the seller's coupons.
  */
 exports.getSellerCoupons = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to view your coupons.");
-    }
-    const sellerId = context.auth.uid;
+    const sellerId = checkAuth(context);
     try {
         const snapshot = await db
             .collection("marketplace_coupons")
@@ -188,7 +160,7 @@ exports.getSellerCoupons = functions.https.onCall(async (data, context) => {
             .get();
         const coupons = snapshot.docs.map((doc) => {
             var _a, _b, _c, _d;
-            const _e = doc.data(), { id } = _e, couponData = __rest(_e, ["id"]);
+            const couponData = doc.data();
             return Object.assign(Object.assign({ id: doc.id }, couponData), { createdAt: ((_b = (_a = couponData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a).toISOString()) || null, expiresAt: ((_d = (_c = couponData.expiresAt) === null || _c === void 0 ? void 0 : _c.toDate) === null || _d === void 0 ? void 0 : _d.call(_c).toISOString()) || null });
         });
         return { coupons };
@@ -200,15 +172,10 @@ exports.getSellerCoupons = functions.https.onCall(async (data, context) => {
 });
 /**
  * Validates a marketplace coupon for a specific seller.
- * @param {any} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{valid: boolean, message?: string, discountType?: string, discountValue?: number, code?: string}>} A promise that resolves with the validation result.
  */
 exports.validateMarketplaceCoupon = functions.https.onCall(async (data, context) => {
     var _a;
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to validate a coupon.");
-    }
+    checkAuth(context);
     const { couponCode, sellerId } = data;
     if (!couponCode || !sellerId) {
         throw new functions.https.HttpsError("invalid-argument", "couponCode and sellerId are required.");
@@ -251,9 +218,6 @@ exports.validateMarketplaceCoupon = functions.https.onCall(async (data, context)
 });
 /**
  * Fetches the details of a specific shop.
- * @param {any} data The data containing the shopId.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<Shop>} A promise that resolves with the shop's details.
  */
 exports.getShopDetails = functions.https.onCall(async (data, context) => {
     var _a, _b, _c, _d;
@@ -278,9 +242,6 @@ exports.getShopDetails = functions.https.onCall(async (data, context) => {
 });
 /**
  * Fetches all marketplace listings for a specific seller.
- * @param {any} data The data containing the sellerId.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{items: MarketplaceItem[]}>} A promise that resolves with the seller's listings.
  */
 exports.getListingsBySeller = functions.https.onCall(async (data, context) => {
     const { sellerId } = data;
@@ -300,6 +261,144 @@ exports.getListingsBySeller = functions.https.onCall(async (data, context) => {
     catch (error) {
         console.error(`Error fetching listings for seller ${sellerId}:`, error);
         throw new functions.https.HttpsError("internal", "Could not fetch seller's listings.");
+    }
+});
+/**
+ * Fetches the details of a specific marketplace item.
+ */
+exports.getMarketplaceItemById = functions.https.onCall(async (data, context) => {
+    var _a, _b, _c, _d;
+    const { itemId } = data;
+    if (!itemId) {
+        throw new functions.https.HttpsError("invalid-argument", "An itemId must be provided.");
+    }
+    try {
+        const itemDoc = await db.collection("marketplaceItems").doc(itemId).get();
+        if (!itemDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "Marketplace item not found.");
+        }
+        const itemData = itemDoc.data();
+        return Object.assign(Object.assign({ id: itemDoc.id }, itemData), { createdAt: ((_b = (_a = itemData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a).toISOString()) || null, updatedAt: ((_d = (_c = itemData.updatedAt) === null || _c === void 0 ? void 0 : _c.toDate) === null || _d === void 0 ? void 0 : _d.call(_c).toISOString()) || null });
+    }
+    catch (error) {
+        console.error(`Error fetching marketplace item details for ${itemId}:`, error);
+        if (error instanceof functions.https.HttpsError)
+            throw error;
+        throw new functions.https.HttpsError("internal", "Could not fetch item details.");
+    }
+});
+/**
+ * Creates a new marketplace order.
+ */
+exports.createMarketplaceOrder = functions.https.onCall(async (data, context) => {
+    const buyerId = checkAuth(context);
+    // Validate incoming data
+    const validation = schemas_1.MarketplaceOrderSchema.omit({ id: true, buyerId: true, sellerId: true, createdAt: true, updatedAt: true, totalPrice: true, currency: true, orderId: true }).safeParse(data);
+    if (!validation.success) {
+        throw new functions.https.HttpsError('invalid-argument', 'Invalid order data.', validation.error.format());
+    }
+    const { itemId, quantity, buyerNotes } = validation.data;
+    try {
+        const itemRef = db.collection("marketplaceItems").doc(itemId);
+        const itemDoc = await itemRef.get();
+        if (!itemDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "The item you are trying to order does not exist.");
+        }
+        const itemData = itemDoc.data();
+        const sellerId = itemData.sellerId;
+        const totalPrice = (itemData.price || 0) * quantity;
+        const orderRef = db.collection("marketplace_orders").doc();
+        await orderRef.set({
+            orderId: orderRef.id,
+            itemId: itemId,
+            listingName: itemData.name,
+            buyerId: buyerId,
+            sellerId: sellerId,
+            quantity: quantity,
+            totalPrice: totalPrice,
+            currency: itemData.currency,
+            buyerNotes: buyerNotes || "",
+            status: "new",
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        // The onWrite trigger in notifications.ts will handle sending a notification to the seller.
+        return { success: true, orderId: orderRef.id };
+    }
+    catch (error) {
+        console.error("Error creating marketplace order:", error);
+        if (error instanceof functions.https.HttpsError)
+            throw error;
+        throw new functions.https.HttpsError("internal", "Failed to create order.", { originalError: error.message });
+    }
+});
+exports.getSellerOrders = functions.https.onCall(async (data, context) => {
+    const sellerId = checkAuth(context);
+    try {
+        const ordersSnapshot = await db.collection("marketplace_orders")
+            .where("sellerId", "==", sellerId)
+            .orderBy("createdAt", "desc")
+            .get();
+        const buyerIds = [...new Set(ordersSnapshot.docs.map(doc => doc.data().buyerId))];
+        const buyerProfiles = {};
+        if (buyerIds.length > 0) {
+            const profileChunks = [];
+            for (let i = 0; i < buyerIds.length; i += 30) {
+                profileChunks.push(buyerIds.slice(i, i + 30));
+            }
+            for (const chunk of profileChunks) {
+                const profilesSnapshot = await db.collection("users").where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
+                profilesSnapshot.forEach(doc => {
+                    buyerProfiles[doc.id] = {
+                        displayName: doc.data().displayName,
+                        avatarUrl: doc.data().avatarUrl || null,
+                    };
+                });
+            }
+        }
+        const orders = ordersSnapshot.docs.map(doc => {
+            var _a, _b, _c, _d;
+            const orderData = doc.data();
+            return Object.assign(Object.assign({ id: doc.id }, orderData), { buyerProfile: buyerProfiles[orderData.buyerId] || { displayName: 'Unknown Buyer', avatarUrl: null }, createdAt: (_b = (_a = orderData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a).toISOString(), updatedAt: (_d = (_c = orderData.updatedAt) === null || _c === void 0 ? void 0 : _c.toDate) === null || _d === void 0 ? void 0 : _d.call(_c).toISOString() });
+        });
+        return { orders };
+    }
+    catch (error) {
+        console.error("Error fetching seller orders:", error);
+        throw new functions.https.HttpsError("internal", "Could not fetch orders.");
+    }
+});
+exports.updateOrderStatus = functions.https.onCall(async (data, context) => {
+    var _a;
+    const sellerId = checkAuth(context);
+    const { orderId, newStatus } = data;
+    if (!orderId || !newStatus) {
+        throw new functions.https.HttpsError("invalid-argument", "Order ID and new status are required.");
+    }
+    const validStatuses = ["new", "confirmed", "shipped", "completed", "cancelled"];
+    if (!validStatuses.includes(newStatus)) {
+        throw new functions.https.HttpsError("invalid-argument", "Invalid status provided.");
+    }
+    const orderRef = db.collection("marketplace_orders").doc(orderId);
+    try {
+        const orderDoc = await orderRef.get();
+        if (!orderDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "Order not found.");
+        }
+        if (((_a = orderDoc.data()) === null || _a === void 0 ? void 0 : _a.sellerId) !== sellerId) {
+            throw new functions.https.HttpsError("permission-denied", "You are not authorized to update this order.");
+        }
+        await orderRef.update({
+            status: newStatus,
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        return { success: true, message: `Order status updated to ${newStatus}.` };
+    }
+    catch (error) {
+        if (error instanceof functions.https.HttpsError)
+            throw error;
+        console.error("Error updating order status:", error);
+        throw new functions.https.HttpsError("internal", "Could not update the order status.");
     }
 });
 //# sourceMappingURL=marketplace.js.map

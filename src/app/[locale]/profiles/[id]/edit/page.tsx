@@ -26,7 +26,7 @@ import { ArrowLeft, Save, User, Mail, Briefcase, FileText, MapPin, Sparkles, Tre
 import React from "react"; 
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/lib/auth-utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';

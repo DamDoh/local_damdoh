@@ -4,7 +4,7 @@ import '../globals.css';
 import { APP_NAME } from "@/lib/constants";
 import { Providers } from "@/components/Providers";
 import {NextIntlClientProvider} from 'next-intl';
-import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
+import { getLocale, getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { locales } from '@/i18n-config';
 import { notFound } from "next/navigation";
  
@@ -23,11 +23,12 @@ export function generateStaticParams() {
  
 export default async function LocaleLayout({
   children,
-  params: {locale},
+  params,
 }: {
   children: React.ReactNode;
   params: {locale: string};
 }) {
+  const { locale } = params;
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as any)) notFound();
  

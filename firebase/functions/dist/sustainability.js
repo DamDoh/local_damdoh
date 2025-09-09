@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.calculateCarbonFootprint = void 0;
+exports.getSustainabilityDashboardData = exports.calculateCarbonFootprint = void 0;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
 const db = admin.firestore();
@@ -44,7 +44,9 @@ const db = admin.firestore();
  */
 async function getEmissionFactor(criteria) {
     console.log("Fetching emission factor for criteria (placeholder):", criteria);
-    return null;
+    // In a real implementation, this would query a dedicated 'emission_factors' collection
+    // based on the provided criteria.
+    return null; // Returning null as this is a placeholder.
 }
 /**
  * Determines the region for a calculation based on the provided data.
@@ -52,8 +54,9 @@ async function getEmissionFactor(criteria) {
  * @return {Promise<string | null>} A promise that resolves with the region or null if not found.
  */
 async function getRegionForCalculation(data) {
+    // Logic to determine region, e.g., from farm location in user profile
     console.log("Determining region for calculation (placeholder):", data);
-    return "Global";
+    return "Global"; // Placeholder
 }
 exports.calculateCarbonFootprint = functions.firestore
     .document("traceability_events/{eventId}")
@@ -61,8 +64,8 @@ exports.calculateCarbonFootprint = functions.firestore
     var _a, _b, _c, _d, _e;
     const document = change.after.exists ? change.after.data() : null;
     const eventId = context.params.eventId;
+    // Only process new events
     if (!document || change.before.exists) {
-        console.log(`Ignoring update or delete on traceability_events/${eventId}.`);
         return null;
     }
     console.log(`Triggered carbon footprint calculation for new event: traceability_events/${eventId}`);
@@ -125,5 +128,39 @@ exports.calculateCarbonFootprint = functions.firestore
         console.error(`Error calculating carbon footprint for event/${eventId}:`, error);
         return null;
     }
+});
+exports.getSustainabilityDashboardData = functions.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+    }
+    const userId = context.auth.uid;
+    // In a real app, this would involve complex aggregation queries on the `carbon_footprint_data` collection
+    // and other data sources. For now, we return mock data that matches the frontend's expectations.
+    return {
+        carbonFootprint: {
+            total: 1250, // kg CO2e
+            unit: 'kg CO2e',
+            trend: -5, // % change over last month
+        },
+        waterUsage: {
+            efficiency: 85, // %
+            unit: '% efficiency',
+            trend: 2,
+        },
+        biodiversityScore: {
+            score: 7.8,
+            unit: '/ 10',
+            trend: 0.5,
+        },
+        sustainablePractices: [
+            { id: 'p1', practice: 'Cover Cropping', lastLogged: new Date().toISOString() },
+            { id: 'p2', practice: 'No-Till Farming', lastLogged: new Date(Date.now() - 86400000 * 10).toISOString() },
+            { id: 'p3', practice: 'Integrated Pest Management', lastLogged: new Date(Date.now() - 86400000 * 5).toISOString() },
+        ],
+        certifications: [
+            { id: 'c1', name: 'USDA Organic', status: 'Active', expiry: new Date(Date.now() + 86400000 * 180).toISOString() },
+            { id: 'c2', name: 'Fair Trade Certified', status: 'Active', expiry: new Date(Date.now() + 86400000 * 300).toISOString() },
+        ]
+    };
 });
 //# sourceMappingURL=sustainability.js.map

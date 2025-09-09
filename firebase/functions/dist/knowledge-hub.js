@@ -33,10 +33,83 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCourseDetails = exports.getAvailableCourses = exports.getKnowledgeArticleById = exports.getKnowledgeArticles = exports.createKnowledgeArticle = exports.getFeaturedKnowledge = exports.createModule = exports.createCourse = void 0;
+exports.getCourseDetails = exports.getAvailableCourses = exports.getKnowledgeArticleById = exports.getKnowledgeArticles = exports.createKnowledgeArticle = exports.getFeaturedKnowledge = exports.createModule = exports.createCourse = exports.onArticleWriteTranslate = void 0;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
+const translate_flow_1 = require("@/ai/flows/translate-flow");
 const db = admin.firestore();
+const SUPPORTED_LANGUAGES = ["en", "km", "es", "fr", "de", "th"];
+/**
+ * Firestore trigger that automatically translates new or updated knowledge articles
+ * into all supported languages. This function now treats English as the source of truth.
+ * @param {functions.Change<functions.firestore.DocumentSnapshot>} change The change event.
+ * @param {functions.EventContext} context The event context.
+ * @return {Promise<null>} A promise that resolves when the function is complete.
+ */
+exports.onArticleWriteTranslate = functions.firestore
+    .document("knowledge_articles/{articleId}")
+    .onWrite(async (change, context) => {
+    const { articleId } = context.params;
+    const afterData = change.after.data();
+    if (!afterData) {
+        console.log(`Article ${articleId} deleted. No action needed.`);
+        return null;
+    }
+    const beforeData = change.before.data() || {};
+    const englishContentChanged = (afterData.title_en !== beforeData.title_en ||
+        afterData.content_markdown_en !== beforeData.content_markdown_en ||
+        afterData.excerpt_en !== beforeData.excerpt_en);
+    if (!englishContentChanged) {
+        console.log(`No change in English source content for article ${articleId}. No translation action needed.`);
+        return null;
+    }
+    console.log(`English content for article ${articleId} changed. Triggering re-translation for all other languages.`);
+    const sourceTitle = afterData.title_en;
+    const sourceContent = afterData.content_markdown_en;
+    const sourceExcerpt = afterData.excerpt_en;
+    if (!sourceTitle || !sourceContent || !sourceExcerpt) {
+        console.log("English source content is incomplete. Skipping translation.");
+        return null;
+    }
+    const translationPromises = [];
+    const updatePayload = {};
+    for (const lang of SUPPORTED_LANGUAGES) {
+        if (lang === 'en')
+            continue;
+        console.log(`Queueing translation to '${lang}' for article ${articleId}.`);
+        const p = (async () => {
+            try {
+                const [translatedTitle, translatedContent, translatedExcerpt] = await Promise.all([
+                    (0, translate_flow_1.translateText)({ text: sourceTitle, targetLanguage: lang }),
+                    (0, translate_flow_1.translateText)({ text: sourceContent, targetLanguage: lang }),
+                    (0, translate_flow_1.translateText)({ text: sourceExcerpt, targetLanguage: lang })
+                ]);
+                // Check for translation errors before adding to payload
+                if (translatedTitle && !translatedTitle.startsWith('[Translation Error')) {
+                    updatePayload[`title_${lang}`] = translatedTitle;
+                    updatePayload[`content_markdown_${lang}`] = translatedContent;
+                    updatePayload[`excerpt_${lang}`] = translatedExcerpt;
+                }
+                else {
+                    console.warn(`Translation to ${lang} for article ${articleId} resulted in an error or empty string.`);
+                }
+            }
+            catch (error) {
+                console.error(`Translation to ${lang} for article ${articleId} failed:`, error);
+            }
+        })();
+        translationPromises.push(p);
+    }
+    await Promise.all(translationPromises);
+    if (Object.keys(updatePayload).length > 0) {
+        console.log(`Updating article ${articleId} with new translations.`);
+        return change.after.ref.update(updatePayload);
+    }
+    else {
+        console.log(`No new successful translations to update for article ${articleId}.`);
+        return null;
+    }
+});
 /**
  * Creates a new course in the 'courses' collection.
  * Requires admin privileges.
@@ -48,11 +121,11 @@ exports.createCourse = functions.https.onCall(async (data, context) => {
     // For this demo, we'll allow any authenticated user to create content.
     // In a production app, the requireAdmin(context) check should be enabled.
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
     }
     const { titleEn, descriptionEn, category, level, targetRoles } = data;
     if (!titleEn || !descriptionEn || !category || !level) {
-        throw new functions.https.HttpsError("invalid-argument", "Missing required fields for the course.");
+        throw new functions.https.HttpsError("invalid-argument", "error.course.missingFields");
     }
     try {
         const newCourseRef = await db.collection("courses").add({
@@ -68,7 +141,7 @@ exports.createCourse = functions.https.onCall(async (data, context) => {
     }
     catch (error) {
         console.error("Error creating course:", error);
-        throw new functions.https.HttpsError("internal", "Failed to create course.", {
+        throw new functions.https.HttpsError("internal", "error.course.creationFailed", {
             originalError: error.message,
         });
     }
@@ -81,13 +154,12 @@ exports.createCourse = functions.https.onCall(async (data, context) => {
  * @return {Promise<{success: boolean, moduleId: string}>} A promise that resolves with the new module ID.
  */
 exports.createModule = functions.https.onCall(async (data, context) => {
-    // For this demo, we'll allow any authenticated user to create content.
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
     }
     const { courseId, moduleTitleEn, contentUrls } = data;
     if (!courseId || !moduleTitleEn) {
-        throw new functions.https.HttpsError("invalid-argument", "Course ID and module title are required.");
+        throw new functions.https.HttpsError("invalid-argument", "error.module.missingFields");
     }
     try {
         const newModuleRef = await db
@@ -104,11 +176,14 @@ exports.createModule = functions.https.onCall(async (data, context) => {
     }
     catch (error) {
         console.error("Error creating module:", error);
-        throw new functions.https.HttpsError("internal", "Failed to create module.", { originalError: error.message });
+        throw new functions.https.HttpsError("internal", "error.module.creationFailed", { originalError: error.message });
     }
 });
 /**
  * Fetches the 3 most recent knowledge articles to be featured.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, articles: any[]}>} A promise that resolves with the articles.
  */
 exports.getFeaturedKnowledge = functions.https.onCall(async (data, context) => {
     try {
@@ -123,14 +198,14 @@ exports.getFeaturedKnowledge = functions.https.onCall(async (data, context) => {
             .get();
         const articles = articlesSnapshot.docs.map(doc => {
             var _a, _b;
-            const data = doc.data();
-            return Object.assign(Object.assign({ id: doc.id }, data), { createdAt: ((_a = data.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? data.createdAt.toDate().toISOString() : null, updatedAt: ((_b = data.updatedAt) === null || _b === void 0 ? void 0 : _b.toDate) ? data.updatedAt.toDate().toISOString() : null });
+            const articleData = doc.data();
+            return Object.assign(Object.assign({ id: doc.id }, articleData), { createdAt: ((_a = articleData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? articleData.createdAt.toDate().toISOString() : null, updatedAt: ((_b = articleData.updatedAt) === null || _b === void 0 ? void 0 : _b.toDate) ? articleData.updatedAt.toDate().toISOString() : null });
         });
         return { success: true, articles };
     }
     catch (error) {
         console.error("Error fetching featured articles:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch featured articles.");
+        throw new functions.https.HttpsError("internal", "error.articles.fetchFailed");
     }
 });
 /**
@@ -143,17 +218,21 @@ exports.getFeaturedKnowledge = functions.https.onCall(async (data, context) => {
 exports.createKnowledgeArticle = functions.https.onCall(async (data, context) => {
     // For this demo, we'll allow any authenticated user to create content.
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
     }
-    const { title_en, content_markdown_en, tags, category, excerpt_en, imageUrl, dataAiHint, author, title_km, content_markdown_km, excerpt_km } = data;
-    if (!title_en || !content_markdown_en || !category || !excerpt_en) {
-        throw new functions.https.HttpsError("invalid-argument", "Title, content, category, and excerpt are required.");
+    const callerUid = context.auth.uid; // Get the UID of the user calling the function
+    const { title_en, content_markdown_en, tags, category, excerpt_en, imageUrl, dataAiHint, author, title_km, content_markdown_km, excerpt_km, status } = data;
+    // A post is valid if it has content in at least one primary language.
+    const hasEnglishContent = title_en && content_markdown_en && excerpt_en;
+    const hasKhmerContent = title_km && content_markdown_km && excerpt_km;
+    if (!hasEnglishContent && !hasKhmerContent) {
+        throw new functions.https.HttpsError("invalid-argument", "error.article.contentRequired");
     }
     try {
         const newArticleRef = await db.collection('knowledge_articles').add({
-            title_en,
-            content_markdown_en,
-            excerpt_en,
+            title_en: title_en || null,
+            content_markdown_en: content_markdown_en || null,
+            excerpt_en: excerpt_en || null,
             title_km: title_km || null,
             content_markdown_km: content_markdown_km || null,
             excerpt_km: excerpt_km || null,
@@ -162,6 +241,8 @@ exports.createKnowledgeArticle = functions.https.onCall(async (data, context) =>
             dataAiHint: dataAiHint || null,
             tags: tags || [],
             author: author || "DamDoh Team",
+            authorId: callerUid, // Store the author's UID
+            status: status || 'Draft',
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         });
@@ -169,41 +250,48 @@ exports.createKnowledgeArticle = functions.https.onCall(async (data, context) =>
     }
     catch (error) {
         console.error("Error creating knowledge article:", error);
-        throw new functions.https.HttpsError("internal", "Failed to create article.", { originalError: error.message });
+        throw new functions.https.HttpsError("internal", "error.article.creationFailed", { originalError: error.message });
     }
 });
 /**
  * Fetches all knowledge articles, ordered by creation date.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, articles: any[]}>} A promise that resolves with the articles.
  */
 exports.getKnowledgeArticles = functions.https.onCall(async (data, context) => {
     try {
         const articlesSnapshot = await db.collection('knowledge_articles').orderBy('createdAt', 'desc').get();
         const articles = articlesSnapshot.docs.map(doc => {
             var _a, _b;
-            return (Object.assign(Object.assign({ id: doc.id }, doc.data()), { 
+            const articleData = doc.data();
+            return Object.assign(Object.assign({ id: doc.id }, articleData), { 
                 // Ensure timestamps are ISO strings for the client
-                createdAt: ((_a = doc.data().createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? doc.data().createdAt.toDate().toISOString() : null, updatedAt: ((_b = doc.data().updatedAt) === null || _b === void 0 ? void 0 : _b.toDate) ? doc.data().updatedAt.toDate().toISOString() : null }));
+                createdAt: ((_a = articleData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) ? articleData.createdAt.toDate().toISOString() : null, updatedAt: ((_b = articleData.updatedAt) === null || _b === void 0 ? void 0 : _b.toDate) ? articleData.updatedAt.toDate().toISOString() : null });
         });
         return { success: true, articles };
     }
     catch (error) {
         console.error("Error fetching articles:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch articles.");
+        throw new functions.https.HttpsError("internal", "error.articles.fetchFailed");
     }
 });
 /**
  * Fetches a single knowledge article by its ID.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {Promise<{success: boolean, article: any}>} A promise that resolves with the article.
  */
 exports.getKnowledgeArticleById = functions.https.onCall(async (data, context) => {
     var _a, _b;
     const { articleId } = data;
     if (!articleId) {
-        throw new functions.https.HttpsError("invalid-argument", "An articleId must be provided.");
+        throw new functions.https.HttpsError("invalid-argument", "error.articleId.required");
     }
     try {
         const articleDoc = await db.collection('knowledge_articles').doc(articleId).get();
         if (!articleDoc.exists) {
-            throw new functions.https.HttpsError("not-found", "Article not found.");
+            throw new functions.https.HttpsError("not-found", "error.article.notFound");
         }
         const articleData = articleDoc.data();
         return {
@@ -216,7 +304,7 @@ exports.getKnowledgeArticleById = functions.https.onCall(async (data, context) =
         if (error instanceof functions.https.HttpsError) {
             throw error;
         }
-        throw new functions.https.HttpsError("internal", "Failed to fetch article details.");
+        throw new functions.https.HttpsError("internal", "error.article.fetchFailed");
     }
 });
 /**
@@ -241,7 +329,7 @@ exports.getAvailableCourses = functions.https.onCall(async (data, context) => {
     }
     catch (error) {
         console.error("Error fetching courses:", error);
-        throw new functions.https.HttpsError("internal", "Failed to fetch courses.");
+        throw new functions.https.HttpsError("internal", "error.courses.fetchFailed");
     }
 });
 /**
@@ -253,17 +341,17 @@ exports.getAvailableCourses = functions.https.onCall(async (data, context) => {
  */
 exports.getCourseDetails = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
     }
     const { courseId } = data;
     if (!courseId) {
-        throw new functions.https.HttpsError("invalid-argument", "A courseId must be provided.");
+        throw new functions.https.HttpsError("invalid-argument", "error.courseId.required");
     }
     try {
         // 1. Fetch the main course document
         const courseDoc = await db.collection("courses").doc(courseId).get();
         if (!courseDoc.exists) {
-            throw new functions.https.HttpsError("not-found", "Course not found.");
+            throw new functions.https.HttpsError("not-found", "error.course.notFound");
         }
         const courseData = courseDoc.data();
         // 2. Fetch the modules from the subcollection
@@ -295,7 +383,7 @@ exports.getCourseDetails = functions.https.onCall(async (data, context) => {
         if (error instanceof functions.https.HttpsError) {
             throw error;
         }
-        throw new functions.https.HttpsError("internal", "Failed to fetch course details.");
+        throw new functions.https.HttpsError("internal", "error.course.fetchFailed");
     }
 });
 //# sourceMappingURL=knowledge-hub.js.map

@@ -1,40 +1,4 @@
 "use strict";
-/**
- * =================================================================
- * Module 11: Insurance Services (Agricultural Risk Mitigation)
- * =================================================================
- * This module provides a dedicated framework within DamDoh for managing and
- * facilitating access to agricultural insurance products, helping farmers and
- * stakeholders mitigate risks associated with unpredictable environmental
- * factors, market fluctuations, and operational challenges.
- *
- * @purpose To connect farmers with relevant and accessible agricultural
- * insurance solutions, streamline the policy management process from risk
- * assessment to claim processing, and ultimately provide financial security
- * against unforeseen events that impact agricultural productivity and income.
- *
- * @key_concepts
- * - Insurance Product Catalog: A curated list of various agricultural
- *   insurance products, including parametric and multi-peril crop insurance.
- * - Risk Assessment & Underwriting Support: Leverages farm data (Module 3)
- *   and environmental data (Module 1) for data-driven risk assessment.
- * - Policy Management: Allows users to browse, apply for, and manage
- *   insurance policies directly within the app.
- * - Claim Processing & Payouts: Streamlined digital claim submission with
- *   support for parametric triggers based on weather/satellite data.
- *
- * @firebase_data_model
- * - insurance_products: Stores available insurance products and their terms.
- * - insurance_policies: Records policies held by users, linked to assets.
- * - insurance_claims: Tracks all claims from submission to settlement.
- * - insurers: A directory of partner insurance providers.
- *
- * @synergy
- * - Relies on Module 1 (Traceability) for weather/satellite data for parametric triggers.
- * - Uses data from Module 3 (Farm Management) for risk assessment.
- * - Integrates with Module 7 (Financials) for premium payments and claim payouts.
- * - Triggers Module 13 (Notifications) for reminders and status updates.
- */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -73,12 +37,18 @@ exports.initiateClaimPayout = exports.processInsuranceApplication = exports.trig
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
 const db = admin.firestore();
+const checkAuth = (context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    return context.auth.uid;
+};
 /**
  * =================================================================
  * Module 11: Insurance Service
  * =================================================================
  */
-// --- Internal AI-Driven Functions (moved from ai-services.ts) ---
+// --- Internal AI-Driven Functions (moved from ai-and-analytics.ts) ---
 /**
  * Internal logic for assessing insurance risk for a policy.
  * This is an internal function to be called by other functions within this module.
@@ -172,10 +142,6 @@ exports.assessRiskForPolicy = functions.firestore
             assessmentDate: admin.firestore.FieldValue.serverTimestamp(),
             score: assessmentResult.insuranceRiskScore,
             riskFactors: assessmentResult.riskFactors,
-            linkedAssets: insuredAssets.map((asset) => ({
-                type: asset.type,
-                assetRef: asset.assetRef,
-            })),
             aiModelVersion: "v1.0-placeholder",
             recommendations_en: [
                 "Improve irrigation systems",
@@ -366,16 +332,16 @@ exports.triggerParametricPayout = functions.firestore
  * This function would send the application details to the relevant insurance partner's API.
  */
 exports.processInsuranceApplication = functions.https.onCall(async (data, context) => {
-    // Placeholder logic
+    checkAuth(context);
     console.log("Conceptual: Processing insurance application with data:", data);
-    return { success: true, message: "[Conceptual] Application sent to insurer." };
+    return { success: true, message: "conceptual.applicationSent" };
 });
 /**
  * [Conceptual] Triggered by an approved claim to initiate payment.
  * This function would call the Financial Services module (Module 7) to handle the payout.
  */
 exports.initiateClaimPayout = functions.https.onCall(async (data, context) => {
-    // Placeholder logic
+    checkAuth(context);
     console.log("Conceptual: Initiating claim payout with data:", data);
     // 1. Call _internalInitiatePayment from financials.ts with relevant details.
     return { success: true, transactionId: `payout_${Date.now()}` };

@@ -33,13 +33,19 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getVtiTraceabilityHistory = exports.getTraceabilityEventsByFarmField = exports.handleObservationEvent = exports.handleInputApplicationEvent = exports.handleHarvestEvent = exports.logTraceEvent = exports.generateVTI = void 0;
+exports.getRecentVtiBatches = exports.getVtiTraceabilityHistory = exports.getTraceabilityEventsByFarmField = exports.handleObservationEvent = exports.handleInputApplicationEvent = exports.handleHarvestEvent = exports.logTraceEvent = exports.generateVTI = void 0;
 exports._internalLogTraceEvent = _internalLogTraceEvent;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
 const uuid_1 = require("uuid");
 const profiles_1 = require("./profiles");
 const db = admin.firestore();
+const checkAuth = (context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    return context.auth.uid;
+};
 /**
  * Internal function to generate a new Verifiable Traceability Identifier (VTI).
  * @param {any} data The data for the new VTI.
@@ -63,11 +69,12 @@ async function _internalGenerateVTI(data, context) {
         status,
         linkedVtis,
         metadata: Object.assign(Object.assign({}, metadata), { carbon_footprint_kgCO2e: 0 }),
-        isPublicTraceable: false,
+        isPublicTraceable: true, // Make traceable by default
     });
     return { vtiId, status: "success" };
 }
 exports.generateVTI = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
     try {
         return await _internalGenerateVTI(data, context);
     }
@@ -87,38 +94,38 @@ exports.generateVTI = functions.https.onCall(async (data, context) => {
  */
 async function _internalLogTraceEvent(data, context) {
     const { vtiId, eventType, actorRef, geoLocation, payload = {}, farmFieldId } = data;
-    if (!vtiId || typeof vtiId !== "string") {
-        throw new functions.https.HttpsError("invalid-argument", "The 'vtiId' parameter is required and must be a string.");
+    if (!farmFieldId && !vtiId) {
+        throw new functions.https.HttpsError("invalid-argument", "Either a 'farmFieldId' (for pre-harvest) or a 'vtiId' (for post-harvest) must be provided.");
     }
+    // Common validation for required fields
     if (!eventType || typeof eventType !== "string") {
-        throw new functions.https.HttpsError("invalid-argument", "The 'eventType' parameter is required and must be a string.");
+        throw new functions.https.HttpsError("invalid-argument", "The 'eventType' parameter is required.");
     }
     if (!actorRef || typeof actorRef !== "string") {
-        throw new functions.https.HttpsError("invalid-argument", "The 'actorRef' parameter is required and must be a string (user or organization VTI ID).");
+        throw new functions.https.HttpsError("invalid-argument", "The 'actorRef' parameter is required.");
     }
-    if (geoLocation &&
-        (typeof geoLocation.lat !== "number" || typeof geoLocation.lng !== "number")) {
+    if (geoLocation && (typeof geoLocation.lat !== "number" || typeof geoLocation.lng !== "number")) {
         throw new functions.https.HttpsError("invalid-argument", "The 'geoLocation' parameter must be an object with lat and lng.");
     }
-    const vtiDoc = await db.collection("vti_registry").doc(vtiId).get();
-    if (!vtiDoc.exists) {
-        // Allow logging against farmFieldId even if no batch VTI exists yet
-        if (!farmFieldId) {
+    // If a vtiId is provided for post-harvest events, ensure it exists.
+    if (vtiId) {
+        const vtiDoc = await db.collection("vti_registry").doc(vtiId).get();
+        if (!vtiDoc.exists) {
             throw new functions.https.HttpsError("not-found", `VTI with ID ${vtiId} not found.`);
         }
     }
     const timestamp = admin.firestore.FieldValue.serverTimestamp();
     await db.collection("traceability_events").add({
-        vtiId,
+        vtiId: vtiId || null,
+        farmFieldId: farmFieldId || null,
         timestamp,
         eventType,
         actorRef,
-        geoLocation,
+        geoLocation: geoLocation || null,
         payload,
-        farmFieldId,
         isPublicTraceable: false,
     });
-    return { status: "success", message: `Event ${eventType} logged for VTI ${vtiId}` };
+    return { status: "success", message: `Event ${eventType} logged successfully for ${farmFieldId || vtiId}` };
 }
 exports.logTraceEvent = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
@@ -161,39 +168,26 @@ exports.handleHarvestEvent = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("invalid-argument", "'actorVtiId' is required.");
     }
     try {
+        // Create the VTI with the linked events in its metadata
         const generateVTIResult = await _internalGenerateVTI({
             type: "farm_batch",
-            linkedVtis: [farmFieldId],
             metadata: {
                 cropType,
                 initialYieldKg: yieldKg,
                 initialQualityGrade: qualityGrade,
-                linkedPreHarvestEvents: [],
+                farmFieldId: farmFieldId, // explicitly add farmFieldId to metadata
             },
-        }, context);
-        const newVtiId = generateVTIResult.vtiId;
-        const oneYearAgo = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
-        const preHarvestEventsQuery = db
-            .collection("traceability_events")
-            .where("farmFieldId", "==", farmFieldId)
-            .where("timestamp", ">=", admin.firestore.Timestamp.fromDate(oneYearAgo))
-            .where("eventType", "in", ["PLANTED", "INPUT_APPLIED", "OBSERVED"]);
-        const preHarvestEventsSnapshot = await preHarvestEventsQuery.get();
-        const linkedEventIds = preHarvestEventsSnapshot.docs.map((doc) => doc.id);
-        await db
-            .collection("vti_registry")
-            .doc(newVtiId)
-            .update({
-            "metadata.linked_pre_harvest_events": linkedEventIds,
         });
+        const newVtiId = generateVTIResult.vtiId;
+        // Now log the HARVESTED event itself, associated with the new VTI
         await _internalLogTraceEvent({
             vtiId: newVtiId,
             eventType: "HARVESTED",
             actorRef: actorVtiId,
             geoLocation: geoLocation || null,
-            payload: { yieldKg, qualityGrade, farmFieldId, cropType },
-            farmFieldId: farmFieldId,
-        }, context);
+            payload: { yieldKg, qualityGrade },
+            farmFieldId: farmFieldId, // Keep for cross-reference
+        });
         return {
             status: "success",
             message: `Harvest event logged and VTI ${newVtiId} created.`,
@@ -248,18 +242,16 @@ exports.handleInputApplicationEvent = functions.https.onCall(async (data, contex
             inputId,
             quantity,
             unit,
-            applicationDate,
+            applicationDate: new Date(applicationDate).toISOString(),
             method: method || null,
-            farmFieldId,
         };
         await _internalLogTraceEvent({
-            vtiId: farmFieldId,
             eventType: "INPUT_APPLIED",
             actorRef: actorVtiId,
             geoLocation: geoLocation || null,
             payload: eventPayload,
             farmFieldId: farmFieldId,
-        }, context);
+        });
         return {
             status: "success",
             message: `Input application event logged for farm field ${farmFieldId}.`,
@@ -277,7 +269,7 @@ exports.handleObservationEvent = functions.https.onCall(async (data, context) =>
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
     }
-    const { farmFieldId, observationType, observationDate, details, mediaUrls, actorVtiId, geoLocation, } = data;
+    const { farmFieldId, observationType, observationDate, details, mediaUrls, actorVtiId, geoLocation, aiAnalysis, } = data;
     if (!farmFieldId ||
         !observationType ||
         !observationDate ||
@@ -285,46 +277,22 @@ exports.handleObservationEvent = functions.https.onCall(async (data, context) =>
         !actorVtiId) {
         throw new functions.https.HttpsError("invalid-argument", "Missing required fields for observation event.");
     }
-    let aiAnalysisResult = "AI analysis not performed (no image provided).";
-    // If there are media URLs, attempt to analyze the first one.
-    if (mediaUrls && mediaUrls.length > 0 && process.env.GEMINI_API_KEY) {
-        try {
-            console.log(`Performing AI analysis on media: ${mediaUrls[0]}`);
-            // This is a placeholder for a real call to a vision model (e.g., Vertex AI Gemini).
-            // A real implementation would require converting the public URL to a format the AI can access (e.g., GCS URI or base64 data).
-            if (details.toLowerCase().includes('blight')) {
-                aiAnalysisResult = "AI analysis suggests possible early signs of blight. Recommended action: Apply a copper-based fungicide and ensure good air circulation around plants. Consider sending a sample for lab verification.";
-            }
-            else if (details.toLowerCase().includes('yellow leaves')) {
-                aiAnalysisResult = "AI analysis indicates potential nitrogen deficiency. Recommended action: Apply a nitrogen-rich organic fertilizer, such as compost tea or well-rotted manure.";
-            }
-            else {
-                aiAnalysisResult = "AI analysis complete. Observation logged. No immediate critical action suggested, continue monitoring.";
-            }
-            console.log('AI analysis successful (placeholder).');
-        }
-        catch (aiError) {
-            console.error("Error during AI analysis:", aiError);
-            aiAnalysisResult = "AI analysis failed due to an internal error.";
-        }
-    }
     try {
         const eventPayload = {
             observationType,
             details,
             mediaUrls: mediaUrls || [],
             farmFieldId,
-            aiAnalysis: aiAnalysisResult
+            aiAnalysis: aiAnalysis || "No AI analysis was performed for this observation.",
         };
         await _internalLogTraceEvent({
-            vtiId: farmFieldId,
             eventType: 'OBSERVED',
             actorRef: actorVtiId,
             geoLocation: geoLocation || null,
             payload: eventPayload,
             farmFieldId: farmFieldId,
         });
-        return { status: 'success', message: `Observation event logged for farm field ${farmFieldId}.`, aiAnalysis: aiAnalysisResult };
+        return { status: 'success', message: `Observation event logged for farm field ${farmFieldId}.` };
     }
     catch (error) {
         console.error('Error handling observation event:', error);
@@ -338,9 +306,7 @@ exports.handleObservationEvent = functions.https.onCall(async (data, context) =>
  * @return {Promise<{events: any[]}>} A promise that resolves with the traceability events.
  */
 exports.getTraceabilityEventsByFarmField = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
-    }
+    checkAuth(context);
     const { farmFieldId } = data;
     if (!farmFieldId) {
         throw new functions.https.HttpsError("invalid-argument", "A farmFieldId must be provided.");
@@ -351,12 +317,31 @@ exports.getTraceabilityEventsByFarmField = functions.https.onCall(async (data, c
             .where("farmFieldId", "==", farmFieldId)
             .orderBy("timestamp", "asc")
             .get();
+        const actorIds = [...new Set(eventsSnapshot.docs.map(doc => doc.data().actorRef).filter(Boolean))];
+        const actorProfiles = {};
+        if (actorIds.length > 0) {
+            const profileChunks = [];
+            for (let i = 0; i < actorIds.length; i += 30) {
+                profileChunks.push(actorIds.slice(i, i + 30));
+            }
+            for (const chunk of profileChunks) {
+                const usersSnapshot = await db.collection("users").where(admin.firestore.FieldPath.documentId(), 'in', chunk).get();
+                usersSnapshot.forEach(doc => {
+                    const data = doc.data();
+                    actorProfiles[doc.id] = {
+                        name: data.displayName || 'Unknown Actor',
+                        role: data.primaryRole || 'System',
+                        avatarUrl: data.avatarUrl || null,
+                    };
+                });
+            }
+        }
         const events = eventsSnapshot.docs.map((doc) => {
             var _a;
             const eventData = doc.data();
             if (!eventData)
                 return null; // Defensive check
-            return Object.assign(Object.assign({ id: doc.id }, eventData), { timestamp: ((_a = eventData.timestamp) === null || _a === void 0 ? void 0 : _a.toDate) ? eventData.timestamp.toDate().toISOString() : null });
+            return Object.assign(Object.assign({ id: doc.id }, eventData), { actor: actorProfiles[eventData.actorRef] || { name: 'System', role: 'Platform' }, timestamp: ((_a = eventData.timestamp) === null || _a === void 0 ? void 0 : _a.toDate) ? eventData.timestamp.toDate().toISOString() : null });
         }).filter(Boolean); // Filter out any null results
         return { events };
     }
@@ -366,77 +351,141 @@ exports.getTraceabilityEventsByFarmField = functions.https.onCall(async (data, c
     }
 });
 /**
- * Fetches a VTI document and its complete, enriched traceability history.
- * This function has been hardened to prevent crashes from missing data.
- * @param {any} data The data for the function call, containing `vtiId`.
+ * Fetches the complete traceability history for a given VTI.
+ * This includes pre-harvest and post-harvest events.
+ *
+ * @param {any} data The data for the function call, containing the vtiId.
  * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{vti: any, events: any[]}>} A promise resolving with the VTI and its event history.
+ * @return {Promise<{vti: any, events: any[]}>} A promise that resolves with the full history.
  */
 exports.getVtiTraceabilityHistory = functions.https.onCall(async (data, context) => {
-    var _a;
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
-    }
+    var _a, _b;
+    // No auth check here to allow public traceability lookup
     const { vtiId } = data;
     if (!vtiId) {
         throw new functions.https.HttpsError("invalid-argument", "A vtiId must be provided.");
     }
     try {
-        // 1. Fetch the VTI document itself
-        const vtiDocRef = db.collection("vti_registry").doc(vtiId);
-        const vtiDoc = await vtiDocRef.get();
+        const vtiDoc = await db.collection("vti_registry").doc(vtiId).get();
         if (!vtiDoc.exists) {
-            throw new functions.https.HttpsError("not-found", `VTI with ID ${vtiId} not found.`);
+            throw new functions.https.HttpsError("not-found", `VTI batch with ID ${vtiId} not found.`);
         }
         const vtiData = vtiDoc.data();
-        if (!vtiData) {
-            throw new functions.https.HttpsError("internal", `VTI document ${vtiId} has no data.`);
+        // --- NEW LOGIC TO FETCH PRE-HARVEST EVENTS ---
+        const farmFieldId = (_a = vtiData.metadata) === null || _a === void 0 ? void 0 : _a.farmFieldId;
+        let allEventsData = [];
+        // Fetch post-harvest events (linked by vtiId)
+        const postHarvestQuery = db.collection("traceability_events")
+            .where("vtiId", "==", vtiId);
+        // Fetch pre-harvest events if farmFieldId exists
+        if (farmFieldId) {
+            const preHarvestQuery = db.collection("traceability_events")
+                .where("farmFieldId", "==", farmFieldId)
+                .where("vtiId", "==", null); // Only get events before a VTI was assigned
+            const [preHarvestSnapshot, postHarvestSnapshot] = await Promise.all([
+                preHarvestQuery.get(),
+                postHarvestQuery.get()
+            ]);
+            const preHarvestEvents = preHarvestSnapshot.docs.map(doc => (Object.assign({ id: doc.id }, doc.data())));
+            const postHarvestEvents = postHarvestSnapshot.docs.map(doc => (Object.assign({ id: doc.id }, doc.data())));
+            allEventsData = [...preHarvestEvents, ...postHarvestEvents];
         }
-        // 2. Fetch all associated events
-        const eventsQuery = db.collection("traceability_events")
-            .where("vtiId", "==", vtiId)
-            .orderBy("timestamp", "asc");
-        const eventsSnapshot = await eventsQuery.get();
-        const eventsData = eventsSnapshot.docs
-            .map(doc => (Object.assign({ id: doc.id }, doc.data())))
-            .filter(Boolean); // Ensure no undefined data
-        // 3. Enrich events with actor information
-        const actorIds = [...new Set(eventsData
-                .map(event => ('actorRef' in event && typeof event.actorRef === 'string') ? event.actorRef : null)
-                .filter((id) => !!id))];
+        else {
+            // Fallback for older data or different VTI types
+            const postHarvestSnapshot = await postHarvestQuery.get();
+            allEventsData = postHarvestSnapshot.docs.map(doc => (Object.assign({ id: doc.id }, doc.data())));
+        }
+        // Sort all events chronologically
+        allEventsData.sort((a, b) => a.timestamp.toMillis() - b.timestamp.toMillis());
+        // Get unique actor IDs to fetch profiles efficiently
+        const actorIds = [...new Set(allEventsData.map(event => event.actorRef).filter(Boolean))];
         const actorProfiles = {};
         if (actorIds.length > 0) {
-            const userDocs = await db.collection("users").where(admin.firestore.FieldPath.documentId(), "in", actorIds).get();
-            userDocs.forEach(doc => {
-                const docData = doc.data();
-                if (doc.exists && docData) {
-                    actorProfiles[doc.id] = {
-                        name: docData.displayName || "Unknown Actor",
-                        role: docData.primaryRole || "Unknown Role",
+            const profilePromises = actorIds.map(id => db.collection("users").doc(id).get());
+            const profileSnapshots = await Promise.all(profilePromises);
+            profileSnapshots.forEach(snap => {
+                if (snap.exists) {
+                    const profileData = snap.data();
+                    actorProfiles[snap.id] = {
+                        name: (profileData === null || profileData === void 0 ? void 0 : profileData.displayName) || "Unknown Actor",
+                        role: (profileData === null || profileData === void 0 ? void 0 : profileData.primaryRole) || "Unknown Role",
+                        avatarUrl: (profileData === null || profileData === void 0 ? void 0 : profileData.avatarUrl) || null
+                    };
+                }
+                else {
+                    actorProfiles[snap.id] = {
+                        name: "Unknown Actor",
+                        role: "Unknown Role",
+                        avatarUrl: null
                     };
                 }
             });
         }
-        const enrichedEvents = eventsData.map(event => {
+        const enrichedEvents = allEventsData.map(event => {
             var _a;
-            const timestamp = 'timestamp' in event ? ((_a = event.timestamp) === null || _a === void 0 ? void 0 : _a.toDate) ? event.timestamp.toDate().toISOString() : null : null;
-            const actorRef = ('actorRef' in event && typeof event.actorRef === 'string') ? event.actorRef : null;
-            if (!actorRef) {
-                return Object.assign(Object.assign({}, event), { timestamp, actor: { name: "System", role: "System" } });
-            }
-            return Object.assign(Object.assign({}, event), { timestamp, actor: actorProfiles[actorRef] || { name: "Unknown Actor", role: "Unknown Role" } });
+            return (Object.assign(Object.assign({}, event), { timestamp: ((_a = event.timestamp) === null || _a === void 0 ? void 0 : _a.toDate) ? event.timestamp.toDate().toISOString() : new Date().toISOString(), actor: actorProfiles[event.actorRef] || { name: "System", role: "Platform" } }));
         });
+        const finalVtiData = Object.assign(Object.assign({ id: vtiDoc.id }, vtiData), { creationTime: ((_b = vtiData.creationTime) === null || _b === void 0 ? void 0 : _b.toDate) ? vtiData.creationTime.toDate().toISOString() : new Date().toISOString() });
         return {
-            vti: Object.assign(Object.assign({ id: vtiDoc.id }, vtiData), { creationTime: ((_a = vtiData.creationTime) === null || _a === void 0 ? void 0 : _a.toDate) ? vtiData.creationTime.toDate().toISOString() : null }),
+            vti: finalVtiData,
             events: enrichedEvents
         };
     }
     catch (error) {
         console.error(`Error fetching traceability history for VTI ${vtiId}:`, error);
-        if (error instanceof functions.https.HttpsError) {
+        if (error instanceof functions.https.HttpsError)
             throw error;
-        }
         throw new functions.https.HttpsError("internal", "Failed to fetch traceability history.");
+    }
+});
+exports.getRecentVtiBatches = functions.https.onCall(async (data, context) => {
+    try {
+        const vtiSnapshot = await db.collection('vti_registry')
+            .where('isPublicTraceable', '==', true)
+            .orderBy('creationTime', 'desc')
+            .limit(10)
+            .get();
+        if (vtiSnapshot.empty) {
+            return { batches: [] };
+        }
+        const batches = await Promise.all(vtiSnapshot.docs.map(async (doc) => {
+            var _a, _b;
+            const vtiData = doc.data();
+            const harvestEventSnapshot = await db.collection('traceability_events')
+                .where('vtiId', '==', vtiData.vtiId)
+                .where('eventType', '==', 'HARVESTED')
+                .limit(1)
+                .get();
+            let producerName = 'Unknown';
+            let harvestDate = vtiData.creationTime.toDate().toISOString();
+            if (!harvestEventSnapshot.empty) {
+                const harvestEvent = harvestEventSnapshot.docs[0].data();
+                harvestDate = harvestEvent.timestamp.toDate().toISOString();
+                if (harvestEvent.actorRef) {
+                    try {
+                        const userDoc = await db.collection('users').doc(harvestEvent.actorRef).get();
+                        if (userDoc.exists && userDoc.data()) {
+                            producerName = ((_a = userDoc.data()) === null || _a === void 0 ? void 0 : _a.displayName) || 'Unknown';
+                        }
+                    }
+                    catch (e) {
+                        // User might not exist if it's an org, or other issue.
+                        console.log(`Could not fetch user profile for actorRef: ${harvestEvent.actorRef}`);
+                    }
+                }
+            }
+            return {
+                id: doc.id,
+                productName: ((_b = vtiData.metadata) === null || _b === void 0 ? void 0 : _b.cropType) || 'Unknown Product',
+                producerName: producerName,
+                harvestDate: harvestDate,
+            };
+        }));
+        return { batches };
+    }
+    catch (error) {
+        console.error("Error fetching recent VTI batches:", error);
+        throw new functions.https.HttpsError("internal", "Failed to fetch recent batches.");
     }
 });
 //# sourceMappingURL=traceability.js.map

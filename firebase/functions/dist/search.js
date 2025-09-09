@@ -36,119 +36,198 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.performSearch = exports.onSourceDocumentWriteIndex = void 0;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
+const geofire_common_1 = require("geofire-common");
 const db = admin.firestore();
+const checkAuth = (context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    return context.auth.uid;
+};
 /**
  * A generic Firestore trigger that listens to writes on specified collections
  * and creates/updates a corresponding document in a dedicated 'search_index' collection.
- * This pattern allows for more flexible querying than Firestore's native capabilities.
- * @param {functions.Change<functions.firestore.DocumentSnapshot>} change The change event.
- * @param {functions.EventContext} context The event context.
- * @return {Promise<null>} A promise that resolves when the function is complete.
+ * This pattern allows for flexible and scalable querying.
  */
 exports.onSourceDocumentWriteIndex = functions.firestore
     .document("{collectionId}/{documentId}")
     .onWrite(async (change, context) => {
+    var _a, _b, _c, _d, _e, _f;
     const { collectionId, documentId } = context.params;
-    const newData = change.after.exists ? change.after.data() : null;
-    console.log(`Search indexing trigger fired for: ${collectionId}/${documentId}`);
-    const indexableCollections = [
+    const documentData = change.after.exists ? change.after.data() : null;
+    const INDEXABLE_COLLECTIONS = [
         "marketplaceItems",
         "forums",
         "users",
         "agri_events",
         "knowledge_articles",
+        "groups",
+        "vti_registry",
     ];
-    if (!indexableCollections.includes(collectionId)) {
-        return null;
+    if (!INDEXABLE_COLLECTIONS.includes(collectionId)) {
+        return;
     }
-    const indexItemRef = db
-        .collection("search_index")
-        .doc(`${collectionId}_${documentId}`);
-    if (!newData) {
-        console.log(`Document deleted in ${collectionId}/${documentId}. Removing from search index.`);
-        await indexItemRef.delete();
-        return null;
+    const indexRef = db.collection("search_index").doc(`${collectionId}_${documentId}`);
+    // If the document is deleted, remove it from the search index.
+    if (!documentData) {
+        await indexRef.delete();
+        console.log(`Removed ${collectionId}/${documentId} from search index.`);
+        return;
     }
-    // Prepare a standardized object for our search index.
+    // Standardize common fields
+    const title = documentData.name || documentData.title || documentData.displayName || ((_a = documentData.metadata) === null || _a === void 0 ? void 0 : _a.cropType) || "Untitled";
+    const description = documentData.description || documentData.profileSummary || documentData.bio || documentData.excerpt_en || `Traceability report for batch ID ${documentId}`;
+    // Build a comprehensive list of tags for filtering
+    const sourceTags = Array.isArray(documentData.tags) ? documentData.tags : [];
+    const tags = [...new Set([
+            ...sourceTags,
+            documentData.category,
+            documentData.listingType,
+            documentData.primaryRole,
+            (_b = documentData.location) === null || _b === void 0 ? void 0 : _b.address,
+        ].filter(Boolean))];
+    // Create a searchable text field by combining all relevant text fields
+    const allText = [title, description, ...tags].join(" ").toLowerCase();
+    const searchable_terms = [...new Set(allText.match(/\b(\w+)\b/g) || [])];
+    // --- Prepare the base index data ---
     const indexData = {
         itemId: documentId,
         itemCollection: collectionId,
+        createdAt: documentData.createdAt || admin.firestore.FieldValue.serverTimestamp(),
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-        createdAt: newData.createdAt || admin.firestore.FieldValue.serverTimestamp(),
-        title: newData.name || newData.title || newData.displayName || "Untitled",
-        description: newData.description || newData.profileSummary || newData.bio || newData.excerpt_en || "",
-        imageUrl: newData.imageUrl || newData.photoURL || null,
+        title,
+        description,
+        imageUrl: documentData.imageUrl || documentData.avatarUrl || null,
+        tags,
+        searchable_terms,
+        location: documentData.location || null,
+        primaryRole: documentData.primaryRole || null,
     };
-    switch (collectionId) {
-        case "marketplaceItems":
-            indexData.tags = [newData.category, newData.listingType, ...(newData.skillsRequired || [])];
-            indexData.location = newData.location;
-            break;
-        case "forums":
-            indexData.tags = newData.regionTags || [];
-            break;
-        case "users":
-            indexData.tags = [newData.primaryRole, ...(newData.areasOfInterest || [])];
-            indexData.location = newData.location;
-            break;
-        case "agri_events":
-            indexData.tags = [newData.eventType, ...(newData.tags || [])];
-            indexData.location = newData.location;
-            break;
-        case "knowledge_articles":
-            indexData.tags = [newData.category, ...(newData.tags || [])];
-            break;
-        default:
-            console.warn(`Indexing logic not implemented for collection: ${collectionId}`);
-            return null;
+    // --- Add Geohash for items with lat/lng ---
+    if (documentData.location && typeof documentData.location.lat === 'number' && typeof documentData.location.lng === 'number') {
+        indexData.geohash = (0, geofire_common_1.geohashForLocation)([documentData.location.lat, documentData.location.lng]);
+    }
+    // --- Add collection-specific fields ---
+    if (collectionId === "marketplaceItems") {
+        indexData.price = (_c = documentData.price) !== null && _c !== void 0 ? _c : null;
+        indexData.currency = (_d = documentData.currency) !== null && _d !== void 0 ? _d : null;
+        indexData.perUnit = (_e = documentData.perUnit) !== null && _e !== void 0 ? _e : null;
+        indexData.listingType = (_f = documentData.listingType) !== null && _f !== void 0 ? _f : null;
     }
     try {
-        await indexItemRef.set(indexData, { merge: true });
-        console.log(`Indexed ${collectionId}/${documentId} with ID ${indexItemRef.id}.`);
-        return null;
+        await indexRef.set(indexData, { merge: true });
+        console.log(`Indexed ${collectionId}/${documentId} successfully.`);
     }
     catch (error) {
         console.error(`Error indexing document ${collectionId}/${documentId}:`, error);
-        return null;
     }
 });
 /**
  * Performs a search against the denormalized search_index collection.
- * This version is enhanced to use the output of the query-interpreter AI flow.
- * @param {any} data The data for the function call, containing the AI's interpretation.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<{results: any[]}>} A promise that resolves with search results.
+ * Supports keyword, filter, and geospatial searching.
  */
 exports.performSearch = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "User must be authenticated to perform a search.");
+    var _a, _b;
+    checkAuth(context);
+    const { mainKeywords = [], identifiedLocation, suggestedFilters, minPrice, maxPrice, perUnit, lat, lng, radiusInKm = 50, // Default to 50km radius
+    limit: queryLimit = 50, } = data;
+    if (!Array.isArray(mainKeywords)) {
+        throw new functions.https.HttpsError("invalid-argument", "mainKeywords must be an array.");
     }
-    const { mainKeywords, identifiedLocation } = data;
-    if (!mainKeywords || mainKeywords.length === 0) {
-        throw new functions.https.HttpsError("invalid-argument", "At least one keyword is required.");
+    let query = db.collection("search_index");
+    // --- Geospatial Querying ---
+    if (typeof lat === 'number' && typeof lng === 'number') {
+        const center = [lat, lng];
+        const radiusInM = radiusInKm * 1000;
+        const bounds = (0, geofire_common_1.geohashQueryBounds)(center, radiusInM);
+        const geohashPromises = bounds.map(b => {
+            const q = query.orderBy('geohash').startAt(b[0]).endAt(b[1]);
+            return q.get();
+        });
+        try {
+            const snapshots = await Promise.all(geohashPromises);
+            const matchingDocs = [];
+            for (const snap of snapshots) {
+                for (const doc of snap.docs) {
+                    const docLocation = doc.data().location;
+                    if ((docLocation === null || docLocation === void 0 ? void 0 : docLocation.lat) && (docLocation === null || docLocation === void 0 ? void 0 : docLocation.lng)) {
+                        const distanceInKm = (0, geofire_common_1.distanceBetween)([docLocation.lat, docLocation.lng], center);
+                        if (distanceInKm * 1000 <= radiusInM) { // Convert km to m for comparison
+                            matchingDocs.push(doc);
+                        }
+                    }
+                }
+            }
+            const ids = matchingDocs.map(d => d.id);
+            if (ids.length === 0)
+                return []; // No results found nearby
+            // Since we can't combine 'in' with other range filters, this becomes the primary filter.
+            // Other filters will have to be applied in-memory if a geo-query is active.
+            query = db.collection('search_index').where(admin.firestore.FieldPath.documentId(), 'in', ids);
+        }
+        catch (e) {
+            console.error("Geospatial query failed", e);
+            // Continue without geo-filtering
+        }
     }
     try {
-        let query = db.collection("search_index");
-        // Simple text search: For now, we search for the first keyword in title or description.
-        // A more advanced implementation would use a dedicated search service like Algolia or Typesense
-        // that allows for full-text search across multiple fields.
-        const firstKeyword = mainKeywords[0].toLowerCase();
-        // Firestore doesn't support case-insensitive searches or full-text search on its own.
-        // This is a limitation. A real-world, scalable solution would use a third-party search service.
-        // The query below is a placeholder for what would be a more complex search.
-        // For demonstration, we'll just return items where the 'title' starts with the keyword.
-        query = query.where("title", ">=", firstKeyword).where("title", "<=", firstKeyword + '\uf8ff');
-        if (identifiedLocation) {
-            // This is also a simplification. A real app would use geospatial queries or better location indexing.
-            // query = query.where("location", "==", identifiedLocation);
+        // --- Standard Filter Application (only if not a geo-query) ---
+        if (!(typeof lat === 'number' && typeof lng === 'number')) {
+            const categoryFilter = (_a = suggestedFilters === null || suggestedFilters === void 0 ? void 0 : suggestedFilters.find((f) => f.type === 'category')) === null || _a === void 0 ? void 0 : _a.value;
+            const listingTypeFilter = (_b = suggestedFilters === null || suggestedFilters === void 0 ? void 0 : suggestedFilters.find((f) => f.type === 'listingType')) === null || _b === void 0 ? void 0 : _b.value;
+            if (listingTypeFilter) {
+                query = query.where('listingType', '==', listingTypeFilter);
+            }
+            if (categoryFilter) {
+                query = query.where('tags', 'array-contains', categoryFilter);
+            }
+            if (identifiedLocation) {
+                query = query.where("location.address", ">=", identifiedLocation);
+                query = query.where("location.address", "<=", identifiedLocation + '\uf8ff');
+            }
+            if (perUnit) {
+                query = query.where("perUnit", "==", perUnit);
+            }
+            let hasPriceFilter = false;
+            if (typeof minPrice === 'number' && minPrice > 0) {
+                query = query.where('price', '>=', minPrice);
+                hasPriceFilter = true;
+            }
+            if (typeof maxPrice === 'number' && maxPrice > 0) {
+                query = query.where('price', '<=', maxPrice);
+                hasPriceFilter = true;
+            }
+            // Determine sorting order
+            if (hasPriceFilter) {
+                query = query.orderBy('price', 'asc');
+            }
+            else {
+                query = query.orderBy("updatedAt", "desc");
+            }
         }
-        const snapshot = await query.limit(20).get();
-        const results = snapshot.docs.map(doc => (Object.assign({ id: doc.id }, doc.data())));
-        return { results };
+        query = query.limit(queryLimit);
+        const snapshot = await query.get();
+        let results = snapshot.docs.map(doc => (Object.assign({ id: doc.id }, doc.data())));
+        // --- In-memory Keyword Filtering on the pre-filtered set ---
+        const searchTerms = mainKeywords.flatMap((k) => (k || '').toLowerCase().split(/\s+/)).filter(Boolean);
+        if (searchTerms.length > 0) {
+            results = results.filter(r => {
+                const item = r;
+                if (Array.isArray(item.searchable_terms)) {
+                    const searchableText = item.searchable_terms.join(' ');
+                    return searchTerms.some(term => searchableText.includes(term));
+                }
+                return false;
+            });
+        }
+        return results;
     }
     catch (error) {
-        console.error(`Error performing search for query "${mainKeywords.join(' ')}":`, error);
-        throw new functions.https.HttpsError("internal", "Unable to perform search.", error);
+        console.error(`Error during search for query: ${JSON.stringify(data)}`, error);
+        if (error.code === 'FAILED_PRECONDITION') {
+            throw new functions.https.HttpsError("failed-precondition", "A specific index is required for this query. Check the Firebase console logs for an index creation link.");
+        }
+        throw new functions.https.HttpsError("internal", "An unexpected error occurred while searching.");
     }
 });
 //# sourceMappingURL=search.js.map

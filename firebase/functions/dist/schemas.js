@@ -1,74 +1,136 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AgriEventSchema = exports.ForumPostSchema = exports.ForumTopicSchema = exports.MarketplaceOrderSchema = exports.MarketplaceItemSchema = exports.StakeholderProfileSchema = void 0;
+exports.stakeholderProfileSchemas = exports.equipmentSupplierProfileSchema = exports.wasteManagementProfileSchema = exports.agriTechInnovatorProfileSchema = exports.crowdfunderProfileSchema = exports.packagingSupplierProfileSchema = exports.insuranceProviderProfileSchema = exports.agroExportFacilitatorProfileSchema = exports.energyProviderProfileSchema = exports.agroTourismOperatorProfileSchema = exports.agronomyExpertProfileSchema = exports.warehouseProfileSchema = exports.logisticsPartnerProfileSchema = exports.researcherProfileSchema = exports.consumerProfileSchema = exports.certificationBodyProfileSchema = exports.regulatorProfileSchema = exports.financialInstitutionProfileSchema = exports.inputSupplierProfileSchema = exports.buyerProfileSchema = exports.processingUnitProfileSchema = exports.qaTeamProfileSchema = exports.logisticsTeamProfileSchema = exports.fieldAgentProfileSchema = exports.farmerProfileSchema = void 0;
 const zod_1 = require("zod");
-exports.StakeholderProfileSchema = zod_1.z.object({
-    uid: zod_1.z.string(),
-    email: zod_1.z.string().email().optional().nullable(),
-    displayName: zod_1.z.string().optional().nullable(),
-    photoURL: zod_1.z.string().url().optional().nullable(),
-    primaryRole: zod_1.z.string(),
-    secondaryRoles: zod_1.z.array(zod_1.z.string()).optional(),
-    organization: zod_1.z.object({
-        id: zod_1.z.string(),
-        name: zod_1.z.string(),
-    }).optional().nullable(),
-    location: zod_1.z.object({
-        country: zod_1.z.string(),
-        city: zod_1.z.string().optional(),
-    }).optional().nullable(),
-    lastLogin: zod_1.z.any(),
-    createdAt: zod_1.z.any(),
+// Base profile schema
+const baseProfileSchema = zod_1.z.object({
+    location: zod_1.z.string().optional(),
+    profileSummary: zod_1.z.string().optional(),
+    needs: zod_1.z.array(zod_1.z.string()).optional(),
 });
-exports.MarketplaceItemSchema = zod_1.z.object({
-    id: zod_1.z.string(),
-    name: zod_1.z.string(),
-    listingType: zod_1.z.string(),
-    description: zod_1.z.string(),
-    category: zod_1.z.string(),
-    location: zod_1.z.string(),
-    sellerId: zod_1.z.string(),
-    createdAt: zod_1.z.any(),
-    updatedAt: zod_1.z.any(),
+exports.farmerProfileSchema = baseProfileSchema.extend({
+    farmSize: zod_1.z.number().optional(),
+    crops: zod_1.z.array(zod_1.z.string()).optional(),
+    livestock: zod_1.z.array(zod_1.z.string()).optional(),
 });
-exports.MarketplaceOrderSchema = zod_1.z.object({
-    id: zod_1.z.string(),
-    buyerId: zod_1.z.string(),
-    sellerId: zod_1.z.string(),
-    listingId: zod_1.z.string(),
-    quantity: zod_1.z.number(),
-    totalPrice: zod_1.z.number(),
-    status: zod_1.z.string(),
-    createdAt: zod_1.z.any(),
-    updatedAt: zod_1.z.any(),
+exports.fieldAgentProfileSchema = baseProfileSchema.extend({
+    specialization: zod_1.z.string().optional(),
+    yearsOfExperience: zod_1.z.number().optional(),
 });
-exports.ForumTopicSchema = zod_1.z.object({
-    id: zod_1.z.string(),
-    name: zod_1.z.string(),
-    description: zod_1.z.string(),
-    postCount: zod_1.z.number(),
-    createdBy: zod_1.z.string(),
-    createdAt: zod_1.z.any(),
-    lastActivity: zod_1.z.any(),
+exports.logisticsTeamProfileSchema = baseProfileSchema.extend({
+    fleetSize: zod_1.z.number().optional(),
+    coverageArea: zod_1.z.string().optional(),
 });
-exports.ForumPostSchema = zod_1.z.object({
-    id: zod_1.z.string(),
-    title: zod_1.z.string(),
-    content: zod_1.z.string(),
-    authorRef: zod_1.z.string(),
-    timestamp: zod_1.z.any(),
-    replyCount: zod_1.z.number(),
-    likeCount: zod_1.z.number(),
+exports.qaTeamProfileSchema = baseProfileSchema.extend({
+    certifications: zod_1.z.array(zod_1.z.string()).optional(),
+    inspectionCapacity: zod_1.z.string().optional(),
 });
-exports.AgriEventSchema = zod_1.z.object({
-    id: zod_1.z.string(),
-    title: zod_1.z.string(),
-    description: zod_1.z.string(),
-    eventDate: zod_1.z.string(),
-    location: zod_1.z.string(),
-    eventType: zod_1.z.string(),
-    organizerId: zod_1.z.string(),
-    createdAt: zod_1.z.any(),
-    registeredAttendeesCount: zod_1.z.number(),
+exports.processingUnitProfileSchema = baseProfileSchema.extend({
+    processingTypes: zod_1.z.array(zod_1.z.string()).optional(),
+    capacity: zod_1.z.string().optional(),
 });
+exports.buyerProfileSchema = baseProfileSchema.extend({
+    businessType: zod_1.z.string().optional(),
+    productNeeds: zod_1.z.array(zod_1.z.string()).optional(),
+});
+exports.inputSupplierProfileSchema = baseProfileSchema.extend({
+    productCategories: zod_1.z.array(zod_1.z.string()).optional(),
+    distributionReach: zod_1.z.string().optional(),
+});
+exports.financialInstitutionProfileSchema = baseProfileSchema.extend({
+    servicesOffered: zod_1.z.array(zod_1.z.string()).optional(),
+    loanProducts: zod_1.z.array(zod_1.z.string()).optional(),
+});
+exports.regulatorProfileSchema = baseProfileSchema.extend({
+    jurisdiction: zod_1.z.string().optional(),
+    regulatoryFocus: zod_1.z.array(zod_1.z.string()).optional(),
+});
+exports.certificationBodyProfileSchema = baseProfileSchema.extend({
+    certificationsOffered: zod_1.z.array(zod_1.z.string()).optional(),
+    accreditation: zod_1.z.string().optional(),
+});
+exports.consumerProfileSchema = baseProfileSchema.extend({
+    dietaryPreferences: zod_1.z.array(zod_1.z.string()).optional(),
+    sustainabilityFocus: zod_1.z.boolean().optional(),
+});
+exports.researcherProfileSchema = baseProfileSchema.extend({
+    institution: zod_1.z.string().optional(),
+    researchInterests: zod_1.z.array(zod_1.z.string()).optional(),
+});
+exports.logisticsPartnerProfileSchema = baseProfileSchema.extend({
+    transportModes: zod_1.z.array(zod_1.z.string()).optional(),
+    warehouseLocations: zod_1.z.array(zod_1.z.string()).optional(),
+});
+exports.warehouseProfileSchema = baseProfileSchema.extend({
+    storageCapacity: zod_1.z.string().optional(),
+    storageConditions: zod_1.z.array(zod_1.z.string()).optional(),
+});
+exports.agronomyExpertProfileSchema = baseProfileSchema.extend({
+    consultingAreas: zod_1.z.array(zod_1.z.string()).optional(),
+    hourlyRate: zod_1.z.number().optional(),
+});
+exports.agroTourismOperatorProfileSchema = baseProfileSchema.extend({
+    experiencesOffered: zod_1.z.array(zod_1.z.string()).optional(),
+    bookingLink: zod_1.z.string().optional(),
+});
+exports.energyProviderProfileSchema = baseProfileSchema.extend({
+    energySolutions: zod_1.z.array(zod_1.z.string()).optional(),
+    installationServices: zod_1.z.boolean().optional(),
+});
+exports.agroExportFacilitatorProfileSchema = baseProfileSchema.extend({
+    countriesOfOperation: zod_1.z.array(zod_1.z.string()).optional(),
+    services: zod_1.z.array(zod_1.z.string()).optional(),
+});
+exports.insuranceProviderProfileSchema = baseProfileSchema.extend({
+    insuranceProducts: zod_1.z.array(zod_1.z.string()).optional(),
+    coverageArea: zod_1.z.string().optional(),
+});
+exports.packagingSupplierProfileSchema = baseProfileSchema.extend({
+    packagingTypes: zod_1.z.array(zod_1.z.string()).optional(),
+    sustainabilityOptions: zod_1.z.boolean().optional(),
+});
+exports.crowdfunderProfileSchema = baseProfileSchema.extend({
+    investmentInterests: zod_1.z.array(zod_1.z.string()).optional(),
+    averageInvestmentSize: zod_1.z.string().optional(),
+});
+exports.agriTechInnovatorProfileSchema = baseProfileSchema.extend({
+    technologyFocus: zod_1.z.array(zod_1.z.string()).optional(),
+    integrationCapabilities: zod_1.z.array(zod_1.z.string()).optional(),
+});
+exports.wasteManagementProfileSchema = baseProfileSchema.extend({
+    wasteTypesAccepted: zod_1.z.array(zod_1.z.string()).optional(),
+    outputProducts: zod_1.z.array(zod_1.z.string()).optional(),
+});
+exports.equipmentSupplierProfileSchema = baseProfileSchema.extend({
+    equipmentTypes: zod_1.z.array(zod_1.z.string()).optional(),
+    brandsCarried: zod_1.z.array(zod_1.z.string()).optional(),
+});
+// A comprehensive map of role names to their respective schemas
+exports.stakeholderProfileSchemas = {
+    "Farmer": exports.farmerProfileSchema,
+    "Agricultural Cooperative": baseProfileSchema,
+    "Field Agent/Agronomist (DamDoh Internal)": exports.fieldAgentProfileSchema,
+    "Operations/Logistics Team (DamDoh Internal)": exports.logisticsTeamProfileSchema,
+    "Quality Assurance Team (DamDoh Internal)": exports.qaTeamProfileSchema,
+    "Processing & Packaging Unit": exports.processingUnitProfileSchema,
+    "Buyer (Restaurant, Supermarket, Exporter)": exports.buyerProfileSchema,
+    "Input Supplier (Seed, Fertilizer, Pesticide)": exports.inputSupplierProfileSchema,
+    "Equipment Supplier (Sales of Machinery/IoT)": exports.equipmentSupplierProfileSchema,
+    "Financial Institution (Micro-finance/Loans)": exports.financialInstitutionProfileSchema,
+    "Government Regulator/Auditor": exports.regulatorProfileSchema,
+    "Certification Body (Organic, Fair Trade etc.)": exports.certificationBodyProfileSchema,
+    "Consumer": exports.consumerProfileSchema,
+    "Researcher/Academic": exports.researcherProfileSchema,
+    "Logistics Partner (Third-Party Transporter)": exports.logisticsPartnerProfileSchema,
+    "Storage/Warehouse Facility": exports.warehouseProfileSchema,
+    "Agronomy Expert/Consultant (External)": exports.agronomyExpertProfileSchema,
+    "Agro-Tourism Operator": exports.agroTourismOperatorProfileSchema,
+    "Energy Solutions Provider (Solar, Biogas)": exports.energyProviderProfileSchema,
+    "Agro-Export Facilitator/Customs Broker": exports.agroExportFacilitatorProfileSchema,
+    "Agri-Tech Innovator/Developer": exports.agriTechInnovatorProfileSchema,
+    "Waste Management & Compost Facility": exports.wasteManagementProfileSchema,
+    "Crowdfunder (Impact Investor, Individual)": exports.crowdfunderProfileSchema,
+    "Insurance Provider": exports.insuranceProviderProfileSchema,
+    "Packaging Supplier": exports.packagingSupplierProfileSchema,
+};
 //# sourceMappingURL=schemas.js.map

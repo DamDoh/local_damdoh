@@ -33,164 +33,68 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.matchFundingOpportunitiesWithAI = exports.assessCreditRiskWithAI = void 0;
-exports._internalAssessCreditRisk = _internalAssessCreditRisk;
-exports._internalMatchFundingOpportunities = _internalMatchFundingOpportunities;
-exports._internalAssessInsuranceRisk = _internalAssessInsuranceRisk;
-exports._internalVerifyClaim = _internalVerifyClaim;
 exports._internalProcessReportData = _internalProcessReportData;
 const functions = __importStar(require("firebase-functions"));
+/**
+ * Checks if the user is authenticated.
+ * @param {functions.https.CallableContext} context The context of the function call.
+ * @return {string} The user's UID.
+ * @throws {functions.https.HttpsError} Throws an error if the user is not authenticated.
+ */
+const checkAuth = (context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
+    }
+    return context.auth.uid;
+};
 /**
  * =================================================================
  * Module 6: AI & Analytics Engine (The Brain of DamDoh)
  * =================================================================
+ * NOTE: The assessCreditRiskWithAI and matchFundingOpportunitiesWithAI functions
+ * have been officially migrated to the Express server in `server.ts` for deployment
+ * on Cloud Run. This ensures better performance by avoiding cold starts.
+ * New client calls must be directed to the Cloud Run endpoints.
  */
-// This file will house the core AI and data analytics functions.
-// For now, it will contain the placeholder functions from the original module8.ts.
-// As we refactor, we will move the actual AI-related logic here.
 /**
- * Internal logic for assessing credit risk.
- * This is an internal function to be called by other modules (e.g., financial-services).
+ * Processes raw data (like a list of traceability events) and generates
+ * an AI-powered summary and key findings.
  *
- * @param {any} data The data payload for assessment, typically containing
- * user profile and financial history.
- * @return {Promise<object>} An object with the calculated credit score
- * and contributing risk factors.
- */
-async function _internalAssessCreditRisk(data) {
-    console.log("_internalAssessCreditRisk called with data:", data);
-    // In a real implementation, this would interact with an external AI platform
-    // (e.g., Vertex AI) or an internal AI model service.
-    const calculatedScore = Math.floor(300 + Math.random() * 550);
-    const riskFactors = [
-        "Payment history on platform",
-        "Farm yield variability",
-        "Length of operational history",
-    ];
-    return {
-        score: calculatedScore,
-        riskFactors: riskFactors,
-        status: "placeholder_analysis_complete",
-    };
-}
-/**
- * Internal logic for matching a user with funding opportunities.
- * This is an internal function to be called by other modules (e.g., financial-services).
- *
- * @param {any} data The data payload, containing user profile and available
- * opportunities.
- * @return {Promise<object>} An object with a list of matched
- * opportunities and their relevance scores.
- */
-async function _internalMatchFundingOpportunities(data) {
-    console.log("_internalMatchFundingOpportunities called with data:", data);
-    // This is a placeholder for a real matching algorithm or AI model.
-    const matchedOpportunities = [
-        {
-            opportunityId: "loan_product_123",
-            relevanceScore: 0.85,
-            reason: "High credit score and matching crop type.",
-        },
-        {
-            opportunityId: "grant_program_456",
-            relevanceScore: 0.70,
-            reason: "Matches sustainability practices and location.",
-        },
-    ];
-    return {
-        matchedOpportunities: matchedOpportunities,
-        status: "placeholder_matching_complete",
-    };
-}
-/**
- * Internal logic for assessing insurance risk for a policy.
- * This is an internal function to be called by other modules (e.g., insurance).
- *
- * @param {any} data Data payload including policy, policyholder, and asset details.
- * @return {Promise<object>} An object with the insurance risk score
- * and contributing factors.
- */
-async function _internalAssessInsuranceRisk(data) {
-    console.log("_internalAssessInsuranceRisk called with data:", data);
-    const riskScore = Math.random() * 10;
-    const riskFactors = [
-        "High flood risk in region",
-        "Lack of documented pest management",
-        "Monocropping practice",
-    ];
-    return {
-        insuranceRiskScore: riskScore.toFixed(2),
-        riskFactors: riskFactors,
-        status: "placeholder_assessment_complete",
-    };
-}
-/**
- * Internal logic for verifying an insurance claim's validity.
- * This is an internal function to be called by other modules (e.g., insurance).
- *
- * @param {any} data Data payload including claim details, policy, and other
- * evidence (e.g., weather data).
- * @return {Promise<object>} An object with the verification result, including
- * status and payout amount if approved.
- */
-async function _internalVerifyClaim(data) {
-    console.log("_internalVerifyClaim called with data:", data);
-    const verificationResult = {
-        status: Math.random() > 0.3 ? "approved" : "rejected",
-        payoutAmount: 500.00,
-        assessmentDetails: {
-            verificationLog: "Weather data confirmed drought during incident period. Farm activity logs consistent.",
-            dataPointsConsidered: [
-                "weather_data",
-                "farm_activity_logs",
-                "vti_events",
-            ],
-        },
-    };
-    return verificationResult;
-}
-/**
- * Internal logic for processing regulatory report data with AI.
- * This is an internal function to be called by other modules (e.g., regulatory-and-compliance).
- *
- * @param {any} data The data payload for report processing, including the report
- * type and raw data.
- * @return {Promise<object>} An object with the AI-processed content, such as
- * a summary or flagged anomalies.
+ * @param {any} data The report data to be processed.
+ * @return {Promise<any>} A promise that resolves with the processed content.
  */
 async function _internalProcessReportData(data) {
-    console.log("_internalProcessReportData called with data:", data);
-    const processedContent = {
-        summary: `This is an AI-generated summary for report type: ${data.reportType}. Analysis of the provided data indicates general compliance.`,
-        anomalies_detected: [],
-        key_metrics: {
-            "Total Transactions": 150,
-            "Compliance Score": "98%",
-        },
+    console.log(`Processing report data with AI for type: ${data.reportType}`);
+    if (!Array.isArray(data.data) || data.data.length === 0) {
+        return {
+            summary: "No data was provided for analysis.",
+            key_findings: [],
+        };
+    }
+    // Simulate AI analysis based on report type
+    if (data.reportType === "VTI_EVENTS_SUMMARY") {
+        const eventCount = data.data.length;
+        const eventTypes = new Set(data.data.map((e) => e.eventType));
+        const eventTypeCounts = data.data.reduce((acc, e) => {
+            acc[e.eventType] = (acc[e.eventType] || 0) + 1;
+            return acc;
+        }, {});
+        const mostCommonEventType = Object.keys(eventTypeCounts).reduce((a, b) => eventTypeCounts[a] > eventTypeCounts[b] ? a : b, '');
+        const summary = `This report summarizes ${eventCount} traceability events. The primary activities logged include: ${[...eventTypes].join(", ")}.`;
+        const key_findings = [
+            `A total of ${eventCount} events were logged for this user within the specified period.`,
+            `The most common event type was '${mostCommonEventType}' with ${eventTypeCounts[mostCommonEventType]} occurrences.`,
+            "All logged events appear to be within normal operational parameters. (AI assessment placeholder)",
+        ];
+        return { summary, key_findings };
+    }
+    // Default fallback for other report types
+    return {
+        summary: `This is an AI-generated summary for report type: ${data.reportType}.`,
+        key_findings: [
+            "Finding 1: Placeholder from AI analysis.",
+            "Finding 2: Placeholder from AI analysis.",
+        ],
     };
-    return processedContent;
 }
-/**
- * Callable function wrapper for assessing credit risk.
- * Note: Exposing this directly to clients should be done with caution.
- *
- * @param {any} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<any>} A promise that resolves with the assessment.
- */
-exports.assessCreditRiskWithAI = functions.https.onCall(async (data, context) => {
-    // TODO: Add authentication and authorization checks
-    return await _internalAssessCreditRisk(data);
-});
-/**
- * Callable function wrapper for matching funding opportunities.
- *
- * @param {any} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
- * @return {Promise<any>} A promise that resolves with the matched opportunities.
- */
-exports.matchFundingOpportunitiesWithAI = functions.https.onCall(async (data, context) => {
-    // TODO: Add authentication and authorization checks
-    return await _internalMatchFundingOpportunities(data);
-});
 //# sourceMappingURL=ai-and-analytics.js.map
