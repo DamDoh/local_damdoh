@@ -300,3 +300,5 @@ export const completeRecovery = functions.https.onCall(async (data, context) => 
 
     return { success: true, customToken: customToken };
 });
+
+    
