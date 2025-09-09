@@ -32,21 +32,12 @@ import type {
     FarmerDashboardAlert,
     OperationsDashboardData,
     FinancialProduct,
-    KnfBatch
+    KnfBatch,
+    UserProfile
 } from "@/lib/types";
+import { checkAuth } from "./utils";
 
 const db = admin.firestore();
-
-// Helper to check for authentication in a consistent way
-const checkAuth = (context: functions.https.CallableContext) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError(
-      "unauthenticated",
-      "error.unauthenticated",
-    );
-  }
-  return context.auth.uid;
-};
 
 // =================================================================
 // LIVE DATA DASHBOARDS
