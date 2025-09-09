@@ -1,4 +1,5 @@
 
+
 /**
  * @fileoverview This is the main entry point for all Firebase Cloud Functions.
  * It initializes the Firebase Admin SDK and exports all the functions from other
@@ -143,13 +144,13 @@ export const farmManagement_getProfitabilityInsights = farmManagementFunctions.g
 export const farmManagement_createKnfBatch = farmManagementFunctions.createKnfBatch;
 export const farmManagement_getUserKnfBatches = farmManagementFunctions.getUserKnfBatches;
 export const farmManagement_updateKnfBatchStatus = farmManagementFunctions.updateKnfBatchStatus;
+export const farmManagement_getFarmerApplications = farmManagementFunctions.getFarmerApplications;
+export const farmManagement_getTrustScore = farmManagementFunctions.getTrustScore;
+
 
 // FINANCIALS
 export const financials_initiatePayment = financialServicesFunctions.initiatePayment;
-export const financials_assessCreditRisk = financialServicesFunctions.assessCreditRisk;
-export const financials_matchFundingOpportunities = financialServicesFunctions.matchFundingOpportunities;
-export const financials_processCrowdfundingInvestment = financialServicesFunctions.processCrowdfundingInvestment;
-export const financials_distributeCrowdfundingPayouts = financialServicesFunctions.distributeCrowdfundingPayouts;
+// Note: assessCreditRisk and matchFundingOpportunities are internal and exposed via Express API
 export const financials_logFinancialTransaction = financialServicesFunctions.logFinancialTransaction;
 export const financials_getFinancialSummaryAndTransactions = financialServicesFunctions.getFinancialSummaryAndTransactions;
 export const financials_getFinancialApplicationDetails = financialServicesFunctions.getFinancialApplicationDetails;
@@ -159,8 +160,6 @@ export const financials_createFinancialProduct = financialServicesFunctions.crea
 export const financials_getFinancialProducts = financialServicesFunctions.getFinancialProducts;
 export const financials_getFinancialInstitutions = financialServicesFunctions.getFinancialInstitutions;
 export const financials_getFiApplications = financialServicesFunctions.getFiApplications;
-export const financials_getFarmerApplications = financialServicesFunctions.getFarmerApplications;
-export const financials_getTrustScore = financialServicesFunctions.getTrustScore;
 
 
 // FORUMS

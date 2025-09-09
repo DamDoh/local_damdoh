@@ -591,3 +591,48 @@ export const updateKnfBatchStatus = functions.https.onCall(
     }
   },
 );
+
+
+export const getFarmerApplications = functions.https.onCall(async (data, context) => {
+    const farmerId = checkAuth(context);
+    
+    const query = db.collection("financial_applications")
+        .where("applicantId", "==", farmerId)
+        .orderBy("submittedAt", "desc");
+
+    const snapshot = await query.get();
+
+    const applications = snapshot.docs.map(doc => {
+        const appData = doc.data();
+        return {
+            ...appData,
+            id: doc.id,
+            submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+        }
+    });
+
+    return { applications };
+});
+
+
+export const getTrustScore = functions.https.onCall(async (data, context) => {
+  const uid = checkAuth(context);
+
+  try {
+    const scoreDoc = await db.collection("credit_scores").doc(uid).get();
+
+    if (!scoreDoc.exists) {
+      // Return a default or initial score if one hasn't been calculated yet.
+      return { score: 500, breakdown: [] };
+    }
+
+    const scoreData = scoreDoc.data();
+    return {
+      score: scoreData?.score || 500,
+      breakdown: scoreData?.breakdown || [],
+    };
+  } catch (error) {
+    console.error(`Error fetching trust score for user ${uid}:`, error);
+    throw new functions.https.HttpsError("internal", "Could not fetch trust score.");
+  }
+});
