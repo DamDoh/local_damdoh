@@ -132,7 +132,7 @@
     "notifications": "Benachrichtigungen",
     "messages": "Nachrichten",
     "wallet": "Wallet",
-    "helpCenter": "Hilfecenter",
+    "helpCenter": "Hilfe-Center",
     "switchToDarkAria": "In den dunklen Modus wechseln",
     "switchToLightAria": "In den hellen Modus wechseln",
     "mobileMenu": {
@@ -432,3 +432,5 @@
     "error": "Fehler"
   }
 }
+
+    

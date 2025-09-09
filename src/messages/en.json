@@ -431,5 +431,599 @@
     },
     "signUpFailed": "Sign Up Failed",
     "error": "Error"
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Connecting the Global Agri-Food Value Chain",
+      "subtitle": "Our vision is a fully transparent, efficient, and equitable agricultural ecosystem, powered by technology and community."
+    },
+    "vision": {
+      "title": "Our Vision & Mission",
+      "p1": "The global food system is fragmented, inefficient, and often inequitable. Smallholder farmers, who produce a significant portion of the world's food, frequently lack access to markets, financing, and critical information, leading to post-harvest losses and limited income.",
+      "p2": "DamDoh was founded to bridge these gaps. We are building a single, unified digital platform that connects every stakeholder in the agricultural value chain—from farmers and cooperatives to logistics providers, financial institutions, and global buyers. Our mission is to empower these communities with the tools and data they need to thrive, creating a more sustainable and prosperous future for all.",
+      "foundersTitle": "From the Founders"
+    },
+    "challenge": {
+      "title": "The Challenge We're Solving",
+      "description": "The agricultural supply chain is plagued by systemic challenges that hinder growth and sustainability. We are tackling these issues head-on:",
+      "list": {
+        "marketAccess": {
+          "title": "Limited Market Access",
+          "details": "Farmers struggle to connect directly with buyers, leading to reliance on intermediaries and reduced profits."
+        },
+        "inefficiency": {
+          "title": "Supply Chain Inefficiency",
+          "details": "Poor logistics, lack of coordination, and manual processes result in significant delays and spoilage."
+        },
+        "financialExclusion": {
+          "title": "Financial Exclusion",
+          "details": "Lack of verifiable data makes it difficult for farmers to access loans, insurance, and other financial products."
+        },
+        "informationGaps": {
+          "title": "Information Gaps",
+          "details": "Access to timely advice on best practices, pest control, and market prices is often limited."
+        },
+        "qualityTrust": {
+          "title": "Lack of Quality & Trust",
+          "details": "Buyers cannot easily verify the origin, quality, or sustainable practices of agricultural products."
+        },
+        "climatePressure": {
+          "title": "Climate Pressure",
+          "details": "Changing weather patterns and environmental degradation pose increasing threats to crop yields."
+        },
+        "foodLoss": {
+          "title": "Post-Harvest Food Loss",
+          "details": "A significant percentage of produce is lost between the farm and the consumer due to poor handling and storage."
+        },
+        "dataFragmentation": {
+          "title": "Data Fragmentation",
+          "details": "Valuable data is siloed across different organizations, preventing a holistic view of the supply chain."
+        }
+      }
+    },
+    "solution": {
+      "title": "The DamDoh Solution",
+      "description": "We've built an integrated 'super app' that acts as the digital backbone for the entire agricultural ecosystem.",
+      "list": {
+        "education": "A knowledge hub for sustainable practices like KNF and FGW, backed by an AI assistant.",
+        "ai": "AI-powered crop diagnostics and data-driven insights for smarter farming decisions.",
+        "marketplace": "A global marketplace to connect farmers directly with buyers and service providers.",
+        "logistics": "Tools for farm management, traceability (VTI), and optimizing logistics.",
+        "financial": "A platform for financial inclusion, enabling access to credit, insurance, and new markets."
+      }
+    },
+    "beyondTechnology": {
+      "title": "Beyond Technology: It's About Connection",
+      "list": {
+        "p2p": {
+          "title": "Peer-to-Peer",
+          "content": "Farmers can share knowledge and best practices in community forums and groups."
+        },
+        "p2b": {
+          "title": "Producer-to-Business",
+          "content": "Directly connecting farmers and cooperatives with buyers, processors, and exporters."
+        },
+        "p2e": {
+          "title": "Producer-to-Ecosystem",
+          "content": "Providing financial institutions, insurers, and regulators with the data they need to support the agricultural sector."
+        },
+        "p2w": {
+          "title": "Producer-to-World",
+          "content": "Using traceability to give consumers worldwide confidence in the products they buy."
+        }
+      }
+    },
+    "commitment": {
+      "title": "Our Commitment",
+      "p1": "We believe in the power of technology to create positive change.",
+      "p2": "We are committed to building a platform that is inclusive, transparent, and beneficial for every participant.",
+      "p3": "Join us in revolutionizing the global food system.",
+      "button": "Join the DamDoh Community"
+    }
+  },
+  "careers": {
+    "title": "Careers at DamDoh",
+    "subtitle": "Join our mission to reshape the future of agriculture.",
+    "whyWorkWithUs": {
+      "title": "Why Work With Us?",
+      "intro": "We are a passionate, globally-minded team dedicated to solving some of the world's most pressing challenges in food security and sustainability. At DamDoh, you will:",
+      "point1": "Work on a product with a tangible, positive impact on communities worldwide.",
+      "point2": "Collaborate with a diverse and talented team of engineers, designers, and agricultural experts.",
+      "point3": "Tackle complex technical challenges at the intersection of AI, blockchain, and supply chain logistics.",
+      "point4": "Enjoy a flexible, remote-friendly work environment.",
+      "point5": "Grow your skills and career in a fast-paced, mission-driven startup."
+    },
+    "currentOpenings": {
+      "title": "Current Openings"
+    },
+    "noOpenings": {
+      "title": "No Openings at this Time",
+      "content1": "We are always looking for passionate and talented individuals to join our team. If you believe you would be a great fit, please send your resume and cover letter to {emailLink}.",
+      "emailLinkText": "careers@damdoh.org"
+    },
+    "openings": {
+      "job1": {
+        "title": "Senior Backend Engineer (Node.js, Firebase)",
+        "location": "Remote (Global)",
+        "type": "Full-time",
+        "description": "Design and build scalable backend services using Firebase Functions, Firestore, and Node.js. Experience with microservices architecture and real-time data is a plus."
+      },
+      "job2": {
+        "title": "Lead Frontend Engineer (Next.js, React)",
+        "location": "Remote (Global)",
+        "type": "Full-time",
+        "description": "Lead the development of our user-facing applications using Next.js and React. Strong experience with TypeScript, Tailwind CSS, and building complex, data-driven interfaces is required."
+      },
+      "job3": {
+        "title": "AI/ML Engineer (Genkit, TensorFlow)",
+        "location": "Remote (Global)",
+        "type": "Full-time",
+        "description": "Develop and deploy machine learning models for crop diagnostics, market analysis, and personalized recommendations. Experience with Google AI Platform and Genkit is highly desirable."
+      }
+    },
+    "applyNowButton": "Apply Now"
+  },
+  "communityGuidelines": {
+    "title": "Community Guidelines",
+    "subtitle": "Our principles for a healthy, collaborative, and professional ecosystem.",
+    "intro": "Welcome to the DamDoh community! To ensure our platform remains a positive and productive space for all stakeholders, we ask that you adhere to the following guidelines in all your interactions, whether in forums, messaging, or marketplace listings.",
+    "respectful": {
+      "title": "Be Respectful and Constructive",
+      "description": "Treat all members with respect, even when you disagree. Focus on constructive criticism and collaborative problem-solving. Harassment, hate speech, and personal attacks will not be tolerated."
+    },
+    "authentic": {
+      "title": "Be Authentic and Honest",
+      "description": "Represent yourself and your business truthfully. Do not misrepresent your products, services, certifications, or identity. Building trust is the cornerstone of our community."
+    },
+    "relevant": {
+      "title": "Stay On-Topic and Add Value",
+      "description": "Contribute to discussions in a way that is relevant and adds value to the conversation. Avoid spam, unsolicited advertising, and off-topic content in professional forums and marketplace discussions."
+    },
+    "fairTrade": {
+      "title": "Uphold Fair Trade Practices",
+      "description": "Engage in all transactions and negotiations with fairness and integrity. Do not engage in price-gouging, deceptive marketing, or failure to deliver on agreed-upon terms."
+    },
+    "sustainable": {
+      "title": "Promote Sustainable Practices",
+      "description": "Our community is dedicated to a more sustainable future. We encourage the sharing of knowledge about regenerative and sustainable agriculture, and we value members who prioritize these practices."
+    },
+    "reporting": {
+      "title": "Reporting Violations",
+      "content": "If you see content or behavior that violates these guidelines, please report it to our team at {emailLink}. We are committed to enforcing these rules to protect our community."
+    },
+    "emailLinkText": "support@damdoh.org",
+    "conclusion": "Thank you for helping us build a trusted and collaborative global agricultural community."
+  },
+  "contactPage": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you. Here's how you can reach us.",
+    "emailUs": {
+      "title": "Email Us",
+      "general": "General Inquiries",
+      "support": "Support & Help",
+      "partnerships": "Partnerships"
+    },
+    "callUs": {
+      "title": "Call Us",
+      "hours": "Mon-Fri, 9am - 5pm ICT",
+      "phone": "+855 23 456 789"
+    },
+    "ourOffice": {
+      "title": "Our Office",
+      "org": "DamDoh (Cambodia) Co., Ltd.",
+      "address": "123 AgriTech Avenue, Phnom Penh, Cambodia"
+    },
+    "sendMessage": {
+      "title": "Send us a Message",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "Enter your full name",
+      "emailLabel": "Your Email",
+      "emailPlaceholder": "Enter your email address",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "What is your message about?",
+      "messageLabel": "Your Message",
+      "messagePlaceholder": "Type your message here...",
+      "buttonText": "Send Message",
+      "note": "We'll do our best to respond within 24 business hours."
+    }
+  },
+  "ErrorPage": {
+    "title": "Something went wrong!",
+    "description": "An unexpected error occurred. Please try again or return to the homepage.",
+    "retryButton": "Try again",
+    "homeButton": "Go to Homepage"
+  },
+  "pinboardPage": {
+    "title": "My Pinboard",
+    "description": "A personalized space to save and organize items from across the platform.",
+    "comingSoonTitle": "Pinboard Feature Coming Soon!",
+    "comingSoonDescription": "We're working on a powerful new feature that will allow you to pin marketplace items, forum posts, profiles, and more to your personal pinboard for easy access.",
+    "stayTuned": "Stay tuned for updates!"
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last Updated: October 29, 2023",
+    "introduction": "This privacy notice for DamDoh describes how and why we might collect, store, use, and/or share ('process') your information when you use our services.",
+    "whatInfoWeCollect": {
+      "heading": "1. WHAT INFORMATION DO WE COLLECT?",
+      "content": "We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us."
+    },
+    "howWeUseInfo": {
+      "heading": "2. HOW DO WE PROCESS YOUR INFORMATION?",
+      "content": "We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law."
+    },
+    "willInfoBeShared": {
+      "heading": "3. WILL YOUR INFORMATION BE SHARED WITH ANYONE?",
+      "content": "We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations."
+    },
+    "cookiesAndTracking": {
+      "heading": "4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?",
+      "content": "We may use cookies and similar tracking technologies to access or store information."
+    },
+    "howLongWeKeepInfo": {
+      "heading": "5. HOW LONG DO WE KEEP YOUR INFORMATION?",
+      "content": "We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law."
+    },
+    "howWeKeepInfoSafe": {
+      "heading": "6. HOW DO WE KEEP YOUR INFORMATION SAFE?",
+      "content": "We have implemented a system of organizational and technical security measures designed to protect the security of any personal information we process."
+    },
+    "minors": {
+      "heading": "7. DO WE COLLECT INFORMATION FROM MINORS?",
+      "content": "We do not knowingly collect data from or market to children under 18 years of age."
+    },
+    "privacyRights": {
+      "heading": "8. WHAT ARE YOUR PRIVACY RIGHTS?",
+      "content": "You may review, change, or terminate your account at any time. Depending on your location, you may have additional rights regarding your personal information."
+    },
+    "controlsForDoNotTrack": {
+      "heading": "9. CONTROLS FOR DO-NOT-TRACK FEATURES",
+      "content": "Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected."
+    },
+    "updatesToNotice": {
+      "heading": "10. DO WE MAKE UPDATES TO THIS NOTICE?",
+      "content": "Yes, we will update this notice as necessary to stay compliant with relevant laws."
+    }
+  },
+  "termsOfService": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last Updated: October 29, 2023",
+    "introduction": "These Terms and Conditions constitute a legally binding agreement made between you and DamDoh, concerning your access to and use of the DamDoh platform.",
+    "agreementToTerms": {
+      "heading": "1. AGREEMENT TO TERMS",
+      "content": "By using the Services, you agree to be bound by these Terms and Conditions. If you do not agree, you are expressly prohibited from using the Services and you must discontinue use immediately."
+    },
+    "intellectualProperty": {
+      "heading": "2. INTELLECTUAL PROPERTY RIGHTS",
+      "content": "Unless otherwise indicated, the Services are our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the “Content”) and the trademarks, service marks, and logos contained therein (the “Marks”) are owned or controlled by us or licensed to us."
+    },
+    "userRepresentations": {
+      "heading": "3. USER REPRESENTATIONS",
+      "content": "By using the Services, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary."
+    },
+    "prohibitedActivities": {
+      "heading": "4. PROHIBITED ACTIVITIES",
+      "content": "You may not access or use the Services for any purpose other than that for which we make the Services available. The Services may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us."
+    },
+    "platformManagement": {
+      "heading": "5. PLATFORM MANAGEMENT",
+      "content": "We reserve the right, but not the obligation, to: (1) monitor the Services for violations of these Terms and Conditions; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Terms and Conditions."
+    },
+    "termAndTermination": {
+      "heading": "6. TERM AND TERMINATION",
+      "content": "These Terms and Conditions shall remain in full force and effect while you use the Services. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS AND CONDITIONS, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SERVICES (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON."
+    },
+    "modificationsAndInterruptions": {
+      "heading": "7. MODIFICATIONS AND INTERRUPTIONS",
+      "content": "We reserve the right to change, modify, or remove the contents of the Services at any time or for any reason at our sole discretion without notice. We also reserve the right to modify or discontinue all or part of the Services without notice at any time."
+    },
+    "governingLaw": {
+      "heading": "8. GOVERNING LAW",
+      "content": "These Terms and Conditions and your use of the Services are governed by and construed in accordance with the laws of the Kingdom of Cambodia applicable to agreements made and to be entirely performed within the Kingdom of Cambodia, without regard to its conflict of law principles."
+    },
+    "disputeResolution": {
+      "heading": "9. DISPUTE RESOLUTION",
+      "content": "Any legal action of whatever nature brought by either you or us (collectively, the “Parties” and individually, a “Party”) shall be commenced or prosecuted in the courts located in Phnom Penh, Cambodia, and the Parties hereby consent to, and waive all defenses of lack of personal jurisdiction and forum non conveniens with respect to venue and jurisdiction in such courts."
+    },
+    "contactUs": {
+      "heading": "10. CONTACT US",
+      "content": "In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us."
+    },
+    "conclusion": "You can do this via the {contactLink} page."
+  },
+  "walletPage": {
+    "title": "Digital Wallet",
+    "description": "Securely manage your funds, view transaction history, and access financial services.",
+    "underDevelopmentTitle": "Wallet Feature Under Development",
+    "underDevelopmentDescription": "We are building a secure and integrated digital wallet to streamline all your financial activities on the DamDoh platform. Key features will include:",
+    "feature1": "Securely store funds from marketplace sales.",
+    "feature2": "Make direct payments for services and products.",
+    "feature3": "Seamlessly receive loan disbursements and grant funding.",
+    "feature4": "View a detailed history of all your transactions.",
+    "stayTuned": "Stay tuned for updates!"
+  },
+  "admin": {
+    "layout": {
+      "title": "Admin Panel",
+      "description": "Platform management and oversight.",
+      "contentManagement": "Content",
+      "reports": "Reports"
+    },
+    "contentManagement": {
+      "allArticles": {
+        "title": "All Knowledge Articles",
+        "description": "View, edit, and manage all articles across the platform.",
+        "refreshButton": "Refresh"
+      },
+      "table": {
+        "title": "Title",
+        "category": "Category",
+        "status": "Status",
+        "created": "Created",
+        "actions": "Actions",
+        "noArticles": "No articles found."
+      },
+      "createArticle": {
+        "title": "Create New Article",
+        "description": "Add new content to the Knowledge Hub, Blog, or News sections.",
+        "englishContent": "English Content (Source)",
+        "titleEnLabel": "English Title",
+        "excerptEnLabel": "English Excerpt",
+        "contentEnLabel": "English Content (Markdown)",
+        "khmerContent": "Khmer Content (Translation)",
+        "titleKmLabel": "Khmer Title",
+        "excerptKmLabel": "Khmer Excerpt",
+        "contentKmLabel": "Khmer Content (Markdown)",
+        "metadataTitle": "Metadata",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "e.g., Blog, Industry News, KNF Guide",
+        "authorLabel": "Author",
+        "authorPlaceholder": "e.g., DamDoh Team",
+        "statusLabel": "Status",
+        "tagsLabel": "Tags (comma-separated)",
+        "imageUrlLabel": "Image URL",
+        "imageUrlPlaceholder": "https://example.com/image.png",
+        "aiHintLabel": "AI Image Hint (1-2 keywords)",
+        "aiHintPlaceholder": "e.g., coffee beans",
+        "publishButton": "Publish Article",
+        "publishingButton": "Publishing..."
+      },
+      "toast": {
+        "loadErrorTitle": "Error Loading Articles",
+        "loadErrorDescription": "Could not fetch the list of articles. Please try again.",
+        "createSuccessTitle": "Article Created",
+        "createSuccessDescription": "The new article has been successfully created.",
+        "createErrorTitle": "Creation Failed",
+        "createErrorDescription": "Failed to create the article."
+      }
+    },
+    "reports": {
+      "generate": {
+        "title": "Generate Report",
+        "description": "Generate on-demand reports for compliance, auditing, or data analysis.",
+        "reportTypeLabel": "Report Type",
+        "reportTypeVti": "VTI Events Summary",
+        "targetUserLabel": "Target User",
+        "userSearchPlaceholder": "Search by name or email...",
+        "loadingUsers": "Loading users...",
+        "dateRangeLabel": "Date Range",
+        "datePlaceholder": "Pick a date range",
+        "submitButton": "Generate Report"
+      },
+      "list": {
+        "title": "Generated Reports",
+        "description": "View and download previously generated reports.",
+        "table": {
+          "reportType": "Report Type",
+          "generatedFor": "Generated For",
+          "date": "Date",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "noReports": "No reports have been generated yet.",
+        "viewButton": "View"
+      },
+      "toast": {
+        "formIncompleteTitle": "Incomplete Form",
+        "formIncompleteDescription": "Please fill out all required fields to generate a report.",
+        "generateSuccessTitle": "Report Generation Started",
+        "generateSuccessDescription": "The report is being generated and will appear in the list below shortly.",
+        "generateErrorTitle": "Generation Failed",
+        "loadErrorTitle": "Error Loading Reports"
+      }
+    },
+    "dashboard": {
+      "totalUsers": "Total Users",
+      "totalUsersDesc": "{count} new users last week",
+      "totalFarms": "Total Farms",
+      "totalFarmsDesc": "Registered farms on the platform",
+      "totalListings": "Total Listings",
+      "totalListingsDesc": "Active marketplace items",
+      "pendingApprovals": "Pending Approvals",
+      "pendingApprovalsDesc": "Items needing review",
+      "recentActivity": {
+        "title": "Recent Platform Activity",
+        "description": "A live feed of the latest user actions and content creation.",
+        "table": {
+          "type": "Type",
+          "details": "Details",
+          "date": "Date"
+        },
+        "types": {
+          "NewUser": "New User",
+          "NewListing": "New Listing",
+          "NewForum": "New Forum",
+          "NewEvent": "New Event"
+        },
+        "noActivity": "No recent activity to display."
+      }
+    }
+  },
+  "DashboardLeftSidebar": {
+    "viewProfileLink": "View & Edit Profile",
+    "profileViewers": "Profile Viewers",
+    "postEngagements": "Post Engagements",
+    "pro": {
+      "unlock": "Unlock Premium stats and tools.",
+      "try": "Try DamDoh Pro for Free",
+      "title": "DamDoh Pro Coming Soon!",
+      "description": "Unlock advanced analytics, deeper insights, and priority support with our upcoming Pro plan."
+    }
+  },
+  "DashboardRightSidebar": {
+    "networkTitle": "Grow Your Network",
+    "refreshSuggestions": "Refresh Suggestions",
+    "infoTooltip": "AI-powered suggestions based on your profile and platform activity.",
+    "signInPrompt": "Sign in to see personalized connection suggestions.",
+    "loadError": "Could not load suggestions.",
+    "noSuggestions": "No new suggestions right now. Explore the network to find connections!",
+    "following": "Requested",
+    "follow": "Connect",
+    "viewAllButton": "View All",
+    "promotionsTitle": "Promotions",
+    "promotionsDescription": "Create and manage coupons to boost your sales.",
+    "managePromotionsButton": "Manage Coupons",
+    "ad": "Ad",
+    "adTitle": "Get Market Insights",
+    "adDescription": "Unlock real-time data and trends.",
+    "adButton": "View Market Trends",
+    "adAlt": "Graph showing market trends",
+    "toast": {
+      "signInToConnect": "Please sign in to connect with other users.",
+      "requestSent": "Connection Request Sent",
+      "requestSentDescription": "Your connection request has been sent successfully.",
+      "requestFailed": "Request Failed"
+    }
+  },
+  "StartPost": {
+    "placeholder": "Start a post, share an update, or ask a question...",
+    "photoVideo": "Photo/Video",
+    "agriEvent": "Agri-Event",
+    "createPoll": "Create Poll",
+    "postSuccess": {
+      "title": "Post Created",
+      "description": "Your post has been successfully shared on the feed."
+    },
+    "postError": {
+      "auth": "You must be logged in to create a post.",
+      "fail": "Failed to create post. Please try again."
+    },
+    "uploadingMedia": "Uploading Media...",
+    "uploadComplete": "Upload complete. Creating post..."
+  },
+  "CreatePostModal": {
+    "title": "Create a new post",
+    "description": "Share your thoughts, updates, or questions with the community.",
+    "yourName": "Your Name",
+    "shareUpdate": "Share an update",
+    "placeholder": "What's on your mind?",
+    "selectedFile": "Selected file:",
+    "pollOptionsLabel": "Poll Options",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Add Option",
+    "pollNote": "Max {maxOptions} options allowed.",
+    "addMediaButton": "Add Photo/Video",
+    "createEventButton": "Create Event",
+    "shareDocumentButton": "Share Document",
+    "createPollButton": "Create Poll",
+    "postButton": "Post",
+    "pollOptionsError": "A poll must have at least two options.",
+    "emptyPostError": "You cannot create a completely empty post."
+  },
+  "FeedItemCard": {
+    "signInToLikeToast": "Please sign in to like posts.",
+    "loadCommentsErrorToast": "Could not load comments for this post.",
+    "noComments": "No comments yet. Be the first to reply!",
+    "loadingComments": "Loading comments...",
+    "loadMoreComments": "Load more comments",
+    "writeCommentPlaceholder": "Write a comment...",
+    "postButton": "Post",
+    "repostPlaceholderToast": "Repost feature coming soon!",
+    "signInToVoteToast": "Please sign in to vote on polls.",
+    "voteSuccessToast": "Your vote has been counted!",
+    "voteErrorToast": "Failed to record your vote.",
+    "votes": "{count, plural, one {# vote} other {# votes}}",
+    "like": "Like",
+    "comment": "Comment",
+    "repost": "Repost",
+    "editPost": "Edit Post",
+    "deletePost": "Delete Post"
+  },
+  "FarmerDashboard": {
+    "title": "My Farmer Dashboard",
+    "alertsTitle": "Action Required",
+    "viewButton": "View",
+    "cards": {
+      "farms": {
+        "title": "My Farms",
+        "button": "Manage Farms"
+      },
+      "crops": {
+        "title": "Active Crops",
+        "button": "View All Crops"
+      },
+      "knf": {
+        "title": "KNF Batches",
+        "button": "Manage Inputs"
+      },
+      "financials": {
+        "title": "Net Cash Flow",
+        "button": "View Financials"
+      }
+    },
+    "noData": "Could not load your dashboard data. Please try again later.",
+    "trustWidget": {
+      "title": "My Trust Score",
+      "description": "Your score based on platform activity and data completeness.",
+      "creditScore": "DamDoh Credit Score",
+      "keyFactorsTitle": "Key Factors",
+      "Character": "Character",
+      "Capacity": "Capacity",
+      "Capital": "Capital",
+      "Collateral": "Collateral",
+      "Conditions": "Conditions",
+      "weight": "(Weight: {weight}%)",
+      "noFactors": "No scoring factors available yet. Start by completing your profile and logging farm activities.",
+      "certificationsTitle": "Verifications & Certifications",
+      "issuedBy": "Issued by",
+      "noCertifications": "No certifications have been added yet."
+    }
+  },
+  "MyCropsList": {
+    "title": "My Crops",
+    "noCrops": "No active crops found.",
+    "plantedOn": "Planted on {date}",
+    "stage": "Stage",
+    "viewJourney": "View Journey"
+  },
+  "CropRotationSuggester": {
+    "title": "Crop Rotation Suggester",
+    "description": "Get AI-powered suggestions for your next planting season to improve soil health and yields.",
+    "buttonText": "Get Suggestions",
+    "regenerateButton": "Regenerate Suggestions",
+    "noSuggestions": "No specific suggestions could be generated at this time.",
+    "error": "Could not get suggestions. Please try again later."
+  },
+  "MobileHomepage": {
+    "welcome": {
+      "morning": "Good Morning, {name}",
+      "afternoon": "Good Afternoon, {name}",
+      "evening": "Good Evening, {name}"
+    },
+    "discoverTitle": "Discover",
+    "seeAllButton": "See All",
+    "noRecommendations": "No recommendations right now. Explore the marketplace!",
+    "communityFeedTitle": "Community Feed",
+    "communityFeedDescription": "See what's happening in the DamDoh network.",
+    "goToFeedButton": "Go to Feed"
+  },
+  "MobileBottomNav": {
+    "home": "Home",
+    "market": "Market",
+    "search": "Search",
+    "messages": "Messages",
+    "profile": "Profile"
   }
 }
+
+    
