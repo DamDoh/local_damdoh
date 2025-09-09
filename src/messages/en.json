@@ -1,4 +1,3 @@
-
 {
   "LandingPage": {
     "hero": {
@@ -111,5 +110,229 @@
       "onlineSynced": "Online | All changes saved",
       "offline": "Offline | {count, plural, one {# action} other {# actions}} queued"
     }
+  },
+  "common": {
+    "error": "Error",
+    "success": "Success",
+    "loading": "Loading...",
+    "noData": "No data available.",
+    "save": "Save",
+    "cancel": "Cancel",
+    "viewDetails": "View Details",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "submit": "Submit",
+    "yes": "Yes",
+    "no": "No",
+    "confirm": "Confirm",
+    "close": "Close",
+    "optional": "Optional"
+  },
+  "constants": {
+    "stakeholderRoles": {
+      "Farmer": "Farmer",
+      "AgriculturalCooperative": "Agricultural Cooperative",
+      "FieldAgentAgronomistDamDohInternal": "Field Agent/Agronomist (DamDoh Internal)",
+      "OperationsLogisticsTeamDamDohInternal": "Operations/Logistics Team (DamDoh Internal)",
+      "QualityAssuranceTeamDamDohInternal": "Quality Assurance Team (DamDoh Internal)",
+      "ProcessingPackagingUnit": "Processing & Packaging Unit",
+      "BuyerRestaurantSupermarketExporter": "Buyer (Restaurant, Supermarket, Exporter)",
+      "InputSupplierSeedFertilizerPesticide": "Input Supplier (Seed, Fertilizer, Pesticide)",
+      "EquipmentSupplierSalesofMachineryIoT": "Equipment Supplier (Sales of Machinery/IoT)",
+      "FinancialInstitutionMicrofinanceLoans": "Financial Institution (Micro-finance/Loans)",
+      "GovernmentRegulatorAuditor": "Government Regulator/Auditor",
+      "CertificationBodyOrganicFairTradeetc": "Certification Body (Organic, Fair Trade etc.)",
+      "Consumer": "Consumer",
+      "ResearcherAcademic": "Researcher/Academic",
+      "LogisticsPartnerThirdPartyTransporter": "Logistics Partner (Third-Party Transporter)",
+      "StorageWarehouseFacility": "Storage/Warehouse Facility",
+      "AgronomyExpertConsultantExternal": "Agronomy Expert/Consultant (External)",
+      "AgroTourismOperator": "Agro-Tourism Operator",
+      "EnergySolutionsProviderSolarBiogas": "Energy Solutions Provider (Solar, Biogas)",
+      "AgroExportFacilitatorCustomsBroker": "Agro-Export Facilitator/Customs Broker",
+      "AgriTechInnovatorDeveloper": "Agri-Tech Innovator/Developer",
+      "WasteManagementCompostFacility": "Waste Management & Compost Facility",
+      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Impact Investor, Individual)",
+      "InsuranceProvider": "Insurance Provider",
+      "PackagingSupplier": "Packaging Supplier"
+    },
+    "listingTypes": {
+      "All": "All Types",
+      "Product": "Product",
+      "Service": "Service",
+      "AgroTourism": "Agro-Tourism"
+    },
+    "agriEventTypes": {
+      "All": "All Types",
+      "Conference": "Conference",
+      "Webinar": "Webinar",
+      "Workshop": "Workshop",
+      "TradeShow": "Trade Show",
+      "FieldDay": "Field Day",
+      "NetworkingEvent": "Networking Event",
+      "OnlineCourseLaunch": "Online Course Launch",
+      "PolicyBriefing": "Policy Briefing"
+    },
+    "insuranceProductTypes": {
+      "Crop": "Crop Insurance",
+      "Livestock": "Livestock Insurance",
+      "Asset": "Asset Insurance",
+      "Weather": "Weather-based (Parametric)"
+    },
+    "financialServiceTypes": {},
+    "cropStages": {
+      "Planting": "Planting",
+      "Vegetative": "Vegetative",
+      "Flowering": "Flowering",
+      "Fruiting": "Fruiting",
+      "Harvesting": "Harvesting",
+      "Post-Harvest": "Post-Harvest"
+    },
+    "observationTypes": {
+      "GeneralNote": "General Note",
+      "PestSighting": "Pest Sighting",
+      "DiseaseSighting": "Disease Sighting",
+      "SoilCondition": "Soil Condition",
+      "WeatherEvent": "Weather Event",
+      "GrowthStageChange": "Growth Stage Change",
+      "IrrigationEvent": "Irrigation Event"
+    },
+    "mobileHomeCategories": {
+      "produceMarket": "Produce Market",
+      "farmInputs": "Farm Inputs",
+      "talentExchange": "Talent Exchange",
+      "machinery": "Machinery",
+      "community": "Community",
+      "aiAssistant": "AI Assistant",
+      "events": "Events"
+    }
+  },
+  "Auth": {
+    "signInWelcome": "Welcome back to {appName}",
+    "signUpWelcome": "Join the DamDoh Agricultural Network",
+    "forgotPasswordResetPrompt": "Reset your password for {appName}",
+    "resetPasswordPrompt": "Create a new password for {appName}",
+    "signInTitle": "Sign in to your account",
+    "signInDescription": "Enter your credentials to access your dashboard.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "forgotPasswordLink": "Forgot password?",
+    "signingInButton": "Signing in...",
+    "signInButton": "Sign In",
+    "noAccountPrompt": "Don't have an account?",
+    "signUpLink": "Sign Up",
+    "signInLink": "Sign In",
+    "recoverWithUniversalIdPrompt": "Or recover access with your Universal ID",
+    "signUpTitle": "Create a new account",
+    "signUpDescription": "Tell us a bit about yourself to get started.",
+    "nameLabel": "Your Name or Business Name",
+    "namePlaceholder": "e.g., Chan Nary or Green Valley Farms",
+    "roleLabel": "Your Primary Role",
+    "rolePlaceholder": "Select your role in the supply chain...",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "••••••••",
+    "creatingAccountButton": "Creating account...",
+    "signUpButton": "Create Account",
+    "alreadyHaveAccountPrompt": "Already have an account?",
+    "forgotPasswordTitle": "Forgot Password?",
+    "forgotPasswordDescription": "No problem. Enter your email address below, and we'll send you a link to reset it.",
+    "sendResetLinkButton": "Send Reset Link",
+    "sendingEmailButton": "Sending email...",
+    "rememberPasswordPrompt": "Remember your password?",
+    "resetPasswordTitle": "Reset Your Password",
+    "resetPasswordDescription": "Enter and confirm your new password below.",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "Enter a strong new password",
+    "resetPasswordButton": "Reset Password",
+    "resettingPasswordButton": "Resetting...",
+    "recoverPage": {
+      "title": "Recover Your Account",
+      "description": "Use your network to regain access.",
+      "howItWorksTitle": "How it Works",
+      "step1": "Enter your phone number to start a recovery session.",
+      "step2": "Show the temporary QR code to a trusted friend on DamDoh.",
+      "step3": "Once your friend scans the code to verify your identity, you'll regain access.",
+      "startButton": "Start Account Recovery",
+      "scanTitle": "Ask a Friend to Scan",
+      "scanDescription": "Have a trusted DamDoh contact scan this QR code using the 'Help a Friend Recover' feature in their app.",
+      "scanNote": "This code is temporary and expires in 10 minutes.",
+      "startOverButton": "Start Over",
+      "enterPhone": {
+        "title": "Enter Your Phone Number",
+        "description": "We'll use this to find your account and start the recovery process.",
+        "phoneNumberLabel": "Phone Number",
+        "phoneNumberPlaceholder": "+1 (555) 123-4567",
+        "phoneRequiredError": "A phone number is required.",
+        "getRecoveryCodeButton": "Get Recovery Code",
+        "verifyingButton": "Verifying...",
+        "genericError": "Could not start recovery. Please check the number and try again."
+      },
+      "helpFriend": {
+        "prompt": "Need to help a friend recover their account?",
+        "button": "Help a Friend Recover",
+        "scanError": "The scanned code is not a valid DamDoh recovery code.",
+        "scanSuccess": "Scan Successful!",
+        "scanFail": "Could not read the QR code. Please try again."
+      }
+    },
+    "forgotPassword": {
+      "emailSentTitle": "Check Your Email",
+      "emailSentDescription": "A password reset link has been sent to {email}.",
+      "emailSentDescriptionIfAccountExists": "If an account with {email} exists, a password reset link has been sent.",
+      "successTitle": "Email Sent!",
+      "successDescription": "Please check your inbox (and spam folder) for the password reset link.",
+      "errors": {
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidEmail": "The email address is not valid.",
+        "tooManyRequests": "Too many requests. Please try again later.",
+        "default": "Failed to send reset email"
+      }
+    },
+    "resetPassword": {
+      "successTitle": "Password Reset Successfully!",
+      "successDescription": "You can now sign in with your new password.",
+      "successRedirect": "You will be redirected to the sign-in page shortly.",
+      "errors": {
+        "missingCode": "Invalid password reset link. Please request a new one.",
+        "missingCodeTitle": "Invalid Link",
+        "missingCodeDescription": "The password reset link is missing or invalid. Please return to the 'Forgot Password' page to request a new one.",
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "invalidOrExpiredCode": "The password reset link is invalid or has expired. Please request a new one.",
+        "userDisabled": "This user account has been disabled.",
+        "userNotFound": "No user found corresponding to this reset link.",
+        "weakPassword": "The new password is not strong enough.",
+        "default": "Failed to reset password"
+      }
+    },
+    "signInSuccess": {
+      "title": "Sign In Successful",
+      "description": "Welcome back to {appName}!"
+    },
+    "signInFailed": "Sign In Failed",
+    "errors": {
+      "unexpected": "An unexpected error occurred. Please try again.",
+      "invalidCredential": "The email or password you entered is incorrect.",
+      "invalidEmail": "The email address is not valid.",
+      "userDisabled": "This user account has been disabled.",
+      "default": "Authentication failed",
+      "emailInUse": "An account with this email already exists.",
+      "emailInUseRich": "An account with this email already exists. Please {signInLink} or use a different email.",
+      "weakPassword": "The password is too weak. Please use a stronger password."
+    },
+    "passwordStrength": {
+      "label": "Strength",
+      "weak": "Weak",
+      "medium": "Medium",
+      "strong": "Strong",
+      "veryStrong": "Very Strong"
+    },
+    "signUpSuccess": {
+      "title": "Account Created!",
+      "description": "Welcome to {appName}! You have been signed in."
+    },
+    "signUpFailed": "Sign Up Failed",
+    "error": "Error"
   }
 }
