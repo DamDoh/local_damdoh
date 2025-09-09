@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { geohashForLocation, geohashQueryBounds, distanceBetween } from "geofire-common";
@@ -266,3 +267,4 @@ export const performSearch = functions.https.onCall(async (data, context) => {
     throw new functions.https.HttpsError("internal", "An unexpected error occurred while searching.");
   }
 });
+

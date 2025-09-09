@@ -43,6 +43,7 @@ export function Providers({
             setUser(user);
             if (user) {
                 try {
+                    // Correctly call the server action to fetch the profile
                     const userProfile = await getProfileByIdFromDB(user.uid);
                     setProfile(userProfile);
                 } catch (error) {

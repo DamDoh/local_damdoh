@@ -1,4 +1,5 @@
 
+
 'use server';
 
 // Note: Most data-fetching server actions have been removed.
@@ -45,7 +46,7 @@ export async function interpretSearchQuery(input: { rawQuery: string }): Promise
 export async function performSearch(interpretation: Partial<SmartSearchInterpretation>): Promise<any[]> {
   const user = await getCurrentUser();
   if (!user) {
-    console.error("performSearch: User is not authenticated.");
+    console.warn("performSearch: User is not authenticated. Search may be limited.");
     // For public-facing pages like the marketplace, we might allow unauthenticated searches.
     // Let the backend function decide if auth is truly needed.
   }

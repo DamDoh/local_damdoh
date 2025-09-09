@@ -21,6 +21,7 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
     const t = useTranslations('Marketplace');
     const isService = item.listingType === 'Service';
     const isTourism = item.category === 'agri-tourism-services';
+    const imageUrl = item.imageUrl || (Array.isArray(item.imageUrls) && item.imageUrls.length > 0 ? item.imageUrls[0] : null) || 'https://placehold.co/400x300.png';
 
     return (
         <Card className={cn("flex flex-col h-full w-full max-w-sm hover:shadow-lg transition-shadow duration-200", className)}>
@@ -36,7 +37,7 @@ export function ItemCard({ item, reason, className }: ItemCardProps) {
                 <Link href={`/marketplace/${item.id}`}>
                     <div className="relative w-full aspect-[4/3] bg-muted">
                         <Image
-                            src={item.imageUrl || (Array.isArray(item.imageUrls) && item.imageUrls[0]) || 'https://placehold.co/400x300.png'}
+                            src={imageUrl}
                             alt={item.name}
                             fill
                             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"

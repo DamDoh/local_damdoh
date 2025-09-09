@@ -2,7 +2,7 @@
 {
   "functions": [
     {
-      "source": "functions",
+      "source": "firebase/functions",
       "codebase": "default",
       "ignore": [
         "node_modules",
@@ -26,16 +26,7 @@
     ],
     "frameworksBackend": {
       "region": "us-central1"
-    },
-    "rewrites": [
-      {
-        "source": "/api/**",
-        "run": {
-          "serviceId": "api",
-          "region": "us-central1"
-        }
-      }
-    ]
+    }
   },
   "firestore": {
     "rules": "firebase/firestore.rules",

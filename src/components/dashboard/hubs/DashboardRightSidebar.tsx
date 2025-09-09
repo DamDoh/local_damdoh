@@ -35,8 +35,8 @@ export function DashboardRightSidebar() {
   
   const { user, profile, loading: authLoading } = useAuth(); // Using the centralized profile
 
-  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'network-sendConnectionRequest'), [functions]);
-  const suggestConnectionsCallable = useMemo(() => httpsCallable(functions, 'suggestConnections'), [functions]);
+  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'network-sendConnectionRequest'), []);
+  const suggestConnectionsCallable = useMemo(() => httpsCallable(functions, 'suggestConnections'), []);
 
   const fetchSuggestions = useCallback(async () => {
     if (!profile) return; // Wait until the user profile is loaded from context
@@ -226,7 +226,7 @@ export function DashboardRightSidebar() {
       <Card className="overflow-hidden">
         <CardContent className="p-0">
           <div className="p-2 text-right">
-            <span className="text-xs text-muted-foreground">{t('ad')} <MoreHorizontalIcon className="inline h-3 w-3" /></span>
+            <span className="text-xs text-muted-foreground">{t('ad')} <MoreHorizontal className="inline h-3 w-3" /></span>
           </div>
           <p className="text-xs text-muted-foreground text-center px-4">{t('adTitle')}</p>
           <div className="flex justify-center items-center gap-2 my-2 px-4">
@@ -248,7 +248,7 @@ export function DashboardRightSidebar() {
   );
 }
 
-const MoreHorizontalIcon = (props: React.SVGProps<SVGSVGElement>) => (
+const MoreHorizontal = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <circle cx="12" cy="12" r="1" />
     <circle cx="19" cy="12" r="1" />
