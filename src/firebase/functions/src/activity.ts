@@ -94,7 +94,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             const post = doc.data();
             activities.push({
                 id: doc.id,
-                type: 'sharedAPost',
+                type: 'activity.sharedAPost',
                 title: post.content.substring(0, 70) + (post.content.length > 70 ? '...' : ''),
                 timestamp: toISODate(post.createdAt),
                 icon: 'MessageSquare'
@@ -105,7 +105,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             const order = doc.data();
             activities.push({
                 id: doc.id,
-                type: 'placedAnOrder',
+                type: 'activity.placedAnOrder',
                 title: `For: ${order.listingName}`,
                 timestamp: toISODate(order.createdAt),
                 icon: 'ShoppingCart'
@@ -116,7 +116,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             const sale = doc.data();
             activities.push({
                 id: doc.id,
-                type: 'receivedAnOrder',
+                type: 'activity.receivedAnOrder',
                 title: `For: ${sale.listingName}`,
                 timestamp: toISODate(sale.createdAt),
                 icon: 'CircleDollarSign'
@@ -127,7 +127,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             const event = doc.data();
             activities.push({
                 id: doc.id,
-                type: 'loggedEvent',
+                type: 'activity.loggedEvent',
                 title: event.payload?.inputId || event.payload?.cropType || 'Traceability Update',
                 timestamp: toISODate(event.timestamp),
                 icon: 'GitBranch'

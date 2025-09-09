@@ -204,7 +204,13 @@ export const onNewMarketplaceOrder = functions.firestore
  */
 export const markNotificationAsRead = functions.https.onCall(
   async (data, context) => {
-    const userId = checkAuth(context);
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "User must be authenticated.",
+      );
+    }
+    const userId = context.auth.uid;
 
     const {notificationId} = data;
     if (!notificationId) {
@@ -246,7 +252,13 @@ export const markNotificationAsRead = functions.https.onCall(
  */
 export const manageNotificationPreferences = functions.https.onCall(
   async (data, context) => {
-    const userId = checkAuth(context);
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "User must be authenticated.",
+      );
+    }
+    const userId = context.auth.uid;
 
     try {
         const userRef = db.collection("users").doc(userId);
@@ -313,3 +325,4 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
     logInfo("Daily event reminder check finished.");
     return null;
   });
+

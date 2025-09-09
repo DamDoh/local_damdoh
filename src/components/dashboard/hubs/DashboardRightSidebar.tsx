@@ -1,7 +1,7 @@
 
 "use client";
 
-import Link from "next/link";
+import { Link } from '@/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -33,21 +33,21 @@ export function DashboardRightSidebar() {
   const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(true);
   const [suggestionError, setSuggestionError] = useState<string | null>(null);
   
-  const { user, profile, loading: authLoading } = useAuth(); // Using the centralized profile
+  const { user, profile, loading: authLoading } = useAuth();
 
   const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'network-sendConnectionRequest'), [functions]);
   const suggestConnectionsCallable = useMemo(() => httpsCallable(functions, 'suggestConnections'), [functions]);
 
   const fetchSuggestions = useCallback(async () => {
-    if (!profile) return; // Wait until the user profile is loaded from context
+    if (!profile) return; 
 
     setIsLoadingSuggestions(true);
     setSuggestionError(null);
     try {
       const userInput: SuggestedConnectionsInput = {
         userId: profile.id,
-        count: 5,
-        language: 'en', // Hardcoding for now, can be replaced with locale
+        count: 3,
+        language: 'en',
       };
 
       const result = (await suggestConnectionsCallable(userInput)).data as SuggestedConnectionsOutput;
@@ -75,11 +75,9 @@ export function DashboardRightSidebar() {
   }, [profile, t, suggestConnectionsCallable]);
 
   useEffect(() => {
-    // Only fetch suggestions if we are not loading profile and user exists
     if (!authLoading && user && profile) {
       fetchSuggestions();
     } else if (!authLoading && !user) {
-      // If user is not logged in, stop loading and clear suggestions
       setIsLoadingSuggestions(false);
       setAiSuggestions([]);
     }

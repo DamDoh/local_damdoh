@@ -4,7 +4,6 @@
 import { Link } from '@/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "../ui/skeleton";
 import { useEffect, useState, useMemo } from "react";
 import { useAuth } from "@/lib/auth-utils";
@@ -13,7 +12,6 @@ import { functions } from "@/lib/firebase/client";
 import { useTranslations } from 'next-intl';
 import { Eye, ThumbsUp, GitBranch, ShoppingCart, CircleDollarSign, MessageSquare } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
-import { formatDistanceToNow } from 'date-fns';
 
 const activityIconMap: Record<string, React.ElementType> = {
     MessageSquare,
@@ -38,38 +36,30 @@ interface Activity {
 
 export function DashboardLeftSidebar() {
   const t = useTranslations('DashboardLeftSidebar');
-  const tActivity = useTranslations('activity');
   const { profile, loading: authLoading } = useUserProfile();
   
   const [stats, setStats] = useState<EngagementStats | null>(null);
-  const [activity, setActivity] = useState<Activity[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const getStatsCallable = useMemo(() => httpsCallable(functions, 'activity-getUserEngagementStats'), [functions]);
-  const getActivityCallable = useMemo(() => httpsCallable(functions, 'activity-getUserActivity'), [functions]);
 
   useEffect(() => {
     if (profile?.id) { 
         setIsLoading(true);
-        Promise.all([
-            getStatsCallable({ userId: profile.id }),
-            getActivityCallable({ userId: profile.id })
-        ]).then(([statsResult, activityResult]) => {
+        getStatsCallable({ userId: profile.id })
+        .then((statsResult) => {
             setStats(statsResult.data as EngagementStats);
-            setActivity((activityResult.data as any).activities || []);
         }).catch(error => {
             console.error("Error fetching sidebar data:", error);
             setStats({ profileViews: 0, postLikes: 0, postComments: 0 }); 
-            setActivity([]);
         }).finally(() => {
             setIsLoading(false);
         });
     } else if (!authLoading) {
         setIsLoading(false);
         setStats({ profileViews: 0, postLikes: 0, postComments: 0 }); 
-        setActivity([]);
     }
-  }, [profile, authLoading, getStatsCallable, getActivityCallable]); 
+  }, [profile, authLoading, getStatsCallable]); 
 
 
   if (authLoading) {
@@ -129,37 +119,6 @@ export function DashboardLeftSidebar() {
           )}
         </CardContent>
       </Card>
-      <Card>
-        <CardHeader>
-            <CardTitle className="text-base">{t('recentActivity')}</CardTitle>
-        </CardHeader>
-        <CardContent>
-            {isLoading ? (
-                <div className="space-y-3">
-                    <Skeleton className="h-10 w-full"/>
-                    <Skeleton className="h-10 w-full"/>
-                </div>
-            ) : activity.length > 0 ? (
-                <ul className="space-y-3">
-                    {activity.slice(0, 3).map(act => {
-                        const Icon = activityIconMap[act.icon] || GitBranch;
-                        return (
-                        <li key={act.id} className="flex items-start gap-2 text-xs">
-                            <Icon className="h-4 w-4 mt-0.5 text-muted-foreground"/>
-                            <div>
-                                <p className="font-medium text-muted-foreground">{tActivity(act.type, {defaultMessage: act.type})}</p>
-                                <p className="text-foreground line-clamp-1">{act.title}</p>
-                            </div>
-                        </li>
-                        )
-                    })}
-                </ul>
-            ) : (
-                <p className="text-xs text-muted-foreground text-center">{t('noActivity')}</p>
-            )}
-        </CardContent>
-      </Card>
-
     </div>
   );
 }

@@ -20,65 +20,10 @@ import { useTranslations } from 'next-intl';
 import { Button } from '../ui/button';
 import { Link } from '@/navigation';
 import { Edit } from 'lucide-react';
-
-// Hub Components
-import { AgroExportDashboard } from '@/components/dashboard/hubs/AgroExportDashboard';
-import { AgroTourismDashboard } from '@/components/dashboard/hubs/AgroTourismDashboard';
-import { AgronomistDashboard } from '@/components/dashboard/hubs/AgronomistDashboard';
-import { BuyerDashboard } from '@/components/dashboard/hubs/BuyerDashboard';
-import { CertificationBodyDashboard } from '@/components/dashboard/hubs/CertificationBodyDashboard';
-import { CooperativeDashboard } from '@/components/dashboard/hubs/CooperativeDashboard';
-import { CrowdfunderDashboard } from '@/components/dashboard/hubs/CrowdfunderDashboard';
-import { EnergyProviderDashboard } from '@/components/dashboard/hubs/EnergyProviderDashboard';
-import { EquipmentSupplierDashboard } from '@/components/dashboard/hubs/EquipmentSupplierDashboard';
-import { FarmerDashboard } from '@/components/dashboard/hubs/FarmerDashboard';
-import { FieldAgentDashboard } from '@/components/dashboard/hubs/FieldAgentDashboard';
-import { FiDashboard } from '@/components/dashboard/hubs/FiDashboard';
-import { InputSupplierDashboard } from '@/components/dashboard/hubs/InputSupplierDashboard';
-import { InsuranceProviderDashboard } from '@/components/dashboard/hubs/InsuranceProviderDashboard';
-import { PackagingSupplierDashboard } from '@/components/dashboard/hubs/PackagingSupplierDashboard';
-import { QaDashboard } from '@/components/dashboard/hubs/QaDashboard';
-import { RegulatorDashboard } from '@/components/dashboard/hubs/RegulatorDashboard';
-import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashboard';
-import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
-import { AgriTechInnovatorDashboard } from './hubs/AgriTechInnovatorDashboard';
-import { OperationsDashboard } from './hubs/OperationsDashboard';
-import { LogisticsDashboard } from './hubs/LogisticsDashboard';
-import { ProcessingUnitDashboard } from './hubs/ProcessingUnitDashboard';
-import { WarehouseDashboard } from './hubs/WarehouseDashboard';
-import { ConsumerDashboard } from './hubs/ConsumerDashboard';
+import { useUserProfile } from '@/hooks/useUserProfile';
 
 
 const { useState, useEffect, useMemo } = React;
-
-
-const HubComponentMap: { [key: string]: React.ComponentType } = {
-    'Farmer': FarmerDashboard,
-    'Agricultural Cooperative': CooperativeDashboard,
-    'Field Agent/Agronomist (DamDoh Internal)': FieldAgentDashboard,
-    'Operations/Logistics Team (DamDoh Internal)': OperationsDashboard,
-    'Quality Assurance Team (DamDoh Internal)': QaDashboard,
-    'Processing & Packaging Unit': ProcessingUnitDashboard,
-    'Buyer (Restaurant, Supermarket, Exporter)': BuyerDashboard,
-    'Input Supplier (Seed, Fertilizer, Pesticide)': InputSupplierDashboard,
-    'Equipment Supplier (Sales of Machinery/IoT)': EquipmentSupplierDashboard,
-    'Financial Institution (Micro-finance/Loans)': FiDashboard,
-    'Government Regulator/Auditor': RegulatorDashboard,
-    'Certification Body (Organic, Fair Trade etc.)': CertificationBodyDashboard,
-    'Consumer': ConsumerDashboard,
-    'Researcher/Academic': ResearcherDashboard,
-    'Logistics Partner (Third-Party Transporter)': LogisticsDashboard,
-    'Storage/Warehouse Facility': WarehouseDashboard,
-    'Agronomy Expert/Consultant (External)': AgronomistDashboard,
-    'Agro-Tourism Operator': AgroTourismDashboard,
-    'Energy Solutions Provider (Solar, Biogas)': EnergyProviderDashboard,
-    'Agro-Export Facilitator/Customs Broker': AgroExportDashboard,
-    'Agri-Tech Innovator/Developer': AgriTechInnovatorDashboard,
-    'Waste Management & Compost Facility': WasteManagementDashboard,
-    'Crowdfunder (Impact Investor, Individual)': CrowdfunderDashboard,
-    'Insurance Provider': InsuranceProviderDashboard,
-    'Packaging Supplier': PackagingSupplierDashboard
-};
 
 
 function MainContent() {
@@ -86,7 +31,7 @@ function MainContent() {
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
   
   const { toast } = useToast();
-  const { user, profile, loading: authLoading } = useAuth(); // Use the global context
+  const { user, profile, loading: authLoading } = useUserProfile();
   const t = useTranslations('MainDashboard');
   
   const functions = useMemo(() => getFunctions(firebaseApp), []);
@@ -124,7 +69,6 @@ function MainContent() {
             setIsLoadingFeed(false);
         });
     } else {
-        // Firebase is not configured, don't attempt to fetch
         setIsLoadingFeed(false);
     }
     
@@ -228,11 +172,6 @@ function MainContent() {
         );
     }
   
-    const HubComponent = profile ? HubComponentMap[profile.primaryRole] : null;
-    if (HubComponent) {
-      return <HubComponent />;
-    }
-
     // Default Fallback: Social Feed
     if (isLoadingFeed) {
       return (
@@ -249,8 +188,6 @@ function MainContent() {
           key={item.id} 
           item={item} 
           onDeletePost={handleDeletePost}
-          onLike={handleLikePost}
-          onComment={handleCommentOnPost}
         />
       ))
     ) : (
@@ -271,7 +208,7 @@ function MainContent() {
       <div className="md:col-span-3 lg:col-span-2">
         <DashboardLeftSidebar />
       </div>
-      <div className="md:col-span-6 lg:col-span-7 space-y-6">
+      <div className="md:col-span-9 lg:col-span-7 space-y-6">
         {user && <StartPost onCreatePost={handleCreatePost} />}
         {renderContent()}
       </div>
