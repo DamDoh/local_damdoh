@@ -1,15 +1,10 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { AgriEventSchema } from "@/lib/schemas"; // Import from the new single source of truth
+import { checkAuth } from './utils';
+import { getUserProfile } from './user';
 
 const db = admin.firestore();
-
-const checkAuth = (context: functions.https.CallableContext) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-  }
-  return context.auth.uid;
-};
 
 // Internal helper to validate an event coupon
 const _validateEventCoupon = async (eventId: string, couponCode: string): Promise<{valid: boolean; message?: string; discountType?: 'fixed' | 'percentage'; discountValue?: number; docId?: string}> => {
@@ -73,7 +68,7 @@ export const createEventCoupon = functions.https.onCall(async (data, context) =>
 });
 
 export const getEventCoupons = functions.https.onCall(async (data, context) => {
-    checkAuth(context);
+    const uid = checkAuth(context);
     const { eventId } = data;
     if (!eventId) {
         throw new functions.https.HttpsError("invalid-argument", "An eventId must be provided.");
@@ -81,7 +76,7 @@ export const getEventCoupons = functions.https.onCall(async (data, context) => {
 
     const eventRef = db.collection("agri_events").doc(eventId);
     const eventDoc = await eventRef.get();
-    if (!eventDoc.exists || eventDoc.data()?.organizerId !== context.auth!.uid) {
+    if (!eventDoc.exists || eventDoc.data()?.organizerId !== uid) {
         throw new functions.https.HttpsError("permission-denied", "You are not authorized to view coupons for this event.");
     }
 
@@ -185,12 +180,11 @@ export const registerForEvent = functions.https.onCall(async (data, context) => 
     
     const eventRef = db.collection('agri_events').doc(eventId);
     const attendeeRef = eventRef.collection('attendees').doc(uid);
-    const userProfileDoc = await db.collection('users').doc(uid).get();
+    const userProfile = await getUserProfile(uid);
 
-    if (!userProfileDoc.exists) {
+    if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
     }
-    const userProfile = userProfileDoc.data()!;
 
     return db.runTransaction(async (transaction) => {
         const eventDoc = await transaction.get(eventRef);

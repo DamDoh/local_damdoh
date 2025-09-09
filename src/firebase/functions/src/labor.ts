@@ -1,18 +1,10 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { logFinancialTransaction } from "./financials"; // Assuming this function exists to log expenses
+import { checkAuth } from './utils';
 
 const db = admin.firestore();
-
-// Helper to check for authentication
-const checkAuth = (context: functions.https.CallableContext) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
-  }
-  return context.auth.uid;
-};
 
 // Add a new worker profile
 export const addWorker = functions.https.onCall(async (data, context) => {
@@ -42,14 +34,11 @@ export const getWorkers = functions.https.onCall(async (data, context) => {
   const farmerId = checkAuth(context);
   const workersSnapshot = await db.collection(`users/${farmerId}/workers`).orderBy('name').get();
   
-  const workers = workersSnapshot.docs.map(doc => {
-    const docData = doc.data();
-    return {
-        id: doc.id,
-        ...docData,
-        createdAt: (docData.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
-    }
-  });
+  const workers = workersSnapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data(),
+    createdAt: doc.data().createdAt.toDate().toISOString(),
+  }));
 
   return { workers };
 });
@@ -86,33 +75,7 @@ export const logHours = functions.https.onCall(async (data, context) => {
   return { success: true, workLogId: workLogRef.id };
 });
 
-// New function to get only unpaid work logs for a worker
-export const getUnpaidWorkLogs = functions.https.onCall(async (data, context) => {
-    const farmerId = checkAuth(context);
-    const { workerId } = data;
-    if (!workerId) {
-        throw new functions.https.HttpsError("invalid-argument", "A workerId must be provided.");
-    }
-    
-    const workLogsSnapshot = await db.collection(`users/${farmerId}/workers/${workerId}/work_logs`)
-        .where('isPaid', '==', false)
-        .orderBy('date', 'asc')
-        .get();
-
-    const workLogs = workLogsSnapshot.docs.map(doc => {
-        const docData = doc.data();
-        return { 
-            id: doc.id, 
-            ...docData, 
-            date: (docData.date as admin.firestore.Timestamp).toDate().toISOString(),
-        }
-    });
-
-    return { workLogs };
-});
-
-
-// Enhanced function to log a payment made to a worker and mark work logs as paid
+// Log a payment made to a worker and automatically create a corresponding expense
 export const logPayment = functions.https.onCall(async (data, context) => {
     const farmerId = checkAuth(context);
     const { workerId, amount, date, notes, currency, workLogIds } = data;
@@ -128,6 +91,8 @@ export const logPayment = functions.https.onCall(async (data, context) => {
     }
     const workerName = workerSnap.data()?.name || "a worker";
     
+    // --- Automatic Interconnection with Financials Module ---
+    // Log this payment as an expense in the "Money Matters" module
     try {
         await logFinancialTransaction({
             type: 'expense',
@@ -139,11 +104,13 @@ export const logPayment = functions.https.onCall(async (data, context) => {
         }, context);
     } catch (error) {
         console.error("Failed to auto-log labor payment as an expense:", error);
+        // Decide if this should be a critical failure or just a warning
+        // For now, we'll let it fail but a more robust system might queue it for retry
         throw new functions.https.HttpsError('internal', 'Could not record the payment in your financial ledger.');
     }
 
     const paymentRef = db.collection(`users/${farmerId}/workers/${workerId}/payments`).doc();
-
+    
     const batch = db.batch();
 
     batch.set(paymentRef, {
@@ -168,7 +135,7 @@ export const logPayment = functions.https.onCall(async (data, context) => {
     }
 
     await batch.commit();
-
+    
     return { success: true, paymentId: paymentRef.id };
 });
 
@@ -193,33 +160,52 @@ export const getWorkerDetails = functions.https.onCall(async (data, context) => 
         throw new functions.https.HttpsError('not-found', 'Worker not found.');
     }
     
-    const workLogs = workLogsSnap.docs.map(doc => { 
-      const docData = doc.data();
-      return { 
+    const workLogs = workLogsSnap.docs.map(doc => ({ 
         id: doc.id, 
-        ...docData, 
-        date: (docData.date as admin.firestore.Timestamp).toDate().toISOString(),
-        createdAt: (docData.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
-    }});
-    const payments = paymentsSnap.docs.map(doc => {
-      const docData = doc.data();
-      return { 
+        ...doc.data(), 
+        date: doc.data().date.toDate().toISOString(),
+        createdAt: doc.data().createdAt.toDate().toISOString(),
+    }));
+    const payments = paymentsSnap.docs.map(doc => ({ 
         id: doc.id, 
-        ...docData, 
-        date: (docData.date as admin.firestore.Timestamp).toDate().toISOString(),
-        createdAt: (docData.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
-    }});
+        ...doc.data(), 
+        date: doc.data().date.toDate().toISOString(),
+        createdAt: doc.data().createdAt.toDate().toISOString(),
+    }));
 
-    const profileData = workerSnap.data()!;
     return {
         profile: { 
             id: workerSnap.id, 
-            ...profileData,
-            createdAt: (profileData.createdAt as admin.firestore.Timestamp).toDate().toISOString(),
+            ...workerSnap.data(),
+            createdAt: workerSnap.data()?.createdAt.toDate().toISOString(),
         },
         workLogs,
         payments
     }
 });
 
+
+// New function to get only unpaid work logs for a worker
+export const getUnpaidWorkLogs = functions.https.onCall(async (data, context) => {
+    const farmerId = checkAuth(context);
+    const { workerId } = data;
+    if (!workerId) {
+        throw new functions.https.HttpsError("invalid-argument", "A workerId must be provided.");
+    }
     
+    const workLogsSnapshot = await db.collection(`users/${farmerId}/workers/${workerId}/work_logs`)
+        .where('isPaid', '==', false)
+        .orderBy('date', 'asc')
+        .get();
+
+    const workLogs = workLogsSnapshot.docs.map(doc => {
+        const docData = doc.data();
+        return { 
+            id: doc.id, 
+            ...docData, 
+            date: (docData.date as admin.firestore.Timestamp).toDate().toISOString(),
+        }
+    });
+
+    return { workLogs };
+});

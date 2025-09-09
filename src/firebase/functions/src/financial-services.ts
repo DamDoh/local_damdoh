@@ -1,18 +1,10 @@
-
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getEngagementStats } from "./activity";
 import { getUserProfile } from "./user";
+import { checkAuth } from "./utils";
 
 const db = admin.firestore();
-
-const checkAuth = (context: functions.https.CallableContext) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-  }
-  return context.auth.uid;
-};
 
 // --- Internal AI-Driven Functions (moved from ai-and-analytics.ts) ---
 
