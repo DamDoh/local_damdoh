@@ -16,7 +16,7 @@ import { StakeholderIcon } from '../icons/StakeholderIcon';
 import { Badge } from "@/components/ui/badge";
 
 
-export function HomePage() {
+export function LandingPage() {
   const t = useTranslations('LandingPage');
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
