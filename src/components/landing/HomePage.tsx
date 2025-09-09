@@ -82,8 +82,18 @@ export function HomePage() {
       <div className="flex flex-col min-h-screen bg-background">
         {/* Hero Section */}
         <section className="relative flex flex-col items-center justify-center text-center py-24 md:py-32 bg-gray-50 dark:bg-gray-900/50">
+          <div
+            className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(to_bottom,transparent,white,transparent)] dark:bg-grid-slate-700/40"
+          ></div>
           <div className="container px-4 md:px-6 z-10">
-             <Badge variant="secondary" className="mb-4">{t('hero.badge')}</Badge>
+             <Badge variant="outline" className="mb-4 backdrop-blur-sm">
+                <span className="relative inline-flex overflow-hidden rounded-full p-[1px]">
+                  <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"></span>
+                  <div className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background/95 px-3 py-1 text-xs font-medium text-foreground backdrop-blur-3xl">
+                    {t('hero.badge')}
+                  </div>
+                </span>
+             </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter text-gray-900 dark:text-gray-50">
               {t('hero.title')}
             </h1>
@@ -102,7 +112,7 @@ export function HomePage() {
         <section className="py-8 bg-muted/50">
             <div className="container mx-auto px-4 md:px-6">
                 <h2 className="text-center text-sm font-semibold text-muted-foreground uppercase tracking-wider">{t('featured.title')}</h2>
-                <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-8 items-center justify-items-center">
+                <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-8 items-center justify-items-center opacity-70">
                     <p className="text-xl font-bold text-gray-400">Forbes</p>
                     <p className="text-xl font-bold text-gray-400">Bloomberg</p>
                     <p className="text-xl font-bold text-gray-400">TechCrunch</p>
@@ -131,8 +141,8 @@ export function HomePage() {
                     {stakeholderTabs.map(tab => (
                         <TabsContent key={tab.id} value={tab.id}>
                             <Card className="border-t-0 rounded-t-none">
-                                <CardContent className="p-6 grid md:grid-cols-2 gap-8 items-center">
-                                    <div className="relative w-full aspect-square">
+                                <CardContent className="p-6 md:p-10 grid md:grid-cols-2 gap-8 items-center">
+                                    <div className="relative w-full aspect-[4/3]">
                                         <Image src={t(`stakeholders.${tab.id}.image`)} alt={t(`stakeholders.${tab.id}.name`)} fill className="rounded-lg object-cover shadow-md" data-ai-hint="agriculture professional" />
                                     </div>
                                     <div className="space-y-4">
@@ -158,7 +168,7 @@ export function HomePage() {
         </section>
 
 
-        {/* Features / Trust Pillars Section */}
+        {/* Trust Pillars Section */}
         <section id="features" className="py-16 md:py-24 bg-muted/50">
           <div className="container px-4 md:px-6 flex flex-col items-center">
             <div className="text-center mb-12">
@@ -169,7 +179,7 @@ export function HomePage() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {trustPillars.map((feature, index) => (
-                <Card key={index} className="text-center p-6 shadow-md hover:shadow-lg transition-shadow bg-card">
+                <Card key={index} className="text-center p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all bg-card">
                   <div className="flex justify-center mb-4">
                     {feature.icon}
                   </div>
@@ -190,9 +200,9 @@ export function HomePage() {
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 text-center">
                     {steps.map((step) => (
-                        <div key={step.number} className="relative">
-                            <h3 className="text-7xl font-bold text-primary/10">{step.number}</h3>
-                            <div className="relative -mt-8">
+                        <div key={step.number} className="relative p-6">
+                            <h3 className="text-8xl font-bold text-primary/10">{step.number}</h3>
+                            <div className="relative -mt-12">
                                 <h4 className="text-xl font-semibold">{step.title}</h4>
                                 <p className="text-muted-foreground mt-2">{step.description}</p>
                             </div>
@@ -208,10 +218,12 @@ export function HomePage() {
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-center mb-12">{t('testimonials.title')}</h2>
                 <div className="grid lg:grid-cols-3 gap-8">
                     {testimonials.map((testimonial, index) => (
-                        <Card key={index} className="p-6">
-                            <CardContent className="p-0">
+                        <Card key={index} className="p-6 flex flex-col">
+                            <CardContent className="p-0 flex-grow">
                                 <p className="italic text-muted-foreground">"{testimonial.quote}"</p>
-                                <div className="flex items-center gap-3 mt-4">
+                            </CardContent>
+                            <CardFooter className="p-0 pt-6 mt-4 border-t">
+                                <div className="flex items-center gap-3">
                                     <Avatar className="h-12 w-12">
                                         <AvatarImage src={testimonial.avatar} alt={testimonial.name} data-ai-hint="farmer portrait" />
                                         <AvatarFallback>{testimonial.name.substring(0,1)}</AvatarFallback>
@@ -221,7 +233,7 @@ export function HomePage() {
                                         <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                                     </div>
                                 </div>
-                            </CardContent>
+                            </CardFooter>
                         </Card>
                     ))}
                 </div>
@@ -248,3 +260,5 @@ export function HomePage() {
     </>
   )
 }
+
+    
