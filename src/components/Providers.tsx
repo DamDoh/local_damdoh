@@ -5,9 +5,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React, { Suspense, useState, useEffect, createContext } from 'react';
 import { useOfflineSync } from '@/hooks/useOfflineSync';
 import { onAuthStateChanged, type User } from "firebase/auth";
-import { auth } from '@/lib/firebase/client';
+import { auth, functions } from '@/lib/firebase/client';
 import type { UserProfile } from '@/lib/types';
-import { getProfileByIdFromDB } from '@/lib/server-actions';
+import { httpsCallable } from "firebase/functions";
 
 export interface AuthContextType {
   user: User | null;
@@ -41,11 +41,11 @@ export function Providers({
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             setLoading(true);
             setUser(user);
-            if (user) {
+            if (user && functions) {
                 try {
-                    // Correctly call the server action to fetch the profile
-                    const userProfile = await getProfileByIdFromDB(user.uid);
-                    setProfile(userProfile);
+                    const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
+                    const result = await getProfile({ uid: user.uid });
+                    setProfile(result.data as UserProfile);
                 } catch (error) {
                     console.error("Failed to fetch user profile:", error);
                     setProfile(null);
@@ -58,7 +58,7 @@ export function Providers({
 
         // Cleanup subscription on unmount
         return () => unsubscribe();
-    }, []);
+    }, [functions]);
     
     const authValue = { user, profile, loading };
 
