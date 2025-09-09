@@ -1,12 +1,11 @@
 
-      
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { getUserDocument } from "./utils";
 
 const db = admin.firestore();
 const messaging = admin.messaging();
-
-import {getUserDocument} from "./utils";
 
 /**
  * =================================================================
@@ -78,6 +77,7 @@ export async function createAndSendNotification(
     );
   }
 }
+
 
 /**
  * Firestore trigger for new connection requests.

@@ -151,11 +151,14 @@ export const getAgroTourismStaff = functions.https.onCall(async (data, context) 
     }
     
     const staffSnapshot = await itemRef.collection('staff').get();
-    const staffList = staffSnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-        addedAt: (doc.data().addedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
-    }));
+    const staffList = staffSnapshot.docs.map(doc => {
+        const staffData = doc.data();
+        return {
+            id: doc.id,
+            ...staffData,
+            addedAt: (staffData.addedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
+        }
+    });
 
     return { staff: staffList };
 });
@@ -207,3 +210,5 @@ export const getAgroTourismBookings = functions.https.onCall(async (data, contex
 
     return { bookings: bookingsList };
 });
+
+    

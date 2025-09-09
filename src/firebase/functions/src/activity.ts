@@ -1,8 +1,7 @@
 
-      
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { checkAuth, getUserDocument } from './utils';
+import { checkAuth } from './utils';
 import { createAndSendNotification } from "./notifications";
 
 const db = admin.firestore();
@@ -76,7 +75,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
         const salesPromise = db.collection('marketplace_orders').where('sellerId', '==', userId).orderBy('createdAt', 'desc').limit(5).get();
         const eventsPromise = db.collection('traceability_events').where('actorRef', '==', userId).orderBy('timestamp', 'desc').limit(5).get();
 
-        const [postsSnap, ordersSnap, salesSnap, eventsSnap] = await Promise.all([postsPromise, ordersPromise, salesPromise, eventsSnap]);
+        const [postsSnap, ordersSnap, salesSnap, eventsSnap] = await Promise.all([postsPromise, ordersPromise, salesSnap, eventsSnap]);
         
         const activities: any[] = [];
         const toISODate = (timestamp: admin.firestore.Timestamp | undefined) => {
@@ -99,7 +98,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             activities.push({
                 id: doc.id,
                 type: 'activity.placedAnOrder',
-                title: t => t('activity.orderFor', { listingName: order.listingName }),
+                title: order.listingName,
                 timestamp: toISODate(order.createdAt),
                 icon: 'ShoppingCart'
             });
@@ -110,7 +109,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             activities.push({
                 id: doc.id,
                 type: 'activity.receivedAnOrder',
-                title: t => t('activity.orderFor', { listingName: sale.listingName }),
+                title: sale.listingName,
                 timestamp: toISODate(sale.createdAt),
                 icon: 'CircleDollarSign'
             });
@@ -120,7 +119,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             const event = doc.data();
             activities.push({
                 id: doc.id,
-                type: t => t('activity.loggedEvent', { eventType: event.eventType }),
+                type: 'activity.loggedEvent',
                 title: event.payload?.inputId || event.payload?.cropType || 'activity.traceabilityUpdate',
                 timestamp: toISODate(event.timestamp),
                 icon: 'GitBranch'
@@ -139,18 +138,24 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
 });
 
 /**
- * Fetches engagement statistics for a given user. This is a helper function for the backend.
- * @param {string} userId The ID of the user.
+ * Fetches engagement statistics for a given user.
+ * @param {object} data The data for the function call.
+ * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<object>} A promise that resolves with the user's engagement stats.
  */
-async function getEngagementStats(userId: string): Promise<{ profileViews: number, postLikes: number, postComments: number }> {
-    if (!userId) {
-        throw new Error('A userId must be provided.');
+export const getUserEngagementStats = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
+    const { userId } = data;
+     if (!userId) {
+        throw new functions.https.HttpsError('invalid-argument', 'error.userId.required');
     }
-    try {
-        const userDoc = await getUserDocument(userId);
-        const profileViews = userDoc?.data()?.viewCount || 0;
 
+    try {
+        // Fetch the user document to get the pre-aggregated view count.
+        const userDoc = await db.collection('users').doc(userId).get();
+        const profileViews = userDoc.data()?.viewCount || 0;
+
+        // The logic for likes and comments remains the same, as it's already performant.
         const postsQuery = db.collection('posts').where('userId', '==', userId).get();
         const postsSnapshot = await postsQuery;
 
@@ -168,22 +173,6 @@ async function getEngagementStats(userId: string): Promise<{ profileViews: numbe
         };
     } catch (error) {
         console.error(`Error fetching engagement stats for user ${userId}:`, error);
-        throw new Error('Could not fetch engagement statistics.');
-    }
-};
-
-/**
- * Callable Cloud Function wrapper for getUserEngagementStats.
- */
-export const getUserEngagementStats = functions.https.onCall(async (data, context) => {
-    checkAuth(context);
-    const { userId } = data;
-    if (!userId) {
-        throw new functions.https.HttpsError('invalid-argument', 'error.userId.required');
-    }
-    try {
-        return await getEngagementStats(userId);
-    } catch (error: any) {
-        throw new functions.https.HttpsError('internal', error.message || 'error.stats.fetchFailed');
+        throw new functions.https.HttpsError('internal', 'error.stats.fetchFailed');
     }
 });

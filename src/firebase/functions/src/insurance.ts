@@ -2,17 +2,11 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { getUserProfile } from './user';
+import { checkAuth } from "./utils";
 import type { InsuranceProduct } from "@/lib/types";
-import { getProfileByIdFromDB } from './user';
 
 const db = admin.firestore();
-
-const checkAuth = (context: functions.https.CallableContext) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-  }
-  return context.auth.uid;
-};
 
 // =================================================================
 // Module 11: Insurance Service
@@ -68,7 +62,7 @@ export const getInsuranceProductDetails = functions.https.onCall(async (data, co
     let provider = null;
     
     if (productData.providerId) {
-        const providerProfile = await getProfileByIdFromDB({ uid: productData.providerId }, {auth: context.auth});
+        const providerProfile = await getUserProfile(productData.providerId);
         
         if (providerProfile) {
             provider = {
@@ -116,3 +110,4 @@ export const submitInsuranceApplication = functions.https.onCall(async (data, co
 
     return { success: true, applicationId: newApplicationRef.id };
 });
+

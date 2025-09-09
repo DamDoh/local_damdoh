@@ -38,13 +38,12 @@ export function Providers({
             setLoading(false); // Firebase is not configured, stop loading
             return;
         }
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            setLoading(true);
-            setUser(user);
-            if (user && functions) {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+            setUser(currentUser);
+            if (currentUser && functions) {
                 try {
                     const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
-                    const result = await getProfile({ uid: user.uid });
+                    const result = await getProfile({ uid: currentUser.uid });
                     setProfile(result.data as UserProfile);
                 } catch (error) {
                     console.error("Failed to fetch user profile:", error);
