@@ -1,18 +1,11 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getUserProfile } from './user';
 import { suggestForumTopics } from '../../src/ai/flows/forum-topic-suggestions';
+import { checkAuth } from "./utils";
 
 const db = admin.firestore();
-
-const checkAuth = (context: functions.https.CallableContext) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-  }
-  return context.auth.uid;
-};
 
 // New function to securely call the AI flow
 export const getForumTopicSuggestions = functions.https.onCall(async (data, context) => {
