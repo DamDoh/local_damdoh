@@ -86,7 +86,7 @@ export function HomePage() {
             className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(to_bottom,transparent,white,transparent)] dark:bg-grid-slate-700/40"
           ></div>
           <div className="container px-4 md:px-6 z-10">
-             <Badge variant="outline" className="mb-4 backdrop-blur-sm">
+             <Badge variant="secondary" className="mb-4">
                 <span className="relative inline-flex overflow-hidden rounded-full p-[1px]">
                   <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"></span>
                   <div className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background/95 px-3 py-1 text-xs font-medium text-foreground backdrop-blur-3xl">
@@ -170,7 +170,7 @@ export function HomePage() {
 
         {/* Trust Pillars Section */}
         <section id="features" className="py-16 md:py-24 bg-muted/50">
-          <div className="container px-4 md:px-6 flex flex-col items-center">
+          <div className="container px-4 md:px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">{t('trustPillars.title')}</h2>
               <p className="max-w-[600px] mx-auto text-muted-foreground md:text-xl/relaxed">
@@ -179,7 +179,7 @@ export function HomePage() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {trustPillars.map((feature, index) => (
-                <Card key={index} className="text-center p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all bg-card">
+                <Card key={index} className="text-center p-6 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all bg-card">
                   <div className="flex justify-center mb-4">
                     {feature.icon}
                   </div>
