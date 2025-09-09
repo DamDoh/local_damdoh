@@ -59,12 +59,8 @@ export const getPendingRequests = functions.https.onCall(async (data, context) =
 
     const requesterIds = snapshot.docs.map(doc => doc.data().requesterId);
     
-    const profilePromises = requesterIds.map(async (id) => {
-        const profile = await getUserProfile(id);
-        return profile as UserProfile;
-    });
-
-    const userProfiles = (await Promise.all(profilePromises)).filter(Boolean);
+    const profilePromises = requesterIds.map(id => getUserProfile(id));
+    const userProfiles = (await Promise.all(profilePromises)).filter(Boolean) as UserProfile[];
     
     const profilesMap = new Map(userProfiles.map(p => [p.id, p]));
 

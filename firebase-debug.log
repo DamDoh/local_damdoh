@@ -1555,3 +1555,16 @@ INFO: Detected HTTP/2 connection.
 [debug] [2025-09-09T09:01:10.688Z] <<< [apiv2][status] PUT http://127.0.0.1:8080/emulator/v1/projects/demo-app:securityRules 200
 [debug] [2025-09-09T09:01:10.688Z] <<< [apiv2][body] PUT http://127.0.0.1:8080/emulator/v1/projects/demo-app:securityRules {}
 [info] ✔  firestore: Rules updated. 
+[debug] [2025-09-09T09:25:48.150Z] Sep 09, 2025 9:25:48 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed
+INFO: Websocket client disconnected
+Sep 09, 2025 9:25:48 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed
+INFO: Websocket client disconnected
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Sep 09, 2025 9:25:48 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed\nINFO: Websocket client disconnected\nSep 09, 2025 9:25:48 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed\nINFO: Websocket client disconnected\n"}}
+[debug] [2025-09-09T09:25:48.169Z] Sep 09, 2025 9:25:48 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed
+INFO: Websocket client disconnected
+Sep 09, 2025 9:25:48 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed
+INFO: Websocket client disconnected
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Sep 09, 2025 9:25:48 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed\nINFO: Websocket client disconnected\nSep 09, 2025 9:25:48 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed\nINFO: Websocket client disconnected\n"}}
+[debug] [2025-09-09T09:25:48.169Z] Sep 09, 2025 9:25:48 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed
+INFO: Websocket client disconnected
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Sep 09, 2025 9:25:48 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed\nINFO: Websocket client disconnected\n"}}

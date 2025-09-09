@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
@@ -164,9 +165,7 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
 
     } catch (error) {
         console.error("Error looking up user by phone:", error);
-        if (error instanceof functions.https.HttpsError) {
-            throw error;
-        }
+        if (error instanceof functions.https.HttpsError) throw error;
         throw new functions.https.HttpsError("internal", "An unexpected error occurred while searching for the user.");
     }
 });
@@ -300,5 +299,3 @@ export const completeRecovery = functions.https.onCall(async (data, context) => 
 
     return { success: true, customToken: customToken };
 });
-
-    
