@@ -374,11 +374,8 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
 );
 
 const checkFiAuth = async (context: functions.https.CallableContext) => {
-    const uid = context.auth?.uid;
-    if (!uid) {
-        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-    }
-
+    const uid = checkAuth(context);
+    
     const userDoc = await db.collection("users").doc(uid).get();
     const userRole = userDoc.data()?.primaryRole;
     
