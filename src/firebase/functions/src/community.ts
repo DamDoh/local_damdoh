@@ -222,5 +222,3 @@ export const voteOnPoll = functions.https.onCall(async (data, context) => {
         return { success: true, pollOptions: newPollOptions };
     });
 });
-
-    
