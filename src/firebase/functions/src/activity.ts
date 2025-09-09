@@ -1,4 +1,5 @@
 
+      
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
@@ -9,9 +10,8 @@ const db = admin.firestore();
 
 
 /**
- * Logs a profile view event. This function ONLY writes to the `profile_views` collection.
- * The actual incrementing of the view count is handled by the `onNewProfileView` trigger.
- * @param {any} data The data for the function call.
+ * Logs a profile view event and triggers a notification.
+ * @param {any} data The data for the function call. Must include 'viewedId'.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{success: boolean, logId?: string, message?: string}>} A promise that resolves with the operation status.
  */
@@ -23,11 +23,18 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("invalid-argument", "error.viewedId.required");
     }
 
-    // Don't log self-views
+    // Don't log or notify on self-views
     if (viewerId === viewedId) {
         return { success: true, message: "Self-view, not logged." };
     }
     
+    // Atomically increment the view count on the user's profile.
+    const viewedUserRef = db.collection('users').doc(viewedId);
+    await viewedUserRef.update({
+        viewCount: admin.firestore.FieldValue.increment(1)
+    });
+    
+    // Log the view for analytics or history (optional)
     const logRef = db.collection('profile_views').doc();
     await logRef.set({
         viewerId,
@@ -35,6 +42,7 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
         timestamp: admin.firestore.FieldValue.serverTimestamp(),
     });
     
+    // Now, send a notification
     const viewerDoc = await db.collection('users').doc(viewerId).get();
     const viewerName = viewerDoc.data()?.displayName || 'Someone';
 
@@ -48,6 +56,7 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
 
     return { success: true, logId: logRef.id };
 });
+
 
 /**
  * Fetches recent activity for a given user.
@@ -182,3 +191,5 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError('internal', error.message || 'error.stats.fetchFailed');
     }
 });
+      
+    
