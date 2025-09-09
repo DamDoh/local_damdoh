@@ -412,7 +412,6 @@
       "invalidCredential": "The email or password you entered is incorrect.",
       "invalidEmail": "The email address is not valid.",
       "userDisabled": "This user account has been disabled.",
-      "default": "Authentication failed",
       "emailInUse": "An account with this email already exists.",
       "emailInUseRich": "An account with this email already exists. Please {signInLink} or use a different email.",
       "weakPassword": "The password is too weak. Please use a stronger password."
@@ -1170,7 +1169,7 @@
         },
         "couponSuccess": {
           "title": "Coupon Applied!",
-          "description": "Your discount has been successfully applied to the price."
+          "description": "Your {discount} discount has been successfully applied to the price."
         },
         "couponFail": {
           "title": "Invalid Coupon",
@@ -1310,7 +1309,7 @@
             "fixed": "Fixed Amount (USD)",
             "discountValue": "Discount Value",
             "usageLimit": "Usage Limit",
-            "usageLimitPlaceholder": "e.g., 100",
+            "usageLimitPlaceholder": "Leave blank for unlimited",
             "expiryDate": "Expiry Date (Optional)",
             "pickDate": "Pick a date",
             "submitButton": "Create Coupon"
@@ -1325,6 +1324,17 @@
             "value": "Value",
             "usage": "Usage",
             "expires": "Expires"
+          },
+          "usage": "Used",
+          "expires": "Expires",
+          "never": "Never",
+          "share": "Share",
+          "shareModal": {
+              "title": "Share Coupon",
+              "description": "Share this link to apply the coupon directly in the marketplace.",
+              "link": "Link",
+              "copy": "Copy link",
+              "close": "Close"
           }
         },
         "toast": {
@@ -1776,7 +1786,7 @@
             "applyButton": "Apply",
             "appliedText": "Coupon '{code}' applied!",
             "successTitle": "Coupon Applied!",
-            "successDescription": "Your {type} discount of {discount} has been applied.",
+            "successDescription": "Your {discount} discount has been successfully applied to the price.",
             "failTitle": "Invalid Coupon",
             "failDescription": "The provided coupon code is not valid for this item."
           },
@@ -1853,7 +1863,9 @@
     "error": "Error",
     "couldNotStartConversation": "Could not start a new conversation.",
     "sendFailed": "Send Failed",
-    "couldNotSendMessage": "Your message could not be sent. Please try again."
+    "couldNotSendMessage": "Your message could not be sent. Please try again.",
+    "signInToView": "Please sign in to view your messages.",
+    "signIn": "Sign In"
   },
   "settingsPage": {
     "title": "Settings",
@@ -2025,5 +2037,22 @@
     "backToNetwork": "Back to Network",
     "notFoundTitle": "User Not Found",
     "notFoundDescription": "This profile may not exist or has been made private."
+  },
+  "activity": {
+    "sharedAPost": "Shared a Post",
+    "placedAnOrder": "Placed an Order",
+    "receivedAnOrder": "Received an Order",
+    "loggedEvent": "Logged Event: {eventType}",
+    "orderFor": "For: {listingName}",
+    "traceabilityUpdate": "Traceability Update"
+  },
+  "agroTourism": {
+    "checkInSuccess": "Successfully checked in {guestName}.",
+    "checkInError": {
+      "notRegistered": "{guestName} does not have a booking for this service.",
+      "alreadyCheckedIn": "{guestName} has already been checked in."
+    },
+    "addStaffSuccess": "{staffName} has been added as staff.",
+    "removeStaffSuccess": "Staff member has been removed."
   }
 }

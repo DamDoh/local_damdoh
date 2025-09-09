@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { checkAuth, getUserDocument } from './utils';
@@ -67,7 +66,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             const post = doc.data();
             activities.push({
                 id: doc.id,
-                type: 'Shared a Post',
+                type: 'activity.sharedAPost',
                 title: post.content.substring(0, 70) + (post.content.length > 70 ? '...' : ''),
                 timestamp: toISODate(post.createdAt),
                 icon: 'MessageSquare'
@@ -78,8 +77,9 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             const order = doc.data();
             activities.push({
                 id: doc.id,
-                type: 'Placed an Order',
-                title: `For: ${order.listingName}`,
+                type: 'activity.placedAnOrder',
+                title: `activity.orderFor`,
+                titleParams: { listingName: order.listingName },
                 timestamp: toISODate(order.createdAt),
                 icon: 'ShoppingCart'
             });
@@ -89,8 +89,9 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             const sale = doc.data();
             activities.push({
                 id: doc.id,
-                type: 'Received an Order',
-                title: `For: ${sale.listingName}`,
+                type: 'activity.receivedAnOrder',
+                title: `activity.orderFor`,
+                titleParams: { listingName: sale.listingName },
                 timestamp: toISODate(sale.createdAt),
                 icon: 'CircleDollarSign'
             });
@@ -100,8 +101,9 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             const event = doc.data();
             activities.push({
                 id: doc.id,
-                type: `Logged Event: ${event.eventType}`,
-                title: event.payload?.inputId || event.payload?.cropType || 'Traceability Update',
+                type: `activity.loggedEvent`,
+                typeParams: { eventType: event.eventType },
+                title: event.payload?.inputId || event.payload?.cropType || 'activity.traceabilityUpdate',
                 timestamp: toISODate(event.timestamp),
                 icon: 'GitBranch'
             });

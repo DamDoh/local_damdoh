@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB } from './user';
@@ -91,12 +90,12 @@ export const checkInAgroTourismBooking = functions.https.onCall(async (data, con
     return db.runTransaction(async (transaction) => {
         const bookingDoc = await transaction.get(bookingRef);
         if (!bookingDoc.exists) {
-            throw new functions.https.HttpsError("not-found", `${guestName} does not have a booking for this service.`);
+            throw new functions.https.HttpsError("not-found", 'agroTourism.checkInError.notRegistered', { guestName });
         }
         
         const bookingData = bookingDoc.data()!;
         if (bookingData.checkedIn) {
-            throw new functions.https.HttpsError("already-exists", `${guestName} has already been checked in.`);
+            throw new functions.https.HttpsError("already-exists", 'agroTourism.checkInError.alreadyCheckedIn', { guestName });
         }
 
         transaction.update(bookingRef, {
@@ -104,7 +103,7 @@ export const checkInAgroTourismBooking = functions.https.onCall(async (data, con
             checkedInAt: admin.firestore.FieldValue.serverTimestamp()
         });
         
-        return { success: true, message: `Successfully checked in ${guestName}.` };
+        return { success: true, message: 'agroTourism.checkInSuccess', messageParams: { guestName } };
     });
 });
 
@@ -134,7 +133,7 @@ export const addAgroTourismStaff = functions.https.onCall(async (data, context) 
         addedBy: operatorId,
     });
 
-    return { success: true, message: `${staffDisplayName || 'User'} has been added as staff.` };
+    return { success: true, message: 'agroTourism.addStaffSuccess', messageParams: { staffName: staffDisplayName || 'User' } };
 });
 
 
@@ -178,7 +177,7 @@ export const removeAgroTourismStaff = functions.https.onCall(async (data, contex
     const staffRef = itemRef.collection('staff').doc(staffUserId);
     await staffRef.delete();
     
-    return { success: true, message: "Staff member has been removed." };
+    return { success: true, message: "agroTourism.removeStaffSuccess" };
 });
 
 export const getAgroTourismBookings = functions.https.onCall(async (data, context) => {
@@ -207,5 +206,3 @@ export const getAgroTourismBookings = functions.https.onCall(async (data, contex
 
     return { bookings: bookingsList };
 });
-
-    

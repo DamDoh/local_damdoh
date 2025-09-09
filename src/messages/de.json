@@ -1,4 +1,3 @@
-
 {
   "LandingPage": {
     "hero": {
@@ -430,7 +429,22 @@
     },
     "signUpFailed": "Registrierung fehlgeschlagen",
     "error": "Fehler"
+  },
+  "activity": {
+    "sharedAPost": "Hat einen Beitrag geteilt",
+    "placedAnOrder": "Hat eine Bestellung aufgegeben",
+    "receivedAnOrder": "Hat eine Bestellung erhalten",
+    "loggedEvent": "Ereignis protokolliert: {eventType}",
+    "orderFor": "Für: {listingName}",
+    "traceabilityUpdate": "Rückverfolgbarkeits-Update"
+  },
+  "agroTourism": {
+    "checkInSuccess": "{guestName} wurde erfolgreich eingecheckt.",
+    "checkInError": {
+      "notRegistered": "{guestName} hat keine Buchung für diesen Service.",
+      "alreadyCheckedIn": "{guestName} wurde bereits eingecheckt."
+    },
+    "addStaffSuccess": "{staffName} wurde als Mitarbeiter hinzugefügt.",
+    "removeStaffSuccess": "Mitarbeiter wurde entfernt."
   }
 }
-
-    
