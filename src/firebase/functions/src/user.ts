@@ -1,4 +1,5 @@
 
+
       
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
@@ -524,5 +525,3 @@ export const completeRecovery = functions.https.onCall(async (data, context) => 
 
     return { success: true, customToken: customToken };
 });
-
-    

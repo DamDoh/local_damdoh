@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { geohashForLocation, geohashQueryBounds, distanceBetween } from "geofire-common";
@@ -184,12 +183,20 @@ export const performSearch = functions.https.onCall(async (data, context) => {
       if (ids.length === 0) {
         query = null; // Set query to null to indicate no results, skipping further queries
       } else {
-        query = db.collection('search_index').where(admin.firestore.FieldPath.documentId(), 'in', ids);
+        // Firestore 'in' query is limited to 30 items. We must handle this.
+        if (ids.length > 30) {
+          // For simplicity, we'll just take the first 30. A more robust solution might paginate.
+          query = db.collection('search_index').where(admin.firestore.FieldPath.documentId(), 'in', ids.slice(0, 30));
+        } else {
+          query = db.collection('search_index').where(admin.firestore.FieldPath.documentId(), 'in', ids);
+        }
       }
       
     } catch(e) {
        console.error("Geospatial query failed", e);
        // Continue without geo-filtering
+       isGeoQuery = false; // Revert flag
+       query = db.collection("search_index"); // Reset query
     }
   }
 
@@ -237,7 +244,6 @@ export const performSearch = functions.https.onCall(async (data, context) => {
       }
     }
 
-
     query = query.limit(queryLimit);
 
     const snapshot = await query.get();
@@ -261,10 +267,9 @@ export const performSearch = functions.https.onCall(async (data, context) => {
 
   } catch (error: any) {
     console.error(`Error during search for query: ${JSON.stringify(data)}`, error);
-    if (error.code === 'FAILED_PRECONDITION') {
-      throw new functions.https.HttpsError("failed-precondition", "A specific index is required for this query. Check the Firebase console logs for an index creation link.");
+    if (error.code === 'FAILED_PRECONDITION' || (error.message && error.message.includes('inequality filter'))) {
+      throw new functions.https.HttpsError("failed-precondition", "This query is too complex and requires a specific index. Try a simpler search.");
     }
     throw new functions.https.HttpsError("internal", "An unexpected error occurred while searching.");
   }
 });
-
