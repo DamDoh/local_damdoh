@@ -4,7 +4,8 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
 import { stakeholderProfileSchemas } from "@/lib/schemas"; // Corrected import
-import { deleteCollectionByPath } from './utils';
+import { deleteCollectionByPath, getRole } from './utils';
+import { randomBytes } from 'crypto';
 
 const db = admin.firestore();
 

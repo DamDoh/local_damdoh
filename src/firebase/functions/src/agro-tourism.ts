@@ -26,7 +26,7 @@ export const bookAgroTourismService = functions.https.onCall(async (data, contex
     const bookingRef = itemRef.collection('bookings').doc(uid);
     
     // Use the direct function call since we are on the backend
-    const userProfileDoc = await getProfileByIdFromDB({ uid }, { auth: context.auth });
+    const userProfileDoc = await getProfileByIdFromDB.run(context, { uid });
     
     if (!userProfileDoc) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
@@ -213,5 +213,3 @@ export const getAgroTourismBookings = functions.https.onCall(async (data, contex
 
     return { bookings: bookingsList };
 });
-
-    

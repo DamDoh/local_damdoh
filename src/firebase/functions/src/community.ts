@@ -1,4 +1,5 @@
 
+
 // Note: The functions related to knowledge hub and courses have been removed
 // from this file and are now located in `knowledge-hub.ts`.
 // This file should only contain functions related to community and social engagement.
@@ -32,7 +33,9 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionsInvalid');
     }
 
-    const userProfile = await getProfileByIdFromDB({ uid }, { auth: context.auth });
+    const userProfileResult = await getProfileByIdFromDB.run(context, { uid });
+    const userProfile = userProfileResult;
+
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -78,6 +81,7 @@ export const deletePost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('permission-denied', 'error.permissionDenied');
     }
     
+    // Perform a cascade delete of subcollections before deleting the post itself.
     const likesPath = `posts/${postId}/likes`;
     const commentsPath = `posts/${postId}/comments`;
     const votesPath = `posts/${postId}/votes`;
@@ -130,7 +134,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
 
     const commentRef = db.collection(`posts/${postId}/comments`).doc();
 
-    const userProfile = await getProfileByIdFromDB({ uid }, {auth: context.auth});
+    const userProfile = await getProfileByIdFromDB.run(context, { uid });
     
      if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
@@ -216,6 +220,7 @@ export const voteOnPoll = functions.https.onCall(async (data, context) => {
             throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionInvalid');
         }
 
+        // Atomically update the vote count for the specific option
         const newPollOptions = [...postData.pollOptions];
         newPollOptions[optionIndex].votes = (newPollOptions[optionIndex].votes || 0) + 1;
         
