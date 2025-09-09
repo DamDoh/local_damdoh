@@ -204,7 +204,8 @@ export const upsertStakeholderProfile = functions.https.onCall(
 /**
  * Fetches a user's profile from Firestore by their ID.
  * This is a callable function, safe to be called from the client.
- * @param {string} uid The user's ID.
+ * @param {any} data The data for the function call, expecting a `uid`.
+ * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<any | null>} The user's profile data or null if not found.
  */
 export const getProfileByIdFromDB = functions.https.onCall(async (data, context): Promise<any | null> => {
@@ -277,5 +278,11 @@ export const requestDataExport = functions.https.onCall(async (data, context) =>
     const uid = checkAuth(context);
     console.log(`User ${uid} has requested a data export.`);
     // Placeholder for actual data export logic
+    // In a real app, this would:
+    // 1. Gather all of the user's data from Firestore, Storage, etc.
+    // 2. Package it into a file (e.g., JSON).
+    // 3. Upload it to a secure, private Cloud Storage bucket.
+    // 4. Generate a secure, time-limited download link.
+    // 5. Email the link to the user's registered email address.
     return { success: true, message: "If an account with your email exists, a data export link will be sent shortly." };
 });
