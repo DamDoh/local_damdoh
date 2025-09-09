@@ -19,7 +19,6 @@ if (admin.apps.length === 0) {
 }
 
 // Group functions by module for cleaner organization
-import * as activityFunctions from "./activity";
 import * as agriEventsFunctions from "./agri-events";
 import * as agroTourismFunctions from "./agro-tourism";
 import * as aiServicesFunctions from "./ai-services";
@@ -51,7 +50,6 @@ import * as universalIdFunctions from "./universal-id";
 
 // Export all cloud functions, namespaced by their module name.
 // e.g. 'activity-logProfileView', 'user-onUserCreate'
-export const activity = { ...activityFunctions };
 export const agriEvents = { ...agriEventsFunctions };
 export const agroTourism = { ...agroTourismFunctions };
 export const aiServices = { ...aiServicesFunctions };

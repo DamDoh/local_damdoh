@@ -2,8 +2,8 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getProfileByIdFromDB } from "./user";
-import { getUserEngagementStats } from "./activity";
+import { getEngagementStats } from "./user";
+
 
 const db = admin.firestore();
 
@@ -594,4 +594,27 @@ export const getFiApplications = functions.https.onCall(async (data, context) =>
     });
 
     return { applications };
+});
+
+
+export const getTrustScore = functions.https.onCall(async (data, context) => {
+  const uid = checkAuth(context);
+
+  try {
+    const scoreDoc = await db.collection("credit_scores").doc(uid).get();
+
+    if (!scoreDoc.exists) {
+      // Return a default or initial score if one hasn't been calculated yet.
+      return { score: 500, breakdown: [] };
+    }
+
+    const scoreData = scoreDoc.data();
+    return {
+      score: scoreData?.score || 500,
+      breakdown: scoreData?.breakdown || [],
+    };
+  } catch (error) {
+    console.error(`Error fetching trust score for user ${uid}:`, error);
+    throw new functions.https.HttpsError("internal", "Could not fetch trust score.");
+  }
 });

@@ -2,7 +2,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import type { UserProfile, JoinRequest } from './types';
+import type { UserProfile, JoinRequest } from '@/lib/types';
 import { getProfileByIdFromDB } from './user';
 import { checkAuth } from './utils';
 

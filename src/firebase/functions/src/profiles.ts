@@ -1,5 +1,3 @@
-
-
 // This file is deprecated. Its contents have been moved to more specific modules.
 // - User management functions are in `user.ts`.
 // - Activity-related functions are in `activity.ts`.

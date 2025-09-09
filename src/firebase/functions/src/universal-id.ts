@@ -5,7 +5,7 @@ import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
 import { getRole } from "./utils";
 import { randomBytes } from 'crypto'; // For generating a secret
-import type { UserProfile } from "./types";
+import type { UserProfile } from "@/lib/types";
 
 
 const db = admin.firestore();

@@ -1,11 +1,9 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
 import { stakeholderProfileSchemas } from "@/lib/schemas"; // Corrected import
-import { deleteCollectionByPath, getRole } from './utils';
-import { randomBytes } from 'crypto';
+import { deleteCollectionByPath, getRole, getUserDocument } from './utils';
 
 const db = admin.firestore();
 
@@ -246,33 +244,6 @@ export const getProfileByIdCallable = functions.https.onCall(async (data, contex
   return await getProfileByIdFromDB(uid);
 });
 
-
-/**
- * Fetches all user profiles from the database.
- * NOTE: This is an admin-level function and should be protected by security rules.
- * @return {Promise<any[]>} A promise that resolves with an array of all user profiles.
- */
-export const getAllProfilesFromDB = functions.https.onCall(async (data, context) => {
-    checkAuth(context);
-    // TODO: Add admin role check for production
-    try {
-        const usersSnapshot = await db.collection("users").get();
-        const profiles = usersSnapshot.docs.map(doc => {
-            const profileData = doc.data();
-            return {
-                id: doc.id,
-                ...profileData,
-                createdAt: (profileData.createdAt as admin.firestore.Timestamp)?.toDate ? (profileData.createdAt as admin.firestore.Timestamp).toDate().toISOString() : null,
-                updatedAt: (profileData.updatedAt as admin.firestore.Timestamp)?.toDate ? (profileData.updatedAt as admin.firestore.Timestamp).toDate().toISOString() : null,
-            };
-        });
-        return { profiles };
-    } catch (error) {
-        console.error("Error fetching all user profiles:", error);
-        throw new functions.https.HttpsError("internal", "Could not fetch all profiles.");
-    }
-});
-
 export const deleteUserAccount = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     console.log(`User ${uid} has requested account deletion.`);
@@ -290,244 +261,176 @@ export const requestDataExport = functions.https.onCall(async (data, context) =>
     const uid = checkAuth(context);
     console.log(`User ${uid} has requested a data export.`);
     // Placeholder for actual data export logic
-    // In a real app, this would:
-    // 1. Gather all of the user's data from Firestore, Storage, etc.
-    // 2. Package it into a file (e.g., JSON).
-    // 3. Upload it to a secure, private Cloud Storage bucket.
-    // 4. Generate a secure, time-limited download link.
-    // 5. Email the link to the user's registered email address.
     return { success: true, message: "If an account with your email exists, a data export link will be sent shortly." };
 });
 
-// =================================================================
-// UNIVERSAL ID & RECOVERY FUNCTIONS
-// =================================================================
+// --- Activity Functions ---
 
-/**
- * Securely retrieves a subset of a user's data based on their Universal ID.
- * The amount of data returned depends on the role of the person scanning the ID.
- */
-export const getUniversalIdData = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to scan a Universal ID.");
+export const logProfileView = functions.https.onCall(async (data, context) => {
+    const viewerId = checkAuth(context);
+    const { viewedId } = data;
+
+    if (!viewedId) {
+        throw new functions.https.HttpsError("invalid-argument", "error.viewedId.required");
     }
 
-    const { scannedUniversalId } = data;
-    if (!scannedUniversalId) {
-        throw new functions.https.HttpsError("invalid-argument", "A 'scannedUniversalId' must be provided.");
+    // Don't log self-views
+    if (viewerId === viewedId) {
+        return { success: true, message: "Self-view, not logged." };
     }
+    
+    const logRef = db.collection('profile_views').doc();
+    await logRef.set({
+        viewerId,
+        viewedId,
+        timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    });
 
-    const scannerUid = context.auth.uid;
+    return { success: true, logId: logRef.id };
+});
+
+export const getUserActivity = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
+    const { userId } = data;
+    if (!userId) {
+        throw new functions.https.HttpsError('invalid-argument', 'error.userId.required');
+    }
 
     try {
-        // Find the user document corresponding to the scanned Universal ID
-        const usersRef = db.collection("users");
-        const querySnapshot = await usersRef.where("universalId", "==", scannedUniversalId).limit(1).get();
+        const postsPromise = db.collection('posts').where('userId', '==', userId).orderBy('createdAt', 'desc').limit(5).get();
+        const ordersPromise = db.collection('marketplace_orders').where('buyerId', '==', userId).orderBy('createdAt', 'desc').limit(5).get();
+        const salesPromise = db.collection('marketplace_orders').where('sellerId', '==', userId).orderBy('createdAt', 'desc').limit(5).get();
+        const eventsPromise = db.collection('traceability_events').where('actorRef', '==', userId).orderBy('timestamp', 'desc').limit(5).get();
 
-        if (querySnapshot.empty) {
-            throw new functions.https.HttpsError("not-found", "The scanned Universal ID does not correspond to any user.");
-        }
-
-        const scannedUserDoc = querySnapshot.docs[0];
-        const scannedUserData = scannedUserDoc.data();
+        const [postsSnap, ordersSnap, salesSnap, eventsSnap] = await Promise.all([postsPromise, ordersPromise, salesPromise, eventsSnap]);
         
-        // Get the role of the user who is doing the scanning
-        const scannerRole = await getRole(scannerUid);
-
-        // Define the public profile data that anyone can see
-        const publicProfile = {
-            uid: scannedUserDoc.id,
-            universalId: scannedUserData.universalId,
-            displayName: scannedUserData.displayName,
-            primaryRole: scannedUserData.primaryRole,
-            avatarUrl: scannedUserData.avatarUrl || null,
-            location: scannedUserData.location || null,
+        const activities: any[] = [];
+        const toISODate = (timestamp: admin.firestore.Timestamp | undefined) => {
+            return timestamp && timestamp.toDate ? timestamp.toDate().toISOString() : new Date().toISOString();
         };
 
-        // Here, we implement the Role-Based Access Control (RBAC) logic.
-        if (scannerUid === scannedUserDoc.id) {
-            return { ...publicProfile, phoneNumber: scannedUserData.phoneNumber, email: scannedUserData.email };
-        } else if (scannerRole === 'Field Agent/Agronomist (DamDoh Internal)' || scannerRole === 'Admin') {
-            return { ...publicProfile, phoneNumber: scannedUserData.phoneNumber };
-        } else {
-            return publicProfile;
-        }
+        postsSnap.forEach(doc => {
+            const post = doc.data();
+            activities.push({
+                id: doc.id,
+                type: 'Shared a Post',
+                title: post.content.substring(0, 70) + (post.content.length > 70 ? '...' : ''),
+                timestamp: toISODate(post.createdAt),
+                icon: 'MessageSquare'
+            });
+        });
+
+        ordersSnap.forEach(doc => {
+            const order = doc.data();
+            activities.push({
+                id: doc.id,
+                type: 'Placed an Order',
+                title: `For: ${order.listingName}`,
+                timestamp: toISODate(order.createdAt),
+                icon: 'ShoppingCart'
+            });
+        });
+
+        salesSnap.forEach(doc => {
+            const sale = doc.data();
+            activities.push({
+                id: doc.id,
+                type: 'Received an Order',
+                title: `For: ${sale.listingName}`,
+                timestamp: toISODate(sale.createdAt),
+                icon: 'CircleDollarSign'
+            });
+        });
+        
+        eventsSnap.forEach(doc => {
+            const event = doc.data();
+            activities.push({
+                id: doc.id,
+                type: `Logged Event: ${event.eventType}`,
+                title: event.payload?.inputId || event.payload?.cropType || 'Traceability Update',
+                timestamp: toISODate(event.timestamp),
+                icon: 'GitBranch'
+            });
+        });
+
+        activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
+        return { activities: activities.slice(0, 10) };
 
     } catch (error) {
-        console.error("Error retrieving Universal ID data:", error);
-        if (error instanceof functions.https.HttpsError) {
-            throw error;
-        }
-        throw new functions.https.HttpsError("internal", "An unexpected error occurred while fetching user data.");
+        console.error(`Error fetching activity for user ${userId}:`, error);
+        throw new functions.https.HttpsError('internal', 'error.activity.fetchFailed');
     }
 });
 
-
-/**
- * Securely retrieves a user's data by their phone number for authorized agents.
- */
-export const lookupUserByPhone = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to perform this action.");
+async function getEngagementStats(userId: string): Promise<{ profileViews: number, postLikes: number, postComments: number }> {
+    if (!userId) {
+        throw new Error('A userId must be provided.');
     }
-
-    const { phoneNumber } = data;
-    if (!phoneNumber) {
-        throw new functions.https.HttpsError("invalid-argument", "A 'phoneNumber' must be provided.");
-    }
-
-    const agentUid = context.auth.uid;
-    const agentRole = await getRole(agentUid);
-
-    // Security Check: Only allow authorized roles to perform this lookup
-    const authorizedRoles = ['Field Agent/Agronomist (DamDoh Internal)', 'Admin', 'Operations/Logistics Team (DamDoh Internal)'];
-    if (!agentRole || !authorizedRoles.includes(agentRole)) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to look up users by phone number.");
-    }
-
     try {
-        const usersRef = db.collection("users");
-        const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
+        const userDoc = await getUserDocument(userId);
+        const profileViews = userDoc?.data()?.viewCount || 0;
 
-        if (querySnapshot.empty) {
-            throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
-        }
+        const postsQuery = db.collection('posts').where('userId', '==', userId).get();
+        const postsSnapshot = await postsQuery;
 
-        const foundUserDoc = querySnapshot.docs[0];
-        const foundUserData = foundUserDoc.data();
+        let postLikes = 0;
+        let postComments = 0;
+        postsSnapshot.forEach(doc => {
+            postLikes += doc.data().likesCount || 0;
+            postComments += doc.data().commentsCount || 0;
+        });
 
         return {
-            uid: foundUserDoc.id,
-            universalId: foundUserData.universalId,
-            displayName: foundUserData.displayName,
-            primaryRole: foundUserData.primaryRole,
-            avatarUrl: foundUserData.avatarUrl || null,
-            location: foundUserData.location || null,
-            phoneNumber: foundUserData.phoneNumber,
+            profileViews,
+            postLikes,
+            postComments
         };
-        
     } catch (error) {
-        console.error("Error looking up user by phone:", error);
-        if (error instanceof functions.https.HttpsError) throw error;
-        throw new functions.https.HttpsError("internal", "An unexpected error occurred while searching for the user.");
+        console.error(`Error fetching engagement stats for user ${userId}:`, error);
+        throw new Error('Could not fetch engagement statistics.');
+    }
+};
+
+export const getUserEngagementStats = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
+    const { userId } = data;
+    if (!userId) {
+        throw new functions.https.HttpsError('invalid-argument', 'error.userId.required');
+    }
+    try {
+        return await getEngagementStats(userId);
+    } catch (error: any) {
+        throw new functions.https.HttpsError('internal', error.message || 'error.stats.fetchFailed');
     }
 });
 
+// --- Firestore Triggers related to User/Activity ---
 
-/**
- * Creates a temporary, secure session for account recovery.
- */
-export const createRecoverySession = functions.https.onCall(async (data, context) => {
-    const { phoneNumber } = data;
-    if (!phoneNumber) {
-        throw new functions.https.HttpsError("invalid-argument", "A 'phoneNumber' must be provided.");
-    }
-    
-    const usersRef = db.collection("users");
-    const querySnapshot = await usersRef.where("phoneNumber", "==", phoneNumber).limit(1).get();
+export const onNewProfileView = functions.firestore
+    .document('profile_views/{viewId}')
+    .onCreate(async (snap, context) => {
+        const viewData = snap.data();
+        if (!viewData) {
+            console.error("View log created with no data:", context.params.viewId);
+            return;
+        }
 
-    if (querySnapshot.empty) {
-        throw new functions.https.HttpsError("not-found", `No user found with the phone number: ${phoneNumber}.`);
-    }
-
-    const userToRecoverDoc = querySnapshot.docs[0];
-    
-    const sessionId = uuidv4();
-    const recoverySecret = randomBytes(16).toString('hex');
-    const recoveryQrValue = `damdoh:recover:${sessionId}:${recoverySecret}`;
-
-    const sessionRef = db.collection('recovery_sessions').doc(sessionId);
-
-    await sessionRef.set({
-        sessionId,
-        userIdToRecover: userToRecoverDoc.id,
-        recoverySecret,
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        status: 'pending', 
-        confirmedBy: null,
-        expiresAt: admin.firestore.Timestamp.fromMillis(Date.now() + 10 * 60 * 1000), // Expires in 10 minutes
+        const { viewedId } = viewData;
+        
+        if (!viewedId) {
+            console.error("View log is missing 'viewedId':", context.params.viewId);
+            return;
+        }
+        
+        const viewedUserRef = db.collection('users').doc(viewedId);
+        
+        try {
+            await viewedUserRef.update({
+                viewCount: admin.firestore.FieldValue.increment(1)
+            });
+            console.log(`Successfully incremented view count for user ${viewedId}.`);
+        } catch (error) {
+            console.error(`Failed to increment view count for user ${viewedId}:`, error);
+        }
     });
-
-    return { sessionId, recoveryQrValue };
-});
-
-
-/**
- * Called by a logged-in user (the "friend") who has scanned the recovery QR code.
- */
-export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to help a friend recover their account.");
-    }
-
-    const friendUid = context.auth.uid;
-    const { sessionId, scannedSecret } = data;
-
-    if (!sessionId || !scannedSecret) {
-        throw new functions.https.HttpsError("invalid-argument", "Session ID and secret are required.");
-    }
-
-    const sessionRef = db.collection('recovery_sessions').doc(sessionId);
-    const sessionDoc = await sessionRef.get();
-
-    if (!sessionDoc.exists) {
-        throw new functions.https.HttpsError("not-found", "Invalid recovery session.");
-    }
-
-    const sessionData = sessionDoc.data()!;
-    const expiresAt = (sessionData.expiresAt as admin.firestore.Timestamp).toDate();
-
-    if (new Date() > expiresAt) {
-        await sessionRef.update({ status: 'expired' });
-        throw new functions.https.HttpsError("deadline-exceeded", "This recovery session has expired. Please start over.");
-    }
-    
-    if (sessionData.status !== 'pending') {
-        throw new functions.https.HttpsError("failed-precondition", "This recovery session has already been used or is invalid.");
-    }
-
-    if (sessionData.recoverySecret !== scannedSecret) {
-        throw new functions.https.HttpsError("permission-denied", "Invalid recovery code.");
-    }
-    
-    if (sessionData.userIdToRecover === friendUid) {
-        throw new functions.https.HttpsError("invalid-argument", "You cannot use your own recovery code.");
-    }
-    
-    await sessionRef.update({
-        status: 'confirmed',
-        confirmedBy: friendUid,
-    });
-    
-    return { success: true, message: "Friend confirmation successful! The user can now proceed with their recovery.", recoveryComplete: true };
-});
-
-/**
- * Called by the recovering user's device to finalize the process.
- */
-export const completeRecovery = functions.https.onCall(async (data, context) => {
-    const { sessionId } = data;
-    if (!sessionId) {
-        throw new functions.https.HttpsError('invalid-argument', 'A session ID is required.');
-    }
-
-    const sessionRef = db.collection('recovery_sessions').doc(sessionId);
-    const sessionDoc = await sessionRef.get();
-
-    if (!sessionDoc.exists) {
-        throw new functions.https.HttpsError("not-found", "Invalid recovery session.");
-    }
-
-    const sessionData = sessionDoc.data()!;
-    if (sessionData.status !== 'confirmed') {
-        throw new functions.https.HttpsError('failed-precondition', 'Session not yet confirmed by a friend.');
-    }
-
-    // Generate a custom auth token for the recovered user
-    const customToken = await admin.auth().createCustomToken(sessionData.userIdToRecover);
-    
-    // Clean up the session
-    await sessionRef.update({ status: 'completed' });
-
-    return { success: true, customToken: customToken };
-});

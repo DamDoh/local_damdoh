@@ -81,33 +81,8 @@ async function createAndSendNotification(
 
 /**
  * Firestore trigger for new profile views.
+ * The `onNewProfileView` trigger is now in `user.ts` along with other user-related logic.
  */
-export const onNewProfileView = functions.firestore
-    .document('profile_views/{viewId}')
-    .onCreate(async (snap, context) => {
-        const viewData = snap.data();
-        if (!viewData) return;
-
-        const { viewerId, viewedId } = viewData;
-        
-        // Extra safeguard: do not notify on self-views.
-        if (!viewerId || !viewedId || viewerId === viewedId) {
-            return;
-        }
-
-        const viewerDoc = await db.collection('users').doc(viewerId).get();
-        const viewerName = viewerDoc.data()?.displayName || 'Someone';
-
-        const notificationPayload = {
-            type: "profile_view",
-            title_en: "Your profile has a new view",
-            body_en: `${viewerName} viewed your profile.`,
-            actorId: viewerId,
-            linkedEntity: { collection: "profiles", documentId: viewerId },
-        };
-
-        await createAndSendNotification(viewedId, notificationPayload);
-    });
 
 
 /**
@@ -373,3 +348,5 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
     console.log("Daily event reminder check finished.");
     return null;
   });
+
+    
