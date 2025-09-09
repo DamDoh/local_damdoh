@@ -1,505 +1,367 @@
-
 "use client";
 
-import { useState, useEffect, useMemo, Suspense } from 'react';
-import { useParams, notFound, useSearchParams } from 'next/navigation';
+import { useEffect, useState, useMemo } from "react";
+import { useParams } from 'next/navigation'; // Corrected import
+import { useRouter, Link } from "@/navigation";
+import Image from "next/image";
+import QRCode from 'qrcode.react';
+
+import type { UserProfile } from "@/lib/types";
+import { useAuth } from "@/lib/auth-utils";
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Briefcase, MapPin, MessageSquare, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, FileText, QrCode, Activity, GitBranch, ShoppingCart, CircleDollarSign, Eye, ThumbsUp, MessagesSquare, Send } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { useAuth } from '@/lib/auth-utils';
-import type { MarketplaceItem, UserProfile, Shop } from '@/lib/types';
-import { getProfileByIdFromDB } from '@/lib/server-actions';
-import QRCode from 'qrcode.react';
-import { differenceInCalendarDays } from 'date-fns';
-import type { DateRange } from "react-day-picker";
-import { useTranslations } from 'next-intl';
-import { useRouter, Link } from '@/navigation';
-
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { Skeleton } from '@/components/ui/skeleton';
-import { Button } from '@/components/ui/button';
-import { Badge } from "@/components/ui/badge";
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { useToast } from '@/hooks/use-toast';
-import Image from "next/image";
-import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageSquare, Edit, Briefcase, Star, Sparkles, Ticket, Loader2, Settings, Calendar as CalendarIcon, QrCode, CheckCircle, XCircle, GitBranch } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Separator } from '@/components/ui/separator';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
-import { Textarea } from '@/components/ui/textarea';
-import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
-import { Calendar } from '@/components/ui/calendar';
-import { cn } from '@/lib/utils';
-import { format } from 'date-fns';
+import { formatDistanceToNow } from "date-fns";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from "@/hooks/use-toast";
+import { getProfileByIdFromDB as getProfileByIdFromServer } from "@/lib/server-actions";
 
 
-function ItemPageSkeleton() {
-    return (
-        <div className="max-w-4xl mx-auto space-y-6">
-            <Skeleton className="h-8 w-40 mb-4" />
-            <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-                <Skeleton className="w-full aspect-square rounded-lg" />
-                <div className="space-y-4">
-                    <Skeleton className="h-6 w-3/4" />
-                    <Skeleton className="h-10 w-1/2" />
-                    <Skeleton className="h-5 w-1/4" />
-                    <Skeleton className="h-24 w-full" />
-                    <div className="flex items-center gap-4 pt-4">
-                        <Skeleton className="h-12 w-12 rounded-full" />
-                        <div className="space-y-2">
-                           <Skeleton className="h-4 w-32" />
-                           <Skeleton className="h-4 w-24" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-function ItemPageContent() {
-    const t = useTranslations('Marketplace.itemView');
-    const params = useParams();
-    const router = useRouter();
-    const searchParams = useSearchParams();
-    const itemId = params.id as string;
-    const { user } = useAuth();
-    const { toast } = useToast();
-  
-    const [item, setItem] = useState<MarketplaceItem | null>(null);
-    const [seller, setSeller] = useState<UserProfile | null>(null);
-    const [shop, setShop] = useState<Shop | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-    const [couponCode, setCouponCode] = useState('');
-    const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
-    const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discount: number; type: 'fixed' | 'percentage' } | null>(null);
-    const [isBooking, setIsBooking] = useState(false);
-    const [isBooked, setIsBooked] = useState(false);
-    
-    const [date, setDate] = useState<DateRange | undefined>();
-    const [guests, setGuests] = useState(1);
-    
-    const [isOrderDialogOpen, setIsOrderDialogOpen] = useState(false);
-    const [orderQuantity, setOrderQuantity] = useState(1);
-    const [orderNotes, setOrderNotes] = useState("");
-    const [isPlacingOrder, setIsPlacingOrder] = useState(false);
-
-    const functions = getFunctions(firebaseApp);
-    const getMarketplaceItemById = useMemo(() => httpsCallable(functions, 'getMarketplaceItemById'), [functions]);
-    const getShopDetailsCallable = useMemo(() => httpsCallable(functions, 'getShopDetails'), [functions]);
-    const validateCouponCallable = useMemo(() => httpsCallable(functions, 'validateMarketplaceCoupon'), [functions]);
-    const bookAgroTourismServiceCallable = useMemo(() => httpsCallable(functions, 'bookAgroTourismService'), [functions]);
-    const createMarketplaceOrderCallable = useMemo(() => httpsCallable(functions, 'createMarketplaceOrder'), [functions]);
-    
-    useEffect(() => {
-        const couponFromUrl = searchParams.get('coupon');
-        if (couponFromUrl) {
-            setCouponCode(couponFromUrl);
-        }
-    }, [searchParams]);
-
-    useEffect(() => {
-        if (!itemId) return;
-
-        const fetchData = async () => {
-            setIsLoading(true);
-            setError(null);
-            setAppliedCoupon(null);
-            try {
-                const itemResult = await getMarketplaceItemById({ itemId });
-                const itemData = itemResult.data as MarketplaceItem | null;
-
-                if (!itemData) throw new Error(t('notFound.description'));
-                setItem(itemData);
-
-                const sellerProfile = await getProfileByIdFromDB(itemData.sellerId);
-                setSeller(sellerProfile);
-                
-                if(sellerProfile && Array.isArray(sellerProfile.shops) && sellerProfile.shops.length > 0) {
-                     const shopResult = await getShopDetailsCallable({ shopId: sellerProfile.shops[0] });
-                     setShop(shopResult.data as Shop);
-                }
-
-            } catch (err: any) {
-                console.error("Error fetching item details:", err);
-                setError(err.message || t('errors.loadItem.description'));
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [itemId, getMarketplaceItemById, getShopDetailsCallable, t]);
-    
-    const handleApplyCoupon = async () => {
-        if (!couponCode.trim() || !item) return;
-        setIsApplyingCoupon(true);
-        setAppliedCoupon(null);
-        try {
-            const result = await validateCouponCallable({ couponCode, sellerId: item.sellerId });
-            const data = result.data as { valid: boolean; message?: string; discountType?: 'fixed' | 'percentage'; discountValue?: number; code?: string };
-
-            if(data.valid && data.discountType && data.discountValue && data.code){
-                setAppliedCoupon({
-                    code: data.code,
-                    type: data.discountType,
-                    discount: data.discountValue
-                });
-                toast({ title: t('coupon.successTitle'), description: t('coupon.successDescription', { type: data.discountType === 'fixed' ? `$${data.discountValue}` : `${data.discountValue}%` }) });
-            } else {
-                toast({ variant: 'destructive', title: t('coupon.failTitle'), description: data.message || t('coupon.failDescription') });
-            }
-        } catch (error: any) {
-            toast({ variant: 'destructive', title: t('errors.unexpected'), description: error.message || '' });
-        } finally {
-            setIsApplyingCoupon(false);
-        }
-    };
-    
-    const handleBooking = async () => {
-        if (!user) {
-            toast({ variant: 'destructive', title: t('booking.authTitle'), description: t('booking.authDescription') });
-            router.push('/auth/signin');
-            return;
-        }
-        if (!date?.from) {
-            toast({ variant: 'destructive', title: t('booking.failTitle'), description: t('booking.dateError') });
-            return;
-        }
-        setIsBooking(true);
-        try {
-            const bookingDetails = {
-                startDate: date.from.toISOString(),
-                endDate: date.to?.toISOString() ?? date.from.toISOString(),
-                guests: guests,
-                totalPrice: totalBookingPrice,
-                currency: item?.currency
-            };
-            await bookAgroTourismServiceCallable({ itemId: item?.id, bookingDetails });
-            toast({ title: t('booking.successTitle'), description: t('booking.successDescription') });
-            setIsBooked(true);
-        } catch (error: any) {
-            toast({ variant: 'destructive', title: t('booking.failTitle'), description: error.message || t('errors.unexpected') });
-        } finally {
-            setIsBooking(false);
-        }
-    };
-
-    const handlePlaceOrder = async () => {
-        if (!user) {
-             toast({ variant: 'destructive', title: t('order.authTitle'), description: t('order.authDescription') });
-             router.push('/auth/signin');
-             return;
-        }
-        if (orderQuantity <= 0) {
-            toast({ variant: 'destructive', title: t('order.quantityErrorTitle'), description: t('order.quantityErrorDescription') });
-            return;
-        }
-        setIsPlacingOrder(true);
-        try {
-            await createMarketplaceOrderCallable({ itemId: item?.id, quantity: orderQuantity, buyerNotes: orderNotes });
-            toast({ title: t('order.successTitle'), description: t('order.successDescription') });
-            setIsOrderDialogOpen(false);
-        } catch (error: any) {
-            toast({ variant: 'destructive', title: t('order.failTitle'), description: error.message || t('order.failDescription') });
-        } finally {
-            setIsPlacingOrder(false);
-        }
-    };
-
-    const calculateDiscountedPrice = () => {
-        if (!appliedCoupon || !item?.price) return item?.price;
-        if (appliedCoupon.type === 'fixed') {
-            return Math.max(0, item.price - appliedCoupon.discount);
-        }
-        if (appliedCoupon.type === 'percentage') {
-            return item.price * (1 - appliedCoupon.discount / 100);
-        }
-        return item.price;
-    };
-    const discountedPrice = calculateDiscountedPrice();
-
-    const numberOfNights = date?.from && date?.to ? differenceInCalendarDays(date.to, date.from) : 0;
-    const baseBookingPrice = (item?.price || 0) * numberOfNights;
-    const serviceFee = baseBookingPrice * 0.1;
-    const totalBookingPrice = baseBookingPrice + serviceFee;
-
-    if (isLoading) return <ItemPageSkeleton />;
-    if (error) return <div className="text-center py-10"><p className="text-destructive">{error}</p><Button variant="outline" asChild className="mt-4"><Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />{t('backLink')}</Link></Button></div>;
-    if (!item) return notFound();
-
-    const isOwner = user?.uid === item.sellerId;
-    const isAgroTourismService = item.category === 'agri-tourism-services';
-    const isProduct = item.listingType === 'Product';
-    const skills: string[] = Array.isArray(item.skillsRequired) ? item.skillsRequired : (typeof item.skillsRequired === 'string' && item.skillsRequired) ? item.skillsRequired.split(',').map(s => s.trim()) : [];
-    const serviceQrCodeValue = `damdoh:checkin?itemId=${item.id}&userId=${user?.uid}`;
-
-    return (
-      <>
-        <div className="max-w-4xl mx-auto space-y-6">
-             <Link href="/marketplace" className="inline-flex items-center text-sm text-primary hover:underline mb-4">
-                <ArrowLeft className="mr-1 h-4 w-4"/> {t('backLink')}
-            </Link>
-
-            <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start">
-                <div className="w-full">
-                    <Card className="overflow-hidden sticky top-24">
-                        <div className="relative w-full aspect-square bg-muted">
-                             <Image
-                                src={item.imageUrl || item.imageUrls?.[0] || 'https://placehold.co/600x600.png'}
-                                alt={item.name}
-                                fill={true}
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                                style={{ objectFit: 'cover' }}
-                                priority
-                                data-ai-hint="marketplace item"
-                            />
-                        </div>
-                         {item.relatedTraceabilityId && (
-                             <CardFooter className="p-3 bg-blue-50 dark:bg-blue-900/30">
-                                <Button asChild variant="secondary" className="w-full">
-                                    <Link href={`/traceability/batches/${item.relatedTraceabilityId}`}>
-                                        <GitBranch className="mr-2 h-4 w-4"/>
-                                        {t('traceabilityButton')}
-                                    </Link>
-                                </Button>
-                            </CardFooter>
-                        )}
-                    </Card>
-                </div>
-                
-                <div className="space-y-6">
-                    <div>
-                        <Badge variant="secondary">{item.category}</Badge>
-                        <h1 className="text-3xl font-bold mt-2">{item.name}</h1>
-                         <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
-                            <MapPin className="h-4 w-4"/> {item.location.address}
-                        </div>
-                    </div>
-
-                    <p className="text-muted-foreground whitespace-pre-line">{item.description}</p>
-                    
-                    {item.listingType === 'Service' && !isAgroTourismService ? (
-                         <div className="space-y-4">
-                            <Separator />
-                             {skills.length > 0 && (
-                                <div>
-                                    <h3 className="text-sm font-semibold mb-2 flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-primary" />{t('skillsLabel')}</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {skills.map((skill, index) => <Badge key={index} variant="outline">{skill.trim()}</Badge>)}
-                                    </div>
-                                </div>
-                             )}
-                              {item.experienceLevel && (
-                                <div>
-                                    <h3 className="text-sm font-semibold mb-1 flex items-center gap-1.5"><Star className="h-4 w-4 text-primary" />{t('experienceLabel')}</h3>
-                                    <p className="text-sm text-muted-foreground">{item.experienceLevel}</p>
-                                </div>
-                             )}
-                            <div>
-                                <h3 className="text-sm font-semibold mb-1 flex items-center gap-1.5"><DollarSign className="h-4 w-4 text-primary" />{t('compensationLabel')}</h3>
-                                <p className="text-sm text-muted-foreground">{item.compensation || t('contactForRates')}</p>
-                            </div>
-                            <Separator />
-                        </div>
-                    ) : isAgroTourismService ? (
-                        <Card className="shadow-lg">
-                            {isBooked ? (
-                                <CardContent className="pt-6 text-center">
-                                    <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-2" />
-                                    <p className="font-semibold">{t('booking.bookedTitle')}</p>
-                                    <p className="text-sm text-muted-foreground mb-4">{t('booking.bookedDescription')}</p>
-                                    <Dialog>
-                                        <DialogTrigger asChild>
-                                            <Button className="w-full" variant="secondary"><QrCode className="mr-2 h-4 w-4" />{t('booking.ticketButton')}</Button>
-                                        </DialogTrigger>
-                                        <DialogContent className="sm:max-w-xs">
-                                            <DialogHeader>
-                                                <DialogTitle className="text-center">{t('booking.modalTitle')}</DialogTitle>
-                                                <DialogDescription className="text-center">{t('booking.modalDescription', { itemName: item.name })}</DialogDescription>
-                                            </DialogHeader>
-                                            <div className="p-4 flex flex-col items-center justify-center gap-4">
-                                                <div className="p-4 bg-white rounded-lg border">
-                                                    <QRCode value={serviceQrCodeValue} size={200} />
-                                                </div>
-                                                <p className="text-sm text-center text-muted-foreground">{t('booking.modalScan')}</p>
-                                            </div>
-                                        </DialogContent>
-                                    </Dialog>
-                                </CardContent>
-                            ) : (
-                                <CardContent className="pt-6 space-y-4">
-                                    <div className="flex items-baseline gap-2">
-                                        <p className="text-2xl font-bold">${item.price?.toFixed(2)}</p>
-                                        <p className="text-sm text-muted-foreground">/ {t('booking.perNight')}</p>
-                                    </div>
-                                    <Popover>
-                                        <PopoverTrigger asChild>
-                                            <div className="grid grid-cols-2 border rounded-lg cursor-pointer">
-                                                <div className="p-2 border-r">
-                                                    <Label className="text-xs font-semibold">{t('booking.checkIn')}</Label>
-                                                    <p>{date?.from ? format(date.from, "LLL dd, y") : t('booking.addDate')}</p>
-                                                </div>
-                                                <div className="p-2">
-                                                    <Label className="text-xs font-semibold">{t('booking.checkOut')}</Label>
-                                                    <p>{date?.to ? format(date.to, "LLL dd, y") : t('booking.addDate')}</p>
-                                                </div>
-                                            </div>
-                                        </PopoverTrigger>
-                                        <PopoverContent className="w-auto p-0" align="start">
-                                            <Calendar
-                                                initialFocus
-                                                mode="range"
-                                                defaultMonth={date?.from}
-                                                selected={date}
-                                                onSelect={setDate}
-                                                numberOfMonths={1}
-                                                disabled={(day) => day < new Date(new Date().setHours(0,0,0,0))}
-                                            />
-                                        </PopoverContent>
-                                    </Popover>
-                                    <div>
-                                        <Label htmlFor="guests" className="text-xs font-semibold">{t('booking.guests')}</Label>
-                                        <Input id="guests" type="number" min="1" value={guests} onChange={(e) => setGuests(parseInt(e.target.value, 10) || 1)} />
-                                    </div>
-                                    <Button size="lg" className="w-full" onClick={handleBooking} disabled={isBooking || !date?.from}>
-                                        {isBooking ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <CalendarIcon className="mr-2 h-4 w-4" />}
-                                        {isBooking ? t('booking.reservingButton') : t('booking.reserveButton')}
-                                    </Button>
-                                    {numberOfNights > 0 && (
-                                        <div className="text-sm space-y-1">
-                                            <p className="text-center text-muted-foreground">{t('booking.notCharged')}</p>
-                                            <div className="flex justify-between"><span>${item.price?.toFixed(2)} x {numberOfNights} {t('booking.nights', { count: numberOfNights })}</span><span>${baseBookingPrice.toFixed(2)}</span></div>
-                                            <div className="flex justify-between"><span>{t('booking.serviceFee')}</span><span>${serviceFee.toFixed(2)}</span></div>
-                                            <Separator className="my-1"/>
-                                            <div className="flex justify-between font-bold"><span>{t('booking.total')}</span><span>${totalBookingPrice.toFixed(2)}</span></div>
-                                        </div>
-                                    )}
-                                </CardContent>
-                            )}
-                        </Card>
-                    ) : (
-                         <div>
-                            <p className="text-3xl font-light text-primary flex items-center gap-2">
-                                <DollarSign className="h-7 w-7"/> 
-                                {appliedCoupon && item.price && <span className="text-muted-foreground line-through text-2xl">${item.price.toFixed(2)}</span>}
-                                {discountedPrice?.toFixed(2)}
-                                <span className="text-lg text-muted-foreground">{item.currency} {item.perUnit && `/ ${item.perUnit}`}</span>
-                            </p>
-                            <div className="mt-4 p-4 border rounded-lg bg-muted/30">
-                                <Label htmlFor="coupon-code" className="text-sm font-medium flex items-center gap-1.5"><Ticket className="h-4 w-4" />{t('coupon.label')}</Label>
-                                <div className="flex gap-2 mt-2">
-                                    <Input id="coupon-code" placeholder={t('coupon.placeholder')} value={couponCode} onChange={(e) => setCouponCode(e.target.value)} disabled={isApplyingCoupon || !!appliedCoupon} />
-                                    <Button onClick={handleApplyCoupon} disabled={!couponCode || isApplyingCoupon || !!appliedCoupon}>
-                                        {isApplyingCoupon && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                        {t('coupon.applyButton')}
-                                    </Button>
-                                </div>
-                                {appliedCoupon && <p className="text-xs text-green-600 mt-1">{t('coupon.appliedText', { code: appliedCoupon.code })}</p>}
-                            </div>
-                         </div>
-                    )}
-                     
-                     {seller && (
-                        <Card>
-                            <CardHeader>
-                                <CardTitle className="text-lg">{t('aboutSeller')}</CardTitle>
-                            </CardHeader> 
-                            <CardContent className="flex items-center gap-4">
-                               <Avatar className="h-14 w-14">
-                                    <AvatarImage src={seller.avatarUrl} alt={seller.displayName} data-ai-hint="seller profile person" />
-                                    <AvatarFallback>{seller.displayName?.substring(0, 2).toUpperCase()}</AvatarFallback>
-                                </Avatar>
-                                <div>
-                                    <p className="font-semibold">{seller.displayName}</p>
-                                    <p className="text-sm text-muted-foreground">{seller.primaryRole}</p>
-                                    {shop && (
-                                        <Link href={`/marketplace/shops/${shop.id}`} className="text-xs text-primary hover:underline flex items-center gap-1">
-                                            <Building className="h-3 w-3" /> {t('viewShopfront')}
-                                        </Link>
-                                    )}
-                                </div>
-                            </CardContent>
-                        </Card>
-                     )}
-
-                    <div className="flex flex-col sm:flex-row gap-2">
-                         {isOwner ? (
-                             <>
-                                <Button size="lg" className="w-full"><Edit className="mr-2 h-4 w-4" />{t('editListing')}</Button>
-                                {isAgroTourismService && (
-                                    <Button asChild size="lg" variant="secondary" className="w-full">
-                                        <Link href={`/marketplace/${item.id}/manage-service`}><Settings className="mr-2 h-4 w-4" />{t('manageService')}</Link>
-                                    </Button>
-                                )}
-                            </>
-                        ) : isAgroTourismService ? null 
-                        : isProduct ? (
-                            <Button size="lg" className="w-full" onClick={() => setIsOrderDialogOpen(true)}>
-                                <ShoppingCart className="mr-2 h-4 w-4" />{t('buyNowButton')}
-                            </Button>
-                        ) : (
-                             <Button asChild size="lg" className="w-full">
-                                <Link href={`/messages?with=${item.sellerId}`}><MessageSquare className="mr-2 h-4 w-4" />{t('contactForService')}</Link>
-                            </Button>
-                        )}
-                        {!isOwner && !isProduct && !isAgroTourismService && (
-                            <Button asChild size="lg" variant="outline" className="w-full">
-                                <Link href={`/messages?with=${item.sellerId}`}><MessageSquare className="mr-2 h-4 w-4" />{t('contactSeller')}</Link>
-                            </Button>
-                        )}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <Dialog open={isOrderDialogOpen} onOpenChange={setIsOrderDialogOpen}>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>{t('order.title', { itemName: item.name })}</DialogTitle>
-                    <DialogDescription>{t('order.description')}</DialogDescription> 
-                </DialogHeader>
-                <div className="space-y-4 py-4">
-                    <div className="space-y-2">
-                        <Label htmlFor="quantity">{t('order.quantityLabel')}</Label>
-                        <Input
-                            id="quantity"
-                            type="number"
-                            value={orderQuantity}
-                            onChange={(e) => setOrderQuantity(Math.max(1, parseInt(e.target.value, 10)))}
-                            min="1"
-                        />
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="notes">{t('order.notesLabel')}</Label>
-                        <Textarea
-                            id="notes" 
-                            placeholder={t('order.notesPlaceholder')}
-                            value={orderNotes}
-                            onChange={(e) => setOrderNotes(e.target.value)}
-                        />
-                    </div>
-                </div>
-                <DialogFooter>
-                    <Button variant="outline" onClick={() => setIsOrderDialogOpen(false)}>{t('order.cancelButton')}</Button>
-                    <Button onClick={handlePlaceOrder} disabled={isPlacingOrder}>
-                        {isPlacingOrder && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
-                        {isPlacingOrder ? t('order.placingButton') : t('order.confirmButton')}
-                    </Button>
-                </DialogFooter>
-            </DialogContent>
-        </Dialog>
-      </>
-    )
-}
-
-export default function MarketplaceItemPageWrapper() {
+function ProfileSkeleton() {
   return (
-    <Suspense fallback={<ItemPageSkeleton />}>
-      <ItemPageContent />
-    </Suspense>
+    <div className="space-y-6">
+      <Card className="overflow-hidden">
+        <Skeleton className="h-48 w-full" />
+        <div className="relative p-6">
+            <div className="absolute top-[-50px]">
+                <Skeleton className="h-32 w-32 rounded-full border-4 border-background"/>
+            </div>
+            <div className="pt-[72px]">
+                <Skeleton className="h-8 w-48 mb-2" />
+                <Skeleton className="h-6 w-32 mb-2" />
+                <Skeleton className="h-4 w-24" />
+            </div>
+        </div>
+        <CardContent className="px-6 space-y-6">
+          <div className="space-y-2">
+            <Skeleton className="h-6 w-32 mb-2" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-5/6" />
+          </div>
+          <div className="space-y-2">
+            <Skeleton className="h-6 w-32 mb-2" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-2/3" />
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 
-    
+const activityIconMap: Record<string, React.ElementType> = {
+    MessageSquare,
+    ShoppingCart,
+    CircleDollarSign,
+    GitBranch,
+};
+
+interface EngagementStats {
+    profileViews: number;
+    postLikes: number;
+    postComments: number;
+}
+
+export default function ProfileDetailPage() {
+  const t = useTranslations('ProfilePage');
+  const params = useParams();
+  const router = useRouter();
+  const { user: authUser, loading: authLoading } = useAuth();
+  const { toast } = useToast();
+  
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [activity, setActivity] = useState<any[]>([]);
+  const [stats, setStats] = useState<EngagementStats | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isActivityLoading, setIsActivityLoading] = useState(true);
+
+  const functions = getFunctions(firebaseApp);
+  const getUserActivityCallable = useMemo(() => httpsCallable(functions, 'activity-getUserActivity'), [functions]);
+  const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'activity-logProfileView'), [functions]);
+  const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'activity-getUserEngagementStats'), [functions]);
+  const sendInviteCallable = useMemo(() => httpsCallable(functions, 'network-sendInvite'), [functions]);
+  
+  useEffect(() => {
+    const profileIdParam = params.id as string;
+    let idToFetch: string | null = null;
+
+    if (authLoading) {
+      return; 
+    }
+
+    if (profileIdParam === 'me') {
+      if (authUser) {
+        idToFetch = authUser.uid;
+      } else {
+        router.push('/auth/signin');
+        return;
+      }
+    } else {
+      idToFetch = profileIdParam;
+    }
+
+    if (idToFetch) {
+      setIsLoading(true);
+      getProfileByIdFromServer(idToFetch)
+        .then(fetchedProfile => {
+          setProfile(fetchedProfile);
+          if (fetchedProfile) {
+            if (authUser && fetchedProfile.id !== authUser.uid) {
+                logProfileViewCallable({ viewedId: fetchedProfile.id }).catch(err => console.error("Failed to log profile view:", err));
+            }
+            
+            setIsActivityLoading(true);
+            Promise.all([
+              getUserActivityCallable({ userId: fetchedProfile.id }),
+              getEngagementStatsCallable({ userId: fetchedProfile.id })
+            ]).then(([activityResult, statsResult]) => {
+              setActivity((activityResult.data as any).activities || []);
+              setStats(statsResult.data as EngagementStats);
+            }).catch(err => {
+              console.error("Failed to fetch activity or stats:", err);
+            }).finally(() => {
+              setIsActivityLoading(false);
+            });
+          }
+        })
+        .catch(error => {
+          console.error("Error fetching profile:", error);
+          setProfile(null);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else if (!authLoading) {
+      setIsLoading(false);
+    }
+  }, [params.id, authUser, authLoading, router, getUserActivityCallable, logProfileViewCallable, getEngagementStatsCallable]);
+  
+  const handleInvite = async () => {
+    const inviteeEmail = prompt(t('invitePrompt'));
+    if (inviteeEmail) {
+      try {
+        await sendInviteCallable({ inviteeEmail });
+        toast({
+          title: t('inviteSuccessTitle'),
+          description: t('inviteSuccessDescription', { email: inviteeEmail }),
+        });
+      } catch (error: any) {
+        toast({
+          title: t('inviteErrorTitle'),
+          description: error.message,
+          variant: 'destructive',
+        });
+      }
+    }
+  };
+
+
+  if (isLoading || authLoading) {
+    return <ProfileSkeleton />;
+  }
+  
+  if (!profile) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>{t('notFoundTitle')}</CardTitle>
+          <CardDescription>{t('notFoundDescription')}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Button asChild variant="outline">
+            <Link href="/network"><ArrowLeft className="h-4 w-4 mr-2" />{t('backToNetwork')}</Link>
+          </Button>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  const isCurrentUserProfile = authUser?.uid === profile.id;
+  const qrCodeValue = profile.universalId ? `${window.location.origin}/profiles/${profile.id}` : 'error';
+  
+  const areasOfInterest = (profile as any)?.areasOfInterest;
+  const needs = (profile as any)?.needs;
+
+  return (
+    <div className="space-y-6">
+      <Card className="overflow-hidden">
+        <div className="h-48 bg-gradient-to-r from-primary/30 to-accent/30 relative">
+           <Image 
+            src={profile.bannerUrl || `https://placehold.co/1200x300.png?text=${encodeURIComponent(profile.displayName)}`} 
+            alt={`${profile.displayName} banner`} 
+            fill={true}
+            style={{objectFit:"cover"}}
+            priority
+            data-ai-hint={profile.primaryRole ? `${profile.primaryRole.toLowerCase()} agriculture background` : "agriculture background"} />
+          <div className="absolute bottom-[-50px] left-6">
+            <Avatar className="h-32 w-32 border-4 border-background shadow-lg">
+              <AvatarImage src={profile.avatarUrl ?? undefined} alt={profile.displayName} data-ai-hint="profile business food" />
+              <AvatarFallback className="text-4xl">{profile.displayName.substring(0,1).toUpperCase()}</AvatarFallback>
+            </Avatar>
+          </div>
+        </div>
+        <CardHeader className="pt-[60px] px-6"> 
+          <div className="flex flex-col sm:flex-row justify-between items-start">
+            <div>
+              <CardTitle className="text-3xl">{profile.displayName}</CardTitle>
+              <CardDescription className="text-lg flex items-center gap-2">
+                <StakeholderIcon role={profile.primaryRole} className="h-5 w-5 text-muted-foreground" />
+                {profile.primaryRole}
+              </CardDescription>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
+                <MapPin className="h-4 w-4" /> {profile.location?.address}
+              </div>
+            </div>
+            <div className="flex gap-2 mt-4 sm:mt-0">
+              {isCurrentUserProfile ? (
+                <>
+                  <Button asChild><Link href={`/profiles/me/edit`}><Edit className="mr-2 h-4 w-4" /> {t('editProfile')}</Link></Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline"><QrCode className="mr-2 h-4 w-4" /> {t('showUniversalIdButton')}</Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-xs">
+                        <DialogHeader>
+                            <DialogTitle className="text-center">{t('universalIdModalTitle')}</DialogTitle>
+                            <DialogDescription className="text-center">
+                                {t('universalIdModalDescription')}
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="p-4 flex flex-col items-center justify-center gap-4">
+                            <div className="p-4 bg-white rounded-lg border shadow-md">
+                                <QRCode value={qrCodeValue} size={200} />
+                            </div>
+                            <p className="text-xs text-muted-foreground font-mono">{profile.universalId}</p>
+                        </div>
+                    </DialogContent>
+                  </Dialog>
+                </>
+              ) : (
+                <>
+                  <Button><LinkIcon className="mr-2 h-4 w-4" /> {t('connect')}</Button>
+                  <Button asChild variant="outline"><Link href={`/messages?with=${profile.id}`}><MessageSquare className="mr-2 h-4 w-4" />{t('message')}</Link></Button>
+                </>
+              )}
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent className="px-6">
+          {profile.profileSummary && (
+            <p className="text-muted-foreground max-w-2xl">{profile.profileSummary}</p>
+          )}
+        </CardContent>
+      </Card>
+      
+      {isCurrentUserProfile && (
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Send className="h-5 w-5 text-primary" />{t('invite.title')}</CardTitle>
+                <CardDescription>{t('invite.description')}</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <p className="text-sm text-muted-foreground mb-4">{t('invite.explanation')}</p>
+                <Button onClick={handleInvite}>{t('invite.button')}</Button>
+            </CardContent>
+        </Card>
+      )}
+
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">{t('tabs.overview')}</TabsTrigger>
+          <TabsTrigger value="activity">{t('tabs.activity')}</TabsTrigger>
+        </TabsList>
+        <TabsContent value="overview" className="mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="md:col-span-2 space-y-6">
+                 {profile.bio && (
+                    <Card>
+                        <CardHeader><CardTitle className="text-lg flex items-center"><FileText className="h-5 w-5 mr-2 text-primary" />{t('aboutTitle', {displayName: profile.displayName})}</CardTitle></CardHeader>
+                        <CardContent><p className="text-muted-foreground whitespace-pre-line">{profile.bio}</p></CardContent>
+                    </Card>
+                 )}
+                 {Array.isArray(areasOfInterest) && areasOfInterest.length > 0 && (
+                    <Card>
+                        <CardHeader><CardTitle className="text-lg flex items-center"><Tractor className="h-5 w-5 mr-2 text-primary" />{t('interestsTitle')}</CardTitle></CardHeader>
+                        <CardContent><div className="flex flex-wrap gap-2">{areasOfInterest.map((interest: string) => <Badge key={interest} variant="secondary">{interest}</Badge>)}</div></CardContent>
+                    </Card>
+                  )}
+            </div>
+             <div className="space-y-6">
+                 {stats && (
+                     <Card>
+                        <CardHeader><CardTitle className="text-lg">{t('engagementStats')}</CardTitle></CardHeader>
+                        <CardContent className="space-y-3">
+                            <div className="text-sm flex items-center justify-between"><span className="flex items-center gap-2"><Eye className="h-4 w-4 text-muted-foreground"/>{t('profileViews')}</span> <strong>{stats.profileViews}</strong></div>
+                            <div className="text-sm flex items-center justify-between"><span className="flex items-center gap-2"><ThumbsUp className="h-4 w-4 text-muted-foreground"/>{t('postLikes')}</span> <strong>{stats.postLikes}</strong></div>
+                            <div className="text-sm flex items-center justify-between"><span className="flex items-center gap-2"><MessagesSquare className="h-4 w-4 text-muted-foreground"/>{t('postComments')}</span> <strong>{stats.postComments}</strong></div>
+                        </CardContent>
+                     </Card>
+                 )}
+                 {profile.contactInfo && (Object.values(profile.contactInfo).some(val => val)) && (
+                     <Card>
+                        <CardHeader><CardTitle className="text-lg">{t('contactTitle')}</CardTitle></CardHeader>
+                        <CardContent className="space-y-3">
+                            {profile.contactInfo.phone && <div className="text-sm flex items-start gap-3"><MessageSquare className="h-4 w-4 mt-1 text-primary" /><span>{profile.contactInfo.phone}</span></div>}
+                             {profile.contactInfo.website && <div className="text-sm flex items-start gap-3"><Globe className="h-4 w-4 mt-1 text-primary" /><a href={profile.contactInfo.website.startsWith('http') ? profile.contactInfo.website : `https://${profile.contactInfo.website}`} target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline break-all">{profile.contactInfo.website}</a></div>}
+                        </CardContent>
+                     </Card>
+                 )}
+                 {Array.isArray(needs) && needs.length > 0 && (
+                    <Card>
+                        <CardHeader><CardTitle className="text-lg flex items-center"><TrendingUp className="h-5 w-5 mr-2 text-primary" />{t('needsTitle')}</CardTitle></CardHeader>
+                        <CardContent><div className="flex flex-wrap gap-2">{needs.map((need: string) => <Badge key={need}>{need}</Badge>)}</div></CardContent>
+                    </Card>
+                  )}
+            </div>
+          </div>
+        </TabsContent>
+        <TabsContent value="activity" className="mt-4">
+           <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><Activity className="h-5 w-5"/>{t('recentActivityTitle')}</CardTitle>
+            </CardHeader>
+            <CardContent>
+                {isActivityLoading ? (
+                    <div className="space-y-4">
+                        <Skeleton className="h-12 w-full" />
+                        <Skeleton className="h-12 w-full" />
+                        <Skeleton className="h-12 w-full" />
+                    </div>
+                ) : activity.length > 0 ? (
+                    <div className="space-y-3">
+                        {activity.map(act => {
+                            const Icon = activityIconMap[act.icon] || GitBranch;
+                            return (
+                                <div key={act.id} className="flex items-start gap-3 p-3 border rounded-md bg-muted/40">
+                                    <div className="p-2 bg-background rounded-full border">
+                                    <Icon className="h-4 w-4 text-muted-foreground" />
+                                    </div>
+                                    <div>
+                                        <p className="font-medium text-sm">{act.title}</p>
+                                        <p className="text-xs text-muted-foreground">{act.type} &bull; {formatDistanceToNow(new Date(act.timestamp), { addSuffix: true })}</p>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                ) : (
+                    <p className="text-sm text-muted-foreground text-center py-4">{t('noRecentActivity')}</p>
+                )}
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+      
+    </div>
+  );
+}

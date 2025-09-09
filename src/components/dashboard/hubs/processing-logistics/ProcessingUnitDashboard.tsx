@@ -200,5 +200,3 @@ const DashboardSkeleton = () => (
         </div>
     </div>
 );
-
-    
