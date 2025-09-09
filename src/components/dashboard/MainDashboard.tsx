@@ -1,6 +1,4 @@
 
-
-      
 "use client";
 
 import React, { Suspense } from 'react';
@@ -19,7 +17,6 @@ import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
 import { collection, query, orderBy, onSnapshot, getFirestore, limit } from "firebase/firestore";
 import { uploadFileAndGetURL } from '@/lib/storage-utils';
 import { useTranslations } from 'next-intl';
-import { STAKEHOLDER_ROLES } from '@/lib/constants';
 import { Button } from '../ui/button';
 import { Link } from '@/navigation';
 import { Edit } from 'lucide-react';
@@ -46,9 +43,9 @@ import { ResearcherDashboard } from '@/components/dashboard/hubs/ResearcherDashb
 import { WasteManagementDashboard } from '@/components/dashboard/hubs/WasteManagementDashboard';
 import { AgriTechInnovatorDashboard } from './hubs/AgriTechInnovatorDashboard';
 import { OperationsDashboard } from './hubs/OperationsDashboard';
-import { LogisticsDashboard } from './hubs/processing-logistics/LogisticsDashboard';
-import { ProcessingUnitDashboard } from './hubs/processing-logistics/ProcessingUnitDashboard';
-import { WarehouseDashboard } from './hubs/processing-logistics/WarehouseDashboard';
+import { LogisticsDashboard } from './hubs/LogisticsDashboard';
+import { ProcessingUnitDashboard } from './hubs/ProcessingUnitDashboard';
+import { WarehouseDashboard } from './hubs/WarehouseDashboard';
 import { ConsumerDashboard } from './hubs/ConsumerDashboard';
 
 
@@ -293,12 +290,3 @@ export function MainDashboard() {
     </Suspense>
   );
 }
-      
-    
-
-    
-
-
-
-
-
