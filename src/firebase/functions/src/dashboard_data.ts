@@ -760,7 +760,7 @@ export const getProcessingUnitDashboardData = functions.https.onCall(
             const item = doc.data();
             return {
                 product: item.name,
-                quality: item.qualityGrade || 'N/A', // Assuming quality grade is on the listing
+                quality: 'N/A', // Placeholder as it's not on the model
                 tons: item.stock || 0, // Assuming stock is in tons
             };
         });
@@ -1179,7 +1179,7 @@ export const getWasteManagementDashboardData = functions.https.onCall(
   }
 );
 
-export const getAgriTechInnovatorDashboardData = functions.https.onCall(
+export const getAgriTechInnovatorData = functions.https.onCall(
   async (data, context): Promise<AgriTechInnovatorDashboardData> => {
     const innovatorId = checkAuth(context);
     

@@ -428,7 +428,7 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
         assetData = assetsSnapshot.docs.map(doc => doc.data());
         
         // Fetch applicant's engagement stats
-        engagementData = await getEngagementStats(appData.applicantId);
+        engagementData = await getEngagementStats({ userId: appData.applicantId }, context);
     }
     
     // Generate the credit score with all available data

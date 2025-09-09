@@ -2,16 +2,9 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { createAssetSchema } from "@/lib/schemas"; // Assuming schemas are shared
+import { checkAuth } from "./utils";
 
 const db = admin.firestore();
-
-// Helper to check for authentication
-const checkAuth = (context: functions.https.CallableContext) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "User must be authenticated.");
-  }
-  return context.auth.uid;
-};
 
 // Callable function to add a new asset
 export const addAsset = functions.https.onCall(async (data, context) => {
@@ -50,9 +43,9 @@ export const getUserAssets = functions.https.onCall(async (data, context) => {
     return {
       id: doc.id,
       ...assetData,
-      purchaseDate: assetData.purchaseDate?.toDate().toISOString(),
-      createdAt: assetData.createdAt.toDate().toISOString(),
-      updatedAt: assetData.updatedAt.toDate().toISOString(),
+      purchaseDate: (assetData.purchaseDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+      createdAt: (assetData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+      updatedAt: (assetData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
     }
   });
 
@@ -77,9 +70,9 @@ export const getAsset = functions.https.onCall(async (data, context) => {
     return {
         id: doc.id,
         ...assetData,
-        purchaseDate: assetData.purchaseDate?.toDate().toISOString(),
-        createdAt: assetData.createdAt.toDate().toISOString(),
-        updatedAt: assetData.updatedAt.toDate().toISOString(),
+        purchaseDate: (assetData.purchaseDate as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+        createdAt: (assetData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+        updatedAt: (assetData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
     }
 });
 

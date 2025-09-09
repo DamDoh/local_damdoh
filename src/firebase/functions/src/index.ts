@@ -89,5 +89,3 @@ module.exports = {
   // Export the Express app as a Cloud Function for Cloud Run services
   api: functions.https.onRequest(expressApp)
 };
-
-    
