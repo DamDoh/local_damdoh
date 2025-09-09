@@ -94,7 +94,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             const post = doc.data();
             activities.push({
                 id: doc.id,
-                type: 'activity.sharedAPost',
+                type: 'sharedAPost',
                 title: post.content.substring(0, 70) + (post.content.length > 70 ? '...' : ''),
                 timestamp: toISODate(post.createdAt),
                 icon: 'MessageSquare'
@@ -105,8 +105,8 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             const order = doc.data();
             activities.push({
                 id: doc.id,
-                type: 'activity.placedAnOrder',
-                title: order.listingName,
+                type: 'placedAnOrder',
+                title: `For: ${order.listingName}`,
                 timestamp: toISODate(order.createdAt),
                 icon: 'ShoppingCart'
             });
@@ -116,8 +116,8 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             const sale = doc.data();
             activities.push({
                 id: doc.id,
-                type: 'activity.receivedAnOrder',
-                title: sale.listingName,
+                type: 'receivedAnOrder',
+                title: `For: ${sale.listingName}`,
                 timestamp: toISODate(sale.createdAt),
                 icon: 'CircleDollarSign'
             });
@@ -127,8 +127,8 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             const event = doc.data();
             activities.push({
                 id: doc.id,
-                type: 'activity.loggedEvent',
-                title: event.payload?.inputId || event.payload?.cropType || 'activity.traceabilityUpdate',
+                type: 'loggedEvent',
+                title: event.payload?.inputId || event.payload?.cropType || 'Traceability Update',
                 timestamp: toISODate(event.timestamp),
                 icon: 'GitBranch'
             });
