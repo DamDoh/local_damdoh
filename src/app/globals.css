@@ -15,7 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 70 60% 12%;
 
-    --primary: 90 55% 50%; /* #66BB6A - Vibrant Green from image */
+    --primary: 90 55% 35%; /* Darker, more accessible green */
     --primary-foreground: 210 40% 98%; /* Almost white text on primary */
 
     --secondary: 40 100% 49%; /* #DAA520 - Warm Gold (used for some highlights) */

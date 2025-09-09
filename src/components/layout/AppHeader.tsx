@@ -35,6 +35,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { AppSidebarNav } from './AppSidebarNav';
 import { HeaderThemeToggle } from '../HeaderThemeToggle';
 import { cn } from '@/lib/utils';
+import { Input } from '../ui/input';
 
 
 function HeaderSkeleton() {
@@ -107,14 +108,14 @@ export function AppHeader() {
         <div className="container mx-auto hidden h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex h-full items-center gap-6">
              <Logo iconSize={32} textSize="text-2xl" className="text-white" />
-             <div className="h-full w-px bg-white/20"></div>
-             {user && (
+          </div>
+
+           {user && (
                 <form onSubmit={handleSearchSubmit} className="relative w-full max-w-md">
                     <SearchIconLucide className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary-foreground/70" />
                     <Input name="search" placeholder={t('searchPlaceholder')} className="pl-9 bg-white/20 border-none placeholder:text-primary-foreground/70 focus-visible:ring-primary-foreground text-primary-foreground"/>
                 </form>
              )}
-          </div>
 
           <nav className="flex items-center space-x-1 h-full">
               {user && (
