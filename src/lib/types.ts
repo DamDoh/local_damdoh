@@ -112,31 +112,488 @@ export type UserRole = "Admin" | "Regulator" | "Auditor" | "Farmer" | "System" |
 // =================================================================
 // 2. DASHBOARD & UI-SPECIFIC TYPES
 // =================================================================
-export type FarmerDashboardAlert = z.infer<typeof FarmerDashboardAlertSchema>;
-export type FarmerDashboardData = z.infer<typeof FarmerDashboardDataSchema>;
-export type CooperativeDashboardData = z.infer<typeof CooperativeDashboardDataSchema>;
-export type BuyerDashboardData = z.infer<typeof BuyerDashboardDataSchema>;
-export type RegulatorDashboardData = z.infer<typeof RegulatorDashboardDataSchema>;
-export type LogisticsDashboardData = z.infer<typeof LogisticsDashboardDataSchema>;
-export type FiDashboardData = z.infer<typeof FiDashboardDataSchema>;
-export type FieldAgentDashboardData = z.infer<typeof FieldAgentDashboardDataSchema>;
-export type InputSupplierDashboardData = z.infer<typeof InputSupplierDashboardDataSchema>;
-export type AgroExportDashboardData = z.infer<typeof AgroExportDashboardDataSchema>;
-export type ProcessingUnitDashboardData = z.infer<typeof ProcessingUnitDashboardDataSchema>;
-export type WarehouseDashboardData = z.infer<typeof WarehouseDashboardDataSchema>;
-export type QaDashboardData = z.infer<typeof QaDashboardDataSchema>;
-export type CertificationBodyDashboardData = z.infer<typeof CertificationBodyDashboardDataSchema>;
-export type ResearcherDashboardData = z.infer<typeof ResearcherDashboardDataSchema>;
-export type AgronomistDashboardData = z.infer<typeof AgronomistDashboardDataSchema>;
-export type AgroTourismDashboardData = z.infer<typeof AgroTourismDashboardDataSchema>;
-export type InsuranceProviderDashboardData = z.infer<typeof InsuranceProviderDashboardDataSchema>;
-export type EnergyProviderDashboardData = z.infer<typeof EnergyProviderDashboardDataSchema>;
-export type CrowdfunderDashboardData = z.infer<typeof CrowdfunderDashboardDataSchema>;
-export type EquipmentSupplierDashboardData = z.infer<typeof EquipmentSupplierDashboardDataSchema>;
-export type WasteManagementDashboardData = z.infer<typeof WasteManagementDashboardDataSchema>;
-export type PackagingSupplierDashboardData = z.infer<typeof PackagingSupplierDashboardDataSchema>;
-export type SustainabilityDashboardData = z.infer<typeof SustainabilityDashboardDataSchema>;
-export type OperationsDashboardData = z.infer<typeof OperationsDashboardDataSchema>;
+
+// Note: These interfaces are being deprecated in favor of Zod-inferred types.
+// New dashboard data types should be defined with Zod in `schemas.ts` and inferred here.
+// This provides a single source of truth for data structures.
+
+export interface FarmerDashboardAlert {
+    id: string;
+    icon: 'FlaskConical' | 'Sprout';
+    type: 'info' | 'warning';
+    message: string;
+    link: string;
+}
+
+export interface FarmerDashboardData {
+  farmCount: number;
+  cropCount: number;
+  recentCrops: {
+      id: string;
+      name: string;
+      stage: string;
+      farmName: string;
+      farmId: string;
+      plantingDate: string | null;
+  }[];
+  knfBatches: {
+    id: string;
+    typeName: string;
+    status: string;
+    nextStepDate: string | null;
+  }[];
+  financialSummary?: FinancialSummary;
+  alerts?: FarmerDashboardAlert[];
+  certifications?: {
+    id: string;
+    name: string;
+    issuingBody: string;
+  }[];
+}
+
+export interface CooperativeDashboardData {
+    memberCount: number;
+    totalLandArea: number; // in Hectares
+    aggregatedProduce: {
+        id: string;
+        productName: string;
+        quantity: number; // in tons
+        quality: string;
+        readyBy: string; // ISO Date string
+    }[];
+    pendingMemberApplications: number;
+    groupId: string | null;
+}
+
+
+export interface BuyerDashboardData {
+  supplyChainRisk: {
+    region: string;
+    level: string;
+    factor: string;
+    action: {
+      label: string;
+      link: string;
+    };
+  };
+  sourcingRecommendations: {
+    id: string;
+    name: string;
+    product: string;
+    reliability: number;
+    vtiVerified: boolean;
+  }[];
+  marketPriceIntelligence: {
+    product: string;
+    trend: 'up' | 'down' | 'stable';
+    forecast: string;
+    action: {
+      label: string;
+      link: string;
+    };
+  };
+}
+
+
+export interface RegulatorDashboardData {
+  complianceRiskAlerts: {
+    id: string;
+    issue: string;
+    region: string;
+    severity: 'High' | 'Medium' | 'Low';
+    actionLink: string;
+  }[];
+  pendingCertifications: {
+    count: number;
+    actionLink: string;
+  };
+  supplyChainAnomalies: {
+    id: string;
+    description: string;
+    level: 'Critical' | 'Warning';
+    vtiLink: string;
+  }[];
+}
+
+
+export interface LogisticsDashboardData {
+    activeShipments: {
+        id: string;
+        to: string;
+        status: string;
+        eta: string;
+        vtiLink: string;
+    }[];
+    incomingJobs: {
+        id: string;
+        from: string;
+        to: string;
+        product: string;
+        requirements: string;
+        actionLink: string;
+    }[];
+    performanceMetrics: {
+        onTimePercentage: number;
+        fuelEfficiency: string;
+        actionLink: string;
+    };
+}
+
+export interface FieldAgentDashboardData {
+    assignedFarmers: {
+        id: string;
+        name: string;
+        lastVisit: string; // ISO string
+        issues: number;
+        actionLink: string;
+        avatarUrl?: string | null;
+    }[];
+    portfolioHealth: {
+        overallScore: number;
+        alerts: string[];
+        actionLink: string;
+    };
+    pendingReports: number;
+    dataVerificationTasks: {
+        count: number;
+        description: string;
+        actionLink: string;
+    };
+}
+
+export interface InputSupplierDashboardData {
+    demandForecast: {
+        id: string;
+        region: string;
+        product: string;
+        trend: 'High' | 'Steady' | 'Low';
+        reason: string;
+    }[];
+    productPerformance: {
+        id: string;
+        productName: string;
+        rating: number;
+        feedback: string;
+        link: string;
+    }[];
+    activeOrders: {
+        count: number;
+        value: number;
+        link: string;
+    };
+}
+
+export interface AgroExportDashboardData {
+    pendingCustomsDocs: {
+        id: string;
+        vtiLink: string;
+        destination: string;
+        status: string;
+    }[];
+    trackedShipments: {
+        id: string;
+        status: string;
+        location: string;
+        carrier: string;
+    }[];
+    complianceAlerts: {
+        id: string;
+        content: string;
+        actionLink: string;
+    }[];
+}
+
+export interface ProcessingUnitDashboardData {
+  yieldOptimization: {
+    currentYield: number;
+    potentialYield: number;
+    suggestion: string;
+  };
+  inventory: { // This is for finished goods
+    product: string;
+    quality: string;
+    tons: number;
+  }[];
+  wasteReduction: {
+    currentRate: number;
+    insight: string;
+  };
+  packagingOrders: { // This is for incoming packaging materials
+    id: string;
+    supplierName: string;
+    deliveryDate: string;
+    status: string;
+    actionLink: string;
+  }[];
+  packagingInventory: { // This is for their stock of packaging
+    packagingType: string;
+    unitsInStock: number;
+    reorderLevel: number;
+  }[];
+}
+
+
+export interface WarehouseDashboardData {
+  storageOptimization: {
+    utilization: number;
+    suggestion: string;
+  };
+  inventoryLevels: {
+    totalItems: number;
+    itemsNeedingAttention: number;
+  };
+  predictiveAlerts: {
+    alert: string;
+    actionLink: string;
+  }[];
+}
+
+
+export interface QaDashboardData {
+  pendingInspections: {
+    id: string;
+    batchId: string;
+    productName: string;
+    sellerName: string;
+    dueDate: string; // ISO String
+    actionLink: string;
+  }[];
+  recentResults: {
+    id: string;
+    productName: string;
+    result: 'Pass' | 'Fail';
+    reason?: string;
+    inspectedAt: string; // ISO String
+  }[];
+  qualityMetrics: {
+    passRate: number;
+    averageScore: number;
+  };
+}
+
+
+export interface CertificationBodyDashboardData {
+  pendingAudits: {
+    id: string;
+    farmName: string;
+    standard: string;
+    dueDate: string; // ISO String
+    actionLink: string;
+  }[];
+  certifiedEntities: {
+    id: string;
+    name: string;
+    type: string;
+    certificationStatus: 'Active' | 'Pending Renewal' | 'Expired';
+    actionLink: string;
+  }[];
+  standardsMonitoring: {
+    standard: string;
+    adherenceRate: number;
+    alerts: number;
+    actionLink: string;
+  }[];
+}
+
+export interface ResearcherDashboardData {
+  availableDatasets: {
+    id: string;
+    name: string;
+    dataType: string;
+    accessLevel: 'Public' | 'Requires Request';
+    actionLink: string;
+  }[];
+  ongoingProjects: {
+    id: string;
+    title: string;
+    progress: number;
+    collaborators: string[];
+    actionLink: string;
+  }[];
+  knowledgeHubContributions: {
+    id: string;
+    title: string;
+    status: 'Published' | 'Pending Review' | 'Draft';
+  }[];
+}
+
+export interface AgronomistDashboardData {
+  assignedFarmersOverview: {
+    id: string;
+    name: string;
+    farmLocation: string;
+    lastConsultation: string; // ISO String
+    alerts: number;
+    avatarUrl?: string | null;
+  }[];
+  pendingConsultationRequests: {
+    id: string;
+    farmerName: string;
+    issueSummary: string;
+    requestDate: string; // ISO String
+  }[];
+  knowledgeHubContributions: {
+    id: string;
+    title: string;
+    status: 'Published' | 'Pending Review';
+  }[];
+}
+
+
+export interface EnergyProviderDashboardData {
+  projectLeads: {
+    id: string;
+    entityName: string;
+    location: string;
+    estimatedEnergyNeed: string;
+    status: 'New' | 'Contacted' | 'Proposal Sent' | 'Closed';
+    actionLink: string;
+  }[];
+  activeProjects: {
+    id: string;
+    projectName: string;
+    solutionType: string;
+    status: 'In Progress' | 'Completed';
+    completionDate: string; // ISO String
+  }[];
+  impactMetrics: {
+    totalInstallations: number;
+    totalEstimatedCarbonReduction: string;
+  };
+}
+
+
+export interface CrowdfunderDashboardData {
+  portfolioOverview: {
+    totalInvested: number;
+    numberOfInvestments: number;
+    estimatedReturns: number;
+  };
+  suggestedOpportunities: {
+    id: string;
+    projectName: string;
+    category: string;
+    fundingGoal: number;
+    amountRaised: number;
+    actionLink: string;
+  }[];
+  recentTransactions: {
+    id: string;
+    projectName: string;
+    type: 'Investment' | 'Payout';
+    amount: number;
+    date: string; // ISO String
+  }[];
+}
+
+export interface EquipmentSupplierDashboardData {
+  listedEquipment: {
+    id: string;
+    name: string;
+    type: 'Sale' | 'Rental';
+    status: 'Available' | 'Rented Out';
+    actionLink: string;
+  }[];
+  rentalActivity: {
+    totalRentals: number;
+  };
+  pendingMaintenanceRequests: {
+    id: string;
+    equipmentName: string;
+    issue: string;
+    farmerName: string;
+    actionLink: string;
+  }[];
+}
+
+export interface WasteManagementDashboardData {
+  incomingWasteStreams: {
+    id: string;
+    type: string; // e.g., 'Crop Residue', 'Animal Manure'
+    source: string; // e.g., 'Green Valley Farms'
+    quantity: string; // e.g., '5 tons'
+  }[];
+  compostBatches: {
+    id: string;
+    status: 'Active' | 'Curing' | 'Ready';
+    estimatedCompletion: string; // ISO date
+  }[];
+  finishedProductInventory: {
+    product: string;
+    quantity: string; // e.g., '20 tons'
+    actionLink: string;
+  }[];
+}
+    
+
+export interface PackagingSupplierDashboardData {
+  incomingOrders: {
+    id: string;
+    customerName: string;
+    product: string;
+    quantity: number;
+    status: 'New' | 'Processing' | 'Shipped';
+    actionLink: string;
+  }[];
+  inventory: {
+    id: string;
+    item: string;
+    stock: number;
+    reorderLevel: number;
+  }[];
+}
+
+export interface SustainabilityDashboardData {
+    carbonFootprint: { total: number; unit: string; trend: number; };
+    waterUsage: { efficiency: number; unit: string; trend: number; };
+    biodiversityScore: { score: number; unit: string; trend: number; };
+    sustainablePractices: { id: string; practice: string; lastLogged: string; }[];
+    certifications: { id:string; name: string; status: string; expiry: string; }[];
+}
+
+export interface InsuranceProviderDashboardData {
+  pendingClaims: {
+    id: string;
+    policyHolderName: string;
+    policyType: 'Crop' | 'Livestock';
+    claimDate: string; // ISO string
+    status: 'Submitted' | 'Under Review';
+    actionLink: string;
+  }[];
+  riskAssessmentAlerts: {
+    id: string;
+    policyHolderName: string;
+    alert: string;
+    severity: 'High' | 'Medium' | 'Low';
+    actionLink: string;
+  }[];
+  activePolicies: {
+    id: string;
+    policyHolderName: string;
+    policyType: string;
+    coverageAmount: number;
+    expiryDate: string; // ISO string;
+  }[];
+}
+
+export interface OperationsDashboardData {
+  vtiGenerationRate: {
+    rate: number;
+    unit: 'VTIs/hour';
+    trend: number;
+  };
+  dataPipelineStatus: {
+    status: 'Operational' | 'Degraded' | 'Offline';
+    lastChecked: string; // ISO string
+  };
+  flaggedEvents: {
+    id: string;
+    type: 'Anomalous Geolocation' | 'Unusual Time Lag' | 'Data Mismatch';
+    description: string;
+    vtiLink: string;
+  }[];
+}
+
 export type AdminDashboardData = z.infer<typeof AdminDashboardDataSchema>;
 export type AdminActivity = z.infer<typeof AdminActivitySchema>;
 export type AgriTechInnovatorDashboardData = z.infer<typeof AgriTechInnovatorDashboardDataSchema>;

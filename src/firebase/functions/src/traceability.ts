@@ -634,5 +634,3 @@ export const getRecentVtiBatches = functions.https.onCall(async (data, context) 
         throw new functions.https.HttpsError("internal", "Failed to fetch recent batches.");
     }
 });
-
-    
