@@ -18,7 +18,6 @@ export const bookAgroTourismService = functions.https.onCall(async (data, contex
 
     const itemRef = db.collection('marketplaceItems').doc(itemId);
     const bookingRef = itemRef.collection('bookings').doc(uid);
-    
     const userProfileDoc = await getUserProfile(uid);
     
     if (!userProfileDoc) {

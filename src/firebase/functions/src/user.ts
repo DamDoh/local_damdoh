@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
@@ -233,8 +234,7 @@ export const getProfileByIdFromDB = functions.https.onCall(async (data, context)
     if (!uid) {
         throw new functions.https.HttpsError('invalid-argument', 'A uid must be provided.');
     }
-    // This function is public, so no auth check is needed, but you might add one
-    // if you want to restrict who can look up profiles.
+    // This function can be public for viewing profiles, but a checkAuth could be added if needed
     return await getUserProfile(uid);
 });
 

@@ -72,7 +72,7 @@ export async function getRole(uid: string | undefined): Promise<UserRole | null>
  */
 export async function getUserDocument(
   uid: string,
-): Promise<FirebaseFirestore.DocumentSnapshot | null> {
+): Promise<admin.firestore.DocumentSnapshot | null> {
   try {
     const userDoc = await db.collection("users").doc(uid).get();
     return userDoc.exists ? userDoc : null;
@@ -88,7 +88,7 @@ export async function getUserDocument(
  * @return {string} The user's UID.
  * @throws {functions.https.HttpsError} Throws an error if the user is not authenticated.
  */
-export const checkAuth = (context: functions.https.CallableContext) => {
+export const checkAuth = (context: functions.https.CallableContext): string => {
   if (!context.auth) {
     throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
   }

@@ -8,7 +8,8 @@ const db = admin.firestore();
 
 
 /**
- * Logs a profile view event and triggers a notification.
+ * Logs a profile view event, increments the user's view count, and triggers a notification.
+ * This is now the single, atomic function for handling profile views.
  * @param {any} data The data for the function call. Must include 'viewedId'.
  * @param {functions.https.CallableContext} context The context of the function call.
  * @return {Promise<{success: boolean, logId?: string, message?: string}>} A promise that resolves with the operation status.
