@@ -3,15 +3,9 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB } from './user';
+import { checkAuth } from "./utils";
 
 const db = admin.firestore();
-
-const checkAuth = (context: functions.https.CallableContext) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-  }
-  return context.auth.uid;
-};
 
 // =================================================================
 // BOOKING MANAGEMENT

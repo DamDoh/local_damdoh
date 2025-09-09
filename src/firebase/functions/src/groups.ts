@@ -4,15 +4,9 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile, JoinRequest } from './types';
 import { getProfileByIdFromDB } from './user';
+import { checkAuth } from './utils';
 
 const db = admin.firestore();
-
-const checkAuth = (context: functions.https.CallableContext) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-  }
-  return context.auth.uid;
-};
 
 export const createGroup = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);

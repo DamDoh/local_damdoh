@@ -123,7 +123,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
  * @param {string} userId The ID of the user.
  * @return {Promise<object>} A promise that resolves with the user's engagement stats.
  */
-export async function getUserEngagementStats(userId: string): Promise<{ profileViews: number, postLikes: number, postComments: number }> {
+async function getEngagementStats(userId: string): Promise<{ profileViews: number, postLikes: number, postComments: number }> {
     if (!userId) {
         throw new Error('A userId must be provided.');
     }
@@ -155,14 +155,14 @@ export async function getUserEngagementStats(userId: string): Promise<{ profileV
 /**
  * Callable Cloud Function wrapper for getUserEngagementStats.
  */
-export const getUserEngagementStatsCallable = functions.https.onCall(async (data, context) => {
+export const getUserEngagementStats = functions.https.onCall(async (data, context) => {
     checkAuth(context);
     const { userId } = data;
     if (!userId) {
         throw new functions.https.HttpsError('invalid-argument', 'error.userId.required');
     }
     try {
-        return await getUserEngagementStats(userId);
+        return await getEngagementStats(userId);
     } catch (error: any) {
         throw new functions.https.HttpsError('internal', error.message || 'error.stats.fetchFailed');
     }
