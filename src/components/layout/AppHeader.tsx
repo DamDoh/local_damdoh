@@ -24,7 +24,6 @@ import { AppSidebarNav } from './AppSidebarNav';
 import { HeaderThemeToggle } from '../HeaderThemeToggle';
 import { Input } from '../ui/input';
 
-
 function HeaderSkeleton() {
   return (
     <header className="sticky top-0 z-30 w-full border-b bg-background/95 backdrop-blur-sm print:hidden">
@@ -116,7 +115,7 @@ export function AppHeader() {
                  <SheetTrigger asChild>
                      <Button variant="ghost" size="icon"><Menu /></Button>
                  </SheetTrigger>
-                 <SheetContent side="left" className="p-0">
+                 <SheetContent side="left" className="p-0 w-64">
                      <AppSidebarNav isMobile={true} onLinkClick={() => setIsMobileMenuOpen(false)}/>
                  </SheetContent>
              </Sheet>

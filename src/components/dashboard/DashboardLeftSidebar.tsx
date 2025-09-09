@@ -3,10 +3,8 @@
 
 import { Link } from '@/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BarChart2 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "../ui/skeleton";
 import { useEffect, useState, useMemo } from "react";
 import { useAuth } from "@/lib/auth-utils";
@@ -16,8 +14,7 @@ import { useTranslations } from 'next-intl';
 
 export function DashboardLeftSidebar() {
   const t = useTranslations('DashboardLeftSidebar');
-  const { toast } = useToast();
-  const { profile, loading: authLoading } = useAuth(); // Use the correct hook
+  const { profile, loading: authLoading } = useAuth();
   
   const [stats, setStats] = useState<{ profileViews: number, postLikes: number, postComments: number } | null>(null);
   const [isLoadingStats, setIsLoadingStats] = useState(true);
@@ -43,13 +40,6 @@ export function DashboardLeftSidebar() {
     }
   }, [profile, authLoading, getStatsCallable]); 
 
-
-  const handleTryProClick = () => {
-    toast({
-      title: t('pro.title'),
-      description: t('pro.description'),
-    });
-  };
 
   if (authLoading) {
     return (
@@ -87,9 +77,6 @@ export function DashboardLeftSidebar() {
           </Link>
           <p className="text-xs text-muted-foreground px-2">{profile?.profileSummary || 'Your Headline'}</p>
           <p className="text-xs text-muted-foreground mt-1">{profile?.location?.address || 'Your Location'}</p>
-          <Link href="/profiles/me/edit" className="text-xs text-primary hover:underline block mt-1">
-            {t('viewProfileLink')}
-          </Link>
         </CardContent>
         <hr className="my-2"/>
         <CardContent className="text-xs space-y-1">
@@ -110,13 +97,6 @@ export function DashboardLeftSidebar() {
                 </div>
             </>
           )}
-        </CardContent>
-        <hr className="my-2"/>
-        <CardContent className="text-xs">
-          <p className="text-muted-foreground">{t('pro.unlock')}</p>
-          <Button variant="link" className="p-0 h-auto text-xs font-semibold" onClick={handleTryProClick}>
-            <BarChart2 className="h-3 w-3 mr-1 text-accent" /> {t('pro.try')}
-          </Button>
         </CardContent>
       </Card>
 

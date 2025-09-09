@@ -222,28 +222,6 @@ export function DashboardRightSidebar() {
             </Button>
         </CardContent>
       </Card>
-
-      <Card className="overflow-hidden">
-        <CardContent className="p-0">
-          <div className="p-2 text-right">
-            <span className="text-xs text-muted-foreground">{t('ad')} <MoreHorizontal className="inline h-3 w-3" /></span>
-          </div>
-          <p className="text-xs text-muted-foreground text-center px-4">{t('adTitle')}</p>
-          <div className="flex justify-center items-center gap-2 my-2 px-4">
-            <Avatar className="h-12 w-12">
-                <AvatarImage src="https://placehold.co/50x50.png" alt={t('adAlt')} data-ai-hint="market chart agriculture"/>
-                <AvatarFallback>DT</AvatarFallback>
-            </Avatar>
-             <TrendingUp className="h-10 w-10 text-primary" />
-          </div>
-          <p className="text-sm font-semibold text-center px-4 my-1">{t('adDescription')}</p>
-          <div className="px-4 py-3">
-            <Button variant="outline" className="w-full" asChild>
-              <Link href="/industry-news">{t('adButton')}</Link>
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 }

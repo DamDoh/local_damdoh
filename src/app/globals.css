@@ -5,35 +5,35 @@
 
 @layer base {
   :root {
-    /* DamDoh.org Inspired Light Theme - REVISED */
+    /* DamDoh - Earthy & Professional Theme */
     --background: 47 56% 96%; /* #F5F5DC - Light Beige */
-    --foreground: 70 60% 12%; /* #1E2601 - Dark, earthy green/black */
+    --foreground: 70 20% 25%; /* #364030 - Darker, softer green/black */
 
-    --card: 0 0% 100%; /* White cards for contrast */
-    --card-foreground: 70 60% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 70 20% 25%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 70 60% 12%;
+    --popover-foreground: 70 20% 25%;
 
-    --primary: 90 55% 35%; /* Darker, more accessible green */
-    --primary-foreground: 210 40% 98%; /* Almost white text on primary */
+    --primary: 120 27% 65%; /* #8FBC8F - Earthy Green */
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 40 100% 49%; /* #DAA520 - Warm Gold (used for some highlights) */
-    --secondary-foreground: 70 60% 12%; 
+    --secondary: 40 10% 95%; /* #F3F2F0 - Off-white for secondary elements */
+    --secondary-foreground: 70 20% 25%;
 
-    --muted: 60 30% 90%; /* #E8E8E0 - Lighter Beige */
-    --muted-foreground: 60 10% 35%; /* #5A5A4D - Muted Green/Brown Text */
+    --muted: 60 30% 90%;
+    --muted-foreground: 60 10% 45%;
 
-    --accent: 28 58% 66%; /* #D4A27A - Warm Gold Accent */
+    --accent: 28 58% 66%; /* #D4A27A - Warm Gold */
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84% 60%; /* Standard Red for errors */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 60 15% 85%; /* #DCDCD1 - Light border */
-    --input: 60 50% 98%; /* #FDFDFB - Very light input background */
-    --ring: 90 55% 55%; /* Ring color matches primary */
-
+    --border: 60 15% 85%;
+    --input: 60 50% 98%;
+    --ring: 120 27% 55%; /* Ring color based on primary */
+    
     --chart-1: 120 27% 65%;
     --chart-2: 28 58% 66%;
     --chart-3: 120 27% 80%;
@@ -47,16 +47,16 @@
     --background: 222 47% 11%; 
     --foreground: 210 40% 98%;
 
-    --card: 222 47% 14%; /* Slightly lighter than background */
+    --card: 222 47% 14%;
     --card-foreground: 210 40% 98%;
 
     --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 90 55% 50%; /* #66BB6A - Vibrant Green */
+    --primary: 120 27% 65%; /* Keep the same earthy green */
     --primary-foreground: 210 40% 98%;
     
-    --secondary: 28 58% 56%; /* #C28E5F - Muted dark gold */
+    --secondary: 222 47% 18%;
     --secondary-foreground: 210 40% 98%;
     
     --muted: 222 47% 18%;
@@ -70,7 +70,7 @@
     
     --border: 222 47% 18%;
     --input: 222 47% 16%;
-    --ring: 90 55% 55%;
+    --ring: 120 27% 55%;
     
     --chart-1: 120 27% 55%;
     --chart-2: 28 58% 56%;
