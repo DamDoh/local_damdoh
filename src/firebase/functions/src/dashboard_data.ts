@@ -1048,7 +1048,7 @@ export const getInsuranceProviderDashboardData = functions.https.onCall(
             const claim = doc.data();
             return {
                 id: doc.id,
-                policyHolderName: claim.applicantName || 'Unknown Farmer',
+                policyHolderName: claim.applicantName || 'Unknown Farmer', // Placeholder
                 policyType: claim.productName,
                 claimDate: (claim.submittedAt as admin.firestore.Timestamp).toDate().toISOString(),
                 status: claim.status,
@@ -1179,7 +1179,7 @@ export const getWasteManagementDashboardData = functions.https.onCall(
   }
 );
 
-export const getAgriTechInnovatorData = functions.https.onCall(
+export const getAgriTechInnovatorDashboardData = functions.https.onCall(
   async (data, context): Promise<AgriTechInnovatorDashboardData> => {
     const innovatorId = checkAuth(context);
     
@@ -1308,6 +1308,7 @@ export const getAdminRecentActivity = functions.https.onCall(async (data, contex
 });
 
 
+
 export const getOperationsDashboardData = functions.https.onCall(
   async (data, context): Promise<OperationsDashboardData> => {
     checkAuth(context);
@@ -1324,8 +1325,8 @@ export const getOperationsDashboardData = functions.https.onCall(
       lastChecked: new Date().toISOString(),
     };
     const flaggedEvents = [
-        { id: 'evt1', type: 'Anomalous Geolocation', description: 'Large distance between HARVESTED and PROCESSED events.', vtiLink: '#' },
-        { id: 'evt2', type: 'Unusual Time Lag', description: '48-hour delay between PROCESSED and SHIPPED for perishable goods.', vtiLink: '#' }
+        { id: 'evt1', type: 'Anomalous Geolocation' as const, description: 'Large distance between HARVESTED and PROCESSED events.', vtiLink: '#' },
+        { id: 'evt2', type: 'Unusual Time Lag' as const, description: '48-hour delay between PROCESSED and SHIPPED for perishable goods.', vtiLink: '#' }
     ];
 
     return {

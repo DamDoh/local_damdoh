@@ -2,12 +2,113 @@
 {
   "LandingPage": {
     "hero": {
-      "title": "Stärken Sie Ihren Hof mit intelligenten Erkenntnissen",
-      "subtitle": "Nutzen Sie KI, um Pflanzenkrankheiten zu diagnostizieren, maßgeschneiderte Empfehlungen zu erhalten und Ihren Ertrag zu optimieren. Die Zukunft der Landwirtschaft ist da.",
-      "getStartedButton": "Kostenlos starten"
+      "title": "Stärken Sie Ihre Landwirtschaft mit intelligenten Einblicken",
+      "subtitle": "Nutzen Sie KI, um Pflanzenkrankheiten zu diagnostizieren, maßgeschneiderte Empfehlungen zu erhalten und Ihren Ertrag zu optimieren. Die Zukunft der Landwirtschaft ist hier.",
+      "getStartedButton": "Kostenlos starten",
+      "badge": "Neu: KI-gestützte Einblicke in den Anbau"
     },
     "featured": {
-        "title": "WIE VORGESTELLT IN"
+      "title": "WIE VORGESTELLT IN"
+    },
+    "trustPillars": {
+      "title": "Auf Vertrauen gebaut",
+      "subtitle": "Vier Säulen, die Sicherheit, Transparenz und Zusammenarbeit bei jeder Transaktion gewährleisten.",
+      "traceability": {
+        "title": "Vollständige Rückverfolgbarkeit",
+        "description": "Verfolgen Sie jeden Schritt vom Hof bis zum Tisch mit unveränderlichen Blockchain-Aufzeichnungen."
+      },
+      "network": {
+        "title": "Intelligentes Networking",
+        "description": "KI-gestützte Verbindungen mit relevanten Partnern im landwirtschaftlichen Ökosystem."
+      },
+      "ai": {
+        "title": "KI-Unterstützung",
+        "description": "Experteneinblicke und Empfehlungen, die von fortschrittlicher KI angetrieben werden."
+      },
+      "security": {
+        "title": "Sicherheit auf Unternehmensebene",
+        "description": "Sicherheit auf Bankenniveau und Datenschutz für alle Benutzer."
+      }
+    },
+    "stakeholders": {
+      "title": "Für jeden Stakeholder",
+      "subtitle": "Maßgeschneiderte Funktionen und Verbindungen für alle in der Lieferkette.",
+      "farmers": {
+        "name": "Landwirte",
+        "headline": "Intelligenter anbauen, besser verkaufen",
+        "points": [
+          {
+            "title": "Direkter Marktzugang",
+            "desc": "Verbinden Sie sich mit Käufern und eliminieren Sie Zwischenhändler."
+          },
+          {
+            "title": "Expertenrat",
+            "desc": "Erhalten Sie KI-gestützte Erkenntnisse und agronomische Beratungen."
+          },
+          {
+            "title": "Finanzinstrumente",
+            "desc": "Zugang zu Krediten, Versicherungen und Erntefinanzierungen."
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=Landwirte"
+      },
+      "buyers": {
+        "name": "Käufer",
+        "headline": "Mit Vertrauen einkaufen",
+        "points": [
+          {
+            "title": "Verifizierte Lieferanten",
+            "desc": "Greifen Sie auf rückverfolgbare und zertifizierte Produkte von vertrauenswürdigen Erzeugern zu."
+          },
+          {
+            "title": "Qualitätssicherung",
+            "desc": "Echtzeit-Qualitätsberichte und Chargenhistorie."
+          },
+          {
+            "title": "Optimierte Beschaffung",
+            "desc": "Direkte Verhandlungen und Logistikkoordination."
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=Käufer"
+      },
+      "logistics": {
+        "name": "Logistikpartner",
+        "headline": "Effiziente Lieferung",
+        "points": [
+          {
+            "title": "Echtzeit-Tracking",
+            "desc": "Überwachen Sie Sendungen mit integrierter Rückverfolgbarkeit."
+          },
+          {
+            "title": "Optimierte Routen",
+            "desc": "KI-vorgeschlagene Routen zur Reduzierung von Kosten und Verzögerungen."
+          },
+          {
+            "title": "Compliance-Tools",
+            "desc": "Automatisierte Dokumentation für Zoll und Normen."
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=Logistik"
+      },
+      "financial": {
+        "name": "Finanzinstitute",
+        "headline": "Risikofreie Kreditvergabe",
+        "points": [
+          {
+            "title": "Verifizierte Kreditnehmer",
+            "desc": "Greifen Sie auf detaillierte Farmdaten für die Kreditbewertung zu."
+          },
+          {
+            "title": "Leistungseinblicke",
+            "desc": "Verfolgen Sie die Kreditverwendung und die Produktivität der Farm."
+          },
+          {
+            "title": "Versicherungsintegration",
+            "desc": "Bündeln Sie Kredite mit Ernteversicherungsprodukten."
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=Finanz"
+      }
     },
     "howItWorks": {
         "title": "Wie es funktioniert",
@@ -78,374 +179,10 @@
       "button": "Kostenlos registrieren"
     }
   },
-  "searchPage": {
-    "title": "Suche",
-    "description": "Finden Sie alles auf der DamDoh-Plattform.",
-    "placeholder": "Was suchen Sie?",
-    "searchButton": "Suchen",
-    "popularSearches": "Beliebte Suchanfragen",
-    "popularSearch1": "Traktorenvermietung",
-    "popularSearch2": "Preis für Bio-Kaffee",
-    "popularSearch3": "Bodenberater",
-    "popularSearch4": "Exportlogistik",
-    "popularSearch5": "Kühlhaus",
-    "modal": {
-        "title": "Universelle Suche",
-        "placeholder": "Suche nach Produkten, Dienstleistungen, Personen, Foren...",
-        "searchButton": "Suchen",
-        "searchError": "Suche fehlgeschlagen",
-        "searchErrorDescription": "Bei der Durchführung Ihrer Suche ist ein Fehler aufgetreten.",
-        "interpretationTitle": "KI-Interpretation",
-        "interpretationNotesDefault": "Versuche, Ihre Absicht zu verstehen...",
-        "filtersTitle": "Vorgeschlagene Filter",
-        "results": {
-            "users": "Profile",
-            "marketplaceItems": "Marktplatzeinträge",
-            "forums": "Foren-Themen",
-            "agri_events": "Veranstaltungen",
-            "knowledge_articles": "Wissensartikel",
-            "vti_registry": "Rückverfolgbarkeitsberichte",
-            "groups": "Gruppen"
-        },
-        "noResults": "Keine Ergebnisse gefunden.",
-        "tryAgain": "Versuchen Sie, Ihre Suchanfrage zu verfeinern.",
-        "scanError": "QR-Code konnte nicht gelesen werden.",
-        "scanErrorDescription": "Stellen Sie sicher, dass der Code gut beleuchtet und im Rahmen ist.",
-        "invalidCodeError": "Der gescannte QR-Code ist für diese Aktion ungültig."
-    }
-  },
-  "AppHeader": {
-    "searchPlaceholder": "Suche nach Produkten, Dienstleistungen oder Personen...",
-    "signIn": "Anmelden",
-    "signUp": "Registrieren",
-    "myProfile": "Mein Profil",
-    "settings": "Einstellungen",
-    "logOut": "Abmelden",
-    "home": "Startseite",
-    "network": "Netzwerk",
-    "farmMgmt": "Farm-Mgmt",
-    "marketplace": "Marktplatz",
-    "talentExchange": "Talentbörse",
-    "traceability": "Rückverfolgbarkeit",
-    "forums": "Foren",
-    "sustainability": "Nachhaltigkeit",
-    "notifications": "Benachrichtigungen",
-    "messages": "Nachrichten",
-    "wallet": "Wallet",
-    "helpCenter": "Hilfe-Center",
-    "switchToDarkAria": "In den dunklen Modus wechseln",
-    "switchToLightAria": "In den hellen Modus wechseln",
-    "mobileMenu": {
-      "description": "Mobiles Navigationsmenü"
-    },
-    "toast": {
-      "logOut": {
-        "title": "Abgemeldet",
-        "description": "Sie wurden erfolgreich abgemeldet.",
-        "failTitle": "Abmeldung fehlgeschlagen",
-        "failDescription": "Beim Abmelden ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
-      }
-    },
-    "orders": "Bestellungen",
-    "myPurchases": "Meine Käufe",
-    "mySales": "Meine Verkäufe"
-  },
-  "AppFooter": {
-    "tagline": "Landwirtschaft verbinden, vom Samen bis zum Tisch.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "Über uns",
-    "contactLabel": "Kontakt",
-    "careersLabel": "Karriere",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Ressourcen",
-    "helpCenterLabel": "Hilfe-Center",
-    "communityGuidelinesLabel": "Community-Richtlinien",
-    "industryNewsLabel": "Branchennachrichten",
-    "eventsLabel": "Veranstaltungen",
-    "talentExchangeLabel": "Talentbörse",
-    "legalTitle": "Rechtliches",
-    "privacyPolicyLabel": "Datenschutz-Bestimmungen",
-    "termsOfServiceLabel": "Nutzungsbedingungen",
-    "getMobileApp": "Holen Sie sich die mobile App",
-    "googlePlayAlt": "Bei Google Play holen",
-    "appStoreAlt": "Im App Store herunterladen",
-    "copyright": "© {year} {appName}. Alle Rechte vorbehalten."
-  },
-  "LanguageSwitcher": {
-    "toggle": "Sprache ändern"
-  },
-  "OfflineIndicator": {
-    "toast": {
-      "online": {
-        "title": "Sie sind wieder online",
-        "description": "Ihre Verbindung wurde wiederhergestellt."
-      },
-      "offline": {
-        "title": "Sie sind derzeit offline",
-        "description": "Ihre Aktionen werden gespeichert und synchronisiert, wenn Sie sich wieder verbinden."
-      },
-      "syncing": {
-        "title": "Offline-Änderungen werden synchronisiert...",
-        "description": "Verarbeite {count, plural, one {# Aktion} other {# Aktionen}}, die gespeichert wurden, während Sie offline waren."
-      },
-      "synced": {
-        "title": "Synchronisierung abgeschlossen",
-        "description": "Alle Offline-Änderungen wurden erfolgreich gespeichert."
-      },
-      "syncFailed": {
-        "title": "Synchronisierung fehlgeschlagen",
-        "description": "Offline-Änderungen konnten nicht synchronisiert werden. Es wird später erneut versucht."
-      },
-      "queued": {
-        "title": "Aktion in Warteschlange",
-        "description": "Sie sind offline. Diese Aktion wird ausgeführt, wenn Sie sich wieder verbinden."
-      }
-    },
-    "tooltip": {
-      "syncing": "Synchronisiere {count, plural, one {# ausstehende Aktion} other {# ausstehende Aktionen}}...",
-      "onlinePending": "Online | {count, plural, one {# Aktion} other {# Aktionen}} wartet auf Synchronisierung",
-      "onlineSynced": "Online | Alle Änderungen gespeichert",
-      "offline": "Offline | {count, plural, one {# Aktion} other {# Aktionen}} in Warteschlange"
-    }
-  },
-  "common": {
-    "error": "Fehler",
-    "success": "Erfolg",
-    "loading": "Wird geladen...",
-    "noData": "Keine Daten verfügbar.",
-    "save": "Speichern",
-    "cancel": "Abbrechen",
-    "viewDetails": "Details anzeigen",
-    "edit": "Bearbeiten",
-    "delete": "Löschen",
-    "back": "Zurück",
-    "submit": "Senden",
-    "yes": "Ja",
-    "no": "Nein",
-    "confirm": "Bestätigen",
-    "close": "Schließen",
-    "optional": "Optional"
-  },
-  "constants": {
-    "stakeholderRoles": {
-      "Farmer": "Landwirt",
-      "AgriculturalCooperative": "Landwirtschaftliche Genossenschaft",
-      "FieldAgentAgronomistDamDohInternal": "Feldagent/Agronom (DamDoh Intern)",
-      "OperationsLogisticsTeamDamDohInternal": "Betriebs-/Logistikteam (DamDoh Intern)",
-      "QualityAssuranceTeamDamDohInternal": "Qualitätssicherungsteam (DamDoh Intern)",
-      "ProcessingPackagingUnit": "Verarbeitungs- & Verpackungseinheit",
-      "BuyerRestaurantSupermarketExporter": "Käufer (Restaurant, Supermarkt, Exporteur)",
-      "InputSupplierSeedFertilizerPesticide": "Input-Lieferant (Saatgut, Dünger, Pestizide)",
-      "EquipmentSupplierSalesofMachineryIoT": "Ausrüstungslieferant (Verkauf von Maschinen/IoT)",
-      "FinancialInstitutionMicrofinanceLoans": "Finanzinstitut (Mikrofinanz/Kredite)",
-      "GovernmentRegulatorAuditor": "Regierungsregulierer/Prüfer",
-      "CertificationBodyOrganicFairTradeetc": "Zertifizierungsstelle (Bio, Fair Trade etc.)",
-      "Consumer": "Verbraucher",
-      "ResearcherAcademic": "Forscher/Akademiker",
-      "LogisticsPartnerThirdPartyTransporter": "Logistikpartner (Drittanbieter-Transporteur)",
-      "StorageWarehouseFacility": "Lager-/Lagerhauseinrichtung",
-      "AgronomyExpertConsultantExternal": "Agronomie-Experte/Berater (Extern)",
-      "AgroTourismOperator": "Agro-Tourismus-Betreiber",
-      "EnergySolutionsProviderSolarBiogas": "Anbieter von Energielösungen (Solar, Biogas)",
-      "AgroExportFacilitatorCustomsBroker": "Agro-Export-Vermittler/Zollagent",
-      "AgriTechInnovatorDeveloper": "Agri-Tech-Innovator/Entwickler",
-      "WasteManagementCompostFacility": "Abfallwirtschafts- & Kompostieranlage",
-      "CrowdfunderImpactInvestorIndividual": "Crowdfunder (Impact Investor, Einzelperson)",
-      "InsuranceProvider": "Versicherungsanbieter",
-      "PackagingSupplier": "Verpackungslieferant"
-    },
-    "listingTypes": {
-      "All": "Alle Typen",
-      "Product": "Produkt",
-      "Service": "Dienstleistung",
-      "AgroTourism": "Agro-Tourismus"
-    },
-    "agriEventTypes": {
-      "All": "Alle Typen",
-      "Conference": "Konferenz",
-      "Webinar": "Webinar",
-      "Workshop": "Workshop",
-      "TradeShow": "Messe",
-      "FieldDay": "Feldtag",
-      "NetworkingEvent": "Netzwerkveranstaltung",
-      "OnlineCourseLaunch": "Online-Kurs-Start",
-      "PolicyBriefing": "Politik-Briefing"
-    },
-    "insuranceProductTypes": {
-      "Crop": "Ernteversicherung",
-      "Livestock": "Tierversicherung",
-      "Asset": "Anlagenversicherung",
-      "Weather": "Wetterbasiert (Parametrisch)"
-    },
-    "financialServiceTypes": {},
-    "cropStages": {
-      "Planting": "Pflanzung",
-      "Vegetative": "Vegetativ",
-      "Flowering": "Blüte",
-      "Fruiting": "Fruchtbildung",
-      "Harvesting": "Ernte",
-      "Post-Harvest": "Nach der Ernte"
-    },
-    "observationTypes": {
-      "GeneralNote": "Allgemeine Notiz",
-      "PestSighting": "Schädlingssichtung",
-      "DiseaseSighting": "Krankheitssichtung",
-      "SoilCondition": "Bodenzustand",
-      "WeatherEvent": "Wetterereignis",
-      "GrowthStageChange": "Wachstumsphasenwechsel",
-      "IrrigationEvent": "Bewässerungsereignis"
-    },
-    "mobileHomeCategories": {
-      "produceMarket": "Produktmarkt",
-      "farmInputs": "Betriebsmittel",
-      "talentExchange": "Talentbörse",
-      "machinery": "Maschinen",
-      "community": "Community",
-      "aiAssistant": "KI-Assistent",
-      "events": "Veranstaltungen"
-    }
-  },
-  "Auth": {
-    "signInWelcome": "Willkommen zurück bei {appName}",
-    "signUpWelcome": "Treten Sie dem DamDoh Landwirtschaftsnetzwerk bei",
-    "forgotPasswordResetPrompt": "Setzen Sie Ihr Passwort für {appName} zurück",
-    "resetPasswordPrompt": "Erstellen Sie ein neues Passwort für {appName}",
-    "signInTitle": "Melden Sie sich bei Ihrem Konto an",
-    "signInDescription": "Geben Sie Ihre Anmeldedaten ein, um auf Ihr Dashboard zuzugreifen.",
-    "emailLabel": "E-Mail",
-    "emailPlaceholder": "sie@beispiel.com",
-    "passwordLabel": "Passwort",
-    "forgotPasswordLink": "Passwort vergessen?",
-    "signingInButton": "Anmelden...",
-    "signInButton": "Anmelden",
-    "noAccountPrompt": "Sie haben noch kein Konto?",
-    "signUpLink": "Registrieren",
-    "signInLink": "Anmelden",
-    "recoverWithUniversalIdPrompt": "Oder Zugriff mit Ihrer Universal-ID wiederherstellen",
-    "signUpTitle": "Neues Konto erstellen",
-    "signUpDescription": "Erzählen Sie uns ein wenig über sich, um loszulegen.",
-    "nameLabel": "Ihr Name oder Firmenname",
-    "namePlaceholder": "z.B. Chan Nary oder Green Valley Farms",
-    "roleLabel": "Ihre Hauptrolle",
-    "rolePlaceholder": "Wählen Sie Ihre Rolle in der Lieferkette...",
-    "confirmPasswordLabel": "Passwort bestätigen",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Konto wird erstellt...",
-    "signUpButton": "Konto erstellen",
-    "alreadyHaveAccountPrompt": "Haben Sie bereits ein Konto?",
-    "forgotPasswordTitle": "Passwort vergessen?",
-    "forgotPasswordDescription": "Kein Problem. Geben Sie unten Ihre E-Mail-Adresse ein, und wir senden Ihnen einen Link zum Zurücksetzen.",
-    "sendResetLinkButton": "Link zum Zurücksetzen senden",
-    "sendingEmailButton": "E-Mail wird gesendet...",
-    "rememberPasswordPrompt": "Erinnern Sie sich an Ihr Passwort?",
-    "resetPasswordTitle": "Passwort zurücksetzen",
-    "resetPasswordDescription": "Geben Sie unten Ihr neues Passwort ein und bestätigen Sie es.",
-    "newPasswordLabel": "Neues Passwort",
-    "newPasswordPlaceholder": "Geben Sie ein starkes neues Passwort ein",
-    "resetPasswordButton": "Passwort zurücksetzen",
-    "resettingPasswordButton": "Zurücksetzen...",
-    "recoverPage": {
-      "title": "Ihr Konto wiederherstellen",
-      "description": "Nutzen Sie Ihr Netzwerk, um wieder Zugriff zu erhalten.",
-      "howItWorksTitle": "Wie es funktioniert",
-      "step1": "Geben Sie Ihre Telefonnummer ein, um eine Wiederherstellungssitzung zu starten.",
-      "step2": "Zeigen Sie den temporären QR-Code einem vertrauenswürdigen Freund auf DamDoh.",
-      "step3": "Sobald Ihr Freund den Code scannt, um Ihre Identität zu überprüfen, erhalten Sie wieder Zugriff.",
-      "startButton": "Kontowiederherstellung starten",
-      "scanTitle": "Bitten Sie einen Freund zu scannen",
-      "scanDescription": "Lassen Sie einen vertrauenswürdigen DamDoh-Kontakt diesen QR-Code mit der Funktion 'Einem Freund bei der Wiederherstellung helfen' in seiner App scannen.",
-      "scanNote": "Dieser Code ist temporär und läuft in 10 Minuten ab.",
-      "startOverButton": "Neu starten",
-      "enterPhone": {
-        "title": "Geben Sie Ihre Telefonnummer ein",
-        "description": "Wir verwenden diese, um Ihr Konto zu finden und den Wiederherstellungsprozess zu starten.",
-        "phoneNumberLabel": "Telefonnummer",
-        "phoneNumberPlaceholder": "+49 151 12345678",
-        "phoneRequiredError": "Eine Telefonnummer ist erforderlich.",
-        "getRecoveryCodeButton": "Wiederherstellungscode erhalten",
-        "verifyingButton": "Überprüfen...",
-        "genericError": "Wiederherstellung konnte nicht gestartet werden. Bitte überprüfen Sie die Nummer und versuchen Sie es erneut."
-      },
-      "helpFriend": {
-        "prompt": "Müssen Sie einem Freund bei der Wiederherstellung seines Kontos helfen?",
-        "button": "Einem Freund helfen",
-        "scanError": "Der gescannte Code ist kein gültiger DamDoh-Wiederherstellungscode.",
-        "scanSuccess": "Scan erfolgreich!",
-        "scanFail": "QR-Code konnte nicht gelesen werden. Bitte versuchen Sie es erneut."
-      }
-    },
-    "forgotPassword": {
-      "emailSentTitle": "Überprüfen Sie Ihre E-Mails",
-      "emailSentDescription": "Ein Link zum Zurücksetzen des Passworts wurde an {email} gesendet.",
-      "emailSentDescriptionIfAccountExists": "Wenn ein Konto mit der E-Mail-Adresse {email} existiert, wurde ein Link zum Zurücksetzen des Passworts gesendet.",
-      "successTitle": "E-Mail gesendet!",
-      "successDescription": "Bitte überprüfen Sie Ihren Posteingang (und den Spam-Ordner) auf den Link zum Zurücksetzen des Passworts.",
-      "errors": {
-        "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
-        "invalidEmail": "Die E-Mail-Adresse ist ungültig.",
-        "tooManyRequests": "Zu viele Anfragen. Bitte versuchen Sie es später erneut.",
-        "default": "Fehler beim Senden der E-Mail zum Zurücksetzen des Passworts"
-      }
-    },
-    "resetPassword": {
-      "successTitle": "Passwort erfolgreich zurückgesetzt!",
-      "successDescription": "Sie können sich jetzt mit Ihrem neuen Passwort anmelden.",
-      "successRedirect": "Sie werden in Kürze zur Anmeldeseite weitergeleitet.",
-      "errors": {
-        "missingCode": "Ungültiger Link zum Zurücksetzen des Passworts. Bitte fordern Sie einen neuen an.",
-        "missingCodeTitle": "Ungültiger Link",
-        "missingCodeDescription": "Der Link zum Zurücksetzen des Passworts ist ungültig oder fehlt. Bitte kehren Sie zur Seite 'Passwort vergessen' zurück, um einen neuen anzufordern.",
-        "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
-        "invalidOrExpiredCode": "Der Link zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordern Sie einen neuen an.",
-        "userDisabled": "Dieses Benutzerkonto wurde deaktiviert.",
-        "userNotFound": "Kein Benutzer zu diesem Reset-Link gefunden.",
-        "weakPassword": "Das neue Passwort ist nicht sicher genug.",
-        "default": "Fehler beim Zurücksetzen des Passworts"
-      }
-    },
-    "signInSuccess": {
-      "title": "Anmeldung erfolgreich",
-      "description": "Willkommen zurück bei {appName}!"
-    },
-    "signInFailed": "Anmeldung fehlgeschlagen",
-    "errors": {
-      "invalidCredential": "Die eingegebene E-Mail-Adresse oder das Passwort ist falsch.",
-      "userDisabled": "Dieses Benutzerkonto wurde deaktiviert.",
-      "emailInUse": "Ein Konto mit dieser E-Mail existiert bereits.",
-      "emailInUseRich": "Ein Konto mit dieser E-Mail existiert bereits. Bitte {signInLink} oder verwenden Sie eine andere E-Mail.",
-      "weakPassword": "Das Passwort ist zu schwach. Bitte verwenden Sie ein stärkeres Passwort."
-    },
-    "passwordStrength": {
-      "label": "Sicherheit",
-      "weak": "Schwach",
-      "medium": "Mittel",
-      "strong": "Stark",
-      "veryStrong": "Sehr Stark"
-    },
-    "signUpSuccess": {
-      "title": "Konto erstellt!",
-      "description": "Willkommen bei {appName}! Sie wurden angemeldet."
-    },
-    "signUpFailed": "Registrierung fehlgeschlagen",
-    "error": "Fehler"
-  },
-  "activity": {
-    "sharedAPost": "Hat einen Beitrag geteilt",
-    "placedAnOrder": "Hat eine Bestellung aufgegeben",
-    "receivedAnOrder": "Hat eine Bestellung erhalten",
-    "loggedEvent": "Ereignis protokolliert: {eventType}",
-    "orderFor": "Für: {listingName}",
-    "traceabilityUpdate": "Rückverfolgbarkeits-Update"
-  },
-  "agroTourism": {
-    "checkInSuccess": "{guestName} wurde erfolgreich eingecheckt.",
-    "checkInError": {
-      "notRegistered": "{guestName} hat keine Buchung für diesen Service.",
-      "alreadyCheckedIn": "{guestName} wurde bereits eingecheckt."
-    },
-    "addStaffSuccess": "{staffName} wurde als Mitarbeiter hinzugefügt.",
-    "removeStaffSuccess": "Mitarbeiter wurde entfernt."
+  "adminLayoutPage": {
+    "title": "Admin Panel",
+    "description": "Platform administration and management.",
+    "contentManagement": "Content",
+    "reports": "Reports"
   }
 }
-
-    

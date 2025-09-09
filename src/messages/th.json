@@ -1,12 +1,114 @@
+
 {
   "LandingPage": {
     "hero": {
       "title": "เสริมสร้างศักยภาพฟาร์มของคุณด้วยข้อมูลเชิงลึกอัจฉริยะ",
       "subtitle": "ใช้ประโยชน์จาก AI เพื่อวินิจฉัยโรคพืช รับคำแนะนำที่ปรับให้เหมาะกับคุณ และเพิ่มประสิทธิภาพผลผลิตของคุณ อนาคตของการทำฟาร์มอยู่ที่นี่แล้ว",
-      "getStartedButton": "เริ่มต้นฟรี"
+      "getStartedButton": "เริ่มต้นฟรี",
+      "badge": "ใหม่: ข้อมูลเชิงลึกพืชผลที่ขับเคลื่อนด้วย AI"
     },
     "featured": {
         "title": "ตามที่นำเสนอใน"
+    },
+    "trustPillars": {
+      "title": "สร้างขึ้นบนความไว้วางใจ",
+      "subtitle": "สี่เสาหลักที่รับประกันความปลอดภัย ความโปร่งใส และการทำงานร่วมกันในทุกธุรกรรม",
+      "traceability": {
+        "title": "การตรวจสอบย้อนกลับเต็มรูปแบบ",
+        "description": "ติดตามทุกขั้นตอนจากฟาร์มถึงโต๊ะอาหารด้วยบันทึกบล็อกเชนที่ไม่สามารถเปลี่ยนแปลงได้"
+      },
+      "network": {
+        "title": "เครือข่ายอัจฉริยะ",
+        "description": "การเชื่อมต่อที่ขับเคลื่อนด้วย AI กับพันธมิตรที่เกี่ยวข้องในระบบนิเวศการเกษตร"
+      },
+      "ai": {
+        "title": "ความช่วยเหลือจาก AI",
+        "description": "ข้อมูลเชิงลึกและคำแนะนำจากผู้เชี่ยวชาญที่ขับเคลื่อนด้วย AI ขั้นสูง"
+      },
+      "security": {
+        "title": "ความปลอดภัยระดับองค์กร",
+        "description": "ความปลอดภัยระดับธนาคารและความเป็นส่วนตัวของข้อมูลสำหรับผู้ใช้ทุกคน"
+      }
+    },
+    "stakeholders": {
+      "title": "สำหรับผู้มีส่วนได้ส่วนเสียทุกคน",
+      "subtitle": "คุณสมบัติและการเชื่อมต่อที่ปรับให้เหมาะกับทุกคนในห่วงโซ่อุปทาน",
+      "farmers": {
+        "name": "เกษตรกร",
+        "headline": "ปลูกอย่างชาญฉลาด ขายได้ดีกว่า",
+        "points": [
+          {
+            "title": "การเข้าถึงตลาดโดยตรง",
+            "desc": "เชื่อมต่อกับผู้ซื้อและกำจัดพ่อค้าคนกลาง"
+          },
+          {
+            "title": "คำแนะนำจากผู้เชี่ยวชาญ",
+            "desc": "รับข้อมูลเชิงลึกที่ขับเคลื่อนด้วย AI และการให้คำปรึกษาจากนักปฐพีวิทยา"
+          },
+          {
+            "title": "เครื่องมือทางการเงิน",
+            "desc": "เข้าถึงสินเชื่อ ประกันภัย และการจัดหาเงินทุนสำหรับพืชผล"
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=เกษตรกร"
+      },
+      "buyers": {
+        "name": "ผู้ซื้อ",
+        "headline": "จัดหาด้วยความมั่นใจ",
+        "points": [
+          {
+            "title": "ซัพพลายเออร์ที่ผ่านการตรวจสอบแล้ว",
+            "desc": "เข้าถึงผลิตภัณฑ์ที่ตรวจสอบย้อนกลับได้และได้รับการรับรองจากผู้ปลูกที่เชื่อถือได้"
+          },
+          {
+            "title": "การประกันคุณภาพ",
+            "desc": "รายงานคุณภาพแบบเรียลไทม์และประวัติของล็อตสินค้า"
+          },
+          {
+            "title": "การจัดหาที่มีประสิทธิภาพ",
+            "desc": "การเจรจาโดยตรงและการประสานงานด้านโลจิสติกส์"
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=ผู้ซื้อ"
+      },
+      "logistics": {
+        "name": "พันธมิตรด้านโลจิสติกส์",
+        "headline": "การจัดส่งที่มีประสิทธิภาพ",
+        "points": [
+          {
+            "title": "การติดตามแบบเรียลไทม์",
+            "desc": "ตรวจสอบการจัดส่งด้วยการตรวจสอบย้อนกลับแบบบูรณาการ"
+          },
+          {
+            "title": "เส้นทางที่ปรับให้เหมาะสม",
+            "desc": "เส้นทางที่แนะนำโดย AI เพื่อลดต้นทุนและความล่าช้า"
+          },
+          {
+            "title": "เครื่องมือการปฏิบัติตามข้อกำหนด",
+            "desc": "เอกสารอัตโนมัติสำหรับศุลกากรและมาตรฐานต่างๆ"
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=โลจิสติกส์"
+      },
+      "financial": {
+        "name": "สถาบันการเงิน",
+        "headline": "การให้สินเชื่อที่ปราศจากความเสี่ยง",
+        "points": [
+          {
+            "title": "ผู้กู้ที่ผ่านการตรวจสอบแล้ว",
+            "desc": "เข้าถึงข้อมูลฟาร์มโดยละเอียดเพื่อการประเมินสินเชื่อ"
+          },
+          {
+            "title": "ข้อมูลเชิงลึกด้านประสิทธิภาพ",
+            "desc": "ติดตามการใช้สินเชื่อและผลิตภาพของฟาร์ม"
+          },
+          {
+            "title": "การบูรณาการการประกันภัย",
+            "desc": "รวมสินเชื่อเข้ากับผลิตภัณฑ์ประกันภัยพืชผล"
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=การเงิน"
+      }
     },
     "howItWorks": {
         "title": "มันทำงานอย่างไร",
@@ -76,374 +178,5 @@
       "subtitle": "เข้าร่วมกับเกษตรกรหลายพันคนที่ใช้ DamDoh เพื่อสร้างอนาคตที่ทำกำไรและยั่งยืนมากขึ้น",
       "button": "ลงทะเบียนฟรี"
     }
-  },
-  "searchPage": {
-    "title": "ค้นหา",
-    "description": "ค้นหาทุกอย่างบนแพลตฟอร์ม DamDoh",
-    "placeholder": "คุณกำลังมองหาอะไร?",
-    "searchButton": "ค้นหา",
-    "popularSearches": "การค้นหายอดนิยม",
-    "popularSearch1": "เช่ารถแทรกเตอร์",
-    "popularSearch2": "ราคากาแฟออร์แกนิก",
-    "popularSearch3": "ที่ปรึกษาด้านดิน",
-    "popularSearch4": "โลจิสติกส์การส่งออก",
-    "popularSearch5": "ห้องเย็น",
-    "modal": {
-        "title": "ค้นหาสากล",
-        "placeholder": "ค้นหาสินค้า, บริการ, ผู้คน, ฟอรั่ม...",
-        "searchButton": "ค้นหา",
-        "searchError": "การค้นหาล้มเหลว",
-        "searchErrorDescription": "เกิดข้อผิดพลาดขณะทำการค้นหาของคุณ",
-        "interpretationTitle": "การตีความโดย AI",
-        "interpretationNotesDefault": "กำลังพยายามทำความเข้าใจเจตนาของคุณ...",
-        "filtersTitle": "ตัวกรองที่แนะนำ",
-        "results": {
-            "users": "โปรไฟล์",
-            "marketplaceItems": "รายการในตลาด",
-            "forums": "หัวข้อฟอรั่ม",
-            "agri_events": "กิจกรรม",
-            "knowledge_articles": "บทความความรู้",
-            "vti_registry": "รายงานการตรวจสอบย้อนกลับ",
-            "groups": "กลุ่ม"
-        },
-        "noResults": "ไม่พบผลลัพธ์",
-        "tryAgain": "ลองปรับแต่งคำค้นหาของคุณ",
-        "scanError": "ไม่สามารถอ่านรหัส QR ได้",
-        "scanErrorDescription": "โปรดตรวจสอบให้แน่ใจว่ารหัสมีแสงสว่างเพียงพอและอยู่ในกรอบ",
-        "invalidCodeError": "รหัส QR ที่สแกนไม่ถูกต้องสำหรับการกระทำนี้"
-    }
-  },
-  "AppHeader": {
-    "searchPlaceholder": "ค้นหาสินค้า บริการ หรือบุคคล...",
-    "signIn": "ลงชื่อเข้าใช้",
-    "signUp": "ลงทะเบียน",
-    "myProfile": "โปรไฟล์ของฉัน",
-    "settings": "การตั้งค่า",
-    "logOut": "ออกจากระบบ",
-    "home": "หน้าแรก",
-    "network": "เครือข่าย",
-    "farmMgmt": "จัดการฟาร์ม",
-    "marketplace": "ตลาด",
-    "talentExchange": "ตลาดนัดแรงงาน",
-    "traceability": "การตรวจสอบย้อนกลับ",
-    "forums": "ฟอรั่ม",
-    "sustainability": "ความยั่งยืน",
-    "notifications": "การแจ้งเตือน",
-    "messages": "ข้อความ",
-    "wallet": "กระเป๋าเงิน",
-    "helpCenter": "ศูนย์ช่วยเหลือ",
-    "switchToDarkAria": "เปลี่ยนเป็นโหมดมืด",
-    "switchToLightAria": "เปลี่ยนเป็นโหมดสว่าง",
-    "mobileMenu": {
-      "description": "เมนูนำทางบนมือถือ"
-    },
-    "toast": {
-      "logOut": {
-        "title": "ออกจากระบบแล้ว",
-        "description": "คุณออกจากระบบเรียบร้อยแล้ว",
-        "failTitle": "ออกจากระบบล้มเหลว",
-        "failDescription": "เกิดข้อผิดพลาดขณะออกจากระบบ โปรดลองอีกครั้ง"
-      }
-    },
-    "orders": "คำสั่งซื้อ",
-    "myPurchases": "การซื้อของฉัน",
-    "mySales": "การขายของฉัน"
-  },
-  "AppFooter": {
-    "tagline": "เชื่อมโยงเกษตรกรรมตั้งแต่เมล็ดพันธุ์จนถึงโต๊ะอาหาร",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "เกี่ยวกับเรา",
-    "contactLabel": "ติดต่อ",
-    "careersLabel": "ร่วมงานกับเรา",
-    "blogLabel": "บล็อก",
-    "resourcesTitle": "แหล่งข้อมูล",
-    "helpCenterLabel": "ศูนย์ช่วยเหลือ",
-    "communityGuidelinesLabel": "แนวทางปฏิบัติของชุมชน",
-    "industryNewsLabel": "ข่าวสารอุตสาหกรรม",
-    "eventsLabel": "กิจกรรม",
-    "talentExchangeLabel": "ตลาดนัดแรงงาน",
-    "legalTitle": "กฎหมาย",
-    "privacyPolicyLabel": "นโยบายความเป็นส่วนตัว",
-    "termsOfServiceLabel": "ข้อกำหนดในการให้บริการ",
-    "getMobileApp": "ดาวน์โหลดแอปพลิเคชันมือถือ",
-    "googlePlayAlt": "ดาวน์โหลดบน Google Play",
-    "appStoreAlt": "ดาวน์โหลดบน App Store",
-    "copyright": "© {year} {appName} สงวนลิขสิทธิ์"
-  },
-  "LanguageSwitcher": {
-    "toggle": "เปลี่ยนภาษา"
-  },
-  "OfflineIndicator": {
-    "toast": {
-      "online": {
-        "title": "คุณกลับมาออนไลน์แล้ว",
-        "description": "การเชื่อมต่อของคุณกลับมาเป็นปกติแล้ว"
-      },
-      "offline": {
-        "title": "คุณกำลังออฟไลน์อยู่",
-        "description": "การกระทำของคุณจะถูกบันทึกและซิงค์เมื่อคุณกลับมาออนไลน์"
-      },
-      "syncing": {
-        "title": "กำลังซิงค์ข้อมูลออฟไลน์...",
-        "description": "กำลังประมวลผล {count, plural, one {# รายการ} other {# รายการ}} ที่บันทึกไว้ขณะออฟไลน์"
-      },
-      "synced": {
-        "title": "ซิงค์ข้อมูลเรียบร้อยแล้ว",
-        "description": "ข้อมูลออฟไลน์ทั้งหมดของคุณถูกบันทึกเรียบร้อยแล้ว"
-      },
-      "syncFailed": {
-        "title": "การซิงค์ข้อมูลล้มเหลว",
-        "description": "ไม่สามารถซิงค์ข้อมูลออฟไลน์ได้ จะลองอีกครั้งในภายหลัง"
-      },
-      "queued": {
-        "title": "บันทึกการกระทำแล้ว",
-        "description": "คุณกำลังออฟไลน์ การกระทำนี้จะถูกดำเนินการเมื่อคุณกลับมาออนไลน์"
-      }
-    },
-    "tooltip": {
-      "syncing": "กำลังซิงค์ {count, plural, one {# รายการ} other {# รายการ}}...",
-      "onlinePending": "ออนไลน์ | มี {count, plural, one {# รายการ} other {# รายการ}} รอการซิงค์",
-      "onlineSynced": "ออนไลน์ | บันทึกข้อมูลทั้งหมดแล้ว",
-      "offline": "ออฟไลน์ | มี {count, plural, one {# รายการ} other {# รายการ}} อยู่ในคิว"
-    }
-  },
-  "common": {
-    "error": "ข้อผิดพลาด",
-    "success": "สำเร็จ",
-    "loading": "กำลังโหลด...",
-    "noData": "ไม่มีข้อมูล",
-    "save": "บันทึก",
-    "cancel": "ยกเลิก",
-    "viewDetails": "ดูรายละเอียด",
-    "edit": "แก้ไข",
-    "delete": "ลบ",
-    "back": "กลับ",
-    "submit": "ส่ง",
-    "yes": "ใช่",
-    "no": "ไม่",
-    "confirm": "ยืนยัน",
-    "close": "ปิด",
-    "optional": "ไม่บังคับ"
-  },
-  "constants": {
-    "stakeholderRoles": {
-      "Farmer": "เกษตรกร",
-      "AgriculturalCooperative": "สหกรณ์การเกษตร",
-      "FieldAgentAgronomistDamDohInternal": "เจ้าหน้าที่ภาคสนาม/นักปฐพีวิทยา (DamDoh Internal)",
-      "OperationsLogisticsTeamDamDohInternal": "ทีมปฏิบัติการ/โลจิสติกส์ (DamDoh Internal)",
-      "QualityAssuranceTeamDamDohInternal": "ทีมประกันคุณภาพ (DamDoh Internal)",
-      "ProcessingPackagingUnit": "หน่วยแปรรูปและบรรจุภัณฑ์",
-      "BuyerRestaurantSupermarketExporter": "ผู้ซื้อ (ร้านอาหาร, ซูเปอร์มาร์เก็ต, ผู้ส่งออก)",
-      "InputSupplierSeedFertilizerPesticide": "អ្នកផ្គត់ផ្គង់ធាតុចូល (គ្រាប់ពូជ, ជី, ថ្នាំសម្លាប់សត្វល្អិត)",
-      "EquipmentSupplierSalesofMachineryIoT": "អ្នកផ្គត់ផ្គង់គ្រឿងបរិក្ខារ (គ្រឿងចក្រ/IoT)",
-      "FinancialInstitutionMicrofinanceLoans": "គ្រឹះស្ថានហិរញ្ញវត្ថុ (មីក្រូហិរញ្ញវត្ថុ/ឥណទាន)",
-      "GovernmentRegulatorAuditor": "និយតករ/សវនកររដ្ឋាភិបាល",
-      "CertificationBodyOrganicFairTradeetc": "ស្ថាប័នបញ្ជាក់ (សរីរាង្គ, ពាណិជ្ជកម្មដោយត្រឹមត្រូវ ។ល។)",
-      "Consumer": "អ្នក​ប្រើប្រាស់",
-      "ResearcherAcademic": "អ្នកស្រាវជ្រាវ/អ្នកសិក្សា",
-      "LogisticsPartnerThirdPartyTransporter": "ដៃគូភស្តុភារ (អ្នកដឹកជញ្ជូន)",
-      "StorageWarehouseFacility": "สถานที่จัดเก็บ/คลังสินค้า",
-      "AgronomyExpertConsultantExternal": "ผู้เชี่ยวชาญด้านพืชไร่/ที่ปรึกษา (ภายนอก)",
-      "AgroTourismOperator": "ผู้ประกอบการท่องเที่ยวเชิงเกษตร",
-      "EnergySolutionsProviderSolarBiogas": "ผู้ให้บริการโซลูชั่นพลังงาน (พลังงานแสงอาทิตย์, ก๊าซชีวภาพ)",
-      "AgroExportFacilitatorCustomsBroker": "ผู้อำนวยความสะดวกการส่งออกเกษตร/นายหน้าศุลกากร",
-      "AgriTechInnovatorDeveloper": "ผู้ริเริ่ม/นักพัฒนาเทคโนโลยีเกษตร",
-      "WasteManagementCompostFacility": "โรงงานจัดการของเสียและปุ๋ยหมัก",
-      "CrowdfunderImpactInvestorIndividual": "ผู้ระดมทุน (นักลงทุนเพื่อผลกระทบ, บุคคล)",
-      "InsuranceProvider": "ผู้ให้บริการประกันภัย",
-      "PackagingSupplier": "ผู้จัดหาบรรจุภัณฑ์"
-    },
-    "listingTypes": {
-      "All": "គ្រប់ប្រភេទ",
-      "Product": "ផលិតផល",
-      "Service": "សេវាកម្ម",
-      "AgroTourism": "កសិទេសចរណ៍"
-    },
-    "agriEventTypes": {
-      "All": "គ្រប់ប្រភេទ",
-      "Conference": "សន្និសីទ",
-      "Webinar": "Webinar",
-      "Workshop": "សិក្ខាសាលា",
-      "TradeShow": "ពិព័រណ៍ពាណិชกรรม",
-      "FieldDay": "ទិវាស្រែ",
-      "NetworkingEvent": "ព្រឹត្តិការណ៍បណ្តាញ",
-      "OnlineCourseLaunch": "การจับផ្តើមวักฤสสตาสตีนอินเตินเน็ต",
-      "PolicyBriefing": "សង្ខេបគោលនយោបាយ"
-    },
-    "insuranceProductTypes": {
-      "Crop": "ประกันภัยพืชผล",
-      "Livestock": "ประกันภัยปศุสัตว์",
-      "Asset": "ประกันภัยทรัพย์สิน",
-      "Weather": "ประกันภัยตามสภาพอากาศ"
-    },
-    "financialServiceTypes": {},
-    "cropStages": {
-      "Planting": "การปลูก",
-      "Vegetative": "การเจริญเติบโต",
-      "Flowering": "การออกดอก",
-      "Fruiting": "การติดผล",
-      "Harvesting": "การเก็บเกี่ยว",
-      "Post-Harvest": "หลังการเก็บเกี่ยว"
-    },
-    "observationTypes": {
-      "GeneralNote": "កំណត់ត្រាទូទៅ",
-      "PestSighting": "การพบเห็นศัตรูพืช",
-      "DiseaseSighting": "การพบเห็นโรค",
-      "SoilCondition": "លក្ខខណ្ឌដី",
-      "WeatherEvent": "ព្រឹត្តិការណ៍អាកាសធាតុ",
-      "GrowthStageChange": "ការផ្លាស់ប្តូរដំណាក់កាលលូតលាស់",
-      "IrrigationEvent": "ព្រឹត្តិការណ៍ស្រោចស្រព"
-    },
-    "mobileHomeCategories": {
-      "produceMarket": "ទីផ្សារផលិតផល",
-      "farmInputs": "ធាតុចូលកសិកម្ម",
-      "talentExchange": "ផ្សារទេពកោសល្យ",
-      "machinery": "គ្រឿងจักร",
-      "community": "សហគមន៍",
-      "aiAssistant": "ชุ่มยาร์ AI",
-      "events": "ព្រឹត្តិการណ៍"
-    }
-  },
-  "Auth": {
-    "signInWelcome": "ยินดีต้อนรับกลับสู่ {appName}",
-    "signUpWelcome": "เข้าร่วมเครือข่ายเกษตรกรรม DamDoh",
-    "forgotPasswordResetPrompt": "รีเซ็ตรหัสผ่านของคุณสำหรับ {appName}",
-    "resetPasswordPrompt": "สร้างรหัสผ่านใหม่สำหรับ {appName}",
-    "signInTitle": "ลงชื่อเข้าใช้บัญชีของคุณ",
-    "signInDescription": "ป้อนข้อมูลประจำตัวของคุณเพื่อเข้าถึงแดชบอร์ดของคุณ",
-    "emailLabel": "อีเมล",
-    "emailPlaceholder": "you@example.com",
-    "passwordLabel": "รหัสผ่าน",
-    "forgotPasswordLink": "ลืมรหัสผ่าน?",
-    "signingInButton": "กำลังลงชื่อเข้าใช้...",
-    "signInButton": "ลงชื่อเข้าใช้",
-    "noAccountPrompt": "ไม่มีบัญชี?",
-    "signUpLink": "ลงทะเบียน",
-    "signInLink": "ลงชื่อเข้าใช้",
-    "recoverWithUniversalIdPrompt": "หรือกู้คืนการเข้าถึงด้วย Universal ID ของคุณ",
-    "signUpTitle": "สร้างบัญชีใหม่",
-    "signUpDescription": "บอกเราเกี่ยวกับตัวคุณสักเล็กน้อยเพื่อเริ่มต้น",
-    "nameLabel": "ชื่อของคุณหรือชื่อธุรกิจ",
-    "namePlaceholder": "เช่น ชาญ นารี หรือ กรีนวัลเลย์ฟาร์ม",
-    "roleLabel": "บทบาทหลักของคุณ",
-    "rolePlaceholder": "เลือกบทบาทของคุณในห่วงโซ่อุปทาน...",
-    "confirmPasswordLabel": "ยืนยันรหัสผ่าน",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "กำลังสร้างบัญชี...",
-    "signUpButton": "สร้างบัญชี",
-    "alreadyHaveAccountPrompt": "มีบัญชีอยู่แล้ว?",
-    "forgotPasswordTitle": "ลืมรหัสผ่าน?",
-    "forgotPasswordDescription": "ไม่มีปัญหา ป้อนที่อยู่อีเมลของคุณด้านล่าง แล้วเราจะส่งลิงก์เพื่อรีเซ็ตให้",
-    "sendResetLinkButton": "ส่งลิงก์รีเซ็ต",
-    "sendingEmailButton": "กำลังส่งอีเมล...",
-    "rememberPasswordPrompt": "จำรหัสผ่านของคุณได้หรือไม่?",
-    "resetPasswordTitle": "รีเซ็ตรหัสผ่านของคุณ",
-    "resetPasswordDescription": "ป้อนและยืนยันรหัสผ่านใหม่ของคุณด้านล่าง",
-    "newPasswordLabel": "รหัสผ่านใหม่",
-    "newPasswordPlaceholder": "ป้อนรหัสผ่านใหม่ที่คาดเดายาก",
-    "resetPasswordButton": "รีเซ็ตรหัสผ่าน",
-    "resettingPasswordButton": "กำลังรีเซ็ต...",
-    "recoverPage": {
-      "title": "กู้คืนบัญชีของคุณ",
-      "description": "ใช้เครือข่ายของคุณเพื่อเข้าถึงอีกครั้ง",
-      "howItWorksTitle": "วิธีการทำงาน",
-      "step1": "ป้อนหมายเลขโทรศัพท์ของคุณเพื่อเริ่มเซสชันการกู้คืน",
-      "step2": "แสดงรหัส QR ชั่วคราวให้เพื่อนที่เชื่อถือได้บน DamDoh",
-      "step3": "เมื่อเพื่อนของคุณสแกนรหัสเพื่อยืนยันตัวตนของคุณ คุณจะสามารถเข้าถึงได้อีกครั้ง",
-      "startButton": "เริ่มการกู้คืนบัญชี",
-      "scanTitle": "ขอให้เพื่อนสแกน",
-      "scanDescription": "ให้ผู้ติดต่อ DamDoh ที่เชื่อถือได้สแกนรหัส QR นี้โดยใช้คุณสมบัติ 'ช่วยเพื่อนกู้คืน' ในแอปของพวกเขา",
-      "scanNote": "รหัสนี้เป็นรหัสชั่วคราวและจะหมดอายุใน 10 นาที",
-      "startOverButton": "เริ่มต้นใหม่",
-      "enterPhone": {
-        "title": "ป้อนหมายเลขโทรศัพท์ของคุณ",
-        "description": "เราจะใช้ข้อมูลนี้เพื่อค้นหาบัญชีของคุณและเริ่มกระบวนการกู้คืน",
-        "phoneNumberLabel": "หมายเลขโทรศัพท์",
-        "phoneNumberPlaceholder": "+66 81 234 5678",
-        "phoneRequiredError": "ต้องระบุหมายเลขโทรศัพท์",
-        "getRecoveryCodeButton": "รับรหัสกู้คืน",
-        "verifyingButton": "กำลังยืนยัน...",
-        "genericError": "ไม่สามารถเริ่มการกู้คืนได้ โปรดตรวจสอบหมายเลขและลองอีกครั้ง"
-      },
-      "helpFriend": {
-        "prompt": "ต้องการช่วยเพื่อนกู้คืนบัญชีหรือไม่?",
-        "button": "ช่วยเพื่อนกู้คืน",
-        "scanError": "รหัสที่สแกนไม่ใช่รหัสกู้คืน DamDoh ที่ถูกต้อง",
-        "scanSuccess": "สแกนสำเร็จ!",
-        "scanFail": "ไม่สามารถอ่านรหัส QR ได้ โปรดลองอีกครั้ง"
-      }
-    },
-    "forgotPassword": {
-      "emailSentTitle": "ตรวจสอบอีเมลของคุณ",
-      "emailSentDescription": "ลิงก์รีเซ็ตรหัสผ่านได้ถูกส่งไปยัง {email} แล้ว",
-      "emailSentDescriptionIfAccountExists": "หากมีบัญชีที่ใช้อีเมล {email} อยู่ ลิงก์รีเซ็ตรหัสผ่านได้ถูกส่งไปแล้ว",
-      "successTitle": "ส่งอีเมลแล้ว!",
-      "successDescription": "โปรดตรวจสอบกล่องจดหมายของคุณ (และโฟลเดอร์สแปม) เพื่อหารหัสผ่าน",
-      "errors": {
-        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
-        "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
-        "tooManyRequests": "มีการร้องขอมากเกินไป โปรดลองอีกครั้งในภายหลัง",
-        "default": "ส่งอีเมลรีเซ็ตล้มเหลว"
-      }
-    },
-    "resetPassword": {
-      "successTitle": "รีเซ็ตรหัสผ่านสำเร็จ!",
-      "successDescription": "ตอนนี้คุณสามารถลงชื่อเข้าใช้ด้วยรหัสผ่านใหม่ของคุณได้แล้ว",
-      "successRedirect": "คุณจะถูกนำไปยังหน้าลงชื่อเข้าใช้ในไม่ช้า",
-      "errors": {
-        "missingCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้อง โปรดขอลิงก์ใหม่",
-        "missingCodeTitle": "ลิงก์ไม่ถูกต้อง",
-        "missingCodeDescription": "ลิงก์รีเซ็ตรหัสผ่านหายไปหรือไม่ถูกต้อง โปรดกลับไปที่หน้า 'ลืมรหัสผ่าน' เพื่อขอลิงก์ใหม่",
-        "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด โปรดลองอีกครั้ง",
-        "invalidOrExpiredCode": "ลิงก์รีเซ็ตรหัสผ่านไม่ถูกต้องหรือหมดอายุแล้ว โปรดขอลิงก์ใหม่",
-        "userDisabled": "บัญชีผู้ใช้นี้ถูกปิดใช้งานแล้ว",
-        "userNotFound": "ไม่พบผู้ใช้ที่ตรงกับลิงก์รีเซ็ตนี้",
-        "weakPassword": "รหัสผ่านใหม่ไม่คาดเดายากพอ",
-        "default": "รีเซ็ตรหัสผ่านล้มเหลว"
-      }
-    },
-    "signInSuccess": {
-      "title": "ลงชื่อเข้าใช้สำเร็จ",
-      "description": "ยินดีต้อนรับกลับสู่ {appName}!"
-    },
-    "signInFailed": "ลงชื่อเข้าใช้ล้มเหลว",
-    "errors": {
-      "invalidCredential": "อีเมลหรือรหัสผ่านที่คุณป้อนไม่ถูกต้อง",
-      "userDisabled": "บัญชีผู้ใช้นี้ถูกปิดใช้งานแล้ว",
-      "emailInUse": "มีบัญชีที่ใช้อีเมลนี้อยู่แล้ว",
-      "emailInUseRich": "มีบัญชีที่ใช้อีเมลนี้อยู่แล้ว โปรด {signInLink} หรือใช้อีเมลอื่น",
-      "weakPassword": "รหัสผ่านคาดเดาง่ายเกินไป โปรดใช้รหัสผ่านที่คาดเดายากขึ้น"
-    },
-    "passwordStrength": {
-      "label": "ความปลอดภัย",
-      "weak": "อ่อนแอ",
-      "medium": "ปานกลาง",
-      "strong": "แข็งแรง",
-      "veryStrong": "แข็งแรงมาก"
-    },
-    "signUpSuccess": {
-      "title": "สร้างบัญชีแล้ว!",
-      "description": "ยินดีต้อนรับสู่ {appName}! คุณได้ลงชื่อเข้าใช้แล้ว"
-    },
-    "signUpFailed": "ลงทะเบียนล้มเหลว",
-    "error": "ข้อผิดพลาด"
-  },
-  "activity": {
-    "sharedAPost": "ได้แชร์โพสต์",
-    "placedAnOrder": "ได้ทำการสั่งซื้อ",
-    "receivedAnOrder": "ได้รับคำสั่งซื้อ",
-    "loggedEvent": "บันทึกเหตุการณ์: {eventType}",
-    "orderFor": "สำหรับ: {listingName}",
-    "traceabilityUpdate": "อัปเดตการตรวจสอบย้อนกลับ"
-  },
-  "agroTourism": {
-    "checkInSuccess": "เช็คอิน {guestName} เรียบร้อยแล้ว",
-    "checkInError": {
-      "notRegistered": "{guestName} ไม่มีการจองสำหรับบริการนี้",
-      "alreadyCheckedIn": "{guestName} ได้ทำการเช็คอินแล้ว"
-    },
-    "addStaffSuccess": "{staffName} ได้ถูกเพิ่มเป็นพนักงานแล้ว",
-    "removeStaffSuccess": "ได้ลบสมาชิกพนักงานแล้ว"
   }
 }
-  

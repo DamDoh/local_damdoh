@@ -46,8 +46,8 @@ export default function AdminDashboardPage() {
   const [activity, setActivity] = useState<AdminActivity[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getAdminDashboardDataCallable = useMemo(() => httpsCallable(functions, 'getAdminDashboardData'), []);
-  const getAdminRecentActivityCallable = useMemo(() => httpsCallable(functions, 'getAdminRecentActivity'), [functions]);
+  const getAdminDashboardDataCallable = useMemo(() => httpsCallable(functions, 'dashboardData-getAdminDashboardData'), []);
+  const getAdminRecentActivityCallable = useMemo(() => httpsCallable(functions, 'dashboardData-getAdminRecentActivity'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {

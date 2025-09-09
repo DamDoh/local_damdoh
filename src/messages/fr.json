@@ -1,12 +1,114 @@
+
 {
   "LandingPage": {
     "hero": {
       "title": "Donnez de la puissance à votre ferme avec des informations intelligentes",
       "subtitle": "Tirez parti de l'IA pour diagnostiquer les maladies des cultures, obtenir des recommandations personnalisées et optimiser votre rendement. L'avenir de l'agriculture est là.",
-      "getStartedButton": "Commencer gratuitement"
+      "getStartedButton": "Commencer gratuitement",
+      "badge": "Nouveau : Aperçus des cultures basés sur l'IA"
     },
     "featured": {
         "title": "COMME PRÉSENTÉ DANS"
+    },
+    "trustPillars": {
+      "title": "Construit sur la confiance",
+      "subtitle": "Quatre piliers qui garantissent la sécurité, la transparence et la collaboration dans chaque transaction.",
+      "traceability": {
+        "title": "Traçabilité complète",
+        "description": "Suivez chaque étape de la ferme à la table avec des enregistrements blockchain immuables."
+      },
+      "network": {
+        "title": "Réseautage intelligent",
+        "description": "Des connexions alimentées par l'IA avec des partenaires pertinents dans l'écosystème agricole."
+      },
+      "ai": {
+        "title": "Assistance par IA",
+        "description": "Des conseils et des recommandations d'experts alimentés par une IA avancée."
+      },
+      "security": {
+        "title": "Sécurité d'entreprise",
+        "description": "Sécurité de niveau bancaire et confidentialité des données pour tous les utilisateurs."
+      }
+    },
+    "stakeholders": {
+      "title": "Pour chaque partie prenante",
+      "subtitle": "Des fonctionnalités et des connexions sur mesure pour tous les acteurs de la chaîne d'approvisionnement.",
+      "farmers": {
+        "name": "Agriculteurs",
+        "headline": "Cultivez plus intelligemment, vendez mieux",
+        "points": [
+          {
+            "title": "Accès direct au marché",
+            "desc": "Connectez-vous avec les acheteurs et éliminez les intermédiaires."
+          },
+          {
+            "title": "Conseils d'experts",
+            "desc": "Obtenez des informations basées sur l'IA et des consultations d'agronomes."
+          },
+          {
+            "title": "Outils financiers",
+            "desc": "Accédez à des prêts, des assurances et des financements de cultures."
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=Agriculteurs"
+      },
+      "buyers": {
+        "name": "Acheteurs",
+        "headline": "Achetez en toute confiance",
+        "points": [
+          {
+            "title": "Fournisseurs vérifiés",
+            "desc": "Accédez à des produits traçables et certifiés de producteurs de confiance."
+          },
+          {
+            "title": "Assurance qualité",
+            "desc": "Rapports de qualité en temps réel et historique des lots."
+          },
+          {
+            "title": "Approvisionnement optimisé",
+            "desc": "Négociations directes et coordination logistique."
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=Acheteurs"
+      },
+      "logistics": {
+        "name": "Partenaires logistiques",
+        "headline": "Livraison efficace",
+        "points": [
+          {
+            "title": "Suivi en temps réel",
+            "desc": "Suivez les expéditions avec une traçabilité intégrée."
+          },
+          {
+            "title": "Itinéraires optimisés",
+            "desc": "Itinéraires suggérés par l'IA pour réduire les coûts et les retards."
+          },
+          {
+            "title": "Outils de conformité",
+            "desc": "Documentation automatisée pour les douanes et les normes."
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=Logistique"
+      },
+      "financial": {
+        "name": "Institutions financières",
+        "headline": "Prêts sans risque",
+        "points": [
+          {
+            "title": "Emprunteurs vérifiés",
+            "desc": "Accédez à des données agricoles détaillées pour l'évaluation du crédit."
+          },
+          {
+            "title": "Aperçus de performance",
+            "desc": "Suivez l'utilisation des prêts et la productivité des exploitations."
+          },
+          {
+            "title": "Intégration de l'assurance",
+            "desc": "Combinez les prêts avec des produits d'assurance-récolte."
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=Financier"
+      }
     },
     "howItWorks": {
         "title": "Comment ça marche",
@@ -21,7 +123,7 @@
         },
         "step3": {
             "title": "Recevoir des conseils pratiques",
-            "description": "Obtenez des plans de traitement et des mesures préventives durables et personnalisés pour protéger votre récolte."
+        "description": "Obtenez des plans de traitement et des mesures préventives durables et personnalisés pour protéger votre récolte."
         }
     },
     "stopGuessing": {
@@ -75,584 +177,6 @@
       "title": "Prêt à cultiver plus intelligemment ?",
       "subtitle": "Rejoignez des milliers d'agriculteurs qui utilisent DamDoh pour construire un avenir plus rentable et durable.",
       "button": "Inscrivez-vous gratuitement"
-    },
-    "hero": {
-      "badge": "Nouveau : Informations sur les Cultures Alimentées par l'IA"
-    },
-    "featured": {
-      "title": "Comme Présenté Dans"
-    },
-    "trustPillars": {
-      "title": "Construit sur la Confiance",
-      "subtitle": "Quatre piliers qui assurent la sécurité, la transparence et la collaboration dans chaque transaction.",
-      "traceability": {
-        "title": "Traçabilité Complète",
-        "description": "Suivez chaque étape de la ferme à la table avec des enregistrements immuables sécurisés par blockchain."
-      },
-      "network": {
-        "title": "Réseautage Intelligent",
-        "description": "Connexions alimentées par l'IA avec des partenaires pertinents dans l'écosystème agricole."
-      },
-      "ai": {
-        "title": "Assistance IA",
-        "description": "Conseils et recommandations d'experts alimentés par une IA avancée."
-      },
-      "security": {
-        "title": "Sécurité d'Entreprise",
-        "description": "Sécurité de niveau bancaire et confidentialité des données pour tous les utilisateurs."
-      }
-    },
-    "stakeholders": {
-      "title": "Pour Chaque Acteur",
-      "subtitle": "Fonctionnalités et connexions adaptées à tous dans la chaîne d'approvisionnement.",
-      "farmers": {
-        "name": "Agriculteurs",
-        "headline": "Cultivez Plus Intelligemment, Vendez Mieux",
-        "points": [
-          {
-            "title": "Accès Direct au Marché",
-            "desc": "Connectez-vous avec les acheteurs et éliminez les intermédiaires."
-          },
-          {
-            "title": "Conseils d'Experts",
-            "desc": "Obtenez des informations alimentées par l'IA et des consultations d'agronomes."
-          },
-          {
-            "title": "Outils Financiers",
-            "desc": "Accédez à des prêts, assurances et financement des cultures."
-          }
-        ],
-        "image": "https://placehold.co/600x400.png?text=Agriculteurs"
-      },
-      "buyers": {
-        "name": "Acheteurs",
-        "headline": "Approvisionnez avec Confiance",
-        "points": [
-          {
-            "title": "Fournisseurs Vérifiés",
-            "desc": "Accédez à des produits traçables et certifiés de producteurs de confiance."
-          },
-          {
-            "title": "Assurance Qualité",
-            "desc": "Rapports de qualité en temps réel et historique des lots."
-          },
-          {
-            "title": "Approvisionnement Rationalisé",
-            "desc": "Négociations directes et coordination logistique."
-          }
-        ],
-        "image": "https://placehold.co/600x400.png?text=Acheteurs"
-      },
-      "logistics": {
-        "name": "Partenaires Logistiques",
-        "headline": "Livraison Efficace",
-        "points": [
-          {
-            "title": "Suivi en Temps Réel",
-            "desc": "Surveillez les expéditions avec une traçabilité intégrée."
-          },
-          {
-            "title": "Itinéraires Optimisés",
-            "desc": "Itinéraires suggérés par l'IA pour réduire les coûts et les retards."
-          },
-          {
-            "title": "Outils de Conformité",
-            "desc": "Documentation automatisée pour les douanes et normes."
-          }
-        ],
-        "image": "https://placehold.co/600x400.png?text=Logistique"
-      },
-      "financial": {
-        "name": "Institutions Financières",
-        "headline": "Prêts Sans Risque",
-        "points": [
-          {
-            "title": "Emprunteurs Vérifiés",
-            "desc": "Accédez à des données détaillées sur les fermes pour l'évaluation du crédit."
-          },
-          {
-            "title": "Informations de Performance",
-            "desc": "Suivez l'utilisation des prêts et la productivité des fermes."
-          },
-          {
-            "title": "Intégration Assurance",
-            "desc": "Regroupez les prêts avec des produits d'assurance des cultures."
-          }
-        ],
-        "image": "https://placehold.co/600x400.png?text=Financier"
-      }
-    },
-    "howItWorks": {
-      "title": "Comment Ça Marche",
-      "subtitle": "Commencez en trois étapes simples.",
-      "step1": {
-        "title": "Créez Votre Profil",
-        "description": "Inscrivez-vous et parlez-nous de votre rôle dans la chaîne de valeur agricole."
-      },
-      "step2": {
-        "title": "Connectez-vous et Explorez",
-        "description": "Découvrez des partenaires, des produits et des connaissances dans l'écosystème."
-      },
-      "step3": {
-        "title": "Commercez et Grandissez",
-        "description": "Effectuez des transactions sécurisées et développez votre entreprise."
-      }
-    },
-    "testimonials": {
-      "title": "Ce Que Disent Nos Utilisateurs",
-      "t1": {
-        "quote": "DamDoh a transformé la façon dont je vends mes produits directement aux acheteurs dans le monde entier !",
-        "name": "Maria Gonzalez",
-        "role": "Agricultrice d'Avocats, Mexique"
-      },
-      "t2": {
-        "quote": "Les fonctionnalités de traçabilité me donnent confiance dans ma chaîne d'approvisionnement.",
-        "name": "John Smith",
-        "role": "Responsable de la Chaîne d'Approvisionnement, USA"
-      },
-      "t3": {
-        "quote": "Se connecter avec des experts a boosté la productivité de ma ferme.",
-        "name": "Aisha Khan",
-        "role": "Agricultrice de Riz, Inde"
-      }
-    },
-    "stopGuessing": {
-      "title": "Arrêtez de Deviner, Commencez à Cultiver",
-      "description": "Notre plateforme transforme vos pratiques agricoles de réactives à proactives. Prenez des décisions basées sur les données qui économisent de l'argent, améliorent la santé des cultures et augmentent vos profits.",
-      "p1_title": "Réduisez les Coûts des Intrants",
-      "p1_desc": "Appliquez le bon traitement au bon moment, minimisant les déchets et maximisant l'efficacité.",
-      "p2_title": "Augmentez le Rendement et la Qualité",
-      "p2_desc": "La détection précoce et les recommandations optimisées mènent à des cultures plus saines et de meilleures récoltes.",
-      "imageAlt": "Un agriculteur examinant une feuille de plante saine avec un smartphone."
-    },
-    "features": {
-      "diagnostics": {
-        "title": "Diagnostics Alimentés par l'IA",
-        "description": "Prenez une photo d'une plante malade et obtenez un diagnostic instantané des maladies potentielles, ravageurs ou carences nutritionnelles."
-      },
-      "insights": {
-        "title": "Informations Basées sur les Données",
-        "description": "Suivez les performances de votre ferme au fil du temps, analysez les tendances et débloquez des informations pour améliorer vos opérations saison après saison."
-      },
-      "recommendations": {
-        "title": "Recommandations Intelligentes",
-        "description": "Obtenez des plans de traitement et de prévention personnalisés et durables adaptés à votre culture et à votre diagnostic."
-      },
-      "assistant": {
-        "title": "Assistant IA 24/7",
-        "description": "Posez des questions sur les techniques agricoles, les prix du marché ou les pratiques durables et obtenez des réponses instantanées de niveau expert."
-      }
     }
-  },
-  "searchPage": {
-    "title": "Recherche",
-    "description": "Trouvez n'importe quoi sur la plateforme DamDoh.",
-    "placeholder": "Que recherchez-vous?",
-    "searchButton": "Rechercher",
-    "popularSearches": "Recherches populaires",
-    "popularSearch1": "Location de tracteur",
-    "popularSearch2": "Prix du café biologique",
-    "popularSearch3": "Consultant en sol",
-    "popularSearch4": "Logistique d'exportation",
-    "popularSearch5": "Entreposage frigorifique",
-    "modal": {
-        "title": "Recherche universelle",
-        "placeholder": "Rechercher des produits, services, personnes, forums...",
-        "searchButton": "Rechercher",
-        "searchError": "La recherche a échoué",
-        "searchErrorDescription": "Une erreur s'est produite lors de votre recherche.",
-        "interpretationTitle": "Interprétation IA",
-        "interpretationNotesDefault": "Tentative de comprendre votre intention...",
-        "filtersTitle": "Filtres suggérés",
-        "results": {
-            "users": "Profils",
-            "marketplaceItems": "Annonces du marché",
-            "forums": "Sujets du forum",
-            "agri_events": "Événements",
-            "knowledge_articles": "Articles de connaissance",
-            "vti_registry": "Rapports de traçabilité",
-            "groups": "Groupes"
-        },
-        "noResults": "Aucun résultat trouvé.",
-        "tryAgain": "Essayez d'affiner votre requête de recherche.",
-        "scanError": "Impossible de lire le code QR.",
-        "scanErrorDescription": "Veuillez vous assurer que le code est bien éclairé et dans le cadre.",
-        "invalidCodeError": "Le code QR scanné n'est pas valide pour cette action."
-    }
-  },
-  "AppHeader": {
-    "searchPlaceholder": "Rechercher des produits, services ou personnes...",
-    "signIn": "Se connecter",
-    "signUp": "S'inscrire",
-    "myProfile": "Mon profil",
-    "settings": "Paramètres",
-    "logOut": "Se déconnecter",
-    "home": "Accueil",
-    "network": "Réseau",
-    "farmMgmt": "Gestion de la ferme",
-    "marketplace": "Marché",
-    "talentExchange": "Bourse de talents",
-    "traceability": "Traçabilité",
-    "forums": "Forums",
-    "sustainability": "Durabilité",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "wallet": "Portefeuille",
-    "helpCenter": "Centre d'aide",
-    "switchToDarkAria": "Passer en mode sombre",
-    "switchToLightAria": "Passer en mode clair",
-    "mobileMenu": {
-      "description": "Menu de navigation mobile"
-    },
-    "toast": {
-      "logOut": {
-        "title": "Déconnecté",
-        "description": "Vous avez été déconnecté avec succès.",
-        "failTitle": "Échec de la déconnexion",
-        "failDescription": "Une erreur s'est produite lors de la déconnexion. Veuillez réessayer."
-      }
-    },
-    "orders": "Commandes",
-    "myPurchases": "Mes achats",
-    "mySales": "Mes ventes"
-  },
-  "AppFooter": {
-    "tagline": "Connecter l'agriculture de la graine à la table.",
-    "damdohTitle": "DamDoh",
-    "aboutLabel": "À propos de nous",
-    "contactLabel": "Contact",
-    "careersLabel": "Carrières",
-    "blogLabel": "Blog",
-    "resourcesTitle": "Ressources",
-    "helpCenterLabel": "Centre d'aide",
-    "communityGuidelinesLabel": "Règles de la communauté",
-    "industryNewsLabel": "Actualités du secteur",
-    "eventsLabel": "Événements",
-    "talentExchangeLabel": "Bourse de talents",
-    "legalTitle": "Légal",
-    "privacyPolicyLabel": "Politique de confidentialité",
-    "termsOfServiceLabel": "Conditions d'utilisation",
-    "getMobileApp": "Obtenez l'application mobile",
-    "googlePlayAlt": "Obtenez-le sur Google Play",
-    "appStoreAlt": "Télécharger sur l'App Store",
-    "copyright": "© {year} {appName}. Tous droits réservés."
-  },
-  "LanguageSwitcher": {
-    "toggle": "Changer de langue"
-  },
-  "OfflineIndicator": {
-    "toast": {
-      "online": {
-        "title": "Vous êtes de nouveau en ligne",
-        "description": "Votre connexion a été restaurée."
-      },
-      "offline": {
-        "title": "Vous êtes actuellement hors ligne",
-        "description": "Vos actions seront enregistrées et synchronisées lorsque vous vous reconnecterez."
-      },
-      "syncing": {
-        "title": "Synchronisation des modifications hors ligne...",
-        "description": "Traitement de {count, plural, one {# action} other {# actions}} enregistrée(s) pendant que vous étiez hors ligne."
-      },
-      "synced": {
-        "title": "Synchronisation terminée",
-        "description": "Toutes les modifications hors ligne ont été enregistrées avec succès."
-      },
-      "syncFailed": {
-        "title": "Échec de la synchronisation",
-        "description": "Impossible de synchroniser les modifications hors ligne. Une nouvelle tentative sera effectuée plus tard."
-      },
-      "queued": {
-        "title": "Action mise en file d'attente",
-        "description": "Vous êtes hors ligne. Cette action sera effectuée lorsque vous vous reconnecterez."
-      }
-    },
-    "tooltip": {
-      "syncing": "Synchronisation de {count, plural, one {# action en attente} other {# actions en attente}}...",
-      "onlinePending": "En ligne | {count, plural, one {# action} other {# actions}} en attente de synchronisation",
-      "onlineSynced": "En ligne | Toutes les modifications sont enregistrées",
-      "offline": "Hors ligne | {count, plural, one {# action} other {# actions}} en file d'attente"
-    }
-  },
-  "common": {
-    "error": "Erreur",
-    "success": "Succès",
-    "loading": "Chargement...",
-    "noData": "Aucune donnée disponible.",
-    "save": "Enregistrer",
-    "cancel": "Annuler",
-    "viewDetails": "Voir les détails",
-    "edit": "Modifier",
-    "delete": "Supprimer",
-    "back": "Retour",
-    "submit": "Soumettre",
-    "yes": "Oui",
-    "no": "Non",
-    "confirm": "Confirmer",
-    "close": "Fermer",
-    "optional": "Optionnel"
-  },
-  "constants": {
-    "stakeholderRoles": {
-      "Farmer": "Agriculteur",
-      "AgriculturalCooperative": "Coopérative agricole",
-      "FieldAgentAgronomistDamDohInternal": "Agent de terrain/Agronome (Interne DamDoh)",
-      "OperationsLogisticsTeamDamDohInternal": "Équipe Opérations/Logistique (Interne DamDoh)",
-      "QualityAssuranceTeamDamDohInternal": "Équipe d'Assurance Qualité (Interne DamDoh)",
-      "ProcessingPackagingUnit": "Unité de Transformation & Emballage",
-      "BuyerRestaurantSupermarketExporter": "Acheteur (Restaurant, Supermarché, Exportateur)",
-      "InputSupplierSeedFertilizerPesticide": "Fournisseur d'intrants (Semences, Engrais, Pesticides)",
-      "EquipmentSupplierSalesofMachineryIoT": "Fournisseur d'équipement (Vente de machines/IoT)",
-      "FinancialInstitutionMicrofinanceLoans": "Institution Financière (Micro-finance/Prêts)",
-      "GovernmentRegulatorAuditor": "Régulateur/Auditeur Gouvernemental",
-      "CertificationBodyOrganicFairTradeetc": "Organisme de Certification (Bio, Commerce Équitable, etc.)",
-      "Consumer": "Consommateur",
-      "ResearcherAcademic": "Chercheur/Académique",
-      "LogisticsPartnerThirdPartyTransporter": "Partenaire Logistique (Transporteur Tiers)",
-      "StorageWarehouseFacility": "Installation de Stockage/Entrepôt",
-      "AgronomyExpertConsultantExternal": "Expert Agronome/Consultant (Externe)",
-      "AgroTourismOperator": "Opérateur d'Agro-Tourisme",
-      "EnergySolutionsProviderSolarBiogas": "Fournisseur de Solutions Énergétiques (Solaire, Biogaz)",
-      "AgroExportFacilitatorCustomsBroker": "Facilitateur d'Agro-Export/Courtier en Douane",
-      "AgriTechInnovatorDeveloper": "Innovateur/Développeur Agri-Tech",
-      "WasteManagementCompostFacility": "Installation de Gestion des Déchets & Compostage",
-      "CrowdfunderImpactInvestorIndividual": "Financeur Participatif (Investisseur d'Impact, Particulier)",
-      "InsuranceProvider": "Fournisseur d'Assurance",
-      "PackagingSupplier": "Fournisseur d'Emballages"
-    },
-    "listingTypes": {
-      "All": "Tous les types",
-      "Product": "Produit",
-      "Service": "Service",
-      "AgroTourism": "Agro-tourisme"
-    },
-    "agriEventTypes": {
-      "All": "Tous les types",
-      "Conference": "Conférence",
-      "Webinar": "Webinaire",
-      "Workshop": "Atelier",
-      "TradeShow": "Salon professionnel",
-      "FieldDay": "Journée portes ouvertes",
-      "NetworkingEvent": "Événement de réseautage",
-      "OnlineCourseLaunch": "Lancement de cours en ligne",
-      "PolicyBriefing": "Briefing politique"
-    },
-    "insuranceProductTypes": {
-      "Crop": "Assurance Récolte",
-      "Livestock": "Assurance Bétail",
-      "Asset": "Assurance des Actifs",
-      "Weather": "Basée sur la Météo (Paramétrique)"
-    },
-    "financialServiceTypes": {},
-    "cropStages": {
-      "Planting": "Semis",
-      "Vegetative": "Végétatif",
-      "Flowering": "Floraison",
-      "Fruiting": "Fructification",
-      "Harvesting": "Récolte",
-      "Post-Harvest": "Post-récolte"
-    },
-    "observationTypes": {
-      "GeneralNote": "Note générale",
-      "PestSighting": "Observation de ravageurs",
-      "DiseaseSighting": "Observation de maladies",
-      "SoilCondition": "État du sol",
-      "WeatherEvent": "Événement météorologique",
-      "GrowthStageChange": "Changement de stade de croissance",
-      "IrrigationEvent": "Événement d'irrigation"
-    },
-    "mobileHomeCategories": {
-      "produceMarket": "Marché des produits",
-      "farmInputs": "Intrants agricoles",
-      "talentExchange": "Bourse de talents",
-      "machinery": "Machinerie",
-      "community": "Communauté",
-      "aiAssistant": "Assistant IA",
-      "events": "Événements"
-    }
-  },
-  "Auth": {
-    "signInWelcome": "Bienvenue à nouveau sur {appName}",
-    "signUpWelcome": "Rejoignez le réseau agricole DamDoh",
-    "forgotPasswordResetPrompt": "Réinitialisez votre mot de passe pour {appName}",
-    "resetPasswordPrompt": "Créez un nouveau mot de passe pour {appName}",
-    "signInTitle": "Connectez-vous à votre compte",
-    "signInDescription": "Entrez vos identifiants pour accéder à votre tableau de bord.",
-    "emailLabel": "E-mail",
-    "emailPlaceholder": "vous@exemple.com",
-    "passwordLabel": "Mot de passe",
-    "forgotPasswordLink": "Mot de passe oublié ?",
-    "signingInButton": "Connexion en cours...",
-    "signInButton": "Se connecter",
-    "noAccountPrompt": "Vous n'avez pas de compte ?",
-    "signUpLink": "S'inscrire",
-    "signInLink": "Se connecter",
-    "recoverWithUniversalIdPrompt": "Ou récupérer l'accès avec votre ID universel",
-    "signUpTitle": "Créer un nouveau compte",
-    "signUpDescription": "Parlez-nous un peu de vous pour commencer.",
-    "nameLabel": "Votre nom ou nom d'entreprise",
-    "namePlaceholder": "ex: Chan Nary ou Fermes de la Vallée Verte",
-    "roleLabel": "Votre rôle principal",
-    "rolePlaceholder": "Sélectionnez votre rôle dans la chaîne d'approvisionnement...",
-    "confirmPasswordLabel": "Confirmez le mot de passe",
-    "confirmPasswordPlaceholder": "••••••••",
-    "creatingAccountButton": "Création du compte...",
-    "signUpButton": "Créer un compte",
-    "alreadyHaveAccountPrompt": "Vous avez déjà un compte ?",
-    "forgotPasswordTitle": "Mot de passe oublié ?",
-    "forgotPasswordDescription": "Pas de problème. Entrez votre adresse e-mail ci-dessous et nous vous enverrons un lien pour le réinitialiser.",
-    "sendResetLinkButton": "Envoyer le lien de réinitialisation",
-    "sendingEmailButton": "Envoi de l'e-mail...",
-    "rememberPasswordPrompt": "Vous vous souvenez de votre mot de passe ?",
-    "resetPasswordTitle": "Réinitialisez votre mot de passe",
-    "resetPasswordDescription": "Entrez et confirmez votre nouveau mot de passe ci-dessous.",
-    "newPasswordLabel": "Nouveau mot de passe",
-    "newPasswordPlaceholder": "Entrez un nouveau mot de passe fort",
-    "resetPasswordButton": "Réinitialiser le mot de passe",
-    "resettingPasswordButton": "Réinitialisation...",
-    "recoverPage": {
-      "title": "Récupérer votre compte",
-      "description": "Utilisez votre réseau pour retrouver l'accès.",
-      "howItWorksTitle": "Comment ça marche",
-      "step1": "Entrez votre numéro de téléphone pour démarrer une session de récupération.",
-      "step2": "Montrez le code QR temporaire à un ami de confiance sur DamDoh.",
-      "step3": "Une fois que votre ami aura scanné le code pour vérifier votre identité, vous retrouverez l'accès.",
-      "startButton": "Démarrer la récupération du compte",
-      "scanTitle": "Demandez à un ami de scanner",
-      "scanDescription": "Demandez à un contact DamDoh de confiance de scanner ce code QR à l'aide de la fonctionnalité 'Aider un ami à récupérer' dans son application.",
-      "scanNote": "Ce code est temporaire et expire dans 10 minutes.",
-      "startOverButton": "Recommencer",
-      "enterPhone": {
-        "title": "Entrez votre numéro de téléphone",
-        "description": "Nous l'utiliserons pour trouver votre compte et lancer le processus de récupération.",
-        "phoneNumberLabel": "Numéro de téléphone",
-        "phoneNumberPlaceholder": "+33 6 12 34 56 78",
-        "phoneRequiredError": "Un numéro de téléphone est requis.",
-        "getRecoveryCodeButton": "Obtenir le code de récupération",
-        "verifyingButton": "Vérification...",
-        "genericError": "Impossible de démarrer la récupération. Veuillez vérifier le numéro et réessayer."
-      },
-      "helpFriend": {
-        "prompt": "Besoin d'aider un ami à récupérer son compte ?",
-        "button": "Aider un ami à récupérer",
-        "scanError": "Le code scanné n'est pas un code de récupération DamDoh valide.",
-        "scanSuccess": "Scan réussi !",
-        "scanFail": "Impossible de lire le code QR. Veuillez réessayer."
-      }
-    },
-    "forgotPassword": {
-      "emailSentTitle": "Vérifiez vos e-mails",
-      "emailSentDescription": "Un lien de réinitialisation de mot de passe a été envoyé à {email}.",
-      "emailSentDescriptionIfAccountExists": "Si un compte avec l'adresse e-mail {email} existe, un lien de réinitialisation de mot de passe a été envoyé.",
-      "successTitle": "E-mail envoyé !",
-      "successDescription": "Veuillez vérifier votre boîte de réception (et votre dossier de courrier indésirable) pour le lien de réinitialisation du mot de passe.",
-      "errors": {
-        "unexpected": "Une erreur inattendue est survenue. Veuillez réessayer.",
-        "invalidEmail": "L'adresse e-mail n'est pas valide.",
-        "tooManyRequests": "Trop de demandes. Veuillez réessayer plus tard.",
-        "default": "Échec de l'envoi de l'e-mail de réinitialisation"
-      }
-    },
-    "resetPassword": {
-      "successTitle": "Mot de passe réinitialisé avec succès !",
-      "successDescription": "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
-      "successRedirect": "Vous serez redirigé vers la page de connexion dans quelques instants.",
-      "errors": {
-        "missingCode": "Lien de réinitialisation de mot de passe invalide. Veuillez en demander un nouveau.",
-        "missingCodeTitle": "Lien invalide",
-        "missingCodeDescription": "Le lien de réinitialisation du mot de passe est manquant ou invalide. Veuillez retourner à la page 'Mot de passe oublié' pour en demander un nouveau.",
-        "unexpected": "Une erreur inattendue est survenue. Veuillez réessayer.",
-        "invalidOrExpiredCode": "Le lien de réinitialisation du mot de passe est invalide ou a expiré. Veuillez en demander un nouveau.",
-        "userDisabled": "Ce compte utilisateur a été désactivé.",
-        "userNotFound": "Aucun utilisateur trouvé correspondant à ce lien de réinitialisation.",
-        "weakPassword": "Le nouveau mot de passe n'est pas assez fort.",
-        "default": "Échec de la réinitialisation du mot de passe"
-      }
-    },
-    "signInSuccess": {
-      "title": "Connexion réussie",
-      "description": "Bienvenue à nouveau sur {appName} !"
-    },
-    "signInFailed": "Échec de la connexion",
-    "errors": {
-      "invalidCredential": "L'adresse e-mail ou le mot de passe que vous avez entré est incorrect.",
-      "userDisabled": "Ce compte utilisateur a été désactivé.",
-      "emailInUse": "Un compte avec cette adresse e-mail existe déjà.",
-      "emailInUseRich": "Un compte avec cette adresse e-mail existe déjà. Veuillez {signInLink} ou utiliser une autre adresse e-mail.",
-      "weakPassword": "Le mot de passe est trop faible. Veuillez utiliser un mot de passe plus fort."
-    },
-    "passwordStrength": {
-      "label": "Force",
-      "weak": "Faible",
-      "medium": "Moyen",
-      "strong": "Fort",
-      "veryStrong": "Très fort"
-    },
-    "signUpSuccess": {
-      "title": "Compte créé !",
-      "description": "Bienvenue sur {appName} ! Vous êtes maintenant connecté."
-    },
-    "signUpFailed": "Échec de l'inscription",
-    "error": "Erreur"
-  },
-  "activity": {
-    "sharedAPost": "A partagé une publication",
-    "placedAnOrder": "A passé une commande",
-    "receivedAnOrder": "A reçu une commande",
-    "loggedEvent": "Événement enregistré : {eventType}",
-    "orderFor": "Pour : {listingName}",
-    "traceabilityUpdate": "Mise à jour de la traçabilité"
-  },
-  "agroTourism": {
-    "checkInSuccess": "{guestName} a été enregistré(e) avec succès.",
-    "checkInError": {
-      "notRegistered": "{guestName} n'a pas de réservation pour ce service.",
-      "alreadyCheckedIn": "{guestName} a déjà été enregistré(e)."
-    },
-    "addStaffSuccess": "{staffName} a été ajouté(e) en tant que personnel.",
-    "removeStaffSuccess": "Le membre du personnel a été retiré."
-  },
-  "ConsumerDashboard": {
-    "title": "Tableau de Bord Consommateur",
-    "welcomeTitle": "Bienvenue sur DamDoh",
-    "welcomeDescription": "Explorez des produits frais et traçables de producteurs vérifiés.",
-    "browseMarketplace": {
-      "title": "Parcourir le Marché",
-      "description": "Découvrez des produits frais et durables.",
-      "button": "Parcourir les Produits"
-    },
-    "traceProducts": {
-      "title": "Tracer Vos Produits",
-      "description": "Entrez un code VTI pour voir le parcours complet de vos achats.",
-      "button": "Tracer les Produits"
-    },
-    "learnMore": {
-      "title": "Apprendre sur l'Agriculture",
-      "description": "Découvrez les pratiques agricoles durables et les systèmes alimentaires.",
-      "button": "Explorer le Hub de Connaissances"
-    }
-  },
-  "CreditScorecard": {
-    "title": "Score de Crédit",
-    "description": "Votre score de solvabilité agricole.",
-    "overallScore": "Score Global"
-  },
-  "WarehouseDashboard": {
-    "title": "Tableau de Bord Entrepôt",
-    "utilizationTitle": "Utilisation du Stockage",
-    "inventoryTitle": "Inventaire Actuel",
-    "alertsTitle": "Alertes de Stockage",
-    "itemsNeedingAttention": "articles nécessitent attention",
-    "investigateButton": "Enquêter",
-    "noAlerts": "Aucune alerte de stockage.",
-    "errors": {
-      "load": "Impossible de charger les données du tableau de bord."
-    },
-    "noData": "Aucune donnée de tableau de bord disponible."
-  },
-  "adminLayoutPage": {
-    "title": "Panneau d'Administration",
-    "description": "Administration et gestion de la plateforme."
   }
 }
-  

@@ -2731,7 +2731,7 @@
       "generateSuccessDescription": "Report has been generated successfully.",
       "generateErrorTitle": "Generation Failed"
     }
-,
+  },
   "ConsumerDashboard": {
     "title": "Consumer Dashboard",
     "welcomeTitle": "Welcome to DamDoh",
@@ -2773,6 +2773,5 @@
   "adminLayoutPage": {
     "title": "Admin Panel",
     "description": "Platform administration and management."
-  }
   }
 }
