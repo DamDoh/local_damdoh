@@ -4,7 +4,7 @@
 import { Link } from '@/navigation';
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { ArrowRight, CheckCircle, Leaf, BrainCircuit, LineChart, MessageCircle, Users, Truck, Banknote, ShieldCheck, GitBranch } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { APP_NAME } from "@/lib/constants";
@@ -260,5 +260,3 @@ export function HomePage() {
     </>
   )
 }
-
-    
