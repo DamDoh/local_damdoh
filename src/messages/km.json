@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -77,14 +78,74 @@
       "button": "ลงทะเบียนฟรี"
     }
   },
+  "AppHeader": {
+    "searchPlaceholder": "ค้นหาสินค้า บริการ หรือบุคคล...",
+    "signIn": "ลงชื่อเข้าใช้",
+    "signUp": "ลงทะเบียน",
+    "myProfile": "โปรไฟล์ของฉัน",
+    "settings": "การตั้งค่า",
+    "logOut": "ออกจากระบบ",
+    "home": "หน้าแรก",
+    "network": "เครือข่าย",
+    "farmMgmt": "จัดการฟาร์ม",
+    "marketplace": "ตลาด",
+    "talentExchange": "ตลาดนัดแรงงาน",
+    "traceability": "การตรวจสอบย้อนกลับ",
+    "forums": "ฟอรั่ม",
+    "sustainability": "ความยั่งยืน",
+    "notifications": "การแจ้งเตือน",
+    "messages": "ข้อความ",
+    "wallet": "กระเป๋าเงิน",
+    "helpCenter": "ศูนย์ช่วยเหลือ",
+    "switchToDarkAria": "เปลี่ยนเป็นโหมดมืด",
+    "switchToLightAria": "เปลี่ยนเป็นโหมดสว่าง",
+    "mobileMenu": {
+      "description": "เมนูนำทางบนมือถือ"
+    },
+    "toast": {
+      "logOut": {
+        "title": "ออกจากระบบแล้ว",
+        "description": "คุณออกจากระบบเรียบร้อยแล้ว",
+        "failTitle": "ออกจากระบบล้มเหลว",
+        "failDescription": "เกิดข้อผิดพลาดขณะออกจากระบบ โปรดลองอีกครั้ง"
+      }
+    },
+    "orders": "คำสั่งซื้อ",
+    "myPurchases": "การซื้อของฉัน",
+    "mySales": "การขายของฉัน"
+  },
+  "AppFooter": {
+    "tagline": "เชื่อมโยงเกษตรกรรมตั้งแต่เมล็ดพันธุ์จนถึงโต๊ะอาหาร",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "เกี่ยวกับเรา",
+    "contactLabel": "ติดต่อ",
+    "careersLabel": "ร่วมงานกับเรา",
+    "blogLabel": "บล็อก",
+    "resourcesTitle": "แหล่งข้อมูล",
+    "helpCenterLabel": "ศูนย์ช่วยเหลือ",
+    "communityGuidelinesLabel": "แนวทางปฏิบัติของชุมชน",
+    "industryNewsLabel": "ข่าวสารอุตสาหกรรม",
+    "eventsLabel": "กิจกรรม",
+    "talentExchangeLabel": "ตลาดนัดแรงงาน",
+    "legalTitle": "กฎหมาย",
+    "privacyPolicyLabel": "นโยบายความเป็นส่วนตัว",
+    "termsOfServiceLabel": "ข้อกำหนดในการให้บริการ",
+    "getMobileApp": "ดาวน์โหลดแอปพลิเคชันมือถือ",
+    "googlePlayAlt": "ดาวน์โหลดบน Google Play",
+    "appStoreAlt": "ดาวน์โหลดบน App Store",
+    "copyright": "© {year} {appName} สงวนลิขสิทธิ์"
+  },
+  "LanguageSwitcher": {
+    "toggle": "เปลี่ยนภาษา"
+  },
   "OfflineIndicator": {
     "toast": {
       "online": {
-        "title": "អ្នកបានភ្ជាប់អ៊ីនធឺណិតវិញហើយ",
+        "title": "คุณได้ភ្ជាប់អ៊ីនធឺណិតវិញហើយ",
         "description": "ការតភ្ជាប់របស់អ្នកត្រូវបានស្តារឡើងវិញ។"
       },
       "offline": {
-        "title": "អ្នកកំពុងនៅក្រៅបណ្តាញ",
+        "title": "คุณกำลังនៅក្រៅបណ្តាញ",
         "description": "សកម្មភាពរបស់អ្នកនឹងត្រូវបានរក្សាទុក ហើយធ្វើសមកាលកម្មនៅពេលអ្នកភ្ជាប់អ៊ីនធឺណិតវិញ។"
       },
       "syncing": {
@@ -182,12 +243,12 @@
     },
     "financialServiceTypes": {},
     "cropStages": {
-      "Planting": "ការដាំដុះ",
-      "Vegetative": "ការលូតលាស់",
-      "Flowering": "ការចេញផ្កា",
-      "Fruiting": "ការចេញផ្លែ",
-      "Harvesting": "ការប្រមូលផល",
-      "Post-Harvest": "ក្រោយការប្រមូលផល"
+      "Planting": "การปลูก",
+      "Vegetative": "การเจริญเติบโต",
+      "Flowering": "การออกดอก",
+      "Fruiting": "การติดผล",
+      "Harvesting": "การเก็บเกี่ยว",
+      "Post-Harvest": "หลังการเก็บเกี่ยว"
     },
     "observationTypes": {
       "GeneralNote": "កំណត់ត្រាទូទៅ",
@@ -334,3 +395,4 @@
   }
 }
 
+    

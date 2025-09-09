@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -76,6 +77,66 @@
       "subtitle": "เข้าร่วมกับเกษตรกรหลายพันคนที่ใช้ DamDoh เพื่อสร้างอนาคตที่ทำกำไรและยั่งยืนมากขึ้น",
       "button": "ลงทะเบียนฟรี"
     }
+  },
+  "AppHeader": {
+    "searchPlaceholder": "ค้นหาสินค้า บริการ หรือบุคคล...",
+    "signIn": "ลงชื่อเข้าใช้",
+    "signUp": "ลงทะเบียน",
+    "myProfile": "โปรไฟล์ของฉัน",
+    "settings": "การตั้งค่า",
+    "logOut": "ออกจากระบบ",
+    "home": "หน้าแรก",
+    "network": "เครือข่าย",
+    "farmMgmt": "จัดการฟาร์ม",
+    "marketplace": "ตลาด",
+    "talentExchange": "ตลาดนัดแรงงาน",
+    "traceability": "การตรวจสอบย้อนกลับ",
+    "forums": "ฟอรั่ม",
+    "sustainability": "ความยั่งยืน",
+    "notifications": "การแจ้งเตือน",
+    "messages": "ข้อความ",
+    "wallet": "กระเป๋าเงิน",
+    "helpCenter": "ศูนย์ช่วยเหลือ",
+    "switchToDarkAria": "เปลี่ยนเป็นโหมดมืด",
+    "switchToLightAria": "เปลี่ยนเป็นโหมดสว่าง",
+    "mobileMenu": {
+      "description": "เมนูนำทางบนมือถือ"
+    },
+    "toast": {
+      "logOut": {
+        "title": "ออกจากระบบแล้ว",
+        "description": "คุณออกจากระบบเรียบร้อยแล้ว",
+        "failTitle": "ออกจากระบบล้มเหลว",
+        "failDescription": "เกิดข้อผิดพลาดขณะออกจากระบบ โปรดลองอีกครั้ง"
+      }
+    },
+    "orders": "คำสั่งซื้อ",
+    "myPurchases": "การซื้อของฉัน",
+    "mySales": "การขายของฉัน"
+  },
+  "AppFooter": {
+    "tagline": "เชื่อมโยงเกษตรกรรมตั้งแต่เมล็ดพันธุ์จนถึงโต๊ะอาหาร",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "เกี่ยวกับเรา",
+    "contactLabel": "ติดต่อ",
+    "careersLabel": "ร่วมงานกับเรา",
+    "blogLabel": "บล็อก",
+    "resourcesTitle": "แหล่งข้อมูล",
+    "helpCenterLabel": "ศูนย์ช่วยเหลือ",
+    "communityGuidelinesLabel": "แนวทางปฏิบัติของชุมชน",
+    "industryNewsLabel": "ข่าวสารอุตสาหกรรม",
+    "eventsLabel": "กิจกรรม",
+    "talentExchangeLabel": "ตลาดนัดแรงงาน",
+    "legalTitle": "กฎหมาย",
+    "privacyPolicyLabel": "นโยบายความเป็นส่วนตัว",
+    "termsOfServiceLabel": "ข้อกำหนดในการให้บริการ",
+    "getMobileApp": "ดาวน์โหลดแอปพลิเคชันมือถือ",
+    "googlePlayAlt": "ดาวน์โหลดบน Google Play",
+    "appStoreAlt": "ดาวน์โหลดบน App Store",
+    "copyright": "© {year} {appName} สงวนลิขสิทธิ์"
+  },
+  "LanguageSwitcher": {
+    "toggle": "เปลี่ยนภาษา"
   },
   "OfflineIndicator": {
     "toast": {
@@ -334,3 +395,4 @@
   }
 }
 
+    

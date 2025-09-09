@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -76,6 +77,66 @@
       "subtitle": "Rejoignez des milliers d'agriculteurs qui utilisent DamDoh pour construire un avenir plus rentable et durable.",
       "button": "Inscrivez-vous gratuitement"
     }
+  },
+  "AppHeader": {
+    "searchPlaceholder": "Rechercher des produits, services ou personnes...",
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "myProfile": "Mon profil",
+    "settings": "Paramètres",
+    "logOut": "Se déconnecter",
+    "home": "Accueil",
+    "network": "Réseau",
+    "farmMgmt": "Gestion de la ferme",
+    "marketplace": "Marché",
+    "talentExchange": "Bourse de talents",
+    "traceability": "Traçabilité",
+    "forums": "Forums",
+    "sustainability": "Durabilité",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Portefeuille",
+    "helpCenter": "Centre d'aide",
+    "switchToDarkAria": "Passer en mode sombre",
+    "switchToLightAria": "Passer en mode clair",
+    "mobileMenu": {
+      "description": "Menu de navigation mobile"
+    },
+    "toast": {
+      "logOut": {
+        "title": "Déconnecté",
+        "description": "Vous avez été déconnecté avec succès.",
+        "failTitle": "Échec de la déconnexion",
+        "failDescription": "Une erreur s'est produite lors de la déconnexion. Veuillez réessayer."
+      }
+    },
+    "orders": "Commandes",
+    "myPurchases": "Mes achats",
+    "mySales": "Mes ventes"
+  },
+  "AppFooter": {
+    "tagline": "Connecter l'agriculture de la graine à la table.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "À propos de nous",
+    "contactLabel": "Contact",
+    "careersLabel": "Carrières",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressources",
+    "helpCenterLabel": "Centre d'aide",
+    "communityGuidelinesLabel": "Règles de la communauté",
+    "industryNewsLabel": "Actualités du secteur",
+    "eventsLabel": "Événements",
+    "talentExchangeLabel": "Bourse de talents",
+    "legalTitle": "Légal",
+    "privacyPolicyLabel": "Politique de confidentialité",
+    "termsOfServiceLabel": "Conditions d'utilisation",
+    "getMobileApp": "Obtenez l'application mobile",
+    "googlePlayAlt": "Obtenez-le sur Google Play",
+    "appStoreAlt": "Télécharger sur l'App Store",
+    "copyright": "© {year} {appName}. Tous droits réservés."
+  },
+  "LanguageSwitcher": {
+    "toggle": "Changer de langue"
   },
   "OfflineIndicator": {
     "toast": {
@@ -209,7 +270,7 @@
     }
   },
   "Auth": {
-    "signInWelcome": "Bienvenue à {appName}",
+    "signInWelcome": "Bienvenue à nouveau sur {appName}",
     "signUpWelcome": "Rejoignez le réseau agricole DamDoh",
     "forgotPasswordResetPrompt": "Réinitialisez votre mot de passe pour {appName}",
     "resetPasswordPrompt": "Créez un nouveau mot de passe pour {appName}",
@@ -334,3 +395,4 @@
   }
 }
 
+    

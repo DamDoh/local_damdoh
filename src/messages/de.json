@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -76,6 +77,66 @@
       "subtitle": "Schließen Sie sich Tausenden von Landwirten an, die DamDoh nutzen, um eine profitablere und nachhaltigere Zukunft aufzubauen.",
       "button": "Kostenlos registrieren"
     }
+  },
+  "AppHeader": {
+    "searchPlaceholder": "Suche nach Produkten, Dienstleistungen oder Personen...",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "myProfile": "Mein Profil",
+    "settings": "Einstellungen",
+    "logOut": "Abmelden",
+    "home": "Startseite",
+    "network": "Netzwerk",
+    "farmMgmt": "Farm-Mgmt",
+    "marketplace": "Marktplatz",
+    "talentExchange": "Talentbörse",
+    "traceability": "Rückverfolgbarkeit",
+    "forums": "Foren",
+    "sustainability": "Nachhaltigkeit",
+    "notifications": "Benachrichtigungen",
+    "messages": "Nachrichten",
+    "wallet": "Wallet",
+    "helpCenter": "Hilfecenter",
+    "switchToDarkAria": "In den dunklen Modus wechseln",
+    "switchToLightAria": "In den hellen Modus wechseln",
+    "mobileMenu": {
+      "description": "Mobiles Navigationsmenü"
+    },
+    "toast": {
+      "logOut": {
+        "title": "Abgemeldet",
+        "description": "Sie wurden erfolgreich abgemeldet.",
+        "failTitle": "Abmeldung fehlgeschlagen",
+        "failDescription": "Beim Abmelden ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+      }
+    },
+    "orders": "Bestellungen",
+    "myPurchases": "Meine Käufe",
+    "mySales": "Meine Verkäufe"
+  },
+  "AppFooter": {
+    "tagline": "Landwirtschaft verbinden, vom Samen bis zum Tisch.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "Über uns",
+    "contactLabel": "Kontakt",
+    "careersLabel": "Karriere",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Ressourcen",
+    "helpCenterLabel": "Hilfe-Center",
+    "communityGuidelinesLabel": "Community-Richtlinien",
+    "industryNewsLabel": "Branchennachrichten",
+    "eventsLabel": "Veranstaltungen",
+    "talentExchangeLabel": "Talentbörse",
+    "legalTitle": "Rechtliches",
+    "privacyPolicyLabel": "Datenschutz-Bestimmungen",
+    "termsOfServiceLabel": "Nutzungsbedingungen",
+    "getMobileApp": "Holen Sie sich die mobile App",
+    "googlePlayAlt": "Bei Google Play holen",
+    "appStoreAlt": "Im App Store herunterladen",
+    "copyright": "© {year} {appName}. Alle Rechte vorbehalten."
+  },
+  "LanguageSwitcher": {
+    "toggle": "Sprache ändern"
   },
   "OfflineIndicator": {
     "toast": {
@@ -333,3 +394,5 @@
     "error": "Fehler"
   }
 }
+
+    

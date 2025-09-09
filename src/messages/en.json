@@ -1,3 +1,4 @@
+
 {
   "LandingPage": {
     "hero": {
@@ -6,32 +7,32 @@
       "getStartedButton": "Start for Free"
     },
     "featured": {
-        "title": "AS FEATURED IN"
+      "title": "AS FEATURED IN"
     },
     "howItWorks": {
-        "title": "How It Works",
-        "subtitle": "A simple, three-step process to get you started on your journey to smarter farming.",
-        "step1": {
-            "title": "Upload an Image",
-            "description": "Take a photo of your crop. Our AI analyzes it against a vast database of plant diseases and pests."
-        },
-        "step2": {
-            "title": "Get Instant Diagnosis",
-            "description": "Receive an immediate, accurate diagnosis and learn about the potential impact on your crops."
-        },
-        "step3": {
-            "title": "Receive Actionable Advice",
-            "description": "Get tailored, sustainable treatment plans and preventative measures to protect your harvest."
-        }
+      "title": "How It Works",
+      "subtitle": "A simple, three-step process to get you started on your journey to smarter farming.",
+      "step1": {
+        "title": "Upload an Image",
+        "description": "Take a photo of your crop. Our AI analyzes it against a vast database of plant diseases and pests."
+      },
+      "step2": {
+        "title": "Get Instant Diagnosis",
+        "description": "Receive an immediate, accurate diagnosis and learn about the potential impact on your crops."
+      },
+      "step3": {
+        "title": "Receive Actionable Advice",
+        "description": "Get tailored, sustainable treatment plans and preventative measures to protect your harvest."
+      }
     },
     "stopGuessing": {
-        "title": "Stop Guessing, Start Growing",
-        "description": "Our platform transforms your farming practices from reactive to proactive. Make data-driven decisions that save money, improve crop health, and increase your bottom line.",
-        "p1_title": "Reduce Input Costs",
-        "p1_desc": "Apply the right treatment at the right time, minimizing waste and maximizing effectiveness.",
-        "p2_title": "Increase Yield & Quality",
-        "p2_desc": "Early detection and optimized recommendations lead to healthier crops and better harvests.",
-        "imageAlt": "A farmer examining a healthy plant leaf with a smartphone."
+      "title": "Stop Guessing, Start Growing",
+      "description": "Our platform transforms your farming practices from reactive to proactive. Make data-driven decisions that save money, improve crop health, and increase your bottom line.",
+      "p1_title": "Reduce Input Costs",
+      "p1_desc": "Apply the right treatment at the right time, minimizing waste and maximizing effectiveness.",
+      "p2_title": "Increase Yield & Quality",
+      "p2_desc": "Early detection and optimized recommendations lead to healthier crops and better harvests.",
+      "imageAlt": "A farmer examining a healthy plant leaf with a smartphone."
     },
     "features": {
       "title": "Smarter Farming, Simplified",
@@ -54,22 +55,22 @@
       }
     },
     "testimonials": {
-        "title": "Trusted by Farmers and Partners Worldwide",
-        "t1": {
-            "quote": "DamDoh's AI diagnostics saved our tomato crop from late blight. We got an accurate diagnosis in minutes and the recommended organic treatment worked wonders. It's a game-changer for smallholder farmers like us.",
-            "name": "Amina Bello",
-            "role": "Organic Farmer, Nigeria"
-        },
-        "t2": {
-            "quote": "As an exporter, traceability is non-negotiable. DamDoh provides a seamless, verifiable log for our coffee shipments, giving our international buyers the confidence they need. It has opened up new premium markets for our partner co-ops.",
-            "name": "Carlos Gomez",
-            "role": "Coffee Exporter, Colombia"
-        },
-        "t3": {
-            "quote": "The platform's ability to connect us with verified farmer cooperatives has streamlined our sourcing process. We've reduced our risk and improved the quality of our supply chain significantly.",
-            "name": "Priya Sharma",
-            "role": "Supply Chain Manager, FoodCo"
-        }
+      "title": "Trusted by Farmers and Partners Worldwide",
+      "t1": {
+        "quote": "DamDoh's AI diagnostics saved our tomato crop from late blight. We got an accurate diagnosis in minutes and the recommended organic treatment worked wonders. It's a game-changer for smallholder farmers like us.",
+        "name": "Amina Bello",
+        "role": "Organic Farmer, Nigeria"
+      },
+      "t2": {
+        "quote": "As an exporter, traceability is non-negotiable. DamDoh provides a seamless, verifiable log for our coffee shipments, giving our international buyers the confidence they need. It has opened up new premium markets for our partner co-ops.",
+        "name": "Carlos Gomez",
+        "role": "Coffee Exporter, Colombia"
+      },
+      "t3": {
+        "quote": "The platform's ability to connect us with verified farmer cooperatives has streamlined our sourcing process. We've reduced our risk and improved the quality of our supply chain significantly.",
+        "name": "Priya Sharma",
+        "role": "Supply Chain Manager, FoodCo"
+      }
     },
     "cta": {
       "title": "Ready to Grow Smarter?",
@@ -77,7 +78,67 @@
       "button": "Sign Up for Free"
     }
   },
-   "OfflineIndicator": {
+  "AppHeader": {
+    "searchPlaceholder": "Search for products, services, or people...",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "myProfile": "My Profile",
+    "settings": "Settings",
+    "logOut": "Log Out",
+    "home": "Home",
+    "network": "Network",
+    "farmMgmt": "Farm Mgmt",
+    "marketplace": "Marketplace",
+    "talentExchange": "Talent Exchange",
+    "traceability": "Traceability",
+    "forums": "Forums",
+    "sustainability": "Sustainability",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "wallet": "Wallet",
+    "helpCenter": "Help Center",
+    "switchToDarkAria": "Switch to dark mode",
+    "switchToLightAria": "Switch to light mode",
+    "mobileMenu": {
+      "description": "Mobile navigation menu"
+    },
+    "toast": {
+      "logOut": {
+        "title": "Logged Out",
+        "description": "You have been successfully logged out.",
+        "failTitle": "Logout Failed",
+        "failDescription": "An error occurred while logging out. Please try again."
+      }
+    },
+    "orders": "Orders",
+    "myPurchases": "My Purchases",
+    "mySales": "My Sales"
+  },
+  "AppFooter": {
+    "tagline": "Connecting agriculture from seed to table.",
+    "damdohTitle": "DamDoh",
+    "aboutLabel": "About Us",
+    "contactLabel": "Contact",
+    "careersLabel": "Careers",
+    "blogLabel": "Blog",
+    "resourcesTitle": "Resources",
+    "helpCenterLabel": "Help Center",
+    "communityGuidelinesLabel": "Community Guidelines",
+    "industryNewsLabel": "Industry News",
+    "eventsLabel": "Events",
+    "talentExchangeLabel": "Talent Exchange",
+    "legalTitle": "Legal",
+    "privacyPolicyLabel": "Privacy Policy",
+    "termsOfServiceLabel": "Terms of Service",
+    "getMobileApp": "Get the mobile app",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store",
+    "copyright": "© {year} {appName}. All rights reserved."
+  },
+  "LanguageSwitcher": {
+    "toggle": "Change language"
+  },
+  "OfflineIndicator": {
     "toast": {
       "online": {
         "title": "You're back online",
@@ -336,3 +397,5 @@
     "error": "Error"
   }
 }
+
+    
