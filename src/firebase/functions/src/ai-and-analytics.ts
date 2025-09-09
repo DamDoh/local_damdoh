@@ -1,16 +1,17 @@
 
-
-import { logInfo } from "./logging";
-
 /**
  * =================================================================
  * Module 6: AI & Analytics Engine (The Brain of DamDoh)
  * =================================================================
- * NOTE: The assessCreditRiskWithAI and matchFundingOpportunitiesWithAI functions
- * have been officially migrated to the Express server in `server.ts` for deployment
- * on Cloud Run. This ensures better performance by avoiding cold starts.
- * New client calls must be directed to the Cloud Run endpoints.
+ * NOTE: The core AI logic for this module, including credit risk assessment
+ * and funding opportunity matching, has been officially migrated to the 
+ * Express server in `server.ts` for deployment on Cloud Run. This ensures 
+ * better performance by avoiding cold starts. New client calls must be 
+ * directed to the Cloud Run endpoints. This file is retained for other
+ * internal, non-performance-critical AI helper functions.
  */
+
+import { logInfo } from "./logging";
 
 
 /**
