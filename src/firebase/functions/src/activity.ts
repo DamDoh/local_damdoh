@@ -1,7 +1,9 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { checkAuth, getUserDocument } from './utils';
+import { createAndSendNotification } from "./notifications";
 
 const db = admin.firestore();
 
@@ -31,6 +33,17 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
         viewerId,
         viewedId,
         timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    
+    const viewerDoc = await db.collection('users').doc(viewerId).get();
+    const viewerName = viewerDoc.data()?.displayName || 'Someone';
+
+    await createAndSendNotification(viewedId, {
+        type: "profile_view",
+        title_en: "Your profile has a new view",
+        body_en: `${viewerName} viewed your profile.`,
+        actorId: viewerId,
+        linkedEntity: { collection: "profiles", documentId: viewerId },
     });
 
     return { success: true, logId: logRef.id };
