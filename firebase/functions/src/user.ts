@@ -3,7 +3,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
-import { stakeholderProfileSchemas } from "@/lib/schemas"; // Corrected import
+import { stakeholderProfileSchemas } from '../../../src/lib/schemas';
 import { deleteCollectionByPath, getRole } from './utils';
 import { randomBytes } from 'crypto';
 

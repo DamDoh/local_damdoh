@@ -75,6 +75,173 @@
       "title": "Prêt à cultiver plus intelligemment ?",
       "subtitle": "Rejoignez des milliers d'agriculteurs qui utilisent DamDoh pour construire un avenir plus rentable et durable.",
       "button": "Inscrivez-vous gratuitement"
+    },
+    "hero": {
+      "badge": "Nouveau : Informations sur les Cultures Alimentées par l'IA"
+    },
+    "featured": {
+      "title": "Comme Présenté Dans"
+    },
+    "trustPillars": {
+      "title": "Construit sur la Confiance",
+      "subtitle": "Quatre piliers qui assurent la sécurité, la transparence et la collaboration dans chaque transaction.",
+      "traceability": {
+        "title": "Traçabilité Complète",
+        "description": "Suivez chaque étape de la ferme à la table avec des enregistrements immuables sécurisés par blockchain."
+      },
+      "network": {
+        "title": "Réseautage Intelligent",
+        "description": "Connexions alimentées par l'IA avec des partenaires pertinents dans l'écosystème agricole."
+      },
+      "ai": {
+        "title": "Assistance IA",
+        "description": "Conseils et recommandations d'experts alimentés par une IA avancée."
+      },
+      "security": {
+        "title": "Sécurité d'Entreprise",
+        "description": "Sécurité de niveau bancaire et confidentialité des données pour tous les utilisateurs."
+      }
+    },
+    "stakeholders": {
+      "title": "Pour Chaque Acteur",
+      "subtitle": "Fonctionnalités et connexions adaptées à tous dans la chaîne d'approvisionnement.",
+      "farmers": {
+        "name": "Agriculteurs",
+        "headline": "Cultivez Plus Intelligemment, Vendez Mieux",
+        "points": [
+          {
+            "title": "Accès Direct au Marché",
+            "desc": "Connectez-vous avec les acheteurs et éliminez les intermédiaires."
+          },
+          {
+            "title": "Conseils d'Experts",
+            "desc": "Obtenez des informations alimentées par l'IA et des consultations d'agronomes."
+          },
+          {
+            "title": "Outils Financiers",
+            "desc": "Accédez à des prêts, assurances et financement des cultures."
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=Agriculteurs"
+      },
+      "buyers": {
+        "name": "Acheteurs",
+        "headline": "Approvisionnez avec Confiance",
+        "points": [
+          {
+            "title": "Fournisseurs Vérifiés",
+            "desc": "Accédez à des produits traçables et certifiés de producteurs de confiance."
+          },
+          {
+            "title": "Assurance Qualité",
+            "desc": "Rapports de qualité en temps réel et historique des lots."
+          },
+          {
+            "title": "Approvisionnement Rationalisé",
+            "desc": "Négociations directes et coordination logistique."
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=Acheteurs"
+      },
+      "logistics": {
+        "name": "Partenaires Logistiques",
+        "headline": "Livraison Efficace",
+        "points": [
+          {
+            "title": "Suivi en Temps Réel",
+            "desc": "Surveillez les expéditions avec une traçabilité intégrée."
+          },
+          {
+            "title": "Itinéraires Optimisés",
+            "desc": "Itinéraires suggérés par l'IA pour réduire les coûts et les retards."
+          },
+          {
+            "title": "Outils de Conformité",
+            "desc": "Documentation automatisée pour les douanes et normes."
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=Logistique"
+      },
+      "financial": {
+        "name": "Institutions Financières",
+        "headline": "Prêts Sans Risque",
+        "points": [
+          {
+            "title": "Emprunteurs Vérifiés",
+            "desc": "Accédez à des données détaillées sur les fermes pour l'évaluation du crédit."
+          },
+          {
+            "title": "Informations de Performance",
+            "desc": "Suivez l'utilisation des prêts et la productivité des fermes."
+          },
+          {
+            "title": "Intégration Assurance",
+            "desc": "Regroupez les prêts avec des produits d'assurance des cultures."
+          }
+        ],
+        "image": "https://placehold.co/600x400.png?text=Financier"
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Ça Marche",
+      "subtitle": "Commencez en trois étapes simples.",
+      "step1": {
+        "title": "Créez Votre Profil",
+        "description": "Inscrivez-vous et parlez-nous de votre rôle dans la chaîne de valeur agricole."
+      },
+      "step2": {
+        "title": "Connectez-vous et Explorez",
+        "description": "Découvrez des partenaires, des produits et des connaissances dans l'écosystème."
+      },
+      "step3": {
+        "title": "Commercez et Grandissez",
+        "description": "Effectuez des transactions sécurisées et développez votre entreprise."
+      }
+    },
+    "testimonials": {
+      "title": "Ce Que Disent Nos Utilisateurs",
+      "t1": {
+        "quote": "DamDoh a transformé la façon dont je vends mes produits directement aux acheteurs dans le monde entier !",
+        "name": "Maria Gonzalez",
+        "role": "Agricultrice d'Avocats, Mexique"
+      },
+      "t2": {
+        "quote": "Les fonctionnalités de traçabilité me donnent confiance dans ma chaîne d'approvisionnement.",
+        "name": "John Smith",
+        "role": "Responsable de la Chaîne d'Approvisionnement, USA"
+      },
+      "t3": {
+        "quote": "Se connecter avec des experts a boosté la productivité de ma ferme.",
+        "name": "Aisha Khan",
+        "role": "Agricultrice de Riz, Inde"
+      }
+    },
+    "stopGuessing": {
+      "title": "Arrêtez de Deviner, Commencez à Cultiver",
+      "description": "Notre plateforme transforme vos pratiques agricoles de réactives à proactives. Prenez des décisions basées sur les données qui économisent de l'argent, améliorent la santé des cultures et augmentent vos profits.",
+      "p1_title": "Réduisez les Coûts des Intrants",
+      "p1_desc": "Appliquez le bon traitement au bon moment, minimisant les déchets et maximisant l'efficacité.",
+      "p2_title": "Augmentez le Rendement et la Qualité",
+      "p2_desc": "La détection précoce et les recommandations optimisées mènent à des cultures plus saines et de meilleures récoltes.",
+      "imageAlt": "Un agriculteur examinant une feuille de plante saine avec un smartphone."
+    },
+    "features": {
+      "diagnostics": {
+        "title": "Diagnostics Alimentés par l'IA",
+        "description": "Prenez une photo d'une plante malade et obtenez un diagnostic instantané des maladies potentielles, ravageurs ou carences nutritionnelles."
+      },
+      "insights": {
+        "title": "Informations Basées sur les Données",
+        "description": "Suivez les performances de votre ferme au fil du temps, analysez les tendances et débloquez des informations pour améliorer vos opérations saison après saison."
+      },
+      "recommendations": {
+        "title": "Recommandations Intelligentes",
+        "description": "Obtenez des plans de traitement et de prévention personnalisés et durables adaptés à votre culture et à votre diagnostic."
+      },
+      "assistant": {
+        "title": "Assistant IA 24/7",
+        "description": "Posez des questions sur les techniques agricoles, les prix du marché ou les pratiques durables et obtenez des réponses instantanées de niveau expert."
+      }
     }
   },
   "searchPage": {
@@ -444,6 +611,48 @@
     },
     "addStaffSuccess": "{staffName} a été ajouté(e) en tant que personnel.",
     "removeStaffSuccess": "Le membre du personnel a été retiré."
+  },
+  "ConsumerDashboard": {
+    "title": "Tableau de Bord Consommateur",
+    "welcomeTitle": "Bienvenue sur DamDoh",
+    "welcomeDescription": "Explorez des produits frais et traçables de producteurs vérifiés.",
+    "browseMarketplace": {
+      "title": "Parcourir le Marché",
+      "description": "Découvrez des produits frais et durables.",
+      "button": "Parcourir les Produits"
+    },
+    "traceProducts": {
+      "title": "Tracer Vos Produits",
+      "description": "Entrez un code VTI pour voir le parcours complet de vos achats.",
+      "button": "Tracer les Produits"
+    },
+    "learnMore": {
+      "title": "Apprendre sur l'Agriculture",
+      "description": "Découvrez les pratiques agricoles durables et les systèmes alimentaires.",
+      "button": "Explorer le Hub de Connaissances"
+    }
+  },
+  "CreditScorecard": {
+    "title": "Score de Crédit",
+    "description": "Votre score de solvabilité agricole.",
+    "overallScore": "Score Global"
+  },
+  "WarehouseDashboard": {
+    "title": "Tableau de Bord Entrepôt",
+    "utilizationTitle": "Utilisation du Stockage",
+    "inventoryTitle": "Inventaire Actuel",
+    "alertsTitle": "Alertes de Stockage",
+    "itemsNeedingAttention": "articles nécessitent attention",
+    "investigateButton": "Enquêter",
+    "noAlerts": "Aucune alerte de stockage.",
+    "errors": {
+      "load": "Impossible de charger les données du tableau de bord."
+    },
+    "noData": "Aucune donnée de tableau de bord disponible."
+  },
+  "adminLayoutPage": {
+    "title": "Panneau d'Administration",
+    "description": "Administration et gestion de la plateforme."
   }
 }
   

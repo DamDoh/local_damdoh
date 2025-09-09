@@ -95,7 +95,7 @@ export function HomePage() {
                 </span>
              </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter text-gray-900 dark:text-gray-50">
-              {t('hero.title')}
+              {t('hero.title', { appName: APP_NAME })}
             </h1>
             <p className="max-w-3xl mx-auto text-lg md:text-xl text-muted-foreground mt-4">
               {t('hero.subtitle')}

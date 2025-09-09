@@ -1,7 +1,7 @@
 
-import {notFound} from 'next/navigation';
 import {getRequestConfig} from 'next-intl/server';
 import {locales} from './i18n-config';
+import {notFound} from 'next/navigation';
  
 export default getRequestConfig(async ({locale}) => {
   // Validate that the incoming `locale` parameter is valid
@@ -19,8 +19,6 @@ export default getRequestConfig(async ({locale}) => {
   }
 
   return {
-    locale,
     messages
   };
 });
-
