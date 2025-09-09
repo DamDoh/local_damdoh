@@ -78,6 +78,42 @@
       "button": "ลงทะเบียนฟรี"
     }
   },
+  "searchPage": {
+    "title": "ค้นหา",
+    "description": "ค้นหาทุกอย่างบนแพลตฟอร์ม DamDoh",
+    "placeholder": "คุณกำลังมองหาอะไร?",
+    "searchButton": "ค้นหา",
+    "popularSearches": "การค้นหายอดนิยม",
+    "popularSearch1": "เช่ารถแทรกเตอร์",
+    "popularSearch2": "ราคากาแฟออร์แกนิก",
+    "popularSearch3": "ที่ปรึกษาด้านดิน",
+    "popularSearch4": "โลจิสติกส์การส่งออก",
+    "popularSearch5": "ห้องเย็น",
+    "modal": {
+        "title": "ค้นหาสากล",
+        "placeholder": "ค้นหาสินค้า, บริการ, ผู้คน, ฟอรั่ม...",
+        "searchButton": "ค้นหา",
+        "searchError": "การค้นหาล้มเหลว",
+        "searchErrorDescription": "เกิดข้อผิดพลาดขณะทำการค้นหาของคุณ",
+        "interpretationTitle": "การตีความโดย AI",
+        "interpretationNotesDefault": "กำลังพยายามทำความเข้าใจเจตนาของคุณ...",
+        "filtersTitle": "ตัวกรองที่แนะนำ",
+        "results": {
+            "users": "โปรไฟล์",
+            "marketplaceItems": "รายการในตลาด",
+            "forums": "หัวข้อฟอรั่ม",
+            "agri_events": "กิจกรรม",
+            "knowledge_articles": "บทความความรู้",
+            "vti_registry": "รายงานการตรวจสอบย้อนกลับ",
+            "groups": "กลุ่ม"
+        },
+        "noResults": "ไม่พบผลลัพธ์",
+        "tryAgain": "ลองปรับแต่งคำค้นหาของคุณ",
+        "scanError": "ไม่สามารถอ่านรหัส QR ได้",
+        "scanErrorDescription": "โปรดตรวจสอบให้แน่ใจว่ารหัสมีแสงสว่างเพียงพอและอยู่ในกรอบ",
+        "invalidCodeError": "รหัส QR ที่สแกนไม่ถูกต้องสำหรับการกระทำนี้"
+    }
+  },
   "AppHeader": {
     "searchPlaceholder": "ค้นหาสินค้า บริการ หรือบุคคล...",
     "signIn": "ลงชื่อเข้าใช้",
@@ -394,5 +430,3 @@
     "error": "ข้อผิดพลาด"
   }
 }
-
-    

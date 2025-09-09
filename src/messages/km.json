@@ -78,27 +78,63 @@
       "button": "ลงทะเบียนฟรี"
     }
   },
+  "searchPage": {
+    "title": "ស្វែងរក",
+    "description": "ស្វែងរកអ្វីៗនៅលើវេទិកា DamDoh។",
+    "placeholder": "តើអ្នកកំពុងស្វែងរកអ្វី?",
+    "searchButton": "ស្វែងរក",
+    "popularSearches": "ការស្វែងរកពេញនិយម",
+    "popularSearch1": "ការជួលត្រាក់ទ័រ",
+    "popularSearch2": "តម្លៃកាហ្វេอินស៊ី",
+    "popularSearch3": "ទីប្រឹក្សាដី",
+    "popularSearch4": "ភស្តុភារនាំចេញ",
+    "popularSearch5": "ឃ្លាំងត្រជាក់",
+    "modal": {
+        "title": "ការស្វែងរកជាសកល",
+        "placeholder": "ស្វែងរកផលិតផល សេវាកម្ម មនុស្ស វេទិកា...",
+        "searchButton": "ស្វែងរក",
+        "searchError": "ការស្វែងរកបានបរាជ័យ",
+        "searchErrorDescription": "មានកំហុសកើតឡើងនៅពេលកំពុងធ្វើការស្វែងរករបស់អ្នក។",
+        "interpretationTitle": "ការបកស្រាយដោយ AI",
+        "interpretationNotesDefault": "កំពុងព្យាយាមយល់ពីបំណងរបស់អ្នក...",
+        "filtersTitle": "តម្រងដែលបានស្នើ",
+        "results": {
+            "users": "ប្រវត្តិរូប",
+            "marketplaceItems": "បញ្ជីទីផ្សារ",
+            "forums": "ប្រធានបទវេទិកា",
+            "agri_events": "ព្រឹត្តិការណ៍",
+            "knowledge_articles": "អត្ថបទចំណេះដឹង",
+            "vti_registry": "របាយការណ៍តាមដាន",
+            "groups": "ក្រុម"
+        },
+        "noResults": "រកមិនឃើញលទ្ធផល។",
+        "tryAgain": "ព្យាយាមធ្វើឱ្យសំណួរស្វែងរករបស់អ្នកកាន់តែច្បាស់។",
+        "scanError": "មិនអាចអានកូដ QR បានទេ។",
+        "scanErrorDescription": "សូមប្រាកដថាកូដមានពន្លឺគ្រប់គ្រាន់និងស្ថិតនៅក្នុងស៊ុម។",
+        "invalidCodeError": "កូដ QR ដែលបានស្កេនមិនមានសុពលភាពសម្រាប់សកម្មភាពនេះទេ។"
+    }
+  },
   "AppHeader": {
-    "searchPlaceholder": "ค้นหาสินค้า บริการ หรือบุคคล...",
-    "signIn": "ลงชื่อเข้าใช้",
-    "signUp": "ลงทะเบียน",
-    "myProfile": "โปรไฟล์ของฉัน",
-    "settings": "การตั้งค่า",
-    "logOut": "ออกจากระบบ",
-    "home": "หน้าแรก",
-    "network": "เครือข่าย",
-    "farmMgmt": "จัดการฟาร์ม",
-    "marketplace": "ตลาด",
-    "talentExchange": "ตลาดนัดแรงงาน",
-    "traceability": "การตรวจสอบย้อนกลับ",
-    "forums": "ฟอรั่ม",
-    "sustainability": "ความยั่งยืน",
-    "notifications": "การแจ้งเตือน",
-    "messages": "ข้อความ",
-    "wallet": "กระเป๋าเงิน",
-    "helpCenter": "ศูนย์ช่วยเหลือ",
-    "switchToDarkAria": "เปลี่ยนเป็นโหมดมืด",
-    "switchToLightAria": "เปลี่ยนเป็นโหมดสว่าง",
+    "searchPlaceholder": "ស្វែងរកផលិតផល សេវាកម្ម ឬមនុស្ស...",
+    "signIn": "ចូល",
+    "signUp": "ចុះឈ្មោះ",
+    "myProfile": "ប្រវត្តិរូបរបស់ខ្ញុំ",
+    "settings": "ការកំណត់",
+    "logOut": "ចាកចេញ",
+    "home": "ទំព័រដើម",
+    "network": "បណ្តាញ",
+    "farmMgmt": "គ្រប់គ្រងកសិដ្ឋាន",
+    "marketplace": "ទីផ្សារ",
+    "talentExchange": "ផ្សារទេពកោសល្យ",
+    "traceability": "ការតាមដាន",
+    "forums": "វេទិកា",
+    "sustainability": "និរន្តរភាព",
+    "notifications": "ការជូនដំណឹង",
+    "messages": "សារ",
+    "wallet": "កាបូប",
+    "helpCenter": "មជ្ឈមណ្ឌលជំនួយ",
+    "switchToDarkAria": "ប្តូរទៅរបៀបងងឹត",
+    "switchToLightAria": "ប្តូរទៅរបៀបភ្លឺ",
     "mobileMenu": {
       "description": "เมนูนำทางบนมือถือ"
     },
@@ -394,5 +430,3 @@
     "error": "ข้อผิดพลาด"
   }
 }
-
-    

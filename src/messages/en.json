@@ -78,6 +78,42 @@
       "button": "Sign Up for Free"
     }
   },
+  "searchPage": {
+    "title": "Search",
+    "description": "Find anything on the DamDoh platform.",
+    "placeholder": "What are you looking for?",
+    "searchButton": "Search",
+    "popularSearches": "Popular Searches",
+    "popularSearch1": "Tractor Rental",
+    "popularSearch2": "Organic Coffee Price",
+    "popularSearch3": "Soil Consultant",
+    "popularSearch4": "Export Logistics",
+    "popularSearch5": "Cold Storage",
+    "modal": {
+        "title": "Universal Search",
+        "placeholder": "Search for products, services, people, forums...",
+        "searchButton": "Search",
+        "searchError": "Search Failed",
+        "searchErrorDescription": "An error occurred while performing your search.",
+        "interpretationTitle": "AI Interpretation",
+        "interpretationNotesDefault": "Attempting to understand your intent...",
+        "filtersTitle": "Suggested Filters",
+        "results": {
+            "users": "Profiles",
+            "marketplaceItems": "Marketplace Listings",
+            "forums": "Forum Topics",
+            "agri_events": "Events",
+            "knowledge_articles": "Knowledge Articles",
+            "vti_registry": "Traceability Reports",
+            "groups": "Groups"
+        },
+        "noResults": "No results found.",
+        "tryAgain": "Try refining your search query.",
+        "scanError": "Could not read QR code.",
+        "scanErrorDescription": "Please ensure the code is well-lit and within frame.",
+        "invalidCodeError": "The scanned QR code is not valid for this action."
+    }
+  },
   "AppHeader": {
     "searchPlaceholder": "Search for products, services, or people...",
     "signIn": "Sign In",
@@ -397,5 +433,3 @@
     "error": "Error"
   }
 }
-
-    

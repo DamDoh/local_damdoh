@@ -78,6 +78,42 @@
       "button": "Inscrivez-vous gratuitement"
     }
   },
+  "searchPage": {
+    "title": "Recherche",
+    "description": "Trouvez n'importe quoi sur la plateforme DamDoh.",
+    "placeholder": "Que recherchez-vous?",
+    "searchButton": "Rechercher",
+    "popularSearches": "Recherches populaires",
+    "popularSearch1": "Location de tracteur",
+    "popularSearch2": "Prix du café biologique",
+    "popularSearch3": "Consultant en sol",
+    "popularSearch4": "Logistique d'exportation",
+    "popularSearch5": "Entreposage frigorifique",
+    "modal": {
+        "title": "Recherche universelle",
+        "placeholder": "Rechercher des produits, services, personnes, forums...",
+        "searchButton": "Rechercher",
+        "searchError": "La recherche a échoué",
+        "searchErrorDescription": "Une erreur s'est produite lors de votre recherche.",
+        "interpretationTitle": "Interprétation IA",
+        "interpretationNotesDefault": "Tentative de comprendre votre intention...",
+        "filtersTitle": "Filtres suggérés",
+        "results": {
+            "users": "Profils",
+            "marketplaceItems": "Annonces du marché",
+            "forums": "Sujets du forum",
+            "agri_events": "Événements",
+            "knowledge_articles": "Articles de connaissance",
+            "vti_registry": "Rapports de traçabilité",
+            "groups": "Groupes"
+        },
+        "noResults": "Aucun résultat trouvé.",
+        "tryAgain": "Essayez d'affiner votre requête de recherche.",
+        "scanError": "Impossible de lire le code QR.",
+        "scanErrorDescription": "Veuillez vous assurer que le code est bien éclairé et dans le cadre.",
+        "invalidCodeError": "Le code QR scanné n'est pas valide pour cette action."
+    }
+  },
   "AppHeader": {
     "searchPlaceholder": "Rechercher des produits, services ou personnes...",
     "signIn": "Se connecter",
@@ -394,5 +430,3 @@
     "error": "Erreur"
   }
 }
-
-    

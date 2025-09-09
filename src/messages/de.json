@@ -78,6 +78,42 @@
       "button": "Kostenlos registrieren"
     }
   },
+  "searchPage": {
+    "title": "Suche",
+    "description": "Finden Sie alles auf der DamDoh-Plattform.",
+    "placeholder": "Was suchen Sie?",
+    "searchButton": "Suchen",
+    "popularSearches": "Beliebte Suchanfragen",
+    "popularSearch1": "Traktorenvermietung",
+    "popularSearch2": "Preis für Bio-Kaffee",
+    "popularSearch3": "Bodenberater",
+    "popularSearch4": "Exportlogistik",
+    "popularSearch5": "Kühlhaus",
+    "modal": {
+        "title": "Universelle Suche",
+        "placeholder": "Suche nach Produkten, Dienstleistungen, Personen, Foren...",
+        "searchButton": "Suchen",
+        "searchError": "Suche fehlgeschlagen",
+        "searchErrorDescription": "Bei der Durchführung Ihrer Suche ist ein Fehler aufgetreten.",
+        "interpretationTitle": "KI-Interpretation",
+        "interpretationNotesDefault": "Versuche, Ihre Absicht zu verstehen...",
+        "filtersTitle": "Vorgeschlagene Filter",
+        "results": {
+            "users": "Profile",
+            "marketplaceItems": "Marktplatzeinträge",
+            "forums": "Foren-Themen",
+            "agri_events": "Veranstaltungen",
+            "knowledge_articles": "Wissensartikel",
+            "vti_registry": "Rückverfolgbarkeitsberichte",
+            "groups": "Gruppen"
+        },
+        "noResults": "Keine Ergebnisse gefunden",
+        "tryAgain": "Versuchen Sie, Ihre Suchanfrage zu verfeinern.",
+        "scanError": "QR-Code konnte nicht gelesen werden.",
+        "scanErrorDescription": "Stellen Sie sicher, dass der Code gut beleuchtet und im Rahmen ist.",
+        "invalidCodeError": "Der gescannte QR-Code ist für diese Aktion ungültig."
+    }
+  },
   "AppHeader": {
     "searchPlaceholder": "Suche nach Produkten, Dienstleistungen oder Personen...",
     "signIn": "Anmelden",
@@ -373,7 +409,9 @@
     },
     "signInFailed": "Anmeldung fehlgeschlagen",
     "errors": {
+      "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
       "invalidCredential": "Die eingegebene E-Mail-Adresse oder das Passwort ist falsch.",
+      "invalidEmail": "Die E-Mail-Adresse ist nicht valide.",
       "userDisabled": "Dieses Benutzerkonto wurde deaktiviert.",
       "emailInUse": "Ein Konto mit dieser E-Mail existiert bereits.",
       "emailInUseRich": "Ein Konto mit dieser E-Mail existiert bereits. Bitte {signInLink} oder verwenden Sie eine andere E-Mail.",
@@ -394,5 +432,3 @@
     "error": "Fehler"
   }
 }
-
-    
