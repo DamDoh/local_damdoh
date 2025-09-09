@@ -7,7 +7,6 @@ import { checkAuth } from "./utils";
 
 const db = admin.firestore();
 
-
 // New function to securely call the AI flow
 export const getForumTopicSuggestions = functions.https.onCall(async (data, context) => {
     checkAuth(context);
