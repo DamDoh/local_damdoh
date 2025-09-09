@@ -3,7 +3,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile, JoinRequest } from './types';
-import { getProfileByIdFromDB } from './user';
+import { getProfileByIdFromDB } from './profiles';
 
 const db = admin.firestore();
 
@@ -22,10 +22,11 @@ export const createGroup = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Group name and description are required.');
     }
 
-    const userProfile = await getProfileByIdFromDB.run({ uid }, {auth: context.auth}) as UserProfile;
-    if (!userProfile) {
+    const userProfileDoc = await db.collection('users').doc(uid).get();
+    if (!userProfileDoc.exists) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
     }
+    const userProfile = userProfileDoc.data() as UserProfile;
 
     const groupRef = db.collection('groups').doc();
     
@@ -111,7 +112,7 @@ export const getGroupMembers = functions.https.onCall(async (data, context) => {
     return { members };
 });
 
-const modifyMembership = async (groupId: string, userId: string, join: boolean, auth: functions.https.CallableContext['auth']) => {
+const modifyMembership = async (groupId: string, userId: string, join: boolean) => {
     const groupRef = db.collection('groups').doc(groupId);
     const memberRef = groupRef.collection('members').doc(userId);
 
@@ -128,11 +129,11 @@ const modifyMembership = async (groupId: string, userId: string, join: boolean, 
                 throw new functions.https.HttpsError('already-exists', 'You are already a member of this group.');
             }
             
-            const userProfile = await getProfileByIdFromDB.run({uid: userId}, {auth}) as UserProfile;
+            const userProfile = await getProfileByIdFromDB(userId);
              if (!userProfile) {
                 throw new functions.https.HttpsError('not-found', 'Your user profile could not be found.');
             }
-            
+
             transaction.set(memberRef, {
                 displayName: userProfile.displayName,
                 avatarUrl: userProfile.avatarUrl || null,
@@ -154,14 +155,14 @@ const modifyMembership = async (groupId: string, userId: string, join: boolean, 
 export const joinGroup = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { groupId } = data;
-    await modifyMembership(groupId, uid, true, context.auth);
+    await modifyMembership(groupId, uid, true);
     return { success: true, message: 'Successfully joined the group.' };
 });
 
 export const leaveGroup = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { groupId } = data;
-    await modifyMembership(groupId, uid, false, context.auth);
+    await modifyMembership(groupId, uid, false);
     return { success: true, message: 'Successfully left the group.' };
 });
 
@@ -184,7 +185,7 @@ export const createGroupPost = functions.https.onCall(async (data, context) => {
     const groupRef = db.collection('groups').doc(groupId);
     const timestamp = admin.firestore.FieldValue.serverTimestamp();
 
-    const userProfile = await getProfileByIdFromDB.run({ uid }, {auth: context.auth});
+    const userProfile = await getProfileByIdFromDB(uid);
 
     const batch = db.batch();
 
@@ -192,8 +193,8 @@ export const createGroupPost = functions.https.onCall(async (data, context) => {
         title,
         content,
         authorRef: uid,
-        authorName: userProfile.displayName || 'Unknown User',
-        authorAvatarUrl: userProfile.avatarUrl || null,
+        authorName: userProfile?.displayName || 'Unknown User',
+        authorAvatarUrl: userProfile?.avatarUrl || null,
         createdAt: timestamp,
         replyCount: 0,
         likes: 0,
@@ -253,13 +254,13 @@ export const addGroupPostReply = functions.https.onCall(async (data, context) =>
     const postRef = db.collection(`groups/${groupId}/posts`).doc(postId);
 
     const batch = db.batch();
-    const userProfile = await getProfileByIdFromDB.run({ uid }, {auth: context.auth});
+    const userProfile = await getProfileByIdFromDB(uid);
 
     batch.set(replyRef, {
         content,
         authorRef: uid,
-        authorName: userProfile.displayName || 'Unknown User',
-        authorAvatarUrl: userProfile.avatarUrl || null,
+        authorName: userProfile?.displayName || 'Unknown User',
+        authorAvatarUrl: userProfile?.avatarUrl || null,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
@@ -310,7 +311,7 @@ export const requestToJoinGroup = functions.https.onCall(async (data, context) =
         throw new functions.https.HttpsError('already-exists', 'You have already sent a request to join this group.');
     }
     
-    const userProfile = await getProfileByIdFromDB.run({uid: requesterId}, {auth: context.auth}) as UserProfile;
+    const userProfile = await getProfileByIdFromDB(requesterId) as UserProfile;
 
     await requestRef.set({
         requesterId,
@@ -367,7 +368,7 @@ export const respondToJoinRequest = functions.https.onCall(async (data, context)
     
     if (action === 'accept') {
         await requestRef.update({ status: 'accepted' });
-        await modifyMembership(groupId, requesterId, true, context.auth);
+        await modifyMembership(groupId, requesterId, true);
     } else { // decline
         await requestRef.update({ status: 'declined' });
     }

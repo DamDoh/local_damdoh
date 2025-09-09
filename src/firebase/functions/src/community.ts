@@ -4,8 +4,8 @@
 // This file should only contain functions related to community and social engagement.
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getProfileByIdFromDB } from './user';
-import { getRole, deleteCollectionByPath } from './utils';
+import { getProfileByIdFromDB } from './profiles';
+import { getRole } from './utils';
 
 const db = admin.firestore();
 
@@ -20,6 +20,49 @@ const checkAuth = (context: functions.https.CallableContext) => {
   return context.auth.uid;
 };
 
+/**
+ * Recursively deletes a collection in batches.
+ * @param {string} collectionPath The path to the collection to delete.
+ * @param {number} batchSize The number of documents to delete in each batch.
+ */
+export async function deleteCollectionByPath(collectionPath: string, batchSize: number) {
+    const collectionRef = db.collection(collectionPath);
+    const query = collectionRef.orderBy('__name__').limit(batchSize);
+
+    return new Promise((resolve, reject) => {
+        deleteQueryBatch(query, resolve, reject);
+    });
+}
+
+/**
+ * Helper function for deleteCollectionByPath to delete documents from a query in batches.
+ * @param {FirebaseFirestore.Query} query The query to delete documents from.
+ * @param {Function} resolve The promise resolve function.
+ * @param {Function} reject The promise reject function.
+ */
+async function deleteQueryBatch(query: admin.firestore.Query, resolve: (value?: unknown) => void, reject: (reason?: any) => void) {
+    const snapshot = await query.get();
+
+    if (snapshot.size === 0) {
+        // When there are no documents left, we are done
+        resolve();
+        return;
+    }
+
+    // Delete documents in a batch
+    const batch = db.batch();
+    snapshot.docs.forEach((doc) => {
+        batch.delete(doc.ref);
+    });
+    await batch.commit();
+
+    // Recurse on the same query to delete more documents
+    process.nextTick(() => {
+        deleteQueryBatch(query, resolve, reject);
+    });
+}
+
+
 export const createFeedPost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { content, pollOptions, imageUrl, dataAiHint } = data; // pollOptions is an array of objects with a 'text' property
@@ -32,7 +75,7 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionsInvalid');
     }
 
-    const userProfile = (await getProfileByIdFromDB.run({ uid }, {auth: context.auth}));
+    const userProfile = await getProfileByIdFromDB(uid);
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -78,6 +121,7 @@ export const deletePost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('permission-denied', 'error.permissionDenied');
     }
     
+    // Perform a cascade delete of subcollections before deleting the post itself.
     const likesPath = `posts/${postId}/likes`;
     const commentsPath = `posts/${postId}/comments`;
     const votesPath = `posts/${postId}/votes`;
@@ -92,7 +136,11 @@ export const deletePost = functions.https.onCall(async (data, context) => {
     
     console.log(`Subcollections deleted. Deleting main post document ${postId}.`);
 
+    // Finally, delete the post document itself
     await postRef.delete();
+
+    // Note: Deleting associated media from Cloud Storage would require another step,
+    // often handled by a separate onFinalize trigger or by storing the full GCS path.
 
     return { success: true, message: 'Post and all associated data deleted successfully.' };
 });
@@ -101,16 +149,22 @@ export const likePost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { postId } = data;
 
-    const likeRef = db.collection(`posts/${postId}/likes`).doc(uid);
-    const likeDoc = await likeRef.get();
+    const postRef = db.collection('posts').doc(postId);
+    const likeRef = postRef.collection('likes').doc(uid);
     
-    if (likeDoc.exists) {
-        await likeRef.delete();
-        return { success: true, action: 'unliked' };
-    } else {
-        await likeRef.set({ createdAt: admin.firestore.FieldValue.serverTimestamp() });
-        return { success: true, action: 'liked' };
-    }
+    return db.runTransaction(async (transaction) => {
+        const likeDoc = await transaction.get(likeRef);
+        
+        if (likeDoc.exists) {
+            transaction.delete(likeRef);
+            transaction.update(postRef, { likesCount: admin.firestore.FieldValue.increment(-1) });
+            return { success: true, action: 'unliked' };
+        } else {
+            transaction.set(likeRef, { createdAt: admin.firestore.FieldValue.serverTimestamp() });
+            transaction.update(postRef, { likesCount: admin.firestore.FieldValue.increment(1) });
+            return { success: true, action: 'liked' };
+        }
+    });
 });
 
 
@@ -125,8 +179,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
     const postRef = db.collection('posts').doc(postId);
     const commentRef = postRef.collection('comments').doc();
 
-    const userProfile = await getProfileByIdFromDB.run({ uid }, {auth: context.auth});
-    
+    const userProfile = await getProfileByIdFromDB(uid);
      if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -170,6 +223,7 @@ export const getCommentsForPost = functions.https.onCall(async (data, context) =
         return { replies: [], lastVisible: null };
     }
     
+    // The author data is now denormalized onto the comment, so no extra lookups are needed.
     const comments = commentsSnapshot.docs.map(doc => {
         const commentData = doc.data();
         return {
@@ -214,11 +268,13 @@ export const voteOnPoll = functions.https.onCall(async (data, context) => {
             throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionInvalid');
         }
 
+        // Atomically update the vote count for the specific option
         const newPollOptions = [...postData.pollOptions];
         newPollOptions[optionIndex].votes = (newPollOptions[optionIndex].votes || 0) + 1;
         
         transaction.update(postRef, { pollOptions: newPollOptions });
 
+        // Record the user's vote to prevent duplicates
         transaction.set(voteRef, {
             optionIndex,
             votedAt: admin.firestore.FieldValue.serverTimestamp()
