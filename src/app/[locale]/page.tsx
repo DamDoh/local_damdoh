@@ -3,9 +3,8 @@
 
 import { useAuth } from '@/lib/auth-utils';
 import { MainDashboard } from '@/components/dashboard/MainDashboard';
-import { LandingPageLayout } from '@/components/layout/LandingPageLayout';
+import { LandingPage } from '@/components/landing/HomePage';
 import { PageSkeleton } from '@/components/Skeletons';
-import { HomePage } from '@/components/landing/HomePage';
 
 export default function Home() {
     const { user, loading } = useAuth();
@@ -14,15 +13,5 @@ export default function Home() {
         return <PageSkeleton />; 
     }
     
-    return (
-        <>
-            {user ? (
-                <MainDashboard />
-            ) : (
-                <LandingPageLayout>
-                    <HomePage />
-                </LandingPageLayout>
-            )}
-        </>
-    );
+    return user ? <MainDashboard /> : <LandingPage />;
 }

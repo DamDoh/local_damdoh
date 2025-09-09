@@ -6,7 +6,7 @@
 @layer base {
   :root {
     /* DamDoh.org Inspired Light Theme - REVISED */
-    --background: 60 56% 96%; /* #F5F5DC - Light Beige */
+    --background: 47 56% 96%; /* #F5F5DC - Light Beige */
     --foreground: 70 60% 12%; /* #1E2601 - Dark, earthy green/black */
 
     --card: 0 0% 100%; /* White cards for contrast */
