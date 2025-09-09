@@ -4,8 +4,7 @@
 import { AppHeader } from "@/components/layout/AppHeader";
 import { AppFooter } from "@/components/layout/AppFooter";
 import { Toaster } from "@/components/ui/toaster";
-import { SidebarProvider, SidebarInset, Sidebar } from "@/components/ui/sidebar";
-import { AppSidebarNav } from "./AppSidebarNav";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 export function LandingPageLayout({ children }: { children: React.ReactNode }) {
     return (

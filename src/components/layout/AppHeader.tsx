@@ -7,18 +7,6 @@ import { useTranslations } from "next-intl";
 import {
   Menu,
   Search as SearchIconLucide,
-  LogIn,
-  UserPlus,
-  ShoppingCart,
-  DollarSign,
-  Bell,
-  MessageSquare,
-  Home,
-  Users,
-  Sprout,
-  Briefcase,
-  Fingerprint,
-  Wallet
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
@@ -34,7 +22,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { AppSidebarNav } from './AppSidebarNav';
 import { HeaderThemeToggle } from '../HeaderThemeToggle';
-import { cn } from '@/lib/utils';
 import { Input } from '../ui/input';
 
 
@@ -44,7 +31,6 @@ function HeaderSkeleton() {
       {/* Desktop Skeleton */}
       <div className="hidden md:flex container mx-auto h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Skeleton className="h-8 w-32 bg-muted" />
-        <Skeleton className="h-9 w-96 bg-muted" />
         <div className="flex items-center gap-4">
           <Skeleton className="h-8 w-48 bg-muted" />
           <Skeleton className="h-9 w-9 rounded-full bg-muted" />
@@ -85,16 +71,6 @@ export function AppHeader() {
       setIsSearchModalOpen(true);
     }
   };
-  
-  const mainNavItems = [
-    { href: "/", icon: Home, label: t('home') },
-    { href: "/network", icon: Users, label: t('network') },
-    { href: "/farm-management", icon: Sprout, label: t('farmMgmt') },
-    { href: "/marketplace", icon: ShoppingCart, label: t('marketplace') },
-    { href: "/wallet", icon: Wallet, label: t('wallet') },
-    { href: "/ai-assistant", icon: Briefcase, label: t('aiAssistant') },
-    { href: "/notifications", icon: Bell, label: t('notifications') }
-  ];
 
 
   if (!isMounted) {
@@ -118,19 +94,6 @@ export function AppHeader() {
              )}
 
           <nav className="flex items-center space-x-1 h-full">
-              {user && (
-                  <div className="flex items-center gap-1">
-                      {mainNavItems.map(item => {
-                          const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
-                          return (
-                              <Link key={item.label} href={item.href} className={cn("flex flex-col items-center justify-center px-2 pt-1 h-full border-b-2 text-xs font-medium transition-colors", isActive ? "border-white text-white" : "border-transparent text-white/70 hover:text-white hover:border-white/50")}>
-                                  <item.icon className="h-5 w-5 mb-0.5" />
-                                  {item.label}
-                              </Link>
-                          )
-                      })}
-                  </div>
-              )}
             <div className="h-2/3 w-px bg-white/20 mx-3"></div>
             <LanguageSwitcher />
             <HeaderThemeToggle />
