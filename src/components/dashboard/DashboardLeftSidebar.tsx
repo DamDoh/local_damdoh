@@ -22,7 +22,7 @@ export function DashboardLeftSidebar() {
   const [stats, setStats] = useState<{ profileViews: number, postLikes: number, postComments: number } | null>(null);
   const [isLoadingStats, setIsLoadingStats] = useState(true);
 
-  const getStatsCallable = useMemo(() => httpsCallable(functions, 'activity-getUserEngagementStats'), []);
+  const getStatsCallable = useMemo(() => httpsCallable(functions, 'activity-getUserEngagementStats'), [functions]);
 
   useEffect(() => {
     if (profile?.id) { 

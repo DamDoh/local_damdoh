@@ -35,8 +35,8 @@ export function DashboardRightSidebar() {
   
   const { user, profile, loading: authLoading } = useAuth(); // Using the centralized profile
 
-  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'network-sendConnectionRequest'), []);
-  const suggestConnectionsCallable = useMemo(() => httpsCallable(functions, 'suggestConnections'), []);
+  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'network-sendConnectionRequest'), [functions]);
+  const suggestConnectionsCallable = useMemo(() => httpsCallable(functions, 'suggestConnections'), [functions]);
 
   const fetchSuggestions = useCallback(async () => {
     if (!profile) return; // Wait until the user profile is loaded from context
@@ -247,11 +247,3 @@ export function DashboardRightSidebar() {
     </div>
   );
 }
-
-const MoreHorizontal = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <circle cx="12" cy="12" r="1" />
-    <circle cx="19" cy="12" r="1" />
-    <circle cx="5" cy="12" r="1" />
-  </svg>
-);

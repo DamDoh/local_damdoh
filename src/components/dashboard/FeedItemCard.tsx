@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
@@ -9,10 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
-import { Image as ImageIcon, Video, FileText, CalendarDays, BarChart3, PlusCircle, Trash2, X, MessageSquare, ThumbsUp, MoreHorizontal, Edit, Share2, Send, CheckCircle } from "lucide-react";
+import { MessageSquare, ThumbsUp, MoreHorizontal, Edit, Share2, Send, CheckCircle, Trash2 } from "lucide-react";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -28,21 +24,22 @@ import { Loader2 } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { useAuth } from "@/lib/auth-utils";
 import { useFormatter, useTranslations } from "next-intl";
-import { onSnapshot, collection, query, orderBy, getFirestore, limit, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import Image from "next/image";
 
 interface FeedItemCardProps {
   item: FeedItem;
-  onLike: (id: string) => void;
-  onComment: (id: string, commentText: string) => void;
   onDeletePost: (id: string) => void;
 }
 
-export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItemCardProps) {
+export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
   const t = useTranslations('FeedItemCard');
   const format = useFormatter();
   const { user } = useAuth();
-  const [isLiked, setIsLiked] = useState(false);
   
+  const [isLiked, setIsLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState(item.likesCount);
+
   const [votedOptionIndex, setVotedOptionIndex] = useState<number | null>(null);
   const [currentPollOptions, setCurrentPollOptions] = useState<PollOption[]>([]);
   
@@ -58,20 +55,17 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   const { toast } = useToast();
   const { profile: currentUserProfile } = useUserProfile();
 
-  // Initialize Firebase services within the component
   const functions = useMemo(() => getFunctions(firebaseApp), []);
   const db = useMemo(() => getFirestore(firebaseApp), []);
   const voteOnPollCallable = useMemo(() => httpsCallable(functions, 'community-voteOnPoll'), [functions]);
   const getCommentsForPostCallable = useMemo(() => httpsCallable(functions, 'community-getCommentsForPost'), [functions]);
-  
+  const likePostCallable = useMemo(() => httpsCallable(functions, 'community-likePost'), [functions]);
+  const addCommentCallable = useMemo(() => httpsCallable(functions, 'community-addComment'), [functions]);
 
   useEffect(() => {
-      setCurrentPollOptions(item.pollOptions?.map(opt => ({...opt})) || []);
-      setVotedOptionIndex(null); 
-  }, [item.pollOptions, item.id]);
-  
-   // Check if the current user has already voted on this poll
-  useEffect(() => {
+    if (item.pollOptions) {
+      setCurrentPollOptions([...item.pollOptions]);
+    }
     if (item.type === 'poll' && user) {
         const voteRef = doc(db, `posts/${item.id}/votes/${user.uid}`);
         getDoc(voteRef).then(docSnap => {
@@ -80,29 +74,28 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
             }
         });
     }
-  }, [item.id, item.type, user, db]);
-
+  }, [item.pollOptions, item.id, item.type, user, db]);
 
   const totalVotes = useMemo(() => {
     return currentPollOptions.reduce((acc, opt) => acc + (opt.votes || 0), 0);
   }, [currentPollOptions]);
-  
-  useEffect(() => {
-    setIsLiked(false); 
-    setShowCommentInput(false);
-    setCommentText("");
-    setIsSubmittingComment(false);
-    setReplies([]);
-    setIsLoadingReplies(false);
-    setLastVisible(null);
-    setHasMoreComments(true);
-  }, [item]);
-  
 
-  const handleLike = () => {
+  const handleLike = async () => {
     if (!user) { toast({ title: t('signInToLikeToast'), variant: "destructive" }); return; }
+    
+    // Optimistic UI update
     setIsLiked(prev => !prev);
-    onLike(item.id);
+    setLikesCount(prev => isLiked ? prev - 1 : prev + 1);
+
+    try {
+        await likePostCallable({ postId: item.id });
+    } catch(error) {
+        console.error("Error liking post:", error);
+        // Revert optimistic UI update on error
+        setIsLiked(prev => !prev);
+        setLikesCount(prev => isLiked ? prev + 1 : prev - 1);
+        toast({ title: t('likeError.fail'), variant: "destructive" });
+    }
   };
   
   const fetchComments = useCallback(async (isInitialLoad = false) => {
@@ -112,7 +105,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
       const result = await getCommentsForPostCallable({ postId: item.id, lastVisible: isInitialLoad ? null : lastVisible });
       const data = result.data as { replies: PostReply[], lastVisible: any };
       
-      setReplies(prev => isInitialLoad ? data.replies : [...prev, ...data.replies]);
+      setReplies(prev => isInitialLoad ? (data.replies || []) : [...prev, ...(data.replies || [])]);
       setLastVisible(data.lastVisible);
       setHasMoreComments(!!data.lastVisible);
     } catch (error) {
@@ -124,23 +117,28 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
   }, [item.id, lastVisible, hasMoreComments, toast, t, getCommentsForPostCallable]);
 
 
-  const handleCommentButtonClick = async () => {
+  const handleCommentButtonClick = () => {
     const willBeVisible = !showCommentInput;
     setShowCommentInput(willBeVisible);
 
     if (willBeVisible && replies.length === 0) {
-      fetchComments(true); // Initial fetch
+      fetchComments(true);
     }
   };
   
   const handlePostComment = async () => {
     if (!commentText.trim() || !user) return;
     setIsSubmittingComment(true);
-    
     try {
-      await onComment(item.id, commentText);
+      await addCommentCallable({ postId: item.id, content: commentText });
       setCommentText("");
+      // No need to manually refetch comments if we had a real-time listener,
+      // but for callable functions, we refetch to see the new comment.
       fetchComments(true);
+      toast({ title: t('commentSuccess') });
+    } catch(error) {
+         console.error("Error adding comment:", error);
+         toast({ title: t('commentError.fail'), variant: "destructive" });
     } finally {
       setIsSubmittingComment(false);
     }
@@ -220,6 +218,11 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
       </CardHeader>
       <CardContent className="px-4 pt-0 pb-2">
         {item.content && <p className="text-sm whitespace-pre-line mb-4">{item.content}</p>}
+        {item.imageUrl && (
+            <div className="relative aspect-video rounded-md overflow-hidden border">
+                <Image src={item.imageUrl} alt="Post content" fill style={{ objectFit: 'cover' }} data-ai-hint={item.dataAiHint || 'community post image'} />
+            </div>
+        )}
         {item.type === 'poll' && currentPollOptions.length > 0 && (
           <div className="space-y-2">
             {currentPollOptions.map((option, index) => {
@@ -251,7 +254,7 @@ export function FeedItemCard({ item, onLike, onComment, onDeletePost }: FeedItem
       
       <CardFooter className="p-2 flex flex-col items-stretch">
         <div className="px-2 flex items-center justify-between text-xs text-muted-foreground mt-2 mb-1">
-            <span>{item.likesCount} {t('likes', {count: item.likesCount})}</span>
+            <span>{likesCount} {t('likes', {count: likesCount})}</span>
             <span>{item.commentsCount} {t('comments', {count: item.commentsCount})}</span>
         </div>
         <div className="flex justify-around border-t pt-1">
