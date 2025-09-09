@@ -6,20 +6,9 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getUserProfile } from './user';
-import { getRole, deleteCollectionByPath } from './utils';
+import { getRole, deleteCollectionByPath, checkAuth } from './utils';
 
 const db = admin.firestore();
-
-// Helper to check for authentication in a consistent way
-const checkAuth = (context: functions.https.CallableContext) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError(
-      "unauthenticated",
-      "error.unauthenticated",
-    );
-  }
-  return context.auth.uid;
-};
 
 export const createFeedPost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
@@ -105,8 +94,6 @@ export const likePost = functions.https.onCall(async (data, context) => {
     const likeRef = db.collection(`posts/${postId}/likes`).doc(uid);
     const likeDoc = await likeRef.get();
     
-    // The onPostLike trigger in notifications.ts now handles the count.
-    // This function simply creates or deletes the like document.
     if (likeDoc.exists) {
         await likeRef.delete();
         return { success: true, action: 'unliked' };
@@ -133,8 +120,6 @@ export const addComment = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
 
-    // The comment count is now handled by the onPostComment trigger in notifications.ts
-    // We only need to create the comment document itself.
     await commentRef.set({
         content,
         userId: uid,
@@ -217,7 +202,6 @@ export const voteOnPoll = functions.https.onCall(async (data, context) => {
         
         transaction.update(postRef, { pollOptions: newPollOptions });
 
-        // Record the user's vote to prevent duplicates
         transaction.set(voteRef, {
             optionIndex,
             votedAt: admin.firestore.FieldValue.serverTimestamp()
@@ -226,3 +210,4 @@ export const voteOnPoll = functions.https.onCall(async (data, context) => {
         return { success: true, pollOptions: newPollOptions };
     });
 });
+

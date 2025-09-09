@@ -2,8 +2,8 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getEngagementStats } from "./user";
-
+import { getEngagementStats } from "./activity";
+import { getUserProfile } from "./user";
 
 const db = admin.firestore();
 
@@ -423,7 +423,7 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
 
     if (appData.applicantId) {
         // Fetch applicant's profile
-        applicantProfile = await getProfileByIdFromDB(appData.applicantId);
+        applicantProfile = await getUserProfile(appData.applicantId);
         
         // Fetch applicant's financial summary
         const financialSummaryResult = await getFinancialSummaryAndTransactions({ userId: appData.applicantId }, context);
@@ -568,6 +568,27 @@ export const getFinancialInstitutions = functions.https.onCall(async (data, cont
     }));
 
     return fis;
+});
+
+export const getFarmerApplications = functions.https.onCall(async (data, context) => {
+    const farmerId = checkAuth(context);
+    
+    const query = db.collection("financial_applications")
+        .where("applicantId", "==", farmerId)
+        .orderBy("submittedAt", "desc");
+
+    const snapshot = await query.get();
+
+    const applications = snapshot.docs.map(doc => {
+        const appData = doc.data();
+        return {
+            ...appData,
+            id: doc.id,
+            submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+        }
+    });
+
+    return { applications };
 });
 
 export const getFiApplications = functions.https.onCall(async (data, context) => {
