@@ -2,84 +2,98 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+ 
 @layer base {
   :root {
-    /* DamDoh - Earthy & Professional Theme */
-    --background: 47 56% 96%; /* #F5F5DC - Light Beige */
-    --foreground: 70 20% 25%; /* #364030 - Darker, softer green/black */
-
+    /* DamDoh - New Theme */
+    --background: 220 14% 96%; /* #f8fafc */
+    --foreground: 222 47% 11%; /* #0f172a */
+ 
     --card: 0 0% 100%;
-    --card-foreground: 70 20% 25%;
-
+    --card-foreground: 222 47% 11%;
+ 
     --popover: 0 0% 100%;
-    --popover-foreground: 70 20% 25%;
-
-    --primary: 120 27% 65%; /* #8FBC8F - Earthy Green */
+    --popover-foreground: 222 47% 11%;
+ 
+    --primary: 145 63% 49%; /* #22c55e */
     --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222 47% 11%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-    --secondary: 40 10% 95%; /* #F3F2F0 - Off-white for secondary elements */
-    --secondary-foreground: 70 20% 25%;
+    --success: 145 63% 49%;
+    --success-foreground: 210 40% 98%;
 
-    --muted: 60 30% 90%;
-    --muted-foreground: 60 10% 45%;
-
-    --accent: 28 58% 66%; /* #D4A27A - Warm Gold */
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 60 15% 85%;
-    --input: 60 50% 98%;
-    --ring: 120 27% 55%; /* Ring color based on primary */
-    
-    --chart-1: 120 27% 65%;
-    --chart-2: 28 58% 66%;
-    --chart-3: 120 27% 80%;
-    --chart-4: 28 58% 80%;
-    --chart-5: 70 40% 60%;
+    --warning: 48 96% 58%;
+    --warning-foreground: 38 92% 50%;
+ 
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 145 63% 49%;
+ 
     --radius: 0.5rem;
+
+    /* Sidebar Specific */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-muted-foreground: 215.4 16.3% 46.9%;
+    --sidebar-accent: 210 40% 96.1%;
+    --sidebar-accent-foreground: 222 47% 11%;
   }
-
+ 
   .dark {
-    /* A complementary dark theme */
-    --background: 222 47% 11%; 
+    --background: 222 47% 11%;
     --foreground: 210 40% 98%;
-
-    --card: 222 47% 14%;
+ 
+    --card: 222 47% 11%;
     --card-foreground: 210 40% 98%;
-
+ 
     --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
-
-    --primary: 120 27% 65%; /* Keep the same earthy green */
+ 
+    --primary: 145 63% 49%;
     --primary-foreground: 210 40% 98%;
-    
-    --secondary: 222 47% 18%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-    
-    --muted: 222 47% 18%;
-    --muted-foreground: 215 20% 65%; 
-    
-    --accent: 28 58% 66%;
-    --accent-foreground: 222 47% 11%;
-    
-    --destructive: 0 63% 31%; 
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    
-    --border: 222 47% 18%;
-    --input: 222 47% 16%;
-    --ring: 120 27% 55%;
-    
-    --chart-1: 120 27% 55%;
-    --chart-2: 28 58% 56%;
-    --chart-3: 120 27% 40%;
-    --chart-4: 28 58% 40%;
-    --chart-5: 215 20% 65%;
+
+    --success: 145 63% 49%;
+    --success-foreground: 210 40% 98%;
+
+    --warning: 48 96% 58%;
+    --warning-foreground: 38 92% 50%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 145 63% 49%;
+
+    /* Sidebar Specific Dark */
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-muted-foreground: 215 20.2% 65.1%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
   }
 }
-
+ 
 @layer base {
   * {
     @apply border-border;

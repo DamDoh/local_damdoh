@@ -4,7 +4,6 @@
 import React from 'react';
 import { useAuth } from '@/lib/auth-utils';
 import { AppHeader } from "@/components/layout/AppHeader";
-import { AppFooter } from "@/components/layout/AppFooter";
 import { Toaster } from "@/components/ui/toaster";
 import { OfflineIndicator } from "@/components/layout/OfflineIndicator";
 import { PageSkeleton } from '../Skeletons';

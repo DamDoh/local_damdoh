@@ -7,6 +7,8 @@ import { useTranslations } from "next-intl";
 import {
   Menu,
   Search as SearchIconLucide,
+  Bell,
+  ShoppingCart
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
@@ -48,7 +50,6 @@ function HeaderSkeleton() {
 
 export function AppHeader() {
   const t = useTranslations('AppHeader');
-  const pathname = usePathname();
   const { user, loading: authLoading } = useAuth(); 
 
   const [isMounted, setIsMounted] = useState(false);
@@ -93,7 +94,15 @@ export function AppHeader() {
              )}
 
           <nav className="flex items-center space-x-1 h-full">
-            <div className="h-2/3 w-px bg-white/20 mx-3"></div>
+            <Button variant="ghost" size="icon" className="hover:bg-white/10 relative">
+              <Bell className="h-5 w-5" />
+              <div className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></div>
+            </Button>
+            <Button variant="ghost" size="icon" className="hover:bg-white/10 relative">
+              <ShoppingCart className="h-5 w-5" />
+              <div className="absolute top-2 right-1.5 w-4 h-4 text-xs bg-red-500 rounded-full flex items-center justify-center">2</div>
+            </Button>
+            <div className="h-2/3 w-px bg-white/20 mx-2"></div>
             <LanguageSwitcher />
             <HeaderThemeToggle />
               {authLoading ? (
