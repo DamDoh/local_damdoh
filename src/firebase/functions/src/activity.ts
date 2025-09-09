@@ -1,16 +1,9 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { checkAuth, getUserDocument } from './utils';
 
 const db = admin.firestore();
-
-const checkAuth = (context: functions.https.CallableContext) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "error.unauthenticated");
-  }
-  return context.auth.uid;
-};
 
 
 /**
@@ -175,8 +168,8 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
 
     try {
         // Fetch the user document to get the pre-aggregated view count.
-        const userDoc = await db.collection('users').doc(userId).get();
-        const profileViews = userDoc.data()?.viewCount || 0;
+        const userDoc = await getUserDocument(userId);
+        const profileViews = userDoc?.data()?.viewCount || 0;
 
         // Fetch all posts by the user to sum up pre-aggregated like and comment counts.
         const postsQuery = db.collection('posts').where('userId', '==', userId).get();

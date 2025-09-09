@@ -1,5 +1,4 @@
 
-
 /**
  * @fileoverview This is the main entry point for all Firebase Cloud Functions.
  * It initializes the Firebase Admin SDK and exports all the functions from other
@@ -41,13 +40,14 @@ import * as messageFunctions from "./messages";
 import * as networkFunctions from "./network";
 import * as notificationFunctions from "./notifications";
 import * as offlineSyncFunctions from "./offline_sync";
+import * as userFunctions from "./user";
+import * as utilsFunctions from "./utils";
 import * as regulatoryFunctions from "./regulatory-and-compliance";
 import * as searchFunctions from "./search";
 import * as sustainabilityFunctions from "./sustainability";
-import * as userFunctions from "./user";
-import * as utilsFunctions from "./utils";
 import * as geospatialFunctions from "./geospatial";
 import * as universalIdFunctions from "./universal-id";
+import * as profilesFunctions from "./profiles"; // Keep for now if there are remaining functions
 
 // Export all cloud functions, grouped by their respective modules
 export const activity = activityFunctions;
@@ -79,6 +79,7 @@ export const search = searchFunctions;
 export const sustainability = sustainabilityFunctions;
 export const geospatial = geospatialFunctions;
 export const universalId = universalIdFunctions;
+export const profiles = profilesFunctions;
 
 
 // Export the Express app as a Cloud Function for Cloud Run services

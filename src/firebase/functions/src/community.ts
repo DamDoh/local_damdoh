@@ -34,7 +34,6 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
 
     const userProfileResult = await getProfileByIdFromDB.run({ uid }, { auth: context.auth });
     const userProfile = userProfileResult.data as any;
-
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
