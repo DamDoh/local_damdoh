@@ -1,9 +1,9 @@
 
-
 "use client";
 
 import { useState, useEffect, FormEvent, useCallback } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useSearchParams } from 'next/navigation';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -14,7 +14,6 @@ import Link from 'next/link';
 import { interpretSearchQuery } from '@/lib/server-actions';
 import { Badge } from '../ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { Card, CardContent } from '../ui/card';
 import { performSearch } from '@/lib/server-actions';
 import { QrScanner } from '../QrScanner';
 import { useRouter } from 'next/navigation';
