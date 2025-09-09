@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 
 export function HeaderThemeToggle() {
-  const t = useTranslations('AppHeader');
+  const t = useTranslations('settingsPage.appearance');
   const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = useState(false);
 
@@ -42,13 +42,8 @@ export function HeaderThemeToggle() {
 
   if (!mounted) {
     // Render a simplified placeholder to avoid hydration mismatch
-    // This ensures the server and initial client render are very basic.
     return (
-      <div key="placeholder" className="flex gap-1" aria-hidden="true" style={{height: '36px'}}> {/* h-9 equivalent */}
-        <div className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 w-9 p-0 opacity-50">
-          <Sun className="h-5 w-5" />
-        </div>
-      </div>
+      <div key="placeholder" style={{height: '36px', width: '36px'}}></div>
     );
   }
 
@@ -59,6 +54,7 @@ export function HeaderThemeToggle() {
         size="icon"
         onClick={() => handleSetTheme(currentTheme === 'light' ? 'dark' : 'light')}
         aria-label={currentTheme === 'light' ? t('switchToDarkAria') : t('switchToLightAria')}
+        className="hover:bg-white/10"
       >
         <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
         <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />

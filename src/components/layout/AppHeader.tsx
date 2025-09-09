@@ -28,20 +28,21 @@ import { Input } from '../ui/input';
 
 function HeaderSkeleton() {
   return (
-    <header className="sticky top-0 z-30 w-full border-b bg-background/95 backdrop-blur-sm print:hidden">
+    <header className="sticky top-0 z-30 w-full border-b bg-primary text-primary-foreground print:hidden">
       {/* Desktop Skeleton */}
       <div className="hidden md:flex container mx-auto h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Skeleton className="h-8 w-32 bg-muted" />
+        <Skeleton className="h-8 w-32 bg-white/20" />
         <div className="flex items-center gap-4">
-          <Skeleton className="h-8 w-48 bg-muted" />
-          <Skeleton className="h-9 w-9 rounded-full bg-muted" />
+          <Skeleton className="h-8 w-48 bg-white/20" />
+          <Skeleton className="h-9 w-9 rounded-full bg-white/20" />
+          <Skeleton className="h-9 w-9 rounded-full bg-white/20" />
         </div>
       </div>
       {/* Mobile Skeleton */}
       <div className="md:hidden container mx-auto flex h-14 items-center justify-between px-4">
-        <Skeleton className="h-8 w-8 bg-muted" />
-        <Skeleton className="h-6 w-32 bg-muted" />
-        <Skeleton className="h-8 w-8 bg-muted" />
+        <Skeleton className="h-8 w-8 bg-white/20" />
+        <Skeleton className="h-6 w-32 bg-white/20" />
+        <Skeleton className="h-8 w-8 bg-white/20" />
       </div>
     </header>
   );

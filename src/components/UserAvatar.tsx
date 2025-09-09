@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LogOut, Settings, User } from "lucide-react";
-import Link from "next/link";
+import { Link } from '@/navigation';
 import { logOut } from "@/lib/auth-utils"; 
 import { useToast } from "@/hooks/use-toast"; 
 import { useRouter } from "next/navigation";

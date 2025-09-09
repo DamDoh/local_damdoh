@@ -19,6 +19,7 @@ import { QrScanner } from '../QrScanner';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import type { SmartSearchInterpretation } from '@/lib/types';
+import { Dialog, DialogHeader, DialogContent } from '../ui/dialog';
 
 interface SearchResult {
   id: string;
