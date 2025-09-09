@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { StakeholderIcon } from '../icons/StakeholderIcon';
+import { Badge } from "@/components/ui/badge";
 
 
 export function HomePage() {
