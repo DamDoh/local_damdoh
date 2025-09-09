@@ -52,7 +52,7 @@
         "farmers": {
             "name": "Producers",
             "headline": "Access new markets and increase your profitability.",
-            "image": "https://placehold.co/600x600.png",
+            "image": "https://placehold.co/600/400.png?text=Farmer+Inspecting+Crops",
             "points": [
                 {"title": "Sell Directly to Buyers", "desc": "List your VTI-verified produce on the marketplace to reach a wider audience of premium buyers."},
                 {"title": "Access Fair Finance", "desc": "Build a data-backed reputation to qualify for loans and insurance from our financial partners."},
@@ -62,7 +62,7 @@
         "buyers": {
             "name": "Buyers",
             "headline": "Source high-quality, traceable products with confidence.",
-            "image": "https://placehold.co/600x600.png",
+            "image": "https://placehold.co/600/400.png?text=Produce+at+Market",
             "points": [
                 {"title": "Verify Product Origins", "desc": "Use the VTI system to see the complete journey of a product, from farm to you."},
                 {"title": "Find Reliable Suppliers", "desc": "Connect directly with trusted farmers and cooperatives with proven track records."},
@@ -72,7 +72,7 @@
         "logistics": {
             "name": "Logistics",
             "headline": "Find more jobs and optimize your routes.",
-            "image": "https://placehold.co/600x600.png",
+            "image": "https://placehold.co/600/400.png?text=Logistics+Truck",
             "points": [
                 {"title": "Discover Shipping Jobs", "desc": "Get access to a steady stream of transport requests from farmers and buyers on the platform."},
                 {"title": "Plan Efficient Routes", "desc": "Utilize platform data to optimize delivery routes and reduce fuel costs."},
@@ -82,7 +82,7 @@
         "financial": {
             "name": "Financial Institutions",
             "headline": "De-risk agricultural lending and expand your portfolio.",
-            "image": "https://placehold.co/600x600.png",
+            "image": "https://placehold.co/600/400.png?text=Financial+Advisor+with+Farmer",
             "points": [
                 {"title": "Access Verified Farmer Data", "desc": "Make informed lending decisions using our AI-powered credit scoring based on real farm performance data."},
                 {"title": "Offer Tailored Products", "desc": "List your loan and insurance products directly to a targeted audience of qualified farmers."},
@@ -91,22 +91,22 @@
         }
     },
     "testimonials": {
-        "title": "Trusted by Leaders Across the Supply Chain",
-        "t1": {
-            "quote": "DamDoh's traceability system has been a game-changer for our cooperative. We can now prove the origin and quality of our coffee, which has opened up new premium export markets and increased our members' incomes.",
-            "name": "Maria Rodriguez",
-            "role": "Cooperative Leader, Colombia"
-        },
-        "t2": {
-            "quote": "As an institutional lender, our biggest challenge has always been assessing the risk of smallholder farmers. DamDoh's data-driven credit scoring is revolutionary. It's the future of agricultural finance.",
-            "name": "David Ochieng",
-            "role": "Head of Agri-Finance, Kenya"
-        },
-        "t3": {
-            "quote": "The efficiency gains are massive. We find reliable transport partners, manage shipments, and communicate with suppliers all in one place. DamDoh is the operating system for our supply chain.",
-            "name": "Priya Sharma",
-            "role": "Supply Chain Manager, FoodCo"
-        }
+      "title": "Trusted by Leaders Across the Supply Chain",
+      "t1": {
+        "quote": "DamDoh's traceability system has been a game-changer for our cooperative. We can now prove the origin and quality of our coffee, which has opened up new premium export markets and increased our members' incomes.",
+        "name": "Maria Rodriguez",
+        "role": "Cooperative Leader, Colombia"
+      },
+      "t2": {
+        "quote": "As an institutional lender, our biggest challenge has always been assessing the risk of smallholder farmers. DamDoh's data-driven credit scoring is revolutionary. It's the future of agricultural finance.",
+        "name": "David Ochieng",
+        "role": "Head of Agri-Finance, Kenya"
+      },
+      "t3": {
+        "quote": "The efficiency gains are massive. We find reliable transport partners, manage shipments, and communicate with suppliers all in one place. DamDoh is the operating system for our supply chain.",
+        "name": "Priya Sharma",
+        "role": "Supply Chain Manager, FoodCo"
+      }
     },
     "cta": {
       "title": "Join the Future of Agriculture",
@@ -481,5 +481,13 @@
     },
     "addStaffSuccess": "{staffName} has been added as staff.",
     "removeStaffSuccess": "Staff member has been removed."
+  },
+  "ErrorPage": {
+    "title": "Something Went Wrong",
+    "description": "We're sorry, but an unexpected error occurred. You can try to reload the page or go back to the homepage.",
+    "retryButton": "Try Again",
+    "homeButton": "Go to Homepage"
   }
 }
+
+    
