@@ -204,13 +204,11 @@ export const upsertStakeholderProfile = functions.https.onCall(
 
 /**
  * Fetches a user's profile from Firestore by their ID.
- * This is a callable function, safe to be called from the client.
- * @param {any} data The data for the function call, expecting a `uid`.
- * @param {functions.https.CallableContext} context The context of the function call.
+ * This is a helper function for use by other backend functions.
+ * @param {string} uid The user's ID.
  * @return {Promise<any | null>} The user's profile data or null if not found.
  */
-export const getProfileByIdFromDB = functions.https.onCall(async (data, context): Promise<any | null> => {
-    const { uid } = data;
+export async function getProfileByIdFromDB(uid: string): Promise<any | null> {
     if (!uid) {
         return null;
     }
@@ -233,7 +231,7 @@ export const getProfileByIdFromDB = functions.https.onCall(async (data, context)
         console.error("Error fetching user profile by ID:", error);
         return null;
     }
-});
+};
 
 
 /**

@@ -1,4 +1,5 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { checkAuth, getUserDocument } from './utils';
@@ -153,25 +154,18 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
 });
 
 /**
- * Fetches engagement statistics for a given user. This has been optimized to read
- * pre-aggregated counts from user and post documents.
- * @param {object} data The data for the function call.
- * @param {functions.https.CallableContext} context The context of the function call.
+ * Fetches engagement statistics for a given user. This is a helper function for the backend.
+ * @param {string} userId The ID of the user.
  * @return {Promise<object>} A promise that resolves with the user's engagement stats.
  */
-export const getUserEngagementStats = functions.https.onCall(async (data, context) => {
-    checkAuth(context);
-    const { userId } = data;
-     if (!userId) {
-        throw new functions.https.HttpsError('invalid-argument', 'error.userId.required');
+export async function getUserEngagementStats(userId: string): Promise<{ profileViews: number, postLikes: number, postComments: number }> {
+    if (!userId) {
+        throw new Error('A userId must be provided.');
     }
-
     try {
-        // Fetch the user document to get the pre-aggregated view count.
         const userDoc = await getUserDocument(userId);
         const profileViews = userDoc?.data()?.viewCount || 0;
 
-        // Fetch all posts by the user to sum up pre-aggregated like and comment counts.
         const postsQuery = db.collection('posts').where('userId', '==', userId).get();
         const postsSnapshot = await postsQuery;
 
@@ -189,6 +183,22 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
         };
     } catch (error) {
         console.error(`Error fetching engagement stats for user ${userId}:`, error);
-        throw new functions.https.HttpsError('internal', 'error.stats.fetchFailed');
+        throw new Error('Could not fetch engagement statistics.');
+    }
+};
+
+/**
+ * Callable Cloud Function wrapper for getUserEngagementStats.
+ */
+export const getUserEngagementStatsCallable = functions.https.onCall(async (data, context) => {
+    checkAuth(context);
+    const { userId } = data;
+    if (!userId) {
+        throw new functions.https.HttpsError('invalid-argument', 'error.userId.required');
+    }
+    try {
+        return await getUserEngagementStats(userId);
+    } catch (error: any) {
+        throw new functions.https.HttpsError('internal', error.message || 'error.stats.fetchFailed');
     }
 });

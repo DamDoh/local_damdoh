@@ -2,7 +2,7 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getProfileByIdFromDB as getProfileByIdFromDBFunction } from "./user";
+import { getProfileByIdFromDB } from "./user";
 import { getUserEngagementStats } from "./activity";
 
 const db = admin.firestore();
@@ -430,8 +430,7 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
 
     if (appData.applicantId) {
         // Fetch applicant's profile
-        const result = await getProfileByIdFromDBFunction({ uid: appData.applicantId }, context as any);
-        applicantProfile = result as any;
+        applicantProfile = await getProfileByIdFromDB(appData.applicantId);
         
         // Fetch applicant's financial summary
         const financialSummaryResult = await getFinancialSummaryAndTransactions({ userId: appData.applicantId }, context);
@@ -442,8 +441,7 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
         assetData = assetsSnapshot.docs.map(doc => doc.data());
         
         // Fetch applicant's engagement stats
-        const engagementStatsResult = await getUserEngagementStats({ userId: appData.applicantId }, context);
-        engagementData = engagementStatsResult;
+        engagementData = await getUserEngagementStats(appData.applicantId);
     }
     
     // Generate the credit score with all available data
