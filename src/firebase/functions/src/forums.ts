@@ -3,7 +3,8 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getProfileByIdFromDB } from './user';
-import { suggestForumTopics } from '../../src/ai/flows/forum-topic-suggestions';
+import { suggestForumTopics as suggestForumTopicsFlow } from '@/ai/flows/forum-topic-suggestions';
+
 
 const db = admin.firestore();
 
@@ -22,7 +23,7 @@ export const getForumTopicSuggestions = functions.https.onCall(async (data, cont
         throw new functions.https.HttpsError('invalid-argument', 'Existing topics are required.');
     }
     try {
-        const suggestions = await suggestForumTopics({ existingTopics, language });
+        const suggestions = await suggestForumTopicsFlow({ existingTopics, language });
         return suggestions;
     } catch (error) {
         console.error("Error calling suggestForumTopics flow:", error);
@@ -109,7 +110,7 @@ export const createForumPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Topic ID, title, and content are required.');
     }
     
-    const userProfile = await getProfileByIdFromDB({ uid }, {auth: context.auth});
+    const userProfile = await getProfileByIdFromDB(uid);
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
     }
@@ -188,7 +189,7 @@ export const addReplyToPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Topic ID, post ID, and content are required.');
     }
     
-    const userProfile = await getProfileByIdFromDB({ uid }, {auth: context.auth});
+    const userProfile = await getProfileByIdFromDB(uid);
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
     }

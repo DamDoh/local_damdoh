@@ -1,8 +1,8 @@
 
 
-// This file is now deprecated and its contents have been moved.
-// - Core user functions (onUserCreate, upsertStakeholderProfile) are in `user.ts`.
-// - Activity-related functions (logProfileView, getUserActivity) are in `activity.ts`.
-// - Helper functions (getRole, getUserDocument) are in `utils.ts`.
-// This file is kept temporarily to prevent breaking changes but should be removed in the future.
+// This file is deprecated. Its contents have been moved to more specific modules.
+// - User management functions are in `user.ts`.
+// - Activity-related functions are in `activity.ts`.
+// - Helper functions are in `utils.ts`.
+// This file is kept temporarily to prevent build errors from old imports but should be removed in a future cleanup.
 export {};

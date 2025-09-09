@@ -134,7 +134,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
 
     const userProfile = await getProfileByIdFromDB(uid);
     
-    if (!userProfile) {
+     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
 
@@ -218,7 +218,6 @@ export const voteOnPoll = functions.https.onCall(async (data, context) => {
             throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionInvalid');
         }
 
-        // Atomically update the vote count for the specific option
         const newPollOptions = [...postData.pollOptions];
         newPollOptions[optionIndex].votes = (newPollOptions[optionIndex].votes || 0) + 1;
         

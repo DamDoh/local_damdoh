@@ -239,14 +239,7 @@ export const initiatePayment = functions.https.onCall(async (data, context) => {
 // Callable function for users to log manual financial transactions
 export const logFinancialTransaction = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "error.unauthenticated",
-      );
-    }
-
-    const callerUid = context.auth.uid;
+    const callerUid = checkAuth(context);
     const {type, amount, currency, description, category, date } = data;
 
     const validTypes = ["income", "expense"];

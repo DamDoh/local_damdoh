@@ -38,41 +38,6 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
 });
 
 /**
- * Firestore trigger that listens for new documents in the `profile_views` collection.
- * It atomically increments the `viewCount` on the corresponding user's profile.
- * This is the new, scalable way to handle view counts.
- */
-export const onNewProfileView = functions.firestore
-    .document('profile_views/{viewId}')
-    .onCreate(async (snap, context) => {
-        const viewData = snap.data();
-        if (!viewData) {
-            console.error("View log created with no data:", context.params.viewId);
-            return;
-        }
-
-        const { viewedId } = viewData;
-        
-        if (!viewedId) {
-            console.error("View log is missing 'viewedId':", context.params.viewId);
-            return;
-        }
-        
-        const viewedUserRef = db.collection('users').doc(viewedId);
-        
-        try {
-            // Atomically increment the view count on the user's profile.
-            await viewedUserRef.update({
-                viewCount: admin.firestore.FieldValue.increment(1)
-            });
-            console.log(`Successfully incremented view count for user ${viewedId}.`);
-        } catch (error) {
-            console.error(`Failed to increment view count for user ${viewedId}:`, error);
-        }
-    });
-
-
-/**
  * Fetches recent activity for a given user.
  * @param {any} data The data for the function call.
  * @param {functions.https.CallableContext} context The context of the function call.

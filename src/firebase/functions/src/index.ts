@@ -18,7 +18,7 @@ if (admin.apps.length === 0) {
   admin.initializeApp();
 }
 
-// Import all modules
+// Group functions by module for cleaner organization
 import * as activityFunctions from "./activity";
 import * as agriEventsFunctions from "./agri-events";
 import * as agroTourismFunctions from "./agro-tourism";
