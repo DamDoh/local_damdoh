@@ -35,11 +35,14 @@ export const getWorkers = functions.https.onCall(async (data, context) => {
   const farmerId = checkAuth(context);
   const workersSnapshot = await db.collection(`users/${farmerId}/workers`).orderBy('name').get();
   
-  const workers = workersSnapshot.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data(),
-    createdAt: doc.data().createdAt.toDate().toISOString(),
-  }));
+  const workers = workersSnapshot.docs.map(doc => {
+    const workerData = doc.data();
+    return {
+        id: doc.id,
+        ...workerData,
+        createdAt: (workerData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+    }
+  });
 
   return { workers };
 });
@@ -179,12 +182,13 @@ export const getWorkerDetails = functions.https.onCall(async (data, context) => 
             createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         }
     });
-
+    
+    const workerData = workerSnap.data();
     return {
         profile: { 
             id: workerSnap.id, 
-            ...workerSnap.data(),
-            createdAt: workerSnap.data()?.createdAt.toDate().toISOString(),
+            ...workerData,
+            createdAt: (workerData?.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         },
         workLogs,
         payments
