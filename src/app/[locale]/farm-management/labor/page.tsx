@@ -1,13 +1,13 @@
 
-
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Users, PlusCircle, ArrowLeft, Loader2, DollarSign, Clock, Eye } from "lucide-react";
+import { Users, PlusCircle, ArrowLeft, Loader2, DollarSign, Clock, Eye, WifiOff, Save } from "lucide-react";
 import Link from 'next/link';
+import { useParams, useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { getFunctions, httpsCallable } from 'firebase/functions';
@@ -23,9 +23,9 @@ import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useTranslations } from 'next-intl';
 import type { Worker, WorkLog } from '@/lib/types';
-import { useRouter } from '@/navigation';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Checkbox } from '@/components/ui/checkbox';
+import { useOfflineSync } from '@/hooks/useOfflineSync';
 
 
 export default function LaborManagementPage() {
@@ -50,6 +50,8 @@ export default function LaborManagementPage() {
     const [paymentDate, setPaymentDate] = useState<Date | undefined>(new Date());
     const [unpaidLogs, setUnpaidLogs] = useState<WorkLog[]>([]);
     const [selectedLogIds, setSelectedLogIds] = useState<string[]>([]);
+    
+    const { isOnline, addActionToQueue } = useOfflineSync();
 
     const functions = getFunctions(firebaseApp);
     const getWorkersCallable = useMemo(() => httpsCallable(functions, 'labor-getWorkers'), [functions]);
@@ -100,8 +102,13 @@ export default function LaborManagementPage() {
     const handleLogHours = async () => {
         if (!selectedWorker || !hours || !logDate) return;
         setIsSubmitting(true);
+        const payload = { workerId: selectedWorker.id, hours, date: logDate.toISOString(), taskDescription: task };
         try {
-            await logHoursCallable({ workerId: selectedWorker.id, hours, date: logDate.toISOString(), taskDescription: task });
+            if (isOnline) {
+                await logHoursCallable(payload);
+            } else {
+                await addActionToQueue({ operation: 'logHours', collectionPath: 'work_logs', documentId: `worklog-${Date.now()}`, payload });
+            }
             toast({ title: t('toast.hoursLogged') });
             setIsLogHoursOpen(false);
             setHours("");
@@ -117,14 +124,19 @@ export default function LaborManagementPage() {
     const handleLogPayment = async () => {
         if (!selectedWorker || !paymentAmount || !paymentDate) return;
         setIsSubmitting(true);
+        const payload = { 
+            workerId: selectedWorker.id, 
+            amount: parseFloat(paymentAmount), 
+            date: paymentDate.toISOString(), 
+            currency: 'USD',
+            workLogIds: selectedLogIds
+        };
         try {
-            await logPaymentCallable({ 
-                workerId: selectedWorker.id, 
-                amount: parseFloat(paymentAmount), 
-                date: paymentDate.toISOString(), 
-                currency: 'USD',
-                workLogIds: selectedLogIds
-            });
+            if (isOnline) {
+                await logPaymentCallable(payload);
+            } else {
+                await addActionToQueue({ operation: 'logPayment', collectionPath: 'payments', documentId: `payment-${Date.now()}`, payload });
+            }
             toast({ title: t('toast.paymentLoggedTitle'), description: t('toast.paymentLoggedDescription') });
             setIsLogPaymentOpen(false);
             setPaymentAmount("");
@@ -231,7 +243,12 @@ export default function LaborManagementPage() {
                         </div>
                          <div className="space-y-2"><Label htmlFor="task">{t('taskDescription')}</Label><Input id="task" value={task} onChange={e => setTask(e.target.value)} /></div>
                     </div>
-                    <Button onClick={handleLogHours} disabled={isSubmitting}>{isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}<Clock className="mr-2 h-4 w-4"/>{t('logHours')}</Button>
+                     <DialogFooter>
+                        <Button onClick={handleLogHours} disabled={isSubmitting}>
+                            {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : isOnline ? <Save className="mr-2 h-4 w-4"/> : <WifiOff className="mr-2 h-4 w-4"/>}
+                            {isSubmitting ? t('savingButton') : (isOnline ? t('logButton') : t('logOfflineButton'))}
+                        </Button>
+                    </DialogFooter>
                 </DialogContent>
             </Dialog>
 
@@ -281,9 +298,8 @@ export default function LaborManagementPage() {
                     </div>
                      <DialogFooter>
                         <Button onClick={handleLogPayment} disabled={isSubmitting || !paymentAmount}>
-                            {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
-                            <DollarSign className="mr-2 h-4 w-4" />
-                            {t('logPayment')}
+                            {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : isOnline ? <Save className="mr-2 h-4 w-4"/> : <WifiOff className="mr-2 h-4 w-4"/>}
+                             {isSubmitting ? t('savingButton') : (isOnline ? t('logButton') : t('logOfflineButton'))}
                         </Button>
                      </DialogFooter>
                 </DialogContent>
@@ -291,5 +307,3 @@ export default function LaborManagementPage() {
         </div>
     );
 }
-
-    

@@ -81,30 +81,35 @@ export default function LogObservationPage() {
     setIsSubmitting(true);
     let imageUrl: string | undefined = undefined;
     let aiDiagnosis: any = null;
+    let photoDataUri: string | undefined = undefined;
 
     try {
       if (data.imageFile) {
         toast({ title: t('toast.uploading'), description: t('toast.uploadingDescription') });
-        imageUrl = await uploadFileAndGetURL(data.imageFile, `observations/${cropId}`);
         
-        toast({ title: t('toast.aiAnalyzing'), description: t('toast.aiDescription') });
-        
-        // Convert file to data URI for AI analysis
+        // Convert file to data URI for AI analysis and potential offline queuing
         const reader = new FileReader();
         const dataUriPromise = new Promise<string>((resolve, reject) => {
             reader.onloadend = () => resolve(reader.result as string);
             reader.onerror = reject;
         });
         reader.readAsDataURL(data.imageFile);
-        const photoDataUri = await dataUriPromise;
+        photoDataUri = await dataUriPromise;
         
-        aiDiagnosis = await askFarmingAssistant({
-            query: data.details,
-            photoDataUri: photoDataUri,
-            language: locale,
-        });
+        // If online, upload to storage immediately
+        if (isOnline) {
+          imageUrl = await uploadFileAndGetURL(data.imageFile, `observations/${cropId}`);
+        }
 
-        toast({ title: t('toast.aiComplete'), description: t('toast.aiCompleteDescription') });
+        if (isOnline) {
+          toast({ title: t('toast.aiAnalyzing'), description: t('toast.aiDescription') });
+          aiDiagnosis = await askFarmingAssistant({
+              query: data.details,
+              photoDataUri: photoDataUri,
+              language: locale,
+          });
+          toast({ title: t('toast.aiComplete'), description: t('toast.aiCompleteDescription') });
+        }
       }
 
       const payload = {
@@ -113,6 +118,7 @@ export default function LogObservationPage() {
         observationDate: data.observationDate.toISOString(),
         details: data.details,
         mediaUrls: imageUrl ? [imageUrl] : [],
+        photoDataUri: photoDataUri, // Include for offline sync
         actorVtiId: user.uid,
         geoLocation: null,
         aiAnalysis: aiDiagnosis,
@@ -121,7 +127,6 @@ export default function LogObservationPage() {
       if (isOnline) {
         await handleObservationEvent(payload);
         toast({ title: t('toast.success'), description: t('toast.successDescription') });
-        router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);
       } else {
         await addActionToQueue({
             operation: 'handleObservationEvent',
@@ -130,8 +135,8 @@ export default function LogObservationPage() {
             payload: payload,
         });
         toast({ title: t('toast.queued.title'), description: t('toast.queued.description') });
-        router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);
       }
+      router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);
 
     } catch (error: any) {
       console.error("Error logging observation:", error);

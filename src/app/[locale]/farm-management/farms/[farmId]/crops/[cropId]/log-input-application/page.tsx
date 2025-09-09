@@ -91,26 +91,21 @@ export default function LogInputApplicationPage() {
       geoLocation: null,
     };
     
-    if (!isOnline) {
-      await addActionToQueue({
-        operation: 'handleInputApplicationEvent',
-        collectionPath: 'traceability_events',
-        documentId: `input-${Date.now()}`,
-        payload: payload
-      });
-      router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
-      await handleInputApplicationEvent(payload);
-
+      if (isOnline) {
+        await handleInputApplicationEvent(payload);
+      } else {
+        await addActionToQueue({
+          operation: 'handleInputApplicationEvent',
+          collectionPath: 'traceability_events',
+          documentId: `input-${Date.now()}`,
+          payload: payload
+        });
+      }
       toast({
         title: t('toast.success'),
         description: t('toast.description'),
       });
-
       router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);
     } catch (error: any) {
       console.error("Error logging input application:", error);
@@ -265,8 +260,11 @@ export default function LogInputApplicationPage() {
               />
 
               <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
-                {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                {isOnline ? (
+                {isSubmitting ? (
+                    <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('savingButton')}
+                    </>
+                ) : isOnline ? (
                     <><Save className="mr-2 h-4 w-4" /> {t('saveButton')}</>
                 ) : (
                     <><WifiOff className="mr-2 h-4 w-4" /> {t('saveOfflineButton')}</>
