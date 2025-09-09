@@ -1,5 +1,4 @@
 
-
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getUserDocument } from "./utils";
@@ -101,6 +100,69 @@ export const onNewConnectionRequest = functions.firestore
 
         await createAndSendNotification(requestData.recipientId, notificationPayload);
     });
+
+/**
+ * Firestore trigger to update a post's like count and send a notification.
+ */
+export const onPostLike = functions.firestore
+  .document('posts/{postId}/likes/{userId}')
+  .onWrite(async (change, context) => {
+    const { postId, userId } = context.params;
+    const postRef = db.collection('posts').doc(postId);
+
+    if (change.after.exists && !change.before.exists) { // Document created (like)
+      await postRef.update({ likesCount: admin.firestore.FieldValue.increment(1) });
+      const postDoc = await postRef.get();
+      const postData = postDoc.data();
+      if (!postData) return;
+
+      const likerProfile = await db.collection('users').doc(userId).get();
+      const likerName = likerProfile.data()?.displayName || 'Someone';
+
+      await createAndSendNotification(postData.userId, {
+        type: 'like',
+        title_en: `${likerName} liked your post`,
+        body_en: `Your post "${postData.content.substring(0, 50)}..." has a new like.`,
+        actorId: userId,
+        linkedEntity: { collection: 'posts', documentId: postId }
+      });
+
+    } else if (!change.after.exists && change.before.exists) { // Document deleted (unlike)
+      await postRef.update({ likesCount: admin.firestore.FieldValue.increment(-1) });
+    }
+  });
+
+
+/**
+ * Firestore trigger to update a post's comment count and send a notification.
+ */
+export const onPostComment = functions.firestore
+  .document('posts/{postId}/comments/{commentId}')
+  .onWrite(async (change, context) => {
+    const { postId } = context.params;
+    const postRef = db.collection('posts').doc(postId);
+
+    if (change.after.exists && !change.before.exists) { // Comment created
+      await postRef.update({ commentsCount: admin.firestore.FieldValue.increment(1) });
+      const commentData = change.after.data();
+      if (!commentData) return;
+
+      const postDoc = await postRef.get();
+      const postData = postDoc.data();
+      if (!postData) return;
+
+      await createAndSendNotification(postData.userId, {
+        type: 'comment',
+        title_en: `${commentData.userName} commented on your post`,
+        body_en: `"${commentData.content.substring(0, 50)}..."`,
+        actorId: commentData.userId,
+        linkedEntity: { collection: 'posts', documentId: postId }
+      });
+    } else if (!change.after.exists && change.before.exists) { // Comment deleted
+        await postRef.update({ commentsCount: admin.firestore.FieldValue.increment(-1) });
+    }
+  });
+
 
 /**
  * Firestore trigger for new marketplace orders.
