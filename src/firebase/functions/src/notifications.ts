@@ -80,12 +80,6 @@ async function createAndSendNotification(
 }
 
 /**
- * Firestore trigger for new profile views.
- * The `onNewProfileView` trigger is now in `user.ts` along with other user-related logic.
- */
-
-
-/**
  * Firestore trigger for new connection requests.
  */
 export const onNewConnectionRequest = functions.firestore
@@ -348,5 +342,3 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
     console.log("Daily event reminder check finished.");
     return null;
   });
-
-    

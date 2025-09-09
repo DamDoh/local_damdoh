@@ -1,11 +1,11 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getProfileByIdFromDB } from './user';
+import { getProfileByIdFromDB as getProfileByIdFromDBCallable } from './user';
 import { checkAuth } from "./utils";
 
 const db = admin.firestore();
-
 
 // =================================================================
 // BOOKING MANAGEMENT
@@ -19,7 +19,9 @@ export const bookAgroTourismService = functions.https.onCall(async (data, contex
     const itemRef = db.collection('marketplaceItems').doc(itemId);
     const bookingRef = itemRef.collection('bookings').doc(uid);
     
-    const userProfileDoc = await getProfileByIdFromDB(uid);
+    // Correctly call the getProfileByIdFromDB function by wrapping the payload
+    const userProfileResult = await getProfileByIdFromDBCallable({ uid });
+    const userProfileDoc = userProfileResult; // The result is the profile object itself
     
     if (!userProfileDoc) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
@@ -90,12 +92,12 @@ export const checkInAgroTourismBooking = functions.https.onCall(async (data, con
     return db.runTransaction(async (transaction) => {
         const bookingDoc = await transaction.get(bookingRef);
         if (!bookingDoc.exists) {
-            throw new functions.https.HttpsError("not-found", 'agroTourism.checkInError.notRegistered', { guestName });
+            throw new functions.https.HttpsError("not-found", `agroTourism.checkInError.notRegistered`, { guestName });
         }
         
         const bookingData = bookingDoc.data()!;
         if (bookingData.checkedIn) {
-            throw new functions.https.HttpsError("already-exists", 'agroTourism.checkInError.alreadyCheckedIn', { guestName });
+            throw new functions.https.HttpsError("already-exists", `agroTourism.checkInError.alreadyCheckedIn`, { guestName });
         }
 
         transaction.update(bookingRef, {
