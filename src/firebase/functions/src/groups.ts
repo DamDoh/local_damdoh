@@ -8,7 +8,6 @@ import { checkAuth } from './utils';
 
 const db = admin.firestore();
 
-
 export const createGroup = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { name, description, isPublic } = data;
