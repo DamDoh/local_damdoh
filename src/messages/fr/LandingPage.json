@@ -1,0 +1,79 @@
+
+{
+  "hero": {
+    "title": "Donnez de la puissance à votre ferme avec des informations intelligentes",
+    "subtitle": "Tirez parti de l'IA pour diagnostiquer les maladies des cultures, obtenir des recommandations personnalisées et optimiser votre rendement. L'avenir de l'agriculture est là.",
+    "getStartedButton": "Commencer gratuitement"
+  },
+  "featured": {
+      "title": "COMME PRÉSENTÉ DANS"
+  },
+  "howItWorks": {
+      "title": "Comment ça marche",
+      "subtitle": "Un processus simple en trois étapes pour vous lancer dans votre voyage vers une agriculture plus intelligente.",
+      "step1": {
+          "title": "Télécharger une image",
+          "description": "Prenez une photo de votre culture. Notre IA l'analyse en la comparant à une vaste base de données sur les maladies et les ravageurs des plantes."
+      },
+      "step2": {
+          "title": "Obtenir un diagnostic instantané",
+          "description": "Recevez un diagnostic immédiat et précis et découvrez l'impact potentiel sur vos cultures."
+      },
+      "step3": {
+          "title": "Recevoir des conseils pratiques",
+          "description": "Obtenez des plans de traitement et des mesures préventives durables et personnalisés pour protéger votre récolte."
+      }
+  },
+  "stopGuessing": {
+      "title": "Arrêtez de deviner, commencez à cultiver",
+      "description": "Notre plateforme transforme vos pratiques agricoles de réactives à proactives. Prenez des décisions basées sur les données qui permettent d'économiser de l'argent, d'améliorer la santé des cultures et d'augmenter vos bénéfices.",
+      "p1_title": "Réduisez les coûts des intrants",
+      "p1_desc": "Appliquez le bon traitement au bon moment, en minimisant les déchets et en maximisant l'efficacité.",
+      "p2_title": "Augmentez le rendement et la qualité",
+      "p2_desc": "La détection précoce et les recommandations optimisées conduisent à des cultures plus saines et à de meilleures récoltes.",
+      "imageAlt": "Un agriculteur examinant une feuille de plante saine avec un smartphone."
+  },
+  "features": {
+    "title": "Une agriculture plus intelligente, simplifiée",
+    "subtitle": "Notre suite d'outils alimentés par l'IA est conçue pour être intuitive et percutante, vous donnant un agronome expert dans votre poche.",
+    "diagnostics": {
+      "title": "Diagnostics alimentés par l'IA",
+      "description": "Prenez une photo d'une plante malade et obtenez un diagnostic instantané des maladies potentielles, des ravageurs ou des carences nutritionnelles."
+    },
+    "insights": {
+      "title": "Informations basées sur les données",
+      "description": "Suivez les performances de votre ferme au fil du temps, analysez les tendances et débloquez des informations pour améliorer vos opérations saison après saison."
+    },
+    "recommendations": {
+      "title": "Recommandations intelligentes",
+      "description": "Recevez des plans de traitement et de prévention personnalisés et durables, adaptés à votre culture et à votre diagnostic spécifiques."
+    },
+    "assistant": {
+      "title": "Assistant IA 24/7",
+      "description": "Posez des questions sur les techniques agricoles, les prix du marché ou les pratiques durables et obtenez des réponses instantanées de niveau expert."
+    }
+  },
+  "testimonials": {
+      "title": "Approuvé par les agriculteurs et les partenaires du monde entier",
+      "t1": {
+          "quote": "Les diagnostics IA de DamDoh ont sauvé notre récolte de tomates du mildiou. Nous avons obtenu un diagnostic précis en quelques minutes et le traitement biologique recommandé a fait des merveilles. C'est un changement radical pour les petits exploitants comme nous.",
+          "name": "Amina Bello",
+          "role": "Agricultrice biologique, Nigéria"
+      },
+      "t2": {
+          "quote": "En tant qu'exportateur, la traçabilité n'est pas négociable. DamDoh fournit un journal transparent et vérifiable pour nos expéditions de café, donnant à nos acheteurs internationaux la confiance dont ils ont besoin. Cela a ouvert de nouveaux marchés haut de gamme pour nos coopératives partenaires.",
+          "name": "Carlos Gomez",
+          "role": "Exportateur de café, Colombie"
+      },
+      "t3": {
+          "quote": "La capacité de la plateforme à nous mettre en relation avec des coopératives d'agriculteurs vérifiées a rationalisé notre processus d'approvisionnement. Nous avons réduit nos risques et amélioré considérablement la qualité de notre chaîne d'approvisionnement.",
+          "name": "Priya Sharma",
+          "role": "Responsable de la chaîne d'approvisionnement, FoodCo"
+      }
+  },
+  "cta": {
+    "title": "Prêt à cultiver plus intelligemment ?",
+    "subtitle": "Rejoignez des milliers d'agriculteurs qui utilisent DamDoh pour construire un avenir plus rentable et durable.",
+    "button": "Inscrivez-vous gratuitement"
+  }
+}

@@ -9,8 +9,8 @@ export default getRequestConfig(async ({locale}) => {
  
   let messages;
   try {
-    // The `default` is important here because of how JSON files are imported
-    messages = (await import(`./messages/${locale}.json`)).default;
+    // The new structure loads all JSON files from the locale's directory.
+    messages = (await import(`./messages/${locale}`)).default;
   } catch (error) {
     // This will trigger a 404 if the message file for a valid locale is not found
     // This prevents a server crash if a file is missing.

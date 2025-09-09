@@ -1,0 +1,19 @@
+
+{
+  "error": "Error",
+  "success": "Success",
+  "loading": "Loading...",
+  "noData": "No data available.",
+  "save": "Save",
+  "cancel": "Cancel",
+  "viewDetails": "View Details",
+  "edit": "Edit",
+  "delete": "Delete",
+  "back": "Back",
+  "submit": "Submit",
+  "yes": "Yes",
+  "no": "No",
+  "confirm": "Confirm",
+  "close": "Close",
+  "optional": "Optional"
+}
