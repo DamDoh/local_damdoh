@@ -22,9 +22,7 @@ export const createGroup = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'Group name and description are required.');
     }
 
-    const userProfileResult = await getProfileByIdFromDB.run({ uid }, { auth: context.auth });
-    const userProfile = userProfileResult.data as UserProfile;
-
+    const userProfile = await getProfileByIdFromDB({ uid }, context);
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
     }
@@ -130,8 +128,7 @@ const modifyMembership = async (groupId: string, userId: string, join: boolean, 
                 throw new functions.https.HttpsError('already-exists', 'You are already a member of this group.');
             }
             
-            const userProfileResult = await getProfileByIdFromDB.run({ uid: userId }, { auth: context.auth });
-            const userProfile = userProfileResult.data as UserProfile;
+            const userProfile = await getProfileByIdFromDB({ uid: userId }, context);
              if (!userProfile) {
                 throw new functions.https.HttpsError('not-found', 'Your user profile could not be found.');
             }
@@ -187,9 +184,7 @@ export const createGroupPost = functions.https.onCall(async (data, context) => {
     const groupRef = db.collection('groups').doc(groupId);
     const timestamp = admin.firestore.FieldValue.serverTimestamp();
 
-    const userProfileResult = await getProfileByIdFromDB.run({ uid }, { auth: context.auth });
-    const userProfile = userProfileResult.data as UserProfile;
-
+    const userProfile = await getProfileByIdFromDB({ uid }, context);
 
     const batch = db.batch();
 
@@ -258,9 +253,7 @@ export const addGroupPostReply = functions.https.onCall(async (data, context) =>
     const postRef = db.collection(`groups/${groupId}/posts`).doc(postId);
 
     const batch = db.batch();
-    const userProfileResult = await getProfileByIdFromDB.run({ uid }, { auth: context.auth });
-    const userProfile = userProfileResult.data as UserProfile;
-
+    const userProfile = await getProfileByIdFromDB({ uid }, context);
 
     batch.set(replyRef, {
         content,
@@ -317,8 +310,7 @@ export const requestToJoinGroup = functions.https.onCall(async (data, context) =
         throw new functions.https.HttpsError('already-exists', 'You have already sent a request to join this group.');
     }
     
-    const userProfileResult = await getProfileByIdFromDB.run({ uid: requesterId }, { auth: context.auth });
-    const userProfile = userProfileResult.data as UserProfile;
+    const userProfile = await getProfileByIdFromDB({ uid: requesterId }, context);
 
     await requestRef.set({
         requesterId,

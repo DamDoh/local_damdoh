@@ -25,8 +25,8 @@ export const bookAgroTourismService = functions.https.onCall(async (data, contex
     const itemRef = db.collection('marketplaceItems').doc(itemId);
     const bookingRef = itemRef.collection('bookings').doc(uid);
     
-    const userProfileResult = await getProfileByIdFromDB.run({ uid }, { auth: context.auth });
-    const userProfileDoc = userProfileResult.data as any;
+    // Use the direct function call since we are on the backend
+    const userProfileDoc = await getProfileByIdFromDB({ uid }, { auth: context.auth });
     
     if (!userProfileDoc) {
         throw new functions.https.HttpsError('not-found', 'User profile not found.');
@@ -213,5 +213,3 @@ export const getAgroTourismBookings = functions.https.onCall(async (data, contex
 
     return { bookings: bookingsList };
 });
-
-    

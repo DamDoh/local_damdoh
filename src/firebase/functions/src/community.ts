@@ -32,8 +32,7 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionsInvalid');
     }
 
-    const userProfileResult = await getProfileByIdFromDB.run({ uid }, { auth: context.auth });
-    const userProfile = userProfileResult.data as any;
+    const userProfile = await getProfileByIdFromDB({ uid }, context);
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -79,7 +78,6 @@ export const deletePost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('permission-denied', 'error.permissionDenied');
     }
     
-    // Perform a cascade delete of subcollections before deleting the post itself.
     const likesPath = `posts/${postId}/likes`;
     const commentsPath = `posts/${postId}/comments`;
     const votesPath = `posts/${postId}/votes`;
@@ -94,11 +92,7 @@ export const deletePost = functions.https.onCall(async (data, context) => {
     
     console.log(`Subcollections deleted. Deleting main post document ${postId}.`);
 
-    // Finally, delete the post document itself
     await postRef.delete();
-
-    // Note: Deleting associated media from Cloud Storage would require another step,
-    // often handled by a separate onFinalize trigger or by storing the full GCS path.
 
     return { success: true, message: 'Post and all associated data deleted successfully.' };
 });
@@ -107,16 +101,22 @@ export const likePost = functions.https.onCall(async (data, context) => {
     const uid = checkAuth(context);
     const { postId } = data;
 
-    const likeRef = db.collection(`posts/${postId}/likes`).doc(uid);
-    const likeDoc = await likeRef.get();
+    const postRef = db.collection('posts').doc(postId);
+    const likeRef = postRef.collection('likes').doc(uid);
     
-    if (likeDoc.exists) {
-        await likeRef.delete();
-        return { success: true, action: 'unliked' };
-    } else {
-        await likeRef.set({ createdAt: admin.firestore.FieldValue.serverTimestamp() });
-        return { success: true, action: 'liked' };
-    }
+    return db.runTransaction(async (transaction) => {
+        const likeDoc = await transaction.get(likeRef);
+        
+        if (likeDoc.exists) {
+            transaction.delete(likeRef);
+            transaction.update(postRef, { likesCount: admin.firestore.FieldValue.increment(-1) });
+            return { success: true, action: 'unliked' };
+        } else {
+            transaction.set(likeRef, { createdAt: admin.firestore.FieldValue.serverTimestamp() });
+            transaction.update(postRef, { likesCount: admin.firestore.FieldValue.increment(1) });
+            return { success: true, action: 'liked' };
+        }
+    });
 });
 
 
@@ -131,9 +131,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
     const postRef = db.collection('posts').doc(postId);
     const commentRef = postRef.collection('comments').doc();
 
-    const userProfileResult = await getProfileByIdFromDB.run({ uid }, { auth: context.auth });
-    const userProfile = userProfileResult.data as any;
-    
+    const userProfile = await getProfileByIdFromDB({ uid }, context);
      if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
