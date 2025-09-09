@@ -15,7 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 70 60% 12%;
 
-    --primary: 120 27% 65%; /* #8FBC8F - Earthy Green */
+    --primary: 90 55% 50%; /* #66BB6A - Vibrant Green from image */
     --primary-foreground: 210 40% 98%; /* Almost white text on primary */
 
     --secondary: 40 100% 49%; /* #DAA520 - Warm Gold (used for some highlights) */
@@ -32,7 +32,7 @@
 
     --border: 60 15% 85%; /* #DCDCD1 - Light border */
     --input: 60 50% 98%; /* #FDFDFB - Very light input background */
-    --ring: 120 27% 65%; /* #8FBC8F - Ring color matches primary */
+    --ring: 90 55% 55%; /* Ring color matches primary */
 
     --chart-1: 120 27% 65%;
     --chart-2: 28 58% 66%;
@@ -53,7 +53,7 @@
     --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 120 27% 55%; /* #7AAB7A - Muted dark green */
+    --primary: 90 55% 50%; /* #66BB6A - Vibrant Green */
     --primary-foreground: 210 40% 98%;
     
     --secondary: 28 58% 56%; /* #C28E5F - Muted dark gold */
@@ -70,7 +70,7 @@
     
     --border: 222 47% 18%;
     --input: 222 47% 16%;
-    --ring: 120 27% 55%;
+    --ring: 90 55% 55%;
     
     --chart-1: 120 27% 55%;
     --chart-2: 28 58% 56%;

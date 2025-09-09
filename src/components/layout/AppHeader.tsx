@@ -12,7 +12,13 @@ import {
   ShoppingCart,
   DollarSign,
   Bell,
-  MessageSquare
+  MessageSquare,
+  Home,
+  Users,
+  Sprout,
+  Briefcase,
+  Fingerprint,
+  Wallet
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { UserAvatar } from "@/components/UserAvatar";
@@ -27,17 +33,8 @@ import { UniversalSearchModal } from './UniversalSearchModal';
 import { Skeleton } from "@/components/ui/skeleton";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { AppSidebarNav } from './AppSidebarNav';
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
-import { APP_NAME } from '@/lib/constants';
 import { HeaderThemeToggle } from '../HeaderThemeToggle';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { SignInModal } from '@/components/auth/SignInModal';
-import { SignUpModal } from '@/components/auth/SignUpModal';
+import { cn } from '@/lib/utils';
 
 
 function HeaderSkeleton() {
@@ -65,9 +62,11 @@ function HeaderSkeleton() {
 
 export function AppHeader() {
   const t = useTranslations('AppHeader');
+  const pathname = usePathname();
   const { user, loading: authLoading } = useAuth(); 
 
   const [isMounted, setIsMounted] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -85,6 +84,16 @@ export function AppHeader() {
       setIsSearchModalOpen(true);
     }
   };
+  
+  const mainNavItems = [
+    { href: "/", icon: Home, label: t('home') },
+    { href: "/network", icon: Users, label: t('network') },
+    { href: "/farm-management", icon: Sprout, label: t('farmMgmt') },
+    { href: "/marketplace", icon: ShoppingCart, label: t('marketplace') },
+    { href: "/wallet", icon: Wallet, label: t('wallet') },
+    { href: "/ai-assistant", icon: Briefcase, label: t('aiAssistant') },
+    { href: "/notifications", icon: Bell, label: t('notifications') }
+  ];
 
 
   if (!isMounted) {
@@ -93,38 +102,64 @@ export function AppHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-30 w-full border-b bg-background/95 backdrop-blur-sm print:hidden">
+      <header className="sticky top-0 z-30 w-full border-b bg-primary text-primary-foreground print:hidden">
         {/* Desktop Header */}
-        <div className="container mx-auto h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto hidden h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex h-full items-center gap-6">
-             <Logo iconSize={32} textSize="text-2xl" className="text-foreground" />
-             <div className="h-full w-px bg-border"></div>
+             <Logo iconSize={32} textSize="text-2xl" className="text-white" />
+             <div className="h-full w-px bg-white/20"></div>
              {user && (
-                <form onSubmit={handleSearchSubmit} className="relative w-full max-w-lg">
-                    <SearchIconLucide className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input name="search" placeholder={t('searchPlaceholder')} className="pl-9 bg-muted border-none focus-visible:ring-primary"/>
+                <form onSubmit={handleSearchSubmit} className="relative w-full max-w-md">
+                    <SearchIconLucide className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary-foreground/70" />
+                    <Input name="search" placeholder={t('searchPlaceholder')} className="pl-9 bg-white/20 border-none placeholder:text-primary-foreground/70 focus-visible:ring-primary-foreground text-primary-foreground"/>
                 </form>
              )}
           </div>
 
           <nav className="flex items-center space-x-1 h-full">
+              {user && (
+                  <div className="flex items-center gap-1">
+                      {mainNavItems.map(item => {
+                          const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+                          return (
+                              <Link key={item.label} href={item.href} className={cn("flex flex-col items-center justify-center px-2 pt-1 h-full border-b-2 text-xs font-medium transition-colors", isActive ? "border-white text-white" : "border-transparent text-white/70 hover:text-white hover:border-white/50")}>
+                                  <item.icon className="h-5 w-5 mb-0.5" />
+                                  {item.label}
+                              </Link>
+                          )
+                      })}
+                  </div>
+              )}
+            <div className="h-2/3 w-px bg-white/20 mx-3"></div>
             <LanguageSwitcher />
             <HeaderThemeToggle />
               {authLoading ? (
-                <div className="h-9 w-9 bg-muted rounded-full animate-pulse ml-2"></div>
+                <div className="h-9 w-9 bg-white/20 rounded-full animate-pulse ml-2"></div>
               ) : user ? (
-                 <div className="flex items-center gap-1">
-                    <Button variant="ghost" size="icon" asChild><Link href="/notifications"><Bell className="h-5 w-5" /></Link></Button>
-                    <Button variant="ghost" size="icon" asChild><Link href="/messages"><MessageSquare className="h-5 w-5" /></Link></Button>
-                    <UserAvatar name={user.displayName || user.email} email={user.email} imageUrl={user.photoURL} />
-                 </div>
+                 <UserAvatar name={user.displayName || user.email} email={user.email} imageUrl={user.photoURL} />
               ) : (
                  <div className="flex items-center gap-1 pl-2">
-                    <Button variant="ghost" asChild><Link href="/auth/signin"><LogIn className="mr-2 h-4 w-4" />{t('signIn')}</Link></Button>
-                    <Button asChild><Link href="/auth/signup"><UserPlus className="mr-2 h-4 w-4" />{t('signUp')}</Link></Button>
+                    <Button variant="ghost" asChild className="hover:bg-white/10"><Link href="/auth/signin">{t('signIn')}</Link></Button>
+                    <Button asChild variant="secondary" className="bg-white/90 text-primary hover:bg-white"><Link href="/auth/signup">{t('signUp')}</Link></Button>
                  </div>
               )}
           </nav>
+        </div>
+
+        {/* Mobile Header */}
+        <div className="md:hidden container mx-auto flex h-14 items-center justify-between px-4">
+             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                 <SheetTrigger asChild>
+                     <Button variant="ghost" size="icon"><Menu /></Button>
+                 </SheetTrigger>
+                 <SheetContent side="left" className="p-0">
+                     <AppSidebarNav isMobile={true} onLinkClick={() => setIsMobileMenuOpen(false)}/>
+                 </SheetContent>
+             </Sheet>
+             <Logo iconSize={24} textSize="text-xl" className="text-white"/>
+             <Button variant="ghost" size="icon" onClick={() => setIsSearchModalOpen(true)}>
+                <SearchIconLucide/>
+             </Button>
         </div>
       </header>
       <UniversalSearchModal 

@@ -10,10 +10,6 @@ import { AppSidebarNav } from "./AppSidebarNav";
 export function LandingPageLayout({ children }: { children: React.ReactNode }) {
     return (
       <SidebarProvider>
-        <Sidebar>
-            <AppSidebarNav />
-        </Sidebar>
-        <SidebarInset>
             <div className="flex flex-col min-h-screen">
                 <AppHeader />
                 <main className="flex-grow">
@@ -22,7 +18,6 @@ export function LandingPageLayout({ children }: { children: React.ReactNode }) {
                 <AppFooter />
                 <Toaster />
             </div>
-        </SidebarInset>
       </SidebarProvider>
     );
 }
