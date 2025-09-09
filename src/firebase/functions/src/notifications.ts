@@ -3,6 +3,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getUserDocument } from "./utils";
+import { logInfo, logError } from './logging';
 
 const db = admin.firestore();
 const messaging = admin.messaging();
@@ -26,58 +27,52 @@ export async function createAndSendNotification(
     },
 ) {
   if (!userId || userId === notificationPayload.actorId) {
-    console.warn("Cannot create notification for a null userId or if user is notifying themselves.");
+    logInfo("Cannot create notification for a null userId or if user is notifying themselves.", { userId, actorId: notificationPayload.actorId });
     return;
   }
 
-  console.log(
-    `Creating notification for user ${userId}, type: ${notificationPayload.type}`,
-  );
+  logInfo("Creating notification", { userId, type: notificationPayload.type });
 
-  const newNotificationRef = db.collection("notifications").doc();
-  await newNotificationRef.set({
-    notificationId: newNotificationRef.id,
-    userId: userId,
-    ...notificationPayload,
-    isRead: false,
-    createdAt: admin.firestore.FieldValue.serverTimestamp(),
-  });
-  console.log(`Notification document created: ${newNotificationRef.id}`);
+  try {
+    const newNotificationRef = db.collection("notifications").doc();
+    await newNotificationRef.set({
+      notificationId: newNotificationRef.id,
+      userId: userId,
+      ...notificationPayload,
+      isRead: false,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    logInfo("Notification document created", { notificationId: newNotificationRef.id });
 
-  const userDoc = await getUserDocument(userId);
-  const fcmToken = userDoc?.data()?.fcmToken;
+    // 2. Attempt to send a push notification via FCM
+    const userDoc = await getUserDocument(userId);
+    const fcmToken = userDoc?.data()?.fcmToken;
 
-  if (fcmToken) {
-    console.log(
-      `FCM token found for user ${userId}. Attempting to send push notification...`,
-    );
-    const message: admin.messaging.Message = {
-      notification: {
-        title: notificationPayload.title_en,
-        body: notificationPayload.body_en,
-      },
-      data: {
-        notificationId: newNotificationRef.id,
-        type: notificationPayload.type,
-        linkedCollection: notificationPayload.linkedEntity?.collection || "",
-        linkedDocumentId: notificationPayload.linkedEntity?.documentId || "",
-      },
-      token: fcmToken,
-    };
+    if (fcmToken) {
+      logInfo("FCM token found for user. Attempting to send push notification...", { userId });
+      const message: admin.messaging.Message = {
+        notification: {
+          title: notificationPayload.title_en,
+          body: notificationPayload.body_en,
+        },
+        data: {
+          notificationId: newNotificationRef.id,
+          type: notificationPayload.type,
+          linkedCollection: notificationPayload.linkedEntity?.collection || "",
+          linkedDocumentId: notificationPayload.linkedEntity?.documentId || "",
+        },
+        token: fcmToken,
+      };
 
-    try {
       const response = await messaging.send(message);
-      console.log("Successfully sent FCM message:", response);
-    } catch (error) {
-      console.error("Error sending FCM message:", error);
+      logInfo("Successfully sent FCM message:", { response, userId });
+    } else {
+      logInfo("User does not have an FCM token. Storing notification only.", { userId });
     }
-  } else {
-    console.log(
-      `User ${userId} does not have an FCM token. Storing notification only.`,
-    );
+  } catch (error) {
+    logError("Error during notification creation/sending", { userId, error });
   }
 }
-
 
 /**
  * Firestore trigger for new connection requests.
@@ -88,18 +83,22 @@ export const onNewConnectionRequest = functions.firestore
         const requestData = snap.data();
         if (!requestData) return;
 
-        const requesterDoc = await db.collection('users').doc(requestData.requesterId).get();
-        const requesterName = requesterDoc.data()?.displayName || 'Someone';
+        try {
+            const requesterDoc = await db.collection('users').doc(requestData.requesterId).get();
+            const requesterName = requesterDoc.data()?.displayName || 'Someone';
 
-        const notificationPayload = {
-            type: "new_connection_request",
-            title_en: "New Connection Request",
-            body_en: `${requesterName} wants to connect with you.`,
-            actorId: requestData.requesterId,
-            linkedEntity: { collection: "network", documentId: "my-network" },
-        };
+            const notificationPayload = {
+                type: "new_connection_request",
+                title_en: "New Connection Request",
+                body_en: `${requesterName} wants to connect with you.`,
+                actorId: requestData.requesterId,
+                linkedEntity: { collection: "network", documentId: "my-network" },
+            };
 
-        await createAndSendNotification(requestData.recipientId, notificationPayload);
+            await createAndSendNotification(requestData.recipientId, notificationPayload);
+        } catch(error) {
+            logError("Failed to send onNewConnectionRequest notification", { requestId: context.params.requestId, error });
+        }
     });
 
 /**
@@ -111,25 +110,29 @@ export const onPostLike = functions.firestore
     const { postId, userId } = context.params;
     const postRef = db.collection('posts').doc(postId);
 
-    if (change.after.exists && !change.before.exists) { // Document created (like)
-      await postRef.update({ likesCount: admin.firestore.FieldValue.increment(1) });
-      const postDoc = await postRef.get();
-      const postData = postDoc.data();
-      if (!postData) return;
+    try {
+        if (change.after.exists && !change.before.exists) { // Document created (like)
+          await postRef.update({ likesCount: admin.firestore.FieldValue.increment(1) });
+          const postDoc = await postRef.get();
+          const postData = postDoc.data();
+          if (!postData) return;
 
-      const likerProfile = await db.collection('users').doc(userId).get();
-      const likerName = likerProfile.data()?.displayName || 'Someone';
+          const likerProfile = await db.collection('users').doc(userId).get();
+          const likerName = likerProfile.data()?.displayName || 'Someone';
 
-      await createAndSendNotification(postData.userId, {
-        type: 'like',
-        title_en: `${likerName} liked your post`,
-        body_en: `Your post "${postData.content.substring(0, 50)}..." has a new like.`,
-        actorId: userId,
-        linkedEntity: { collection: 'posts', documentId: postId }
-      });
+          await createAndSendNotification(postData.userId, {
+            type: 'like',
+            title_en: `${likerName} liked your post`,
+            body_en: `Your post "${postData.content.substring(0, 50)}..." has a new like.`,
+            actorId: userId,
+            linkedEntity: { collection: 'posts', documentId: postId }
+          });
 
-    } else if (!change.after.exists && change.before.exists) { // Document deleted (unlike)
-      await postRef.update({ likesCount: admin.firestore.FieldValue.increment(-1) });
+        } else if (!change.after.exists && change.before.exists) { // Document deleted (unlike)
+          await postRef.update({ likesCount: admin.firestore.FieldValue.increment(-1) });
+        }
+    } catch(error) {
+        logError("Failed to process post like event", { postId, userId, error });
     }
   });
 
@@ -142,25 +145,29 @@ export const onPostComment = functions.firestore
   .onWrite(async (change, context) => {
     const { postId } = context.params;
     const postRef = db.collection('posts').doc(postId);
+    
+    try {
+        if (change.after.exists && !change.before.exists) { // Comment created
+          await postRef.update({ commentsCount: admin.firestore.FieldValue.increment(1) });
+          const commentData = change.after.data();
+          if (!commentData) return;
 
-    if (change.after.exists && !change.before.exists) { // Comment created
-      await postRef.update({ commentsCount: admin.firestore.FieldValue.increment(1) });
-      const commentData = change.after.data();
-      if (!commentData) return;
+          const postDoc = await postRef.get();
+          const postData = postDoc.data();
+          if (!postData) return;
 
-      const postDoc = await postRef.get();
-      const postData = postDoc.data();
-      if (!postData) return;
-
-      await createAndSendNotification(postData.userId, {
-        type: 'comment',
-        title_en: `${commentData.userName} commented on your post`,
-        body_en: `"${commentData.content.substring(0, 50)}..."`,
-        actorId: commentData.userId,
-        linkedEntity: { collection: 'posts', documentId: postId }
-      });
-    } else if (!change.after.exists && change.before.exists) { // Comment deleted
-        await postRef.update({ commentsCount: admin.firestore.FieldValue.increment(-1) });
+          await createAndSendNotification(postData.userId, {
+            type: 'comment',
+            title_en: `${commentData.userName} commented on your post`,
+            body_en: `"${commentData.content.substring(0, 50)}..."`,
+            actorId: commentData.userId,
+            linkedEntity: { collection: 'posts', documentId: postId }
+          });
+        } else if (!change.after.exists && change.before.exists) { // Comment deleted
+            await postRef.update({ commentsCount: admin.firestore.FieldValue.increment(-1) });
+        }
+    } catch(error) {
+        logError("Failed to process post comment event", { postId, commentId: context.params.commentId, error });
     }
   });
 
@@ -174,13 +181,17 @@ export const onNewMarketplaceOrder = functions.firestore
         const orderData = snap.data();
         if (!orderData) return;
         
-        await createAndSendNotification(orderData.sellerId, {
-            type: "new_order",
-            title_en: "You have a new order!",
-            body_en: `A buyer has placed an order for your listing: "${orderData.listingName}".`,
-            actorId: orderData.buyerId,
-            linkedEntity: { collection: "marketplace_orders", documentId: snap.id },
-        });
+        try {
+            await createAndSendNotification(orderData.sellerId, {
+                type: "new_order",
+                title_en: "You have a new order!",
+                body_en: `A buyer has placed an order for your listing: "${orderData.listingName}".`,
+                actorId: orderData.buyerId,
+                linkedEntity: { collection: "marketplace_orders", documentId: snap.id },
+            });
+        } catch(error) {
+            logError("Failed to send onNewMarketplaceOrder notification", { orderId: context.params.orderId, error });
+        }
     });
 
 
@@ -193,12 +204,7 @@ export const onNewMarketplaceOrder = functions.firestore
  */
 export const markNotificationAsRead = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "User must be authenticated.",
-      );
-    }
+    const userId = checkAuth(context);
 
     const {notificationId} = data;
     if (!notificationId) {
@@ -208,21 +214,27 @@ export const markNotificationAsRead = functions.https.onCall(
       );
     }
 
-    const notificationRef = db.collection("notifications").doc(notificationId);
-    const notificationDoc = await notificationRef.get();
+    try {
+        const notificationRef = db.collection("notifications").doc(notificationId);
+        const notificationDoc = await notificationRef.get();
 
-    if (
-      !notificationDoc.exists ||
-      notificationDoc.data()?.userId !== context.auth.uid
-    ) {
-      throw new functions.https.HttpsError(
-        "permission-denied",
-        "You do not have permission to update this notification.",
-      );
+        if (
+        !notificationDoc.exists ||
+        notificationDoc.data()?.userId !== userId
+        ) {
+        throw new functions.https.HttpsError(
+            "permission-denied",
+            "You do not have permission to update this notification.",
+        );
+        }
+
+        await notificationRef.update({isRead: true});
+        return {status: "success"};
+    } catch(error) {
+        logError("Failed to mark notification as read", { userId, notificationId, error });
+        if (error instanceof functions.https.HttpsError) throw error;
+        throw new functions.https.HttpsError("internal", "Could not update notification.");
     }
-
-    await notificationRef.update({isRead: true});
-    return {status: "success"};
   },
 );
 
@@ -234,21 +246,21 @@ export const markNotificationAsRead = functions.https.onCall(
  */
 export const manageNotificationPreferences = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "User must be authenticated.",
-      );
-    }
+    const userId = checkAuth(context);
 
-    const userRef = db.collection("users").doc(context.auth.uid);
+    try {
+        const userRef = db.collection("users").doc(userId);
 
-    if (data.preferences) {
-      await userRef.set({notificationPreferences: data.preferences}, {merge: true});
-      return {success: true, message: "Preferences updated."};
-    } else {
-      const userDoc = await userRef.get();
-      return userDoc.data()?.notificationPreferences || {};
+        if (data.preferences) {
+        await userRef.set({notificationPreferences: data.preferences}, {merge: true});
+        return {success: true, message: "Preferences updated."};
+        } else {
+        const userDoc = await userRef.get();
+        return userDoc.data()?.notificationPreferences || {};
+        }
+    } catch (error) {
+        logError("Failed to manage notification preferences", { userId, error });
+        throw new functions.https.HttpsError("internal", "Could not update preferences.");
     }
   },
 );
@@ -261,7 +273,7 @@ export const manageNotificationPreferences = functions.https.onCall(
 export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
   .timeZone("UTC")
   .onRun(async (context) => {
-    console.log("Running daily event reminder check...");
+    logInfo("Running daily event reminder check...");
 
     const now = new Date();
     const aDayFromNow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
@@ -274,9 +286,9 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
 
       const eventsSnapshot = await upcomingEventsQuery.get();
       if (eventsSnapshot.empty) {
-        console.log("No upcoming agri-events in the next 24 hours.");
+        logInfo("No upcoming agri-events in the next 24 hours.");
       } else {
-        console.log(`Found ${eventsSnapshot.docs.length} upcoming agri-events.`);
+        logInfo(`Found ${eventsSnapshot.docs.length} upcoming agri-events.`);
         for (const eventDoc of eventsSnapshot.docs) {
           const eventData = eventDoc.data();
           const attendeesSnapshot = await eventDoc.ref.collection("attendees").get();
@@ -284,61 +296,20 @@ export const sendEventReminders = functions.pubsub.schedule("every day 08:00")
           if (!attendeesSnapshot.empty) {
             for (const attendeeDoc of attendeesSnapshot.docs) {
               const attendeeId = attendeeDoc.id;
-              const notificationPayload = {
+              await createAndSendNotification(attendeeId, {
                 type: "event_reminder",
                 title_en: "Event Reminder",
                 body_en: `Your event, "${eventData.title}", is starting soon!`,
                 actorId: 'system', // System-generated notification
                 linkedEntity: { collection: "agri_events", documentId: eventDoc.id },
-              };
-              await createAndSendNotification(attendeeId, notificationPayload);
+              });
             }
           }
         }
       }
     } catch (error) {
-      console.error("Error processing agri-event reminders:", error);
+      logError("Error processing agri-event reminders:", { error });
     }
-
-    // 2. Handle Agro-Tourism Bookings
-    // NOTE: This part is conceptual. It assumes a `bookingDate` field exists on the booking documents.
-    // This logic needs to be activated once the data model supports specific booking dates.
-    try {
-        const upcomingBookingsQuery = db.collectionGroup("bookings")
-            // This query is commented out because 'bookingDate' does not exist on the documents yet.
-            // .where("bookingDate", ">=", now) 
-            // .where("bookingDate", "<=", aDayFromNow)
-            .get(); 
-        
-        console.log("Conceptually checking for Agro-Tourism bookings... (This part is not fully functional without a booking date field)");
-        // The loop below is commented out to prevent it from running with an inefficient query.
-        // It serves as a blueprint for future implementation.
-        /*
-        for (const bookingDoc of (await upcomingBookingsQuery).docs) {
-            const bookingData = bookingDoc.data();
-            const serviceRef = bookingDoc.ref.parent.parent; // This gets the marketplaceItem doc
-            if (serviceRef) {
-              const serviceDoc = await serviceRef.get();
-              if (serviceDoc.exists) {
-                const serviceData = serviceDoc.data()!;
-                const guestId = bookingData.userId;
-                const notificationPayload = {
-                    type: "service_reminder",
-                    title_en: "Service Reminder",
-                    body_en: `Your booked service, "${serviceData.name}", is coming up soon!`,
-                    actorId: 'system',
-                    linkedEntity: { collection: "marketplaceItems", documentId: serviceDoc.id },
-                };
-                await createAndSendNotification(guestId, notificationPayload);
-              }
-            }
-        }
-        */
-
-    } catch (error) {
-        console.error("Error processing agro-tourism booking reminders:", error);
-    }
-
-    console.log("Daily event reminder check finished.");
+    logInfo("Daily event reminder check finished.");
     return null;
   });

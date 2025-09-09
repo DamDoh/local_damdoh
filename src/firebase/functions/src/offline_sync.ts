@@ -1,6 +1,8 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { logInfo, logError } from './logging';
 
 const db = admin.firestore();
 
@@ -57,7 +59,7 @@ export const uploadOfflineChanges = functions.https.onCall(
       const batch = db.batch();
       const uploadedChangeIds: string[] = [];
 
-      console.log(`User ${callerUid} uploading ${changes.length} offline changes.`);
+      logInfo(`User uploading offline changes`, { userId: callerUid, changeCount: changes.length });
 
       changes.forEach((change) => {
         const newChangeRef = db.collection("offline_changes_log").doc();
@@ -85,9 +87,7 @@ export const uploadOfflineChanges = functions.https.onCall(
       });
 
       await batch.commit();
-      console.log(
-        `Successfully stored ${changes.length} offline changes in log for user ${callerUid}.`,
-      );
+      logInfo(`Successfully stored offline changes in log`, { userId: callerUid, changeCount: changes.length });
 
 
       return {
@@ -96,7 +96,7 @@ export const uploadOfflineChanges = functions.https.onCall(
         uploadedChangeIds: uploadedChangeIds,
       };
     } catch (error) {
-      console.error(`Error uploading offline changes for user ${callerUid}:`, error);
+      logError(`Error uploading offline changes for user ${callerUid}`, { userId: callerUid, error });
       if (error instanceof functions.https.HttpsError) {
         throw error;
       }
@@ -127,15 +127,11 @@ export const processOfflineChange = functions.firestore
 
     // Do not process if the log is not pending or has no data
     if (!changeData || changeData.status !== "pending") {
-      console.log(
-        `Offline change log ${changeId} is not pending or data is missing. Skipping processing.`,
-      );
+      logInfo(`Offline change log is not pending or data is missing. Skipping processing.`, { changeId });
       return null;
     }
 
-    console.log(
-      `Processing offline change log: ${changeId} for user ${changeData.userId}. Operation: ${changeData.operation} on ${changeData.collectionPath}/${changeData.documentId}.`,
-    );
+    logInfo(`Processing offline change log`, { changeId, userId: changeData.userId, operation: changeData.operation, path: `${changeData.collectionPath}/${changeData.documentId}` });
 
     // Mark the log as 'processing' to prevent re-runs
     await snapshot.ref.update({
@@ -191,11 +187,8 @@ export const processOfflineChange = functions.firestore
         processedAt: admin.firestore.FieldValue.serverTimestamp(),
       });
     } catch (error: any) {
-      console.error(
-        `Transaction failed for offline change log ${changeId}:`,
-        error.message,
-      );
       const isConflict = error.message.startsWith("Conflict:");
+      logError(`Transaction failed for offline change log`, { changeId, isConflict, error: error.message });
       await snapshot.ref.update({
         status: isConflict ? "conflict" : "failed",
         errorMessage: error.message,

@@ -1,8 +1,10 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getRole } from "./utils";
-import {_internalProcessReportData} from "./ai-and-analytics";
+import { _internalProcessReportData } from "./ai-and-analytics";
+import { logInfo, logError } from './logging';
 
 const db = admin.firestore();
 
@@ -57,9 +59,7 @@ export const generateRegulatoryReport = functions.https.onCall(
     const endDate = admin.firestore.Timestamp.fromMillis(reportPeriod.endDate);
     const generatedForRef = db.collection("users").doc(userId);
 
-    console.log(
-      `Generating regulatory report type '${reportType}' for ${userId} for period ${startDate.toDate()} to ${endDate.toDate()}...`,
-    );
+    logInfo("Generating regulatory report", { callerUid, reportType, userId, reportPeriod });
 
     try {
       let fetchedData: any[] = [];
@@ -77,7 +77,7 @@ export const generateRegulatoryReport = functions.https.onCall(
         throw new functions.https.HttpsError("invalid-argument", `Report type '${reportType}' is not supported.`);
       }
 
-      console.log(`Fetched ${fetchedData.length} records for report.`);
+      logInfo(`Fetched records for report`, { count: fetchedData.length, reportType, userId });
       
       const processedContent = await _internalProcessReportData({
         reportType,
@@ -101,11 +101,11 @@ export const generateRegulatoryReport = functions.https.onCall(
         },
       });
       
-      console.log(`Regulatory report stored with ID: ${generatedReportId}.`);
+      logInfo(`Regulatory report stored`, { reportId: generatedReportId });
 
       return {reportId: generatedReportId, status: "completed"};
     } catch (error: any) {
-      console.error(`Error generating regulatory report for ${userId}:`, error);
+      logError("Error generating regulatory report", { userId, error });
       if (error instanceof functions.https.HttpsError) {
         throw error;
       }

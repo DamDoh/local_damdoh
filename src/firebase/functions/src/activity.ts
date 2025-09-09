@@ -3,6 +3,7 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { checkAuth } from './utils';
 import { createAndSendNotification } from "./notifications";
+import { logInfo, logError } from './logging';
 
 const db = admin.firestore();
 
@@ -24,36 +25,42 @@ export const logProfileView = functions.https.onCall(async (data, context) => {
 
     // Don't log or notify on self-views
     if (viewerId === viewedId) {
+        logInfo("User viewed their own profile. No log created.", { viewerId });
         return { success: true, message: "Self-view, not logged." };
     }
     
-    // Atomically increment the view count on the user's profile.
-    const viewedUserRef = db.collection('users').doc(viewedId);
-    await viewedUserRef.update({
-        viewCount: admin.firestore.FieldValue.increment(1)
-    });
-    
-    // Log the view for analytics or history (optional)
-    const logRef = db.collection('profile_views').doc();
-    await logRef.set({
-        viewerId,
-        viewedId,
-        timestamp: admin.firestore.FieldValue.serverTimestamp(),
-    });
-    
-    // Now, send a notification
-    const viewerDoc = await db.collection('users').doc(viewerId).get();
-    const viewerName = viewerDoc.data()?.displayName || 'Someone';
+    try {
+        // Atomically increment the view count on the user's profile.
+        const viewedUserRef = db.collection('users').doc(viewedId);
+        await viewedUserRef.update({
+            viewCount: admin.firestore.FieldValue.increment(1)
+        });
+        
+        // Log the view for analytics or history (optional)
+        const logRef = db.collection('profile_views').doc();
+        await logRef.set({
+            viewerId,
+            viewedId,
+            timestamp: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        
+        // Now, send a notification
+        const viewerDoc = await db.collection('users').doc(viewerId).get();
+        const viewerName = viewerDoc.data()?.displayName || 'Someone';
 
-    await createAndSendNotification(viewedId, {
-        type: "profile_view",
-        title_en: "Your profile has a new view",
-        body_en: `${viewerName} viewed your profile.`,
-        actorId: viewerId,
-        linkedEntity: { collection: "profiles", documentId: viewerId },
-    });
+        await createAndSendNotification(viewedId, {
+            type: "profile_view",
+            title_en: "Your profile has a new view",
+            body_en: `${viewerName} viewed your profile.`,
+            actorId: viewerId,
+            linkedEntity: { collection: "profiles", documentId: viewerId },
+        });
 
-    return { success: true, logId: logRef.id };
+        return { success: true, logId: logRef.id };
+    } catch (error) {
+        logError("Failed to log profile view", { viewerId, viewedId, error });
+        throw new functions.https.HttpsError("internal", "Failed to process profile view.");
+    }
 });
 
 
@@ -133,7 +140,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
         return { activities: activities.slice(0, 10) };
 
     } catch (error) {
-        console.error(`Error fetching activity for user ${userId}:`, error);
+        logError("Error fetching activity", { userId, error });
         throw new functions.https.HttpsError('internal', 'error.activity.fetchFailed');
     }
 });
@@ -173,7 +180,7 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
             postComments
         };
     } catch (error) {
-        console.error(`Error fetching engagement stats for user ${userId}:`, error);
+        logError("Error fetching engagement stats", { userId, error });
         throw new functions.https.HttpsError('internal', 'error.stats.fetchFailed');
     }
 });

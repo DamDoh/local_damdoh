@@ -1,8 +1,10 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { logFinancialTransaction } from "./financial-services"; // Assuming this function exists to log expenses
 import { checkAuth } from './utils';
+import { logError } from './logging';
 
 const db = admin.firestore();
 
@@ -14,36 +16,46 @@ export const addWorker = functions.https.onCall(async (data, context) => {
   if (!name) {
     throw new functions.https.HttpsError("invalid-argument", "Worker name is required.");
   }
+  
+  try {
+    const workerRef = db.collection(`users/${farmerId}/workers`).doc();
+    await workerRef.set({
+      name,
+      contactInfo: contactInfo || null,
+      payRate: payRate || null,
+      payRateUnit: payRateUnit || null,
+      totalHoursLogged: 0,
+      totalPaid: 0,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
 
-  const workerRef = db.collection(`users/${farmerId}/workers`).doc();
-  await workerRef.set({
-    name,
-    contactInfo: contactInfo || null,
-    payRate: payRate || null,
-    payRateUnit: payRateUnit || null,
-    totalHoursLogged: 0,
-    totalPaid: 0,
-    createdAt: admin.firestore.FieldValue.serverTimestamp(),
-  });
-
-  return { success: true, workerId: workerRef.id };
+    return { success: true, workerId: workerRef.id };
+  } catch (error) {
+      logError("Error adding worker", { farmerId, error });
+      throw new functions.https.HttpsError("internal", "Could not add worker.");
+  }
 });
 
 // Get all workers for a farmer
 export const getWorkers = functions.https.onCall(async (data, context) => {
   const farmerId = checkAuth(context);
-  const workersSnapshot = await db.collection(`users/${farmerId}/workers`).orderBy('name').get();
+  try {
+    const workersSnapshot = await db.collection(`users/${farmerId}/workers`).orderBy('name').get();
   
-  const workers = workersSnapshot.docs.map(doc => {
-    const workerData = doc.data();
-    return {
+    const workers = workersSnapshot.docs.map(doc => {
+      const workerData = doc.data();
+      return {
         id: doc.id,
         ...workerData,
         createdAt: (workerData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
-    }
-  });
+      }
+    });
 
-  return { workers };
+    return { workers };
+  } catch (error) {
+    logError("Error fetching workers", { farmerId, error });
+    throw new functions.https.HttpsError("internal", "Could not retrieve worker list.");
+  }
 });
 
 
@@ -88,15 +100,16 @@ export const logPayment = functions.https.onCall(async (data, context) => {
     }
     
     const workerRef = db.collection(`users/${farmerId}/workers`).doc(workerId);
-    const workerSnap = await workerRef.get();
-    if(!workerSnap.exists) {
-        throw new functions.https.HttpsError("not-found", "Worker profile not found.");
-    }
-    const workerName = workerSnap.data()?.name || "a worker";
     
-    // --- Automatic Interconnection with Financials Module ---
-    // Log this payment as an expense in the "Money Matters" module
     try {
+        const workerSnap = await workerRef.get();
+        if(!workerSnap.exists) {
+            throw new functions.https.HttpsError("not-found", "Worker profile not found.");
+        }
+        const workerName = workerSnap.data()?.name || "a worker";
+        
+        // --- Automatic Interconnection with Financials Module ---
+        // Log this payment as an expense in the "Money Matters" module
         await logFinancialTransaction({
             type: 'expense',
             amount: Number(amount),
@@ -105,41 +118,42 @@ export const logPayment = functions.https.onCall(async (data, context) => {
             category: 'Labor',
             date,
         }, context);
-    } catch (error) {
-        console.error("Failed to auto-log labor payment as an expense:", error);
-        // Decide if this should be a critical failure or just a warning
-        // For now, we'll let it fail but a more robust system might queue it for retry
-        throw new functions.https.HttpsError('internal', 'Could not record the payment in your financial ledger.');
-    }
 
-    const paymentRef = db.collection(`users/${farmerId}/workers/${workerId}/payments`).doc();
-    
-    const batch = db.batch();
+        const paymentRef = db.collection(`users/${farmerId}/workers/${workerId}/payments`).doc();
+        
+        const batch = db.batch();
 
-    batch.set(paymentRef, {
-        amount: Number(amount),
-        currency: currency,
-        date: admin.firestore.Timestamp.fromDate(new Date(date)),
-        notes: notes || `Payment for services rendered.`,
-        paidLogIds: workLogIds || [],
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    });
-
-    batch.update(workerRef, {
-        totalPaid: admin.firestore.FieldValue.increment(Number(amount)),
-    });
-
-    // Mark the selected work logs as paid
-    if (Array.isArray(workLogIds) && workLogIds.length > 0) {
-        workLogIds.forEach(logId => {
-            const logRef = db.collection(`users/${farmerId}/workers/${workerId}/work_logs`).doc(logId);
-            batch.update(logRef, { isPaid: true });
+        batch.set(paymentRef, {
+            amount: Number(amount),
+            currency: currency,
+            date: admin.firestore.Timestamp.fromDate(new Date(date)),
+            notes: notes || `Payment for services rendered.`,
+            paidLogIds: workLogIds || [],
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
         });
-    }
 
-    await batch.commit();
-    
-    return { success: true, paymentId: paymentRef.id };
+        batch.update(workerRef, {
+            totalPaid: admin.firestore.FieldValue.increment(Number(amount)),
+        });
+
+        // Mark the selected work logs as paid
+        if (Array.isArray(workLogIds) && workLogIds.length > 0) {
+            workLogIds.forEach(logId => {
+                const logRef = db.collection(`users/${farmerId}/workers/${workerId}/work_logs`).doc(logId);
+                batch.update(logRef, { isPaid: true });
+            });
+        }
+
+        await batch.commit();
+        
+        return { success: true, paymentId: paymentRef.id };
+
+    } catch (error) {
+        logError("Failed to log labor payment", { farmerId, workerId, error });
+        // Decide if this should be a critical failure or just a warning
+        if (error instanceof functions.https.HttpsError) throw error;
+        throw new functions.https.HttpsError('internal', 'Could not record the payment.');
+    }
 });
 
 // Fetch detailed logs for a single worker
@@ -149,48 +163,54 @@ export const getWorkerDetails = functions.https.onCall(async (data, context) => 
 
     if(!workerId) throw new functions.https.HttpsError('invalid-argument', 'A worker ID is required.');
     
-    const workerRef = db.collection(`users/${farmerId}/workers`).doc(workerId);
-    const workLogsRef = workerRef.collection('work_logs').orderBy('date', 'desc').limit(20);
-    const paymentsRef = workerRef.collection('payments').orderBy('date', 'desc').limit(20);
+    try {
+        const workerRef = db.collection(`users/${farmerId}/workers`).doc(workerId);
+        const workLogsRef = workerRef.collection('work_logs').orderBy('date', 'desc').limit(20);
+        const paymentsRef = workerRef.collection('payments').orderBy('date', 'desc').limit(20);
 
-    const [workerSnap, workLogsSnap, paymentsSnap] = await Promise.all([
-        workerRef.get(),
-        workLogsRef.get(),
-        paymentsRef.get()
-    ]);
+        const [workerSnap, workLogsSnap, paymentsSnap] = await Promise.all([
+            workerRef.get(),
+            workLogsRef.get(),
+            paymentsRef.get()
+        ]);
 
-    if (!workerSnap.exists) {
-        throw new functions.https.HttpsError('not-found', 'Worker not found.');
-    }
-    
-    const workLogs = workLogsSnap.docs.map(doc => { 
-        const data = doc.data();
-        return { 
-            id: doc.id, 
-            ...data, 
-            date: (data.date as admin.firestore.Timestamp)?.toDate?.().toISOString(),
-            createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+        if (!workerSnap.exists) {
+            throw new functions.https.HttpsError('not-found', 'Worker not found.');
         }
-    });
-    const payments = paymentsSnap.docs.map(doc => {
-        const data = doc.data();
+        
+        const workLogs = workLogsSnap.docs.map(doc => { 
+            const data = doc.data();
+            return { 
+                id: doc.id, 
+                ...data, 
+                date: (data.date as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            }
+        });
+        const payments = paymentsSnap.docs.map(doc => {
+            const data = doc.data();
+            return {
+                id: doc.id, 
+                ...data, 
+                date: (data.date as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+                createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            }
+        });
+        
+        const workerData = workerSnap.data();
         return {
-            id: doc.id, 
-            ...data, 
-            date: (data.date as admin.firestore.Timestamp)?.toDate?.().toISOString(),
-            createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            profile: { 
+                id: workerSnap.id, 
+                ...workerData,
+                createdAt: (workerData?.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            },
+            workLogs,
+            payments
         }
-    });
-    
-    const workerData = workerSnap.data();
-    return {
-        profile: { 
-            id: workerSnap.id, 
-            ...workerData,
-            createdAt: (workerData?.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
-        },
-        workLogs,
-        payments
+    } catch (error) {
+        logError("Failed to get worker details", { farmerId, workerId, error });
+        if (error instanceof functions.https.HttpsError) throw error;
+        throw new functions.https.HttpsError("internal", "Could not retrieve worker details.");
     }
 });
 
@@ -203,19 +223,24 @@ export const getUnpaidWorkLogs = functions.https.onCall(async (data, context) =>
         throw new functions.https.HttpsError("invalid-argument", "A workerId must be provided.");
     }
     
-    const workLogsSnapshot = await db.collection(`users/${farmerId}/workers/${workerId}/work_logs`)
-        .where('isPaid', '==', false)
-        .orderBy('date', 'asc')
-        .get();
+    try {
+        const workLogsSnapshot = await db.collection(`users/${farmerId}/workers/${workerId}/work_logs`)
+            .where('isPaid', '==', false)
+            .orderBy('date', 'asc')
+            .get();
 
-    const workLogs = workLogsSnapshot.docs.map(doc => {
-        const docData = doc.data();
-        return { 
-            id: doc.id, 
-            ...docData, 
-            date: (docData.date as admin.firestore.Timestamp).toDate().toISOString(),
-        }
-    });
+        const workLogs = workLogsSnapshot.docs.map(doc => {
+            const docData = doc.data();
+            return { 
+                id: doc.id, 
+                ...docData, 
+                date: (docData.date as admin.firestore.Timestamp).toDate().toISOString(),
+            }
+        });
 
-    return { workLogs };
+        return { workLogs };
+    } catch(error) {
+        logError("Failed to get unpaid work logs", { farmerId, workerId, error });
+        throw new functions.https.HttpsError("internal", "Could not retrieve unpaid work logs.");
+    }
 });

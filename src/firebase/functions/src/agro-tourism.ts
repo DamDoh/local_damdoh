@@ -4,6 +4,7 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getUserProfile } from './user';
 import { checkAuth } from "./utils";
+import { logError } from './logging';
 
 const db = admin.firestore();
 
@@ -18,42 +19,48 @@ export const bookAgroTourismService = functions.https.onCall(async (data, contex
 
     const itemRef = db.collection('marketplaceItems').doc(itemId);
     const bookingRef = itemRef.collection('bookings').doc(uid);
-    const userProfileDoc = await getUserProfile(uid);
     
-    if (!userProfileDoc) {
-        throw new functions.https.HttpsError('not-found', 'User profile not found.');
+    try {
+        const userProfileDoc = await getUserProfile(uid);
+        if (!userProfileDoc) {
+            throw new functions.https.HttpsError('not-found', 'User profile not found.');
+        }
+
+        return db.runTransaction(async (transaction) => {
+            const itemDoc = await transaction.get(itemRef);
+            if (!itemDoc.exists || itemDoc.data()?.listingType !== 'Service' || itemDoc.data()?.category !== 'agri-tourism-services') {
+                throw new functions.https.HttpsError('not-found', 'Valid Agro-Tourism service not found.');
+            }
+
+            const bookingDoc = await transaction.get(bookingRef);
+            if (bookingDoc.exists) {
+                throw new functions.https.HttpsError('already-exists', 'You have already booked this service.');
+            }
+
+            // TODO: Add payment processing logic here if the service has a price.
+            
+            transaction.set(bookingRef, {
+                ...bookingDetails,
+                userId: uid,
+                displayName: userProfileDoc.displayName,
+                avatarUrl: userProfileDoc.avatarUrl || null,
+                bookedAt: admin.firestore.FieldValue.serverTimestamp(),
+                checkedIn: false,
+                checkedInAt: null
+            });
+            
+            // Optionally, increment a booking counter on the item itself
+            transaction.update(itemRef, {
+                bookingsCount: admin.firestore.FieldValue.increment(1)
+            });
+            
+            return { success: true, message: 'Successfully booked the Agro-Tourism service.' };
+        });
+    } catch(error) {
+        logError('Error booking agro-tourism service', { itemId, userId: uid, error });
+        if (error instanceof functions.https.HttpsError) throw error;
+        throw new functions.https.HttpsError('internal', 'Could not complete booking.');
     }
-
-    return db.runTransaction(async (transaction) => {
-        const itemDoc = await transaction.get(itemRef);
-        if (!itemDoc.exists || itemDoc.data()?.listingType !== 'Service' || itemDoc.data()?.category !== 'agri-tourism-services') {
-            throw new functions.https.HttpsError('not-found', 'Valid Agro-Tourism service not found.');
-        }
-
-        const bookingDoc = await transaction.get(bookingRef);
-        if (bookingDoc.exists) {
-            throw new functions.https.HttpsError('already-exists', 'You have already booked this service.');
-        }
-
-        // TODO: Add payment processing logic here if the service has a price.
-        
-        transaction.set(bookingRef, {
-            ...bookingDetails,
-            userId: uid,
-            displayName: userProfileDoc.displayName,
-            avatarUrl: userProfileDoc.avatarUrl || null,
-            bookedAt: admin.firestore.FieldValue.serverTimestamp(),
-            checkedIn: false,
-            checkedInAt: null
-        });
-        
-        // Optionally, increment a booking counter on the item itself
-        transaction.update(itemRef, {
-            bookingsCount: admin.firestore.FieldValue.increment(1)
-        });
-        
-        return { success: true, message: 'Successfully booked the Agro-Tourism service.' };
-    });
 });
 
 export const checkInAgroTourismBooking = functions.https.onCall(async (data, context) => {
@@ -65,45 +72,52 @@ export const checkInAgroTourismBooking = functions.https.onCall(async (data, con
     }
     
     const itemRef = db.collection('marketplaceItems').doc(itemId);
-    const itemDoc = await itemRef.get();
-    const itemData = itemDoc.data();
-    if (!itemDoc.exists) {
-        throw new functions.https.HttpsError("not-found", "Service not found.");
-    }
-
-    const organizerId = itemData?.sellerId;
-    const staffRef = itemRef.collection('staff').doc(callerId);
-    const staffDoc = await staffRef.get();
     
-    if (organizerId !== callerId && !staffDoc.exists) {
-        throw new functions.https.HttpsError("permission-denied", "You are not authorized to check-in guests for this service.");
-    }
-
-    const guestUserDoc = await db.collection('users').doc(attendeeUid).get();
-    if (!guestUserDoc.exists) {
-        throw new functions.https.HttpsError("not-found", "No user found with this ID.");
-    }
-    const guestName = guestUserDoc.data()?.displayName || 'Unknown Guest';
-
-    const bookingRef = itemRef.collection('bookings').doc(attendeeUid);
-    return db.runTransaction(async (transaction) => {
-        const bookingDoc = await transaction.get(bookingRef);
-        if (!bookingDoc.exists) {
-            throw new functions.https.HttpsError("not-found", `${guestName} does not have a booking for this service.`);
+    try {
+        const itemDoc = await itemRef.get();
+        const itemData = itemDoc.data();
+        if (!itemDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "Service not found.");
         }
+
+        const organizerId = itemData?.sellerId;
+        const staffRef = itemRef.collection('staff').doc(callerId);
+        const staffDoc = await staffRef.get();
         
-        const bookingData = bookingDoc.data()!;
-        if (bookingData.checkedIn) {
-            throw new functions.https.HttpsError("already-exists", `${guestName} has already been checked in.`);
+        if (organizerId !== callerId && !staffDoc.exists) {
+            throw new functions.https.HttpsError("permission-denied", "You are not authorized to check-in guests for this service.");
         }
 
-        transaction.update(bookingRef, {
-            checkedIn: true,
-            checkedInAt: admin.firestore.FieldValue.serverTimestamp()
+        const guestUserDoc = await db.collection('users').doc(attendeeUid).get();
+        if (!guestUserDoc.exists) {
+            throw new functions.https.HttpsError("not-found", "No user found with this ID.");
+        }
+        const guestName = guestUserDoc.data()?.displayName || 'Unknown Guest';
+
+        const bookingRef = itemRef.collection('bookings').doc(attendeeUid);
+        return db.runTransaction(async (transaction) => {
+            const bookingDoc = await transaction.get(bookingRef);
+            if (!bookingDoc.exists) {
+                throw new functions.https.HttpsError("not-found", `${guestName} does not have a booking for this service.`);
+            }
+            
+            const bookingData = bookingDoc.data()!;
+            if (bookingData.checkedIn) {
+                throw new functions.https.HttpsError("already-exists", `${guestName} has already been checked in.`);
+            }
+
+            transaction.update(bookingRef, {
+                checkedIn: true,
+                checkedInAt: admin.firestore.FieldValue.serverTimestamp()
+            });
+            
+            return { success: true, message: `Successfully checked in ${guestName}.` };
         });
-        
-        return { success: true, message: `Successfully checked in ${guestName}.` };
-    });
+    } catch(error) {
+        logError('Error checking in agro-tourism booking', { itemId, attendeeUid, callerId, error });
+        if (error instanceof functions.https.HttpsError) throw error;
+        throw new functions.https.HttpsError('internal', 'Could not complete check-in.');
+    }
 });
 
 
@@ -209,3 +223,5 @@ export const getAgroTourismBookings = functions.https.onCall(async (data, contex
 
     return { bookings: bookingsList };
 });
+
+    

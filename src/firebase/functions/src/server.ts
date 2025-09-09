@@ -3,11 +3,10 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import * as admin from 'firebase-admin';
-import { _internalAssessCreditRisk, _internalMatchFundingOpportunities } from "./financial-services"; 
+import { _internalAssessCreditRisk, _internalMatchFundingOpportunities } from "./financial-services";
+import { logInfo, logError } from './logging';
 
 // Initialize Firebase Admin if it hasn't been already.
-// This is important because this file might be the entry point in a Cloud Run environment,
-// or it might be imported by `index.ts` where initialization also happens.
 if (admin.apps.length === 0) {
     admin.initializeApp();
 }
@@ -35,7 +34,7 @@ const authenticate = async (req: Request, res: Response, next: NextFunction) => 
         res.locals = { ...res.locals, uid: decodedToken.uid, token: decodedToken };
         return next();
     } catch (err) {
-        console.error('Error while verifying Firebase ID token:', err);
+        logError('Error while verifying Firebase ID token', { error: err });
         return res.status(401).send({ error: 'Unauthorized', message: 'Could not verify token.' });
     }
 };
@@ -52,12 +51,10 @@ app.get('/', (req: Request, res: Response) => {
  */
 app.post('/ai/assess-risk', authenticate, async (req: Request, res: Response) => {
   try {
-    // We can add more specific validation here using a library like Zod if needed.
     const result = await _internalAssessCreditRisk(req.body);
     res.status(200).json(result);
   } catch (error: any) {
-    console.error('Error assessing credit risk:', error);
-    // Check if it's a known error type from our internal function
+    logError('Error assessing credit risk in Express endpoint', { error });
     if (error.code === 'invalid-argument') {
       res.status(400).json({ success: false, error: 'Invalid argument provided.' });
     } else {
@@ -76,7 +73,7 @@ app.post('/ai/match-funding', authenticate, async (req: Request, res: Response) 
         const result = await _internalMatchFundingOpportunities(req.body);
         res.status(200).json(result);
     } catch (error: any) {
-        console.error("Error matching funding opportunities:", error);
+        logError("Error matching funding opportunities in Express endpoint", { error });
         res.status(500).json({ success: false, error: "Internal Server Error" });
     }
 });
@@ -85,7 +82,7 @@ app.post('/ai/match-funding', authenticate, async (req: Request, res: Response) 
 // Only start the server if not in a test environment or when running directly
 if (process.env.NODE_ENV !== 'test') {
     app.listen(port, () => {
-        console.log(`DamDoh AI Service listening on port ${port}`);
+        logInfo(`DamDoh AI Service listening on port ${port}`);
     });
 }
 

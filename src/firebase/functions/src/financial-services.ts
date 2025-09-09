@@ -1,9 +1,11 @@
 
+
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { getEngagementStats } from "./activity";
 import { getUserProfile } from "./user";
 import { checkAuth } from "./utils";
+import { logInfo, logError } from './logging';
 
 const db = admin.firestore();
 
@@ -16,7 +18,7 @@ const db = admin.firestore();
  * and a detailed breakdown of contributing factors.
  */
 export async function _internalAssessCreditRisk(data: any) {
-  console.log("_internalAssessCreditRisk called with data for user:", data.userId);
+  logInfo("Assessing credit risk", { userId: data.userId });
   
   const { userData, financialData, assetData, engagementData } = data;
 
@@ -126,7 +128,7 @@ export async function _internalAssessCreditRisk(data: any) {
  * opportunities and their relevance scores.
  */
 export async function _internalMatchFundingOpportunities(data: any) {
-  console.log("_internalMatchFundingOpportunities called with data:", data);
+  logInfo("Matching funding opportunities", { userId: data.user?.userId });
   const matchedOpportunities = [
     {
       opportunityId: "loan_product_123",
@@ -177,27 +179,23 @@ export async function _internalInitiatePayment(
     );
   }
 
-  console.log(
-    `Attempting to initiate payment for order ${orderId} (Amount: ${amount} ${currency})...`,
-  );
+  logInfo("Attempting to initiate payment", { orderId, amount, currency });
 
-  console.log("Placeholder for payment gateway API call...");
+  // Placeholder for payment gateway API call...
   const paymentGatewayResponse = {
     success: true,
     transactionId: `pg_txn_${orderId}_${Date.now()}`,
   };
 
   if (paymentGatewayResponse.success) {
-    console.log(
-      `Payment initiation successful for order ${orderId}. Transaction ID: ${paymentGatewayResponse.transactionId}`,
-    );
+    logInfo("Payment initiation successful", { orderId, transactionId: paymentGatewayResponse.transactionId });
     return {
       orderId: orderId,
       status: "payment_initiation_successful",
       transactionId: paymentGatewayResponse.transactionId,
     };
   } else {
-    console.error(`Payment initiation failed for order ${orderId}.`);
+    logError("Payment initiation failed", { orderId });
     throw new functions.https.HttpsError(
       "aborted",
       "error.payment.initiationFailed",
@@ -207,17 +205,12 @@ export async function _internalInitiatePayment(
 
 // Callable function to initiate a payment
 export const initiatePayment = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError(
-      "unauthenticated",
-      "error.unauthenticated",
-    );
-  }
+  checkAuth(context);
 
   try {
     return await _internalInitiatePayment(data, context);
   } catch (error) {
-    console.error(`Error during payment initiation for order ${data.orderId}:`, error);
+    logError("Error during payment initiation", { orderId: data.orderId, error });
     if (error instanceof functions.https.HttpsError) {
       throw error;
     }
@@ -268,9 +261,7 @@ export const logFinancialTransaction = functions.https.onCall(
     }
 
     try {
-      console.log(
-        `Logging financial transaction for user ${callerUid}: ${type} ${amount} ${currency} - ${description}`,
-      );
+      logInfo("Logging financial transaction", { userId: callerUid, type, amount, currency });
 
       const userRef = db.collection("users").doc(callerUid);
 
@@ -291,16 +282,11 @@ export const logFinancialTransaction = functions.https.onCall(
         linkedGrantApplicationId: null,
         linkedCrowdfundingProjectId: null,
       });
-      console.log(
-        `Financial transaction ${transactionId} logged for user ${callerUid}.`,
-      );
+      logInfo("Financial transaction logged", { transactionId, userId: callerUid });
 
       return {transactionId, status: "transaction_logged"};
     } catch (error) {
-      console.error(
-        `Error logging financial transaction for user ${callerUid}:`,
-        error,
-      );
+      logError("Error logging financial transaction", { userId: callerUid, error });
       if (error instanceof functions.https.HttpsError) {
         throw error;
       }
@@ -364,7 +350,7 @@ export const getFinancialSummaryAndTransactions = functions.https.onCall(
       // 5. Return summary and sliced list of recent transactions
       return {summary, transactions: allTransactions.slice(0, 10)};
     } catch (error) {
-      console.error("Error fetching financial summary:", error);
+      logError("Error fetching financial summary", { userId, error });
       throw new functions.https.HttpsError(
         "internal",
         "error.financialData.fetchFailed",
@@ -393,56 +379,54 @@ export const getFinancialApplicationDetails = functions.https.onCall(async (data
         throw new functions.https.HttpsError('invalid-argument', 'Application ID is required.');
     }
 
-    const appRef = db.collection('financial_applications').doc(applicationId);
-    const appDoc = await appRef.get();
+    try {
+        const appRef = db.collection('financial_applications').doc(applicationId);
+        const appDoc = await appRef.get();
 
-    if (!appDoc.exists) {
-        throw new functions.https.HttpsError('not-found', 'Application not found.');
-    }
+        if (!appDoc.exists) {
+            throw new functions.https.HttpsError('not-found', 'Application not found.');
+        }
 
-    const appData = appDoc.data()!;
-    // Security check: Make sure the FI is the one assigned to this application
-    if (appData.fiId !== fiId) {
-        throw new functions.https.HttpsError('permission-denied', 'You are not authorized to view this application.');
-    }
+        const appData = appDoc.data()!;
+        if (appData.fiId !== fiId) {
+            throw new functions.https.HttpsError('permission-denied', 'You are not authorized to view this application.');
+        }
 
-    let applicantProfile = null;
-    let financialData = null;
-    let assetData = null;
-    let engagementData = null;
+        let applicantProfile = null;
+        let financialData = null;
+        let assetData = null;
+        let engagementData = null;
 
-    if (appData.applicantId) {
-        // Fetch applicant's profile
-        applicantProfile = await getUserProfile(appData.applicantId);
+        if (appData.applicantId) {
+            const applicantId = appData.applicantId;
+            applicantProfile = await getUserProfile(applicantId);
+            const financialSummaryResult = await getFinancialSummaryAndTransactions({ userId: applicantId }, context);
+            financialData = financialSummaryResult.summary;
+            const assetsSnapshot = await db.collection(`users/${applicantId}/assets`).get();
+            assetData = assetsSnapshot.docs.map(doc => doc.data());
+            engagementData = await getEngagementStats({ userId: applicantId }, context);
+        }
         
-        // Fetch applicant's financial summary
-        const financialSummaryResult = await getFinancialSummaryAndTransactions({ userId: appData.applicantId }, context);
-        financialData = financialSummaryResult.summary;
+        const creditScore = await _internalAssessCreditRisk({ 
+            userId: appData.applicantId,
+            userData: applicantProfile,
+            financialData: financialData,
+            assetData: assetData,
+            engagementData: engagementData
+        });
         
-        // Fetch applicant's assets
-        const assetsSnapshot = await db.collection(`users/${appData.applicantId}/assets`).get();
-        assetData = assetsSnapshot.docs.map(doc => doc.data());
-        
-        // Fetch applicant's engagement stats
-        engagementData = await getEngagementStats({ userId: appData.applicantId }, context);
-    }
-    
-    // Generate the credit score with all available data
-    const creditScore = await _internalAssessCreditRisk({ 
-        userId: appData.applicantId,
-        userData: applicantProfile,
-        financialData: financialData,
-        assetData: assetData,
-        engagementData: engagementData
-    });
-    
-    const serializedAppData = {
-        ...appData,
-        id: appDoc.id,
-        submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
-    };
+        const serializedAppData = {
+            ...appData,
+            id: appDoc.id,
+            submittedAt: (appData.submittedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() ?? null,
+        };
 
-    return { application: serializedAppData, applicant: applicantProfile, creditScore };
+        return { application: serializedAppData, applicant: applicantProfile, creditScore };
+    } catch (error) {
+        logError("Error getting financial application details", { applicationId, error });
+        if (error instanceof functions.https.HttpsError) throw error;
+        throw new functions.https.HttpsError('internal', 'Could not retrieve application details.');
+    }
 });
 
 export const updateFinancialApplicationStatus = functions.https.onCall(async (data, context) => {
@@ -473,7 +457,6 @@ export const submitFinancialApplication = functions.https.onCall(async (data, co
     const applicantId = checkAuth(context);
     const { fiId, type, amount, currency, purpose } = data;
 
-    // Basic validation
     if (!fiId || !type || !amount || !purpose) {
         throw new functions.https.HttpsError("invalid-argument", "Missing required application fields.");
     }
@@ -502,7 +485,7 @@ export const submitFinancialApplication = functions.https.onCall(async (data, co
 });
 
 export const createFinancialProduct = functions.https.onCall(async (data, context) => {
-    const fiId = await checkFiAuth(context); // Reuse the auth check for FIs
+    const fiId = await checkFiAuth(context);
     const { name, type, description, interestRate, maxAmount, targetRoles } = data;
 
     if (!name || !type || !description) {
@@ -535,12 +518,12 @@ export const getFinancialProducts = functions.https.onCall(async (data, context)
         .get();
 
     const products = productsSnapshot.docs.map(doc => {
-        const data = doc.data();
+        const pData = doc.data();
         return {
             id: doc.id,
-            ...data,
-            createdAt: (data.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
-            updatedAt: (data.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            ...pData,
+            createdAt: (pData.createdAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
+            updatedAt: (pData.updatedAt as admin.firestore.Timestamp)?.toDate?.().toISOString(),
         }
     });
     
@@ -625,7 +608,7 @@ export const getTrustScore = functions.https.onCall(async (data, context) => {
       breakdown: scoreData?.breakdown || [],
     };
   } catch (error) {
-    console.error(`Error fetching trust score for user ${uid}:`, error);
+    logError("Error fetching trust score", { userId: uid, error });
     throw new functions.https.HttpsError("internal", "Could not fetch trust score.");
   }
 });

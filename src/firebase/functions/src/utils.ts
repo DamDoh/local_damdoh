@@ -1,7 +1,7 @@
-
 import * as admin from "firebase-admin";
 import type { UserRole } from "@/lib/types";
 import * as functions from "firebase-functions";
+import { logError } from "./logging";
 
 const db = admin.firestore();
 
@@ -45,24 +45,23 @@ async function deleteQueryBatch(query: admin.firestore.Query, resolve: () => voi
 }
 
 /**
- * Helper function to get a user's role from Firestore.
- * This is not a callable function, but a utility for other backend functions.
- * @param {string | undefined} uid The user's ID.
- * @return {Promise<UserRole | null>} The user's role or null if not found.
+ * Gets the role of a user from their profile document.
+ * @param {string} userId - The ID of the user.
+ * @returns {Promise<string | null>} The user's primary role or null if not found.
  */
-export async function getRole(uid: string | undefined): Promise<UserRole | null> {
-  if (!uid) {
-    return null;
-  }
+export const getRole = async (userId: string): Promise<string | null> => {
   try {
-    const userDoc = await db.collection("users").doc(uid).get();
-    const role = userDoc.data()?.primaryRole;
-    return role ? (role as UserRole) : null;
+    const userDoc = await db.collection("users").doc(userId).get();
+    if (!userDoc.exists) {
+      return null;
+    }
+    const userData = userDoc.data();
+    return userData?.primaryRole || null;
   } catch (error) {
-    console.error("Error fetching user role:", error);
+    logError("Error getting user role", { userId, error });
     return null;
   }
-}
+};
 
 /**
  * Helper function to get a user's document from Firestore.
@@ -77,7 +76,7 @@ export async function getUserDocument(
     const userDoc = await db.collection("users").doc(uid).get();
     return userDoc.exists ? userDoc : null;
   } catch (error) {
-    console.error("Error getting user document:", error);
+    logError("Error getting user document", { uid, error });
     return null;
   }
 }

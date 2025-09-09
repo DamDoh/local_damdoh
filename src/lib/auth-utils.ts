@@ -67,32 +67,49 @@ export async function logIn(email: string, password: string): Promise<FirebaseUs
   }
 }
 
+/**
+ * Registers a new user with Firebase Authentication.
+ * The corresponding Firestore user profile is created by the `onUserCreate` Cloud Function trigger.
+ * This client-side function also updates the user's initial stakeholder role.
+ *
+ * @param name The user's display name.
+ * @param email The user's email.
+ * @param password The user's password.
+ * @param role The user's selected primary role.
+ * @returns The created Firebase user object.
+ */
 export async function registerUser(
   name: string, 
   email: string, 
   password: string, 
   role: StakeholderRole,
-  profileData?: any 
 ): Promise<FirebaseUser> {
   if (!auth || !functions) throw new Error("Firebase is not initialized.");
   try {
+    // 1. Create the user in Firebase Authentication
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    console.log("Firebase Auth user registered successfully:", userCredential.user.uid);
+    const user = userCredential.user;
+    console.log("Firebase Auth user registered successfully:", user.uid);
     
-    await updateProfile(userCredential.user, { displayName: name });
+    // 2. Update the Auth user's profile with their display name
+    await updateProfile(user, { displayName: name });
     console.log("Firebase Auth profile updated with display name.");
 
+    // 3. The `onUserCreate` trigger on the backend now handles creating the Firestore document.
+    //    We just need to call a function to set the user's chosen role, as this can't be
+    //    passed to the auth trigger directly.
     const upsertStakeholderProfile = httpsCallable(functions, 'user-upsertStakeholderProfile');
+    
+    // After signing up, the user is automatically signed in, so this callable function
+    // will be authenticated.
     await upsertStakeholderProfile({
-        displayName: name,
         primaryRole: role,
-        email: email, 
-        profileData: profileData || {},
+        displayName: name // It's good to pass the name again to ensure consistency
     });
 
-    console.log("Profile creation request sent for user:", userCredential.user.uid);
+    console.log("Profile role update request sent for user:", user.uid);
     
-    return userCredential.user;
+    return user;
   } catch (error) {
     console.error("Error registering user in auth-utils:", error);
     throw error;

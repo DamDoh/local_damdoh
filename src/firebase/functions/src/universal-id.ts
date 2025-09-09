@@ -4,8 +4,9 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { v4 as uuidv4 } from "uuid";
 import { getRole } from "./utils";
-import { randomBytes } from 'crypto'; // For generating a secret
+import { randomBytes } from 'crypto';
 import type { UserProfile } from "@/lib/types";
+import { logInfo, logError } from './logging';
 
 
 const db = admin.firestore();
@@ -22,13 +23,12 @@ export const generateUniversalIdOnUserCreate = functions.firestore
 
     // Prevent function from running again if universalId already exists
     if (userData.universalId) {
-      console.log(`User ${userId} already has a Universal ID. Exiting function.`);
+      logInfo("User already has a Universal ID. Exiting function.", { userId });
       return null;
     }
 
-    console.log(`Generating Universal ID for new user: ${userId}`);
+    logInfo("Generating Universal ID for new user", { userId });
 
-    // Generate a unique ID (UUID v4)
     const universalId = uuidv4();
 
     try {
@@ -36,10 +36,10 @@ export const generateUniversalIdOnUserCreate = functions.firestore
         universalId: universalId,
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       });
-      console.log(`Successfully assigned Universal ID ${universalId} to user ${userId}.`);
+      logInfo(`Successfully assigned Universal ID to user`, { userId, universalId });
       return null;
     } catch (error) {
-      console.error(`Error updating user ${userId} with Universal ID:`, error);
+      logError(`Error updating user with Universal ID`, { userId, error });
       return null;
     }
   });
@@ -62,7 +62,6 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
     const scannerUid = context.auth.uid;
 
     try {
-        // Find the user document corresponding to the scanned Universal ID
         const usersRef = db.collection("users");
         const querySnapshot = await usersRef.where("universalId", "==", scannedUniversalId).limit(1).get();
 
@@ -73,10 +72,8 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
         const scannedUserDoc = querySnapshot.docs[0];
         const scannedUserData = scannedUserDoc.data() as UserProfile;
         
-        // Get the role of the user who is doing the scanning
         const scannerRole = await getRole(scannerUid);
 
-        // Define the public profile data that anyone can see
         const publicProfile = {
             uid: scannedUserDoc.id,
             universalId: scannedUserData.universalId,
@@ -86,29 +83,23 @@ export const getUniversalIdData = functions.https.onCall(async (data, context) =
             location: scannedUserData.location || null,
         };
 
-        // Here, we implement the Role-Based Access Control (RBAC) logic.
-        // This can be expanded with more granular permissions.
         if (scannerUid === scannedUserDoc.id) {
-            // The user is scanning their own ID, return all non-sensitive data
             return {
                 ...publicProfile,
-                phoneNumber: scannedUserData.contactInfo?.phone, // Corrected path
+                phoneNumber: scannedUserData.contactInfo?.phone,
                 email: scannedUserData.email,
             };
         } else if (scannerRole === 'Field Agent/Agronomist (DamDoh Internal)' || scannerRole === 'Admin') {
-            // An agent or admin gets more detailed information
             return {
                 ...publicProfile,
-                phoneNumber: scannedUserData.contactInfo?.phone, // Corrected path
-                // Concept: Could also return linked farm data here
+                phoneNumber: scannedUserData.contactInfo?.phone,
             };
         } else {
-            // For any other authenticated user, just return the public profile
             return publicProfile;
         }
 
     } catch (error) {
-        console.error("Error retrieving Universal ID data:", error);
+        logError("Error retrieving Universal ID data", { scannerUid, scannedUniversalId, error });
         if (error instanceof functions.https.HttpsError) {
             throw error;
         }
@@ -133,7 +124,6 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
     const agentUid = context.auth.uid;
     const agentRole = await getRole(agentUid);
 
-    // Security Check: Only allow authorized roles to perform this lookup
     const authorizedRoles = ['Field Agent/Agronomist (DamDoh Internal)', 'Admin', 'Operations/Logistics Team (DamDoh Internal)'];
     if (!agentRole || !authorizedRoles.includes(agentRole)) {
         throw new functions.https.HttpsError("permission-denied", "You are not authorized to look up users by phone number.");
@@ -150,7 +140,6 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
         const foundUserDoc = querySnapshot.docs[0];
         const foundUserData = foundUserDoc.data() as UserProfile;
 
-        // Return a subset of data, similar to getUniversalIdData for an agent
         const userProfileSubset = {
             uid: foundUserDoc.id,
             universalId: foundUserData.universalId,
@@ -158,13 +147,13 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
             primaryRole: foundUserData.primaryRole,
             avatarUrl: foundUserData.avatarUrl || null,
             location: foundUserData.location || null,
-            phoneNumber: foundUserData.contactInfo?.phone, // Corrected path
+            phoneNumber: foundUserData.contactInfo?.phone,
         };
         
         return userProfileSubset;
 
     } catch (error) {
-        console.error("Error looking up user by phone:", error);
+        logError("Error looking up user by phone", { agentUid, phoneNumber, error });
         if (error instanceof functions.https.HttpsError) throw error;
         throw new functions.https.HttpsError("internal", "An unexpected error occurred while searching for the user.");
     }
@@ -173,8 +162,6 @@ export const lookupUserByPhone = functions.https.onCall(async (data, context) =>
 
 /**
  * Creates a temporary, secure session for account recovery.
- * The user provides their phone number to initiate this process.
- * The function returns a session ID and a value to be embedded in a temporary QR code.
  */
 export const createRecoverySession = functions.https.onCall(async (data, context) => {
     const { phoneNumber } = data;
@@ -182,7 +169,6 @@ export const createRecoverySession = functions.https.onCall(async (data, context
         throw new functions.https.HttpsError("invalid-argument", "A 'phoneNumber' must be provided.");
     }
     
-    // Find user by phone number
     const usersRef = db.collection("users");
     const querySnapshot = await usersRef.where("contactInfo.phone", "==", phoneNumber).limit(1).get();
 
@@ -192,10 +178,9 @@ export const createRecoverySession = functions.https.onCall(async (data, context
 
     const userToRecoverDoc = querySnapshot.docs[0];
     
-    // Generate a secure, short-lived session
     const sessionId = uuidv4();
-    const recoverySecret = randomBytes(16).toString('hex'); // A secret that the friend's app will send back
-    const recoveryQrValue = `damdoh:recover:${sessionId}:${recoverySecret}`; // Format: standard:action:sessionId:secret
+    const recoverySecret = randomBytes(16).toString('hex');
+    const recoveryQrValue = `damdoh:recover:${sessionId}:${recoverySecret}`;
 
     const sessionRef = db.collection('recovery_sessions').doc(sessionId);
 
@@ -204,9 +189,9 @@ export const createRecoverySession = functions.https.onCall(async (data, context
         userIdToRecover: userToRecoverDoc.id,
         recoverySecret,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        status: 'pending', // pending -> confirmed -> completed
-        confirmedBy: null, // UID of the friend who confirms
-        expiresAt: admin.firestore.Timestamp.fromMillis(Date.now() + 10 * 60 * 1000), // Session expires in 10 minutes
+        status: 'pending',
+        confirmedBy: null,
+        expiresAt: admin.firestore.Timestamp.fromMillis(Date.now() + 10 * 60 * 1000), // Expires in 10 minutes
     });
 
     return { sessionId, recoveryQrValue };
@@ -215,14 +200,9 @@ export const createRecoverySession = functions.https.onCall(async (data, context
 
 /**
  * Called by a logged-in user (the "friend") who has scanned the recovery QR code.
- * This function verifies the session and secret, and if valid, marks the recovery as confirmed.
  */
 export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "You must be logged in to help a friend recover their account.");
-    }
-
-    const friendUid = context.auth.uid;
+    const friendUid = checkAuth(context);
     const { sessionId, scannedSecret } = data;
 
     if (!sessionId || !scannedSecret) {
@@ -256,15 +236,10 @@ export const scanRecoveryQr = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError("invalid-argument", "You cannot use your own recovery code.");
     }
     
-    // Mark session as confirmed
     await sessionRef.update({
         status: 'confirmed',
         confirmedBy: friendUid,
     });
-    
-    // In a real application, the next step would be for the original user's device
-    // to poll the session status. Once 'confirmed', it would request a custom auth token.
-    // For this demo, we'll just return a success message.
     
     return { success: true, message: "Friend confirmation successful! The user can now proceed with their recovery.", recoveryComplete: true };
 });
@@ -291,10 +266,8 @@ export const completeRecovery = functions.https.onCall(async (data, context) => 
         throw new functions.https.HttpsError('failed-precondition', 'Session not yet confirmed by a friend.');
     }
 
-    // Generate a custom auth token for the recovered user
     const customToken = await admin.auth().createCustomToken(sessionData.userIdToRecover);
     
-    // Clean up the session
     await sessionRef.update({ status: 'completed' });
 
     return { success: true, customToken: customToken };
