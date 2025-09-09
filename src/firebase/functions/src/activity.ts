@@ -99,8 +99,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             activities.push({
                 id: doc.id,
                 type: 'activity.placedAnOrder',
-                title: `activity.orderFor`,
-                titleParams: { listingName: order.listingName },
+                title: t => t('activity.orderFor', { listingName: order.listingName }),
                 timestamp: toISODate(order.createdAt),
                 icon: 'ShoppingCart'
             });
@@ -111,8 +110,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             activities.push({
                 id: doc.id,
                 type: 'activity.receivedAnOrder',
-                title: `activity.orderFor`,
-                titleParams: { listingName: sale.listingName },
+                title: t => t('activity.orderFor', { listingName: sale.listingName }),
                 timestamp: toISODate(sale.createdAt),
                 icon: 'CircleDollarSign'
             });
@@ -122,8 +120,7 @@ export const getUserActivity = functions.https.onCall(async (data, context) => {
             const event = doc.data();
             activities.push({
                 id: doc.id,
-                type: `activity.loggedEvent`,
-                typeParams: { eventType: event.eventType },
+                type: t => t('activity.loggedEvent', { eventType: event.eventType }),
                 title: event.payload?.inputId || event.payload?.cropType || 'activity.traceabilityUpdate',
                 timestamp: toISODate(event.timestamp),
                 icon: 'GitBranch'
@@ -190,5 +187,3 @@ export const getUserEngagementStats = functions.https.onCall(async (data, contex
         throw new functions.https.HttpsError('internal', error.message || 'error.stats.fetchFailed');
     }
 });
-
-    

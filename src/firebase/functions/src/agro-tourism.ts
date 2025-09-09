@@ -154,6 +154,7 @@ export const getAgroTourismStaff = functions.https.onCall(async (data, context) 
     const staffList = staffSnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
+        addedAt: (doc.data().addedAt as admin.firestore.Timestamp)?.toDate?.().toISOString() || null,
     }));
 
     return { staff: staffList };
@@ -206,5 +207,3 @@ export const getAgroTourismBookings = functions.https.onCall(async (data, contex
 
     return { bookings: bookingsList };
 });
-
-    
