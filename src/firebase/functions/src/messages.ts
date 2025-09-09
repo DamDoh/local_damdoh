@@ -2,16 +2,10 @@
 
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getProfileByIdFromDB } from './user';
+import { getUserProfile } from './user';
+import { checkAuth } from './utils';
 
 const db = admin.firestore();
-
-const checkAuth = (context: functions.https.CallableContext) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-  }
-  return context.auth.uid;
-};
 
 // Gets or creates a conversation between the authenticated user and a recipient.
 export const getOrCreateConversation = functions.https.onCall(async (data, context) => {
@@ -33,8 +27,8 @@ export const getOrCreateConversation = functions.https.onCall(async (data, conte
     if (!conversationSnap.exists) {
         // Fetch profiles to store basic info in the conversation doc for easier access
         const [userProfile, recipientProfile] = await Promise.all([
-            getProfileByIdFromDB(userId),
-            getProfileByIdFromDB(recipientId)
+            getUserProfile(userId),
+            getUserProfile(recipientId)
         ]);
 
         if (!userProfile || !recipientProfile) {

@@ -3,7 +3,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import type { UserProfile } from "./types";
-import { getProfileByIdFromDB } from './user';
+import { getUserProfile } from './user';
 import { checkAuth } from './utils';
 
 
@@ -60,7 +60,7 @@ export const getPendingRequests = functions.https.onCall(async (data, context) =
     const requesterIds = snapshot.docs.map(doc => doc.data().requesterId);
     
     const profilePromises = requesterIds.map(async (id) => {
-        const profile = await getProfileByIdFromDB(id);
+        const profile = await getUserProfile(id);
         return profile as UserProfile;
     });
 
