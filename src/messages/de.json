@@ -106,7 +106,7 @@
             "vti_registry": "Rückverfolgbarkeitsberichte",
             "groups": "Gruppen"
         },
-        "noResults": "Keine Ergebnisse gefunden",
+        "noResults": "Keine Ergebnisse gefunden.",
         "tryAgain": "Versuchen Sie, Ihre Suchanfrage zu verfeinern.",
         "scanError": "QR-Code konnte nicht gelesen werden.",
         "scanErrorDescription": "Stellen Sie sicher, dass der Code gut beleuchtet und im Rahmen ist.",
@@ -448,3 +448,4 @@
     "removeStaffSuccess": "Mitarbeiter wurde entfernt."
   }
 }
+  

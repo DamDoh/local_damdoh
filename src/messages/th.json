@@ -237,11 +237,11 @@
       "InputSupplierSeedFertilizerPesticide": "អ្នកផ្គត់ផ្គង់ធាតុចូល (គ្រាប់ពូជ, ជី, ថ្នាំសម្លាប់សត្វល្អិត)",
       "EquipmentSupplierSalesofMachineryIoT": "អ្នកផ្គត់ផ្គង់គ្រឿងបរិក្ខារ (គ្រឿងចក្រ/IoT)",
       "FinancialInstitutionMicrofinanceLoans": "គ្រឹះស្ថានហិរញ្ញវត្ថុ (មីក្រូហិរញ្ញវត្ថុ/ឥណទាន)",
-      "GovernmentRegulatorAuditor": "និយតករ/សវនកររដ្ឋាภិบาล",
+      "GovernmentRegulatorAuditor": "និយតករ/សវនកររដ្ឋាភិបាល",
       "CertificationBodyOrganicFairTradeetc": "ស្ថាប័នបញ្ជាក់ (សរីរាង្គ, ពាណិជ្ជកម្មដោយត្រឹមត្រូវ ។ល។)",
       "Consumer": "អ្នក​ប្រើប្រាស់",
       "ResearcherAcademic": "អ្នកស្រាវជ្រាវ/អ្នកសិក្សា",
-      "LogisticsPartnerThirdPartyTransporter": "ដៃគូภស្តុភារ (អ្នកដឹកជัญชูน)",
+      "LogisticsPartnerThirdPartyTransporter": "ដៃគូភស្តុភារ (អ្នកដឹកជញ្ជូន)",
       "StorageWarehouseFacility": "สถานที่จัดเก็บ/คลังสินค้า",
       "AgronomyExpertConsultantExternal": "ผู้เชี่ยวชาญด้านพืชไร่/ที่ปรึกษา (ภายนอก)",
       "AgroTourismOperator": "ผู้ประกอบการท่องเที่ยวเชิงเกษตร",
@@ -261,14 +261,14 @@
     },
     "agriEventTypes": {
       "All": "គ្រប់ប្រភេទ",
-      "Conference": "សន្នิសីទ",
+      "Conference": "សន្និសីទ",
       "Webinar": "Webinar",
       "Workshop": "សិក្ខាសាលា",
-      "TradeShow": "ពិព័រណ៍ពាณิชกรรม",
+      "TradeShow": "ពិព័រណ៍ពាណិชกรรม",
       "FieldDay": "ទិវាស្រែ",
-      "NetworkingEvent": "ព្រឹត្តិการណ៍បណ្តាញ",
+      "NetworkingEvent": "ព្រឹត្តិការណ៍បណ្តាញ",
       "OnlineCourseLaunch": "การจับផ្តើមวักฤสสตาสตีนอินเตินเน็ต",
-      "PolicyBriefing": "សង្เขបគោលนยบาย"
+      "PolicyBriefing": "សង្ខេបគោលនយោបាយ"
     },
     "insuranceProductTypes": {
       "Crop": "ประกันภัยพืชผล",
@@ -291,13 +291,13 @@
       "DiseaseSighting": "การพบเห็นโรค",
       "SoilCondition": "លក្ខខណ្ឌដី",
       "WeatherEvent": "ព្រឹត្តិការណ៍អាកាសធាតុ",
-      "GrowthStageChange": "ការផ្លាស់ប្តូរដំណាក់កាលลูตលាស់",
-      "IrrigationEvent": "ព្រឹត្តិการណ៍ស្រោจស្រព"
+      "GrowthStageChange": "ការផ្លាស់ប្តូរដំណាក់កាលលូតលាស់",
+      "IrrigationEvent": "ព្រឹត្តិការណ៍ស្រោចស្រព"
     },
     "mobileHomeCategories": {
       "produceMarket": "ទីផ្សារផលិតផល",
       "farmInputs": "ធាតុចូលកសិកម្ម",
-      "talentExchange": "ផ្សារទេពកោសลย์",
+      "talentExchange": "ផ្សារទេពកោសល្យ",
       "machinery": "គ្រឿងจักร",
       "community": "សហគមន៍",
       "aiAssistant": "ชุ่มยาร์ AI",
@@ -446,3 +446,4 @@
     "removeStaffSuccess": "ได้ลบสมาชิกพนักงานแล้ว"
   }
 }
+  
