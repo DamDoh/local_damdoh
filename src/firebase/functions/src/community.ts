@@ -1,3 +1,4 @@
+
 // Note: The functions related to knowledge hub and courses have been removed
 // from this file and are now located in `knowledge-hub.ts`.
 // This file should only contain functions related to community and social engagement.
@@ -31,9 +32,7 @@ export const createFeedPost = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionsInvalid');
     }
 
-    const userProfileResult = await getProfileByIdFromDB.run({ uid }, { auth: context.auth });
-    const userProfile = userProfileResult as any;
-
+    const userProfile = await getProfileByIdFromDB({ uid }, { auth: context.auth });
     if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -93,7 +92,11 @@ export const deletePost = functions.https.onCall(async (data, context) => {
     
     console.log(`Subcollections deleted. Deleting main post document ${postId}.`);
 
+    // Finally, delete the post document itself
     await postRef.delete();
+
+    // Note: Deleting associated media from Cloud Storage would require another step,
+    // often handled by a separate onFinalize trigger or by storing the full GCS path.
 
     return { success: true, message: 'Post and all associated data deleted successfully.' };
 });
@@ -127,9 +130,8 @@ export const addComment = functions.https.onCall(async (data, context) => {
 
     const commentRef = db.collection(`posts/${postId}/comments`).doc();
 
-    const userProfileResult = await getProfileByIdFromDB.run({ uid }, { auth: context.auth });
-    const userProfile = userProfileResult as any;
-
+    const userProfile = await getProfileByIdFromDB({ uid }, {auth: context.auth});
+    
      if (!userProfile) {
         throw new functions.https.HttpsError('not-found', 'error.user.notFound');
     }
@@ -143,7 +145,7 @@ export const addComment = functions.https.onCall(async (data, context) => {
         userAvatar: userProfile.avatarUrl || null,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
-
+    
     return { success: true, commentId: commentRef.id };
 });
 
@@ -214,7 +216,6 @@ export const voteOnPoll = functions.https.onCall(async (data, context) => {
             throw new functions.https.HttpsError('invalid-argument', 'error.post.pollOptionInvalid');
         }
 
-        // Atomically update the vote count for the specific option
         const newPollOptions = [...postData.pollOptions];
         newPollOptions[optionIndex].votes = (newPollOptions[optionIndex].votes || 0) + 1;
         

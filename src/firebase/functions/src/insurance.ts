@@ -68,9 +68,8 @@ export const getInsuranceProductDetails = functions.https.onCall(async (data, co
     let provider = null;
     
     if (productData.providerId) {
-        const providerProfileResult = await getProfileByIdFromDB.run({ uid: productData.providerId }, {auth: context.auth});
-        const providerProfile = providerProfileResult as any;
-
+        const providerProfile = await getProfileByIdFromDB({ uid: productData.providerId }, {auth: context.auth});
+        
         if (providerProfile) {
             provider = {
                 displayName: providerProfile.displayName,

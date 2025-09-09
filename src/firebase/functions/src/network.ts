@@ -66,7 +66,7 @@ export const getPendingRequests = functions.https.onCall(async (data, context) =
     const requesterIds = snapshot.docs.map(doc => doc.data().requesterId);
     
     const profilePromises = requesterIds.map(async (id) => {
-        const profile = await getProfileByIdFromDB.run({ uid: id }, {auth: context.auth});
+        const profile = await getProfileByIdFromDB({ uid: id }, { auth: context.auth });
         return profile as UserProfile;
     });
 

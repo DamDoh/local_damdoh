@@ -33,8 +33,8 @@ export const getOrCreateConversation = functions.https.onCall(async (data, conte
     if (!conversationSnap.exists) {
         // Fetch profiles to store basic info in the conversation doc for easier access
         const [userProfile, recipientProfile] = await Promise.all([
-            getProfileByIdFromDB.run({ uid: userId }, {auth: context.auth}),
-            getProfileByIdFromDB.run({ uid: recipientId }, {auth: context.auth})
+            getProfileByIdFromDB({ uid: userId }, {auth: context.auth}),
+            getProfileByIdFromDB({ uid: recipientId }, {auth: context.auth})
         ]);
 
         if (!userProfile || !recipientProfile) {
