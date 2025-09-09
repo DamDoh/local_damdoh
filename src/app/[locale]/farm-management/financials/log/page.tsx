@@ -28,7 +28,7 @@ import { logFinancialTransactionSchema, type LogFinancialTransactionValues } fro
 import { ArrowLeft, Save, DollarSign, Loader2, ListFilter, FileText, Tag, CalendarIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useMemo } from "react";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { useTranslations } from "next-intl";

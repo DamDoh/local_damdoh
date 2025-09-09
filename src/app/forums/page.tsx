@@ -12,7 +12,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
 import type { ForumTopic } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { usePathname, useRouter } from '@/navigation';
 import { useHomepagePreference } from '@/hooks/useHomepagePreference';

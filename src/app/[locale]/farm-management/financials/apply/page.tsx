@@ -10,7 +10,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { useTranslations } from 'next-intl';
 
 import { app as firebaseApp } from '@/lib/firebase/client';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth } from '@/lib/auth-utils';
 import { financialApplicationSchema, type FinancialApplicationValues } from '@/lib/form-schemas';
 import { useToast } from '@/hooks/use-toast';
 

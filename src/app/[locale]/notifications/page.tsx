@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/lib/auth-utils";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { collection, query, where, orderBy, onSnapshot, getFirestore, doc, getDocs, limit } from "firebase/firestore";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";

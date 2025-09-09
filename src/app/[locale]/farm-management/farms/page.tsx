@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/lib/auth-utils";
 import { getFunctions, httpsCallable, HttpsCallableResult, HttpsError } from "firebase/functions";
 import { app as firebaseApp } from "@/lib/firebase/client";
 import { useToast } from "@/hooks/use-toast";

@@ -17,7 +17,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { UNIFIED_MARKETPLACE_FORM_CATEGORIES } from '@/lib/constants';
 import { getListingTypeFormOptions } from '@/lib/i18n-constants';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth } from '@/lib/auth-utils';
 import { Switch } from '@/components/ui/switch';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { app as firebaseApp } from '@/lib/firebase/client';
