@@ -90,11 +90,9 @@ const userSchema = new mongoose.Schema<IUser, UserModel, IUserMethods>(
       type: {
         type: String,
         enum: ['Point'],
-        default: 'Point',
       },
       coordinates: {
         type: [Number],
-        required: false,
       },
     },
     profileComplete: {

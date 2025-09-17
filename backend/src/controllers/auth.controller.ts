@@ -42,10 +42,12 @@ export class AuthController {
         name,
         role,
         phoneNumber,
-        location: location ? {
-          type: 'Point',
-          coordinates: location.coordinates,
-        } : undefined,
+        ...(location && location.coordinates ? {
+          location: {
+            type: 'Point',
+            coordinates: location.coordinates,
+          },
+        } : {}),
       });
 
       await user.save();

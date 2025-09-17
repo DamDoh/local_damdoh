@@ -20,58 +20,59 @@ import { StartPost } from './StartPost';
 import { apiCall } from '@/lib/api-utils';
 
 
-const { useState, useEffect, useMemo } = React;
+const { useState, useEffect, useMemo, useCallback, useRef } = React;
 
 
 function MainContent() {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
-  
+
   const { toast } = useToast();
   const { profile, loading: authLoading } = useUserProfile();
   const t = useTranslations('MainDashboard');
-  const { user } = useAuth();
+  const { user: rawUser } = useAuth();
+  const user = useMemo(() => rawUser, [rawUser?.id, rawUser?.email]); // Memoize user based on id and email
   
+  const fetchFeedItems = useCallback(async () => {
+    if (user) {
+      setIsLoadingFeed(true);
+      try {
+        // Fetch feed items using our new API
+        const posts = await apiCall('/community/feed');
+        setFeedItems(posts as FeedItem[]);
+      } catch (error) {
+        console.error("Error fetching feed:", error);
+        toast({
+            title: t('feedError.title'),
+            description: t('feedError.description'),
+            variant: "destructive"
+        });
+      } finally {
+        setIsLoadingFeed(false);
+      }
+    } else if (!authLoading) {
+        setIsLoadingFeed(false);
+    }
+  }, [user, authLoading]);
+
   // Polling for feed items
   useEffect(() => {
     let intervalId: NodeJS.Timeout | null = null;
 
-    const fetchFeedItems = async () => {
-      if (user) {
-        setIsLoadingFeed(true);
-        try {
-          // Fetch feed items using our new API
-          const posts = await apiCall('/community/feed');
-          setFeedItems(posts as FeedItem[]);
-        } catch (error) {
-          console.error("Error fetching feed:", error);
-          toast({
-              title: t('feedError.title'),
-              description: t('feedError.description'),
-              variant: "destructive"
-          });
-        } finally {
-          setIsLoadingFeed(false);
-        }
-      } else if (!authLoading) {
-          setIsLoadingFeed(false);
-      }
-    };
-
     // Initial fetch
     fetchFeedItems();
-    
+
     // Set up polling interval
     if (user) {
       intervalId = setInterval(fetchFeedItems, 5000); // Poll every 5 seconds
     }
-    
+
     return () => {
       if (intervalId) {
         clearInterval(intervalId);
       }
     };
-  }, [user, authLoading, toast, t]);
+  }, [user, fetchFeedItems]);
 
 
   const handleCreatePost = async (content: string, media?: File, pollData?: { text: string }[]) => {
@@ -192,9 +193,5 @@ function MainContent() {
 
 
 export function MainDashboard() {
-  return (
-    <Suspense fallback={<PageSkeleton />}>
-      <MainContent />
-    </Suspense>
-  );
+  return <MainContent />;
 }

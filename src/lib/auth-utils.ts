@@ -177,21 +177,31 @@ export async function registerUser(
   location?: { coordinates: [number, number] },
 ): Promise<AuthUser> {
   try {
+    console.log('Sending registration request to:', `${API_BASE_URL}/auth/register`);
     const response = await fetch(`${API_BASE_URL}/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
-        name, 
-        email, 
-        password, 
-        role,
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+        role: role.toUpperCase().replace(/ /g, '_'),
         phoneNumber,
         location
       }),
     });
+    console.log('Registration response received, status:', response.status);
 
     if (!response.ok) {
-      const errorData = await response.json();
+      console.log('Registration response status:', response.status);
+      const errorText = await response.text();
+      console.log('Registration error response:', errorText);
+      let errorData;
+      try {
+        errorData = JSON.parse(errorText);
+      } catch (e) {
+        throw new Error(`Registration failed: ${errorText}`);
+      }
       throw new Error(errorData.error || 'Registration failed');
     }
 

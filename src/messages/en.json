@@ -604,6 +604,25 @@
       "userDisabled": "This account has been disabled. Please contact support."
     }
   },
+  "CreatePostModal": {
+    "title": "Create Post",
+    "description": "Share an update with your network",
+    "yourName": "Your Name",
+    "shareUpdate": "Share an update...",
+    "placeholder": "What's on your mind?",
+    "selectedFile": "Selected file:",
+    "pollOptionsLabel": "Poll Options",
+    "pollOptionPlaceholder": "Option {index}",
+    "addOptionButton": "Add Option",
+    "pollNote": "Polls can have up to {maxOptions} options",
+    "addMediaButton": "Add Media",
+    "createEventButton": "Create Event",
+    "shareDocumentButton": "Share Document",
+    "createPollButton": "Create Poll",
+    "postButton": "Post",
+    "pollOptionsError": "Polls must have at least 2 options",
+    "emptyPostError": "Please add some content to your post"
+  },
   "MainDashboard": {
     "feedError": {
       "title": "Feed Load Error",
@@ -633,5 +652,11 @@
       "button": "Edit Profile"
     },
     "noActivity": "No activity to show yet. Post something to get started!"
+  },
+  "StartPost": {
+    "placeholder": "What's on your mind?",
+    "photoVideo": "Photo/Video",
+    "agriEvent": "Agri Event",
+    "createPoll": "Create Poll"
   }
 }

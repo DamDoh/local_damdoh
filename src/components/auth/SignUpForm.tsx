@@ -177,7 +177,7 @@ export function SignUpForm({ onSuccess }: SignUpFormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="flex items-center"><Briefcase className="mr-2 h-4 w-4 text-muted-foreground" />{t('roleLabel')}</FormLabel>
-                <Select onValueChange={(value) => field.onChange(value as any)} value={field.value}>
+                <Select onValueChange={(value) => field.onChange(value as any)} value={field.value ?? ""}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder={t('rolePlaceholder')} />
