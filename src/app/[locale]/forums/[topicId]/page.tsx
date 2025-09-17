@@ -10,28 +10,21 @@ import { Link } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { ForumTopic, ForumPost } from '@/lib/types';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
-import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useToast } from '@/hooks/use-toast';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/lib/auth-utils';
 import { formatDistanceToNow } from 'date-fns';
+import { apiCall } from '@/lib/api-utils';
 
 const getTopicDetails = async (topicId: string): Promise<ForumTopic | null> => {
-    const db = getFirestore(firebaseApp);
-    const topicRef = doc(db, "forums", topicId);
-    const topicSnap = await getDoc(topicRef);
-    if (topicSnap.exists()) {
-        const data = topicSnap.data();
-        return {
-            id: topicSnap.id,
-            ...data,
-            lastActivityAt: (data.lastActivityAt as any)?.toDate ? (data.lastActivityAt as any).toDate().toISOString() : new Date().toISOString(),
-            createdAt: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
-        } as ForumTopic;
+    try {
+        // Fetch topic details using our new API
+        const result = await apiCall(`/forums/topic/${topicId}`);
+        return result as ForumTopic;
+    } catch (error) {
+        console.error("Error fetching topic details:", error);
+        return null;
     }
-    return null;
 };
 
 export default function TopicPage() {
@@ -48,8 +41,6 @@ export default function TopicPage() {
     const [isLoadingMore, setIsLoadingMore] = useState(false);
     
     const { user } = useAuth();
-    const functions = getFunctions(firebaseApp);
-    const getPostsForTopic = useMemo(() => httpsCallable(functions, 'forums-getPostsForTopic'), [functions]);
 
     const fetchPosts = useCallback(async (isInitialLoad = false) => {
         if(!hasMore && !isInitialLoad) return;
@@ -57,8 +48,12 @@ export default function TopicPage() {
         else setIsLoadingMore(true);
 
         try {
-            const result = await getPostsForTopic({ topicId, lastVisible: isInitialLoad ? null : lastVisible });
-            const data = result.data as { posts?: ForumPost[], lastVisible?: any };
+            // Fetch posts using our new API
+            const result = await apiCall('/forums/posts', {
+                method: 'POST',
+                body: JSON.stringify({ topicId, lastVisible: isInitialLoad ? null : lastVisible }),
+            });
+            const data = result as { posts?: ForumPost[], lastVisible?: any };
             const backendPosts = data?.posts || [];
             
             if (backendPosts.length > 0) {
@@ -80,7 +75,7 @@ export default function TopicPage() {
             if(isInitialLoad) setIsLoading(false);
             else setIsLoadingMore(false);
         }
-    }, [topicId, lastVisible, getPostsForTopic, toast, hasMore, t]);
+    }, [topicId, lastVisible, toast, hasMore, t]);
 
 
     useEffect(() => {

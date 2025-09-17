@@ -3,11 +3,10 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import { httpsCallable } from 'firebase/functions';
-import { functions } from '@/lib/firebase/client';
 import { useTranslations } from 'next-intl';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db, type OfflineAction } from '@/lib/db';
+import { apiCall } from '@/lib/api-utils';
 
 export function useOfflineSync() {
   const t = useTranslations('OfflineIndicator');
@@ -58,9 +57,11 @@ export function useOfflineSync() {
           // Fetch all pending actions from IndexedDB
           const actionsToSync = await db.outbox.toArray();
           
-          // Call the backend function with the batch of changes
-          const uploadChanges = httpsCallable(functions, 'offlineSync-uploadOfflineChanges');
-          await uploadChanges({ changes: actionsToSync });
+          // Call the backend API endpoint with the batch of changes
+          await apiCall('/offline-sync/upload', {
+            method: 'POST',
+            body: JSON.stringify({ changes: actionsToSync }),
+          });
           
           // On success, clear the synced items from the outbox
           await db.outbox.clear();
@@ -76,7 +77,7 @@ export function useOfflineSync() {
       
       syncChanges();
     }
-  }, [isOnline, pendingActionCount, isSyncing, toast, t, functions]);
+  }, [isOnline, pendingActionCount, isSyncing, toast, t]);
   
   // Exposed function to add an action to the queue
   const addActionToQueue = useCallback(async (actionPayload: any) => {

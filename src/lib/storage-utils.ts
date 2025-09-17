@@ -1,37 +1,33 @@
+import { randomBytes } from 'crypto';
 
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { app as firebaseApp } from "./firebase/client"; // Use your client-side firebase app instance
-import { v4 as uuidv4 } from 'uuid';
-
-/**
- * Uploads a file to Firebase Storage and returns its public download URL.
- *
- * @param file The file to upload.
- * @param path The path in Firebase Storage where the file should be stored (e.g., "observation-images").
- * @returns A promise that resolves with the public download URL of the uploaded file.
- */
 export async function uploadFileAndGetURL(file: File, path: string): Promise<string> {
-  const storage = getStorage(firebaseApp); // Initialize storage inside the function
   if (!file) {
-    throw new Error("No file provided for upload.");
+    throw new Error("No file provided");
   }
-
-  // Create a unique filename to prevent overwrites
+  
+  // Generate a unique filename using crypto
   const fileExtension = file.name.split('.').pop();
-  const uniqueFileName = `${uuidv4()}.${fileExtension}`;
-  const storageRef = ref(storage, `${path}/${uniqueFileName}`);
-
-  try {
-    // Upload the file
-    const snapshot = await uploadBytes(storageRef, file);
-    
-    // Get the public download URL
-    const downloadURL = await getDownloadURL(snapshot.ref);
-    
-    return downloadURL;
-  } catch (error) {
-    console.error("Error uploading file:", error);
-    // It's good practice to throw a more specific error or handle it as needed
-    throw new Error("File upload failed. Please try again.");
+  const uniqueFilename = `${randomBytes(16).toString('hex')}.${fileExtension}`;
+  const fullPath = `${path}/${uniqueFilename}`;
+  
+  // Create FormData for file upload
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('path', fullPath);
+  
+  // Get the API URL from environment variables
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
+  
+  // Upload file to backend
+  const response = await fetch(`${API_URL}/upload`, {
+    method: 'POST',
+    body: formData,
+  });
+  
+  if (!response.ok) {
+    throw new Error(`File upload failed: ${response.status} ${response.statusText}`);
   }
+  
+  const result = await response.json();
+  return result.url;
 }

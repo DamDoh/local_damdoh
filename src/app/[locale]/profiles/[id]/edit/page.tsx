@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -25,14 +26,13 @@ import type { UserProfile } from "@/lib/types";
 import { ArrowLeft, Save, User, Mail, Briefcase, FileText, MapPin, Sparkles, TrendingUp, Phone, Globe, Loader2, Info, Settings } from "lucide-react";
 import React from "react"; 
 import { useToast } from "@/hooks/use-toast";
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "@/lib/auth-utils";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { useTranslations, useLocale } from "next-intl";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { generateProfileSummary } from '@/ai/flows/profile-summary-generator';
+import { apiCall } from '@/lib/api-utils';
 
 
 function EditProfileSkeleton() {
@@ -64,8 +64,6 @@ export default function EditProfilePage() {
 
   const { toast } = useToast();
   const { user: authUser, loading: authLoading } = useAuth();
-  const functions = getFunctions(firebaseApp);
-  const upsertStakeholderProfile = useMemo(() => httpsCallable(functions, 'user-upsertStakeholderProfile'), [functions]);
 
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [isLoadingData, setIsLoadingData] = useState(true);
@@ -128,14 +126,14 @@ export default function EditProfilePage() {
     let idToFetch: string | null = null;
     if (profileIdParam === "me") {
       if (authUser) {
-        idToFetch = authUser.uid;
+        idToFetch = authUser.id;
       } else {
         toast({ variant: "destructive", title: tEdit('toast.notAuthenticatedTitle'), description: tEdit('toast.notAuthenticatedDescription') });
         router.push("/auth/signin");
         return;
       }
     } else {
-      if (!authUser || authUser.uid !== profileIdParam) {
+      if (!authUser || authUser.id !== profileIdParam) {
         toast({ variant: "destructive", title: tEdit('toast.unauthorizedTitle'), description: tEdit('toast.unauthorizedDescription') });
         router.push(`/profiles/${profileIdParam}`);
         return;
@@ -210,14 +208,17 @@ export default function EditProfilePage() {
         profileData: data.profileData, 
       };
 
-      await upsertStakeholderProfile(payload);
+      const result = await apiCall('/user/profile', {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+      });
       
       toast({
         title: tEdit('toast.profileUpdatedTitle'),
         description: tEdit('toast.profileUpdatedDescription'),
       });
       router.push(`/profiles/me`);
-      router.refresh(); 
+      router.refresh();
     } catch (error: any) {
       console.error("Error updating profile:", error);
       toast({

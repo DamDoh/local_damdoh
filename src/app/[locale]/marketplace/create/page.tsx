@@ -19,12 +19,11 @@ import { UNIFIED_MARKETPLACE_FORM_CATEGORIES } from '@/lib/constants';
 import { getListingTypeFormOptions } from '@/lib/i18n-constants';
 import { useAuth } from '@/lib/auth-utils';
 import { Switch } from '@/components/ui/switch';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { useLocale } from 'next-intl';
 import { uploadFileAndGetURL } from '@/lib/storage-utils'
 import { suggestMarketPrice as suggestMarketPriceAction } from '@/lib/server-actions';
 import { getVtiTraceabilityHistory } from '@/lib/server-actions/traceability';
+import { apiCall } from '@/lib/api-utils';
 
 export default function CreateListingPage() {
     const router = useRouter();
@@ -39,9 +38,6 @@ export default function CreateListingPage() {
     const [isSuggestingPrice, setIsSuggestingPrice] = useState(false);
     const [suggestedPrice, setSuggestedPrice] = useState<string | null>(null);
     
-    const functions = getFunctions(firebaseApp);
-    const createListingCallable = httpsCallable(functions, 'createMarketplaceListing');
-
     const form = useForm<CreateMarketplaceItemValues>({
       resolver: zodResolver(createMarketplaceItemSchema),
       defaultValues: {
@@ -134,7 +130,7 @@ export default function CreateListingPage() {
 
     const handleSubmit = async (data: CreateMarketplaceItemValues) => {
         if (!user) {
-          toast({ variant: "destructive", 
+          toast({ variant: "destructive",
           title: t('errors.authentication.title'),
           description: t('errors.authentication.description'),
         });
@@ -151,7 +147,12 @@ export default function CreateListingPage() {
 
             const payload = { ...data, imageUrl, imageFile: undefined }; // Don't send file to backend
             
-            await createListingCallable(payload);
+            // Use our new API instead of Firebase functions
+            await apiCall('/marketplace/listings', {
+                method: 'POST',
+                body: JSON.stringify(payload),
+            });
+            
             toast({ title: t('success.title'), description: t('success.description') });
             router.push('/marketplace');
         } catch (error: any) {

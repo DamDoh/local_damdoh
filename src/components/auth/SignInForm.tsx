@@ -58,21 +58,13 @@ export function SignInForm({ onSuccess }: SignInFormProps) {
       router.refresh();
     } catch (error: any) {
       let errorMessage = t('errors.unexpected');
-      if (error.code) {
-        switch (error.code) {
-          case "auth/user-not-found":
-          case "auth/wrong-password":
-          case "auth/invalid-credential":
-            errorMessage = t('errors.invalidCredential');
-            break;
-          case "auth/invalid-email":
-            errorMessage = t('errors.invalidEmail');
-            break;
-          case "auth/user-disabled":
-            errorMessage = t('errors.userDisabled');
-            break;
-          default:
-            errorMessage = `${t('errors.default')}: ${error.message}`;
+      if (error.message) {
+        if (error.message === "Invalid credentials") {
+          errorMessage = t('errors.invalidCredential');
+        } else if (error.message === "Login failed") {
+          errorMessage = t('errors.default');
+        } else {
+          errorMessage = `${t('errors.default')}: ${error.message}`;
         }
       }
       setAuthError(errorMessage);

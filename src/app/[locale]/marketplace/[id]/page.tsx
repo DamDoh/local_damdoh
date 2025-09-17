@@ -1,10 +1,7 @@
 
 "use client";
-
-import { useState, useEffect, useMemo, Suspense } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useParams, notFound, useSearchParams } from 'next/navigation';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import type { MarketplaceItem, UserProfile, Shop } from '@/lib/types';
 import { getProfileByIdFromDB } from '@/lib/server-actions';
@@ -13,6 +10,7 @@ import { differenceInCalendarDays } from 'date-fns';
 import type { DateRange } from "react-day-picker";
 import { useTranslations } from 'next-intl';
 import { useRouter, Link } from '@/navigation';
+import { apiCall } from '@/lib/api-utils';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
@@ -25,13 +23,12 @@ import Image from "next/image";
 import { ArrowLeft, UserCircle, ShoppingCart, DollarSign, MapPin, Building, MessageSquare, Edit, Briefcase, Star, Sparkles, Ticket, Loader2, Settings, Calendar as CalendarIcon, QrCode, CheckCircle, XCircle, GitBranch } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose, DialogTrigger } from "@/components/ui/dialog";
 import { Textarea } from '@/components/ui/textarea'; // Corrected import
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
-
 
 function ItemPageSkeleton() {
     return (
@@ -84,13 +81,6 @@ function ItemPageContent() {
     const [orderQuantity, setOrderQuantity] = useState(1);
     const [orderNotes, setOrderNotes] = useState("");
     const [isPlacingOrder, setIsPlacingOrder] = useState(false);
-
-    const functions = getFunctions(firebaseApp);
-    const getMarketplaceItemById = useMemo(() => httpsCallable(functions, 'marketplace-getMarketplaceItemById'), [functions]);
-    const getShopDetailsCallable = useMemo(() => httpsCallable(functions, 'marketplace-getShopDetails'), [functions]);
-    const validateCouponCallable = useMemo(() => httpsCallable(functions, 'marketplace-validateMarketplaceCoupon'), [functions]);
-    const bookAgroTourismServiceCallable = useMemo(() => httpsCallable(functions, 'agroTourism-bookAgroTourismService'), [functions]);
-    const createMarketplaceOrderCallable = useMemo(() => httpsCallable(functions, 'marketplace-createMarketplaceOrder'), [functions]);
     
     useEffect(() => {
         const couponFromUrl = searchParams.get('coupon');
@@ -107,18 +97,21 @@ function ItemPageContent() {
             setError(null);
             setAppliedCoupon(null);
             try {
-                const itemResult = await getMarketplaceItemById({ itemId });
-                const itemData = itemResult.data as MarketplaceItem | null;
+                // Get item details
+                const itemResponse = await apiCall(`/marketplace/listings/${itemId}`);
+                const itemData = itemResponse as MarketplaceItem;
 
                 if (!itemData) throw new Error(t('notFound.description'));
                 setItem(itemData);
 
+                // Get seller profile
                 const sellerProfile = await getProfileByIdFromDB(itemData.sellerId);
                 setSeller(sellerProfile);
                 
+                // Get shop details if seller has a shop
                 if(sellerProfile && Array.isArray(sellerProfile.shops) && sellerProfile.shops.length > 0) {
-                     const shopResult = await getShopDetailsCallable({ shopId: sellerProfile.shops[0] });
-                     setShop(shopResult.data as Shop);
+                     const shopResponse = await apiCall(`/marketplace/shops/${sellerProfile.shops[0]}`);
+                     setShop(shopResponse as Shop);
                 }
 
             } catch (err: any) {
@@ -130,15 +123,19 @@ function ItemPageContent() {
         };
 
         fetchData();
-    }, [itemId, getMarketplaceItemById, getShopDetailsCallable, t]);
+    }, [itemId, t]);
     
     const handleApplyCoupon = async () => {
         if (!couponCode.trim() || !item) return;
         setIsApplyingCoupon(true);
         setAppliedCoupon(null);
         try {
-            const result = await validateCouponCallable({ couponCode, sellerId: item.sellerId });
-            const data = result.data as { valid: boolean; message?: string; discountType?: 'fixed' | 'percentage'; discountValue?: number; code?: string };
+            const result = await apiCall('/coupons/validate', {
+                method: 'POST',
+                body: JSON.stringify({ couponCode, sellerId: item.sellerId }),
+            });
+            
+            const data = result as { valid: boolean; message?: string; discountType?: 'fixed' | 'percentage'; discountValue?: number; code?: string };
 
             if(data.valid && data.discountType && data.discountValue && data.code){
                 setAppliedCoupon({
@@ -176,7 +173,10 @@ function ItemPageContent() {
                 totalPrice: totalBookingPrice,
                 currency: item?.currency
             };
-            await bookAgroTourismServiceCallable({ itemId: item?.id, bookingDetails });
+            await apiCall('/agro-tourism/bookings', {
+                method: 'POST',
+                body: JSON.stringify({ serviceId: item?.id, bookingDetails }),
+            });
             toast({ title: t('booking.successTitle'), description: t('booking.successDescription') });
             setIsBooked(true);
         } catch (error: any) {
@@ -198,7 +198,14 @@ function ItemPageContent() {
         }
         setIsPlacingOrder(true);
         try {
-            await createMarketplaceOrderCallable({ itemId: item?.id, quantity: orderQuantity, buyerNotes: orderNotes });
+            await apiCall('/marketplace/orders', {
+                method: 'POST',
+                body: JSON.stringify({
+                    listingId: item?.id,
+                    quantity: orderQuantity,
+                    buyerNotes: orderNotes
+                }),
+            });
             toast({ title: t('order.successTitle'), description: t('order.successDescription') });
             setIsOrderDialogOpen(false);
         } catch (error: any) {
@@ -229,11 +236,11 @@ function ItemPageContent() {
     if (error) return <div className="text-center py-10"><p className="text-destructive">{error}</p><Button variant="outline" asChild className="mt-4"><Link href="/marketplace"><ArrowLeft className="mr-2 h-4 w-4" />{t('backLink')}</Link></Button></div>;
     if (!item) return notFound();
 
-    const isOwner = user?.uid === item.sellerId;
+    const isOwner = user?.id === item.sellerId;
     const isAgroTourismService = item.category === 'agri-tourism-services';
     const isProduct = item.listingType === 'Product';
     const skills: string[] = Array.isArray(item.skillsRequired) ? item.skillsRequired : (typeof item.skillsRequired === 'string' && item.skillsRequired) ? item.skillsRequired.split(',').map(s => s.trim()) : [];
-    const serviceQrCodeValue = `damdoh:checkin?itemId=${item.id}&userId=${user?.uid}`;
+    const serviceQrCodeValue = `damdoh:checkin?itemId=${item.id}&userId=${user?.id}`;
 
     return (
       <>

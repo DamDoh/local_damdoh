@@ -2,8 +2,6 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -15,6 +13,7 @@ import type { AgronomistDashboardData } from '@/lib/types';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Cell } from "recharts";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart";
 import { useTranslations } from 'next-intl';
+import { apiCall } from '@/lib/api-utils';
 
 const StatCard = ({ title, value, icon }: { title: string, value: string | number, icon: React.ReactNode }) => (
     <Card>
@@ -30,20 +29,17 @@ const StatCard = ({ title, value, icon }: { title: string, value: string | numbe
 
 export const AgronomistDashboard = () => {
   const t = useTranslations('AgronomistDashboard');
-  const [dashboardData, setDashboardData] = useState<AgronomistDashboardData | null>(null);
+  const [dashboardData, setDashboardData] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  const functions = useMemo(() => getFunctions(firebaseApp), []);
-  const getAgronomistDashboardDataCallable = useMemo(() => httpsCallable<void, AgronomistDashboardData>(functions, 'dashboardData-getAgronomistDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       setError(null);
       try {
-        const result = await getAgronomistDashboardDataCallable();
-        setDashboardData(result.data);
+        const result = await apiCall('/dashboard/agronomist');
+        setDashboardData(result);
       } catch (err) {
         console.error("Error fetching Agronomist dashboard data:", err);
         setError(t('errors.load'));
@@ -53,7 +49,7 @@ export const AgronomistDashboard = () => {
     };
 
     fetchData();
-  }, [getAgronomistDashboardDataCallable, t]);
+  }, [t]);
 
   const {
     pendingConsultationRequests = [],
@@ -62,12 +58,12 @@ export const AgronomistDashboard = () => {
   } = dashboardData || {};
   
   const farmersWithAlerts = useMemo(() => 
-    (assignedFarmersOverview || []).filter(f => f.alerts > 0).length,
+    (assignedFarmersOverview || []).filter((f: any) => f.alerts > 0).length,
   [assignedFarmersOverview]);
   
   const contributionStatusCounts = useMemo(() => {
     const counts: { [key: string]: number } = {};
-    (knowledgeHubContributions || []).forEach(contribution => {
+    (knowledgeHubContributions || []).forEach((contribution: any) => {
         counts[contribution.status] = (counts[contribution.status] || 0) + 1;
     });
     return Object.keys(counts).map(name => ({ name, count: counts[name] }));
@@ -143,7 +139,7 @@ export const AgronomistDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {pendingConsultationRequests.map((request) => (
+                   {pendingConsultationRequests.map((request: any) => (
                      <TableRow key={request.id}>
                        <TableCell className="font-medium">{request.farmerName}</TableCell>
                        <TableCell>{request.issueSummary}</TableCell>
@@ -179,7 +175,7 @@ export const AgronomistDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {assignedFarmersOverview.map((farmer) => (
+                   {assignedFarmersOverview.map((farmer: any) => (
                      <TableRow key={farmer.id}>
                        <TableCell className="font-medium">{farmer.name}</TableCell>
                        <TableCell>{farmer.farmLocation}</TableCell>
@@ -216,7 +212,7 @@ export const AgronomistDashboard = () => {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {knowledgeHubContributions.map((contribution) => (
+                        {knowledgeHubContributions.map((contribution: any) => (
                           <TableRow key={contribution.id}>
                             <TableCell className="font-medium">
                               <Link href={`/blog/${contribution.id}`} className="hover:underline">{contribution.title}</Link>
@@ -253,7 +249,7 @@ export const AgronomistDashboard = () => {
                                 />
                                 <Bar dataKey="count" layout="vertical" radius={4}>
                                     {contributionStatusCounts.map((entry, index) => (
-                                        <Cell key={`cell-${index}`} fill={chartConfig[entry.name as keyof typeof chartConfig]?.color || "hsl(var(--primary))"} />
+                                        <Cell key={`cell-${index}`} fill={(chartConfig[entry.name as keyof typeof chartConfig] as any)?.color || "hsl(var(--primary))"} />
                                     ))}
                                 </Bar>
                             </BarChart>

@@ -1,17 +1,17 @@
 
 "use client";
 
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useForm, zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { createShopSchema, type CreateShopValues } from '@/lib/form-schemas';
 import { useToast } from '@/hooks/use-toast';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { useRouter } from 'next/navigation';
 import { Loader2, ArrowLeft, Building, Save } from 'lucide-react';
 import { STAKEHOLDER_ROLES } from '@/lib/constants';
@@ -29,9 +29,7 @@ export default function CreateShopPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
   const { toast } = useToast();
-  const functions = getFunctions(firebaseApp);
   const router = useRouter();
-  const createShopCallable = useMemo(() => httpsCallable(functions, 'marketplace-createShop'), [functions]);
 
   const form = useForm<CreateShopValues>({
     resolver: zodResolver(createShopSchema),
@@ -49,7 +47,10 @@ export default function CreateShopPage() {
     }
     setIsSubmitting(true);
     try {
-      await createShopCallable(data);
+      await apiCall('/marketplace/shops', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
 
       toast({
         title: t('toast.successTitle'),

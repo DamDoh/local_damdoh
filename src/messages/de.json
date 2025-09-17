@@ -1,4 +1,3 @@
-
 {
   "LandingPage": {
     "hero": {
@@ -184,5 +183,55 @@
     "description": "Platform administration and management.",
     "contentManagement": "Content",
     "reports": "Reports"
+  },
+  "Auth": {
+    "signUpTitle": "Konto erstellen",
+    "alreadyHaveAccountPrompt": "Haben Sie bereits ein Konto?",
+    "signInLink": "Anmelden",
+    "signInTitle": "Willkommen zurück",
+    "signInWelcome": "Willkommen zurück bei {appName}",
+    "signInDescription": "Melden Sie sich bei Ihrem Konto an, um fortzufahren",
+    "recoverWithUniversalIdPrompt": "Oder stellen Sie den Zugriff mit Ihrer universellen ID wieder her",
+    "noAccountPrompt": "Haben Sie noch kein Konto?",
+    "signUpLink": "Registrieren",
+    "nameLabel": "Vollständiger Name",
+    "namePlaceholder": "Geben Sie Ihren vollständigen Namen ein",
+    "roleLabel": "Ihre Rolle",
+    "rolePlaceholder": "Wählen Sie Ihre Rolle in der Landwirtschaft aus",
+    "emailLabel": "E-Mail-Adresse",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "passwordLabel": "Passwort",
+    "confirmPasswordLabel": "Passwort bestätigen",
+    "forgotPasswordLink": "Passwort vergessen?",
+    "signUpButton": "Registrieren",
+    "creatingAccountButton": "Konto wird erstellt...",
+    "signInButton": "Anmelden",
+    "signingInButton": "Anmeldung läuft...",
+    "signUpFailed": "Registrierung fehlgeschlagen",
+    "signInFailed": "Anmeldung fehlgeschlagen",
+    "signUpSuccess": {
+      "title": "Konto erfolgreich erstellt",
+      "description": "Willkommen bei {appName}! Sie sind jetzt angemeldet und können loslegen."
+    },
+    "signInSuccess": {
+      "title": "Erfolgreich angemeldet",
+      "description": "Willkommen zurück bei {appName}! Sie sind jetzt angemeldet."
+    },
+    "passwordStrength": {
+      "weak": "Schwach",
+      "medium": "Mittel",
+      "strong": "Stark",
+      "veryStrong": "Sehr stark",
+      "label": "Passwortstärke"
+    },
+    "errors": {
+      "emailInUse": "Diese E-Mail-Adresse wird bereits verwendet. Bitte versuchen Sie eine andere oder melden Sie sich stattdessen an.",
+      "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "weakPassword": "Das Passwort sollte mindestens 6 Zeichen lang sein.",
+      "default": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+      "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+      "invalidCredential": "Ungültige E-Mail oder Passwort. Bitte versuchen Sie es erneut.",
+      "userDisabled": "Dieses Konto wurde deaktiviert. Bitte kontaktieren Sie den Support."
+    }
   }
 }

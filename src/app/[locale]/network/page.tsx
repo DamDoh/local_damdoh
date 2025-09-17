@@ -19,9 +19,7 @@ import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
 import { useAuth } from "@/lib/auth-utils";
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { useToast } from "@/hooks/use-toast";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
-
+import { apiCall } from '@/lib/api-utils';
 function ProfileCardSkeleton() {
   return (
     <Card className="flex flex-col">
@@ -59,14 +57,10 @@ export default function NetworkPage() {
   const { profile: currentUserProfile, loading: profileLoading } = useUserProfile();
   const { user } = useAuth();
   const { toast } = useToast();
-  const functions = getFunctions(firebaseApp);
-  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'network-sendConnectionRequest'), [functions]);
-  const sendInviteCallable = useMemo(() => httpsCallable(functions, 'network-sendInvite'), [functions]);
-  const getProfileStatusesCallable = useMemo(() => httpsCallable(functions, 'network-getProfileConnectionStatuses'), [functions]);
 
   const fetchProfiles = useCallback(async () => {
     setIsLoading(true);
-    const filters: { type: string, value: string }[] = [];
+    const filters: { type: "role" | "category" | "listingType" | "tag", value: string }[] = [];
     if (roleFilter !== 'all') {
       filters.push({ type: 'category', value: roleFilter });
     }
@@ -88,8 +82,12 @@ export default function NetworkPage() {
       if (user && profilesArray.length > 0) {
         setIsLoadingStatuses(true);
         const profileIds = profilesArray.map((p: UserProfile) => p.id);
-        const statusesResult = await getProfileStatusesCallable({ profileIds });
-        setConnectionStatuses(statusesResult.data as any);
+        // Fetch connection statuses using our new API
+        const statusesResult = await apiCall('/network/connection-statuses', {
+            method: 'POST',
+            body: JSON.stringify({ profileIds }),
+        });
+        setConnectionStatuses(statusesResult as any);
         setIsLoadingStatuses(false);
       } else {
         setIsLoadingStatuses(false);
@@ -101,7 +99,7 @@ export default function NetworkPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [user, searchTerm, roleFilter, locationFilter, getProfileStatusesCallable, toast, t]);
+  }, [user, searchTerm, roleFilter, locationFilter, toast, t]);
 
   useEffect(() => {
     fetchProfiles();
@@ -115,7 +113,11 @@ export default function NetworkPage() {
     }
     setIsConnecting(recipientId);
     try {
-        await sendConnectionRequestCallable({ recipientId });
+        // Send connection request using our new API
+        await apiCall('/network/send-connection-request', {
+            method: 'POST',
+            body: JSON.stringify({ recipientId }),
+        });
         toast({ title: t('toast.requestSentTitle'), description: t('toast.requestSentDescription') });
         setConnectionStatuses(prev => ({...prev, [recipientId]: 'pending_sent'}));
     } catch (error: any) {
@@ -129,7 +131,11 @@ export default function NetworkPage() {
     const inviteeEmail = prompt(t('invite.prompt'));
     if (inviteeEmail) {
       try {
-        await sendInviteCallable({ inviteeEmail });
+        // Send invite using our new API
+        await apiCall('/network/send-invite', {
+            method: 'POST',
+            body: JSON.stringify({ inviteeEmail }),
+        });
         toast({
           title: t('invite.successTitle'),
           description: t('invite.successDescription', { email: inviteeEmail }),
@@ -255,7 +261,7 @@ export default function NetworkPage() {
                 <Card key={profile.id} className="flex flex-col hover:shadow-lg transition-shadow">
                     <CardHeader className="items-center text-center">
                     <Avatar className="h-24 w-24 border-2 border-primary mb-2">
-                        <AvatarImage src={profile.avatarUrl} alt={profile.displayName} data-ai-hint="profile agriculture person" />
+                        <AvatarImage src={profile.avatarUrl || undefined} alt={profile.displayName} data-ai-hint="profile agriculture person" />
                         <AvatarFallback className="text-3xl">{profile.displayName?.substring(0,1) ?? '?'}</AvatarFallback>
                     </Avatar>
                     <Link href={`/profiles/${profile.id}`}>

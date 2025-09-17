@@ -1,9 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -30,6 +28,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
+import { apiCall } from '@/lib/api-utils';
 
 const ApiKeyRow = ({ apiKey, onRevoke }: { apiKey: ApiKey, onRevoke: (keyId: string) => void }) => {
     const t = useTranslations('AgriTechDashboard');
@@ -109,24 +108,19 @@ export const AgriTechInnovatorDashboard = () => {
   
   const [newlyGeneratedKey, setNewlyGeneratedKey] = useState<ApiKey | null>(null);
 
-  const functions = useMemo(() => getFunctions(firebaseApp), []);
-  const generateApiKeyCallable = useMemo(() => httpsCallable(functions, 'apiKeys-generateApiKey'), [functions]);
-  const revokeApiKeyCallable = useMemo(() => httpsCallable(functions, 'apiKeys-revokeApiKey'), [functions]);
-  const getAgriTechInnovatorDashboardDataCallable = useMemo(() => httpsCallable(functions, 'dashboardData-getAgriTechInnovatorDashboardData'), [functions]);
-
   const fetchDashboardData = useCallback(async () => {
       setIsLoading(true);
       setError(null);
       try {
-        const result = await getAgriTechInnovatorDashboardDataCallable();
-        setDashboardData(result.data as any);
+        const result = await apiCall('/dashboard/agri-tech');
+        setDashboardData(result as AgriTechInnovatorDashboardData);
       } catch (err: any) {
         console.error("Error fetching Agri-Tech dashboard data:", err);
         setError(t('errors.load'));
       } finally {
         setIsLoading(false);
       }
-  }, [getAgriTechInnovatorDashboardDataCallable, t]);
+  }, [t]);
   
   useEffect(() => {
       fetchDashboardData();
@@ -139,8 +133,11 @@ export const AgriTechInnovatorDashboard = () => {
       }
       setIsSubmitting(true);
       try {
-          const result = await generateApiKeyCallable({ description: newKeyDescription, environment: newKeyEnv });
-          const newKeyData = result.data as ApiKey;
+          const result = await apiCall('/api-keys/generate', {
+              method: 'POST',
+              body: JSON.stringify({ description: newKeyDescription, environment: newKeyEnv }),
+          });
+          const newKeyData = result as ApiKey;
           setNewlyGeneratedKey(newKeyData);
           setNewKeyDescription('');
           fetchDashboardData();
@@ -154,7 +151,9 @@ export const AgriTechInnovatorDashboard = () => {
   
   const handleRevokeKey = async (keyId: string) => {
        try {
-          await revokeApiKeyCallable({ keyId });
+          await apiCall(`/api-keys/${keyId}/revoke`, {
+              method: 'POST',
+          });
           toast({ title: t('toast.keyRevokedSuccess') });
           const dialogCloseButton = document.querySelector('[role="dialog"] [aria-label="Close"]');
           if (dialogCloseButton instanceof HTMLElement) {
@@ -287,7 +286,7 @@ export const AgriTechInnovatorDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {(apiKeys || []).map((key) => (
+                   {(apiKeys || []).map((key: ApiKey) => (
                       <ApiKeyRow key={key.id} apiKey={key} onRevoke={handleRevokeKey} />
                    ))}
                  </TableBody>

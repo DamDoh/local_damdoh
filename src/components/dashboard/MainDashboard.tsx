@@ -2,16 +2,13 @@
 "use client";
 
 import React, { Suspense } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import type { FeedItem } from "@/lib/types";
 import { PageSkeleton } from '@/components/Skeletons';
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/lib/auth-utils";
-import { httpsCallable, getFunctions } from 'firebase/functions';
-import { functions, app as firebaseApp } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { FeedItemCard } from '@/components/dashboard/FeedItemCard';
-import { collection, query, orderBy, onSnapshot, getFirestore, limit } from "firebase/firestore";
 import { uploadFileAndGetURL } from '@/lib/storage-utils';
 import { useTranslations } from 'next-intl';
 import { Button } from '../ui/button';
@@ -20,6 +17,7 @@ import { Edit } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { FarmerDashboard } from './hubs/FarmerDashboard';
 import { StartPost } from './StartPost';
+import { apiCall } from '@/lib/api-utils';
 
 
 const { useState, useEffect, useMemo } = React;
@@ -30,47 +28,50 @@ function MainContent() {
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
   
   const { toast } = useToast();
-  const { user, profile, loading: authLoading } = useUserProfile();
+  const { profile, loading: authLoading } = useUserProfile();
   const t = useTranslations('MainDashboard');
+  const { user } = useAuth();
   
-  const functions = useMemo(() => getFunctions(firebaseApp), []);
-  const db = useMemo(() => getFirestore(firebaseApp), []);
-
-  const createPostCallable = httpsCallable(functions, 'community-createFeedPost');
-  const deletePostCallable = httpsCallable(functions, 'community-deletePost');
-  
+  // Polling for feed items
   useEffect(() => {
-    let unsubscribeFeed: () => void = () => {};
+    let intervalId: NodeJS.Timeout | null = null;
 
-    if (db && user) {
+    const fetchFeedItems = async () => {
+      if (user) {
         setIsLoadingFeed(true);
-        const q = query(collection(db, "posts"), orderBy("createdAt", "desc"), limit(20));
-        unsubscribeFeed = onSnapshot(q, (snapshot) => {
-            const posts = snapshot.docs.map(doc => {
-              const data = doc.data();
-              return {
-                  id: doc.id,
-                  ...data,
-                  timestamp: (data.createdAt as any)?.toDate ? (data.createdAt as any).toDate().toISOString() : new Date().toISOString(),
-              } as FeedItem
-            });
-            setFeedItems(posts);
-            setIsLoadingFeed(false);
-        }, (error) => {
-            console.error("Error fetching real-time feed:", error);
-            toast({
-                title: t('feedError.title'),
-                description: t('feedError.description'),
-                variant: "destructive"
-            });
-            setIsLoadingFeed(false);
-        });
-    } else if (!authLoading) {
-        setIsLoadingFeed(false);
+        try {
+          // Fetch feed items using our new API
+          const posts = await apiCall('/community/feed');
+          setFeedItems(posts as FeedItem[]);
+        } catch (error) {
+          console.error("Error fetching feed:", error);
+          toast({
+              title: t('feedError.title'),
+              description: t('feedError.description'),
+              variant: "destructive"
+          });
+        } finally {
+          setIsLoadingFeed(false);
+        }
+      } else if (!authLoading) {
+          setIsLoadingFeed(false);
+      }
+    };
+
+    // Initial fetch
+    fetchFeedItems();
+    
+    // Set up polling interval
+    if (user) {
+      intervalId = setInterval(fetchFeedItems, 5000); // Poll every 5 seconds
     }
     
-    return () => unsubscribeFeed();
-  }, [db, user, authLoading, toast, t]);
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [user, authLoading, toast, t]);
 
 
   const handleCreatePost = async (content: string, media?: File, pollData?: { text: string }[]) => {
@@ -84,11 +85,15 @@ function MainContent() {
       let dataAiHint: string | undefined = undefined;
       if (media) {
         toast({ title: t('uploadingMedia') });
-        imageUrl = await uploadFileAndGetURL(media, `feed-posts/${user.uid}`);
+        imageUrl = await uploadFileAndGetURL(media, `feed-posts/${user.id}`);
         toast({ title: t('uploadComplete') });
       }
 
-      await createPostCallable({ content, pollOptions: pollData, imageUrl, dataAiHint });
+      // Create post using our new API
+      await apiCall('/community/create-post', {
+        method: 'POST',
+        body: JSON.stringify({ content, pollOptions: pollData, imageUrl, dataAiHint }),
+      });
       toast({ title: t('postSuccess.title'), description: t('postSuccess.description') });
     } catch (error) {
       console.error("Error creating post:", error);
@@ -103,7 +108,11 @@ function MainContent() {
     }
 
     try {
-        await deletePostCallable({ postId });
+        // Delete post using our new API
+        await apiCall('/community/delete-post', {
+            method: 'POST',
+            body: JSON.stringify({ postId }),
+        });
         toast({ title: t('deleteSuccess.title'), description: t('deleteSuccess.description') });
     } catch (error) {
         console.error("Error deleting post:", error);

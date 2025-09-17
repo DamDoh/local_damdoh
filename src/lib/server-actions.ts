@@ -1,8 +1,7 @@
-
 'use server';
 
 // Note: Most data-fetching server actions have been removed.
-// Client components should now use the Firebase Functions SDK (httpsCallable) to interact
+// Client components should now use the API utility functions to interact
 // with backend functions directly, which provides a more robust authentication flow.
 // This file is kept for server-side AI flows that benefit from the server action environment.
 
@@ -16,13 +15,7 @@ import { askFarmingAssistant as askFarmingAssistantFlow } from '@/ai/flows/farmi
 import type { FarmingAssistantInput, FarmingAssistantOutput, CropRotationInput, CropRotationOutput, SmartSearchInterpretation } from '@/lib/types';
 import { getLocale } from 'next-intl/server';
 import { generateForumPostDraftFlow } from '@/ai/flows/generate-forum-post-draft';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app } from './firebase/client'; // Assuming client init is sufficient
-
-
-// Use the client-initialized app for functions. This is a bit of a workaround
-// for Server Actions but ensures we use the same Firebase instance as the client.
-const functions = getFunctions(app);
+import { authenticatedApiCall, apiCall } from './api-utils';
 
 /**
  * Server Action to interpret a search query using AI.
@@ -38,7 +31,7 @@ export async function interpretSearchQuery(input: { rawQuery: string }): Promise
 
 /**
  * Server Action to perform a search. It authenticates the user on the server
- * and then calls a secure Cloud Function to execute the search logic.
+ * and then calls a secure API endpoint to execute the search logic.
  * @param interpretation The AI-interpreted search query.
  * @returns A promise that resolves to an array of search results.
  */
@@ -51,12 +44,17 @@ export async function performSearch(interpretation: Partial<SmartSearchInterpret
   }
 
   try {
-      const performSearchCallable = httpsCallable(functions, 'search-performSearch');
-      // Pass the user's UID for potential personalization, but the function should handle null.
-      const result = await performSearchCallable({ ...interpretation, userId: user?.uid });
+      // Call the new backend API endpoint instead of Firebase function
+      const result = await apiCall('/search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...interpretation, userId: user?.uid }),
+      });
       return result.data as any[];
   } catch (error) {
-      console.error("Error calling performSearch cloud function:", error);
+      console.error("Error calling performSearch API endpoint:", error);
       throw error; // Re-throw the error to be handled by the client
   }
 }
@@ -130,32 +128,45 @@ export async function generateForumPostDraftCallable(input: {
     return generateForumPostDraftFlow(input);
 }
 
-// Server actions to call callable functions for farm management
+// Server actions to call API endpoints for farm management
 export async function getFarmData(farmId: string) {
-    const getFarm = httpsCallable(functions, 'farmManagement-getFarm');
-    const result = await getFarm({ farmId });
+    const result = await authenticatedApiCall(`/farms/${farmId}`, {
+      method: 'GET',
+    });
     return result.data;
 }
 
 export async function updateFarmData(farmId: string, data: any) {
-    const updateFarm = httpsCallable(functions, 'farmManagement-updateFarm');
-    await updateFarm({ farmId, ...data });
+    await authenticatedApiCall(`/farms/${farmId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 }
 
 export async function getCropData(cropId: string) {
-    const getCrop = httpsCallable(functions, 'farmManagement-getCrop');
-    const result = await getCrop({ cropId });
+    const result = await authenticatedApiCall(`/crops/${cropId}`, {
+      method: 'GET',
+    });
     return result.data as any;
 }
 
 export async function updateCropData(cropId: string, data: any) {
-    const updateCrop = httpsCallable(functions, 'farmManagement-updateCrop');
-    await updateCrop({ cropId, ...data });
+    await authenticatedApiCall(`/crops/${cropId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 }
 
 export async function getProfileByIdFromDB(uid: string) {
-    const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
-    const result = await getProfile({ uid });
+    const result = await authenticatedApiCall(`/user/profile/${uid}`, {
+      method: 'GET',
+    });
     return result.data as any;
 }
 

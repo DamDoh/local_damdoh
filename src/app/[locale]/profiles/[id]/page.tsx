@@ -19,12 +19,11 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Briefcase, MapPin, MessageSquare, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, FileText, QrCode, Activity, GitBranch, ShoppingCart, CircleDollarSign, Eye, ThumbsUp, MessagesSquare, Send } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { formatDistanceToNow } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { getProfileByIdFromDB as getProfileByIdFromServer } from "@/lib/server-actions";
+import { apiCall } from '@/lib/api-utils';
 
 
 function ProfileSkeleton() {
@@ -85,24 +84,18 @@ export default function ProfileDetailPage() {
   const [stats, setStats] = useState<EngagementStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isActivityLoading, setIsActivityLoading] = useState(true);
-
-  const functions = getFunctions(firebaseApp);
-  const getUserActivityCallable = useMemo(() => httpsCallable(functions, 'activity-getUserActivity'), [functions]);
-  const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'activity-logProfileView'), [functions]);
-  const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'activity-getUserEngagementStats'), [functions]);
-  const sendInviteCallable = useMemo(() => httpsCallable(functions, 'network-sendInvite'), [functions]);
   
   useEffect(() => {
     const profileIdParam = params.id as string;
     let idToFetch: string | null = null;
 
     if (authLoading) {
-      return; 
+      return;
     }
 
     if (profileIdParam === 'me') {
       if (authUser) {
-        idToFetch = authUser.uid;
+        idToFetch = authUser.id;
       } else {
         router.push('/auth/signin');
         return;
@@ -117,25 +110,30 @@ export default function ProfileDetailPage() {
         .then(fetchedProfile => {
           setProfile(fetchedProfile);
           if (fetchedProfile) {
-            if (authUser && fetchedProfile.id !== authUser.uid) {
-                logProfileViewCallable({ viewedId: fetchedProfile.id }).catch(err => console.error("Failed to log profile view:", err));
+            if (authUser && fetchedProfile.id !== authUser.id) {
+                // Log profile view using our new API
+                apiCall('/activity/log-profile-view', {
+                    method: 'POST',
+                    body: JSON.stringify({ viewedId: fetchedProfile.id }),
+                }).catch((err: any) => console.error("Failed to log profile view:", err));
             }
             
             setIsActivityLoading(true);
+            // Fetch activity and stats using our new API
             Promise.all([
-              getUserActivityCallable({ userId: fetchedProfile.id }),
-              getEngagementStatsCallable({ userId: fetchedProfile.id })
+              apiCall(`/activity/user/${fetchedProfile.id}`),
+              apiCall(`/activity/engagement-stats/${fetchedProfile.id}`)
             ]).then(([activityResult, statsResult]) => {
-              setActivity((activityResult.data as any).activities || []);
-              setStats(statsResult.data as EngagementStats);
-            }).catch(err => {
+              setActivity(activityResult as any[] || []);
+              setStats(statsResult as EngagementStats);
+            }).catch((err: any) => {
               console.error("Failed to fetch activity or stats:", err);
             }).finally(() => {
               setIsActivityLoading(false);
             });
           }
         })
-        .catch(error => {
+        .catch((error: any) => {
           console.error("Error fetching profile:", error);
           setProfile(null);
         })
@@ -145,13 +143,16 @@ export default function ProfileDetailPage() {
     } else if (!authLoading) {
       setIsLoading(false);
     }
-  }, [params.id, authUser, authLoading, router, getUserActivityCallable, logProfileViewCallable, getEngagementStatsCallable]);
+  }, [params.id, authUser, authLoading, router]);
   
   const handleInvite = async () => {
     const inviteeEmail = prompt(t('invitePrompt'));
     if (inviteeEmail) {
       try {
-        await sendInviteCallable({ inviteeEmail });
+        await apiCall('/network/send-invite', {
+            method: 'POST',
+            body: JSON.stringify({ inviteeEmail }),
+        });
         toast({
           title: t('inviteSuccessTitle'),
           description: t('inviteSuccessDescription', { email: inviteeEmail }),
@@ -186,9 +187,9 @@ export default function ProfileDetailPage() {
       </Card>
     );
   }
+const isCurrentUserProfile = authUser?.id === profile.id;
+const qrCodeValue = profile.universalId ? `${window.location.origin}/profiles/${profile.id}` : 'error';
 
-  const isCurrentUserProfile = authUser?.uid === profile.id;
-  const qrCodeValue = profile.universalId ? `${window.location.origin}/profiles/${profile.id}` : 'error';
   
   const areasOfInterest = (profile as any)?.areasOfInterest;
   const needs = (profile as any)?.needs;

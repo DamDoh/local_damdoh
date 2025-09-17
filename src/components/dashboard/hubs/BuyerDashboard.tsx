@@ -1,17 +1,16 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { ShieldAlert, TrendingUp, Search, CheckCircle, XCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import type { BuyerDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
+import { apiCall } from '@/lib/api-utils';
 
 export const BuyerDashboard = () => {
     const t = useTranslations('BuyerDashboard');
@@ -19,16 +18,15 @@ export const BuyerDashboard = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const functions = getFunctions(firebaseApp);
-    const getBuyerData = useMemo(() => httpsCallable(functions, 'getBuyerDashboardData'), [functions]);
-
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
             setError(null);
             try {
-                const result = await getBuyerData();
-                setDashboardData(result.data as BuyerDashboardData);
+                const result = await apiCall<BuyerDashboardData>('/dashboard/buyer', {
+                    method: 'GET',
+                });
+                setDashboardData(result.data);
             } catch (error) {
                 console.error("Error fetching buyer dashboard data:", error);
                 setError(t('errors.load'));
@@ -37,7 +35,7 @@ export const BuyerDashboard = () => {
             }
         };
         fetchData();
-    }, [getBuyerData, t]);
+    }, [t]);
 
     if (isLoading) {
         return <DashboardSkeleton />;

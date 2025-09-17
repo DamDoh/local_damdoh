@@ -1,17 +1,16 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { FileText, Ship, Globe, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/navigation';
 import { Badge } from '@/components/ui/badge';
 import type { AgroExportDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
+import { apiCall } from '@/lib/api-utils';
 
 export const AgroExportDashboard = () => {
     const t = useTranslations('AgroExportDashboard');
@@ -19,16 +18,13 @@ export const AgroExportDashboard = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const functions = getFunctions(firebaseApp);
-    const getAgroExportData = useMemo(() => httpsCallable(functions, 'getAgroExportDashboardData'), [functions]);
-
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
             setError(null);
             try {
-                const result = await getAgroExportData();
-                setDashboardData(result.data as AgroExportDashboardData);
+                const result = await apiCall('/dashboard/agro-export');
+                setDashboardData(result as AgroExportDashboardData);
             } catch (error) {
                 console.error("Error fetching agro-export dashboard data:", error);
                 setError(t('errors.load'));
@@ -37,7 +33,7 @@ export const AgroExportDashboard = () => {
             }
         };
         fetchData();
-    }, [getAgroExportData, t]);
+    }, [t]);
     
     if (isLoading) {
         return <DashboardSkeleton />;

@@ -1,15 +1,12 @@
 
 "use client";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Loader2, ScanLine, UserCheck, AlertCircle, Users, UserPlus, Trash2, Search, ArrowLeft, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { httpsCallable } from "firebase/functions";
-import { functions } from "@/lib/firebase/client";
 import { useParams, useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { UserProfile } from "@/lib/types";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
@@ -22,6 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useTranslations } from "next-intl";
+import { apiCall } from '@/lib/api-utils';
 
 const QrScanner = dynamic(() => import('@/components/QrScanner').then(mod => mod.QrScanner), {
     ssr: false,
@@ -51,7 +49,6 @@ const CheckInTab = ({ itemId, itemName }: { itemId: string, itemName: string }) 
     const [isProcessing, setIsProcessing] = useState(false);
     
     const { toast } = useToast();
-    const checkInCallable = useMemo(() => httpsCallable(functions, 'agroTourism-checkInAgroTourismBooking'), []);
 
     const handleScanSuccess = async (decodedText: string) => {
         setIsScanning(false);
@@ -75,8 +72,13 @@ const CheckInTab = ({ itemId, itemName }: { itemId: string, itemName: string }) 
                 throw new Error(t('error.noUserId'));
             }
             
-            const result = await checkInCallable({ itemId, attendeeUid });
-            const data = result.data as { success: boolean, message: string };
+            // Call our new API endpoint for check-in
+            const response = await apiCall(`/agro-tourism/checkin`, {
+                method: 'POST',
+                body: JSON.stringify({ itemId, attendeeUid }),
+            });
+            
+            const data = response as { success: boolean, message: string };
             
             if (data.success) {
                 setCheckInResult({ type: 'success', message: data.message });
@@ -138,22 +140,17 @@ const StaffManagementTab = ({ itemId }: { itemId: string }) => {
     const [isSearching, setIsSearching] = useState(false);
     const [isLoadingStaff, setIsLoadingStaff] = useState(true);
 
-    const searchUsersCallable = useMemo(() => httpsCallable(functions, 'agriEvents-searchUsersForStaffing'), []);
-    const addStaffCallable = useMemo(() => httpsCallable(functions, 'agroTourism-addAgroTourismStaff'), []);
-    const getStaffCallable = useMemo(() => httpsCallable(functions, 'agroTourism-getAgroTourismStaff'), []);
-    const removeStaffCallable = useMemo(() => httpsCallable(functions, 'agroTourism-removeAgroTourismStaff'), []);
-    
     const fetchStaff = useCallback(async () => {
         setIsLoadingStaff(true);
         try {
-            const result = await getStaffCallable({ itemId });
-            setCurrentStaff((result.data as any)?.staff || []);
+            const result = await apiCall(`/agro-tourism/staff/${itemId}`);
+            setCurrentStaff(result as StaffMember[] || []);
         } catch (error: any) {
              toast({ variant: 'destructive', title: t('toast.error'), description: t('toast.fetchStaffError') });
         } finally {
             setIsLoadingStaff(false);
         }
-    }, [itemId, getStaffCallable, toast, t]);
+    }, [itemId, toast, t]);
     
     useEffect(() => {
         if (itemId) fetchStaff();
@@ -167,8 +164,8 @@ const StaffManagementTab = ({ itemId }: { itemId: string }) => {
         }
         setIsSearching(true);
         try {
-            const result = await searchUsersCallable({ query: searchQuery });
-            setSearchResults((result.data as any)?.users || []);
+            const result = await apiCall(`/users/search?q=${searchQuery}`);
+            setSearchResults(result as UserProfile[] || []);
         } catch (error: any) {
             toast({ variant: 'destructive', title: t('toast.searchFailed'), description: error.message });
         } finally {
@@ -178,11 +175,14 @@ const StaffManagementTab = ({ itemId }: { itemId: string }) => {
     
     const handleAddStaff = async (staffMember: UserProfile) => {
         try {
-            await addStaffCallable({ 
-                itemId, 
-                staffUserId: staffMember.id,
-                staffDisplayName: staffMember.displayName,
-                staffAvatarUrl: staffMember.avatarUrl
+            await apiCall(`/agro-tourism/staff`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    itemId,
+                    staffUserId: staffMember.id,
+                    staffDisplayName: staffMember.displayName,
+                    staffAvatarUrl: staffMember.avatarUrl
+                }),
             });
             toast({ title: t('toast.success'), description: t('toast.addSuccess', { name: staffMember.displayName })});
             fetchStaff(); // Refresh the list
@@ -195,7 +195,9 @@ const StaffManagementTab = ({ itemId }: { itemId: string }) => {
     
     const handleRemoveStaff = async (staffMember: StaffMember) => {
         try {
-            await removeStaffCallable({ itemId, staffUserId: staffMember.id });
+            await apiCall(`/agro-tourism/staff/${itemId}/${staffMember.id}`, {
+                method: 'DELETE',
+            });
             toast({ title: t('toast.success'), description: t('toast.removeSuccess', { name: staffMember.displayName })});
             fetchStaff();
         } catch(error: any) {
@@ -255,15 +257,13 @@ const BookingsTab = ({ itemId }: { itemId: string }) => {
     const [bookings, setBookings] = useState<Booking[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const getBookingsCallable = useMemo(() => httpsCallable(functions, 'agroTourism-getAgroTourismBookings'), []);
-
     useEffect(() => {
         if (!itemId) return;
         const fetchBookings = async () => {
             setIsLoading(true);
             try {
-                const result = await getBookingsCallable({ itemId });
-                setBookings((result.data as any)?.bookings || []);
+                const result = await apiCall(`/agro-tourism/bookings/${itemId}`);
+                setBookings(result as Booking[] || []);
             } catch (error) {
                 toast({ variant: "destructive", title: t('error'), description: t('fetchError') });
             } finally {
@@ -271,7 +271,7 @@ const BookingsTab = ({ itemId }: { itemId: string }) => {
             }
         };
         fetchBookings();
-    }, [itemId, getBookingsCallable, toast, t]);
+    }, [itemId, toast, t]);
     
      const handleDownloadCsv = () => {
         if (bookings.length === 0) {

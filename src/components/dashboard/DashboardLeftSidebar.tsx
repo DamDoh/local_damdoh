@@ -1,17 +1,16 @@
 
-"use client"; 
+"use client";
 
 import { Link } from '@/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "../ui/skeleton";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth-utils";
-import { httpsCallable } from "firebase/functions";
-import { functions } from "@/lib/firebase/client";
 import { useTranslations } from 'next-intl';
 import { Eye, ThumbsUp, GitBranch, ShoppingCart, CircleDollarSign, MessageSquare } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
+import { apiCall } from '@/lib/api-utils';
 
 const activityIconMap: Record<string, React.ElementType> = {
     MessageSquare,
@@ -41,25 +40,25 @@ export function DashboardLeftSidebar() {
   const [stats, setStats] = useState<EngagementStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getStatsCallable = useMemo(() => httpsCallable(functions, 'activity-getUserEngagementStats'), [functions]);
-
   useEffect(() => {
-    if (profile?.id) { 
+    if (profile?.id) {
         setIsLoading(true);
-        getStatsCallable({ userId: profile.id })
+        apiCall<EngagementStats>('/dashboard/engagement-stats', {
+            method: 'GET',
+        })
         .then((statsResult) => {
-            setStats(statsResult.data as EngagementStats);
-        }).catch(error => {
+            setStats(statsResult);
+        }).catch((error: any) => {
             console.error("Error fetching sidebar data:", error);
-            setStats({ profileViews: 0, postLikes: 0, postComments: 0 }); 
+            setStats({ profileViews: 0, postLikes: 0, postComments: 0 });
         }).finally(() => {
             setIsLoading(false);
         });
     } else if (!authLoading) {
         setIsLoading(false);
-        setStats({ profileViews: 0, postLikes: 0, postComments: 0 }); 
+        setStats({ profileViews: 0, postLikes: 0, postComments: 0 });
     }
-  }, [profile, authLoading, getStatsCallable]); 
+  }, [profile, authLoading]);
 
 
   if (authLoading) {

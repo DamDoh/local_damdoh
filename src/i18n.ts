@@ -3,7 +3,10 @@ import {getRequestConfig} from 'next-intl/server';
 import {locales} from './i18n-config';
 import {notFound} from 'next/navigation';
  
-export default getRequestConfig(async ({locale}) => {
+export default getRequestConfig(async ({requestLocale}) => {
+  // Await the locale before using it
+  const locale = await requestLocale;
+  
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as any)) notFound();
  
@@ -19,6 +22,7 @@ export default getRequestConfig(async ({locale}) => {
   }
 
   return {
-    messages
+    messages,
+    locale
   };
 });

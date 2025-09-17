@@ -1,17 +1,16 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { AlertTriangle, BadgeCheck, Zap, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import type { RegulatorDashboardData } from "@/lib/types";
 import { useTranslations } from 'next-intl';
+import { apiCall } from '@/lib/api-utils';
 
 export const RegulatorDashboard = () => {
     const t = useTranslations('RegulatorDashboard');
@@ -19,16 +18,13 @@ export const RegulatorDashboard = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const functions = getFunctions(firebaseApp);
-    const getRegulatorData = useMemo(() => httpsCallable(functions, 'dashboardData-getRegulatorDashboardData'), [functions]);
-
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
             setError(null);
             try {
-                const result = await getRegulatorData();
-                setDashboardData(result.data as RegulatorDashboardData);
+                const result = await apiCall('/dashboard/regulator');
+                setDashboardData(result as RegulatorDashboardData);
             } catch (error) {
                 console.error("Error fetching regulator dashboard data:", error);
                 setError(t('errors.load'));
@@ -37,7 +33,7 @@ export const RegulatorDashboard = () => {
             }
         };
         fetchData();
-    }, [getRegulatorData, t]);
+    }, [t]);
     
     if (isLoading) {
         return <DashboardSkeleton />;

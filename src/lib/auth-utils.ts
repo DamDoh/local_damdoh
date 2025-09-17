@@ -1,142 +1,263 @@
-
 "use client";
 
-import {
-  signOut as firebaseSignOut,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  confirmPasswordReset,
-  type User as FirebaseUser,
-  updateProfile,
-} from "firebase/auth";
-import { auth, functions } from './firebase/client';
-import { httpsCallable } from "firebase/functions";
 import type { StakeholderRole } from './constants';
-import { useContext } from 'react';
-import { AuthContext } from "@/components/Providers";
+
+// Define the structure of our user object to match what the backend returns
+export interface AuthUser {
+  id: string;
+  email: string;
+  name: string;
+  role: string; // Using string instead of specific type to match backend
+  phoneNumber?: string;
+  location?: {
+    type: string;
+    coordinates: number[];
+  };
+}
+
+// Define the structure of our auth response
+export interface AuthResponse {
+  accessToken: string;
+  refreshToken: string;
+  user: AuthUser;
+}
+
+// Define the structure of our login request
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+// Define the structure of our register request
+export interface RegisterRequest {
+  email: string;
+  password: string;
+  name: string;
+  role: string; // Using string instead of specific type to match backend
+  phoneNumber?: string;
+  location?: {
+    coordinates: [number, number];
+  };
+}
+
+// Define the structure of our password change request
+export interface ChangePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+}
+
+// Get the base URL for API calls
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') {
+    // Client-side
+    return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
+  }
+  // Server-side
+  return process.env.API_URL || 'http://localhost:8000/api';
+};
+
+const API_BASE_URL = getBaseUrl();
+
+// Store tokens in localStorage
+const setTokens = (accessToken: string, refreshToken: string) => {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+  }
+};
+
+// Get tokens from localStorage
+export const getTokens = () => {
+  if (typeof window !== 'undefined') {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+    return { accessToken, refreshToken };
+  }
+  return { accessToken: null, refreshToken: null };
+};
+
+// Clear tokens from localStorage
+const clearTokens = () => {
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+  }
+};
+
+// Get the current user from localStorage
+export const getCurrentUser = (): AuthUser | null => {
+  if (typeof window !== 'undefined') {
+    const userStr = localStorage.getItem('user');
+    return userStr ? JSON.parse(userStr) : null;
+  }
+  return null;
+};
+
+// Set the current user in localStorage
+const setCurrentUser = (user: AuthUser) => {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+};
+
+// Clear the current user from localStorage
+const clearCurrentUser = () => {
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('user');
+  }
+};
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return { ...context, uid: context.user?.uid };
+  const user = getCurrentUser();
+  const { accessToken, refreshToken } = getTokens();
+  
+  return {
+    user,
+    accessToken,
+    refreshToken,
+    loading: false,
+    uid: user?.id || null
+  };
 };
 
 export function getCurrentUserId(): string | null {
-  return auth?.currentUser ? auth.currentUser.uid : null;
+  const user = getCurrentUser();
+  return user ? user.id : null;
 }
 
 export function isAdmin(userId: string | null): boolean {
-  console.warn("auth-utils: isAdmin() is a placeholder.");
-  return userId === "adminUser"; 
+  const user = getCurrentUser();
+  return user?.role === 'ADMIN';
 }
 
 export async function logOut(): Promise<void> {
-  if (!auth) throw new Error("Firebase Auth is not initialized.");
   try {
-    await firebaseSignOut(auth);
-    await fetch('/api/auth/session', { method: 'DELETE' });
-    console.log("User logged out successfully via auth-utils.");
+    clearTokens();
+    clearCurrentUser();
+    console.log("User logged out successfully via new auth-utils.");
   } catch (error) {
-    console.error("Error logging out from auth-utils: ", error);
-    throw error; 
-  }
-}
-
-export async function logIn(email: string, password: string): Promise<FirebaseUser> {
-  if (!auth) throw new Error("Firebase Auth is not initialized.");
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    
-    const idToken = await user.getIdToken();
-
-    await fetch('/api/auth/session', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ idToken }),
-    });
-
-    console.log("User logged in and session cookie set via auth-utils:", user.uid);
-    return user;
-  } catch (error) {
-    console.error("Error logging in via auth-utils:", error);
+    console.error("Error logging out from new auth-utils: ", error);
     throw error;
   }
 }
 
-/**
- * Registers a new user with Firebase Authentication.
- * The corresponding Firestore user profile is created by the `onUserCreate` Cloud Function trigger.
- * This client-side function also updates the user's initial stakeholder role.
- *
- * @param name The user's display name.
- * @param email The user's email.
- * @param password The user's password.
- * @param role The user's selected primary role.
- * @returns The created Firebase user object.
- */
+export async function logIn(email: string, password: string): Promise<AuthUser> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Login failed');
+    }
+
+    const data: AuthResponse = await response.json();
+    
+    // Store tokens and user data
+    setTokens(data.accessToken, data.refreshToken);
+    setCurrentUser(data.user);
+    
+    console.log("User logged in successfully via new auth-utils:", data.user.id);
+    return data.user;
+  } catch (error) {
+    console.error("Error logging in via new auth-utils:", error);
+    throw error;
+  }
+}
+
 export async function registerUser(
   name: string, 
   email: string, 
   password: string, 
-  role: StakeholderRole,
-): Promise<FirebaseUser> {
-  if (!auth || !functions) throw new Error("Firebase is not initialized.");
+  role: string, // Using string instead of specific type to match backend
+  phoneNumber?: string,
+  location?: { coordinates: [number, number] },
+): Promise<AuthUser> {
   try {
-    // 1. Create the user in Firebase Authentication
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    console.log("Firebase Auth user registered successfully:", user.uid);
-    
-    // 2. Update the Auth user's profile with their display name
-    await updateProfile(user, { displayName: name });
-    console.log("Firebase Auth profile updated with display name.");
-
-    // 3. The `onUserCreate` trigger on the backend now handles creating the Firestore document.
-    //    We just need to call a function to set the user's chosen role, as this can't be
-    //    passed to the auth trigger directly.
-    const upsertStakeholderProfile = httpsCallable(functions, 'user-upsertStakeholderProfile');
-    
-    // After signing up, the user is automatically signed in, so this callable function
-    // will be authenticated.
-    await upsertStakeholderProfile({
-        primaryRole: role,
-        displayName: name // It's good to pass the name again to ensure consistency
+    const response = await fetch(`${API_BASE_URL}/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        name, 
+        email, 
+        password, 
+        role,
+        phoneNumber,
+        location
+      }),
     });
 
-    console.log("Profile role update request sent for user:", user.uid);
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Registration failed');
+    }
+
+    const data: AuthResponse = await response.json();
     
-    return user;
+    // Store tokens and user data
+    setTokens(data.accessToken, data.refreshToken);
+    setCurrentUser(data.user);
+    
+    console.log("User registered successfully via new auth-utils:", data.user.id);
+    return data.user;
   } catch (error) {
-    console.error("Error registering user in auth-utils:", error);
+    console.error("Error registering user in new auth-utils:", error);
     throw error;
   }
 }
 
-
 export async function sendPasswordReset(email: string): Promise<void> {
-  if (!auth) throw new Error("Firebase Auth is not initialized.");
   try {
+    // Note: This would need to be implemented in the backend
     console.log(`Attempting to send password reset email to: ${email}`);
-    await sendPasswordResetEmail(auth, email);
-    console.log("Password reset email sent to:", email);
+    // For now, we'll just log this as the backend doesn't have this endpoint yet
+    console.log("Password reset functionality needs to be implemented in the backend");
   } catch (error) {
     console.error("Error sending password reset email:", error);
     throw error;
   }
 }
 
-export async function resetPassword(oobCode: string, newPassword: string): Promise<void> {
-  if (!auth) throw new Error("Firebase Auth is not initialized.");
+export async function resetPassword(token: string, newPassword: string): Promise<void> {
   try {
-    console.log("Attempting to reset password with oobCode:", oobCode);
-    await confirmPasswordReset(auth, oobCode, newPassword);
-    console.log("Password reset successful for oobCode:", oobCode);
+    // Note: This would need to be implemented in the backend
+    console.log("Attempting to reset password with token:", token);
+    // For now, we'll just log this as the backend doesn't have this endpoint yet
+    console.log("Password reset confirmation functionality needs to be implemented in the backend");
   } catch (error) {
     console.error("Error resetting password:", error);
+    throw error;
+  }
+}
+
+export async function changePassword(currentPassword: string, newPassword: string): Promise<void> {
+  try {
+    const { accessToken } = getTokens();
+    
+    if (!accessToken) {
+      throw new Error("User not authenticated");
+    }
+    
+    const response = await fetch(`${API_BASE_URL}/auth/change-password`, {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`
+      },
+      body: JSON.stringify({ currentPassword, newPassword }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to change password');
+    }
+
+    console.log("Password changed successfully");
+  } catch (error) {
+    console.error("Error changing password:", error);
     throw error;
   }
 }

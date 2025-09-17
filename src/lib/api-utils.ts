@@ -1,60 +1,85 @@
+// src/lib/api-utils.ts
+// Utility functions for calling backend API endpoints
 
-import { NextResponse } from 'next/server';
+// Get the base URL for API calls
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') {
+    // Client-side
+    return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
+  }
+  // Server-side
+  return process.env.API_URL || 'http://localhost:8000/api';
+};
 
-// This function checks if the code is running on the server.
-// It's crucial for using the correct Firebase Admin SDK on the server
-// and the Firebase Client SDK in the browser.
-export const is_server = typeof window === 'undefined';
+const API_BASE_URL = getBaseUrl();
 
-// Super App Vision Note: This file contains helpers for our API routes, but more importantly,
-// it outlines the conceptual logic for backend Cloud Functions that will act as the "connective tissue"
-// for the super app. Functions like `requestVerifiedData` are crucial for enabling secure,
-// consent-based data sharing between modules and stakeholders, a cornerstone of a trusted ecosystem.
-// The AI-related notes describe how backend triggers will proactively provide value, like matching farmers
-// with financial products, which is a key "smart" feature.
+// Get tokens from localStorage
+const getTokens = () => {
+  if (typeof window !== 'undefined') {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+    return { accessToken, refreshToken };
+  }
+  return { accessToken: null, refreshToken: null };
+};
 
-interface ApiResponseOptions {
-  status?: number;
-  headers?: HeadersInit;
+// Generic API call function
+export async function apiCall<T>(
+  endpoint: string,
+  options: RequestInit = {}
+): Promise<T> {
+  const url = `${API_BASE_URL}${endpoint}`;
+  const { accessToken } = getTokens();
+
+  // Set default headers
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  };
+
+  // Add any additional headers from options
+  if (options.headers) {
+    Object.entries(options.headers).forEach(([key, value]) => {
+      headers[key] = value as string;
+    });
+  }
+
+  // Add authorization header if we have an access token
+  if (accessToken) {
+    headers['Authorization'] = `Bearer ${accessToken}`;
+  }
+
+  const config: RequestInit = {
+    ...options,
+    headers,
+  };
+
+  try {
+    const response = await fetch(url, config);
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error(`API call to ${url} failed:`, error);
+    throw error;
+  }
 }
 
-export function successResponse(data: any, options?: ApiResponseOptions): NextResponse {
-  return NextResponse.json(data, {
-    status: options?.status || 200,
-    headers: options?.headers,
+// Specific API functions for common operations
+export async function callFunction<T>(functionName: string, data: any): Promise<T> {
+  return apiCall<T>(`/functions/${functionName}`, {
+    method: 'POST',
+    body: JSON.stringify(data),
   });
 }
 
-export function errorResponse(message: string, status: number, details?: any): NextResponse {
-  return NextResponse.json(
-    {
-      error: {
-        message,
-        status,
-        details,
-      },
-    },
-    { status }
-  );
-}
-
-export function clientErrorResponse(message: string, details?: any): NextResponse {
-  return errorResponse(message, 400, details);
-}
-
-export function unauthorizedResponse(message: string = "Unauthorized"): NextResponse {
-  return errorResponse(message, 401);
-}
-
-export function forbiddenResponse(message: string = "Forbidden"): NextResponse {
-  return errorResponse(message, 403);
-}
-
-export function notFoundResponse(resourceName: string = "Resource"): NextResponse {
-  return errorResponse(`${resourceName} not found.`, 404);
-}
-
-export function serverErrorResponse(message: string = "Internal Server Error", details?: any): NextResponse {
-  console.error("Server Error:", message, details); // Log server errors
-  return errorResponse(message, 500, details);
+// For operations that don't return data
+export async function callFunctionVoid(functionName: string, data: any): Promise<void> {
+  await apiCall(`/functions/${functionName}`, {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
 }

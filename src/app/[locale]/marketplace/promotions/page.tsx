@@ -1,9 +1,6 @@
 
 "use client";
-
-import { useState, useEffect, useMemo, useCallback } from 'react';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -18,13 +15,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from 'date-fns';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter, DialogClose, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { getCreateMarketplaceCouponSchema, type CreateMarketplaceCouponValues } from "@/lib/form-schemas";
 import { useTranslations } from 'next-intl';
+import { apiCall } from '@/lib/api-utils';
 
 export default function MarketplacePromotionsPage() {
     const t = useTranslations('Marketplace.promotions');
@@ -33,9 +31,6 @@ export default function MarketplacePromotionsPage() {
     const { toast } = useToast();
     const [coupons, setCoupons] = useState<MarketplaceCoupon[]>([]);
     const [isLoadingCoupons, setIsLoadingCoupons] = useState(true);
-    const functions = getFunctions(firebaseApp);
-    const createCouponCallable = useMemo(() => httpsCallable(functions, 'marketplace-createMarketplaceCoupon'), [functions]);
-    const getCouponsCallable = useMemo(() => httpsCallable(functions, 'marketplace-getSellerCoupons'), [functions]);
 
     const createMarketplaceCouponSchema = getCreateMarketplaceCouponSchema(tFormErrors);
     
@@ -48,14 +43,14 @@ export default function MarketplacePromotionsPage() {
         if (!user) { setIsLoadingCoupons(false); return; }
         setIsLoadingCoupons(true);
         try {
-            const result = await getCouponsCallable();
-            setCoupons((result?.data as any)?.coupons || []);
+            const result = await apiCall('/coupons/seller/' + user.id);
+            setCoupons(result as MarketplaceCoupon[] || []);
         } catch (error) {
             toast({ variant: "destructive", title: t('toast.error'), description: t('toast.fetchError') });
         } finally {
             setIsLoadingCoupons(false);
         }
-    }, [user, getCouponsCallable, toast, t]);
+    }, [user, toast, t]);
     
     useEffect(() => {
         fetchCoupons();
@@ -64,7 +59,10 @@ export default function MarketplacePromotionsPage() {
     async function onCouponSubmit(data: CreateMarketplaceCouponValues) {
         try {
             const payload = { ...data, expiresAt: data.expiresAt?.toISOString() };
-            await createCouponCallable(payload);
+            await apiCall('/coupons', {
+                method: 'POST',
+                body: JSON.stringify(payload),
+            });
             toast({ title: t('toast.success'), description: t('toast.createSuccess', { code: data.code }) });
             form.reset();
             fetchCoupons();

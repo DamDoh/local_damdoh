@@ -7,12 +7,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, ArrowRight, Info, TrendingUp, MoreHorizontal, RefreshCw, AlertTriangle, Ticket } from "lucide-react";
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { httpsCallable } from "firebase/functions";
-import { functions } from "@/lib/firebase/client";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useAuth } from "@/lib/auth-utils";
+import { useAuth } from "@/lib/auth-utils-new";
 import { useTranslations } from "next-intl";
 import { useToast } from "@/hooks/use-toast";
+import { apiCall } from "@/lib/api-utils";
 import type { SuggestedConnectionsOutput, SuggestedConnectionsInput } from "@/lib/types";
 
 
@@ -33,25 +32,25 @@ export function DashboardRightSidebar() {
   const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(true);
   const [suggestionError, setSuggestionError] = useState<string | null>(null);
   
-  const { user, profile, loading: authLoading } = useAuth();
-
-  const sendConnectionRequestCallable = useMemo(() => httpsCallable(functions, 'network-sendConnectionRequest'), [functions]);
-  const suggestConnectionsCallable = useMemo(() => httpsCallable(functions, 'suggestConnections'), [functions]);
+  const { user, loading: authLoading } = useAuth();
 
   const fetchSuggestions = useCallback(async () => {
-    if (!profile) return; 
+    if (!user) return;
 
     setIsLoadingSuggestions(true);
     setSuggestionError(null);
     try {
       const userInput: SuggestedConnectionsInput = {
-        userId: profile.id,
+        userId: user.id,
         count: 3,
         language: 'en',
       };
 
-      const result = (await suggestConnectionsCallable(userInput)).data as SuggestedConnectionsOutput;
-      
+      const result = await apiCall<SuggestedConnectionsOutput>('/network/suggest-connections', {
+        method: 'POST',
+        body: JSON.stringify(userInput),
+      });
+
       if (result && Array.isArray(result.suggestions)) {
         setAiSuggestions(result.suggestions.map(s => ({
           ...s,
@@ -72,16 +71,16 @@ export function DashboardRightSidebar() {
     } finally {
       setIsLoadingSuggestions(false);
     }
-  }, [profile, t, suggestConnectionsCallable]);
+  }, [user, t]);
 
   useEffect(() => {
-    if (!authLoading && user && profile) {
+    if (!authLoading && user) {
       fetchSuggestions();
     } else if (!authLoading && !user) {
       setIsLoadingSuggestions(false);
       setAiSuggestions([]);
     }
-  }, [authLoading, user, profile, fetchSuggestions]);
+  }, [authLoading, user, fetchSuggestions]);
 
 
   const handleFollow = async (suggestionId: string) => {
@@ -91,7 +90,10 @@ export function DashboardRightSidebar() {
     }
     setFollowedSuggestions(prev => new Set(prev).add(suggestionId));
     try {
-        await sendConnectionRequestCallable({ recipientId: suggestionId });
+        await apiCall('/network/send-connection-request', {
+            method: 'POST',
+            body: JSON.stringify({ recipientId: suggestionId }),
+        });
         toast({ title: t('toast.requestSent'), description: t('toast.requestSentDescription')});
     } catch (error: any) {
         toast({ title: t('toast.requestFailed'), description: error.message, variant: "destructive" });
@@ -192,7 +194,7 @@ export function DashboardRightSidebar() {
             <Button variant="ghost" size="icon" onClick={fetchSuggestions} className="h-7 w-7" title={t('refreshSuggestions')} disabled={isLoadingSuggestions}>
               <RefreshCw className={`h-4 w-4 ${isLoadingSuggestions ? 'animate-spin' : ''}`} />
             </Button>
-            <Info className="h-4 w-4 text-muted-foreground cursor-pointer ml-1" title={t('infoTooltip')} />
+            <Info className="h-4 w-4 text-muted-foreground cursor-pointer ml-1" />
           </div>
         </CardHeader>
         <CardContent>

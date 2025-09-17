@@ -1,10 +1,7 @@
 
 "use client";
-
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, notFound } from 'next/navigation';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import type { Shop, MarketplaceItem, UserProfile } from '@/lib/types';
 import { getProfileByIdFromDB } from '@/lib/db-utils';
@@ -17,6 +14,7 @@ import Image from "next/image";
 import { ItemCard } from '@/components/marketplace/ItemCard';
 import { Building, ArrowLeft, MessageSquare, Edit } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { apiCall } from '@/lib/api-utils';
 
 function ShopPageSkeleton() {
     return (
@@ -60,10 +58,6 @@ export default function ShopFrontPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const functions = getFunctions(firebaseApp);
-    const getShopDetails = useMemo(() => httpsCallable(functions, 'marketplace-getShopDetails'), [functions]);
-    const getListingsBySeller = useMemo(() => httpsCallable(functions, 'marketplace-getListingsBySeller'), [functions]);
-
     useEffect(() => {
         if (!shopId) return;
 
@@ -71,21 +65,23 @@ export default function ShopFrontPage() {
             setIsLoading(true);
             setError(null);
             try {
-                const shopResult = await getShopDetails({ shopId });
-                const shopData = shopResult.data as Shop | null;
+                // Get shop details
+                const shopResponse = await apiCall(`/marketplace/shops/${shopId}`);
+                const shopData = shopResponse as Shop;
 
                 if (!shopData) {
                     throw new Error(t('errors.notFound'));
                 }
                 setShop(shopData);
 
-                const [ownerProfile, listingsResult] = await Promise.all([
+                // Get owner profile and listings in parallel
+                const [ownerProfile, listingsResponse] = await Promise.all([
                     getProfileByIdFromDB(shopData.ownerId),
-                    getListingsBySeller({ sellerId: shopData.ownerId })
+                    apiCall(`/marketplace/listings?sellerId=${shopData.ownerId}`)
                 ]);
 
                 setOwner(ownerProfile);
-                setItems(((listingsResult.data as { items: MarketplaceItem[] })?.items) || []);
+                setItems(listingsResponse as MarketplaceItem[] || []);
 
             } catch (err: any) {
                 console.error("Error fetching shop data:", err);
@@ -96,7 +92,7 @@ export default function ShopFrontPage() {
         };
 
         fetchShopData();
-    }, [shopId, getShopDetails, getListingsBySeller, t]);
+    }, [shopId, t]);
 
     if (isLoading) {
         return <ShopPageSkeleton />;
@@ -118,7 +114,7 @@ export default function ShopFrontPage() {
         return notFound();
     }
 
-    const isOwner = user?.uid === shop.ownerId;
+    const isOwner = user?.id === shop.ownerId;
 
     return (
         <div className="space-y-8">

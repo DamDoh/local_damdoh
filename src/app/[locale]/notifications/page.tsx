@@ -3,8 +3,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/lib/auth-utils";
-import { app as firebaseApp } from "@/lib/firebase/client";
-import { collection, query, where, orderBy, onSnapshot, getFirestore, doc, getDocs, limit } from "firebase/firestore";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
@@ -13,6 +11,7 @@ import type { Notification, UserProfile } from "@/lib/types";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslations } from "next-intl";
 import { formatDistanceToNow } from "date-fns";
+import { apiCall } from '@/lib/api-utils';
 
 // A simple cache to avoid refetching the same user profiles within a session
 const userProfileCache: Record<string, UserProfile> = {};
@@ -20,7 +19,6 @@ const userProfileCache: Record<string, UserProfile> = {};
 const fetchNotificationUserProfiles = async (userIds: string[]): Promise<Record<string, UserProfile>> => {
     if (userIds.length === 0) return {};
     
-    const db = getFirestore(firebaseApp);
     const profiles: Record<string, UserProfile> = {};
     const usersToFetch = [...new Set(userIds)].filter(id => !userProfileCache[id] && id !== 'system');
 
@@ -29,18 +27,17 @@ const fetchNotificationUserProfiles = async (userIds: string[]): Promise<Record<
     }
 
     try {
-        const profileChunks: string[][] = [];
-        for (let i = 0; i < usersToFetch.length; i += 30) {
-            profileChunks.push(usersToFetch.slice(i, i + 30));
-        }
-
-        for (const chunk of profileChunks) {
-            const q = query(collection(db, 'users'), where('__name__', 'in', chunk));
-            const userDocs = await getDocs(q);
-            userDocs.forEach(doc => {
-                userProfileCache[doc.id] = { id: doc.id, ...doc.data() } as UserProfile;
-            });
-        }
+        // Fetch user profiles using our new API
+        const result = await apiCall('/user/profiles', {
+            method: 'POST',
+            body: JSON.stringify({ userIds: usersToFetch }),
+        });
+        const fetchedProfiles = result as UserProfile[];
+        
+        // Update cache with fetched profiles
+        fetchedProfiles.forEach(profile => {
+            userProfileCache[profile.id] = profile;
+        });
     } catch(error) {
         console.error("Error fetching user profiles for notifications:", error);
     }
@@ -106,34 +103,34 @@ export default function NotificationsPage() {
             return;
         }
 
-        const db = getFirestore(firebaseApp);
-        const q = query(
-            collection(db, "notifications"),
-            where("userId", "==", user.uid),
-            orderBy("createdAt", "desc"),
-            limit(50) // Limit to the last 50 notifications
-        );
+        // Polling for notifications
+        const fetchNotifications = async () => {
+            try {
+                // Fetch notifications using our new API
+                const result = await apiCall(`/notifications/${user.id}`);
+                const newNotifications = result as Notification[];
+                
+                if(newNotifications.length > 0) {
+                    const actorIds = newNotifications.map(n => n.actorId);
+                    const profiles = await fetchNotificationUserProfiles(actorIds);
+                    setActorProfiles(profiles);
+                }
 
-        const unsubscribe = onSnapshot(q, async (snapshot) => {
-            const newNotifications: Notification[] = [];
-            snapshot.forEach((doc) => {
-                newNotifications.push({ id: doc.id, ...doc.data() } as Notification);
-            });
-            
-            if(newNotifications.length > 0) {
-                const actorIds = newNotifications.map(n => n.actorId);
-                const profiles = await fetchNotificationUserProfiles(actorIds);
-                setActorProfiles(profiles);
+                setNotifications(newNotifications);
+            } catch(error) {
+                console.error("Error fetching notifications:", error);
+            } finally {
+                setIsLoading(false);
             }
+        };
 
-            setNotifications(newNotifications);
-            setIsLoading(false);
-        }, (error) => {
-            console.error("Error fetching notifications:", error);
-            setIsLoading(false);
-        });
-
-        return () => unsubscribe();
+        // Initial fetch
+        fetchNotifications();
+        
+        // Set up polling interval
+        const intervalId = setInterval(fetchNotifications, 5000); // Poll every 5 seconds
+        
+        return () => clearInterval(intervalId);
     }, [user]);
 
     return (

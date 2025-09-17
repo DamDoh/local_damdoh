@@ -10,45 +10,39 @@ import { ArrowLeft, Loader2, Send, ChevronDown, ChevronUp } from "lucide-react";
 import { Link } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import type { ForumPost, PostReply } from '@/lib/types';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
-import { doc, getDoc, getFirestore, onSnapshot, query, collection, orderBy } from "firebase/firestore";
+import type { PostReply, ForumTopic } from '@/lib/types';
+
+// Define ForumPost type based on the structure we expect
+interface ForumPost {
+    id: string;
+    title: string;
+    content: string;
+    topicId: string;
+    topicName: string;
+    createdAt: string;
+    author: {
+        id: string;
+        name: string;
+        avatarUrl?: string;
+    };
+    replyCount: number;
+}
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
 import { useTranslations } from 'next-intl';
 import { formatDistanceToNow } from 'date-fns';
+import { apiCall } from '@/lib/api-utils';
 
 // This helper could be centralized in a future refactor
 const getPostDetails = async (topicId: string, postId: string): Promise<ForumPost | null> => {
-    const db = getFirestore(firebaseApp);
-    const postRef = doc(db, `forums/${topicId}/posts`, postId);
-    const postSnap = await getDoc(postRef);
-
-    if (postSnap.exists()) {
-        const data = postSnap.data();
-        
-        // Fetch topic details for breadcrumb
-        const topicRef = doc(db, "forums", topicId);
-        const topicSnap = await getDoc(topicRef);
-        const topicName = topicSnap.exists() ? topicSnap.data().name : '';
-
-        return {
-            id: postSnap.id,
-            title: data.title,
-            content: data.content,
-            topicId: topicId,
-            topicName: topicName,
-            createdAt: data.createdAt ? new Date(data.createdAt.seconds * 1000).toISOString() : new Date().toISOString(),
-            author: {
-                id: data.authorRef,
-                name: data.authorName,
-                avatarUrl: data.authorAvatarUrl,
-            },
-            replyCount: data.replyCount || 0,
-        } as ForumPost;
+    try {
+        // Fetch post details using our new API
+        const result = await apiCall(`/forums/${topicId}/posts/${postId}`);
+        return result as ForumPost;
+    } catch (error) {
+        console.error("Error fetching post data:", error);
+        return null;
     }
-    return null;
 };
 
 const PostPageSkeleton = () => (
@@ -100,8 +94,20 @@ export default function PostPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const functions = getFunctions(firebaseApp);
-    const addReplyToPostCallable = useMemo(() => httpsCallable(functions, 'forums-addReplyToPost'), [functions]);
+    const fetchReplies = useCallback(async () => {
+        try {
+            // Fetch replies using our new API
+            const result = await apiCall(`/forums/${topicId}/posts/${postId}/replies`);
+            setReplies(result as PostReply[]);
+        } catch (error) {
+            console.error("Error fetching replies:", error);
+            toast({
+                title: t('errors.loadReplies.title'),
+                description: t('errors.loadReplies.description'),
+                variant: "destructive"
+            });
+        }
+    }, [topicId, postId, toast, t]);
 
     useEffect(() => {
         if (!topicId || !postId) return;
@@ -122,38 +128,14 @@ export default function PostPage() {
             }
         };
         fetchPostData();
+        fetchReplies();
         
-        const db = getFirestore(firebaseApp);
-        const repliesQuery = query(collection(db, `forums/${topicId}/posts/${postId}/replies`), orderBy('createdAt', 'asc'));
-
-        const unsubscribe = onSnapshot(repliesQuery, (snapshot) => {
-            const fetchedReplies = snapshot.docs.map(doc => {
-                const data = doc.data();
-                return {
-                    id: doc.id, 
-                    content: data.content,
-                    author: {
-                        id: data.authorRef,
-                        name: data.authorName || 'Unknown User',
-                        avatarUrl: data.authorAvatarUrl || undefined,
-                    },
-                    timestamp: (data.createdAt as any)?.toDate?.().toISOString() || new Date().toISOString()
-                } as PostReply;
-            });
-            setReplies(fetchedReplies);
-        }, (error) => {
-            console.error("Error listening for replies:", error);
-            toast({
-                title: t('errors.loadReplies.title'),
-                description: t('errors.loadReplies.description'),
-                variant: "destructive"
-            });
-        });
-
-        // Cleanup listener on component unmount
-        return () => unsubscribe();
+        // Set up polling interval for replies
+        const intervalId = setInterval(fetchReplies, 5000); // Poll every 5 seconds
         
-    }, [topicId, postId, toast, t]);
+        return () => clearInterval(intervalId);
+        
+    }, [topicId, postId, toast, t, fetchReplies]);
 
     const handleReplySubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -163,9 +145,15 @@ export default function PostPage() {
         }
         setIsSubmitting(true);
         try {
-            await addReplyToPostCallable({ topicId, postId, content: newReply });
+            // Add reply using our new API
+            await apiCall('/forums/add-reply', {
+                method: 'POST',
+                body: JSON.stringify({ topicId, postId, content: newReply }),
+            });
             setNewReply("");
             toast({ title: t('reply.success') });
+            // Refetch replies to update the list
+            fetchReplies();
         } catch (error) {
              console.error("Error adding reply:", error);
              toast({

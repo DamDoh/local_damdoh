@@ -1,0 +1,52 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: damdoh-mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-password123}
+      MONGO_INITDB_DATABASE: damdoh
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - damdoh-network
+    command: mongod --auth
+    healthcheck:
+      test: mongosh --eval 'db.runCommand("ping").ok' --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: damdoh-backend
+    restart: always
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://${MONGO_ROOT_USERNAME:-admin}:${MONGO_ROOT_PASSWORD:-password123}@mongodb:27017/damdoh?authSource=admin&retryWrites=true&w=majority&directConnection=true
+      - JWT_SECRET=${JWT_SECRET:-your_jwt_secret_key}
+      - PORT=8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    volumes:
+      - ./backend:/usr/src/app
+    networks:
+      - damdoh-network
+    command: npm run dev
+
+networks:
+  damdoh-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+    driver: local

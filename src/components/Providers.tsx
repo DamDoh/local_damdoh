@@ -1,16 +1,15 @@
-
 "use client";
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React, { Suspense, useState, useEffect, createContext } from 'react';
 import { useOfflineSync } from '@/hooks/useOfflineSync';
-import { onAuthStateChanged, type User } from "firebase/auth";
-import { auth, functions } from '@/lib/firebase/client';
+import type { AuthUser } from '@/lib/auth-utils';
+import { useAuth } from '@/lib/auth-utils';
 import type { UserProfile } from '@/lib/types';
-import { httpsCallable } from "firebase/functions";
+import { apiCall } from '@/lib/api-utils';
 
 export interface AuthContextType {
-  user: User | null;
+  user: AuthUser | null;
   profile: UserProfile | null;
   loading: boolean;
 }
@@ -29,37 +28,30 @@ export function Providers({
 }: { 
     children: React.ReactNode;
 }) {
-    const [user, setUser] = useState<User | null>(null);
+    const { user: authUser, loading } = useAuth();
     const [profile, setProfile] = useState<UserProfile | null>(null);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (!auth) {
-            setLoading(false); // Firebase is not configured, stop loading
-            return;
-        }
-        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-            setUser(currentUser);
-            if (currentUser && functions) {
+        if (authUser) {
+            const fetchProfile = async () => {
                 try {
-                    const getProfile = httpsCallable(functions, 'user-getProfileByIdFromDB');
-                    const result = await getProfile({ uid: currentUser.uid });
+                    const result = await apiCall(`/user/profile/${authUser.id}`, {
+                        method: 'GET',
+                    });
                     setProfile(result.data as UserProfile);
                 } catch (error) {
                     console.error("Failed to fetch user profile:", error);
                     setProfile(null);
                 }
-            } else {
-                setProfile(null);
-            }
-            setLoading(false);
-        });
-
-        // Cleanup subscription on unmount
-        return () => unsubscribe();
-    }, [functions]);
+            };
+            
+            fetchProfile();
+        } else {
+            setProfile(null);
+        }
+    }, [authUser]);
     
-    const authValue = { user, profile, loading };
+    const authValue = { user: authUser, profile, loading };
 
     return (
         <Suspense fallback={<div>Loading...</div>}>

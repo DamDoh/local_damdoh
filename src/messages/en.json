@@ -523,5 +523,115 @@
     "description": "Platform administration and management.",
     "contentManagement": "Content",
     "reports": "Reports"
+  },
+  "OfflineIndicator": {
+    "toast": {
+      "online": {
+        "title": "Back Online",
+        "description": "You are now connected to the internet."
+      },
+      "offline": {
+        "title": "Offline Mode",
+        "description": "You are currently offline. Changes will be synced when you reconnect."
+      },
+      "syncing": {
+        "title": "Syncing Data",
+        "description": "Syncing {count} pending changes..."
+      },
+      "synced": {
+        "title": "Sync Complete",
+        "description": "All changes have been successfully synced."
+      },
+      "syncFailed": {
+        "title": "Sync Failed",
+        "description": "Failed to sync changes. Please try again."
+      },
+      "queued": {
+        "title": "Action Saved",
+        "description": "Your action has been saved for offline sync."
+      }
+    }
+  },
+  "Auth": {
+    "signUpTitle": "Create Your Account",
+    "signUpWelcome": "Join {appName} today",
+    "signUpDescription": "Create your account to get started with connecting the agricultural supply chain.",
+    "alreadyHaveAccountPrompt": "Already have an account?",
+    "signInLink": "Sign In",
+    "signInTitle": "Welcome Back",
+    "signInWelcome": "Welcome back to {appName}",
+    "signInDescription": "Sign in to your account to continue",
+    "recoverWithUniversalIdPrompt": "Or recover access with your Universal ID",
+    "noAccountPrompt": "Don't have an account?",
+    "signUpLink": "Sign Up",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Enter your full name",
+    "roleLabel": "Your Role",
+    "rolePlaceholder": "Select your role in agriculture",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "forgotPasswordLink": "Forgot Password?",
+    "signUpButton": "Sign Up",
+    "creatingAccountButton": "Creating Account...",
+    "signInButton": "Sign In",
+    "signingInButton": "Signing In...",
+    "signUpFailed": "Sign Up Failed",
+    "signInFailed": "Sign In Failed",
+    "signUpSuccess": {
+      "title": "Account Created Successfully",
+      "description": "Welcome to {appName}! You're now signed in and ready to explore."
+    },
+    "signInSuccess": {
+      "title": "Signed In Successfully",
+      "description": "Welcome back to {appName}! You're now signed in."
+    },
+    "passwordStrength": {
+      "weak": "Weak",
+      "medium": "Medium",
+      "strong": "Strong",
+      "veryStrong": "Very Strong",
+      "label": "Password Strength"
+    },
+    "errors": {
+      "emailInUse": "This email is already in use. Please try another or sign in instead.",
+      "invalidEmail": "Please enter a valid email address.",
+      "weakPassword": "Password should be at least 6 characters long.",
+      "default": "An error occurred. Please try again.",
+      "unexpected": "An unexpected error occurred. Please try again.",
+      "invalidCredential": "Invalid email or password. Please try again.",
+      "userDisabled": "This account has been disabled. Please contact support."
+    }
+  },
+  "MainDashboard": {
+    "feedError": {
+      "title": "Feed Load Error",
+      "description": "Failed to load activity feed. Please try again later."
+    },
+    "postError": {
+      "auth": "You must be logged in to create a post.",
+      "fail": "Failed to create post. Please try again."
+    },
+    "uploadingMedia": "Uploading media...",
+    "uploadComplete": "Upload complete!",
+    "postSuccess": {
+      "title": "Post Created",
+      "description": "Your post has been successfully published."
+    },
+    "deleteError": {
+      "auth": "You must be logged in to delete a post.",
+      "fail": "Failed to delete post. Please try again."
+    },
+    "deleteSuccess": {
+      "title": "Post Deleted",
+      "description": "Your post has been successfully deleted."
+    },
+    "profileCompletion": {
+      "title": "Complete Your Profile",
+      "description": "Add more details to your profile to get the most out of the platform.",
+      "button": "Edit Profile"
+    },
+    "noActivity": "No activity to show yet. Post something to get started!"
   }
 }

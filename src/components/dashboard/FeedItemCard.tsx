@@ -18,14 +18,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/hooks/use-toast";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { Loader2 } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { useAuth } from "@/lib/auth-utils";
 import { useFormatter, useTranslations } from "next-intl";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
 import Image from "next/image";
+import { apiCall } from '@/lib/api-utils';
 
 interface FeedItemCardProps {
   item: FeedItem;
@@ -55,26 +53,63 @@ export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
   const { toast } = useToast();
   const { profile: currentUserProfile } = useUserProfile();
 
-  const functions = useMemo(() => getFunctions(firebaseApp), []);
-  const db = useMemo(() => getFirestore(firebaseApp), []);
-  const voteOnPollCallable = useMemo(() => httpsCallable(functions, 'community-voteOnPoll'), [functions]);
-  const getCommentsForPostCallable = useMemo(() => httpsCallable(functions, 'community-getCommentsForPost'), [functions]);
-  const likePostCallable = useMemo(() => httpsCallable(functions, 'community-likePost'), [functions]);
-  const addCommentCallable = useMemo(() => httpsCallable(functions, 'community-addComment'), [functions]);
+  // Polling for comments
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout | null = null;
+
+    const fetchComments = async (isInitialLoad = false) => {
+      if (!hasMoreComments && !isInitialLoad) return;
+      setIsLoadingReplies(true);
+      try {
+        // Fetch comments using our new API
+        const result = await apiCall(`/community/comments/${item.id}`, {
+          method: 'POST',
+          body: JSON.stringify({ lastVisible: isInitialLoad ? null : lastVisible }),
+        });
+        const data = result as { replies: PostReply[], lastVisible: any };
+        
+        setReplies(prev => isInitialLoad ? (data.replies || []) : [...prev, ...(data.replies || [])]);
+        setLastVisible(data.lastVisible);
+        setHasMoreComments(!!data.lastVisible);
+      } catch (error) {
+        console.error("Failed to fetch comments:", error);
+        toast({ title: t('loadCommentsErrorToast'), variant: "destructive" });
+      } finally {
+        setIsLoadingReplies(false);
+      }
+    };
+
+    if (showCommentInput && replies.length === 0) {
+      fetchComments(true);
+      
+      // Set up polling interval for comments
+      intervalId = setInterval(fetchComments, 5000); // Poll every 5 seconds
+    }
+    
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [item.id, lastVisible, hasMoreComments, toast, t, showCommentInput, replies.length]);
 
   useEffect(() => {
     if (item.pollOptions) {
       setCurrentPollOptions([...item.pollOptions]);
     }
     if (item.type === 'poll' && user) {
-        const voteRef = doc(db, `posts/${item.id}/votes/${user.uid}`);
-        getDoc(voteRef).then(docSnap => {
-            if (docSnap.exists()) {
-                setVotedOptionIndex(docSnap.data().optionIndex);
-            }
-        });
+        // Check if user has voted on this poll using our new API
+        apiCall(`/community/poll-vote/${item.id}/${user.id}`)
+            .then((result: any) => {
+                if (result.hasVoted) {
+                    setVotedOptionIndex(result.optionIndex);
+                }
+            })
+            .catch(error => {
+                console.error("Error checking poll vote:", error);
+            });
     }
-  }, [item.pollOptions, item.id, item.type, user, db]);
+  }, [item.pollOptions, item.id, item.type, user]);
 
   const totalVotes = useMemo(() => {
     return currentPollOptions.reduce((acc, opt) => acc + (opt.votes || 0), 0);
@@ -88,7 +123,11 @@ export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
     setLikesCount(prev => isLiked ? prev - 1 : prev + 1);
 
     try {
-        await likePostCallable({ postId: item.id });
+        // Like post using our new API
+        await apiCall('/community/like-post', {
+            method: 'POST',
+            body: JSON.stringify({ postId: item.id }),
+        });
     } catch(error) {
         console.error("Error liking post:", error);
         // Revert optimistic UI update on error
@@ -98,43 +137,21 @@ export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
     }
   };
   
-  const fetchComments = useCallback(async (isInitialLoad = false) => {
-    if (!hasMoreComments && !isInitialLoad) return;
-    setIsLoadingReplies(true);
-    try {
-      const result = await getCommentsForPostCallable({ postId: item.id, lastVisible: isInitialLoad ? null : lastVisible });
-      const data = result.data as { replies: PostReply[], lastVisible: any };
-      
-      setReplies(prev => isInitialLoad ? (data.replies || []) : [...prev, ...(data.replies || [])]);
-      setLastVisible(data.lastVisible);
-      setHasMoreComments(!!data.lastVisible);
-    } catch (error) {
-      console.error("Failed to fetch comments:", error);
-      toast({ title: t('loadCommentsErrorToast'), variant: "destructive" });
-    } finally {
-      setIsLoadingReplies(false);
-    }
-  }, [item.id, lastVisible, hasMoreComments, toast, t, getCommentsForPostCallable]);
-
-
   const handleCommentButtonClick = () => {
     const willBeVisible = !showCommentInput;
     setShowCommentInput(willBeVisible);
-
-    if (willBeVisible && replies.length === 0) {
-      fetchComments(true);
-    }
   };
   
   const handlePostComment = async () => {
     if (!commentText.trim() || !user) return;
     setIsSubmittingComment(true);
     try {
-      await addCommentCallable({ postId: item.id, content: commentText });
+      // Add comment using our new API
+      await apiCall('/community/add-comment', {
+          method: 'POST',
+          body: JSON.stringify({ postId: item.id, content: commentText }),
+      });
       setCommentText("");
-      // No need to manually refetch comments if we had a real-time listener,
-      // but for callable functions, we refetch to see the new comment.
-      fetchComments(true);
       toast({ title: t('commentSuccess') });
     } catch(error) {
          console.error("Error adding comment:", error);
@@ -162,7 +179,11 @@ export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
     setVotedOptionIndex(optionIndex);
 
     try {
-        await voteOnPollCallable({ postId: item.id, optionIndex });
+        // Vote on poll using our new API
+        await apiCall('/community/vote-poll', {
+            method: 'POST',
+            body: JSON.stringify({ postId: item.id, optionIndex }),
+        });
         toast({ title: t('voteSuccessToast') });
     } catch (error: any) {
         toast({ title: t('voteErrorToast'), description: error.message, variant: "destructive" });
@@ -171,7 +192,7 @@ export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
     }
   };
   
-  const isPostAuthor = item.userId === user?.uid;
+  const isPostAuthor = item.userId === user?.id;
   const isAdmin = currentUserProfile?.primaryRole === 'Admin';
 
 
@@ -290,7 +311,23 @@ export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
                 )}
                 {isLoadingReplies && <div className="flex items-center space-x-2"><Loader2 className="h-4 w-4 animate-spin text-muted-foreground" /><span className="text-sm text-muted-foreground">{t('loadingComments')}</span></div>}
                 {hasMoreComments && !isLoadingReplies && (
-                    <Button variant="link" size="sm" className="w-full" onClick={() => fetchComments()}>{t('loadMoreComments')}</Button>
+                    <Button variant="link" size="sm" className="w-full" onClick={() => {
+                        // Fetch more comments using our new API
+                        apiCall(`/community/comments/${item.id}`, {
+                            method: 'POST',
+                            body: JSON.stringify({ lastVisible }),
+                        })
+                        .then((result: any) => {
+                            const data = result as { replies: PostReply[], lastVisible: any };
+                            setReplies(prev => [...prev, ...(data.replies || [])]);
+                            setLastVisible(data.lastVisible);
+                            setHasMoreComments(!!data.lastVisible);
+                        })
+                        .catch(error => {
+                            console.error("Failed to fetch more comments:", error);
+                            toast({ title: t('loadCommentsErrorToast'), variant: "destructive" });
+                        });
+                    }}>{t('loadMoreComments')}</Button>
                 )}
             </div>
              <div className="flex items-start gap-2 pt-2">

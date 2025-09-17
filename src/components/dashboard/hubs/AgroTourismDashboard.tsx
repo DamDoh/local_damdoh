@@ -1,9 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -13,24 +11,22 @@ import Link from 'next/link';
 import { MapPin, Calendar, Star, Sun, Settings } from 'lucide-react';
 import type { AgroTourismDashboardData } from '@/lib/types';
 import { useTranslations } from 'next-intl';
+import { apiCall } from '@/lib/api-utils';
 
 
 export const AgroTourismDashboard = () => {
   const t = useTranslations('AgroTourismDashboard');
-  const [dashboardData, setDashboardData] = useState<AgroTourismDashboardData | null>(null);
+  const [dashboardData, setDashboardData] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  const functions = useMemo(() => getFunctions(firebaseApp), []);
-  const getAgroTourismDashboardDataCallable = useMemo(() => httpsCallable<void, AgroTourismDashboardData>(functions, 'dashboardData-getAgroTourismDashboardData'), [functions]);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       setError(null);
       try {
-        const result = await getAgroTourismDashboardDataCallable();
-        setDashboardData(result.data);
+        const result = await apiCall('/dashboard/agro-tourism');
+        setDashboardData(result);
       } catch (err) {
         console.error("Error fetching Agro-Tourism dashboard data:", err);
         setError(t('errors.load'));
@@ -40,7 +36,7 @@ export const AgroTourismDashboard = () => {
     };
 
     fetchData();
-  }, [getAgroTourismDashboardDataCallable, t]);
+  }, [t]);
 
   if (isLoading) {
     return <DashboardSkeleton />;
@@ -107,7 +103,7 @@ export const AgroTourismDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {(upcomingBookings || []).map((booking) => (
+                   {(upcomingBookings || []).map((booking: any) => (
                      <TableRow key={booking.id}>
                        <TableCell className="font-medium">{booking.experienceTitle}</TableCell>
                        <TableCell>{booking.guestName}</TableCell>
@@ -145,7 +141,7 @@ export const AgroTourismDashboard = () => {
                    </TableRow>
                  </TableHeader>
                  <TableBody>
-                   {(listedExperiences || []).map((experience) => (
+                   {(listedExperiences || []).map((experience: any) => (
                      <TableRow key={experience.id}>
                        <TableCell className="font-medium">{experience.title}</TableCell>
                        <TableCell><Badge variant={experience.status === 'Published' ? 'default' : 'secondary'}>{experience.status}</Badge></TableCell>
@@ -174,7 +170,7 @@ export const AgroTourismDashboard = () => {
             <CardContent>
                 {(guestReviews || []).length > 0 ? (
                     <div className="space-y-3">
-                        {(guestReviews || []).map((review) => (
+                        {(guestReviews || []).map((review: any) => (
                             <div key={review.id} className="text-sm p-3 border rounded-lg">
                                 <div className="flex justify-between items-start">
                                     <p className="font-medium">{review.guestName} {t('on')} "{review.experienceTitle}"</p>

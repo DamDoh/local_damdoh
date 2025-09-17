@@ -130,20 +130,14 @@ export function SignUpForm({ onSuccess }: SignUpFormProps) {
       router.push("/");
       router.refresh();
     } catch (error: any) {
-      let errorMessage = "An unexpected error occurred. Please try again.";
-      if (error.code) {
-        switch (error.code) {
-          case "auth/email-already-in-use":
-            errorMessage = t('errors.emailInUse');
-            break;
-          case "auth/invalid-email":
-            errorMessage = t('errors.invalidEmail');
-            break;
-          case "auth/weak-password":
-            errorMessage = t('errors.weakPassword');
-            break;
-          default:
-            errorMessage = t('errors.default');
+      let errorMessage = t('errors.unexpected');
+      if (error.message) {
+        if (error.message === "Email already registered") {
+          errorMessage = t('errors.emailInUse');
+        } else if (error.message === "Registration failed") {
+          errorMessage = t('errors.default');
+        } else {
+          errorMessage = `${t('errors.default')}: ${error.message}`;
         }
       }
       setAuthError(errorMessage);

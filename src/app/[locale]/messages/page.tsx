@@ -16,12 +16,10 @@ import { cn } from '@/lib/utils';
 import type { UserProfile, Conversation, Message } from '@/lib/types';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { getProfileByIdFromDB } from '@/lib/server-actions';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
-import { getFirestore, collection, query, where, orderBy, onSnapshot, Timestamp } from 'firebase/firestore';
+import { apiCall } from '@/lib/api-utils';
 
 
 function MessagingContent() {
@@ -39,13 +37,7 @@ function MessagingContent() {
     const [newMessage, setNewMessage] = useState("");
     const [isSending, setIsSending] = useState(false);
     const [recipientProfile, setRecipientProfile] = useState<UserProfile | null>(null);
-
-    const functions = useMemo(() => getFunctions(firebaseApp), []);
-    const db = useMemo(() => getFirestore(firebaseApp), []);
-
-    const getConversationsCallable = useCallback(() => httpsCallable(functions, 'messages-getConversationsForUser')(), [functions]);
-    const sendMessageCallable = useCallback((conversationId: string, content: string) => httpsCallable(functions, 'messages-sendMessage')({ conversationId, content }), [functions]);
-    const getOrCreateConversationCallable = useCallback((recipientId: string) => httpsCallable(functions, 'messages-getOrCreateConversation')({ recipientId }), [functions]);
+    const [messagePollingInterval, setMessagePollingInterval] = useState<NodeJS.Timeout | null>(null);
     
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -64,10 +56,10 @@ function MessagingContent() {
         }
         setIsLoadingConversations(true);
         try {
-            const convResult = await getConversationsCallable();
-            const convos = (convResult.data as any)?.conversations ?? [];
-            setConversations(convos);
-            return convos;
+            // Fetch conversations using our new API
+            const convos = await apiCall('/messages/conversations');
+            setConversations(convos as Conversation[]);
+            return convos as Conversation[];
         } catch (error) {
             console.error("Error fetching conversations:", error);
             toast({ variant: "destructive", title: t('error'), description: t('couldNotLoadConversations') });
@@ -75,9 +67,9 @@ function MessagingContent() {
         } finally {
             setIsLoadingConversations(false);
         }
-    }, [getConversationsCallable, user, toast, t]);
+    }, [user, toast, t]);
     
-    // Real-time listener for messages of the selected conversation
+    // Polling for new messages of the selected conversation
     useEffect(() => {
         if (!selectedConversation) {
             setMessages([]);
@@ -85,34 +77,34 @@ function MessagingContent() {
         }
 
         setIsLoadingMessages(true);
-        const messagesQuery = query(
-            collection(db, 'conversations', selectedConversation.id, 'messages'),
-            orderBy('timestamp', 'asc')
-        );
-
-        const unsubscribe = onSnapshot(messagesQuery, (snapshot) => {
-            const fetchedMessages: Message[] = snapshot.docs.map(doc => {
-                const data = doc.data();
-                return {
-                    id: doc.id,
-                    conversationId: selectedConversation.id,
-                    senderId: data.senderId,
-                    content: data.content,
-                    timestamp: (data.timestamp as Timestamp)?.toDate().toISOString() || new Date().toISOString()
-                };
-            });
-            setMessages(fetchedMessages);
-            setIsLoadingMessages(false);
-        }, (error) => {
-            console.error("Error listening to messages:", error);
-            toast({ variant: "destructive", title: "Connection Error", description: "Could not listen for new messages." });
-            setIsLoadingMessages(false);
-        });
-
-        // Cleanup listener when conversation changes or component unmounts
-        return () => unsubscribe();
-
-    }, [selectedConversation, toast, db]);
+        
+        // Fetch messages using our new API
+        const fetchMessages = async () => {
+            try {
+                const fetchedMessages = await apiCall(`/messages/conversation/${selectedConversation.id}`);
+                setMessages(fetchedMessages as Message[]);
+                setIsLoadingMessages(false);
+            } catch (error) {
+                console.error("Error fetching messages:", error);
+                toast({ variant: "destructive", title: "Connection Error", description: "Could not fetch messages." });
+                setIsLoadingMessages(false);
+            }
+        };
+        
+        // Initial fetch
+        fetchMessages();
+        
+        // Set up polling interval
+        const interval = setInterval(fetchMessages, 3000); // Poll every 3 seconds
+        setMessagePollingInterval(interval);
+        
+        // Cleanup interval when conversation changes or component unmounts
+        return () => {
+            if (interval) {
+                clearInterval(interval);
+            }
+        };
+    }, [selectedConversation, toast]);
 
     // This useEffect is for INITIAL load and handling deep links
     useEffect(() => {
@@ -133,8 +125,12 @@ function MessagingContent() {
                     try {
                         const profile = await getProfileByIdFromDB(recipientId);
                         setRecipientProfile(profile);
-                        const result = await getOrCreateConversationCallable(recipientId);
-                        const { conversationId } = result.data as { conversationId: string };
+                        // Create conversation using our new API
+                        const result = await apiCall('/messages/conversation', {
+                            method: 'POST',
+                            body: JSON.stringify({ recipientId }),
+                        });
+                        const { conversationId } = result as { conversationId: string };
                         const newConvos = await fetchConversations();
                         const newCreatedConvo = newConvos.find((c: any) => c.id === conversationId);
                         if (newCreatedConvo) {
@@ -165,9 +161,15 @@ function MessagingContent() {
         setIsSending(true);
 
         try {
-            await sendMessageCallable(currentConvo.id, messageToSend);
-            // The onSnapshot listener will update the messages automatically.
-            // We just need to refetch the conversation list to update the lastMessage preview.
+            // Send message using our new API
+            await apiCall('/messages/send', {
+                method: 'POST',
+                body: JSON.stringify({
+                    conversationId: currentConvo.id,
+                    content: messageToSend
+                }),
+            });
+            // Refetch the conversation list to update the lastMessage preview
             fetchConversations();
         } catch (error) {
             console.error("Failed to send message", error);
@@ -252,10 +254,10 @@ function MessagingContent() {
                                 <ArrowLeft className="h-4 w-4"/>
                             </Button>
                             <Avatar>
-                                <AvatarImage src={conversationHeaderProfile?.avatarUrl} data-ai-hint="profile person agriculture" />
-                                <AvatarFallback>{conversationHeaderProfile?.name?.substring(0,2) ?? '??'}</AvatarFallback>
+                                <AvatarImage src={conversationHeaderProfile?.avatarUrl || undefined} data-ai-hint="profile person agriculture" />
+                                <AvatarFallback>{(conversationHeaderProfile as any)?.displayName?.substring(0,2) ?? (conversationHeaderProfile as any)?.name?.substring(0,2) ?? '??'}</AvatarFallback>
                             </Avatar>
-                            <h3 className="font-semibold">{conversationHeaderProfile?.name}</h3>
+                            <h3 className="font-semibold">{(conversationHeaderProfile as any)?.displayName ?? (conversationHeaderProfile as any)?.name}</h3>
                         </div>
                         <ScrollArea className="flex-grow p-4">
                             {isLoadingMessages ? (
@@ -266,12 +268,12 @@ function MessagingContent() {
                                 <div className="space-y-4">
                                     {messages && messages.length > 0 ? (
                                         messages.map(msg => (
-                                            <div key={msg.id} className={cn("flex gap-2 items-end", msg.senderId === user.uid ? "justify-end" : "justify-start")}>
-                                                {msg.senderId !== user.uid && <Avatar className="h-6 w-6 self-end"><AvatarImage src={conversationHeaderProfile?.avatarUrl}/><AvatarFallback>{conversationHeaderProfile?.name?.substring(0,1) ?? '?'}</AvatarFallback></Avatar>}
-                                                <div className={cn("p-3 rounded-lg max-w-xs lg:max-w-md shadow-sm", msg.senderId === user.uid ? "bg-primary text-primary-foreground rounded-br-none" : "bg-background rounded-bl-none")}>
+                                            <div key={msg.id} className={cn("flex gap-2 items-end", msg.senderId === user.id ? "justify-end" : "justify-start")}>
+                                                {msg.senderId !== user.id && <Avatar className="h-6 w-6 self-end"><AvatarImage src={conversationHeaderProfile?.avatarUrl || undefined}/><AvatarFallback>{(conversationHeaderProfile as any)?.name?.substring(0,1) ?? (conversationHeaderProfile as any)?.displayName?.substring(0,1) ?? '?'}</AvatarFallback></Avatar>}
+                                                <div className={cn("p-3 rounded-lg max-w-xs lg:max-w-md shadow-sm", msg.senderId === user.id ? "bg-primary text-primary-foreground rounded-br-none" : "bg-background rounded-bl-none")}>
                                                     <p className="whitespace-pre-line break-words">{msg.content}</p>
                                                 </div>
-                                                 {msg.senderId === user.uid && <Avatar className="h-6 w-6 self-end"><AvatarImage src={user.photoURL || undefined} data-ai-hint="profile person" /><AvatarFallback>ME</AvatarFallback></Avatar>}
+                                                 {msg.senderId === user.id && <Avatar className="h-6 w-6 self-end"><AvatarImage src={(user as any).photoURL || undefined} data-ai-hint="profile person" /><AvatarFallback>ME</AvatarFallback></Avatar>}
                                             </div>
                                         ))
                                     ) : (

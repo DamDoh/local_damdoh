@@ -10,19 +10,27 @@ import QRCode from 'qrcode.react';
 import { useTranslations } from 'next-intl';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp, auth } from '@/lib/firebase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
 import dynamic from 'next/dynamic';
-import { signInWithCustomToken } from "firebase/auth";
+import { getTokens } from '@/lib/auth-utils';
 
 const QrScanner = dynamic(() => import('@/components/QrScanner').then(mod => mod.QrScanner), {
     ssr: false,
     loading: () => <div className="flex justify-center items-center h-48"><Loader2 className="h-8 w-8 animate-spin"/></div>
 });
 
-const functions = getFunctions(firebaseApp);
+// Get the base URL for API calls
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') {
+    // Client-side
+    return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
+  }
+  // Server-side
+  return process.env.API_URL || 'http://localhost:8000/api';
+};
+
+const API_BASE_URL = getBaseUrl();
 
 export default function RecoverPage() {
   const t = useTranslations('Auth.recoverPage');
@@ -36,10 +44,6 @@ export default function RecoverPage() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [recoverySession, setRecoverySession] = useState<{ sessionId: string; recoveryQrValue: string; } | null>(null);
   const [isScanning, setIsScanning] = useState(false);
-
-  const createRecoverySessionCallable = useMemo(() => httpsCallable(functions, 'user-createRecoverySession'), []);
-  const scanRecoveryQrCallable = useMemo(() => httpsCallable(functions, 'user-scanRecoveryQr'), []);
-  const completeRecoveryCallable = useMemo(() => httpsCallable(functions, 'user-completeRecovery'), []);
 
   const handleStartRecovery = () => {
     setRecoveryStep('enter_phone');
@@ -56,8 +60,21 @@ export default function RecoverPage() {
     setErrorMessage(null);
 
     try {
-        const result = await createRecoverySessionCallable({ phoneNumber });
-        const data = result.data as { sessionId: string; recoveryQrValue: string; };
+        const { accessToken } = getTokens();
+        const response = await fetch(`${API_BASE_URL}/auth/recovery-session`, {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+          },
+          body: JSON.stringify({ phoneNumber }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to create recovery session');
+        }
+
+        const data = await response.json();
         setRecoverySession(data);
         setRecoveryStep('display_qr');
     } catch (error: any) {
@@ -84,8 +101,21 @@ export default function RecoverPage() {
     
     setIsLoading(true);
     try {
-        const result = await scanRecoveryQrCallable({ sessionId, scannedSecret });
-        const data = result.data as { success: boolean; message: string; recoveryComplete: boolean };
+        const { accessToken } = getTokens();
+        const response = await fetch(`${API_BASE_URL}/auth/scan-recovery-qr`, {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+          },
+          body: JSON.stringify({ sessionId, scannedSecret }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to scan recovery QR');
+        }
+
+        const data = await response.json();
         if (data.success) {
             toast({ title: t('helpFriend.scanSuccess'), description: data.message });
         } else {
@@ -100,25 +130,30 @@ export default function RecoverPage() {
   
   const pollForConfirmation = useCallback(async (sessionId: string) => {
     try {
-      const result = await completeRecoveryCallable({ sessionId });
-      const data = result.data as { success: boolean; customToken?: string };
+      const { accessToken } = getTokens();
+      const response = await fetch(`${API_BASE_URL}/auth/complete-recovery`, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        },
+        body: JSON.stringify({ sessionId }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to complete recovery');
+      }
+
+      const data = await response.json();
       
       if (data.success && data.customToken) {
-        await signInWithCustomToken(auth, data.customToken);
-        
-        const idToken = await auth.currentUser?.getIdToken();
-        await fetch('/api/auth/session', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ idToken }),
-        });
-
+        // For now, we'll just redirect to sign in since we don't have custom token functionality
         toast({
           title: "Recovery Complete!",
           description: `You have successfully recovered your account.`,
         });
         setRecoveryStep('success');
-        router.push('/');
+        router.push('/auth/signin');
         return true; // Stop polling
       }
     } catch (error) {
@@ -126,7 +161,7 @@ export default function RecoverPage() {
       // console.log("Polling for confirmation...");
     }
     return false; // Continue polling
-  }, [completeRecoveryCallable, toast, router]);
+  }, [toast, router]);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout | undefined;

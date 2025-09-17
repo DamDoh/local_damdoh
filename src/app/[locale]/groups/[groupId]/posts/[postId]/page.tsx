@@ -11,12 +11,10 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { PostReply } from '@/lib/types';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
-import { doc, getDoc, getFirestore, onSnapshot, collection, query, orderBy } from "firebase/firestore";
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
 import { useTranslations } from 'next-intl';
+import { apiCall } from '@/lib/api-utils';
 
 interface GroupPost {
     id: string;
@@ -35,33 +33,14 @@ interface GroupPost {
 
 
 const getGroupPostDetails = async (groupId: string, postId: string): Promise<GroupPost | null> => {
-    const db = getFirestore(firebaseApp);
-    const postRef = doc(db, `groups/${groupId}/posts`, postId);
-    const postSnap = await getDoc(postRef);
-
-    if (postSnap.exists()) {
-        const data = postSnap.data();
-        
-        const groupRef = doc(db, "groups", groupId);
-        const groupSnap = await getDoc(groupRef);
-        const groupName = groupSnap.exists() ? groupSnap.data().name : '';
-
-        return {
-            id: postSnap.id,
-            title: data.title,
-            content: data.content,
-            groupId: groupId,
-            groupName: groupName,
-            timestamp: data.createdAt ? new Date(data.createdAt.seconds * 1000).toISOString() : new Date().toISOString(),
-            author: {
-                id: data.authorRef,
-                name: data.authorName,
-                avatarUrl: data.authorAvatarUrl,
-            },
-            replyCount: data.replyCount || 0,
-        } as GroupPost;
+    try {
+        // Fetch post details using our new API
+        const result = await apiCall(`/groups/${groupId}/posts/${postId}`);
+        return result as GroupPost;
+    } catch (error) {
+        console.error("Error fetching post data:", error);
+        return null;
     }
-    return null;
 };
 
 
@@ -114,9 +93,6 @@ export default function GroupPostPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const functions = getFunctions(firebaseApp);
-    const addReplyToPost = useMemo(() => httpsCallable(functions, 'groups-addGroupPostReply'), [functions]);
-
     const fetchInitialData = useCallback(async () => {
         setIsLoading(true);
         try {
@@ -134,40 +110,32 @@ export default function GroupPostPage() {
         }
     }, [groupId, postId, toast, t]);
 
-    useEffect(() => {
-        if (!groupId || !postId) return;
-        
-        fetchInitialData();
-        
-        const db = getFirestore(firebaseApp);
-        const repliesQuery = query(collection(db, `groups/${groupId}/posts/${postId}/replies`), orderBy('createdAt', 'asc'));
-
-        const unsubscribe = onSnapshot(repliesQuery, (snapshot) => {
-            const fetchedReplies = snapshot.docs.map(doc => {
-                const data = doc.data();
-                return {
-                    id: doc.id,
-                    content: data.content,
-                    timestamp: data.createdAt ? new Date(data.createdAt.seconds * 1000).toISOString() : new Date().toISOString(),
-                    author: {
-                        id: data.authorRef,
-                        name: data.authorName,
-                        avatarUrl: data.authorAvatarUrl,
-                    }
-                } as PostReply;
-            });
-            setReplies(fetchedReplies);
-        }, (error) => {
-             console.error("Error listening for replies:", error);
-             toast({
+    const fetchReplies = useCallback(async () => {
+        try {
+            // Fetch replies using our new API
+            const result = await apiCall(`/groups/${groupId}/posts/${postId}/replies`);
+            setReplies(result as PostReply[]);
+        } catch (error) {
+            console.error("Error fetching replies:", error);
+            toast({
                 title: t('toast.loadRepliesError.title'),
                 description: t('toast.loadRepliesError.description'),
                 variant: "destructive"
             });
-        });
+        }
+    }, [groupId, postId, toast, t]);
 
-        return () => unsubscribe();
-    }, [groupId, postId, fetchInitialData, toast, t]);
+    useEffect(() => {
+        if (!groupId || !postId) return;
+        
+        fetchInitialData();
+        fetchReplies();
+        
+        // Set up polling interval for replies
+        const intervalId = setInterval(fetchReplies, 5000); // Poll every 5 seconds
+        
+        return () => clearInterval(intervalId);
+    }, [groupId, postId, fetchInitialData, fetchReplies, toast, t]);
 
     const handleReplySubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -177,10 +145,15 @@ export default function GroupPostPage() {
         }
         setIsSubmitting(true);
         try {
-            await addReplyToPost({ groupId, postId, content: newReply });
+            // Add reply using our new API
+            await apiCall('/groups/add-reply', {
+                method: 'POST',
+                body: JSON.stringify({ groupId, postId, content: newReply }),
+            });
             setNewReply("");
             toast({ title: t('toast.replySuccess') });
-            // No need to manually refetch, onSnapshot will do it.
+            // Refetch replies to update the list
+            fetchReplies();
         } catch (error) {
              console.error("Error adding reply:", error);
              toast({

@@ -10,14 +10,12 @@ import { ArrowLeft, MapPin, Sprout, ClipboardList, PlusCircle, Droplets, Weight,
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
-import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import type { FarmingAssistantOutput } from '@/lib/types';
 import { CropRotationSuggester } from '@/components/farm-management/CropRotationSuggester';
+import { apiCall } from '@/lib/api-utils';
 
 interface CropDetails {
     id: string;
@@ -104,28 +102,24 @@ export default function CropDetailPage() {
   const [events, setEvents] = useState<TraceabilityEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const functions = getFunctions(firebaseApp);
-  const getCropCallable = useMemo(() => httpsCallable(functions, 'getCrop'), [functions]);
-  const getTraceabilityEventsCallable = useMemo(() => httpsCallable(functions, 'getTraceabilityEventsByFarmField'), [functions]);
-
   const fetchDetails = useCallback(async () => {
     if (!cropId || !farmId || !user) return;
     setIsLoading(true);
     
     try {
         const [cropResult, eventsResult] = await Promise.all([
-            getCropCallable({ cropId }),
-            getTraceabilityEventsCallable({ farmFieldId: cropId })
+            apiCall(`/crops/${cropId}`),
+            apiCall(`/traceability/events/${cropId}`)
         ]);
         
-        const cropData = cropResult.data as CropDetails;
+        const cropData = cropResult as CropDetails;
         if (cropData) {
             setCrop(cropData);
         } else {
              toast({ variant: 'destructive', title: t('toast.notFound') });
         }
 
-        setEvents((eventsResult.data as { events: TraceabilityEvent[] })?.events || []);
+        setEvents(eventsResult as TraceabilityEvent[]);
 
     } catch (error) {
         console.error("Error fetching crop details:", error);
@@ -133,7 +127,7 @@ export default function CropDetailPage() {
     } finally {
         setIsLoading(false);
     }
-  }, [cropId, farmId, user, getCropCallable, getTraceabilityEventsCallable, toast, t]);
+  }, [cropId, farmId, user, toast, t]);
 
   useEffect(() => {
     fetchDetails();

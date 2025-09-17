@@ -1,9 +1,7 @@
 
 "use client";
 
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import React, { useState, useEffect } from 'react';
 import type { FarmerDashboardData } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useTranslations } from 'next-intl';
@@ -19,6 +17,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-utils';
 import { useUserProfile } from '@/hooks/useUserProfile';
+import { getTokens } from '@/lib/auth-utils';
 
 
 function DashboardSkeleton() {
@@ -50,10 +49,6 @@ export function FarmerDashboard() {
     const [isLoading, setIsLoading] = useState(true);
     const { user } = useAuth();
 
-    const functions = getFunctions(firebaseApp);
-    const getFarmerData = useMemo(() => httpsCallable(functions, 'dashboardData-getFarmerDashboardData'), [functions]);
-    const getTrustScoreCallable = useMemo(() => httpsCallable(functions, 'financials-getTrustScore'), [functions]);
-
     useEffect(() => {
         if (!user) {
             setIsLoading(false);
@@ -63,12 +58,25 @@ export function FarmerDashboard() {
         const fetchData = async () => {
             setIsLoading(true);
             try {
+                const { accessToken } = getTokens();
                 const [farmerResult, scoreResult] = await Promise.all([
-                    getFarmerData(),
-                    getTrustScoreCallable()
+                    fetch('/api/dashboard/farmer', {
+                        headers: {
+                            'Authorization': `Bearer ${accessToken}`
+                        }
+                    }),
+                    fetch('/api/dashboard/trust-score', {
+                        headers: {
+                            'Authorization': `Bearer ${accessToken}`
+                        }
+                    })
                 ]);
-                setDashboardData(farmerResult.data as FarmerDashboardData);
-                setTrustScoreData((scoreResult.data as any) ?? { score: 500, breakdown: [] });
+                
+                const farmerData = await farmerResult.json();
+                const scoreData = await scoreResult.json();
+                
+                setDashboardData(farmerData);
+                setTrustScoreData(scoreData ?? { score: 500, breakdown: [] });
 
             } catch (error) {
                 console.error("Error fetching farmer dashboard data:", error);
@@ -77,7 +85,7 @@ export function FarmerDashboard() {
             }
         };
         fetchData();
-    }, [user, getFarmerData, getTrustScoreCallable]);
+    }, [user]);
 
     if (isLoading) {
         return <DashboardSkeleton />;
