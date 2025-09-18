@@ -18,9 +18,7 @@ import { createFarmSchema, type CreateFarmValues } from "@/lib/form-schemas";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from '@/lib/auth-utils';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
-import { HttpsCallableResult } from "firebase/functions";
+import { apiCall } from '@/lib/api-utils';
 
 export default function CreateFarmPage() {
   const t = useTranslations('farmManagement.createFarm');
@@ -28,8 +26,6 @@ export default function CreateFarmPage() {
   const router = useRouter();
   const { user } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const functions = getFunctions(firebaseApp);
-  const createFarmCallable = useMemo(() => httpsCallable(functions, 'createFarm'), [functions]);
 
   const form = useForm<CreateFarmValues>({
     resolver: zodResolver(createFarmSchema),
@@ -50,7 +46,10 @@ export default function CreateFarmPage() {
     }
     setIsSubmitting(true);
     try {
-        await createFarmCallable(values);
+        await apiCall('/farms', {
+          method: 'POST',
+          body: JSON.stringify(values)
+        });
         toast({ // Use a unique key for success toast to avoid stacking
           title: t('toast.successTitle'),
           description: t('toast.successDescription', { farmName: values.name }),

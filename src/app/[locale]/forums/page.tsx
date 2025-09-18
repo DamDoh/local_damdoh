@@ -8,8 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MessageSquare, PlusCircle, Search, Frown, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin, PinOff, Clock, Users, Lightbulb, RefreshCcw } from "lucide-react";
 import Link from 'next/link';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import type { ForumTopic } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/lib/auth-utils';
@@ -77,8 +76,6 @@ export default function ForumsPage() {
     const [searchTerm, setSearchTerm] = useState("");
     const { user } = useAuth();
     const { toast } = useToast();
-    const functions = getFunctions(firebaseApp);
-    const getTopicsCallable = useMemo(() => httpsCallable(functions, 'getTopics'), [functions]);
     const pathname = usePathname();
     const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
     const locale = useLocale();
@@ -86,8 +83,7 @@ export default function ForumsPage() {
     const fetchTopics = useCallback(async () => {
         setIsLoading(true);
         try {
-            const result = await getTopicsCallable();
-            const data = result.data as { topics?: ForumTopic[] };
+            const data = await apiCall<{ topics?: ForumTopic[] }>('/forums/topics');
             setTopics(data?.topics || []);
         } catch (error) {
             console.error("Error fetching topics:", error);
@@ -99,7 +95,7 @@ export default function ForumsPage() {
         } finally {
             setIsLoading(false);
         }
-    }, [getTopicsCallable, toast, t]);
+    }, [toast, t]);
     
     const handleGetSuggestions = useCallback(async () => {
         if (topics.length === 0) return;

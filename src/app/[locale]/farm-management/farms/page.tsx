@@ -9,8 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable, HttpsCallableResult, HttpsError } from "firebase/functions";
-import { app as firebaseApp } from "@/lib/firebase/client";
+import { apiCall } from "@/lib/api-utils";
 import { useToast } from "@/hooks/use-toast";
 
 interface Farm {
@@ -43,8 +42,6 @@ export default function MyFarmsPage() {
   const { user } = useAuth();
   const { toast } = useToast();
   
-  const functions = getFunctions(firebaseApp);
-  const getUserFarmsCallable = useMemo(() => httpsCallable(functions, 'farmManagement-getUserFarms'), [functions]);
 
   useEffect(() => {
     if (!user) {
@@ -55,8 +52,8 @@ export default function MyFarmsPage() {
     const fetchFarms = async () => {
       setIsLoading(true);
       try {
-        const result = await getUserFarmsCallable();
-        setFarms((result.data as Farm[]) ?? []); // Safeguard against undefined result
+        const result = await apiCall<Farm[]>('/farms/user-farms');
+        setFarms(result ?? []); // Safeguard against undefined result
       } catch (error: any) {
         console.error("Failed to fetch farms:", error);
         toast({
@@ -76,7 +73,7 @@ export default function MyFarmsPage() {
     };
 
     fetchFarms();
-  }, [user, getUserFarmsCallable, toast, t]);
+  }, [user, toast, t]);
 
   if (!user && !isLoading) {
     return (

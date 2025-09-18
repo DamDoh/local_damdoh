@@ -15,8 +15,7 @@ import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
-import { httpsCallable } from "firebase/functions";
-import { functions } from "@/lib/firebase/client";
+import { apiCall } from "@/lib/api-utils";
 import { useToast } from "@/hooks/use-toast";
 
 
@@ -50,14 +49,12 @@ export default function ProfilesPage() {
   const [locationFilter, setLocationFilter] = useState("");
   const { toast } = useToast();
 
-  const getAllProfilesCallable = useMemo(() => httpsCallable(functions, 'user-getAllProfilesFromDB'), [functions]);
-
   useEffect(() => {
     const fetchProfiles = async () => {
       setIsLoading(true);
       try {
-        const result = await getAllProfilesCallable();
-        const fetchedProfiles = (result.data as any)?.profiles ?? [];
+        const result = await apiCall<{ profiles: UserProfile[] }>('/users/profiles');
+        const fetchedProfiles = result.profiles ?? [];
         setProfiles(Array.isArray(fetchedProfiles) ? fetchedProfiles : []);
       } catch (error) {
         console.error("Failed to load profiles:", error);
@@ -72,7 +69,7 @@ export default function ProfilesPage() {
       }
     };
     fetchProfiles();
-  }, [getAllProfilesCallable, toast, t]);
+  }, [toast, t]);
 
   const filteredProfiles = useMemo(() => {
     if (!Array.isArray(profiles)) return [];

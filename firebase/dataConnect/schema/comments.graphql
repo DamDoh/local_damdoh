@@ -1,9 +1,0 @@
-graphql
-type Comment {
-  id: ID!
-  post_id: String!
-  author_id: String!
-  content: String!
-  created_at: String! # Using String for timestamp, consider a custom Scalar type if needed
-  updated_at: String! # Using String for timestamp, consider a custom Scalar type if needed
-}

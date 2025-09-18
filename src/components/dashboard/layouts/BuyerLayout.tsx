@@ -1,0 +1,100 @@
+/**
+ * Buyer Layout Component - Specialized layout for buyer stakeholders
+ * Composes buyer-specific widgets and services following microservice pattern
+ */
+
+import React from 'react';
+import {
+  SupplierDiscoveryWidget,
+  OrderManagementWidget,
+  LogisticsWidget,
+  QualityControlWidget,
+  PaymentProcessingWidget,
+  BuyerAnalyticsWidget
+} from '../widgets/BuyerWidgets';
+import {
+  WeatherWidget,
+  MarketIntelligenceWidget,
+  NewsEventsWidget,
+  CommunityCollaborationWidget,
+  AdvancedInsightsWidget,
+  SupplyChainWidget,
+  TrendingFarmersWidget
+} from '../widgets/FarmerWidgets';
+import {
+  DailyOperationsWidget,
+  FarmResourcesWidget,
+  EmergencyAlertsWidget,
+  QuickStatsWidget,
+  ConnectivityWidget,
+  FarmerFeedbackWidget,
+  SeasonalCalendarWidget,
+  MoneyPlanningWidget,
+  BusinessAnalyticsWidget,
+  HelpSupportWidget
+} from '../widgets';
+import { PersonalizedRecommendations } from '../widgets/PersonalizedRecommendations';
+import { TrendingTopics } from '../widgets/TrendingTopics';
+import { ConnectionSuggestions } from '../widgets/ConnectionSuggestions';
+import { AchievementBadges } from '../widgets/AchievementBadges';
+import { StoriesWidget } from '../widgets/StoriesWidget';
+
+interface BuyerLayoutProps {
+  config: any; // StakeholderConfig
+  feedContent?: React.ReactNode;
+}
+
+export const BuyerLayout: React.FC<BuyerLayoutProps> = ({ config, feedContent }) => {
+  return (
+    <div className="space-y-6">
+      {/* Top Row - Stories and Quick Actions */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+          <StoriesWidget />
+        </div>
+        <div className="space-y-4">
+          <AchievementBadges userRole="buyer" />
+          <WeatherWidget />
+        </div>
+      </div>
+
+      {/* Main Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        {/* Left Sidebar - Supply Chain & Procurement */}
+        <div className="lg:col-span-3 space-y-6">
+          <SupplierDiscoveryWidget />
+          <OrderManagementWidget />
+          <LogisticsWidget />
+          <QualityControlWidget />
+          <PaymentProcessingWidget />
+          <BuyerAnalyticsWidget />
+        </div>
+
+        {/* Main Feed Area */}
+        <div className="lg:col-span-6">
+          {feedContent}
+        </div>
+
+        {/* Right Sidebar - Market Intelligence & Suppliers */}
+        <div className="lg:col-span-3 space-y-6">
+          <MarketIntelligenceWidget />
+          <SupplyChainWidget />
+          <TrendingFarmersWidget />
+          <ConnectionSuggestions />
+          <PersonalizedRecommendations />
+          <TrendingTopics />
+          <NewsEventsWidget />
+          <HelpSupportWidget />
+        </div>
+      </div>
+
+      {/* Bottom Row - Additional Buyer Tools */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <SeasonalCalendarWidget />
+        <MoneyPlanningWidget />
+        <BusinessAnalyticsWidget />
+        <WeatherWidget />
+      </div>
+    </div>
+  );
+};

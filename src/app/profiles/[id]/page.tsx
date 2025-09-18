@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { useParams } from 'next/navigation'; // Corrected import
 import { useRouter, Link } from "@/navigation";
 import Image from "next/image";
@@ -20,8 +20,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Briefcase, MapPin, MessageSquare, Link as LinkIcon, Edit, TrendingUp, Leaf, Tractor, Globe, ArrowLeft, FileText, QrCode, Activity, GitBranch, ShoppingCart, CircleDollarSign, Eye, ThumbsUp, MessagesSquare, Send } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { StakeholderIcon } from "@/components/icons/StakeholderIcon";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { formatDistanceToNow } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
@@ -87,11 +86,27 @@ export default function ProfileDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isActivityLoading, setIsActivityLoading] = useState(true);
 
-  const functions = getFunctions(firebaseApp);
-  const getUserActivity = useMemo(() => httpsCallable(functions, 'activity-getUserActivity'), [functions]);
-  const logProfileViewCallable = useMemo(() => httpsCallable(functions, 'activity-logProfileView'), [functions]);
-  const getEngagementStatsCallable = useMemo(() => httpsCallable(functions, 'activity-getUserEngagementStats'), [functions]);
-  const sendInviteCallable = useMemo(() => httpsCallable(functions, 'network-sendInvite'), [functions]);
+  const getUserActivity = useCallback(async (data: { userId: string }) => {
+    return await apiCall<{ activities: any[] }>(`/activity/user/${data.userId}`);
+  }, []);
+
+  const logProfileViewCallable = useCallback(async (data: { viewedId: string }) => {
+    return await apiCall('/activity/log-profile-view', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  }, []);
+
+  const getEngagementStatsCallable = useCallback(async (data: { userId: string }) => {
+    return await apiCall<EngagementStats>(`/activity/user/${data.userId}/stats`);
+  }, []);
+
+  const sendInviteCallable = useCallback(async (data: { inviteeEmail: string }) => {
+    return await apiCall('/network/send-invite', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  }, []);
   
   useEffect(() => {
     const profileIdParam = params.id as string;
@@ -121,17 +136,17 @@ export default function ProfileDetailPage() {
             if (authUser && fetchedProfile.id !== authUser.uid) {
                 logProfileViewCallable({ viewedId: fetchedProfile.id }).catch(err => console.error("Failed to log profile view:", err));
             }
-            
+
             setIsActivityLoading(true);
             getUserActivity({ userId: fetchedProfile.id })
               .then(result => {
-                  setActivity((result.data as any).activities || []);
+                  setActivity(result.activities || []);
               })
               .catch(err => console.error("Failed to fetch activity:", err));
-              
+
             getEngagementStatsCallable({ userId: fetchedProfile.id })
               .then(result => {
-                  setStats(result.data as EngagementStats);
+                  setStats(result);
               })
               .catch(err => console.error("Failed to fetch stats:", err))
               .finally(() => setIsActivityLoading(false));

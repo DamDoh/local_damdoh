@@ -9,16 +9,12 @@ import { ArrowLeft, User, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from '@/navigation';
 import Image from "next/image";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { useToast } from '@/hooks/use-toast';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useLocale, useTranslations, useFormatter } from 'next-intl';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import type { KnowledgeArticle } from '@/lib/types';
-
-const functions = getFunctions(firebaseApp);
-const getArticleCallable = httpsCallable(functions, 'knowledgeHub-getKnowledgeArticleById');
 
 function PostPageSkeleton() {
     return (
@@ -58,8 +54,7 @@ export default function BlogPostPage() {
     const fetchPost = async () => {
       setIsLoading(true);
       try {
-        const result = await getArticleCallable({ articleId: slug });
-        const data = result.data as { success: boolean, article: KnowledgeArticle };
+        const data = await apiCall<{ success: boolean, article: KnowledgeArticle }>(`/knowledge/articles/${slug}`);
         if (data.success && data.article) {
           setPost(data.article);
         } else {

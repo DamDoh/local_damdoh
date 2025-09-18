@@ -12,8 +12,7 @@ import { Switch } from "@/components/ui/switch";
 import { ArrowLeft, Loader2, Save } from "lucide-react";
 import Link from 'next/link';
 import { useRouter } from '@/navigation';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
 import { useTranslations } from 'next-intl';
@@ -27,9 +26,6 @@ export default function CreateGroupPage() {
     const [description, setDescription] = useState("");
     const [isPublic, setIsPublic] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
-
-    const functions = getFunctions(firebaseApp);
-    const createGroupCallable = useMemo(() => httpsCallable(functions, 'groups-createGroup'), [functions]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -50,8 +46,11 @@ export default function CreateGroupPage() {
         setIsSubmitting(true);
 
         try {
-            const result = await createGroupCallable({ name, description, isPublic });
-            const groupId = (result.data as { groupId: string }).groupId;
+            const result = await apiCall<{ groupId: string }>('/groups', {
+                method: 'POST',
+                body: JSON.stringify({ name, description, isPublic })
+            });
+            const groupId = result.groupId;
             toast({
                 title: t('toast.success.title'),
                 description: t('toast.success.description'),

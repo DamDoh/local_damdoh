@@ -26,8 +26,7 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
-import { httpsCallable } from 'firebase/functions';
-import { functions } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { useTranslations } from "next-intl";
 import { useOfflineSync } from '@/hooks/useOfflineSync';
 
@@ -47,7 +46,6 @@ export default function LogHarvestPage() {
   const { user } = useAuth();
   const { isOnline, addActionToQueue } = useOfflineSync();
 
-  const handleHarvestEvent = httpsCallable(functions, 'traceability-handleHarvestEvent');
 
   const form = useForm<CreateHarvestValues>({
     resolver: zodResolver(createHarvestSchema),
@@ -114,8 +112,11 @@ export default function LogHarvestPage() {
             duration: Infinity, // Keep open until dismissed
          }).id;
 
-      const result = await handleHarvestEvent(payload);
-      const newVtiId = (result.data as any)?.vtiId;
+      const result = await apiCall<{ vtiId: string }>('/traceability/harvest-event', {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      });
+      const newVtiId = result.vtiId;
       setCreatedVtiId(newVtiId);
 
       toast({

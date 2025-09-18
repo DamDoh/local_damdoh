@@ -8,15 +8,11 @@ import { Rss, Feather } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from '@/navigation';
 import Image from "next/image";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
 import { useLocale, useTranslations, useFormatter } from 'next-intl';
 import type { KnowledgeArticle } from '@/lib/types';
-
-const functions = getFunctions(firebaseApp);
-const getArticlesCallable = httpsCallable(functions, 'knowledgeHub-getKnowledgeArticles');
 
 function PostCardSkeleton() {
   return (
@@ -51,8 +47,7 @@ export default function BlogPage() {
     const fetchPosts = async () => {
       setIsLoading(true);
       try {
-        const result = await getArticlesCallable();
-        const data = result.data as { success: boolean, articles: any[] };
+        const data = await apiCall<{ success: boolean, articles: any[] }>('/knowledge/articles');
         if (data.success) {
           const blogPosts = data.articles.filter(article => (article.category === 'Blog' || article.category === 'Industry News') && article.status === 'Published');
           setPosts(blogPosts);

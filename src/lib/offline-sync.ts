@@ -1,48 +1,11 @@
 
-import { openDB, DBSchema, IDBPDatabase } from 'idb';
-
-// Define the schema for our offline database
-interface OfflineSyncDB extends DBSchema {
-  'offline-mutations': {
-    key: number;
-    value: {
-      id: number;
-      createdAt: Date;
-      type: 'create' | 'update' | 'delete';
-      collection: string;
-      docId: string;
-      data: any;
-      status: 'pending' | 'processing' | 'completed' | 'failed';
-    };
-    indexes: { 'by-status': 'status' };
-  };
-}
-
-let db: IDBPDatabase<OfflineSyncDB>;
-
-/**
- * Initializes the IndexedDB database.
- */
-export async function initOfflineSyncDB(): Promise<void> {
-  if (db) return;
-
-  db = await openDB<OfflineSyncDB>('damdoh-offline-sync', 1, {
-    upgrade(db) {
-      const store = db.createObjectStore('offline-mutations', {
-        keyPath: 'id',
-        autoIncrement: true,
-      });
-      store.createIndex('by-status', 'status');
-    },
-  });
-
-  console.log('Offline sync database initialized.');
-}
+// Simplified offline sync implementation without Firebase dependencies
+// This provides the same interface but with basic functionality
 
 /**
  * Adds a mutation to the offline outbox queue.
  * @param type The type of mutation (create, update, delete).
- * @param collection The Firestore collection name.
+ * @param collection The collection name.
  * @param docId The ID of the document.
  * @param data The data for the mutation.
  */
@@ -52,10 +15,13 @@ export async function addToOfflineOutbox(
   docId: string,
   data: any
 ): Promise<void> {
-  if (!db) await initOfflineSyncDB();
+  // Store in localStorage for simplicity (in production, use IndexedDB or similar)
+  const key = 'damdoh-offline-mutations';
+  const existing = localStorage.getItem(key);
+  const mutations = existing ? JSON.parse(existing) : [];
 
-  await db.add('offline-mutations', {
-    id: Date.now(), // Simple ID for this example
+  mutations.push({
+    id: Date.now(),
     createdAt: new Date(),
     type,
     collection,
@@ -64,14 +30,17 @@ export async function addToOfflineOutbox(
     status: 'pending',
   });
 
+  localStorage.setItem(key, JSON.stringify(mutations));
   console.log(`Mutation added to outbox: ${type} ${collection}/${docId}`);
-  
-  // Trigger the sync process in the background
-  syncOfflineMutations();
+
+  // Trigger sync if online
+  if (navigator.onLine) {
+    syncOfflineMutations();
+  }
 }
 
 /**
- * Processes the offline mutation queue, sending pending items to a Cloud Function.
+ * Processes the offline mutation queue, sending pending items to the server.
  */
 export async function syncOfflineMutations(): Promise<void> {
   if (!navigator.onLine) {
@@ -79,11 +48,12 @@ export async function syncOfflineMutations(): Promise<void> {
     return;
   }
 
-  if (!db) await initOfflineSyncDB();
+  const key = 'damdoh-offline-mutations';
+  const existing = localStorage.getItem(key);
+  if (!existing) return;
 
-  const tx = db.transaction('offline-mutations', 'readwrite');
-  const index = tx.store.index('by-status');
-  const pendingMutations = await index.getAll('pending');
+  const mutations = JSON.parse(existing);
+  const pendingMutations = mutations.filter((m: any) => m.status === 'pending');
 
   if (pendingMutations.length === 0) {
     return;
@@ -91,55 +61,45 @@ export async function syncOfflineMutations(): Promise<void> {
 
   console.log(`Syncing ${pendingMutations.length} pending mutations...`);
 
-  const firebaseApp = (await import('../firebase/client')).app;
-  const { getFunctions, httpsCallable } = await import('firebase/functions');
-  const functions = getFunctions(firebaseApp);
-  const uploadOfflineChanges = httpsCallable(functions, 'uploadOfflineChanges');
-  
-  // Mark mutations as 'processing' to prevent re-sending
-  await Promise.all(
-    pendingMutations.map(mutation => 
-      tx.store.put({ ...mutation, status: 'processing' })
-    )
-  );
+  // Mark as processing
+  pendingMutations.forEach((m: any) => m.status = 'processing');
+  localStorage.setItem(key, JSON.stringify(mutations));
 
-
-  const changesToUpload = pendingMutations.map(mutation => ({
-      collectionPath: mutation.collection,
-      documentId: mutation.docId,
-      operation: mutation.type,
-      payload: mutation.data,
-      timestamp: mutation.createdAt.getTime(),
+  const changesToUpload = pendingMutations.map((mutation: any) => ({
+    collectionPath: mutation.collection,
+    documentId: mutation.docId,
+    operation: mutation.type,
+    payload: mutation.data,
+    timestamp: mutation.createdAt,
   }));
 
   try {
-    await uploadOfflineChanges({ changes: changesToUpload });
+    const response = await fetch('/api/offline-sync', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ changes: changesToUpload }),
+    });
 
-    // If successful, mark as 'completed'
-    await Promise.all(
-      pendingMutations.map(mutation =>
-        tx.store.put({ ...mutation, status: 'completed' })
-      )
-    );
-    console.log(`${changesToUpload.length} mutations successfully uploaded and marked as completed.`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // Mark as completed
+    pendingMutations.forEach((m: any) => m.status = 'completed');
+    localStorage.setItem(key, JSON.stringify(mutations));
+    console.log(`${changesToUpload.length} mutations successfully synced.`);
 
   } catch (error) {
     console.error('Failed to sync offline changes:', error);
-    // If failed, mark as 'failed' to be retried later
-    await Promise.all(
-      pendingMutations.map(mutation =>
-        tx.store.put({ ...mutation, status: 'failed' })
-      )
-    );
+    // Mark as failed
+    pendingMutations.forEach((m: any) => m.status = 'failed');
+    localStorage.setItem(key, JSON.stringify(mutations));
   }
-
-  await tx.done;
 }
 
 // Listen for online/offline events to trigger sync
 if (typeof window !== 'undefined') {
   window.addEventListener('online', syncOfflineMutations);
 }
-
-// Initialize the DB on load
-initOfflineSyncDB();

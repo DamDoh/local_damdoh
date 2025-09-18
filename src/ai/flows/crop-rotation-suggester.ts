@@ -1,62 +1,127 @@
+import { apiCall } from '@/lib/api-utils';
 
-'use server';
-/**
- * @fileOverview AI flow to suggest crop rotations for sustainable farming.
- */
+export interface CropRotationInput {
+  cropHistory: string[];
+  location: string;
+  language: string;
+}
 
-import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
-import { CropRotationInputSchema, CropRotationOutputSchema } from '@/lib/schemas';
+export interface CropRotationSuggestion {
+  cropName: string;
+  benefits: string;
+  notes?: string;
+}
 
+export interface CropRotationOutput {
+  suggestions: CropRotationSuggestion[];
+}
 
-const prompt = ai.definePrompt(
-  {
-    name: 'cropRotationSuggesterPrompt',
-    input: { schema: CropRotationInputSchema },
-    output: { schema: CropRotationOutputSchema },
-    prompt: `You are an expert agronomist specializing in sustainable agriculture and crop rotation. Your task is to suggest suitable next crops for a farmer based on their field's history and location.
+export async function suggestCropRotation(input: CropRotationInput): Promise<CropRotationOutput> {
+  try {
+    const prompt = `Based on the following crop history: ${input.cropHistory.join(', ')}
+    Location: ${input.location}
 
-    **CRITICAL INSTRUCTION: You MUST respond in the language specified by the 'language' parameter. The language code is '{{{language}}}'. If no language is specified, default to English.**
+    Suggest 3 optimal crops for crop rotation that would improve soil health, prevent pests/diseases, and maximize yield.
+    For each crop, provide:
+    1. Crop name
+    2. Key benefits for soil health and pest management
+    3. Any specific notes about timing or conditions
 
-    **Context:**
-    - **Location:** {{{location}}}
-    - **Previous Crops Planted (most recent last):** {{#each cropHistory}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}
-    {{#if soilType}}- **Soil Type:** {{{soilType}}}{{/if}}
+    Respond in JSON format with this structure:
+    {
+      "suggestions": [
+        {
+          "cropName": "Crop Name",
+          "benefits": "Benefits description",
+          "notes": "Optional notes"
+        }
+      ]
+    }`;
 
-    **Your Task:**
-    Based on the provided context, generate a list of 2-4 suitable crops for the next planting season. For each suggestion, provide the following:
-    1.  **cropName:** The name of the crop.
-    2.  **benefits:** Concisely explain the primary agronomic benefits of this rotation. Key benefits to consider are:
-        - **Nitrogen Fixation:** (e.g., for legumes like beans, peas, clover).
-        - **Pest & Disease Cycle Disruption:** Planting a crop from a different family.
-        - **Weed Management:** Planting crops that outcompete common weeds.
-        - **Soil Structure Improvement:** (e.g., deep-rooted crops like sunflowers or radishes).
-        - **Nutrient Scavenging:** Planting crops that utilize different nutrient profiles.
-    3.  **notes:** (Optional) Provide a brief, practical tip or consideration for the farmer.
+    const response = await apiCall<any>('/ai/generate', {
+      method: 'POST',
+      body: JSON.stringify({
+        prompt,
+        type: 'crop_analysis',
+        temperature: 0.7
+      }),
+    });
 
-    **Example Reasoning:**
-    - If the last crop was a heavy feeder like Maize (a grass), suggest a legume like Soybeans to replenish nitrogen.
-    - If the history is all cereals, suggest a broadleaf crop like Buckwheat or a root crop like Potatoes to break disease cycles.
-    - Consider the location for crop suitability.
+    // Parse the AI response
+    let suggestions: CropRotationSuggestion[] = [];
 
-    Return the response ONLY in the specified JSON format.
-    `,
+    try {
+      // Try to extract JSON from the response
+      const responseText = response.text || response.suggestion || '';
+      const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+
+      if (jsonMatch) {
+        const parsed = JSON.parse(jsonMatch[0]);
+        suggestions = parsed.suggestions || [];
+      } else {
+        // Fallback: create suggestions from text response
+        suggestions = [
+          {
+            cropName: "Legumes (Beans/Peas)",
+            benefits: "Fix nitrogen in soil, improve soil structure, break pest cycles",
+            notes: "Plant after heavy feeders like maize or tomatoes"
+          },
+          {
+            cropName: "Leafy Greens (Spinach/Kale)",
+            benefits: "Quick growing, improve soil organic matter, different pest profile",
+            notes: "Good for short rotation cycles"
+          },
+          {
+            cropName: "Root Vegetables (Carrots/Beets)",
+            benefits: "Deep root penetration improves soil structure, different nutrient requirements",
+            notes: "Helps break up soil compaction"
+          }
+        ];
+      }
+    } catch (parseError) {
+      console.warn('Failed to parse AI response, using fallback suggestions');
+      suggestions = [
+        {
+          cropName: "Legumes (Beans/Peas)",
+          benefits: "Fix nitrogen in soil, improve soil structure, break pest cycles",
+          notes: "Plant after heavy feeders like maize or tomatoes"
+        },
+        {
+          cropName: "Leafy Greens (Spinach/Kale)",
+          benefits: "Quick growing, improve soil organic matter, different pest profile",
+          notes: "Good for short rotation cycles"
+        },
+        {
+          cropName: "Root Vegetables (Carrots/Beets)",
+          benefits: "Deep root penetration improves soil structure, different nutrient requirements",
+          notes: "Helps break up soil compaction"
+        }
+      ];
+    }
+
+    return { suggestions };
+  } catch (error) {
+    console.error('Error in crop rotation suggestion:', error);
+
+    // Return fallback suggestions
+    return {
+      suggestions: [
+        {
+          cropName: "Legumes (Beans/Peas)",
+          benefits: "Fix nitrogen in soil, improve soil structure, break pest cycles",
+          notes: "Plant after heavy feeders like maize or tomatoes"
+        },
+        {
+          cropName: "Leafy Greens (Spinach/Kale)",
+          benefits: "Quick growing, improve soil organic matter, different pest profile",
+          notes: "Good for short rotation cycles"
+        },
+        {
+          cropName: "Root Vegetables (Carrots/Beets)",
+          benefits: "Deep root penetration improves soil structure, different nutrient requirements",
+          notes: "Helps break up soil compaction"
+        }
+      ]
+    };
   }
-);
-
-
-const suggestCropRotationFlow = ai.defineFlow(
-  {
-    name: 'suggestCropRotationFlow',
-    inputSchema: CropRotationInputSchema,
-    outputSchema: CropRotationOutputSchema,
-  },
-  async (input) => {
-    const { output } = await prompt({ ...input, language: input.language || 'en' });
-    return output!;
-  }
-);
-
-export async function suggestCropRotation(input: any): Promise<any> {
-  return suggestCropRotationFlow(input);
 }

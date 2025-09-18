@@ -10,8 +10,7 @@ import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { ForumGroup, UserProfile, GroupPost, JoinRequest } from '@/lib/types';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
 import { useTranslations } from 'next-intl';
@@ -41,13 +40,35 @@ export default function GroupPage() {
     const [isJoining, setIsJoining] = useState(false);
     const [hasRequested, setHasRequested] = useState(false); // To track join request status
 
-    const functions = getFunctions(firebaseApp);
-    const getGroupDetails = useMemo(() => httpsCallable(functions, 'groups-getGroupDetails'), [functions]);
-    const getGroupMembers = useMemo(() => httpsCallable(functions, 'groups-getGroupMembers'), [functions]);
-    const getGroupPosts = useMemo(() => httpsCallable(functions, 'groups-getGroupPosts'), [functions]);
-    const joinGroup = useMemo(() => httpsCallable(functions, 'groups-joinGroup'), [functions]);
-    const leaveGroup = useMemo(() => httpsCallable(functions, 'groups-leaveGroup'), [functions]);
-    const requestToJoinGroup = useMemo(() => httpsCallable(functions, 'groups-requestToJoinGroup'), [functions]);
+    const getGroupDetails = useCallback(async (data: { groupId: string }) => {
+        return await apiCall<ForumGroup>(`/groups/${data.groupId}`);
+    }, []);
+
+    const getGroupMembers = useCallback(async (data: { groupId: string }) => {
+        return await apiCall<{ members: GroupMember[] }>(`/groups/${data.groupId}/members`);
+    }, []);
+
+    const getGroupPosts = useCallback(async (data: { groupId: string }) => {
+        return await apiCall<{ posts: GroupPost[] }>(`/groups/${data.groupId}/posts`);
+    }, []);
+
+    const joinGroup = useCallback(async (data: { groupId: string }) => {
+        return await apiCall(`/groups/${data.groupId}/join`, {
+            method: 'POST'
+        });
+    }, []);
+
+    const leaveGroup = useCallback(async (data: { groupId: string }) => {
+        return await apiCall(`/groups/${data.groupId}/leave`, {
+            method: 'POST'
+        });
+    }, []);
+
+    const requestToJoinGroup = useCallback(async (data: { groupId: string }) => {
+        return await apiCall(`/groups/${data.groupId}/request-join`, {
+            method: 'POST'
+        });
+    }, []);
 
     const fetchData = useCallback(async () => {
         if (!groupId) return;
@@ -58,11 +79,10 @@ export default function GroupPage() {
                 getGroupMembers({ groupId }),
                 getGroupPosts({ groupId })
             ]);
-            
-            const groupData = groupDetailsResult.data as ForumGroup | null;
-            const membersData = (groupMembersResult.data as { members: GroupMember[] })?.members || [];
-            const postsData = (groupPostsResult.data as { posts: GroupPost[] })?.posts || [];
 
+            const groupData = groupDetailsResult;
+            const membersData = groupMembersResult.members || [];
+            const postsData = groupPostsResult.posts || [];
 
             setGroup(groupData);
             setMembers(membersData);

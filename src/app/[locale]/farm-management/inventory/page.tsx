@@ -9,8 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from '@/hooks/use-toast';
 import { Badge } from '@/components/ui/badge';
@@ -38,9 +37,6 @@ export default function InventoryManagementPage() {
   const [selectedItem, setSelectedItem] = useState<InventoryItem | null>(null);
   const { toast } = useToast();
 
-  const functions = getFunctions(firebaseApp);
-  const getInventoryCallable = useMemo(() => httpsCallable(functions, 'inventory-getInventory'), [functions]);
-
   const fetchInventory = useCallback(async () => {
     if (!user) {
       setIsLoading(false);
@@ -50,8 +46,8 @@ export default function InventoryManagementPage() {
     setIsLoading(true);
     setError(null);
     try {
-      const result = await getInventoryCallable();
-      setInventory((result.data as any)?.items ?? []);
+      const result = await apiCall<{ items: InventoryItem[] }>('/inventory/items');
+      setInventory(result.items ?? []);
     } catch (err: any) {
       console.error("Failed to fetch inventory:", err);
       setError(err.message || 'Failed to load inventory items.');
@@ -64,7 +60,7 @@ export default function InventoryManagementPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [user, getInventoryCallable, toast]);
+  }, [user, toast]);
 
   useEffect(() => {
     fetchInventory();

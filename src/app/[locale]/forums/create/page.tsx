@@ -10,8 +10,7 @@ import { Label } from "@/components/ui/label";
 import { ArrowLeft, Loader2, Save } from "lucide-react";
 import Link from 'next/link';
 import { useRouter } from '@/navigation';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
 import { useTranslations } from 'next-intl';
@@ -25,18 +24,15 @@ export default function CreateTopicPage() {
     const [description, setDescription] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const functions = getFunctions(firebaseApp);
-    const createTopicCallable = useMemo(() => httpsCallable(functions, 'forums-createTopic'), [functions]);
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!user) {
-            toast({
-                title: t('errors.auth.title'),
-                description: t('errors.auth.description'),
-                variant: "destructive"
-            });
-            return;
+             toast({
+                 title: t('errors.auth.title'),
+                 description: t('errors.auth.description'),
+                 variant: "destructive"
+             });
+             return;
         }
 
         if (!name.trim() || !description.trim()) {
@@ -50,7 +46,10 @@ export default function CreateTopicPage() {
         setIsSubmitting(true);
 
         try {
-            await createTopicCallable({ name, description });
+            await apiCall('/forums/topics', {
+                method: 'POST',
+                body: JSON.stringify({ name, description })
+            });
             toast({
                 title: t('success.title'),
                 description: t('success.description'),

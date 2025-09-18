@@ -3,8 +3,7 @@
 
 import { useState, useEffect, useMemo, Suspense } from 'react';
 import { useParams, notFound } from 'next/navigation';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -60,9 +59,6 @@ function CourseDetailPageContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const functions = getFunctions(firebaseApp);
-  const getCourseDetailsCallable = useMemo(() => httpsCallable(functions, 'getCourseDetails'), [functions]);
-
   useEffect(() => {
     if (!courseId) return;
 
@@ -70,10 +66,10 @@ function CourseDetailPageContent() {
       setIsLoading(true);
       setError(null);
       try {
-        const result = await getCourseDetailsCallable({ courseId });
-        const data = (result.data as { success: boolean; course?: CourseDetails })?.course;
-        if (!data) throw new Error('Course not found.');
-        setCourse(data);
+        const data = await apiCall<{ success: boolean; course?: CourseDetails }>(`/knowledge/courses/${courseId}`);
+        const courseData = data.course;
+        if (!courseData) throw new Error('Course not found.');
+        setCourse(courseData);
       } catch (err: any) {
         console.error("Error fetching course details:", err);
         setError(err.message || 'Failed to load course details.');
@@ -83,7 +79,7 @@ function CourseDetailPageContent() {
     };
 
     fetchData();
-  }, [courseId, getCourseDetailsCallable]);
+  }, [courseId]);
 
   if (isLoading) {
     return <CoursePageSkeleton />;

@@ -1,11 +1,10 @@
 
 "use client";
 
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from '@/components/ui/badge';
@@ -133,9 +132,6 @@ export default function TraceabilityBatchDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const functions = getFunctions(firebaseApp);
-  const getVtiHistoryCallable = useMemo(() => httpsCallable(functions, 'traceability-getVtiTraceabilityHistory'), [functions]);
-
   useEffect(() => {
     if (!batchId) {
         setError(t('detailPage.invalidIdError'));
@@ -147,8 +143,8 @@ export default function TraceabilityBatchDetailPage() {
       setIsLoading(true);
       setError(null);
       try {
-        const result = await getVtiHistoryCallable({ vtiId: batchId });
-        setData(result.data as TraceabilityData);
+        const result = await apiCall<TraceabilityData>(`/traceability/vti/${batchId}/history`);
+        setData(result);
       } catch (err: any) {
         console.error("Error fetching traceability data:", err);
         setError(err.message || t('detailPage.loadError'));
@@ -156,9 +152,9 @@ export default function TraceabilityBatchDetailPage() {
         setIsLoading(false);
       }
     };
-    
+
     fetchData();
-  }, [batchId, getVtiHistoryCallable, t]);
+  }, [batchId, t]);
 
   const isSustainablyGrown = useMemo(() => {
     if (!data || !Array.isArray(data.events)) return false;

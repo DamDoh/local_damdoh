@@ -10,6 +10,7 @@ import { swaggerSpec } from './config/swagger.config';
 
 // Import routes
 import authRoutes from './routes/auth.routes';
+import aiRoutes from './routes/ai.routes';
 
 // Create Express app
 const app = express();
@@ -28,6 +29,7 @@ configureSecurityMiddleware(app);
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/ai', aiRoutes);
 
 // API Documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {

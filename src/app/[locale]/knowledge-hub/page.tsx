@@ -4,8 +4,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { BookOpen, ArrowRight, Brain, Newspaper } from 'lucide-react';
@@ -19,8 +18,6 @@ interface Course {
   category: string;
   level: 'Beginner' | 'Intermediate' | 'Advanced';
 }
-
-const functions = getFunctions(firebaseApp);
 
 const CourseCardSkeleton = () => (
     <Card className="flex flex-col">
@@ -45,15 +42,12 @@ const KnowledgeHubPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const getAvailableCourses = useMemo(() => httpsCallable(functions, 'getAvailableCourses'), []);
-
   useEffect(() => {
     const fetchCourses = async () => {
       setIsLoading(true);
       setError(null);
       try {
-        const result = await getAvailableCourses();
-        const data = result.data as { success: boolean, courses: Course[] };
+        const data = await apiCall<{ success: boolean, courses: Course[] }>('/knowledge/courses');
         if (data.success) {
           setCourses(data.courses ?? []);
         } else {
@@ -68,7 +62,7 @@ const KnowledgeHubPage = () => {
     };
 
     fetchCourses();
-  }, [getAvailableCourses]);
+  }, []);
 
   return (
     <div className="container mx-auto p-4 md:p-6">

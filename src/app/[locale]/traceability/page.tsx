@@ -1,15 +1,14 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, History, Fingerprint, GitBranch, Sprout, User, CalendarDays, Frown } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 import Link from 'next/link';
@@ -45,15 +44,12 @@ export default function TraceabilityHubPage() {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-  const functions = getFunctions(firebaseApp);
-  const getRecentBatchesCallable = useMemo(() => httpsCallable(functions, 'traceability-getRecentVtiBatches'), [functions]);
-
   useEffect(() => {
     const fetchRecentBatches = async () => {
       setIsLoading(true);
       try {
-        const result = await getRecentBatchesCallable();
-        setRecentBatches((result.data as any).batches || []);
+        const result = await apiCall<{ batches: VtiBatch[] }>('/traceability/recent-batches');
+        setRecentBatches(result.batches || []);
       } catch (error) {
         console.error("Failed to fetch recent batches:", error);
       } finally {
@@ -61,7 +57,7 @@ export default function TraceabilityHubPage() {
       }
     };
     fetchRecentBatches();
-  }, [getRecentBatchesCallable]);
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

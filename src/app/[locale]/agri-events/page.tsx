@@ -18,8 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 
 const getEventTypeIcon = (eventType: AgriEvent['eventType']) => {
   const iconProps = { className: "h-4 w-4 mr-1.5 text-primary" };
@@ -62,19 +61,16 @@ export default function AgriEventsPage() {
   const [events, setEvents] = useState<AgriEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const functions = getFunctions(firebaseApp);
-  const getAgriEventsCallable = useMemo(() => httpsCallable(functions, 'agriEvents-getAgriEvents'), [functions]);
-
   const pathname = usePathname();
   const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
   const { toast } = useToast();
-  
+
   useEffect(() => {
     const fetchEvents = async () => {
         setIsLoading(true);
         try {
-            const result = await getAgriEventsCallable();
-            const fetchedEvents = (result.data as any)?.events ?? [];
+            const result = await apiCall<{ events: AgriEvent[] }>('/agri-events');
+            const fetchedEvents = result.events ?? [];
             setEvents(fetchedEvents);
         } catch(error) {
             console.error("Failed to fetch events:", error);
@@ -88,7 +84,7 @@ export default function AgriEventsPage() {
         }
     };
     fetchEvents();
-  }, [getAgriEventsCallable, toast, t]);
+  }, [toast, t]);
 
 
   const filteredEvents = useMemo(() => {

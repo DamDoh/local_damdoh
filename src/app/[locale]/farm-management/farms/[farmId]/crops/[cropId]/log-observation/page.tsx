@@ -33,9 +33,8 @@ import { useState, useMemo } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { uploadFileAndGetURL } from '@/lib/storage-utils';
+import { apiCall } from '@/lib/api-utils';
 import { useTranslations, useLocale } from "next-intl";
 import { getObservationTypes } from "@/lib/i18n-constants";
 import { useOfflineSync } from '@/hooks/useOfflineSync';
@@ -52,9 +51,7 @@ export default function LogObservationPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
   const locale = useLocale();
-  const functions = getFunctions(firebaseApp);
   const { isOnline, addActionToQueue } = useOfflineSync();
-  const handleObservationEvent = httpsCallable(functions, 'traceability-handleObservationEvent');
 
   const form = useForm<CreateObservationValues>({
     resolver: zodResolver(createObservationSchema),
@@ -125,7 +122,10 @@ export default function LogObservationPage() {
       };
 
       if (isOnline) {
-        await handleObservationEvent(payload);
+        await apiCall('/traceability/handle-observation', {
+          method: 'POST',
+          body: JSON.stringify(payload),
+        });
         toast({ title: t('toast.success'), description: t('toast.successDescription') });
       } else {
         await addActionToQueue({

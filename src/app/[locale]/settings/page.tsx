@@ -17,8 +17,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useToast } from "@/hooks/use-toast";
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { functions } from "@/lib/firebase/client";
+import { apiCall } from "@/lib/api-utils";
 import { useAuth, logOut } from "@/lib/auth-utils";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { useRouter } from "@/navigation";
@@ -69,15 +68,13 @@ export default function SettingsPage() {
     const [isDeleting, setIsDeleting] = useState(false);
     const [isRequestingData, setIsRequestingData] = useState(false);
 
-    const manageNotificationPreferences = useMemo(() => httpsCallable(functions, 'manageNotificationPreferences'), []);
-    const deleteUserAccount = useMemo(() => httpsCallable(functions, 'deleteUserAccount'), []);
-    const requestDataExportCallable = useMemo(() => httpsCallable(functions, 'requestDataExport'), []);
-
-
     const handleSavePreferences = async () => {
         setIsSaving(true);
         try {
-            await manageNotificationPreferences({ preferences: { ...notificationPrefs, ...privacyPrefs } });
+            await apiCall('/users/manage-notification-preferences', {
+                method: 'POST',
+                body: JSON.stringify({ preferences: { ...notificationPrefs, ...privacyPrefs } })
+            });
             toast({ title: t('toast.saveSuccessTitle'), description: t('toast.saveSuccessDescription') });
         } catch (error: any) {
             toast({ title: t('toast.saveErrorTitle'), description: error.message, variant: "destructive" });
@@ -85,11 +82,13 @@ export default function SettingsPage() {
             setIsSaving(false);
         }
     };
-    
+
     const handleDeleteAccount = async () => {
         setIsDeleting(true);
         try {
-            await deleteUserAccount();
+            await apiCall('/users/delete-account', {
+                method: 'DELETE'
+            });
             await logOut();
             toast({ title: t('toast.deleteSuccessTitle'), description: t('toast.deleteSuccessDescription') });
             router.push('/auth/signin');
@@ -104,8 +103,10 @@ export default function SettingsPage() {
     const handleRequestData = async () => {
         setIsRequestingData(true);
         try {
-            const result = await requestDataExportCallable();
-            toast({ title: t('toast.dataRequestSuccessTitle'), description: (result.data as any).message });
+            const result = await apiCall<{ message: string }>('/users/request-data-export', {
+                method: 'POST'
+            });
+            toast({ title: t('toast.dataRequestSuccessTitle'), description: result.message });
         } catch (error: any) {
             toast({ title: t('toast.dataRequestErrorTitle'), description: error.message, variant: 'destructive' });
         } finally {
