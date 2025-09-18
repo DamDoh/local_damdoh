@@ -71,6 +71,21 @@ export const HOMEPAGE_PREFERENCE_KEY = "damdohHomepagePreference";
 export const AGRI_EVENT_TYPES = ['Conference', 'Webinar', 'Workshop', 'Trade Show', 'Field Day', 'Networking Event', 'Online Course Launch', 'Policy Briefing'] as const;
 export type AgriEventTypeConstant = typeof AGRI_EVENT_TYPES[number];
 
+export const getAgriEventFilterOptions = (t: (key: string) => string) => {
+  const types: Array<{ value: AgriEventTypeConstant | 'All', label: string }> = [
+    { value: 'All', label: t('agriEventTypes.All') },
+    { value: 'Conference', label: t('agriEventTypes.Conference') },
+    { value: 'Webinar', label: t('agriEventTypes.Webinar') },
+    { value: 'Workshop', label: t('agriEventTypes.Workshop') },
+    { value: 'Trade Show', label: t('agriEventTypes.TradeShow') },
+    { value: 'Field Day', label: t('agriEventTypes.FieldDay') },
+    { value: 'Networking Event', label: t('agriEventTypes.NetworkingEvent') },
+    { value: 'Online Course Launch', label: t('agriEventTypes.OnlineCourseLaunch') },
+    { value: 'Policy Briefing', label: t('agriEventTypes.PolicyBriefing') }
+  ];
+  return types;
+};
+
 
 // Added for financial services module
 export const FINANCIAL_SERVICE_TYPES = [

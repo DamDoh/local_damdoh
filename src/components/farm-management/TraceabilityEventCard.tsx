@@ -3,24 +3,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { format } from 'date-fns';
 import { Eye, HardHat, Package, CheckCircle, GitBranch, Truck, Sprout, Droplets, Weight } from 'lucide-react';
+import type { FarmingAssistantOutput, TraceabilityEvent } from '@/lib/types';
 import { useTranslations } from "next-intl";
-
-interface TraceabilityEvent {
-    id: string;
-    eventType: string;
-    timestamp: string;
-    payload: any;
-    actor: {
-        name: string;
-        role: string;
-        avatarUrl?: string;
-    };
-    geoLocation?: { lat: number; lng: number } | null;
-}
-
-interface FarmingAssistantOutput {
-    summary: string;
-}
 
 const getEventIcon = (eventType: string) => {
     const iconProps = { className: "h-5 w-5" };

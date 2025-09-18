@@ -118,7 +118,7 @@ export default function ProfileDetailPage() {
 
     if (profileIdParam === 'me') {
       if (authUser) {
-        idToFetch = authUser.uid;
+        idToFetch = authUser.id;
       } else {
         router.push('/auth/signin');
         return;
@@ -133,7 +133,7 @@ export default function ProfileDetailPage() {
         .then(fetchedProfile => {
           setProfile(fetchedProfile);
           if (fetchedProfile) {
-            if (authUser && fetchedProfile.id !== authUser.uid) {
+            if (authUser && fetchedProfile.id !== authUser.id) {
                 logProfileViewCallable({ viewedId: fetchedProfile.id }).catch(err => console.error("Failed to log profile view:", err));
             }
 
@@ -205,7 +205,7 @@ export default function ProfileDetailPage() {
     );
   }
 
-  const isCurrentUserProfile = authUser?.uid === profile.id;
+  const isCurrentUserProfile = authUser?.id === profile.id;
   const qrCodeValue = profile.universalId ? `${window.location.origin}/profiles/${profile.id}` : 'error';
   
   const areasOfInterest = (profile as any)?.areasOfInterest;

@@ -108,7 +108,7 @@ export class BuyerService {
     vtiVerified?: boolean;
   }): Promise<SourcingRecommendation[]> {
     try {
-      const response = await apiCall('/suppliers/search', {
+      const response = await apiCall<any>('/suppliers/search', {
         method: 'POST',
         body: JSON.stringify({ query, filters }),
       });
@@ -125,7 +125,7 @@ export class BuyerService {
    */
   async getMarketTrends(products: string[]): Promise<MarketPriceIntelligence[]> {
     try {
-      const response = await apiCall('/market/trends', {
+      const response = await apiCall<any>('/market/trends', {
         method: 'POST',
         body: JSON.stringify({ products }),
       });
@@ -146,7 +146,7 @@ export class BuyerService {
     recommendations: string[];
   }> {
     try {
-      const response = await apiCall(`/suppliers/${supplierId}/assess`);
+      const response = await apiCall<any>(`/suppliers/${supplierId}/assess`);
       return response.assessment || response.data;
     } catch (error) {
       console.error('Error assessing supplier reliability:', error);
@@ -167,7 +167,7 @@ export class BuyerService {
     }>;
   }> {
     try {
-      const response = await apiCall('/risk-mitigation/strategies', {
+      const response = await apiCall<any>('/risk-mitigation/strategies', {
         method: 'POST',
         body: JSON.stringify({ riskLevel }),
       });

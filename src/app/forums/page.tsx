@@ -140,7 +140,7 @@ export default function ForumsPage() {
         clearHomepagePreference();
         toast({ title: t('pinning.unpinnedTitle'), description: t('pinning.unpinnedDescription') });
         } else {
-        setHomepagePreference(pathname);
+        setHomepagePreference(pathname as string);
         toast({ title: t('pinning.pinnedTitle'), description: t('pinning.pinnedDescription') });
         }
     }, [isCurrentHomepage, clearHomepagePreference, setHomepagePreference, pathname, toast, t]);

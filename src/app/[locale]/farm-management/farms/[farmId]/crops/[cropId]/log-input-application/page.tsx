@@ -35,7 +35,7 @@ export default function LogInputApplicationPage() {
   const { user } = useAuth();
   
   
-  const { isOnline, addActionToQueue } = useOfflineSync();
+  const { isOnline, addOfflineData } = useOfflineSync();
 
   const [knfBatches, setKnfBatches] = useState<KnfBatch[]>([]);
 
@@ -50,7 +50,7 @@ export default function LogInputApplicationPage() {
       }
     };
     fetchKnfBatches();
-  }, [user, getUserKnfBatchesCallable]);
+  }, [user]);
 
   const form = useForm<CreateInputApplicationValues>({
     resolver: zodResolver(createInputApplicationSchema),
@@ -82,7 +82,7 @@ export default function LogInputApplicationPage() {
       quantity: data.quantity,
       unit: data.unit,
       method: data.method,
-      actorVtiId: user.uid,
+      actorVtiId: user.id,
       geoLocation: null,
     };
     
@@ -93,12 +93,7 @@ export default function LogInputApplicationPage() {
           body: JSON.stringify(payload)
         });
       } else {
-        await addActionToQueue({
-          operation: 'handleInputApplicationEvent',
-          collectionPath: 'traceability_events',
-          documentId: `input-${Date.now()}`,
-          payload: payload
-        });
+        addOfflineData('farm_activity', payload);
       }
       toast({
         title: t('toast.success'),

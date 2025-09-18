@@ -44,7 +44,7 @@ export default function LogHarvestPage() {
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
   const [createdVtiId, setCreatedVtiId] = useState<string | null>(null);
   const { user } = useAuth();
-  const { isOnline, addActionToQueue } = useOfflineSync();
+  const { isOnline, addOfflineData } = useOfflineSync();
 
 
   const form = useForm<CreateHarvestValues>({
@@ -79,18 +79,13 @@ export default function LogHarvestPage() {
       pricePerUnit: data.pricePerUnit,
       unit: data.unit,
       notes: data.notes,
-      actorVtiId: user.uid,
+      actorVtiId: user.id,
       geoLocation: null, // Placeholder for future location capture
     };
 
     if (!isOnline) {
       // Offline logic: Add to queue
-      await addActionToQueue({
-        operation: 'handleHarvestEvent', // Specific operation name for the backend to handle
-        collectionPath: 'harvest_events', // Conceptual collection for the outbox pattern
-        documentId: `harvest-${Date.now()}`, // Unique ID for the offline action
-        payload: payload,
-      });
+      await addOfflineData('farm_activity', payload);
       setSubmissionSuccess(true);
        toast({
          title: t('offlineToast.title'),

@@ -137,7 +137,7 @@ export default function AgentToolsPage() {
                             <Card>
                                 <CardContent className="p-4 flex items-center gap-4">
                                      <Avatar className="h-16 w-16">
-                                        <AvatarImage src={foundUser.avatarUrl} alt={foundUser.displayName} />
+                                        <AvatarImage src={foundUser.avatarUrl || undefined} alt={foundUser.displayName} />
                                         <AvatarFallback>{foundUser.displayName?.substring(0, 2).toUpperCase()}</AvatarFallback>
                                     </Avatar>
                                     <div>

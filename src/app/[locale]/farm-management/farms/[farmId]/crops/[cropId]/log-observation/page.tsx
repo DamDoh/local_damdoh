@@ -13,6 +13,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -51,7 +52,7 @@ export default function LogObservationPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
   const locale = useLocale();
-  const { isOnline, addActionToQueue } = useOfflineSync();
+  const { isOnline, addOfflineData } = useOfflineSync();
 
   const form = useForm<CreateObservationValues>({
     resolver: zodResolver(createObservationSchema),
@@ -116,7 +117,7 @@ export default function LogObservationPage() {
         details: data.details,
         mediaUrls: imageUrl ? [imageUrl] : [],
         photoDataUri: photoDataUri, // Include for offline sync
-        actorVtiId: user.uid,
+        actorVtiId: user.id,
         geoLocation: null,
         aiAnalysis: aiDiagnosis,
       };
@@ -128,12 +129,7 @@ export default function LogObservationPage() {
         });
         toast({ title: t('toast.success'), description: t('toast.successDescription') });
       } else {
-        await addActionToQueue({
-            operation: 'handleObservationEvent',
-            collectionPath: 'traceability_events',
-            documentId: `observation-${Date.now()}`,
-            payload: payload,
-        });
+        addOfflineData('crop_observation', payload);
         toast({ title: t('toast.queued.title'), description: t('toast.queued.description') });
       }
       router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);

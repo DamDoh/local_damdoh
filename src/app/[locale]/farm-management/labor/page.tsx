@@ -50,7 +50,7 @@ export default function LaborManagementPage() {
     const [unpaidLogs, setUnpaidLogs] = useState<WorkLog[]>([]);
     const [selectedLogIds, setSelectedLogIds] = useState<string[]>([]);
     
-    const { isOnline, addActionToQueue } = useOfflineSync();
+    const { isOnline, addOfflineData } = useOfflineSync();
 
     const getWorkers = useCallback(async () => {
         return await apiCall<{ workers: Worker[] }>('/labor/workers');
@@ -128,7 +128,7 @@ export default function LaborManagementPage() {
             if (isOnline) {
                 await logHours(payload);
             } else {
-                await addActionToQueue({ operation: 'logHours', collectionPath: 'work_logs', documentId: `worklog-${Date.now()}`, payload });
+                await addOfflineData('farm_activity', payload);
             }
             toast({ title: t('toast.hoursLogged') });
             setIsLogHoursOpen(false);
@@ -156,7 +156,7 @@ export default function LaborManagementPage() {
             if (isOnline) {
                 await logPayment(payload);
             } else {
-                await addActionToQueue({ operation: 'logPayment', collectionPath: 'payments', documentId: `payment-${Date.now()}`, payload });
+                await addOfflineData('farm_activity', payload);
             }
             toast({ title: t('toast.paymentLoggedTitle'), description: t('toast.paymentLoggedDescription') });
             setIsLogPaymentOpen(false);

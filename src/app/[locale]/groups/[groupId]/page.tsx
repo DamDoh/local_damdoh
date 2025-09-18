@@ -90,7 +90,7 @@ export default function GroupPage() {
 
             if (user && Array.isArray(membersData)) {
                 const memberIds = membersData.map(m => m.id);
-                setIsMember(memberIds.includes(user.uid));
+                setIsMember(memberIds.includes(user.id));
             }
 
         } catch (error) {
@@ -186,7 +186,7 @@ export default function GroupPage() {
         );
     }
 
-    const isOwner = user?.uid === group.ownerId;
+    const isOwner = user?.id === group.ownerId;
     const renderJoinButton = () => {
         if (!user) {
             return <Button asChild className="w-full"><Link href="/auth/signin">{t('loginToJoinButton')}</Link></Button>;

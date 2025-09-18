@@ -204,10 +204,10 @@ export const FiDashboard = () => {
                                 <TableBody>
                                     {pendingApplications.slice(0,5).map((app: FinancialApplication) => (
                                         <TableRow key={app.id}>
-                                            <TableCell className="font-medium">{app.applicantName}</TableCell>
-                                            <TableCell><Badge variant="outline">{app.type}</Badge></TableCell>
-                                            <TableCell>${app.amount.toLocaleString()}</TableCell>
-                                            <TableCell>{app.riskScore}</TableCell>
+                                            <TableCell className="font-medium">{app.applicantName || 'N/A'}</TableCell>
+                                            <TableCell><Badge variant="outline">{app.type || 'N/A'}</Badge></TableCell>
+                                            <TableCell>${app.amount?.toLocaleString() || 'N/A'}</TableCell>
+                                            <TableCell>{app.riskScore || 'N/A'}</TableCell>
                                             <TableCell className="text-right">
                                                  <Button asChild size="sm">
                                                     <Link href={`/fi/applications/${app.id}`}>{t('reviewButton')}</Link>

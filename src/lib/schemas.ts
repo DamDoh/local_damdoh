@@ -328,6 +328,10 @@ export const InsuranceApplicationSchema = z.object({
     coverageValue: z.number(),
     status: z.string(), // e.g., 'Submitted', 'Under Review', 'Approved', 'Rejected'
     submittedAt: z.any(),
+    applicantName: z.string().optional(),
+    type: z.string().optional(),
+    amount: z.number().optional(),
+    riskScore: z.number().optional(),
 });
 
 export const ApiKeySchema = z.object({
@@ -602,6 +606,23 @@ const fileUploadSchema = z
     (file) => !file || ["image/jpeg", "image/png", "image/webp"].includes(file.type),
     "Only .jpg, .png and .webp formats are accepted."
   );
+
+export const createFarmSchema = z.object({
+  name: z.string().min(3, "Farm name must be at least 3 characters.").max(100),
+  location: z.string().min(3, "Location is required.").max(200),
+  size: z.coerce.number().min(0, "Size cannot be negative."),
+  sizeUnit: z.enum(['Acres', 'Hectares', 'Square Meters'], { required_error: "Please select a size unit." }),
+  description: z.string().max(1000).optional(),
+});
+
+export const createCropSchema = z.object({
+  cropType: z.string().min(2, "Crop type is required.").max(100),
+  plantingDate: z.date({ required_error: "Planting date is required." }),
+  expectedHarvestDate: z.date().optional(),
+  farmId: z.string(),
+  notes: z.string().max(1000).optional(),
+  currentStage: z.enum(['Planting', 'Vegetative', 'Flowering', 'Fruiting', 'Harvesting', 'Post-Harvest']).optional(),
+});
 
 export const createInventoryItemSchema = z.object({
   name: z.string().min(3, "Item name must be at least 3 characters.").max(100),

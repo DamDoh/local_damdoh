@@ -59,9 +59,7 @@ export default function MyFarmsPage() {
         toast({
             variant: "destructive",
             title: t('toast.errorTitle'),
-            description: error instanceof HttpsError && error.message
- ? t(error.message as any) // Use translation key from backend
- : t('toast.fetchError'), // Fallback to generic error
+            description: error?.message || t('toast.fetchError'), // Fallback to generic error
             
 
 

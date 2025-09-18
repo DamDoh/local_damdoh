@@ -48,7 +48,7 @@ export class ApiKeyService {
     if (cached) return cached;
 
     try {
-      const response = await apiCall('/api-keys');
+      const response = await apiCall<any>('/api-keys');
       const keys = response.keys || response.data || [];
       this.setCached(cacheKey, keys);
       return keys;
@@ -63,7 +63,7 @@ export class ApiKeyService {
    */
   async generateApiKey(description: string, environment: 'Sandbox' | 'Production'): Promise<ApiKey> {
     try {
-      const response = await apiCall('/api-keys/generate', {
+      const response = await apiCall<any>('/api-keys/generate', {
         method: 'POST',
         body: JSON.stringify({ description, environment }),
       });

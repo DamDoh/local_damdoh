@@ -18,7 +18,7 @@ import { useHomepagePreference } from '@/hooks/useHomepagePreference';
 import { formatDistanceToNow } from 'date-fns';
 import { useTranslations, useLocale } from 'next-intl';
 import { z } from 'zod';
-import { getForumTopicSuggestions as getForumTopicSuggestionsAction } from '@/lib/server-actions'; // Correctly import the server action
+import { getForumTopicSuggestionsAction } from '@/lib/server-actions';
 
 // This schema is now only used for type safety on the client
 const ForumTopicSuggestionSchema = z.object({
@@ -146,7 +146,7 @@ export default function ForumsPage() {
         clearHomepagePreference();
         toast({ title: t('pinning.unpinnedTitle'), description: t('pinning.unpinnedDescription') });
         } else {
-        setHomepagePreference(pathname);
+        setHomepagePreference(pathname as string);
         toast({ title: t('pinning.pinnedTitle'), description: t('pinning.pinnedDescription') });
         }
     }, [isCurrentHomepage, clearHomepagePreference, setHomepagePreference, pathname, toast, t]);

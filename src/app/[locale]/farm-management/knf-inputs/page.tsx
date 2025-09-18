@@ -13,8 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { Skeleton } from "@/components/ui/skeleton";
 import type { KnfBatch as KnfBatchType } from '@/lib/types';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -32,11 +31,23 @@ export default function KNFInputAssistantPage() {
   const t = useTranslations('farmManagement.knfInputsPage');
   const { user } = useAuth();
   const { toast } = useToast();
-  const functions = getFunctions(firebaseApp);
-  
-  const createKnfBatchCallable = useMemo(() => httpsCallable(functions, 'farmManagement-createKnfBatch'), [functions]);
-  const getUserKnfBatchesCallable = useMemo(() => httpsCallable(functions, 'farmManagement-getUserKnfBatches'), [functions]);
-  const updateKnfBatchStatusCallable = useMemo(() => httpsCallable(functions, 'farmManagement-updateKnfBatchStatus'), [functions]);
+  const createKnfBatch = async (data: any) => {
+    return await apiCall('/farm-management/knf-batches', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  };
+
+  const getUserKnfBatches = async () => {
+    return await apiCall<{ batches: ActiveBatch[] }>('/farm-management/knf-batches');
+  };
+
+  const updateKnfBatchStatus = async (data: { batchId: string; status: string }) => {
+    return await apiCall(`/farm-management/knf-batches/${data.batchId}/status`, {
+      method: 'PUT',
+      body: JSON.stringify({ status: data.status })
+    });
+  };
 
   const [allBatches, setAllBatches] = useState<ActiveBatch[]>([]);
   const [isLoadingBatches, setIsLoadingBatches] = useState(true);
@@ -61,8 +72,8 @@ export default function KNFInputAssistantPage() {
     };
     setIsLoadingBatches(true);
     try {
-        const result = await getUserKnfBatchesCallable();
-        const batches = (result.data as ActiveBatch[]) ?? [];
+        const result = await getUserKnfBatches();
+        const batches = result.batches ?? [];
         setAllBatches(batches.filter(b => b.status !== 'Archived'));
     } catch (error) {
         console.error("Error fetching KNF batches:", error);
@@ -92,7 +103,7 @@ export default function KNFInputAssistantPage() {
     const selectedOption = knfOptions.find(opt => opt.value === selectedInput)!;
 
     try {
-        await createKnfBatchCallable({
+        await createKnfBatch({
             type: selectedInput,
             typeName: selectedOption.label,
             ingredients,
@@ -119,17 +130,17 @@ export default function KNFInputAssistantPage() {
   };
   
   const handleUpdateStatus = async (batchId: string, newStatus: 'Ready' | 'Archived' | 'Used') => {
-    setUpdatingBatchId(batchId);
-    try {
-        await updateKnfBatchStatusCallable({ batchId, status: newStatus });
-        toast({ title: t('toasts.batchUpdatedTitle'), description: t('toasts.batchUpdatedDescription', { status: newStatus })});
-        await fetchBatches();
-    } catch (error) {
-        console.error("Error updating batch status:", error);
-        toast({ title: t('toasts.updateFailed'), description: t('toasts.couldNotUpdate'), variant: "destructive" });
-    } finally {
-        setUpdatingBatchId(null);
-    }
+   setUpdatingBatchId(batchId);
+   try {
+       await updateKnfBatchStatus({ batchId, status: newStatus });
+       toast({ title: t('toasts.batchUpdatedTitle'), description: t('toasts.batchUpdatedDescription', { status: newStatus })});
+       await fetchBatches();
+   } catch (error) {
+       console.error("Error updating batch status:", error);
+       toast({ title: t('toasts.updateFailed'), description: t('toasts.couldNotUpdate'), variant: "destructive" });
+   } finally {
+       setUpdatingBatchId(null);
+   }
   };
 
   const fermentingBatches = allBatches.filter(b => b.status === 'Fermenting');

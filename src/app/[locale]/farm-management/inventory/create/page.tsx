@@ -16,8 +16,7 @@ import { createInventoryItemSchema, type CreateInventoryItemValues } from "@/lib
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Calendar as CalendarPicker } from '@/components/ui/calendar';
 import { format } from 'date-fns';
@@ -30,8 +29,6 @@ export default function CreateInventoryItemPage() {
   const router = useRouter();
   const { user } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const functions = getFunctions(firebaseApp);
-  const addInventoryItemCallable = useMemo(() => httpsCallable(functions, 'inventory-addInventoryItem'), [functions]);
 
   const form = useForm<CreateInventoryItemValues>({
     resolver: zodResolver(createInventoryItemSchema),
@@ -54,12 +51,15 @@ export default function CreateInventoryItemPage() {
     }
     setIsSubmitting(true);
     try {
-        const payload = { 
-            ...values, 
+        const payload = {
+            ...values,
             purchaseDate: values.purchaseDate?.toISOString(),
             expiryDate: values.expiryDate?.toISOString()
         };
-        await addInventoryItemCallable(payload);
+        await apiCall('/inventory/items', {
+            method: 'POST',
+            body: JSON.stringify(payload)
+        });
         toast({
           title: t('toast.successTitle'),
           description: t('toast.successDescription', { itemName: values.name }),

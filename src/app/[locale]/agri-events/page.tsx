@@ -163,7 +163,7 @@ export default function AgriEventsPage() {
                 <SelectValue placeholder={t('filterPlaceholder')} />
               </SelectTrigger>
               <SelectContent>
-                {agriEventFilterOptions.map(opt => (
+                {agriEventFilterOptions.map((opt: { value: AgriEventTypeConstant | 'All', label: string }) => (
                   <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
                 ))}
               </SelectContent>

@@ -87,7 +87,7 @@ export default function BlogPage() {
       ) : posts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => {
-            const displayTitle = locale === 'km' && post.title_km ? post.title_km : post.title_en;
+            const displayTitle = locale === 'km' && post.title_km ? post.title_km : (post.title_en || 'Untitled Post');
             const displayExcerpt = locale === 'km' && post.excerpt_km ? post.excerpt_km : post.excerpt_en;
             const originalExcerpt = locale === 'km' ? post.excerpt_en : post.excerpt_km;
 
