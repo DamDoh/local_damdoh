@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-// 🛒 SUPPLIER DISCOVERY - Find and connect with farmers
+// [Search] SUPPLIER DISCOVERY - Find and connect with farmers
 export const SupplierDiscoveryWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -50,7 +50,7 @@ export const SupplierDiscoveryWidget: React.FC = () => (
 
       {/* Top Suppliers */}
       <div className="pt-3 border-t border-blue-200">
-        <p className="text-sm font-medium text-blue-800 mb-2">⭐ Top Rated Suppliers</p>
+        <p className="text-sm font-medium text-blue-800 mb-2"><Star className="h-4 w-4 inline mr-1" /> Top Rated Suppliers</p>
         <div className="space-y-2">
           <div className="flex items-center justify-between p-2 bg-white rounded border border-blue-200">
             <div className="flex items-center space-x-2">
@@ -72,7 +72,7 @@ export const SupplierDiscoveryWidget: React.FC = () => (
   </Card>
 );
 
-// 📦 ORDER MANAGEMENT - Track procurement orders
+// [Package] ORDER MANAGEMENT - Track procurement orders
 export const OrderManagementWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -129,7 +129,7 @@ export const OrderManagementWidget: React.FC = () => (
   </Card>
 );
 
-// 🚛 LOGISTICS MANAGEMENT - Transportation and delivery
+// [Truck] LOGISTICS MANAGEMENT - Transportation and delivery
 export const LogisticsWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-orange-50 to-amber-50 border-orange-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -157,7 +157,7 @@ export const LogisticsWidget: React.FC = () => (
 
       {/* Logistics Partners */}
       <div className="space-y-2">
-        <p className="text-sm font-medium text-orange-800">🚛 Logistics Partners</p>
+        <p className="text-sm font-medium text-orange-800"><Truck className="h-4 w-4 inline mr-1" /> Logistics Partners</p>
         <div className="space-y-1">
           <div className="flex items-center justify-between p-2 bg-white rounded border border-orange-200">
             <span className="text-sm text-orange-800">FastTrack Logistics</span>
@@ -173,7 +173,7 @@ export const LogisticsWidget: React.FC = () => (
   </Card>
 );
 
-// ⚖️ QUALITY CONTROL - Product verification and standards
+// [Scale] QUALITY CONTROL - Product verification and standards
 export const QualityControlWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-purple-50 to-violet-50 border-purple-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -205,7 +205,7 @@ export const QualityControlWidget: React.FC = () => (
 
       {/* Quality Standards */}
       <div className="pt-3 border-t border-purple-200">
-        <p className="text-sm font-medium text-purple-800 mb-2">📋 Quality Standards</p>
+        <p className="text-sm font-medium text-purple-800 mb-2"><FileText className="h-4 w-4 inline mr-1" /> Quality Standards</p>
         <div className="space-y-1">
           <div className="flex items-center space-x-2 text-sm">
             <CheckCircle className="h-4 w-4 text-green-600" />
@@ -225,7 +225,7 @@ export const QualityControlWidget: React.FC = () => (
   </Card>
 );
 
-// 💰 PAYMENT PROCESSING - Financial transactions
+// [Wallet] PAYMENT PROCESSING - Financial transactions
 export const PaymentProcessingWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-cyan-50 to-blue-50 border-cyan-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -267,7 +267,7 @@ export const PaymentProcessingWidget: React.FC = () => (
 
       {/* Payment Methods */}
       <div className="pt-3 border-t border-cyan-200">
-        <p className="text-sm font-medium text-cyan-800 mb-2">💳 Payment Methods</p>
+        <p className="text-sm font-medium text-cyan-800 mb-2"><Wallet className="h-4 w-4 inline mr-1" /> Payment Methods</p>
         <div className="space-y-1">
           <div className="flex items-center justify-between p-2 bg-white rounded border border-cyan-200">
             <span className="text-sm text-cyan-800">Mobile Money (M-Pesa)</span>
@@ -283,7 +283,7 @@ export const PaymentProcessingWidget: React.FC = () => (
   </Card>
 );
 
-// 📊 BUYER ANALYTICS - Procurement insights and trends
+// [BarChart3] BUYER ANALYTICS - Procurement insights and trends
 export const BuyerAnalyticsWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-indigo-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">

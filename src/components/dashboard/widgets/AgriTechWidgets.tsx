@@ -9,13 +9,13 @@ import {
   Microscope, Lightbulb, TestTube, TrendingUp, Users, DollarSign,
   BarChart3, BookOpen, Zap, Target, FlaskConical, Award,
   Calendar, FileText, Wallet, CheckCircle, Clock, Star,
-  Beaker, Cpu, Database, Rocket
+  Beaker, Cpu, Database, Rocket, Globe
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-// 🔬 RESEARCH & DEVELOPMENT - Innovation tools and R&D management
+// [Microscope] RESEARCH & DEVELOPMENT - Innovation tools and R&D management
 export const ResearchDevelopmentWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-purple-50 to-indigo-50 border-purple-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -51,7 +51,7 @@ export const ResearchDevelopmentWidget: React.FC = () => (
 
       {/* Research Metrics */}
       <div className="pt-3 border-t border-purple-200">
-        <p className="text-sm font-medium text-purple-800 mb-2">📊 Research Impact</p>
+        <p className="text-sm font-medium text-purple-800 mb-2"><BarChart3 className="h-4 w-4 inline mr-1" /> Research Impact</p>
         <div className="grid grid-cols-2 gap-3">
           <div className="text-center p-3 bg-white rounded-lg border border-purple-200">
             <div className="text-2xl font-bold text-green-600">12</div>
@@ -69,7 +69,7 @@ export const ResearchDevelopmentWidget: React.FC = () => (
   </Card>
 );
 
-// 🚀 SOLUTION MANAGEMENT - Product development and deployment
+// [Rocket] SOLUTION MANAGEMENT - Product development and deployment
 export const SolutionManagementWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -109,7 +109,7 @@ export const SolutionManagementWidget: React.FC = () => (
 
       {/* Innovation Pipeline */}
       <div className="pt-3 border-t border-blue-200">
-        <p className="text-sm font-medium text-blue-800 mb-2">🔬 Innovation Pipeline</p>
+        <p className="text-sm font-medium text-blue-800 mb-2"><Microscope className="h-4 w-4 inline mr-1" /> Innovation Pipeline</p>
         <div className="space-y-1">
           <div className="flex items-center space-x-2 text-sm">
             <Lightbulb className="h-4 w-4 text-yellow-600" />
@@ -129,7 +129,7 @@ export const SolutionManagementWidget: React.FC = () => (
   </Card>
 );
 
-// 🎯 PILOT PROGRAM MANAGEMENT - Field testing and validation
+// [Target] PILOT PROGRAM MANAGEMENT - Field testing and validation
 export const PilotProgramWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -188,7 +188,7 @@ export const PilotProgramWidget: React.FC = () => (
   </Card>
 );
 
-// 💰 FUNDING & GRANTS - Financial support and investment
+// [DollarSign] FUNDING & GRANTS - Financial support and investment
 export const FundingGrantsWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -226,7 +226,7 @@ export const FundingGrantsWidget: React.FC = () => (
 
       {/* Funding Status */}
       <div className="pt-3 border-t border-yellow-200">
-        <p className="text-sm font-medium text-yellow-800 mb-2">💰 Funding Status</p>
+        <p className="text-sm font-medium text-yellow-800 mb-2"><DollarSign className="h-4 w-4 inline mr-1" /> Funding Status</p>
         <div className="space-y-2">
           <div className="flex items-center justify-between text-sm">
             <span className="text-yellow-700">Grants Applied</span>
@@ -246,7 +246,7 @@ export const FundingGrantsWidget: React.FC = () => (
   </Card>
 );
 
-// 🤝 PARTNERSHIPS & COLLABORATIONS - Network and collaborate
+// [Users] PARTNERSHIPS & COLLABORATIONS - Network and collaborate
 export const PartnershipsWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-pink-50 to-rose-50 border-pink-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -286,7 +286,7 @@ export const PartnershipsWidget: React.FC = () => (
 
       {/* Network Stats */}
       <div className="pt-3 border-t border-pink-200">
-        <p className="text-sm font-medium text-pink-800 mb-2">🌐 Network Growth</p>
+        <p className="text-sm font-medium text-pink-800 mb-2"><Globe className="h-4 w-4 inline mr-1" /> Network Growth</p>
         <div className="grid grid-cols-2 gap-3">
           <div className="text-center p-3 bg-white rounded-lg border border-pink-200">
             <div className="text-2xl font-bold text-pink-600">47</div>
@@ -304,7 +304,7 @@ export const PartnershipsWidget: React.FC = () => (
   </Card>
 );
 
-// 📊 INNOVATION ANALYTICS - Performance and impact metrics
+// [BarChart3] INNOVATION ANALYTICS - Performance and impact metrics
 export const InnovationAnalyticsWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-indigo-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">

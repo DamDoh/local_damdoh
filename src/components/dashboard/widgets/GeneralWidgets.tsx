@@ -8,13 +8,14 @@ import Link from 'next/link';
 import {
   Users, Globe, BookOpen, Heart, Star, TrendingUp,
   Calendar, Bell, MessageSquare, Shield, Award, Zap,
-  CheckCircle, Clock, MapPin, DollarSign, BarChart3
+  CheckCircle, Clock, MapPin, DollarSign, BarChart3,
+  Briefcase, Target
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-// 🌐 COMMUNITY ENGAGEMENT - Connect with the agriculture ecosystem
+// [Globe] COMMUNITY ENGAGEMENT - Connect with the agriculture ecosystem
 export const CommunityEngagementWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -79,7 +80,7 @@ export const CommunityEngagementWidget: React.FC = () => (
   </Card>
 );
 
-// 📚 KNOWLEDGE CENTER - Access learning resources and information
+// [BookOpen] KNOWLEDGE CENTER - Access learning resources and information
 export const KnowledgeCenterWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -125,7 +126,7 @@ export const KnowledgeCenterWidget: React.FC = () => (
 
       {/* Popular Topics */}
       <div className="pt-3 border-t border-green-200">
-        <p className="text-sm font-medium text-green-800 mb-2">🔥 Popular Topics</p>
+        <p className="text-sm font-medium text-green-800 mb-2"><TrendingUp className="h-4 w-4 inline mr-1" /> Popular Topics</p>
         <div className="flex flex-wrap gap-2">
           <Badge className="bg-green-100 text-green-800 cursor-pointer hover:bg-green-200">Climate-Smart Ag</Badge>
           <Badge className="bg-blue-100 text-blue-800 cursor-pointer hover:bg-blue-200">Organic Farming</Badge>
@@ -137,7 +138,7 @@ export const KnowledgeCenterWidget: React.FC = () => (
   </Card>
 );
 
-// 🏆 ACHIEVEMENTS & RECOGNITION - Track contributions and milestones
+// [Award] ACHIEVEMENTS & RECOGNITION - Track contributions and milestones
 export const AchievementsWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -206,7 +207,7 @@ export const AchievementsWidget: React.FC = () => (
   </Card>
 );
 
-// 📅 EVENTS & OPPORTUNITIES - Upcoming events and opportunities
+// [Calendar] EVENTS & OPPORTUNITIES - Upcoming events and opportunities
 export const EventsOpportunitiesWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -252,7 +253,7 @@ export const EventsOpportunitiesWidget: React.FC = () => (
 
       {/* Opportunities */}
       <div className="pt-3 border-t border-purple-200">
-        <p className="text-sm font-medium text-purple-800 mb-2">💼 Opportunities</p>
+        <p className="text-sm font-medium text-purple-800 mb-2"><Briefcase className="h-4 w-4 inline mr-1" /> Opportunities</p>
         <div className="space-y-2">
           <div className="p-2 bg-white rounded border border-purple-200">
             <p className="text-sm font-medium text-purple-800">Volunteer: Community Garden Project</p>
@@ -268,7 +269,7 @@ export const EventsOpportunitiesWidget: React.FC = () => (
   </Card>
 );
 
-// 🔔 NOTIFICATIONS CENTER - Stay updated with platform activities
+// [Bell] NOTIFICATIONS CENTER - Stay updated with platform activities
 export const NotificationsCenterWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-red-50 to-orange-50 border-red-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -328,7 +329,7 @@ export const NotificationsCenterWidget: React.FC = () => (
   </Card>
 );
 
-// 🌟 IMPACT DASHBOARD - Personal contribution tracking
+// [Star] IMPACT DASHBOARD - Personal contribution tracking
 export const ImpactDashboardWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-teal-50 to-cyan-50 border-teal-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -389,7 +390,7 @@ export const ImpactDashboardWidget: React.FC = () => (
 
       {/* Next Steps */}
       <div className="pt-3 border-t border-teal-200">
-        <p className="text-sm font-medium text-teal-800 mb-2">🎯 Ways to Increase Impact</p>
+        <p className="text-sm font-medium text-teal-800 mb-2"><Target className="h-4 w-4 inline mr-1" /> Ways to Increase Impact</p>
         <div className="space-y-1">
           <div className="flex items-center space-x-2 text-sm">
             <CheckCircle className="h-4 w-4 text-green-600" />

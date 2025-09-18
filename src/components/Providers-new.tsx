@@ -20,6 +20,46 @@ function OfflineSyncInitializer() {
     return null; // It doesn't render anything.
 }
 
+// PWA initializer component
+function PWAInitializer() {
+    useEffect(() => {
+        // Register service worker if supported
+        if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+            navigator.serviceWorker.register('/sw.js')
+                .then((registration) => {
+                    console.log('PWA: Service worker registered successfully');
+                })
+                .catch((error) => {
+                    console.log('PWA: Service worker registration failed:', error);
+                });
+        }
+
+        // Handle PWA install prompt
+        let deferredPrompt: Event | null = null;
+
+        const handleBeforeInstallPrompt = (e: Event) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            (window as any).deferredPrompt = deferredPrompt;
+        };
+
+        const handleAppInstalled = () => {
+            deferredPrompt = null;
+            (window as any).deferredPrompt = null;
+        };
+
+        window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+        window.addEventListener('appinstalled', handleAppInstalled);
+
+        return () => {
+            window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+            window.removeEventListener('appinstalled', handleAppInstalled);
+        };
+    }, []);
+
+    return null;
+}
+
 export function Providers({ 
     children
 }: { 
@@ -51,6 +91,7 @@ export function Providers({
                 <AuthContext.Provider value={authValue}>
                     {children}
                     <OfflineSyncInitializer />
+                    <PWAInitializer />
                 </AuthContext.Provider>
             </QueryClientProvider>
         </Suspense>

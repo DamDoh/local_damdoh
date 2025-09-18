@@ -13,6 +13,7 @@ import { apiCall } from '@/lib/api-utils';
 import { EmergencyAlertsWidget, DailyOperationsWidget, FarmResourcesWidget, QuickStatsWidget, SeasonalCalendarWidget, MoneyPlanningWidget, HelpSupportWidget } from '../widgets/FarmManagementWidgets';
 import { FarmingAssistant } from '../widgets/FarmingAssistant';
 import { WeatherWidget } from '../widgets/FarmerWidgets';
+import { ChallengesWidget, LeaderboardWidget, CommunicationTemplatesWidget, PredictiveAnalyticsWidget, CollaborationWidget, MobileExperienceWidget, SustainabilityWidget } from '../widgets';
 import { DashboardErrorBoundary } from '../ErrorBoundary';
 
 /**
@@ -257,6 +258,13 @@ export const FarmerDashboard = () => {
                 <div className="space-y-4 sm:space-y-6 px-2 sm:px-0">
                     <FarmingAssistant />
                     <WeatherWidget />
+                    <PredictiveAnalyticsWidget />
+                    <CommunicationTemplatesWidget />
+                    <CollaborationWidget />
+                    <MobileExperienceWidget />
+                    <SustainabilityWidget />
+                    <ChallengesWidget />
+                    <LeaderboardWidget />
                     <HelpSupportWidget />
 
                     <Card>

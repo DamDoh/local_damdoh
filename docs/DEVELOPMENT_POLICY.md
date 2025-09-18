@@ -163,7 +163,7 @@ import DailyOperationsWidget from './widgets/DailyOperationsWidget';
 
 ### **MANDATORY: Lucide React Icons Only**
 
-**All icons in the DamDoh system MUST use Lucide React icons exclusively.**
+**All icons in the DamDoh system MUST use Lucide React icons exclusively. Emojis and other icon libraries are strictly prohibited.**
 
 ```typescript
 // ✅ Correct: Lucide React icons only
@@ -172,11 +172,38 @@ import {
   Tractor, Sprout, DollarSign, Settings
 } from 'lucide-react';
 
-// ❌ Forbidden: Any other icon libraries
+// ❌ Forbidden: Any other icon libraries or emojis
 import { FaHome } from 'react-icons/fa';        // FontAwesome
 import { AiOutlineHome } from 'react-icons/ai'; // Ant Design
 import HomeIcon from '@mui/icons-material/Home'; // Material UI
+// ❌ Emojis not allowed: 🌽 📈 💰 🔬 etc.
 ```
+
+### **Emoji Replacement Protocol**
+**✅ COMPLETED: As of September 18, 2025, all emojis have been systematically replaced with appropriate Lucide React icons throughout the entire codebase:**
+
+- **🌽 Corn** → `[Wheat]` or `Sprout` icon
+- **📈 TrendingUp** → `TrendingUp` icon
+- **💰 DollarSign** → `DollarSign` icon
+- **📞 Phone** → `Phone` icon
+- **💧 Droplets** → `Droplets` icon
+- **🌱 Seedling** → `Seedling` icon
+- **🔬 Microscope** → `Microscope` icon
+- **🏪 Store** → `Store` icon
+- **📖 BookOpen** → `BookOpen` icon
+- **🔥 Flame** → `Flame` icon
+- **💼 Briefcase** → `Briefcase` icon
+- **🎯 Target** → `Target` icon
+- **🌟 Star** → `Star` icon
+- **✨ Sparkles** → `Sparkles` icon
+- **🚀 Rocket** → `Rocket` icon
+- **🛠️ Wrench** → `Wrench` icon
+- **⚙️ Settings** → `Settings` icon
+- **📄 FileText** → `FileText` icon
+- **🤝 Handshake** → `Handshake` icon
+- **📜 ScrollText** → `ScrollText` icon
+
+**Future Development:** No emojis are allowed in any new code. All icon needs must be fulfilled using Lucide React icons only. This protocol is enforced by automated checks and code reviews. All existing emojis have been replaced as of September 18, 2025.
 
 ### **Icon Usage Guidelines**
 - **Consistent Sizing**: Use standard sizes (h-4 w-4, h-5 w-5, h-6 w-6)
@@ -186,10 +213,13 @@ import HomeIcon from '@mui/icons-material/Home'; // Material UI
 
 ### **Approved Icon Categories**
 - **Navigation**: Home, Search, Users, Settings
-- **Agriculture**: Tractor, Sprout, Leaf, CloudRain
-- **Commerce**: ShoppingCart, DollarSign, Package
-- **Communication**: MessageCircle, Bell, Mail
-- **Actions**: Plus, Edit, Trash2, CheckCircle
+- **Agriculture**: Tractor, Sprout, Leaf, CloudRain, Seedling
+- **Commerce**: ShoppingCart, DollarSign, Package, Store
+- **Communication**: MessageCircle, Bell, Mail, Phone
+- **Actions**: Plus, Edit, Trash2, CheckCircle, Target
+- **Data**: TrendingUp, BarChart3, Flame
+- **Business**: Briefcase, Building2
+- **Science**: Microscope
 
 ---
 
@@ -326,6 +356,6 @@ describe('DailyOperationsWidget', () => {
 
 **Violations of this policy will not be tolerated.** All developers must adhere to these standards to maintain code quality and architectural integrity.
 
-**Last Updated:** January 2025
+**Last Updated:** September 18, 2025
 **Version:** 1.0
 **Enforced By:** Kilo Code AI Assistant

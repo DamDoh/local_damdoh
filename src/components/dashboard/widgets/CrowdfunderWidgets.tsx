@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-// 💼 PORTFOLIO MANAGEMENT - Investment portfolio tracking
+// [BarChart3] PORTFOLIO MANAGEMENT - Investment portfolio tracking
 export const PortfolioManagementWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -69,7 +69,7 @@ export const PortfolioManagementWidget: React.FC = () => (
   </Card>
 );
 
-// 🎯 PROJECT DISCOVERY - Find investment opportunities
+// [Target] PROJECT DISCOVERY - Find investment opportunities
 export const ProjectDiscoveryWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -127,7 +127,7 @@ export const ProjectDiscoveryWidget: React.FC = () => (
 
       {/* Discovery Filters */}
       <div className="pt-3 border-t border-green-200">
-        <p className="text-sm font-medium text-green-800 mb-2">🎯 Investment Focus</p>
+        <p className="text-sm font-medium text-green-800 mb-2"><Target className="h-4 w-4 inline mr-1" /> Investment Focus</p>
         <div className="flex flex-wrap gap-2">
           <Badge className="bg-green-100 text-green-800 cursor-pointer hover:bg-green-200">Climate Tech</Badge>
           <Badge className="bg-blue-100 text-blue-800 cursor-pointer hover:bg-blue-200">Food Security</Badge>
@@ -139,7 +139,7 @@ export const ProjectDiscoveryWidget: React.FC = () => (
   </Card>
 );
 
-// 📈 IMPACT TRACKING - Measure social and environmental impact
+// [Heart] IMPACT TRACKING - Measure social and environmental impact
 export const ImpactTrackingWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -200,7 +200,7 @@ export const ImpactTrackingWidget: React.FC = () => (
 
       {/* Impact Stories */}
       <div className="pt-3 border-t border-purple-200">
-        <p className="text-sm font-medium text-purple-800 mb-2">💡 Impact Stories</p>
+        <p className="text-sm font-medium text-purple-800 mb-2"><Zap className="h-4 w-4 inline mr-1" /> Impact Stories</p>
         <div className="p-3 bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg border border-purple-300">
           <p className="text-sm font-medium text-purple-800 mb-1">"Thanks to the irrigation investment, our yields increased by 40% and we're now food secure year-round."</p>
           <p className="text-xs text-purple-700">- Mary Wanjiku, Smallholder Farmer</p>
@@ -210,7 +210,7 @@ export const ImpactTrackingWidget: React.FC = () => (
   </Card>
 );
 
-// 💰 RETURNS MANAGEMENT - Track investment returns and payouts
+// [DollarSign] RETURNS MANAGEMENT - Track investment returns and payouts
 export const ReturnsManagementWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -269,7 +269,7 @@ export const ReturnsManagementWidget: React.FC = () => (
 
       {/* Payment Methods */}
       <div className="pt-3 border-t border-yellow-200">
-        <p className="text-sm font-medium text-yellow-800 mb-2">💳 Payout Methods</p>
+        <p className="text-sm font-medium text-yellow-800 mb-2"><Wallet className="h-4 w-4 inline mr-1" /> Payout Methods</p>
         <Link href="/wallet">
           <Button variant="outline" className="w-full justify-start bg-white hover:bg-yellow-50 border-yellow-200">
             <Wallet className="h-4 w-4 mr-3 text-yellow-600" />
@@ -284,7 +284,7 @@ export const ReturnsManagementWidget: React.FC = () => (
   </Card>
 );
 
-// 🎯 INVESTMENT OPPORTUNITIES - Curated investment pipeline
+// [TrendingUp] INVESTMENT OPPORTUNITIES - Curated investment pipeline
 export const InvestmentOpportunitiesWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-indigo-50 to-blue-50 border-indigo-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -333,7 +333,7 @@ export const InvestmentOpportunitiesWidget: React.FC = () => (
 
       {/* Investment Criteria */}
       <div className="pt-3 border-t border-indigo-200">
-        <p className="text-sm font-medium text-indigo-800 mb-2">🎯 Your Investment Focus</p>
+        <p className="text-sm font-medium text-indigo-800 mb-2"><Target className="h-4 w-4 inline mr-1" /> Your Investment Focus</p>
         <div className="flex flex-wrap gap-2">
           <Badge className="bg-green-100 text-green-800">Sustainable Agriculture</Badge>
           <Badge className="bg-blue-100 text-blue-800">Climate Resilience</Badge>
@@ -357,7 +357,7 @@ export const InvestmentOpportunitiesWidget: React.FC = () => (
   </Card>
 );
 
-// 🌍 SUSTAINABILITY TRACKING - ESG and sustainability metrics
+// [Globe] SUSTAINABILITY TRACKING - ESG and sustainability metrics
 export const SustainabilityTrackingWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-teal-50 to-green-50 border-teal-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -408,7 +408,7 @@ export const SustainabilityTrackingWidget: React.FC = () => (
 
       {/* Certifications */}
       <div className="pt-3 border-t border-teal-200">
-        <p className="text-sm font-medium text-teal-800 mb-2">🏆 Impact Certifications</p>
+        <p className="text-sm font-medium text-teal-800 mb-2"><Award className="h-4 w-4 inline mr-1" /> Impact Certifications</p>
         <div className="flex flex-wrap gap-2">
           <Badge className="bg-green-100 text-green-800">Carbon Neutral</Badge>
           <Badge className="bg-blue-100 text-blue-800">SDG Aligned</Badge>

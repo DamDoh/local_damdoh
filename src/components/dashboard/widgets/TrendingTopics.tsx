@@ -62,7 +62,7 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
         <CardHeader className="pb-3">
           <CardTitle className="text-lg flex items-center text-orange-800">
             <TrendingUp className="h-5 w-5 mr-2 text-orange-600 animate-pulse" />
-            🔥 Trending Topics
+            <Flame className="h-4 w-4 mr-1" /> Trending Topics
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -88,7 +88,7 @@ export const TrendingTopics: React.FC<TrendingTopicsProps> = ({
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg flex items-center text-orange-800">
             <TrendingUp className="h-5 w-5 mr-2 text-orange-600" />
-            🔥 Trending Topics
+            <Flame className="h-4 w-4 mr-1" /> Trending Topics
           </CardTitle>
           <Button
             variant="ghost"

@@ -19,6 +19,7 @@ import { useUserProfile } from '@/hooks/useUserProfile';
 import { StakeholderDashboard } from './hubs/StakeholderDashboard';
 import { stakeholderConfigs } from '@/lib/stakeholder-configs';
 import { StartPost } from './StartPost';
+import { OfflineIndicator } from '@/components/ui/OfflineIndicator';
 import { apiCall } from '@/lib/api-utils';
 
 
@@ -194,6 +195,7 @@ function MainContent() {
 
   return (
     <div className="space-y-6">
+        <OfflineIndicator />
         {user && <StartPost onCreatePost={handleCreatePost} />}
         {renderContent()}
     </div>

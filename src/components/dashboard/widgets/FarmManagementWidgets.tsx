@@ -12,13 +12,14 @@ import {
   CloudRain, Target, TrendingUp, AlertTriangle, CheckCircle,
   ShoppingCart, Zap, Heart, Star, Home, Wrench, Bell, Clock,
   AlertCircle, Leaf, Thermometer, Droplets, Wind, MessageSquare,
-  Wifi, WifiOff, ThumbsUp, Lightbulb, Shield, FileText, BookOpen, Wallet
+  Wifi, WifiOff, ThumbsUp, Lightbulb, Shield, FileText, BookOpen, Wallet,
+  Sun, MapPin, Award
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-// 🎯 DAILY FARM OPERATIONS - What farmers do every day
+// [Target] DAILY FARM OPERATIONS - What farmers do every day
 /**
  * DailyOperationsWidget - Microservice Component
  * Handles daily farming tasks: crop monitoring, weather, quick actions
@@ -30,7 +31,7 @@ export const DailyOperationsWidget: React.FC = () => (
     <CardHeader className="pb-3">
       <CardTitle className="text-lg flex items-center text-green-800">
         <Activity className="h-5 w-5 mr-2 text-green-600 animate-pulse" />
-        🌅 Daily Operations
+        <Sun className="h-4 w-4 mr-1" /> Daily Operations
       </CardTitle>
       <p className="text-sm text-green-600 font-normal">Your most important daily tasks</p>
     </CardHeader>
@@ -60,7 +61,7 @@ export const DailyOperationsWidget: React.FC = () => (
 
       {/* Quick Daily Actions */}
       <div className="pt-3 border-t border-green-200">
-        <p className="text-sm font-medium text-green-800 mb-3">⚡ Quick Tasks</p>
+        <p className="text-sm font-medium text-green-800 mb-3"><Zap className="h-4 w-4 inline mr-1" /> Quick Tasks</p>
         <div className="grid grid-cols-2 gap-2">
           <Link href="/farm-management/farms">
             <Button size="sm" variant="outline" className="w-full h-auto p-3 flex flex-col items-center bg-white hover:bg-green-50">
@@ -80,7 +81,7 @@ export const DailyOperationsWidget: React.FC = () => (
   </Card>
 );
 
-// 🏠 FARM RESOURCES - Everything farmers own and manage
+// [Home] FARM RESOURCES - Everything farmers own and manage
 /**
  * FarmResourcesWidget - Microservice Component
  * Manages farm assets: farms, inventory, equipment, labor
@@ -92,7 +93,7 @@ export const FarmResourcesWidget: React.FC = () => (
     <CardHeader className="pb-3">
       <CardTitle className="text-lg flex items-center text-blue-800">
         <Home className="h-5 w-5 mr-2 text-blue-600" />
-        🏠 My Farm & Resources
+        <Home className="h-4 w-4 mr-1" /> My Farm & Resources
       </CardTitle>
       <p className="text-sm text-blue-600 font-normal">Manage what you own</p>
     </CardHeader>
@@ -155,7 +156,7 @@ export const FarmResourcesWidget: React.FC = () => (
 
       {/* Resource Status */}
       <div className="pt-3 border-t border-blue-200">
-        <p className="text-sm font-medium text-blue-800 mb-2">📊 Resource Status</p>
+        <p className="text-sm font-medium text-blue-800 mb-2"><BarChart3 className="h-4 w-4 inline mr-1" /> Resource Status</p>
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm text-blue-700">Seeds</span>
@@ -177,7 +178,7 @@ export const FarmResourcesWidget: React.FC = () => (
   </Card>
 );
 
-// 🚨 EMERGENCY ALERTS - Critical notifications farmers must see
+// [AlertTriangle] EMERGENCY ALERTS - Critical notifications farmers must see
 /**
  * EmergencyAlertsWidget - Microservice Component
  * Displays critical alerts: weather warnings, pest outbreaks, market changes
@@ -189,7 +190,7 @@ export const EmergencyAlertsWidget: React.FC = () => (
     <CardHeader className="pb-3">
       <CardTitle className="text-lg flex items-center text-red-800">
         <Bell className="h-5 w-5 mr-2 text-red-600 animate-pulse" />
-        🚨 Emergency Alerts
+        <AlertTriangle className="h-4 w-4 mr-1" /> Emergency Alerts
       </CardTitle>
       <p className="text-sm text-red-600 font-normal">Critical updates you need to know</p>
     </CardHeader>
@@ -201,7 +202,7 @@ export const EmergencyAlertsWidget: React.FC = () => (
           <div className="flex-1">
             <p className="text-sm font-semibold text-red-800">Heavy Rain Warning</p>
             <p className="text-xs text-red-700">Expected 100mm rainfall tonight. Secure equipment and prepare drainage.</p>
-            <p className="text-xs text-red-600 mt-1">⏰ Action needed within 2 hours</p>
+            <p className="text-xs text-red-600 mt-1"><Clock className="h-3 w-3 inline mr-1" /> Action needed within 2 hours</p>
           </div>
         </div>
       </div>
@@ -213,7 +214,7 @@ export const EmergencyAlertsWidget: React.FC = () => (
           <div className="flex-1">
             <p className="text-sm font-semibold text-orange-800">Fall Armyworm Detected</p>
             <p className="text-xs text-orange-700">Outbreak reported 5km from your farm. Monitor maize crops closely.</p>
-            <p className="text-xs text-orange-600 mt-1">📍 3 farms affected in your area</p>
+            <p className="text-xs text-orange-600 mt-1"><MapPin className="h-3 w-3 inline mr-1" /> 3 farms affected in your area</p>
           </div>
         </div>
       </div>
@@ -225,7 +226,7 @@ export const EmergencyAlertsWidget: React.FC = () => (
           <div className="flex-1">
             <p className="text-sm font-semibold text-yellow-800">Price Surge Alert</p>
             <p className="text-xs text-yellow-700">Tomato prices up 40% due to supply shortage. Consider harvesting early.</p>
-            <p className="text-xs text-yellow-600 mt-1">💰 Current market price: KSH 120/kg</p>
+            <p className="text-xs text-yellow-600 mt-1"><DollarSign className="h-3 w-3 inline mr-1" /> Current market price: KSH 120/kg</p>
           </div>
         </div>
       </div>
@@ -240,7 +241,7 @@ export const EmergencyAlertsWidget: React.FC = () => (
   </Card>
 );
 
-// 📊 QUICK STATS - Key performance metrics at a glance
+// [BarChart3] QUICK STATS - Key performance metrics at a glance
 /**
  * QuickStatsWidget - Microservice Component
  * Shows key farm performance indicators: yields, profits, health scores
@@ -252,7 +253,7 @@ export const QuickStatsWidget: React.FC = () => (
     <CardHeader className="pb-3">
       <CardTitle className="text-lg flex items-center text-indigo-800">
         <BarChart3 className="h-5 w-5 mr-2 text-indigo-600" />
-        📊 Farm Performance
+        <BarChart3 className="h-4 w-4 mr-1" /> Farm Performance
       </CardTitle>
       <p className="text-sm text-indigo-600 font-normal">Your farm at a glance</p>
     </CardHeader>
@@ -283,7 +284,7 @@ export const QuickStatsWidget: React.FC = () => (
 
       {/* Performance Insights */}
       <div className="pt-3 border-t border-indigo-200">
-        <p className="text-sm font-medium text-indigo-800 mb-2">💡 Performance Insights</p>
+        <p className="text-sm font-medium text-indigo-800 mb-2"><Lightbulb className="h-4 w-4 inline mr-1" /> Performance Insights</p>
         <div className="space-y-2">
           <div className="flex items-center justify-between text-sm">
             <span className="text-indigo-700">Best performing crop:</span>
@@ -299,7 +300,7 @@ export const QuickStatsWidget: React.FC = () => (
   </Card>
 );
 
-// 💬 FARMER FEEDBACK - Quick feedback system for continuous improvement
+// [MessageSquare] FARMER FEEDBACK - Quick feedback system for continuous improvement
 /**
  * FarmerFeedbackWidget - Microservice Component
  * Allows farmers to provide quick feedback and suggestions
@@ -311,7 +312,7 @@ export const FarmerFeedbackWidget: React.FC = () => (
     <CardHeader className="pb-3">
       <CardTitle className="text-lg flex items-center text-pink-800">
         <MessageSquare className="h-5 w-5 mr-2 text-pink-600" />
-        💬 Your Voice Matters
+        <MessageSquare className="h-4 w-4 mr-1" /> Your Voice Matters
       </CardTitle>
       <p className="text-sm text-pink-600 font-normal">Help us improve DamDoh</p>
     </CardHeader>
@@ -365,7 +366,7 @@ export const FarmerFeedbackWidget: React.FC = () => (
   </Card>
 );
 
-// 📶 CONNECTIVITY STATUS - Offline capability indicators
+// [Wifi] CONNECTIVITY STATUS - Offline capability indicators
 /**
  * ConnectivityWidget - Microservice Component
  * Shows online/offline status and sync capabilities
@@ -377,7 +378,7 @@ export const ConnectivityWidget: React.FC = () => (
     <CardHeader className="pb-3">
       <CardTitle className="text-lg flex items-center text-gray-800">
         <Wifi className="h-5 w-5 mr-2 text-green-600" />
-        📶 Connection Status
+        <Wifi className="h-4 w-4 mr-1" /> Connection Status
       </CardTitle>
       <p className="text-sm text-gray-600 font-normal">Work anywhere, anytime</p>
     </CardHeader>
@@ -430,7 +431,7 @@ export const ConnectivityWidget: React.FC = () => (
   </Card>
 );
 
-// 📅 SEASONAL CALENDAR - Upcoming tasks and planning
+// [Calendar] SEASONAL CALENDAR - Upcoming tasks and planning
 /**
  * SeasonalCalendarWidget - Microservice Component
  * Shows upcoming farming tasks: planting, harvesting, maintenance
@@ -442,7 +443,7 @@ export const SeasonalCalendarWidget: React.FC = () => (
     <CardHeader className="pb-3">
       <CardTitle className="text-lg flex items-center text-teal-800">
         <Calendar className="h-5 w-5 mr-2 text-teal-600" />
-        📅 This Week's Tasks
+        <Calendar className="h-4 w-4 mr-1" /> This Week's Tasks
       </CardTitle>
       <p className="text-sm text-teal-600 font-normal">Plan your farming activities</p>
     </CardHeader>
@@ -506,7 +507,7 @@ export const SeasonalCalendarWidget: React.FC = () => (
   </Card>
 );
 
-// 💰 MONEY & PLANNING - Financial management and growth
+// [DollarSign] MONEY & PLANNING - Financial management and growth
 /**
  * MoneyPlanningWidget - Microservice Component
  * Handles financial planning: loans, transactions, inputs, family planning
@@ -518,7 +519,7 @@ export const MoneyPlanningWidget: React.FC = () => (
     <CardHeader className="pb-3">
       <CardTitle className="text-lg flex items-center text-yellow-800">
         <DollarSign className="h-5 w-5 mr-2 text-yellow-600" />
-        💰 Money & Growth
+        <DollarSign className="h-4 w-4 mr-1" /> Money & Growth
       </CardTitle>
       <p className="text-sm text-yellow-600 font-normal">Plan your farm's future</p>
     </CardHeader>
@@ -581,7 +582,7 @@ export const MoneyPlanningWidget: React.FC = () => (
 
       {/* Business Analytics Dashboard */}
       <div className="pt-3 border-t border-yellow-200">
-        <p className="text-sm font-medium text-yellow-800 mb-3">📊 Business Performance</p>
+        <p className="text-sm font-medium text-yellow-800 mb-3"><BarChart3 className="h-4 w-4 inline mr-1" /> Business Performance</p>
         <div className="grid grid-cols-2 gap-3">
           <div className="text-center p-3 bg-white rounded-lg border border-yellow-200">
             <div className="text-lg font-bold text-green-600">+24.7%</div>
@@ -603,7 +604,7 @@ export const MoneyPlanningWidget: React.FC = () => (
   </Card>
 );
 
-// 🎯 BUSINESS ANALYTICS - Advanced ROI tracking and insights
+// [Target] BUSINESS ANALYTICS - Advanced ROI tracking and insights
 /**
  * BusinessAnalyticsWidget - Microservice Component
  * Advanced business intelligence: ROI tracking, profitability analysis, market positioning
@@ -615,7 +616,7 @@ export const BusinessAnalyticsWidget: React.FC = () => (
     <CardHeader className="pb-3">
       <CardTitle className="text-lg flex items-center text-blue-800">
         <Target className="h-5 w-5 mr-2 text-blue-600" />
-        🎯 Business Intelligence
+        <Target className="h-4 w-4 inline mr-1" /> Business Intelligence
       </CardTitle>
       <p className="text-sm text-blue-600 font-normal">Optimize your farming business</p>
     </CardHeader>
@@ -646,7 +647,7 @@ export const BusinessAnalyticsWidget: React.FC = () => (
 
       {/* AI Business Recommendations */}
       <div className="space-y-2">
-        <h4 className="text-sm font-semibold text-blue-800">🤖 AI Business Insights</h4>
+        <h4 className="text-sm font-semibold text-blue-800"><Zap className="h-4 w-4 inline mr-1" /> AI Business Insights</h4>
         <div className="p-3 bg-white rounded-lg border border-blue-200">
           <div className="flex items-start space-x-2">
             <Lightbulb className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
@@ -678,7 +679,7 @@ export const BusinessAnalyticsWidget: React.FC = () => (
 
       {/* Competitive Analysis */}
       <div className="pt-3 border-t border-blue-200">
-        <h4 className="text-sm font-semibold text-blue-800 mb-2">🏆 Market Position</h4>
+        <h4 className="text-sm font-semibold text-blue-800 mb-2"><Award className="h-4 w-4 inline mr-1" /> Market Position</h4>
         <div className="space-y-2">
           <div className="flex items-center justify-between text-sm">
             <span className="text-blue-700">vs Local Competitors</span>
@@ -698,7 +699,7 @@ export const BusinessAnalyticsWidget: React.FC = () => (
   </Card>
 );
 
-// 🤖 HELP & SUPPORT - Comprehensive support hub with feedback and connectivity
+// [Zap] HELP & SUPPORT - Comprehensive support hub with feedback and connectivity
 /**
  * HelpSupportWidget - Microservice Component
  * Provides expert help, user feedback, and connectivity status
@@ -710,7 +711,7 @@ export const HelpSupportWidget: React.FC = () => (
     <CardHeader className="pb-3">
       <CardTitle className="text-lg flex items-center text-purple-800">
         <Star className="h-5 w-5 mr-2 text-purple-600 animate-pulse" />
-        🤖 Help & Support Hub
+        <Zap className="h-4 w-4 mr-1" /> Help & Support Hub
       </CardTitle>
       <p className="text-sm text-purple-600 font-normal">Expert help, feedback & connectivity</p>
     </CardHeader>
@@ -856,7 +857,7 @@ export const HelpSupportWidget: React.FC = () => (
 
       {/* Smart Recommendations */}
       <div className="pt-3 border-t border-purple-200">
-        <p className="text-sm font-medium text-purple-800 mb-3">💡 Today's Tips</p>
+        <p className="text-sm font-medium text-purple-800 mb-3"><Lightbulb className="h-4 w-4 inline mr-1" /> Today's Tips</p>
         <div className="space-y-2">
           <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
             <div className="flex items-start space-x-2">

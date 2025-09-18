@@ -10,7 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import {
   Plus, Camera, MapPin, TrendingUp, Award, Users,
-  ChevronLeft, ChevronRight, X
+  ChevronLeft, ChevronRight, X, BookOpen
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
@@ -55,7 +55,7 @@ export const StoriesWidget: React.FC<StoriesWidgetProps> = ({ userRole = 'farmer
               role: 'Farmer'
             },
             type: 'photo',
-            content: 'First harvest of the season! 🌽',
+            content: 'First harvest of the season! [Corn]',
             mediaUrl: '/stories/harvest1.jpg',
             timestamp: '2h ago',
             location: 'Nairobi, Kenya',
@@ -70,7 +70,7 @@ export const StoriesWidget: React.FC<StoriesWidgetProps> = ({ userRole = 'farmer
               role: 'Financial Institution'
             },
             type: 'achievement',
-            content: 'Approved 50 new loans this month! 📈',
+            content: 'Approved 50 new loans this month! [TrendingUp]',
             timestamp: '4h ago',
             reactions: 18,
             viewed: true
@@ -83,7 +83,7 @@ export const StoriesWidget: React.FC<StoriesWidgetProps> = ({ userRole = 'farmer
               role: 'Crowdfunder'
             },
             type: 'milestone',
-            content: 'Irrigation project reached 80% funding! 💧',
+            content: 'Irrigation project reached 80% funding! [Droplets]',
             mediaUrl: '/stories/project.jpg',
             timestamp: '6h ago',
             reactions: 32,
@@ -97,7 +97,7 @@ export const StoriesWidget: React.FC<StoriesWidgetProps> = ({ userRole = 'farmer
               role: 'Cooperative'
             },
             type: 'location',
-            content: 'Farmers market day in Eldoret! 🏪',
+            content: 'Farmers market day in Eldoret! [Store]',
             timestamp: '1d ago',
             location: 'Eldoret, Kenya',
             reactions: 15,
@@ -167,7 +167,7 @@ export const StoriesWidget: React.FC<StoriesWidgetProps> = ({ userRole = 'farmer
         <CardHeader className="pb-3">
           <CardTitle className="text-lg flex items-center text-pink-800">
             <div className="w-6 h-6 bg-pink-200 rounded-full animate-pulse mr-2"></div>
-            📖 Stories
+            Stories
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -190,7 +190,7 @@ export const StoriesWidget: React.FC<StoriesWidgetProps> = ({ userRole = 'farmer
         <CardHeader className="pb-3">
           <CardTitle className="text-lg flex items-center text-pink-800">
             <div className="w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center mr-2">
-              <span className="text-white text-xs">📖</span>
+              <BookOpen className="h-3 w-3" />
             </div>
             Stories & Highlights
           </CardTitle>

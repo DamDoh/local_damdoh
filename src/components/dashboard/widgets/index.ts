@@ -35,3 +35,22 @@ export { StoriesWidget } from './StoriesWidget';
 export { PersonalizedRecommendations } from './PersonalizedRecommendations';
 export { TrendingTopics } from './TrendingTopics';
 export { ConnectionSuggestions } from './ConnectionSuggestions';
+
+// Gamification Widgets
+export { ChallengesWidget } from './ChallengesWidget';
+export { LeaderboardWidget } from './LeaderboardWidget';
+
+// Communication Widgets
+export { CommunicationTemplatesWidget } from './CommunicationTemplatesWidget';
+
+// Predictive Analytics Widgets
+export { PredictiveAnalyticsWidget } from './PredictiveAnalyticsWidget';
+
+// Collaboration Widgets
+export { CollaborationWidget } from './CollaborationWidget';
+
+// Mobile Experience Widgets
+export { MobileExperienceWidget } from './MobileExperienceWidget';
+
+// Sustainability Widgets
+export { SustainabilityWidget } from './SustainabilityWidget';

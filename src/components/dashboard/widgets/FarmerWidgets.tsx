@@ -46,7 +46,7 @@ export const WeatherWidget: React.FC = () => (
   </div>
 );
 
-// 📈 MARKET INTELLIGENCE - Real-time market data and opportunities
+// [TrendingUp] MARKET INTELLIGENCE - Real-time market data and opportunities
 export const MarketIntelligenceWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -111,7 +111,7 @@ export const MarketIntelligenceWidget: React.FC = () => (
   </Card>
 );
 
-// 🤝 COMMUNITY COLLABORATION - Farmer networks and cooperation
+// [Handshake] COMMUNITY COLLABORATION - Farmer networks and cooperation
 export const CommunityCollaborationWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -189,7 +189,7 @@ export const CommunityCollaborationWidget: React.FC = () => (
   </Card>
 );
 
-// 🔬 ADVANCED AGRICULTURAL INSIGHTS - AI-powered farming intelligence
+// [Microscope] ADVANCED AGRICULTURAL INSIGHTS - AI-powered farming intelligence
 export const AdvancedInsightsWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-emerald-50 to-teal-50 border-emerald-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -265,7 +265,7 @@ export const AdvancedInsightsWidget: React.FC = () => (
   </Card>
 );
 
-// 💼 BUSINESS OPPORTUNITIES - Grants, contracts, certifications
+// [Briefcase] BUSINESS OPPORTUNITIES - Grants, contracts, certifications
 export const BusinessOpportunitiesWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
@@ -377,7 +377,7 @@ export const NewsEventsWidget: React.FC = () => (
   </div>
 );
 
-// 🚛 SUPPLY CHAIN INTEGRATION - Connect with buyers and logistics
+// [Truck] SUPPLY CHAIN INTEGRATION - Connect with buyers and logistics
 export const SupplyChainWidget: React.FC = () => (
   <Card className="bg-gradient-to-br from-green-50 to-teal-50 border-green-200 shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardHeader className="pb-3">
