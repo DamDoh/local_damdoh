@@ -440,12 +440,12 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
                     '--tw-ring-color': 'var(--color-primary)'
                   } as React.CSSProperties}
                 >
-                  <option value="smart"><Bot className="inline h-4 w-4 mr-1" />AI Recommended</option>
-                  <option value="all"><Globe className="inline h-4 w-4 mr-1" />All Posts</option>
-                  <option value="local"><MapPin className="inline h-4 w-4 mr-1" />Local ({config.profile.location})</option>
-                  <option value="experts"><Microscope className="inline h-4 w-4 mr-1" />Expert Insights</option>
-                  <option value="market"><DollarSign className="inline h-4 w-4 mr-1" />Market Updates</option>
-                  <option value="trending"><Flame className="inline h-4 w-4 mr-1" />Trending Now</option>
+                  <option value="smart">🤖 AI Recommended</option>
+                  <option value="all">🌍 All Posts</option>
+                  <option value="local">📍 Local ({config.profile.location})</option>
+                  <option value="experts">🔬 Expert Insights</option>
+                  <option value="market">💰 Market Updates</option>
+                  <option value="trending">🔥 Trending Now</option>
                 </select>
               </div>
 
