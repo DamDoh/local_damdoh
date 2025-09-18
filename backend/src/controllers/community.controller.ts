@@ -100,7 +100,7 @@ export class CommunityController {
 
       res.json(result);
     } catch (error) {
-      logger.error('Error fetching feed:', error);
+      logger.warn('Feed API failed (likely due to MongoDB not running):', error instanceof Error ? error.message : String(error));
       res.status(500).json({ error: 'Failed to fetch feed' });
     }
   }

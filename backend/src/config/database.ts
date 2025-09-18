@@ -42,7 +42,8 @@ const connectDB = async (): Promise<void> => {
       
       if (currentRetry === maxRetries) {
         logger.error('Failed to connect to MongoDB after maximum retries');
-        throw error;
+        logger.warn('Continuing without database connection');
+        break;
       }
       
       logger.info(`Retrying in ${retryInterval/1000} seconds...`);

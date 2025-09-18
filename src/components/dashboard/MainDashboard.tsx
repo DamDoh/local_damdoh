@@ -21,6 +21,7 @@ import { stakeholderConfigs } from '@/lib/stakeholder-configs';
 import { StartPost } from './StartPost';
 import { OfflineIndicator } from '@/components/ui/OfflineIndicator';
 import { apiCall } from '@/lib/api-utils';
+import { FeedService } from '@/services/dashboard/FeedService';
 
 
 const { useState, useMemo, useCallback, useRef } = React;
@@ -70,8 +71,9 @@ function MainContent() {
     if (user) {
       setIsLoadingFeed(true);
       try {
-        // Fetch feed items using our new API
-        const posts = await apiCall('/community/feed');
+        // Fetch feed items using FeedService with fallback to mock data
+        const feedService = FeedService.getInstance();
+        const posts = await feedService.fetchFeed({ type: 'all' });
         setFeedItems(posts as FeedItem[]);
       } catch (error) {
         console.error("Error fetching feed:", error);

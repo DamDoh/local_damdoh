@@ -90,17 +90,30 @@ export const useVoice = (): UseVoiceReturn => {
     return unsubscribe;
   }, []);
 
-  // Update status
+  // Update status - only when component mounts
   useEffect(() => {
     const updateStatus = () => {
-      setIsListening(voiceService.isListening);
-      setIsSpeaking(voiceService.isSpeaking);
+      const newIsListening = voiceService.isListening;
+      const newIsSpeaking = voiceService.isSpeaking;
+
+      // Only update state if values have changed
+      if (newIsListening !== isListeningRef.current) {
+        isListeningRef.current = newIsListening;
+        setIsListening(newIsListening);
+      }
+      if (newIsSpeaking !== isSpeakingRef.current) {
+        isSpeakingRef.current = newIsSpeaking;
+        setIsSpeaking(newIsSpeaking);
+      }
     };
 
-    // Check status periodically
-    const interval = setInterval(updateStatus, 100);
+    // Initial status update
+    updateStatus();
+
+    // Check status periodically (less frequently)
+    const interval = setInterval(updateStatus, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, []); // Empty dependency array
 
   // Actions
   const startListening = useCallback(async () => {

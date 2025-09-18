@@ -41,6 +41,8 @@ export interface UserProgress {
   leaderboardPosition?: number;
 }
 
+export type UserGamificationProfile = UserProgress;
+
 export interface GamificationEvent {
   type: 'achievement_unlocked' | 'level_up' | 'streak_milestone' | 'daily_goal' | 'social_engagement';
   userId: string;
@@ -207,6 +209,11 @@ export class GamificationService {
     return this.userProgress.get(userId)!;
   }
 
+  // Get user gamification profile (alias for getUserProgress)
+  getUserProfile(userId: string): UserGamificationProfile {
+    return this.getUserProgress(userId);
+  }
+
   // Track user action and update progress
   async trackAction(userId: string, actionType: string, stakeholderType: string, metadata?: any): Promise<void> {
     const progress = this.getUserProgress(userId);
@@ -368,5 +375,23 @@ export class GamificationService {
       animation: rarityConfig[achievement.rarity].animation,
       duration: rarityConfig[achievement.rarity].duration
     };
+  }
+
+  // Get color for rarity
+  getRarityColor(rarity: string): string {
+    switch (rarity) {
+      case 'common': return 'bg-gray-100 text-gray-800 border-gray-200';
+      case 'uncommon': return 'bg-green-100 text-green-800 border-green-200';
+      case 'rare': return 'bg-blue-100 text-blue-800 border-blue-200';
+      case 'epic': return 'bg-purple-100 text-purple-800 border-purple-200';
+      case 'legendary': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+      default: return 'bg-gray-100 text-gray-800 border-gray-200';
+    }
+  }
+
+  // Get points required for next level
+  getPointsForNextLevel(level: number): number {
+    // Simple leveling: level 1 = 0-99, level 2 = 100-299, level 3 = 300-599, etc.
+    return level * 100;
   }
 }

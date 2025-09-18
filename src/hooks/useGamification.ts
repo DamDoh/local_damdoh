@@ -41,14 +41,21 @@ export const useGamification = (): UseGamificationReturn => {
   useEffect(() => {
     if (user?.id) {
       const progress = gamificationService.getUserProgress(user.id);
-      setUserProgress(progress);
+
+      // Only update if progress has changed
+      setUserProgress(prev => {
+        if (!prev || prev.totalPoints !== progress.totalPoints || prev.level !== progress.level) {
+          return progress;
+        }
+        return prev;
+      });
 
       // Get achievements for user's stakeholder type (assuming it's stored in user profile)
       // For now, default to Farmer - this should be dynamic based on user profile
       const userAchievements = gamificationService.getAchievements('Farmer');
       setAchievements(userAchievements);
     }
-  }, [user]);
+  }, [user?.id]); // Use user?.id instead of user to prevent unnecessary re-runs
 
   // Listen for gamification events
   useEffect(() => {

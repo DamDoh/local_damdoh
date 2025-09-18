@@ -56,12 +56,13 @@ export async function apiCall<T>(
   try {
     const response = await fetch(url, config);
 
+    const responseData = await response.json();
+
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+      throw new Error(responseData.error || `HTTP error! status: ${response.status}`);
     }
 
-    return await response.json();
+    return responseData;
   } catch (error) {
     console.error(`API call to ${url} failed:`, error);
     throw error;

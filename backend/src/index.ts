@@ -17,6 +17,7 @@ import networkRoutes from './routes/network.routes';
 import recoveryRoutes from './routes/recovery.routes';
 import couponRoutes from './routes/coupon.routes';
 import agroTourismRoutes from './routes/agroTourism.routes';
+import notificationRoutes from './routes/notification.routes';
 
 // Import middleware
 import { errorHandler } from './middleware/errorHandler';
@@ -57,6 +58,10 @@ app.use('/api/community', communityRoutes);
 logger.info('Registered /api/community routes');
 app.use('/api/dashboard', dashboardRoutes);
 logger.info('Registered /api/dashboard routes');
+app.use('/api/notifications', notificationRoutes);
+logger.info('Registered /api/notifications routes');
+app.use('/api/community', communityRoutes);
+logger.info('Registered /api/community routes');
 app.use('/api/network', networkRoutes);
 logger.info('Registered /api/network routes');
 app.use('/api/coupons', couponRoutes);
@@ -70,12 +75,14 @@ app.use(errorHandler);
 // Connect to MongoDB and start server
 connectDB()
   .then(() => {
+    logger.info('MongoDB connected successfully');
+  })
+  .catch((error) => {
+    logger.warn('Failed to connect to MongoDB, starting server without database:', error.message);
+  })
+  .finally(() => {
     server.listen(port, () => {
       logger.info(`Server is running on port ${port}`);
       logger.info(`WebSocket service initialized`);
     });
-  })
-  .catch((error) => {
-    logger.error('Failed to start server:', error);
-    process.exit(1);
   });

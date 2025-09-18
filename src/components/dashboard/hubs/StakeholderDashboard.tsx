@@ -184,7 +184,7 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
   useEffect(() => {
     loadInitialData();
     applyStakeholderTheme(config.profile.role);
-  }, [user, config.profile.role, applyStakeholderTheme]);
+  }, [user?.id, config.profile.role]); // Remove applyStakeholderTheme from deps as it's likely stable
 
   const loadInitialData = async () => {
     if (!user) return;
