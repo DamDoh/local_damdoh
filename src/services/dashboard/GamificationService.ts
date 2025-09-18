@@ -1,120 +1,62 @@
 /**
- * Gamification Service - Advanced engagement system with dynamic challenges and social recognition
- * Manages achievements, challenges, scoring, and leaderboards to increase user engagement
- * Single Responsibility: Gamification logic and user engagement tracking
- * Dependencies: Achievement system, user activity tracking, social features
+ * Gamification Service - Manages achievements, progress tracking, and rewards
+ * Provides gamified experiences across the DamDoh platform
  */
-
-import { apiCall } from '@/lib/api-utils';
 
 export interface Achievement {
   id: string;
   title: string;
   description: string;
   icon: string;
-  category: 'farming' | 'business' | 'community' | 'innovation' | 'sustainability';
-  rarity: 'common' | 'rare' | 'epic' | 'legendary';
+  category: 'engagement' | 'productivity' | 'community' | 'learning' | 'sustainability';
+  stakeholderType: string;
+  rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
   points: number;
-  requirements: AchievementRequirement[];
-  rewards: AchievementReward[];
+  requirements: {
+    type: 'action' | 'milestone' | 'streak' | 'social';
+    target: number;
+    current: number;
+  };
+  rewards: {
+    badge?: string;
+    title?: string;
+    feature?: string;
+  };
   unlockedAt?: Date;
-  progress: number;
-  maxProgress: number;
+  progress: number; // 0-100
 }
 
-export interface AchievementRequirement {
-  type: 'action' | 'metric' | 'streak' | 'milestone';
-  target: string;
-  value: number;
-  currentValue?: number;
-}
-
-export interface AchievementReward {
-  type: 'badge' | 'points' | 'title' | 'feature' | 'recognition';
-  value: string | number;
-  description: string;
-}
-
-export interface Challenge {
-  id: string;
-  title: string;
-  description: string;
-  category: 'daily' | 'weekly' | 'monthly' | 'seasonal' | 'special';
-  type: 'action' | 'metric' | 'social' | 'learning';
-  difficulty: 'easy' | 'medium' | 'hard' | 'expert';
-  duration: number; // in days
-  startDate: Date;
-  endDate: Date;
-  requirements: ChallengeRequirement[];
-  rewards: ChallengeReward[];
-  participants: number;
-  isActive: boolean;
-  progress?: number;
-  completedAt?: Date;
-}
-
-export interface ChallengeRequirement {
-  type: string;
-  target: number;
-  currentValue?: number;
-  description: string;
-}
-
-export interface ChallengeReward {
-  type: 'points' | 'badge' | 'title' | 'feature' | 'recognition' | 'discount';
-  value: string | number;
-  description: string;
-}
-
-export interface UserGamificationProfile {
+export interface UserProgress {
   userId: string;
   level: number;
   totalPoints: number;
   currentStreak: number;
   longestStreak: number;
   achievements: Achievement[];
-  activeChallenges: Challenge[];
-  completedChallenges: Challenge[];
-  leaderboardRank?: number;
-  weeklyPoints: number;
-  monthlyPoints: number;
-  titles: UserTitle[];
-  stats: GamificationStats;
+  weeklyProgress: {
+    week: string;
+    points: number;
+    actions: number;
+  }[];
+  leaderboardPosition?: number;
 }
 
-export interface UserTitle {
-  id: string;
-  name: string;
-  description: string;
-  earnedAt: Date;
-  isActive: boolean;
-}
-
-export interface GamificationStats {
-  postsCreated: number;
-  connectionsMade: number;
-  cropsManaged: number;
-  dealsCompleted: number;
-  knowledgeShared: number;
-  sustainablePractices: number;
-  communityHelp: number;
-  innovationsImplemented: number;
-}
-
-export interface LeaderboardEntry {
+export interface GamificationEvent {
+  type: 'achievement_unlocked' | 'level_up' | 'streak_milestone' | 'daily_goal' | 'social_engagement';
   userId: string;
-  displayName: string;
-  avatar?: string;
-  points: number;
-  level: number;
-  rank: number;
-  change: number; // position change from last period
+  data: any;
+  timestamp: Date;
 }
 
 export class GamificationService {
   private static instance: GamificationService;
-  private readonly CACHE_KEY = 'gamification-data';
-  private readonly CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+  private achievements: Map<string, Achievement[]> = new Map();
+  private userProgress: Map<string, UserProgress> = new Map();
+  private eventListeners: ((event: GamificationEvent) => void)[] = [];
+
+  private constructor() {
+    this.initializeAchievements();
+  }
 
   static getInstance(): GamificationService {
     if (!GamificationService.instance) {
@@ -123,285 +65,308 @@ export class GamificationService {
     return GamificationService.instance;
   }
 
-  /**
-   * Get user's gamification profile
-   */
-  async getUserProfile(userId: string): Promise<UserGamificationProfile> {
-    try {
-      const result = await apiCall(`/api/gamification/profile/${userId}`) as { profile: UserGamificationProfile };
-      return result.profile;
-    } catch (error) {
-      console.warn('API unavailable for gamification profile, using defaults');
-      return this.getDefaultProfile(userId);
-    }
+  private initializeAchievements(): void {
+    // Farmer Achievements
+    this.achievements.set('Farmer', [
+      {
+        id: 'first_crop_logged',
+        title: 'First Harvest',
+        description: 'Log your first crop in the system',
+        icon: '🌱',
+        category: 'productivity',
+        stakeholderType: 'Farmer',
+        rarity: 'common',
+        points: 10,
+        requirements: { type: 'action', target: 1, current: 0 },
+        rewards: { badge: 'Seedling' },
+        progress: 0
+      },
+      {
+        id: 'yield_master',
+        title: 'Yield Master',
+        description: 'Achieve above-average yields for 5 consecutive seasons',
+        icon: '🏆',
+        category: 'productivity',
+        stakeholderType: 'Farmer',
+        rarity: 'epic',
+        points: 500,
+        requirements: { type: 'streak', target: 5, current: 0 },
+        rewards: { title: 'Yield Champion', feature: 'Advanced Analytics' },
+        progress: 0
+      },
+      {
+        id: 'community_helper',
+        title: 'Community Helper',
+        description: 'Help 10 fellow farmers with advice or resources',
+        icon: '🤝',
+        category: 'community',
+        stakeholderType: 'Farmer',
+        rarity: 'rare',
+        points: 200,
+        requirements: { type: 'social', target: 10, current: 0 },
+        rewards: { badge: 'Community Champion' },
+        progress: 0
+      },
+      {
+        id: 'sustainability_pioneer',
+        title: 'Sustainability Pioneer',
+        description: 'Implement 3 sustainable farming practices',
+        icon: '🌍',
+        category: 'sustainability',
+        stakeholderType: 'Farmer',
+        rarity: 'uncommon',
+        points: 100,
+        requirements: { type: 'milestone', target: 3, current: 0 },
+        rewards: { badge: 'Green Farmer' },
+        progress: 0
+      }
+    ]);
+
+    // Buyer Achievements
+    this.achievements.set('Buyer', [
+      {
+        id: 'first_purchase',
+        title: 'First Deal',
+        description: 'Complete your first purchase on the platform',
+        icon: '💰',
+        category: 'productivity',
+        stakeholderType: 'Buyer',
+        rarity: 'common',
+        points: 15,
+        requirements: { type: 'action', target: 1, current: 0 },
+        rewards: { badge: 'Deal Maker' },
+        progress: 0
+      },
+      {
+        id: 'bulk_buyer',
+        title: 'Bulk Buyer',
+        description: 'Purchase over 100 tons of produce in a month',
+        icon: '📦',
+        category: 'productivity',
+        stakeholderType: 'Buyer',
+        rarity: 'rare',
+        points: 300,
+        requirements: { type: 'milestone', target: 100, current: 0 },
+        rewards: { title: 'Volume Champion', feature: 'Priority Support' },
+        progress: 0
+      }
+    ]);
+
+    // AgriTech Innovator Achievements
+    this.achievements.set('AgriTech Innovator', [
+      {
+        id: 'first_solution',
+        title: 'Innovation Starter',
+        description: 'Deploy your first agricultural solution',
+        icon: '🚀',
+        category: 'productivity',
+        stakeholderType: 'AgriTech Innovator',
+        rarity: 'common',
+        points: 20,
+        requirements: { type: 'action', target: 1, current: 0 },
+        rewards: { badge: 'Innovator' },
+        progress: 0
+      },
+      {
+        id: 'solution_adopted',
+        title: 'Widely Adopted',
+        description: 'Have your solution adopted by 50+ farmers',
+        icon: '🌟',
+        category: 'community',
+        stakeholderType: 'AgriTech Innovator',
+        rarity: 'epic',
+        points: 1000,
+        requirements: { type: 'social', target: 50, current: 0 },
+        rewards: { title: 'Impact Maker', feature: 'Featured Showcase' },
+        progress: 0
+      }
+    ]);
+
+    // Add achievements for other stakeholder types...
+    // (Similar structure for Financial Institution, Agronomist, Cooperative)
   }
 
-  /**
-   * Get available achievements
-   */
-  async getAchievements(userId?: string): Promise<Achievement[]> {
-    try {
-      const url = userId ? `/api/gamification/achievements?userId=${userId}` : '/api/gamification/achievements';
-      const result = await apiCall(url) as { achievements: Achievement[] };
-      return result.achievements;
-    } catch (error) {
-      console.warn('API unavailable for achievements, using defaults');
-      return this.getDefaultAchievements();
-    }
+  // Get achievements for a stakeholder type
+  getAchievements(stakeholderType: string): Achievement[] {
+    return this.achievements.get(stakeholderType) || [];
   }
 
-  /**
-   * Get active challenges
-   */
-  async getActiveChallenges(userId?: string): Promise<Challenge[]> {
-    try {
-      const url = userId ? `/api/gamification/challenges/active?userId=${userId}` : '/api/gamification/challenges/active';
-      const result = await apiCall(url) as { challenges: Challenge[] };
-      return result.challenges;
-    } catch (error) {
-      console.warn('API unavailable for challenges, using defaults');
-      return this.getDefaultChallenges();
-    }
-  }
-
-  /**
-   * Get leaderboard
-   */
-  async getLeaderboard(period: 'daily' | 'weekly' | 'monthly' | 'all-time' = 'weekly', limit: number = 50): Promise<LeaderboardEntry[]> {
-    try {
-      const result = await apiCall(`/api/gamification/leaderboard?period=${period}&limit=${limit}`) as { leaderboard: LeaderboardEntry[] };
-      return result.leaderboard;
-    } catch (error) {
-      console.warn('API unavailable for leaderboard, using mock data');
-      return this.getMockLeaderboard(limit);
-    }
-  }
-
-  /**
-   * Record user action for gamification tracking
-   */
-  async recordAction(userId: string, action: string, metadata?: Record<string, any>): Promise<void> {
-    try {
-      await apiCall('/api/gamification/actions', {
-        method: 'POST',
-        body: JSON.stringify({ userId, action, metadata, timestamp: new Date() })
+  // Get user progress
+  getUserProgress(userId: string): UserProgress {
+    if (!this.userProgress.has(userId)) {
+      this.userProgress.set(userId, {
+        userId,
+        level: 1,
+        totalPoints: 0,
+        currentStreak: 0,
+        longestStreak: 0,
+        achievements: [],
+        weeklyProgress: []
       });
-    } catch (error) {
-      console.warn('Failed to record action:', error);
-      // Store locally for later sync
-      this.storeActionLocally(userId, action, metadata);
     }
+    return this.userProgress.get(userId)!;
   }
 
-  /**
-   * Check and unlock achievements
-   */
-  async checkAchievements(userId: string): Promise<Achievement[]> {
-    try {
-      const result = await apiCall(`/api/gamification/achievements/check/${userId}`, {
-        method: 'POST'
-      }) as { unlockedAchievements?: Achievement[] };
-      return result.unlockedAchievements || [];
-    } catch (error) {
-      console.warn('Failed to check achievements:', error);
-      return [];
-    }
-  }
+  // Track user action and update progress
+  async trackAction(userId: string, actionType: string, stakeholderType: string, metadata?: any): Promise<void> {
+    const progress = this.getUserProgress(userId);
+    const achievements = this.getAchievements(stakeholderType);
 
-  /**
-   * Join a challenge
-   */
-  async joinChallenge(userId: string, challengeId: string): Promise<boolean> {
-    try {
-      await apiCall('/api/gamification/challenges/join', {
-        method: 'POST',
-        body: JSON.stringify({ userId, challengeId })
+    // Update achievement progress based on action type
+    achievements.forEach(achievement => {
+      if (this.shouldUpdateAchievement(achievement, actionType, metadata)) {
+        achievement.requirements.current += 1;
+        achievement.progress = Math.min(
+          (achievement.requirements.current / achievement.requirements.target) * 100,
+          100
+        );
+
+        // Check if achievement is unlocked
+        if (achievement.progress >= 100 && !achievement.unlockedAt) {
+          achievement.unlockedAt = new Date();
+          progress.achievements.push(achievement);
+          progress.totalPoints += achievement.points;
+
+          // Emit achievement unlocked event
+          this.emitEvent({
+            type: 'achievement_unlocked',
+            userId,
+            data: { achievement },
+            timestamp: new Date()
+          });
+        }
+      }
+    });
+
+    // Update level based on total points
+    const newLevel = Math.floor(progress.totalPoints / 100) + 1;
+    if (newLevel > progress.level) {
+      progress.level = newLevel;
+      this.emitEvent({
+        type: 'level_up',
+        userId,
+        data: { newLevel, points: progress.totalPoints },
+        timestamp: new Date()
       });
-      return true;
-    } catch (error) {
-      console.warn('Failed to join challenge:', error);
-      return false;
+    }
+
+    // Update streaks and weekly progress
+    this.updateStreaks(progress);
+    this.updateWeeklyProgress(progress);
+  }
+
+  private shouldUpdateAchievement(achievement: Achievement, actionType: string, metadata?: any): boolean {
+    // Logic to determine if this action should update this achievement
+    switch (achievement.id) {
+      case 'first_crop_logged':
+        return actionType === 'crop_logged';
+      case 'yield_master':
+        return actionType === 'high_yield_season';
+      case 'community_helper':
+        return actionType === 'helped_farmer';
+      case 'sustainability_pioneer':
+        return actionType === 'sustainable_practice';
+      case 'first_purchase':
+        return actionType === 'purchase_completed';
+      case 'bulk_buyer':
+        return actionType === 'bulk_purchase' && metadata?.quantity >= 100;
+      case 'first_solution':
+        return actionType === 'solution_deployed';
+      case 'solution_adopted':
+        return actionType === 'farmer_adopted_solution';
+      default:
+        return false;
     }
   }
 
-  /**
-   * Calculate user level from points
-   */
-  calculateLevel(points: number): number {
-    // Level calculation: level = floor(sqrt(points / 100)) + 1
-    return Math.floor(Math.sqrt(points / 100)) + 1;
-  }
+  private updateStreaks(progress: UserProgress): void {
+    // Simple streak logic - reset if no activity for 24 hours
+    const now = new Date();
+    const lastActivity = progress.weeklyProgress[progress.weeklyProgress.length - 1]?.week;
 
-  /**
-   * Calculate points needed for next level
-   */
-  getPointsForNextLevel(currentLevel: number): number {
-    return Math.pow(currentLevel, 2) * 100;
-  }
+    if (lastActivity) {
+      const daysSinceLastActivity = Math.floor(
+        (now.getTime() - new Date(lastActivity).getTime()) / (1000 * 60 * 60 * 24)
+      );
 
-  /**
-   * Get achievement rarity color
-   */
-  getRarityColor(rarity: string): string {
-    switch (rarity) {
-      case 'common': return 'text-gray-600 bg-gray-100';
-      case 'rare': return 'text-blue-600 bg-blue-100';
-      case 'epic': return 'text-purple-600 bg-purple-100';
-      case 'legendary': return 'text-yellow-600 bg-yellow-100';
-      default: return 'text-gray-600 bg-gray-100';
+      if (daysSinceLastActivity <= 1) {
+        progress.currentStreak += 1;
+        progress.longestStreak = Math.max(progress.longestStreak, progress.currentStreak);
+      } else {
+        progress.currentStreak = 1;
+      }
+    } else {
+      progress.currentStreak = 1;
+      progress.longestStreak = Math.max(progress.longestStreak, 1);
     }
   }
 
-  /**
-   * Get difficulty color
-   */
-  getDifficultyColor(difficulty: string): string {
-    switch (difficulty) {
-      case 'easy': return 'text-green-600 bg-green-100';
-      case 'medium': return 'text-yellow-600 bg-yellow-100';
-      case 'hard': return 'text-orange-600 bg-orange-100';
-      case 'expert': return 'text-red-600 bg-red-100';
-      default: return 'text-gray-600 bg-gray-100';
+  private updateWeeklyProgress(progress: UserProgress): void {
+    const now = new Date();
+    const weekKey = `${now.getFullYear()}-W${Math.ceil(now.getDate() / 7)}`;
+
+    const existingWeek = progress.weeklyProgress.find(w => w.week === weekKey);
+    if (existingWeek) {
+      existingWeek.points += 10; // Assume 10 points per action
+      existingWeek.actions += 1;
+    } else {
+      progress.weeklyProgress.push({
+        week: weekKey,
+        points: 10,
+        actions: 1
+      });
+    }
+
+    // Keep only last 12 weeks
+    if (progress.weeklyProgress.length > 12) {
+      progress.weeklyProgress.shift();
     }
   }
 
-  // Default data methods
-  private getDefaultProfile(userId: string): UserGamificationProfile {
-    return {
-      userId,
-      level: 1,
-      totalPoints: 0,
-      currentStreak: 0,
-      longestStreak: 0,
-      achievements: [],
-      activeChallenges: [],
-      completedChallenges: [],
-      weeklyPoints: 0,
-      monthlyPoints: 0,
-      titles: [],
-      stats: {
-        postsCreated: 0,
-        connectionsMade: 0,
-        cropsManaged: 0,
-        dealsCompleted: 0,
-        knowledgeShared: 0,
-        sustainablePractices: 0,
-        communityHelp: 0,
-        innovationsImplemented: 0
+  // Event system for real-time updates
+  onGamificationEvent(callback: (event: GamificationEvent) => void): () => void {
+    this.eventListeners.push(callback);
+    return () => {
+      const index = this.eventListeners.indexOf(callback);
+      if (index > -1) {
+        this.eventListeners.splice(index, 1);
       }
     };
   }
 
-  private getDefaultAchievements(): Achievement[] {
-    return [
-      {
-        id: 'first-post',
-        title: 'First Post',
-        description: 'Create your first community post',
-        icon: '📝',
-        category: 'community',
-        rarity: 'common',
-        points: 10,
-        requirements: [{ type: 'action', target: 'post_created', value: 1 }],
-        rewards: [{ type: 'badge', value: 'Community Member', description: 'Community Member badge' }],
-        progress: 0,
-        maxProgress: 1
-      },
-      {
-        id: 'farm-manager',
-        title: 'Farm Manager',
-        description: 'Manage 5 different crops',
-        icon: '🌾',
-        category: 'farming',
-        rarity: 'rare',
-        points: 50,
-        requirements: [{ type: 'metric', target: 'crops_managed', value: 5 }],
-        rewards: [{ type: 'badge', value: 'Farm Manager', description: 'Farm Manager badge' }],
-        progress: 0,
-        maxProgress: 5
-      },
-      {
-        id: 'deal-maker',
-        title: 'Deal Maker',
-        description: 'Complete 10 successful deals',
-        icon: '🤝',
-        category: 'business',
-        rarity: 'epic',
-        points: 100,
-        requirements: [{ type: 'metric', target: 'deals_completed', value: 10 }],
-        rewards: [{ type: 'title', value: 'Deal Maker', description: 'Deal Maker title' }],
-        progress: 0,
-        maxProgress: 10
-      }
-    ];
+  private emitEvent(event: GamificationEvent): void {
+    this.eventListeners.forEach(callback => callback(event));
   }
 
-  private getDefaultChallenges(): Challenge[] {
-    const now = new Date();
-    const weekFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-
-    return [
-      {
-        id: 'weekly-posts',
-        title: 'Community Contributor',
-        description: 'Create 5 posts this week to share your farming knowledge',
-        category: 'weekly',
-        type: 'action',
-        difficulty: 'easy',
-        duration: 7,
-        startDate: now,
-        endDate: weekFromNow,
-        requirements: [
-          { type: 'posts_created', target: 5, currentValue: 0, description: 'Create 5 community posts' }
-        ],
-        rewards: [
-          { type: 'points', value: 25, description: '25 bonus points' },
-          { type: 'badge', value: 'Community Contributor', description: 'Special contributor badge' }
-        ],
-        participants: 0,
-        isActive: true
-      },
-      {
-        id: 'sustainability-drive',
-        title: 'Sustainability Champion',
-        description: 'Implement 3 sustainable farming practices this month',
-        category: 'monthly',
-        type: 'action',
-        difficulty: 'medium',
-        duration: 30,
-        startDate: now,
-        endDate: new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000),
-        requirements: [
-          { type: 'sustainable_practices', target: 3, currentValue: 0, description: 'Implement sustainable practices' }
-        ],
-        rewards: [
-          { type: 'points', value: 75, description: '75 bonus points' },
-          { type: 'title', value: 'Sustainability Champion', description: 'Earn the champion title' }
-        ],
-        participants: 0,
-        isActive: true
-      }
-    ];
+  // Get leaderboard (simplified - in real app, this would be from backend)
+  async getLeaderboard(stakeholderType: string, limit: number = 10): Promise<UserProgress[]> {
+    // Mock leaderboard data
+    return Array.from(this.userProgress.values())
+      .filter(p => p.achievements.some(a => a.stakeholderType === stakeholderType))
+      .sort((a, b) => b.totalPoints - a.totalPoints)
+      .slice(0, limit)
+      .map((p, index) => ({ ...p, leaderboardPosition: index + 1 }));
   }
 
-  private getMockLeaderboard(limit: number): LeaderboardEntry[] {
-    return Array.from({ length: Math.min(limit, 10) }, (_, i) => ({
-      userId: `user-${i + 1}`,
-      displayName: `Farmer ${i + 1}`,
-      points: Math.max(100 - (i * 10), 10),
-      level: Math.max(5 - i, 1),
-      rank: i + 1,
-      change: Math.floor(Math.random() * 5) - 2 // -2 to +2
-    }));
-  }
+  // Get celebration data for UI
+  getCelebrationData(achievement: Achievement): {
+    message: string;
+    animation: string;
+    sound?: string;
+    duration: number;
+  } {
+    const rarityConfig = {
+      common: { message: 'Achievement Unlocked!', animation: 'confetti', duration: 3000 },
+      uncommon: { message: 'Great Achievement!', animation: 'sparkles', duration: 4000 },
+      rare: { message: 'Rare Achievement!', animation: 'fireworks', duration: 5000 },
+      epic: { message: 'Epic Achievement!', animation: 'trophy', duration: 6000 },
+      legendary: { message: 'Legendary Achievement!', animation: 'champions', duration: 8000 }
+    };
 
-  private storeActionLocally(userId: string, action: string, metadata?: Record<string, any>): void {
-    try {
-      const actions = JSON.parse(localStorage.getItem('gamification-actions') || '[]');
-      actions.push({ userId, action, metadata, timestamp: new Date(), synced: false });
-      localStorage.setItem('gamification-actions', JSON.stringify(actions));
-    } catch (error) {
-      console.warn('Failed to store action locally:', error);
-    }
+    return {
+      message: `${rarityConfig[achievement.rarity].message} ${achievement.title}`,
+      animation: rarityConfig[achievement.rarity].animation,
+      duration: rarityConfig[achievement.rarity].duration
+    };
   }
 }

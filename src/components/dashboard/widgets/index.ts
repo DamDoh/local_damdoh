@@ -54,3 +54,21 @@ export { MobileExperienceWidget } from './MobileExperienceWidget';
 
 // Sustainability Widgets
 export { SustainabilityWidget } from './SustainabilityWidget';
+
+// Storytelling Widgets
+export { default as StorytellingWidget } from './StorytellingWidget';
+
+// Enhanced Immersive Widgets
+export {
+  FarmCommandCenterWidget,
+  CropGrowthMonitorWidget,
+  WeatherIntelligenceWidget,
+  FarmerProgressWidget
+} from './EnhancedFarmerWidgets';
+
+export {
+  LiveMarketPulseWidget,
+  ProcurementIntelligenceWidget,
+  SupplyChainGlobeWidget,
+  ProcurementPerformanceWidget
+} from './EnhancedBuyerWidgets';

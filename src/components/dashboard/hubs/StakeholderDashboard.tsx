@@ -9,6 +9,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Bot, Globe, MapPin, Microscope, DollarSign, Flame } from 'lucide-react';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
+import { useTheme } from '@/hooks/useTheme';
 import { DashboardErrorBoundary } from '../ErrorBoundary';
 import { PerformanceMonitor } from '../PerformanceMonitor';
 import { FeedService } from '@/services/dashboard/FeedService';
@@ -34,12 +35,18 @@ import { EquipmentSupplierLayout } from '../layouts/EquipmentSupplierLayout';
 import { FieldAgentLayout } from '../layouts/FieldAgentLayout';
 import { LogisticsLayout } from '../layouts/LogisticsLayout';
 import { OperationsLayout } from '../layouts/OperationsLayout';
+import EnhancedFarmerLayout from '../layouts/EnhancedFarmerLayout';
+import EnhancedBuyerLayout from '../layouts/EnhancedBuyerLayout';
 import { useSmartRecommendations } from '@/hooks/useSmartRecommendations';
 import { useWidgetCustomization } from '@/hooks/useWidgetCustomization';
+import { useGamification } from '@/hooks/useGamification';
+import { useVoiceNavigation, useVoiceFarmManagement, useVoiceProcurement } from '@/hooks/useVoice';
 import { FeedItemCard } from '../FeedItemCard';
 import { DashboardCustomizer } from '../DashboardCustomizer';
+import CelebrationModal from '@/components/ui/CelebrationModal';
+import VoiceControl from '@/components/ui/VoiceControl';
 import { Button } from '@/components/ui/button';
-import { Settings } from 'lucide-react';
+import { Settings, Trophy, Star, Target } from 'lucide-react';
 
 export interface StakeholderConfig {
   profile: {
@@ -77,6 +84,9 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
   const notificationService = NotificationService.getInstance();
   const marketplaceService = MarketplaceService.getInstance();
 
+  // Apply dynamic theming
+  const { applyStakeholderTheme, currentSeason } = useTheme(config.profile.role);
+
   // State management
   const [activeTab, setActiveTab] = useState('home');
   const [feedFilter, setFeedFilter] = useState<'all' | 'smart' | 'local' | 'experts' | 'market' | 'trending'>('smart');
@@ -107,6 +117,56 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
   const { user } = useAuth();
   const { toast } = useToast();
   const { behaviorAnalysis } = useSmartRecommendations();
+  const {
+    userProgress,
+    unlockedAchievements,
+    trackAction,
+    celebrationData,
+    dismissCelebration
+  } = useGamification();
+
+  // Voice control
+  const handleVoiceNavigation = (destination: string) => {
+    setActiveTab(destination);
+    trackAction('voice_navigation', { destination });
+  };
+
+  const handleVoiceFarmAction = (action: string, params?: any) => {
+    // Handle farm-specific voice commands
+    switch (action) {
+      case 'check_crop_health':
+        // Could trigger a crop health check or navigate to relevant widget
+        trackAction('voice_farm_action', { action, params });
+        break;
+      case 'irrigate_field':
+        // Could trigger irrigation controls
+        trackAction('voice_farm_action', { action, params });
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleVoiceProcurementAction = (action: string, params?: any) => {
+    // Handle procurement-specific voice commands
+    switch (action) {
+      case 'search_suppliers':
+        // Could trigger supplier search
+        trackAction('voice_procurement_action', { action, params });
+        break;
+      case 'show_procurement':
+        // Could show procurement opportunities
+        trackAction('voice_procurement_action', { action, params });
+        break;
+      default:
+        break;
+    }
+  };
+
+  // Initialize voice hooks
+  useVoiceNavigation(handleVoiceNavigation);
+  useVoiceFarmManagement(handleVoiceFarmAction);
+  useVoiceProcurement(handleVoiceProcurementAction);
 
   // Widget customization
   const {
@@ -120,10 +180,11 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
     importLayout
   } = useWidgetCustomization(config.profile.role);
 
-  // Load initial data
+  // Load initial data and apply theme
   useEffect(() => {
     loadInitialData();
-  }, [user]);
+    applyStakeholderTheme(config.profile.role);
+  }, [user, config.profile.role, applyStakeholderTheme]);
 
   const loadInitialData = async () => {
     if (!user) return;
@@ -220,7 +281,7 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
     switch (config.profile.role) {
       case 'Farmer':
         return (
-          <FarmerLayout
+          <EnhancedFarmerLayout
             config={config}
             feedContent={feedContent}
             customWidgets={customWidgets}
@@ -235,7 +296,15 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
       case 'Field Agent':
         return <FieldAgentLayout config={config} feedContent={feedContent} />;
       case 'Buyer':
-        return <BuyerLayout config={config} feedContent={feedContent} />;
+        return (
+          <EnhancedBuyerLayout
+            config={config}
+            feedContent={feedContent}
+            customWidgets={customWidgets}
+            isEditMode={isEditMode}
+            onToggleWidgetVisibility={toggleWidgetVisibility}
+          />
+        );
       case 'Agro Export':
         return <AgroExportLayout config={config} feedContent={feedContent} />;
       case 'Equipment Supplier':
@@ -286,40 +355,90 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
   return (
     <DashboardErrorBoundary>
       <div
-        className="min-h-screen bg-gray-50"
+        className="min-h-screen"
         role="main"
         aria-label={`${config.profile.role} Dashboard`}
-        style={{ backgroundColor: config.headerColor + '05' }}
+        style={{
+          backgroundColor: 'var(--color-background)',
+          backgroundImage: `linear-gradient(135deg, var(--color-background) 0%, var(--color-surface) 100%)`
+        }}
       >
         {/* Header and Navigation would go here */}
         {/* Main content area with feed and layout */}
         <div className="pt-32 max-w-7xl mx-auto px-4 py-6">
           {/* Feed Controls */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl shadow-sm p-4 border border-blue-200 mb-6">
+          <div
+            className="rounded-xl shadow-sm p-4 mb-6 border"
+            style={{
+              background: 'var(--gradient-accent)',
+              borderColor: 'var(--color-border)',
+              boxShadow: 'var(--shadow-light)'
+            }}
+          >
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h2 className="text-xl font-bold text-gray-900 flex items-center">
-                  <Bot className="h-6 w-6 mr-2 text-blue-600" />
+                <h2 className="text-xl font-bold flex items-center" style={{ color: 'var(--color-text)' }}>
+                  <Bot className="h-6 w-6 mr-2" style={{ color: 'var(--color-primary)' }} />
                   Smart Community Feed
+                  <span className="ml-2 text-sm px-2 py-1 rounded-full text-xs font-medium"
+                        style={{
+                          backgroundColor: 'var(--color-primary)',
+                          color: 'white'
+                        }}>
+                    {currentSeason.charAt(0).toUpperCase() + currentSeason.slice(1)}
+                  </span>
                 </h2>
-                <p className="text-sm text-blue-700 mt-1">
+                <p className="text-sm mt-1" style={{ color: 'var(--color-textSecondary)' }}>
                   AI-curated content personalized for you
                 </p>
               </div>
-              <div className="text-right">
-                <div className="text-xs text-blue-600 font-medium">AI Confidence</div>
-                <div className="text-sm font-bold text-blue-800">94%</div>
+              <div className="flex items-center gap-4">
+                <div className="text-right">
+                  <div className="text-xs font-medium" style={{ color: 'var(--color-primary)' }}>AI Confidence</div>
+                  <div className="text-sm font-bold" style={{ color: 'var(--color-text)' }}>94%</div>
+                </div>
+
+                {/* Voice Control */}
+                <div className="border-l pl-4" style={{ borderColor: 'var(--color-border)' }}>
+                  <VoiceControl compact className="mb-1" />
+                </div>
+
+                {/* Gamification Status */}
+                {userProgress && (
+                  <div className="text-right border-l pl-4" style={{ borderColor: 'var(--color-border)' }}>
+                    <div className="flex items-center gap-1">
+                      <Trophy className="h-4 w-4" style={{ color: 'var(--color-primary)' }} />
+                      <span className="text-xs font-medium" style={{ color: 'var(--color-textSecondary)' }}>
+                        Level {userProgress.level}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Star className="h-3 w-3" style={{ color: 'var(--color-warning)' }} />
+                      <span className="text-xs font-bold" style={{ color: 'var(--color-text)' }}>
+                        {userProgress.totalPoints} pts
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
             {/* Feed Filter Controls */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-blue-800">Filter:</span>
+                <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Filter:</span>
                 <select
                   value={feedFilter}
-                  onChange={(e) => setFeedFilter(e.target.value as any)}
-                  className="text-sm border border-blue-200 rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  onChange={(e) => {
+                    setFeedFilter(e.target.value as any);
+                    // Track gamification action
+                    trackAction('feed_filter_changed', { filter: e.target.value });
+                  }}
+                  className="text-sm rounded-lg px-3 py-1 focus:outline-none focus:ring-2 bg-white"
+                  style={{
+                    borderColor: 'var(--color-border)',
+                    '--tw-ring-color': 'var(--color-primary)'
+                  } as React.CSSProperties}
                 >
                   <option value="smart"><Bot className="inline h-4 w-4 mr-1" />AI Recommended</option>
                   <option value="all"><Globe className="inline h-4 w-4 mr-1" />All Posts</option>
@@ -336,6 +455,10 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
                 size="sm"
                 onClick={() => setIsEditMode(true)}
                 className="flex items-center gap-2"
+                style={{
+                  borderColor: 'var(--color-border)',
+                  color: 'var(--color-text)'
+                }}
               >
                 <Settings className="h-4 w-4" />
                 Customize Dashboard
@@ -359,6 +482,16 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
           onResetToDefault={resetToDefault}
           onExportLayout={exportLayout}
           onImportLayout={importLayout}
+        />
+
+        {/* Achievement Celebration Modal */}
+        <CelebrationModal
+          isOpen={celebrationData.show}
+          achievement={celebrationData.achievement}
+          message={celebrationData.message}
+          animation={celebrationData.animation}
+          duration={celebrationData.duration}
+          onClose={dismissCelebration}
         />
       </div>
     </DashboardErrorBoundary>

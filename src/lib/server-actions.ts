@@ -6,28 +6,12 @@
 // This file is kept for server-side AI flows that benefit from the server action environment.
 
 import { getCurrentUser } from './server-auth-utils';
-import { suggestMarketPrice as suggestMarketPriceFlow } from "@/ai/flows/suggest-market-price-flow";
-import { getMarketplaceRecommendations as getMarketplaceRecommendationsFlow } from "@/ai/flows/marketplace-recommendations";
 import { suggestCropRotation } from "@/ai/flows/crop-rotation-suggester";
-import { suggestForumTopics as suggestForumTopicsFlow } from '@/ai/flows/forum-topic-suggestions';
-import { interpretSearchQuery as interpretSearchQueryFlow } from '@/ai/flows/query-interpreter-flow';
-import { askFarmingAssistant as askFarmingAssistantFlow } from '@/ai/flows/farming-assistant-flow';
+import { askFarmingAssistant as askFarmingAssistantFlow, type FarmingAssistantInput as FlowFarmingAssistantInput, type FarmingAssistantOutput as FlowFarmingAssistantOutput } from '@/ai/flows/farming-assistant-flow';
 import type { FarmingAssistantInput, FarmingAssistantOutput, CropRotationInput, CropRotationOutput, SmartSearchInterpretation } from '@/lib/types';
 import { getLocale } from 'next-intl/server';
-import { generateForumPostDraftFlow } from '@/ai/flows/generate-forum-post-draft';
-import { authenticatedApiCall, apiCall } from './api-utils';
+import { apiCall } from './api-utils';
 
-/**
- * Server Action to interpret a search query using AI.
- * @param input The raw search query.
- * @returns A promise that resolves to the structured interpretation.
- */
-export async function interpretSearchQuery(input: { rawQuery: string }): Promise<SmartSearchInterpretation> {
-    const user = await getCurrentUser();
-    // Public search is allowed, so no need to throw an error if user is null.
-    const result = await interpretSearchQueryFlow(input);
-    return result;
-}
 
 /**
  * Server Action to perform a search. It authenticates the user on the server
@@ -50,41 +34,17 @@ export async function performSearch(interpretation: Partial<SmartSearchInterpret
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...interpretation, userId: user?.uid }),
+        body: JSON.stringify({ ...interpretation, userId: user?.id }),
       });
-      return result.data as any[];
+      return (result as any).data as any[];
   } catch (error) {
       console.error("Error calling performSearch API endpoint:", error);
       throw error; // Re-throw the error to be handled by the client
   }
 }
 
-/**
- * Server Action to suggest a market price for a product using an AI flow.
- * @param input The details of the product.
- * @returns A promise that resolves to the price suggestion.
- */
-export async function suggestMarketPriceAction(input: { productName: string; description: string; category?: string; location?: string; language?: string; }) {
-    const user = await getCurrentUser();
-    if (!user) throw new Error("Unauthorized");
-    return suggestMarketPriceFlow(input);
-}
 
 
-/**
- * Server Action to get AI-powered marketplace recommendations for a user.
- * @param userId The ID of the user to get recommendations for.
- * @param count The number of recommendations to return.
- * @returns A promise that resolves to an array of recommendation objects.
- */
-export async function getMarketplaceRecommendationsAction(userId: string, count: number = 5) {
-    const user = await getCurrentUser();
-    if (!user || user.uid !== userId) throw new Error("Unauthorized");
-
-    const locale = await getLocale();
-    const result = await getMarketplaceRecommendationsFlow({ userId, count, language: locale });
-    return result.recommendations || [];
-}
 
 /**
  * Server Action to get AI-powered crop rotation suggestions.
@@ -100,44 +60,19 @@ export async function suggestCropRotationAction(input: Omit<CropRotationInput, '
 }
 
 
-/**
- * Server Action to get forum topic suggestions.
- * @param input The existing topics and desired language.
- * @returns A promise that resolves to the suggested topics.
- */
-export async function getForumTopicSuggestionsAction(input: {
-  existingTopics: { name: string; description: string }[];
-  language: string;
-}): Promise<{ suggestions: { title: string; description: string }[] }> {
-    const user = await getCurrentUser();
-    if (!user) throw new Error("Unauthorized");
-
-    const result = await suggestForumTopicsFlow(input);
-    return result || { suggestions: [] };
-}
 
 
-export async function generateForumPostDraftCallable(input: {
-  topicId: string;
-  prompt: string;
-  language: string;
-}) {
-    const user = await getCurrentUser();
-    if (!user) throw new Error("Unauthorized");
-
-    return generateForumPostDraftFlow(input);
-}
 
 // Server actions to call API endpoints for farm management
 export async function getFarmData(farmId: string) {
-    const result = await authenticatedApiCall(`/farms/${farmId}`, {
+    const result = await apiCall(`/farms/${farmId}`, {
       method: 'GET',
     });
-    return result.data;
+    return result;
 }
 
 export async function updateFarmData(farmId: string, data: any) {
-    await authenticatedApiCall(`/farms/${farmId}`, {
+    await apiCall(`/farms/${farmId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -147,14 +82,14 @@ export async function updateFarmData(farmId: string, data: any) {
 }
 
 export async function getCropData(cropId: string) {
-    const result = await authenticatedApiCall(`/crops/${cropId}`, {
+    const result = await apiCall(`/crops/${cropId}`, {
       method: 'GET',
     });
-    return result.data as any;
+    return result as any;
 }
 
 export async function updateCropData(cropId: string, data: any) {
-    await authenticatedApiCall(`/crops/${cropId}`, {
+    await apiCall(`/crops/${cropId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -164,15 +99,39 @@ export async function updateCropData(cropId: string, data: any) {
 }
 
 export async function getProfileByIdFromDB(uid: string) {
-    const result = await authenticatedApiCall(`/user/profile/${uid}`, {
+    const result = await apiCall(`/user/profile/${uid}`, {
       method: 'GET',
     });
-    return result.data as any;
+    return result as any;
 }
 
 export async function askFarmingAssistant(input: FarmingAssistantInput): Promise<FarmingAssistantOutput> {
     const user = await getCurrentUser();
     if (!user) throw new Error("Unauthorized");
     const locale = await getLocale();
-    return askFarmingAssistantFlow({ ...input, language: locale });
+
+    // Transform input to match the flow's expected format
+    const transformedInput = {
+      question: input.query,
+      photoDataUri: input.photoDataUri,
+      language: locale
+    };
+
+    const flowResult = await askFarmingAssistantFlow(transformedInput);
+
+    // Transform the flow's output to match the schema's expected format
+    const result: FarmingAssistantOutput = {
+      summary: flowResult.answer,
+      detailedPoints: [{
+        title: 'Farming Advice',
+        content: flowResult.answer
+      }],
+      suggestedQueries: [
+        'What crops grow well in my region?',
+        'How can I improve soil health?',
+        'What are the best irrigation methods?'
+      ]
+    };
+
+    return result;
 }

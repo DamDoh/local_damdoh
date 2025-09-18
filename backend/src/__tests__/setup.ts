@@ -1,52 +1,20 @@
+import mongoose from 'mongoose';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 import path from 'path';
 import dotenv from 'dotenv';
-import { setupTestDB, teardownTestDB, clearDatabase } from './utils/db';
 
 // Load test environment variables
 dotenv.config({
   path: path.resolve(__dirname, '../../.env.test')
 });
 
-// Extend timeout for slower CI environments
-jest.setTimeout(30000);
-
-// Setup test database before all tests
-beforeAll(async () => {
-  await setupTestDB();
-});
-
-// Clean up database after each test
-afterEach(async () => {
-  await clearDatabase();
-});
-
-// Cleanup and close database connection after all tests
-afterAll(async () => {
-  await teardownTestDB();
-});
-});
-
-afterAll(async () => {
-  await mongoose.connection.close();
-  await global.__MONGOD__.stop();
-});
-
-afterEach(async () => {
-  // Clear all collections after each test
-  const collections = mongoose.connection.collections;
-  for (const key in collections) {
-    const collection = collections[key];
-    await collection.deleteMany({});
-  }
-});
-
-let mongod: MongoMemoryServer;
-
 // Set test environment
 process.env.NODE_ENV = 'test';
 
-// Increase test timeout
+// Extend timeout for slower CI environments
 jest.setTimeout(30000);
+
+let mongod: MongoMemoryServer;
 
 // Connect to in-memory database before running tests
 beforeAll(async () => {

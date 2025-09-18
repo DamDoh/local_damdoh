@@ -64,6 +64,29 @@ export const useSmartRecommendations = () => {
   const [trendingTopics, setTrendingTopics] = useState<TrendingTopic[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Extract categories from topics
+  const extractCategoriesFromTopics = (topics: string[]): string[] => {
+    const categoryMap: Record<string, string[]> = {
+      farming: ['maize', 'beans', 'tomatoes', 'irrigation', 'fertilizer', 'pest', 'harvest'],
+      finance: ['loan', 'credit', 'investment', 'funding', 'profit', 'roi'],
+      technology: ['ai', 'drone', 'sensor', 'app', 'software', 'automation'],
+      market: ['price', 'buyer', 'seller', 'export', 'trade', 'commodity'],
+      community: ['cooperative', 'training', 'education', 'network', 'collaboration']
+    };
+
+    const categories: string[] = [];
+    topics.forEach(topic => {
+      const lowerTopic = topic.toLowerCase();
+      Object.entries(categoryMap).forEach(([category, keywords]) => {
+        if (keywords.some(keyword => lowerTopic.includes(keyword)) && !categories.includes(category)) {
+          categories.push(category);
+        }
+      });
+    });
+
+    return categories;
+  };
+
   // Analyze user behavior patterns
   const behaviorAnalysis = useMemo(() => {
     const { likedPosts, commentedPosts, sharedPosts, searchedTopics, followedHashtags, timeSpentOnTopics } = userBehavior;
@@ -92,29 +115,6 @@ export const useSmartRecommendations = () => {
       location: profile?.location || ''
     };
   }, [userBehavior, profile]);
-
-  // Extract categories from topics
-  const extractCategoriesFromTopics = (topics: string[]): string[] => {
-    const categoryMap: Record<string, string[]> = {
-      farming: ['maize', 'beans', 'tomatoes', 'irrigation', 'fertilizer', 'pest', 'harvest'],
-      finance: ['loan', 'credit', 'investment', 'funding', 'profit', 'roi'],
-      technology: ['ai', 'drone', 'sensor', 'app', 'software', 'automation'],
-      market: ['price', 'buyer', 'seller', 'export', 'trade', 'commodity'],
-      community: ['cooperative', 'training', 'education', 'network', 'collaboration']
-    };
-
-    const categories: string[] = [];
-    topics.forEach(topic => {
-      const lowerTopic = topic.toLowerCase();
-      Object.entries(categoryMap).forEach(([category, keywords]) => {
-        if (keywords.some(keyword => lowerTopic.includes(keyword)) && !categories.includes(category)) {
-          categories.push(category);
-        }
-      });
-    });
-
-    return categories;
-  };
 
   // Generate content recommendations
   const generateContentRecommendations = useCallback(async (): Promise<ContentRecommendation[]> => {
