@@ -16,8 +16,7 @@ import { createInventoryItemSchema, type CreateInventoryItemValues } from "@/lib
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Calendar as CalendarPicker } from '@/components/ui/calendar';
 import { format } from 'date-fns';
@@ -57,10 +56,6 @@ export default function EditInventoryItemPage() {
   
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const functions = getFunctions(firebaseApp);
-  const getItemCallable = useMemo(() => httpsCallable(functions, 'inventory-getInventoryItem'), [functions]);
-  const updateItemCallable = useMemo(() => httpsCallable(functions, 'inventory-updateInventoryItem'), [functions]);
 
   const form = useForm<CreateInventoryItemValues>({
     resolver: zodResolver(createInventoryItemSchema),
@@ -71,8 +66,7 @@ export default function EditInventoryItemPage() {
     if (!user || !itemId) return;
     setIsLoading(true);
     try {
-      const result = await getItemCallable({ itemId });
-      const data = result.data as any;
+      const data = await apiCall<any>(`/inventory/items/${itemId}`);
       form.reset({
         ...data,
         purchaseDate: data.purchaseDate ? new Date(data.purchaseDate) : undefined,
@@ -84,7 +78,7 @@ export default function EditInventoryItemPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [user, itemId, getItemCallable, form, toast, router]);
+  }, [user, itemId, form, toast, router]);
 
   useEffect(() => {
     fetchItem();
@@ -93,8 +87,11 @@ export default function EditInventoryItemPage() {
   const onSubmit = async (values: CreateInventoryItemValues) => {
     setIsSubmitting(true);
     try {
-      const payload = { ...values, itemId, purchaseDate: values.purchaseDate?.toISOString(), expiryDate: values.expiryDate?.toISOString() };
-      await updateItemCallable(payload);
+      const payload = { ...values, purchaseDate: values.purchaseDate?.toISOString(), expiryDate: values.expiryDate?.toISOString() };
+      await apiCall(`/inventory/items/${itemId}`, {
+        method: 'PUT',
+        body: JSON.stringify(payload)
+      });
       toast({ title: t('toast.successTitle'), description: t('toast.successDescription', { itemName: values.name }) });
       router.push('/farm-management/inventory');
     } catch (error: any) {

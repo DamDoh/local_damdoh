@@ -7,10 +7,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2, Droplets } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { useAuth } from '@/lib/auth-utils';
 import type { InventoryItem, Crop } from '@/lib/types';
 import { useTranslations } from 'next-intl';
@@ -32,26 +32,21 @@ export function LogUsageDialog({ item, isOpen, onClose, onUsageLogged }: LogUsag
   const { toast } = useToast();
   const { user } = useAuth();
   
-  const functions = getFunctions(firebaseApp);
-  const useInventoryItemCallable = useMemo(() => httpsCallable(functions, 'inventory-useInventoryItem'), [functions]);
-  
   useEffect(() => {
     if (isOpen && user) {
       const fetchCrops = async () => {
         setIsLoadingCrops(true);
         try {
-          const getFarms = httpsCallable(functions, 'farmManagement-getUserFarms');
-          const farmsResult = await getFarms();
-          const userFarms = (farmsResult.data as any[]) || [];
-          
+          const farmsResult = await apiCall<any[]>('/farm-management/farms');
+          const userFarms = farmsResult || [];
+
           let allCrops: Crop[] = [];
-          const getCropsForFarm = httpsCallable(functions, 'farmManagement-getFarmCrops');
 
           for (const farm of userFarms) {
-              const cropsResult = await getCropsForFarm({ farmId: farm.id });
-              allCrops = [...allCrops, ...(cropsResult.data as any[])];
+              const cropsResult = await apiCall(`/farm-management/farms/${farm.id}/crops`);
+              allCrops = [...allCrops, ...(cropsResult as any[])];
           }
-          
+
           setCrops(allCrops.filter(c => c.currentStage !== 'Post-Harvest'));
         } catch (error) {
           console.error("Error fetching crops:", error);
@@ -62,7 +57,7 @@ export function LogUsageDialog({ item, isOpen, onClose, onUsageLogged }: LogUsag
       };
       fetchCrops();
     }
-  }, [isOpen, user, functions, toast, t]);
+  }, [isOpen, user, toast, t]);
 
   const handleSubmit = async () => {
     const quantityNum = Number(quantityUsed);
@@ -77,11 +72,13 @@ export function LogUsageDialog({ item, isOpen, onClose, onUsageLogged }: LogUsag
 
     setIsSubmitting(true);
     try {
-      await useInventoryItemCallable({
-        itemId: item.id,
-        cropId: selectedCrop,
-        quantityUsed: quantityNum,
-        notes: `Used ${quantityNum} ${item.unit} of ${item.name} on crop.`
+      await apiCall(`/inventory/items/${item.id}/use`, {
+        method: 'POST',
+        body: JSON.stringify({
+          cropId: selectedCrop,
+          quantityUsed: quantityNum,
+          notes: `Used ${quantityNum} ${item.unit} of ${item.name} on crop.`
+        })
       });
       toast({ title: t('toast.successTitle'), description: t('toast.successDescription') });
       onUsageLogged();

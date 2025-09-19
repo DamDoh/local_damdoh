@@ -270,3 +270,25 @@ export const financialApplicationSchema = z.object({
   purpose: z.string().min(20, "Please describe the purpose of the funding.").max(2000),
 });
 export type FinancialApplicationValues = z.infer<typeof financialApplicationSchema>;
+
+export const createFinancialProductSchema = z.object({
+  name: z.string().min(3, "Product name must be at least 3 characters.").max(100),
+  type: z.enum(['Loan', 'Grant']),
+  description: z.string().min(20, "Please provide a detailed description.").max(1000),
+  interestRate: z.coerce.number().min(0).max(100).optional(),
+  maxAmount: z.coerce.number().min(0).optional(),
+  targetRoles: z.array(z.string()).optional(),
+});
+export type CreateFinancialProductValues = z.infer<typeof createFinancialProductSchema>;
+
+export const createInventoryItemSchema = z.object({
+  name: z.string().min(3, "Item name must be at least 3 characters.").max(100),
+  category: z.enum(['Seeds', 'Fertilizers', 'Pesticides', 'Animal Feed', 'Tools', 'Other'], { required_error: "Please select a category." }),
+  quantity: z.coerce.number().min(0, "Quantity cannot be negative."),
+  unit: z.string().min(1, "Unit is required.").max(20),
+  purchaseDate: z.date().optional(),
+  expiryDate: z.date().optional(),
+  supplier: z.string().max(100).optional(),
+  notes: z.string().max(1000).optional(),
+});
+export type CreateInventoryItemValues = z.infer<typeof createInventoryItemSchema>;

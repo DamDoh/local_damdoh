@@ -10,6 +10,9 @@ import { swaggerSpec } from './config/swagger.config';
 
 // Import routes
 import authRoutes from './routes/auth.routes';
+import aiRoutes from './routes/ai.routes';
+import meetingsRoutes from './routes/meetings.routes';
+import dashboardRoutes from './routes/dashboard.routes';
 
 // Create Express app
 const app = express();
@@ -28,6 +31,9 @@ configureSecurityMiddleware(app);
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/ai', aiRoutes);
+app.use('/api/meetings', meetingsRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // API Documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {

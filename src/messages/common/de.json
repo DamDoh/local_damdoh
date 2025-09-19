@@ -1,0 +1,285 @@
+{
+  "navigation": {
+    "home": "Startseite",
+    "dashboard": "Dashboard",
+    "profile": "Profil",
+    "settings": "Einstellungen",
+    "logout": "Abmelden",
+    "search": {
+      "placeholder": "Personen, Produkte, Dienstleistungen suchen...",
+      "noResults": "Keine Ergebnisse gefunden",
+      "loading": "Suche läuft..."
+    },
+    "menu": {
+      "farmManagement": "Farm-Management",
+      "marketplace": "Marktplatz",
+      "network": "Netzwerk",
+      "knowledgeHub": "Wissenszentrum",
+      "forums": "Foren",
+      "traceability": "Rückverfolgbarkeit",
+      "analytics": "Analysen",
+      "compliance": "Compliance",
+      "sustainability": "Nachhaltigkeit"
+    }
+  },
+  "ui": {
+    "buttons": {
+      "save": "Speichern",
+      "cancel": "Abbrechen",
+      "delete": "Löschen",
+      "edit": "Bearbeiten",
+      "create": "Erstellen",
+      "update": "Aktualisieren",
+      "submit": "Absenden",
+      "close": "Schließen",
+      "back": "Zurück",
+      "next": "Weiter",
+      "previous": "Zurück",
+      "loading": "Lädt...",
+      "retry": "Wiederholen",
+      "confirm": "Bestätigen",
+      "decline": "Ablehnen",
+      "accept": "Akzeptieren",
+      "reject": "Ablehnen",
+      "view": "Ansehen",
+      "download": "Herunterladen",
+      "upload": "Hochladen",
+      "share": "Teilen",
+      "copy": "Kopieren",
+      "paste": "Einfügen"
+    },
+    "forms": {
+      "required": "Erforderlich",
+      "optional": "Optional",
+      "validation": {
+        "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+        "required": "Dieses Feld ist erforderlich",
+        "minLength": "Muss mindestens {count} Zeichen lang sein",
+        "maxLength": "Darf nicht länger als {count} Zeichen sein",
+        "pattern": "Bitte geben Sie ein gültiges Format ein",
+        "numeric": "Bitte geben Sie eine gültige Zahl ein",
+        "date": "Bitte geben Sie ein gültiges Datum ein",
+        "url": "Bitte geben Sie eine gültige URL ein"
+      },
+      "placeholders": {
+        "select": "Bitte auswählen...",
+        "search": "Suchen...",
+        "enterText": "Text eingeben...",
+        "enterNumber": "Zahl eingeben...",
+        "enterDate": "Datum auswählen..."
+      }
+    },
+    "status": {
+      "loading": "Lädt...",
+      "success": "Erfolg",
+      "error": "Fehler",
+      "warning": "Warnung",
+      "info": "Information",
+      "pending": "Ausstehend",
+      "completed": "Abgeschlossen",
+      "failed": "Fehlgeschlagen",
+      "cancelled": "Abgebrochen"
+    },
+    "pagination": {
+      "previous": "Zurück",
+      "next": "Weiter",
+      "page": "Seite",
+      "of": "von",
+      "showing": "Zeige",
+      "to": "bis",
+      "entries": "Einträge",
+      "first": "Erste",
+      "last": "Letzte"
+    },
+    "modals": {
+      "confirm": {
+        "title": "Aktion bestätigen",
+        "message": "Sind Sie sicher, dass Sie fortfahren möchten?",
+        "yes": "Ja",
+        "no": "Nein"
+      },
+      "delete": {
+        "title": "Element löschen",
+        "message": "Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie dieses Element löschen möchten?",
+        "confirm": "Löschen",
+        "cancel": "Abbrechen"
+      }
+    },
+    "tooltips": {
+      "help": "Hilfe",
+      "info": "Information",
+      "warning": "Warnung",
+      "error": "Fehler"
+    }
+  },
+  "time": {
+    "now": "jetzt",
+    "justNow": "gerade eben",
+    "ago": "vor",
+    "minute": "Minute",
+    "minutes": "Minuten",
+    "hour": "Stunde",
+    "hours": "Stunden",
+    "day": "Tag",
+    "days": "Tage",
+    "week": "Woche",
+    "weeks": "Wochen",
+    "month": "Monat",
+    "months": "Monate",
+    "year": "Jahr",
+    "years": "Jahre",
+    "today": "Heute",
+    "yesterday": "Gestern",
+    "tomorrow": "Morgen",
+    "dateFormat": "dd.MM.yyyy",
+    "timeFormat": "HH:mm",
+    "datetimeFormat": "dd.MM.yyyy HH:mm"
+  },
+  "currency": {
+    "symbol": "€",
+    "code": "EUR",
+    "format": "{amount}{symbol}",
+    "thousandsSeparator": ".",
+    "decimalSeparator": ",",
+    "decimalPlaces": 2
+  },
+  "units": {
+    "weight": {
+      "kg": "kg",
+      "kilogram": "Kilogramm",
+      "gram": "g",
+      "gram": "Gramm",
+      "ton": "t",
+      "tonne": "Tonne",
+      "pound": "lb",
+      "pound": "Pfund",
+      "ounce": "oz",
+      "ounce": "Unze"
+    },
+    "area": {
+      "hectare": "ha",
+      "hectare": "Hektar",
+      "acre": "ac",
+      "acre": "Acre",
+      "squareMeter": "m²",
+      "squareMeter": "Quadratmeter",
+      "squareFoot": "ft²",
+      "squareFoot": "Quadratfuß"
+    },
+    "volume": {
+      "liter": "L",
+      "liter": "Liter",
+      "gallon": "gal",
+      "gallon": "Gallone",
+      "cubicMeter": "m³",
+      "cubicMeter": "Kubikmeter",
+      "milliliter": "mL",
+      "milliliter": "Milliliter"
+    },
+    "length": {
+      "meter": "m",
+      "meter": "Meter",
+      "centimeter": "cm",
+      "centimeter": "Zentimeter",
+      "millimeter": "mm",
+      "millimeter": "Millimeter",
+      "kilometer": "km",
+      "kilometer": "Kilometer",
+      "inch": "in",
+      "inch": "Zoll",
+      "foot": "ft",
+      "foot": "Fuß",
+      "yard": "yd",
+      "yard": "Yard"
+    }
+  },
+  "agricultural": {
+    "crops": {
+      "rice": "Reis",
+      "wheat": "Weizen",
+      "corn": "Mais",
+      "maize": "Mais",
+      "soybean": "Sojabohne",
+      "cotton": "Baumwolle",
+      "coffee": "Kaffee",
+      "tea": "Tee",
+      "sugarcane": "Zuckerrohr",
+      "potato": "Kartoffel",
+      "tomato": "Tomate",
+      "onion": "Zwiebel",
+      "garlic": "Knoblauch",
+      "carrot": "Karotte",
+      "lettuce": "Salat",
+      "cabbage": "Kohl",
+      "broccoli": "Brokkoli",
+      "spinach": "Spinat",
+      "beans": "Bohnen",
+      "peas": "Erbsen",
+      "lentils": "Linsen",
+      "chickpeas": "Kichererbsen"
+    },
+    "seasons": {
+      "spring": "Frühling",
+      "summer": "Sommer",
+      "autumn": "Herbst",
+      "fall": "Herbst",
+      "winter": "Winter",
+      "dry": "Trockenzeit",
+      "wet": "Regenzeit",
+      "monsoon": "Monsun",
+      "harvest": "Erntesaison"
+    },
+    "soil": {
+      "types": {
+        "clay": "Ton",
+        "sandy": "Sandig",
+        "loam": "Lehm",
+        "silt": "Schluff",
+        "chalky": "Kreidehaltig",
+        "peaty": "Torfig"
+      },
+      "ph": {
+        "acidic": "Sauer",
+        "neutral": "Neutral",
+        "alkaline": "Alkalisch"
+      }
+    },
+    "certifications": {
+      "organic": "Bio",
+      "fairTrade": "Fairer Handel",
+      "gmoFree": "Ohne GVO",
+      "sustainable": "Nachhaltig",
+      "rainforestAlliance": "Rainforest Alliance",
+      "utz": "UTZ-zertifiziert",
+      "gap": "Gute landwirtschaftliche Praxis"
+    }
+  },
+  "errors": {
+    "generic": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "network": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung.",
+    "timeout": "Zeitüberschreitung der Anfrage. Bitte versuchen Sie es erneut.",
+    "unauthorized": "Sie sind nicht berechtigt, diese Aktion auszuführen.",
+    "forbidden": "Zugriff verweigert.",
+    "notFound": "Die angeforderte Ressource wurde nicht gefunden.",
+    "server": "Serverfehler. Bitte versuchen Sie es später erneut.",
+    "validation": "Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut.",
+    "fileTooLarge": "Datei ist zu groß. Bitte wählen Sie eine kleinere Datei aus.",
+    "unsupportedFile": "Dateityp nicht unterstützt.",
+    "quotaExceeded": "Sie haben Ihr Kontingent überschritten."
+  },
+  "success": {
+    "saved": "Änderungen erfolgreich gespeichert.",
+    "created": "Element erfolgreich erstellt.",
+    "updated": "Element erfolgreich aktualisiert.",
+    "deleted": "Element erfolgreich gelöscht.",
+    "uploaded": "Datei erfolgreich hochgeladen.",
+    "sent": "Nachricht erfolgreich gesendet.",
+    "received": "Anfrage erfolgreich empfangen."
+  },
+  "confirmations": {
+    "delete": "Sind Sie sicher, dass Sie dieses Element löschen möchten?",
+    "save": "Möchten Sie Ihre Änderungen speichern?",
+    "send": "Sind Sie sicher, dass Sie diese Nachricht senden möchten?",
+    "submit": "Sind Sie sicher, dass Sie dieses Formular absenden möchten?"
+  }
+}

@@ -1,138 +1,325 @@
 # DamDoh: The Super App for Global Agri-Communities
 
-> **Note:** All major development phases for the foundational architecture of the DamDoh super app are now complete. The platform is feature-rich, architecturally sound, and considered ready for its initial launch and user feedback cycles.
+> **DamDoh 2.0** - A comprehensive agricultural platform connecting farmers, buyers, suppliers, and stakeholders worldwide with modern web technologies and AI-powered insights.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://img.shields.io/ci/github/DamDoh/super-app.svg)](https://github.com/DamDoh/super-app/actions)
-[![Firebase](https://img.shields.io/badge/Powered%20by-Firebase-orange)](https://firebase.google.com/)
 [![Next.js](https://img.shields.io/badge/Built%20with-Next.js-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 
-Welcome to the official repository for DamDoh, the all-in-one super app designed to connect and empower agricultural communities worldwide. From smallholder farmers to large-scale enterprises, DamDoh provides the tools and resources needed to thrive in the digital age.
+DamDoh is a modern, full-stack agricultural platform designed to empower farming communities worldwide. Built with cutting-edge technologies, it provides farmers, buyers, suppliers, and agricultural stakeholders with tools for farm management, marketplace trading, community engagement, and AI-powered insights.
 
-## 🌟 Vision
+## 🌟 Features
 
-Our vision is to create a single, unified platform that addresses the diverse needs of the agricultural sector. We aim to foster a global community where knowledge, resources, and opportunities are shared freely, creating a more sustainable and prosperous future for all.
+### 🏗️ **Core Platform Features**
+- **Multi-Stakeholder Dashboard** - Role-based interfaces for Farmers, Buyers, Suppliers, Agronomists, and more
+- **Real-time Community Feed** - AI-curated content with smart filtering and recommendations
+- **Advanced Farm Management** - Crop tracking, soil analysis, irrigation monitoring, and yield optimization
+- **Digital Marketplace** - Buy/sell agricultural products with integrated logistics and payments
+- **AI-Powered Insights** - Crop disease detection, market price predictions, and farming recommendations
+- **Offline-First Architecture** - Works seamlessly in areas with poor connectivity
 
-## ✨ Features
+### 🎯 **Stakeholder-Specific Features**
+- **Farmers:** Crop monitoring, weather intelligence, farm analytics, and direct marketplace access
+- **Buyers:** Procurement intelligence, supply chain visibility, and bulk purchasing tools
+- **Suppliers:** Equipment rental, maintenance scheduling, and customer relationship management
+- **Agronomists:** Client portfolio management, consultation scheduling, and knowledge sharing
+- **Researchers:** Data access, collaborative projects, and publication management
 
-DamDoh is a comprehensive platform that includes a wide range of features, including:
-
-*   **Marketplace:** A vibrant digital marketplace for buying and selling agricultural products and services.
-*   **Knowledge Hub:** A rich repository of articles, guides, and best practices for modern farming.
-*   **Community Forums:** A place for users to connect, ask questions, and share their experiences.
-*   **Farm Management:** Tools for managing crops, livestock, and other farm activities.
-*   **Financial Services:** Access to loans, insurance, and other financial products.
-*   **Traceability:** A blockchain-based system for tracking products from farm to table.
-*   **AI-Powered Insights:** Advanced analytics and AI-powered recommendations to help users make better decisions.
-
-## 🚀 Engineered for Global Scale
-
-DamDoh isn't just a feature-rich application; it's an ecosystem engineered for security, high performance, and massive scalability from day one. We have proactively addressed the key challenges of building a global platform:
-
-*   **Blazing-Fast, Scalable Search:** We've implemented a denormalized search index (`search_index`), allowing for complex, multi-faceted queries across the entire platform with millisecond latency, ensuring a smooth user experience even with billions of items.
-*   **Ironclad Security:** The platform is built on a "default-deny" principle with granular, role-based Firestore security rules for every piece of data. User data is protected at every level.
-*   **Seamless Offline Experience:** With a robust "Outbox" pattern using IndexedDB, user actions performed offline are securely queued and synced the moment a user reconnects. This is critical for users in areas with intermittent connectivity.
-*   **Hybrid Cloud Architecture:** We leverage the best of serverless, using Firebase Functions for event-driven tasks and Google Cloud Run for performance-critical services (like AI analysis), eliminating cold starts and ensuring consistent speed.
-*   **Data Privacy & Compliance:** We are committed to user privacy with built-in GDPR/CCPA compliance, including a "Right to be Forgotten" feature (`onUserDeleteCleanup`) that ensures a user's data can be completely and permanently erased upon request.
-*   **Geospatial Efficiency:** Location-based queries are optimized using Geohashing, allowing for efficient "near me" searches without the need for a specialized database.
-
-With these foundational pieces in place, the DamDoh platform is now considered architecturally complete and ready for its next phase of growth and user acquisition.
+### 🚀 **Technical Features**
+- **Progressive Web App (PWA)** - Installable on mobile devices with offline capabilities
+- **Voice Control** - Hands-free operation for farm management tasks
+- **Gamification** - Achievement system to increase user engagement
+- **Real-time Notifications** - WebSocket-based instant updates
+- **Multi-language Support** - Internationalization with 6+ languages
+- **Advanced Search** - AI-powered semantic search across all platform content
 
 ## 🛠️ Technology Stack
 
-DamDoh is built on a modern, scalable, and reliable technology stack:
+### **Frontend**
+- **Framework:** [Next.js 15](https://nextjs.org/) - React-based full-stack framework
+- **Language:** [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- **State Management:** [TanStack Query](https://tanstack.com/query) - Powerful data synchronization
+- **UI Components:** [Radix UI](https://www.radix-ui.com/) - Accessible component primitives
+- **Icons:** [Lucide React](https://lucide.dev/) - Beautiful icon library
 
-*   **Frontend:** [Next.js](https://nextjs.org/) with [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/).
-*   **Backend:** Serverless architecture using [Firebase Cloud Functions](https://firebase.google.com/docs/functions) and [Cloud Run](https://cloud.google.com/run).
-*   **Database:** [Firestore](https://firebase.google.com/docs/firestore), a flexible, scalable NoSQL database.
-*   **Authentication:** [Firebase Authentication](https://firebase.google.com/docs/auth) for secure and easy user management.
-*   **Storage:** [Cloud Storage for Firebase](https://firebase.google.com/docs/storage) for storing user-generated content.
-*   **AI & Machine Learning:** [Genkit](https://firebase.google.com/docs/genkit) with [Google AI](https://ai.google/) for our AI-powered features.
-*   **Deployment:** [Firebase Hosting](https://firebase.google.com/docs/hosting) for fast and secure content delivery.
+### **Backend**
+- **Runtime:** [Node.js](https://nodejs.org/) with [Express.js](https://expressjs.com/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/) - Full-stack type safety
+- **Database:** [MongoDB](https://www.mongodb.com/) with [Mongoose](https://mongoosejs.com/) ODM
+- **Authentication:** JWT-based authentication with role-based access control
+- **Real-time:** [Socket.IO](https://socket.io/) for real-time communication
+- **Validation:** [Zod](https://zod.dev/) for runtime type validation
 
-## ⚙️ Getting Started
+### **DevOps & Tools**
+- **Containerization:** [Docker](https://www.docker.com/) & Docker Compose
+- **Process Management:** [PM2](https://pm2.keymetrics.io/) for production
+- **Testing:** [Jest](https://jestjs.io/) with React Testing Library
+- **Linting:** [ESLint](https://eslint.org/) with TypeScript rules
+- **Version Control:** [Git](https://git-scm.com/) with GitHub Actions CI/CD
 
-To get started with local development, please follow these steps:
+## 📋 Prerequisites
 
-1.  **Clone the Repository:**
-    ```bash
-    git clone https://github.com/DamDoh/super-app.git
-    cd super-app
-    ```
+Before you begin, ensure you have the following installed:
 
-2.  **Install Dependencies:**
-    ```bash
-    npm install
-    ```
+- **Node.js** (v18 or higher) - [Download here](https://nodejs.org/)
+- **Git** - [Download here](https://git-scm.com/)
+- **Docker** (recommended for MongoDB) - [Download here](https://www.docker.com/)
+- **MongoDB** (alternative to Docker) - [Download here](https://www.mongodb.com/)
 
-3.  **Configure Firebase:**
-    *   Create a new Firebase project in the [Firebase Console](https://console.firebase.google.com/).
-    *   Copy your Firebase project configuration into a new `.env` file at the root of the project. Use the `.env.example` file as a template.
-    *   Set up a service account key and add it to your environment variables. See the Deployment section for details.
+## 🚀 Quick Start
 
-4.  **Run the Development Server:**
-    ```bash
-    npm run dev
-    ```
-
-5.  Open your browser to [http://localhost:3000](http://localhost:3000) to see the application in action.
-
-## 🚀 Deployment
-
-To deploy the application to your Firebase project, follow these steps.
-
-### 1. Install Firebase CLI
-
-If you haven't already, install the Firebase Command Line Interface globally.
-
+### 1. Clone the Repository
 ```bash
-npm install -g firebase-tools
+git clone https://github.com/DamDoh/local_damdoh.git
+cd local_damdoh
 ```
 
-### 2. Login to Firebase
+### 2. Install Dependencies
 
-Log in to your Google account that has access to your Firebase project.
-
+**Frontend Dependencies:**
 ```bash
-firebase login
+npm install
 ```
 
-### 3. Configure Your Project
-
-Copy the environment variables from `.env.example` into a new file named `.env`. Then, fill in the values from your Firebase project's settings.
-
-1.  **Go to Project Settings:** In the [Firebase Console](https://console.firebase.google.com/), select your project, click the gear icon, and go to "Project settings".
-2.  **Find Web App Config:** In the "General" tab, scroll down to "Your apps". Find your web app and copy the `firebaseConfig` object values into your `.env` file.
-3.  **Create Service Account (for backend functions):**
-    *   In Project Settings, go to the "Service accounts" tab.
-    *   Click "Generate new private key". A JSON file will be downloaded.
-    *   **IMPORTANT:** Copy the entire content of this JSON file and set it as the value for `FIREBASE_SERVICE_ACCOUNT_KEY` in your `.env` file.
-4.  **Set AI API Key:**
-    *   Go to [Google AI Studio](https://aistudio.google.com/app/apikey) to create an API key for Gemini.
-    *   Copy the key and set it as the value for `GEMINI_API_KEY` in your `.env` file.
-
-### 4. Deploy!
-
-Once configured, run the following command from the root of your project to deploy everything (Hosting, Functions, and Rules):
-
+**Backend Dependencies:**
 ```bash
-firebase deploy
+cd backend
+npm install
+cd ..
 ```
 
-The first deployment may take a few minutes as it provisions your Cloud Functions. After deployment, your application will be live at the hosting URL provided by Firebase.
+### 3. Set up Environment Variables
+```bash
+# Copy environment template
+cp backend/.env.example backend/.env
 
-## 📄 Documentation
+# Edit with your configuration
+nano backend/.env
+```
 
-For more detailed information about the DamDoh platform, please refer to our official documentation:
+**Required Environment Variables:**
+```env
+# Server Configuration
+NODE_ENV=development
+PORT=8000
 
-*   [Architecture Overview](docs/architecture-overview.md)
-*   [Global Scalability Plan](docs/global-scalability-plan.md)
-*   [Monitoring and Alerting Plan](docs/monitoring-and-alerting-plan.md)
+# MongoDB Configuration
+MONGODB_URI=mongodb://admin:password123@localhost:27017/damdoh?authSource=admin
+
+# JWT Configuration
+JWT_SECRET=your_secure_jwt_secret_key_here
+JWT_EXPIRES_IN=7d
+
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=15m
+RATE_LIMIT_MAX_REQUESTS=100
+
+# CORS Configuration
+CORS_ORIGIN=*
+
+# Logging
+LOG_LEVEL=info
+```
+
+### 4. Start MongoDB
+
+**Option A: Using Docker (Recommended)**
+```bash
+docker-compose up -d mongodb
+```
+
+**Option B: Using Local MongoDB**
+```bash
+# Windows
+net start MongoDB
+
+# macOS
+brew services start mongodb/brew/mongodb-community
+
+# Linux
+sudo systemctl start mongod
+```
+
+### 5. Start the Development Servers
+
+**Terminal 1 - Backend Server:**
+```bash
+cd backend
+npm run dev
+```
+*Expected output:*
+```
+Server is running on port 8000
+MongoDB Connected: localhost
+```
+
+**Terminal 2 - Frontend Server:**
+```bash
+npm run dev
+```
+*Expected output:*
+```
+✓ Compiled in 2.9s (2357 modules)
+Local: http://localhost:3000
+```
+
+### 6. Access the Application
+
+Open your browser and navigate to:
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:8000
+- **API Health Check:** http://localhost:8000/health
+
+## 🏗️ Project Structure
+
+```
+DamDoh 2.0/
+├── src/                          # Frontend Application
+│   ├── app/                     # Next.js App Router
+│   │   ├── [locale]/            # Internationalized routes
+│   │   ├── api/                 # API routes
+│   │   └── globals.css          # Global styles
+│   ├── components/              # React Components
+│   │   ├── ui/                  # Reusable UI components
+│   │   ├── dashboard/           # Dashboard-specific components
+│   │   └── layout/              # Layout components
+│   ├── lib/                     # Utilities & Configurations
+│   │   ├── api-utils.ts         # API client utilities
+│   │   ├── auth-utils.ts        # Authentication helpers
+│   │   └── types.ts             # TypeScript type definitions
+│   ├── services/                # Business Logic Services
+│   │   ├── dashboard/           # Dashboard services
+│   │   └── ai/                  # AI service integrations
+│   └── hooks/                   # Custom React Hooks
+├── backend/                      # Backend Application
+│   ├── src/
+│   │   ├── controllers/         # Route controllers
+│   │   ├── models/              # MongoDB data models
+│   │   ├── routes/              # API route definitions
+│   │   ├── services/            # Business logic services
+│   │   ├── middleware/          # Express middleware
+│   │   └── utils/               # Utility functions
+│   ├── .env                     # Environment variables
+│   └── package.json             # Backend dependencies
+├── docs/                        # Documentation
+├── scripts/                     # Utility scripts
+├── docker-compose.yml           # Docker services
+└── README.md                    # This file
+```
+
+## 🔧 Development Scripts
+
+### Frontend Scripts
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+npm run typecheck    # Run TypeScript type checking
+npm test            # Run Jest tests
+```
+
+### Backend Scripts
+```bash
+cd backend
+npm run dev          # Start development server with nodemon
+npm run build        # Build TypeScript to JavaScript
+npm run start        # Start production server
+npm test            # Run Jest tests
+```
+
+## 🐳 Docker Development
+
+### Start All Services
+```bash
+docker-compose up -d
+```
+
+### View Logs
+```bash
+docker-compose logs -f
+```
+
+### Stop Services
+```bash
+docker-compose down
+```
+
+## 🔒 Environment Configuration
+
+### Frontend Environment Variables
+Create `.env.local` in the root directory:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000/api
+NEXT_PUBLIC_APP_ENV=development
+```
+
+### Backend Environment Variables
+The `backend/.env` file should contain:
+```env
+NODE_ENV=development
+PORT=8000
+MONGODB_URI=mongodb://admin:password123@localhost:27017/damdoh?authSource=admin
+JWT_SECRET=your_secure_jwt_secret_key_here
+JWT_EXPIRES_IN=7d
+RATE_LIMIT_WINDOW_MS=15m
+RATE_LIMIT_MAX_REQUESTS=100
+CORS_ORIGIN=*
+LOG_LEVEL=info
+```
+
+## 🧪 Testing
+
+### Run All Tests
+```bash
+# Frontend tests
+npm test
+
+# Backend tests
+cd backend && npm test
+```
+
+### Run Tests in Watch Mode
+```bash
+npm run test:watch
+```
+
+## 📚 Documentation
+
+- **[Architecture Overview](docs/architecture-overview.md)** - System design and architecture decisions
+- **[API Documentation](docs/api-documentation.md)** - Backend API endpoints and usage
+- **[Development Guide](docs/development-workflow.md)** - Development best practices and workflows
+- **[Deployment Guide](docs/deployment-guide.md)** - Production deployment instructions
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! If you'd like to contribute to the DamDoh platform, please fork the repository and submit a pull request.
+We welcome contributions! Please follow these steps:
 
-## 📜 License
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-DamDoh is open-source software licensed under the [MIT License](https://opensource.org/licenses/MIT).
+### Development Guidelines
+- Follow the existing code style and architecture patterns
+- Write tests for new features
+- Update documentation as needed
+- Ensure all tests pass before submitting PR
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Built with ❤️ for the global agricultural community
+- Special thanks to all contributors and the open-source community
+- Powered by modern web technologies and AI innovation
+
+---
+
+**DamDoh 2.0** - Empowering agriculture through technology 🌱🚀

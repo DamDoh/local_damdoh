@@ -9,8 +9,7 @@ import { ArrowLeft, ShoppingCart, MessageSquare } from "lucide-react";
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -38,20 +37,17 @@ export default function MyPurchasesPage() {
     const [orders, setOrders] = useState<MarketplaceOrder[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const functions = getFunctions(firebaseApp);
-    const getBuyerOrdersCallable = useMemo(() => httpsCallable(functions, 'marketplace-getBuyerOrders'), [functions]);
-
     const fetchOrders = useCallback(async () => {
         setIsLoading(true);
         try {
-            const result = await getBuyerOrdersCallable();
-            setOrders((result?.data as any)?.orders || []);
+            const result = await apiCall<{ orders: MarketplaceOrder[] }>('/marketplace/buyer-orders');
+            setOrders(result.orders || []);
         } catch (error: any) {
             toast({ variant: "destructive", title: t('toast.errorTitle'), description: t('toast.fetchError') });
         } finally {
             setIsLoading(false);
         }
-    }, [getBuyerOrdersCallable, toast, t]);
+    }, [toast, t]);
 
     useEffect(() => {
         if (user) {

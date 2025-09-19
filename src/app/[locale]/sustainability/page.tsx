@@ -5,8 +5,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Leaf, Droplets, PawPrint, Award, TrendingUp, TrendingDown, Circle, CheckCircle } from "lucide-react";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { useAuth } from '@/lib/auth-utils';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -64,9 +63,6 @@ export default function SustainabilityPage() {
     const [data, setData] = useState<SustainabilityDashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const functions = getFunctions(firebaseApp);
-    const getSustainabilityDataCallable = useMemo(() => httpsCallable(functions, 'getSustainabilityDashboardData'), [functions]);
-
     useEffect(() => {
         if (authLoading) return;
         if (!user) {
@@ -76,8 +72,8 @@ export default function SustainabilityPage() {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const result = await getSustainabilityDataCallable();
-                setData(result.data as SustainabilityDashboardData);
+                const result = await apiCall<SustainabilityDashboardData>('/dashboard/sustainability');
+                setData(result);
             } catch (error) {
                 console.error("Error fetching sustainability data:", error);
             } finally {
@@ -85,7 +81,7 @@ export default function SustainabilityPage() {
             }
         };
         fetchData();
-    }, [user, authLoading, getSustainabilityDataCallable]);
+    }, [user, authLoading]);
     
     if (isLoading || authLoading) {
         return <SustainabilitySkeleton />;

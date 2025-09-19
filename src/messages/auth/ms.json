@@ -1,0 +1,118 @@
+{
+  "signIn": {
+    "title": "Selamat Kembali ke DamDoh",
+    "welcome": "Selamat kembali ke {appName}",
+    "description": "Log masuk ke akaun anda untuk meneruskan perjalanan pertanian anda",
+    "emailLabel": "Alamat E-mel",
+    "emailPlaceholder": "Masukkan alamat e-mel anda",
+    "passwordLabel": "Kata Laluan",
+    "passwordPlaceholder": "Masukkan kata laluan anda",
+    "forgotPasswordLink": "Lupa Kata Laluan?",
+    "signInButton": "Log Masuk",
+    "signingInButton": "Sedang Log Masuk...",
+    "noAccountPrompt": "Tiada akaun?",
+    "signUpLink": "Buat Akaun"
+  },
+  "signUp": {
+    "title": "Sertai Rangkaian Pertanian DamDoh",
+    "welcome": "Sertai {appName} hari ini",
+    "description": "Buat akaun anda untuk berhubung dengan rantaian bekalan pertanian global",
+    "nameLabel": "Nama Penuh",
+    "namePlaceholder": "Masukkan nama penuh anda",
+    "emailLabel": "Alamat E-mel",
+    "emailPlaceholder": "Masukkan alamat e-mel anda",
+    "passwordLabel": "Kata Laluan",
+    "passwordPlaceholder": "Buat kata laluan yang kuat",
+    "confirmPasswordLabel": "Sahkan Kata Laluan",
+    "confirmPasswordPlaceholder": "Sahkan kata laluan anda",
+    "roleLabel": "Peranan Anda dalam Pertanian",
+    "rolePlaceholder": "Pilih peranan utama anda",
+    "signUpButton": "Buat Akaun",
+    "creatingAccountButton": "Membuat Akaun...",
+    "alreadyHaveAccountPrompt": "Sudah mempunyai akaun?",
+    "signInLink": "Log Masuk"
+  },
+  "passwordReset": {
+    "title": "Tetapkan Semula Kata Laluan Anda",
+    "description": "Masukkan alamat e-mel anda dan kami akan hantar pautan untuk menetapkan semula kata laluan anda",
+    "emailLabel": "Alamat E-mel",
+    "emailPlaceholder": "Masukkan alamat e-mel anda",
+    "sendResetLinkButton": "Hantar Pautan Tetapan Semula",
+    "sendingButton": "Sedang Menghantar...",
+    "backToSignInLink": "Kembali ke Log Masuk"
+  },
+  "passwordStrength": {
+    "weak": "Lemah",
+    "medium": "Sederhana",
+    "strong": "Kuat",
+    "veryStrong": "Sangat Kuat",
+    "label": "Kekuatan Kata Laluan"
+  },
+  "errors": {
+    "emailInUse": "E-mel ini sudah didaftarkan. Sila cuba e-mel lain atau log masuk sahaja.",
+    "invalidEmail": "Sila masukkan alamat e-mel yang sah.",
+    "weakPassword": "Kata laluan mestilah sekurang-kurangnya 8 aksara dan termasuk huruf besar, huruf kecil, dan nombor.",
+    "passwordMismatch": "Kata laluan tidak sepadan. Sila cuba lagi.",
+    "default": "Ralat berlaku. Sila cuba lagi.",
+    "unexpected": "Ralat tidak dijangka berlaku. Sila cuba lagi kemudian.",
+    "invalidCredential": "E-mel atau kata laluan tidak sah. Sila semak kelayakan anda dan cuba lagi.",
+    "userDisabled": "Akaun ini telah dilumpuhkan. Sila hubungi sokongan untuk bantuan.",
+    "tooManyAttempts": "Terlalu banyak percubaan gagal. Sila cuba lagi kemudian.",
+    "networkError": "Ralat rangkaian. Sila semak sambungan anda dan cuba lagi."
+  },
+  "success": {
+    "signUp": {
+      "title": "Akaun Berjaya Dibuat",
+      "description": "Selamat datang ke {appName}! Akaun anda telah dibuat dan anda kini log masuk."
+    },
+    "signIn": {
+      "title": "Berjaya Log Masuk",
+      "description": "Selamat datang kembali ke {appName}! Anda kini log masuk dan bersedia untuk meneruskan."
+    },
+    "passwordReset": {
+      "title": "Pautan Tetapan Semula Dihantar",
+      "description": "Kami telah menghantar pautan tetapan semula kata laluan ke alamat e-mel anda. Sila semak peti masuk anda."
+    },
+    "passwordChanged": {
+      "title": "Kata Laluan Ditukar",
+      "description": "Kata laluan anda telah berjaya ditukar. Anda boleh log masuk dengan kata laluan baharu anda."
+    }
+  },
+  "stakeholderRoles": {
+    "Admin": "Pentadbir",
+    "Farmer": "Petani",
+    "Agronomist": "Ahli Agronomi",
+    "Buyer": "Pembeli",
+    "Cooperative": "Koperasi",
+    "EquipmentSupplier": "Pembekal Peralatan",
+    "FinancialInstitution": "Institusi Kewangan",
+    "FieldAgent": "Ejen Lapangan",
+    "Logistics": "Pembekal Logistik",
+    "Researcher": "Penyelidik",
+    "AgriTech": "Pencipta AgriTech",
+    "CertificationBody": "Badan Persijilan",
+    "Consumer": "Pengguna",
+    "EnergyProvider": "Pembekal Tenaga",
+    "AgroExport": "Penghantar Agro",
+    "AgroTourism": "Pelancongan Agro",
+    "Operations": "Pengurus Operasi",
+    "QA": "Jaminan Kualiti",
+    "Regulator": "Pengawal Selia",
+    "TrustScore": "Pembekal Skor Amanah",
+    "WasteManagement": "Pengurusan Sisa",
+    "General": "Pengguna Am"
+  },
+  "validation": {
+    "required": "Medan ini diperlukan",
+    "email": "Sila masukkan alamat e-mel yang sah",
+    "minLength": "Mestilah sekurang-kurangnya {count} aksara",
+    "maxLength": "Tidak boleh melebihi {count} aksara",
+    "password": "Kata laluan mestilah memenuhi keperluan keselamatan"
+  },
+  "loading": {
+    "signingIn": "Sedang log masuk anda...",
+    "creatingAccount": "Membuat akaun anda...",
+    "sendingEmail": "Menghantar e-mel...",
+    "verifying": "Mengesahkan..."
+  }
+}

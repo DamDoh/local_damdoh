@@ -10,8 +10,7 @@ import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -51,28 +50,50 @@ export default function LaborManagementPage() {
     const [unpaidLogs, setUnpaidLogs] = useState<WorkLog[]>([]);
     const [selectedLogIds, setSelectedLogIds] = useState<string[]>([]);
     
-    const { isOnline, addActionToQueue } = useOfflineSync();
+    const { isOnline, addOfflineData } = useOfflineSync();
 
-    const functions = getFunctions(firebaseApp);
-    const getWorkersCallable = useMemo(() => httpsCallable(functions, 'labor-getWorkers'), [functions]);
-    const addWorkerCallable = useMemo(() => httpsCallable(functions, 'labor-addWorker'), [functions]);
-    const logHoursCallable = useMemo(() => httpsCallable(functions, 'labor-logHours'), [functions]);
-    const logPaymentCallable = useMemo(() => httpsCallable(functions, 'labor-logPayment'), [functions]);
-    const getUnpaidWorkLogsCallable = useMemo(() => httpsCallable(functions, 'labor-getUnpaidWorkLogs'), [functions]);
+    const getWorkers = useCallback(async () => {
+        return await apiCall<{ workers: Worker[] }>('/labor/workers');
+    }, []);
+
+    const addWorker = useCallback(async (data: { name: string }) => {
+        return await apiCall('/labor/workers', {
+            method: 'POST',
+            body: JSON.stringify(data)
+        });
+    }, []);
+
+    const logHours = useCallback(async (data: any) => {
+        return await apiCall('/labor/log-hours', {
+            method: 'POST',
+            body: JSON.stringify(data)
+        });
+    }, []);
+
+    const logPayment = useCallback(async (data: any) => {
+        return await apiCall('/labor/log-payment', {
+            method: 'POST',
+            body: JSON.stringify(data)
+        });
+    }, []);
+
+    const getUnpaidWorkLogs = useCallback(async (data: { workerId: string }) => {
+        return await apiCall<{ workLogs: WorkLog[] }>(`/labor/unpaid-logs?workerId=${data.workerId}`);
+    }, []);
 
 
     const fetchWorkers = useCallback(async () => {
         if (!user) { setIsLoading(false); return; }
         setIsLoading(true);
         try {
-            const result = await getWorkersCallable();
-            setWorkers((result.data as any).workers || []);
+            const result = await getWorkers();
+            setWorkers(result.workers || []);
         } catch (error) {
             toast({ variant: "destructive", title: t('toast.errorTitle'), description: t('toast.fetchWorkersError') });
         } finally {
             setIsLoading(false);
         }
-    }, [user, getWorkersCallable, toast, t]);
+    }, [user, getWorkers, toast, t]);
 
     useEffect(() => {
         if (!authLoading) {
@@ -87,7 +108,7 @@ export default function LaborManagementPage() {
         }
         setIsSubmitting(true);
         try {
-            await addWorkerCallable({ name: newWorkerName });
+            await addWorker({ name: newWorkerName });
             toast({ title: t('toast.workerAdded') });
             setNewWorkerName("");
             setIsAddWorkerOpen(false);
@@ -105,9 +126,9 @@ export default function LaborManagementPage() {
         const payload = { workerId: selectedWorker.id, hours, date: logDate.toISOString(), taskDescription: task };
         try {
             if (isOnline) {
-                await logHoursCallable(payload);
+                await logHours(payload);
             } else {
-                await addActionToQueue({ operation: 'logHours', collectionPath: 'work_logs', documentId: `worklog-${Date.now()}`, payload });
+                await addOfflineData('farm_activity', payload);
             }
             toast({ title: t('toast.hoursLogged') });
             setIsLogHoursOpen(false);
@@ -124,18 +145,18 @@ export default function LaborManagementPage() {
     const handleLogPayment = async () => {
         if (!selectedWorker || !paymentAmount || !paymentDate) return;
         setIsSubmitting(true);
-        const payload = { 
-            workerId: selectedWorker.id, 
-            amount: parseFloat(paymentAmount), 
-            date: paymentDate.toISOString(), 
+        const payload = {
+            workerId: selectedWorker.id,
+            amount: parseFloat(paymentAmount),
+            date: paymentDate.toISOString(),
             currency: 'USD',
             workLogIds: selectedLogIds
         };
         try {
             if (isOnline) {
-                await logPaymentCallable(payload);
+                await logPayment(payload);
             } else {
-                await addActionToQueue({ operation: 'logPayment', collectionPath: 'payments', documentId: `payment-${Date.now()}`, payload });
+                await addOfflineData('farm_activity', payload);
             }
             toast({ title: t('toast.paymentLoggedTitle'), description: t('toast.paymentLoggedDescription') });
             setIsLogPaymentOpen(false);
@@ -153,8 +174,8 @@ export default function LaborManagementPage() {
         setSelectedWorker(worker);
         setIsLogPaymentOpen(true);
         try {
-            const result = await getUnpaidWorkLogsCallable({ workerId: worker.id });
-            setUnpaidLogs((result.data as any).workLogs || []);
+            const result = await getUnpaidWorkLogs({ workerId: worker.id });
+            setUnpaidLogs(result.workLogs || []);
         } catch (error) {
             console.error("Failed to fetch unpaid logs:", error);
             setUnpaidLogs([]);

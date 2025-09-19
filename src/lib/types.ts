@@ -1,7 +1,7 @@
 
 
 import type { z } from 'zod';
-import type { 
+import type {
     StakeholderProfileSchema,
     MarketplaceItemSchema,
     MarketplaceOrderSchema,
@@ -11,7 +11,6 @@ import type {
     InsuranceProductSchema,
     InsuranceApplicationSchema,
     FinancialProductSchema,
-    FinancialApplicationSchema,
     SmartSearchInterpretationSchema,
     MarketplaceRecommendationInputSchema,
     MarketplaceRecommendationOutputSchema,
@@ -39,7 +38,6 @@ import type {
     NotificationSchema,
     PaymentLogSchema,
     PollOptionSchema,
-    PostReplySchema,
     WorkerSchema,
     WorkLogSchema,
     createFarmSchema,
@@ -76,7 +74,7 @@ export type ApiKey = z.infer<typeof ApiKeySchema>;
 export type InsuranceProduct = z.infer<typeof InsuranceProductSchema>;
 export type InsuranceApplication = z.infer<typeof InsuranceApplicationSchema>;
 export type FinancialProduct = z.infer<typeof FinancialProductSchema>;
-export type FinancialApplication = z.infer<typeof FinancialApplicationSchema>;
+export type FinancialApplication = z.infer<typeof InsuranceApplicationSchema>;
 export type KnfBatch = z.infer<typeof KnfBatchSchema>;
 export type FeedItem = z.infer<typeof FeedItemSchema>;
 export type ServiceItem = z.infer<typeof ServiceItemSchema>;
@@ -95,7 +93,7 @@ export type MobileHomeCategory = z.infer<typeof MobileHomeCategorySchema>;
 export type Notification = z.infer<typeof NotificationSchema>;
 export type PaymentLog = z.infer<typeof PaymentLogSchema>;
 export type PollOption = z.infer<typeof PollOptionSchema>;
-export type PostReply = z.infer<typeof PostReplySchema>;
+export type PostReply = z.infer<typeof GroupPostReplySchema>;
 export type GroupPostReply = z.infer<typeof GroupPostReplySchema>;
 export type Worker = z.infer<typeof WorkerSchema>;
 export type WorkLog = z.infer<typeof WorkLogSchema>;
@@ -594,9 +592,10 @@ export interface OperationsDashboardData {
   }[];
 }
 
-export type AdminDashboardData = z.infer<typeof AdminDashboardDataSchema>;
-export type AdminActivity = z.infer<typeof AdminActivitySchema>;
-export type AgriTechInnovatorDashboardData = z.infer<typeof AgriTechInnovatorDashboardDataSchema>;
+// TODO: Define these schemas in schemas.ts when needed
+// export type AdminDashboardData = z.infer<typeof AdminDashboardDataSchema>;
+// export type AdminActivity = z.infer<typeof AdminActivitySchema>;
+// export type AgriTechInnovatorDashboardData = z.infer<typeof AgriTechInnovatorDashboardDataSchema>;
 
 // =================================================================
 // 3. AI FLOW TYPES (Inferred from schemas)
@@ -628,4 +627,17 @@ export interface SuggestedConnectionsInput {
     userId: string;
     count?: number;
     language?: string;
+}
+
+export interface TraceabilityEvent {
+    id: string;
+    eventType: string;
+    timestamp: string;
+    payload: any;
+    actor: {
+        name: string;
+        role: string;
+        avatarUrl?: string;
+    };
+    geoLocation?: { lat: number; lng: number } | null;
 }

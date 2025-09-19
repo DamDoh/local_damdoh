@@ -12,8 +12,7 @@ import { createFinancialProductSchema, type CreateFinancialProductValues } from 
 import { STAKEHOLDER_ROLES } from '@/lib/constants';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -32,8 +31,12 @@ export default function CreateFinancialProductPage() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const functions = getFunctions(firebaseApp);
-  const createProductCallable = useMemo(() => httpsCallable(functions, 'financials-createFinancialProduct'), [functions]);
+  const createProduct = async (data: CreateFinancialProductValues) => {
+    return await apiCall('/financial/products', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  };
 
   const form = useForm<CreateFinancialProductValues>({
     resolver: zodResolver(createFinancialProductSchema),
@@ -54,7 +57,7 @@ export default function CreateFinancialProductPage() {
     }
     setIsSubmitting(true);
     try {
-      await createProductCallable(data);
+      await createProduct(data);
       toast({ title: t('toast.successTitle'), description: t('toast.successDescription', { name: data.name }) });
       router.push('/fi/products');
     } catch (error: any) {

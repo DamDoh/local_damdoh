@@ -8,8 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MessageSquare, PlusCircle, Search, Frown, Leaf, ShieldAlert, Brain, TrendingUp, Award, Tractor, Package, Wheat, Truck, Pin, PinOff, Clock, Users, Lightbulb, RefreshCcw } from "lucide-react";
 import Link from 'next/link';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import type { ForumTopic } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/lib/auth-utils';
@@ -19,7 +18,7 @@ import { useHomepagePreference } from '@/hooks/useHomepagePreference';
 import { formatDistanceToNow } from 'date-fns';
 import { useTranslations, useLocale } from 'next-intl';
 import { z } from 'zod';
-import { getForumTopicSuggestions as getForumTopicSuggestionsAction } from '@/lib/server-actions'; // Correctly import the server action
+import { getForumTopicSuggestionsAction } from '@/lib/server-actions'; // Correctly import the server action
 
 // This schema is now only used for type safety on the client
 const ForumTopicSuggestionSchema = z.object({
@@ -77,10 +76,6 @@ export default function ForumsPage() {
     const [searchTerm, setSearchTerm] = useState("");
     const { user } = useAuth();
     const { toast } = useToast();
-    const functions = getFunctions(firebaseApp);
-    const getTopicsCallable = useMemo(() => httpsCallable(functions, 'getTopics'), [functions]);
-    // Create a callable function for the new secure endpoint
-    const getSuggestionsCallable = useMemo(() => httpsCallable(functions, 'getForumTopicSuggestions'), [functions]);
     const pathname = usePathname();
     const { setHomepagePreference, homepagePreference, clearHomepagePreference } = useHomepagePreference();
     const locale = useLocale();
@@ -88,19 +83,20 @@ export default function ForumsPage() {
     const fetchTopics = useCallback(async () => {
         setIsLoading(true);
         try {
-            const result = await getTopicsCallable();
-            const data = result.data as { topics?: ForumTopic[] };
+            const data = await apiCall<{ topics?: ForumTopic[] }>('/forums/topics');
             const fetchedTopics = data?.topics || [];
             setTopics(fetchedTopics);
 
             if (fetchedTopics.length > 0) {
                 setIsLoadingSuggestions(true);
                 try {
-                    const suggestionsResult = await getSuggestionsCallable({
-                        existingTopics: fetchedTopics.map(t => ({ name: t.name, description: t.description })),
-                        language: locale,
+                    const suggestionsData = await apiCall<{ suggestions: SuggestedTopic[] }>('/forums/topic-suggestions', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            existingTopics: fetchedTopics.map(t => ({ name: t.name, description: t.description })),
+                            language: locale,
+                        })
                     });
-                    const suggestionsData = suggestionsResult.data as { suggestions: SuggestedTopic[] };
                     setSuggestedTopics(suggestionsData.suggestions);
                 } catch (e) {
                     console.error("Failed to fetch topic suggestions:", e);
@@ -120,7 +116,7 @@ export default function ForumsPage() {
         } finally {
             setIsLoading(false);
         }
-    }, [getTopicsCallable, getSuggestionsCallable, locale, toast, t]);
+    }, [locale, toast, t]);
     
     useEffect(() => {
         fetchTopics();
@@ -144,7 +140,7 @@ export default function ForumsPage() {
         clearHomepagePreference();
         toast({ title: t('pinning.unpinnedTitle'), description: t('pinning.unpinnedDescription') });
         } else {
-        setHomepagePreference(pathname);
+        setHomepagePreference(pathname as string);
         toast({ title: t('pinning.pinnedTitle'), description: t('pinning.pinnedDescription') });
         }
     }, [isCurrentHomepage, clearHomepagePreference, setHomepagePreference, pathname, toast, t]);

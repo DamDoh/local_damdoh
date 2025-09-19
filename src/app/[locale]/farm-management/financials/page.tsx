@@ -7,16 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowUpCircle, ArrowDownCircle, Banknote, DollarSign, PlusCircle, FilePlus, FileText } from 'lucide-react';
 import { useAuth } from '@/lib/auth-utils';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
 import type { FinancialSummary, FinancialTransaction, FinancialApplication } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
-
-const functions = getFunctions(firebaseApp);
 
 const StatCard = ({ title, value, icon, currency = "USD" }: { title: string, value: number, icon: React.ReactNode, currency?: string }) => (
   <Card>
@@ -39,23 +36,17 @@ export default function FinancialDashboardPage() {
   const [applications, setApplications] = useState<FinancialApplication[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getFinancialsCallable = useMemo(() => httpsCallable(functions, 'financials-getFinancialSummaryAndTransactions'), []);
-  const getApplicationsCallable = useMemo(() => httpsCallable(functions, 'financials-getFarmerApplications'), []);
-  
   const fetchAllData = useCallback(async () => {
     setIsLoading(true);
     try {
       const [financialsResult, applicationsResult] = await Promise.all([
-        getFinancialsCallable(),
-        getApplicationsCallable()
+        apiCall<{ summary: FinancialSummary; transactions: FinancialTransaction[] }>('/financial/summary'),
+        apiCall<{ applications: FinancialApplication[] }>('/financial/applications')
       ]);
 
-      const finData = financialsResult.data as { summary: FinancialSummary; transactions: FinancialTransaction[] };
-      setSummary(finData?.summary ?? { totalIncome: 0, totalExpense: 0, netFlow: 0 });
-      setTransactions(finData?.transactions ?? []);
-
-      const appData = applicationsResult.data as { applications: FinancialApplication[] };
-      setApplications(appData?.applications ?? []);
+      setSummary(financialsResult?.summary ?? { totalIncome: 0, totalExpense: 0, netFlow: 0 });
+      setTransactions(financialsResult?.transactions ?? []);
+      setApplications(applicationsResult?.applications ?? []);
 
     } catch (err) {
       console.error("Failed to load financial data.", err);
@@ -65,7 +56,7 @@ export default function FinancialDashboardPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [getFinancialsCallable, getApplicationsCallable]);
+  }, []);
 
 
   useEffect(() => {
@@ -168,8 +159,8 @@ export default function FinancialDashboardPage() {
                 applications.map(app => (
                   <TableRow key={app.id}>
                     <TableCell className="font-medium">{app.type}</TableCell>
-                    <TableCell>${app.amount.toLocaleString()}</TableCell>
-                    <TableCell><Badge variant={getStatusBadgeVariant(app.status)}>{tAppPage(`status.${app.status.toLowerCase().replace(/\s/g, '_')}` as any, app.status)}</Badge></TableCell>
+                    <TableCell>${app.amount?.toLocaleString() || '0'}</TableCell>
+                    <TableCell><Badge variant={getStatusBadgeVariant(app.status)}>{tAppPage(`status.${app.status.toLowerCase().replace(/\s/g, '_')}` as any)}</Badge></TableCell>
                     <TableCell>{app.submittedAt ? new Date(app.submittedAt).toLocaleDateString() : 'N/A'}</TableCell>
                   </TableRow>
                 ))

@@ -1,0 +1,195 @@
+{
+  "title": "Dashboard",
+  "subtitle": "Willkommen in Ihrem landwirtschaftlichen Kommandocenter",
+  "welcome": "Willkommen zurück, {name}!",
+  "overview": {
+    "title": "Übersicht",
+    "description": "Ihr landwirtschaftliches Ökosystem auf einen Blick"
+  },
+  "stats": {
+    "totalUsers": "Gesamtbenutzer",
+    "activeUsers": "Aktive Benutzer",
+    "totalTransactions": "Gesamttransaktionen",
+    "revenue": "Einnahmen",
+    "farms": "Aktive Betriebe",
+    "products": "Aufgelistete Produkte",
+    "connections": "Netzwerkverbindungen",
+    "certifications": "Aktive Zertifizierungen"
+  },
+  "navigation": {
+    "overview": "Übersicht",
+    "analytics": "Analysen",
+    "users": "Benutzer",
+    "transactions": "Transaktionen",
+    "reports": "Berichte",
+    "settings": "Einstellungen",
+    "notifications": "Benachrichtigungen",
+    "support": "Support"
+  },
+  "widgets": {
+    "recentActivity": "Kürzliche Aktivität",
+    "quickActions": "Schnellaktionen",
+    "notifications": "Benachrichtigungen",
+    "alerts": "Warnungen",
+    "weather": "Wetter",
+    "marketPrices": "Marktpreise",
+    "tasks": "Aufgaben",
+    "messages": "Nachrichten",
+    "calendar": "Kalender",
+    "performance": "Leistung"
+  },
+  "quickActions": {
+    "addProduct": "Produkt Hinzufügen",
+    "createListing": "Anzeige Erstellen",
+    "scheduleMeeting": "Besprechung Planen",
+    "viewAnalytics": "Analysen Anzeigen",
+    "manageProfile": "Profil Verwalten",
+    "contactSupport": "Support Kontaktieren",
+    "inviteUsers": "Benutzer Einladen",
+    "exportData": "Daten Exportieren"
+  },
+  "filters": {
+    "today": "Heute",
+    "yesterday": "Gestern",
+    "lastWeek": "Letzte Woche",
+    "lastMonth": "Letzter Monat",
+    "lastQuarter": "Letztes Quartal",
+    "lastYear": "Letztes Jahr",
+    "customRange": "Benutzerdefinierter Bereich",
+    "allTime": "Gesamte Zeit"
+  },
+  "timeRanges": {
+    "hour": "Letzte Stunde",
+    "day": "Letzte 24 Stunden",
+    "week": "Letzte 7 Tage",
+    "month": "Letzte 30 Tage",
+    "quarter": "Letzte 3 Monate",
+    "year": "Letztes Jahr"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "busy": "Beschäftigt",
+    "away": "Abwesend",
+    "active": "Aktiv",
+    "inactive": "Inaktiv",
+    "pending": "Ausstehend",
+    "approved": "Genehmigt",
+    "rejected": "Abgelehnt",
+    "completed": "Abgeschlossen",
+    "inProgress": "In Bearbeitung",
+    "cancelled": "Abgebrochen"
+  },
+  "roles": {
+    "admin": "Administrator",
+    "farmer": "Landwirt",
+    "buyer": "Käufer",
+    "supplier": "Lieferant",
+    "logistics": "Logistik",
+    "agronomist": "Agronom",
+    "researcher": "Forscher",
+    "inspector": "Inspektor",
+    "certifier": "Zertifizierer",
+    "investor": "Investor"
+  },
+  "categories": {
+    "crops": "Pflanzen",
+    "livestock": "Vieh",
+    "equipment": "Ausrüstung",
+    "inputs": "Inputs",
+    "services": "Dienstleistungen",
+    "certifications": "Zertifizierungen",
+    "finance": "Finanzen",
+    "insurance": "Versicherung",
+    "logistics": "Logistik",
+    "technology": "Technologie"
+  },
+  "metrics": {
+    "views": "Aufrufe",
+    "clicks": "Klicks",
+    "conversions": "Konversionen",
+    "revenue": "Einnahmen",
+    "profit": "Gewinn",
+    "roi": "ROI",
+    "efficiency": "Effizienz",
+    "productivity": "Produktivität",
+    "quality": "Qualität",
+    "satisfaction": "Zufriedenheit"
+  },
+  "alerts": {
+    "weather": {
+      "title": "Wetterwarnung",
+      "frost": "Frostwarnung für Ihre Region",
+      "drought": "Dürrebedingungen erkannt",
+      "flood": "Hochwasserrisiko in Ihrem Gebiet",
+      "storm": "Sturm nähert sich"
+    },
+    "market": {
+      "title": "Marktwarnung",
+      "priceIncrease": "Preiserhöhung für {crop}",
+      "priceDecrease": "Preissenkung für {crop}",
+      "highDemand": "Hohe Nachfrage nach {crop}",
+      "supplyShortage": "Versorgungsknappheit erkannt"
+    },
+    "system": {
+      "title": "Systemwarnung",
+      "maintenance": "Geplante Wartung",
+      "update": "Neue Funktionen verfügbar",
+      "security": "Sicherheitsupdate erforderlich",
+      "backup": "Datensicherung abgeschlossen"
+    },
+    "compliance": {
+      "title": "Konformitätswarnung",
+      "certification": "Zertifizierung läuft bald ab",
+      "audit": "Audit geplant",
+      "regulation": "Neue Verordnung betrifft Sie",
+      "deadline": "Frist nähert sich"
+    }
+  },
+  "emptyStates": {
+    "noData": "Keine Daten verfügbar",
+    "noActivity": "Keine kürzliche Aktivität",
+    "noNotifications": "Keine Benachrichtigungen",
+    "noMessages": "Keine Nachrichten",
+    "noTasks": "Keine Aufgaben",
+    "noProducts": "Keine Produkte aufgelistet",
+    "noConnections": "Noch keine Verbindungen"
+  },
+  "loading": {
+    "dashboard": "Dashboard wird geladen...",
+    "data": "Daten werden geladen...",
+    "analytics": "Analysen werden geladen...",
+    "reports": "Berichte werden generiert..."
+  },
+  "errors": {
+    "loadFailed": "Dashboard-Daten konnten nicht geladen werden",
+    "saveFailed": "Änderungen konnten nicht gespeichert werden",
+    "deleteFailed": "Element konnte nicht gelöscht werden",
+    "networkError": "Netzwerkverbindungsfehler",
+    "permissionDenied": "Berechtigung verweigert",
+    "invalidData": "Ungültige Daten bereitgestellt"
+  },
+  "success": {
+    "saved": "Änderungen erfolgreich gespeichert",
+    "deleted": "Element erfolgreich gelöscht",
+    "created": "Element erfolgreich erstellt",
+    "updated": "Element erfolgreich aktualisiert",
+    "sent": "Nachricht erfolgreich gesendet"
+  },
+  "tooltips": {
+    "refresh": "Daten aktualisieren",
+    "export": "Daten exportieren",
+    "import": "Daten importieren",
+    "settings": "Dashboard-Einstellungen",
+    "help": "Hilfe und Dokumentation",
+    "fullscreen": "Vollbild umschalten",
+    "minimize": "Widget minimieren"
+  },
+  "placeholders": {
+    "search": "Dashboard durchsuchen...",
+    "filter": "Ergebnisse filtern...",
+    "selectDate": "Datum auswählen...",
+    "enterValue": "Wert eingeben...",
+    "selectOption": "Option auswählen..."
+  }
+}

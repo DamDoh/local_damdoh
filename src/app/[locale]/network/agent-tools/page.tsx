@@ -9,8 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowLeft, Loader2, Phone, Search, User, ShieldAlert, Frown } from "lucide-react";
 import Link from 'next/link';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/lib/auth-utils';
 import { useUserProfile } from '@/hooks/useUserProfile';
@@ -25,14 +24,10 @@ export default function AgentToolsPage() {
     const { user: authUser, loading: authLoading } = useAuth();
     const { profile: agentProfile, loading: profileLoading } = useUserProfile();
     const { toast } = useToast();
-    const functions = getFunctions(firebaseApp);
-    
     const [phoneNumber, setPhoneNumber] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [foundUser, setFoundUser] = useState<UserProfile | null>(null);
     const [searchError, setSearchError] = useState<string | null>(null);
-
-    const lookupUserCallable = useMemo(() => httpsCallable(functions, 'lookupUserByPhone'), []);
 
     const handleLookup = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -44,8 +39,11 @@ export default function AgentToolsPage() {
         setFoundUser(null);
         setSearchError(null);
         try {
-            const result = await lookupUserCallable({ phoneNumber });
-            setFoundUser(result.data as UserProfile);
+            const result = await apiCall<UserProfile>('/users/lookup-by-phone', {
+                method: 'POST',
+                body: JSON.stringify({ phoneNumber })
+            });
+            setFoundUser(result);
         } catch (error: any) {
             console.error("Error looking up user:", error);
             setSearchError(error.message || "An unexpected error occurred.");
@@ -139,7 +137,7 @@ export default function AgentToolsPage() {
                             <Card>
                                 <CardContent className="p-4 flex items-center gap-4">
                                      <Avatar className="h-16 w-16">
-                                        <AvatarImage src={foundUser.avatarUrl} alt={foundUser.displayName} />
+                                        <AvatarImage src={foundUser.avatarUrl || undefined} alt={foundUser.displayName} />
                                         <AvatarFallback>{foundUser.displayName?.substring(0, 2).toUpperCase()}</AvatarFallback>
                                     </Avatar>
                                     <div>

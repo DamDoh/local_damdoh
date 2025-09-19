@@ -6,16 +6,15 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { getFunctions, httpsCallable } from 'firebase/functions';
+import { apiCall } from '@/lib/api-utils';
 import { useTranslations } from 'next-intl';
 
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import { createInsuranceApplicationSchema, type CreateInsuranceApplicationValues } from '@/lib/form-schemas';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -40,10 +39,20 @@ export default function ApplyForInsurancePage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     
-    const functions = getFunctions(firebaseApp);
-    const getUserFarmsCallable = useMemo(() => httpsCallable(functions, 'farmManagement-getUserFarms'), [functions]);
-    const getProductDetailsCallable = useMemo(() => httpsCallable(functions, 'insurance-getInsuranceProductDetails'), [functions]);
-    const submitApplicationCallable = useMemo(() => httpsCallable(functions, 'insurance-submitInsuranceApplication'), [functions]);
+    const getUserFarms = useCallback(async () => {
+        return await apiCall<{ farms: Farm[] }>('/farms');
+    }, []);
+
+    const getProductDetails = useCallback(async (data: { productId: string }) => {
+        return await apiCall<{ product: InsuranceProduct }>(`/insurance/products/${data.productId}`);
+    }, []);
+
+    const submitApplication = useCallback(async (data: CreateInsuranceApplicationValues) => {
+        return await apiCall('/insurance/applications', {
+            method: 'POST',
+            body: JSON.stringify(data)
+        });
+    }, []);
     
     const productId = searchParams.get('productId');
 
@@ -61,17 +70,17 @@ export default function ApplyForInsurancePage() {
         setIsLoading(true);
         try {
             const [farmsResult, productResult] = await Promise.all([
-                getUserFarmsCallable(),
-                getProductDetailsCallable({ productId })
+                getUserFarms(),
+                getProductDetails({ productId })
             ]);
-            setFarms((farmsResult.data as any)?.farms || []);
-            setProduct((productResult.data as any)?.product || null);
+            setFarms(farmsResult.farms || []);
+            setProduct(productResult.product || null);
         } catch(error: any) {
             toast({ variant: 'destructive', title: t('toast.error'), description: error.message });
         } finally {
             setIsLoading(false);
         }
-    }, [user, productId, getUserFarmsCallable, getProductDetailsCallable, toast, t]);
+    }, [user, productId, getUserFarms, getProductDetails, toast, t]);
 
     useEffect(() => {
         fetchData();
@@ -81,7 +90,7 @@ export default function ApplyForInsurancePage() {
         if (!user) return;
         setIsSubmitting(true);
         try {
-            await submitApplicationCallable(data);
+            await submitApplication(data);
             toast({ title: t('toast.successTitle'), description: t('toast.successDescription') });
             setIsSuccess(true);
         } catch(error: any) {

@@ -1,9 +1,8 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { useState, useEffect } from 'react';
+import { apiCall } from '@/lib/api-utils';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -20,16 +19,13 @@ export const InsuranceProviderDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
-  const functions = useMemo(() => getFunctions(firebaseApp), []);
-  const getInsuranceProviderDashboardDataCallable = useMemo(() => httpsCallable<void, InsuranceProviderDashboardData>(functions, 'dashboardData-getInsuranceProviderDashboardData'), [functions]);
-
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       setError(null);
       try {
-        const result = await getInsuranceProviderDashboardDataCallable();
-        setDashboardData(result.data);
+        const result = await apiCall<InsuranceProviderDashboardData>('/dashboard/insurance-provider');
+        setDashboardData(result);
       } catch (err) {
         console.error("Error fetching Insurance Provider dashboard data:", err);
         setError(t('errors.load'));
@@ -39,7 +35,7 @@ export const InsuranceProviderDashboard = () => {
     };
 
     fetchData();
-  }, [getInsuranceProviderDashboardDataCallable, t]);
+  }, [t]);
 
   if (isLoading) {
     return <DashboardSkeleton />;

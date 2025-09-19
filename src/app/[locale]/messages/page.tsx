@@ -10,7 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Send, Search, MessageSquare, Loader2, ArrowLeft } from "lucide-react";
+import { Send, Search, MessageSquare, Loader2, ArrowLeft, Video } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from '@/lib/utils';
 import type { UserProfile, Conversation, Message } from '@/lib/types';
@@ -20,6 +20,7 @@ import { getProfileByIdFromDB } from '@/lib/server-actions';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { apiCall } from '@/lib/api-utils';
+import { MeetingScheduler } from '@/components/ui/MeetingScheduler';
 
 
 function MessagingContent() {
@@ -249,16 +250,35 @@ function MessagingContent() {
             <div className={cn("flex flex-col h-full bg-muted/30", !showChatPanel && "flex")}>
                 {showChatPanel ? (
                     <>
-                        <div className="p-4 border-b flex items-center gap-3 bg-background">
-                            <Button variant="ghost" size="icon" className="md:hidden h-8 w-8 mr-2" onClick={() => setSelectedConversation(null)}>
-                                <ArrowLeft className="h-4 w-4"/>
-                            </Button>
-                            <Avatar>
-                                <AvatarImage src={conversationHeaderProfile?.avatarUrl || undefined} data-ai-hint="profile person agriculture" />
-                                <AvatarFallback>{(conversationHeaderProfile as any)?.displayName?.substring(0,2) ?? (conversationHeaderProfile as any)?.name?.substring(0,2) ?? '??'}</AvatarFallback>
-                            </Avatar>
-                            <h3 className="font-semibold">{(conversationHeaderProfile as any)?.displayName ?? (conversationHeaderProfile as any)?.name}</h3>
-                        </div>
+                        <div className="p-4 border-b flex items-center justify-between bg-background">
+                             <div className="flex items-center gap-3">
+                                 <Button variant="ghost" size="icon" className="md:hidden h-8 w-8 mr-2" onClick={() => setSelectedConversation(null)}>
+                                     <ArrowLeft className="h-4 w-4"/>
+                                 </Button>
+                                 <Avatar>
+                                     <AvatarImage src={conversationHeaderProfile?.avatarUrl || undefined} data-ai-hint="profile person agriculture" />
+                                     <AvatarFallback>{(conversationHeaderProfile as any)?.displayName?.substring(0,2) ?? (conversationHeaderProfile as any)?.name?.substring(0,2) ?? '??'}</AvatarFallback>
+                                 </Avatar>
+                                 <h3 className="font-semibold">{(conversationHeaderProfile as any)?.displayName ?? (conversationHeaderProfile as any)?.name}</h3>
+                             </div>
+                             <div className="flex items-center gap-2">
+                                 <MeetingScheduler
+                                     conversationId={selectedConversation?.id}
+                                     recipientName={(conversationHeaderProfile as any)?.displayName ?? (conversationHeaderProfile as any)?.name}
+                                     trigger={
+                                         <Button variant="outline" size="sm" className="gap-2">
+                                             <Video className="h-4 w-4" />
+                                             <span className="hidden sm:inline">Video Call</span>
+                                         </Button>
+                                     }
+                                     onMeetingScheduled={(meetingLink) => {
+                                         // Optionally send meeting link as a message
+                                         const meetingMessage = `I've scheduled a meeting: ${meetingLink.url}`;
+                                         // This could be enhanced to automatically send the meeting link
+                                     }}
+                                 />
+                             </div>
+                         </div>
                         <ScrollArea className="flex-grow p-4">
                             {isLoadingMessages ? (
                                 <div className="flex justify-center items-center h-full">

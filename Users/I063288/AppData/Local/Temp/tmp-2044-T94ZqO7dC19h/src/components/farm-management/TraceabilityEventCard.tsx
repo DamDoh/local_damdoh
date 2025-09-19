@@ -1,11 +1,26 @@
-
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { format } from 'date-fns';
 import { Eye, HardHat, Package, CheckCircle, GitBranch, Truck, Sprout, Droplets, Weight } from 'lucide-react';
-import type { FarmingAssistantOutput, TraceabilityEvent } from '@/lib/types';
 import { useTranslations } from "next-intl";
+
+interface TraceabilityEvent {
+    id: string;
+    eventType: string;
+    timestamp: string;
+    payload: any;
+    actor: {
+        name: string;
+        role: string;
+        avatarUrl?: string;
+    };
+    geoLocation?: { lat: number; lng: number } | null;
+}
+
+interface FarmingAssistantOutput {
+    summary: string;
+}
 
 const getEventIcon = (eventType: string) => {
     const iconProps = { className: "h-5 w-5" };
@@ -23,11 +38,11 @@ const getEventIcon = (eventType: string) => {
 
 const EventPayload = ({ payload }: { payload: any }) => {
     const t = useTranslations('farmManagement.cropDetailPage');
-    
+
     if (!payload || typeof payload !== 'object' || Object.keys(payload).length === 0) {
         return <p className="text-xs text-muted-foreground italic">{t('eventPayload.noDetails')}</p>;
     }
-    
+
     if (payload.aiAnalysis && typeof payload.aiAnalysis === 'object') {
         const analysis = payload.aiAnalysis as FarmingAssistantOutput;
         return (

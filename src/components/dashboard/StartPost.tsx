@@ -5,9 +5,22 @@ import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Image as ImageIcon, CalendarDays, BarChart3 } from "lucide-react";
+import {
+  Image as ImageIcon,
+  CalendarDays,
+  BarChart3,
+  Tractor,
+  Users,
+  Sprout,
+  ShoppingCart,
+  Wrench,
+  Truck,
+  DollarSign,
+  Lightbulb,
+  HelpCircle
+} from "lucide-react";
 import { useUserProfile } from '@/hooks/useUserProfile';
-import { CreatePostModal } from './CreatePostModal';
+import { AgriculturalPostCreationModal } from './AgriculturalPostCreationModal';
 import { Skeleton } from '../ui/skeleton';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
@@ -57,26 +70,41 @@ export function StartPost({ onCreatePost }: StartPostProps) {
              {t('placeholder')}
             </div>
           </div>
-          <div className="mt-4 flex flex-wrap justify-around gap-2 sm:gap-0">
-            <Button onClick={handleOpenModal} variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex-1 sm:flex-none">
-              <ImageIcon className="mr-2 h-5 w-5 text-green-500" /> {t('photoVideo')}
+          <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+            <Button onClick={handleOpenModal} variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex flex-col items-center p-3 h-auto">
+              <ImageIcon className="h-5 w-5 text-green-500 mb-1" />
+              <span className="text-xs text-center">Crop Update</span>
             </Button>
-            <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex-1 sm:flex-none" asChild>
+            <Button onClick={handleOpenModal} variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex flex-col items-center p-3 h-auto">
+              <ShoppingCart className="h-5 w-5 text-blue-500 mb-1" />
+              <span className="text-xs text-center">For Sale</span>
+            </Button>
+            <Button onClick={handleOpenModal} variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex flex-col items-center p-3 h-auto">
+              <Users className="h-5 w-5 text-purple-500 mb-1" />
+              <span className="text-xs text-center">Labor</span>
+            </Button>
+            <Button onClick={handleOpenModal} variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex flex-col items-center p-3 h-auto">
+              <Tractor className="h-5 w-5 text-orange-500 mb-1" />
+              <span className="text-xs text-center">Equipment</span>
+            </Button>
+            <Button onClick={handleOpenModal} variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex flex-col items-center p-3 h-auto">
+              <Lightbulb className="h-5 w-5 text-yellow-500 mb-1" />
+              <span className="text-xs text-center">Knowledge</span>
+            </Button>
+            <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex flex-col items-center p-3 h-auto" asChild>
                 <Link href="/agri-events/create">
-                    <CalendarDays className="mr-2 h-5 w-5 text-red-500" /> {t('agriEvent')}
+                    <CalendarDays className="h-5 w-5 text-red-500 mb-1" />
+                    <span className="text-xs text-center">Event</span>
                 </Link>
-            </Button>
-            <Button onClick={handleOpenModal} variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex-1 sm:flex-none">
-              <BarChart3 className="mr-2 h-5 w-5 text-blue-500" /> {t('createPoll')}
             </Button>
           </div>
         </CardContent>
       </Card>
       
-      <CreatePostModal 
-        isOpen={isModalOpen} 
-        onClose={handleCloseModal} 
-        onCreatePost={onCreatePost} 
+      <AgriculturalPostCreationModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onCreatePost={onCreatePost}
       />
     </>
   );

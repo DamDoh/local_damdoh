@@ -1,17 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/user.model';
+import { TokenPayload } from '../types/token.types';
 
 interface JwtPayload {
   userId: string;
-}
-
-declare global {
-  namespace Express {
-    interface Request {
-      user?: any;
-    }
-  }
 }
 
 export const authenticate = async (
@@ -33,7 +26,13 @@ export const authenticate = async (
       return res.status(401).json({ error: 'User not found' });
     }
 
-    req.user = user;
+    // Create TokenPayload from user data
+    const tokenPayload: TokenPayload = {
+      userId: user._id.toString(),
+      role: user.role,
+    };
+
+    req.user = tokenPayload;
     next();
   } catch (error) {
     return res.status(401).json({ error: 'Invalid token' });

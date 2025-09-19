@@ -9,8 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Users, PlusCircle, Search, Lock } from "lucide-react";
 import Link from 'next/link';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import type { ForumGroup } from '@/lib/types';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
@@ -23,17 +22,13 @@ export default function GroupsPage() {
     const [searchTerm, setSearchTerm] = useState("");
     const { user } = useAuth();
     const { toast } = useToast();
-    const functions = getFunctions(firebaseApp);
-    const getGroupsCallable = useMemo(() => httpsCallable(functions, 'getGroups'), [functions]);
-
     useEffect(() => {
         const fetchGroups = async () => {
             setIsLoading(true);
             try {
-                const result = await getGroupsCallable();
+                const data = await apiCall<{ groups?: ForumGroup[] }>('/groups');
                 // Use nullish coalescing operator for safety
-                const data = (result.data as { groups?: ForumGroup[] })?.groups ?? [];
-                setGroups(data);
+                setGroups(data.groups ?? []);
             } catch (error) {
                 console.error("Error fetching groups:", error);
                 toast({
@@ -47,7 +42,7 @@ export default function GroupsPage() {
         };
 
         fetchGroups();
-    }, [getGroupsCallable, toast, t]);
+    }, [toast, t]);
 
     const filteredGroups = useMemo(() => {
         if (!Array.isArray(groups)) return [];

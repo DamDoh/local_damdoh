@@ -1,0 +1,195 @@
+{
+  "title": "Papan Pemuka",
+  "subtitle": "Selamat datang ke pusat kawalan pertanian anda",
+  "welcome": "Selamat kembali, {name}!",
+  "overview": {
+    "title": "Ringkasan",
+    "description": "Ekosistem pertanian anda pada satu pandangan"
+  },
+  "stats": {
+    "totalUsers": "Jumlah Pengguna",
+    "activeUsers": "Pengguna Aktif",
+    "totalTransactions": "Jumlah Transaksi",
+    "revenue": "Hasil",
+    "farms": "Ladang Aktif",
+    "products": "Produk yang Tersenarai",
+    "connections": "Sambungan Rangkaian",
+    "certifications": "Sijil Aktif"
+  },
+  "navigation": {
+    "overview": "Ringkasan",
+    "analytics": "Analitik",
+    "users": "Pengguna",
+    "transactions": "Transaksi",
+    "reports": "Laporan",
+    "settings": "Tetapan",
+    "notifications": "Pemberitahuan",
+    "support": "Sokongan"
+  },
+  "widgets": {
+    "recentActivity": "Aktiviti Terkini",
+    "quickActions": "Tindakan Pantas",
+    "notifications": "Pemberitahuan",
+    "alerts": "Amaran",
+    "weather": "Cuaca",
+    "marketPrices": "Harga Pasaran",
+    "tasks": "Tugas",
+    "messages": "Mesej",
+    "calendar": "Kalendar",
+    "performance": "Prestasi"
+  },
+  "quickActions": {
+    "addProduct": "Tambah Produk",
+    "createListing": "Buat Penyenaraian",
+    "scheduleMeeting": "Jadual Mesyuarat",
+    "viewAnalytics": "Lihat Analitik",
+    "manageProfile": "Urus Profil",
+    "contactSupport": "Hubungi Sokongan",
+    "inviteUsers": "Jemput Pengguna",
+    "exportData": "Eksport Data"
+  },
+  "filters": {
+    "today": "Hari Ini",
+    "yesterday": "Semalam",
+    "lastWeek": "Minggu Lepas",
+    "lastMonth": "Bulan Lepas",
+    "lastQuarter": "Suku Tahun Lepas",
+    "lastYear": "Tahun Lepas",
+    "customRange": "Julat Tersuai",
+    "allTime": "Sepanjang Masa"
+  },
+  "timeRanges": {
+    "hour": "Jam Terakhir",
+    "day": "24 Jam Terakhir",
+    "week": "7 Hari Terakhir",
+    "month": "30 Hari Terakhir",
+    "quarter": "3 Bulan Terakhir",
+    "year": "Tahun Lepas"
+  },
+  "status": {
+    "online": "Dalam Talian",
+    "offline": "Luar Talian",
+    "busy": "Sibuk",
+    "away": "Jauh",
+    "active": "Aktif",
+    "inactive": "Tidak Aktif",
+    "pending": "Belum Selesai",
+    "approved": "Diluluskan",
+    "rejected": "Ditolak",
+    "completed": "Selesai",
+    "inProgress": "Dalam Proses",
+    "cancelled": "Dibatalkan"
+  },
+  "roles": {
+    "admin": "Pentadbir",
+    "farmer": "Petani",
+    "buyer": "Pembeli",
+    "supplier": "Pembekal",
+    "logistics": "Logistik",
+    "agronomist": "Ahli Agronomi",
+    "researcher": "Penyelidik",
+    "inspector": "Pemeriksa",
+    "certifier": "Pemberi Sijil",
+    "investor": "Pelabur"
+  },
+  "categories": {
+    "crops": "Tanaman",
+    "livestock": "Ternakan",
+    "equipment": "Peralatan",
+    "inputs": "Input",
+    "services": "Perkhidmatan",
+    "certifications": "Sijil",
+    "finance": "Kewangan",
+    "insurance": "Insurans",
+    "logistics": "Logistik",
+    "technology": "Teknologi"
+  },
+  "metrics": {
+    "views": "Pandangan",
+    "clicks": "Klik",
+    "conversions": "Penukaran",
+    "revenue": "Hasil",
+    "profit": "Keuntungan",
+    "roi": "ROI",
+    "efficiency": "Kecekapan",
+    "productivity": "Produktiviti",
+    "quality": "Kualiti",
+    "satisfaction": "Kepuasan"
+  },
+  "alerts": {
+    "weather": {
+      "title": "Amaran Cuaca",
+      "frost": "Amaran fros untuk kawasan anda",
+      "drought": "Keadaan kemarau dikesan",
+      "flood": "Risiko banjir di kawasan anda",
+      "storm": "Ribut mendekat"
+    },
+    "market": {
+      "title": "Amaran Pasaran",
+      "priceIncrease": "Peningkatan harga untuk {crop}",
+      "priceDecrease": "Penurunan harga untuk {crop}",
+      "highDemand": "Permintaan tinggi untuk {crop}",
+      "supplyShortage": "Kekurangan bekalan dikesan"
+    },
+    "system": {
+      "title": "Amaran Sistem",
+      "maintenance": "Penyelenggaraan dijadualkan",
+      "update": "Ciri baharu tersedia",
+      "security": "Kemas kini keselamatan diperlukan",
+      "backup": "Sandaran data selesai"
+    },
+    "compliance": {
+      "title": "Amaran Pematuhan",
+      "certification": "Sijil tamat tempoh tidak lama lagi",
+      "audit": "Audit dijadualkan",
+      "regulation": "Peraturan baharu mempengaruhi anda",
+      "deadline": "Tarikh akhir mendekat"
+    }
+  },
+  "emptyStates": {
+    "noData": "Tiada data tersedia",
+    "noActivity": "Tiada aktiviti terkini",
+    "noNotifications": "Tiada pemberitahuan",
+    "noMessages": "Tiada mesej",
+    "noTasks": "Tiada tugas",
+    "noProducts": "Tiada produk tersenarai",
+    "noConnections": "Tiada sambungan lagi"
+  },
+  "loading": {
+    "dashboard": "Memuatkan papan pemuka...",
+    "data": "Memuatkan data...",
+    "analytics": "Memuatkan analitik...",
+    "reports": "Menjana laporan..."
+  },
+  "errors": {
+    "loadFailed": "Gagal memuatkan data papan pemuka",
+    "saveFailed": "Gagal menyimpan perubahan",
+    "deleteFailed": "Gagal memadam item",
+    "networkError": "Ralat sambungan rangkaian",
+    "permissionDenied": "Kebenaran ditolak",
+    "invalidData": "Data tidak sah disediakan"
+  },
+  "success": {
+    "saved": "Perubahan berjaya disimpan",
+    "deleted": "Item berjaya dipadam",
+    "created": "Item berjaya dibuat",
+    "updated": "Item berjaya dikemas kini",
+    "sent": "Mesej berjaya dihantar"
+  },
+  "tooltips": {
+    "refresh": "Segar semula data",
+    "export": "Eksport data",
+    "import": "Import data",
+    "settings": "Tetapan papan pemuka",
+    "help": "Bantuan dan dokumentasi",
+    "fullscreen": "Togol skrin penuh",
+    "minimize": "Kecilkan widget"
+  },
+  "placeholders": {
+    "search": "Cari papan pemuka...",
+    "filter": "Tapis hasil...",
+    "selectDate": "Pilih tarikh...",
+    "enterValue": "Masukkan nilai...",
+    "selectOption": "Pilih pilihan..."
+  }
+}

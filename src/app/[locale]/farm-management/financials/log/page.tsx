@@ -29,8 +29,7 @@ import { ArrowLeft, Save, DollarSign, Loader2, ListFilter, FileText, Tag, Calend
 import { useToast } from "@/hooks/use-toast";
 import { useState, useMemo } from "react";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { app as firebaseApp } from "@/lib/firebase/client";
+import { apiCall } from "@/lib/api-utils";
 import { useTranslations } from "next-intl";
 
 
@@ -42,8 +41,6 @@ export default function LogFinancialTransactionPage() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
-  const functions = getFunctions(firebaseApp);
-  const logFinancialTransactionCallable = useMemo(() => httpsCallable(functions, 'financials-logFinancialTransaction'), [functions]);
   
   const form = useForm<LogFinancialTransactionValues>({
     resolver: zodResolver(logFinancialTransactionSchema),
@@ -68,9 +65,12 @@ export default function LogFinancialTransactionPage() {
     }
 
     setIsSubmitting(true);
-    
+
     try {
-      await logFinancialTransactionCallable(data);
+      await apiCall('/financial/transactions', {
+        method: 'POST',
+        body: JSON.stringify(data)
+      });
 
       toast({
         title: t('toast.success'),

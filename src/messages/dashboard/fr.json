@@ -1,0 +1,195 @@
+{
+  "title": "Tableau de Bord",
+  "subtitle": "Bienvenue dans votre centre de commandement agricole",
+  "welcome": "Bienvenue, {name}!",
+  "overview": {
+    "title": "Aperçu",
+    "description": "Votre écosystème agricole en un coup d'œil"
+  },
+  "stats": {
+    "totalUsers": "Utilisateurs Totaux",
+    "activeUsers": "Utilisateurs Actifs",
+    "totalTransactions": "Transactions Totales",
+    "revenue": "Revenus",
+    "farms": "Fermes Actives",
+    "products": "Produits Répertoriés",
+    "connections": "Connexions Réseau",
+    "certifications": "Certifications Actives"
+  },
+  "navigation": {
+    "overview": "Aperçu",
+    "analytics": "Analyses",
+    "users": "Utilisateurs",
+    "transactions": "Transactions",
+    "reports": "Rapports",
+    "settings": "Paramètres",
+    "notifications": "Notifications",
+    "support": "Support"
+  },
+  "widgets": {
+    "recentActivity": "Activité Récente",
+    "quickActions": "Actions Rapides",
+    "notifications": "Notifications",
+    "alerts": "Alertes",
+    "weather": "Météo",
+    "marketPrices": "Prix du Marché",
+    "tasks": "Tâches",
+    "messages": "Messages",
+    "calendar": "Calendrier",
+    "performance": "Performance"
+  },
+  "quickActions": {
+    "addProduct": "Ajouter un Produit",
+    "createListing": "Créer une Annonce",
+    "scheduleMeeting": "Planifier une Réunion",
+    "viewAnalytics": "Voir les Analyses",
+    "manageProfile": "Gérer le Profil",
+    "contactSupport": "Contacter le Support",
+    "inviteUsers": "Inviter des Utilisateurs",
+    "exportData": "Exporter les Données"
+  },
+  "filters": {
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "lastWeek": "La Semaine Dernière",
+    "lastMonth": "Le Mois Dernier",
+    "lastQuarter": "Le Trimestre Dernier",
+    "lastYear": "L'Année Dernière",
+    "customRange": "Plage Personnalisée",
+    "allTime": "Tout le Temps"
+  },
+  "timeRanges": {
+    "hour": "Dernière Heure",
+    "day": "Dernières 24 Heures",
+    "week": "7 Derniers Jours",
+    "month": "30 Derniers Jours",
+    "quarter": "3 Derniers Mois",
+    "year": "Année Dernière"
+  },
+  "status": {
+    "online": "En Ligne",
+    "offline": "Hors Ligne",
+    "busy": "Occupé",
+    "away": "Absent",
+    "active": "Actif",
+    "inactive": "Inactif",
+    "pending": "En Attente",
+    "approved": "Approuvé",
+    "rejected": "Rejeté",
+    "completed": "Terminé",
+    "inProgress": "En Cours",
+    "cancelled": "Annulé"
+  },
+  "roles": {
+    "admin": "Administrateur",
+    "farmer": "Agriculteur",
+    "buyer": "Acheteur",
+    "supplier": "Fournisseur",
+    "logistics": "Logistique",
+    "agronomist": "Agronome",
+    "researcher": "Chercheur",
+    "inspector": "Inspecteur",
+    "certifier": "Certificateur",
+    "investor": "Investisseur"
+  },
+  "categories": {
+    "crops": "Cultures",
+    "livestock": "Élevage",
+    "equipment": "Équipement",
+    "inputs": "Intrants",
+    "services": "Services",
+    "certifications": "Certifications",
+    "finance": "Finance",
+    "insurance": "Assurance",
+    "logistics": "Logistique",
+    "technology": "Technologie"
+  },
+  "metrics": {
+    "views": "Vues",
+    "clicks": "Clics",
+    "conversions": "Conversions",
+    "revenue": "Revenus",
+    "profit": "Profit",
+    "roi": "ROI",
+    "efficiency": "Efficacité",
+    "productivity": "Productivité",
+    "quality": "Qualité",
+    "satisfaction": "Satisfaction"
+  },
+  "alerts": {
+    "weather": {
+      "title": "Alerte Météorologique",
+      "frost": "Avertissement de gel dans votre région",
+      "drought": "Conditions de sécheresse détectées",
+      "flood": "Risque d'inondation dans votre zone",
+      "storm": "Tempête approchant"
+    },
+    "market": {
+      "title": "Alerte Marché",
+      "priceIncrease": "Augmentation de prix pour {crop}",
+      "priceDecrease": "Diminution de prix pour {crop}",
+      "highDemand": "Demande élevée pour {crop}",
+      "supplyShortage": "Pénurie d'approvisionnement détectée"
+    },
+    "system": {
+      "title": "Alerte Système",
+      "maintenance": "Maintenance planifiée",
+      "update": "Nouvelles fonctionnalités disponibles",
+      "security": "Mise à jour de sécurité requise",
+      "backup": "Sauvegarde de données terminée"
+    },
+    "compliance": {
+      "title": "Alerte de Conformité",
+      "certification": "Certification expirant bientôt",
+      "audit": "Audit planifié",
+      "regulation": "Nouvelle réglementation vous affecte",
+      "deadline": "Délai approchant"
+    }
+  },
+  "emptyStates": {
+    "noData": "Aucune donnée disponible",
+    "noActivity": "Aucune activité récente",
+    "noNotifications": "Aucune notification",
+    "noMessages": "Aucun message",
+    "noTasks": "Aucune tâche",
+    "noProducts": "Aucun produit répertorié",
+    "noConnections": "Aucune connexion encore"
+  },
+  "loading": {
+    "dashboard": "Chargement du tableau de bord...",
+    "data": "Chargement des données...",
+    "analytics": "Chargement des analyses...",
+    "reports": "Génération des rapports..."
+  },
+  "errors": {
+    "loadFailed": "Échec du chargement des données du tableau de bord",
+    "saveFailed": "Échec de la sauvegarde des modifications",
+    "deleteFailed": "Échec de la suppression de l'élément",
+    "networkError": "Erreur de connexion réseau",
+    "permissionDenied": "Permission refusée",
+    "invalidData": "Données fournies invalides"
+  },
+  "success": {
+    "saved": "Modifications sauvegardées avec succès",
+    "deleted": "Élément supprimé avec succès",
+    "created": "Élément créé avec succès",
+    "updated": "Élément mis à jour avec succès",
+    "sent": "Message envoyé avec succès"
+  },
+  "tooltips": {
+    "refresh": "Actualiser les données",
+    "export": "Exporter les données",
+    "import": "Importer les données",
+    "settings": "Paramètres du tableau de bord",
+    "help": "Aide et documentation",
+    "fullscreen": "Basculer en plein écran",
+    "minimize": "Minimiser le widget"
+  },
+  "placeholders": {
+    "search": "Rechercher dans le tableau de bord...",
+    "filter": "Filtrer les résultats...",
+    "selectDate": "Sélectionner la date...",
+    "enterValue": "Entrer la valeur...",
+    "selectOption": "Sélectionner l'option..."
+  }
+}

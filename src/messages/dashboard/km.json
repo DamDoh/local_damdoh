@@ -1,0 +1,200 @@
+{
+  "title": "ផ្ទាំងគ្រប់គ្រង",
+  "subtitle": "ផ្ទាំងគ្រប់គ្រងកសិកម្មសម្រាប់កសិករនិងអ្នកស្រុក",
+  "navigation": {
+    "home": "ទំព័រដើម",
+    "farm": "កសិដ្ឋាន",
+    "marketplace": "ទីផ្សារ",
+    "analytics": "វិភាគ",
+    "network": "បណ្តាញ",
+    "knowledge": "ចំណេះដឹង",
+    "forums": "វេទិកា",
+    "notifications": "ការជូនដំណឹង",
+    "profile": "ទម្រង់ផ្ទាល់ខ្លួន",
+    "settings": "ការកំណត់"
+  },
+  "welcome": {
+    "greeting": "សូមស្វាគមន៍មកកាន់ DamDoh",
+    "subtitle": "វេទិកាឌីជីថលសម្រាប់កសិកម្មទំនើប",
+    "description": "គ្រប់គ្រងកសិដ្ឋានរបស់អ្នក តភ្ជាប់ជាមួយទីផ្សារ និងសហគមន៍កសិករ"
+  },
+  "quickActions": {
+    "title": "សកម្មភាពរហ័ស",
+    "addCrop": "បន្ថែមដំណាំ",
+    "scheduleTask": "គ្រោងទុកកិច្ចការ",
+    "checkWeather": "ពិនិត្យអាកាសធាតុ",
+    "viewMarket": "មើលទីផ្សារ",
+    "contactExpert": "ទំនាក់ទំនងអ្នកជំនាញ",
+    "getAdvice": "ទទួលបានអនុសាសន៍"
+  },
+  "overview": {
+    "title": "ទិដ្ឋភាពទូទៅ",
+    "activeFarms": "កសិដ្ឋានសកម្ម",
+    "totalArea": "ផ្ទៃដីសរុប",
+    "currentCrops": "ដំណាំបច្ចុប្បន្ន",
+    "pendingTasks": "កិច្ចការរង់ចាំ",
+    "unreadMessages": "សារមិនទាន់អាន",
+    "marketAlerts": "ការជូនដំណឹងទីផ្សារ"
+  },
+  "recentActivity": {
+    "title": "សកម្មភាពថ្មីៗ",
+    "viewAll": "មើលទាំងអស់",
+    "noActivity": "មិនមានសកម្មភាពថ្មីៗទេ",
+    "cropPlanted": "បានដាំដំណាំ",
+    "taskCompleted": "បានបញ្ចប់កិច្ចការ",
+    "marketUpdate": "បានធ្វើបច្ចុប្បន្នភាពទីផ្សារ",
+    "weatherAlert": "ការជូនដំណឹងអាកាសធាតុ",
+    "expertResponse": "ការឆ្លើយតបពីអ្នកជំនាញ"
+  },
+  "weather": {
+    "title": "អាកាសធាតុ",
+    "current": "បច្ចុប្បន្ន",
+    "forecast": "ការព្យាករណ៍",
+    "temperature": "សីតុណ្ហភាព",
+    "humidity": "សំណើម",
+    "rainfall": "បរិមាណភ្លៀង",
+    "windSpeed": "ល្បឿនខ្យល់",
+    "uvIndex": "សន្ទស្សន៍ UV",
+    "sunrise": "ព្រះអាទិត្យលេច",
+    "sunset": "ព្រះអាទិត្យលិច"
+  },
+  "market": {
+    "title": "ទីផ្សារកសិកម្ម",
+    "commodityPrices": "តម្លៃទំនិញ",
+    "trending": "កំពុងពេញនិយម",
+    "buyers": "អ្នកទិញ",
+    "sellers": "អ្នកលក់",
+    "contracts": "កិច្ចសន្យា",
+    "opportunities": "ឱកាស",
+    "viewDetails": "មើលព័ត៌មានលម្អិត"
+  },
+  "analytics": {
+    "title": "វិភាគនិងរបាយការណ៍",
+    "yieldAnalysis": "វិភាគផលិតភាព",
+    "costAnalysis": "វិភាគថ្លៃដើម",
+    "profitAnalysis": "វិភាគប្រាក់ចំណេញ",
+    "trendAnalysis": "វិភាគនិន្នាការណ៍",
+    "forecasting": "ការព្យាករណ៍",
+    "reports": "របាយការណ៍",
+    "export": "នាំចេញទិន្នន័យ",
+    "customize": "ប្ដូរតាមបំណង"
+  },
+  "network": {
+    "title": "បណ្តាញកសិករ",
+    "connections": "ការតភ្ជាប់",
+    "experts": "អ្នកជំនាញ",
+    "cooperatives": "សហការ",
+    "suppliers": "អ្នកផ្គត់ផ្គង់",
+    "buyers": "អ្នកទិញ",
+    "mentors": "អ្នកណែនាំ",
+    "findPeople": "ស្វែងរកមនុស្ស",
+    "groups": "ក្រុម",
+    "events": "ព្រឹត្តិការណ៍"
+  },
+  "knowledge": {
+    "title": "មជ្ឈមណ្ឌលចំណេះដឹង",
+    "articles": "បទអត្ថបទ",
+    "videos": "វីដេអូ",
+    "guides": "មគ្គុទ្ទេសក៍",
+    "courses": "វគ្គសិក្សា",
+    "webinars": "វេបីណា",
+    "research": "ការស្រាវជ្រាវ",
+    "bestPractices": "ការអនុវត្តល្អបំផុត",
+    "caseStudies": "ករណីសិក្សា",
+    "search": "ស្វែងរកចំណេះដឹង"
+  },
+  "forums": {
+    "title": "វេទិកាសហគមន៍",
+    "discussions": "ការពិភាក្សា",
+    "questions": "សំណួរ",
+    "answers": "ចម្លើយ",
+    "topics": "ប្រធានបទ",
+    "categories": "ប្រភេទ",
+    "popular": "ពេញនិយម",
+    "recent": "ថ្មីៗ",
+    "myPosts": "ប្រកាសរបស់ខ្ញុំ",
+    "startDiscussion": "ចាប់ផ្តើមការពិភាក្សា"
+  },
+  "notifications": {
+    "title": "ការជូនដំណឹង",
+    "all": "ទាំងអស់",
+    "unread": "មិនទាន់អាន",
+    "weather": "អាកាសធាតុ",
+    "market": "ទីផ្សារ",
+    "tasks": "កិច្ចការ",
+    "messages": "សារ",
+    "system": "ប្រព័ន្ធ",
+    "markRead": "សម្គាល់ថាបានអាន",
+    "markAllRead": "សម្គាល់ទាំងអស់ថាបានអាន",
+    "settings": "ការកំណត់ការជូនដំណឹង"
+  },
+  "profile": {
+    "title": "ទម្រង់ផ្ទាល់ខ្លួន",
+    "personalInfo": "ព័ត៌មានផ្ទាល់ខ្លួន",
+    "farmInfo": "ព័ត៌មានកសិដ្ឋាន",
+    "certifications": "វិញ្ញាបនបត្រ",
+    "achievements": "សមិទ្ធិផល",
+    "preferences": "ចំណូលចិត្ត",
+    "security": "សន្តិសុខ",
+    "editProfile": "កែសម្រួលទម្រង់",
+    "changePassword": "ផ្លាស់ប្តូរពាក្យសម្ងាត់",
+    "privacy": "ភាពឯកជន"
+  },
+  "settings": {
+    "title": "ការកំណត់",
+    "account": "គណនី",
+    "notifications": "ការជូនដំណឹង",
+    "privacy": "ភាពឯកជន",
+    "language": "ភាសា",
+    "units": "ឯកតា",
+    "currency": "រូបិយប័ណ្ណ",
+    "timezone": "តំបន់ពេលវេលា",
+    "integrations": "ការរួមបញ្ចូល",
+    "backup": "បម្រុងទុកទិន្នន័យ",
+    "help": "ជំនួយ",
+    "about": "អំពី",
+    "logout": "ចាកចេញ"
+  },
+  "search": {
+    "title": "ស្វែងរក",
+    "placeholder": "ស្វែងរកកសិដ្ឋាន ដំណាំ ទីផ្សារ...",
+    "filters": "តម្រង",
+    "results": "លទ្ធផល",
+    "noResults": "រកមិនឃើញលទ្ធផល",
+    "advancedSearch": "ការស្វែងរកកម្រិតខ្ពស់",
+    "recentSearches": "ការស្វែងរកថ្មីៗ",
+    "savedSearches": "ការស្វែងរកដែលបានរក្សាទុក"
+  },
+  "help": {
+    "title": "ជំនួយ",
+    "faq": "សំណួរគេសួរញឹកញាប់",
+    "guides": "មគ្គុទ្ទេសក៍",
+    "tutorials": "វីដេអូសិក្សា",
+    "contact": "ទំនាក់ទំនងយើងខ្ញុំ",
+    "support": "សេវាកម្មជំនួយ",
+    "feedback": "មតិកែលម្អ",
+    "reportIssue": "រាយការណ៍បញ្ហា"
+  },
+  "loading": {
+    "message": "កំពុងផ្ទុក...",
+    "pleaseWait": "សូមរង់ចាំ"
+  },
+  "error": {
+    "title": "កំហុស",
+    "message": "មានបញ្ហាកើតឡើង",
+    "retry": "ព្យាយាមម្តងទៀត",
+    "contactSupport": "ទំនាក់ទំនងសេវាកម្មជំនួយ"
+  },
+  "success": {
+    "title": "ជោគជ័យ",
+    "message": "ប្រតិបត្តិការបានជោគជ័យ",
+    "continue": "បន្ត"
+  },
+  "confirmation": {
+    "title": "ការបញ្ជាក់",
+    "message": "តើអ្នកប្រាកដទេ?",
+    "yes": "បាទ/ចាស",
+    "no": "ទេ",
+    "cancel": "លុបចោល"
+  }
+}

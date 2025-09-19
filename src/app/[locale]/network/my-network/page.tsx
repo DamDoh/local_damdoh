@@ -10,8 +10,7 @@ import { ArrowLeft, UserPlus, Check, X, Users, UserMinus, Loader2, Send } from "
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import type { ConnectionRequest, Connection } from '@/lib/types';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -29,12 +28,34 @@ export default function MyNetworkPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [isResponding, setIsResponding] = useState<string | null>(null);
 
-    const functions = getFunctions(firebaseApp);
-    const getPendingRequests = useMemo(() => httpsCallable(functions, 'network-getPendingRequests'), [functions]);
-    const getConnectionsCallable = useMemo(() => httpsCallable(functions, 'network-getConnections'), [functions]);
-    const respondToRequest = useMemo(() => httpsCallable(functions, 'network-respondToConnectionRequest'), []);
-    const removeConnectionCallable = useMemo(() => httpsCallable(functions, 'network-removeConnection'), []);
-    const sendInviteCallable = useMemo(() => httpsCallable(functions, 'network-sendInvite'), [functions]);
+    const getPendingRequests = useCallback(async () => {
+        return await apiCall<{ requests: ConnectionRequest[] }>('/network/pending-requests');
+    }, []);
+
+    const getConnectionsCallable = useCallback(async () => {
+        return await apiCall<{ connections: Connection[] }>('/network/connections');
+    }, []);
+
+    const respondToRequest = useCallback(async (data: { requestId: string, response: 'accepted' | 'declined' }) => {
+        return await apiCall('/network/respond-to-request', {
+            method: 'POST',
+            body: JSON.stringify(data)
+        });
+    }, []);
+
+    const removeConnectionCallable = useCallback(async (data: { connectionId: string }) => {
+        return await apiCall('/network/remove-connection', {
+            method: 'DELETE',
+            body: JSON.stringify(data)
+        });
+    }, []);
+
+    const sendInviteCallable = useCallback(async (data: { inviteeEmail: string }) => {
+        return await apiCall('/network/send-invite', {
+            method: 'POST',
+            body: JSON.stringify(data)
+        });
+    }, []);
 
 
     const fetchData = useCallback(async () => {
@@ -44,8 +65,8 @@ export default function MyNetworkPage() {
                 getPendingRequests(),
                 getConnectionsCallable()
             ]);
-            setRequests((requestsResult.data as any)?.requests || []);
-            setConnections((connectionsResult.data as any)?.connections || []);
+            setRequests(requestsResult.requests || []);
+            setConnections(connectionsResult.connections || []);
         } catch (error: any) {
             console.error("Error fetching network data:", error);
             toast({ title: t('toast.error'), description: t('toast.loadError'), variant: "destructive" });
@@ -74,7 +95,7 @@ export default function MyNetworkPage() {
             setIsResponding(null);
         }
     };
-    
+
     const handleRemoveConnection = async (connectionId: string) => {
         setIsResponding(connectionId); // Reuse loading state
         try {
@@ -87,7 +108,7 @@ export default function MyNetworkPage() {
             setIsResponding(null);
         }
     };
-    
+
     const handleInvite = async () => {
       const inviteeEmail = prompt(t('invitePrompt'));
       if (inviteeEmail) {

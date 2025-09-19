@@ -9,8 +9,7 @@ import { Shield, ArrowRight } from "lucide-react";
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import type { InsuranceProduct } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { useTranslations } from 'next-intl';
@@ -22,20 +21,17 @@ export default function InsuranceHubPage() {
     const [products, setProducts] = useState<InsuranceProduct[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const functions = getFunctions(firebaseApp);
-    const getProductsCallable = useMemo(() => httpsCallable(functions, 'insurance-getInsuranceProducts'), [functions]);
-    
     const fetchProducts = useCallback(async () => {
         setIsLoading(true);
         try {
-            const result = await getProductsCallable();
-            setProducts((result.data as any)?.products || []);
+            const result = await apiCall<{ products: InsuranceProduct[] }>('/insurance/products');
+            setProducts(result.products || []);
         } catch (error: any) {
             toast({ variant: 'destructive', title: t('toast.errorTitle'), description: error.message });
         } finally {
             setIsLoading(false);
         }
-    }, [getProductsCallable, toast, t]);
+    }, [toast, t]);
     
     useEffect(() => {
         if (user) {

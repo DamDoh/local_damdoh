@@ -6,17 +6,16 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { getFunctions, httpsCallable } from 'firebase/functions';
+import { apiCall } from '@/lib/api-utils';
 import { useTranslations } from 'next-intl';
 
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth-utils';
 import { financialApplicationSchema, type FinancialApplicationValues } from '@/lib/form-schemas';
 import { useToast } from '@/hooks/use-toast';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -66,9 +65,16 @@ export default function ApplyForFundingPage() {
   const [isLoadingFis, setIsLoadingFis] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const functions = getFunctions(firebaseApp);
-  const getFinancialInstitutionsCallable = useMemo(() => httpsCallable(functions, 'financials-getFinancialInstitutions'), [functions]);
-  const submitFinancialApplicationCallable = useMemo(() => httpsCallable(functions, 'financials-submitFinancialApplication'), [functions]);
+  const getFinancialInstitutions = async () => {
+    return await apiCall<UserProfile[]>('/financial/institutions');
+  };
+
+  const submitFinancialApplication = async (data: FinancialApplicationValues) => {
+    return await apiCall('/financial/applications', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  };
 
   const form = useForm<FinancialApplicationValues>({
     resolver: zodResolver(financialApplicationSchema),
@@ -81,14 +87,14 @@ export default function ApplyForFundingPage() {
   const fetchFis = useCallback(async () => {
       setIsLoadingFis(true);
       try {
-        const result = await getFinancialInstitutionsCallable();
-        setFis((result.data as any) || []);
+        const result = await getFinancialInstitutions();
+        setFis(result || []);
       } catch (error) {
         toast({ variant: 'destructive', title: t('toast.error'), description: t('toast.fetchFiError') });
       } finally {
         setIsLoadingFis(false);
       }
-  }, [getFinancialInstitutionsCallable, toast, t]);
+  }, [toast, t]);
   
   useEffect(() => {
     fetchFis();
@@ -101,7 +107,7 @@ export default function ApplyForFundingPage() {
     }
     setIsSubmitting(true);
     try {
-      await submitFinancialApplicationCallable(data);
+      await submitFinancialApplication(data);
       toast({ title: t('toast.successTitle'), description: t('toast.successDescription') });
       router.push('/farm-management/financials');
     } catch (error: any) {

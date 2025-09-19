@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { MessageSquare, ThumbsUp, MoreHorizontal, Edit, Share2, Send, CheckCircle, Trash2 } from "lucide-react";
+import { MessageSquare, ThumbsUp, MoreHorizontal, Edit, Share2, Send, CheckCircle, Trash2, ShoppingCart, Users, Handshake, HelpCircle, Shield, Star, Award, Bookmark, BookmarkCheck } from "lucide-react";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -37,6 +37,10 @@ export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
   
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(item.likesCount);
+  const [interestedInBuying, setInterestedInBuying] = useState(false);
+  const [wantToCollaborate, setWantToCollaborate] = useState(false);
+  const [needSimilarHelp, setNeedSimilarHelp] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
   const [votedOptionIndex, setVotedOptionIndex] = useState<number | null>(null);
   const [currentPollOptions, setCurrentPollOptions] = useState<PollOption[]>([]);
@@ -49,6 +53,8 @@ export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
   const [isLoadingReplies, setIsLoadingReplies] = useState(false);
   const [lastVisible, setLastVisible] = useState<any>(null);
   const [hasMoreComments, setHasMoreComments] = useState(true);
+  const [doubleTapCount, setDoubleTapCount] = useState(0);
+  const [showHeartAnimation, setShowHeartAnimation] = useState(false);
 
   const { toast } = useToast();
   const { profile: currentUserProfile } = useUserProfile();
@@ -117,7 +123,7 @@ export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
 
   const handleLike = async () => {
     if (!user) { toast({ title: t('signInToLikeToast'), variant: "destructive" }); return; }
-    
+
     // Optimistic UI update
     setIsLiked(prev => !prev);
     setLikesCount(prev => isLiked ? prev - 1 : prev + 1);
@@ -135,6 +141,34 @@ export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
         setLikesCount(prev => isLiked ? prev + 1 : prev - 1);
         toast({ title: t('likeError.fail'), variant: "destructive" });
     }
+  };
+
+  const handleInterestedInBuying = async () => {
+    if (!user) { toast({ title: 'Sign in to express interest', variant: "destructive" }); return; }
+
+    setInterestedInBuying(prev => !prev);
+    toast({ title: interestedInBuying ? 'Interest removed' : 'Interest expressed!' });
+  };
+
+  const handleWantToCollaborate = async () => {
+    if (!user) { toast({ title: 'Sign in to collaborate', variant: "destructive" }); return; }
+
+    setWantToCollaborate(prev => !prev);
+    toast({ title: wantToCollaborate ? 'Collaboration request withdrawn' : 'Collaboration requested!' });
+  };
+
+  const handleNeedSimilarHelp = async () => {
+    if (!user) { toast({ title: 'Sign in to request help', variant: "destructive" }); return; }
+
+    setNeedSimilarHelp(prev => !prev);
+    toast({ title: needSimilarHelp ? 'Help request removed' : 'Help requested!' });
+  };
+
+  const handleBookmark = async () => {
+    if (!user) { toast({ title: 'Sign in to bookmark posts', variant: "destructive" }); return; }
+
+    setIsBookmarked(prev => !prev);
+    toast({ title: isBookmarked ? 'Bookmark removed' : 'Post bookmarked!' });
   };
   
   const handleCommentButtonClick = () => {
@@ -162,6 +196,47 @@ export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
   };
 
   const handleRepost = () => toast({ title: t('repostPlaceholderToast') });
+
+  // Double tap to like functionality
+  const handleDoubleTap = () => {
+    if (!user) {
+      toast({ title: 'Sign in to like posts', variant: "destructive" });
+      return;
+    }
+
+    if (!isLiked) {
+      setShowHeartAnimation(true);
+      setIsLiked(true);
+      setLikesCount(prev => prev + 1);
+
+      // Hide heart animation after 1 second
+      setTimeout(() => setShowHeartAnimation(false), 1000);
+
+      // Trigger like API call
+      apiCall('/community/like-post', {
+        method: 'POST',
+        body: JSON.stringify({ postId: item.id }),
+      }).catch(error => {
+        console.error("Error liking post:", error);
+        setIsLiked(false);
+        setLikesCount(prev => prev - 1);
+        toast({ title: t('likeError.fail'), variant: "destructive" });
+      });
+    }
+  };
+
+  const handleTouchStart = () => {
+    setDoubleTapCount(prev => prev + 1);
+
+    setTimeout(() => {
+      if (doubleTapCount === 1) {
+        setDoubleTapCount(0);
+      } else if (doubleTapCount >= 2) {
+        handleDoubleTap();
+        setDoubleTapCount(0);
+      }
+    }, 300);
+  };
   
   const handlePollVote = async (optionIndex: number) => {
     if (votedOptionIndex !== null || !user) {
@@ -197,8 +272,15 @@ export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
 
 
   return (
-    <Card className="overflow-hidden">
-      <CardHeader className="p-4">
+    <Card className="overflow-hidden relative transition-all duration-200 hover:shadow-lg" onTouchStart={handleTouchStart} onDoubleClick={handleDoubleTap}>
+      {/* Heart Animation Overlay */}
+      {showHeartAnimation && (
+        <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none bg-black bg-opacity-20 rounded-lg">
+          <div className="text-red-500 text-6xl animate-ping">❤️</div>
+        </div>
+      )}
+
+      <CardHeader className="p-4" role="banner" aria-label={`Post by ${item.userName || 'Unknown User'}`}>
         <div className="flex items-start gap-3">
           <Avatar className="h-10 w-10">
             <AvatarImage src={item.userAvatar} alt={item.userName} data-ai-hint="profile person agriculture" />
@@ -207,7 +289,18 @@ export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
           <div className="flex-1">
             <div className="flex justify-between items-start">
               <div>
-                <Link href={`/profiles/${item.userId}`} className="font-semibold text-sm hover:underline">{item.userName}</Link>
+                <div className="flex items-center gap-2">
+                  <Link href={`/profiles/${item.userId}`} className="font-semibold text-sm hover:underline">{item.userName}</Link>
+                  {/* Trust/Verification Badges */}
+                  <div className="flex items-center gap-1">
+                    <CheckCircle className="h-4 w-4 text-green-600" aria-label="Verified Farmer" />
+                    <div className="flex items-center gap-1">
+                      <Star className="h-3 w-3 text-yellow-500" />
+                      <span className="text-xs text-gray-600">4.8</span>
+                    </div>
+                    <Shield className="h-4 w-4 text-blue-600" aria-label="Trusted Seller" />
+                  </div>
+                </div>
                 {item.userHeadline && <p className="text-xs text-muted-foreground">{item.userHeadline}</p>}
                 <p className="text-xs text-muted-foreground">{format.dateTime(new Date(item.timestamp), {dateStyle: 'medium'})}</p>
               </div>
@@ -278,17 +371,61 @@ export function FeedItemCard({ item, onDeletePost }: FeedItemCardProps) {
             <span>{likesCount} {t('likes', {count: likesCount})}</span>
             <span>{item.commentsCount} {t('comments', {count: item.commentsCount})}</span>
         </div>
-        <div className="flex justify-around border-t pt-1">
-          <Button variant="ghost" className={`hover:bg-accent/50 w-full ${isLiked ? 'text-primary' : 'text-muted-foreground'}`} onClick={handleLike}>
-            <ThumbsUp className="mr-2 h-5 w-5" /> {t('like')}
-          </Button>
-          <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleCommentButtonClick}>
-            <MessageSquare className="mr-2 h-5 w-5" /> {t('comment')}
-          </Button>
-          <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex-1 sm:flex-none">
-            <Share2 className="mr-2 h-5 w-5" /> {t('repost')}
-          </Button>
-        </div>
+        <div className="border-t pt-1">
+           {/* Primary Reactions */}
+           <div className="flex justify-around mb-2">
+             <Button variant="ghost" className={`hover:bg-accent/50 w-full ${isLiked ? 'text-primary' : 'text-muted-foreground'}`} onClick={handleLike}>
+               <ThumbsUp className="mr-2 h-5 w-5" /> {t('like')}
+             </Button>
+             <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 w-full" onClick={handleCommentButtonClick}>
+               <MessageSquare className="mr-2 h-5 w-5" /> {t('comment')}
+             </Button>
+             <Button variant="ghost" className="text-muted-foreground hover:bg-accent/50 hover:text-primary flex-1 sm:flex-none">
+               <Share2 className="mr-2 h-5 w-5" /> {t('repost')}
+             </Button>
+           </div>
+
+           {/* Agricultural-Specific Reactions */}
+           <div className="flex justify-around text-xs">
+             <Button
+               variant="ghost"
+               size="sm"
+               className={`hover:bg-accent/50 ${interestedInBuying ? 'text-green-600 bg-green-50' : 'text-muted-foreground'}`}
+               onClick={handleInterestedInBuying}
+             >
+               <ShoppingCart className="mr-1 h-4 w-4" />
+               Buy
+             </Button>
+             <Button
+               variant="ghost"
+               size="sm"
+               className={`hover:bg-accent/50 ${wantToCollaborate ? 'text-blue-600 bg-blue-50' : 'text-muted-foreground'}`}
+               onClick={handleWantToCollaborate}
+             >
+               <Handshake className="mr-1 h-4 w-4" />
+               Collaborate
+             </Button>
+             <Button
+               variant="ghost"
+               size="sm"
+               className={`hover:bg-accent/50 ${needSimilarHelp ? 'text-orange-600 bg-orange-50' : 'text-muted-foreground'}`}
+               onClick={handleNeedSimilarHelp}
+             >
+               <HelpCircle className="mr-1 h-4 w-4" />
+               Need Help
+             </Button>
+             <Button
+               variant="ghost"
+               size="sm"
+               className={`hover:bg-accent/50 ${isBookmarked ? 'text-purple-600 bg-purple-50' : 'text-muted-foreground'}`}
+               onClick={handleBookmark}
+               aria-label={isBookmarked ? 'Remove bookmark' : 'Bookmark this post'}
+             >
+               {isBookmarked ? <BookmarkCheck className="mr-1 h-4 w-4" /> : <Bookmark className="mr-1 h-4 w-4" />}
+               {isBookmarked ? 'Saved' : 'Save'}
+             </Button>
+           </div>
+         </div>
         
         {showCommentInput && (
           <div className="mt-3 px-2 space-y-2 border-t pt-3 w-full">

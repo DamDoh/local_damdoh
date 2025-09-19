@@ -26,8 +26,7 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
-import { httpsCallable } from 'firebase/functions';
-import { functions } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { useTranslations } from "next-intl";
 import { useOfflineSync } from '@/hooks/useOfflineSync';
 
@@ -45,9 +44,8 @@ export default function LogHarvestPage() {
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
   const [createdVtiId, setCreatedVtiId] = useState<string | null>(null);
   const { user } = useAuth();
-  const { isOnline, addActionToQueue } = useOfflineSync();
+  const { isOnline, addOfflineData } = useOfflineSync();
 
-  const handleHarvestEvent = httpsCallable(functions, 'traceability-handleHarvestEvent');
 
   const form = useForm<CreateHarvestValues>({
     resolver: zodResolver(createHarvestSchema),
@@ -81,18 +79,13 @@ export default function LogHarvestPage() {
       pricePerUnit: data.pricePerUnit,
       unit: data.unit,
       notes: data.notes,
-      actorVtiId: user.uid,
+      actorVtiId: user.id,
       geoLocation: null, // Placeholder for future location capture
     };
 
     if (!isOnline) {
       // Offline logic: Add to queue
-      await addActionToQueue({
-        operation: 'handleHarvestEvent', // Specific operation name for the backend to handle
-        collectionPath: 'harvest_events', // Conceptual collection for the outbox pattern
-        documentId: `harvest-${Date.now()}`, // Unique ID for the offline action
-        payload: payload,
-      });
+      await addOfflineData('farm_activity', payload);
       setSubmissionSuccess(true);
        toast({
          title: t('offlineToast.title'),
@@ -114,8 +107,11 @@ export default function LogHarvestPage() {
             duration: Infinity, // Keep open until dismissed
          }).id;
 
-      const result = await handleHarvestEvent(payload);
-      const newVtiId = (result.data as any)?.vtiId;
+      const result = await apiCall<{ vtiId: string }>('/traceability/harvest-event', {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      });
+      const newVtiId = result.vtiId;
       setCreatedVtiId(newVtiId);
 
       toast({

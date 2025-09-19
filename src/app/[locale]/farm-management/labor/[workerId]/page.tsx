@@ -10,8 +10,7 @@ import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -53,9 +52,6 @@ export default function WorkerDetailPage() {
 
     const [workerDetails, setWorkerDetails] = useState<WorkerDetails | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-    
-    const functions = getFunctions(firebaseApp);
-    const getWorkerDetailsCallable = useMemo(() => httpsCallable(functions, 'labor-getWorkerDetails'), []);
 
     useEffect(() => {
         if (!user || !workerId) return;
@@ -63,8 +59,8 @@ export default function WorkerDetailPage() {
         const fetchDetails = async () => {
             setIsLoading(true);
             try {
-                const result = await getWorkerDetailsCallable({ workerId });
-                setWorkerDetails(result.data as WorkerDetails);
+                const result = await apiCall<WorkerDetails>(`/labor/workers/${workerId}`);
+                setWorkerDetails(result);
             } catch (error: any) {
                 toast({ variant: 'destructive', title: t('toasts.errorTitle'), description: error.message });
                 router.push('/farm-management/labor');
@@ -74,7 +70,7 @@ export default function WorkerDetailPage() {
         };
 
         fetchDetails();
-    }, [user, workerId, getWorkerDetailsCallable, toast, router, t]);
+    }, [user, workerId, toast, router, t]);
 
     if (authLoading || isLoading) return <WorkerDetailPageSkeleton />;
     

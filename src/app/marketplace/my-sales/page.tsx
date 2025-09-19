@@ -9,8 +9,7 @@ import { ArrowLeft, ShoppingCart, MoreHorizontal } from "lucide-react";
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -39,21 +38,17 @@ export default function MySalesPage() {
     const [orders, setOrders] = useState<MarketplaceOrder[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const functions = getFunctions(firebaseApp);
-    const getSellerOrdersCallable = useMemo(() => httpsCallable(functions, 'marketplace-getSellerOrders'), [functions]);
-    const updateOrderStatusCallable = useMemo(() => httpsCallable(functions, 'marketplace-updateOrderStatus'), [functions]);
-
     const fetchOrders = useCallback(async () => {
         setIsLoading(true);
         try {
-            const result = await getSellerOrdersCallable();
-            setOrders((result?.data as any)?.orders || []);
+            const result = await apiCall<{ orders: MarketplaceOrder[] }>('/marketplace/seller-orders');
+            setOrders(result.orders || []);
         } catch (error: any) {
             toast({ variant: "destructive", title: t('toast.errorTitle'), description: t('toast.fetchError') });
         } finally {
             setIsLoading(false);
         }
-    }, [getSellerOrdersCallable, toast, t]);
+    }, [toast, t]);
 
     useEffect(() => {
         if (user) {
@@ -65,7 +60,10 @@ export default function MySalesPage() {
 
     const handleStatusUpdate = async (orderId: string, newStatus: MarketplaceOrder['status']) => {
         try {
-            await updateOrderStatusCallable({ orderId, newStatus });
+            await apiCall('/marketplace/update-order-status', {
+                method: 'POST',
+                body: JSON.stringify({ orderId, newStatus })
+            });
             toast({ title: t('toast.successTitle'), description: t('toast.updateSuccess', { status: t(`status.${newStatus}`) }) });
             fetchOrders();
         } catch (error: any) {

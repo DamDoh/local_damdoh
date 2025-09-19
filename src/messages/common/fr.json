@@ -1,0 +1,285 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "dashboard": "Tableau de bord",
+    "profile": "Profil",
+    "settings": "Paramètres",
+    "logout": "Déconnexion",
+    "search": {
+      "placeholder": "Rechercher des personnes, produits, services...",
+      "noResults": "Aucun résultat trouvé",
+      "loading": "Recherche en cours..."
+    },
+    "menu": {
+      "farmManagement": "Gestion de la ferme",
+      "marketplace": "Place de marché",
+      "network": "Réseau",
+      "knowledgeHub": "Centre de connaissances",
+      "forums": "Forums",
+      "traceability": "Traçabilité",
+      "analytics": "Analyses",
+      "compliance": "Conformité",
+      "sustainability": "Durabilité"
+    }
+  },
+  "ui": {
+    "buttons": {
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "delete": "Supprimer",
+      "edit": "Modifier",
+      "create": "Créer",
+      "update": "Mettre à jour",
+      "submit": "Soumettre",
+      "close": "Fermer",
+      "back": "Retour",
+      "next": "Suivant",
+      "previous": "Précédent",
+      "loading": "Chargement...",
+      "retry": "Réessayer",
+      "confirm": "Confirmer",
+      "decline": "Refuser",
+      "accept": "Accepter",
+      "reject": "Rejeter",
+      "view": "Voir",
+      "download": "Télécharger",
+      "upload": "Téléverser",
+      "share": "Partager",
+      "copy": "Copier",
+      "paste": "Coller"
+    },
+    "forms": {
+      "required": "Requis",
+      "optional": "Optionnel",
+      "validation": {
+        "email": "Veuillez entrer une adresse e-mail valide",
+        "required": "Ce champ est obligatoire",
+        "minLength": "Doit contenir au moins {count} caractères",
+        "maxLength": "Ne doit pas dépasser {count} caractères",
+        "pattern": "Veuillez entrer un format valide",
+        "numeric": "Veuillez entrer un nombre valide",
+        "date": "Veuillez entrer une date valide",
+        "url": "Veuillez entrer une URL valide"
+      },
+      "placeholders": {
+        "select": "Veuillez sélectionner...",
+        "search": "Rechercher...",
+        "enterText": "Entrez du texte...",
+        "enterNumber": "Entrez un nombre...",
+        "enterDate": "Sélectionnez une date..."
+      }
+    },
+    "status": {
+      "loading": "Chargement...",
+      "success": "Succès",
+      "error": "Erreur",
+      "warning": "Avertissement",
+      "info": "Information",
+      "pending": "En attente",
+      "completed": "Terminé",
+      "failed": "Échec",
+      "cancelled": "Annulé"
+    },
+    "pagination": {
+      "previous": "Précédent",
+      "next": "Suivant",
+      "page": "Page",
+      "of": "de",
+      "showing": "Affichage",
+      "to": "à",
+      "entries": "entrées",
+      "first": "Premier",
+      "last": "Dernier"
+    },
+    "modals": {
+      "confirm": {
+        "title": "Confirmer l'action",
+        "message": "Êtes-vous sûr de vouloir continuer ?",
+        "yes": "Oui",
+        "no": "Non"
+      },
+      "delete": {
+        "title": "Supprimer l'élément",
+        "message": "Cette action ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer cet élément ?",
+        "confirm": "Supprimer",
+        "cancel": "Annuler"
+      }
+    },
+    "tooltips": {
+      "help": "Aide",
+      "info": "Information",
+      "warning": "Avertissement",
+      "error": "Erreur"
+    }
+  },
+  "time": {
+    "now": "maintenant",
+    "justNow": "à l'instant",
+    "ago": "il y a",
+    "minute": "minute",
+    "minutes": "minutes",
+    "hour": "heure",
+    "hours": "heures",
+    "day": "jour",
+    "days": "jours",
+    "week": "semaine",
+    "weeks": "semaines",
+    "month": "mois",
+    "months": "mois",
+    "year": "année",
+    "years": "années",
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "tomorrow": "Demain",
+    "dateFormat": "dd MMM yyyy",
+    "timeFormat": "HH:mm",
+    "datetimeFormat": "dd MMM yyyy HH:mm"
+  },
+  "currency": {
+    "symbol": "€",
+    "code": "EUR",
+    "format": "{amount}{symbol}",
+    "thousandsSeparator": " ",
+    "decimalSeparator": ",",
+    "decimalPlaces": 2
+  },
+  "units": {
+    "weight": {
+      "kg": "kg",
+      "kilogram": "kilogramme",
+      "gram": "g",
+      "gram": "gramme",
+      "ton": "t",
+      "tonne": "tonne",
+      "pound": "lb",
+      "pound": "livre",
+      "ounce": "oz",
+      "ounce": "once"
+    },
+    "area": {
+      "hectare": "ha",
+      "hectare": "hectare",
+      "acre": "ac",
+      "acre": "acre",
+      "squareMeter": "m²",
+      "squareMeter": "mètre carré",
+      "squareFoot": "ft²",
+      "squareFoot": "pied carré"
+    },
+    "volume": {
+      "liter": "L",
+      "liter": "litre",
+      "gallon": "gal",
+      "gallon": "gallon",
+      "cubicMeter": "m³",
+      "cubicMeter": "mètre cube",
+      "milliliter": "mL",
+      "milliliter": "millilitre"
+    },
+    "length": {
+      "meter": "m",
+      "meter": "mètre",
+      "centimeter": "cm",
+      "centimeter": "centimètre",
+      "millimeter": "mm",
+      "millimeter": "millimètre",
+      "kilometer": "km",
+      "kilometer": "kilomètre",
+      "inch": "in",
+      "inch": "pouce",
+      "foot": "ft",
+      "foot": "pied",
+      "yard": "yd",
+      "yard": "yard"
+    }
+  },
+  "agricultural": {
+    "crops": {
+      "rice": "Riz",
+      "wheat": "Blé",
+      "corn": "Maïs",
+      "maize": "Maïs",
+      "soybean": "Soja",
+      "cotton": "Coton",
+      "coffee": "Café",
+      "tea": "Thé",
+      "sugarcane": "Canne à sucre",
+      "potato": "Pomme de terre",
+      "tomato": "Tomate",
+      "onion": "Oignon",
+      "garlic": "Ail",
+      "carrot": "Carotte",
+      "lettuce": "Laitue",
+      "cabbage": "Chou",
+      "broccoli": "Brocoli",
+      "spinach": "Épinards",
+      "beans": "Haricots",
+      "peas": "Pois",
+      "lentils": "Lentilles",
+      "chickpeas": "Pois chiches"
+    },
+    "seasons": {
+      "spring": "Printemps",
+      "summer": "Été",
+      "autumn": "Automne",
+      "fall": "Automne",
+      "winter": "Hiver",
+      "dry": "Saison sèche",
+      "wet": "Saison humide",
+      "monsoon": "Mousson",
+      "harvest": "Saison de récolte"
+    },
+    "soil": {
+      "types": {
+        "clay": "Argile",
+        "sandy": "Sableux",
+        "loam": "Limoneux",
+        "silt": "Limoneux fin",
+        "chalky": "Craie",
+        "peaty": "Tourbeux"
+      },
+      "ph": {
+        "acidic": "Acide",
+        "neutral": "Neutre",
+        "alkaline": "Alcalin"
+      }
+    },
+    "certifications": {
+      "organic": "Bio",
+      "fairTrade": "Commerce équitable",
+      "gmoFree": "Sans OGM",
+      "sustainable": "Durable",
+      "rainforestAlliance": "Alliance pour la forêt tropicale",
+      "utz": "Certifié UTZ",
+      "gap": "Bonnes pratiques agricoles"
+    }
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Veuillez réessayer.",
+    "network": "Erreur réseau. Veuillez vérifier votre connexion.",
+    "timeout": "La requête a expiré. Veuillez réessayer.",
+    "unauthorized": "Vous n'êtes pas autorisé à effectuer cette action.",
+    "forbidden": "Accès refusé.",
+    "notFound": "La ressource demandée n'a pas été trouvée.",
+    "server": "Erreur serveur. Veuillez réessayer plus tard.",
+    "validation": "Veuillez vérifier vos saisies et réessayer.",
+    "fileTooLarge": "Le fichier est trop volumineux. Veuillez sélectionner un fichier plus petit.",
+    "unsupportedFile": "Type de fichier non pris en charge.",
+    "quotaExceeded": "Vous avez dépassé votre quota."
+  },
+  "success": {
+    "saved": "Modifications enregistrées avec succès.",
+    "created": "Élément créé avec succès.",
+    "updated": "Élément mis à jour avec succès.",
+    "deleted": "Élément supprimé avec succès.",
+    "uploaded": "Fichier téléversé avec succès.",
+    "sent": "Message envoyé avec succès.",
+    "received": "Demande reçue avec succès."
+  },
+  "confirmations": {
+    "delete": "Êtes-vous sûr de vouloir supprimer cet élément ?",
+    "save": "Voulez-vous enregistrer vos modifications ?",
+    "send": "Êtes-vous sûr de vouloir envoyer ce message ?",
+    "submit": "Êtes-vous sûr de vouloir soumettre ce formulaire ?"
+  }
+}

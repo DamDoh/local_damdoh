@@ -13,6 +13,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -33,9 +34,8 @@ import { useState, useMemo } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-utils";
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
 import { uploadFileAndGetURL } from '@/lib/storage-utils';
+import { apiCall } from '@/lib/api-utils';
 import { useTranslations, useLocale } from "next-intl";
 import { getObservationTypes } from "@/lib/i18n-constants";
 import { useOfflineSync } from '@/hooks/useOfflineSync';
@@ -52,9 +52,7 @@ export default function LogObservationPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
   const locale = useLocale();
-  const functions = getFunctions(firebaseApp);
-  const { isOnline, addActionToQueue } = useOfflineSync();
-  const handleObservationEvent = httpsCallable(functions, 'traceability-handleObservationEvent');
+  const { isOnline, addOfflineData } = useOfflineSync();
 
   const form = useForm<CreateObservationValues>({
     resolver: zodResolver(createObservationSchema),
@@ -119,21 +117,19 @@ export default function LogObservationPage() {
         details: data.details,
         mediaUrls: imageUrl ? [imageUrl] : [],
         photoDataUri: photoDataUri, // Include for offline sync
-        actorVtiId: user.uid,
+        actorVtiId: user.id,
         geoLocation: null,
         aiAnalysis: aiDiagnosis,
       };
 
       if (isOnline) {
-        await handleObservationEvent(payload);
+        await apiCall('/traceability/handle-observation', {
+          method: 'POST',
+          body: JSON.stringify(payload),
+        });
         toast({ title: t('toast.success'), description: t('toast.successDescription') });
       } else {
-        await addActionToQueue({
-            operation: 'handleObservationEvent',
-            collectionPath: 'traceability_events',
-            documentId: `observation-${Date.now()}`,
-            payload: payload,
-        });
+        addOfflineData('crop_observation', payload);
         toast({ title: t('toast.queued.title'), description: t('toast.queued.description') });
       }
       router.push(`/farm-management/farms/${farmId}/crops/${cropId}`);

@@ -16,8 +16,7 @@ import { createInputApplicationSchema, type CreateInputApplicationValues } from 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from '@/lib/auth-utils';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
+import { apiCall } from '@/lib/api-utils';
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { format } from "date-fns";
@@ -35,11 +34,8 @@ export default function LogInputApplicationPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
   
-  const functions = getFunctions(firebaseApp);
-  const handleInputApplicationEvent = useMemo(() => httpsCallable(functions, 'traceability-handleInputApplicationEvent'), [functions]);
-  const getUserKnfBatchesCallable = useMemo(() => httpsCallable(functions, 'farmManagement-getUserKnfBatches'), [functions]);
   
-  const { isOnline, addActionToQueue } = useOfflineSync();
+  const { isOnline, addOfflineData } = useOfflineSync();
 
   const [knfBatches, setKnfBatches] = useState<KnfBatch[]>([]);
 
@@ -47,15 +43,14 @@ export default function LogInputApplicationPage() {
     if (!user) return;
     const fetchKnfBatches = async () => {
       try {
-        const result = await getUserKnfBatchesCallable();
-        const allBatches = (result.data as KnfBatch[]) || [];
+        const allBatches = await apiCall<KnfBatch[]>('/farm-management/get-user-knf-batches');
         setKnfBatches(allBatches.filter(b => b.status === 'Ready'));
       } catch (error) {
         console.error("Error fetching KNF batches:", error);
       }
     };
     fetchKnfBatches();
-  }, [user, getUserKnfBatchesCallable]);
+  }, [user]);
 
   const form = useForm<CreateInputApplicationValues>({
     resolver: zodResolver(createInputApplicationSchema),
@@ -87,20 +82,18 @@ export default function LogInputApplicationPage() {
       quantity: data.quantity,
       unit: data.unit,
       method: data.method,
-      actorVtiId: user.uid,
+      actorVtiId: user.id,
       geoLocation: null,
     };
     
     try {
       if (isOnline) {
-        await handleInputApplicationEvent(payload);
-      } else {
-        await addActionToQueue({
-          operation: 'handleInputApplicationEvent',
-          collectionPath: 'traceability_events',
-          documentId: `input-${Date.now()}`,
-          payload: payload
+        await apiCall('/traceability/input-application-event', {
+          method: 'POST',
+          body: JSON.stringify(payload)
         });
+      } else {
+        addOfflineData('farm_activity', payload);
       }
       toast({
         title: t('toast.success'),

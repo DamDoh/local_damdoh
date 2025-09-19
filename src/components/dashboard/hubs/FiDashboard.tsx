@@ -4,15 +4,37 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app as firebaseApp } from '@/lib/firebase/client';
-import { UserCheck, Landmark, FileSpreadsheet, PlusCircle } from 'lucide-react';
+import { api } from '@/lib/api-client';
+import { UserCheck, Landmark, FileSpreadsheet, PlusCircle, Camera, MapPin, Download, Wifi, WifiOff, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-import type { FiDashboardData, FinancialApplication, FinancialProduct } from '@/lib/types';
+import type { FinancialApplication, FinancialProduct } from '@/lib/types';
+
+interface FiDashboardData {
+  pendingApplications: FinancialApplication[];
+  portfolioOverview: {
+    totalValue: number;
+    loanCount: number;
+  };
+  financialProducts: FinancialProduct[];
+}
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useTranslations } from 'next-intl';
+import { useOfflineSync } from '@/hooks/useOfflineSync';
+import { useCamera } from '@/hooks/useCamera';
+import { useGeolocation } from '@/hooks/useGeolocation';
+import { useDataExport } from '@/hooks/useDataExport';
+import {
+  LoanPortfolioWidget,
+  RiskAssessmentWidget,
+  DocumentVerificationWidget,
+  FieldVisitSchedulerWidget,
+  FinancialAnalyticsWidget,
+  ClientRelationshipWidget,
+  ComplianceReportingWidget
+} from '@/components/dashboard/widgets/FiWidgets';
+import { OfflineIndicator } from '@/components/layout/OfflineIndicator';
 
 const StatCard = ({ title, value, description, icon, ctaLink, ctaText }: { title: string, value: string | number, description: string, icon: React.ReactNode, ctaLink?: string, ctaText?: string }) => (
   <Card className="flex flex-col">
@@ -35,31 +57,34 @@ const StatCard = ({ title, value, description, icon, ctaLink, ctaText }: { title
 );
 
 export const FiDashboard = () => {
-    const t = useTranslations('FiDashboard');
-    const tAppPage = useTranslations('FiApplicationPage');
-    const [dashboardData, setDashboardData] = useState<FiDashboardData | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+     const t = useTranslations('FiDashboard');
+     const tAppPage = useTranslations('FiApplicationPage');
+     const [dashboardData, setDashboardData] = useState<FiDashboardData | null>(null);
+     const [isLoading, setIsLoading] = useState(true);
+     const [error, setError] = useState<string | null>(null);
 
-    const functions = getFunctions(firebaseApp);
-    const getFiData = useMemo(() => httpsCallable(functions, 'dashboardData-getFiDashboardData'), [functions]);
+     // Initialize hooks
+     const { isOnline, addOfflineData, pendingCount } = useOfflineSync();
+     const { startCamera, captureImage, takePhotoAndAnalyze, isAnalyzing } = useCamera();
+     const { getCurrentPosition, location, isWatching, startWatching, stopWatching } = useGeolocation();
+     const { exportFinancialData, isExporting } = useDataExport();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            setError(null);
-            try {
-                const result = await getFiData();
-                setDashboardData(result.data as FiDashboardData);
-            } catch (error) {
-                console.error("Error fetching FI dashboard data:", error);
-                setError(t('errors.load'));
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchData();
-    }, [getFiData, t]);
+     useEffect(() => {
+         const fetchData = async () => {
+             setIsLoading(true);
+             setError(null);
+             try {
+                 const result = await api.get<FiDashboardData>('/api/fi/dashboard');
+                 setDashboardData(result);
+             } catch (error) {
+                 console.error("Error fetching FI dashboard data:", error);
+                 setError(t('errors.load'));
+             } finally {
+                 setIsLoading(false);
+             }
+         };
+         fetchData();
+     }, [t]);
     
     if (isLoading) {
         return <DashboardSkeleton />;
@@ -93,7 +118,39 @@ export const FiDashboard = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
+            <div className="flex items-center justify-between mb-6">
+                <h1 className="text-3xl font-bold">{t('title')}</h1>
+                <div className="flex items-center space-x-4">
+                    <OfflineIndicator />
+                    {pendingCount > 0 && (
+                        <Badge variant="secondary" className="flex items-center space-x-1">
+                            <WifiOff className="h-3 w-3" />
+                            <span>{pendingCount} pending</span>
+                        </Badge>
+                    )}
+                </div>
+            </div>
+
+            {/* Quick Actions */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <Button onClick={() => startCamera()} disabled={isAnalyzing} className="flex items-center space-x-2">
+                    <Camera className="h-4 w-4" />
+                    <span>Scan Document</span>
+                </Button>
+                <Button onClick={() => getCurrentPosition()} className="flex items-center space-x-2">
+                    <MapPin className="h-4 w-4" />
+                    <span>Get Location</span>
+                </Button>
+                <Button onClick={() => exportFinancialData()} disabled={isExporting} className="flex items-center space-x-2">
+                    <Download className="h-4 w-4" />
+                    <span>Export Data</span>
+                </Button>
+                <Button onClick={() => isWatching ? stopWatching() : startWatching()} className="flex items-center space-x-2">
+                    {isWatching ? <WifiOff className="h-4 w-4" /> : <MapPin className="h-4 w-4" />}
+                    <span>{isWatching ? 'Stop Tracking' : 'Track Location'}</span>
+                </Button>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <StatCard 
@@ -147,10 +204,10 @@ export const FiDashboard = () => {
                                 <TableBody>
                                     {pendingApplications.slice(0,5).map((app: FinancialApplication) => (
                                         <TableRow key={app.id}>
-                                            <TableCell className="font-medium">{app.applicantName}</TableCell>
-                                            <TableCell><Badge variant="outline">{app.type}</Badge></TableCell>
-                                            <TableCell>${app.amount.toLocaleString()}</TableCell>
-                                            <TableCell>{app.riskScore}</TableCell>
+                                            <TableCell className="font-medium">{app.applicantName || 'N/A'}</TableCell>
+                                            <TableCell><Badge variant="outline">{app.type || 'N/A'}</Badge></TableCell>
+                                            <TableCell>${app.amount?.toLocaleString() || 'N/A'}</TableCell>
+                                            <TableCell>{app.riskScore || 'N/A'}</TableCell>
                                             <TableCell className="text-right">
                                                  <Button asChild size="sm">
                                                     <Link href={`/fi/applications/${app.id}`}>{t('reviewButton')}</Link>
@@ -206,6 +263,15 @@ export const FiDashboard = () => {
                        )}
                     </CardContent>
                 </Card>
+
+                {/* FI-Specific Widgets */}
+                <LoanPortfolioWidget />
+                <RiskAssessmentWidget />
+                <DocumentVerificationWidget />
+                <FieldVisitSchedulerWidget />
+                <FinancialAnalyticsWidget />
+                <ClientRelationshipWidget />
+                <ComplianceReportingWidget />
             </div>
         </div>
     );
