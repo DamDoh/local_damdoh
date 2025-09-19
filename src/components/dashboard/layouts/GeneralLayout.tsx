@@ -4,14 +4,16 @@
  */
 
 import React from 'react';
-import {
-  CommunityEngagementWidget,
-  KnowledgeCenterWidget,
-  AchievementsWidget,
-  EventsOpportunitiesWidget,
-  NotificationsCenterWidget,
-  ImpactDashboardWidget
-} from '../widgets/GeneralWidgets';
+
+// Core widgets available to all stakeholders
+import { StoriesWidget } from '../widgets/StoriesWidget';
+import { AchievementBadges } from '../widgets/AchievementBadges';
+import { TrendingTopics } from '../widgets/TrendingTopics';
+import { ConnectionSuggestions } from '../widgets/ConnectionSuggestions';
+import { PersonalizedRecommendations } from '../widgets/PersonalizedRecommendations';
+import { HelpSupportWidget } from '../widgets';
+
+// Farmer-specific widgets
 import {
   WeatherWidget,
   MarketIntelligenceWidget,
@@ -21,6 +23,18 @@ import {
   SupplyChainWidget,
   TrendingFarmersWidget
 } from '../widgets/FarmerWidgets';
+
+// General stakeholder widgets
+import {
+  CommunityEngagementWidget,
+  KnowledgeCenterWidget,
+  AchievementsWidget,
+  EventsOpportunitiesWidget,
+  NotificationsCenterWidget,
+  ImpactDashboardWidget
+} from '../widgets/GeneralWidgets';
+
+// Common operational widgets
 import {
   DailyOperationsWidget,
   FarmResourcesWidget,
@@ -30,14 +44,8 @@ import {
   FarmerFeedbackWidget,
   SeasonalCalendarWidget,
   MoneyPlanningWidget,
-  BusinessAnalyticsWidget,
-  HelpSupportWidget
+  BusinessAnalyticsWidget
 } from '../widgets';
-import { PersonalizedRecommendations } from '../widgets/PersonalizedRecommendations';
-import { TrendingTopics } from '../widgets/TrendingTopics';
-import { ConnectionSuggestions } from '../widgets/ConnectionSuggestions';
-import { AchievementBadges } from '../widgets/AchievementBadges';
-import { StoriesWidget } from '../widgets/StoriesWidget';
 
 interface GeneralLayoutProps {
   config: any; // StakeholderConfig
@@ -53,7 +61,7 @@ export const GeneralLayout: React.FC<GeneralLayoutProps> = ({ config, feedConten
           <StoriesWidget />
         </div>
         <div className="space-y-4">
-          <AchievementBadges userRole="general" />
+          <AchievementBadges userRole="General" />
           <WeatherWidget />
         </div>
       </div>
@@ -77,23 +85,19 @@ export const GeneralLayout: React.FC<GeneralLayoutProps> = ({ config, feedConten
 
         {/* Right Sidebar - Community & Information */}
         <div className="lg:col-span-3 space-y-6">
+          {/* Core widgets for all stakeholders */}
           <NewsEventsWidget />
-          <CommunityCollaborationWidget />
           <TrendingTopics />
           <ConnectionSuggestions />
           <PersonalizedRecommendations />
+
+          {/* Stakeholder-specific widgets */}
+          <CommunityCollaborationWidget />
           <MarketIntelligenceWidget />
           <HelpSupportWidget />
         </div>
       </div>
 
-      {/* Bottom Row - Additional General Tools */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <SeasonalCalendarWidget />
-        <MoneyPlanningWidget />
-        <BusinessAnalyticsWidget />
-        <WeatherWidget />
-      </div>
     </div>
   );
 };

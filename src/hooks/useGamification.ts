@@ -5,6 +5,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/lib/auth-utils';
 import { GamificationService, Achievement, UserProgress, GamificationEvent } from '@/services/dashboard/GamificationService';
+import { useSyncGamification } from '@/hooks/useSync';
 
 export interface UseGamificationReturn {
   userProgress: UserProgress | null;
@@ -26,6 +27,7 @@ export interface UseGamificationReturn {
 export const useGamification = (): UseGamificationReturn => {
   const { user } = useAuth();
   const gamificationService = GamificationService.getInstance();
+  const { syncProgress } = useSyncGamification(user?.id || '');
 
   const [userProgress, setUserProgress] = useState<UserProgress | null>(null);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
@@ -78,6 +80,9 @@ export const useGamification = (): UseGamificationReturn => {
         const updatedProgress = gamificationService.getUserProgress(user.id);
         setUserProgress(updatedProgress);
 
+        // Sync achievement unlock across devices
+        syncProgress(updatedProgress);
+
         // Auto-dismiss celebration after duration
         setTimeout(() => {
           setCelebrationData(prev => ({ ...prev, show: false }));
@@ -100,7 +105,10 @@ export const useGamification = (): UseGamificationReturn => {
     // Update local state
     const updatedProgress = gamificationService.getUserProgress(user.id);
     setUserProgress(updatedProgress);
-  }, [user?.id]);
+
+    // Sync progress across devices
+    await syncProgress(updatedProgress);
+  }, [user?.id, syncProgress]);
 
   // Get leaderboard
   const getLeaderboard = useCallback(async (limit: number = 10) => {

@@ -4,6 +4,16 @@
  */
 
 import React from 'react';
+
+// Core widgets available to all stakeholders
+import { StoriesWidget } from '../widgets/StoriesWidget';
+import { AchievementBadges } from '../widgets/AchievementBadges';
+import { TrendingTopics } from '../widgets/TrendingTopics';
+import { ConnectionSuggestions } from '../widgets/ConnectionSuggestions';
+import { PersonalizedRecommendations } from '../widgets/PersonalizedRecommendations';
+import { HelpSupportWidget } from '../widgets';
+
+// Financial institution-specific widgets
 import {
   LoanPortfolioWidget,
   RiskAssessmentWidget,
@@ -13,7 +23,11 @@ import {
   ClientRelationshipWidget,
   ComplianceReportingWidget
 } from '../widgets/FiWidgets';
-import { WeatherWidget } from '../widgets/FarmerWidgets';
+
+// Farmer-specific widgets
+import { WeatherWidget, NewsEventsWidget } from '../widgets/FarmerWidgets';
+
+// Common operational widgets
 import {
   DailyOperationsWidget,
   FarmResourcesWidget,
@@ -23,14 +37,8 @@ import {
   FarmerFeedbackWidget,
   SeasonalCalendarWidget,
   MoneyPlanningWidget,
-  BusinessAnalyticsWidget,
-  HelpSupportWidget
+  BusinessAnalyticsWidget
 } from '../widgets';
-import { PersonalizedRecommendations } from '../widgets/PersonalizedRecommendations';
-import { TrendingTopics } from '../widgets/TrendingTopics';
-import { ConnectionSuggestions } from '../widgets/ConnectionSuggestions';
-import { AchievementBadges } from '../widgets/AchievementBadges';
-import { StoriesWidget } from '../widgets/StoriesWidget';
 
 interface FinancialInstitutionLayoutProps {
   config: any; // StakeholderConfig
@@ -46,7 +54,7 @@ export const FinancialInstitutionLayout: React.FC<FinancialInstitutionLayoutProp
           <StoriesWidget />
         </div>
         <div className="space-y-4">
-          <AchievementBadges userRole="financial" />
+          <AchievementBadges userRole="Financial Institution" />
           <WeatherWidget />
         </div>
       </div>
@@ -69,22 +77,19 @@ export const FinancialInstitutionLayout: React.FC<FinancialInstitutionLayoutProp
 
         {/* Right Sidebar - Client Relations & Compliance */}
         <div className="lg:col-span-3 space-y-6">
-          <ClientRelationshipWidget />
-          <ComplianceReportingWidget />
-          <PersonalizedRecommendations />
+          {/* Core widgets for all stakeholders */}
+          <NewsEventsWidget />
           <TrendingTopics />
           <ConnectionSuggestions />
+          <PersonalizedRecommendations />
+
+          {/* Stakeholder-specific widgets */}
+          <ClientRelationshipWidget />
+          <ComplianceReportingWidget />
           <HelpSupportWidget />
         </div>
       </div>
 
-      {/* Bottom Row - Additional Financial Tools */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <FinancialAnalyticsWidget />
-        <ComplianceReportingWidget />
-        <ClientRelationshipWidget />
-        <RiskAssessmentWidget />
-      </div>
     </div>
   );
 };

@@ -1,0 +1,118 @@
+{
+  "signIn": {
+    "title": "Selamat Kembali ke DamDoh",
+    "welcome": "Selamat kembali ke {appName}",
+    "description": "Masuk ke akun Anda untuk melanjutkan perjalanan pertanian Anda",
+    "emailLabel": "Alamat Email",
+    "emailPlaceholder": "Masukkan alamat email Anda",
+    "passwordLabel": "Kata Sandi",
+    "passwordPlaceholder": "Masukkan kata sandi Anda",
+    "forgotPasswordLink": "Lupa Kata Sandi?",
+    "signInButton": "Masuk",
+    "signingInButton": "Sedang Masuk...",
+    "noAccountPrompt": "Tidak punya akun?",
+    "signUpLink": "Buat Akun"
+  },
+  "signUp": {
+    "title": "Bergabung dengan Jaringan Pertanian DamDoh",
+    "welcome": "Bergabung dengan {appName} hari ini",
+    "description": "Buat akun Anda untuk terhubung dengan rantai pasokan pertanian global",
+    "nameLabel": "Nama Lengkap",
+    "namePlaceholder": "Masukkan nama lengkap Anda",
+    "emailLabel": "Alamat Email",
+    "emailPlaceholder": "Masukkan alamat email Anda",
+    "passwordLabel": "Kata Sandi",
+    "passwordPlaceholder": "Buat kata sandi yang kuat",
+    "confirmPasswordLabel": "Konfirmasi Kata Sandi",
+    "confirmPasswordPlaceholder": "Konfirmasi kata sandi Anda",
+    "roleLabel": "Peran Anda dalam Pertanian",
+    "rolePlaceholder": "Pilih peran utama Anda",
+    "signUpButton": "Buat Akun",
+    "creatingAccountButton": "Membuat Akun...",
+    "alreadyHaveAccountPrompt": "Sudah punya akun?",
+    "signInLink": "Masuk"
+  },
+  "passwordReset": {
+    "title": "Atur Ulang Kata Sandi Anda",
+    "description": "Masukkan alamat email Anda dan kami akan mengirim tautan untuk mengatur ulang kata sandi Anda",
+    "emailLabel": "Alamat Email",
+    "emailPlaceholder": "Masukkan alamat email Anda",
+    "sendResetLinkButton": "Kirim Tautan Atur Ulang",
+    "sendingButton": "Sedang Mengirim...",
+    "backToSignInLink": "Kembali ke Masuk"
+  },
+  "passwordStrength": {
+    "weak": "Lemah",
+    "medium": "Sedang",
+    "strong": "Kuat",
+    "veryStrong": "Sangat Kuat",
+    "label": "Kekuatan Kata Sandi"
+  },
+  "errors": {
+    "emailInUse": "Email ini sudah terdaftar. Silakan coba email lain atau masuk saja.",
+    "invalidEmail": "Silakan masukkan alamat email yang valid.",
+    "weakPassword": "Kata sandi harus minimal 8 karakter dan menyertakan huruf besar, huruf kecil, dan angka.",
+    "passwordMismatch": "Kata sandi tidak cocok. Silakan coba lagi.",
+    "default": "Terjadi kesalahan. Silakan coba lagi.",
+    "unexpected": "Terjadi kesalahan tak terduga. Silakan coba lagi nanti.",
+    "invalidCredential": "Email atau kata sandi tidak valid. Silakan periksa kredensial Anda dan coba lagi.",
+    "userDisabled": "Akun ini telah dinonaktifkan. Silakan hubungi dukungan untuk bantuan.",
+    "tooManyAttempts": "Terlalu banyak upaya gagal. Silakan coba lagi nanti.",
+    "networkError": "Kesalahan jaringan. Silakan periksa koneksi Anda dan coba lagi."
+  },
+  "success": {
+    "signUp": {
+      "title": "Akun Berhasil Dibuat",
+      "description": "Selamat datang di {appName}! Akun Anda telah dibuat dan Anda sekarang masuk."
+    },
+    "signIn": {
+      "title": "Berhasil Masuk",
+      "description": "Selamat kembali di {appName}! Anda sekarang masuk dan siap untuk melanjutkan."
+    },
+    "passwordReset": {
+      "title": "Tautan Atur Ulang Dikirim",
+      "description": "Kami telah mengirim tautan atur ulang kata sandi ke alamat email Anda. Silakan periksa kotak masuk Anda."
+    },
+    "passwordChanged": {
+      "title": "Kata Sandi Diubah",
+      "description": "Kata sandi Anda telah berhasil diubah. Anda dapat masuk dengan kata sandi baru Anda."
+    }
+  },
+  "stakeholderRoles": {
+    "Admin": "Administrator",
+    "Farmer": "Petani",
+    "Agronomist": "Ahli Agronomi",
+    "Buyer": "Pembeli",
+    "Cooperative": "Koperasi",
+    "EquipmentSupplier": "Pemasok Peralatan",
+    "FinancialInstitution": "Institusi Keuangan",
+    "FieldAgent": "Agen Lapangan",
+    "Logistics": "Pemasok Logistik",
+    "Researcher": "Peneliti",
+    "AgriTech": "Pencipta AgriTech",
+    "CertificationBody": "Badan Sertifikasi",
+    "Consumer": "Konsumen",
+    "EnergyProvider": "Pemasok Energi",
+    "AgroExport": "Eksportir Agro",
+    "AgroTourism": "Wisata Agro",
+    "Operations": "Manajer Operasi",
+    "QA": "Jaminan Kualitas",
+    "Regulator": " Regulator",
+    "TrustScore": "Pemasok Skor Kepercayaan",
+    "WasteManagement": "Pengelolaan Limbah",
+    "General": "Pengguna Umum"
+  },
+  "validation": {
+    "required": "Bidang ini wajib diisi",
+    "email": "Silakan masukkan alamat email yang valid",
+    "minLength": "Harus minimal {count} karakter",
+    "maxLength": "Tidak boleh melebihi {count} karakter",
+    "password": "Kata sandi harus memenuhi persyaratan keamanan"
+  },
+  "loading": {
+    "signingIn": "Sedang memasukkan Anda...",
+    "creatingAccount": "Membuat akun Anda...",
+    "sendingEmail": "Mengirim email...",
+    "verifying": "Memverifikasi..."
+  }
+}

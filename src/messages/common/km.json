@@ -1,0 +1,285 @@
+{
+  "navigation": {
+    "home": "ទំព័រដើម",
+    "dashboard": "ផ្ទាំងគ្រប់គ្រង",
+    "profile": "ទម្រង់ផ្ទាល់ខ្លួន",
+    "settings": "ការកំណត់",
+    "logout": "ចាកចេញ",
+    "search": {
+      "placeholder": "ស្វែងរកមនុស្ស ផលិតផល សេវាកម្ម...",
+      "noResults": "រកមិនឃើញលទ្ធផល",
+      "loading": "កំពុងស្វែងរក..."
+    },
+    "menu": {
+      "farmManagement": "ការគ្រប់គ្រងកសិដ្ឋាន",
+      "marketplace": "ទីផ្សារ",
+      "network": "បណ្តាញ",
+      "knowledgeHub": "មជ្ឈមណ្ឌលចំណេះដឹង",
+      "forums": "វេទិកា",
+      "traceability": "ការតាមដាន",
+      "analytics": "វិភាគ",
+      "compliance": "អនុលោមច្បាប់",
+      "sustainability": "និរន្តរភាព"
+    }
+  },
+  "ui": {
+    "buttons": {
+      "save": "រក្សាទុក",
+      "cancel": "បោះបង់",
+      "delete": "លុប",
+      "edit": "កែសម្រួល",
+      "create": "បង្កើត",
+      "update": "ធ្វើបច្ចុប្បន្នភាព",
+      "submit": "ដាក់ស្នើ",
+      "close": "បិទ",
+      "back": "ត្រឡប់",
+      "next": "បន្ទាប់",
+      "previous": "មុន",
+      "loading": "កំពុងផ្ទុក...",
+      "retry": "ព្យាយាមម្តងទៀត",
+      "confirm": "បញ្ជាក់",
+      "decline": "បដិសេធ",
+      "accept": "ទទួល",
+      "reject": "បដិសេធ",
+      "view": "មើល",
+      "download": "ទាញយក",
+      "upload": "ផ្ទុកឡើង",
+      "share": "ចែករំលែក",
+      "copy": "ចម្លង",
+      "paste": "បិទភ្ជាប់"
+    },
+    "forms": {
+      "required": "តម្រូវ",
+      "optional": "ស្រេចចិត្ត",
+      "validation": {
+        "email": "សូមបញ្ចូលអាសយដ្ឋានអ៊ីមែលត្រឹមត្រូវ",
+        "required": "វាលនេះត្រូវតែបំពេញ",
+        "minLength": "ត្រូវតែយ៉ាងហោចណាស់ {count} តួអក្សរ",
+        "maxLength": "ត្រូវតែមិនលើស {count} តួអក្សរ",
+        "pattern": "សូមបញ្ចូលទម្រង់ត្រឹមត្រូវ",
+        "numeric": "សូមបញ្ចូលលេខត្រឹមត្រូវ",
+        "date": "សូមបញ្ចូលកាលបរិច្ឆេទត្រឹមត្រូវ",
+        "url": "សូមបញ្ចូល URL ត្រឹមត្រូវ"
+      },
+      "placeholders": {
+        "select": "សូមជ្រើសរើស...",
+        "search": "ស្វែងរក...",
+        "enterText": "បញ្ចូលអត្ថបទ...",
+        "enterNumber": "បញ្ចូលលេខ...",
+        "enterDate": "ជ្រើសរើសកាលបរិច្ឆេទ..."
+      }
+    },
+    "status": {
+      "loading": "កំពុងផ្ទុក...",
+      "success": "ជោគជ័យ",
+      "error": "កំហុស",
+      "warning": "ការព្រមាន",
+      "info": "ព័ត៌មាន",
+      "pending": "កំពុងរង់ចាំ",
+      "completed": "បានបញ្ចប់",
+      "failed": "បានបរាជ័យ",
+      "cancelled": "បានលុបចោល"
+    },
+    "pagination": {
+      "previous": "មុន",
+      "next": "បន្ទាប់",
+      "page": "ទំព័រ",
+      "of": "នៃ",
+      "showing": "កំពុងបង្ហាញ",
+      "to": "ទៅ",
+      "entries": "ធាតុ",
+      "first": "ដំបូង",
+      "last": "ចុងក្រោយ"
+    },
+    "modals": {
+      "confirm": {
+        "title": "បញ្ជាក់សកម្មភាព",
+        "message": "តើអ្នកប្រាកដថាចង់បន្តទេ?",
+        "yes": "បាទ",
+        "no": "ទេ"
+      },
+      "delete": {
+        "title": "លុបធាតុ",
+        "message": "សកម្មភាពនេះមិនអាចត្រឡប់វិញបានទេ។ តើអ្នកប្រាកដថាចង់លុបធាតុនេះទេ?",
+        "confirm": "លុប",
+        "cancel": "បោះបង់"
+      }
+    },
+    "tooltips": {
+      "help": "ជំនួយ",
+      "info": "ព័ត៌មាន",
+      "warning": "ការព្រមាន",
+      "error": "កំហុស"
+    }
+  },
+  "time": {
+    "now": "ឥឡូវ",
+    "justNow": "ថ្មីៗនេះ",
+    "ago": "មុន",
+    "minute": "នាទី",
+    "minutes": "នាទី",
+    "hour": "ម៉ោង",
+    "hours": "ម៉ោង",
+    "day": "ថ្ងៃ",
+    "days": "ថ្ងៃ",
+    "week": "សប្តាហ៍",
+    "weeks": "សប្តាហ៍",
+    "month": "ខែ",
+    "months": "ខែ",
+    "year": "ឆ្នាំ",
+    "years": "ឆ្នាំ",
+    "today": "ថ្ងៃនេះ",
+    "yesterday": "ម្សិលមិញ",
+    "tomorrow": "ថ្ងៃស្អែក",
+    "dateFormat": "MMM dd, yyyy",
+    "timeFormat": "HH:mm",
+    "datetimeFormat": "MMM dd, yyyy HH:mm"
+  },
+  "currency": {
+    "symbol": "$",
+    "code": "USD",
+    "format": "{symbol}{amount}",
+    "thousandsSeparator": ",",
+    "decimalSeparator": ".",
+    "decimalPlaces": 2
+  },
+  "units": {
+    "weight": {
+      "kg": "kg",
+      "kilogram": "គីឡូក្រាម",
+      "gram": "g",
+      "gram": "ក្រាម",
+      "ton": "តោន",
+      "tonne": "តោន",
+      "pound": "lb",
+      "pound": "ផោន",
+      "ounce": "oz",
+      "ounce": "អោន"
+    },
+    "area": {
+      "hectare": "ha",
+      "hectare": "ហិកតា",
+      "acre": "ac",
+      "acre": "អាគ្រេ",
+      "squareMeter": "m²",
+      "squareMeter": "ម៉ែត្រការ៉េ",
+      "squareFoot": "ft²",
+      "squareFoot": "ហ្វីតការ៉េ"
+    },
+    "volume": {
+      "liter": "L",
+      "liter": "លីត្រ",
+      "gallon": "gal",
+      "gallon": "កាឡុង",
+      "cubicMeter": "m³",
+      "cubicMeter": "ម៉ែត្រគូប",
+      "milliliter": "mL",
+      "milliliter": "មីលីលីត្រ"
+    },
+    "length": {
+      "meter": "m",
+      "meter": "ម៉ែត្រ",
+      "centimeter": "cm",
+      "centimeter": "សង់ទីម៉ែត្រ",
+      "millimeter": "mm",
+      "millimeter": "មីលីម៉ែត្រ",
+      "kilometer": "km",
+      "kilometer": "គីឡូម៉ែត្រ",
+      "inch": "in",
+      "inch": "អ៊ីញ",
+      "foot": "ft",
+      "foot": "ហ្វីត",
+      "yard": "yd",
+      "yard": "យ៉ាត"
+    }
+  },
+  "agricultural": {
+    "crops": {
+      "rice": "ស្រូវ",
+      "wheat": "ស្រូវស៊ី",
+      "corn": "ពោត",
+      "maize": "ពោត",
+      "soybean": "សណ្តែក",
+      "cotton": "ពូជ",
+      "coffee": "កាហ្វេ",
+      "tea": "តែ",
+      "sugarcane": "អំពៅ",
+      "potato": "ដំឡូង",
+      "tomato": "ប៉េងប៉ោះ",
+      "onion": "ខ្ទឹម",
+      "garlic": "ក្រូច",
+      "carrot": "ការ៉ុត",
+      "lettuce": "ស្លា",
+      "cabbage": "ស្ពៃ",
+      "broccoli": "ប្រុកខូលី",
+      "spinach": "ត្រប់",
+      "beans": "សណ្តែក",
+      "peas": "សណ្តែកបៃតង",
+      "lentils": "ម៉ាស",
+      "chickpeas": "សណ្តែកអារ៉ាប់"
+    },
+    "seasons": {
+      "spring": "រដូវបុណ្យភ្ជុំ",
+      "summer": "រដូវក្តៅ",
+      "autumn": "រដូវស្លឹកឈើជ្រុះ",
+      "fall": "រដូវស្លឹកឈើជ្រុះ",
+      "winter": "រដូវរងា",
+      "dry": "រដូវប្រាំង",
+      "wet": "រដូវវស្សា",
+      "monsoon": "រដូវព្យុះ",
+      "harvest": "រដូវប្រមូលផល"
+    },
+    "soil": {
+      "types": {
+        "clay": "ដីឥដ្ឋ",
+        "sandy": "ដីខ្សាច់",
+        "loam": "ដីល្បាយ",
+        "silt": "ដីល្បាប់",
+        "chalky": "ដីកញ្ចក់",
+        "peaty": "ដីពីត"
+      },
+      "ph": {
+        "acidic": "អាស៊ីត",
+        "neutral": "ធម្មតា",
+        "alkaline": "អាល់កាលី"
+      }
+    },
+    "certifications": {
+      "organic": "សរីរាង្គ",
+      "fairTrade": "ការជួញដូរយុត្តិធម៌",
+      "gmoFree": "គ្មាន GMO",
+      "sustainable": "និរន្តរភាព",
+      "rainforestAlliance": "សម្ព័ន្ធរដូវទំនេរ",
+      "utz": "វិញ្ញាបនបត្រ UTZ",
+      "gap": "ការអនុវត្តកសិកម្មល្អ"
+    }
+  },
+  "errors": {
+    "generic": "កំហុសបានកើតឡើង។ សូមព្យាយាមម្តងទៀត។",
+    "network": "កំហុសបណ្តាញ។ សូមពិនិត្យការតភ្ជាប់របស់អ្នក។",
+    "timeout": "សំណើបានអស់ពេល។ សូមព្យាយាមម្តងទៀត។",
+    "unauthorized": "អ្នកមិនមានសិទ្ធិធ្វើសកម្មភាពនេះទេ។",
+    "forbidden": "ការចូលប្រើត្រូវបានបដិសេធ។",
+    "notFound": "ធនធានដែលបានស្នើមិនត្រូវបានរកឃើញទេ។",
+    "server": "កំហុសម៉ាស៊ីនមេ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។",
+    "validation": "សូមពិនិត្យការបញ្ចូលរបស់អ្នក ហើយព្យាយាមម្តងទៀត។",
+    "fileTooLarge": "ឯកសារធំពេក។ សូមជ្រើសរើសឯកសារតូចជាងនេះ។",
+    "unsupportedFile": "ប្រភេទឯកសារមិនត្រូវបានគាំទ្រ។",
+    "quotaExceeded": "អ្នកបានលើសពីកូតារបស់អ្នក។"
+  },
+  "success": {
+    "saved": "ការផ្លាស់ប្តូរត្រូវបានរក្សាទុកដោយជោគជ័យ។",
+    "created": "ធាតុត្រូវបានបង្កើតដោយជោគជ័យ។",
+    "updated": "ធាតុត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ។",
+    "deleted": "ធាតុត្រូវបានលុបដោយជោគជ័យ។",
+    "uploaded": "ឯកសារត្រូវបានផ្ទុកឡើងដោយជោគជ័យ។",
+    "sent": "សារត្រូវបានផ្ញើដោយជោគជ័យ។",
+    "received": "សំណើត្រូវបានទទួលដោយជោគជ័យ។"
+  },
+  "confirmations": {
+    "delete": "តើអ្នកប្រាកដថាចង់លុបធាតុនេះទេ?",
+    "save": "តើអ្នកចង់រក្សាទុកការផ្លាស់ប្តូររបស់អ្នកទេ?",
+    "send": "តើអ្នកប្រាកដថាចង់ផ្ញើសារនេះទេ?",
+    "submit": "តើអ្នកប្រាកដថាចង់ដាក់ស្នើទម្រង់នេះទេ?"
+  }
+}

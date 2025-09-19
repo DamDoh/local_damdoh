@@ -6,7 +6,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Bot, Globe, MapPin, Microscope, DollarSign, Flame } from 'lucide-react';
+import { Bot, Globe, MapPin, Microscope, DollarSign, Flame, Search, Bell, Moon, Sun, Store } from 'lucide-react';
 import { useAuth } from '@/lib/auth-utils';
 import { useToast } from '@/hooks/use-toast';
 import { useTheme } from '@/hooks/useTheme';
@@ -41,12 +41,16 @@ import { useSmartRecommendations } from '@/hooks/useSmartRecommendations';
 import { useWidgetCustomization } from '@/hooks/useWidgetCustomization';
 import { useGamification } from '@/hooks/useGamification';
 import { useVoiceNavigation, useVoiceFarmManagement, useVoiceProcurement } from '@/hooks/useVoice';
+import { useBehaviorTracking } from '@/hooks/useContinuousLearning';
 import { FeedItemCard } from '../FeedItemCard';
 import { DashboardCustomizer } from '../DashboardCustomizer';
 import CelebrationModal from '@/components/ui/CelebrationModal';
 import VoiceControl from '@/components/ui/VoiceControl';
+import SyncStatus from '@/components/ui/SyncStatus';
+import CollaborationPanel from '@/components/ui/CollaborationPanel';
+import EcosystemLeaderboard from '@/components/ui/EcosystemLeaderboard';
 import { Button } from '@/components/ui/button';
-import { Settings, Trophy, Star, Target } from 'lucide-react';
+import { Settings, Trophy, Star, Target, Users } from 'lucide-react';
 
 export interface StakeholderConfig {
   profile: {
@@ -94,6 +98,8 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
   const [isLoadingPosts, setIsLoadingPosts] = useState(false);
   const [notifications, setNotifications] = useState<any[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [isCollaborationOpen, setIsCollaborationOpen] = useState(false);
+  const [isEcosystemOpen, setIsEcosystemOpen] = useState(false);
 
   // Handle post deletion
   const handleDeletePost = async (postId: string) => {
@@ -117,6 +123,15 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
   const { user } = useAuth();
   const { toast } = useToast();
   const { behaviorAnalysis } = useSmartRecommendations();
+
+  // Continuous learning and behavior tracking
+  const {
+    trackWidgetInteraction,
+    trackContentEngagement,
+    trackWorkflowAction,
+    trackTimeBasedAction,
+    trackFeatureUsage
+  } = useBehaviorTracking();
   const {
     userProgress,
     unlockedAchievements,
@@ -184,7 +199,20 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
   useEffect(() => {
     loadInitialData();
     applyStakeholderTheme(config.profile.role);
-  }, [user?.id, config.profile.role]); // Remove applyStakeholderTheme from deps as it's likely stable
+
+    // Track dashboard access
+    const now = new Date();
+    const hour = now.getHours();
+    let timeSlot: 'morning' | 'afternoon' | 'evening' | 'night' = 'morning';
+
+    if (hour >= 6 && hour < 12) timeSlot = 'morning';
+    else if (hour >= 12 && hour < 17) timeSlot = 'afternoon';
+    else if (hour >= 17 && hour < 22) timeSlot = 'evening';
+    else timeSlot = 'night';
+
+    trackTimeBasedAction('dashboard_access', timeSlot, now.getDay());
+    trackFeatureUsage('dashboard', 'regular_use', { stakeholderType: config.profile.role });
+  }, [user?.id, config.profile.role, applyStakeholderTheme, trackTimeBasedAction, trackFeatureUsage]);
 
   const loadInitialData = async () => {
     if (!user) return;
@@ -215,11 +243,39 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
       return unsubscribe;
     } catch (error) {
       console.error('Error loading initial data:', error);
+
+      // Enhanced error handling with specific error types
+      let errorTitle = 'Connection Error';
+      let errorDescription = 'Unable to load dashboard data. Please check your internet connection.';
+
+      if (error instanceof Error) {
+        if (error.message.includes('network') || error.message.includes('fetch')) {
+          errorTitle = 'Network Error';
+          errorDescription = 'Please check your internet connection and try again.';
+        } else if (error.message.includes('auth') || error.message.includes('unauthorized')) {
+          errorTitle = 'Authentication Error';
+          errorDescription = 'Please log in again to continue.';
+        } else if (error.message.includes('timeout')) {
+          errorTitle = 'Request Timeout';
+          errorDescription = 'The request took too long. Please try again.';
+        }
+      }
+
       toast({
-        title: 'Error loading dashboard data',
-        description: 'Some features may not be available',
-        variant: 'destructive'
+        title: errorTitle,
+        description: errorDescription,
+        variant: 'destructive',
+        action: {
+          label: 'Retry',
+          onClick: () => loadInitialData()
+        }
       });
+
+      // Set fallback data to prevent blank screens
+      setPosts([]);
+      setNotifications([]);
+      setUnreadCount(0);
+      setIsLoadingPosts(false);
     }
   };
 
@@ -358,6 +414,8 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
         className="min-h-screen"
         role="main"
         aria-label={`${config.profile.role} Dashboard`}
+        aria-live="polite"
+        tabIndex={-1}
         style={{
           backgroundColor: 'var(--color-background)',
           backgroundImage: `linear-gradient(135deg, var(--color-background) 0%, var(--color-surface) 100%)`
@@ -398,9 +456,79 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
                   <div className="text-sm font-bold" style={{ color: 'var(--color-text)' }}>94%</div>
                 </div>
 
-                {/* Voice Control */}
-                <div className="border-l pl-4" style={{ borderColor: 'var(--color-border)' }}>
-                  <VoiceControl compact className="mb-1" />
+                {/* Search Bar */}
+                <div className="border-l pl-4 flex items-center gap-4" style={{ borderColor: 'var(--color-border)' }}>
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" aria-hidden="true" />
+                    <input
+                      type="text"
+                      placeholder="Search farmers, posts, markets..."
+                      className="pl-10 pr-4 py-2 w-64 rounded-full bg-gray-100 border-0 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                      aria-label="Search farmers, posts, and markets"
+                      role="searchbox"
+                    />
+                  </div>
+                </div>
+
+                {/* Marketplace & Community Buttons */}
+                <div className="border-l pl-4 flex items-center gap-3" style={{ borderColor: 'var(--color-border)' }}>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 bg-green-50 hover:bg-green-100 border-green-200 text-green-700"
+                    onClick={() => {
+                      // Navigate to marketplace
+                      trackFeatureUsage('marketplace', 'regular_use');
+                    }}
+                    aria-label="Access marketplace for buying and selling agricultural products"
+                    title="Marketplace - Buy and sell agricultural products"
+                  >
+                    <Store className="h-4 w-4" aria-hidden="true" />
+                    Marketplace
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 bg-blue-50 hover:bg-blue-100 border-blue-200 text-blue-700"
+                    onClick={() => {
+                      // Navigate to community
+                      trackFeatureUsage('community', 'regular_use');
+                    }}
+                    aria-label="Access community features for networking and collaboration"
+                    title="Community - Connect with other stakeholders"
+                  >
+                    <Users className="h-4 w-4" aria-hidden="true" />
+                    Community
+                  </Button>
+                </div>
+
+                {/* Voice Control, Notifications, Dark Mode & Sync Status */}
+                <div className="border-l pl-4 flex items-center gap-4" style={{ borderColor: 'var(--color-border)' }}>
+                  <button
+                    className="relative p-2 rounded-full hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    aria-label={`Notifications: ${unreadCount} unread`}
+                    title="View notifications"
+                  >
+                    <Bell className="h-5 w-5 text-gray-600" aria-hidden="true" />
+                    {unreadCount > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                        {unreadCount > 99 ? '99+' : unreadCount}
+                      </span>
+                    )}
+                  </button>
+                  <button
+                    className="p-2 rounded-full hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    aria-label="Toggle dark mode"
+                    title="Switch between light and dark themes"
+                  >
+                    <Sun className="h-5 w-5 text-gray-600" aria-hidden="true" />
+                  </button>
+                  <div aria-label="Voice control for hands-free navigation">
+                    <VoiceControl compact className="mb-1" />
+                  </div>
+                  <div aria-label="Connection and sync status">
+                    <SyncStatus compact />
+                  </div>
                 </div>
 
                 {/* Gamification Status */}
@@ -449,20 +577,56 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
                 </select>
               </div>
 
-              {/* Dashboard Customization */}
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setIsEditMode(true)}
-                className="flex items-center gap-2"
-                style={{
-                  borderColor: 'var(--color-border)',
-                  color: 'var(--color-text)'
-                }}
-              >
-                <Settings className="h-4 w-4" />
-                Customize Dashboard
-              </Button>
+              {/* Collaboration, Ecosystem & Customization */}
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setIsCollaborationOpen(true);
+                    trackFeatureUsage('collaboration_panel', 'regular_use');
+                  }}
+                  className="flex items-center gap-2"
+                  style={{
+                    borderColor: 'var(--color-border)',
+                    color: 'var(--color-text)'
+                  }}
+                >
+                  <Users className="h-4 w-4" />
+                  Collaborate
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setIsEcosystemOpen(true);
+                    trackFeatureUsage('ecosystem_leaderboard', 'regular_use');
+                  }}
+                  className="flex items-center gap-2"
+                  style={{
+                    borderColor: 'var(--color-border)',
+                    color: 'var(--color-text)'
+                  }}
+                >
+                  <Globe className="h-4 w-4" />
+                  Ecosystem
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsEditMode(true)}
+                  className="flex items-center gap-2"
+                  style={{
+                    borderColor: 'var(--color-border)',
+                    color: 'var(--color-text)'
+                  }}
+                >
+                  <Settings className="h-4 w-4" />
+                  Customize
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -492,6 +656,19 @@ const StakeholderDashboard: React.FC<StakeholderDashboardProps> = ({ config }) =
           animation={celebrationData.animation}
           duration={celebrationData.duration}
           onClose={dismissCelebration}
+        />
+
+        {/* Collaboration Panel */}
+        <CollaborationPanel
+          isOpen={isCollaborationOpen}
+          onClose={() => setIsCollaborationOpen(false)}
+        />
+
+        {/* Ecosystem Leaderboard */}
+        <EcosystemLeaderboard
+          compact={false}
+          showChallenges={true}
+          className={isEcosystemOpen ? 'fixed inset-4 z-50' : 'hidden'}
         />
       </div>
     </DashboardErrorBoundary>

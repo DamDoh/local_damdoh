@@ -4,33 +4,10 @@
  */
 
 import { apiCall } from '@/lib/api-utils';
-
-export interface Post {
-  id: number;
-  author: string;
-  avatar: string;
-  verified: boolean;
-  time: string;
-  content: string;
-  type: string;
-  likes: number;
-  comments: Comment[];
-  commentCount: number;
-  shares: number;
-  engagement: string;
-  highlight?: boolean;
-  location?: string;
-  tags?: string[];
-  reactions?: {[key: string]: number};
-  media?: {type: 'image' | 'video', url: string, thumbnail?: string};
-  aiGenerated?: boolean;
-  expertVerified?: boolean;
-  marketplaceData?: {product: string, price: string, available: boolean};
-  aiScore?: number; // AI relevance score
-}
+import type { FeedItem } from '@/lib/types';
 
 export interface Comment {
-  id: number;
+  id: string;
   author: string;
   avatar: string;
   content: string;
@@ -47,7 +24,7 @@ export interface FeedFilter {
 
 export class FeedService {
   private static instance: FeedService;
-  private cache: Map<string, { data: Post[], timestamp: number }> = new Map();
+  private cache: Map<string, { data: FeedItem[], timestamp: number }> = new Map();
   private readonly CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
   static getInstance(): FeedService {
@@ -60,7 +37,7 @@ export class FeedService {
   /**
    * Fetch feed posts with optional filtering and AI curation
    */
-  async fetchFeed(filter: FeedFilter = { type: 'all' }): Promise<Post[]> {
+  async fetchFeed(filter: FeedFilter = { type: 'all' }): Promise<FeedItem[]> {
     const cacheKey = this.generateCacheKey(filter);
 
     // Check cache first
@@ -70,14 +47,15 @@ export class FeedService {
     }
 
     try {
-      const response = await apiCall<{ posts?: Post[], data?: Post[], error?: string }>('/community/feed');
+      const response = await apiCall<{ data?: any[], pagination?: any, error?: string }>('/community/feed');
 
-      const posts: Post[] = Array.isArray(response)
-        ? response
-        : response.posts || response.data || [];
+      const posts: any[] = response.data || [];
+
+      // Transform backend posts to FeedItem
+      const feedItems: FeedItem[] = posts.map(post => this.transformPostToFeedItem(post));
 
       // If no posts returned or response contains an error, fall back to mock data
-      if (!posts || posts.length === 0 || response.error) {
+      if (!feedItems || feedItems.length === 0 || response.error) {
         console.warn('No posts returned from API or API error, using mock data as fallback');
         const mockData = this.getMockFeedData(filter);
         this.cache.set(cacheKey, { data: mockData, timestamp: Date.now() });
@@ -85,11 +63,11 @@ export class FeedService {
       }
 
       // Cache the raw data
-      this.cache.set(cacheKey, { data: posts, timestamp: Date.now() });
+      this.cache.set(cacheKey, { data: feedItems, timestamp: Date.now() });
 
-      return this.applyClientSideFiltering(posts, filter);
+      return this.applyClientSideFiltering(feedItems, filter);
     } catch (error) {
-      console.warn('FeedService: API call failed, falling back to mock data:', error.message);
+      console.warn('FeedService: API call failed, falling back to mock data:', error instanceof Error ? error.message : String(error));
       // Return cached data if available, even if expired
       if (cached) {
         console.log('FeedService: Using cached data');
@@ -107,7 +85,7 @@ export class FeedService {
   /**
    * Create a new post
    */
-  async createPost(content: string, media?: File, pollData?: { text: string }[]): Promise<Post> {
+  async createPost(content: string, media?: File, pollData?: { text: string }[]): Promise<FeedItem> {
     try {
       const formData = new FormData();
       formData.append('content', content);
@@ -121,7 +99,7 @@ export class FeedService {
         formData.append('pollOptions', JSON.stringify(pollData));
       }
 
-      const response = await apiCall<{ post?: Post }>('/community/posts', {
+      const response = await apiCall<{ post?: any }>('/community/posts', {
         method: 'POST',
         body: formData,
         headers: {
@@ -132,7 +110,7 @@ export class FeedService {
       // Invalidate cache
       this.invalidateCache();
 
-      return response.post || (response as Post);
+      return this.transformPostToFeedItem(response.post || response);
     } catch (error) {
       console.error('Error creating post:', error);
       throw error;
@@ -142,7 +120,7 @@ export class FeedService {
   /**
    * Like a post
    */
-  async likePost(postId: number): Promise<void> {
+  async likePost(postId: string): Promise<void> {
     try {
       await apiCall(`/community/posts/${postId}/like`, {
         method: 'POST'
@@ -151,7 +129,7 @@ export class FeedService {
       // Update cache optimistically
       this.updatePostInCache(postId, post => ({
         ...post,
-        likes: post.likes + 1
+        likesCount: post.likesCount + 1
       }));
     } catch (error) {
       console.error('Error liking post:', error);
@@ -162,15 +140,15 @@ export class FeedService {
   /**
    * Add comment to a post
    */
-  async addComment(postId: number, content: string, authorName: string, authorAvatar: string): Promise<Comment> {
+  async addComment(postId: string, content: string, authorName: string, authorAvatar: string): Promise<Comment> {
     try {
-      const response = await apiCall<{ comment?: { id: number } }>(`/community/posts/${postId}/comments`, {
+      const response = await apiCall<{ comment?: { id: string } }>(`/community/posts/${postId}/comments`, {
         method: 'POST',
         body: JSON.stringify({ content })
       });
 
       const newComment: Comment = {
-        id: response.comment?.id || Date.now(),
+        id: response.comment?.id || Date.now().toString(),
         author: authorName,
         avatar: authorAvatar,
         content,
@@ -181,8 +159,7 @@ export class FeedService {
       // Update cache optimistically
       this.updatePostInCache(postId, post => ({
         ...post,
-        comments: [...(post.comments || []), newComment],
-        commentCount: (post.commentCount || 0) + 1
+        commentsCount: post.commentsCount + 1
       }));
 
       return newComment;
@@ -195,7 +172,7 @@ export class FeedService {
   /**
    * Search posts
    */
-  async searchPosts(query: string, filters?: Partial<FeedFilter>): Promise<Post[]> {
+  async searchPosts(query: string, filters?: Partial<FeedFilter>): Promise<FeedItem[]> {
     try {
       const searchParams = new URLSearchParams({
         q: query,
@@ -203,8 +180,9 @@ export class FeedService {
         ...(filters?.location && { location: filters.location })
       });
 
-      const response = await apiCall<{ posts?: Post[], results?: Post[] }>(`/community/search?${searchParams}`);
-      return response.posts || response.results || [];
+      const response = await apiCall<{ posts?: any[], results?: any[] }>(`/community/search?${searchParams}`);
+      const posts = response.posts || response.results || [];
+      return posts.map(post => this.transformPostToFeedItem(post));
     } catch (error) {
       console.error('Error searching posts:', error);
       return [];
@@ -214,28 +192,22 @@ export class FeedService {
   /**
    * Apply client-side filtering and AI scoring (public method)
    */
-  applyClientSideFiltering(posts: Post[], filter: FeedFilter): Post[] {
+  applyClientSideFiltering(posts: FeedItem[], filter: FeedFilter): FeedItem[] {
     let filtered = [...posts];
 
     switch (filter.type) {
       case 'local':
-        filtered = filtered.filter(post =>
-          post.location === filter.location ||
-          post.location?.toLowerCase().includes(filter.location?.toLowerCase() || '')
-        );
+        // For FeedItem, we don't have location, so skip or use content-based filtering
         break;
 
       case 'experts':
-        filtered = filtered.filter(post =>
-          post.verified || post.expertVerified || post.type === 'expert'
-        );
+        // For FeedItem, we don't have verified field, so skip
         break;
 
       case 'market':
         filtered = filtered.filter(post =>
-          post.type === 'market_alert' ||
-          post.marketplaceData ||
-          post.tags?.some(tag => tag.toLowerCase().includes('market'))
+          post.type === 'marketplace_listing' ||
+          post.content.toLowerCase().includes('market')
         );
         break;
 
@@ -254,8 +226,8 @@ export class FeedService {
         // Sort by engagement
         filtered = filtered
           .sort((a, b) => {
-            const aScore = (a.likes || 0) + (a.comments?.length || 0) * 2 + (a.shares || 0) * 3;
-            const bScore = (b.likes || 0) + (b.comments?.length || 0) * 2 + (b.shares || 0) * 3;
+            const aScore = a.likesCount + a.commentsCount * 2;
+            const bScore = b.likesCount + b.commentsCount * 2;
             return bScore - aScore;
           })
           .slice(0, 15);
@@ -268,31 +240,41 @@ export class FeedService {
   /**
    * Calculate AI relevance score for smart filtering
    */
-  private calculateAIScore(post: Post, filter: FeedFilter): number {
+  private calculateAIScore(post: FeedItem, filter: FeedFilter): number {
     let score = 0.5; // Base score
 
-    // Location relevance
-    if (post.location === filter.location) score += 0.2;
-
     // Content category matching
-    const postContent = `${post.content} ${post.tags?.join(' ') || ''}`.toLowerCase();
+    const postContent = post.content.toLowerCase();
     filter.userInterests?.forEach(interest => {
       if (postContent.includes(interest.toLowerCase())) score += 0.15;
     });
 
-    // Stakeholder type relevance
-    if (filter.stakeholderType === 'Farmer' && post.type === 'farming') score += 0.1;
-    if (filter.stakeholderType === 'Financial Institution' && post.type === 'finance') score += 0.1;
-    if (filter.stakeholderType === 'Crowdfunder' && post.type === 'project') score += 0.1;
+    // Type relevance
+    if (filter.stakeholderType === 'Farmer' && post.type === 'forum_post') score += 0.1;
 
     // Engagement bonus
-    const engagement = (post.likes || 0) + (post.comments?.length || 0) + (post.shares || 0);
+    const engagement = post.likesCount + post.commentsCount;
     score += Math.min(engagement * 0.01, 0.2);
 
-    // Verified content bonus
-    if (post.verified || post.expertVerified) score += 0.1;
-
     return Math.min(score, 1.0);
+  }
+
+  /**
+   * Transform backend post to FeedItem
+   */
+  private transformPostToFeedItem(post: any): FeedItem {
+    return {
+      id: post._id || post.id,
+      type: 'forum_post', // Default type
+      timestamp: post.createdAt || new Date().toISOString(),
+      userId: post.author?._id || post.author || '',
+      userName: post.author?.displayName || post.author || 'Unknown',
+      userAvatar: post.author?.avatarUrl || '/avatars/default.jpg',
+      content: post.content || '',
+      link: `/posts/${post._id || post.id}`,
+      likesCount: post.likes?.length || 0,
+      commentsCount: post.comments?.length || 0,
+    };
   }
 
   /**
@@ -305,7 +287,7 @@ export class FeedService {
   /**
    * Update post in cache
    */
-  private updatePostInCache(postId: number, updater: (post: Post) => Post): void {
+  private updatePostInCache(postId: string, updater: (post: FeedItem) => FeedItem): void {
     for (const [key, cached] of this.cache.entries()) {
       const updatedData = cached.data.map(post =>
         post.id === postId ? updater(post) : post
@@ -341,93 +323,67 @@ export class FeedService {
   /**
    * Get mock feed data as fallback
    */
-  private getMockFeedData(filter: FeedFilter): Post[] {
-    const mockPosts: Post[] = [
+  private getMockFeedData(filter: FeedFilter): FeedItem[] {
+    const mockPosts: FeedItem[] = [
       {
-        id: 1,
-        author: 'Dr. Sarah Johnson',
-        avatar: '/avatars/farmer.jpg',
-        verified: true,
-        time: '2 hours ago',
+        id: '1',
+        type: 'forum_post',
+        timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+        userId: 'user1',
+        userName: 'Dr. Sarah Johnson',
+        userAvatar: '/avatars/farmer.jpg',
         content: 'Great harvest yields this season! The new irrigation system has improved water efficiency by 35%. Farmers in the region are seeing significant improvements in crop quality.',
-        type: 'farming',
-        likes: 24,
-        comments: [],
-        commentCount: 8,
-        shares: 5,
-        engagement: 'High',
-        location: 'California Valley',
-        tags: ['irrigation', 'efficiency', 'harvest'],
-        expertVerified: true,
-        aiScore: 0.95
+        link: '/posts/1',
+        likesCount: 24,
+        commentsCount: 8,
       },
       {
-        id: 2,
-        author: 'AgriTech Solutions',
-        avatar: '/avatars/coop.jpg',
-        verified: true,
-        time: '4 hours ago',
+        id: '2',
+        type: 'forum_post',
+        timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
+        userId: 'user2',
+        userName: 'AgriTech Solutions',
+        userAvatar: '/avatars/coop.jpg',
         content: '🚀 Exciting news! Our AI-powered crop disease detection system is now available. Early detection can save up to 40% of potential crop losses.',
-        type: 'technology',
-        likes: 18,
-        comments: [],
-        commentCount: 12,
-        shares: 7,
-        engagement: 'High',
-        tags: ['AI', 'disease-detection', 'crop-protection'],
-        aiGenerated: false,
-        aiScore: 0.88
+        link: '/posts/2',
+        likesCount: 18,
+        commentsCount: 12,
       },
       {
-        id: 3,
-        author: 'Market Analytics Pro',
-        avatar: '/avatars/fi.jpg',
-        verified: true,
-        time: '6 hours ago',
+        id: '3',
+        type: 'marketplace_listing',
+        timestamp: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
+        userId: 'user3',
+        userName: 'Market Analytics Pro',
+        userAvatar: '/avatars/fi.jpg',
         content: 'Market Update: Wheat prices showing upward trend. Current spot price: $285/ton. Expected to rise 8-12% in the next quarter due to weather concerns in major producing regions.',
-        type: 'market_alert',
-        likes: 31,
-        comments: [],
-        commentCount: 15,
-        shares: 12,
-        engagement: 'Very High',
-        tags: ['wheat', 'market', 'prices'],
-        marketplaceData: { product: 'Wheat', price: '$285/ton', available: true },
-        aiScore: 0.92
+        link: '/posts/3',
+        likesCount: 31,
+        commentsCount: 15,
       },
       {
-        id: 4,
-        author: 'Local Farmer Cooperative',
-        avatar: '/avatars/coop.jpg',
-        verified: false,
-        time: '8 hours ago',
+        id: '4',
+        type: 'forum_post',
+        timestamp: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString(),
+        userId: 'user4',
+        userName: 'Local Farmer Cooperative',
+        userAvatar: '/avatars/coop.jpg',
         content: 'Community meeting tomorrow at 6 PM. We\'ll discuss the upcoming planting season and share best practices for sustainable farming. All farmers welcome!',
-        type: 'community',
-        likes: 12,
-        comments: [],
-        commentCount: 6,
-        shares: 3,
-        engagement: 'Medium',
-        location: 'Midwest Region',
-        tags: ['community', 'meeting', 'sustainable'],
-        aiScore: 0.76
+        link: '/posts/4',
+        likesCount: 12,
+        commentsCount: 6,
       },
       {
-        id: 5,
-        author: 'ClimateWatch AI',
-        avatar: '/avatars/farmer.jpg',
-        verified: true,
-        time: '10 hours ago',
+        id: '5',
+        type: 'forum_post',
+        timestamp: new Date(Date.now() - 10 * 60 * 60 * 1000).toISOString(),
+        userId: 'user5',
+        userName: 'ClimateWatch AI',
+        userAvatar: '/avatars/farmer.jpg',
         content: 'Weather Alert: Heavy rainfall expected in the next 48 hours. Farmers should prepare drainage systems and monitor soil moisture levels to prevent waterlogging.',
-        type: 'weather',
-        likes: 28,
-        comments: [],
-        commentCount: 9,
-        shares: 18,
-        engagement: 'High',
-        tags: ['weather', 'rainfall', 'soil-moisture'],
-        aiGenerated: true,
-        aiScore: 0.89
+        link: '/posts/5',
+        likesCount: 28,
+        commentsCount: 9,
       }
     ];
 

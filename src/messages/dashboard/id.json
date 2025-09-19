@@ -1,0 +1,195 @@
+{
+  "title": "Dasbor",
+  "subtitle": "Selamat datang di pusat komando pertanian Anda",
+  "welcome": "Selamat kembali, {name}!",
+  "overview": {
+    "title": "Ringkasan",
+    "description": "Ekosistem pertanian Anda dalam satu pandangan"
+  },
+  "stats": {
+    "totalUsers": "Total Pengguna",
+    "activeUsers": "Pengguna Aktif",
+    "totalTransactions": "Total Transaksi",
+    "revenue": "Pendapatan",
+    "farms": "Peternakan Aktif",
+    "products": "Produk yang Terdaftar",
+    "connections": "Koneksi Jaringan",
+    "certifications": "Sertifikasi Aktif"
+  },
+  "navigation": {
+    "overview": "Ringkasan",
+    "analytics": "Analitik",
+    "users": "Pengguna",
+    "transactions": "Transaksi",
+    "reports": "Laporan",
+    "settings": "Pengaturan",
+    "notifications": "Notifikasi",
+    "support": "Dukungan"
+  },
+  "widgets": {
+    "recentActivity": "Aktivitas Terkini",
+    "quickActions": "Tindakan Cepat",
+    "notifications": "Notifikasi",
+    "alerts": "Peringatan",
+    "weather": "Cuaca",
+    "marketPrices": "Harga Pasar",
+    "tasks": "Tugas",
+    "messages": "Pesan",
+    "calendar": "Kalender",
+    "performance": "Kinerja"
+  },
+  "quickActions": {
+    "addProduct": "Tambah Produk",
+    "createListing": "Buat Listing",
+    "scheduleMeeting": "Jadwalkan Pertemuan",
+    "viewAnalytics": "Lihat Analitik",
+    "manageProfile": "Kelola Profil",
+    "contactSupport": "Hubungi Dukungan",
+    "inviteUsers": "Undang Pengguna",
+    "exportData": "Ekspor Data"
+  },
+  "filters": {
+    "today": "Hari Ini",
+    "yesterday": "Kemarin",
+    "lastWeek": "Minggu Lalu",
+    "lastMonth": "Bulan Lalu",
+    "lastQuarter": "Kuartal Lalu",
+    "lastYear": "Tahun Lalu",
+    "customRange": "Rentang Kustom",
+    "allTime": "Sepanjang Waktu"
+  },
+  "timeRanges": {
+    "hour": "Jam Terakhir",
+    "day": "24 Jam Terakhir",
+    "week": "7 Hari Terakhir",
+    "month": "30 Hari Terakhir",
+    "quarter": "3 Bulan Terakhir",
+    "year": "Tahun Lalu"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "busy": "Sibuk",
+    "away": "Jauh",
+    "active": "Aktif",
+    "inactive": "Tidak Aktif",
+    "pending": "Tertunda",
+    "approved": "Disetujui",
+    "rejected": "Ditolak",
+    "completed": "Selesai",
+    "inProgress": "Dalam Proses",
+    "cancelled": "Dibatalkan"
+  },
+  "roles": {
+    "admin": "Administrator",
+    "farmer": "Petani",
+    "buyer": "Pembeli",
+    "supplier": "Pemasok",
+    "logistics": "Logistik",
+    "agronomist": "Ahli Agronomi",
+    "researcher": "Peneliti",
+    "inspector": "Inspektur",
+    "certifier": "Pemberi Sertifikat",
+    "investor": "Investor"
+  },
+  "categories": {
+    "crops": "Tanaman",
+    "livestock": "Ternak",
+    "equipment": "Peralatan",
+    "inputs": "Input",
+    "services": "Layanan",
+    "certifications": "Sertifikasi",
+    "finance": "Keuangan",
+    "insurance": "Asuransi",
+    "logistics": "Logistik",
+    "technology": "Teknologi"
+  },
+  "metrics": {
+    "views": "Tampilan",
+    "clicks": "Klik",
+    "conversions": "Konversi",
+    "revenue": "Pendapatan",
+    "profit": "Keuntungan",
+    "roi": "ROI",
+    "efficiency": "Efisiensi",
+    "productivity": "Produktivitas",
+    "quality": "Kualitas",
+    "satisfaction": "Kepuasan"
+  },
+  "alerts": {
+    "weather": {
+      "title": "Peringatan Cuaca",
+      "frost": "Peringatan embun beku untuk wilayah Anda",
+      "drought": "Kondisi kekeringan terdeteksi",
+      "flood": "Risiko banjir di area Anda",
+      "storm": "Badai mendekat"
+    },
+    "market": {
+      "title": "Peringatan Pasar",
+      "priceIncrease": "Kenaikan harga untuk {crop}",
+      "priceDecrease": "Penurunan harga untuk {crop}",
+      "highDemand": "Permintaan tinggi untuk {crop}",
+      "supplyShortage": "Kekurangan pasokan terdeteksi"
+    },
+    "system": {
+      "title": "Peringatan Sistem",
+      "maintenance": "Pemeliharaan terjadwal",
+      "update": "Fitur baru tersedia",
+      "security": "Pembaruan keamanan diperlukan",
+      "backup": "Pencadangan data selesai"
+    },
+    "compliance": {
+      "title": "Peringatan Kepatuhan",
+      "certification": "Sertifikasi akan segera kedaluwarsa",
+      "audit": "Audit terjadwal",
+      "regulation": "Peraturan baru mempengaruhi Anda",
+      "deadline": "Batas waktu mendekat"
+    }
+  },
+  "emptyStates": {
+    "noData": "Tidak ada data tersedia",
+    "noActivity": "Tidak ada aktivitas terkini",
+    "noNotifications": "Tidak ada notifikasi",
+    "noMessages": "Tidak ada pesan",
+    "noTasks": "Tidak ada tugas",
+    "noProducts": "Tidak ada produk terdaftar",
+    "noConnections": "Belum ada koneksi"
+  },
+  "loading": {
+    "dashboard": "Memuat dasbor...",
+    "data": "Memuat data...",
+    "analytics": "Memuat analitik...",
+    "reports": "Membuat laporan..."
+  },
+  "errors": {
+    "loadFailed": "Gagal memuat data dasbor",
+    "saveFailed": "Gagal menyimpan perubahan",
+    "deleteFailed": "Gagal menghapus item",
+    "networkError": "Kesalahan koneksi jaringan",
+    "permissionDenied": "Izin ditolak",
+    "invalidData": "Data tidak valid disediakan"
+  },
+  "success": {
+    "saved": "Perubahan berhasil disimpan",
+    "deleted": "Item berhasil dihapus",
+    "created": "Item berhasil dibuat",
+    "updated": "Item berhasil diperbarui",
+    "sent": "Pesan berhasil dikirim"
+  },
+  "tooltips": {
+    "refresh": "Segarkan data",
+    "export": "Ekspor data",
+    "import": "Impor data",
+    "settings": "Pengaturan dasbor",
+    "help": "Bantuan dan dokumentasi",
+    "fullscreen": "Alihkan layar penuh",
+    "minimize": "Minimalkan widget"
+  },
+  "placeholders": {
+    "search": "Cari dasbor...",
+    "filter": "Filter hasil...",
+    "selectDate": "Pilih tanggal...",
+    "enterValue": "Masukkan nilai...",
+    "selectOption": "Pilih opsi..."
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CloudRain, TrendingUp, Users, Target, Award, HandHeart, Zap, BookOpen, Shield, Star, Truck, FileText, MapPin, Store, Handshake, Home, Microscope, Bug, BarChart3, Sprout, Lightbulb, Briefcase, DollarSign, Trophy, Globe, Newspaper, Clipboard, CheckCircle } from 'lucide-react';
+import { CloudRain, TrendingUp, Users, Target, Award, HandHeart, Zap, BookOpen, Shield, Star, Truck, FileText, MapPin, Store, Handshake, Home, Microscope, Bug, BarChart3, Sprout, Lightbulb, Briefcase, DollarSign, Trophy, Globe, Newspaper, Clipboard, CheckCircle, Calendar, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -462,6 +462,296 @@ export const SupplyChainWidget: React.FC = () => (
       </div>
     </CardContent>
   </Card>
+);
+
+export const AgriculturalWeatherWidget: React.FC = () => (
+  <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl shadow-sm p-6 border border-blue-200">
+    <div className="flex items-center space-x-2 mb-4">
+      <CloudRain className="h-5 w-5 text-blue-600" />
+      <h4 className="font-semibold text-blue-900">Agricultural Weather</h4>
+    </div>
+    <div className="text-sm text-blue-700 mb-4 flex items-center">
+      <MapPin className="h-4 w-4 mr-1" />
+      Nairobi, Kenya
+    </div>
+
+    <div className="grid grid-cols-2 gap-4 mb-4">
+      <div className="text-center p-3 bg-white rounded-lg border border-blue-200">
+        <div className="text-2xl font-bold text-blue-600">24°C</div>
+        <div className="text-xs text-blue-700">Temperature</div>
+      </div>
+      <div className="text-center p-3 bg-white rounded-lg border border-blue-200">
+        <div className="text-2xl font-bold text-blue-600">Partly Cloudy</div>
+        <div className="text-xs text-blue-700">Conditions</div>
+      </div>
+      <div className="text-center p-3 bg-white rounded-lg border border-blue-200">
+        <div className="text-2xl font-bold text-blue-600">68%</div>
+        <div className="text-xs text-blue-700">Soil Moisture</div>
+      </div>
+      <div className="text-center p-3 bg-white rounded-lg border border-blue-200">
+        <div className="text-2xl font-bold text-blue-600">12 km/h</div>
+        <div className="text-xs text-blue-700">Wind Speed</div>
+      </div>
+    </div>
+
+    <div className="mb-4">
+      <div className="text-center p-3 bg-white rounded-lg border border-blue-200">
+        <div className="text-lg font-bold text-orange-600">26°C</div>
+        <div className="text-xs text-orange-700">Tomorrow's Forecast</div>
+      </div>
+    </div>
+
+    <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-xl border-l-4 border-green-500">
+      <div className="flex items-center space-x-2 mb-2">
+        <span className="text-xs font-semibold text-green-600 uppercase">
+          Today's Agricultural Insight
+        </span>
+        <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
+          OPTIMAL
+        </span>
+      </div>
+      <p className="text-sm text-gray-700 mb-3">Perfect planting conditions. Soil moisture optimal for maize & beans. Consider pest monitoring due to humidity.</p>
+      <div className="flex gap-2">
+        <button className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded hover:bg-green-200 transition-colors">
+          View Forecast
+        </button>
+        <button className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded hover:bg-blue-200 transition-colors">
+          Irrigation Tips
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
+export const AgriculturalNewsEventsWidget: React.FC = () => (
+  <div className="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-xl shadow-sm p-6 border border-amber-200">
+    <div className="flex items-center space-x-2 mb-4">
+      <Newspaper className="h-5 w-5 text-amber-600" />
+      <h4 className="font-semibold text-amber-900">Agricultural News & Events</h4>
+    </div>
+
+    <div className="space-y-4">
+      <div>
+        <h5 className="font-medium text-orange-600 mb-2 flex items-center">
+          <Calendar className="h-4 w-4 mr-1" />
+          Upcoming Event
+        </h5>
+        <div className="text-sm bg-white p-3 rounded-lg border border-orange-200">
+          <div className="font-medium text-gray-900">Kenya Agricultural Show</div>
+          <div className="text-gray-600 text-xs mt-1">February 15-20, Nairobi</div>
+          <div className="text-gray-500 text-xs mt-1">Don't miss the biggest agricultural event of the year!</div>
+        </div>
+      </div>
+
+      <div>
+        <h5 className="font-medium text-blue-600 mb-2 flex items-center">
+          <Globe className="h-4 w-4 mr-1" />
+          Government Policy
+        </h5>
+        <div className="text-sm bg-white p-3 rounded-lg border border-blue-200">
+          <div className="font-medium text-gray-900">New subsidies for organic farming</div>
+          <div className="text-gray-600 text-xs mt-1">Applications open March 1st</div>
+          <div className="text-gray-500 text-xs mt-1 mb-2">Recently announced - check eligibility requirements</div>
+          <div className="flex gap-2">
+            <button className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded hover:bg-blue-200 transition-colors">
+              Apply Now
+            </button>
+            <button className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded hover:bg-gray-200 transition-colors">
+              Learn More
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+export const RealTimeMarketWidget: React.FC = () => (
+  <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl shadow-sm p-6 border border-green-200">
+    <div className="flex items-center space-x-2 mb-4">
+      <TrendingUp className="h-5 w-5 text-green-600" />
+      <h4 className="font-semibold text-green-900">Real-Time Market</h4>
+    </div>
+
+    {/* Price Alerts */}
+    <div className="space-y-3 mb-4">
+      <div className="bg-white p-3 rounded-lg border border-green-200">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-sm font-medium text-green-800">Tomatoes</span>
+          <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">↑ 15%</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-lg font-bold text-green-600">KSH 85/kg</span>
+          <span className="text-xs text-green-600">High Demand</span>
+        </div>
+      </div>
+
+      <div className="bg-white p-3 rounded-lg border border-green-200">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-sm font-medium text-green-800">Maize</span>
+          <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Stable</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-lg font-bold text-green-600">KSH 35/kg</span>
+          <span className="text-xs text-green-600">Good Supply</span>
+        </div>
+      </div>
+    </div>
+
+    {/* Market Alerts */}
+    <div className="bg-yellow-50 p-3 rounded-lg border border-yellow-200 mb-4">
+      <div className="flex items-start space-x-2">
+        <AlertTriangle className="h-4 w-4 text-yellow-600 mt-0.5" />
+        <div>
+          <p className="text-sm font-medium text-yellow-800">Price Alert</p>
+          <p className="text-xs text-yellow-700">Organic kale prices expected to rise 20% next week</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Buyer Requests */}
+    <div>
+      <h5 className="text-sm font-medium text-green-800 mb-2">Buyer Requests</h5>
+      <div className="space-y-2">
+        <div className="bg-white p-2 rounded border border-green-200">
+          <p className="text-sm font-medium text-green-800">Fresh Herbs - 200kg needed</p>
+          <p className="text-xs text-green-600">Hotel Chain • Nairobi • KSH 180/kg</p>
+          <button className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded mt-1 hover:bg-green-200 transition-colors">
+            Contact Buyer
+          </button>
+        </div>
+        <div className="bg-white p-2 rounded border border-green-200">
+          <p className="text-sm font-medium text-green-800">Organic Vegetables - Weekly</p>
+          <p className="text-xs text-green-600">Restaurant • Contract available</p>
+          <button className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded mt-1 hover:bg-green-200 transition-colors">
+            View Contract
+          </button>
+        </div>
+      </div>
+      <button className="w-full text-sm bg-green-600 text-white py-2 rounded mt-3 hover:bg-green-700 transition-colors">
+        Browse Marketplace
+      </button>
+    </div>
+  </div>
+);
+
+export const EnhancedSupplyChainWidget: React.FC = () => (
+  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-sm p-6 border border-blue-200">
+    <div className="flex items-center space-x-2 mb-4">
+      <Truck className="h-5 w-5 text-blue-600" />
+      <h4 className="font-semibold text-blue-900">Supply Chain Hub</h4>
+    </div>
+
+    {/* Transportation Needs */}
+    <div className="space-y-3 mb-4">
+      <h5 className="text-sm font-medium text-blue-800">Transportation</h5>
+      <div className="bg-white p-3 rounded-lg border border-blue-200">
+        <p className="text-sm font-medium text-blue-800">Need truck for 2 tons maize</p>
+        <p className="text-xs text-blue-600">Nairobi to Mombasa • Today • KSH 15,000</p>
+        <button className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded mt-1 hover:bg-blue-200">
+          Offer Transport
+        </button>
+      </div>
+    </div>
+
+    {/* Storage Available */}
+    <div className="space-y-3 mb-4">
+      <h5 className="text-sm font-medium text-blue-800">Storage Available</h5>
+      <div className="bg-white p-3 rounded-lg border border-blue-200">
+        <p className="text-sm font-medium text-blue-800">Cold storage - 50 tons capacity</p>
+        <p className="text-xs text-blue-600">Kiambu • Climate controlled • KSH 500/ton/month</p>
+        <button className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded mt-1 hover:bg-blue-200">
+          Reserve Space
+        </button>
+      </div>
+    </div>
+
+    {/* Equipment Sharing */}
+    <div className="space-y-3">
+      <h5 className="text-sm font-medium text-blue-800">Equipment Sharing</h5>
+      <div className="bg-white p-3 rounded-lg border border-blue-200">
+        <p className="text-sm font-medium text-blue-800">Harvester available for hire</p>
+        <p className="text-xs text-blue-600">John Deere • Nakuru area • KSH 25,000/day</p>
+        <button className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded mt-1 hover:bg-blue-200">
+          Book Equipment
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
+export const StoriesWidget: React.FC = () => (
+  <div className="bg-white rounded-xl shadow-sm p-4 mb-4">
+    <div className="flex items-center space-x-4 overflow-x-auto pb-2">
+      {/* Add Story Button */}
+      <div className="flex flex-col items-center space-y-1 min-w-[60px]">
+        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center cursor-pointer hover:scale-105 transition-transform">
+          <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center">
+            <span className="text-blue-600 text-xl font-bold">+</span>
+          </div>
+        </div>
+        <span className="text-xs text-center text-gray-600">Add Story</span>
+      </div>
+
+      {/* Story Items */}
+      {[
+        { name: 'John K.', avatar: '/api/placeholder/56/56', hasStory: true, isLive: false },
+        { name: 'Mary W.', avatar: '/api/placeholder/56/56', hasStory: true, isLive: true },
+        { name: 'David O.', avatar: '/api/placeholder/56/56', hasStory: true, isLive: false },
+        { name: 'Grace M.', avatar: '/api/placeholder/56/56', hasStory: false, isLive: false },
+        { name: 'Peter N.', avatar: '/api/placeholder/56/56', hasStory: true, isLive: false },
+      ].map((user, index) => (
+        <div key={index} className="flex flex-col items-center space-y-1 min-w-[60px]">
+          <div className={`relative cursor-pointer hover:scale-105 transition-transform ${user.hasStory ? 'p-0.5 bg-gradient-to-br from-pink-500 to-yellow-500 rounded-full' : ''}`}>
+            <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-200">
+              <img
+                src={user.avatar}
+                alt={user.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {user.isLive && (
+              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-1 py-0.5 rounded font-bold">
+                LIVE
+              </div>
+            )}
+          </div>
+          <span className="text-xs text-center text-gray-600 truncate w-full">{user.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+export const TrendingTopicsWidget: React.FC = () => (
+  <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+    <div className="flex items-center space-x-2 mb-4">
+      <TrendingUp className="h-5 w-5 text-orange-600" />
+      <h4 className="font-semibold text-gray-900">Trending Topics</h4>
+    </div>
+
+    <div className="space-y-3">
+      {[
+        { hashtag: '#OrganicFarming', posts: '2.1K', trend: 'up' },
+        { hashtag: '#ClimateSmartAg', posts: '1.8K', trend: 'up' },
+        { hashtag: '#FarmToTable', posts: '956', trend: 'stable' },
+        { hashtag: '#AgriTech', posts: '742', trend: 'up' },
+        { hashtag: '#SustainableFarming', posts: '623', trend: 'up' },
+      ].map((topic, index) => (
+        <div key={index} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors">
+          <div className="flex items-center space-x-2">
+            <span className="text-sm font-medium text-blue-600">{topic.hashtag}</span>
+            {topic.trend === 'up' && <TrendingUp className="h-3 w-3 text-green-500" />}
+          </div>
+          <span className="text-xs text-gray-500">{topic.posts} posts</span>
+        </div>
+      ))}
+    </div>
+
+    <button className="w-full text-sm text-blue-600 hover:text-blue-700 mt-4 py-2 border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors">
+      View All Trends
+    </button>
+  </div>
 );
 
 export const TrendingFarmersWidget: React.FC = () => (

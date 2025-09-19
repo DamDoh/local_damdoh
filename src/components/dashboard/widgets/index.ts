@@ -22,8 +22,13 @@ export { TrendingFarmersWidget } from './FarmerWidgets';
 export { MarketIntelligenceWidget } from './FarmerWidgets';
 export { CommunityCollaborationWidget } from './FarmerWidgets';
 export { AdvancedInsightsWidget } from './FarmerWidgets';
-export { SupplyChainWidget } from './FarmerWidgets';
 export { BusinessOpportunitiesWidget } from './FarmerWidgets';
+export { AgriculturalWeatherWidget } from './FarmerWidgets';
+export { AgriculturalNewsEventsWidget } from './FarmerWidgets';
+export { RealTimeMarketWidget } from './FarmerWidgets';
+export { EnhancedSupplyChainWidget } from './FarmerWidgets';
+export { StoriesWidget } from './FarmerWidgets';
+export { TrendingTopicsWidget } from './FarmerWidgets';
 
 // Other Widgets
 export { FarmingAssistant } from './FarmingAssistant';
@@ -31,7 +36,6 @@ export { FinancialAssistant } from './FinancialAssistant';
 export { DocumentVerificationWidget } from './DocumentVerificationWidget';
 export { PerformanceAnalyticsWidget } from './PerformanceAnalyticsWidget';
 export { AchievementBadges } from './AchievementBadges';
-export { StoriesWidget } from './StoriesWidget';
 export { PersonalizedRecommendations } from './PersonalizedRecommendations';
 export { TrendingTopics } from './TrendingTopics';
 export { ConnectionSuggestions } from './ConnectionSuggestions';

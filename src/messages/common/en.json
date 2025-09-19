@@ -1,0 +1,285 @@
+{
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "search": {
+      "placeholder": "Search people, products, services...",
+      "noResults": "No results found",
+      "loading": "Searching..."
+    },
+    "menu": {
+      "farmManagement": "Farm Management",
+      "marketplace": "Marketplace",
+      "network": "Network",
+      "knowledgeHub": "Knowledge Hub",
+      "forums": "Forums",
+      "traceability": "Traceability",
+      "analytics": "Analytics",
+      "compliance": "Compliance",
+      "sustainability": "Sustainability"
+    }
+  },
+  "ui": {
+    "buttons": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "create": "Create",
+      "update": "Update",
+      "submit": "Submit",
+      "close": "Close",
+      "back": "Back",
+      "next": "Next",
+      "previous": "Previous",
+      "loading": "Loading...",
+      "retry": "Retry",
+      "confirm": "Confirm",
+      "decline": "Decline",
+      "accept": "Accept",
+      "reject": "Reject",
+      "view": "View",
+      "download": "Download",
+      "upload": "Upload",
+      "share": "Share",
+      "copy": "Copy",
+      "paste": "Paste"
+    },
+    "forms": {
+      "required": "Required",
+      "optional": "Optional",
+      "validation": {
+        "email": "Please enter a valid email address",
+        "required": "This field is required",
+        "minLength": "Must be at least {count} characters",
+        "maxLength": "Must be no more than {count} characters",
+        "pattern": "Please enter a valid format",
+        "numeric": "Please enter a valid number",
+        "date": "Please enter a valid date",
+        "url": "Please enter a valid URL"
+      },
+      "placeholders": {
+        "select": "Please select...",
+        "search": "Search...",
+        "enterText": "Enter text...",
+        "enterNumber": "Enter number...",
+        "enterDate": "Select date..."
+      }
+    },
+    "status": {
+      "loading": "Loading...",
+      "success": "Success",
+      "error": "Error",
+      "warning": "Warning",
+      "info": "Information",
+      "pending": "Pending",
+      "completed": "Completed",
+      "failed": "Failed",
+      "cancelled": "Cancelled"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page",
+      "of": "of",
+      "showing": "Showing",
+      "to": "to",
+      "entries": "entries",
+      "first": "First",
+      "last": "Last"
+    },
+    "modals": {
+      "confirm": {
+        "title": "Confirm Action",
+        "message": "Are you sure you want to proceed?",
+        "yes": "Yes",
+        "no": "No"
+      },
+      "delete": {
+        "title": "Delete Item",
+        "message": "This action cannot be undone. Are you sure you want to delete this item?",
+        "confirm": "Delete",
+        "cancel": "Cancel"
+      }
+    },
+    "tooltips": {
+      "help": "Help",
+      "info": "Information",
+      "warning": "Warning",
+      "error": "Error"
+    }
+  },
+  "time": {
+    "now": "now",
+    "justNow": "just now",
+    "ago": "ago",
+    "minute": "minute",
+    "minutes": "minutes",
+    "hour": "hour",
+    "hours": "hours",
+    "day": "day",
+    "days": "days",
+    "week": "week",
+    "weeks": "weeks",
+    "month": "month",
+    "months": "months",
+    "year": "year",
+    "years": "years",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "tomorrow": "Tomorrow",
+    "dateFormat": "MMM dd, yyyy",
+    "timeFormat": "HH:mm",
+    "datetimeFormat": "MMM dd, yyyy HH:mm"
+  },
+  "currency": {
+    "symbol": "$",
+    "code": "USD",
+    "format": "{symbol}{amount}",
+    "thousandsSeparator": ",",
+    "decimalSeparator": ".",
+    "decimalPlaces": 2
+  },
+  "units": {
+    "weight": {
+      "kg": "kg",
+      "kilogram": "kilogram",
+      "gram": "g",
+      "gram": "gram",
+      "ton": "ton",
+      "tonne": "tonne",
+      "pound": "lb",
+      "pound": "pound",
+      "ounce": "oz",
+      "ounce": "ounce"
+    },
+    "area": {
+      "hectare": "ha",
+      "hectare": "hectare",
+      "acre": "ac",
+      "acre": "acre",
+      "squareMeter": "m²",
+      "squareMeter": "square meter",
+      "squareFoot": "ft²",
+      "squareFoot": "square foot"
+    },
+    "volume": {
+      "liter": "L",
+      "liter": "liter",
+      "gallon": "gal",
+      "gallon": "gallon",
+      "cubicMeter": "m³",
+      "cubicMeter": "cubic meter",
+      "milliliter": "mL",
+      "milliliter": "milliliter"
+    },
+    "length": {
+      "meter": "m",
+      "meter": "meter",
+      "centimeter": "cm",
+      "centimeter": "centimeter",
+      "millimeter": "mm",
+      "millimeter": "millimeter",
+      "kilometer": "km",
+      "kilometer": "kilometer",
+      "inch": "in",
+      "inch": "inch",
+      "foot": "ft",
+      "foot": "foot",
+      "yard": "yd",
+      "yard": "yard"
+    }
+  },
+  "agricultural": {
+    "crops": {
+      "rice": "Rice",
+      "wheat": "Wheat",
+      "corn": "Corn",
+      "maize": "Maize",
+      "soybean": "Soybean",
+      "cotton": "Cotton",
+      "coffee": "Coffee",
+      "tea": "Tea",
+      "sugarcane": "Sugarcane",
+      "potato": "Potato",
+      "tomato": "Tomato",
+      "onion": "Onion",
+      "garlic": "Garlic",
+      "carrot": "Carrot",
+      "lettuce": "Lettuce",
+      "cabbage": "Cabbage",
+      "broccoli": "Broccoli",
+      "spinach": "Spinach",
+      "beans": "Beans",
+      "peas": "Peas",
+      "lentils": "Lentils",
+      "chickpeas": "Chickpeas"
+    },
+    "seasons": {
+      "spring": "Spring",
+      "summer": "Summer",
+      "autumn": "Autumn",
+      "fall": "Fall",
+      "winter": "Winter",
+      "dry": "Dry Season",
+      "wet": "Wet Season",
+      "monsoon": "Monsoon",
+      "harvest": "Harvest Season"
+    },
+    "soil": {
+      "types": {
+        "clay": "Clay",
+        "sandy": "Sandy",
+        "loam": "Loam",
+        "silt": "Silt",
+        "chalky": "Chalky",
+        "peaty": "Peaty"
+      },
+      "ph": {
+        "acidic": "Acidic",
+        "neutral": "Neutral",
+        "alkaline": "Alkaline"
+      }
+    },
+    "certifications": {
+      "organic": "Organic",
+      "fairTrade": "Fair Trade",
+      "gmoFree": "GMO Free",
+      "sustainable": "Sustainable",
+      "rainforestAlliance": "Rainforest Alliance",
+      "utz": "UTZ Certified",
+      "gap": "Good Agricultural Practices"
+    }
+  },
+  "errors": {
+    "generic": "An error occurred. Please try again.",
+    "network": "Network error. Please check your connection.",
+    "timeout": "Request timed out. Please try again.",
+    "unauthorized": "You are not authorized to perform this action.",
+    "forbidden": "Access denied.",
+    "notFound": "The requested resource was not found.",
+    "server": "Server error. Please try again later.",
+    "validation": "Please check your input and try again.",
+    "fileTooLarge": "File is too large. Please select a smaller file.",
+    "unsupportedFile": "File type not supported.",
+    "quotaExceeded": "You have exceeded your quota."
+  },
+  "success": {
+    "saved": "Changes saved successfully.",
+    "created": "Item created successfully.",
+    "updated": "Item updated successfully.",
+    "deleted": "Item deleted successfully.",
+    "uploaded": "File uploaded successfully.",
+    "sent": "Message sent successfully.",
+    "received": "Request received successfully."
+  },
+  "confirmations": {
+    "delete": "Are you sure you want to delete this item?",
+    "save": "Do you want to save your changes?",
+    "send": "Are you sure you want to send this message?",
+    "submit": "Are you sure you want to submit this form?"
+  }
+}

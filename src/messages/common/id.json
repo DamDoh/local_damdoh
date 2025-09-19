@@ -1,0 +1,109 @@
+{
+  "navigation": {
+    "home": "Beranda",
+    "dashboard": "Dasbor",
+    "profile": "Profil",
+    "settings": "Pengaturan",
+    "logout": "Keluar",
+    "search": {
+      "placeholder": "Cari orang, produk, layanan...",
+      "noResults": "Tidak ada hasil ditemukan",
+      "loading": "Mencari..."
+    },
+    "menu": {
+      "farmManagement": "Manajemen Pertanian",
+      "marketplace": "Pasar",
+      "network": "Jaringan",
+      "knowledgeHub": "Pusat Pengetahuan",
+      "forums": "Forum",
+      "traceability": "Pelacakan",
+      "analytics": "Analitik",
+      "compliance": "Kepatuhan",
+      "sustainability": "Keberlanjutan"
+    }
+  },
+  "ui": {
+    "buttons": {
+      "save": "Simpan",
+      "cancel": "Batal",
+      "delete": "Hapus",
+      "edit": "Edit",
+      "create": "Buat",
+      "update": "Perbarui",
+      "submit": "Kirim",
+      "close": "Tutup",
+      "back": "Kembali",
+      "next": "Selanjutnya",
+      "previous": "Sebelumnya",
+      "loading": "Memuat",
+      "backToFarmManagement": "Kembali ke Manajemen Pertanian"
+    },
+    "forms": {
+      "required": "Wajib",
+      "optional": "Opsional",
+      "validation": {
+        "email": "Silakan masukkan alamat email yang valid",
+        "required": "Bidang ini wajib diisi",
+        "minLength": "Harus minimal {count} karakter",
+        "maxLength": "Tidak boleh melebihi {count} karakter",
+        "pattern": "Format tidak valid"
+      }
+    },
+    "status": {
+      "loading": "Memuat",
+      "success": "Berhasil",
+      "error": "Kesalahan",
+      "warning": "Peringatan",
+      "info": "Informasi"
+    },
+    "pagination": {
+      "previous": "Sebelumnya",
+      "next": "Selanjutnya",
+      "page": "Halaman",
+      "of": "dari",
+      "showing": "Menampilkan",
+      "to": "ke",
+      "entries": "entri"
+    }
+  },
+  "time": {
+    "now": "Sekarang",
+    "ago": "lalu",
+    "justNow": "Baru saja",
+    "minute": "menit",
+    "minutes": "menit",
+    "hour": "jam",
+    "hours": "jam",
+    "day": "hari",
+    "days": "hari",
+    "week": "minggu",
+    "weeks": "minggu",
+    "month": "bulan",
+    "months": "bulan",
+    "year": "tahun",
+    "years": "tahun"
+  },
+  "currency": {
+    "symbol": "Rp",
+    "code": "IDR",
+    "format": "Rp {amount}"
+  },
+  "units": {
+    "weight": {
+      "kg": "kg",
+      "ton": "ton",
+      "gram": "g",
+      "pound": "pon"
+    },
+    "area": {
+      "hectare": "hektar",
+      "acre": "acre",
+      "squareMeter": "meter persegi"
+    },
+    "volume": {
+      "liter": "liter",
+      "gallon": "galon",
+      "cubicMeter": "meter kubik"
+    }
+  }
+}

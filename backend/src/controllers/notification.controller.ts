@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { Notification, NotificationPreferences, NotificationType, NotificationStatus } from '../models/notification.model';
 import { User } from '../models/user.model';
 import { logger } from '../utils/logger';
-import { v4 as uuidv4 } from 'uuid';
 
 export class NotificationController {
   private async sendPushNotification(
@@ -87,6 +86,7 @@ export class NotificationController {
       }
 
       // Create notification document
+      const { v4: uuidv4 } = await import('uuid');
       const notificationId = uuidv4();
       const notification = new Notification({
         notificationId,

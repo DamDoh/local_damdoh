@@ -4,6 +4,16 @@
  */
 
 import React from 'react';
+
+// Core widgets available to all stakeholders
+import { StoriesWidget } from '../widgets/StoriesWidget';
+import { AchievementBadges } from '../widgets/AchievementBadges';
+import { TrendingTopics } from '../widgets/TrendingTopics';
+import { ConnectionSuggestions } from '../widgets/ConnectionSuggestions';
+import { PersonalizedRecommendations } from '../widgets/PersonalizedRecommendations';
+import { HelpSupportWidget } from '../widgets';
+
+// AgriTech-specific widgets
 import {
   ResearchDevelopmentWidget,
   SolutionManagementWidget,
@@ -12,6 +22,8 @@ import {
   PartnershipsWidget,
   InnovationAnalyticsWidget
 } from '../widgets/AgriTechWidgets';
+
+// Farmer-specific widgets
 import {
   WeatherWidget,
   MarketIntelligenceWidget,
@@ -22,6 +34,8 @@ import {
   TrendingFarmersWidget,
   BusinessOpportunitiesWidget
 } from '../widgets/FarmerWidgets';
+
+// Common operational widgets
 import {
   DailyOperationsWidget,
   FarmResourcesWidget,
@@ -31,14 +45,8 @@ import {
   FarmerFeedbackWidget,
   SeasonalCalendarWidget,
   MoneyPlanningWidget,
-  BusinessAnalyticsWidget,
-  HelpSupportWidget
+  BusinessAnalyticsWidget
 } from '../widgets';
-import { PersonalizedRecommendations } from '../widgets/PersonalizedRecommendations';
-import { TrendingTopics } from '../widgets/TrendingTopics';
-import { ConnectionSuggestions } from '../widgets/ConnectionSuggestions';
-import { AchievementBadges } from '../widgets/AchievementBadges';
-import { StoriesWidget } from '../widgets/StoriesWidget';
 
 interface AgriTechLayoutProps {
   config: any; // StakeholderConfig
@@ -54,7 +62,7 @@ export const AgriTechLayout: React.FC<AgriTechLayoutProps> = ({ config, feedCont
           <StoriesWidget />
         </div>
         <div className="space-y-4">
-          <AchievementBadges userRole="agritech" />
+          <AchievementBadges userRole="AgriTech Innovator" />
           <WeatherWidget />
         </div>
       </div>
@@ -78,24 +86,20 @@ export const AgriTechLayout: React.FC<AgriTechLayoutProps> = ({ config, feedCont
 
         {/* Right Sidebar - Research & Innovation */}
         <div className="lg:col-span-3 space-y-6">
+          {/* Core widgets for all stakeholders */}
+          <NewsEventsWidget />
+          <TrendingTopics />
+          <ConnectionSuggestions />
+          <PersonalizedRecommendations />
+
+          {/* Stakeholder-specific widgets */}
           <AdvancedInsightsWidget />
           <CommunityCollaborationWidget />
           <BusinessOpportunitiesWidget />
-          <ConnectionSuggestions />
-          <PersonalizedRecommendations />
-          <TrendingTopics />
-          <NewsEventsWidget />
           <HelpSupportWidget />
         </div>
       </div>
 
-      {/* Bottom Row - Additional AgriTech Tools */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <SeasonalCalendarWidget />
-        <MoneyPlanningWidget />
-        <BusinessAnalyticsWidget />
-        <WeatherWidget />
-      </div>
     </div>
   );
 };

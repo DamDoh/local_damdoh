@@ -1,0 +1,118 @@
+{
+  "signIn": {
+    "title": "Welcome Back to DamDoh",
+    "welcome": "Welcome back to {appName}",
+    "description": "Sign in to your account to continue your agricultural journey",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email address",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "forgotPasswordLink": "Forgot Password?",
+    "signInButton": "Sign In",
+    "signingInButton": "Signing In...",
+    "noAccountPrompt": "Don't have an account?",
+    "signUpLink": "Create Account"
+  },
+  "signUp": {
+    "title": "Join the DamDoh Agricultural Network",
+    "welcome": "Join {appName} today",
+    "description": "Create your account to connect with the global agricultural supply chain",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Enter your full name",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email address",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Create a strong password",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "roleLabel": "Your Role in Agriculture",
+    "rolePlaceholder": "Select your primary role",
+    "signUpButton": "Create Account",
+    "creatingAccountButton": "Creating Account...",
+    "alreadyHaveAccountPrompt": "Already have an account?",
+    "signInLink": "Sign In"
+  },
+  "passwordReset": {
+    "title": "Reset Your Password",
+    "description": "Enter your email address and we'll send you a link to reset your password",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email address",
+    "sendResetLinkButton": "Send Reset Link",
+    "sendingButton": "Sending...",
+    "backToSignInLink": "Back to Sign In"
+  },
+  "passwordStrength": {
+    "weak": "Weak",
+    "medium": "Medium",
+    "strong": "Strong",
+    "veryStrong": "Very Strong",
+    "label": "Password Strength"
+  },
+  "errors": {
+    "emailInUse": "This email is already registered. Please try a different email or sign in instead.",
+    "invalidEmail": "Please enter a valid email address.",
+    "weakPassword": "Password must be at least 8 characters long and include uppercase, lowercase, and numbers.",
+    "passwordMismatch": "Passwords do not match. Please try again.",
+    "default": "An error occurred. Please try again.",
+    "unexpected": "An unexpected error occurred. Please try again later.",
+    "invalidCredential": "Invalid email or password. Please check your credentials and try again.",
+    "userDisabled": "This account has been disabled. Please contact support for assistance.",
+    "tooManyAttempts": "Too many failed attempts. Please try again later.",
+    "networkError": "Network error. Please check your connection and try again."
+  },
+  "success": {
+    "signUp": {
+      "title": "Account Created Successfully",
+      "description": "Welcome to {appName}! Your account has been created and you're now signed in."
+    },
+    "signIn": {
+      "title": "Signed In Successfully",
+      "description": "Welcome back to {appName}! You're now signed in and ready to continue."
+    },
+    "passwordReset": {
+      "title": "Reset Link Sent",
+      "description": "We've sent a password reset link to your email address. Please check your inbox."
+    },
+    "passwordChanged": {
+      "title": "Password Changed",
+      "description": "Your password has been successfully changed. You can now sign in with your new password."
+    }
+  },
+  "stakeholderRoles": {
+    "Admin": "Administrator",
+    "Farmer": "Farmer",
+    "Agronomist": "Agronomist",
+    "Buyer": "Buyer",
+    "Cooperative": "Cooperative",
+    "EquipmentSupplier": "Equipment Supplier",
+    "FinancialInstitution": "Financial Institution",
+    "FieldAgent": "Field Agent",
+    "Logistics": "Logistics Provider",
+    "Researcher": "Researcher",
+    "AgriTech": "AgriTech Innovator",
+    "CertificationBody": "Certification Body",
+    "Consumer": "Consumer",
+    "EnergyProvider": "Energy Provider",
+    "AgroExport": "Agro Exporter",
+    "AgroTourism": "Agro Tourism",
+    "Operations": "Operations Manager",
+    "QA": "Quality Assurance",
+    "Regulator": "Regulator",
+    "TrustScore": "Trust Score Provider",
+    "WasteManagement": "Waste Management",
+    "General": "General User"
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Please enter a valid email address",
+    "minLength": "Must be at least {count} characters",
+    "maxLength": "Must be no more than {count} characters",
+    "password": "Password must meet security requirements"
+  },
+  "loading": {
+    "signingIn": "Signing you in...",
+    "creatingAccount": "Creating your account...",
+    "sendingEmail": "Sending email...",
+    "verifying": "Verifying..."
+  }
+}

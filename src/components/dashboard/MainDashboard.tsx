@@ -74,7 +74,7 @@ function MainContent() {
         // Fetch feed items using FeedService with fallback to mock data
         const feedService = FeedService.getInstance();
         const posts = await feedService.fetchFeed({ type: 'all' });
-        setFeedItems(posts as FeedItem[]);
+        setFeedItems(posts);
       } catch (error) {
         console.error("Error fetching feed:", error);
         toast({

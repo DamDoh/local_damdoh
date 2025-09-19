@@ -1,0 +1,195 @@
+{
+  "title": "Dashboard",
+  "subtitle": "Welcome to your agricultural command center",
+  "welcome": "Welcome back, {name}!",
+  "overview": {
+    "title": "Overview",
+    "description": "Your agricultural ecosystem at a glance"
+  },
+  "stats": {
+    "totalUsers": "Total Users",
+    "activeUsers": "Active Users",
+    "totalTransactions": "Total Transactions",
+    "revenue": "Revenue",
+    "farms": "Active Farms",
+    "products": "Listed Products",
+    "connections": "Network Connections",
+    "certifications": "Active Certifications"
+  },
+  "navigation": {
+    "overview": "Overview",
+    "analytics": "Analytics",
+    "users": "Users",
+    "transactions": "Transactions",
+    "reports": "Reports",
+    "settings": "Settings",
+    "notifications": "Notifications",
+    "support": "Support"
+  },
+  "widgets": {
+    "recentActivity": "Recent Activity",
+    "quickActions": "Quick Actions",
+    "notifications": "Notifications",
+    "alerts": "Alerts",
+    "weather": "Weather",
+    "marketPrices": "Market Prices",
+    "tasks": "Tasks",
+    "messages": "Messages",
+    "calendar": "Calendar",
+    "performance": "Performance"
+  },
+  "quickActions": {
+    "addProduct": "Add Product",
+    "createListing": "Create Listing",
+    "scheduleMeeting": "Schedule Meeting",
+    "viewAnalytics": "View Analytics",
+    "manageProfile": "Manage Profile",
+    "contactSupport": "Contact Support",
+    "inviteUsers": "Invite Users",
+    "exportData": "Export Data"
+  },
+  "filters": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "lastWeek": "Last Week",
+    "lastMonth": "Last Month",
+    "lastQuarter": "Last Quarter",
+    "lastYear": "Last Year",
+    "customRange": "Custom Range",
+    "allTime": "All Time"
+  },
+  "timeRanges": {
+    "hour": "Last Hour",
+    "day": "Last 24 Hours",
+    "week": "Last 7 Days",
+    "month": "Last 30 Days",
+    "quarter": "Last 3 Months",
+    "year": "Last Year"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "busy": "Busy",
+    "away": "Away",
+    "active": "Active",
+    "inactive": "Inactive",
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "completed": "Completed",
+    "inProgress": "In Progress",
+    "cancelled": "Cancelled"
+  },
+  "roles": {
+    "admin": "Administrator",
+    "farmer": "Farmer",
+    "buyer": "Buyer",
+    "supplier": "Supplier",
+    "logistics": "Logistics",
+    "agronomist": "Agronomist",
+    "researcher": "Researcher",
+    "inspector": "Inspector",
+    "certifier": "Certifier",
+    "investor": "Investor"
+  },
+  "categories": {
+    "crops": "Crops",
+    "livestock": "Livestock",
+    "equipment": "Equipment",
+    "inputs": "Inputs",
+    "services": "Services",
+    "certifications": "Certifications",
+    "finance": "Finance",
+    "insurance": "Insurance",
+    "logistics": "Logistics",
+    "technology": "Technology"
+  },
+  "metrics": {
+    "views": "Views",
+    "clicks": "Clicks",
+    "conversions": "Conversions",
+    "revenue": "Revenue",
+    "profit": "Profit",
+    "roi": "ROI",
+    "efficiency": "Efficiency",
+    "productivity": "Productivity",
+    "quality": "Quality",
+    "satisfaction": "Satisfaction"
+  },
+  "alerts": {
+    "weather": {
+      "title": "Weather Alert",
+      "frost": "Frost warning for your region",
+      "drought": "Drought conditions detected",
+      "flood": "Flood risk in your area",
+      "storm": "Storm approaching"
+    },
+    "market": {
+      "title": "Market Alert",
+      "priceIncrease": "Price increase for {crop}",
+      "priceDecrease": "Price decrease for {crop}",
+      "highDemand": "High demand for {crop}",
+      "supplyShortage": "Supply shortage detected"
+    },
+    "system": {
+      "title": "System Alert",
+      "maintenance": "Scheduled maintenance",
+      "update": "New features available",
+      "security": "Security update required",
+      "backup": "Data backup completed"
+    },
+    "compliance": {
+      "title": "Compliance Alert",
+      "certification": "Certification expiring soon",
+      "audit": "Audit scheduled",
+      "regulation": "New regulation affects you",
+      "deadline": "Deadline approaching"
+    }
+  },
+  "emptyStates": {
+    "noData": "No data available",
+    "noActivity": "No recent activity",
+    "noNotifications": "No notifications",
+    "noMessages": "No messages",
+    "noTasks": "No tasks",
+    "noProducts": "No products listed",
+    "noConnections": "No connections yet"
+  },
+  "loading": {
+    "dashboard": "Loading dashboard...",
+    "data": "Loading data...",
+    "analytics": "Loading analytics...",
+    "reports": "Generating reports..."
+  },
+  "errors": {
+    "loadFailed": "Failed to load dashboard data",
+    "saveFailed": "Failed to save changes",
+    "deleteFailed": "Failed to delete item",
+    "networkError": "Network connection error",
+    "permissionDenied": "Permission denied",
+    "invalidData": "Invalid data provided"
+  },
+  "success": {
+    "saved": "Changes saved successfully",
+    "deleted": "Item deleted successfully",
+    "created": "Item created successfully",
+    "updated": "Item updated successfully",
+    "sent": "Message sent successfully"
+  },
+  "tooltips": {
+    "refresh": "Refresh data",
+    "export": "Export data",
+    "import": "Import data",
+    "settings": "Dashboard settings",
+    "help": "Help and documentation",
+    "fullscreen": "Toggle fullscreen",
+    "minimize": "Minimize widget"
+  },
+  "placeholders": {
+    "search": "Search dashboard...",
+    "filter": "Filter results...",
+    "selectDate": "Select date...",
+    "enterValue": "Enter value...",
+    "selectOption": "Select option..."
+  }
+}

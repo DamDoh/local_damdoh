@@ -4,6 +4,16 @@
  */
 
 import React from 'react';
+
+// Core widgets available to all stakeholders
+import { StoriesWidget } from '../widgets/StoriesWidget';
+import { AchievementBadges } from '../widgets/AchievementBadges';
+import { TrendingTopics } from '../widgets/TrendingTopics';
+import { ConnectionSuggestions } from '../widgets/ConnectionSuggestions';
+import { PersonalizedRecommendations } from '../widgets/PersonalizedRecommendations';
+import { HelpSupportWidget } from '../widgets';
+
+// Buyer-specific widgets
 import {
   SupplierDiscoveryWidget,
   OrderManagementWidget,
@@ -12,6 +22,8 @@ import {
   PaymentProcessingWidget,
   BuyerAnalyticsWidget
 } from '../widgets/BuyerWidgets';
+
+// Farmer-specific widgets
 import {
   WeatherWidget,
   MarketIntelligenceWidget,
@@ -21,6 +33,8 @@ import {
   SupplyChainWidget,
   TrendingFarmersWidget
 } from '../widgets/FarmerWidgets';
+
+// Common operational widgets
 import {
   DailyOperationsWidget,
   FarmResourcesWidget,
@@ -30,14 +44,8 @@ import {
   FarmerFeedbackWidget,
   SeasonalCalendarWidget,
   MoneyPlanningWidget,
-  BusinessAnalyticsWidget,
-  HelpSupportWidget
+  BusinessAnalyticsWidget
 } from '../widgets';
-import { PersonalizedRecommendations } from '../widgets/PersonalizedRecommendations';
-import { TrendingTopics } from '../widgets/TrendingTopics';
-import { ConnectionSuggestions } from '../widgets/ConnectionSuggestions';
-import { AchievementBadges } from '../widgets/AchievementBadges';
-import { StoriesWidget } from '../widgets/StoriesWidget';
 
 interface BuyerLayoutProps {
   config: any; // StakeholderConfig
@@ -53,7 +61,7 @@ export const BuyerLayout: React.FC<BuyerLayoutProps> = ({ config, feedContent })
           <StoriesWidget />
         </div>
         <div className="space-y-4">
-          <AchievementBadges userRole="buyer" />
+          <AchievementBadges userRole="Buyer" />
           <WeatherWidget />
         </div>
       </div>
@@ -77,24 +85,20 @@ export const BuyerLayout: React.FC<BuyerLayoutProps> = ({ config, feedContent })
 
         {/* Right Sidebar - Market Intelligence & Suppliers */}
         <div className="lg:col-span-3 space-y-6">
+          {/* Core widgets for all stakeholders */}
+          <NewsEventsWidget />
+          <TrendingTopics />
+          <ConnectionSuggestions />
+          <PersonalizedRecommendations />
+
+          {/* Stakeholder-specific widgets */}
           <MarketIntelligenceWidget />
           <SupplyChainWidget />
           <TrendingFarmersWidget />
-          <ConnectionSuggestions />
-          <PersonalizedRecommendations />
-          <TrendingTopics />
-          <NewsEventsWidget />
           <HelpSupportWidget />
         </div>
       </div>
 
-      {/* Bottom Row - Additional Buyer Tools */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <SeasonalCalendarWidget />
-        <MoneyPlanningWidget />
-        <BusinessAnalyticsWidget />
-        <WeatherWidget />
-      </div>
     </div>
   );
 };
